@@ -312,7 +312,7 @@ module GameData
           offset = pkmn_data[:offset].to_i
           highestlevel += offset
           if highestlevel > level
-            level = highestlevel + offset
+            level = highestlevel
           end
         end
         ####
