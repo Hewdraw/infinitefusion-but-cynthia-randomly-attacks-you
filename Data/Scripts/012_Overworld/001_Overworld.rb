@@ -222,6 +222,11 @@ end
 def pbBattleOnStepTaken(repel_active)
   return if $Trainer.able_pokemon_count == 0
   return if !$PokemonEncounters.encounter_possible_here?
+  if $cynthiachance == nil
+    $cynthiachance = 0
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
+    return
+  end
   encounter_type = $PokemonEncounters.encounter_type
   return if !encounter_type
   return if !$PokemonEncounters.encounter_triggered?(encounter_type, repel_active)
@@ -242,7 +247,18 @@ def pbBattleOnStepTaken(repel_active)
   $game_switches[SWITCH_FORCE_FUSE_NEXT_POKEMON] = false
 
   encounter = EncounterModifier.trigger(encounter)
-  if $PokemonEncounters.allow_encounter?(encounter, repel_active)
+  $cynthiachance += 1
+  if rand(30) <= $cynthiachance || repel_active
+    badge0 = [2, 3, 4]
+    badge1 = [5, 6, 7, 8, 9, 10]
+    badge2 = [11, 12, 13, 14, 15, 16]
+    badge3 = [17, 18, 19, 20, 21]
+    badges = [badge0, badge1, badge2, badge3]
+    currentbadge = badges[$Trainer.numbadges]
+    trainernumber = currentbadge[rand(currentbadge.length())]
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, trainernumber)
+    $cynthiachance = 0
+  else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?
       encounter2 = $PokemonEncounters.choose_wild_pokemon(encounter_type)
       encounter2 = EncounterModifier.trigger(encounter2)

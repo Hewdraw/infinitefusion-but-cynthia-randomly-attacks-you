@@ -16,6 +16,7 @@ module GameData
       "Items" => [:items, "*e", :Item],
       "LoseText" => [:lose_text, "s"],
       "Pokemon" => [:pokemon, "ev", :Species], # Species, level
+      "Offset" => [:offset, "s"],
       "Form" => [:form, "u"],
       "Name" => [:name, "s"],
       "Moves" => [:moves, "*e", :Move],
@@ -286,6 +287,7 @@ module GameData
           species = reverseFusionSpecies(species)
         end
         level = pkmn_data[:level]
+
         if $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
           level = (level * Settings::HARD_MODE_LEVEL_MODIFIER).ceil
           if level > Settings::MAXIMUM_LEVEL
@@ -297,6 +299,20 @@ module GameData
           override_level = $game_variables[Settings::OVERRIDE_BATTLE_LEVEL_VALUE_VAR]
           if override_level.is_a?(Integer)
             level = override_level
+          end
+        end
+
+        if tr_name == "Cynthia" || tr_name == "Miku"
+          highestlevel = 0
+          for mon in $Trainer.party
+            if mon.level > highestlevel
+              highestlevel = mon.level
+            end
+          end
+          offset = pkmn_data[:offset].to_i
+          highestlevel += offset
+          if highestlevel > level
+            level = highestlevel + offset
           end
         end
         ####

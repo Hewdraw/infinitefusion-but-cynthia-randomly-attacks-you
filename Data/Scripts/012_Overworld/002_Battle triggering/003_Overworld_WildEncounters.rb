@@ -181,7 +181,6 @@ class PokemonEncounters
     # If encounter didn't happen, make the next step more likely to produce one
     if triggered_by_step
       @chance_accumulator += @step_chances[enc_type]
-      @chance_accumulator = 0 if repel_active
     end
     return false
   end
