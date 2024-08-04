@@ -154,6 +154,9 @@ class PokeBattle_Battle
             if b.abilityActive?
               pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri)
             end
+            if move.name == "Grassy Glide" && self.field.terrain == :Grassy && b.affectedByTerrain?
+              pri += 1
+            end
             bArray[3] = pri
             @choices[b.index][4] = pri
           end

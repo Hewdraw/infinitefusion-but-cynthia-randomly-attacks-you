@@ -707,4 +707,4 @@
 688,SUPERCELLSLAM,Supercell Slam,10B,95,ELECTRIC,Physical,95,15,0,NearOther,0,abef,""
 689,ALLURINGVOICE,Alluring Voice,000,80,FAIRY,Special,100,10,0,NearOther,0,befk,"todo"
 690,CLANGOROUSSOUL,Clangorous Soul,181,0,DRAGON,Status,0,5,0,User,0,dk,"todo"
-691,GRASSYGLIDE,Grassy Glide,000,55,GRASS,Physical,100,20,0,NearOther,0,abef,"todo"
+691,GRASSYGLIDE,Grassy Glide,000,55,GRASS,Physical,100,20,0,NearOther,0,abef,"hardcoded"
