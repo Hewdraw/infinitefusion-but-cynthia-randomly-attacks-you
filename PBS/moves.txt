@@ -698,7 +698,7 @@
 679,TRIATTACK2,Tri Attack,017,70,NORMAL,Special,100,10,20,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. May also paralyze, burn, or freeze the target."
 680,FUSIONSWAP,Fusion Beam,091,0,QMARKS,Status,100,5,20,NearOther,0,bef,"A strange move developped by Team Rocket. It temporarily inverts an opposing fused Pokémon."
 681,CHILLINGWATER,Chilling Water,042,50,WATER,Special,100,20,100,NearOther,0,bef,""
-682,SCALESHOT,Scale Shot,000,25,DRAGON,Physical,90,20,100,NearOther,0,bef,"todo"
+682,SCALESHOT,Scale Shot,176,25,DRAGON,Physical,90,20,100,NearOther,0,bef,"todo"
 683,DUALWINGBEAT,Dual Wingbeat,000,40,FLYING,Physical,90,10,0,NearOther,0,abef,"todo"
 684,TERABLAST,Terablast,000,80,NORMAL,Special,100,10,0,NearOther,0,bef,"todo"
 685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,""

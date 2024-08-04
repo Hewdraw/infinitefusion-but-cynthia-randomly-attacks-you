@@ -2493,3 +2493,25 @@ end
 #       Actually, you might as well use high numbers like 500+ (up to FFFF),
 #       just to make sure later additions to Essentials don't clash with your
 #       new effects.
+
+
+class PokeBattle_Move_176 < PokeBattle_Move
+  def multiHitMove?; return true; end
+
+  def pbNumHits(user,targets)
+    hitChances = [2,2,3,3,4,5]
+    r = @battle.pbRandom(hitChances.length)
+    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    return hitChances[r]
+  end
+
+  def pbEffectAfterAllHits(user,target)
+    return if user.fainted? || target.damageState.unaffected
+    if user.pbCanRaiseStatStage?(:SPEED,user,self)
+      user.pbRaiseStatStage(:SPEED,1,user)
+    end
+    if user.pbCanLowerStatStage?(:DEFENSE,user,self)
+      user.pbLowerStatStage(:DEFENSE,1,user)
+    end
+  end
+end
