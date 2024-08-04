@@ -2530,3 +2530,48 @@ class PokeBattle_Move_177 < PokeBattle_Move
     return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
   end
 end
+
+class PokeBattle_Move_178 < PokeBattle_Move
+  def pbGetAttackStats(user, target)
+    return user.defense, user.stages[:DEFENSE] + 6
+  end
+end
+
+class PokeBattle_Move_179 < PokeBattle_WeatherMove
+  def initialize(battle, move)
+    super
+    @weatherType = :Snow #todo
+  end
+end
+
+# class PokeBattle_Move_180 < PokeBattle_Move
+#   #todo alluring voice
+# end
+
+
+class PokeBattle_Move_181 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    hpLoss = [user.totalhp / 3, 1].max
+    if user.hp <= hpLoss
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return true if !user.pbCanRaiseStatStage?(:ATTACK, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:DEFENSE, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:SPEED, user, self, true)
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    hpLoss = [user.totalhp / 3, 1].max
+    user.pbReduceHP(hpLoss, false)
+    user.pbRaiseStatStage(:ATTACK,1,user)
+    user.pbRaiseStatStage(:DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+    user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPEED,1,user)
+    user.pbItemHPHealCheck
+  end
+end
