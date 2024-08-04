@@ -1936,7 +1936,7 @@ class PokeBattle_Move_0BF < PokeBattle_Move
 
   def pbOnStartUse(user,targets)
     @calcBaseDmg = 0
-    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK)
+    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?(:LOADEDDICE)
   end
 
   def pbBaseDamage(baseDmg,user,target)
@@ -1958,6 +1958,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
       return 3
     end
     hitChances = [2,2,3,3,4,5]
+    hitChances = [4,5] if user.hasActiveItem?(:LOADEDDICE)
     r = @battle.pbRandom(hitChances.length)
     r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
     return hitChances[r]

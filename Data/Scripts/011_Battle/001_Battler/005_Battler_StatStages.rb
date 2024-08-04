@@ -192,6 +192,13 @@ class PokeBattle_Battler
     if abilityActive?
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
+    if hasActiveItem?(:EJECTPACK) && @battle.pbCanSwitch?(self.index,-1,false) && @battle.pbAbleCount(self.index) > 1
+      @battle.pbCommonAnimation("UseItem",self,nil); pbConsumeItem(false,true)
+      newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
+      @battle.pbRecallAndReplace(self.index,newPkmn)
+      @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
+      user.pbEffectsOnSwitchIn(true)
+    end
     return true
   end
 
@@ -220,6 +227,13 @@ class PokeBattle_Battler
     # Trigger abilities upon stat loss
     if abilityActive?
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
+    end
+    if hasActiveItem?(:EJECTPACK) && @battle.pbCanSwitch?(self.index,-1,false) && @battle.pbAbleCount(self.index) > 1
+      @battle.pbCommonAnimation("UseItem",self,nil); pbConsumeItem(false,true)
+      newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
+      @battle.pbRecallAndReplace(self.index,newPkmn)
+      @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
+      user.pbEffectsOnSwitchIn(true)
     end
     return true
   end

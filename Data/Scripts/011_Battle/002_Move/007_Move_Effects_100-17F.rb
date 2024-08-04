@@ -2500,6 +2500,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
 
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
+    hitChances = [4,5] if user.hasActiveItem?(:LOADEDDICE)
     r = @battle.pbRandom(hitChances.length)
     r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
     return hitChances[r]

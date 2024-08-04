@@ -537,5 +537,12 @@ class PokeBattle_Battler
     elsif !move.pbMissMessage(user,target)
       @battle.pbDisplay(_INTL("{1}'s attack missed!",user.pbThis))
     end
+    if user.hasActiveItem?(:BLUNDERPOLICY)
+      if user.pbCanRaiseStatStage?(:SPEED,user,self)
+        battle.pbDisplay(_INTL("{1} used its {2}!",user.pbThis,user.itemName))
+        user.pbHeldItemTriggered(user.item)
+        user.pbRaiseStatStage(:SPEED,2,user)
+      end
+    end
   end
 end

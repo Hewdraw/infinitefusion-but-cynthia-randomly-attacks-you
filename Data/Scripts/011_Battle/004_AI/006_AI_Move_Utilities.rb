@@ -216,7 +216,11 @@ class PokeBattle_AI
       if user.hasActiveAbility?(:SKILLLINK)
         baseDmg *= 5
       else
-        baseDmg = (baseDmg*19/6).floor   # Average damage dealt
+        if user.hasActiveItem?(:LOADEDDICE)
+          baseDmg *= 4.5
+        else
+          baseDmg = (baseDmg*19/6).floor   # Average damage dealt
+        end
       end
     when "0C1"   # Beat Up
       mult = 0
@@ -251,6 +255,16 @@ class PokeBattle_AI
     when "175"   # Double Iron Bash
       baseDmg *= 2
       baseDmg *= 2 if skill>=PBTrainerAI.mediumSkill && target.effects[PBEffects::Minimize]
+    when "176"   # Scale Shot
+      if user.hasActiveAbility?(:SKILLLINK)
+        baseDmg *= 5
+      else
+        if user.hasActiveItem?(:LOADEDDICE)
+          baseDmg *= 4.5
+        else
+          baseDmg = (baseDmg*19/6).floor   # Average damage dealt
+        end
+      end
     end
     return baseDmg
   end
