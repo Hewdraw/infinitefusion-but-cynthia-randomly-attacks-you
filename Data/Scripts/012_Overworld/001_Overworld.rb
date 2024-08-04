@@ -249,14 +249,17 @@ def pbBattleOnStepTaken(repel_active)
   encounter = EncounterModifier.trigger(encounter)
   $cynthiachance += 1
   if rand(30) <= $cynthiachance || repel_active
-    badge0 = [2, 3, 4]
-    badge1 = [5, 6, 7, 8, 9, 10]
-    badge2 = [11, 12, 13, 14, 15, 16]
-    badge3 = [17, 18, 19, 20, 21]
-    badges = [badge0, badge1, badge2, badge3]
+    badges = []
+    badges.append((2..4).to_a) #0
+    badges.append((5..10).to_a) #1
+    badges.append((11..16).to_a) #2
+    badges.append((17..21).to_a) #3
+    badges.append((22..26).to_a) #4
+    badges.append((27..31).to_a) #5
+    badges.append((32..36).to_a) #7
+    badges.append((37..41).to_a) #8
     currentbadge = badges[$Trainer.numbadges]
-    trainernumber = currentbadge[rand(currentbadge.length())]
-    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, trainernumber)
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
     $cynthiachance = 0
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?
