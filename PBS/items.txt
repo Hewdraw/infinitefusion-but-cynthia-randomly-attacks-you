@@ -692,9 +692,6 @@
 684,SLEEPINGBAG,Sleeping Bag,Sleeping Bag,8,0,"A handy sleeping bag that can be used to sleep anywhere.",2,0,6,
 685,LUNARFEATHER,Lunar Feather,Lunar Feathers,8,0,"A feather that glows like the moon. It's said to possess the power to dispel nightmares. ",2,0,6,
 686,CORRUPTEDFEATHER,Corrupted Feather,Lunar Feathers,8,0,"A lunar feather that has been corrupted. It's said to possess the power to cause nightmares. ",2,0,6,
-
-
-
-
-
-
+687,EJECTPACK,Eject Pack,Eject Packs,1,0,"todo",0,0,0
+688,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"todo",0,0,0
+689,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"todo",0,0,0

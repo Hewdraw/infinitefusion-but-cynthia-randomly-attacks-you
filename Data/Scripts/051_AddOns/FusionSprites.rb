@@ -164,8 +164,8 @@ module GameData
         return sprintf(base_path + "cardboard")
       when Settings::ZAPMOLCUNO_NB + 27 #Triple regi
         return sprintf(base_path + "447.448.449")
-      when 1000027..
-        return base_path + dexnum
+      when 1000027..1000050
+        return sprintf(base_path + dexNum)
       else
         return sprintf(base_path + "000")
       end
