@@ -256,8 +256,9 @@ def pbBattleOnStepTaken(repel_active)
     badges.append((17..21).to_a) #3
     badges.append((22..26).to_a) #4
     badges.append((27..31).to_a) #5
-    badges.append((32..36).to_a) #7
-    badges.append((37..41).to_a) #8
+    badges.append((32..36).to_a) #6
+    badges.append((37..41).to_a) #7
+    badges.append((42..45).to_a) #8
     currentbadge = badges[$Trainer.numbadges]
     pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
     $cynthiachance = 0

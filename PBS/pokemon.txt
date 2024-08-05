@@ -16634,3 +16634,198 @@ Shape = BipedalTail
 Pokedex = Its rigid scales function as offense and defense. In the past, its scales were processed and used to make weapons and other commodities.
 Generation = 7
 WildItemCommon = RAZORCLAW
+#-------------------------------
+[1000039]
+Name = Tynapi
+InternalName = TOGEPITYNAMO
+Type1 = ELECTRIC
+Type2 = FAIRY
+BaseStats = 35,31,56,33,43,48
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000040]
+Name = Shellpi
+InternalName = TOGEPISHELLOS
+Type1 = WATER
+Type2 = FAIRY
+BaseStats = 62,29,59,24,51,63
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000041]
+Name = Shellgon
+InternalName = PORYGONSHELLOS
+Type1 = WATER
+Type2 = NORMAL
+BaseStats = 72,56,62,38,66,66
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000042]
+Name = Togelektrik
+InternalName = EELEKTRIKTOGETIC
+Type1 = FAIRY
+Type2 = ELECTRIC
+BaseStats = 58,70,75,40,78,93
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000043]
+Name = Roseviary
+InternalName = BRAVIARYROSERADE
+Type1 = GRASS
+Type2 = FLYING
+BaseStats = 73,105,71,83,102,95
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000044]
+Name = Eelekolu
+InternalName = RIOLUEELEKTROSS
+Type1 = ELECTRIC
+Type2 = FIGHTING
+BaseStats = 70,85,53,56,81,66
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000045]
+Name = Gastrotomb
+InternalName = SPIRITOMBGASTRODON
+Type1 = WATER
+Type2 = GHOST
+BaseStats = 90,89,94,36,92,90
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000046]
+Name = Gabtross
+InternalName = EELEKTROSSGABITE
+Type1 = DRAGON
+Type2 = ELECTRIC
+BaseStats = 73,106,75,60,68,63
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000047]
+Name = Arcatross
+InternalName = EELEKTROSSHARCANINE
+Type1 = FIRE
+Type2 = ELECTRIC
+BaseStats = 90,115,80,63,98,80
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000048]
+Name = Milom-o
+InternalName = KOMMOOMILOTIC
+Type1 = WATER
+Type2 = FIGHTING
+BaseStats = 88,93,109,83,100,118
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000049]
+Name = Porymo-o
+InternalName = KOMMOOPORYGON2
+Type1 = NORMAL
+Type2 = FIGHTING
+BaseStats = 81,100,113,76,103,98
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000050]
+Name = Togemo-o
+InternalName = KOMMOOTOGEKISS
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 81,90,115,83,113,111
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000051]
+Name = Gastrokiss
+InternalName = TOGEKISSGASTRODON
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 102,61,86,66,101,93
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000052]
+Name = Glaceviary
+InternalName = BRAVIARYGLACEON
+Type1 = ICE
+Type2 = FLYING
+BaseStats = 76,102,86,75,105,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
+#-------------------------------
+[1000053]
+Name = Eelekiss
+InternalName = TOGEKISSEELEKTROSS
+Type1 = ELECTRIC
+Type2 = FLYING
+BaseStats = 85,71,90,70,110,91
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head

@@ -165,7 +165,7 @@ module GameData
       when Settings::ZAPMOLCUNO_NB + 27 #Triple regi
         return sprintf(base_path + "447.448.449")
       when 1000027..1000050
-        return sprintf(base_path + dexNum)
+        return sprintf(base_path + dexNum.to_s)
       else
         return sprintf(base_path + "000")
       end
