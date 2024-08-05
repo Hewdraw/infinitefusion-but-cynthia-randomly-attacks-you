@@ -4884,7 +4884,7 @@ Pokemon = B299H134,73 #GARCHOMP / VAPOREON
 	Item = RINDOBERRY
 #######################
 [CHAMPION_Sinnoh,Cynthia,1]
-Pokemon = HGROWLITHE,5
+Pokemon = GIBLE,5
 	Offset = -1
 	Moves = TWISTER,MUDSLAP
 	Ability = ROUGHSKIN
