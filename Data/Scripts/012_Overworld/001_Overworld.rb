@@ -247,7 +247,33 @@ def pbBattleOnStepTaken(repel_active)
   $game_switches[SWITCH_FORCE_FUSE_NEXT_POKEMON] = false
 
   encounter = EncounterModifier.trigger(encounter)
-  $PokemonGlobal.cynthiachance += 1
+  chanceincrease = 1
+  if !Settings::FLUTES_CHANGE_WILD_ENCOUNTER_LEVELS
+    chanceincrease *= 2
+  end
+  first_pkmn = $Trainer.first_pokemon
+  if first_pkmn
+    case first_pkmn.item_id
+    when :CLEANSETAG
+      chanceincrease *= 2
+    when :PUREINCENSE
+      chanceincrease *= 2
+    else   # Ignore ability effects if an item effect applies
+      case first_pkmn.ability_id
+      when :STENCH, :WHITESMOKE, :QUICKFEET
+        chanceincrease *= 2
+      when :SNOWCLOAK
+        if GameData::Weather.get($game_screen.weather_type).category == :Hail
+          chanceincrease *= 2
+        end
+      when :SANDVEIL
+        if GameData::Weather.get($game_screen.weather_type).category == :Sandstorm
+          chanceincrease *= 2
+        end
+      end
+    end
+  end
+  $PokemonGlobal.cynthiachance += chanceincrease
   if rand(30) <= $PokemonGlobal.cynthiachance || repel_active
     numbadges = $Trainer.numbadges
     if $PokemonGlobal.cynthiaupgradechance == nil
@@ -256,7 +282,7 @@ def pbBattleOnStepTaken(repel_active)
     if $PokemonGlobal.cynthiabadgetier == nil
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
-    if $PokemonGlobal.cynthiabadgetier > numbadges
+    if numbadges > $PokemonGlobal.cynthiabadgetier
       $PokemonGlobal.cynthiaupgradechance = 0
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
