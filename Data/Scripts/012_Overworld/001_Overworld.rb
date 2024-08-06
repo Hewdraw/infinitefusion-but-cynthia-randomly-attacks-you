@@ -222,8 +222,8 @@ end
 def pbBattleOnStepTaken(repel_active)
   return if $Trainer.able_pokemon_count == 0
   return if !$PokemonEncounters.encounter_possible_here?
-  if $cynthiachance == nil
-    $cynthiachance = 0
+  if $PokemonGlobal.cynthiachance == nil
+    $PokemonGlobal.cynthiachance = 0
     pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
     return
   end
@@ -247,24 +247,25 @@ def pbBattleOnStepTaken(repel_active)
   $game_switches[SWITCH_FORCE_FUSE_NEXT_POKEMON] = false
 
   encounter = EncounterModifier.trigger(encounter)
-  $cynthiachance += 1
-  if rand(30) <= $cynthiachance || repel_active
+  $PokemonGlobal.cynthiachance += 1
+  if rand(30) <= $PokemonGlobal.cynthiachance || repel_active
     numbadges = $Trainer.numbadges
-    if $cynthiabadgetier == nil
-      $cynthiaupgradechance = 0
-      $cynthiabadgetier = numbadges
+    if $PokemonGlobal.cynthiaupgradechance == nil
+      $PokemonGlobal.cynthiaupgradechance = 0
     end
-    if $cynthiabadgetier > numbadges
-      $cynthiaupgradechance = 0
-      $cynthiabadgetier = numbadges
+    if $PokemonGlobal.cynthiabadgetier == nil
+      $PokemonGlobal.cynthiabadgetier = numbadges
     end
-    highestlevel = 0
-    for mon in $Trainer.party
+    if $PokemonGlobal.cynthiabadgetier > numbadges
+      $PokemonGlobal.cynthiaupgradechance = 0
+      $PokemonGlobal.cynthiabadgetier = numbadges
+    end
+    for mon in $PokemonGlobal.party
       if pokemonExceedsLevelCap(mon) || mon.level == 100
-        $cynthiaupgradechance += 1
-        if rand(40) <= $cynthiaupgradechance
+        $PokemonGlobal.cynthiaupgradechance += 1
+        if rand(40) <= $PokemonGlobal.cynthiaupgradechance
           numbadges += 1
-          $cynthiaupgradechance = 0
+          $PokemonGlobal.cynthiaupgradechance = 0
         end
         break
       end

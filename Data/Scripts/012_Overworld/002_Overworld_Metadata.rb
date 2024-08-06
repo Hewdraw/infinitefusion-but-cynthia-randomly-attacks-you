@@ -57,6 +57,10 @@ class PokemonGlobalMetadata
   attr_accessor :safesave
   #Trainers rematch
   attr_accessor :rematchedTrainers
+  #cynthia values
+  attr_accessor :cynthiachance
+  attr_accessor :cynthiaupgradechance
+  attr_accessor :cynthiabadgetier
 
   def initialize
     # Movement
