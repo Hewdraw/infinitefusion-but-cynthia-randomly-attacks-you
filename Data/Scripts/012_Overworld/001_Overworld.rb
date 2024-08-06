@@ -286,7 +286,7 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.cynthiaupgradechance = 0
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
-    for mon in $PokemonGlobal.party
+    for mon in $Trainer.party
       if pokemonExceedsLevelCap(mon) || mon.level == 100
         $PokemonGlobal.cynthiaupgradechance += 1
         if rand(40) <= $PokemonGlobal.cynthiaupgradechance
