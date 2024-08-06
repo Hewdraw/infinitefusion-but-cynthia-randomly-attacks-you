@@ -342,6 +342,12 @@ module GameData
         else
           pkmn.reset_moves
         end
+        if tr_name == "Cynthia" || tr_name == "Hatsune Miku"
+          for move in pkmn.moves
+            move.ppup = 3
+            move.pp = move.total_pp
+          end
+        end
         pkmn.ability_index = pkmn_data[:ability_index]
         pkmn.ability = pkmn_data[:ability]
 
