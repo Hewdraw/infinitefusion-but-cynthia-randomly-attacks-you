@@ -136,8 +136,10 @@ def pbPrepareBattle(battle)
   battle.moneyGain = battleRules["moneyGain"] if !battleRules["moneyGain"].nil?
   # Whether the player is able to switch when an opponent's Pokémon faints
   battle.switchStyle = ($PokemonSystem.battlestyle==0)
-  if battle.opponent[0].name == "Cynthia" or battle.opponent[0].name == "Hatsune Miku"
-    battle.switchStyle = false
+  if battle.opponent != nil
+    if battle.opponent[0].name == "Cynthia" or battle.opponent[0].name == "Hatsune Miku"
+      battle.switchStyle = false
+    end
   end
   battle.switchStyle = battleRules["switchStyle"] if !battleRules["switchStyle"].nil?
   # Whether battle animations are shown
