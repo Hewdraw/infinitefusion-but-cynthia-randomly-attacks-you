@@ -249,7 +249,7 @@ def pbBattleOnStepTaken(repel_active)
   encounter = EncounterModifier.trigger(encounter)
   chanceincrease = 1
   if !Settings::FLUTES_CHANGE_WILD_ENCOUNTER_LEVELS
-    chanceincrease *= 2
+    chanceincrease *= 2 if $PokemonMap.blackFluteUsed
   end
   first_pkmn = $Trainer.first_pokemon
   if first_pkmn
