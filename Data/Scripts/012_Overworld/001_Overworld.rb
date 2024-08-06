@@ -273,8 +273,10 @@ def pbBattleOnStepTaken(repel_active)
       end
     end
   end
+  print(chanceincrease)
   $PokemonGlobal.cynthiachance += chanceincrease
-  if rand(30) <= $PokemonGlobal.cynthiachance || repel_active
+  print($PokemonGlobal.cynthiachance)
+  if rand(35) <= $PokemonGlobal.cynthiachance || repel_active
     numbadges = $Trainer.numbadges
     if $PokemonGlobal.cynthiaupgradechance == nil
       $PokemonGlobal.cynthiaupgradechance = 0
@@ -289,7 +291,7 @@ def pbBattleOnStepTaken(repel_active)
     for mon in $Trainer.party
       if pokemonExceedsLevelCap(mon) || mon.level == 100
         $PokemonGlobal.cynthiaupgradechance += 1
-        if rand(40) <= $PokemonGlobal.cynthiaupgradechance
+        if rand(25) <= $PokemonGlobal.cynthiaupgradechance
           numbadges += 1
           $PokemonGlobal.cynthiaupgradechance = 0
         end
@@ -315,7 +317,7 @@ def pbBattleOnStepTaken(repel_active)
     else
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
     end
-    $cynthiachance = 0
+    $PokemonGlobal.cynthiachance = 0
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?
       encounter2 = $PokemonEncounters.choose_wild_pokemon(encounter_type)
