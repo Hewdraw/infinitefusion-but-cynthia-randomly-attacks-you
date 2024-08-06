@@ -4955,6 +4955,39 @@ Pokemon = EEVEE,5
 	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,5]
+Pokemon = BUDEW,5
+	Offset = 1
+	Moves = VENOSHOCK,SUNNYDAY
+	Item = HEATROCK
+	Ability = LEAFGUARD
+	Gender = F
+	Nature = MODEST
+	IV = 0,0,0,0,0,0
+	EV = 0,0,0,0,0,0
+	Happiness = 255
+Pokemon = GIBLE,5
+	Offset = -1
+	Moves = FIREFANG,SANDTOMB
+	Ability = ROUGHSKIN
+	Gender = F
+	Nature = ADAMANT
+	IV = 0,0,0,0,0,0
+	EV = 0,0,0,0,0,0
+	Happiness = 255
+
+[CHAMPION_Sinnoh,Cynthia,6]
+Pokemon = GIBLE,5
+	Offset = 3
+	Moves = THUNDERFANG,BULLDOZE
+	Item = SAFETYGOGGLES
+	Ability = ROUGHSKIN
+	Gender = F
+	Nature = ADAMANT
+	IV = 0,0,0,0,0,0
+	EV = 0,0,0,0,0,0
+	Happiness = 255
+
+[CHAMPION_Sinnoh,Cynthia,7]
 Pokemon = RIOLU,5
 	Offset = 2
 	Moves = VACUUMWAVE,TOXIC
@@ -4986,7 +5019,7 @@ Pokemon = EEVEE,5
 	EV = 0,32,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,6]
+[CHAMPION_Sinnoh,Cynthia,8]
 Pokemon = FEEBAS,5
 	Offset = 1
 	Moves = RAINDANCE,DIVE
@@ -5018,7 +5051,7 @@ Pokemon = TYNAMO,5
 	EV = 0,32,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,7]
+[CHAMPION_Sinnoh,Cynthia,9]
 Pokemon = TOGEPI,5
 	Offset = 1
 	Moves = DEFENSECURL,ROLLOUT
@@ -5050,7 +5083,7 @@ Pokemon = BUDEW,5
 	EV = 0,0,0,0,32,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,8]
+[CHAMPION_Sinnoh,Cynthia,10]
 Pokemon = TOGEPI,5
 	Offset = 3
 	Moves = METRONOME,SOFTBOILED
@@ -5082,7 +5115,7 @@ Pokemon = SHELLOS,5
 	EV = 32,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,9]
+[CHAMPION_Sinnoh,Cynthia,11]
 Pokemon = RIOLU,5
 	Offset = 1
 	Moves = DOUBLETEAM,POWERUPPUNCH
@@ -5114,7 +5147,7 @@ Pokemon = BUDEW,5
 	EV = 32,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,10]
+[CHAMPION_Sinnoh,Cynthia,12]
 Pokemon = BUDEW,5
 	Offset = 2
 	Item = ROCKYHELMET
@@ -5146,7 +5179,7 @@ Pokemon = RIOLU,5
 	EV = 32,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,11]
+[CHAMPION_Sinnoh,Cynthia,13]
 Pokemon = HGROWLITHE,5
 	Offset = 1
 	Moves = OVERHEAT
@@ -5178,7 +5211,7 @@ Pokemon = GIBLE,5
 	EV = 0,0,0,64,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,12]
+[CHAMPION_Sinnoh,Cynthia,14]
 Pokemon = PORYGON,5
 	Offset = 3
 	Moves = TRIATTACK,REST,SLEEPTALK
@@ -5210,7 +5243,7 @@ Pokemon = JANGMOO,5
 	EV = 0,0,32,32,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,13]
+[CHAMPION_Sinnoh,Cynthia,15]
 Pokemon = TOGEPITYNAMO,5
 	Offset = 2
 	Moves = CHARGEBEAM,WATERPULSE,DRAININGKISS
@@ -5242,7 +5275,7 @@ Pokemon = GIBLE,5
 	EV = 0,64,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,14]
+[CHAMPION_Sinnoh,Cynthia,16]
 Pokemon = RUFFLET,5
 	Offset = 1
 	Moves = DUALWINGBEAT,DOUBLEEDGE,UTURN
@@ -5274,7 +5307,7 @@ Pokemon = PORYGON,5
 	EV = 0,64,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,15]
+[CHAMPION_Sinnoh,Cynthia,17]
 Pokemon = SHELLOS,5
 	Offset = -1
 	Moves = SANDSTORM,ROCKTOMB,CHILLINGWATER
@@ -5306,7 +5339,7 @@ Pokemon = JANGMOO,5
 	EV = 64,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,16]
+[CHAMPION_Sinnoh,Cynthia,18]
 Pokemon = GIBLE,5
 	Offset = 1
 	Moves = STEALTHROCK,SCORCHINGSANDS,DRAGONBREATH
@@ -5338,7 +5371,7 @@ Pokemon = HGROWLITHE,5
 	EV = 0,0,0,64,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,17]
+[CHAMPION_Sinnoh,Cynthia,19]
 Pokemon = B297H401,5	#Gible / Roselia
 	Offset = 2
 	Moves = STEALTHROCK,TOXICSPIKES,SPIKES
@@ -5370,7 +5403,7 @@ Pokemon = EEVEE,5
 	EV = 0,0,0,0,0,96
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,18]
+[CHAMPION_Sinnoh,Cynthia,20]
 Pokemon = PORYGON,5
 	Offset = 4
 	Moves = RAINDANCE,THUNDER,RECOVER
@@ -5402,7 +5435,7 @@ Pokemon = FEEBAS,5
 	EV = 0,0,0,0,96,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,19]
+[CHAMPION_Sinnoh,Cynthia,21]
 Pokemon = TOGEPISHELLOS,5
 	Offset = 3
 	Moves = SCALD,RECOVER,DRAININGKISS
@@ -5434,7 +5467,7 @@ Pokemon = GIBLE,5
 	EV = 0,96,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,20]
+[CHAMPION_Sinnoh,Cynthia,22]
 Pokemon = PORYGON,5
 	Offset = 4
 	Moves = BLIZZARD,THUNDER,RECOVER
@@ -5466,7 +5499,7 @@ Pokemon = GIBLE,5
 	EV = 96,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,21]
+[CHAMPION_Sinnoh,Cynthia,23]
 Pokemon = HGROWLITHE,5
 	Offset = 3
 	Moves = OVERHEAT
@@ -5498,7 +5531,7 @@ Pokemon = GIBLE,5
 	EV = 0,0,0,96,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,22]
+[CHAMPION_Sinnoh,Cynthia,24]
 Pokemon = GABITE,5
 	Offset = 1
 	Moves = STEALTHROCK,DRACOMETEOR,EARTHQUAKE
@@ -5540,7 +5573,7 @@ Pokemon = TOGETIC,5
 	EV = 0,0,0,128,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,23]
+[CHAMPION_Sinnoh,Cynthia,25]
 Pokemon = EELEKTRIKTOGETIC,5
 	Offset = 1
 	Moves = CHARGEBEAM,DISCHARGE,DRAININGKISS
@@ -5582,7 +5615,7 @@ Pokemon = GABITE,5
 	EV = 0,128,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,24]
+[CHAMPION_Sinnoh,Cynthia,26]
 Pokemon = B401H298,5	#Roselia / Gabite
 	Offset = 1
 	Moves = SANDSTORM,STEALTHROCK,TOXICSPIKES
@@ -5624,7 +5657,7 @@ Pokemon = HGROWLITHE,5
 	EV = 0,0,0,128,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,25]
+[CHAMPION_Sinnoh,Cynthia,27]
 Pokemon = ROSELIA,5
 	Offset = 3
 	Moves = TOXICSPIKES,LEECHSEED,SPIKES
@@ -5666,7 +5699,7 @@ Pokemon = PORYGON,5
 	EV = 128,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,26]
+[CHAMPION_Sinnoh,Cynthia,28]
 Pokemon = PORYGON,5
 	Offset = 4
 	Moves = TRICKROOM,TELEPORT,RECOVER
@@ -5708,7 +5741,7 @@ Pokemon = EELEKTRIK,5
 	EV = 128,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,27]
+[CHAMPION_Sinnoh,Cynthia,29]
 Pokemon = SPIRITOMB,5
 	Offset = 3
 	Moves = MEMENTO,SHADOWBALL,DARKPULSE
@@ -5750,7 +5783,7 @@ Pokemon = PORYGON2,5
 	EV = 0,0,0,0,160,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,28]
+[CHAMPION_Sinnoh,Cynthia,30]
 Pokemon = GLACEON,5
 	Offset = 3
 	Moves = SNOWSCAPE,AURORAVEIL,BLIZZARD
@@ -5792,7 +5825,7 @@ Pokemon = GABITE,5
 	EV = 0,0,0,160,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,29]
+[CHAMPION_Sinnoh,Cynthia,31]
 Pokemon = GABITE,5
 	Offset = 3
 	Moves = STEALTHROCK,SPIKES,DRAGONTAIL
@@ -5834,7 +5867,7 @@ Pokemon = RIOLUEELEKTROSS,5
 	EV = 160,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,30]
+[CHAMPION_Sinnoh,Cynthia,32]
 Pokemon = ROSERADE,5
 	Offset = 2
 	Moves = TOXICSPIKES,SPIKES,LEECHSEED
@@ -5876,7 +5909,7 @@ Pokemon = SPIRITOMBGASTRODON,5
 	EV = 160,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,31]
+[CHAMPION_Sinnoh,Cynthia,33]
 Pokemon = ALTARIA,5
 	Offset = 1
 	Moves = DRAGONDANCE,ACROBATICS,ROOST
@@ -5918,7 +5951,7 @@ Pokemon = GLACEON,5
 	EV = 160,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,32]
+[CHAMPION_Sinnoh,Cynthia,34]
 Pokemon = LUCARIO,5
 	Offset = 2
 	Moves = SWORDSDANCE,METEORMASH,CLOSECOMBAT
@@ -5970,7 +6003,7 @@ Pokemon = TOGEKISS,5
 	EV = 0,0,0,192,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,33]
+[CHAMPION_Sinnoh,Cynthia,35]
 Pokemon = PORYGON2,5
 	Offset = 3
 	Moves = TRICKROOM,TELEPORT,RECOVER
@@ -6022,7 +6055,7 @@ Pokemon = EELEKTROSSGABITE,5
 	EV = 0,192,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,34]
+[CHAMPION_Sinnoh,Cynthia,36]
 Pokemon = GASTRODON,5
 	Offset = 2
 	Moves = SANDSTORM,STEALTHROCK,EARTHPOWER
@@ -6074,7 +6107,7 @@ Pokemon = B443H298,5	#Altaria / Gabite
 	EV = 0,0,0,192,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,35]
+[CHAMPION_Sinnoh,Cynthia,37]
 Pokemon = B296H269,5	#Lucario / Togekiss
 	Offset = 2
 	Moves = BLAZEKICK,STONEEDGE,CROSSCHOP
@@ -6126,7 +6159,7 @@ Pokemon = PORYGON2,5
 	EV = 192,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,36]
+[CHAMPION_Sinnoh,Cynthia,38]
 Pokemon = EELEKTROSSHARCANINE,5
 	Offset = 1
 	Moves = UTURN,SUPERCELLSLAM,FLAREBLITZ
@@ -6178,7 +6211,7 @@ Pokemon = MILOTIC,5
 	EV = 192,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,37]
+[CHAMPION_Sinnoh,Cynthia,39]
 Pokemon = GLACEON,5
 	Offset = 2
 	Moves = SNOWSCAPE,AURORAVEIL,BLIZZARD,FREEZEDRY
@@ -6230,7 +6263,7 @@ Pokemon = GARCHOMP,5
 	EV = 0,224,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,38]
+[CHAMPION_Sinnoh,Cynthia,40]
 Pokemon = B299H352,5	#Garchomp / Roserade
 	Offset = 2
 	Moves = GRASSYTERRAIN,GRASSYGLIDE,SWORDSDANCE,BULLDOZE
@@ -6282,7 +6315,7 @@ Pokemon = KOMMOO,5
 	EV = 0,0,0,224,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,39]
+[CHAMPION_Sinnoh,Cynthia,41]
 Pokemon = SPIRITOMB,5
 	Offset = 3
 	Moves = CALMMIND,PAINSPLIT,STOREDPOWER,WILLOWISP
@@ -6334,7 +6367,7 @@ Pokemon = KOMMOOPORYGON2,5
 	EV = 224,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,40]
+[CHAMPION_Sinnoh,Cynthia,42]
 Pokemon = SPIRITOMB,5
 	Offset = 3
 	Moves = MEMENTO,HEX,DARKPULSE,WILLOWISP
@@ -6386,7 +6419,7 @@ Pokemon = GARCHOMP,5
 	EV = 0,0,0,0,0,224
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,41]
+[CHAMPION_Sinnoh,Cynthia,43]
 Pokemon = HARCANINE,5
 	Offset = 1
 	Moves = EXTREMESPEED,FLAREBLITZ,HEADSMASH,WILDCHARGE
@@ -6438,8 +6471,8 @@ Pokemon = GARCHOMP,5
 	EV = 0,224,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,42]
-Items = FULLRESTORE,FULLRESTORE,FULLRESTORE,FULLRESTORE
+[CHAMPION_Sinnoh,Cynthia,44]
+Items = FULLRESTORE,FULLRESTORE
 Pokemon = ROSERADE,5
 	Offset = 3
 	Moves = SPIKES,GIGADRAIN,SLUDGEBOMB,SYNTHESIS
@@ -6501,8 +6534,8 @@ Pokemon = LUCARIO,5
 	EV = 0,4,0,248,4,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,43]
-Items = FULLRESTORE,FULLRESTORE,FULLRESTORE,FULLRESTORE
+[CHAMPION_Sinnoh,Cynthia,45]
+Items = FULLRESTORE,FULLRESTORE
 Pokemon = LUCARIO,5
 	Offset = 3
 	Moves = TOXIC,EARTHQUAKE,CLOSECOMBAT,EXTREMESPEED
@@ -6564,8 +6597,8 @@ Pokemon = GARCHOMP,5
 	EV = 0,8,0,248,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,44]
-Items = FULLRESTORE,FULLRESTORE,FULLRESTORE,FULLRESTORE
+[CHAMPION_Sinnoh,Cynthia,46]
+Items = FULLRESTORE,FULLRESTORE
 Pokemon = SPIRITOMB,5
 	Offset = 2
 	Moves = CALMMIND,PAINSPLIT,DARKPULSE,SHADOWBALL
@@ -6627,8 +6660,8 @@ Pokemon = GARCHOMP,5
 	EV = 0,252,0,4,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,45]
-Items = FULLRESTORE,FULLRESTORE,FULLRESTORE,FULLRESTORE
+[CHAMPION_Sinnoh,Cynthia,47]
+Items = FULLRESTORE,FULLRESTORE
 Pokemon = B273H352,5	#Gliscor / Roserade
 	Offset = 1
 	Moves = SPIKES,ROOST,TOXIC,EARTHQUAKE
@@ -6680,8 +6713,31 @@ Pokemon = B299H134,5	#Garchomp / Vaporeon
 	EV = 204,0,52,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,46]
-Items = FULLRESTORE,FULLRESTORE,FULLRESTORE,FULLRESTORE
+[CHAMPION_Sinnoh,Cynthia,48]
+Items = FULLRESTORE,FULLRESTORE
+Pokemon = GIGALITH,5
+	Offset = 0
+	Moves = SELFDESTRUCT
+	Ability = SANDSTREAM
+	Item = LUMBERRY
+	Gender = F
+	Nature = MILD
+	IV = 0,0,0,0,0,0
+	EV = 0,0,0,0,0,0
+	Happiness = 255
+Pokemon = GARCHOMP,5
+	Offset = 0
+	Moves = SCALESHOT,OUTRAGE,EARTHQUAKE,IRONHEAD
+	Ability = ROUGHSKIN
+	Item = GARCHOMPITE
+	Gender = F
+	Nature = ADAMANT
+	IV = 31,31,31,31,31,31
+	EV = 4,252,0,252,0,0
+	Happiness = 255
+
+[CHAMPION_Sinnoh,Cynthia,49]
+Items = FULLRESTORE,FULLRESTORE
 Pokemon = LICKILICKY,5
 	Offset = 1
 	Moves = EXPLOSION
@@ -6742,3 +6798,5 @@ Pokemon = KOMMOO,5
 	IV = 31,31,31,31,31,31
 	EV = 252,0,36,0,0,0
 	Happiness = 255
+
+	

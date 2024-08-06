@@ -16330,8 +16330,10 @@ BattlerEnemyX = -1
 BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 3
+
+#Cynthia Pokemon
 #-------------------------------
-[1000027]
+[1000100]
 Name = Growlithe
 InternalName = HGROWLITHE
 Type1 = FIRE
@@ -16346,7 +16348,6 @@ Happiness = 50
 Abilities = INTIMIDATE,FLASHFIRE
 HiddenAbility = JUSTIFIED
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Field
 StepsToHatch = 5120
 Height = 0.7
@@ -16358,7 +16359,7 @@ Pokedex = Its superb sense of smell ensures that this Pokémon won't forget any 
 Generation = 1
 Evolutions = ARCANINE,Item,FIRESTONE
 #-------------------------------
-[1000028]
+[1000101]
 Name = Arcanine
 InternalName = HARCANINE
 Type1 = FIRE
@@ -16373,7 +16374,6 @@ Happiness = 50
 Abilities = INTIMIDATE,FLASHFIRE
 HiddenAbility = JUSTIFIED
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Field
 StepsToHatch = 5120
 Height = 1.9
@@ -16384,7 +16384,7 @@ Habitat = Grassland
 Pokedex = This fleet-footed Pokémon is said to run over 6,200 miles in a single day and night. The fire that blazes wildly within its body is its source of power.
 Generation = 1
 #-------------------------------
-[1000029]
+[1000102]
 Name = Shellos
 InternalName = SHELLOS
 Type1 = WATER
@@ -16398,7 +16398,6 @@ Happiness = 50
 Abilities = STICKYHOLD,STORMDRAIN
 HiddenAbility = SANDFORCE
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Water1,Amorphous
 StepsToHatch = 5120
 Height = 0.3
@@ -16409,7 +16408,7 @@ Pokedex = This Pokémon's habitat shapes its physique. According to some theorie
 Generation = 4
 Evolutions = GASTRODON,Level,30
 #-------------------------------
-[1000030]
+[1000103]
 Name = Gastrodon
 InternalName = GASTRODON
 Type1 = WATER
@@ -16424,7 +16423,6 @@ Happiness = 50
 Abilities = STICKYHOLD,STORMDRAIN
 HiddenAbility = SANDFORCE
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Water1,Amorphous
 StepsToHatch = 5120
 Height = 0.9
@@ -16434,7 +16432,7 @@ Shape = Serpentine
 Pokedex = Its search for food sometimes leads it onto land, where it leaves behind a sticky trail of slime as it passes through.
 Generation = 4
 #-------------------------------
-[1000031]
+[1000104]
 Name = Tynamo
 InternalName = TYNAMO
 Type1 = ELECTRIC
@@ -16447,7 +16445,6 @@ Rareness = 190
 Happiness = 50
 Abilities = LEVITATE
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Amorphous
 StepsToHatch = 5120
 Height = 0.2
@@ -16458,7 +16455,7 @@ Pokedex = These Pokémon move in schools. They have an electricity-generating or
 Generation = 5
 Evolutions = EELEKTRIK,Level,39
 #-------------------------------
-[1000032]
+[1000105]
 Name = Eelektrik
 InternalName = EELEKTRIK
 Type1 = ELECTRIC
@@ -16471,7 +16468,6 @@ Rareness = 60
 Happiness = 50
 Abilities = LEVITATE
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Amorphous
 StepsToHatch = 5120
 Height = 1.2
@@ -16482,7 +16478,7 @@ Pokedex = These Pokémon have a big appetite. When they spot their prey, they at
 Generation = 5
 Evolutions = EELEKTROSS,Item,THUNDERSTONE
 #-------------------------------
-[1000033]
+[1000106]
 Name = Eelektross
 InternalName = EELEKTROSS
 Type1 = ELECTRIC
@@ -16495,7 +16491,6 @@ Rareness = 30
 Happiness = 50
 Abilities = LEVITATE
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Amorphous
 StepsToHatch = 5120
 Height = 2.1
@@ -16505,7 +16500,7 @@ Shape = Finned
 Pokedex = With their sucker mouths, they suck in prey. Then they use their fangs to shock the prey with electricity.
 Generation = 5
 #-------------------------------
-[1000034]
+[1000107]
 Name = Rufflet
 InternalName = RUFFLET
 Type1 = NORMAL
@@ -16520,7 +16515,6 @@ Happiness = 50
 Abilities = KEENEYE,SHEERFORCE
 HiddenAbility = HUSTLE
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Flying
 StepsToHatch = 5120
 Height = 0.5
@@ -16531,7 +16525,7 @@ Pokedex = They will challenge anything, even strong opponents, without fear. The
 Generation = 5
 Evolutions = BRAVIARY,Level,54
 #-------------------------------
-[1000035]
+[1000108]
 Name = Braviary
 InternalName = BRAVIARY
 Type1 = NORMAL
@@ -16546,7 +16540,6 @@ Happiness = 50
 Abilities = KEENEYE,SHEERFORCE
 HiddenAbility = DEFIANT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Flying
 StepsToHatch = 5120
 Height = 1.5
@@ -16556,7 +16549,7 @@ Shape = Winged
 Pokedex = The more scars they have, the more respect these brave soldiers of the sky get from their peers.
 Generation = 5
 #-------------------------------
-[1000036]
+[1000109]
 Name = Jangmo-o
 InternalName = JANGMOO
 Type1 = DRAGON
@@ -16570,7 +16563,6 @@ Happiness = 50
 Abilities = BULLETPROOF,SOUNDPROOF
 HiddenAbility = OVERCOAT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Dragon
 StepsToHatch = 10240
 Height = 0.6
@@ -16582,7 +16574,7 @@ Generation = 7
 WildItemUncommon = RAZORCLAW
 Evolutions = HAKAMOO,Level,35
 #-------------------------------
-[1000037]
+[1000110]
 Name = Hakamo-o
 InternalName = HAKAMOO
 Type1 = DRAGON
@@ -16597,7 +16589,6 @@ Happiness = 50
 Abilities = BULLETPROOF,SOUNDPROOF
 HiddenAbility = OVERCOAT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Dragon
 StepsToHatch = 10240
 Height = 1.2
@@ -16609,7 +16600,7 @@ Generation = 7
 WildItemUncommon = RAZORCLAW
 Evolutions = KOMMOO,Level,45
 #-------------------------------
-[1000038]
+[1000111]
 Name = Kommo-o
 InternalName = KOMMOO
 Type1 = DRAGON
@@ -16624,7 +16615,6 @@ Happiness = 50
 Abilities = BULLETPROOF,SOUNDPROOF
 HiddenAbility = OVERCOAT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Compatibility = Dragon
 StepsToHatch = 10240
 Height = 1.6
@@ -16635,7 +16625,33 @@ Pokedex = Its rigid scales function as offense and defense. In the past, its sca
 Generation = 7
 WildItemCommon = RAZORCLAW
 #-------------------------------
-[1000039]
+[1000112]
+Name = Gigalith
+InternalName = GIGALITH
+Type1 = ROCK
+BaseStats = 85,135,130,25,60,80
+GenderRate = Female50Percent
+GrowthRate = Parabolic
+BaseEXP = 232
+EffortPoints = 0,0,0,0,0,0
+Rareness = 45
+Happiness = 70
+Abilities = STURDY,SANDSTREAM
+HiddenAbility = SANDFORCE
+Moves = 1,TACKLE
+Compatibility = Mineral
+StepsToHatch = 3840
+Height = 1.7
+Weight = 260.0
+Color = Blue
+Shape = Multiped
+Kind = Compressed
+Pokedex = The solar energy absorbed by its body's orange crystals is magnified internally and fired from its mouth.
+Generation = 5
+WildItemCommon = EVERSTONE
+WildItemUncommon = HARDSTONE
+#-------------------------------
+[1000200]
 Name = Tynapi
 InternalName = TOGEPITYNAMO
 Type1 = ELECTRIC
@@ -16645,10 +16661,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000040]
+[1000201]
 Name = Shellpi
 InternalName = TOGEPISHELLOS
 Type1 = WATER
@@ -16658,10 +16673,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000041]
+[1000202]
 Name = Shellgon
 InternalName = PORYGONSHELLOS
 Type1 = WATER
@@ -16671,10 +16685,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000042]
+[1000203]
 Name = Togelektrik
 InternalName = EELEKTRIKTOGETIC
 Type1 = FAIRY
@@ -16684,10 +16697,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000043]
+[1000204]
 Name = Roseviary
 InternalName = BRAVIARYROSERADE
 Type1 = GRASS
@@ -16697,10 +16709,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000044]
+[1000205]
 Name = Eelekolu
 InternalName = RIOLUEELEKTROSS
 Type1 = ELECTRIC
@@ -16710,10 +16721,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000045]
+[1000206]
 Name = Gastrotomb
 InternalName = SPIRITOMBGASTRODON
 Type1 = WATER
@@ -16723,10 +16733,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000046]
+[1000207]
 Name = Gabtross
 InternalName = EELEKTROSSGABITE
 Type1 = DRAGON
@@ -16736,10 +16745,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000047]
+[1000208]
 Name = Arcatross
 InternalName = EELEKTROSSHARCANINE
 Type1 = FIRE
@@ -16749,10 +16757,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000048]
+[1000209]
 Name = Milom-o
 InternalName = KOMMOOMILOTIC
 Type1 = WATER
@@ -16762,10 +16769,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000049]
+[1000210]
 Name = Porymo-o
 InternalName = KOMMOOPORYGON2
 Type1 = NORMAL
@@ -16775,10 +16781,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000050]
+[1000211]
 Name = Togemo-o
 InternalName = KOMMOOTOGEKISS
 Type1 = FAIRY
@@ -16788,10 +16793,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000051]
+[1000212]
 Name = Gastrokiss
 InternalName = TOGEKISSGASTRODON
 Type1 = WATER
@@ -16801,10 +16805,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000052]
+[1000213]
 Name = Glaceviary
 InternalName = BRAVIARYGLACEON
 Type1 = ICE
@@ -16814,10 +16817,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000053]
+[1000214]
 Name = Eelekiss
 InternalName = TOGEKISSEELEKTROSS
 Type1 = ELECTRIC
@@ -16827,10 +16829,9 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000054]
+[1000215]
 Name = Gastrogon-Z
 InternalName = GASTRODONPORYGON2
 Type1 = WATER
@@ -16840,5 +16841,6 @@ GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
-TutorMoves = TACKLE
 Shape = Head
+
+#eof
