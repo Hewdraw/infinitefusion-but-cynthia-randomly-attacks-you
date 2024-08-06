@@ -249,6 +249,26 @@ def pbBattleOnStepTaken(repel_active)
   encounter = EncounterModifier.trigger(encounter)
   $cynthiachance += 1
   if rand(30) <= $cynthiachance || repel_active
+    numbadges = $Trainer.numbadges
+    if $cynthiabadgetier == nil
+      $cynthiaupgradechance = 0
+      $cynthiabadgetier = numbadges
+    end
+    if $cynthiabadgetier > numbadges
+      $cynthiaupgradechance = 0
+      $cynthiabadgetier = numbadges
+    end
+    highestlevel = 0
+    for mon in $Trainer.party
+      if pokemonExceedsLevelCap(mon) || mon.level == 100
+        $cynthiaupgradechance += 40
+        if rand(40) <= $cynthiaupgradechance
+          numbadges += 1
+          $cynthiaupgradechance = 0
+        end
+        break
+      end
+    end
     badges = []
     badges.append((2..4).to_a) #0
     badges.append((5..10).to_a) #1
@@ -259,8 +279,15 @@ def pbBattleOnStepTaken(repel_active)
     badges.append((32..36).to_a) #6
     badges.append((37..41).to_a) #7
     badges.append((42..45).to_a) #8
-    currentbadge = badges[$Trainer.numbadges]
-    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
+    badges.append([46]) #9
+
+    currentbadge = badges[numbadges]
+
+    if numbadges > $Trainer.numbadges
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft)
+    else
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
+    end
     $cynthiachance = 0
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?

@@ -6078,8 +6078,8 @@ Pokemon = B443H298,5	#Altaria / Gabite
 Pokemon = B296H269,5	#Lucario / Togekiss
 	Offset = 2
 	Moves = BLAZEKICK,STONEEDGE,CROSSCHOP
-	Ability = SCOPELENS
-	Item = SUPERLUCK
+	Ability = SUPERLUCK
+	Item = SCOPELENS
 	Gender = F
 	Nature = JOLLY
 	IV = 24,24,24,24,24,24
@@ -6742,4 +6742,3 @@ Pokemon = KOMMOO,5
 	IV = 31,31,31,31,31,31
 	EV = 252,0,36,0,0,0
 	Happiness = 255
-

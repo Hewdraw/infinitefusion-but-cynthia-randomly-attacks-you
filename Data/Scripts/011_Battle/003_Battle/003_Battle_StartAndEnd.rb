@@ -176,6 +176,9 @@ class PokeBattle_Battle
       case @opponent.length
       when 1
         pbDisplayPaused(_INTL("You are challenged by {1}!",@opponent[0].full_name))
+        if @opponent[0].name == "Hatsune Miku"
+          @scene.pbCommonAnimation("Shiny") #todo
+        end
       when 2
         pbDisplayPaused(_INTL("You are challenged by {1} and {2}!",@opponent[0].full_name,
            @opponent[1].full_name))

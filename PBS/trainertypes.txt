@@ -117,3 +117,4 @@
 114,SKIER_F,Skier,16,,,,Female,32,
 115,CHAMPION_Sinnoh,Champion,16,,,,Female,100,
 116,SPRITER,Sprite Artist,16,,,,Mixed,100,
+117,CREATOR_Minecraft,Creator of Minecraft,16,,,,Female,100,

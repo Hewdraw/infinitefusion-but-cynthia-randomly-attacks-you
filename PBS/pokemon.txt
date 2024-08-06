@@ -16830,7 +16830,7 @@ Moves = 1,TACKLE
 TutorMoves = TACKLE
 Shape = Head
 #-------------------------------
-[1000053]
+[1000054]
 Name = Gastrogon-Z
 InternalName = GASTRODONPORYGON2
 Type1 = WATER

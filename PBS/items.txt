@@ -695,3 +695,4 @@
 687,EJECTPACK,Eject Pack,Eject Packs,1,0,"",0,0,0
 688,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"",0,0,0
 689,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"",0,0,0
+690,GARCHOMPITE,Garchompite,Garchompites,1,0,"todo",0,0,0
