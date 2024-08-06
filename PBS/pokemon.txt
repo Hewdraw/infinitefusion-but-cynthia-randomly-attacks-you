@@ -16829,3 +16829,16 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 TutorMoves = TACKLE
 Shape = Head
+#-------------------------------
+[1000053]
+Name = Gastrogon-Z
+InternalName = GASTRODONPORYGON2
+Type1 = WATER
+Type2 = NORMAL
+BaseStats = 102,81,69,73,106,79
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+TutorMoves = TACKLE
+Shape = Head
