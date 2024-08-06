@@ -5020,7 +5020,7 @@ Pokemon = TYNAMO,5
 
 [CHAMPION_Sinnoh,Cynthia,7]
 Pokemon = TOGEPI,5
-	Offset = 2
+	Offset = 1
 	Moves = DEFENSECURL,ROLLOUT
 	Item = SAFETYGOGGLES
 	Ability = SUPERLUCK
