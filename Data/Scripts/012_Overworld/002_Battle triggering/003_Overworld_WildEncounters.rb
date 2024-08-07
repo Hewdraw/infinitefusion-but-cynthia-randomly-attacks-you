@@ -121,7 +121,7 @@ class PokemonEncounters
     return false if !@step_chances[enc_type] || @step_chances[enc_type] == 0
     return false if !has_encounter_type?(enc_type)
     #Always check encounter if pokeradar is active
-    return true if $PokemonTemp.pokeradar != nil
+    return true if $PokemonTemp.pokeradar != nil && pbPokeRadarOnShakingGrass
 
     # Get base encounter chance and minimum steps grace period
     encounter_chance = @step_chances[enc_type].to_f
