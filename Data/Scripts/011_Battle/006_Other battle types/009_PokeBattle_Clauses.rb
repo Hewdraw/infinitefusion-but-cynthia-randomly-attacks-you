@@ -107,7 +107,7 @@ class PokeBattle_Move_022   # Double Team
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbMoveFailed?(user,targets)
+    return false
   end
 end
 
@@ -121,7 +121,7 @@ class PokeBattle_Move_034   # Minimize
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbMoveFailed?(user,targets)
+    return false
   end
 end
 
@@ -135,7 +135,7 @@ class PokeBattle_Move_067   # Skill Swap
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbFailsAgainstTarget?(user,target)
+    return false
   end
 end
 
@@ -149,7 +149,7 @@ class PokeBattle_Move_06A   # Sonic Boom
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbFailsAgainstTarget?(user,target)
+    return false
   end
 end
 
@@ -163,7 +163,7 @@ class PokeBattle_Move_06B   # Dragon Rage
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbFailsAgainstTarget?(user,target)
+    return false
   end
 end
 
@@ -177,7 +177,7 @@ class PokeBattle_Move_070   # OHKO moves
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbFailsAgainstTarget?(user,target)
+    return false
   end
 end
 
@@ -209,7 +209,7 @@ class PokeBattle_Move_0E0   # Self-Destruct
         return false
       end
     end
-    return __clauses__pbMoveFailed?(user,targets)
+    return false
   end
 end
 
@@ -224,7 +224,7 @@ class PokeBattle_Move_0E5   # Perish Song
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbFailsAgainstTarget?(user,target)
+    return false
   end
 end
 
@@ -239,6 +239,6 @@ class PokeBattle_Move_0E7   # Destiny Bond
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return __clauses__pbFailsAgainstTarget?(user,target)
+    return false
   end
 end
