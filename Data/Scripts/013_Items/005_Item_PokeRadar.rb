@@ -55,10 +55,6 @@ def pbUsePokeRadar
   playPokeradarLightAnimation(rareAllowed)
   pbWait(20)
   pbPokeRadarHighlightGrass
-  if $PokemonGlobal.repel <= 0
-    $PokemonGlobal.repel=10
-    $PokemonGlobal.tempRepel=true
-  end
   return true
 end
 
@@ -105,11 +101,6 @@ def displayPokeradarBanner(seenPokemon = [], unseenPokemon = [], includeRare = f
 end
 
 def pbPokeRadarCancel
-  if $PokemonGlobal.tempRepel
-    $PokemonGlobal.repel=0
-  end
-  $PokemonGlobal.tempRepel=false
-
   if $PokemonTemp.pokeradar_ui != nil
     $PokemonTemp.pokeradar_ui.dispose
     $PokemonTemp.pokeradar_ui = nil
