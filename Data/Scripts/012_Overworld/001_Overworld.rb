@@ -168,7 +168,7 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
 
 def isRepelActive()
   return false if $game_switches[SWITCH_USED_AN_INCENSE]
-  return ($PokemonGlobal.repel > 0) || $PokemonTemp.pokeradar
+  return ($PokemonGlobal.repel > 0)
 end
 
 def pbOnStepTaken(eventTriggered)
