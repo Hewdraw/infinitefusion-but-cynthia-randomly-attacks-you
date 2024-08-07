@@ -274,7 +274,7 @@ def pbBattleOnStepTaken(repel_active)
     end
   end
   $PokemonGlobal.cynthiachance += chanceincrease
-  if rand(35) <= $PokemonGlobal.cynthiachance || repel_active
+  if rand(35) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
     numbadges = $Trainer.numbadges
     if $PokemonGlobal.cynthiaupgradechance == nil
       $PokemonGlobal.cynthiaupgradechance = 0
