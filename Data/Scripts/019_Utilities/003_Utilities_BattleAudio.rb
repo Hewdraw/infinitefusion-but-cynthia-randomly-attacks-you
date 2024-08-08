@@ -5,6 +5,9 @@ def pbGetWildBattleBGM(_wildParty)   # wildParty is an array of Pokémon objects
   if $PokemonGlobal.nextBattleBGM
     return $PokemonGlobal.nextBattleBGM.clone
   end
+  if rand(20) <= 1
+    return pbStringToAudioFile("Volo")
+  end
   ret = nil
   if !ret
     # Check map metadata
@@ -77,6 +80,9 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     if trainer_type_data.id == :CREATOR_Minecraft
       return pbStringToAudioFile("Miku")
     end
+  end
+  if rand(20) <= 1
+    return pbStringToAudioFile("Volo")
   end
   ret = pbStringToAudioFile(music) if music && music!=""
   if !ret
