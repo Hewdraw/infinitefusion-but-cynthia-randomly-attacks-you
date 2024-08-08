@@ -94,6 +94,7 @@ def pbRepel(item, steps)
   end
   pbUseItemMessage(item)
   $PokemonGlobal.repel = steps
+  pbBGMPlay(pbStringToAudioFile("Cynthia"))
   return 3
 end
 
