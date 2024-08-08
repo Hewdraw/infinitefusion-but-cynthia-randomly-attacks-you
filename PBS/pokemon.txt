@@ -16334,7 +16334,7 @@ BattlerShadowSize = 3
 #Cynthia Pokemon
 #-------------------------------
 [1000100]
-Name = Growlithe
+Name = Growlithe Hisui
 InternalName = HGROWLITHE
 Type1 = FIRE
 Type2 = ROCK
@@ -16360,7 +16360,7 @@ Generation = 1
 Evolutions = ARCANINE,Item,FIRESTONE
 #-------------------------------
 [1000101]
-Name = Arcanine
+Name = Arcanine Hisui
 InternalName = HARCANINE
 Type1 = FIRE
 Type2 = ROCK
@@ -16650,8 +16650,21 @@ Pokedex = The solar energy absorbed by its body's orange crystals is magnified i
 Generation = 5
 WildItemCommon = EVERSTONE
 WildItemUncommon = HARDSTONE
-#-------------------------------
+
+#Cynthia Megas
 [1000200]
+Name = Garchomp
+InternalName = MEGAGARCHOMP
+BaseStats = 108,170,115,92,120,95
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+
+#Cynthia Fusions
+#-------------------------------
+[1000300]
 Name = Tynapi
 InternalName = TOGEPITYNAMO
 Type1 = ELECTRIC
@@ -16663,7 +16676,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000201]
+[1000301]
 Name = Shellpi
 InternalName = TOGEPISHELLOS
 Type1 = WATER
@@ -16675,7 +16688,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000202]
+[1000302]
 Name = Shellgon
 InternalName = PORYGONSHELLOS
 Type1 = WATER
@@ -16687,7 +16700,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000203]
+[1000303]
 Name = Togelektrik
 InternalName = EELEKTRIKTOGETIC
 Type1 = FAIRY
@@ -16699,7 +16712,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000204]
+[1000304]
 Name = Roseviary
 InternalName = BRAVIARYROSERADE
 Type1 = GRASS
@@ -16711,7 +16724,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000205]
+[1000305]
 Name = Eelekolu
 InternalName = RIOLUEELEKTROSS
 Type1 = ELECTRIC
@@ -16723,7 +16736,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000206]
+[1000306]
 Name = Gastrotomb
 InternalName = SPIRITOMBGASTRODON
 Type1 = WATER
@@ -16735,7 +16748,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000207]
+[1000307]
 Name = Gabtross
 InternalName = EELEKTROSSGABITE
 Type1 = DRAGON
@@ -16747,7 +16760,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000208]
+[1000308]
 Name = Arcatross
 InternalName = EELEKTROSSHARCANINE
 Type1 = FIRE
@@ -16759,7 +16772,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000209]
+[1000309]
 Name = Milom-o
 InternalName = KOMMOOMILOTIC
 Type1 = WATER
@@ -16771,7 +16784,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000210]
+[1000310]
 Name = Porymo-o
 InternalName = KOMMOOPORYGON2
 Type1 = NORMAL
@@ -16783,7 +16796,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000211]
+[1000311]
 Name = Togemo-o
 InternalName = KOMMOOTOGEKISS
 Type1 = FAIRY
@@ -16795,7 +16808,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000212]
+[1000312]
 Name = Gastrokiss
 InternalName = TOGEKISSGASTRODON
 Type1 = WATER
@@ -16807,7 +16820,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000213]
+[1000313]
 Name = Glaceviary
 InternalName = BRAVIARYGLACEON
 Type1 = ICE
@@ -16819,7 +16832,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000214]
+[1000314]
 Name = Eelekiss
 InternalName = TOGEKISSEELEKTROSS
 Type1 = ELECTRIC
@@ -16831,7 +16844,7 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[1000215]
+[1000315]
 Name = Gastrogon-Z
 InternalName = GASTRODONPORYGON2
 Type1 = WATER

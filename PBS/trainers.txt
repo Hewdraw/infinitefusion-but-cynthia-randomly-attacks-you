@@ -4884,7 +4884,7 @@ Pokemon = B299H134,73 #GARCHOMP / VAPOREON
 	Item = RINDOBERRY
 ####################### Cynthia Teams
 [CHAMPION_Sinnoh,Cynthia,1]
-Pokemon = GIBLE,5
+Pokemon = 	,5
 	Offset = -1
 	Moves = TWISTER,MUDSLAP
 	Ability = ROUGHSKIN
@@ -5213,7 +5213,7 @@ Pokemon = GIBLE,5
 
 [CHAMPION_Sinnoh,Cynthia,14]
 Pokemon = PORYGON,5
-	Offset = 3
+	Offset = 0
 	Moves = TRIATTACK,REST,SLEEPTALK
 	Ability = ANALYTIC
 	Item = PETAYABERRY

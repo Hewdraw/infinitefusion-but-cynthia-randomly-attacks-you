@@ -32,8 +32,7 @@ class Pokemon
   end
 
   def makeMega
-    megaForm = self.getMegaForm
-    self.form = megaForm if megaForm > 0
+    self.form = 1
   end
 
   def makeUnmega

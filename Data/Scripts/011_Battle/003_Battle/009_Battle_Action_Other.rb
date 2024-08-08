@@ -80,16 +80,16 @@ class PokeBattle_Battle
   end
 
   def pbCanMegaEvolve?(idxBattler)
-    return false
+    return false if pbOwnedByPlayer?(idxBattler)
     # return false if $game_switches[Settings::NO_MEGA_EVOLUTION]
-    # return false if !@battlers[idxBattler].hasMega?
-    # return false if wildBattle? && opposes?(idxBattler)
+    return false if !@battlers[idxBattler].hasMega?
+    return false if wildBattle? && opposes?(idxBattler)
     # return true if $DEBUG && Input.press?(Input::CTRL)
     # return false if @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
-    # return false if !pbHasMegaRing?(idxBattler)
-    # side  = @battlers[idxBattler].idxOwnSide
-    # owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-    # return @megaEvolution[side][owner]==-1
+    return false if !pbHasMegaRing?(idxBattler)
+    side  = @battlers[idxBattler].idxOwnSide
+    owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
+    return @megaEvolution[side][owner]==-1
   end
 
   def pbRegisterMegaEvolution(idxBattler)
@@ -141,8 +141,9 @@ class PokeBattle_Battle
          battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
     end
     pbCommonAnimation("MegaEvolution",battler)
-    battler.pokemon.makeMega
-    battler.form = battler.pokemon.form
+    tempspecies = ("MEGA" + battler.pokemon.species.to_s).to_sym
+    battler.pokemon.species = tempspecies
+    battler.species = tempspecies
     battler.pbUpdate(true)
     @scene.pbChangePokemon(battler,battler.pokemon)
     @scene.pbRefreshOne(idxBattler)

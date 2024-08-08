@@ -1,1 +1,14 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
+
+[GARCHOMP,1]
+Name = Garchomp
+FormName = Mega Garchomp
+MegaStone = GARCHOMPITE
+UnMegaForm = GARCHOMP
+BaseStats = 108,170,115,92,120,95
+Type1 = GHOST
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
