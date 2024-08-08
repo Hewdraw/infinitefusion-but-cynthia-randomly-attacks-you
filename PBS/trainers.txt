@@ -5372,7 +5372,7 @@ Pokemon = HGROWLITHE,5
 	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,19]
-Pokemon = B297H401,5	#Gible / Roselia
+Pokemon = B401H297,5	#Roselia / Gible
 	Offset = 2
 	Moves = STEALTHROCK,TOXICSPIKES,SPIKES
 	Ability = ROUGHSKIN
@@ -5383,7 +5383,7 @@ Pokemon = B297H401,5	#Gible / Roselia
 	EV = 96,0,0,0,0,0
 	Happiness = 255
 Pokemon = PORYGON,5
-	Offset = 4
+	Offset = 3
 	Moves = SKULLBASH,CONVERSION2,RECOVER
 	Ability = ANALYTIC
 	Item = POWERHERB
@@ -5393,7 +5393,7 @@ Pokemon = PORYGON,5
 	EV = 0,0,0,0,0,96
 	Happiness = 255
 Pokemon = EEVEE,5
-	Offset = 4
+	Offset = 3
 	Moves = SKULLBASH,BITE,SWAGGER
 	Ability = ADAPTABILITY
 	Item = POWERHERB
@@ -5405,7 +5405,7 @@ Pokemon = EEVEE,5
 
 [CHAMPION_Sinnoh,Cynthia,20]
 Pokemon = PORYGON,5
-	Offset = 4
+	Offset = 2
 	Moves = RAINDANCE,THUNDER,RECOVER
 	Ability = ANALYTIC
 	Item = DAMPROCK
@@ -5425,7 +5425,7 @@ Pokemon = SWABLU,5
 	EV = 0,0,0,0,96,0
 	Happiness = 255
 Pokemon = FEEBAS,5
-	Offset = 3
+	Offset = 2
 	Moves = SCALD,BLIZZARD,RAINDANCE
 	Ability = ADAPTABILITY
 	Item = MYSTICWATER
@@ -5437,7 +5437,7 @@ Pokemon = FEEBAS,5
 
 [CHAMPION_Sinnoh,Cynthia,21]
 Pokemon = TOGEPISHELLOS,5
-	Offset = 3
+	Offset = 2
 	Moves = SCALD,RECOVER,DRAININGKISS
 	Ability = SERENEGRACE
 	Item = SHELLBELL
@@ -5447,7 +5447,7 @@ Pokemon = TOGEPISHELLOS,5
 	EV = 0,0,0,0,96,0
 	Happiness = 255
 Pokemon = HGROWLITHE,5
-	Offset = 2
+	Offset = 1
 	Moves = WILLOWISP,MORNINGSUN,HEADSMASH
 	Ability = INTIMIDATE
 	Item = SHELLBELL
@@ -5457,7 +5457,7 @@ Pokemon = HGROWLITHE,5
 	EV = 0,96,0,0,0,0
 	Happiness = 255
 Pokemon = GIBLE,5
-	Offset = 3
+	Offset = 2
 	Moves = SWORDSDANCE,SCALESHOT,EARTHQUAKE
 	Ability = ROUGHSKIN
 	Item = LUMBERRY
@@ -5469,7 +5469,7 @@ Pokemon = GIBLE,5
 
 [CHAMPION_Sinnoh,Cynthia,22]
 Pokemon = PORYGON,5
-	Offset = 4
+	Offset = 2
 	Moves = BLIZZARD,THUNDER,RECOVER
 	Ability = ANALYTIC
 	Item = BLUNDERPOLICY
@@ -5501,7 +5501,7 @@ Pokemon = GIBLE,5
 
 [CHAMPION_Sinnoh,Cynthia,23]
 Pokemon = HGROWLITHE,5
-	Offset = 3
+	Offset = 1
 	Moves = OVERHEAT
 	Ability = INTIMIDATE
 	Item = EJECTPACK
@@ -5511,7 +5511,7 @@ Pokemon = HGROWLITHE,5
 	EV = 0,0,0,96,0,0
 	Happiness = 255
 Pokemon = ROSELIA,5
-	Offset = 3
+	Offset = 1
 	Moves = LEAFSTORM
 	Ability = NATURALCURE
 	Item = EJECTPACK
@@ -5521,7 +5521,7 @@ Pokemon = ROSELIA,5
 	EV = 0,0,0,96,0,0
 	Happiness = 255
 Pokemon = GIBLE,5
-	Offset = 3
+	Offset = 1
 	Moves = DRACOMETEOR
 	Ability = ROUGHSKIN
 	Item = EJECTPACK
