@@ -16334,7 +16334,7 @@ BattlerShadowSize = 3
 #Cynthia Pokemon
 #-------------------------------
 [1000100]
-Name = Growlithe Hisui
+Name = Growlithe
 InternalName = HGROWLITHE
 Type1 = FIRE
 Type2 = ROCK
@@ -16360,7 +16360,7 @@ Generation = 1
 Evolutions = ARCANINE,Item,FIRESTONE
 #-------------------------------
 [1000101]
-Name = Arcanine Hisui
+Name = Arcanine
 InternalName = HARCANINE
 Type1 = FIRE
 Type2 = ROCK
