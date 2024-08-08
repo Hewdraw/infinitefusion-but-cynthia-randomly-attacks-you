@@ -6,7 +6,7 @@ def pbGetWildBattleBGM(_wildParty)   # wildParty is an array of Pokémon objects
     return $PokemonGlobal.nextBattleBGM.clone
   end
   if rand(300) <= 1
-    return pbStringToAudioFile("Cynthia")
+    return pbStringToAudioFile("CynthiaEncounter1")
   end
   ret = nil
   if !ret
@@ -75,14 +75,23 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     trainer_type_data = GameData::TrainerType.get(t.trainer_type)
     music = trainer_type_data.battle_BGM if trainer_type_data.battle_BGM
     if trainer_type_data.id == :CHAMPION_Sinnoh
-      return pbStringToAudioFile("Volo")
+      if $Trainer.numbadges <= 2
+        return pbStringToAudioFile("CynthiaEncounter1")
+      end
+      if $Trainer.numbadges <= 5
+        return pbStringToAudioFile("CynthiaEncounter2")
+      end
+      if $Trainer.numbadges <= 7
+        return pbStringToAudioFile("CynthiaEncounter3")
+      end
+      return pbStringToAudioFile("CynthiaEncounter4")
     end
     if trainer_type_data.id == :CREATOR_Minecraft
       return pbStringToAudioFile("Miku")
     end
   end
   if rand(100) <= 1
-    return pbStringToAudioFile("Cynthia")
+    return pbStringToAudioFile("CynthiaEncounter1")
   end
   ret = pbStringToAudioFile(music) if music && music!=""
   if !ret
