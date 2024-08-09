@@ -302,7 +302,9 @@ module GameData
           end
         end
 
-        if tr_name == "Cynthia" || tr_name == "Hatsune Miku"
+        offset = pkmn_data[:offset]
+        if offset != nil
+          offset = offset.to_i
           highestlevel = 0
           for mon in $Trainer.party
             if mon.level > highestlevel

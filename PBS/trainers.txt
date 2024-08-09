@@ -4481,7 +4481,31 @@ Pokemon = B208H71,46 #victreelix
 ########################
 
 [YOUNGSTER,Joe]
-Pokemon = B20H206,51 #DUNCATE
+Items = FULLRESTORE,FULLRESTORE
+Pokemon = GIGALITH,1
+	Moves = SELFDESTRUCT
+	Ability = SANDSTREAM
+	Item = LUMBERRY
+	Gender = F
+	Nature = MILD
+	IV = 0,0,0,0,0,0
+	EV = 0,0,0,0,0,0
+	Happiness = 255
+Pokemon = GARCHOMP,5
+	Offset = 10
+	Moves = SCALESHOT,OUTRAGE,EARTHQUAKE,IRONHEAD
+	Ability = ROUGHSKIN
+	Item = GARCHOMPITE
+	Gender = F
+	Nature = ADAMANT
+	IV = 31,31,31,31,31,31
+	EV = 4,252,0,252,0,0
+	Happiness = 255
+Pokemon = RATTATA,1
+	Moves = ENDEAVOR,QUICKATTACK
+	Item = FOCUSSASH
+	Nature = ADAMANT
+
 ####################
 
 [YOUNGSTER,Mikey]
