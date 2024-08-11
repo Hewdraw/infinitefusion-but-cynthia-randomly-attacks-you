@@ -310,7 +310,7 @@ def pbBattleOnStepTaken(repel_active)
 
     currentbadge = badges[numbadges]
 
-    if numbadges > $Trainer.numbadges
+    if numbadges > $Trainer.numbadges || rand(100) <= 1
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft)
     else
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
