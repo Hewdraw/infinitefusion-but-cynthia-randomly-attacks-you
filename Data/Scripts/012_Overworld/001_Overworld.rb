@@ -296,6 +296,9 @@ def pbBattleOnStepTaken(repel_active)
         break
       end
     end
+    if rand(100) <= 1 && !(numbadges == 17)
+      numbadges += 1
+    end
     badges = []
     badges.append((2..6).to_a) #0
     badges.append((7..12).to_a) #1
@@ -307,10 +310,18 @@ def pbBattleOnStepTaken(repel_active)
     badges.append((39..43).to_a) #7
     badges.append((44..48).to_a) #8
     badges.append((49..53).to_a) #9
+    badges.append((49..53).to_a) #10
+    badges.append((49..53).to_a) #11
+    badges.append((49..53).to_a) #12
+    badges.append((49..53).to_a) #13
+    badges.append((49..53).to_a) #14
+    badges.append((49..53).to_a) #15
+    badges.append((49..53).to_a) #16
+    badges.append((49..53).to_a) #17
 
     currentbadge = badges[numbadges]
 
-    if numbadges > $Trainer.numbadges || rand(100) <= 1
+    if numbadges > $Trainer.numbadges
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft)
     else
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
