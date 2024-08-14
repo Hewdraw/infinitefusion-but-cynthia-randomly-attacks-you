@@ -16661,6 +16661,30 @@ HiddenAbility = SANDFORCE
 Shape = BipedalTail
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
 Generation = 6
+#-------------------------------
+[1000201]
+Name = Lucario
+InternalName = MEGALUCARIO
+BaseStats = 70,145,88,112,140,70
+Abilities = ADAPTABILITY
+HiddenAbility = ADAPTABILITY
+Shape = BipedalTail
+Height = 1.3
+Weight = 57.5
+Pokedex = It readies itself to face its enemies by focusing its mental energies. Its fighting style can be summed up in a single word: heartless.
+Generation = 6
+#-------------------------------
+[1000202]
+Name = Altaria
+InternalName = MEGAALTARIA
+Type1 = DRAGON
+Type2 = FAIRY
+BaseStats = 75,110,110,80,110,105
+Abilities = PIXILATE
+HiddenAbility = PIXILATE
+Shape = Winged
+Height = 1.5
+Generation = 6
 
 #Cynthia Fusions
 #-------------------------------

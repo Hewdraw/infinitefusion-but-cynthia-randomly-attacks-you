@@ -6,9 +6,31 @@ FormName = Mega Garchomp
 MegaStone = GARCHOMPITE
 UnMegaForm = GARCHOMP
 BaseStats = 108,170,115,92,120,95
-Type1 = GHOST
 Abilities = SANDFORCE
 HiddenAbility = SANDFORCE
-Shape = BipedalTail
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+#-------------------------------
+[LUCARIO,1]
+FormName = Mega Lucario
+MegaStone = LUCARIONITE
+UnMegaForm = LUCARIO
+BaseStats = 70,145,88,112,140,70
+Abilities = ADAPTABILITY
+HiddenAbility = ADAPTABILITY
+Height = 1.3
+Weight = 57.5
+Pokedex = It readies itself to face its enemies by focusing its mental energies. Its fighting style can be summed up in a single word: heartless.
+Generation = 6
+#-------------------------------
+[ALTARIA,1]
+FormName = Mega Altaria
+MegaStone = ALTARIANITE
+UnMegaForm = ALTARIA
+Type1 = DRAGON
+Type2 = FAIRY
+BaseStats = 75,110,110,80,110,105
+Abilities = PIXILATE
+HiddenAbility = PIXILATE
+Height = 1.5
 Generation = 6
