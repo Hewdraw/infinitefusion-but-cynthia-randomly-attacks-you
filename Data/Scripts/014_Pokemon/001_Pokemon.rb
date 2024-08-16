@@ -370,7 +370,7 @@ class Pokemon
   # maximum level (defined in {GameData::GrowthRate}).
   # @param value [Integer] new level (between 1 and the maximum level)
   def level=(value)
-    if value < 1 || value > GameData::GrowthRate.max_level
+    if value < 1 #|| value > GameData::GrowthRate.max_level
       raise ArgumentError.new(_INTL("The level number ({1}) is invalid.", value))
     end
     @exp = growth_rate.minimum_exp_for_level(value)
