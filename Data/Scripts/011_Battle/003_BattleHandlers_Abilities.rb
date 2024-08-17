@@ -2268,8 +2268,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
 BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battlers = battle.eachOtherSideBattler(battler.index)
-    battlers do |b|
+    battle.eachOtherSideBattler(battler.index) do |b|
       next if !b.near?(battler)
       b.pbLowerAttackStatStageIntimidate(battler)
       b.pbItemOnIntimidatedCheck
