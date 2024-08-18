@@ -16880,4 +16880,204 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 
+#Hatsune Miku Pokemon
+#-------------------------------
+[1000400]
+Name = Wingull
+InternalName = WINGULL
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 40,30,30,85,55,30
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 54
+EffortPoints = 0,0,0,1,0,0
+Rareness = 190
+Happiness = 70
+Abilities = KEENEYE,HYDRATION
+HiddenAbility = RAINDISH
+Moves = 1,TACKLE
+Compatibility = Water1,Flying
+StepsToHatch = 5120
+Height = 0.6
+Weight = 9.5
+Color = White
+Shape = Winged
+Habitat = Sea
+Kind = Seagull
+Pokedex = It makes its nest on a sheer cliff at the edge of the sea. It has trouble keeping its wings flapping in flight. Instead, it soars on updrafts.
+Generation = 3
+#-------------------------------
+[1000401]
+Name = Popplio
+InternalName = POPPLIO
+Type1 = WATER
+BaseStats = 50,54,54,40,66,56
+GenderRate = FemaleOneEighth
+GrowthRate = Parabolic
+BaseEXP = 64
+EffortPoints = 0,0,0,0,1,0
+Rareness = 45
+Happiness = 70
+Abilities = TORRENT
+HiddenAbility = LIQUIDVOICE
+Moves = 1,TACKLE
+Compatibility = Water1,Field
+StepsToHatch = 3840
+Height = 0.4
+Weight = 7.5
+Color = Blue
+Shape = Finned
+Kind = Sea Lion
+Pokedex = This Pokémon snorts body fluids from its nose, blowing balloons to smash into its foes. It's famous for being a hard worker.
+Generation = 7
+#-------------------------------
+[1000402]
+Name = Grookey
+InternalName = GROOKEY
+Type1 = GRASS
+BaseStats = 50,65,50,65,40,40
+GenderRatio = FemaleOneEighth
+GrowthRate = Parabolic
+BaseExp = 62
+EVs = 0,0,0,0,0,0
+Rareness = 45
+Happiness = 50
+Abilities = OVERGROW
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+EggGroups = Field
+HatchSteps = 5120
+Height = 0.3
+Weight = 5
+Color = Red
+Shape = BipedalTail
+#-------------------------------
+[1000403]
+Name = Fuecoco
+InternalName = FUECOCO
+Type1 = FIRE
+BaseStats = 67,45,59,36,63,40
+GenderRatio = FemaleOneEighth
+GrowthRate = Parabolic
+BaseExp = 62
+EVs = 1,0,0,0,0,0
+Rareness = 45
+Happiness = 50
+Abilities = BLAZE
+HiddenAbility = UNAWARE
+Moves = 1,TACKLE
+EggGroups = Field
+HatchSteps = 5120
+Height = 0.4
+Weight = 9.8
+Color = Red
+Shape = BipedalTail
+Pokedex = It lies on warm rocks and uses the heat absorbed by its square-shaped scales to create fire energy.
+Generation = 9
+#-------------------------------
+[1000404]
+Name = Kricketune
+InternalName = KRICKETUNE
+Type1 = BUG
+BaseStats = 77,85,51,65,55,51
+GenderRate = Female50Percent
+GrowthRate = Parabolic
+BaseEXP = 134
+EffortPoints = 0,2,0,0,0,0
+Rareness = 45
+Happiness = 70
+Abilities = SWARM
+HiddenAbility = TECHNICIAN
+Moves = 1,TACKLE
+Compatibility = Bug
+StepsToHatch = 3840
+Height = 1.0
+Weight = 25.5
+Color = Red
+Shape = MultiWinged
+Kind = Cricket
+Pokedex = It crosses its knifelike arms in front of its chest when it cries. It can compose melodies ad lib.
+Generation = 4
+WildItemUncommon = METRONOME
+#-------------------------------
+[1000405]
+Name = Togedemaru
+InternalName = TOGEDEMARU
+Type1 = ELECTRIC
+Type2 = STEEL
+BaseStats = 65,98,63,96,40,73
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 152
+EffortPoints = 0,2,0,0,0,0
+Rareness = 180
+Happiness = 70
+Abilities = IRONBARBS,LIGHTNINGROD
+HiddenAbility = STURDY
+Moves = 1,TACKLE
+Compatibility = Field,Fairy
+StepsToHatch = 2560
+Height = 0.3
+Weight = 3.3
+Color = Gray
+Shape = BipedalTail
+Kind = Roly-Poly
+Pokedex = The long hairs on its back act as lightning rods. The bolts of lightning it attracts are stored as energy in its electric sac.
+Generation = 7
+#-------------------------------
+[1000406]
+Name = Minun
+InternalName = MINUN
+Type1 = ELECTRIC
+BaseStats = 60,40,50,95,75,85
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 142
+EffortPoints = 0,0,0,1,0,0
+Rareness = 200
+Happiness = 70
+Abilities = MINUS
+HiddenAbility = VOLTABSORB
+Moves = 1,TACKLE
+Compatibility = Fairy
+StepsToHatch = 5120
+Height = 0.4
+Weight = 4.2
+Color = Yellow
+Shape = BipedalTail
+Habitat = Grassland
+Kind = Cheering
+Pokedex = At a meeting of Pokémon academics, it was announced that simultaneous exposure to electricity from a Plusle and Minun will promote circulation and boost vitality.
+Generation = 3
+#-------------------------------
+[1000407]
+Name = Plusle
+InternalName = PLUSLE
+Type1 = ELECTRIC
+BaseStats = 60,50,40,95,85,75
+GenderRate = Female50Percent
+Abilities = PLUS
+HiddenAbility = LIGHTNINGROD
+Moves = 1,TACKLE
+Shape = BipedalTail
+Generation = 3
+
+
+#Hatsune Miku Megas
+
+#Hatsune Miku Fusions
+[1000601]
+Name = Jigglyoptile
+InternalName = HELIOPTILEJIGGLYPUFF
+Type1 = NORMAL
+Type2 = ELECTRIC
+BaseStats = 91,40,28,53,50,30
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+
+
 #eof
