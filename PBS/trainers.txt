@@ -7077,7 +7077,7 @@ Pokemon = LUCARIO,5
 
 
 ####################### Miku Teams
-[CREATOR_Minecraft,Hatsune Miku,0]	
+[CREATOR_Minecraft,Miku,0]	
 Pokemon = IGGLYBUFF,5	
 	Offset = -2
 	Moves = DISARMINGVOICE,SWIFT
@@ -7133,7 +7133,7 @@ Pokemon = CHARMANDER,5
 	EV = 0,0,0,0,0,0
 	Happiness = 255
 	
-[CREATOR_Minecraft,Hatsune Miku,1]	
+[CREATOR_Minecraft,Miku,1]	
 Pokemon = JIGGLYPUFF,5	
 	Offset = -1
 	Moves = DISARMINGVOICE,ROUND
@@ -7189,7 +7189,7 @@ Pokemon = FUECOCO,5
 	EV = 0,0,0,0,32,0
 	Happiness = 255
 	
-[CREATOR_Minecraft,Hatsune Miku,2]	
+[CREATOR_Minecraft,Miku,2]	
 Pokemon = JIGGLYPUFF,5	
 	Offset = -1
 	Moves = THUNDERWAVE,CHILLINGWATER,SWIFT
@@ -7251,7 +7251,7 @@ Pokemon = BIDOOF,5
 	EV = 64,0,0,0,0,0
 	Happiness = 255
 	
-[CREATOR_Minecraft,Hatsune Miku,3]	
+[CREATOR_Minecraft,Miku,3]	
 Pokemon = HELIOPTILEJIGGLYPUFF,5	
 	Offset = -1
 	Moves = ELECTRICTERRAIN,ICYWIND,ELECTROWEB

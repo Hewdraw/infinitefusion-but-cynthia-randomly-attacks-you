@@ -333,7 +333,7 @@ def pbBattleOnStepTaken(repel_active)
       if numbadges > badges.length() #temporary
         numbadges = rand(badges.length()-1)
       end
-      pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, false, badges[numbadges])
+      pbTrainerBattle(:CREATOR_Minecraft, "Miku", nil, false, badges[numbadges])
       $PokemonGlobal.hatsunemikuchance = 0
     elsif numbadges > $Trainer.numbadges
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft)
