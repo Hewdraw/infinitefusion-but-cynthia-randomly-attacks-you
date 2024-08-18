@@ -17067,7 +17067,7 @@ Generation = 3
 #Hatsune Miku Megas
 
 #Hatsune Miku Fusions
-[1000601]
+[1000600]
 Name = Jigglyoptile
 InternalName = HELIOPTILEJIGGLYPUFF
 Type1 = NORMAL
