@@ -332,7 +332,6 @@ module GameData
         hptype = pkmn_data[:hptype]
         if hptype != nil
           hptype = hptype.to_sym
-          print(hptype)
           pkmn.hiddenPower = hptype
         end
 
