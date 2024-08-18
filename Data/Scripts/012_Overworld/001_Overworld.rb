@@ -327,7 +327,7 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.hatsunemikuchance += 1
     end
 
-    if rand(50) <= $PokemonGlobal.hatsunemikuchance || $PokemonGlobal.partner || (repel_active && !$PokemonTemp.pokeradar)
+    if rand(50) <= $PokemonGlobal.hatsunemikuchance || $PokemonGlobal.partner
       if numbadges > 3 #temporary
         numbadges = 3
       end
