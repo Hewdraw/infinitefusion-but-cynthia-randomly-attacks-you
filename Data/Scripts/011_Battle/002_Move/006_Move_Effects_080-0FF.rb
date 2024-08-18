@@ -93,7 +93,7 @@ end
 #===============================================================================
 class PokeBattle_Move_086 < PokeBattle_Move
   def pbBaseDamageMultiplier(damageMult,user,target)
-    damageMult *= 2 if !user.item
+    damageMult *= 2 if !user.item || user.item == :FLYINGGEM
     return damageMult
   end
 end
