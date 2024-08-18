@@ -322,12 +322,12 @@ def pbBattleOnStepTaken(repel_active)
     currentbadge = badges[numbadges]
 
     if $PokemonGlobal.hatsunemikuchance == nil
-      $PokemonGlobal.hatsunemikuchance = 50
+      $PokemonGlobal.hatsunemikuchance = 1
     else
-      $PokemonGlobal.hatsunemikuchance += 50
+      $PokemonGlobal.hatsunemikuchance += 1
     end
 
-    if rand(50) <= $PokemonGlobal.hatsunemikuchance || $PokemonGlobal.partner
+    if rand(50) <= $PokemonGlobal.hatsunemikuchance || $PokemonGlobal.partner || (repel_active && !$PokemonTemp.pokeradar)
       if numbadges > 3 #temporary
         numbadges = 3
       end
