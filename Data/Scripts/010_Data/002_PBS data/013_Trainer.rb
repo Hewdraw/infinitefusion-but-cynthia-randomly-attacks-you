@@ -17,6 +17,7 @@ module GameData
       "LoseText" => [:lose_text, "s"],
       "Pokemon" => [:pokemon, "ev", :Species], # Species, level
       "Offset" => [:offset, "s"],
+      "HPType" => [:hptype, "s"],
       "Form" => [:form, "u"],
       "Name" => [:name, "s"],
       "Moves" => [:moves, "*e", :Move],
@@ -317,6 +318,7 @@ module GameData
             level = highestlevel
           end
         end
+
         ####
 
         #trainer rematch infinite fusion edit
@@ -326,6 +328,13 @@ module GameData
           species = getSpecies(evolveRematchPokemon(nbRematch, species)).id
         end
         pkmn = Pokemon.new(species, level, trainer, false)
+
+        hptype = pkmn_data[:hptype]
+        if hptype != nil
+          hptype = hptype.to_sym
+          print(hptype)
+          pkmn.hiddenPower = hptype
+        end
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined

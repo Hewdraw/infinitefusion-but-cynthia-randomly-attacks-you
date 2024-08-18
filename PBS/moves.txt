@@ -697,15 +697,15 @@
 678,HIDDENPOWER2,Hidden Power,090,60,NORMAL,Special,100,15,0,NearOther,0,bef,"A unique attack that varies in type and intensity depending on the Pokémon using it."
 679,TRIATTACK2,Tri Attack,017,70,NORMAL,Special,100,10,20,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. May also paralyze, burn, or freeze the target."
 680,FUSIONSWAP,Fusion Beam,091,0,QMARKS,Status,100,5,20,NearOther,0,bef,"A strange move developped by Team Rocket. It temporarily inverts an opposing fused Pokémon."
-681,CHILLINGWATER,Chilling Water,042,50,WATER,Special,100,20,100,NearOther,0,bef,""
-682,SCALESHOT,Scale Shot,176,25,DRAGON,Physical,90,20,100,NearOther,0,bef,""
-683,DUALWINGBEAT,Dual Wingbeat,0BD,40,FLYING,Physical,90,10,0,NearOther,0,abef,""
-684,TERABLAST,Terablast,177,80,NORMAL,Special,100,10,0,NearOther,0,bef,"partially todo"
-685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,""
-686,BODYPRESS,Body Press,178,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,""
-687,SNOWSCAPE,Snowscape,102,0,ICE,Status,0,10,0,BothSides,0,,"todo"
-688,SUPERCELLSLAM,Supercell Slam,10B,95,ELECTRIC,Physical,95,15,0,NearOther,0,abef,""
-689,ALLURINGVOICE,Alluring Voice,000,80,FAIRY,Special,100,10,0,NearOther,0,befk,"todo"
-690,CLANGOROUSSOUL,Clangorous Soul,181,0,DRAGON,Status,0,5,0,User,0,dk,""
-691,GRASSYGLIDE,Grassy Glide,000,55,GRASS,Physical,100,20,0,NearOther,0,abef,"hardcoded"
-692,TRAILBLAZE,Trailblaze,01F,50,GRASS,Physical,100,20,100,NearOther,0,abef,""
+681,CHILLINGWATER,Chilling Water,042,50,WATER,Special,100,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass"
+682,SCALESHOT,Scale Shot,176,25,DRAGON,Physical,90,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass"
+683,DUALWINGBEAT,Dual Wingbeat,0BD,40,FLYING,Physical,90,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
+684,TERABLAST,Terablast,177,80,NORMAL,Special,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #partially todo
+685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,"Nice Smeargle/Ditto, jackass"
+686,BODYPRESS,Body Press,178,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
+687,SNOWSCAPE,Snowscape,102,0,ICE,Status,0,10,0,BothSides,0,,"Nice Smeargle/Ditto, jackass" #todo
+688,SUPERCELLSLAM,Supercell Slam,10B,95,ELECTRIC,Physical,95,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
+689,ALLURINGVOICE,Alluring Voice,000,80,FAIRY,Special,100,10,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass" #todo
+690,CLANGOROUSSOUL,Clangorous Soul,181,0,DRAGON,Status,0,5,0,User,0,dk,"Nice Smeargle/Ditto, jackass"
+691,GRASSYGLIDE,Grassy Glide,000,55,GRASS,Physical,100,20,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass" #hardcoded
+692,TRAILBLAZE,Trailblaze,01F,50,GRASS,Physical,100,20,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
