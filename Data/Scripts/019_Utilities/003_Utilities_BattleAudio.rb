@@ -89,7 +89,16 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
       if $Trainer.numbadges <= 7
         return pbStringToAudioFile("CynthiaEncounter3")
       end
-      return pbStringToAudioFile("CynthiaEncounter4")
+      if $Trainer.numbadges <= 9
+        return pbStringToAudioFile("CynthiaEncounter4")
+      end
+      if $Trainer.numbadges <= 12
+        return pbStringToAudioFile("CynthiaEncounter5")
+      end
+      if $Trainer.numbadges <= 14
+        return pbStringToAudioFile("CynthiaEncounter6")
+      end
+      return pbStringToAudioFile("CynthiaEncounter7")
     end
     if trainer_type_data.id == :CREATOR_Minecraft
       return pbStringToAudioFile("Miku")
