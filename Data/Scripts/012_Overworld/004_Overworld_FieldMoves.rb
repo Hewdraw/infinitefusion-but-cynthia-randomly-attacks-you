@@ -255,6 +255,10 @@ end
 # Dig
 #===============================================================================
 HiddenMoveHandlers::CanUseMove.add(:DIG, proc { |move, pkmn, showmsg|
+  if $game_variables[325] == 2
+    pbMessage(_INTL("Hey woah woah, you're almost at the League! No need to turn back now."))
+    next false
+  end
   escape = ($PokemonGlobal.escapePoint rescue nil)
   if !escape || escape == []
     pbMessage(_INTL("Can't use that here.")) if showmsg

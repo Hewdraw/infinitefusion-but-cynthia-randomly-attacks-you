@@ -23,6 +23,10 @@ ItemHandlers::UseFromBag.add(:HONEY, proc { |item|
 })
 
 ItemHandlers::UseFromBag.add(:ESCAPEROPE, proc { |item|
+  if $game_variables[325] == 2
+    pbMessage(_INTL("Hey woah woah, you're almost at the League! No need to turn back now."))
+    next 0
+  end
   if $game_player.pbHasDependentEvents?
     pbMessage(_INTL("It can't be used when you have someone with you."))
     next 0

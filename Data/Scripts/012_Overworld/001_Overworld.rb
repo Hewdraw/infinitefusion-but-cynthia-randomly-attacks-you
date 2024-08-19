@@ -275,6 +275,7 @@ def pbBattleOnStepTaken(repel_active)
   end
   $PokemonGlobal.cynthiachance += chanceincrease
   if rand(35) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
+    $PokemonGlobal.cynthiachance = 0
     numbadges = $Trainer.numbadges
     if $PokemonGlobal.cynthiaupgradechance == nil
       $PokemonGlobal.cynthiaupgradechance = 0
@@ -327,18 +328,19 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.hatsunemikuchance += 1
     end
 
-    if rand(50) <= $PokemonGlobal.hatsunemikuchance || $PokemonGlobal.partner
+    if rand(50) <= $PokemonGlobal.hatsunemikuchance
+      $PokemonGlobal.hatsunemikuchance = 0
       if numbadges > 3 #temporary
         numbadges = 3
       end
       pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, true, numbadges)
-      $PokemonGlobal.hatsunemikuchance = 0
+    elsif $PokemonGlobal.partner
+      pbDoubleTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())], nil, :CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())])
     elsif numbadges > $Trainer.numbadges
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft)
     else
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
     end
-    $PokemonGlobal.cynthiachance = 0
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?
       encounter2 = $PokemonEncounters.choose_wild_pokemon(encounter_type)
