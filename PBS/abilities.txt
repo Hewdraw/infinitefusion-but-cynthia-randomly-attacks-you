@@ -233,3 +233,7 @@
 231,SHADOWSHIELD,Shadow Shield,"Resists damage while its HP is full."
 232,PRISMARMOR,Prism Armor,"Reduces damage from super-effective attacks."
 233,NEUROFORCE,Neuroforce,"Powers up moves that are super-effective."
+234,TRANSISTOR,Transistor,"todo"
+235,PROTOSYNTHESIS,Protosynthesis,"todo"
+236,MINDSEYE,Mind's Eye,"todo"
+237,SUPREMEOVERLORD,Mind's Eye,"todo"

@@ -118,3 +118,5 @@
 115,CHAMPION_Sinnoh,Champion,16,,,,Female,100,
 116,SPRITER,Sprite Artist,16,,,,Mixed,100,
 117,CREATOR_Minecraft,Creator of Minecraft,16,,,,Female,100,
+118,Skeleton_Dev,Skeleton Dev,16,,,,Male,100,
+119,Non_Skeleton_Dev,Non Skeleton Dev,16,,,,Male,100,

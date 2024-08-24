@@ -699,3 +699,5 @@
 691,ALTARIANITE,Altarianite,Altarianites,1,0,"todo",0,0,0
 692,LUCARIONITE,Lucarionite,Lucarionites,1,0,"todo",0,0,0
 693,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
+694,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
+695,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0

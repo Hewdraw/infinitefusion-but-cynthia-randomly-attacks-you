@@ -17079,5 +17079,160 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 
+#Developer Pokemon
+#-------------------------------
+[1000700]
+Name = Ninetales
+InternalName = ANINETALES
+Type1 = ICE
+Type2 = FAIRY
+BaseStats = 73,67,75,109,81,100
+EffortPoints = 0,0,0,2,0,0
+Abilities = SNOWCLOAK
+HiddenAbility = SNOWWARNING
+Moves = 1,TACKLE
+Shape = Quadruped
+#-------------------------------
+[1000701]
+Name = Regileki
+InternalName = REGILEKI
+Type1 = ELECTRIC
+BaseStats = 80,100,50,200,100,50
+EffortPoints = 0,0,0,3,0,0
+Abilities = TRANSISTOR
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000702]
+Name = Flutter Mane
+InternalName = FLUTTERMANE
+Type1 = GHOST
+Type2 = FAIRY
+BaseStats = 55,55,55,135,135,135
+EffortPoints = 0,0,0,1,1,1
+Abilities = PROTOSYNTHESIS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000703]
+Name = Mawile
+InternalName = SHINYMAWILE
+Type1 = STEEL
+Type2 = FAIRY
+BaseStats = 50,85,85,50,55,55
+GenderRate = Female50Percent
+GrowthRate = Fast
+BaseEXP = 133
+EffortPoints = 0,1,1,0,0,0
+Rareness = 45
+Happiness = 70
+Abilities = HYPERCUTTER,INTIMIDATE
+HiddenAbility = SHEERFORCE
+Moves = 1,PLAYROUGH,1,IRONHEAD,1,TAUNT,1,GROWL,1,FAIRYWIND,1,ASTONISH,5,FAKETEARS,9,BITE,13,SWEETSCENT,17,VICEGRIP,21,FEINTATTACK,25,BATONPASS,29,CRUNCH,33,IRONDEFENSE,37,SUCKERPUNCH,41,STOCKPILE,41,SWALLOW,41,SPITUP,45,IRONHEAD,49,PLAYROUGH
+TutorMoves = ATTRACT,BRICKBREAK,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,EMBARGO,FACADE,FALSESWIPE,FIREBLAST,FLAMETHROWER,FLASHCANNON,FLING,FOCUSBLAST,FOCUSPUNCH,FOULPLAY,FRUSTRATION,GIGAIMPACT,GRASSKNOT,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICEPUNCH,ICYWIND,IRONDEFENSE,IRONHEAD,KNOCKOFF,LASERFOCUS,LASTRESORT,MAGNETRISE,PAINSPLIT,PAYBACK,POWERUPPUNCH,PROTECT,PSYCHUP,RAINDANCE,REST,RETURN,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SHADOWBALL,SLEEPTALK,SLUDGEBOMB,SNATCH,SNORE,SOLARBEAM,STEALTHROCK,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SUPERFANG,SWAGGER,SWORDSDANCE,TAUNT,THUNDERPUNCH,TORMENT,TOXIC,INCINERATE,DRAININGKISS,PLAYROUGH,ANCIENTPOWER,MUDSLAP,SUCKERPUNCH,MOONBLAST
+EggMoves = ANCIENTPOWER,CAPTIVATE,FIREFANG,GUARDSWAP,ICEFANG,METALBURST,POISONFANG,PUNISHMENT,SLAM,SUCKERPUNCH,THUNDERFANG,TICKLE
+Compatibility = Field,Fairy
+StepsToHatch = 5355
+Height = 0.6
+Weight = 11.5
+Color = Black
+Shape = Bipedal
+Habitat = Cave
+Kind = Deceiver
+Pokedex = Its giant jaws are actually steel horns that transformed. It fools foes into complacency with its adorable gestures, then chomps them with its huge jaws.
+WildItemUncommon = OCCABERRY
+BattlerPlayerX = 0
+BattlerPlayerY = 11
+BattlerEnemyX = 0
+BattlerEnemyY = 17
+BattlerShadowX = 3
+BattlerShadowSize = 2
+#-------------------------------
+[1000704]
+Name = Mawile
+InternalName = SHINYMEGAMAWILE
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+Shape = Bipedal
+#-------------------------------
+[1000705]
+Name = Rotom
+InternalName = WROTOM
+Type1 = ELECTRIC
+Type2 = WATER
+BaseStats = 50,65,107,86,105,107
+Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
+Shape = Head
+BattlerPlayerX = 1
+BattlerShadowSize = 2
+#-------------------------------
+[1000706]
+Name = Metagross
+InternalName = SHINYMETAGROSS
+Type1 = STEEL
+Type2 = PSYCHIC
+BaseStats = 80,135,130,70,95,90
+GenderRate = Genderless
+GrowthRate = Slow
+BaseEXP = 270
+EffortPoints = 0,0,3,0,0,0
+Rareness = 3
+Happiness = 35
+Abilities = CLEARBODY
+HiddenAbility = LIGHTMETAL
+Moves = 0,HAMMERARM,1,HAMMERARM,1,CONFUSION,1,METALCLAW,1,MAGNETRISE,1,TAKEDOWN,23,PURSUIT,26,BULLETPUNCH,29,MIRACLEEYE,32,ZENHEADBUTT,35,SCARYFACE,38,PSYCHIC,41,AGILITY,44,METEORMASH,52,IRONDEFENSE,60,HYPERBEAM
+TutorMoves = AERIALACE,ALLYSWITCH,BLOCK,BRICKBREAK,BULLDOZE,CONFIDE,CUT,DOUBLETEAM,EARTHQUAKE,EXPLOSION,FACADE,FLASHCANNON,FRUSTRATION,GIGAIMPACT,GRASSKNOT,GRAVITY,GYROBALL,HIDDENPOWER,HYPERBEAM,ICEPUNCH,ICYWIND,IRONDEFENSE,IRONHEAD,LASERFOCUS,LIGHTSCREEN,MAGNETRISE,POWERUPPUNCH,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,REFLECT,REST,RETURN,ROCKPOLISH,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SHADOWBALL,SIGNALBEAM,SLEEPTALK,SLUDGEBOMB,SNORE,STEALTHROCK,STOMPINGTANTRUM,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,TELEKINESIS,THUNDERPUNCH,TOXIC,TRICK,ZENHEADBUTT,HONECLAWS,FLASH,FURYCUTTER,MUDSLAP,ROLLOUT,SWIFT,TELEPORT
+Compatibility = Mineral
+StepsToHatch = 10455
+Height = 1.6
+Weight = 550.0
+Color = Blue
+Shape = MultiBody
+Habitat = RoughTerrain
+Kind = Iron Leg
+Pokedex = Metagross has four brains that are joined by a complex neural network. As a result of integration, this Pokémon is smarter than a supercomputer.
+WildItemUncommon = METALCOAT
+BattlerPlayerX = -2
+BattlerPlayerY = 26
+BattlerEnemyX = 0
+BattlerEnemyY = 22
+BattlerShadowX = 0
+BattlerShadowSize = 5
+#-------------------------------
+[1000707]
+Name = Ursaluna
+InternalName = BURSALUNA
+Type1 = GROUND
+Type2 = NORMAL
+BaseStats = 113,70,120,52,135,65
+Abilities = MINDSEYE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000708]
+Name = Archaludon
+InternalName = ARCHALUDON
+Type1 = STEEL
+Type2 = DRAGON
+BaseStats = 90,105,130,85,125,65
+Abilities = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000709]
+Name = Kingambit
+InternalName = KINGAMBIT
+Type1 = DARK
+Type2 = STEEL
+BaseStats = 100,135,120,50,60,85
+Abilities = SUPREMEOVERLORD
+Moves = 1,TACKLE
+Shape = Head
+
 
 #eof
