@@ -701,3 +701,4 @@
 693,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
 694,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
 695,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0
+696,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,

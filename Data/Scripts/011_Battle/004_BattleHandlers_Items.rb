@@ -984,6 +984,12 @@ BattleHandlers::CriticalCalcUserItem.add(:STICK,
   }
 )
 
+BattleHandlers::CriticalCalcUserItem.add(:LEEK,
+  proc { |item,user,target,c|
+    next c+2 if user.isFusionOf(:FARFETCHD)
+  }
+)
+
 #===============================================================================
 # CriticalCalcTargetItem handlers
 #===============================================================================
@@ -1563,6 +1569,14 @@ BattleHandlers::ItemOnSwitchIn.add(:AIRBALLOON,
   proc { |item,battler,battle|
     battle.pbDisplay(_INTL("{1} floats in the air with its {2}!",
        battler.pbThis,battler.itemName))
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
+  proc { |item,battler,battle|
+    battler.pbConfuse(_INTL("{1} became confused due its {2}!",battler.pbThis, battler.itemName))
+    battler.pbRaiseStatStageByCause(:ATTACK,2,battler,battler.itemName)
+    battle.pbCommonAnimation("UseItem",battler)
   }
 )
 

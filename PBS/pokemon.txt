@@ -17062,6 +17062,74 @@ HiddenAbility = LIGHTNINGROD
 Moves = 1,TACKLE
 Shape = BipedalTail
 Generation = 3
+#-------------------------------
+[1000408]
+Name = Brionne
+InternalName = BRIONNE
+Type1 = WATER
+BaseStats = 60,69,69,50,91,81
+GenderRate = FemaleOneEighth
+GrowthRate = Parabolic
+BaseEXP = 64
+EffortPoints = 0,0,0,0,1,0
+Rareness = 45
+Happiness = 70
+Abilities = TORRENT
+HiddenAbility = LIQUIDVOICE
+Moves = 1,TACKLE
+Compatibility = Water1,Field
+StepsToHatch = 3840
+Height = 0.4
+Weight = 7.5
+Color = Blue
+Shape = Finned
+Kind = Sea Lion
+Pokedex = This Pokémon snorts body fluids from its nose, blowing balloons to smash into its foes. It's famous for being a hard worker.
+Generation = 7
+#-------------------------------
+[1000409]
+Name = Thwackey
+InternalName = THWACKEY
+Type1 = GRASS
+BaseStats = 70,85,70,80,55,60
+GenderRatio = FemaleOneEighth
+GrowthRate = Parabolic
+BaseExp = 62
+EVs = 0,0,0,0,0,0
+Rareness = 45
+Happiness = 50
+Abilities = OVERGROW
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+EggGroups = Field
+HatchSteps = 5120
+Height = 0.3
+Weight = 5
+Color = Red
+Shape = BipedalTail
+#-------------------------------
+[1000410]
+Name = Crocalor
+InternalName = CROCALOR
+Type1 = FIRE
+BaseStats = 81,55,78,49,90,58
+GenderRatio = FemaleOneEighth
+GrowthRate = Parabolic
+BaseExp = 62
+EVs = 1,0,0,0,0,0
+Rareness = 45
+Happiness = 50
+Abilities = BLAZE
+HiddenAbility = UNAWARE
+Moves = 1,TACKLE
+EggGroups = Field
+HatchSteps = 5120
+Height = 0.4
+Weight = 9.8
+Color = Red
+Shape = BipedalTail
+Pokedex = It lies on warm rocks and uses the heat absorbed by its square-shaped scales to create fire energy.
+Generation = 9
 
 
 #Hatsune Miku Megas

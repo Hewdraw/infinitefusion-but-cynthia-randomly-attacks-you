@@ -2576,3 +2576,43 @@ class PokeBattle_Move_181 < PokeBattle_Move
     user.pbItemHPHealCheck
   end
 end
+
+class PokeBattle_Move_182 < PokeBattle_Move
+  def healingMove?;       return true; end
+  def pbHealAmount(target)
+    return (target.totalhp/4.0).round
+  end
+  def ignoresSubstitute?(user)
+    ; return true;
+  end
+
+  def pbMoveFailed?(user, targets)
+    @validTargets = []
+    @battle.eachSameSideBattler(user) do |b|
+      next if b.hp==b.totalhp
+      @validTargets.push(b)
+    end
+    if @validTargets.length == 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbFailsAgainstTarget?(user, target)
+    return false if @validTargets.any? { |b| b.index == target.index }
+    @battle.pbDisplay(_INTL("{1}'s HP is full!",target.pbThis))
+    return true
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    amt = pbHealAmount(target)
+    target.pbRecoverHP(amt)
+    @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+  end
+
+  def pbEffectGeneral(user)
+    return if pbTarget(user) != :UserSide
+    @validTargets.each { |b| pbEffectAgainstTarget(user, b) }
+  end
+end

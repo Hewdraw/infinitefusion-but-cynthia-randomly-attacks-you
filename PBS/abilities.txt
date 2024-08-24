@@ -237,3 +237,4 @@
 235,PROTOSYNTHESIS,Protosynthesis,"todo"
 236,MINDSEYE,Mind's Eye,"todo"
 237,SUPREMEOVERLORD,Mind's Eye,"todo"
+238,SNOWWWARNING,Snow Warning,"The Pokémon summons a hailstorm in battle."
