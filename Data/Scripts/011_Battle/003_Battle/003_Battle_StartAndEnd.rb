@@ -455,7 +455,12 @@ class PokeBattle_Battle
           end
         end
         # Lose money from losing a battle
-        pbLoseMoney
+        if @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2
+          pbDisplayPaused(_INTL("You gave your shoes to the winner..."))
+          $Trainer.has_running_shoes = false
+        else
+          pbLoseMoney
+        end
         pbDisplayPaused(_INTL("You blacked out!")) if !@canLose
       elsif @decision==2
         if @opponent
