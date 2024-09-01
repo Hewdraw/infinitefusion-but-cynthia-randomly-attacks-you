@@ -24,7 +24,7 @@ ItemHandlers::UseFromBag.add(:HONEY, proc { |item|
 
 ItemHandlers::UseFromBag.add(:ESCAPEROPE, proc { |item|
   if isRepelActive() && !$PokemonTemp.pokeradar
-    pbMessage(_INTL("coward"))
+    pbMessage(_INTL("Hewdraw's words echoed... coward"))
     next 0
   end
   if $game_player.pbHasDependentEvents?

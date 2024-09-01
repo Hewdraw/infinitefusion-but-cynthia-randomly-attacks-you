@@ -256,7 +256,7 @@ end
 #===============================================================================
 HiddenMoveHandlers::CanUseMove.add(:DIG, proc { |move, pkmn, showmsg|
   if isRepelActive() && !$PokemonTemp.pokeradar
-    pbMessage(_INTL("coward"))
+    pbMessage(_INTL("Hewdraw's words echoed... coward"))
     next false
   end
   escape = ($PokemonGlobal.escapePoint rescue nil)
