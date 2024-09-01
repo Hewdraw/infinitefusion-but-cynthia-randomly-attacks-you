@@ -330,8 +330,8 @@ def pbBattleOnStepTaken(repel_active)
 
     if rand(50) <= $PokemonGlobal.hatsunemikuchance
       $PokemonGlobal.hatsunemikuchance = 0
-      if numbadges > 3 #temporary
-        numbadges = rand(4)
+      if numbadges > 5 #temporary
+        numbadges = 4 + rand(2)
       end
       pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, true, numbadges)
     elsif $PokemonGlobal.partner
