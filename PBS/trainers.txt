@@ -6739,8 +6739,7 @@ Pokemon = B299H134,5	#Garchomp / Vaporeon
 
 [CHAMPION_Sinnoh,Cynthia,48]
 Items = FULLRESTORE,FULLRESTORE
-Pokemon = GIGALITH,5
-	Offset = 0
+Pokemon = GIGALITH,1
 	Moves = SELFDESTRUCT
 	Ability = SANDSTREAM
 	Item = LUMBERRY
