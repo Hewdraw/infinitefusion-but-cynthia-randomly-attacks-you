@@ -17188,7 +17188,7 @@ Shape = Head
 #-------------------------------
 [1000703]
 Name = Mawile
-InternalName = SHINYMAWILE
+InternalName = MAWILESHINY
 Type1 = STEEL
 Type2 = FAIRY
 BaseStats = 50,85,85,50,55,55
@@ -17222,7 +17222,7 @@ BattlerShadowSize = 2
 #-------------------------------
 [1000704]
 Name = Mawile
-InternalName = SHINYMEGAMAWILE
+InternalName = MEGAMAWILESHINY
 BaseStats = 50,105,125,50,55,95
 Type1 = STEEL
 Type2 = FAIRY

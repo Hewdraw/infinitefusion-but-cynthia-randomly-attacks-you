@@ -48,10 +48,10 @@ Weight = 23.5
 Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
 Generation = 6
 #-------------------------------
-[SHINYMAWILE,1]
+[MAWILESHINY,1]
 FormName = Mega Mawile
 MegaStone = MAWILITE
-UnMegaForm = SHINYMAWILE
+UnMegaForm = MAWILESHINY
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
