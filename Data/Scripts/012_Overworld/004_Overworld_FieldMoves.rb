@@ -255,8 +255,8 @@ end
 # Dig
 #===============================================================================
 HiddenMoveHandlers::CanUseMove.add(:DIG, proc { |move, pkmn, showmsg|
-  if $game_variables[325] == 2
-    pbMessage(_INTL("Hey woah woah, you're almost at the League! No need to turn back now."))
+  if isRepelActive() && !$PokemonTemp.pokeradar
+    pbMessage(_INTL("coward"))
     next false
   end
   escape = ($PokemonGlobal.escapePoint rescue nil)

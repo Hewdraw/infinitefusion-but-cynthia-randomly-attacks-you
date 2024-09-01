@@ -23,8 +23,8 @@ ItemHandlers::UseFromBag.add(:HONEY, proc { |item|
 })
 
 ItemHandlers::UseFromBag.add(:ESCAPEROPE, proc { |item|
-  if $game_variables[325] == 2
-    pbMessage(_INTL("Hey woah woah, you're almost at the League! No need to turn back now."))
+  if isRepelActive() && !$PokemonTemp.pokeradar
+    pbMessage(_INTL("coward"))
     next 0
   end
   if $game_player.pbHasDependentEvents?
