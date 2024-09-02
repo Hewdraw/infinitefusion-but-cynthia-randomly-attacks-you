@@ -355,7 +355,7 @@ module GameData
         if tr_name == "Cynthia" || tr_name == "Hatsune Miku" || tr_name == "Shadross" || tr_name == "Hewdraw"
           for mon in $Trainer.party
             if mon.ability == :WONDERGUARD
-              pkmn.learn_move(:FIREFANG)
+              pkmn.learn_move_ignoremax(:FIREFANG)
             end
           end
           for move in pkmn.moves

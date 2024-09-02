@@ -845,6 +845,20 @@ class Pokemon
     @moves.shift if numMoves > MAX_MOVES
   end
 
+  def learn_move_ignoremax(move_id)
+    move_data = GameData::Move.try_get(move_id)
+    return if !move_data
+    # Check if self already knows the move; if so, move it to the end of the array
+    @moves.each_with_index do |m, i|
+      next if m.id != move_data.id
+      @moves.push(m)
+      @moves.delete_at(i)
+      return
+    end
+    # Move is not already known; learn it
+    @moves.push(Pokemon::Move.new(move_data.id))
+  end
+
   # Deletes the given move from the Pokémon.
   # @param move_id [Symbol, String, Integer] ID of the move to delete
   def forget_move(move_id)
