@@ -352,7 +352,12 @@ module GameData
         else
           pkmn.reset_moves
         end
-        if tr_name == "Cynthia" || tr_name == "Hatsune Miku"
+        if tr_name == "Cynthia" || tr_name == "Hatsune Miku" || tr_name == "Shadross" || tr_name == "Hewdraw"
+          for mon in $Trainer.party
+            if mon.ability == :WONDERGUARD
+              pkmn.learn_move(:FIREFANG)
+            end
+          end
           for move in pkmn.moves
             move.ppup = 3
             move.pp = move.total_pp

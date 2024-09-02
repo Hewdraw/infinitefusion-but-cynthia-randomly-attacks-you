@@ -694,6 +694,7 @@ BattleHandlers::MoveImmunityTargetAbility.copy(:WATERABSORB,:DRYSKIN)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
   proc { |ability,user,target,move,type,battle|
+    next false if move.name == "Fire Fang"
     next false if move.statusMove?
     next false if !type || Effectiveness.super_effective?(target.damageState.typeMod)
     battle.pbShowAbilitySplash(target)
