@@ -142,8 +142,10 @@ class PokeBattle_Battle
     end
     pbCommonAnimation("MegaEvolution",battler)
     tempspecies = ("MEGA" + battler.pokemon.species.to_s).to_sym
+    level = battler.level
     battler.pokemon.species = tempspecies
     battler.species = tempspecies
+    battler.level = level
     battler.pbUpdate(true)
     @scene.pbChangePokemon(battler,battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
