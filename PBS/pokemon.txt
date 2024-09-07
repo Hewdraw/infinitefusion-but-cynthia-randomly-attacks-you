@@ -16650,6 +16650,60 @@ Pokedex = The solar energy absorbed by its body's orange crystals is magnified i
 Generation = 5
 WildItemCommon = EVERSTONE
 WildItemUncommon = HARDSTONE
+#-------------------------------
+[1000113]
+Name = Enamorus
+InternalName = ENAMORUS
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 74,115,70,106,135,80
+Abilities = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+#-------------------------------
+[1000114]
+Name = Enamorus
+InternalName = ENAMORUSTHERIAN
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 74,115,110,46,135,100
+Abilities = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+#-------------------------------
+[1000115]
+Name = Porygon2
+InternalName = PORYGON2TERA
+Type1 = NORMAL
+BaseStats = 85,80,90,60,105,95
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 180
+EffortPoints = 0,0,0,0,2,0
+Rareness = 45
+Happiness = 70
+Abilities = TRACE,DOWNLOAD
+HiddenAbility = ANALYTIC
+Moves = 1,ZAPCANNON,1,MAGICCOAT,1,CONVERSION2,1,TACKLE,1,CONVERSION,1,DEFENSECURL,7,PSYBEAM,12,AGILITY,18,RECOVER,23,MAGNETRISE,29,SIGNALBEAM,34,RECYCLE,40,DISCHARGE,45,LOCKON,50,TRIATTACK,56,MAGICCOAT,62,ZAPCANNON,67,HYPERBEAM
+TutorMoves = AERIALACE,ALLYSWITCH,BLIZZARD,CHARGEBEAM,CONFIDE,DOUBLETEAM,DREAMEATER,ELECTROWEB,FACADE,FOULPLAY,FRUSTRATION,GIGAIMPACT,GRAVITY,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IRONTAIL,LASTRESORT,MAGICCOAT,MAGNETRISE,PAINSPLIT,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REST,RETURN,ROUND,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNORE,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SWAGGER,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICK,TRICKROOM,WONDERROOM,ZENHEADBUTT,FLASH,SWIFT,TELEPORT,NASTYPLOT,RECOVER
+Compatibility = Mineral
+StepsToHatch = 5355
+Height = 0.6
+Weight = 32.5
+Color = Red
+Shape = HeadLegs
+Habitat = Urban
+Kind = Virtual
+Pokedex = It was created by humans using the power of science. It has been given artificial intelligence that enables it to learn new gestures and emotions on its own.
+BattlerPlayerX = 0
+BattlerPlayerY = 11
+BattlerEnemyX = 3
+BattlerEnemyY = 19
+BattlerAltitude = 11
+BattlerShadowX = 0
+BattlerShadowSize = 1
 
 #Cynthia Megas
 [1000200]
@@ -16689,6 +16743,97 @@ HiddenAbility = PIXILATE
 Shape = Winged
 Height = 1.5
 Generation = 6
+
+#Cynthia Teras
+#-------------------------------
+[1000250]
+Name = Arcanine
+InternalName = HARCANINEROCK
+Type1 = ROCK
+BaseStats = 90,110,80,95,100,80
+GenderRate = Female25Percent
+GrowthRate = Slow
+BaseExp = 194
+EffortPoints = 0,0,0,0,0,0
+Rareness = 75
+Happiness = 50
+Abilities = INTIMIDATE
+Moves = 1,TACKLE
+Compatibility = Field
+StepsToHatch = 5120
+Height = 1.9
+Weight = 155.0
+Color = Brown
+Shape = Quadruped
+Habitat = Grassland
+Pokedex = This fleet-footed Pokémon is said to run over 6,200 miles in a single day and night. The fire that blazes wildly within its body is its source of power.
+Generation = 1
+#-------------------------------
+[1000251]
+Name = Glacegon-Z
+InternalName = PORYGONZGLACEONICE
+Type1 = ICE
+BaseStats = 71,73,83,81,131,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000252]
+Name = Porygon2
+InternalName = PORYGON2TERAGROUND
+Type1 = GROUND
+BaseStats = 85,80,90,60,105,95
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 180
+EffortPoints = 0,0,0,0,2,0
+Rareness = 45
+Happiness = 70
+Abilities = TRACE,DOWNLOAD
+HiddenAbility = ANALYTIC
+Moves = 1,ZAPCANNON,1,MAGICCOAT,1,CONVERSION2,1,TACKLE,1,CONVERSION,1,DEFENSECURL,7,PSYBEAM,12,AGILITY,18,RECOVER,23,MAGNETRISE,29,SIGNALBEAM,34,RECYCLE,40,DISCHARGE,45,LOCKON,50,TRIATTACK,56,MAGICCOAT,62,ZAPCANNON,67,HYPERBEAM
+TutorMoves = AERIALACE,ALLYSWITCH,BLIZZARD,CHARGEBEAM,CONFIDE,DOUBLETEAM,DREAMEATER,ELECTROWEB,FACADE,FOULPLAY,FRUSTRATION,GIGAIMPACT,GRAVITY,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IRONTAIL,LASTRESORT,MAGICCOAT,MAGNETRISE,PAINSPLIT,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REST,RETURN,ROUND,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNORE,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SWAGGER,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICK,TRICKROOM,WONDERROOM,ZENHEADBUTT,FLASH,SWIFT,TELEPORT,NASTYPLOT,RECOVER
+Compatibility = Mineral
+StepsToHatch = 5355
+Height = 0.6
+Weight = 32.5
+Color = Red
+Shape = HeadLegs
+Habitat = Urban
+Kind = Virtual
+Pokedex = It was created by humans using the power of science. It has been given artificial intelligence that enables it to learn new gestures and emotions on its own.
+BattlerPlayerX = 0
+BattlerPlayerY = 11
+BattlerEnemyX = 3
+BattlerEnemyY = 19
+BattlerAltitude = 11
+BattlerShadowX = 0
+BattlerShadowSize = 1
+#-------------------------------
+[1000253]
+Name = Archachomp
+InternalName = GARCHOMPHARCANINENORMAL
+Type1 = NORMAL
+BaseStats = 99,125,90,98,90,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000254]
+Name = Enamorus
+InternalName = ENAMORUSSTELLAR
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 74,115,70,106,135,80
+Abilities = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+
 
 #Cynthia Fusions
 #-------------------------------
@@ -16878,6 +17023,54 @@ InternalName = GASTRODONPORYGON2
 Type1 = WATER
 Type2 = NORMAL
 BaseStats = 102,81,69,73,106,79
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000316]
+Name = Kommchomp
+InternalName = GARCHOMPKOMMOO
+Type1 = DRAGON
+Type2 = GROUND
+BaseStats = 86,123,105,96,93,98
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000317]
+Name = Glacegon-Z
+InternalName = PORYGONZGLACEON
+Type1 = ICE
+Type2 = NORMAL
+BaseStats = 71,73,83,81,131,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000318]
+Name = Garnine
+InternalName = HARCANINEGARCHOMP
+Type1 = DRAGON
+Type2 = ROCK
+BaseStats = 103,120,85,94,85,83
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000319]
+Name = Archachomp
+InternalName = GARCHOMPHARCANINE
+Type1 = FIRE
+Type2 = GROUND
+BaseStats = 99,125,90,98,90,81
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT

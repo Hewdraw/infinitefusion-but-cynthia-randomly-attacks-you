@@ -164,6 +164,37 @@ class PokeBattle_Battle
     battler.pbEffectsOnSwitchIn
   end
 
+  def pbTerastallize(idxBattler)
+    battler = @battlers[idxBattler]
+    return if !battler || !battler.pokemon
+    return if battler.unteraTypes != nil
+    trainerName = pbGetOwnerName(idxBattler)
+    # Break Illusion
+    if battler.hasActiveAbility?(:ILLUSION)
+      BattleHandlers.triggerTargetAbilityOnHit(battler.ability,nil,battler,nil,self)
+    end
+    #pbDisplay(_INTL("{1} is Terastallizing into the {2}-Type!", battler.pbThis, battler.pokemon.tera))
+    #pbCommonAnimation("MegaEvolution",battler)
+    tempspecies = (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym
+    level = battler.level
+    ability = battler.ability
+    types = [battler.pokemon.type1, battler.pokemon.type2]
+    if battler.pokemon.tera == :STELLAR
+      types = [battler.pokemon.tera]
+    end
+    battler.pokemon.species = tempspecies
+    battler.species = tempspecies
+    battler.level = level
+    battler.unteraTypes = types
+    battler.pbUpdate(true)
+    battler.ability = ability
+    @scene.pbChangePokemon(battler,battler.pokemon)
+    @scene.pbRefreshOne(idxBattler)
+    pbCommonAnimation("MegaEvolution2",battler)
+    pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, battler.pokemon.tera))
+    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
+  end
+
   #=============================================================================
   # Primal Reverting a battler
   #=============================================================================

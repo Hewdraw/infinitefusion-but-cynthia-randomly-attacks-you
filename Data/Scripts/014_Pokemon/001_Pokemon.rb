@@ -103,6 +103,7 @@ class Pokemon
   attr_accessor :personalID
 
   attr_accessor :hiddenPowerType
+  attr_accessor :tera
 
   # Max total IVs
   IV_STAT_LIMIT = 31
@@ -1430,6 +1431,7 @@ class Pokemon
     @ev = {}
     @hiddenPowerType = nil
     @glitter = nil
+    @tera = nil
     GameData::Stat.each_main do |s|
       @iv[s.id] = rand(IV_STAT_LIMIT + 1)
       @ev[s.id] = 0

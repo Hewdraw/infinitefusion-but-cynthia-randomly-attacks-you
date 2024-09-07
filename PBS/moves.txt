@@ -700,7 +700,7 @@
 681,CHILLINGWATER,Chilling Water,042,50,WATER,Special,100,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass"
 682,SCALESHOT,Scale Shot,176,25,DRAGON,Physical,90,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass"
 683,DUALWINGBEAT,Dual Wingbeat,0BD,40,FLYING,Physical,90,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
-684,TERABLAST,Terablast,177,80,NORMAL,Special,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #partially todo
+684,TERABLAST,Terablast,177,80,NORMAL,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #partially todo
 685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,"Nice Smeargle/Ditto, jackass"
 686,BODYPRESS,Body Press,178,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
 687,SNOWSCAPE,Snowscape,102,0,ICE,Status,0,10,0,BothSides,0,,"Nice Smeargle/Ditto, jackass" #todo
@@ -713,4 +713,5 @@
 694,KOWTOWCLEAVE,Kowtow Cleave,0A5,85,DARK,Physical,0,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
 695,LIFEDEW,Life Dew,182,0,NORMAL,Status,0,10,0,UserAndAllies,0,d,"Nice Smeargle/Ditto, jackass"
 696,BREAKINGSWIPE,Breaking Swipe,042,60,DRAGON,Physical,100,15,100,AllNearFoes,0,abef,"Nice Smeargle/Ditto, jackass"
-697,BURNINGJEALOSY,Burning Jealosy,000,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass" #todo`
+697,BURNINGJEALOSY,Burning Jealosy,000,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+698,RAGINGFURY,Raging Fury,0D2,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo

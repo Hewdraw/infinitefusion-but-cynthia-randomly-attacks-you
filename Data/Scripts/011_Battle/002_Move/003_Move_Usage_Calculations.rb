@@ -420,6 +420,25 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] *= 1.5
       end
     end
+    if user.unteraTypes != nil
+      if user.unteraTypes.include?(:STELLAR)
+        if user.stellarmoves == nil
+          user.stellarmoves = []
+        end
+        if !user.stellarmoves.include?(GameData::Type.get(type).id)
+          user.stellarmoves.append(GameData::Type.get(type).id)
+          if type && user.unteraTypes.include?(GameData::Type.get(type).id)
+            multipliers[:final_damage_multiplier] *= 1.5
+          else
+            multipliers[:final_damage_multiplier] *= 1.2
+          end
+        end
+      else
+        if type && user.unteraTypes.include?(GameData::Type.get(type).id)
+          multipliers[:final_damage_multiplier] *= 1.5
+        end
+      end
+    end
     # Type effectiveness
     multipliers[:final_damage_multiplier] *= target.damageState.typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
     # Burn

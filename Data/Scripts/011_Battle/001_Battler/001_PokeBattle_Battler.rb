@@ -42,6 +42,9 @@ class PokeBattle_Battler
   attr_accessor :tookPhysicalHit
   attr_accessor :damageState
   attr_accessor :initialHP     # Set at the start of each move's usage
+  attr_accessor :tera
+  attr_accessor :unteraTypes
+  attr_accessor :stellarmoves
 
   #=============================================================================
   # Complex accessors
@@ -51,6 +54,14 @@ class PokeBattle_Battler
   def level=(value)
     @level = value
     @pokemon.level = value if @pokemon
+  end
+
+  def unteraTypes=(value)
+    @unteraTypes = value
+  end
+
+  def stellarmoves=(value)
+    @stellarmoves = value
   end
 
   attr_reader :form

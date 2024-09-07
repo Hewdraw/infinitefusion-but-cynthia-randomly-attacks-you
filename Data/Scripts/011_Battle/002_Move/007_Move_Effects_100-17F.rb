@@ -2518,6 +2518,25 @@ class PokeBattle_Move_176 < PokeBattle_Move
 end
 
 class PokeBattle_Move_177 < PokeBattle_Move
+  def pbBaseType(user)
+    if user.unteraTypes != nil
+      if user.unteraTypes.include?(:STELLAR)
+        return :QMARKS
+      else
+        return user.type1
+      end
+    end
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    if user.unteraTypes != nil
+      if user.unteraTypes.include?(:STELLAR)
+        baseDmg = 100
+      end
+    end
+    return baseDmg
+  end
+
   def pbGetAttackStats(user, target)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
@@ -2529,6 +2548,15 @@ class PokeBattle_Move_177 < PokeBattle_Move
       return user.attack, user.stages[:ATTACK] + 6
     end
     return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+
+  def pbAdditionalEffect(user,target)
+    if user.unteraTypes != nil
+      if user.unteraTypes.include?(:STELLAR)
+        user.pbLowerStatStage(:SPECIAL_ATTACK,1,user,true)
+        user.pbLowerStatStage(:ATTACK,1,user,true)
+      end
+    end
   end
 end
 

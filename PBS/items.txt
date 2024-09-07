@@ -696,8 +696,8 @@
 688,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"",0,0,0
 689,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"",0,0,0
 690,GARCHOMPITE,Garchompite,Garchompites,1,0,"",0,0,0
-691,ALTARIANITE,Altarianite,Altarianites,1,0,"todo",0,0,0
-692,LUCARIONITE,Lucarionite,Lucarionites,1,0,"todo",0,0,0
+691,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
+692,LUCARIONITE,Lucarionite,Lucarionites,1,0,"",0,0,0
 693,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
 694,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
 695,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0

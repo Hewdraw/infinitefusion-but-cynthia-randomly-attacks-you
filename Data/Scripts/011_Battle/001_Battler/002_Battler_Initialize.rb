@@ -96,6 +96,7 @@ class PokeBattle_Battler
     @pokemonIndex = idxParty
     @participants = []   # Participants earn Exp. if this battler is defeated
     @moves        = []
+    @tera         = pkmn.tera
     pkmn.moves.each_with_index do |m,i|
       @moves[i] = PokeBattle_Move.from_pokemon_move(@battle,m)
     end

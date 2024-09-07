@@ -97,6 +97,13 @@ class PokeBattle_Battle
     end
   end
 
+  def pbAttackPhaseTerastallize
+    pbPriority.each do |b|
+      next if !b.tera
+      pbTerastallize(b.index)
+    end
+  end
+
   def pbAttackPhaseMoves
     # Show charging messages (Focus Punch)
     pbPriority.each do |b|
@@ -185,6 +192,7 @@ class PokeBattle_Battle
     pbAttackPhaseItems
     return if @decision>0
     pbAttackPhaseMegaEvolution
+    pbAttackPhaseTerastallize
     pbAttackPhaseMoves
   end
 end

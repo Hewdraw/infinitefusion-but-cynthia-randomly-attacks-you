@@ -17,6 +17,7 @@ module GameData
       "LoseText" => [:lose_text, "s"],
       "Pokemon" => [:pokemon, "ev", :Species], # Species, level
       "Offset" => [:offset, "s"],
+      "Tera" => [:tera, "s"],
       "HPType" => [:hptype, "s"],
       "Form" => [:form, "u"],
       "Name" => [:name, "s"],
@@ -319,6 +320,7 @@ module GameData
           end
         end
 
+
         ####
 
         #trainer rematch infinite fusion edit
@@ -334,6 +336,8 @@ module GameData
           hptype = hptype.to_sym
           pkmn.hiddenPower = hptype
         end
+
+        pkmn.tera = pkmn_data[:tera].to_sym
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined
