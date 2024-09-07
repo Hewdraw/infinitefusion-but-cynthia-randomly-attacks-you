@@ -337,7 +337,9 @@ module GameData
           pkmn.hiddenPower = hptype
         end
 
-        pkmn.tera = pkmn_data[:tera].to_sym
+        if pkmn_data[:tera] != nil
+          pkmn.tera = pkmn_data[:tera].to_sym
+        end
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined
