@@ -1113,17 +1113,25 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 4)
+  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+    next true
+  end
+  next false
 })
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 4)
+  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+    next true
+  end
+  next false
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  next false
 })
 ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  next false
 })
 
 ItemHandlers::UseOnPokemon.add(:TRANSGENDERSTONE, proc { |item, pokemon, scene|
@@ -1980,17 +1988,25 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 4)
+  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+    next true
+  end
+  next false
 })
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 4)
+  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+    next true
+  end
+  next false
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  next false
 })
 ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  next pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  next false
 })
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
