@@ -1113,17 +1113,17 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 30, scene)
+  next pbRaiseEffortValues(pkmn, :ATTACK, 4)
 })
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  next pbHPItem(pokemon, 30, scene)
+  next pbRaiseEffortValues(pkmn, :ATTACK, 4)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 50, scene)
+  next pbRaiseEffortValues(pkmn, :ATTACK, 252)
 })
 ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  next pbHPItem(pokemon, 50, scene)
+  next pbRaiseEffortValues(pkmn, :ATTACK, 252)
 })
 
 ItemHandlers::UseOnPokemon.add(:TRANSGENDERSTONE, proc { |item, pokemon, scene|
