@@ -1113,24 +1113,24 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
     next true
   end
   next false
 })
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
     next true
   end
   next false
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pokemon, :ATTACK, 252)
   next false
 })
 ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pokemon, :ATTACK, 252)
   next false
 })
 
@@ -1988,24 +1988,24 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
     next true
   end
   next false
 })
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  if pbRaiseEffortValues(pkmn, :ATTACK, 4) >=0
+  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
     next true
   end
   next false
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pokemon, :ATTACK, 252)
   next false
 })
 ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  pbRaiseEffortValues(pkmn, :ATTACK, 252)
+  pbRaiseEffortValues(pokemon, :ATTACK, 252)
   next false
 })
 
