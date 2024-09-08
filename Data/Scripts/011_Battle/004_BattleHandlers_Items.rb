@@ -1276,7 +1276,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:THROATSPRAY,
     next false if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
     itemName = GameData::Item.get(item).name
     battle.pbCommonAnimation("UseItem",user)
-    next user.pbRaiseStatStageByCause(:DEFENSE,1,user,itemName)
+    next user.pbRaiseStatStageByCause(:SPECIAL_ATTACK,1,user,itemName)
   }
 )
 
