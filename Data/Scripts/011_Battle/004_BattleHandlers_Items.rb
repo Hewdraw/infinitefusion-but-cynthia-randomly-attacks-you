@@ -1273,10 +1273,10 @@ BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
 BattleHandlers::UserItemAfterMoveUse.add(:THROATSPRAY,
   proc { |item,user,targets,move,numHits,battle|
     next false if !move.soundMove?
-    next false if !battler.pbCanRaiseStatStage?(:SPECIAL_ATTACK,battler)
+    next false if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user)
     itemName = GameData::Item.get(item).name
-    battle.pbCommonAnimation("UseItem",battler)
-    next battler.pbRaiseStatStageByCause(:DEFENSE,1,battler,itemName)
+    battle.pbCommonAnimation("UseItem",user)
+    next user.pbRaiseStatStageByCause(:DEFENSE,1,user,itemName)
   }
 )
 

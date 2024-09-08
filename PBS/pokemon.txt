@@ -17066,7 +17066,7 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000319]
-Name = Archachomp
+Name = Arcachomp
 InternalName = GARCHOMPHARCANINE
 Type1 = FIRE
 Type2 = GROUND
@@ -17076,6 +17076,31 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000320]
+Name = Arcagon-Z
+InternalName = PORYGONZHARCANINE
+Type1 = FIRE
+Type2 = NORMAL
+BaseStats = 91,91,73,90,108,78
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000321]
+Name = Sylmo-o
+InternalName = KOMMOOSYLVEON
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 88,95,105,76,106,121
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+
 
 #Hatsune Miku Pokemon
 #-------------------------------
