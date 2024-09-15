@@ -4501,10 +4501,16 @@ Pokemon = GARCHOMP,5
 	IV = 31,31,31,31,31,31
 	EV = 4,252,0,252,0,0
 	Happiness = 255
-Pokemon = RATTATA,1
-	Moves = ENDEAVOR,QUICKATTACK
-	Item = FOCUSSASH
+Pokemon = B19H19,1
+	OFFSET = 100
+	Moves = CRUNCH,QUICKATTACK,RETURN,ROCKSMASH
+	Ability = GUTS
+	Item = EVIOLITE
 	Nature = ADAMANT
+	Gender = F
+	IV = 31,31,31,31,31,31
+	EV = 4,252,0,252,0,0
+	Happiness = 255
 
 ####################
 
