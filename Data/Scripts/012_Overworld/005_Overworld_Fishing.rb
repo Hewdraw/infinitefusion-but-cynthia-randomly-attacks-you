@@ -42,6 +42,35 @@ def pbFishingEnd
 end
 
 def pbFishing(hasEncounter,rodType=1)
+  if $PokemonGlobal.hatsunemikuchance == nil
+    $PokemonGlobal.hatsunemikuchance = 1
+  else
+    $PokemonGlobal.hatsunemikuchance += 1
+  end
+  if rand(50) <= $PokemonGlobal.hatsunemikuchance
+    numbadges = $Trainer.numbadges
+
+    $PokemonGlobal.hatsunemikuchance = 0
+    for mon in $Trainer.party
+      if pokemonExceedsLevelCap(mon) || numbadges == 16
+        $PokemonGlobal.cynthiaupgradechance += 1
+        if rand(25) <= $PokemonGlobal.cynthiaupgradechance
+          numbadges += 1
+          $PokemonGlobal.cynthiaupgradechance = 0
+        end
+        break
+      end
+    end
+    if rand(100) <= 1 && !(numbadges == 17)
+      numbadges += 1
+    end
+
+    if numbadges > 5 #temporary
+      numbadges = 4 + rand(2)
+    end
+    pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
+    return false
+  end
   autohook= Settings::FISHING_AUTO_HOOK || $game_switches[SWITCH_FISHING_AUTOHOOK]
   speedup = ($Trainer.first_pokemon && [:STICKYHOLD, :SUCTIONCUPS].include?($Trainer.first_pokemon.ability_id))
   biteChance = 20+(25*rodType)   # 45, 70, 95
