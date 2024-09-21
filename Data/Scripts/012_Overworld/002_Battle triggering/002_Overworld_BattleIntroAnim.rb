@@ -228,18 +228,16 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
         player.mirror =true
         player_center_offset=-20
 
-        trainer = Sprite.new(viewvs)
+        trainer = Sprite.new(viewopp)
         #trainer.bitmap = RPG::Cache.transition(tgraphic)
         trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic) #RPG::Cache.transition(pgraphic)
         trainer.x      = xoffset+150
         trainer.y = 0
-        trainer.tone   = Tone.new(-255,-255,-255)
+        if foe[0].name != "Hatsune Miku"
+          trainer.tone   = Tone.new(-255,-255,-255)
+        end
         trainer.zoom_x = 1
         trainer.zoom_y = 1
-        if foe[0].name == "Hatsune Miku"
-          trainer.x = xoffset-150
-          trainer.y = 0
-        end
         trainer_center_offset=0
 
         # Dim the flash and make the trainer sprites appear, while animating bars
@@ -268,7 +266,18 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
         pbSEPlay("Vs sword")
         # Make the Vs logo and trainer names appear, and reset trainer's tone
         vs.visible = true
-        trainer.tone = Tone.new(0,0,0)
+        if foe[0].name == "Hatsune Miku"
+          trainer = Sprite.new(viewvs)
+          #trainer.bitmap = RPG::Cache.transition(tgraphic)
+          trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic + "2") #RPG::Cache.transition(pgraphic)
+          trainer.x = xoffset
+          trainer.y = 50
+          trainer.zoom_x = 0.5
+          trainer.zoom_y = 0.5
+          trainer_center_offset=0
+        else
+          trainer.tone = Tone.new(0,0,0)
+        end
         trainername = foe[0].name
         textpos = [
           [$Trainer.name,Graphics.width/4,(Graphics.height/1.5)+4,2,
