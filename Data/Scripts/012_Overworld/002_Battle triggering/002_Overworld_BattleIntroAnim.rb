@@ -141,11 +141,11 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
 
     if tr_type
       tbargraphic = sprintf("vsBar_%s", tr_type.to_s) rescue nil
-      #tgraphic    = sprintf("vsTrainer_%s", tr_type.to_s) rescue nil
-      tgraphic    = sprintf("trainer%03d", tr_number) rescue nil
+      tgraphic    = sprintf("vsTrainer_%s", tr_type.to_s) rescue nil
+      tpath = "Graphics/Transitions/"
 
       echoln tgraphic
-      if pbResolveBitmap("Graphics/Transitions/" + tbargraphic) && pbResolveBitmap("Graphics/Characters/" + tgraphic)
+      if pbResolveBitmap("Graphics/Transitions/" + tbargraphic) && pbResolveBitmap(tpath + tgraphic)
         player_tr_type = $Trainer.trainer_type
         outfit = $Trainer.outfit
         # Set up
@@ -230,12 +230,12 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
 
         trainer = Sprite.new(viewopp)
         #trainer.bitmap = RPG::Cache.transition(tgraphic)
-        trainer.bitmap =RPG::Cache.load_bitmap("Graphics/Characters/", tgraphic) #RPG::Cache.transition(pgraphic)
+        trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic) #RPG::Cache.transition(pgraphic)
         trainer.x      = xoffset+150
         trainer.tone   = Tone.new(-255,-255,-255)
-        trainer.zoom_x = 2
-        trainer.zoom_y = 2
-        trainer.y = -10
+        trainer.zoom_x = 1
+        trainer.zoom_y = 1
+        trainer.y = 0
         trainer_center_offset=0
 
         # Dim the flash and make the trainer sprites appear, while animating bars
