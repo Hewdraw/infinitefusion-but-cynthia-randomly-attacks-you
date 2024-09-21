@@ -228,14 +228,18 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
         player.mirror =true
         player_center_offset=-20
 
-        trainer = Sprite.new(viewopp)
+        trainer = Sprite.new(viewvs)
         #trainer.bitmap = RPG::Cache.transition(tgraphic)
         trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic) #RPG::Cache.transition(pgraphic)
         trainer.x      = xoffset+150
+        trainer.y = 0
         trainer.tone   = Tone.new(-255,-255,-255)
         trainer.zoom_x = 1
         trainer.zoom_y = 1
-        trainer.y = 0
+        if foe[0].name == "Hatsune Miku"
+          trainer.x = xoffset-150
+          trainer.y = 0
+        end
         trainer_center_offset=0
 
         # Dim the flash and make the trainer sprites appear, while animating bars
