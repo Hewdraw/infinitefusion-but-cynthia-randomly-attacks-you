@@ -5,8 +5,8 @@
 #==============================================================================#
 module Settings
   # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-  GAME_VERSION = '6.2.3'
-  GAME_VERSION_NUMBER = "6.2.3"
+  GAME_VERSION = '6.2.4'
+  GAME_VERSION_NUMBER = "6.2.4"
 
   POKERADAR_LIGHT_ANIMATION_RED_ID = 17
   POKERADAR_LIGHT_ANIMATION_GREEN_ID = 18
@@ -49,7 +49,7 @@ module Settings
   PLAYER_SURFBASE_FOLDER = 'surf_base/'
   OW_SHINE_ANIMATION_ID=25
 
-  HTTP_CONFIGS_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/infinitefusion-e18/main/Data/Scripts/RemoteUrls.rb"
+  HTTP_CONFIGS_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/pif-downloadables/refs/heads/master/Settings.rb"
   HTTP_CONFIGS_FILE_PATH = "Data/Scripts/DownloadedSettings.rb"
 
   LEVEL_CAPS=[12,22,26,35,38,45,51,54,62,62,63,64,64,65,67,68]
