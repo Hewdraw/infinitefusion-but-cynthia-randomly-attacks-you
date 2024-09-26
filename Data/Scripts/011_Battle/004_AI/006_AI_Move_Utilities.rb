@@ -355,7 +355,7 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill && user.itemActive?
       # NOTE: These items aren't suitable for checking at the start of the
       #       round.
-      itemBlacklist = [:EXPERTBELT,:LIFEORB, :FLYINGGEM, :NORMALGEM, :ROCKGEM, :ICEGEM, :DRAGONGEM]
+      itemBlacklist = [:EXPERTBELT,:LIFEORB, :FLYINGGEM, :NORMALGEM, :ROCKGEM, :ICEGEM, :DRAGONGEM, :DARKGEM]
       if !itemBlacklist.include?(user.item_id)
         BattleHandlers.triggerDamageCalcUserItem(user.item,
            user,target,move,multipliers,baseDmg,type)

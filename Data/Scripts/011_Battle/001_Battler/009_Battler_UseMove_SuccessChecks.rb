@@ -391,7 +391,7 @@ class PokeBattle_Battler
         target.effects[PBEffects::MagicCoat] = false
         return false
       end
-      if (target.hasActiveAbility?(:MAGICBOUNCE) || target.hasActiveAbility(:ENDER)) && !@battle.moldBreaker &&
+      if (target.hasActiveAbility?(:MAGICBOUNCE) || target.hasActiveAbility?(:ENDER)) && !@battle.moldBreaker &&
          !target.effects[PBEffects::MagicBounce]
         target.damageState.magicBounce = true
         target.effects[PBEffects::MagicBounce] = true
@@ -416,7 +416,7 @@ class PokeBattle_Battler
     # Airborne-based immunity to Ground moves
     if move.damagingMove? && move.calcType == :GROUND &&
        target.airborne? && !move.hitsFlyingTargets?
-      if (target.hasActiveAbility?(:LEVITATE) || target.hasActiveAbility(:ENDER)) && !@battle.moldBreaker
+      if (target.hasActiveAbility?(:LEVITATE) || target.hasActiveAbility?(:ENDER)) && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
