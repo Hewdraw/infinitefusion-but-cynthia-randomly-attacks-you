@@ -703,7 +703,7 @@
 684,TERABLAST,Terablast,177,80,NORMAL,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #partially todo
 685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,"Nice Smeargle/Ditto, jackass"
 686,BODYPRESS,Body Press,178,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
-687,SNOWSCAPE,Snowscape,102,0,ICE,Status,0,10,0,BothSides,0,,"Nice Smeargle/Ditto, jackass" #todo
+687,SNOWSCAPE,Snowscape,102,0,ICE,Status,0,10,0,BothSides,0,bef,"Nice Smeargle/Ditto, jackass" #todo
 688,SUPERCELLSLAM,Supercell Slam,10B,95,ELECTRIC,Physical,95,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass"
 689,ALLURINGVOICE,Alluring Voice,000,80,FAIRY,Special,100,10,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass" #todo
 690,CLANGOROUSSOUL,Clangorous Soul,181,0,DRAGON,Status,0,5,0,User,0,dk,"Nice Smeargle/Ditto, jackass"
@@ -714,4 +714,39 @@
 695,LIFEDEW,Life Dew,182,0,NORMAL,Status,0,10,0,UserAndAllies,0,d,"Nice Smeargle/Ditto, jackass"
 696,BREAKINGSWIPE,Breaking Swipe,042,60,DRAGON,Physical,100,15,100,AllNearFoes,0,abef,"Nice Smeargle/Ditto, jackass"
 697,BURNINGJEALOSY,Burning Jealosy,000,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass" #todo
-698,RAGINGFURY,Raging Fury,0D2,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+698,RAGINGFURY,Raging Fury,0D2,120,FIRE,Physical,100,10,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass"
+699,THESKELETONAPPEARS,The Skeleton Appears,183,0,DARK,Status,100,1,0,User,6,bef,"Nice Smeargle/Ditto, jackass" #todo
+700,TRIPLEARROWS,Triple Arrows,000,90,FIGHTING,Physical,100,10,100,NearOther,0,befh,"Nice Smeargle/Ditto, jackass" #todo
+701,LASHOUT,Lash Out,000,75,DARK,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass" #todo
+702,RAGEFIST,Rage Fist,000,50,GHOST,Physical,100,10,0,NearOther,0,abefj,"Nice Smeargle/Ditto, jackass" #todo
+703,TACHYONCUTTER,Tachyon Cutter,185,50,STEEL,Special,0,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass"
+704,PSYCHICNOISE,Psychic Noise,186,75,PSYCHIC,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass" #todo
+705,THUNDERCAGE,Thunder Cage,0D0,80,ELECTRIC,Special,90,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+706,ZIPPYZAP,Zippy Zap,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+707,FLOATYFALL,Floaty Fall,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+708,SPLISHYSPLASH,Splishy Splash,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+709,PIKAPAPOW,Pika Papow,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+710,BOUNCYBUBBLE,Bouncy Bubble,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+711,BUZZYBUZZ,Buzzy Buzz,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+712,SIZZLYSLIDE,Sizzly Slide,00A,90,FIRE,Physical,100,10,100,NearOther,0,abefg,"Nice Smeargle/Ditto, jackass"
+713,GLITZYGLOW,Glitzy Glow,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+714,BADDYBAD,Baddy Bad,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+715,SAPPYSEED,Sappy Seed,184,90,GRASS,Physical,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass"
+716,FREEZYFROST,Freezy Frost,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+717,SPARKLYSWIRL,Sparkly Swirl,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+718,VEEVEEVOLLEY,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+
+#  @id               = hash[:id]
+#  @id_number        = hash[:id_number]   || -1
+#  @real_name        = hash[:name]        || "Unnamed"
+#  @function_code    = hash[:function_code]
+#  @base_damage      = hash[:base_damage]
+#  @type             = hash[:type]
+#  @category         = hash[:category]
+#  @accuracy         = hash[:accuracy]
+#  @total_pp         = hash[:total_pp]
+#  @effect_chance    = hash[:effect_chance]
+#  @target           = hash[:target]
+#  @priority         = hash[:priority]
+#  @flags            = hash[:flags]
+#  @real_description = hash[:description] || "???"

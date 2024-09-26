@@ -138,7 +138,6 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
     tr_type = foe[0].trainer_type
     tr_number= GameData::TrainerType.get(tr_type).id_number
 
-
     if tr_type
       tbargraphic = sprintf("vsBar_%s", tr_type.to_s) rescue nil
       tgraphic    = sprintf("vsTrainer_%s", tr_type.to_s) rescue nil
@@ -233,9 +232,7 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
         trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic) #RPG::Cache.transition(pgraphic)
         trainer.x      = xoffset+150
         trainer.y = 0
-        if foe[0].name != "Hatsune Miku"
-          trainer.tone   = Tone.new(-255,-255,-255)
-        end
+        trainer.tone   = Tone.new(-255,-255,-255)
         trainer.zoom_x = 1
         trainer.zoom_y = 1
         trainer_center_offset=0
@@ -266,18 +263,18 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
         pbSEPlay("Vs sword")
         # Make the Vs logo and trainer names appear, and reset trainer's tone
         vs.visible = true
-        if foe[0].name == "Hatsune Miku"
-          trainer = Sprite.new(viewvs)
-          #trainer.bitmap = RPG::Cache.transition(tgraphic)
-          trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic + "2") #RPG::Cache.transition(pgraphic)
-          trainer.x = xoffset
-          trainer.y = 50
-          trainer.zoom_x = 0.5
-          trainer.zoom_y = 0.5
-          trainer_center_offset=0
-        else
-          trainer.tone = Tone.new(0,0,0)
-        end
+        # if foe[0].name == "Hatsune Miku"
+        #   trainer = Sprite.new(viewvs)
+        #   #trainer.bitmap = RPG::Cache.transition(tgraphic)
+        #   trainer.bitmap =RPG::Cache.load_bitmap(tpath, tgraphic + "2") #RPG::Cache.transition(pgraphic)
+        #   trainer.x = xoffset
+        #   trainer.y = 50
+        #   trainer.zoom_x = 0.5
+        #   trainer.zoom_y = 0.5
+        #   trainer_center_offset=0
+        # else
+        trainer.tone = Tone.new(0,0,0)
+        #end
         trainername = foe[0].name
         textpos = [
           [$Trainer.name,Graphics.width/4,(Graphics.height/1.5)+4,2,

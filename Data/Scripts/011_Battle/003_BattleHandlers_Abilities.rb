@@ -623,6 +623,8 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.copy(:FLASHFIRE, :WILDFIRE)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:LIGHTNINGROD,
   proc { |ability,user,target,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPECIAL_ATTACK,1,battle)
@@ -892,6 +894,14 @@ BattleHandlers::DamageCalcUserAbility.add(:BLAZE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if type == :ELECTRIC
+      mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:DEFEATIST,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] /= 2 if user.hp <= user.totalhp / 2
@@ -906,6 +916,8 @@ BattleHandlers::DamageCalcUserAbility.add(:FLAREBOOST,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.copy(:FLAREBOOST, :WILDFIRE)
+
 BattleHandlers::DamageCalcUserAbility.add(:FLASHFIRE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.effects[PBEffects::FlashFire] && type == :FIRE
@@ -913,6 +925,8 @@ BattleHandlers::DamageCalcUserAbility.add(:FLASHFIRE,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:FLASHFIRE, :WILDFIRE)
 
 BattleHandlers::DamageCalcUserAbility.add(:FLOWERGIFT,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -991,6 +1005,14 @@ BattleHandlers::DamageCalcUserAbility.add(:RECKLESS,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:PUNKROCK,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.soundMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :SKULK)
+
 BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.gender!=2 && target.gender!=2
@@ -1039,6 +1061,8 @@ BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:SNIPER, :SUPERSNIPER)
 
 BattleHandlers::DamageCalcUserAbility.add(:STAKEOUT,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1094,6 +1118,13 @@ BattleHandlers::DamageCalcUserAbility.add(:TOUGHCLAWS,
     mults[:base_damage_multiplier] *= 4 / 3.0 if move.contactMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:EXPLOSIVE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 4 / 3.0 if move.function=="0E0"
+  }
+)
+
 
 BattleHandlers::DamageCalcUserAbility.add(:TOXICBOOST,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1197,6 +1228,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] /= 2 if move.soundMove?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK)
+
 BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] /= 2 if type == :FIRE || type == :ICE
@@ -1263,6 +1302,8 @@ BattleHandlers::CriticalCalcUserAbility.add(:SUPERLUCK,
   }
 )
 
+BattleHandlers::CriticalCalcUserAbility.copy(:SUPERLUCK, :SUPERSNIPER)
+
 #===============================================================================
 # CriticalCalcTargetAbility handlers
 #===============================================================================
@@ -1283,6 +1324,35 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |ability,user,target,move,battle|
     next if !target.fainted?
     next if !move.pbContactMove?(user)
+    battle.pbShowAbilitySplash(target)
+    if !battle.moldBreaker
+      dampBattler = battle.pbCheckGlobalAbility(:DAMP)
+      if dampBattler
+        battle.pbShowAbilitySplash(dampBattler)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1} cannot use {2}!",target.pbThis,target.abilityName))
+        else
+          battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
+             target.pbThis,target.abilityName,dampBattler.pbThis(true),dampBattler.abilityName))
+        end
+        battle.pbHideAbilitySplash(dampBattler)
+        battle.pbHideAbilitySplash(target)
+        next
+      end
+    end
+    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      battle.scene.pbDamageAnimation(user)
+      user.pbReduceHP(user.totalhp/4,false)
+      battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:EXPLOSIVE,
+  proc { |ability,user,target,move,battle|
+    next if !target.fainted?
     battle.pbShowAbilitySplash(target)
     if !battle.moldBreaker
       dampBattler = battle.pbCheckGlobalAbility(:DAMP)
@@ -1530,6 +1600,8 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.copy(:MUMMY, :ZOMBIE)
+
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
   proc { |ability,user,target,move,battle|
     next if !move.pbContactMove?(user)
@@ -1621,6 +1693,30 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
       target.pbPoison(user,msg)
     end
     battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:ZOMBIE,
+  proc { |ability,user,target,move,battle|
+    next if !move.pbContactMove?(user)
+    next if target.unstoppableAbility? || target.ability == ability
+    oldAbil = nil
+    battle.pbShowAbilitySplash(user) if target.opposes?(user)
+    if target.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      oldAbil = target.ability
+      battle.pbShowAbilitySplash(target,true,false) if target.opposes?(user)
+      target.ability = ability
+      battle.pbReplaceAbilitySplash(target) if target.opposes?(user)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1}'s Ability became {2}!",target.pbThis,target.abilityName))
+      else
+        battle.pbDisplay(_INTL("{1}'s Ability became {2} because of {3}!",
+           target.pbThis,target.abilityName,user.pbThis(true)))
+      end
+      battle.pbHideAbilitySplash(target) if target.opposes?(user)
+    end
+    battle.pbHideAbilitySplash(user) if target.opposes?(user)
+    target.pbOnAbilityChanged(oldAbil) if oldAbil != nil
   }
 )
 
@@ -2047,6 +2143,8 @@ BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
   }
 )
 
+BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK)
+
 #===============================================================================
 # AbilityOnSwitchIn handlers
 #===============================================================================
@@ -2277,6 +2375,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SKULK)
 
 BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   proc { |ability,battler,battle|

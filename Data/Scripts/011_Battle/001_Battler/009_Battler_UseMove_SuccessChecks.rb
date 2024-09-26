@@ -391,7 +391,7 @@ class PokeBattle_Battler
         target.effects[PBEffects::MagicCoat] = false
         return false
       end
-      if target.hasActiveAbility?(:MAGICBOUNCE) && !@battle.moldBreaker &&
+      if (target.hasActiveAbility?(:MAGICBOUNCE) || target.hasActiveAbility(:ENDER)) && !@battle.moldBreaker &&
          !target.effects[PBEffects::MagicBounce]
         target.damageState.magicBounce = true
         target.effects[PBEffects::MagicBounce] = true
@@ -407,7 +407,7 @@ class PokeBattle_Battler
       return false
     end
     # Dark-type immunity to moves made faster by Prankster
-    if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
+    if user.effects[PBEffects::Prankster] &&
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
@@ -416,7 +416,7 @@ class PokeBattle_Battler
     # Airborne-based immunity to Ground moves
     if move.damagingMove? && move.calcType == :GROUND &&
        target.airborne? && !move.hitsFlyingTargets?
-      if target.hasActiveAbility?(:LEVITATE) && !@battle.moldBreaker
+      if (target.hasActiveAbility?(:LEVITATE) || target.hasActiveAbility(:ENDER)) && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))

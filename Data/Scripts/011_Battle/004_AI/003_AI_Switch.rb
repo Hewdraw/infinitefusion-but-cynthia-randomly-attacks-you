@@ -102,7 +102,7 @@ class PokeBattle_AI
           if spikes>0
             spikesDmg = [8,6,4][spikes-1]
             if pkmn.hp<=pkmn.totalhp/spikesDmg
-              next if !pkmn.hasType?(:FLYING) && !pkmn.hasActiveAbility?(:LEVITATE)
+              next if !pkmn.hasType?(:FLYING) && !(pkmn.hasActiveAbility?(:LEVITATE) || pkmn.hasActiveAbility(:ENDER))
             end
           end
         end

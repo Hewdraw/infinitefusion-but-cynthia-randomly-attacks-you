@@ -366,14 +366,29 @@ class PokeBattle_Battle
     end
     # Damage from burn
     priority.each do |b|
-      next if b.status != :BURN || !b.takesIndirectDamage?
-      oldHP = b.hp
-      dmg = (Settings::MECHANICS_GENERATION >= 7) ? b.totalhp/16 : b.totalhp/8
-      dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
-      b.pbContinueStatus { b.pbReduceHP(dmg,false) }
-      b.pbItemHPHealCheck
-      b.pbAbilitiesOnDamageTaken(oldHP)
-      b.pbFaint if b.fainted?
+      next if b.status != :BURN
+      if b.hasActiveAbility?(:WILDFIRE)
+        if b.canHeal?
+          anim_name = GameData::Status.get(:BURN).animation
+          pbCommonAnimation(anim_name, b) if anim_name
+          pbShowAbilitySplash(b)
+          b.pbRecoverHP(b.totalhp/8)
+          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+            pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          else
+            pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+          end
+          pbHideAbilitySplash(b)
+        end
+      elsif b.takesIndirectDamage?
+        oldHP = b.hp
+        dmg = (Settings::MECHANICS_GENERATION >= 7) ? b.totalhp/16 : b.totalhp/8
+        dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
+        b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        b.pbFaint if b.fainted?
+      end
     end
     # Damage from sleep (Nightmare)
     priority.each do |b|

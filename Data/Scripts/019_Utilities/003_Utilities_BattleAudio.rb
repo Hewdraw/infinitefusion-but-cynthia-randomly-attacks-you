@@ -100,6 +100,9 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
       end
       return pbStringToAudioFile("CynthiaEncounter7")
     end
+    if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
+      return pbStringToAudioFile("TheSkeletonAppears")
+    end
     if trainer_type_data.id == :Skeleton_Dev
       return pbStringToAudioFile("ShadHewDuel")
     end

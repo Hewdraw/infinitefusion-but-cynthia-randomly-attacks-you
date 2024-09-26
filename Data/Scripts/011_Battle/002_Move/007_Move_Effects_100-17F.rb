@@ -2644,3 +2644,48 @@ class PokeBattle_Move_182 < PokeBattle_Move
     @validTargets.each { |b| pbEffectAgainstTarget(user, b) }
   end
 end
+
+class PokeBattle_Move_183 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    if $battledepth == nil
+      $battledepth = 0
+      $depthlist = []
+    end
+    $depthlist[$battledepth] = []
+    user.eachOpposing() do |b|
+      $depthlist[$battledepth].append(b)
+    end
+    $battledepth += 1
+    $PokemonGlobal.nextBattleBack = "Lava"
+    pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+    $depthlist[$battledepth].each_with_index do |b,i|
+      b.hp = $battlehplist[i]
+    end
+  end
+end
+
+class PokeBattle_Move_184 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if target.effects[PBEffects::LeechSeed]>=0
+    return if target.pbHasType?(:GRASS)
+
+    target.effects[PBEffects::LeechSeed] = user.index
+    @battle.pbDisplay(_INTL("{1} was seeded!",target.pbThis))
+  end
+end
+
+class PokeBattle_Move_185 < PokeBattle_Move
+  def pbAccuracyCheck(user,target); return true; end
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 2;    end
+end
+
+class PokeBattle_Move_186 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if target.effects[PBEffects::HealBlock]>0
+    return if pbMoveFailedAromaVeil?(user,target)
+    target.effects[PBEffects::HealBlock] = 5
+    @battle.pbDisplay(_INTL("{1} was prevented from healing!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
+end

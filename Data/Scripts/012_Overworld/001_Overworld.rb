@@ -224,7 +224,7 @@ def pbBattleOnStepTaken(repel_active)
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, false, 1)
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
     return
   end
   encounter_type = $PokemonEncounters.encounter_type
@@ -274,7 +274,7 @@ def pbBattleOnStepTaken(repel_active)
     end
   end
   $PokemonGlobal.cynthiachance += chanceincrease
-  if rand(80) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
+  if rand(70) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
     $PokemonGlobal.cynthiachance = 0
     numbadges = $Trainer.numbadges
     if $PokemonGlobal.cynthiaupgradechance == nil

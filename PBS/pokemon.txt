@@ -17465,7 +17465,7 @@ BattlerShadowSize = 2
 #-------------------------------
 [1000706]
 Name = Metagross
-InternalName = SHINYMETAGROSS
+InternalName = METAGROSSSHINY
 Type1 = STEEL
 Type2 = PSYCHIC
 BaseStats = 80,135,130,70,95,90
@@ -17523,6 +17523,108 @@ Type1 = DARK
 Type2 = STEEL
 BaseStats = 100,135,120,50,60,85
 Abilities = SUPREMEOVERLORD
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000710]
+Name = Metagross
+InternalName = MEGAMETAGROSSSHINY
+Type1 = STEEL
+Type2 = PSYCHIC
+Weight = 1000000
+BaseStats = 80,145,150,110,105,110
+Abilities = TOUGHCLAWS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000711]
+Name = Regizone
+InternalName = MAGNEZONEREGICE
+Type1 = ICE
+Type2 = ELECTRIC
+BaseStats = 76,63,110,56,110,163
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000712]
+Name = Regizone
+InternalName = MAGNEZONEREGICEELECTRIC
+Type1 = ELECTRIC
+BaseStats = 76,63,110,56,110,163
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000713]
+Name = Ironcrown
+InternalName = IRONCROWN
+Type1 = STEEL
+Type2 = PSYCHIC
+BaseStats = 90,72,100,98,122,108
+Abilities = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+
+#Minceraft
+#-------------------------------
+[1000800]
+Name = Zombie
+InternalName = ZOMBIE
+Type1 = DARK
+Type2 = BUG
+BaseStats = 125,95,110,65,30,75
+Abilities = ZOMBIE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000801]
+Name = Creeper
+InternalName = CREEPER
+Type1 = NORMAL
+Type2 = GRASS
+BaseStats = 130,130,90,50,50,90
+Abilities = EXPLOSIVE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000802]
+Name = Skeleton
+InternalName = SKELETON
+Type1 = DARK
+Type2 = GROUND
+BaseStats = 75,120,55,115,60,75
+Abilities = SUPERSNIPER
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000803]
+Name = Blaze
+InternalName = BLAZE
+Type1 = STEEL
+Type2 = FLYING
+BaseStats = 120,60,90,100,80,90
+Abilities = WILDFIRE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000804]
+Name = The Warden
+InternalName = THEWARDEN
+Type1 = DARK
+Type2 = GHOST
+BaseStats = 160,120,100,90,100,100
+Abilities = SKULK
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000805]
+Name = Enderman
+InternalName = ENDERMAN
+Type1 = GHOST
+Type2 = GROUND
+BaseStats = 80,115,75,115,40,75
+Abilities = ENDER
 Moves = 1,TACKLE
 Shape = Head
 

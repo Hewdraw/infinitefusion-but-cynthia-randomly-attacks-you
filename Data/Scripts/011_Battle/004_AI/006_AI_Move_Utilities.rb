@@ -31,7 +31,7 @@ class PokeBattle_AI
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
     # Foresight
-    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
+    if user.hasActiveAbility?(:SCRAPPY) || user.hasActiveAbility?(:EXPLOSIVE) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end

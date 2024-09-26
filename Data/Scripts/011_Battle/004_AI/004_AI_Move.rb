@@ -22,6 +22,12 @@ class PokeBattle_AI
         pbRegisterMoveTrainer(user,i,choices,skill)
       end
     end
+    user.eachMoveWithIndex do |move,i|
+      if move.name == "The Skeleton Appears" && move.pp > 0
+        choices = []
+        choices.push([i,100,100])
+      end
+    end
     # Figure out useful information about the choices
     totalScore = 0
     maxScore   = 0
