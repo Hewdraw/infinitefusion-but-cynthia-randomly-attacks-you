@@ -126,7 +126,7 @@ class PokeBattle_AI
       end
       return true if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
                      !move.ignoresSubstitute?(user) && user.index!=target.index
-      return true if Settings::MECHANICS_GENERATION >= 7 && user.hasActiveAbility?(:PRANKSTER) &&
+      return true if user.hasActiveAbility?(:PRANKSTER) &&
                      target.pbHasType?(:DARK) && target.opposes?(user)
       return true if move.priority>0 && @battle.field.terrain == :Psychic &&
                      target.affectedByTerrain? && target.opposes?(user)

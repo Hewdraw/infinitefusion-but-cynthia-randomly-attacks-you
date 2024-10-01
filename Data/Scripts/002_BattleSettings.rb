@@ -3,9 +3,9 @@ module Settings
   # newer Gens (true), or on its type as in older Gens (false).
   MOVE_CATEGORY_PER_MOVE                      = (MECHANICS_GENERATION >= 4)
   # Whether turn order is recalculated after a Pokémon Mega Evolves.
-  RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION = (MECHANICS_GENERATION >= 7)
+  RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION = true
   # Whether turn order is recalculated after a Pokémon's Speed stat changes.
-  RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES  = (MECHANICS_GENERATION >= 8)
+  RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES  = true
   # Whether critical hits do 1.5x damage and have 4 stages (true), or they do 2x
   # damage and have 5 stages as in Gen 5 (false). Also determines whether
   # critical hit rate can be copied by Transform/Psych Up.
