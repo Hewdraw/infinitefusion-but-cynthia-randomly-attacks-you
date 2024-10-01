@@ -104,6 +104,7 @@ class Pokemon
 
   attr_accessor :hiddenPowerType
   attr_accessor :tera
+  attr_accessor :dynamax
 
   # Max total IVs
   IV_STAT_LIMIT = 31

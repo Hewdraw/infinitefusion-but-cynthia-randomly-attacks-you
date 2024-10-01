@@ -45,6 +45,7 @@ class PokeBattle_Battler
   attr_accessor :tera
   attr_accessor :unteraTypes
   attr_accessor :stellarmoves
+  attr_accessor :dynamax
 
   #=============================================================================
   # Complex accessors

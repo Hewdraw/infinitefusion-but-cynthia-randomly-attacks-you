@@ -579,6 +579,10 @@ class PokemonBattlerSprite < RPG::Sprite
     p = PokeBattle_SceneConstants.pbBattlerPosition(@index,@sideSize)
     @spriteX = p[0]
     @spriteY = p[1]
+    if self.pkmn.dynamax != nil
+      # print(PokeBattle_Battle.battlers[@index.name]) #todo hewdraw
+      @spriteY += 50
+    end
     # Apply metrics
     @pkmn.species_data.apply_metrics_to_sprite(self, @index)
   end
@@ -591,6 +595,10 @@ class PokemonBattlerSprite < RPG::Sprite
     @_iconBitmap = GameData::Species.sprite_bitmap_from_pokemon(@pkmn, back)
     scale =Settings::FRONTSPRITE_SCALE
     scale = Settings::BACKRPSPRITE_SCALE if @back
+    if self.pkmn.dynamax != nil
+      scale *= 2
+
+    end
     @_iconBitmap.scale_bitmap(scale)
 
     self.bitmap = (@_iconBitmap) ? @_iconBitmap.bitmap : nil

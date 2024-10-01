@@ -18,6 +18,7 @@ module GameData
       "Pokemon" => [:pokemon, "ev", :Species], # Species, level
       "Offset" => [:offset, "s"],
       "Tera" => [:tera, "s"],
+      "Dynamax" => [:dynamax, "b"],
       "HPType" => [:hptype, "s"],
       "Form" => [:form, "u"],
       "Name" => [:name, "s"],
@@ -340,6 +341,8 @@ module GameData
         if pkmn_data[:tera] != nil
           pkmn.tera = pkmn_data[:tera].to_sym
         end
+
+        pkmn.dynamax = (pkmn_data[:dynamax]) ? true : false
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined

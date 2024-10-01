@@ -4917,6 +4917,7 @@ Pokemon = B299H134,73 #GARCHOMP / VAPOREON
 Pokemon = GIBLE,5	
 	Offset = -1
 	Moves = TWISTER,MUDSLAP
+	Dynamax = TRUE
 	Ability = ROUGHSKIN
 	Gender = F
 	Nature = MODEST

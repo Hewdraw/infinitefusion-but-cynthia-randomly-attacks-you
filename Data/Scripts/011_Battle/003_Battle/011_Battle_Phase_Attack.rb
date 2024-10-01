@@ -104,6 +104,13 @@ class PokeBattle_Battle
     end
   end
 
+  def pbAttackPhaseDynamax
+    pbPriority.each do |b|
+      next if !b.dynamax
+      pbDynamax(b.index)
+    end
+  end
+
   def pbAttackPhaseMoves
     # Show charging messages (Focus Punch)
     pbPriority.each do |b|
@@ -193,6 +200,7 @@ class PokeBattle_Battle
     return if @decision>0
     pbAttackPhaseMegaEvolution
     pbAttackPhaseTerastallize
+    pbAttackPhaseDynamax
     pbAttackPhaseMoves
   end
 end

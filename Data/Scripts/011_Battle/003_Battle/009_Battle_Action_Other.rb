@@ -195,6 +195,20 @@ class PokeBattle_Battle
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
+  def pbDynamax(idxBattler)
+    battler = @battlers[idxBattler]
+    return if !battler || !battler.pokemon
+    trainerName = pbGetOwnerName(idxBattler)
+    # battler.xzoom = 0.5
+    # battler.yzoom = 0.5
+    sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
+    # print(sprite.spriteX, sprite.spriteY)
+    @scene.pbRefreshOne(idxBattler)
+    battler.effects[PBEffects::Dynamax] = 3
+    pbDisplay(_INTL("{1} has Dynamaxed",battler.pbThis))
+    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
+  end
+
   #=============================================================================
   # Primal Reverting a battler
   #=============================================================================

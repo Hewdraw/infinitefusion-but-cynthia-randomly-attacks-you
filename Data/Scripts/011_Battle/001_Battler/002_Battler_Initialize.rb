@@ -97,6 +97,7 @@ class PokeBattle_Battler
     @participants = []   # Participants earn Exp. if this battler is defeated
     @moves        = []
     @tera         = pkmn.tera
+    @dynamax         = pkmn.dynamax
     pkmn.moves.each_with_index do |m,i|
       @moves[i] = PokeBattle_Move.from_pokemon_move(@battle,m)
     end
@@ -282,6 +283,7 @@ class PokeBattle_Battler
     @effects[PBEffects::WaterSport]          = false
     @effects[PBEffects::WeightChange]        = 0
     @effects[PBEffects::Yawn]                = 0
+    @effects[PBEffects::Dynamax]                = 0
   end
 
   #=============================================================================
