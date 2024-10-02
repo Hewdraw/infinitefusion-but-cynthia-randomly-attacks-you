@@ -118,7 +118,7 @@ class PokeBattle_Move_087 < PokeBattle_Move
       ret = :WATER if GameData::Type.exists?(:WATER)
     when :Sandstorm
       ret = :ROCK if GameData::Type.exists?(:ROCK)
-    when :Hail
+    when :Hail, :Snow
       ret = :ICE if GameData::Type.exists?(:ICE)
     end
     return ret
@@ -584,7 +584,7 @@ end
 #===============================================================================
 class PokeBattle_Move_09A < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    target.effects[PBEffects::Dynamax] > 0
+    if target.effects[PBEffects::Dynamax] > 0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -612,7 +612,7 @@ end
 #===============================================================================
 class PokeBattle_Move_09B < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    target.effects[PBEffects::Dynamax] > 0
+    if target.effects[PBEffects::Dynamax] > 0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

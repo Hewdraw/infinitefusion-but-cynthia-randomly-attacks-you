@@ -2193,7 +2193,7 @@ class PokeBattle_AI
       if @battle.pbCheckGlobalAbility(:AIRLOCK) ||
          @battle.pbCheckGlobalAbility(:CLOUDNINE)
         score -= 90
-      elsif @battle.pbWeather == :Hail
+      elsif @battle.pbWeather == :Hail || @battle.pbWeather == :Snow
         score -= 90
       end
     #---------------------------------------------------------------------------
@@ -2929,7 +2929,7 @@ class PokeBattle_AI
     when "166"
     #---------------------------------------------------------------------------
     when "167"
-      if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail
+      if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow
         score -= 90
       else
         score += 40

@@ -44,6 +44,7 @@ class PokeBattle_Battle
       when :Rain      then pbDisplay(_INTL("The rain stopped."))
       when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
+      when :Snow      then pbDisplay(_INTL("The snow stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
       end
       @field.weather = :None
@@ -61,6 +62,7 @@ class PokeBattle_Battle
 #    when :Rain        then pbDisplay(_INTL("Rain continues to fall."))
     when :Sandstorm   then pbDisplay(_INTL("The sandstorm is raging."))
     when :Hail        then pbDisplay(_INTL("The hail is crashing down."))
+#    when :Snow        then pbDisplay(_INTL("The snow continues to fall."))
 #    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
 #    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
 #    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))

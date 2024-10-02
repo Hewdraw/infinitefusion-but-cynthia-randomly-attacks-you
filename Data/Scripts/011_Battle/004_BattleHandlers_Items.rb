@@ -1426,7 +1426,7 @@ BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
 
 BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
   proc { |item,weather,duration,battler,battle|
-    next 8 if weather == :Hail
+    next 8 if weather == :Hail || weather == :Snow
   }
 )
 

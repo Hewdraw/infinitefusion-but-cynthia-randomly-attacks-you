@@ -182,7 +182,7 @@ class PokeBattle_Battler
         case @battle.pbWeather
         when :Sun, :HarshSun   then newForm = 1
         when :Rain, :HeavyRain then newForm = 2
-        when :Hail             then newForm = 3
+        when :Hail, :Snow             then newForm = 3
         end
         if @form!=newForm
           @battle.pbShowAbilitySplash(self,true)

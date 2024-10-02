@@ -14,7 +14,7 @@ module GameData
     attr_reader :id
     attr_reader :id_number
     attr_reader :real_name
-    attr_reader :category   # :None, :Rain, :Hail, :Sandstorm, :Sun, :Fog
+    attr_reader :category   # :None, :Rain, :Hail, :Snow, :Sandstorm, :Sun, :Fog
     attr_reader :graphics   # [[particle file names], [tile file names]]
     attr_reader :particle_delta_x
     attr_reader :particle_delta_y

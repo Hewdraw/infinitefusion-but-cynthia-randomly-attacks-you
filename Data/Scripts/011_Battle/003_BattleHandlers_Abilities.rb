@@ -28,7 +28,7 @@ BattleHandlers::SpeedCalcAbility.add(:SLOWSTART,
 
 BattleHandlers::SpeedCalcAbility.add(:SLUSHRUSH,
   proc { |ability,battler,mult|
-    next mult * 2 if [:Hail].include?(battler.battle.pbWeather)
+    next mult * 2 if [:Hail, :Snow].include?(battler.battle.pbWeather)
   }
 )
 
@@ -834,7 +834,7 @@ BattleHandlers::AccuracyCalcTargetAbility.add(:SANDVEIL,
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:SNOWCLOAK,
   proc { |ability,mods,user,target,move,type|
-    mods[:evasion_multiplier] *= 1.25 if target.battle.pbWeather == :Hail
+    mods[:evasion_multiplier] *= 1.25 if target.battle.pbWeather == :Hail || target.battle.pbWeather == :Snow
   }
 )
 
@@ -1888,7 +1888,7 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
 
 BattleHandlers::EORWeatherAbility.add(:ICEBODY,
   proc { |ability,weather,battler,battle|
-    next unless weather == :Hail
+    next unless (weather == :Hail || weather == :Snow)
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp/16)
@@ -2444,6 +2444,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
 BattleHandlers::AbilityOnSwitchIn.add(:SNOWWARNING,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:Hail, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SNOWWWARNING,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Snow, battler, battle)
   }
 )
 

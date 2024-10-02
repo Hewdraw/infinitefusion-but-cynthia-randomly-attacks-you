@@ -2126,7 +2126,7 @@ end
 #===============================================================================
 class PokeBattle_Move_167 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if @battle.pbWeather != :Hail
+    if @battle.pbWeather != :Hail || @battle.pbWeather != :Snow
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2573,7 +2573,7 @@ end
 class PokeBattle_Move_179 < PokeBattle_WeatherMove
   def initialize(battle, move)
     super
-    @weatherType = :Snow #todo
+    @weatherType = :Snow
   end
 end
 

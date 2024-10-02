@@ -263,7 +263,7 @@ def pbBattleOnStepTaken(repel_active)
       when :STENCH, :WHITESMOKE, :QUICKFEET, :INTIMIDATE, :KEENEYE
         chanceincrease *= 2
       when :SNOWCLOAK
-        if GameData::Weather.get($game_screen.weather_type).category == :Hail
+        if GameData::Weather.get($game_screen.weather_type).category == :Hail || GameData::Weather.get($game_screen.weather_type).category == :Snow
           chanceincrease *= 2
         end
       when :SANDVEIL

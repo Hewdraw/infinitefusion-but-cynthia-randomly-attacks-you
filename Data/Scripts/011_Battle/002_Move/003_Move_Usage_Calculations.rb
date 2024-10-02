@@ -398,6 +398,10 @@ class PokeBattle_Move
       if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
         multipliers[:defense_multiplier] *= 1.5
       end
+    when :Snow
+      if target.pbHasType?(:ICE) && physicalMove?
+        multipliers[:defense_multiplier] *= 1.5
+      end
     end
     # Critical hits
     if target.damageState.critical
