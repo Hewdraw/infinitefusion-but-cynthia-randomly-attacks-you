@@ -2236,6 +2236,10 @@ class PokeBattle_Move_16B < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if !target.lastRegularMoveUsed || !target.pbHasMove?(target.lastRegularMoveUsed)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true

@@ -1241,6 +1241,7 @@ BattleHandlers::TargetItemAfterMoveUse.add(:REDCARD,
     battle.pbDisplay(_INTL("{1} held up its {2} against {3}!",
        battler.pbThis,battler.itemName,user.pbThis(true)))
     battler.pbConsumeItem
+    next if user.effects[PBEffects::Dynamax] > 0
     battle.pbRecallAndReplace(user.index, newPkmn, true)
     battle.pbDisplay(_INTL("{1} was dragged out!",user.pbThis))
     battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round

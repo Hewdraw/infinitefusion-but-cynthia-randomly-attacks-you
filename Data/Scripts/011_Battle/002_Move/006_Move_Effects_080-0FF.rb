@@ -583,6 +583,14 @@ end
 # Power increases the heavier the target is. (Grass Knot, Low Kick)
 #===============================================================================
 class PokeBattle_Move_09A < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
   def pbBaseDamage(baseDmg,user,target)
     ret = 20
     weight = target.pbWeight
@@ -603,6 +611,14 @@ end
 # Does double damage and has perfect accuracy if the target is Minimized.
 #===============================================================================
 class PokeBattle_Move_09B < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
   def tramplesMinimize?(param=1)
     return true if Settings::MECHANICS_GENERATION >= 7   # Perfect accuracy and double damage
     return super
@@ -1698,6 +1714,10 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if target.effects[PBEffects::Torment]
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -1742,6 +1762,10 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if target.effects[PBEffects::Disable]>0 || !target.lastRegularMoveUsed
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -1864,6 +1888,10 @@ class PokeBattle_Move_0BC < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user,target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if target.effects[PBEffects::Encore]>0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -2984,6 +3012,10 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if target.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -3065,6 +3097,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
   end
 
   def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
+    return if target.effects[PBEffects::Dynamax] > 0
     return if @battle.wildBattle?
     return if user.fainted? || numHits==0
     roarSwitched = []

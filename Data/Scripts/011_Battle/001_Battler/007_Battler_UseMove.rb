@@ -81,6 +81,9 @@ class PokeBattle_Battler
       @effects[PBEffects::Encore] = 0
       @effects[PBEffects::EncoreMove] = nil
     end
+    if target.effects[PBEffects::Dynamax] > 0
+      @effects[PBEffects::Encore] = 0
+    end
   end
 
   # Called when the usage of various multi-turn moves is disrupted due to
@@ -789,7 +792,7 @@ class PokeBattle_Battler
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     # Additional effect
-    if !user.hasActiveAbility?(:SHEERFORCE)
+    if !user.hasActiveAbility?(:SHEERFORCE) || target.effects[PBEffects::Dynamax] > 0
       targets.each do |b|
         next if b.damageState.calcDamage == 0
         chance = move.pbAdditionalEffectChance(user, b)

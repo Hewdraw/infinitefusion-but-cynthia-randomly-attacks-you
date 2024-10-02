@@ -1036,7 +1036,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
 
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0
+    if !(target.effects[PBEffects::Dynamax] > 0)
+      mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0
+    end
   }
 )
 
@@ -1400,6 +1402,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
   proc { |ability,user,target,move,battle|
     next if user.fainted?
     next if user.effects[PBEffects::Disable]>0
+    next if user.effects[PBEffects::Dynamax] > 0
     regularMove = nil
     user.eachMove do |m|
       next if m.id!=user.lastRegularMoveUsed

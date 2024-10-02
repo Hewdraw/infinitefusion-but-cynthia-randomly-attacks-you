@@ -198,6 +198,7 @@ class PokeBattle_Battle
   def pbDynamax(idxBattler)
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
+    return if battler.pokemon.dynamax != true
     trainerName = pbGetOwnerName(idxBattler)
     # battler.xzoom = 0.5
     # battler.yzoom = 0.5
@@ -205,7 +206,24 @@ class PokeBattle_Battle
     # print(sprite.spriteX, sprite.spriteY)
     @scene.pbRefreshOne(idxBattler)
     battler.effects[PBEffects::Dynamax] = 3
-    pbDisplay(_INTL("{1} has Dynamaxed",battler.pbThis))
+    battler.effects[PBEffects::Encore] = 0
+    battler.effects[PBEffects::Torment] = 0
+    pbCommonAnimation("StatUp",battler)
+    pbSEPlay(pbStringToAudioFile("dynamaxbig"))
+    time = 64
+    for i in 0..(time-1)
+      sprite.zoom_x += 0.03125
+      sprite. zoom_y += 0.03125
+      sprite.y += 2
+      pbWait(1)
+    end
+    battler.pokemon.dynamax = 3
+    sprite.zoom_x -= 2
+    sprite.zoom_y -= 2
+    sprite.y -= 128
+    sprite.setPokemonBitmap(battler.pokemon)
+    @scene.pbRefreshOne(idxBattler)
+    pbDisplay(_INTL("{1} has Dynamaxed?!",battler.pbThis))
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 

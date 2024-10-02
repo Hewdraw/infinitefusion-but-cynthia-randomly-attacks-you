@@ -66,7 +66,7 @@ class PokeBattle_Battler
     end
     # Torment
     if @effects[PBEffects::Torment] && !@effects[PBEffects::Instructed] &&
-       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id
+       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id && !(target.effects[PBEffects::Dynamax] > 0)
       if showMessages
         msg = _INTL("{1} can't use the same move twice in a row due to the torment!",pbThis)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

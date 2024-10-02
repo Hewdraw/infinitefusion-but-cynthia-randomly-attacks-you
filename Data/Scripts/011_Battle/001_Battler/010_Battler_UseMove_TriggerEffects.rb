@@ -87,7 +87,7 @@ class PokeBattle_Battler
     # NOTE: Although Destiny Bond is similar to Grudge, they don't apply at
     #       the same time (although Destiny Bond does check whether it's going
     #       to trigger at the same time as Grudge).
-    if user.effects[PBEffects::DestinyBondTarget]>=0 && !user.fainted?
+    if user.effects[PBEffects::DestinyBondTarget]>=0 && !user.fainted? && !(target.effects[PBEffects::Dynamax] > 0)
       dbName = @battle.battlers[user.effects[PBEffects::DestinyBondTarget]].pbThis
       @battle.pbDisplay(_INTL("{1} took its attacker down with it!",dbName))
       user.pbReduceHP(user.hp,false)
@@ -126,7 +126,7 @@ class PokeBattle_Battler
     switchedBattlers = []
     move.pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
     # Target's item, user's item, target's ability (all negated by Sheer Force)
-    if move.addlEffect==0 || !user.hasActiveAbility?(:SHEERFORCE)
+    if move.addlEffect==0 || !user.hasActiveAbility?(:SHEERFORCE) || target.effects[PBEffects::Dynamax] > 0
       pbEffectsAfterMove2(user,targets,move,numHits,switchedBattlers)
     end
     # Some move effects that need to happen here, i.e. U-turn/Volt Switch

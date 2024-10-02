@@ -42,7 +42,7 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
     return if user.fainted? || user.effects[PBEffects::Transform]
     return if @id != :RELICSONG
     return if !(user.isFusionOf(:MELOETTA_A) || user.isFusionOf(:MELOETTA_P))
-    return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect > 0
+    return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect > 0 && !(target.effects[PBEffects::Dynamax] > 0)
 
     is_meloetta_A = user.isFusionOf(:MELOETTA_A)
     is_meloetta_P = user.isFusionOf(:MELOETTA_P)
@@ -1971,6 +1971,10 @@ class PokeBattle_Move_066 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if target.unstoppableAbility? || target.ability == :TRUANT
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -2015,6 +2019,10 @@ class PokeBattle_Move_067 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     if !target.ability ||
       (user.ability == target.ability && Settings::MECHANICS_GENERATION <= 5)
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -2191,6 +2199,10 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
   def pbFailsAgainstTarget?(user, target)
     if target.level > user.level
       @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
+      return true
+    end
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
       return true
     end
     if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
