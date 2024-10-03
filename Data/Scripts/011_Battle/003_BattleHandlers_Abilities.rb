@@ -117,7 +117,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT,:WIMPOUT)
 BattleHandlers::StatusCheckAbilityNonIgnorable.add(:COMATOSE,
   proc { |ability,battler,status|
     next false if !battler.isSpecies?(:KOMALA)
-    next true if status.nil? || status == :SLEEP
+    next true if status.nil? || status == :SLEEP || status == :DROWSY
   }
 )
 
@@ -139,7 +139,7 @@ BattleHandlers::StatusImmunityAbility.add(:IMMUNITY,
 
 BattleHandlers::StatusImmunityAbility.add(:INSOMNIA,
   proc { |ability,battler,status|
-    next true if status == :SLEEP
+    next true if status == :SLEEP || status == :DROWSY
   }
 )
 
@@ -199,7 +199,7 @@ BattleHandlers::StatusImmunityAllyAbility.add(:FLOWERVEIL,
 
 BattleHandlers::StatusImmunityAbility.add(:SWEETVEIL,
   proc { |ability,battler,status|
-    next true if status == :SLEEP
+    next true if status == :SLEEP || status == :DROWSY
   }
 )
 
@@ -264,7 +264,7 @@ BattleHandlers::StatusCureAbility.add(:IMMUNITY,
 
 BattleHandlers::StatusCureAbility.add(:INSOMNIA,
   proc { |ability,battler|
-    next if battler.status != :SLEEP
+    next if (battler.status != :SLEEP || battler.status != :DROWSY)
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -1942,7 +1942,7 @@ BattleHandlers::EORHealingAbility.add(:HEALER,
       b.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         case oldStatus
-        when :SLEEP
+        when :SLEEP, :DROWSY
           battle.pbDisplay(_INTL("{1}'s {2} woke its partner up!",battler.pbThis,battler.abilityName))
         when :POISON
           battle.pbDisplay(_INTL("{1}'s {2} cured its partner's poison!",battler.pbThis,battler.abilityName))
@@ -1968,7 +1968,7 @@ BattleHandlers::EORHealingAbility.add(:HYDRATION,
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       case oldStatus
-      when :SLEEP
+      when :SLEEP, :DROWSY
         battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,battler.abilityName))
       when :POISON
         battle.pbDisplay(_INTL("{1}'s {2} cured its poison!",battler.pbThis,battler.abilityName))
@@ -1993,7 +1993,7 @@ BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
     if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       case oldStatus
-      when :SLEEP
+      when :SLEEP, :DROWSY
         battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,battler.abilityName))
       when :POISON
         battle.pbDisplay(_INTL("{1}'s {2} cured its poison!",battler.pbThis,battler.abilityName))

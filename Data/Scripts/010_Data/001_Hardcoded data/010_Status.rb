@@ -77,3 +77,10 @@ GameData::Status.register({
   :name      => _INTL("Frozen"),
   :animation => "Frozen"
 })
+
+GameData::Status.register({
+  :id        => :DROWSY,
+  :id_number => 6,
+  :name      => _INTL("Drowsy"),
+  :animation => "Drowsy"
+})

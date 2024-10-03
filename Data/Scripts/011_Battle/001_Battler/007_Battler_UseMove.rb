@@ -81,7 +81,7 @@ class PokeBattle_Battler
       @effects[PBEffects::Encore] = 0
       @effects[PBEffects::EncoreMove] = nil
     end
-    if target.effects[PBEffects::Dynamax] > 0
+    if effects[PBEffects::Dynamax] > 0
       @effects[PBEffects::Encore] = 0
     end
   end

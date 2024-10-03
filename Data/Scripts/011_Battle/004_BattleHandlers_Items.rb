@@ -238,7 +238,7 @@ BattleHandlers::StatusCureItem.add(:CHERIBERRY,
 BattleHandlers::StatusCureItem.add(:CHESTOBERRY,
   proc { |item,battler,battle,forced|
     next false if !forced && !battler.canConsumeBerry?
-    next false if battler.status != :SLEEP
+    next false if (battler.status != :SLEEP || battler.status != :DROWSY)
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry",battler) if !forced
@@ -264,7 +264,7 @@ BattleHandlers::StatusCureItem.add(:LUMBERRY,
       battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis)) if oldConfusion
     else
       case oldStatus
-      when :SLEEP
+      when :SLEEP, :DROWSY
         battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,itemName))
       when :POISON
         battle.pbDisplay(_INTL("{1}'s {2} cured its poisoning!",battler.pbThis,itemName))
