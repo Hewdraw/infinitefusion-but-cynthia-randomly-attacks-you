@@ -1018,6 +1018,12 @@ BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
   }
 )
 
+BattleHandlers::TargetItemOnHit.add(:BUNDLEOFBALLOONS,
+  proc { |item,user,target,move,battle|
+    battle.pbDisplay(_INTL("One of {1}'s balloons popped!",target.pbThis,target.itemName))
+  }
+)
+
 BattleHandlers::TargetItemOnHit.add(:CELLBATTERY,
   proc { |item,user,target,move,battle|
     next if move.calcType != :ELECTRIC
@@ -1524,6 +1530,16 @@ BattleHandlers::EORHealingItem.add(:LEFTOVERS,
   }
 )
 
+BattleHandlers::EORHealingItem.add(:BUNDLEOFBALLOONS,
+  proc { |item,battler,battle|
+    next if !battler.canHeal?
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
 #===============================================================================
 # EOREffectItem handlers
 #===============================================================================
@@ -1583,6 +1599,14 @@ BattleHandlers::ItemOnSwitchIn.add(:AIRBALLOON,
        battler.pbThis,battler.itemName))
   }
 )
+
+BattleHandlers::ItemOnSwitchIn.add(:BUNDLEOFBALLOONS,
+  proc { |item,battler,battle|
+    battle.pbDisplay(_INTL("{1} floats in the air with its {2}!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
 
 BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   proc { |item,battler,battle|

@@ -703,3 +703,4 @@
 695,MAWILITE,Mawilite,Mawilites,1,0,"",0,0,0
 696,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,
 697,METAGROSSITE,Metagrossite,Metagrossites,1,0,"",0,0,0
+698,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"",0,0,0
