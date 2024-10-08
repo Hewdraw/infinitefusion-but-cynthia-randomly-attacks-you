@@ -179,7 +179,7 @@ class PokeBattle_Battle
         if @opponent[0].name == "Hatsune Miku"
           @scene.pbCommonAnimation("Shiny") #todo
           if getDayOfTheWeek().to_s == "MONDAY"
-            pbDisplayPaused(_INTL("It's Miku Monday! Miku make every Monday better!"))
+            pbDisplayPaused(_INTL("It's Miku Monday! Miku makes every Monday better!"))
           end
         end
       when 2
