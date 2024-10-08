@@ -103,6 +103,7 @@ def download_autogen_sprite(head_id, body_id,spriteformBody_suffix=nil,spritefor
 end
 
 def download_custom_sprite(head_id, body_id, spriteformBody_suffix = "", spriteformHead_suffix = "", alt_letter="")
+  return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS)
   head_id = (head_id.to_s) + spriteformHead_suffix.to_s
   body_id = (body_id.to_s) + spriteformBody_suffix.to_s
   return nil if $PokemonSystem.download_sprites != 0
@@ -117,6 +118,7 @@ def download_custom_sprite(head_id, body_id, spriteformBody_suffix = "", spritef
 end
 
 def download_custom_sprite_filename(filename)
+  return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS)
   head_id = (head_id.to_s) + spriteformHead_suffix.to_s
   body_id = (body_id.to_s) + spriteformBody_suffix.to_s
   return nil if $PokemonSystem.download_sprites != 0
@@ -245,4 +247,26 @@ def fetch_latest_game_version
     return nil
   end
 
+end
+
+def requestRateExceeded?(logFile,timeWindow, maxRequests)
+  # Read or initialize the request log
+  if File.exist?(logFile)
+    log_data = File.read(logFile).split("\n")
+    request_timestamps = log_data.map(&:to_i)
+  else
+    request_timestamps = []
+  end
+  current_time = Time.now.to_i
+  # Remove old timestamps that are outside the time window
+  request_timestamps.reject! { |timestamp| (current_time - timestamp) > timeWindow }
+  # Update the log with the current request
+  request_timestamps << current_time
+  # Write the updated log back to the file
+  File.write(logFile, request_timestamps.join("\n"))
+  # Check if the number of requests in the time window exceeds the limit
+  echoln request_timestamps.size > maxRequests
+  echoln request_timestamps
+  echoln maxRequests
+  return request_timestamps.size > maxRequests
 end

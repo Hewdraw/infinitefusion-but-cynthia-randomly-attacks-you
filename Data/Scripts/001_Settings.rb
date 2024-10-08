@@ -76,6 +76,11 @@ module Settings
   VAR_2_PLACEHOLDER_SPECIES = :PALKIA
   VAR_3_PLACEHOLDER_SPECIES = :GIRATINA
 
+
+  CUSTOMSPRITES_RATE_MAX_NB_REQUESTS = 5  #Nb. requests allowed in each time window
+  CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
+  CUSTOMSPRITES_RATE_LOG_FILE = 'Data/sprites/sprites_rate_limit.log'  # Path to the log file
+
   RIVAL_STARTER_PLACEHOLDER_VARIABLE = 250
 
   OVERRIDE_BATTLE_LEVEL_SWITCH = 785
