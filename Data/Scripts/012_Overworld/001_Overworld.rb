@@ -329,7 +329,7 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.hatsunemikuchance += 1
     end
     if getDayOfTheWeek().to_s == "MONDAY"
-      $PokemonGlobal.hatsunemikuchance += 30
+      $PokemonGlobal.hatsunemikuchance += 3
       mikumaxchance = 30
     end
 
