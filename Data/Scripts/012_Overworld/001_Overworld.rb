@@ -288,7 +288,7 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
     for mon in $Trainer.party
-      if pokemonExceedsLevelCap(mon) || numbadges == 16
+      if pokemonExceedsLevelCap(mon) || numbadges == 16 || getDayOfTheWeek().to_s == "MONDAY"
         $PokemonGlobal.cynthiaupgradechance += 1
         if rand(25) <= $PokemonGlobal.cynthiaupgradechance
           numbadges += 1
@@ -322,13 +322,18 @@ def pbBattleOnStepTaken(repel_active)
 
     currentbadge = badges[numbadges]
 
+    mikumaxchance = 50
     if $PokemonGlobal.hatsunemikuchance == nil
       $PokemonGlobal.hatsunemikuchance = 1
     else
       $PokemonGlobal.hatsunemikuchance += 1
     end
+    if getDayOfTheWeek().to_s == "MONDAY"
+      $PokemonGlobal.hatsunemikuchance += 30
+      mikumaxchance = 30
+    end
 
-    if rand(50) <= $PokemonGlobal.hatsunemikuchance
+    if rand(mikumaxchance) <= $PokemonGlobal.hatsunemikuchance
       $PokemonGlobal.hatsunemikuchance = 0
       if numbadges > 5 #temporary
         numbadges = 4 + rand(2)

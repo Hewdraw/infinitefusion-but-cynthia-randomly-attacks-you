@@ -178,6 +178,9 @@ class PokeBattle_Battle
         pbDisplayPaused(_INTL("You are challenged by {1}!",@opponent[0].full_name))
         if @opponent[0].name == "Hatsune Miku"
           @scene.pbCommonAnimation("Shiny") #todo
+          if getDayOfTheWeek().to_s == "MONDAY"
+            pbDisplayPaused(_INTL("It's Miku Monday! Miku make every Monday better!"))
+          end
         end
       when 2
         pbDisplayPaused(_INTL("You are challenged by {1} and {2}!",@opponent[0].full_name,
