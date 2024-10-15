@@ -111,7 +111,7 @@ class PokeBattle_Battler
   def pbEndTurn(_choice)
     @lastRoundMoved = @battle.turnCount # Done something this round
     if !@effects[PBEffects::ChoiceBand] &&
-      hasActiveItem?([:CHOICEBAND, :CHOICESPECS, :CHOICESCARF])
+      hasActiveItem?([:CHOICEBAND, :CHOICESPECS, :CHOICESCARF]) && !@effects[PBEffects::Dynamax] > 0
       if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
         @effects[PBEffects::ChoiceBand] = @lastMoveUsed
       elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)

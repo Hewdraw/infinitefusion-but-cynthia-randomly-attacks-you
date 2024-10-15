@@ -95,6 +95,7 @@ class PokemonDataBox < SpriteWrapper
     # Create other bitmaps
     @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers"))
     @hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
+    @hpBarDynamaxBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
     @expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
     # Create sprite to draw HP numbers on
     @hpNumbers = BitmapSprite.new(124,16,viewport)
@@ -105,6 +106,12 @@ class PokemonDataBox < SpriteWrapper
     @hpBar.bitmap = @hpBarBitmap.bitmap
     @hpBar.src_rect.height = @hpBarBitmap.height/3
     @sprites["hpBar"] = @hpBar
+    if @battler.pokemon.dynamax != nil
+      @hpBarDynamax = SpriteWrapper.new(viewport)
+      @hpBarDynamax.bitmap = @hpBarDynamaxBitmap.bitmap
+      @hpBarDynamax.src_rect.height = @hpBarDynamaxBitmap.height/3
+      @sprites["hpBarDynamax"] = @hpBarDynamax
+    end
     # Create sprite wrapper that displays Exp bar
     @expBar = SpriteWrapper.new(viewport)
     @expBar.bitmap = @expBarBitmap.bitmap
@@ -122,6 +129,9 @@ class PokemonDataBox < SpriteWrapper
     @databoxBitmap.dispose
     @numbersBitmap.dispose
     @hpBarBitmap.dispose
+    if @hpBarDynamax != nil
+      @hpBarDynamaxBitmap.dispose
+    end
     @expBarBitmap.dispose
     @contents.dispose
     super
@@ -130,6 +140,9 @@ class PokemonDataBox < SpriteWrapper
   def x=(value)
     super
     @hpBar.x     = value+@spriteBaseX+12#102
+    if @hpBarDynamax != nil
+      @hpBarDynamax.x     = value+@spriteBaseX+12#102
+    end
     @expBar.x    = value+@spriteBaseX+24
     @hpNumbers.x = value+@spriteBaseX+80
   end
@@ -137,6 +150,13 @@ class PokemonDataBox < SpriteWrapper
   def y=(value)
     super
     @hpBar.y     = value+40
+    if @hpBarDynamax != nil
+      if self.hp > @battler.totalhp
+        @hpBarDynamax.y     = value+60
+      else
+        @hpBarDynamax.y     = value+40
+      end
+    end
     @expBar.y    = value+64
     @hpNumbers.y = value+52
   end
@@ -144,6 +164,9 @@ class PokemonDataBox < SpriteWrapper
   def z=(value)
     super
     @hpBar.z     = value+1
+    if @hpBarDynamax != nil
+      @hpBarDynamax.z     = value
+    end
     @expBar.z    = value+1
     @hpNumbers.z = value+2
   end
@@ -296,6 +319,19 @@ class PokemonDataBox < SpriteWrapper
       # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
       #       fit in with the rest of the graphics which are doubled in size.
       w = ((w/2.0).round)*2
+    end
+    if @battler.pokemon.dynamax != nil
+      if self.hp > @battler.totalhp
+        @hpBarDynamax.visible = true
+        @hpBarDynamax.y = 60
+        width = @hpBarDynamaxBitmap.width.to_f*(self.hp-@battler.totalhp)/@battler.totalhp
+        # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
+        #       fit in with the rest of the graphics which are doubled in size.
+        width = ((width/2.0).round)*2
+        @hpBarDynamax.src_rect.width = width
+      else
+        @hpBarDynamax.visible = false
+      end
     end
     @hpBar.src_rect.width = w
     hpColor = 0                                  # Green bar

@@ -30,7 +30,7 @@ class PokeBattle_Battler
       if showMessages
         msg = ""
         case self.status
-        when :SLEEP, :DROWSY     then msg = _INTL("{1} is already asleep!", pbThis)
+        when :SLEEP     then msg = _INTL("{1} is already asleep!", pbThis)
         when :POISON    then msg = _INTL("{1} is already poisoned!", pbThis)
         when :BURN      then msg = _INTL("{1} already has a burn!", pbThis)
         when :PARALYSIS then msg = _INTL("{1} is already paralyzed!", pbThis)
@@ -60,7 +60,7 @@ class PokeBattle_Battler
     if affectedByTerrain?
       case @battle.field.terrain
       when :Electric
-        if newStatus == :SLEEP || newStatus == :DROWSY
+        if newStatus == :SLEEP
           @battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!",
              pbThis(true))) if showMessages
           return false
@@ -71,7 +71,7 @@ class PokeBattle_Battler
       end
     end
     # Uproar immunity
-    if (newStatus == :SLEEP || newStatus  == :DROWSY) && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker)
+    if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker)
       @battle.eachBattler do |b|
         next if b.effects[PBEffects::Uproar]==0
         @battle.pbDisplay(_INTL("But the uproar kept {1} awake!",pbThis(true))) if showMessages
@@ -81,7 +81,7 @@ class PokeBattle_Battler
     # Type immunities
     hasImmuneType = false
     case newStatus
-    when :SLEEP, :DROWSY
+    when :SLEEP
       # No type is immune to sleep
     when :POISON
       if !(user && user.hasActiveAbility?(:CORROSION))
@@ -122,7 +122,7 @@ class PokeBattle_Battler
         msg = ""
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           case newStatus
-          when :SLEEP, :DROWSY     then msg = _INTL("{1} stays awake!", pbThis)
+          when :SLEEP     then msg = _INTL("{1} stays awake!", pbThis)
           when :POISON    then msg = _INTL("{1} cannot be poisoned!", pbThis)
           when :BURN      then msg = _INTL("{1} cannot be burned!", pbThis)
           when :PARALYSIS then msg = _INTL("{1} cannot be paralyzed!", pbThis)
@@ -130,7 +130,7 @@ class PokeBattle_Battler
           end
         elsif immAlly
           case newStatus
-          when :SLEEP, :DROWSY
+          when :SLEEP
             msg = _INTL("{1} stays awake because of {2}'s {3}!",
                pbThis,immAlly.pbThis(true),immAlly.abilityName)
           when :POISON
@@ -148,7 +148,7 @@ class PokeBattle_Battler
           end
         else
           case newStatus
-          when :SLEEP, :DROWSY     then msg = _INTL("{1} stays awake because of its {2}!", pbThis, abilityName)
+          when :SLEEP     then msg = _INTL("{1} stays awake because of its {2}!", pbThis, abilityName)
           when :POISON    then msg = _INTL("{1}'s {2} prevents poisoning!", pbThis, abilityName)
           when :BURN      then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
           when :PARALYSIS then msg = _INTL("{1}'s {2} prevents paralysis!", pbThis, abilityName)
@@ -232,8 +232,6 @@ class PokeBattle_Battler
       case newStatus
       when :SLEEP
         @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
-      when :DROWSY
-        @battle.pbDisplay(_INTL("{1} became drowsy!", pbThis))
       when :POISON
         if newStatusCount>0
           @battle.pbDisplay(_INTL("{1} was badly poisoned!", pbThis))
@@ -273,11 +271,11 @@ class PokeBattle_Battler
   # Sleep
   #=============================================================================
   def asleep?
-    return pbHasStatus?(:SLEEP) || pbHasStatus?(:DROWSY)
+    return pbHasStatus?(:SLEEP)
   end
 
   def pbCanSleep?(user, showMessages, move = nil, ignoreStatus = false)
-    return pbCanInflictStatus?(:SLEEP, user, showMessages, move, ignoreStatus) || pbCanInflictStatus?(:DROWSY, user, showMessages, move, ignoreStatus)
+    return pbCanInflictStatus?(:SLEEP, user, showMessages, move, ignoreStatus)
   end
 
   def pbCanSleepYawn?

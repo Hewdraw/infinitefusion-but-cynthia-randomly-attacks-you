@@ -1499,7 +1499,11 @@ end
 #===============================================================================
 class PokeBattle_Move_05A < PokeBattle_Move
   def pbEffectAgainstTarget(user, target)
-    newHP = (user.hp + target.hp) / 2
+    if target.effects[PBEffects::Dynamax] > 0
+      newHP = (user.hp + (target.hp/2)) / 2
+    else
+      newHP = (user.hp + target.hp) / 2
+    end
     if user.hp > newHP;
       user.pbReduceHP(user.hp - newHP, false, false)
     elsif user.hp < newHP;
@@ -2143,7 +2147,11 @@ end
 #===============================================================================
 class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
   def pbFixedDamage(user, target)
-    return (target.hp / 2.0).round
+    if target.effects[PBEffects::Dynamax] > 0
+      return (target.hp / 4.0).round
+    else
+      return (target.hp / 2.0).round
+    end
   end
 end
 
@@ -2173,7 +2181,11 @@ class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
   end
 
   def pbFixedDamage(user, target)
-    return target.hp - user.hp
+    if target.effects[PBEffects::Dynamax] > 0
+      return (target.hp/2).round - user.hp
+    else
+      return target.hp - user.hp
+    end
   end
 end
 

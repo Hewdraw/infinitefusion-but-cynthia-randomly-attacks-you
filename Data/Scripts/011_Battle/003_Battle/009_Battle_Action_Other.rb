@@ -210,14 +210,21 @@ class PokeBattle_Battle
     battler.effects[PBEffects::Torment] = 0
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
+    oldhp = battler.hp.to_f
+    endhp = battler.hp * 2
     time = 64
     for i in 0..(time-1)
       sprite.zoom_x += 0.03125
       sprite. zoom_y += 0.03125
       sprite.y += 2
+      if oldhp+(oldhp * i/time).round >= battler.hp + 1
+        battler.hp = oldhp+(oldhp * i/time).round
+      end
+      @scene.pbRefreshOne(idxBattler)
       pbWait(1)
     end
     battler.pokemon.dynamax = 3
+    battler.hp = endhp
     sprite.zoom_x -= 2
     sprite.zoom_y -= 2
     sprite.y -= 128

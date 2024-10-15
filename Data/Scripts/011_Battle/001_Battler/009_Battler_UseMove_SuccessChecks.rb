@@ -43,7 +43,7 @@ class PokeBattle_Battler
     # Choice Band
     if @effects[PBEffects::ChoiceBand]
       if hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) &&
-         pbHasMove?(@effects[PBEffects::ChoiceBand])
+         pbHasMove?(@effects[PBEffects::ChoiceBand]) && !@effects[PBEffects::Dynamax] > 0
         if move.id!=@effects[PBEffects::ChoiceBand]
           if showMessages
             msg = _INTL("{1} allows the use of only {2}!",itemName,
@@ -66,7 +66,7 @@ class PokeBattle_Battler
     end
     # Torment
     if @effects[PBEffects::Torment] && !@effects[PBEffects::Instructed] &&
-       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id && !(target.effects[PBEffects::Dynamax] > 0)
+       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id && !(@effects[PBEffects::Dynamax] > 0)
       if showMessages
         msg = _INTL("{1} can't use the same move twice in a row due to the torment!",pbThis)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

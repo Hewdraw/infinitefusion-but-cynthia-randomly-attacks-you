@@ -1,5 +1,7 @@
 
 module Settings
+  LATEST_GAME_RELEASE = "6.3.0"
+
   SHINY_POKEMON_CHANCE = 16
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
   WIKI_URL = "https://infinitefusion.fandom.com/"
@@ -23,8 +25,8 @@ module Settings
 
 
   
-  CUSTOMSPRITES_RATE_MAX_NB_REQUESTS = 5  #Nb. requests allowed in each time window
-  CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
+  CUSTOMSPRITES_RATE_MAX_NB_REQUESTS = 6  #Nb. requests allowed in each time window
+  CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW = 60    # In seconds
 
 
   #POKEDEX ENTRIES
