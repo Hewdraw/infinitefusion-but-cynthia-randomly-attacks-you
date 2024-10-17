@@ -830,7 +830,6 @@ def pbJumpToward(dist = 1, playSound = false, cancelSurf = false)
   end
   if $game_player.x != x || $game_player.y != y
     pbSEPlay("Player jump") if playSound
-    $PokemonEncounters.reset_step_count if cancelSurf
     $PokemonTemp.endSurf = true if cancelSurf
     while $game_player.jumping?
       Graphics.update

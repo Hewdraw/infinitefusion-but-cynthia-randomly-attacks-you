@@ -845,7 +845,6 @@ def pbStartSurfing(speciesID=nil)
   else
     $Trainer.surfing_pokemon=nil
   end
-  $PokemonEncounters.reset_step_count
   $PokemonGlobal.surfing = true
   pbUpdateVehicle
   $PokemonTemp.surfJump = $MapFactory.getFacingCoords($game_player.x, $game_player.y, $game_player.direction)
