@@ -440,7 +440,6 @@ class PokeBattle_Battler
         end
         realNumHits += 1
         break if user.fainted?
-        break if [:SLEEP, :FROZEN].include?(user.status)
         # NOTE: If a multi-hit move becomes disabled partway through doing those
         #       hits (e.g. by Cursed Body), the rest of the hits continue as
         #       normal.

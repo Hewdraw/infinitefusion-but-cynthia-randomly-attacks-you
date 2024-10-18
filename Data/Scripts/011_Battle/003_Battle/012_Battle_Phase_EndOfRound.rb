@@ -384,12 +384,32 @@ class PokeBattle_Battle
         end
       elsif b.takesIndirectDamage?
         oldHP = b.hp
-        dmg = (Settings::MECHANICS_GENERATION >= 7) ? b.totalhp/16 : b.totalhp/8
+        dmg = b.totalhp/16
         dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
         b.pbContinueStatus { b.pbReduceHP(dmg,false) }
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
         b.pbFaint if b.fainted?
+      end
+    end
+    # Damage from frostbite
+    priority.each do |b|
+      next if b.status != :FREEZE
+      if b.takesIndirectDamage?
+        oldHP = b.hp
+        dmg = b.totalhp/16
+        b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        b.pbFaint if b.fainted?
+      end
+    end
+    # drowsy countdown
+    priority.each do |b|
+      next if b.status != :SLEEP
+      self.statusCount -= 1
+      if @statusCount<=0
+        pbCureStatus
       end
     end
     # Damage from sleep (Nightmare)

@@ -30,11 +30,11 @@ class PokeBattle_Battler
       if showMessages
         msg = ""
         case self.status
-        when :SLEEP     then msg = _INTL("{1} is already asleep!", pbThis)
+        when :SLEEP     then msg = _INTL("{1} is already drowsy!", pbThis)
         when :POISON    then msg = _INTL("{1} is already poisoned!", pbThis)
         when :BURN      then msg = _INTL("{1} already has a burn!", pbThis)
         when :PARALYSIS then msg = _INTL("{1} is already paralyzed!", pbThis)
-        when :FROZEN    then msg = _INTL("{1} is already frozen solid!", pbThis)
+        when :FROZEN    then msg = _INTL("{1} is already has frostbite!", pbThis)
         end
         @battle.pbDisplay(msg)
       end
@@ -126,7 +126,7 @@ class PokeBattle_Battler
           when :POISON    then msg = _INTL("{1} cannot be poisoned!", pbThis)
           when :BURN      then msg = _INTL("{1} cannot be burned!", pbThis)
           when :PARALYSIS then msg = _INTL("{1} cannot be paralyzed!", pbThis)
-          when :FROZEN    then msg = _INTL("{1} cannot be frozen solid!", pbThis)
+          when :FROZEN    then msg = _INTL("{1} cannot get frostbite!", pbThis)
           end
         elsif immAlly
           case newStatus
@@ -152,7 +152,7 @@ class PokeBattle_Battler
           when :POISON    then msg = _INTL("{1}'s {2} prevents poisoning!", pbThis, abilityName)
           when :BURN      then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
           when :PARALYSIS then msg = _INTL("{1}'s {2} prevents paralysis!", pbThis, abilityName)
-          when :FROZEN    then msg = _INTL("{1}'s {2} prevents freezing!", pbThis, abilityName)
+          when :FROZEN    then msg = _INTL("{1}'s {2} prevents frostbite!", pbThis, abilityName)
           end
         end
         @battle.pbDisplay(msg)
@@ -256,15 +256,6 @@ class PokeBattle_Battler
     # Status cures
     pbItemStatusCureCheck
     pbAbilityStatusCureCheck
-    # Petal Dance/Outrage/Thrash get cancelled immediately by falling asleep
-    # NOTE: I don't know why this applies only to Outrage and only to falling
-    #       asleep (i.e. it doesn't cancel Rollout/Uproar/other multi-turn
-    #       moves, and it doesn't cancel any moves if self becomes frozen/
-    #       disabled/anything else). This behaviour was tested in Gen 5.
-    if @status == :SLEEP && @effects[PBEffects::Outrage] > 0
-      @effects[PBEffects::Outrage] = 0
-      @currentMove = nil
-    end
   end
 
   #=============================================================================
@@ -408,7 +399,7 @@ class PokeBattle_Battler
     yield if block_given?
     case self.status
     when :SLEEP
-      @battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
+      @battle.pbDisplay(_INTL("{1} is too drowsy to move!", pbThis))
     when :POISON
       @battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
     when :BURN
@@ -416,7 +407,7 @@ class PokeBattle_Battler
     when :PARALYSIS
       @battle.pbDisplay(_INTL("{1} is paralyzed! It can't move!", pbThis))
     when :FROZEN
-      @battle.pbDisplay(_INTL("{1} is frozen solid!", pbThis))
+      @battle.pbDisplay(_INTL("{1} was hurt by its frostbite!", pbThis))
     end
     PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if self.status == :SLEEP
   end
@@ -426,11 +417,11 @@ class PokeBattle_Battler
     self.status = :NONE
     if showMessages
       case oldStatus
-      when :SLEEP     then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
+      when :SLEEP     then @battle.pbDisplay(_INTL("{1} fought off its drowsiness!", pbThis))
       when :POISON    then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
       when :BURN      then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
       when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
-      when :FROZEN    then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
+      when :FROZEN    then @battle.pbDisplay(_INTL("{1}'s frostbite was healed' !", pbThis))
       end
     end
     PBDebug.log("[Status change] #{pbThis}'s status was cured") if !showMessages

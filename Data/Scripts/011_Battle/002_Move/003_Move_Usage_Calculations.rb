@@ -450,6 +450,14 @@ class PokeBattle_Move
        !user.hasActiveAbility?(:GUTS)
       multipliers[:final_damage_multiplier] /= 2
     end
+    # Frostbite
+    if user.status == :FREEZE && specialMove?
+      multipliers[:final_damage_multiplier] /= 2
+    end
+    # Drowsy
+    if target.status == :SLEEP && (!target.pbHasMove?(:SLEEPTALK) || !target.pbHasMove?(:SNORE))
+      multipliers[:final_damage_multiplier] *= 4/3
+    end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
        !user.hasActiveAbility?(:INFILTRATOR)

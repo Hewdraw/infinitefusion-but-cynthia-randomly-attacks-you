@@ -126,10 +126,6 @@ class PokeBattle_Battler
     PBDebug.log("[Disobedience] #{pbThis} disobeyed")
     @effects[PBEffects::Rage] = false
     # Do nothing if using Snore/Sleep Talk
-    if @status == :SLEEP && move.usableWhenAsleep?
-      @battle.pbDisplay(_INTL("{1} ignored orders and kept sleeping!",pbThis))
-      return false
-    end
     b = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
     # Use another move
     if b<badgeLevel
@@ -199,29 +195,14 @@ class PokeBattle_Battler
     # Skip checking all applied effects that could make self fail doing something
     return true if skipAccuracyCheck
     # Check status problems and continue their effects/cure them
-    case @status
-    when :SLEEP
-      self.statusCount -= 1
-      if @statusCount<=0
-        pbCureStatus
-      else
+    if @status == :SLEEP
+      if @battle.pbRandom(100)<33
         pbContinueStatus
         if !move.usableWhenAsleep?   # Snore/Sleep Talk
           @lastMoveFailed = true
           return false
         end
       end
-    when :FROZEN
-      if !move.thawsUser?
-        if @battle.pbRandom(100)<20
-          pbCureStatus
-        else
-          pbContinueStatus
-          @lastMoveFailed = true
-          return false
-        end
-      end
-    end
     # Obedience check
     return false if !pbObedienceCheck?(choice)
     # Truant

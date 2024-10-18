@@ -423,7 +423,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
     end
     case oldStatus
     when :SLEEP
-      @battle.pbDisplay(_INTL("{1} was woken from sleep.", curedName))
+      @battle.pbDisplay(_INTL("{1} was woken from its drowsiness.", curedName))
     when :POISON
       @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
     when :BURN
@@ -431,7 +431,7 @@ class PokeBattle_Move_019 < PokeBattle_Move
     when :PARALYSIS
       @battle.pbDisplay(_INTL("{1} was cured of paralysis.", curedName))
     when :FROZEN
-      @battle.pbDisplay(_INTL("{1} was thawed out.", curedName))
+      @battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
     end
   end
 
