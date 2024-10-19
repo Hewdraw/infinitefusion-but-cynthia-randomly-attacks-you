@@ -17566,7 +17566,7 @@ Abilities = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 
-#Minceraft
+#Misc
 #-------------------------------
 [1000800]
 Name = Zombie
@@ -17625,6 +17625,66 @@ Type1 = GHOST
 Type2 = GROUND
 BaseStats = 80,115,75,115,40,75
 Abilities = ENDER
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000806]
+Name = Kyurem
+InternalName = KYUREMBLACKKYUREMWHITE
+Type1 = DRAGON
+Type2 = ICEFIREELECTRIC
+BaseStats = 125,153,96,95,153,96
+Abilities = TETRAFORCE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000807]
+Name = Boufgrigus
+InternalName = COFAGRIGUSBOUFFALANT
+Type1 = NORMAL
+Type2 = GHOST
+BaseStats = 82,70,128,38,58,98
+Abilities = MUMMY
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000808]
+Name = Kingsharp
+InternalName = BISHARPKINGAMBIT
+Type1 = DARK
+Type2 = STEEL
+BaseStats = 88,128,106,63,60,80
+Abilities = DEFIANT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000809]
+Name = Iron Dreigon
+InternalName = HYDREIGONIRONJUGULIS
+Type1 = DARK
+Type2 = DRAGON
+BaseStats = 93,96,88,101,123,83
+Abilities = QUARKDRIVE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[10008010]
+Name = Seismion
+InternalName = DRAPIONSEISMITOAD
+Type1 = WATER
+Type2 = DARK
+BaseStats = 93,91,98,88,76,75
+Abilities = POISONTOUCH
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[10008011]
+Name = Toxitross
+InternalName = EELEKTROSSTOXICROAK
+Type1 = POISON
+Type2 = ELECTRIC
+BaseStats = 83,112,75,61,92,70
+Abilities = LEVITATE
 Moves = 1,TACKLE
 Shape = Head
 

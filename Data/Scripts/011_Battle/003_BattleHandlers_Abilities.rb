@@ -2402,6 +2402,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:TETRAFORCE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is radiating a powerful aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
