@@ -154,7 +154,7 @@ class PokemonDataBox < SpriteWrapper
       if self.hp > @battler.totalhp
         @hpBarDynamax.y     = value+60
       else
-        @hpBarDynamax.y     = value+40
+        @hpBarDynamax.y     = value-1000
       end
     end
     @expBar.y    = value+64
