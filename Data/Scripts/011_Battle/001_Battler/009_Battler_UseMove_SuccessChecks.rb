@@ -203,6 +203,7 @@ class PokeBattle_Battler
           return false
         end
       end
+    end
     # Obedience check
     return false if !pbObedienceCheck?(choice)
     # Truant
