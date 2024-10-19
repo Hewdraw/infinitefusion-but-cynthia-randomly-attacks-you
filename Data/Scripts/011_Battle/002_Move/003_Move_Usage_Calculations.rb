@@ -417,7 +417,7 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] *= random / 100.0
     end
     # STAB
-    if type && user.pbHasType?(type)
+    if type && (user.pbHasType?(type) || (user.pbHasType?(:ICEFIREELECTRIC) && (type == :ELECTRIC || type == :FIRE || type == :ICE)))
       if user.hasActiveAbility?(:ADAPTABILITY)
         multipliers[:final_damage_multiplier] *= 2
       else
