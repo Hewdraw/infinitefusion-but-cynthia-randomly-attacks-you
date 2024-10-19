@@ -17668,7 +17668,7 @@ Abilities = QUARKDRIVE
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[10008010]
+[1000810]
 Name = Seismion
 InternalName = DRAPIONSEISMITOAD
 Type1 = WATER
@@ -17678,7 +17678,7 @@ Abilities = POISONTOUCH
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
-[10008011]
+[1000811]
 Name = Toxitross
 InternalName = EELEKTROSSTOXICROAK
 Type1 = POISON

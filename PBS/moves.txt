@@ -329,14 +329,14 @@
 317,SHOREUP,Shore Up,16D,0,GROUND,Status,0,10,0,User,0,d,"The user regains up to half of its max HP. It restores more HP in a sandstorm."
 318,SPIKES,Spikes,103,0,GROUND,Status,0,20,0,FoeSide,0,c,"The user lays a trap of spikes at the foe's feet. The trap hurts foes that switch into battle."
 #-------------------------------
-319,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,90,5,30,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It may also paralyze the foe."
-320,ICEBURN,Ice Burn,0C6,140,ICE,Special,90,5,30,NearOther,0,bef,"On the second turn, an ultracold, freezing wind surrounds the foe. This may leave it with a burn."
-321,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,10,AllNearFoes,0,bef,"A howling blizzard is summoned to strike the opposing team. It may also freeze them solid."
+319,FREEZESHOCK,Freeze Shock,0C5,140,ICE,Physical,90,5,60,NearOther,0,bef,"On the second turn, the user hits the foe with electrically charged ice. It may also paralyze the foe."
+320,ICEBURN,Ice Burn,0C6,140,ICE,Special,90,5,60,NearOther,0,bef,"On the second turn, an ultracold, freezing wind surrounds the foe. This may leave it with a burn."
+321,BLIZZARD,Blizzard,00D,110,ICE,Special,70,5,30,AllNearFoes,0,bef,"A howling blizzard is summoned to strike the opposing team. It may also freeze them solid."
 322,ICEHAMMER,Ice Hammer,03E,100,ICE,Physical,90,10,0,NearOther,0,abefj,"The user swings and hits with its strong, heavy fist. It lowers the user's Speed, however."
 323,ICEBEAM,Ice Beam,00C,90,ICE,Special,100,10,10,NearOther,0,bef,"The target is struck with an icy-cold beam of energy. It may also freeze the target solid."
 324,ICICLECRASH,Icicle Crash,00F,85,ICE,Physical,90,10,30,NearOther,0,be,"The user attacks by harshly dropping an icicle onto the foe. It may also make the target flinch."
 325,ICEPUNCH,Ice Punch,00C,75,ICE,Physical,100,15,10,NearOther,0,abefj,"The target is punched with an icy fist. It may also leave the target frozen."
-326,FREEZEDRY,Freeze-Dry,135,70,ICE,Special,100,20,10,NearOther,0,bef,"The user rapidly cools the target. This may freeze the target. Is super-effective on Water types."
+326,FREEZEDRY,Freeze-Dry,135,70,ICE,Special,100,20,20,NearOther,0,bef,"The user rapidly cools the target. This may freeze the target. Is super-effective on Water types."
 327,AURORABEAM,Aurora Beam,042,65,ICE,Special,100,20,10,NearOther,0,bef,"The target is hit with a rainbow-colored beam. This may also lower the target's Attack stat."
 328,GLACIATE,Glaciate,044,65,ICE,Special,95,10,100,AllNearFoes,0,bef,"The user attacks by blowing freezing cold air at the foe. This attack reduces the targets' Speed stat."
 329,ICEFANG,Ice Fang,00E,65,ICE,Physical,95,15,100,NearOther,0,abei,"The user bites with cold-infused fangs. It may also make the target flinch or leave it frozen."
@@ -735,6 +735,7 @@
 716,FREEZYFROST,Freezy Frost,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
 717,SPARKLYSWIRL,Sparkly Swirl,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass" #todo
 718,VEEVEEVOLLEY,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #todo
+719,TEMP,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass" #todo
 
 
 #  @id               = hash[:id]
