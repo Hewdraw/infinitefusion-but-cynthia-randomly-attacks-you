@@ -119,6 +119,9 @@ class PokeBattle_Battler
   # Change type
   #=============================================================================
   def pbChangeTypes(newType)
+    if @unteraTypes != nil
+      return false
+    end
     if newType.is_a?(PokeBattle_Battler)
       newTypes = newType.pbTypes
       newTypes.push(:NORMAL) if newTypes.length == 0
