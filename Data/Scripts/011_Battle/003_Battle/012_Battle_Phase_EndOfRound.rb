@@ -407,7 +407,7 @@ class PokeBattle_Battle
     # drowsy countdown
     priority.each do |b|
       next if b.status != :SLEEP
-      self.statusCount -= 1
+      b.statusCount -= 1
       if @statusCount<=0
         pbCureStatus
       end
