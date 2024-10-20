@@ -267,7 +267,7 @@ class PokeBattle_Battle
       @battle.pbCommonAnimation("SeaOfFireOpp") if side==1
       priority.each do |b|
         next if b.opposes?(side)
-        next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE) ||  b.pbHasType?(:ICEFIREELECTRIC))
+        next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE) ||  b.pbHasType?(:ICEFIREELECTRIC)
         oldHP = b.hp
         @scene.pbDamageAnimation(b)
         b.pbReduceHP(b.totalhp/8,false)
