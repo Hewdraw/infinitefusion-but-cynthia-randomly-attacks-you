@@ -287,7 +287,7 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.cynthiaupgradechance = 0
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
-    if getDayOfTheWeek().to_s == "MONDAY"
+    if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
       $PokemonGlobal.cynthiaupgradechance += 1
     end
     for mon in $Trainer.party
@@ -331,7 +331,7 @@ def pbBattleOnStepTaken(repel_active)
     else
       $PokemonGlobal.hatsunemikuchance += 1
     end
-    if getDayOfTheWeek().to_s == "MONDAY"
+    if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
       $PokemonGlobal.hatsunemikuchance += 3
       mikumaxchance = 30
     end
