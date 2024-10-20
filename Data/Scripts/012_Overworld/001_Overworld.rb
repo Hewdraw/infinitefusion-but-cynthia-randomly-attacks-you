@@ -287,8 +287,11 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.cynthiaupgradechance = 0
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
+    if getDayOfTheWeek().to_s == "MONDAY"
+      $PokemonGlobal.cynthiaupgradechance += 1
+    end
     for mon in $Trainer.party
-      if pokemonExceedsLevelCap(mon) || numbadges == 16 || getDayOfTheWeek().to_s == "MONDAY"
+      if pokemonExceedsLevelCap(mon) || numbadges == 16
         $PokemonGlobal.cynthiaupgradechance += 1
         if rand(25) <= $PokemonGlobal.cynthiaupgradechance
           numbadges += 1
