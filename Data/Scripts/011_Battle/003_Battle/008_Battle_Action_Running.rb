@@ -39,6 +39,10 @@ class PokeBattle_Battle
       @choices[idxBattler][2] = nil
       return -1
     end
+    if rand(100) == 0
+      pbDisplay(_INTL("nuh uh."))
+      return 0
+    end
     # Fleeing from trainer battles
     if trainerBattle?
       if $battledepth != nil && $battledepth > 0
