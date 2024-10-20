@@ -41,6 +41,10 @@ class PokeBattle_Battle
     end
     # Fleeing from trainer battles
     if trainerBattle?
+      if $battledepth != nil && $battledepth > 0
+        pbDisplay(_INTL("nuh uh."))
+        return 0
+      end
       if $DEBUG && Input.press?(Input::CTRL)
         if pbDisplayConfirm(_INTL("Treat this battle as a win?"))
           @decision = 1
