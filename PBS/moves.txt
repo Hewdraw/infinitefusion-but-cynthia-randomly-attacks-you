@@ -732,7 +732,7 @@
 713,GLITZYGLOW,Glitzy Glow,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 714,BADDYBAD,Baddy Bad,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 715,SAPPYSEED,Sappy Seed,184,90,GRASS,Physical,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-716,FREEZYFROST,Freezy Frost,187,90,ICE,Special,100,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+716,FREEZYFROST,Freezy Frost,187,90,ICE,Special,100,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 717,SPARKLYSWIRL,Sparkly Swirl,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 718,VEEVEEVOLLEY,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 719,TEMP,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo

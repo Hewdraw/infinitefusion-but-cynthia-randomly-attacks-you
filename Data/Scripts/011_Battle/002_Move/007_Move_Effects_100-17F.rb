@@ -2690,15 +2690,10 @@ class PokeBattle_Move_186 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_187
+class PokeBattle_Move_187 < PokeBattle_Move
   def pbEffectGeneral(user)
     @battle.eachBattler { |b| b.pbResetStatStages }
     @battle.pbDisplay(_INTL("All stat changes were eliminated!"))
-  end
-
-  def pbEffectAgainstTarget(user,target)
-    return if damagingMove?
-    target.pbFreeze
   end
 
   def pbAdditionalEffect(user,target)
