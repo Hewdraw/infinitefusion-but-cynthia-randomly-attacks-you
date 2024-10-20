@@ -7975,10 +7975,9 @@ Pokemon = KINGAMBIT,75
 
 [Skeleton_Dev,Shadross,1]	
 Pokemon = REGIGIGAS,5	
-	Offset = 6
+	Offset = 8
 	Name = Hi
-	Dynamax = TRUE
-	Moves = REST,DRAINPUNCH,GIGAIMPACT,EARTHQUAKE
+	Moves = REST,DRAINPUNCH,SLEEPTALK,EARTHQUAKE
 	Ability = SLOWSTART
 	Item = LEFTOVERS
 	Gender = F

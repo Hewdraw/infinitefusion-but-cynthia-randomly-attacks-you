@@ -10,7 +10,7 @@ class PokeBattle_Battler
     self.hp -= amt
     PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
     raise _INTL("HP less than 0") if @hp<0
-    raise _INTL("HP greater than total HP") if @hp>@totalhp
+    raise _INTL("HP greater than total HP") if @hp>@totalhp && !dynamax > 0
     @battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
     @tookDamage = true if amt>0 && registerDamage
     return amt
@@ -24,7 +24,7 @@ class PokeBattle_Battler
     self.hp += amt
     PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
     raise _INTL("HP less than 0") if @hp<0
-    raise _INTL("HP greater than total HP") if @hp>@totalhp
+    raise _INTL("HP greater than total HP") if @hp>@totalhp && !@dynamax > 0
     @battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
     return amt
   end
