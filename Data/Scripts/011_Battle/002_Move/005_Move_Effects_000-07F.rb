@@ -2228,7 +2228,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       @battle.pbHideAbilitySplash(target)
       return true
     end
-    if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && target.pbHasType?(:ICE)
+    if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && (target.pbHasType?(:ICE) || target.pbHasType?(:ICEFIREELECTRIC))
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2237,7 +2237,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
 
   def pbAccuracyCheck(user, target)
     acc = @accuracy + user.level - target.level
-    acc -= 10 if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && !user.pbHasType?(:ICE)
+    acc -= 10 if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && !(user.pbHasType?(:ICE) || target.pbHasType?(:ICEFIREELECTRIC))
     return @battle.pbRandom(100) < acc
   end
 
