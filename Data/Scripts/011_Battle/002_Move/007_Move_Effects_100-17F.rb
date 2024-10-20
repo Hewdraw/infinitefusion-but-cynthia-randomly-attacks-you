@@ -2661,6 +2661,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
     end
     $battledepth += 1
     $PokemonGlobal.nextBattleBack = "Lava"
+    $PokemonGlobal.nextBattleBGM = nil
     pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
     $depthlist[$battledepth].each_with_index do |b,i|
       b.hp = $battlehplist[i]
