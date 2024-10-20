@@ -21,7 +21,7 @@ class PokeBattle_Battle
     battler = @battlers[idxBattler]
     battler.eachMoveWithIndex do |m,i|
       next if m.pp==0 && m.total_pp>0 && !sleepTalk
-      if battler.effects[PBEffects::Encore]>0 && !(target.effects[PBEffects::Dynamax] > 0)
+      if battler.effects[PBEffects::Encore]>0 && !(battler.effects[PBEffects::Dynamax] > 0)
         idxEncoredMove = battler.pbEncoredMoveIndex
         next if idxEncoredMove>=0 && i!=idxEncoredMove
       end
