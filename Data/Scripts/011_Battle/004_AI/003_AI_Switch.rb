@@ -53,7 +53,7 @@ class PokeBattle_AI
       end
     end
     # Pokémon is Encored into an unfavourable move
-    if battler.effects[PBEffects::Encore]>0 && skill>=PBTrainerAI.mediumSkill && !(target.effects[PBEffects::Dynamax] > 0)
+    if battler.effects[PBEffects::Encore]>0 && skill>=PBTrainerAI.mediumSkill && !(battler.effects[PBEffects::Dynamax] > 0)
       idxEncoredMove = battler.pbEncoredMoveIndex
       if idxEncoredMove>=0
         scoreSum   = 0
