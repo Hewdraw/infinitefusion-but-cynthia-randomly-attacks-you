@@ -231,7 +231,7 @@ class PokeBattle_Battler
     else
       case newStatus
       when :SLEEP
-        @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
+        @battle.pbDisplay(_INTL("{1} grew drowsy!", pbThis))
       when :POISON
         if newStatusCount>0
           @battle.pbDisplay(_INTL("{1} was badly poisoned!", pbThis))
@@ -243,7 +243,7 @@ class PokeBattle_Battler
       when :PARALYSIS
         @battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
       when :FROZEN
-        @battle.pbDisplay(_INTL("{1} was frozen solid!", pbThis))
+        @battle.pbDisplay(_INTL("{1} got frostbite!", pbThis))
       end
     end
     PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
