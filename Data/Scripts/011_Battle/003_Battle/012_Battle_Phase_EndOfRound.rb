@@ -409,7 +409,7 @@ class PokeBattle_Battle
       next if b.status != :SLEEP
       b.statusCount -= 1
       if b.statusCount<=0
-        pbCureStatus
+        b.pbCureStatus
       end
     end
     # Damage from sleep (Nightmare)
