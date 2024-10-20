@@ -5115,9 +5115,9 @@ Pokemon = BUDEW,5
 
 [CHAMPION_Sinnoh,Cynthia,10]
 Pokemon = TOGEPI,5
-	Offset = 3
+	Offset = 4
 	Moves = METRONOME,SOFTBOILED
-	Item = SAFETYGOGGLES
+	Item = EVIOLITE
 	Ability = SUPERLUCK
 	Gender = F
 	Nature = BRAVE
