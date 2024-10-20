@@ -10,7 +10,7 @@ class PokeBattle_Battle
       pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
       return false
     end
-    if battler.effects[PBEffects::Encore]>0 && !(target.effects[PBEffects::Dynamax] > 0)
+    if battler.effects[PBEffects::Encore]>0 && !(battler.effects[PBEffects::Dynamax] > 0)
       idxEncoredMove = battler.pbEncoredMoveIndex
       return false if idxEncoredMove>=0 && idxMove!=idxEncoredMove
     end
