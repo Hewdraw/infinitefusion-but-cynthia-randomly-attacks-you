@@ -2593,10 +2593,6 @@ end
 #===============================================================================
 class PokeBattle_Move_0D9 < PokeBattle_HealingMove
   def pbMoveFailed?(user,targets)
-    if user.asleep?
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
     return true if !user.pbCanSleep?(user,true,self,true)
     return true if super
     return false
