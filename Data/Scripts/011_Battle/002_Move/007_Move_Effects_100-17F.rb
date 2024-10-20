@@ -2689,3 +2689,20 @@ class PokeBattle_Move_186 < PokeBattle_Move
     target.pbItemStatusCureCheck
   end
 end
+
+class PokeBattle_Move_187
+  def pbEffectGeneral(user)
+    @battle.eachBattler { |b| b.pbResetStatStages }
+    @battle.pbDisplay(_INTL("All stat changes were eliminated!"))
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    target.pbFreeze
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    target.pbFreeze if target.pbCanFreeze?(user,false,self)
+  end
+end

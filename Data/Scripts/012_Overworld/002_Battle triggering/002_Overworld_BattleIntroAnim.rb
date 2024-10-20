@@ -113,7 +113,7 @@ def pbBattleAnimation(bgm=nil,battletype=0,foe=nil)
   $PokemonGlobal.nextBattleCaptureME = nil
   $PokemonGlobal.nextBattleBack      = nil
   $PokemonTemp.forced_alt_sprites=nil
-  if battletype == 0 or battletype == 2
+  if (battletype == 0 or battletype == 2) && !isRepelActive()
     $PokemonEncounters.reset_step_count
   end
   # Fade back to the overworld
