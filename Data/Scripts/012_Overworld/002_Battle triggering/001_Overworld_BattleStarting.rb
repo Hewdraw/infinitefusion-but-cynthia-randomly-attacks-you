@@ -716,15 +716,13 @@ end
 # After battles
 #===============================================================================
 def pbAfterBattle(decision,canLose)
-  if $battledepth != nil
-    if $battledepth > 0
-      $battledepth -= 1
-      $battlehplist = {}
-      $Trainer.party do |b|
-        $battlehplist[b] = b.hp
-      end
-      return
+  if $battledepth != nil && $battledepth > 0
+    $battledepth -= 1
+    $battlehplist = {}
+    $Trainer.party do |b|
+      $battlehplist[b] = b.hp
     end
+    return
   end
   $Trainer.party.each do |pkmn|
     pkmn.statusCount = 0 if pkmn.status == :POISON   # Bad poison becomes regular
