@@ -719,9 +719,9 @@ def pbAfterBattle(decision,canLose)
   if $battledepth != nil
     if $battledepth > 0
       $battledepth -= 1
-      $battlehplist = []
-      $depthlist[$battledepth] do |b|
-        $battlehplist.append(b.hp)
+      $battlehplist = {}
+      $Trainer.party do |b|
+        $battlehplist[b] = b.hp
       end
       return
     end
