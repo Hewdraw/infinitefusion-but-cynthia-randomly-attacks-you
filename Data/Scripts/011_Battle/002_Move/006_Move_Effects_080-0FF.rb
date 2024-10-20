@@ -3101,11 +3101,11 @@ class PokeBattle_Move_0EC < PokeBattle_Move
   end
 
   def pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
-    return if targets.effects[PBEffects::Dynamax] > 0
     return if @battle.wildBattle?
     return if user.fainted? || numHits==0
     roarSwitched = []
     targets.each do |b|
+      next if b.effects[PBEffects::Dynamax] > 0
       next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
       next if switchedBattlers.include?(b.index)
       next if b.effects[PBEffects::Ingrain]

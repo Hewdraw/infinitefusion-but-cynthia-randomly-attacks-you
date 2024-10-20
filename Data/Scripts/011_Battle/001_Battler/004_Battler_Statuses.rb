@@ -309,7 +309,7 @@ class PokeBattle_Battler
   end
 
   def pbSleepDuration(duration = -1)
-    duration = 2 + @battle.pbRandom(3) if duration <= 0
+    duration = 5 if duration <= 0
     duration = (duration / 2).floor if hasActiveAbility?(:EARLYBIRD)
     return duration
   end
