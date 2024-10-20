@@ -187,7 +187,7 @@ class PokeBattle_Battler
     when :BURN
       hasImmuneType |= (pbHasType?(:FIRE) || pbHasType?(:ICEFIREELECTRIC))
     when :PARALYSIS
-      hasImmuneType |= (pbHasType?(:ELECTRIC) || pbHasType?(:ICEFIREELECTRIC))) && Settings::MORE_TYPE_EFFECTS
+      hasImmuneType |= (pbHasType?(:ELECTRIC) || pbHasType?(:ICEFIREELECTRIC)) && Settings::MORE_TYPE_EFFECTS
     end
     return false if hasImmuneType
     # Ability immunity
