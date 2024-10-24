@@ -202,7 +202,7 @@ class PokeBattle_Battle
     trainerName = pbGetOwnerName(idxBattler)
     sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
     @scene.pbRefreshOne(idxBattler)
-    battler.effects[PBEffects::Dynamax] = 1
+    battler.effects[PBEffects::Dynamax] = 3
     battler.effects[PBEffects::Encore] = 0
     battler.effects[PBEffects::Torment] = 0
     pbCommonAnimation("StatUp",battler)
@@ -276,11 +276,11 @@ class PokeBattle_Battle
     pbSEPlay(pbStringToAudioFile("dynamaxsmall"))
     oldhp = battler.hp.to_f
     endhp = (battler.hp / 2).round
-    time = 50
+    time = 40
     for i in 0..(time-1)
-      sprite.zoom_x -= 0.0132
-      sprite.zoom_y -= 0.0132
-      sprite.y -= 2.56
+      sprite.zoom_x -= 0.0165
+      sprite.zoom_y -= 0.0165
+      sprite.y -= 3.2
       if oldhp-(oldhp * i/time/2).round <= battler.hp - 1
         battler.hp = oldhp-(oldhp * i/time/2).round
       end

@@ -293,7 +293,7 @@ class PokeBattle_Battler
     return if !@pokemon
     if @pokemon.dynamax.is_a?(Integer)
       @pokemon.calc_stats_dynamaxed
-      currenthp = @hp + (@pokemon.totalhp - @totalhp)
+      currenthp = @hp + ((@pokemon.totalhp - @totalhp)*2)
     else
       @pokemon.calc_stats
       currenthp = @pokemon.hp

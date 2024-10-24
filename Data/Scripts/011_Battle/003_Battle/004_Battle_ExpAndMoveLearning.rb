@@ -58,11 +58,15 @@ class PokeBattle_Battle
       next unless b && !b.opposes?
       next unless b.fainted?
       next unless @opponent[0].name == "Cynthia" || @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Hewdraw" || @opponent[0].name == "Shadross" || @opponent[0].name == "Cynthia"
-      #next unless $Trainer.badge_count >= 9
+      next unless $Trainer.badge_count >= 5
       b.participants.each do |opponent|
-        if rand(1) >= 0
+        if opponent.pokemon.exp >= 1
+          opponent.pokemon.exp = 0
+        else
+          opponent.pokemon.exp += 1
           opponent.level += 1
           opponent.pbUpdate(false)
+          @scene.pbRefreshOne(opponent.index)
           pbCommonAnimation("LevelUp", opponent)
           pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", opponent.name, opponent.level))
         end
