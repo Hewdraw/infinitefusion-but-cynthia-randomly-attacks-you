@@ -1361,6 +1361,43 @@ class Pokemon
     @speed = stats[:SPEED]
   end
 
+  def calc_stats_dynamaxed
+    base_stats = self.baseStats
+    this_level = self.level
+    this_IV = self.calcIV
+
+    if $game_switches[SWITCH_NO_LEVELS_MODE]
+      this_level = adjust_level_for_base_stats_mode()
+    end
+
+    # Format stat multipliers due to nature
+    nature_mod = {}
+    GameData::Stat.each_main { |s| nature_mod[s.id] = 100 }
+    this_nature = self.nature_for_stats
+    if this_nature
+      this_nature.stat_changes.each { |change| nature_mod[change[0]] += change[1] }
+    end
+    # Calculate stats
+    stats = {}
+    GameData::Stat.each_main do |s|
+      if s.id == :HP
+        stats[s.id] = calcHP(base_stats[s.id], this_level, this_IV[s.id], @ev[s.id])
+      else
+        stats[s.id] = calcStat(base_stats[s.id], this_level, this_IV[s.id], @ev[s.id], nature_mod[s.id])
+      end
+    end
+    hpDiff = (@totalhp*2) - @hp
+    #@totalhp = stats[:HP]
+    @totalhp = adjustHPForWonderGuard(stats)
+    calculated_hp = (@totalhp*2) - hpDiff
+    @hp = calculated_hp > 0 ? calculated_hp : 0
+    @attack = stats[:ATTACK]
+    @defense = stats[:DEFENSE]
+    @spatk = stats[:SPECIAL_ATTACK]
+    @spdef = stats[:SPECIAL_DEFENSE]
+    @speed = stats[:SPEED]
+  end
+
   #=============================================================================
   # Pokémon creation
   #=============================================================================

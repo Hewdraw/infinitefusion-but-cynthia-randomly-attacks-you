@@ -54,6 +54,21 @@ class PokeBattle_Battle
       # Clear the participants array
       b.participants = []
     end
+    @battlers.each do |b|
+      next unless b && !b.opposes?
+      next unless b.fainted?
+      next unless @opponent[0].name == "Cynthia" || @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Hewdraw" || @opponent[0].name == "Shadross" || @opponent[0].name == "Cynthia"
+      #next unless $Trainer.badge_count >= 9
+      b.participants.each do |opponent|
+        if rand(1) >= 0
+          opponent.level += 1
+          opponent.pbUpdate(false)
+          pbCommonAnimation("LevelUp", opponent)
+          pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", opponent.name, opponent.level))
+        end
+      end
+      b.participants = []
+    end
   end
 
   def pbGainEVsOne(idxParty, defeatedBattler)

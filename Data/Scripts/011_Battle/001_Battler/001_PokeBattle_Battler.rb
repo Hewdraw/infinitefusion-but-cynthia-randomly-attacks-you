@@ -46,6 +46,7 @@ class PokeBattle_Battler
   attr_accessor :unteraTypes
   attr_accessor :stellarmoves
   attr_accessor :dynamax
+  attr_accessor :undynamoves
 
   #=============================================================================
   # Complex accessors
@@ -63,6 +64,14 @@ class PokeBattle_Battler
 
   def stellarmoves=(value)
     @stellarmoves = value
+  end
+
+  def undynamoves=(value)
+    @undynamoves = value
+  end
+
+  def moves=(value)
+    @moves = value
   end
 
   attr_reader :form

@@ -14,7 +14,8 @@ class PokeBattle_AI
     # NOTE: A move is only added to the choices array if it has a non-zero
     #       score.
     choices     = []
-    user.eachMoveWithIndex do |_m,i|
+    user.eachMoveWithIndex do |move,i|
+      next if user.dynamax != nil && move.statusMove?
       next if !@battle.pbCanChooseMove?(idxBattler,i,false)
       if wildBattler
         pbRegisterMoveWild(user,i,choices)

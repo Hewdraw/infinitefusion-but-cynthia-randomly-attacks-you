@@ -291,9 +291,15 @@ class PokeBattle_Battler
   #=============================================================================
   def pbUpdate(fullChange=false)
     return if !@pokemon
-    @pokemon.calc_stats
+    if @pokemon.dynamax.is_a?(Integer)
+      @pokemon.calc_stats_dynamaxed
+      currenthp = @hp + (@pokemon.totalhp - @totalhp)
+    else
+      @pokemon.calc_stats
+      currenthp = @pokemon.hp
+    end
     @level          = @pokemon.level
-    @hp             = @pokemon.hp
+    @hp             = currenthp
     @totalhp        = @pokemon.totalhp
     if !@effects[PBEffects::Transform]
       @attack       = @pokemon.attack
@@ -325,9 +331,13 @@ class PokeBattle_Battler
 
   # Update which Pokémon will gain Exp if this battler is defeated.
   def pbUpdateParticipants
-    return if fainted? || !@battle.opposes?(@index)
-    eachOpposing do |b|
-      @participants.push(b.pokemonIndex) if !@participants.include?(b.pokemonIndex)
+    return if fainted?
+    @battle.eachOtherSideBattler(@index) do |b|
+      if @battle.opposes?(@index)
+        @participants.push(b.pokemonIndex) if !@participants.include?(b.pokemonIndex)
+      else
+        @participants.push(b) if !@participants.include?(b)
+      end
     end
   end
 end

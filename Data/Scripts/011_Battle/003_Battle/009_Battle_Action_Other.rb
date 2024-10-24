@@ -200,12 +200,9 @@ class PokeBattle_Battle
     return if !battler || !battler.pokemon
     return if battler.pokemon.dynamax != true
     trainerName = pbGetOwnerName(idxBattler)
-    # battler.xzoom = 0.5
-    # battler.yzoom = 0.5
     sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
-    # print(sprite.spriteX, sprite.spriteY)
     @scene.pbRefreshOne(idxBattler)
-    battler.effects[PBEffects::Dynamax] = 3
+    battler.effects[PBEffects::Dynamax] = 1
     battler.effects[PBEffects::Encore] = 0
     battler.effects[PBEffects::Torment] = 0
     pbCommonAnimation("StatUp",battler)
@@ -215,7 +212,7 @@ class PokeBattle_Battle
     time = 64
     for i in 0..(time-1)
       sprite.zoom_x += 0.03125
-      sprite. zoom_y += 0.03125
+      sprite.zoom_y += 0.03125
       sprite.y += 2
       if oldhp+(oldhp * i/time).round >= battler.hp + 1
         battler.hp = oldhp+(oldhp * i/time).round
@@ -230,7 +227,82 @@ class PokeBattle_Battle
     sprite.y -= 128
     sprite.setPokemonBitmap(battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
+    battler.undynamoves = battler.pokemon.moves.clone
+    battler.pokemon.forget_all_moves
+    battler.moves = []
+    maxmoves = {
+      :NORMAL => :MAXSTRIKE,
+      :FIGHTING => :MAXKNUCKLE,
+      :FLYING => :MAXAIRSTREAM,
+      :POISON => :MAXOOZE,
+      :GROUND => :MAXQUAKE,
+      :ROCK => :MAXROCKFALL,
+      :BUG => :MAXFLUTTERBY,
+      :GHOST => :MAXPHANTASM,
+      :STEEL => :MAXSTEELSPIKE,
+      :FIRE => :MAXFLARE,
+      :WATER => :MAXGEYSER,
+      :GRASS => :MAXOVERGROWTH,
+      :ELECTRIC => :MAXLIGHTNING,
+      :PSYCHIC => :MAXMINDSTORM,
+      :ICE => :MAXHAILSTORM,
+      :DRAGON => :MAXWYRMWIND,
+      :DARK => :MAXDARKNESS,
+      :FAIRY => :MAXSTARFALL
+    }
+    battler.undynamoves.each_with_index do |move,i|
+      if !(move.category == 2)
+        move = Pokemon::Move.new(maxmoves[move.type])
+      else
+        move = Pokemon::Move.new(:MAXGUARD)
+      end
+      battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,move)
+      battler.moves[i].category = battler.undynamoves[i].category
+    end
+    @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
     pbDisplay(_INTL("{1} has Dynamaxed?!",battler.pbThis))
+    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
+  end
+
+  def pbUnDynamax(idxBattler)
+    battler = @battlers[idxBattler]
+    return if !battler || !battler.pokemon
+    return if (battler.pokemon.dynamax == nil) || battler.pokemon.dynamax == true
+    trainerName = pbGetOwnerName(idxBattler)
+    sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
+    @scene.pbRefreshOne(idxBattler)
+    battler.effects[PBEffects::Dynamax] = 0
+    pbCommonAnimation("StatDown",battler)
+    pbSEPlay(pbStringToAudioFile("dynamaxsmall"))
+    oldhp = battler.hp.to_f
+    endhp = (battler.hp / 2).round
+    time = 50
+    for i in 0..(time-1)
+      sprite.zoom_x -= 0.0132
+      sprite.zoom_y -= 0.0132
+      sprite.y -= 2.56
+      if oldhp-(oldhp * i/time/2).round <= battler.hp - 1
+        battler.hp = oldhp-(oldhp * i/time/2).round
+      end
+      @scene.pbRefreshOne(idxBattler)
+      pbWait(1)
+    end
+    battler.pokemon.dynamax = nil
+    battler.hp = endhp
+    if battler.hp > battler.totalhp
+      battler.hp = battler.totalhp
+    end
+    sprite.zoom_x += 0.64
+    sprite.zoom_y += 0.64
+    sprite.y += 32
+    sprite.setPokemonBitmap(battler.pokemon)
+    @scene.pbRefreshOne(idxBattler)
+    battler.pokemon.moves = battler.undynamoves
+    battler.moves = []
+    battler.pokemon.moves.each_with_index do |move,i|
+      battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,move)
+    end
+    #pbDisplay(_INTL("{1} has Dynamaxed?!",battler.pbThis))
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 

@@ -735,7 +735,25 @@
 716,FREEZYFROST,Freezy Frost,187,90,ICE,Special,100,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 717,SPARKLYSWIRL,Sparkly Swirl,000,120,FIRE,Physical,100,5,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 718,VEEVEEVOLLEY,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-719,TEMP,Veevee Volley,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+719,MAXSTRIKE,Max Strike,188,90,NORMAL,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+720,MAXKNUCKLE,Max Knuckle,188,90,FIGHTING,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+721,MAXAIRSTREAM,Max Airstream,188,90,FLYING,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+722,MAXOOZE,Max Ooze,188,90,POISON,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+723,MAXQUAKE,Max Quake,188,90,GROUND,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+724,MAXROCKFALL,Max Rockfall,188,90,ROCK,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+725,MAXFLUTTERBY,Max Flutterby,188,90,BUG,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+726,MAXPHANTASM,Max Phantasm,188,90,GHOST,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+727,MAXSTEELSPIKE,Max Steelspike,188,90,STEEL,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+728,MAXFLARE,Max Flare,188,90,FIRE,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+729,MAXGEYSER,Max Geyser,188,90,WATER,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+730,MAXOVERGROWTH,Max Overgrowth,188,90,GRASS,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+731,MAXLIGHTNING,Max Lightning,188,90,ELECTRIC,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+732,MAXMINDSTORM,Max Mindstorm,188,90,PSYCHIC,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+733,MAXHAILSTORM,Max Hailstorm,188,90,ICE,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+734,MAXWYRMWIND,Max Wyrmwind,188,90,DRAGON,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+735,MAXDARKNESS,Max Darkness,188,90,DARK,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+736,MAXSTARFALL,Max Starfall,188,90,FAIRY,Physical,100,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+737,MAXGUARD,Max Guard,000,90,FIRE,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 
 
 #  @id               = hash[:id]

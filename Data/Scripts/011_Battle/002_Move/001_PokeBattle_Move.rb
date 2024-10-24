@@ -88,6 +88,10 @@ class PokeBattle_Move
     return GameData::Type.get(thisType).special?
   end
 
+  def category=(value)
+    @category = value
+  end
+
   def damagingMove?; return @category!=2; end
   def statusMove?;   return @category==2; end
 

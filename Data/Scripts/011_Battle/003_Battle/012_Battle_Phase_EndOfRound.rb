@@ -698,6 +698,15 @@ class PokeBattle_Battle
     @field.effects[PBEffects::FairyLock]   -= 1 if @field.effects[PBEffects::FairyLock]>0
     @field.effects[PBEffects::FusionBolt]  = false
     @field.effects[PBEffects::FusionFlare] = false
+    eachBattler do |b|
+      if b.effects[PBEffects::Dynamax] > 0
+        b.effects[PBEffects::Dynamax] -= 1
+        b.pokemon.dynamax = b.effects[PBEffects::Dynamax]
+        if b.effects[PBEffects::Dynamax] == 0
+          pbUnDynamax(b.index)
+        end
+      end
+    end
     @endOfRound = false
   end
 end

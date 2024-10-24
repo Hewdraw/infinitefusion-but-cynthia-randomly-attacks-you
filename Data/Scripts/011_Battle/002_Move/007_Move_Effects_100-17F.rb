@@ -2701,3 +2701,76 @@ class PokeBattle_Move_187 < PokeBattle_Move
     target.pbFreeze if target.pbCanFreeze?(user,false,self)
   end
 end
+
+class PokeBattle_Move_188 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    return baseDmg if user.undynamoves == nil
+    highestpower = baseDmg
+    user.undynamoves.each_with_index do |move,i|
+      next if !(user.moves[i].id == self.id)
+      next if !((user.undynamoves[i].base_damage + 150 / 2) > (highestpower))
+      highestpower = (user.undynamoves[i].base_damage + 150) / 2
+    end
+    return highestpower + 10 - (highestpower % 10)
+  end
+
+  def pbAdditionalEffect(user,target)
+    if type == :NORMAL
+      @battle.eachSameSideBattler(target) do |b|
+        b.pbLowerStatStage(:SPEED,1,user)
+      end
+    elsif type == :FIGHTING
+      @battle.eachSameSideBattler(user) do |b|
+        b.pbRaiseStatStage(:ATTACK,1,user)
+      end
+    elsif type == :FLYING
+      @battle.eachSameSideBattler(user) do |b|
+        b.pbRaiseStatStage(:SPEED,1,user)
+      end
+    elsif type == :POISON
+      @battle.eachSameSideBattler(user) do |b|
+        b.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+      end
+    elsif type == :GROUND
+      @battle.eachSameSideBattler(user) do |b|
+        b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+      end
+    elsif type == :ROCK
+      @battle.pbStartWeather(user,:Sandstorm,true,false)
+    elsif type == :BUG
+      @battle.eachSameSideBattler(target) do |b|
+        b.pbLowerStatStage(:SPECIAL_ATTACK,1,user)
+      end
+    elsif type == :GHOST
+      @battle.eachSameSideBattler(target) do |b|
+        b.pbLowerStatStage(:DEFENSE,1,user)
+      end
+    elsif type == :STEEL
+      @battle.eachSameSideBattler(user) do |b|
+        b.pbRaiseStatStage(:DEFENSE,1,user)
+      end
+    elsif type == :FIRE
+      @battle.pbStartWeather(user,:Sun,true,false)
+    elsif type == :WATER
+      @battle.pbStartWeather(user,:Rain,true,false)
+    elsif type == :GRASS
+      @battle.pbStartTerrain(user, :Grass)
+    elsif type == :ELECTRIC
+      @battle.pbStartTerrain(user, :Electric)
+    elsif type == :PSYCHIC
+      @battle.pbStartTerrain(user, :Psychic)
+    elsif type == :ICE
+      @battle.pbStartWeather(user,:Hail,true,false)
+    elsif type == :DRAGON
+      @battle.eachSameSideBattler(target) do |b|
+        b.pbLowerStatStage(:ATTACK,1,user)
+      end
+    elsif type == :DARK
+      @battle.eachSameSideBattler(target) do |b|
+        b.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
+      end
+    elsif type == :FAIRY
+      @battle.pbStartTerrain(user, :Fairy)
+    end
+  end
+end
