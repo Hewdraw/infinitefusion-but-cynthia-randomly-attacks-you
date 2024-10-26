@@ -489,6 +489,9 @@ class PokeBattle_Move
     multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
     # Move-specific final damage modifiers
     multipliers[:final_damage_multiplier] = pbModifyDamage(multipliers[:final_damage_multiplier], user, target)
+    if target.damageState.protected == true && user.dynamax != nil
+      multipliers[:final_damage_multiplier] /= 4
+    end
   end
 
   #=============================================================================

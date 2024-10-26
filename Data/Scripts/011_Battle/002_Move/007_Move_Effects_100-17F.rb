@@ -2703,6 +2703,8 @@ class PokeBattle_Move_187 < PokeBattle_Move
 end
 
 class PokeBattle_Move_188 < PokeBattle_Move
+  def pbAccuracyCheck(user,target); return true; end
+  
   def pbBaseDamage(baseDmg,user,target)
     return baseDmg if user.undynamoves == nil
     highestpower = baseDmg
