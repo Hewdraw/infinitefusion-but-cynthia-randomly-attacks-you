@@ -432,7 +432,7 @@ class PokeBattle_Battler
           if i == 0 && targets.length > 0
             hasFailed = false
             targets.each do |t|
-              next if t.damageState.protected && user.dynamax == nil
+              next if t.damageState.protected && user.dynamax != nil
               hasFailed = t.damageState.unaffected
               break if !t.damageState.unaffected
             end
