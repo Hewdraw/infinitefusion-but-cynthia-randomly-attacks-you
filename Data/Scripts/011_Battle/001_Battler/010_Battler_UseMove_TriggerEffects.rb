@@ -126,7 +126,7 @@ class PokeBattle_Battler
     switchedBattlers = []
     move.pbSwitchOutTargetsEffect(user,targets,numHits,switchedBattlers)
     # Target's item, user's item, target's ability (all negated by Sheer Force)
-    if move.addlEffect==0 || !user.hasActiveAbility?(:SHEERFORCE) || target.effects[PBEffects::Dynamax] > 0
+    if move.addlEffect==0 || !user.hasActiveAbility?(:SHEERFORCE) || user.effects[PBEffects::Dynamax] > 0
       pbEffectsAfterMove2(user,targets,move,numHits,switchedBattlers)
     end
     # Some move effects that need to happen here, i.e. U-turn/Volt Switch
