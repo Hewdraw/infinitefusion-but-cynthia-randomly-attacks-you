@@ -1612,6 +1612,7 @@ BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   proc { |item,battler,battle|
     battler.pbConfuse(_INTL("{1} became confused due its {2}!",battler.pbThis, battler.itemName))
     battler.pbRaiseStatStageByCause(:ATTACK,2,battler,battler.itemName)
+    battler.pbRemoveItem()
     battle.pbCommonAnimation("UseItem",battler)
   }
 )
