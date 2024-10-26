@@ -612,7 +612,7 @@
 604,SECRETCAPSULE,Secret Capsule,Secret Capsules,1,0,"A capsule that unlocks a Pokémon's hidden ability",1,0,0,
 605,ODDKEYSTONE_FULL,unknown_item,Odd Keystones,1,0,"This item has been removed from the game. It can safely be sold or deleted.",0,0,0,
 607,DYNAMITE,Dynamite,Dynamites,1,100,"A stick of dynamite. Be careful with it!",1,1,0,
-606,BERSERKGENE,Berserk Gene,Berserk Genes,8,0,A strange gene. It appears to have some mysterious powers.,2,0,6,
+606,BERSERKGENE,Berserk Gene,Berserk Genes,8,0,A strange gene. It appears to have some mysterious powers.,2,0,0,
 608,AZUREFLUTE,Azure Flute,Azure Flutes,8,0,"A flute that puts out echoing sounds that do not seem to be of this world. It is unknown who made it.",2,0,6,
 609,MAGNETSTONE,Magnet Stone,Magnet Stones,1,2100,A peculiar stone that makes certain species of Pokémon evolve. It has magnetic properties.,1,0,7,
 610,PIXIEPLATE,Pixie Plate,Pixie Plates,1,1000,An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.,0,0,0,
