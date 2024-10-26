@@ -59,7 +59,7 @@ class PokeBattle_Battle
       next unless b.fainted?
       next unless @opponent[0].name == "Cynthia" || @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Hewdraw" || @opponent[0].name == "Shadross" || @opponent[0].name == "Dennis"
       b.participants.each do |opponent|
-        if rand(16) < $Trainer.badge_count && !b.fainted?
+        if rand(16) < $Trainer.badge_count && !opponent.fainted?
           opponent.pokemon.exp += 1
           opponent.level += 1
           opponent.pbUpdate(false)
