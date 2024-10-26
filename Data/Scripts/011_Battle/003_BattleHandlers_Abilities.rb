@@ -752,6 +752,8 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:PIXILATE,
   }
 )
 
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS)
+
 BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
   proc { |ability,user,move,type|
     next if type != :NORMAL || !GameData::Type.exists?(:ICE)
@@ -874,7 +876,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS)
 
 BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -898,6 +900,14 @@ BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if type == :ELECTRIC
       mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ADAPTINGSANDS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if type == :DRAGON || type == :FIGHTING || type == :STEEL || type == :GROUND
+      mults[:attack_multiplier] *= 4/3
     end
   }
 )
@@ -1029,6 +1039,15 @@ BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.battle.pbWeather == :Sandstorm &&
        [:ROCK, :GROUND, :STEEL].include?(type)
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:PIXELATEDSANDS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.battle.pbWeather == :Sandstorm &&
+       [:ROCK, :GROUND, :STEEL, :FAIRY].include?(type)
       mults[:base_damage_multiplier] *= 1.3
     end
   }
@@ -2438,6 +2457,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
     pbBattleWeatherAbility(:Sandstorm, battler, battle)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM,:ADAPTINGSANDS, :PIXELATEDSANDS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|

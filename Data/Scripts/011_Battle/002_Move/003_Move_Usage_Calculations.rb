@@ -395,7 +395,7 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] *= 1.5
       end
     when :Sandstorm
-      if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock
+      if (target.hasActiveAbility?(:ADAPTINGSANDS) || target.pbHasType?(:ROCK)) && specialMove? && @function != "122"   # Psyshock
         multipliers[:defense_multiplier] *= 1.5
       end
     when :Snow
@@ -418,7 +418,7 @@ class PokeBattle_Move
     end
     # STAB
     if type && (user.pbHasType?(type) || (user.pbHasType?(:ICEFIREELECTRIC) && (type == :ELECTRIC || type == :FIRE || type == :ICE)))
-      if user.hasActiveAbility?(:ADAPTABILITY)
+      if user.hasActiveAbility?(:ADAPTABILITY) || user.hasActiveAbility?(:ADAPTINGPIXELS)
         multipliers[:final_damage_multiplier] *= 2
       else
         multipliers[:final_damage_multiplier] *= 1.5

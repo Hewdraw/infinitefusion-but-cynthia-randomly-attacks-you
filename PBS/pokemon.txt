@@ -16704,6 +16704,81 @@ BattlerEnemyY = 19
 BattlerAltitude = 11
 BattlerShadowX = 0
 BattlerShadowSize = 1
+#-------------------------------
+[1000116]
+Name = Braviary
+InternalName = HBRAVIARY
+Type1 = PSYCHIC
+Type2 = FLYING
+BaseStats = 110,83,70,65,112,70
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000117]
+Name = Garchomp
+InternalName = GARCHOMPTERA
+Type1 = DRAGON
+Type2 = GROUND
+BaseStats = 108,130,95,102,80,85
+GenderRate = Female50Percent
+GrowthRate = Slow
+BaseEXP = 270
+EffortPoints = 0,3,0,0,0,0
+Rareness = 45
+Happiness = 70
+Abilities = SANDVEIL
+HiddenAbility = ROUGHSKIN
+Moves = 0,CRUNCH,1,CRUNCH,1,DUALCHOP,1,FIREFANG,1,TACKLE,1,SANDATTACK,1,DRAGONRAGE,1,SANDSTORM,3,SANDATTACK,7,DRAGONRAGE,13,SANDSTORM,15,TAKEDOWN,19,SANDTOMB,28,SLASH,33,DRAGONCLAW,40,DIG,55,DRAGONRUSH
+TutorMoves = AERIALACE,AQUATAIL,ATTRACT,BRICKBREAK,BRUTALSWING,BULLDOZE,CONFIDE,CUT,DOUBLETEAM,DRACOMETEOR,DRAGONCLAW,DRAGONPULSE,DRAGONTAIL,DUALCHOP,EARTHPOWER,EARTHQUAKE,FACADE,FALSESWIPE,FIREBLAST,FLAMETHROWER,FLING,FRUSTRATION,GIGAIMPACT,HIDDENPOWER,HYPERBEAM,IRONHEAD,IRONTAIL,LASERFOCUS,OUTRAGE,POISONJAB,PROTECT,RAINDANCE,REST,RETURN,ROAR,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SHADOWCLAW,SLEEPTALK,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWORDSDANCE,TOXIC,HONECLAWS,DIG,INCINERATE,FURYCUTTER,MUDSLAP,SWIFT,TWISTER,DRAGONDANCE,ROCKCLIMB
+Compatibility = Monster,Dragon
+StepsToHatch = 10455
+Height = 1.9
+Weight = 95.0
+Color = Blue
+Shape = BipedalTail
+Kind = Mach
+Pokedex = When it folds up its body and extends its wings, it looks like a jet plane. It flies at sonic speed.
+WildItemUncommon = HABANBERRY
+BattlerPlayerX = 0
+BattlerPlayerY = -5
+BattlerEnemyX = -2
+BattlerEnemyY = 4
+BattlerShadowX = 0
+BattlerShadowSize = 4
+Generation = 6
+#-------------------------------
+[1000118]
+Name = Porygon-Z
+InternalName = PORYGONZTERA
+Type1 = NORMAL
+BaseStats = 85,80,70,90,135,75
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 241
+EffortPoints = 0,0,0,0,3,0
+Rareness = 30
+Happiness = 70
+Abilities = ADAPTABILITY,DOWNLOAD
+HiddenAbility = ANALYTIC
+Moves = 1,TRICKROOM,1,ZAPCANNON,1,MAGICCOAT,1,CONVERSION2,1,TACKLE,1,CONVERSION,1,NASTYPLOT,7,PSYBEAM,12,AGILITY,18,RECOVER,23,MAGNETRISE,29,SIGNALBEAM,34,EMBARGO,40,DISCHARGE,45,LOCKON,50,TRIATTACK,56,MAGICCOAT,62,ZAPCANNON,67,HYPERBEAM
+TutorMoves = AERIALACE,ALLYSWITCH,BLIZZARD,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DREAMEATER,ELECTROWEB,EMBARGO,FACADE,FOULPLAY,FRUSTRATION,GIGAIMPACT,GRAVITY,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IRONTAIL,LASTRESORT,MAGICCOAT,MAGNETRISE,PAINSPLIT,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REST,RETURN,ROUND,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNORE,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SWAGGER,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICK,TRICKROOM,UPROAR,ZENHEADBUTT,FLASH,SWIFT,TELEPORT,NASTYPLOT,RECOVER
+Compatibility = Mineral
+StepsToHatch = 5355
+Height = 0.9
+Weight = 34.0
+Color = Red
+Shape = HeadArms
+Kind = Virtual
+Pokedex = Additional software was installed to make it a better Pokémon. It began acting oddly, however.
+BattlerPlayerX = 0
+BattlerPlayerY = 5
+BattlerEnemyX = 0
+BattlerEnemyY = 11
+BattlerAltitude = 8
+BattlerShadowX = 0
+BattlerShadowSize = 1
 
 #Cynthia Megas
 [1000200]
@@ -16743,6 +16818,56 @@ HiddenAbility = PIXILATE
 Shape = Winged
 Height = 1.5
 Generation = 6
+#-------------------------------
+[1000203]
+Name = Garcario
+InternalName = MEGAB296H299
+Type1 = DRAGON
+Type2 = STEEL
+BaseStats = 95,153,97,105,126,86
+GenderRate = Female50Percent
+Abilities = ADAPTINGSANDS
+HiddenAbility = ADAPTINGSANDS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000204]
+Name = Arcaria
+InternalName = MEGAALTARIAHARCANINE
+Type1 = FIRE
+Type2 = FAIRY
+BaseStats = 88,111,100,83,100,88
+GenderRate = Female50Percent
+Abilities = PIXILATE
+HiddenAbility = PIXILATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000205]
+Name = Lucaria
+InternalName = MEGAB443H296
+Type1 = FIGHTING
+Type2 = FAIRY
+BaseStats = 71,121,102,90,130,81
+GenderRate = Female50Percent
+Abilities = ADAPTINGPIXELS
+HiddenAbility = ADAPTINGPIXELS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000206]
+Name = Altachomp
+InternalName = MEGAB299H443
+Type1 = DRAGON
+Type2 = GROUND
+BaseStats = 86,150,113,88,113,101
+GenderRate = Female50Percent
+Abilities = PIXELATEDSANDS
+HiddenAbility = PIXELATEDSANDS
+Moves = 1,TACKLE
+Shape = Head
+
+
 
 #Cynthia Teras
 #-------------------------------
@@ -16833,6 +16958,90 @@ Abilities = SANDFORCE
 Shape = BipedalTail
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
 Generation = 6
+#-------------------------------
+[1000255]
+Name = Garchomp
+InternalName = GARCHOMPTERASTEEL
+Type1 = STEEL
+BaseStats = 108,130,95,102,80,85
+GenderRate = Female50Percent
+GrowthRate = Slow
+BaseEXP = 270
+EffortPoints = 0,3,0,0,0,0
+Rareness = 45
+Happiness = 70
+Abilities = SANDVEIL
+HiddenAbility = ROUGHSKIN
+Moves = 0,CRUNCH,1,CRUNCH,1,DUALCHOP,1,FIREFANG,1,TACKLE,1,SANDATTACK,1,DRAGONRAGE,1,SANDSTORM,3,SANDATTACK,7,DRAGONRAGE,13,SANDSTORM,15,TAKEDOWN,19,SANDTOMB,28,SLASH,33,DRAGONCLAW,40,DIG,55,DRAGONRUSH
+TutorMoves = AERIALACE,AQUATAIL,ATTRACT,BRICKBREAK,BRUTALSWING,BULLDOZE,CONFIDE,CUT,DOUBLETEAM,DRACOMETEOR,DRAGONCLAW,DRAGONPULSE,DRAGONTAIL,DUALCHOP,EARTHPOWER,EARTHQUAKE,FACADE,FALSESWIPE,FIREBLAST,FLAMETHROWER,FLING,FRUSTRATION,GIGAIMPACT,HIDDENPOWER,HYPERBEAM,IRONHEAD,IRONTAIL,LASERFOCUS,OUTRAGE,POISONJAB,PROTECT,RAINDANCE,REST,RETURN,ROAR,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SHADOWCLAW,SLEEPTALK,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWORDSDANCE,TOXIC,HONECLAWS,DIG,INCINERATE,FURYCUTTER,MUDSLAP,SWIFT,TWISTER,DRAGONDANCE,ROCKCLIMB
+Compatibility = Monster,Dragon
+StepsToHatch = 10455
+Height = 1.9
+Weight = 95.0
+Color = Blue
+Shape = BipedalTail
+Kind = Mach
+Pokedex = When it folds up its body and extends its wings, it looks like a jet plane. It flies at sonic speed.
+WildItemUncommon = HABANBERRY
+BattlerPlayerX = 0
+BattlerPlayerY = -5
+BattlerEnemyX = -2
+BattlerEnemyY = 4
+BattlerShadowX = 0
+BattlerShadowSize = 4
+#-------------------------------
+[1000256]
+Name = Porygon-Z
+InternalName = PORYGONZTERANORMAL
+Type1 = NORMAL
+BaseStats = 85,80,70,90,135,75
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 241
+EffortPoints = 0,0,0,0,3,0
+Rareness = 30
+Happiness = 70
+Abilities = ADAPTABILITY,DOWNLOAD
+HiddenAbility = ANALYTIC
+Moves = 1,TRICKROOM,1,ZAPCANNON,1,MAGICCOAT,1,CONVERSION2,1,TACKLE,1,CONVERSION,1,NASTYPLOT,7,PSYBEAM,12,AGILITY,18,RECOVER,23,MAGNETRISE,29,SIGNALBEAM,34,EMBARGO,40,DISCHARGE,45,LOCKON,50,TRIATTACK,56,MAGICCOAT,62,ZAPCANNON,67,HYPERBEAM
+TutorMoves = AERIALACE,ALLYSWITCH,BLIZZARD,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DREAMEATER,ELECTROWEB,EMBARGO,FACADE,FOULPLAY,FRUSTRATION,GIGAIMPACT,GRAVITY,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IRONTAIL,LASTRESORT,MAGICCOAT,MAGNETRISE,PAINSPLIT,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REST,RETURN,ROUND,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNORE,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SWAGGER,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICK,TRICKROOM,UPROAR,ZENHEADBUTT,FLASH,SWIFT,TELEPORT,NASTYPLOT,RECOVER
+Compatibility = Mineral
+StepsToHatch = 5355
+Height = 0.9
+Weight = 34.0
+Color = Red
+Shape = HeadArms
+Kind = Virtual
+Pokedex = Additional software was installed to make it a better Pokémon. It began acting oddly, however.
+BattlerPlayerX = 0
+BattlerPlayerY = 5
+BattlerEnemyX = 0
+BattlerEnemyY = 11
+BattlerAltitude = 8
+BattlerShadowX = 0
+BattlerShadowSize = 1
+#-------------------------------
+[1000257]
+Name = Lickinine
+InternalName = HARCANINELICKILICKYNORMAL
+Type1 = NORMAL
+BaseStats = 105,105,85,76,85,90
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000258]
+Name = Vaporcor
+InternalName = GLISCORVAPOREONFIRE
+Type1 = FIRE
+BaseStats = 111,85,103,85,88,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Cynthia Fusions
@@ -17095,6 +17304,197 @@ InternalName = KOMMOOSYLVEON
 Type1 = FAIRY
 Type2 = FIGHTING
 BaseStats = 88,95,105,76,106,121
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000322]
+Name = Thundus
+InternalName = TORNADUSTHERIANTHUNDURUS
+Type1 = ELECTRIC
+Type2 = FLYING
+BaseStats = 79,105,76,117,120,83
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000323]
+Name = Porymorus
+InternalName = PORYGON2ENAMORUSTHERIAN
+Type1 = FAIRY
+Type2 = NORMAL
+BaseStats = 77,91,96,55,125,98
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000324]
+Name = Vaporurus
+InternalName = THUNDURUSTHERIANVAPOREON
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 113,91,66,89,121,90
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000325]
+Name = Tornadgon2
+InternalName = PORYGON2TORNADUS
+Type1 = FLYING
+Type2 = NORMAL
+BaseStats = 81,91,83,77,118,85
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000326]
+Name = Bravnine
+InternalName = HARCANINEBRAVIARY
+Type1 = FLYING
+Type2 = ROCK
+BaseStats = 98,117,78,86,69,76
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000327]
+Name = Thundmo-o
+InternalName = KOMMOOTHUNDURUS
+Type1 = ELECTRIC
+Type2 = FIGHTING
+BaseStats = 77,111,106,93,116,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000328]
+Name = Esmo-o
+InternalName = KOMMMOOESPEON
+Type1 = PSYCHIC
+Type2 = FIGHTING
+BaseStats = 68,95,103,93,120,98
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000329]
+Name = Arcaria
+InternalName = ALTARIAHARCANINE
+Type1 = FIRE
+Type2 = FLYING
+BaseStats = 88,85,86,83,86,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000330]
+Name = Togeus
+InternalName = TORNADUSTHERIANTOGEKISS
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 83,83,85,107,116,106
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000331]
+Name = Thundeon
+InternalName = JOLTEONTHUNDURUSTHERIAN
+Type1 = ELECTRIC
+BaseStats = 74,78,63,120,133,85
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000332]
+Name = Tornadreon
+InternalName = FLAREONTORNADUSTHERIAN
+Type1 = FLYING
+Type2 = FIRE
+BaseStats = 74,120,66,83,105,96
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000333]
+Name = Enamomo-o
+InternalName = KOMMOOENAMORUS
+Type1 = FLYING
+Type2 = FIRE
+BaseStats = 74,111,106,92,123,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000334]
+Name = Lickinine
+InternalName = HARCANINELICKILICKY
+Type1 = NORMAL
+Type2 = ROCK
+BaseStats = 105,105,85,76,85,90
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000335]
+Name = Vaporcor
+InternalName = GLISCORVAPOREON
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 111,85,103,85,88,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000336]
+Name = Enamopeon
+InternalName = ESPEONENAMORUSTHERIAN
+Type1 = FAIRY
+Type2 = PSYCHIC
+BaseStats = 71,81,76,88,133,98
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000337]
+Name = Tornadmo-o
+InternalName = KOMMOOTORNADUS
+Type1 = FLYING
+Type2 = FIGHTING
+BaseStats = 77,111,106,93,116,88
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT

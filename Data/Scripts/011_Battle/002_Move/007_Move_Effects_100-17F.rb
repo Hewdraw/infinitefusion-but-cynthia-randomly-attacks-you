@@ -2691,12 +2691,9 @@ class PokeBattle_Move_186 < PokeBattle_Move
 end
 
 class PokeBattle_Move_187 < PokeBattle_Move
-  def pbEffectGeneral(user)
+  def pbAdditionalEffect(user,target)
     @battle.eachBattler { |b| b.pbResetStatStages }
     @battle.pbDisplay(_INTL("All stat changes were eliminated!"))
-  end
-
-  def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     target.pbFreeze if target.pbCanFreeze?(user,false,self)
   end
@@ -2774,5 +2771,81 @@ class PokeBattle_Move_188 < PokeBattle_Move
     elsif type == :FAIRY
       @battle.pbStartTerrain(user, :Fairy)
     end
+  end
+end
+
+class PokeBattle_Move_189 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    user.pbOwnSide.effects[PBEffects::LightScreen] = 5
+    user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+    @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
+  end
+end
+
+class PokeBattle_Move_190 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    user.pbOwnSide.effects[PBEffects::Reflect] = 5
+    user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+    @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
+  end
+end
+
+class PokeBattle_Move_191 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    # Cure all Pokémon in battle on the user's side. For the benefit of the Gen
+    # 5 version of this move, to make Pokémon out in battle get cured first.
+    @battle.eachSameSideBattler(user) do |b|
+      next if b.status == :NONE
+      pbAromatherapyHeal(b.pokemon, b)
+    end
+    # Cure all Pokémon in the user's and partner trainer's party.
+    # NOTE: This intentionally affects the partner trainer's inactive Pokémon
+    #       too.
+    @battle.pbParty(user.index).each_with_index do |pkmn, i|
+      next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+      next if @battle.pbFindBattler(i, user) # Skip Pokémon in battle
+      pbAromatherapyHeal(pkmn)
+    end
+  end
+  
+  def pbAromatherapyHeal(pkmn, battler = nil)
+    oldStatus = (battler) ? battler.status : pkmn.status
+    curedName = (battler) ? battler.pbThis : pkmn.name
+    if battler
+      battler.pbCureStatus(false)
+    else
+      pkmn.status = :NONE
+      pkmn.statusCount = 0
+    end
+    case oldStatus
+    when :SLEEP
+      @battle.pbDisplay(_INTL("{1} was woken from its drowsiness.", curedName))
+    when :POISON
+      @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
+    when :BURN
+      @battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
+    when :PARALYSIS
+      @battle.pbDisplay(_INTL("{1} was cured of paralysis.", curedName))
+    when :FROZEN
+      @battle.pbDisplay(_INTL("{1}'s frostbite was healed.", curedName))
+    end
+  end
+end
+
+class PokeBattle_Move_192 < PokeBattle_Move
+  def pbAccuracyCheck(user,target); return true; end
+  def pbBaseDamage(baseDmg,user,target)
+    return [(user.happiness*2/5).floor,1].max
+  end
+end
+
+
+class PokeBattle_Move_193 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if !target.item
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
   end
 end
