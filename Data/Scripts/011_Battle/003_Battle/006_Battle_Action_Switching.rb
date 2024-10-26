@@ -228,7 +228,9 @@ class PokeBattle_Battle
 
   # Actually performs the recalling and sending out in all situations.
   def pbRecallAndReplace(idxBattler, idxParty, randomReplacement = false, batonPass = false)
-    pbUnDynamax(idxBattler)
+    if @battlers[idxBattler].effects[PBEffects::Dynamax] > 0 && !@battlers[idxBattler].fainted?
+      pbUnDynamax(idxBattler)
+    end
     @scene.pbRecall(idxBattler) if !@battlers[idxBattler].fainted?
     @battlers[idxBattler].pbAbilitiesOnSwitchOut # Inc. primordial weather check
     @scene.pbShowPartyLineup(idxBattler & 1) if pbSideSize(idxBattler) == 1
