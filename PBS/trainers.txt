@@ -1444,6 +1444,16 @@ Pokemon = B19H46,13
 
 [SUPERNERD,Miguel]
 Pokemon = B88H109,16 
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 #########Route 6 ############
 
 [TWINS,Day & Dani]
@@ -1929,31 +1939,92 @@ Pokemon = B67H50,22 #Digchoke,
 [SUPERNERD,Miguel,1]
 Pokemon = B88H109,18 
 Pokemon = OMANYTE,20 
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 ###
 
 [SUPERNERD,Miguel,2]
 Pokemon = B88H109,18 
 Pokemon = KABUTO,20 
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 ##############enc 3 (celadon)
 
 [SUPERNERD,Miguel,3]
 Pokemon = B89H110,24 
 Pokemon = B301H140,26 #lileep kabuto		chose anorith omanyte
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
+
 ##
 
 [SUPERNERD,Miguel,4]
 Pokemon = B89H110,24 
 Pokemon = B303H140,26 #anorith kabuto		chose lileep, omanyte
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 ##
 
 [SUPERNERD,Miguel,5]
 Pokemon = B89H110,24 
 Pokemon = B301H138,26 #lileep omanyte		chose anorith kabuto
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 ##
 
 [SUPERNERD,Miguel,6]
 Pokemon = B89H110,24 
 Pokemon = B303H138,26 #anorith omanyte	chose lileep kabuto
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 ##############enc 4 (postgame) genre ruins of alph, il a decouvert qu'on peut trouver des fossils en rock smash
 
 [SUPERNERD,Miguel,7]
@@ -1962,6 +2033,16 @@ Pokemon = B302H304,53 #cradily armaldo
 Pokemon = B308H306,53 #bastiodon rampardos
 Pokemon = B426H462,53 #tyrantrum aurorus
 Pokemon = B142H142,55 #mega aerodactyl
+Pokemon = Genesect,16	
+	Offset = 1
+	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+	Item = CHILLDRIVE
+	Ability = DOWNLOAD
+	Gender = F
+	Nature = SERIOUS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 
 #######################################
 #### TEAMROCKET HIDEOUT ####
