@@ -57,7 +57,7 @@ class PokeBattle_Battle
     @battlers.each do |b|
       next unless b && !b.opposes?
       next unless b.fainted?
-      next unless @opponent && (@opponent[0].name == "Cynthia" || @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Hewdraw" || @opponent[0].name == "Shadross" || @opponent[0].name == "Dennis")
+      next unless @opponent && (@opponent[0].name == "Cynthia" || @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Hewdraw" || @opponent[0].name == "Shadross" || @opponent[0].name == "Dennis" || @opponent[0].name == "Miguel")
       b.participants.each do |opponent|
         if rand(16) < $Trainer.badge_count && !opponent.fainted?
           opponent.pokemon.exp += 1

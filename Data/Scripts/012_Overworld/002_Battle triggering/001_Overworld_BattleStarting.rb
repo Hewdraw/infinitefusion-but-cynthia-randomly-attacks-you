@@ -137,7 +137,7 @@ def pbPrepareBattle(battle)
   # Whether the player is able to switch when an opponent's Pokémon faints
   battle.switchStyle = ($PokemonSystem.battlestyle==0)
   if battle.opponent != nil
-    if battle.opponent[0].name == "Cynthia" || battle.opponent[0].name == "Hatsune Miku" || battle.opponent[0].name == "Shadross" || battle.opponent[0].name == "Hewdraw" || battle.opponent[0].name == "Dennis" || $Trainer.numbadges > 8
+    if battle.opponent[0].name == "Cynthia" || battle.opponent[0].name == "Hatsune Miku" || battle.opponent[0].name == "Shadross" || battle.opponent[0].name == "Hewdraw" || battle.opponent[0].name == "Dennis" || battle.opponent[0].name == "Miguel" || $Trainer.numbadges > 8
       battle.switchStyle = false
     end
   end
