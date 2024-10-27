@@ -52,7 +52,7 @@ module Settings
   HTTP_CONFIGS_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/pif-downloadables/refs/heads/master/Settings.rb"
   HTTP_CONFIGS_FILE_PATH = "Data/Scripts/DownloadedSettings.rb"
 
-  LEVEL_CAPS=[12,22,26,35,38,45,51,54,62,62,63,64,64,65,67,68]
+  LEVEL_CAPS=[12,22,26,35,38,45,51,54,62,64,67,69,71,74,77,80]
 
   CUSTOM_ENTRIES_NAME_PLACEHOLDER = "POKENAME"
 
