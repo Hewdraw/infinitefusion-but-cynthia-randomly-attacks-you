@@ -1130,7 +1130,7 @@ def getDisplayDifficulty
     return getDisplayDifficultyFromIndex(0)
   elsif $Trainer.lowest_difficulty <= 1
     return getDisplayDifficultyFromIndex(1)
-  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
+  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges > 8
     return getDisplayDifficultyFromIndex(2)
   else
     return getDisplayDifficultyFromIndex(1)

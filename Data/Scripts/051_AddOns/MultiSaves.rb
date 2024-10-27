@@ -356,7 +356,7 @@ class PokemonLoadScreen
   def ensureCorrectDifficulty()
     $Trainer.selected_difficulty = 1 #normal
     $Trainer.selected_difficulty = 0 if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
-    $Trainer.selected_difficulty = 2 if $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
+    $Trainer.selected_difficulty = 2 if $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges > 8
     $Trainer.lowest_difficulty= $Trainer.selected_difficulty if !$Trainer.lowest_difficulty
   end
 

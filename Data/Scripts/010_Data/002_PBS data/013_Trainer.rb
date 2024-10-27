@@ -290,8 +290,9 @@ module GameData
           species = reverseFusionSpecies(species)
         end
         level = pkmn_data[:level]
+        offset = pkmn_data[:offset]
 
-        if $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
+        if $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || ($Trainer.numbadges > 8 && offset == nil)
           level = (level * Settings::HARD_MODE_LEVEL_MODIFIER).ceil
           if level > Settings::MAXIMUM_LEVEL
             level = Settings::MAXIMUM_LEVEL
@@ -305,7 +306,6 @@ module GameData
           end
         end
 
-        offset = pkmn_data[:offset]
         if offset != nil
           offset = offset.to_i
           highestlevel = 0
