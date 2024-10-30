@@ -17752,6 +17752,39 @@ Color = Red
 Shape = BipedalTail
 Pokedex = It lies on warm rocks and uses the heat absorbed by its square-shaped scales to create fire energy.
 Generation = 9
+[1000411]
+Name = Pelipper
+InternalName = PELIPPER
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 60,50,100,65,95,70
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000412]
+Name = Primagon
+InternalName = FLYGONPRIMARINA
+Type1 = WATER
+Type2 = DRAGON
+BaseStats = 80,91,78,86,110,104
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000413]
+Name = Lapboom
+InternalName = RILLABOOMLAPRAS
+Type1 = WATER
+Type2 = GRASS
+BaseStats = 120,111,86,76,76,86
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Hatsune Miku Megas

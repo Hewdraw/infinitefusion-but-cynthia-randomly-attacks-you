@@ -287,15 +287,14 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.cynthiaupgradechance = 0
       $PokemonGlobal.cynthiabadgetier = numbadges
     end
-    maxcynthiachance
     if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
-      $PokemonGlobal.cynthiaupgradechance += 
+      $PokemonGlobal.cynthiaupgradechance += 18
     end
     for mon in $Trainer.party
       if pokemonExceedsLevelCap(mon) || numbadges == 16
         $PokemonGlobal.cynthiaupgradechance += 1
         if rand(25) <= $PokemonGlobal.cynthiaupgradechance
-          numbadges += 18
+          numbadges += 1
           $PokemonGlobal.cynthiaupgradechance = 0
         end
         break
@@ -339,8 +338,8 @@ def pbBattleOnStepTaken(repel_active)
 
     if rand(mikumaxchance) <= $PokemonGlobal.hatsunemikuchance
       $PokemonGlobal.hatsunemikuchance = 0
-      if numbadges > 5 #temporary
-        numbadges = 4 + rand(2)
+      if numbadges > 6 #temporary
+        numbadges = 6
       end
       pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
     elsif $PokemonGlobal.partner
