@@ -42,15 +42,23 @@ def pbFishingEnd
 end
 
 def pbFishing(hasEncounter,rodType=1)
+  mikumaxchance = 50
   if $PokemonGlobal.hatsunemikuchance == nil
     $PokemonGlobal.hatsunemikuchance = 1
   else
     $PokemonGlobal.hatsunemikuchance += 1
   end
-  if rand(50) <= $PokemonGlobal.hatsunemikuchance
+  if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
+    $PokemonGlobal.hatsunemikuchance += 3
+    mikumaxchance = 30
+  end
+  if rand(mikumaxchance) <= $PokemonGlobal.hatsunemikuchance
     numbadges = $Trainer.numbadges
 
     $PokemonGlobal.hatsunemikuchance = 0
+    if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
+      $PokemonGlobal.cynthiaupgradechance += 18
+    end
     for mon in $Trainer.party
       if pokemonExceedsLevelCap(mon) || numbadges == 16
         $PokemonGlobal.cynthiaupgradechance += 1
@@ -65,8 +73,8 @@ def pbFishing(hasEncounter,rodType=1)
       numbadges += 1
     end
 
-    if numbadges > 5 #temporary
-      numbadges = 4 + rand(2)
+    if numbadges > 6 #temporary
+      numbadges = 6
     end
     pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
     return false
