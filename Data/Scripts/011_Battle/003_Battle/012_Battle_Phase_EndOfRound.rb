@@ -403,7 +403,7 @@ class PokeBattle_Battle
     end
     # Damage from frostbite
     priority.each do |b|
-      next if b.status != :FREEZE
+      next if b.status != :FROZEN
       if b.takesIndirectDamage?
         oldHP = b.hp
         dmg = b.totalhp/16

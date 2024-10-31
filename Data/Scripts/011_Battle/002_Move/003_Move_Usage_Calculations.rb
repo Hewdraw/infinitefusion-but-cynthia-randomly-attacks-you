@@ -451,7 +451,7 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] /= 2
     end
     # Frostbite
-    if user.status == :FREEZE && specialMove?
+    if user.status == :FROZEN && specialMove?
       multipliers[:final_damage_multiplier] /= 2
     end
     # Drowsy
