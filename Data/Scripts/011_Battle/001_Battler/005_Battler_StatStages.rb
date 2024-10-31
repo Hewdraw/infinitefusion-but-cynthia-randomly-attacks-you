@@ -38,7 +38,7 @@ class PokeBattle_Battler
       PBDebug.log("[Stat change] #{pbThis}'s #{stat_name}: #{@stages[stat]} -> #{new} (+#{increment})")
       @stages[stat] += increment
     end
-    if stat = :EVASION && @stages[stat] >= 1
+    if stat == :EVASION && @stages[stat] >= 1
       @stages[stat] = 1
       @effects[PBEffects::Obscured] = 4
     end
@@ -59,7 +59,7 @@ class PokeBattle_Battler
        _INTL("{1}'s {2} rose!",pbThis,GameData::Stat.get(stat).name),
        _INTL("{1}'s {2} rose sharply!",pbThis,GameData::Stat.get(stat).name),
        _INTL("{1}'s {2} rose drastically!",pbThis,GameData::Stat.get(stat).name)]
-    if stat = :EVASION && @stages[stat] >= 1
+    if stat == :EVASION && @stages[stat] >= 1
       @battle.pbDisplay(_INTL("{1} becomes obscured!",pbThis))
     else
       @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
@@ -92,7 +92,7 @@ class PokeBattle_Battler
          _INTL("{1}'s {2} sharply raised {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name),
          _INTL("{1}'s {2} drastically raised {3}'s {4}!",user.pbThis,cause,pbThis(true),GameData::Stat.get(stat).name)]
     end
-    if stat = :EVASION && @stages[stat] >= 1
+    if stat == :EVASION && @stages[stat] >= 1
       @battle.pbDisplay(_INTL("{1} becomes obscured by it's {2}!",pbThis,cause))
     else
       @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
@@ -177,7 +177,7 @@ class PokeBattle_Battler
     # Change the stat stage
     increment = [increment,6+@stages[stat]].min
     if increment>0
-      if stat = :EVASION && @stages[stat] >= 0
+      if stat == :EVASION && @stages[stat] >= 0
         @effects[PBEffects::Obscured] = 0
       end
       stat_name = GameData::Stat.get(stat).name
@@ -194,7 +194,7 @@ class PokeBattle_Battler
       return pbRaiseStatStage(stat,increment,user,showAnim,true)
     end
     obscured = false
-    if stat = :EVASION && @effects[PBEffects::Obscured] > 0
+    if stat == :EVASION && @effects[PBEffects::Obscured] > 0
       obscured = true
     end
     # Perform the stat stage change
@@ -231,7 +231,7 @@ class PokeBattle_Battler
       return pbRaiseStatStageByCause(stat,increment,user,cause,showAnim,true)
     end
     obscured = false
-    if stat = :EVASION && @effects[PBEffects::Obscured] > 0
+    if stat == :EVASION && @effects[PBEffects::Obscured] > 0
       obscured = true
     end
     # Perform the stat stage change
