@@ -97,7 +97,7 @@ class PokeBattle_Move_006 < PokeBattle_PoisonMove
   end
 
   def pbOverrideSuccessCheckPerHit(user, target)
-    return (Settings::MORE_TYPE_EFFECTS && statusMove? && (user.pbHasType?(:POISON) || @battler.pbWeather == :Sandstorm))
+    return (Settings::MORE_TYPE_EFFECTS && statusMove? && (user.pbHasType?(:POISON) || @battle.pbWeather == :Sandstorm))
   end
 end
 
@@ -122,7 +122,7 @@ class PokeBattle_Move_007 < PokeBattle_ParalysisMove
   end
 
   def pbOverrideSuccessCheckPerHit(user, target)
-    return statusMove? && (@battler.pbWeather == :Rain || @battler.pbWeather == :HeavyRain)
+    return statusMove? && (@battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain)
   end
 end
 
@@ -170,7 +170,7 @@ end
 #===============================================================================
 class PokeBattle_Move_00A < PokeBattle_BurnMove
   def pbOverrideSuccessCheckPerHit(user, target)
-    return statusMove? && (@battler.pbWeather == :Sun || @battler.pbWeather == :HarshSun)
+    return statusMove? && (@battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun)
   end
 end
 
