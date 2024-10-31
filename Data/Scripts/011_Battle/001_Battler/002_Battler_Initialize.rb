@@ -284,6 +284,7 @@ class PokeBattle_Battler
     @effects[PBEffects::WeightChange]        = 0
     @effects[PBEffects::Yawn]                = 0
     @effects[PBEffects::Dynamax]                = 0
+    @effects[PBEffects::Obscured]                = 0
   end
 
   #=============================================================================
