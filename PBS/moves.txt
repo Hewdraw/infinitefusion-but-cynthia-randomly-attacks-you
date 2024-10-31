@@ -700,7 +700,7 @@
 681,CHILLINGWATER,Chilling Water,042,50,WATER,Special,100,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 682,SCALESHOT,Scale Shot,176,25,DRAGON,Physical,90,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 683,DUALWINGBEAT,Dual Wingbeat,0BD,40,FLYING,Physical,90,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
-684,TERABLAST,Terablast,177,80,NORMAL,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #partially todo
+684,TERABLAST,Tera blast,177,80,NORMAL,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #partially todo
 685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,"Nice Smeargle/Ditto, jackass."
 686,BODYPRESS,Body Press,178,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 687,SNOWSCAPE,Snowscape,179,0,ICE,Status,0,10,0,BothSides,0,bef,"Nice Smeargle/Ditto, jackass." #todo
