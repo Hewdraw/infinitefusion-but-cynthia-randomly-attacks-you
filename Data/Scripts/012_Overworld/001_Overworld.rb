@@ -273,6 +273,7 @@ def pbBattleOnStepTaken(repel_active)
       end
     end
   end
+  numbadges = $Trainer.numbadges
   $PokemonGlobal.cynthiachance += chanceincrease
   if $PokemonGlobal.cynthiaupgradechance == nil
     $PokemonGlobal.cynthiaupgradechance = 0
@@ -287,7 +288,6 @@ def pbBattleOnStepTaken(repel_active)
   end
   if rand(70) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
     $PokemonGlobal.cynthiachance = 0
-    numbadges = $Trainer.numbadges
     if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
       $PokemonGlobal.cynthiaupgradechance += 18
     end
