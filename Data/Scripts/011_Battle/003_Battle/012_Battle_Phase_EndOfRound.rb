@@ -248,6 +248,15 @@ class PokeBattle_Battle
       pos.effects[PBEffects::FutureSightUserIndex]      = -1
       pos.effects[PBEffects::FutureSightUserPartyIndex] = -1
     end
+    eachBattler do |b|
+      if b.effects[PBEffects::Obscured] > 0
+        b.effects[PBEffects::Obscured] -= 1
+        if b.effects[PBEffects::Obscured] == 0
+          b.stages[:EVASION] = 0
+          @battle.pbDisplay(_INTL("{1} is no longer obscured!",b.pbThis))
+        end
+      end
+    end
     # Wish
     @positions.each_with_index do |pos,idxPos|
       next if !pos || pos.effects[PBEffects::Wish]==0

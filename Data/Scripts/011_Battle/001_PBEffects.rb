@@ -118,6 +118,7 @@ begin
     Yawn                = 112
     FusionSwap          = 113
     Dynamax                = 114
+    Obscured                = 114
 
     #===========================================================================
     # These effects apply to a battler position
