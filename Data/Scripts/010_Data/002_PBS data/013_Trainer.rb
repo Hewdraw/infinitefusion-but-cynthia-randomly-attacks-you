@@ -342,7 +342,7 @@ module GameData
           pkmn.tera = pkmn_data[:tera].to_sym
         end
 
-        pkmn.dynamax = (pkmn_data[:dynamax]) ? true : false
+        pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined
