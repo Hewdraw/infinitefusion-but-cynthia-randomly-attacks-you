@@ -73,8 +73,8 @@ def pbFishing(hasEncounter,rodType=1)
       numbadges += 1
     end
 
-    if numbadges > 6 #temporary
-      numbadges = 6
+    if numbadges > 8 #temporary
+      numbadges = 7 + rand(2)
     end
     pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
     return false
