@@ -17444,8 +17444,8 @@ Shape = Head
 [1000333]
 Name = Enamomo-o
 InternalName = KOMMOOENAMORUS
-Type1 = FLYING
-Type2 = FIRE
+Type1 = FAIRY
+Type2 = FIGHTING
 BaseStats = 74,111,106,92,123,88
 GenderRate = Female50Percent
 Abilities = DROUGHT
@@ -17763,28 +17763,6 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
-[1000412]
-Name = Primagon
-InternalName = FLYGONPRIMARINA
-Type1 = WATER
-Type2 = DRAGON
-BaseStats = 80,91,78,86,110,104
-GenderRate = Female50Percent
-Abilities = DROUGHT
-HiddenAbility = DROUGHT
-Moves = 1,TACKLE
-Shape = Head
-[1000413]
-Name = Lapboom
-InternalName = RILLABOOMLAPRAS
-Type1 = WATER
-Type2 = GRASS
-BaseStats = 120,111,86,76,76,86
-GenderRate = Female50Percent
-Abilities = DROUGHT
-HiddenAbility = DROUGHT
-Moves = 1,TACKLE
-Shape = Head
 
 
 #Hatsune Miku Megas
@@ -17796,6 +17774,93 @@ InternalName = HELIOPTILEJIGGLYPUFF
 Type1 = NORMAL
 Type2 = ELECTRIC
 BaseStats = 91,40,28,53,50,30
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000601]
+Name = Primagon
+InternalName = FLYGONPRIMARINA
+Type1 = WATER
+Type2 = DRAGON
+BaseStats = 80,91,78,86,110,104
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000602]
+Name = Lapboom
+InternalName = RILLABOOMLAPRAS
+Type1 = WATER
+Type2 = GRASS
+BaseStats = 120,111,86,76,76,86
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000603]
+Name = Togeirfetch'd
+InternalName = SIRFETCHDTOGEKISS
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 77,106,95,70,102,104
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000604]
+Name = Toxtrigar
+InternalName = GENGARTOXTRICITY
+Type1 = ELECTRIC
+Type2 = POISON
+BaseStats = 70,76,63,98,119,71
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000605]
+Name = Tinkacario
+InternalName = LUCARIOTINKATON
+Type1 = FAIRY
+Type2 = STEEL
+BaseStats = 80,98,72,91,85,93
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000606]
+Name = Milodirge
+InternalName = SKELEDIRGEMILOTIC
+Type1 = WATER
+Type2 = GHOST
+BaseStats = 98,70,93,71,103,108
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000607]
+Name = Lucagoon
+InternalName = OBSTAGOONLUCARIO
+Type1 = FIGHTING
+Type2 = NORMAL
+BaseStats = 77,96,90,93,96,73
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000608]
+Name = Roseboom
+InternalName = RILLABOOMROSERADE 
+Type1 = GRASS
+BaseStats = 73,106,81,86,103,93
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
