@@ -61,6 +61,7 @@ class PokemonGlobalMetadata
   attr_accessor :cynthiachance
   attr_accessor :cynthiaupgradechance
   attr_accessor :cynthiabadgetier
+  attr_accessor :cynthiahandschance
   attr_accessor :hatsunemikuchance
 
   def initialize

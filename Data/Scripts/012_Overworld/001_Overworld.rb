@@ -287,6 +287,13 @@ def pbBattleOnStepTaken(repel_active)
     $PokemonGlobal.cynthiachance = 100
   end
   if rand(70) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
+    if $PokemonGlobal.cynthiahandschance == nil
+      $PokemonGlobal.cynthiahandschance = 0
+    end
+    $PokemonGlobal.cynthiahandschance += 1
+    if $PokemonGlobal.cynthiahandschance > rand(10) #todo make bigger
+      $PokemonGlobal.cynthiahandschance = 1000
+    end
     $PokemonGlobal.cynthiachance = 0
     if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
       $PokemonGlobal.cynthiaupgradechance += 18

@@ -79,6 +79,9 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
   trainerarray.each do |t|
     trainer_type_data = GameData::TrainerType.get(t.trainer_type)
     music = trainer_type_data.battle_BGM if trainer_type_data.battle_BGM
+    if trainer_type_data.id == :WuhuIslandExecutioner
+      return pbStringToAudioFile("VSLiterallyCynthia")
+    end
     if trainer_type_data.id == :CHAMPION_Sinnoh
       if $Trainer.numbadges <= 2
         return pbStringToAudioFile("CynthiaEncounter1")

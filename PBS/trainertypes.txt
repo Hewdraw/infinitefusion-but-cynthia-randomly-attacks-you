@@ -121,3 +121,4 @@
 118,Skeleton_Dev,Skeleton Dev,200,,,,Male,100,
 119,Non_Skeleton_Dev,Non Skeleton Dev,200,,,,Male,100,
 120,TEAMROCKET,Team Rocket?,0,,,,Male,100,
+121,WuhuIslandExecutioner,Wuhu Island Executioner,0,,,,Female,100,

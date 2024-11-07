@@ -759,6 +759,37 @@
 740,OVERDRIVE,Overdrive,000,80,ELECTRIC,Special,100,10,0,AllNearFoes,0,befk,"Nice Smeargle/Ditto, jackass."
 741,GIGATONHAMMER,Gigaton Hammer,000,160,STEEL,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 742,TORCHSONG,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass."
+743,JETPUNCH,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+744,AXEKICK,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+745,THUNDEROUSKICK,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+746,ALLOUTPUMMELING,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+747,BITTERMALICE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+748,BREAKNECKBLITZ,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+749,COLLISIONCOURSE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+750,COMEUPPANCE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+751,CONTINENTALCRUSH,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+752,CORKSCREWCRASH,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+753,FIERYWRATH,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+754,GMAXONEBLOW,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+755,GMAXMELTDOWN,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+756,GMAXSMITE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+757,GMAXTERROR,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+758,HEADLONGRUSH,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+759,HARDPRESS,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+760,JAWLOCK,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+761,MALICIOUSMOONSAULT,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+762,MORTALSPIN,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+763,NORETREAT,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+764,PULVERIZINGPANCAKE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+765,RUINATION,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+766,SHATTEREDPSYCHE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+767,SOULSTEALING7STARSTRIKE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+768,SPIRITBREAK,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+769,SURGINGSTRIKES,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+770,TRIPLEAXEL,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+771,UPPERHAND,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+772,VICTORYDANCE,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+773,WICKEDBLOW,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 
 
 #  @id               = hash[:id]

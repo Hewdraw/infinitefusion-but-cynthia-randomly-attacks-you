@@ -98,7 +98,7 @@ class PokeBattle_Scene
     # Make all trainers and party lineups disappear (player-side trainers may
     # animate throwing a Poké Ball)
     if @battle.opposes?(sendOuts[0][0])
-      fadeAnim = TrainerFadeAnimation.new(@sprites,@viewport,startBattle)
+      fadeAnim = TrainerFadeAnimation.new(@sprites,@viewport,startBattle,sendOuts[0][1].name == "Cynthia")
     else
       fadeAnim = PlayerFadeAnimation.new(@sprites,@viewport,startBattle)
     end

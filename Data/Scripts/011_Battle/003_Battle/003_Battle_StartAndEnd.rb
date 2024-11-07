@@ -201,6 +201,8 @@ class PokeBattle_Battle
         next if side==0 && i==0   # The player's message is shown last
         msg += "\r\n" if msg.length>0
         sent = sendOuts[side][i]
+        toSendOut.concat(sent)
+        next if t.trainer_type == :WuhuIslandExecutioner
         case sent.length
         when 1
           msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
@@ -220,7 +222,6 @@ class PokeBattle_Battle
           end
 
         end
-        toSendOut.concat(sent)
       end
       # The player's message about sending out Pokémon
       if side==0
@@ -425,8 +426,14 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
              @opponent[1].full_name,@opponent[2].full_name))
         end
-        @opponent.each_with_index do |_t,i|
+        @opponent.each_with_index do |trainer,i|
           @scene.pbShowOpponent(i)
+          if $PokemonGlobal.cynthiahandschance == nil
+            $PokemonGlobal.cynthiahandschance = 1000
+          end
+          if $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
+            pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
+          end
           msg = (@endSpeeches[i] && @endSpeeches[i]!="") ? @endSpeeches[i] : "..."
           pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
         end

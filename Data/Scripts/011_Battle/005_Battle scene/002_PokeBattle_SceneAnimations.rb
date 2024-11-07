@@ -364,8 +364,9 @@ end
 # Doesn't show the ball thrown or the Pokémon.
 #===============================================================================
 class TrainerFadeAnimation < PokeBattle_Animation
-  def initialize(sprites,viewport,fullAnim=false)
+  def initialize(sprites,viewport,fullAnim=false,skiptrainer)
     @fullAnim = fullAnim   # True at start of battle, false when switching
+    @skiptrainer = skiptrainer
     super(sprites,viewport)
   end
 
@@ -374,13 +375,15 @@ class TrainerFadeAnimation < PokeBattle_Animation
     # Move trainer sprite(s) off-screen
     spriteNameBase = "trainer"
     i = 1
-    while @sprites[spriteNameBase+"_#{i}"]
-      trSprite = @sprites[spriteNameBase+"_#{i}"]
-      i += 1
-      next if !trSprite.visible || trSprite.x>Graphics.width
-      trainer = addSprite(trSprite,PictureOrigin::Bottom)
-      trainer.moveDelta(0,16,Graphics.width/2,0)
-      trainer.setVisible(16,false)
+    if !@skiptrainer
+      while @sprites[spriteNameBase+"_#{i}"]
+        trSprite = @sprites[spriteNameBase+"_#{i}"]
+        i += 1
+        next if !trSprite.visible || trSprite.x>Graphics.width
+        trainer = addSprite(trSprite,PictureOrigin::Bottom)
+        trainer.moveDelta(0,16,Graphics.width/2,0)
+        trainer.setVisible(16,false)
+      end
     end
     # Move and fade party bar/balls
     delay = 3
@@ -515,17 +518,31 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     battlerStartY = ballPos[1]
     battlerEndX = batSprite.x
     battlerEndY = batSprite.y
-    # Set up Poké Ball sprite
-    ball = addBallSprite(0,0,poke_ball)
-    ball.setZ(0,batSprite.z-1)
-    # Poké Ball animation
-    createBallTrajectory(ball,battlerStartX,battlerStartY)
-    delay = ball.totalDuration+6
-    delay += 10 if @showingTrainer   # Give time for trainer to slide off screen
-    delay += 10*@idxOrder   # Stagger appearances if multiple Pokémon are sent out at once
-    ballOpenUp(ball,delay-2,poke_ball)
-    ballBurst(delay,battlerStartX,battlerStartY-18,poke_ball)
-    ball.moveOpacity(delay+2,2,0)
+    if @battler.pokemon.species == :CYNTHIA
+      # Set up Poké Ball sprite
+      ball = addBallSprite(0,0,poke_ball)
+      ball.setZ(0,1000)
+      # Poké Ball animation
+      createBallTrajectory(ball,1000,1000)
+      delay = ball.totalDuration+6
+      delay += 10 if @showingTrainer   # Give time for trainer to slide off screen
+      delay += 10*@idxOrder   # Stagger appearances if multiple Pokémon are sent out at once
+      ballOpenUp(ball,delay-2,poke_ball)
+      ballBurst(delay,1000,1000-18,poke_ball)
+      ball.moveOpacity(delay+2,2,0)
+    else
+      # Set up Poké Ball sprite
+      ball = addBallSprite(0,0,poke_ball)
+      ball.setZ(0,batSprite.z-1)
+      # Poké Ball animation
+      createBallTrajectory(ball,battlerStartX,battlerStartY)
+      delay = ball.totalDuration+6
+      delay += 10 if @showingTrainer   # Give time for trainer to slide off screen
+      delay += 10*@idxOrder   # Stagger appearances if multiple Pokémon are sent out at once
+      ballOpenUp(ball,delay-2,poke_ball)
+      ballBurst(delay,battlerStartX,battlerStartY-18,poke_ball)
+      ball.moveOpacity(delay+2,2,0)
+    end
     # Set up battler sprite
     battler = addSprite(batSprite,PictureOrigin::Bottom)
     battler.setXY(0,battlerStartX,battlerStartY)
