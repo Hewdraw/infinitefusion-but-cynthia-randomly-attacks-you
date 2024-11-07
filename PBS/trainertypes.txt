@@ -122,3 +122,5 @@
 119,Non_Skeleton_Dev,Non Skeleton Dev,200,,,,Male,100,
 120,TEAMROCKET,Team Rocket?,0,,,,Male,100,
 121,WuhuIslandExecutioner,Wuhu Island Executioner,0,,,,Female,100,
+122,CREATOR_Minecraft2,Creator of Minecraft,70,,,,Female,100,
+123,COOLTRAINER_MIKU,Cool Trainer,60,,,,Female,,

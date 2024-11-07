@@ -353,7 +353,7 @@ def pbBattleOnStepTaken(repel_active)
     elsif $PokemonGlobal.partner
       pbDoubleTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())], nil, :CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())])
     elsif numbadges > $Trainer.numbadges
-      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", "sorrgy accident..", false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft)
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", "sorrgy accident..", false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft2)
     else
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
     end

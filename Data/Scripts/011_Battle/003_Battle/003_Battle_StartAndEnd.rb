@@ -432,6 +432,10 @@ class PokeBattle_Battle
             $PokemonGlobal.cynthiahandschance = 1000
           end
           if $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
+            $PokemonGlobal.cynthiahandschance = 1
+            if $PokemonGlobal.cynthiahandschance > rand(10) #todo make bigger
+              $PokemonGlobal.cynthiahandschance = 1000
+            end
             pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
           end
           msg = (@endSpeeches[i] && @endSpeeches[i]!="") ? @endSpeeches[i] : "..."
