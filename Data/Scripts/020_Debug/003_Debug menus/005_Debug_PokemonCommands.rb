@@ -1109,7 +1109,7 @@ PokemonDebugMenuCommands.register("setegg", {
            screen.pbConfirm(_INTL("{1} cannot legally be an egg. Make egg anyway?", pkmn.speciesName)))
           pkmn.level          = Settings::EGG_LEVEL
           pkmn.calc_stats
-          pkmn.name           = _INTL("Egg")
+          pkmn.name           = _INTL("Bad Egg")
           pkmn.steps_to_hatch = pkmn.species_data.hatch_steps
           pkmn.hatched_map    = 0
           pkmn.obtain_method  = 1

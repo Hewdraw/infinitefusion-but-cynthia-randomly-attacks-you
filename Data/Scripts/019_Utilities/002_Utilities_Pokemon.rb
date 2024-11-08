@@ -142,7 +142,7 @@ def pbGenerateEgg(pkmn, text = "")
   return false if !pkmn #|| $Trainer.party_full?
   pkmn = Pokemon.new(pkmn, Settings::EGG_LEVEL) if !pkmn.is_a?(Pokemon)
   # Set egg's details
-  pkmn.name           = _INTL("Egg")
+  pkmn.name           = _INTL("Bad Egg")
   pkmn.steps_to_hatch = pkmn.species_data.hatch_steps
   pkmn.obtain_text    = text
   pkmn.calc_stats

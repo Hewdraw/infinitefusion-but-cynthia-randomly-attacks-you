@@ -311,7 +311,7 @@ class HallOfFame_Scene
       speciesname += "♀"
     end
     pokename += "/" + speciesname
-    pokename = _INTL("Egg") + "/" + _INTL("Egg") if pokemon.egg?
+    pokename = _INTL("Bad Egg") + "/" + _INTL("Bad Egg") if pokemon.egg?
     idno = (pokemon.owner.name.empty? || pokemon.egg?) ? "?????" : sprintf("%05d", pokemon.owner.public_id)
     dexnumber = _INTL("No. ???")
     if !pokemon.egg?

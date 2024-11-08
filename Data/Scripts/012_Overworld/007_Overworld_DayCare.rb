@@ -358,7 +358,7 @@ def pbDayCareGenerateEgg
   egg.moves = finalmoves
   egg.calc_stats
   egg.obtain_text = _INTL("Day-Care Couple")
-  egg.name = _INTL("Egg")
+  egg.name = _INTL("Bad Egg")
   egg.steps_to_hatch = egg.species_data.hatch_steps
   egg.givePokerus if rand(65536) < Settings::POKERUS_CHANCE
   # Add egg to party
