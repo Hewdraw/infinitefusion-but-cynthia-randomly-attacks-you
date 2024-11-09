@@ -357,7 +357,7 @@ module GameData
           pkmn.item = pkmn_data[:item]
         end
         if pkmn_data[:moves] && pkmn_data[:moves].length > 0 && original_species == species
-          pkmn_data[:moves].each { |move| pkmn.learn_move(move) }
+          pkmn_data[:moves].each { |move| pkmn.learn_move_ignoremax(move) }
         else
           pkmn.reset_moves
         end
