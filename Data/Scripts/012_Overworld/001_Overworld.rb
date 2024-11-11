@@ -290,7 +290,7 @@ def pbBattleOnStepTaken(repel_active)
     if $PokemonGlobal.cynthiahandschance == nil
       $PokemonGlobal.cynthiahandschance = 0
     end
-    $PokemonGlobal.cynthiahandschance += 10
+    $PokemonGlobal.cynthiahandschance += 1
     if $PokemonGlobal.cynthiahandschance > rand(10) #todo make bigger
       $PokemonGlobal.cynthiahandschance = 1000
     end
