@@ -2653,12 +2653,12 @@ class PokeBattle_Move_183 < PokeBattle_Move
   def pbEffectGeneral(user)
     $PokemonGlobal.nextBattleBack = "Lava"
     $PokemonGlobal.nextBattleBGM = nil
-    if $battledepth == nil
-      $battledepth = 0
+    if $PokemonGlobal.battledepth == nil
+      $PokemonGlobal.battledepth = 0
     end
-    $battledepth += 1
+    $PokemonGlobal.battledepth += 1
     pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
-    $battlehplist.each do |b|
+    $PokemonGlobal.battlehplist.each do |b|
       b[0].hp = b[1]
     end
   end

@@ -8,6 +8,9 @@ def pbSceneStandby
   end
   Graphics.frame_reset
   yield
+  if $PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0
+    return
+  end   
   $scene.createSpritesets if $scene.is_a?(Scene_Map)
 end
 

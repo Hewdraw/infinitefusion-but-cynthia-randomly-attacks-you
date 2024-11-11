@@ -436,7 +436,19 @@ class PokeBattle_Battle
             if $PokemonGlobal.cynthiahandschance > rand(10) #todo make bigger
               $PokemonGlobal.cynthiahandschance = 1000
             end
-            pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
+            if $PokemonGlobal.battledepth == nil
+              $PokemonGlobal.battledepth = 0
+            end
+            $PokemonGlobal.battledepth += 1
+            if !pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
+              $PokemonGlobal.battlehplist.each do |b|
+                b[0].hp = b[1]
+              end
+              break
+            end
+            $PokemonGlobal.battlehplist.each do |b|
+              b[0].hp = b[1]
+            end
           end
           msg = (@endSpeeches[i] && @endSpeeches[i]!="") ? @endSpeeches[i] : "..."
           pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
