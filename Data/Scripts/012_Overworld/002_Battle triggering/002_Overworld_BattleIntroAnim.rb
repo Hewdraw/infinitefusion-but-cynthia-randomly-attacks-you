@@ -139,7 +139,7 @@ end
 def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
   ##### VS. animation, by Luka S.J. #####
   ##### Tweaked by Maruno           #####
-  if (battletype==1 || battletype==3) && foe.length==1   # Against single trainer
+  if ((battletype==1 || battletype==3) && foe.length==1) || (foe.length==2 && foe[0].trainer_type == foe[1].trainer_type)  # Against single trainer
     tr_type = foe[0].trainer_type
     tr_number= GameData::TrainerType.get(tr_type).id_number
 
