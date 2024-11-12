@@ -41,7 +41,7 @@ class PokeBattle_Battle
     end
     if rand(100) == 0
       pbDisplay(_INTL("nuh uh."))
-      return 0
+      return -1
     end
     # Fleeing from trainer battles
     if trainerBattle?
