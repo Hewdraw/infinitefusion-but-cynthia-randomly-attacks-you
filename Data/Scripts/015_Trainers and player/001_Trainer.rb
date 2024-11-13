@@ -83,6 +83,10 @@ class Trainer
     return c && c != "" && c[/#{code}/]
   end
 
+  def special_name?
+    return ["Cynthia", "Hatsune Miku", "Shadross", "Hewdraw", "Dennis", "Miguel", "Naomi"].include?(@name)
+  end
+
   #=============================================================================
 
   def pokemon_party

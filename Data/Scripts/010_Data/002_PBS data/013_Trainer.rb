@@ -361,7 +361,8 @@ module GameData
         else
           pkmn.reset_moves
         end
-        if tr_name == "Cynthia" || tr_name == "Hatsune Miku" || tr_name == "Shadross" || tr_name == "Hewdraw" || tr_name == "Dennis" || tr_name == "Miguel" || tr_name == "Naomi"
+        if trainer.special_name?
+          print("test")
           for mon in $Trainer.party
             if mon.ability == :WONDERGUARD
               pkmn.learn_move_ignoremax(:FIREFANG)
