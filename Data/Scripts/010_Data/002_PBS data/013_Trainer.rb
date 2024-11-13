@@ -362,7 +362,6 @@ module GameData
           pkmn.reset_moves
         end
         if trainer.special_name?
-          print("test")
           for mon in $Trainer.party
             if mon.ability == :WONDERGUARD
               pkmn.learn_move_ignoremax(:FIREFANG)
