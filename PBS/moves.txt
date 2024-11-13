@@ -767,29 +767,29 @@
 748,BREAKNECKBLITZ,Breakneck Blitz,000,180,NORMAL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 749,COLLISIONCOURSE,Collision Course,000,100,FIGHTING,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 750,COMEUPPANCE,Comeuppance,000,80,DARK,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
-751,CONTINENTALCRUSH,Continental Crush,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-752,CORKSCREWCRASH,Corkscrew Crash,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-753,FIERYWRATH,Fiery Wrath,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-754,GMAXONEBLOW,GMAX One Blow,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-755,GMAXMELTDOWN,GMAX Meltdown,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-756,GMAXSMITE,GMAX Smite,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-757,GMAXTERROR,GMAX Terror,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-758,HEADLONGRUSH,Headlong Rush,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-759,HARDPRESS,Hard Press,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-760,JAWLOCK,Jaw Lock,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-761,MALICIOUSMOONSAULT,Malicious Moonsault,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-762,MORTALSPIN,Mortal Spin,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-763,NORETREAT,No Retreat,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-764,PULVERIZINGPANCAKE,Pulverizing Pancake,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-765,RUINATION,Ruination,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-766,SHATTEREDPSYCHE,Shattered Psyche,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-767,SOULSTEALING7STARSTRIKE,Soulstealing 7 Star Strike,000,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
-768,SPIRITBREAK,Spirit Break,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-769,SURGINGSTRIKES,Surgin Strikes,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-770,TRIPLEAXEL,Triple Axel,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-771,UPPERHAND,Upper Hand,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-772,VICTORYDANCE,Victory Dance,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-773,WICKEDBLOW,Wicked Blow,000,80,FIRE,Special,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+751,CONTINENTALCRUSH,Continental Crush,000,180,ROCK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+752,CORKSCREWCRASH,Corkscrew Crash,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+753,FIERYWRATH,Fiery Wrath,000,90,DARK,Special,100,10,20,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+754,GMAXONEBLOW,GMAX One Blow,000,180,DARK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+755,GMAXMELTDOWN,GMAX Meltdown,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+756,GMAXSMITE,GMAX Smite,000,180,FAIRY,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+757,GMAXTERROR,GMAX Terror,000,180,GHOST,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+758,HEADLONGRUSH,Headlong Rush,000,120,GROUND,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+759,HARDPRESS,Hard Press,000,100,STEEL,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+760,JAWLOCK,Jaw Lock,000,80,DARK,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+761,MALICIOUSMOONSAULT,Malicious Moonsault,000,180,DARK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+762,MORTALSPIN,Mortal Spin,000,30,POISON,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+763,NORETREAT,No Retreat,000,0,FIGHTING,Status,0,5,0,User,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+764,PULVERIZINGPANCAKE,Pulverizing Pancake,000,210,NORMAL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+765,RUINATION,Ruination,000,1,DARK,Special,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+766,SHATTEREDPSYCHE,Shattered Psyche,000,180,PSYCHIC,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+767,SOULSTEALING7STARSTRIKE,Soul-Stealing 7-Star Strike,000,195,GHOST,Physical,100,1,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
+768,SPIRITBREAK,Spirit Break,000,75,FAIRY,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+769,SURGINGSTRIKES,Surgin Strikes,000,25,WATER,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+770,TRIPLEAXEL,Triple Axel,000,20,ICE,Physical,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+771,UPPERHAND,Upper Hand,000,65,FIGHTING,Physical,100,15,0,NearOther,3,abef,"Nice Smeargle/Ditto, jackass." #todo
+772,VICTORYDANCE,Victory Dance,000,0,FIGHTING,Status,0,10,0,User,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+773,WICKEDBLOW,Wicked Blow,000,75,DARK,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 
 
 #  @id               = hash[:id]
