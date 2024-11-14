@@ -212,7 +212,7 @@ class PokeBattle_AI
       baseDmg *= 2
     when "0BF"   # Triple Kick
       baseDmg *= 6   # Hits do x1, x2, x3 baseDmg in turn, for x6 in total
-    when "0C0"   # Fury Attack
+    when "0C0", "176"   # Fury Attack
       if user.hasActiveAbility?(:SKILLLINK)
         baseDmg *= 5
       else
@@ -255,16 +255,6 @@ class PokeBattle_AI
     when "175"   # Double Iron Bash
       baseDmg *= 2
       baseDmg *= 2 if skill>=PBTrainerAI.mediumSkill && target.effects[PBEffects::Minimize]
-    when "176"   # Scale Shot
-      if user.hasActiveAbility?(:SKILLLINK)
-        baseDmg *= 5
-      else
-        if user.hasActiveItem?(:LOADEDDICE)
-          baseDmg *= 4.5
-        else
-          baseDmg = (baseDmg*19/6).floor   # Average damage dealt
-        end
-      end
     end
     return baseDmg
   end
@@ -493,6 +483,12 @@ class PokeBattle_AI
          !user.hasActiveAbility?(:GUTS) &&
          !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
         multipliers[:final_damage_multiplier] /= 2
+      end
+      if user.status == :FROZEN && move.specialMove?(type)
+        multipliers[:final_damage_multiplier] /= 2
+      end
+      if target.status == :SLEEP
+        multipliers[:final_damage_multiplier] *= 4/3
       end
     end
     # Aurora Veil, Reflect, Light Screen
