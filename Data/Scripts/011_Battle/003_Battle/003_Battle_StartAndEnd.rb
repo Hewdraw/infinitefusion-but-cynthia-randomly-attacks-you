@@ -446,7 +446,7 @@ class PokeBattle_Battle
               end
               @decision = 2
               pbEndOfBattle
-              break
+              return
             end
             $PokemonGlobal.battlehplist.each do |b|
               b[0].hp = b[1]
