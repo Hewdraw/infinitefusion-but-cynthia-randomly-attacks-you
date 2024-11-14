@@ -433,7 +433,7 @@ class PokeBattle_Battle
           end
           if $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
             $PokemonGlobal.cynthiahandschance = 1
-            if $PokemonGlobal.cynthiahandschance > rand(10) #todo make bigger
+            if $PokemonGlobal.cynthiahandschance > rand(100)
               $PokemonGlobal.cynthiahandschance = 1000
             end
             if $PokemonGlobal.battledepth == nil
