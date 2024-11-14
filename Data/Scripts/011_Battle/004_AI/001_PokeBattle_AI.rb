@@ -60,6 +60,9 @@ class PokeBattle_AI
   # Choose an action
   #=============================================================================
   def pbDefaultChooseEnemyCommand(idxBattler)
+    # if @battle.pbGetOwnerFromBattlerIndex(idxBattler).special_name?
+    #   pbCynthiaChooseEnemyCommand(idxBattler)
+    # end
     if @battle.battlers[idxBattler].dynamax == nil
       return if pbEnemyShouldUseItem?(idxBattler)
       return if pbEnemyShouldWithdraw?(idxBattler)
