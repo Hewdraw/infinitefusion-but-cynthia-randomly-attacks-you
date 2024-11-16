@@ -429,7 +429,7 @@ class PokeBattle_Battle
         @opponent.each_with_index do |trainer,i|
           @scene.pbShowOpponent(i)
           if $PokemonGlobal.cynthiahandschance == nil
-            $PokemonGlobal.cynthiahandschance = 1000
+            $PokemonGlobal.cynthiahandschance = 0
           end
           if $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
             $PokemonGlobal.cynthiahandschance = 1
