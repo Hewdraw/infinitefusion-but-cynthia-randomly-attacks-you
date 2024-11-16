@@ -358,6 +358,7 @@ class PokeBattle_Battle
   def pbGainMoney
     return if $game_switches[SWITCH_IS_REMATCH] #is rematch
     return if !@internalBattle || !@moneyGain
+    return if @opponent[0].trainer_type == :WuhuIslandExecutioner 
     # Money rewarded from opposing trainers
     if trainerBattle?
       tMoney = 0
