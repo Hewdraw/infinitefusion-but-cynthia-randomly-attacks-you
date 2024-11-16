@@ -3363,7 +3363,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 #-------------------------------
 [102]
-Name = Exeggcute
+Name = Bad Exeggcute
 InternalName = EXEGGCUTE
 Type1 = GRASS
 Type2 = PSYCHIC
@@ -3397,7 +3397,7 @@ BattlerShadowSize = 3
 Evolutions = EXEGGUTOR,Item,LEAFSTONE
 #-------------------------------
 [103]
-Name = Exeggutor
+Name = Bad Exeggutor
 InternalName = EXEGGUTOR
 Type1 = GRASS
 Type2 = PSYCHIC
