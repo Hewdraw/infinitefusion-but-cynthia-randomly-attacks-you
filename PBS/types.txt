@@ -62,6 +62,7 @@ Immunities = POISON
 Name = ???
 InternalName = QMARKS
 IsPseudoType = true
+Immunities = NORMAL,FIGHTING,FLYING,POISON,GROUND,ROCK,BUG,GHOST,STEEL,FIRE,WATER,GRASS,ELECTRIC,PSYCHIC,ICE,DRAGON,DARK,FAIRY
 #-------------------------------
 [10]
 Name = Fire
@@ -132,6 +133,7 @@ Immunities = DRAGON
 Name=???
 InternalName=QMARK
 IsSpecialType=true
+Immunities = NORMAL,FIGHTING,FLYING,POISON,GROUND,ROCK,BUG,GHOST,STEEL,FIRE,WATER,GRASS,ELECTRIC,PSYCHIC,ICE,DRAGON,DARK,FAIRY
 
 [20]
 Name=Ice/Fire/Electric
