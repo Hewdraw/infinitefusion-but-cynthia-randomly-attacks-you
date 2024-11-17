@@ -707,8 +707,13 @@ class PBAnimationPlayerX
   def initialize(animation,user,target,scene=nil,oppMove=false,inEditor=false)
     @animation     = animation
     @user          = (oppMove) ? target : user   # Just used for playing user's cry
-    @usersprite    = (user) ? scene.sprites["pokemon_#{user.index}"] : nil
-    @targetsprite  = (target) ? scene.sprites["pokemon_#{target.index}"] : nil
+    if user && user.name && user.name == "Hatsune Miku"
+      @usersprite = scene.sprites["trainer_1"]
+      @targetsprite = scene.sprites["trainer_1"]
+    else
+      @usersprite    = (user) ? scene.sprites["pokemon_#{user.index}"] : nil
+      @targetsprite  = (target) ? scene.sprites["pokemon_#{target.index}"] : nil
+    end
     @userbitmap    = (@usersprite && @usersprite.bitmap) ? @usersprite.bitmap : nil # not to be disposed
     @targetbitmap  = (@targetsprite && @targetsprite.bitmap) ? @targetsprite.bitmap : nil # not to be disposed
     @scene         = scene

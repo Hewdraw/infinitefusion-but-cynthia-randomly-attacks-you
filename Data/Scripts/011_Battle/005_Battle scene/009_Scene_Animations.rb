@@ -520,10 +520,19 @@ class PokeBattle_Scene
   def pbAnimationCore(animation,user,target,oppMove=false)
     return if !animation
     @briefMessage = false
+    mikuSprite = false
+    if user && user.name && user.name == "Hatsune Miku"
+      mikuSprite = true
+    end
 
-    userSprite   = (user) ? @sprites["pokemon_#{user.index}"] : nil
-    targetSprite = (target) ? @sprites["pokemon_#{target.index}"] : nil
-
+    if mikuSprite
+      userSprite = @sprites["trainer_1"]
+      mikuY = userSprite.oy
+      targetSprite = @sprites["trainer_1"]
+    else
+      userSprite   = (user) ? @sprites["pokemon_#{user.index}"] : nil
+      targetSprite = (target) ? @sprites["pokemon_#{target.index}"] : nil
+    end
 
     # Remember the original positions of Pokémon sprites
     oldUserX = (userSprite) ? userSprite.x : 0
@@ -540,11 +549,13 @@ class PokeBattle_Scene
     else
       targetHeight = userHeight
     end
-    animPlayer.setLineTransform(
-       PokeBattle_SceneConstants::FOCUSUSER_X,PokeBattle_SceneConstants::FOCUSUSER_Y,
-       PokeBattle_SceneConstants::FOCUSTARGET_X,PokeBattle_SceneConstants::FOCUSTARGET_Y,
-       oldUserX,oldUserY-userHeight/2,
-       oldTargetX,oldTargetY-targetHeight/2)
+    if !mikuSprite
+      animPlayer.setLineTransform(
+         PokeBattle_SceneConstants::FOCUSUSER_X,PokeBattle_SceneConstants::FOCUSUSER_Y,
+         PokeBattle_SceneConstants::FOCUSTARGET_X,PokeBattle_SceneConstants::FOCUSTARGET_Y,
+         oldUserX,oldUserY-userHeight/2,
+         oldTargetX,oldTargetY-targetHeight/2)
+    end
     # Play the animation
     animPlayer.start
     loop do
@@ -557,12 +568,18 @@ class PokeBattle_Scene
     if userSprite
       userSprite.x = oldUserX
       userSprite.y = oldUserY
-      userSprite.pbSetOrigin
+      if !mikuSprite
+        userSprite.pbSetOrigin
+      else
+        userSprite.oy = mikuY
+      end
     end
     if targetSprite
       targetSprite.x = oldTargetX
       targetSprite.y = oldTargetY
-      targetSprite.pbSetOrigin
+      if !mikuSprite
+        targetSprite.pbSetOrigin
+      end
     end
     # if userSprite != nil
     #   userSprite.mirror=true #if !@battle.opposes?(user.index)
