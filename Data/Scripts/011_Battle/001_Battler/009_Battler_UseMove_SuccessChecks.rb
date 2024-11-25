@@ -284,7 +284,7 @@ class PokeBattle_Battler
     end
     # Crafty Shield
     if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index &&
-       move.statusMove? && !move.pbTarget(user).targets_all
+       move.statusMove? && !move.pbTarget(user).targets_all && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
       @battle.pbCommonAnimation("CraftyShield",target)
       @battle.pbDisplay(_INTL("Crafty Shield protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
@@ -294,14 +294,14 @@ class PokeBattle_Battler
     # Wide Guard
     if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
        move.pbTarget(user).num_targets > 1 &&
-       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?)
+       (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
       @battle.pbCommonAnimation("WideGuard",target)
       @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
       target.damageState.protected = true
       @battle.successStates[user.index].protected = true
       return false
     end
-    if move.canProtectAgainst?
+    if move.canProtectAgainst? && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
       # Quick Guard
       if target.pbOwnSide.effects[PBEffects::QuickGuard] &&
          @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
@@ -381,6 +381,11 @@ class PokeBattle_Battler
       end
     end
     # Immunity because of ability (intentionally before type immunity check)
+    if target.species == :CREEPER && move.calcType == :ELECTRIC
+      @battle.pbDisplay(_INTL("{1} got charged by the attack!",target.pbThis(true)))
+      @battle.pbMegaEvolve(target.index, true)
+      return false
+    end
     return false if move.pbImmunityByAbility(user,target)
     # Type immunity
     if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)

@@ -57,6 +57,21 @@ class PokeBattle_Battler
     PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
     @battle.scene.pbFaintBattler(self)
     pbInitEffects(false)
+    if self.hasActiveAbility?(:EXPLOSIVE, true) || self.hasActiveAbility?(:CHARGEDEXPLOSIVE, true)
+      if !@battle.pbCheckGlobalAbility(:DAMP)
+        @battle.pbShowAbilitySplash(self)
+        @battle.pbPriority(true).each do |b|
+          next if !b
+          next if b == self
+          if b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+            @battle.scene.pbDamageAnimation(b)
+            b.pbReduceHP(b.totalhp/4,false)
+            @battle.pbDisplay(_INTL("{1} was caught in the aftermath!",b.pbThis))
+          end
+        end
+      end
+      @battle.pbHideAbilitySplash(self)
+    end
     # Reset status
     self.status      = :NONE
     self.statusCount = 0

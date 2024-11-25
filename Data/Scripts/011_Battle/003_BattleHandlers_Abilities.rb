@@ -686,6 +686,8 @@ BattleHandlers::MoveImmunityTargetAbility.add(:VOLTABSORB,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.copy(:VOLTABSORB,:CHARGEDEXPLOSIVE)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
   proc { |ability,user,target,move,type,battle|
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:WATER,battle)
@@ -730,6 +732,8 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:GALVANIZE,
   }
 )
 
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:GALVANIZE,:CHARGEDEXPLOSIVE)
+
 BattleHandlers::MoveBaseTypeModifierAbility.add(:LIQUIDVOICE,
   proc { |ability,user,move,type|
     next :WATER if GameData::Type.exists?(:WATER) && move.soundMove?
@@ -771,6 +775,8 @@ BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
     mods[:accuracy_multiplier] *= 1.3
   }
 )
+
+BattleHandlers::AccuracyCalcUserAbility.copy(:COMPOUNDEYES,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::AccuracyCalcUserAbility.add(:HUSTLE,
   proc { |ability,mods,user,target,move,type|
@@ -1146,6 +1152,7 @@ BattleHandlers::DamageCalcUserAbility.add(:EXPLOSIVE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.copy(:EXPLOSIVE,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::DamageCalcUserAbility.add(:TOXICBOOST,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1345,35 +1352,6 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |ability,user,target,move,battle|
     next if !target.fainted?
     next if !move.pbContactMove?(user)
-    battle.pbShowAbilitySplash(target)
-    if !battle.moldBreaker
-      dampBattler = battle.pbCheckGlobalAbility(:DAMP)
-      if dampBattler
-        battle.pbShowAbilitySplash(dampBattler)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1} cannot use {2}!",target.pbThis,target.abilityName))
-        else
-          battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-             target.pbThis,target.abilityName,dampBattler.pbThis(true),dampBattler.abilityName))
-        end
-        battle.pbHideAbilitySplash(dampBattler)
-        battle.pbHideAbilitySplash(target)
-        next
-      end
-    end
-    if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-      battle.scene.pbDamageAnimation(user)
-      user.pbReduceHP(user.totalhp/4,false)
-      battle.pbDisplay(_INTL("{1} was caught in the aftermath!",user.pbThis))
-    end
-    battle.pbHideAbilitySplash(target)
-  }
-)
-
-BattleHandlers::TargetAbilityOnHit.add(:EXPLOSIVE,
-  proc { |ability,user,target,move,battle|
-    next if !target.fainted?
     battle.pbShowAbilitySplash(target)
     if !battle.moldBreaker
       dampBattler = battle.pbCheckGlobalAbility(:DAMP)
@@ -1675,6 +1653,8 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
     battle.pbHideAbilitySplash(target)
   }
 )
+
+BattleHandlers::TargetAbilityOnHit.copy(:STATIC,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
   proc { |ability,user,target,move,battle|
@@ -2425,6 +2405,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:TETRAFORCE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is radiating a powerful aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} sparks with electricity!",battler.pbThis))
+    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
     battle.pbHideAbilitySplash(battler)
   }
 )

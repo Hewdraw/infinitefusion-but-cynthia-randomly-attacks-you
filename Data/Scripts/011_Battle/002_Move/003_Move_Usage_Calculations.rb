@@ -54,6 +54,10 @@ class PokeBattle_Move
     if !target.airborne?
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
     end
+    if user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
+      ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if defType == :GROUND &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
     return ret
   end
 
@@ -460,7 +464,7 @@ class PokeBattle_Move
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
-       !user.hasActiveAbility?(:INFILTRATOR)
+       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))
       if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0

@@ -17776,6 +17776,15 @@ Shape = Head
 
 
 #Hatsune Miku Megas
+[1000500]
+Name = Creeper
+InternalName = MEGACREEPER
+Type1 = ELECTRIC
+Type2 = GRASS
+BaseStats = 130,180,70,140,50,70
+Abilities = CHARGEDEXPLOSIVE
+Moves = 1,TACKLE
+Shape = Head
 
 #Hatsune Miku Fusions
 [1000600]

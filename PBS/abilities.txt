@@ -250,3 +250,4 @@
 248,ADAPTINGSANDS,Adapting Sands,""
 249,ADAPTINGPIXELS,Adapting Pixels,""
 250,PIXELATEDSANDS,Pixelated Sands,""
+251,CHARGEDEXPLOSIVE,Charged Explosive,""

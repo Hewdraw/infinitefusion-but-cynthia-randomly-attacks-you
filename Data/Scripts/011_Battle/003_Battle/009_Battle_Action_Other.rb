@@ -123,10 +123,12 @@ class PokeBattle_Battle
   #=============================================================================
   # Mega Evolving a battler
   #=============================================================================
-  def pbMegaEvolve(idxBattler)
+  def pbMegaEvolve(idxBattler, force=false)
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
-    return if !battler.hasMega? || battler.mega?
+    if !force
+      return if !battler.hasMega? || battler.mega?
+    end
     trainerName = pbGetOwnerName(idxBattler)
     # Break Illusion
     if battler.hasActiveAbility?(:ILLUSION)

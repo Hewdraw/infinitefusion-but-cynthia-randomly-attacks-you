@@ -415,7 +415,8 @@ class PokeBattle_Battler
       :ZENMODE,
       # Abilities intended to be inherent properties of a certain species
       :COMATOSE,
-      :RKSSYSTEM
+      :RKSSYSTEM,
+      :CHARGEDEXPLOSIVE
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -510,7 +511,7 @@ class PokeBattle_Battler
   end
 
   def hasMoldBreaker?
-    return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE])
+    return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :CHARGEDEXPLOSIVE])
   end
 
   def canChangeType?
