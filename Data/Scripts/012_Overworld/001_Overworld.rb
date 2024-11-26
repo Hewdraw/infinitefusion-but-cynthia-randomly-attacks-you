@@ -286,12 +286,12 @@ def pbBattleOnStepTaken(repel_active)
     $PokemonGlobal.cynthiabadgetier = numbadges
     $PokemonGlobal.cynthiachance = 100
   end
-  if rand(70) <= $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
+  if rand(70) < $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
     if $PokemonGlobal.cynthiahandschance == nil
       $PokemonGlobal.cynthiahandschance = 0
     end
     $PokemonGlobal.cynthiahandschance += 1
-    if $PokemonGlobal.cynthiahandschance > rand(100) #todo make bigger
+    if rand(100) < $PokemonGlobal.cynthiahandschance
       $PokemonGlobal.cynthiahandschance = 1000
     end
     $PokemonGlobal.cynthiachance = 0
@@ -304,12 +304,24 @@ def pbBattleOnStepTaken(repel_active)
         break
       end
     end
-    if rand(25) <= $PokemonGlobal.cynthiaupgradechance
+    badgeupgradechance = 32
+    if rand(25) < $PokemonGlobal.cynthiaupgradechance
       numbadges += 1
       $PokemonGlobal.cynthiaupgradechance = 0
+      badgeupgradechance / 2
     end
-    if rand(30) <= 1 && !(numbadges == 17)
+    if rand(30) == 0
       numbadges += 1
+      badgeupgradechance / 4
+    end
+    while rand(badgeupgradechance) == 0 && numbadges > $Trainer.numbadges
+      numbadges += 1
+      if badgeupgradechance == 16
+        badgeupgradechance / 2
+      end
+    end
+    if numbadges > 17
+      numbadges == 17
     end
     badges = []
     badges.append((2..6).to_a) #0
@@ -344,7 +356,7 @@ def pbBattleOnStepTaken(repel_active)
       mikumaxchance = 30
     end
 
-    if rand(mikumaxchance) <= $PokemonGlobal.hatsunemikuchance
+    if rand(mikumaxchance) < $PokemonGlobal.hatsunemikuchance
       $PokemonGlobal.hatsunemikuchance = 0
       if numbadges > 8 #temporary
         numbadges = 7 + rand(2)

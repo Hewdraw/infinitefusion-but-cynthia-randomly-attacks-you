@@ -52,7 +52,7 @@ def pbFishing(hasEncounter,rodType=1)
     $PokemonGlobal.hatsunemikuchance += 3
     mikumaxchance = 30
   end
-  if rand(mikumaxchance) <= $PokemonGlobal.hatsunemikuchance
+  if rand(mikumaxchance) < $PokemonGlobal.hatsunemikuchance
     numbadges = $Trainer.numbadges
 
     $PokemonGlobal.hatsunemikuchance = 0
@@ -62,14 +62,14 @@ def pbFishing(hasEncounter,rodType=1)
     for mon in $Trainer.party
       if pokemonExceedsLevelCap(mon) || numbadges == 16
         $PokemonGlobal.cynthiaupgradechance += 1
-        if rand(25) <= $PokemonGlobal.cynthiaupgradechance
+        if rand(25) < $PokemonGlobal.cynthiaupgradechance
           numbadges += 1
           $PokemonGlobal.cynthiaupgradechance = 0
         end
         break
       end
     end
-    if rand(100) <= 1 && !(numbadges == 17)
+    if rand(30) == 0 && !(numbadges == 17)
       numbadges += 1
     end
 
