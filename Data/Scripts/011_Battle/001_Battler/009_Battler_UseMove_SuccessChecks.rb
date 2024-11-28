@@ -417,6 +417,10 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
         return false
       end
+      if target.hasActiveItem?(:BUNDLEOFBALLOONS)
+        @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
+        return false
+      end
       if target.effects[PBEffects::MagnetRise]>0
         @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!",target.pbThis))
         return false
