@@ -135,14 +135,16 @@ class PokeBattle_Battle
       BattleHandlers.triggerTargetAbilityOnHit(battler.ability,nil,battler,nil,self)
     end
     # Mega Evolve
-    case battler.pokemon.megaMessage
-    when 1   # Rayquaza
-      pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
-    else
-      pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
-         battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
+    if !force
+      case battler.pokemon.megaMessage
+      when 1   # Rayquaza
+        pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
+      else
+        pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
+           battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
+      end
+      pbCommonAnimation("MegaEvolution",battler)
     end
-    pbCommonAnimation("MegaEvolution",battler)
     tempspecies = ("MEGA" + battler.pokemon.species.to_s).to_sym
     level = battler.level
     battler.pokemon.species = tempspecies
@@ -153,8 +155,10 @@ class PokeBattle_Battle
     @scene.pbRefreshOne(idxBattler)
     pbCommonAnimation("MegaEvolution2",battler)
     megaName = battler.pokemon.megaName
-    megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
-    pbDisplay(_INTL("{1} has Mega Evolved into {2}!",battler.pbThis,megaName))
+    if !force
+      megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
+      pbDisplay(_INTL("{1} has Mega Evolved into {2}!",battler.pbThis,megaName))
+    end
     side  = battler.idxOwnSide
     owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
     @megaEvolution[side][owner] = -2
