@@ -704,7 +704,7 @@
 685,SCORCHINGSANDS,Scorching Sands,00A,70,GROUND,Special,100,10,30,NearOther,0,befg,"Nice Smeargle/Ditto, jackass."
 686,BODYPRESS,Body Press,178,80,FIGHTING,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 687,SNOWSCAPE,Snowscape,179,0,ICE,Status,0,10,0,BothSides,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-688,SUPERCELLSLAM,Supercell Slam,10B,95,ELECTRIC,Physical,95,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+688,SUPERCELLSLAM,Supercell Slam,10B,100,ELECTRIC,Physical,95,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 689,ALLURINGVOICE,Alluring Voice,000,80,FAIRY,Special,100,10,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 690,CLANGOROUSSOUL,Clangorous Soul,181,0,DRAGON,Status,0,5,0,User,0,dk,"Nice Smeargle/Ditto, jackass."
 691,GRASSYGLIDE,Grassy Glide,000,55,GRASS,Physical,100,20,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #hardcoded
