@@ -2426,7 +2426,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
     battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
     battle.pbHideAbilitySplash(battler)
     darkness = $PokemonTemp.darknessSprite
-    if !(!darkness || darkness.disposed? || $PokemonGlobal.flashUsed)
+    if darkness
+      print("test")
       darkness.radius += 1000
       $PokemonTemp.darknessSprite.radiusMax += 1000
       $PokemonGlobal.flashUsed = true
