@@ -2425,13 +2425,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
     battle.pbDisplay(_INTL("{1} sparks with electricity!",battler.pbThis))
     battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
     battle.pbHideAbilitySplash(battler)
-    darkness = $PokemonTemp.darknessSprite
-    if darkness
-      print("test")
-      darkness.radius += 1000
-      $PokemonTemp.darknessSprite.radiusMax += 1000
-      $PokemonGlobal.flashUsed = true
-    end
+    $PokemonGlobal.flashUsed = true
   }
 )
 
