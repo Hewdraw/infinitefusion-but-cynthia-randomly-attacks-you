@@ -444,6 +444,8 @@ BattleHandlers::StatLossImmunityAbility.add(:KEENEYE,
   }
 )
 
+BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
+
 #===============================================================================
 # StatLossImmunityAbilityNonIgnorable handlers
 #===============================================================================
@@ -686,7 +688,13 @@ BattleHandlers::MoveImmunityTargetAbility.add(:VOLTABSORB,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:VOLTABSORB,:CHARGEDEXPLOSIVE)
+BattleHandlers::MoveImmunityTargetAbility.add(:CHARGEDEXPLOSIVE,
+  proc { |ability,user,target,move,type,battle|
+    motordrive = pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
+    voltabsorb = pbBattleMoveImmunityHealAbility(user,target,move,type,:ELECTRIC,battle)
+    return motordrive || voltabsorb 
+  }
+)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
   proc { |ability,user,target,move,type,battle|
@@ -789,6 +797,8 @@ BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
     mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0 && Settings::MECHANICS_GENERATION >= 6
   }
 )
+
+BattleHandlers::AccuracyCalcUserAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::AccuracyCalcUserAbility.add(:NOGUARD,
   proc { |ability,mods,user,target,move,type|
@@ -2415,6 +2425,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
     battle.pbDisplay(_INTL("{1} sparks with electricity!",battler.pbThis))
     battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
     battle.pbHideAbilitySplash(battler)
+    darkness = $PokemonTemp.darknessSprite
+    if !(!darkness || darkness.disposed? || $PokemonGlobal.flashUsed)
+      darkness.radius += 1000
+    end
   }
 )
 
