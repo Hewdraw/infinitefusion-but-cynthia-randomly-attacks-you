@@ -2428,7 +2428,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
     darkness = $PokemonTemp.darknessSprite
     if !(!darkness || darkness.disposed? || $PokemonGlobal.flashUsed)
       darkness.radius += 1000
-      pbUpdateSceneMapd
+      $PokemonTemp.darknessSprite.radiusMax += 1000
+      $PokemonGlobal.flashUsed = true
     end
   }
 )
