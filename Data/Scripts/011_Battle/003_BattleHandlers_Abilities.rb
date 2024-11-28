@@ -2425,7 +2425,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
     battle.pbDisplay(_INTL("{1} sparks with electricity!",battler.pbThis))
     battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
     battle.pbHideAbilitySplash(battler)
-    $PokemonGlobal.flashUsed = true
+    $PokemonGlobal.flashUsed = "creeper"
   }
 )
 

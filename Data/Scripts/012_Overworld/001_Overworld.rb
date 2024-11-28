@@ -483,6 +483,9 @@ Events.onMapSceneChange += proc { |_sender, e|
     scene.spriteset.addUserSprite($PokemonTemp.darknessSprite)
     if $PokemonGlobal.flashUsed
       $PokemonTemp.darknessSprite.radius = $PokemonTemp.darknessSprite.radiusMax
+      if $PokemonGlobal.flashUsed == "creeper"
+        $PokemonTemp.darknessSprite.radius += 1000
+      end
     end
   else
     $PokemonGlobal.flashUsed = false
