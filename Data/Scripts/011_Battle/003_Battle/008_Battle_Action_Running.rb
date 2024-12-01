@@ -45,7 +45,7 @@ class PokeBattle_Battle
     end
     # Fleeing from trainer battles
     if trainerBattle?
-      if $PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0
+      if ($PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0) || (isRepelActive() && !$PokemonTemp.pokeradar)
         pbDisplay(_INTL("nuh uh."))
         return 0
       end
