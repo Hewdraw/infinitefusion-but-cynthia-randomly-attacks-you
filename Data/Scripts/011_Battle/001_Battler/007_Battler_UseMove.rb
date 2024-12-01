@@ -722,7 +722,12 @@ class PokeBattle_Battler
       end
     end
     # Show move animation (for this hit)
-    move.pbShowAnimation(move.id, user, targets, hitNum)
+    animationid = move.id
+    if animationid == :THESKELETONAPPEARS
+      pbSEPlay("SkeletonGuitar")
+      animationid = :SCARYFACE
+    end
+    move.pbShowAnimation(animationid, user, targets, hitNum)
     # Type-boosting Gem consume animation/message
     if user.effects[PBEffects::GemConsumed] && hitNum == 0
       # NOTE: The consume animation and message for Gems are shown now, but the
