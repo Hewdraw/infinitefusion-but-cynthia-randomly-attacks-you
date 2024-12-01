@@ -118,7 +118,7 @@ class PokeBattle_AI
       return true if move.canMagicCoat? && target.hasActiveAbility?(:MAGICBOUNCE) &&
                      target.opposes?(user)
       return true if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
-      return true if move.bombMove? && target.hasActiveAbility?(:BULLETPROOF)
+      return true if move.bombMove? && target.hasActiveAbility?([:BULLETPROOF,:ENDER])
       if move.powderMove?
         return true if target.pbHasType?(:GRASS)
         return true if target.hasActiveAbility?(:OVERCOAT)

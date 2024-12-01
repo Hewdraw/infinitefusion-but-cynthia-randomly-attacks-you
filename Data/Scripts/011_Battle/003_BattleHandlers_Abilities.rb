@@ -599,6 +599,8 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.copy(:BULLETPROOF,:ENDER)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
   proc { |ability,user,target,move,type,battle|
     next false if user.index==target.index
