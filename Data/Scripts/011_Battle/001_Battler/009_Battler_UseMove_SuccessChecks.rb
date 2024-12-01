@@ -382,7 +382,7 @@ class PokeBattle_Battler
     end
     # Immunity because of ability (intentionally before type immunity check)
     if target.species == :CREEPER && move.calcType == :ELECTRIC
-      @battle.pbDisplay(_INTL("{1} got charged by the attack!",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("{1} got charged by the attack!",target.pbThis(true).capitalize))
       @battle.pbMegaEvolve(target.index, true)
       return false
     end
