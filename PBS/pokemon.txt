@@ -16331,6 +16331,20 @@ BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 3
 
+
+#Cynthia Pokemon
+[B2129H76]
+Name = Cynthia
+InternalName = CYNTHIATEST
+Type1 = QMARKS
+BaseStats = 255,255,255,255,255,255
+Abilities = INTIMIDATE
+HiddenAbility = INTIMIDATE
+Moves = 1,JUDGMENT
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+
 #Cynthia Pokemon
 [1000099]
 Name = Cynthia
