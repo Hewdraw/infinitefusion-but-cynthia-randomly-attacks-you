@@ -521,7 +521,7 @@ class PokeBattle_Scene
     return if !animation
     @briefMessage = false
     mikuSprite = false
-    if user && user.name && user.name == "Hatsune Miku"
+    if user && user.name && (user.name == "Hatsune Miku" || user.name == "Naomi")
       mikuSprite = true
     end
 
