@@ -68,7 +68,7 @@ class PokeBattle_AI
       logMsg += " (target #{c[2]})" if c[2]>=0
       logMsg += ", " if i<choices.length-1
     end
-    print(logMsg)
+    #print(logMsg)
     # Decide whether all choices are bad, and if so, try switching instead
     badMoves = false
     if maxScore <= 33
