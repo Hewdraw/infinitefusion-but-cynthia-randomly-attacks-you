@@ -68,6 +68,7 @@ class PokeBattle_AI
       logMsg += " (target #{c[2]})" if c[2]>=0
       logMsg += ", " if i<choices.length-1
     end
+    print(logMsg)
     # Decide whether all choices are bad, and if so, try switching instead
     badMoves = false
     if maxScore <= 33
@@ -144,7 +145,7 @@ class PokeBattle_AI
 
   def pbCynthiaGetMoveScore(move,user,target)
     score = 100
-    score = pbGetMoveScoreFunctionCode(score,move,user,target,skill)
+    score = pbGetMoveScoreFunctionCode(score,move,user,target,100)
     # A score of 0 here means it absolutely should not be used
     #return 0 if score<=0
     # Prefer damaging moves if AI has no more Pokémon or AI is less clever
