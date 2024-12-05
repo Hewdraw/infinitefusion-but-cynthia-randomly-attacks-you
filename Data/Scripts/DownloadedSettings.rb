@@ -23,7 +23,8 @@ module Settings
   BASE_POKEMON_ALT_SPRITES_REPO_URL = "https://bitbucket.org/infinitefusionsprites/customsprites/raw/main/Other/BaseSprites/"
   BASE_POKEMON_ALT_SPRITES_NEW_URL = "https://infinitefusion.net/Other/BaseSprites/"
 
-
+  BASE_POKEMON_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_base/"
+  CUSTOM_FUSIONS_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_custom/"
   
   CUSTOMSPRITES_RATE_MAX_NB_REQUESTS = 5  #Nb. requests allowed in each time window
   CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
@@ -36,7 +37,9 @@ module Settings
   AI_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
   AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/rate_limit.log'  # Path to the log file
 
-
+  #Spritepack
+  NEWEST_SPRITEPACK_MONTH = 12
+  NEWEST_SPRITEPACK_YEAR = 2024
 
 
 end
