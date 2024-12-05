@@ -226,7 +226,7 @@ class PokeBattle_AI
 
   def pbCynthiaGetMoveScoreDamage(move,user,target)
     # Don't prefer moves that are ineffective because of abilities or effects
-    return 0 if pbCheckMoveImmunity(score,move,user,target,100)
+    return 0 if pbCheckMoveImmunity(100,move,user,target,100)
     # Calculate how much damage the move will do (roughly)
     damagetable = pbCynthiaCalcDamage(move,user,target)
     damage = damagetable[:minDamage]
