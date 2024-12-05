@@ -653,7 +653,7 @@ class PokeBattle_AI
           multipliers[:defense_multiplier] *= 1.5
         end
       when :Snow
-        if target.pbHasType?(:ICE) && physicalMove?
+        if target.pbHasType?(:ICE) && move.physicalMove?
           multipliers[:defense_multiplier] *= 1.5
         end
       end
