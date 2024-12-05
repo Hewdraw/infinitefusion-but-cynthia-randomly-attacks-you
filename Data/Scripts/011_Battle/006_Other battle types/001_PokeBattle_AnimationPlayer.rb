@@ -707,7 +707,7 @@ class PBAnimationPlayerX
   def initialize(animation,user,target,scene=nil,oppMove=false,inEditor=false)
     @animation     = animation
     @user          = (oppMove) ? target : user   # Just used for playing user's cry
-    if user && user.name && user.name == "Hatsune Miku"
+    if user && user.name && (user.name == "Hatsune Miku" || user.name == "Naomi")
       @usersprite = scene.sprites["trainer_1"]
       @targetsprite = scene.sprites["trainer_1"]
     else
