@@ -33,7 +33,7 @@ class PokeBattle_AI
       end
     end
     maxdamage = maxdamage/user.totalhp
-    threat.push(maxdamage,target)
+    return [maxdamage,target]
   end
 
   def pbCynthiaItemScore(idxBattler)
