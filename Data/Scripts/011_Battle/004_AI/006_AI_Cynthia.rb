@@ -54,7 +54,7 @@ class PokeBattle_AI
         choices = [[i,100,100]]
         break
       end
-      pbCynthiaRegisterMove(user,i,choices,100)
+      pbCynthiaRegisterMove(user,i,choices)
     end
     # Figure out useful information about the choices
     maxScore   = 0
@@ -231,7 +231,7 @@ class PokeBattle_AI
     damagetable = pbCynthiaCalcDamage(move,user,target)
     damage = damagetable[:minDamage]
     # Account for accuracy of move
-    accuracy = pbRoughAccuracy(move,user,target,skill)
+    accuracy = pbRoughAccuracy(move,user,target,100)
     damage *= accuracy/100.0
     # Two-turn attacks waste 2 turns to deal one lot of damage
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
