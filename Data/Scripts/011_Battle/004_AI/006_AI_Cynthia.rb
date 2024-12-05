@@ -273,7 +273,7 @@ class PokeBattle_AI
       when "070"   # OHKO
         damage = target.hp
       when "071", "072", "073"   # Counter, Mirror Coat, Metal Burst
-        return 0
+        damage = 0
       when "075", "076", "0D0", "12D"   # Surf, Earthquake, Whirlpool, Shadow Storm
         baseDmg = move.pbModifyDamage(baseDmg,user,target)
       # Gust, Twister, Venoshock, Smelling Salts, Wake-Up Slap, Facade, Hex, Brine,
@@ -355,7 +355,7 @@ class PokeBattle_AI
       when "0D3"   # Rollout
         baseDmg *= 2 if user.effects[PBEffects::DefenseCurl]
       when "0D4"   # Bide
-        return 0
+        damage = 0
       when "0E1"   # Final Gambit
         damage = user.hp
       when "144"   # Flying Press
