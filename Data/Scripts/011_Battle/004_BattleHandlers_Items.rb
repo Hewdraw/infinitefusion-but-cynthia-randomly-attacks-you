@@ -980,13 +980,13 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD)
+    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number > 1000099
   }
 )
 
 BattleHandlers::CriticalCalcUserItem.add(:LEEK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD)
+    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number > 1000099
   }
 )
 
