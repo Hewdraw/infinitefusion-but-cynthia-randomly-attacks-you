@@ -3380,16 +3380,19 @@ Pokemon = B288H273,83 #GLISLADE
 
 [RIVAL1,Blue,0]
 Pokemon = MEW,5 #squirtmander,
+Pokemon = BONSLY,5
 
 #Blue encounter 1	starter=charmander
 
 [RIVAL1,Blue,1]
 Pokemon = MEW,5 #bulbtle,
+Pokemon = BONSLY,5
 
 #Blue encounter 1	starter=squirtle
 
 [RIVAL1,Blue,2]
 Pokemon = MEW,5 #bulbmander,
+Pokemon = BONSLY,5
 #################################
 
 #Blue encounter 2 (Viridian)	starter=bulbasaur

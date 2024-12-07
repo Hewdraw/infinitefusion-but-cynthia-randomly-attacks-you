@@ -60,7 +60,7 @@ class PokeBattle_AI
   # Choose an action
   #=============================================================================
   def pbDefaultChooseEnemyCommand(idxBattler)
-    if @battle.pbGetOwnerFromBattlerIndex(idxBattler).special_name?
+    if @battle.opponent && @battle.pbGetOwnerFromBattlerIndex(idxBattler).special_name?
       pbCynthiaChooseEnemyCommand(idxBattler)
       return
     end
