@@ -9,7 +9,7 @@ class PokeBattle_AI
     choices = []
     if @battle.battlers[idxBattler].dynamax == nil
       choices.push(*pbCynthiaItemScore(idxBattler))
-      return if pbEnemyShouldWithdraw?(idxBattler)
+      #return if pbEnemyShouldWithdraw?(idxBattler)
       return if @battle.pbAutoFightMenu(idxBattler)
     end
     @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
@@ -71,9 +71,9 @@ class PokeBattle_AI
     #print(logMsg)
     # Decide whether all choices are bad, and if so, try switching instead
     badMoves = false
-    if maxScore <= 33
-      badMoves = true
-    end
+    # if maxScore <= 33
+    #   badMoves = true
+    # end
     if badMoves && pbEnemyShouldWithdrawEx?(idxBattler,true)
       if $INTERNAL
         PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will switch due to terrible moves")
