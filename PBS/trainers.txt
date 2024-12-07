@@ -1444,15 +1444,15 @@ Pokemon = B19H46,13
 
 [SUPERNERD,Miguel]
 Pokemon = B88H109,16 
-Pokemon = GENESECT,16	
-	Offset = 1
+Pokemon = GENESECT,14
+	Offset = -1
 	Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
 	Item = CHILLDRIVE
 	Ability = DOWNLOAD
 	Gender = F
 	Nature = SERIOUS
-	IV = 31,31,31,31,31,31
-	EV = 252,0,0,252,0,0
+	IV = 16,16,16,16,16,16
+	EV = 126,0,0,126,0,0
 	Happiness = 255
 #########Route 6 ############
 
