@@ -42,7 +42,8 @@ def pbFishingEnd
 end
 
 def pbFishing(hasEncounter,rodType=1)
-  mikumaxchance = 50
+  pbBGMPlay(pbStringToAudioFile("shrimpmiku"))
+  mikumaxchance = 70
   if $PokemonGlobal.hatsunemikuchance == nil
     $PokemonGlobal.hatsunemikuchance = 1
   else

@@ -286,7 +286,7 @@ def pbBattleOnStepTaken(repel_active)
     $PokemonGlobal.cynthiabadgetier = numbadges
     $PokemonGlobal.cynthiachance = 100
   end
-  if rand(70) < $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
+  if rand(120) < $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
     if $PokemonGlobal.cynthiahandschance == nil
       $PokemonGlobal.cynthiahandschance = 0
     end
@@ -345,7 +345,7 @@ def pbBattleOnStepTaken(repel_active)
 
     currentbadge = badges[numbadges]
 
-    mikumaxchance = 50
+    mikumaxchance = 70
     if $PokemonGlobal.hatsunemikuchance == nil
       $PokemonGlobal.hatsunemikuchance = 1
     else
