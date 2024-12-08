@@ -864,7 +864,7 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
     #       means it also cares about the Pokémon's form. Some forms cannot
     #       evolve even if the species generally can, and such forms are not
     #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || target.pokemon.species_data.id_number > 1000099
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || target.pokemon.species_data.id_number >= 1000099
       mults[:defense_multiplier] *= 1.5
     end
   }
@@ -980,13 +980,13 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number > 1000099
+    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number >= 1000099
   }
 )
 
 BattleHandlers::CriticalCalcUserItem.add(:LEEK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number > 1000099
+    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number >= 1000099
   }
 )
 

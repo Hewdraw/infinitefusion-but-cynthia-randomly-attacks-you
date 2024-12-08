@@ -106,12 +106,10 @@ class PokemonDataBox < SpriteWrapper
     @hpBar.bitmap = @hpBarBitmap.bitmap
     @hpBar.src_rect.height = @hpBarBitmap.height/3
     @sprites["hpBar"] = @hpBar
-    if @battler.pokemon.dynamax != nil
-      @hpBarDynamax = SpriteWrapper.new(viewport)
-      @hpBarDynamax.bitmap = @hpBarDynamaxBitmap.bitmap
-      @hpBarDynamax.src_rect.height = @hpBarDynamaxBitmap.height/3
-      @sprites["hpBarDynamax"] = @hpBarDynamax
-    end
+    @hpBarDynamax = SpriteWrapper.new(viewport)
+    @hpBarDynamax.bitmap = @hpBarDynamaxBitmap.bitmap
+    @hpBarDynamax.src_rect.height = @hpBarDynamaxBitmap.height/3
+    @sprites["hpBarDynamax"] = @hpBarDynamax
     # Create sprite wrapper that displays Exp bar
     @expBar = SpriteWrapper.new(viewport)
     @expBar.bitmap = @expBarBitmap.bitmap
