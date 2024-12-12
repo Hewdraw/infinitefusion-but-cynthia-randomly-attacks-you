@@ -77,7 +77,12 @@ class PokeBattle_AI
       currentThreat.push([move, pbCynthiaCalcDamage(move,target,user)])
     end
     maxdamage = 0
+    statusMoves = []
     currentThreat.each do |move,damagetable|
+      if move.statusMove?
+        statusMoves.push(move)
+        next
+      end
       if max
         damage = damagetable[:maxDamage]
       else
@@ -86,6 +91,9 @@ class PokeBattle_AI
       if damage > maxdamage
         maxdamage = damage
       end
+    end
+    if currentThreat.length() == statusMoves.length()
+      return 33
     end
     return maxdamage
   end
