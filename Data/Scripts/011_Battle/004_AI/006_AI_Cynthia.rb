@@ -1,24 +1,79 @@
 class PokeBattle_AI
   def pbCynthiaChooseEnemyCommand(idxBattler)
     user = @battle.battlers[idxBattler]
-
-    threat = []
-    user.eachOpposing do |target|
-      threat.push(pbCynthiaAssessThreat(user, target))
-    end
     choices = []
-    if @battle.battlers[idxBattler].dynamax == nil
+    if @battle.battlers[idxBattler].dynamax == nil || @battle.battlers[idxBattler].dynamax == true
       choices.push(*pbCynthiaItemScore(idxBattler))
-      #return if pbEnemyShouldWithdraw?(idxBattler)
+      return if pbCynthiaShouldWithdraw(idxBattler)
       return if @battle.pbAutoFightMenu(idxBattler)
     end
     @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbCynthiaChooseMoves(idxBattler)
   end
 
+  def pbCynthiaShouldWithdraw(idxBattler)
+    user = @battle.battlers[idxBattler]
+
+    willswitch = false
+    user.eachOpposing do |target|
+      opposingThreat = pbCynthiaAssessThreat(user, target)*100/user.totalhp
+      userThreat = pbCynthiaAssessThreat(target, user, false)*100/target.totalhp
+      break if userThreat >= 100 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
+      damagethreshold = (100/userThreat).ceil
+      damagethreshold -= 1 if user.pbSpeed > target.pbSpeed
+      opposingThreat *= damagethreshold
+      maxThreat = opposingThreat + userThreat
+      @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
+        next if !@battle.pbCanSwitch?(idxBattler,i)
+        battler = PokeBattle_Battler.new(@battle,69)
+        battler.pbInitialize(pokemon,69)
+        opposingThreat = pbCynthiaAssessThreat(battler, target)*100/battler.totalhp
+        userThreat = pbCynthiaAssessThreat(target, battler, false)*100/target.totalhp
+        damagethreshold = (100/userThreat).ceil
+        damagethreshold += 1 if battler.pbSpeed <= target.pbSpeed
+        opposingThreat *= damagethreshold
+        currentThreat = opposingThreat + userThreat
+        if currentThreat < maxThreat
+          maxThreat = currentThreat
+          @battle.pbRegisterSwitch(idxBattler,i)
+          willswitch = true
+        end
+      end
+    end
+    return willswitch
+  end
+
+  def pbCynthiaSwitch(idxBattler,party)
+    enemies = []
+    party.each_with_index do |_p,i|
+      enemies.push(i) if @battle.pbCanSwitchLax?(idxBattler,i)
+    end
+    return -1 if enemies.length==0
+    best = -1
+    maxThreat = 1000
+
+    @battle.battlers[idxBattler].eachOpposing do |target|
+      enemies.each do |i|
+        battler = PokeBattle_Battler.new(@battle,69)
+        battler.pbInitialize(party[i],69)
+        opposingThreat = pbCynthiaAssessThreat(battler, target)*100/battler.totalhp
+        userThreat = pbCynthiaAssessThreat(target, battler, false)*100/target.totalhp
+        damagethreshold = (100/userThreat).ceil
+        damagethreshold -= 1 if battler.pbSpeed > target.pbSpeed
+        opposingThreat *= damagethreshold
+        currentThreat = opposingThreat + userThreat
+        if best = -1 || currentThreat < maxThreat
+          maxThreat = currentThreat
+          best = i
+        end
+      end
+    end
+    return best
+  end
+
   def pbCynthiaAssessThreat(user, target, max=true)
     currentThreat = []
-    target.eachMoveWithIndex do |move,i|
+    target.moves.each_with_index do |move,i|
       currentThreat.push([move, pbCynthiaCalcDamage(move,target,user)])
     end
     maxdamage = 0
@@ -32,8 +87,7 @@ class PokeBattle_AI
         maxdamage = damage
       end
     end
-    maxdamage = maxdamage/user.totalhp
-    return [maxdamage,target]
+    return maxdamage
   end
 
   def pbCynthiaItemScore(idxBattler)
@@ -225,7 +279,7 @@ class PokeBattle_AI
     return score
   end
 
-  def pbCynthiaGetMoveScoreDamage(move,user,target)
+  def pbCynthiaGetMoveScoreDamage(move,user,target) #todo imposter
     # Don't prefer moves that are ineffective because of abilities or effects
     return 0 if pbCheckMoveImmunity(100,move,user,target,100)
     # Calculate how much damage the move will do (roughly)
@@ -252,11 +306,19 @@ class PokeBattle_AI
       :maxDamage => 0,
       :critDamage => 0,
     }
+    switchin = false
+    if user.index == 69
+      switchin = user
+    end
+    if target.index == 69
+      switchin = target
+    end
     damagedictionary.each do |key,damage|
       originalkey = key
       baseDmg = move.baseDamage
       case move.function
       when "010"   # Stomp
+
         baseDmg *= 2 if target.effects[PBEffects::Minimize]
       # Sonic Boom, Dragon Rage, Super Fang, Night Shade, Endeavor
       when "06A", "06B", "06C", "06D", "06E"
@@ -386,11 +448,33 @@ class PokeBattle_AI
       end
       
       type = move.pbCalcType(user)
+      typeMod = move.pbCalcTypeMod(type,user,target)
 
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
       stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
 
       atk, atkStage = move.pbGetAttackStats(user,target)
+      if switchin == target && target.hasActiveAbility?([:INTIMIDATE, :SKULK]) && move.physicalMove?
+        unless user.effects[PBEffects::Substitute]>0 || user.pbOwnSide.effects[PBEffects::Mist]>0 || user.hasActiveAbility?([:CLEARBODY, :WHITESMOKE, :HYPERCUTTER, :FULLMETALBODY]) || !user.pbCanLowerStatStage?(:ATTACK,target)
+          if !target.hasActiveAbility?(:CONTRARY)
+            atkStage -= 1
+          else
+            atkStage += 1
+          end
+        end
+      end
+      if switchin == user && user.hasActiveAbility?(:DOWNLOAD)
+        oDef = oSpDef = 0
+        @battle.eachOtherSideBattler(user.index) do |b|
+          oDef   += b.defense
+          oSpDef += b.spdef
+        end
+        stat = (oDef<oSpDef) ? move.physicalMove? : move.specialMove?
+        atkStage += 1 if stat
+      end
+      if switchin == user && user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
+        atkStage += 1
+      end
       if !target.hasActiveAbility?(:UNAWARE) || user.hasMoldBreaker?
         if key == :critDamage
           atkStage = 6 if atkStage<6
@@ -411,15 +495,18 @@ class PokeBattle_AI
         :final_damage_multiplier => 1.0
       }
 
-      if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
-         (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
-        if @battle.pbCheckGlobalAbility(:AURABREAK)
+      if ((@battle.pbCheckGlobalAbility(:DARKAURA) || (switchin && switchin.ability == :DARKAURA)) && type == :DARK) ||
+         ((@battle.pbCheckGlobalAbility(:FAIRYAURA) || (switchin && switchin.ability == :FAIRYAURA)) && type == :FAIRY)
+        if @battle.pbCheckGlobalAbility(:AURABREAK) || (switchin && switchin.ability == :AURABREAK)
           multipliers[:base_damage_multiplier] *= 2 / 3.0
-        else
           multipliers[:base_damage_multiplier] *= 4 / 3.0
+        else
         end
       end
       if user.abilityActive?
+        if switchin == user && user.ability == :SLOWSTART
+          multipliers[:attack_multiplier] /= 2 if move.physicalMove?
+        end
         case user.ability
         when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS
           if type == :NORMAL
@@ -621,7 +708,20 @@ class PokeBattle_AI
         end
       end
       # Terrain moves
-      case @battle.field.terrain
+      terrain = @battle.field.terrain
+      if switchin
+        case switchin.ability
+        when :ELECTRICSURGE, :HADRONENGINE
+          terrain = :Electric
+        when :GRASSYSURGE
+          terrain = :Grassy
+        when :PSYCHICSURGE
+          terrain = :Psychic
+        when :MISTYSURGE
+          terrain = :Misty
+        end
+      end
+      case terrain
       when :Electric
         multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
       when :Grassy
@@ -635,16 +735,51 @@ class PokeBattle_AI
         multipliers[:final_damage_multiplier] *= 0.75
       end
       # Weather
-      case @battle.pbWeather
-      when :Sun, :HarshSun
+      weather = @battle.pbWeather
+      if switchin && @battle.field.weather == weather
+        case switchin.ability
+        when :AIRLOCK, :CLOUDNINE
+          weather = :None
+        when :DELTASTREAM
+          weather = :StrongWinds
+        when :DROUGHT
+          weather = :Sun unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+        when :DESOLATELAND
+          weather = :HarshSun
+        when :DRIZZLE
+          weather = :Rain unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+        when :PRIMORDIALSEA
+          weather = :HeavyRain
+        when :SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS
+          weather = :Sandstorm unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+        when :SNOWWARNING
+          weather = :Hail unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+        when :SNOWWWARNING
+          weather = :Snow unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+        end
+      end
+      case weather
+      when :Sun
         if type == :FIRE
           multipliers[:final_damage_multiplier] *= 1.5
         elsif type == :WATER
           multipliers[:final_damage_multiplier] /= 2
         end
-      when :Rain, :HeavyRain
+      when :HarshSun
+        if type == :FIRE
+          multipliers[:final_damage_multiplier] *= 1.5
+        elsif type == :WATER
+          multipliers[:final_damage_multiplier] *= 0
+        end
+      when :Rain
         if type == :FIRE
           multipliers[:final_damage_multiplier] /= 2
+        elsif type == :WATER
+          multipliers[:final_damage_multiplier] *= 1.5
+        end
+      when :HeavyRain
+        if type == :FIRE
+          multipliers[:final_damage_multiplier] *= 0
         elsif type == :WATER
           multipliers[:final_damage_multiplier] *= 1.5
         end
@@ -701,7 +836,6 @@ class PokeBattle_AI
         end
       end
       # Type effectiveness
-      typeMod = move.pbCalcTypeMod(move.calcType,user,target)
       multipliers[:final_damage_multiplier] *= typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
       # Burn
       if user.status == :BURN && move.physicalMove? && move.damageReducedByBurn? &&

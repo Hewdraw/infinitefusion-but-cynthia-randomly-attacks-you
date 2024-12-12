@@ -2460,7 +2460,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM,:ADAPTINGSANDS, :PIXELATEDSANDS)
+BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|

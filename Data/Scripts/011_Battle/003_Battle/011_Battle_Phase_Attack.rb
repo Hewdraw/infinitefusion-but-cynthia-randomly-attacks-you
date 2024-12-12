@@ -99,6 +99,7 @@ class PokeBattle_Battle
   def pbAttackPhaseTerastallize
     pbPriority.each do |b|
       next if !b.tera
+      next unless @choices[b.index][0]==:UseMove && !b.fainted?
       pbTerastallize(b.index)
     end
   end
@@ -106,6 +107,7 @@ class PokeBattle_Battle
   def pbAttackPhaseDynamax
     pbPriority.each do |b|
       next if !b.dynamax
+      next unless @choices[b.index][0]==:UseMove && !b.fainted?
       pbDynamax(b.index)
     end
   end
