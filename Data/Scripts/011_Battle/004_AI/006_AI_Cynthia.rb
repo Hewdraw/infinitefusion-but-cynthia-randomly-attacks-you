@@ -12,6 +12,7 @@ class PokeBattle_AI
   end
 
   def pbCynthiaShouldWithdraw(idxBattler)
+    return false if @battle.sideSizes[0]>=2 || @battle.sideSizes[1]>=2
     user = @battle.battlers[idxBattler]
 
     willswitch = false
