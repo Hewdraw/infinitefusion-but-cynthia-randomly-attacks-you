@@ -16,8 +16,8 @@ class PokeBattle_AI
 
     willswitch = false
     user.eachOpposing do |target|
-      opposingThreat = pbCynthiaAssessThreat(user, target)*100/user.totalhp
-      userThreat = pbCynthiaAssessThreat(target, user, false)*100/target.totalhp
+      opposingThreat = pbCynthiaAssessThreat(user, target)
+      userThreat = pbCynthiaAssessThreat(target, user, false)
       break if userThreat >= 100 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       damagethreshold = (100/userThreat).ceil
       damagethreshold -= 1 if user.pbSpeed > target.pbSpeed
@@ -27,8 +27,8 @@ class PokeBattle_AI
         next if !@battle.pbCanSwitch?(idxBattler,i)
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(pokemon,69)
-        opposingThreat = pbCynthiaAssessThreat(battler, target)*100/battler.totalhp
-        userThreat = pbCynthiaAssessThreat(target, battler, false)*100/target.totalhp
+        opposingThreat = pbCynthiaAssessThreat(battler, target)
+        userThreat = pbCynthiaAssessThreat(target, battler, false)
         damagethreshold = (100/userThreat).ceil
         damagethreshold += 1 if battler.pbSpeed <= target.pbSpeed
         opposingThreat *= damagethreshold
@@ -56,13 +56,13 @@ class PokeBattle_AI
       enemies.each do |i|
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(party[i],69)
-        opposingThreat = pbCynthiaAssessThreat(battler, target)*100/battler.totalhp
-        userThreat = pbCynthiaAssessThreat(target, battler, false)*100/target.totalhp
+        opposingThreat = pbCynthiaAssessThreat(battler, target)
+        userThreat = pbCynthiaAssessThreat(target, battler, false)
         damagethreshold = (100/userThreat).ceil
         damagethreshold -= 1 if battler.pbSpeed > target.pbSpeed
         opposingThreat *= damagethreshold
         currentThreat = opposingThreat + userThreat
-        if best = -1 || currentThreat < maxThreat
+        if best == -1 || currentThreat < maxThreat
           maxThreat = currentThreat
           best = i
         end
@@ -95,7 +95,7 @@ class PokeBattle_AI
     if currentThreat.length() == statusMoves.length()
       return 33
     end
-    return maxdamage
+    return [100, maxdamage*100/user.totalhp].min()
   end
 
   def pbCynthiaItemScore(idxBattler)
