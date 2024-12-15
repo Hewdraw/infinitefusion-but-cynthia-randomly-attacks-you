@@ -17915,8 +17915,8 @@ Moves = 1,TACKLE
 Shape = Quadruped
 #-------------------------------
 [1000701]
-Name = Regileki
-InternalName = REGILEKI
+Name = Regieleki
+InternalName = REGIELEKI
 Type1 = ELECTRIC
 BaseStats = 80,100,50,200,100,50
 EffortPoints = 0,0,0,3,0,0
