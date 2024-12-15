@@ -224,7 +224,7 @@ def pbBattleOnStepTaken(repel_active)
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 100)
     return
   end
   encounter_type = $PokemonEncounters.encounter_type
@@ -336,12 +336,12 @@ def pbBattleOnStepTaken(repel_active)
     badges.append((49..53).to_a) #9
     badges.append((54..58).to_a) #10
     badges.append((59..63).to_a) #11
-    badges.append((59..63).to_a) #12
-    badges.append((59..63).to_a) #13
-    badges.append((59..63).to_a) #14
-    badges.append((59..63).to_a) #15
-    badges.append((59..63).to_a) #16
-    badges.append((59..63).to_a) #17
+    badges.append((64).to_a) #12
+    badges.append((64).to_a) #13
+    badges.append((64).to_a) #14
+    badges.append((64).to_a) #15
+    badges.append((64).to_a) #16
+    badges.append((64).to_a) #17
 
     currentbadge = badges[numbadges]
 
@@ -364,6 +364,8 @@ def pbBattleOnStepTaken(repel_active)
       pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
     elsif $PokemonGlobal.partner
       pbDoubleTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())], nil, :CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())])
+    elsif numbadges >= $Trainer.numbadges + 2
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, nil, :CHAMPION_Sinnoh2)
     elsif numbadges > $Trainer.numbadges
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", "sorrgy accident..", false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft2)
     else

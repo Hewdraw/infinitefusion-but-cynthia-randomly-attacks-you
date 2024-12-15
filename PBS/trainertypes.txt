@@ -124,3 +124,4 @@
 121,WuhuIslandExecutioner,Wuhu Island Executioner,0,,,,Female,100,
 122,CREATOR_Minecraft2,Creator of Minecraft,70,,,,Female,100,
 123,COOLTRAINER_MIKU,Cool Trainer,60,,,,Female,,
+124,CHAMPION_Sinnoh2,Champion,50,,,,Female,100,

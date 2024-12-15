@@ -469,6 +469,9 @@ def pbTrainerBattleCore(*args)
   foeParty       = []
   foePartyStarts = []
   for arg in args
+    if arg[2] > 64
+      arg[2] = 64
+    end
     if arg.is_a?(NPCTrainer)
       foeTrainers.push(arg)
       foePartyStarts.push(foeParty.length)

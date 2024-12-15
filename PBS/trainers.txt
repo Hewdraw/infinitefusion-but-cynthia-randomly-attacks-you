@@ -7859,7 +7859,7 @@ Pokemon = HARCANINEBRAVIARY,5	#todo
 	Happiness = 255
 
 
-[CHAMPION_Sinnoh,Cynthia,63]	
+[CHAMPION_Sinnoh,Cynthia,64]	
 Items = FULLRESTORE,FULLRESTORE,FULLRESTORE	
 Pokemon = ARCEUS,5
 	Offset = 20
