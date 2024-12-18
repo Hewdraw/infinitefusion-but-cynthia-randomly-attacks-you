@@ -282,6 +282,8 @@ def pbBattleOnStepTaken(repel_active)
     $PokemonGlobal.cynthiabadgetier = numbadges
   end
   if numbadges > $PokemonGlobal.cynthiabadgetier
+    $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
+    $PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN, 999)
     $PokemonGlobal.cynthiaupgradechance = 0
     $PokemonGlobal.cynthiabadgetier = numbadges
     $PokemonGlobal.cynthiachance = 100

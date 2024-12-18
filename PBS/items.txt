@@ -707,3 +707,18 @@
 699,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"",0,0,0
 700,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"",0,0,0
 701,ALTACHOMPITE,Altachompite,Altachompites,1,0,"",0,0,0
+702,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,0,"Washing Machines like these. Oddly ephemeral.",0,0,0
+
+
+
+#    attr_reader :id
+#    attr_reader :id_number
+#    attr_reader :real_name
+#    attr_reader :real_name_plural
+#    attr_reader :pocket
+#    attr_reader :price
+#    attr_reader :real_description
+#    attr_reader :field_use
+#    attr_reader :battle_use
+#    attr_reader :type
+#    attr_reader :move

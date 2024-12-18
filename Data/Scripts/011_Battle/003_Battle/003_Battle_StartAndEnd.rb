@@ -427,6 +427,7 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
              @opponent[1].full_name,@opponent[2].full_name))
         end
+        coin = false
         @opponent.each_with_index do |trainer,i|
           @scene.pbShowOpponent(i)
           if $PokemonGlobal.cynthiahandschance == nil
@@ -455,6 +456,12 @@ class PokeBattle_Battle
           end
           msg = (@endSpeeches[i] && @endSpeeches[i]!="") ? @endSpeeches[i] : "..."
           pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
+          if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
+            coin = true
+          end
+        end
+        if coin && $PokemonBag.pbStoreItem(SINNOHCOIN, 1)
+          pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
         end
       end
       # Gain money from winning a trainer battle, and from Pay Day
