@@ -460,7 +460,7 @@ class PokeBattle_Battle
             coin = true
           end
         end
-        if coin && $PokemonBag.pbStoreItem(SINNOHCOIN, 1)
+        if coin && $PokemonBag.pbStoreItem(:SINNOHCOIN, 1)
           pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
         end
       end

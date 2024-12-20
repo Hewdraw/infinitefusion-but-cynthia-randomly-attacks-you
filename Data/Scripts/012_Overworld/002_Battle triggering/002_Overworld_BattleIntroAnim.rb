@@ -10,7 +10,11 @@ def pbSceneStandby
   yield
   if $PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0
     return
-  end   
+  end
+  if $PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth < 0
+    $PokemonGlobal.battledepth += 1
+    return
+  end
   $scene.createSpritesets if $scene.is_a?(Scene_Map)
 end
 

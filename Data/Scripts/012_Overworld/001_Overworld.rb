@@ -338,12 +338,12 @@ def pbBattleOnStepTaken(repel_active)
     badges.append((49..53).to_a) #9
     badges.append((54..58).to_a) #10
     badges.append((59..63).to_a) #11
-    badges.append((64).to_a) #12
-    badges.append((64).to_a) #13
-    badges.append((64).to_a) #14
-    badges.append((64).to_a) #15
-    badges.append((64).to_a) #16
-    badges.append((64).to_a) #17
+    badges.append((64..68).to_a) #12
+    badges.append((69..73).to_a) #13
+    badges.append((74..78).to_a) #14
+    badges.append((79..83).to_a) #15
+    badges.append((84..88).to_a) #16
+    badges.append((89..93).to_a) #17
 
     currentbadge = badges[numbadges]
 

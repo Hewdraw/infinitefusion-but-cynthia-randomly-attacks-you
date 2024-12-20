@@ -469,7 +469,7 @@ def pbTrainerBattleCore(*args)
   foeParty       = []
   foePartyStarts = []
   for arg in args
-    if arg[2] > 69
+    if arg[2] > 69 #todo temporary
       arg[2] = 69
     end
     if arg.is_a?(NPCTrainer)
