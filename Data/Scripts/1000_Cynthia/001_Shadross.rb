@@ -171,9 +171,9 @@ class Undertale_Scene
       pbUpdate(cw)
       # Update selected command
       if Input.trigger?(Input::LEFT)
-        cw.index -= 1 if (cw.index)>0
+        cw.index = 3-((3 - cw.index + 1) % 4)
       elsif Input.trigger?(Input::RIGHT)
-        cw.index += 1 if (cw.index)<3
+        cw.index = (cw.index + 1) % 4
       end
       pbSEPlay("MenuCursor") if cw.index!=oldIndex
       # Actions
