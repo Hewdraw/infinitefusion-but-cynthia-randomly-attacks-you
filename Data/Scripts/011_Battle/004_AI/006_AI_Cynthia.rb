@@ -590,7 +590,8 @@ class PokeBattle_AI
       end
       # Item effects that alter damage
       if user.itemActive?
-        case user.item_id.to_sym
+        print(user.item_id.class)
+        case user.item_id
         when :BUGGEM, :DARKGEM, :DRAGONGEM, :ELECTRICGEM, :FAIRYGEM, :FIGHTINGGEM, :FIREGEM, :FLYINGGEM, :GHOSTGEM, :GRASSGEM, :GROUNDGEM, :ICEGEM, :NORMALGEM, :POISONGEM, :PSYCHICGEM, :ROCKGEM, :SHARPBEAK, :STEELGEM, :WATERGEM
           if user.item_id == (type.to_s + "GEM").to_sym
             multipliers[:base_damage_multiplier] *= 1.5
@@ -605,7 +606,7 @@ class PokeBattle_AI
         end
       end
       if target.itemActive?
-        case target.item
+        case target.item_id
         when :BABIRIBERRY
           if move.calcType == :STEEL && !Effectiveness.resistant?(typeMod)
             multipliers[:final_damage_multiplier] /= 2
