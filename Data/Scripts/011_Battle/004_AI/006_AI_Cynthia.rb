@@ -590,10 +590,9 @@ class PokeBattle_AI
       end
       # Item effects that alter damage
       if user.itemActive?
-        print(user.item_id, user.item)
-        case user.item_id
+        case user.item_id.to_sym
         when :BUGGEM, :DARKGEM, :DRAGONGEM, :ELECTRICGEM, :FAIRYGEM, :FIGHTINGGEM, :FIREGEM, :FLYINGGEM, :GHOSTGEM, :GRASSGEM, :GROUNDGEM, :ICEGEM, :NORMALGEM, :POISONGEM, :PSYCHICGEM, :ROCKGEM, :SHARPBEAK, :STEELGEM, :WATERGEM
-          if user.item = (type.to_str + "GEM").to_s
+          if user.item = (type.to_s + "GEM").to_sym
             multipliers[:base_damage_multiplier] *= 1.5
           end
         when :EXPERTBELT
