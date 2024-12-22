@@ -115,6 +115,7 @@ with their respective authors' consent
 		Hankiro (Oak backsprite) 		http://s296.photobucket.com/user/Hankiro/media/ProfOakBackSprite.png.html
 		SailorVicious (Prof. Elm OW sprite) 	https://www.deviantart.com/sailorvicious
 		OceansLugiaSpirit (Koga OW sprite)  	http://oceanslugiaspirit.deviantart.com/
+		Wolfang62: https://www.deviantart.com/wolfang62/art/Wimpod-Sprite-Overworld-836704744
 
 	Battle sprites: 
 		Custom graphics:
@@ -130,6 +131,9 @@ Kiwikelly
 ### Battle menu buttons: ###
 TCGrunler#4583
 elupsis
+
+### Battle type icons ###
+audreyeyeyeye https://www.deviantart.com/audreyeyeyeye/art/Pokemon-Type-Icons-FREE-TO-USE-909562921
 
 ### Public tileset graphics ### 
 	Jorginho (OutsideEmerald)
@@ -202,6 +206,7 @@ Marin				Better maps script	https://www.pokecommunity.com/showthread.php?t=41129
 barafanatic			Safari Zone improvements
 M3rein				Easy Questing System 
 bo4p5687			Multisave
+Vizualise			In-battle type icons (adapted from) https://github.com/Vizualyse/PokemonInfiniteFusion-EnemyTypesMod
 
 
 #### Data sources ###			  

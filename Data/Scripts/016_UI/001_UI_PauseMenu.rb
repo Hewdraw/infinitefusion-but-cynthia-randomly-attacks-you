@@ -120,6 +120,7 @@ class PokemonPauseMenu
     commands[cmdBag = commands.length] = _INTL("Bag") if !pbInBugContest?
     commands[cmdPokegear = commands.length] = _INTL("Pokégear") if $Trainer.has_pokegear
     commands[cmdTrainer = commands.length] = $Trainer.name
+    commands[cmdOutfit = commands.length] = _INTL("Outfit") if $Trainer.can_change_outfit
     if pbInSafari?
       if Settings::SAFARI_STEPS <= 0
         @scene.pbShowInfo(_INTL("Balls: {1}", pbSafariState.ballcount))
@@ -217,6 +218,10 @@ class PokemonPauseMenu
           screen.pbStartScreen
           @scene.pbRefresh
         }
+      elsif cmdOutfit && cmdOutfit >= 0 && command == cmdOutfit
+        @scene.pbHideMenu
+        pbCommonEvent(COMMON_EVENT_OUTFIT)
+
       elsif cmdQuit >= 0 && command == cmdQuit
         @scene.pbHideMenu
         if pbInSafari?

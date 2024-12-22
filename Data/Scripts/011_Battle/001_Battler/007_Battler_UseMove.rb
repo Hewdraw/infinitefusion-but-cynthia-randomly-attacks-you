@@ -597,8 +597,8 @@ class PokeBattle_Battler
     end
   end
 
-  def ensure_form_has_sprite(pokemon,spriteform_body,spriteform_head)
-    GameData::Species.sprite_filename(pokemon.dexNum, spriteform_body,spriteform_head)
+  def ensure_form_has_sprite(pokemon)
+    GameData::Species.sprite_filename(pokemon.dexNum)
   end
 
 
@@ -626,6 +626,7 @@ class PokeBattle_Battler
   #For meloetta form change
 
   def changeFormSpecies(oldForm, newForm,animation = "UltraBurst2")
+
     @pokemon.changeFormSpecies(oldForm,newForm)
     playChangeFormAnimation(animation)
 
@@ -653,10 +654,10 @@ class PokeBattle_Battler
     spriteform_body = newForm if @pokemon.hasBodyOf?(formChangingSpecies)
     spriteform_head = newForm if @pokemon.hasHeadOf?(formChangingSpecies)
 
-    ensure_form_has_sprite(@pokemon,spriteform_body,spriteform_head)
+    #ensure_form_has_sprite(@pokemon)
 
     if self.isFusion?
-      current_form_has_custom = customSpriteExists(@pokemon.species)
+      current_form_has_custom = customSpriteExistsSpecies(@pokemon.species)
       new_form_has_custom = customSpriteExistsForm(@pokemon.species, spriteform_head, spriteform_body)
       should_change_sprite = (current_form_has_custom && new_form_has_custom) || !current_form_has_custom
     else

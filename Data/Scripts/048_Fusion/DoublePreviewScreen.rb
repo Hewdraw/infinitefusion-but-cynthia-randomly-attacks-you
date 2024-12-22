@@ -106,13 +106,15 @@ class DoublePreviewScreen
     body_pokemon = getBodyID(dexNumber)
     head_pokemon = getHeadID(dexNumber, body_pokemon)
 
-    picturePath = getPicturePath(head_pokemon, body_pokemon)
-    bitmap = AnimatedBitmap.new(picturePath)
+    # picturePath = getPicturePath(head_pokemon, body_pokemon)
+    # bitmap = AnimatedBitmap.new(picturePath)
+    spriteLoader = BattleSpriteLoader.new
+    bitmap = spriteLoader.load_fusion_sprite(head_pokemon,body_pokemon)
     bitmap.scale_bitmap(Settings::FRONTSPRITE_SCALE)
 
     #hasCustom = picturePath.include?("CustomBattlers")
-    hasCustom = customSpriteExistsBase(body_pokemon,head_pokemon)
-
+    #hasCustom = customSpriteExistsBase(body_pokemon,head_pokemon)
+    hasCustom = customSpriteExists(body_pokemon,head_pokemon)
     previewwindow = PictureWindow.new(bitmap)
     previewwindow.x = x
     previewwindow.y = y
@@ -130,10 +132,6 @@ class DoublePreviewScreen
     return previewwindow
   end
 
-
-  def getPicturePath(head_pokemon, body_pokemon)
-    return  get_fusion_sprite_path(head_pokemon,body_pokemon)
-  end
 
   def drawFusionInformation(fusedDexNum, level, x = 0)
     viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)

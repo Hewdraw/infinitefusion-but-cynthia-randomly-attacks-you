@@ -1,6 +1,8 @@
 # The Game module contains methods for saving and loading the game.
 module Game
   # Initializes various global variables and loads the game data.
+
+
   def self.initialize
     $PokemonTemp = PokemonTemp.new
     $game_temp = Game_Temp.new
@@ -10,6 +12,8 @@ module Game
     $data_common_events = load_data('Data/CommonEvents.rxdata')
     $data_system = load_data('Data/System.rxdata')
     pbLoadBattleAnimations
+    load_sprites_list_caches()
+    $updated_spritesheets = load_updated_spritesheets()
     GameData.load_all
     map_file = format('Data/Map%03d.rxdata', $data_system.start_map_id)
     if $data_system.start_map_id == 0 || !pbRgssExists?(map_file)
@@ -17,8 +21,79 @@ module Game
     end
   end
 
-  # Loads bootup data from save file (if it exists) or creates bootup data (if
-  # it doesn't).
+  def self.load_updated_spritesheets
+    updated_spritesheets_file = Settings::UPDATED_SPRITESHEETS_CACHE
+    updated_spritesheets = []
+    if File.exist?(updated_spritesheets_file)
+      File.open(updated_spritesheets_file, "r") do |file|
+        file.each_line { |line| updated_spritesheets << line.chomp }
+      end
+    end
+    return updated_spritesheets
+  end
+
+  def self.load_sprites_list_caches()
+    self.load_custom_sprites_list_cache() if File.exists?(Settings::CUSTOM_SPRITES_FILE_PATH)
+    self.load_base_sprites_list_cache() if File.exists?(Settings::BASE_SPRITES_FILE_PATH)
+  end
+
+  def self.load_custom_sprites_list_cache()
+    return if !$game_temp.custom_sprites_list.keys.empty? #only load once at loadup
+    echoln "loading custom sprites cache"
+    sprite_index = {}
+    File.foreach(Settings::CUSTOM_SPRITES_FILE_PATH) do |line|
+      filename = line.strip
+      next unless filename =~ /^(\d+)\.(\d+)([a-zA-Z]*)\.png$/  # Regex: Captures the numbers and any trailing letters
+
+      # Match groups
+      head_number = $1.to_i   # Head (e.g., "1" in "1.2.png")
+      body_number = $2.to_i  # Body (e.g., "2" in "1.2.png")
+      letters = $3             # Letters after the second number (e.g., "a", "b", etc.)
+
+      key = "B#{body_number}H#{head_number}".to_sym
+      sprite_index[key] ||= []
+      if letters.empty?
+        sprite_index[key] << ""
+      else
+        sprite_index[key] << letters
+      end
+    end
+    $game_temp.custom_sprites_list = sprite_index
+    echoln "custom sprites loaded"
+  end
+
+  #
+  # {1 => ["","a","b"]
+  #etc.
+  #
+  def self.load_base_sprites_list_cache()
+    return if !$game_temp.base_sprites_list.keys.empty? #only load once at loadup
+    echoln "loading base sprites cache"
+    sprite_index = {}
+    File.foreach(Settings::BASE_SPRITES_FILE_PATH) do |line|
+      filename = line.strip
+      next unless filename =~ /^(\d+)([a-zA-Z]*)\.png$/  # Regex: Captures the numbers and any trailing letters
+
+      # Match groups
+      dex_number = $1.to_i   # Head (e.g., "1" in "1.2.png")
+      letters = $2             # Letters after the second number (e.g., "a", "b", etc.)
+
+      key = dex_number
+      sprite_index[key] ||= []
+      if letters.empty?
+        sprite_index[key] << ""
+      else
+        sprite_index[key] << letters
+      end
+    end
+    $game_temp.base_sprites_list = sprite_index
+    echoln "custom sprites loaded"
+  end
+
+  #
+  # {:B10H10 => ["","a","b"]
+  #etc.
+  #
   def self.set_up_system
     SaveData.move_old_windows_save if System.platform[/Windows/]
     save_data = (SaveData.exists?) ? SaveData.read_from_file(SaveData::FILE_PATH) : {}
@@ -51,11 +126,17 @@ module Game
             pokemon.exp_when_fused_body=nil
             pokemon.exp_gained_since_fused=nil
             pokemon.level = 5
+
+            echoln pokemon.owner.id
             pokemon.owner.id = $Trainer.id
             pokemon.ot=$Trainer.name
+            pokemon.obtain_method = 0
             pokemon.species = GameData::Species.get(pokemon.species).get_baby_species(false)
+            $Trainer.pokedex.set_seen(pokemon.species)
+            $Trainer.pokedex.set_owned(pokemon.species)
             pokemon.reset_moves
             pokemon.calc_stats
+
           end
         end
       end

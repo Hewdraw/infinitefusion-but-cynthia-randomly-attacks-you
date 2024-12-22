@@ -21,6 +21,7 @@ class PokemonSystem
   attr_accessor :speedup_speed
   attr_accessor :max_nb_sprites_download
   attr_accessor :on_mobile
+  attr_accessor :type_icons
 
   def initialize
     @textspeed = 1 # Text speed (0=slow, 1=normal, 2=fast)
@@ -40,7 +41,8 @@ class PokemonSystem
     @speedup_speed = 3 #for hold only
     @download_sprites = 0
     @max_nb_sprites_download = 5
-
+    @on_mobile = false
+    @type_icons = true
   end
 end
 

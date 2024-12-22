@@ -60,6 +60,9 @@ end
 
 class Sprite_Character < RPG::Sprite
   attr_accessor :character
+  attr_accessor :pending_bitmap
+  attr_accessor :bitmap_override
+  attr_accessor :charbitmap
 
   def initialize(viewport, character = nil)
     super(viewport)
@@ -76,7 +79,31 @@ class Sprite_Character < RPG::Sprite
       @reflection = Sprite_Reflection.new(self, character, viewport)
     end
     @surfbase = Sprite_SurfBase.new(self, character, viewport) if character == $game_player
+    checkModifySpriteGraphics(@character) if @character
     update
+  end
+
+  def checkModifySpriteGraphics(character)
+    return if character == $game_player || !character.name
+    if TYPE_EXPERTS_APPEARANCES.keys.include?(character.name.to_sym)
+      typeExpert = character.name.to_sym
+      setSpriteToAppearance(TYPE_EXPERTS_APPEARANCES[typeExpert])
+    end
+  end
+
+
+
+  def setSpriteToAppearance(trainerAppearance)
+    #return if !@charbitmap || !@charbitmap.bitmap
+    new_bitmap = AnimatedBitmap.new(getBaseOverworldSpriteFilename())#@charbitmap
+    new_bitmap.bitmap = generateNPCClothedBitmapStatic(trainerAppearance)
+    @bitmap_override = new_bitmap
+    updateBitmap
+  end
+
+  def clearBitmapOverride()
+    @bitmap_override = nil
+    updateBitmap
   end
 
   def setSurfingPokemon(pokemonSpecies)
@@ -148,10 +175,14 @@ class Sprite_Character < RPG::Sprite
   end
 
   def refreshOutfit()
-    self.bitmap = getClothedPlayerSprite(true)
+    self.pending_bitmap = getClothedPlayerSprite(true)
   end
 
   def update
+    if self.pending_bitmap
+      self.bitmap = self.pending_bitmap
+      self.pending_bitmap = nil
+    end
     return if @character.is_a?(Game_Event) && !@character.should_update?
     super
     if should_update?
@@ -178,6 +209,7 @@ class Sprite_Character < RPG::Sprite
         @charbitmap.dispose if @charbitmap
 
         @charbitmap = updateCharacterBitmap()
+        @charbitmap= @bitmap_override.clone if @bitmap_override
 
         RPG::Cache.retain('Graphics/Characters/', @character_name, @character_hue) if @charbitmapAnimated = true
         @bushbitmap.dispose if @bushbitmap

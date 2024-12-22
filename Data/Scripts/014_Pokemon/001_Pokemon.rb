@@ -106,6 +106,11 @@ class Pokemon
   attr_accessor :tera
   attr_accessor :dynamax
 
+  attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
+  attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
+
+  attr_accessor :force_disobey
+
   # Max total IVs
   IV_STAT_LIMIT = 31
   # Max total EVs
@@ -177,6 +182,8 @@ class Pokemon
     echoln("Fused: #{@fused}")
     echoln("Personal ID: #{@personalID}")
     echoln("Hidden Power Type: #{@hiddenPowerType}")
+    echoln("Scale: #{sprite_scale}")
+
     # Add other attribute print statements here
   end
 
@@ -199,6 +206,10 @@ class Pokemon
     return @species_data
   end
 
+  def id_number
+    return species_data.id_number
+  end
+
   #=============================================================================
   # Species and form
   #=============================================================================
@@ -219,12 +230,31 @@ class Pokemon
     calc_stats
   end
 
+  def sprite_scale()
+    @sprite_scale = 1 if !@sprite_scale
+    return @sprite_scale
+  end
+
+  def sprite_scale=(scale)
+    @sprite_scale = scale
+  end
+
+
+  def size_category()
+    @size_category = :AVERAGE if !@size_category
+    return @size_category
+  end
+
+  def size_category=(category)
+    @size_category = category
+  end
   # @param check_species [Integer, Symbol, String] id of the species to check for
   # @return [Boolean] whether this Pokémon is of the specified species
   def isSpecies?(check_species)
     return @species == check_species || (GameData::Species.exists?(check_species) &&
       @species == GameData::Species.get(check_species).species)
   end
+
 
   def hasBodyOf?(check_species)
     if !self.isFusion?
@@ -242,6 +272,14 @@ class Pokemon
     headSpecies = getHeadID(species)
     checkSpeciesId = getID(nil, check_species)
     return headSpecies == checkSpeciesId
+  end
+
+  def head_id()
+    return get_head_id_from_symbol(@species)
+  end
+
+  def body_id()
+    return get_body_id_from_symbol(@species)
   end
 
   def shiny=(value)
@@ -298,6 +336,7 @@ class Pokemon
   end
 
   def changeFormSpecies(oldForm, newForm)
+
     is_already_old_form = self.isFusionOf(oldForm) #A 466
     is_already_new_form = self.isFusionOf(newForm) #P
 
@@ -310,6 +349,7 @@ class Pokemon
         changeSpeciesSpecific(self, getFusedPokemonIdFromSymbols(oldForm, newForm))
       end
     else
+      echoln "changing species...."
       changeSpecies(self, oldForm, newForm) if is_already_old_form
       changeSpecies(self, newForm, oldForm) if is_already_new_form
     end
@@ -421,6 +461,7 @@ class Pokemon
   def hp=(value)
     @hp = value.clamp(0, @totalhp)
     heal_status if @hp == 0
+    checkHPRelatedFormChange()
   end
 
   # Sets this Pokémon's status. See {GameData::Status} for all possible status effects.
@@ -448,6 +489,7 @@ class Pokemon
   def heal_HP
     return if egg?
     @hp = @totalhp
+    checkHPRelatedFormChange()
   end
 
   # Heals the status problem of this Pokémon.
@@ -1063,7 +1105,11 @@ class Pokemon
   # @param trainer [Player, NPCTrainer] the trainer to compare to the original trainer
   # @return [Boolean] whether the given trainer is not this Pokémon's original trainer
   def foreign?(trainer)
-    return @owner.id != trainer.id || @owner.name != trainer.name
+    return @owner.id != trainer.id# || @owner.name != trainer.name
+  end
+
+  def always_disobey(value)
+    @force_disobey = value
   end
 
   # @return [Time] the time when this Pokémon was obtained
@@ -1113,14 +1159,14 @@ class Pokemon
     return species_data.name
   end
 
-  # @return [Integer] the height of this Pokémon in decimetres (0.1 metres)
+  # @return [Integer] the height of this Pokémon in metres
   def height
-    return species_data.height
+    return species_data.height/10
   end
 
-  # @return [Integer] the weight of this Pokémon in hectograms (0.1 kilograms)
+  # @return [Integer] the weight of this Pokémon in kilograms
   def weight
-    return species_data.weight
+    return species_data.weight/10
   end
 
   # @return [Hash<Integer>] the EV yield of this Pokémon (a hash with six key/value pairs)
@@ -1278,10 +1324,40 @@ class Pokemon
   #=============================================================================
   # Stat calculations
   #=============================================================================
+  def getBaseStatsFormException()
+    if @species == :PUMPKABOO
+      case @size_category
+      when :SMALL
+        return { :HP => 44, :ATTACK => 66, :DEFENSE => 70, :SPECIAL_ATTACK => 44, :SPECIAL_DEFENSE => 55, :SPEED => 56}
+      when :AVERAGE
+        return nil
+      when :LARGE
+        return { :HP => 54, :ATTACK => 66, :DEFENSE => 70, :SPECIAL_ATTACK => 44, :SPECIAL_DEFENSE => 55, :SPEED => 46}
+      when :SUPER
+        return { :HP => 59, :ATTACK => 66, :DEFENSE => 70, :SPECIAL_ATTACK => 44, :SPECIAL_DEFENSE => 55, :SPEED => 41}
+      end
+    end
+    if @species == :GOURGEIST
+      case @size_category
+      when :SMALL
+        return { :HP => 55, :ATTACK => 85, :DEFENSE => 122, :SPECIAL_ATTACK => 58, :SPECIAL_DEFENSE => 75, :SPEED => 99}
+      when :AVERAGE
+        return nil
+      when :LARGE
+        return { :HP => 75, :ATTACK => 95, :DEFENSE => 122, :SPECIAL_ATTACK => 58, :SPECIAL_DEFENSE => 75, :SPEED => 69}
+      when :SUPER
+        return { :HP => 85, :ATTACK => 10, :DEFENSE => 122, :SPECIAL_ATTACK => 58, :SPECIAL_DEFENSE => 75, :SPEED => 54}
+      end
+    end
+    return nil
+  end
+
 
   # @return [Hash<Integer>] this Pokémon's base stats, a hash with six key/value pairs
   def baseStats
     this_base_stats = species_data.base_stats
+    base_stats_exception = getBaseStatsFormException()
+    this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
     return ret
@@ -1323,10 +1399,26 @@ class Pokemon
     return self.ability == :WONDERGUARD ? 1 : stats[:HP]
   end
 
+  def checkHPRelatedFormChange()
+    if @ability == :SHIELDSDOWN
+      return if $game_temp.in_battle  #handled in battlers class in-battle
+      if isFusionOf(:MINIOR_M)
+        if @hp <= (@totalhp / 2)
+          changeFormSpecies(:MINIOR_M, :MINIOR_C)
+        end
+      end
+      if isFusionOf(:MINIOR_C)
+        if @hp > (@totalhp / 2)
+          changeFormSpecies(:MINIOR_C, :MINIOR_M)
+        end
+      end
+    end
+  end
+
   # Recalculates this Pokémon's stats.
   def calc_stats
     base_stats = self.baseStats
-    this_level = self.level
+      this_level = self.level
     this_IV = self.calcIV
 
     if $game_switches[SWITCH_NO_LEVELS_MODE]
@@ -1428,6 +1520,35 @@ class Pokemon
   # @param owner [Owner, Player, NPCTrainer] Pokémon owner (the player by default)
   # @param withMoves [TrueClass, FalseClass] whether the Pokémon should have moves
   # @param rechech_form [TrueClass, FalseClass] whether to auto-check the form
+  def determine_scale
+    return :AVERAGE if !@size_category
+    size_roll = rand(100) # Random number between 0-99
+    if @size_category == :SMALL
+      return 0.75
+    elsif @size_category == :AVERAGE
+      return 1
+    elsif @size_category == :LARGE
+      return 1 + (1.0 /3) #"Large Size"
+    elsif @size_category == :SUPER
+      return 1 + (2.0 /3)      #"Super Size"
+    end
+    return 1
+  end
+
+  def determine_size_category
+    return :AVERAGE if !(Kernel.isPartPokemon(self,:PUMPKABOO) || Kernel.isPartPokemon(self,:GOURGEIST))
+    size_roll = rand(100) # Random number between 0-99
+    if size_roll < 10
+      return :SMALL
+    elsif size_roll < 50
+      return :AVERAGE
+    elsif size_roll < 90
+      return :LARGE
+    else
+      return :SUPER
+    end
+  end
+
   def initialize(species, level, owner = $Trainer, withMoves = true, recheck_form = true)
     @species_data = GameData::Species.get(species)
     @species = @species_data.species
@@ -1487,7 +1608,7 @@ class Pokemon
     @obtain_text = nil
     @obtain_level = level
     @hatched_map = 0
-    @timeReceived = pbGetTimeNow.to_i
+    @timeReceived = Time.new.to_i
     @timeEggHatched = nil
     @fused = nil
     @personalID = rand(2 ** 16) | rand(2 ** 16) << 16
@@ -1499,7 +1620,9 @@ class Pokemon
     @hat = nil
     @hat_x = 0
     @hat_y = 0
-
+    @size_category = determine_size_category()
+    @sprite_scale=determine_scale()
+    echoln @sprite_scale
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)
@@ -1508,5 +1631,9 @@ class Pokemon
         reset_moves if withMoves
       end
     end
+  end
+
+  def totalIv()
+
   end
 end

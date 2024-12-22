@@ -10,7 +10,7 @@ module GameData
     attr_reader :pokemon
 
     DATA = {}
-    DATA_FILENAME = "trainers_modern.dat"
+    DATA_FILENAME = "trainers_remix.dat"
 
     SCHEMA = {
       "Items" => [:items, "*e", :Item],
@@ -194,6 +194,7 @@ module GameData
 
     def replace_species_to_randomized(species, trainerId, pokemonIndex)
       return species if $game_switches[SWITCH_FIRST_RIVAL_BATTLE]
+      return species if $game_switches[SWITCH_DONT_RANDOMIZE]
       if isGymBattle() && $game_switches[SWITCH_RANDOMIZE_GYMS_SEPARATELY]
         return replace_species_to_randomized_gym(species, trainerId, pokemonIndex)
       end

@@ -115,7 +115,7 @@ class PokemonDataBox < SpriteWrapper
     @expBar.bitmap = @expBarBitmap.bitmap
     @sprites["expBar"] = @expBar
     # Create sprite wrapper that displays everything except the above
-    @contents = BitmapWrapper.new(@databoxBitmap.width,@databoxBitmap.height)
+    @contents = BitmapWrapper.new(@databoxBitmap.width+14,@databoxBitmap.height)
     self.bitmap  = @contents
     self.visible = false
     self.z       = 150+((@battler.index)/2)*5
@@ -295,9 +295,49 @@ class PokemonDataBox < SpriteWrapper
       imagePos.push(["Graphics/Pictures/Battle/icon_statuses",@spriteBaseX+24,56,
                      0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
     end
+
+
+    #Draw type icons (foe Pokémon only)
+    if @battler.opposes?(0) && $PokemonSystem.type_icons
+      drawEnemyTypeIcons(imagePos)
+    end
+
     pbDrawImagePositions(self.bitmap,imagePos)
     refreshHP
     refreshExp
+  end
+
+  def drawEnemyTypeIcons(imagePos)
+    type1_number = GameData::Type.get(@battler.type1).id_number
+    type2_number = GameData::Type.get(@battler.type2).id_number
+
+    echoln type1_number
+
+    vertical_margin = 2
+    iconHeight=19
+
+    type_icons_x_position = @spriteBaseX + 210
+    type1_icon_y_position = 16
+    type2_icon_y_position = type1_icon_y_position+vertical_margin+iconHeight
+
+    type1_y_offset = type1_number*iconHeight
+    type2_y_offset = type2_number*iconHeight
+    x_offset=0
+
+    types_icon_path = "Graphics/Pictures/Battle/typesSmall"
+    if type1_number == type2_number
+      imagePos.push([types_icon_path,type_icons_x_position,type1_icon_y_position,
+                     x_offset,type1_y_offset,-1,iconHeight])
+    else
+      imagePos.push([types_icon_path,type_icons_x_position,
+                     type1_icon_y_position,
+                     x_offset,
+                     type1_y_offset,-1,iconHeight]
+      )
+      imagePos.push([types_icon_path,type_icons_x_position,type2_icon_y_position,
+                     x_offset,
+                     type2_y_offset,-1,iconHeight])
+    end
   end
 
   def refreshHP

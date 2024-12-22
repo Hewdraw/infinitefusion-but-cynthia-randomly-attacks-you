@@ -2,6 +2,7 @@
 # Pokémon icons
 #===============================================================================
 class PokemonBoxIcon < IconSprite
+  attr_accessor :pokemon
   def initialize(pokemon, viewport = nil)
     super(0, 0, viewport)
     @pokemon = pokemon
@@ -516,10 +517,12 @@ class PokemonBoxSprite < SpriteWrapper
   end
 
   def refreshAllBoxSprites
+    # spriteLoader = BattleSpriteLoader.new
     for i in 0...PokemonBox::BOX_SIZE
       if @pokemonsprites[i] && !@pokemonsprites[i].disposed?
         @pokemonsprites[i].refresh(@fusions_enabled)
       end
+      #spriteLoader.preload_sprite_from_pokemon(@pokemonsprites[i].pokemon) if @pokemonsprites[i].pokemon
     end
   end
 
@@ -2040,6 +2043,11 @@ class PokemonStorageScreen
     end
     command = pbShowCommands(_INTL("Release this Pokémon?"), [_INTL("No"), _INTL("Yes")])
     if command == 1
+      if pokemon.owner.name  == "RENTAL"
+        pbDisplay(_INTL("This Pokémon cannot be released"))
+        return
+      end
+
       pkmnname = pokemon.name
       @scene.pbRelease(selected, heldpoke)
       if heldpoke

@@ -1331,6 +1331,7 @@ class PokemonSummary_Scene
   end
 
   def pbPokemonHatFromSummary(pokemon)
+    echoln pokemon.hat
     cmd = 0
     msg = "What should you do?"
     loop do
@@ -1338,7 +1339,6 @@ class PokemonSummary_Scene
         _INTL("Put on hat"),
         _INTL("Remove hat"),
         _INTL("Back")])
-      echoln cmd
       break if cmd == -1
       if cmd == 0   #Put on hat
         @sprites["pokemon"].visible=false

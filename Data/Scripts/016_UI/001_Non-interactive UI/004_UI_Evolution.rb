@@ -589,7 +589,8 @@ class PokemonEvolutionScene
     # Success jingle/message
     pbMEPlay("Evolution success")
     sprite_bitmap=@sprites["rsprite2"].getBitmap
-    drawSpriteCredits(sprite_bitmap.filename,sprite_bitmap.path, @viewport)
+
+    #drawSpriteCredits(sprite_bitmap.filename,sprite_bitmap.path, @viewport)
 
     newspeciesname = GameData::Species.get(@newspecies).name
     if !reversing
@@ -608,13 +609,10 @@ class PokemonEvolutionScene
     pbEvolutionMethodAfterEvolution if !reversing
 
 
-    @pokemon
-    @pokemon.ability
-
-    oldAbility = @pokemon.ability.id
+    #oldAbility = @pokemon.ability.id if @pokemon.ability
     newSpecies = GameData::Species.get(@newspecies)
 
-    allNewPossibleAbilities = newSpecies.abilities + newSpecies.hidden_abilities
+    #allNewPossibleAbilities = newSpecies.abilities + newSpecies.hidden_abilities
 
     # Modify Pokémon to make it evolved
     @pokemon.species = @newspecies

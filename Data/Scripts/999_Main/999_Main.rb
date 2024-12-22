@@ -69,12 +69,18 @@ end
 def sortCustomBattlers()
   $game_temp.nb_imported_sprites=0
   echo "Sorting CustomBattlers files..."
+
+  # pbMessage("Warning: Sprites that are manually imported will not get updated when a new sprite pack releases. This means that if some contain errors, these will not get fixed for you. All of the sprites from the latest spritepack are already available in your game without the need to manually import anything.")
+  # if !pbConfirmMessage("Do you still wish to import the sprites that are in the \"Sprites to import\" folder")
+  #   return
+  # end
+
   alreadyExists = {}
-  Dir.foreach(Settings::CUSTOM_BATTLERS_FOLDER) do |filename|
+  Dir.foreach(Settings::CUSTOM_SPRITES_TO_IMPORT_FOLDER) do |filename|
     next if filename == '.' or filename == '..'
     next if !filename.end_with?(".png")
     headNum = filename.split('.')[0]
-    oldPath = Settings::CUSTOM_BATTLERS_FOLDER + filename
+    oldPath = Settings::CUSTOM_SPRITES_TO_IMPORT_FOLDER + filename
     newDir = Settings::CUSTOM_BATTLERS_FOLDER_INDEXED + headNum.to_s
     newPath = newDir + "/" + filename
     begin

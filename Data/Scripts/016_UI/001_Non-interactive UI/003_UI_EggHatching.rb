@@ -120,7 +120,8 @@ class PokemonEggHatch_Scene
       pbMessage(_INTL("{1}'s data was added to the Pokédex", @pokemon.name))
       pbShowPokedex(@pokemon.species)
     end
-
+    nb_eggs_hatched = pbGet(VAR_NB_EGGS_HATCHED)
+    pbSet(VAR_NB_EGGS_HATCHED,nb_eggs_hatched+1)
   end
 
   def pbEndScene
@@ -233,6 +234,7 @@ Events.onStepTaken += proc { |_sender,_e|
   for egg in $Trainer.party
     next if egg.steps_to_hatch <= 0
     egg.steps_to_hatch -= 1
+    egg.steps_to_hatch -= 1 if isWearingClothes(CLOTHES_BREEDER)
     for i in $Trainer.pokemon_party
       next if !i.hasAbility?(:FLAMEBODY) && !i.hasAbility?(:MAGMAARMOR)
       egg.steps_to_hatch -= 1

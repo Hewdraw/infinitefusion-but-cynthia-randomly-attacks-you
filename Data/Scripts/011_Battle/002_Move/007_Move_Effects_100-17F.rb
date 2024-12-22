@@ -2086,9 +2086,7 @@ end
 Events.onEndBattle += proc { |_sender,_e|
   $Trainer.party.each_with_index do |value, i|
     pokemon = $Trainer.party[i]
-    if pokemon.isFusionOf(:U_NECROZMA)
-      pokemon.changeFormSpecies(:U_NECROZMA,:NECROZMA)
-    end
+      pokemon.changeFormSpecies(:U_NECROZMA,:NECROZMA) if pokemon.isFusionOf(:U_NECROZMA)
   end
 }
 

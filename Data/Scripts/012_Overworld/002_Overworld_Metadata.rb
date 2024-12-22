@@ -57,6 +57,7 @@ class PokemonGlobalMetadata
   attr_accessor :safesave
   #Trainers rematch
   attr_accessor :rematchedTrainers
+  attr_accessor :questRewardsObtained
   #cynthia values
   attr_accessor :cynthiachance
   attr_accessor :cynthiaupgradechance
@@ -122,6 +123,7 @@ class PokemonGlobalMetadata
     @pokerusTime          = nil
     # Save file
     @safesave             = false
+    @questRewardsObtained = []
   end
 
   # @deprecated Use {Player#character_ID} instead. This alias is slated to be removed in v20.

@@ -97,11 +97,11 @@ module GameData
     end
 
     def get_body_species
-      return @body_pokemon
+      return @body_pokemon.id_number
     end
 
     def get_head_species
-      return @head_pokemon
+      return @head_pokemon.id_number
     end
 
     def adjust_stats_with_evs
@@ -309,7 +309,7 @@ module GameData
     end
 
     def calculate_growth_rate
-      growth_rate_priority = [:Slow, :Erratic, :Fluctuating, :Parabolic, :Medium, :Fast] #todo rearrange order for balance?
+      growth_rate_priority = [:Fast, :Medium, :Parabolic, :Fluctuating, :Erratic, :Slow] #todo rearrange order for balance?
       body_growth_rate = @body_pokemon.growth_rate
       head_growth_rate = @head_pokemon.growth_rate
       base_growth_rates = [body_growth_rate, head_growth_rate]

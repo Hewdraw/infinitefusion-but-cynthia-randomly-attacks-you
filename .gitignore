@@ -1,8 +1,7 @@
-Graphics/Battlers/*
-Graphics/Battlers_resized/*
 Graphics/CustomBattlers/*
 Graphics/Battlers/*
 Graphics/Pokemon/FusionIcons/*
-Data/SPRITE_CREDS
+Data/pokedex/*
+Data/sprites/*
 Data/VERSION
  
