@@ -590,7 +590,7 @@ class PokeBattle_AI
       end
       # Item effects that alter damage
       if user.itemActive?
-        case user.item
+        case user.item_id
         when :BUGGEM, :DARKGEM, :DRAGONGEM, :ELECTRICGEM, :FAIRYGEM, :FIGHTINGGEM, :FIREGEM, :FLYINGGEM, :GHOSTGEM, :GRASSGEM, :GROUNDGEM, :ICEGEM, :NORMALGEM, :POISONGEM, :PSYCHICGEM, :ROCKGEM, :SHARPBEAK, :STEELGEM, :WATERGEM
           if user.item = (type.to_str + "GEM").to_s
             multipliers[:base_damage_multiplier] *= 1.5
