@@ -590,7 +590,6 @@ class PokeBattle_AI
       end
       # Item effects that alter damage
       if user.itemActive?
-        print(user.item_id.class)
         case user.item_id
         when :BUGGEM, :DARKGEM, :DRAGONGEM, :ELECTRICGEM, :FAIRYGEM, :FIGHTINGGEM, :FIREGEM, :FLYINGGEM, :GHOSTGEM, :GRASSGEM, :GROUNDGEM, :ICEGEM, :NORMALGEM, :POISONGEM, :PSYCHICGEM, :ROCKGEM, :SHARPBEAK, :STEELGEM, :WATERGEM
           if user.item_id == (type.to_s + "GEM").to_sym
