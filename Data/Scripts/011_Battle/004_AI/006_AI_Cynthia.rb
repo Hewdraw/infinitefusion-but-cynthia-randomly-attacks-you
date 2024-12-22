@@ -449,7 +449,7 @@ class PokeBattle_AI
       when "083"
         if [:maxDamage, :critDamage].include?(key)
           user.eachAlly do |b|
-            baseDmg *= 1.5 if b.pbHasMove(:ROUND) && b.pbSpeed > user.pbSpeed
+            baseDmg *= 1.5 if b.pbHasMove?(:ROUND) && b.pbSpeed > user.pbSpeed
           end
         end
       when "0F0"
