@@ -469,9 +469,6 @@ def pbTrainerBattleCore(*args)
   foeParty       = []
   foePartyStarts = []
   for arg in args
-    if arg[2] > 69 #todo temporary
-      arg[2] = 69
-    end
     if arg.is_a?(NPCTrainer)
       foeTrainers.push(arg)
       foePartyStarts.push(foeParty.length)
@@ -479,6 +476,9 @@ def pbTrainerBattleCore(*args)
       foeEndSpeeches.push(arg.lose_text)
       foeItems.push(arg.items)
     elsif arg.is_a?(Array)   # [trainer type, trainer name, ID, speech (optional)]
+      if arg[2] > 69 #todo temporary
+        arg[2] = 69
+      end
       trainer = pbLoadTrainer(arg[0],arg[1],arg[2])
       if !trainer && $game_switches[SWITCH_MODERN_MODE] #retry without modern mode
         $game_switches[SWITCH_MODERN_MODE]=false
