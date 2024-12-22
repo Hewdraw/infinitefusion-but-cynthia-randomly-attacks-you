@@ -21,16 +21,12 @@ end
 def UndertaleCommand(scene)
   pbBGMPlay("Megalovania")
   loop do
-    cmd = scene.pbCommandMenu(false)
+    cmd = scene.pbCommandMenu()
     pbSEPlay("MenuSelect")
     case cmd
     when 0    # Fight
       $PokemonGlobal.nextBattleBack = "Lava"
       $PokemonGlobal.nextBattleBGM = nil
-      # if $PokemonGlobal.battledepth == nil
-      #   $PokemonGlobal.battledepth = 0
-      # end
-      # $PokemonGlobal.battledepth += 1
       if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
         $PokemonGlobal.battledepth = -1
         scene.pbEndBattle
@@ -140,31 +136,9 @@ class Undertale_Scene
     @sprites["commandWindow"] = UndertaleMenu.new(@viewport, 200)
   end
 
-  #=============================================================================
-  # The player chooses a main command for a Pokémon
-  # Return values: -1=Cancel, 0=Fight, 1=Bag, 2=Pokémon, 3=Run, 4=Call
-  #=============================================================================
-  def pbCommandMenu(firstAction)
-    cmds = [
-       _INTL("What will\nyou do?"),
-       _INTL("Fight"),
-       _INTL("Bag"),
-       _INTL("Pokémon"),
-       (firstAction) ? _INTL("Run") : _INTL("Cancel")
-    ]
-    ret = pbCommandMenuEx(cmds)
-    return ret
-  end
-
-  # Mode: 0 = regular battle with "Run" (first choosable action in the round only)
-  #       1 = regular battle with "Cancel"
-  #       2 = regular battle with "Call" (for Shadow Pokémon battles)
-  #       3 = Safari Zone
-  #       4 = Bug Catching Contest
-  def pbCommandMenuEx(texts,mode=0)
+  def pbCommandMenu()
     pbShowWindow(COMMAND_BOX)
     cw = @sprites["commandWindow"]
-    cw.setTexts(texts)
     ret = -1
     loop do
       oldIndex = cw.index
@@ -180,13 +154,6 @@ class Undertale_Scene
       if Input.trigger?(Input::USE)                 # Confirm choice
         pbPlayDecisionSE
         ret = cw.index
-        break
-      elsif Input.trigger?(Input::BACK) && mode==1   # Cancel
-        pbPlayCancelSE
-        break
-      elsif Input.trigger?(Input::F9) && $DEBUG    # Debug menu
-        pbPlayDecisionSE
-        ret = -2
         break
       end
     end
@@ -361,10 +328,6 @@ class UndertaleMenu
     end
     # @msgBox.z    += 1
     @cmdWindow.z += 1 if @cmdWindow
-  end
-
-  def setTexts(value)
-    # @msgBox.text = value[0]
   end
 
   def refreshButtons
