@@ -788,7 +788,7 @@
 771,UPPERHAND,Upper Hand,000,65,FIGHTING,Physical,100,15,0,NearOther,3,abef,"Nice Smeargle/Ditto, jackass." #todo
 772,VICTORYDANCE,Victory Dance,000,0,FIGHTING,Status,0,10,0,User,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 773,WICKEDBLOW,Wicked Blow,000,75,DARK,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
-774,METEORBEAM,Meteor Beam,000,140,ROCK,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+774,METEORBEAM,Meteor Beam,194,120,ROCK,Special,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 775,CHLOROBLAST,Chloro Blast,000,140,GRASS,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 776,RISINGVOLTAGE,Rising Voltage,000,140,ELECTRIC,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 777,CHILLYRECEPTION,Rising Voltage,000,140,ELECTRIC,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo

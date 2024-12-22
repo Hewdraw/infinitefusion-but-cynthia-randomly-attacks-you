@@ -2847,3 +2847,16 @@ class PokeBattle_Move_193 < PokeBattle_Move
     return false
   end
 end
+
+class PokeBattle_Move_194 < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} is overflowing with space power!",user.pbThis))
+  end
+
+  def pbChargingTurnEffect(user,target)
+    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
+      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+    end
+  end
+end
+
