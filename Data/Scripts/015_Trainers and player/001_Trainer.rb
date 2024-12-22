@@ -84,7 +84,7 @@ class Trainer
   end
 
   def special_name?
-    return ["Cynthia", "Hatsune Miku", "Shadross", "Hewdraw", "Dennis", "Miguel", "Naomi"].include?(@name)
+    return ["Cynthia", "Hatsune Miku", "Shadross", "Hewdraw", "Dennis", "Miguel", "Naomi", "Brock", "Misty", "Lt. Surge", "Erika", "Koga", "Sabrina", "Blaine", "Giovanni"].include?(@name)
   end
 
   #=============================================================================
