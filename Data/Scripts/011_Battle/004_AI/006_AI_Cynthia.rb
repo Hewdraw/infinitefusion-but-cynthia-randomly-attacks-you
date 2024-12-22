@@ -20,7 +20,7 @@ class PokeBattle_AI
       opposingThreat = pbCynthiaAssessThreat(user, target)
       userThreat = pbCynthiaAssessThreat(target, user, false)
       break if userThreat >= 100 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
-      damagethreshold = (100/userThreat).ceil
+      damagethreshold = (100/[userThreat, opposingThreat].max).ceil
       damagethreshold -= 1 if user.pbSpeed > target.pbSpeed
       opposingThreat *= damagethreshold
       maxThreat = opposingThreat + userThreat
@@ -30,7 +30,7 @@ class PokeBattle_AI
         battler.pbInitialize(pokemon,69)
         opposingThreat = pbCynthiaAssessThreat(battler, target)
         userThreat = pbCynthiaAssessThreat(target, battler, false)
-        damagethreshold = (100/userThreat).ceil
+        damagethreshold = (100/[userThreat, opposingThreat].max).ceil
         damagethreshold += 1 if battler.pbSpeed <= target.pbSpeed
         opposingThreat *= damagethreshold
         currentThreat = opposingThreat + userThreat
@@ -597,7 +597,7 @@ class PokeBattle_AI
           end
         when :EXPERTBELT
           if Effectiveness.super_effective?(typeMod)
-            mults[:final_damage_multiplier] *= 1.2
+            multipliers[:final_damage_multiplier] *= 1.2
           end
         else
           BattleHandlers.triggerDamageCalcUserItem(user.item,
