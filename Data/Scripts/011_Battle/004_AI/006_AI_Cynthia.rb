@@ -96,7 +96,7 @@ class PokeBattle_AI
     if currentThreat.length() == statusMoves.length()
       return 33
     end
-    return [[100, maxdamage*100/user.totalhp].min, 1].max
+    return [[100, maxdamage*100/user.totalhp].min(), 1].max()
   end
 
   def pbCynthiaItemScore(idxBattler)
