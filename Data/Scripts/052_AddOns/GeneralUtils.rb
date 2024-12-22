@@ -447,6 +447,7 @@ def get_default_moves_at_level(species, level)
 end
 
 def find_newer_available_version
+  return nil
   latest_Version = fetch_latest_game_version
   return nil if !latest_Version
   return nil if is_higher_version(Settings::GAME_VERSION_NUMBER, latest_Version)
