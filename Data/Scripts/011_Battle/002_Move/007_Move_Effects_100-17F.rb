@@ -2848,15 +2848,10 @@ class PokeBattle_Move_193 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_194 < PokeBattle_TwoTurnMove
-  def pbChargingTurnMessage(user,targets)
-    @battle.pbDisplay(_INTL("{1} is overflowing with space power!",user.pbThis))
-  end
-
-  def pbChargingTurnEffect(user,target)
-    if user.pbCanRaiseStatStage?(:SPECIAL_ATTACK,user,self)
-      user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-    end
+class PokeBattle_Move_194 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if @battle.field.terrain == :Electric && b.affectedByTerrain?
+    return baseDmg
   end
 end
 
