@@ -198,6 +198,10 @@ Pokemon = B12H61,25 #Polifree,
 ############################
 #### ROUTE 7 #############
 ############################
+[DELIVERYMAN,Phillip]
+Pokemon = PIDGEOTTO,27
+Pokemon = B225H327,32 #delibird honedge
+
 
 [SOCIALITE,Edna]
 Pokemon = B136H44,29 #Glooeon,
@@ -512,7 +516,7 @@ Pokemon = B62H42,38 #Golwrath,
 ######TRAINER HOUSE######
 ############################ 
 ####Level 25 challenge ###
-#######SINGLE######
+#######SINGLE######	
 
 [COOLTRAINER_F2,Jessica]
 Pokemon = BULBASAUR,25 
@@ -542,7 +546,7 @@ Pokemon = BULBASAUR,25
 
 
 ####Level 50 challenge ###
-#######SINGLE######
+#######SINGLE######	
 
 [COOLTRAINER_F2,Skyler]
 Pokemon = BULBASAUR,50 
@@ -571,7 +575,7 @@ Pokemon = BULBASAUR,50
 Pokemon = BULBASAUR,50 
 
 ####Level 100 challenge ###
-#######SINGLE######
+#######SINGLE######	
 
 [COOLTRAINER_F2,Melissa]
 Pokemon = BULBASAUR,100 
@@ -721,7 +725,7 @@ Pokemon = B47H123,36 #SCYSECT
 ##########################
 
 [FARMER,Craig]
-Pokemon = B88H83,54 #FARMER
+Pokemon = B88H83,44 #FARMER
 #########################
 
 [FARMER,Dwight]
@@ -1099,7 +1103,7 @@ Pokemon = B46H74,10 #GEORAS
 
 #-------------------
 
-[LASS,Ali]
+[LASS_blue,Ali]
 Pokemon = ABRA,12 
 Pokemon = B21H16,12 #PIROW
 Pokemon = B43H56,12 #MANISH
@@ -1111,7 +1115,7 @@ Pokemon = EKANS,14
 Pokemon = B27H52,14 #MEOWSHREW
 #-------------------
 
-[LASS,Reli]
+[LASS_blue,Reli]
 Pokemon = RATTATA,14 
 Pokemon = B100H109,14 
 #-------------------
@@ -1131,6 +1135,10 @@ Pokemon = EKANS,15
 Pokemon = B41H109,15 
 	Ball = ROCKETBALL
 
+[FISHERMAN,Jack]
+Pokemon = B52H54,14 #Meowth/Psydeuxk
+[FISHERMAN,Tom]
+Pokemon = B39H61,14 #jigglypuff/poliwhirl
 ###################
 #### S.S. ANNE ####
 ###################
@@ -1164,9 +1172,8 @@ Pokemon = B17H118,18 #Golgeotto,
 Pokemon = B32H66,21 #Maran,
 ####################FLOOR 2#######
 
-[FISHERMAN,Dale]
+[FISHERMAN,Ned]
 Pokemon = GOLDEEN,16 
-Pokemon = B129H118,17 #Golkarp,
 Pokemon = B72H129,17 #Magicool,
 #----------------------------------------
 
@@ -1207,7 +1214,7 @@ Pokemon = B72H100,18 #Voltcool,
 #------------------------------------------
 
 [FISHERMAN,Barny]
-Pokemon = KRABBY,17 #Kakby,�
+Pokemon = KRABBY,17 #Kakby,
 Pokemon = SHELLDER,17 #Venoder,
 Pokemon = B120H46,17 #Payu,
 #---------------------------------------
@@ -1245,8 +1252,8 @@ Pokemon = B19H19,17
 #----------------
 
 [YOUNGSTER,Dan]
-Pokemon = B79H46,15 
-Pokemon = B21H60,15 
+Pokemon = B35H60,16	#jigglypuff/poliwag
+
 #----------------
 
 [PICNICKER,Kelsey]
@@ -1272,30 +1279,32 @@ Pokemon = B19H1,14
 Pokemon = B23H96,14 
 #------------------
 
-[LASS,Haley]
+[LASS_blue,Haley]
 Pokemon = ODDISH,13 
 Pokemon = PIDGEY,13 
 Pokemon = B46H43,15 #ODDRAS
 
+
+
+
 ##########Fighting Dojo###########
 
 [BLACKBELT,Hitoshi]
-Pokemon = B56H52,34 
-Pokemon = B127H56,34 
-Pokemon = B67H56,34 
+Pokemon = B56H52,37 		#mankey / meowth
 #-------------------
 
 [CRUSHGIRL,Yoshimi]
-Pokemon = B67H81,39 
+Pokemon = B23H57,37			#ekans / primeape 		
+
+
 #-----------------
 
 [BLACKBELT,Hideki]
-Pokemon = B60H68,38 #poliwag/machamp
+Pokemon = B60H68,38 		#poliwag/machamp
 #-----------------
 
 [CRUSHGIRL,Lucy]
-Pokemon = B57H214,35 
-Pokemon = B62H75,38 
+Pokemon = B62H75,38 	#poliwrath / graveler
 #-----------------
 
 [BLACKBELT,Mike]
@@ -1628,7 +1637,7 @@ Pokemon = B128H111,44 #RHYROS
 
 [BLACKBELT,Kiyo]
 Pokemon = B67H105,48 #MAROCHOKE
-	Item = BLACKBELT
+	Item = BLACKBELT		
 ####################
 
 [ENGINEER,Jason]
@@ -1665,7 +1674,7 @@ Pokemon = B105H105,43 #DMAROWAK
 Pokemon = B31H20,43 #RATQUEEN
 
 ##Cerulean CITY
-[COOLTRAINER_F,Jen]
+[LASS_blue,Jen]
 Pokemon = B80H101,20 #Slowbro/Electrode
 
 #################
@@ -1677,7 +1686,7 @@ Pokemon = B98H90,16
 Pokemon = B116H23,16 
 #---------------
 
-[PICNICKER,Diana]
+[LASS_blue,Diana]
 Pokemon = B50H120,19	 #Starlett
 #######################
 # ECRUTEAK GYM  ##
@@ -2321,15 +2330,15 @@ Pokemon = B122H97,41 #HYPMIME		psych/fairy
 	Item = TWISTEDSPOON
 Pokemon = B197H196,41 #ESREON		psych/DARK
 	Moves = MOONLIGHT,FUTURESIGHT,DARKPULSE,LIGHTSCREEN
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = TWISTEDSPOON
 Pokemon = B80H65,42 #AlaBRO,			psych/water
 	Moves = PSYCHOCUT,SURF,RECOVER,AMNESIA
-	AbilityIndex = 0
+	AbilityIndex = 0			
 	Item = TWISTEDSPOON
 Pokemon = B65H94,45 #GENKAZAM		psych/ghost
 	Moves = DESTINYBOND,SHADOWBALL,PSYCHOCUT,CALMMIND
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = TWISTEDSPOON
 
 [LEADER_Sabrina,Sabrina,1]
@@ -2357,11 +2366,11 @@ Pokemon = B78H44,47 #Gloodash,
 	Item = CHARCOAL
 Pokemon = B59H38,47 #NINENINE
 	Moves = ROAR,FIREFANG,CONFUSERAY,THUNDERFANG
-	AbilityIndex = 0
+	AbilityIndex = 0			
 	Item = CHARCOAL
 Pokemon = B112H126,49 #magmar + rhydon,
 	Moves = FIREPUNCH,DRILLRUN,CONFUSERAY,HAMMERARM
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = PASSHOBERRY
 Pokemon = B142H6,51 #Chardactyl,
 	Moves = CRUNCH,SKYDROP,FIREBLAST,HYPERBEAM
@@ -2391,21 +2400,26 @@ Pokemon = B131H265,50 #Rhyras,
 	AbilityIndex = 1
 	Item = 	SOFTSAND
 	Ball = ULTRABALL
+Pokemon = B131H265,50 #rhydon + lapras
+	Moves = SURF,BULLDOZE,SANDSTORM,SING
+	AbilityIndex = 1
+	Item = 	SMOOTHROCK
+	Ball = ULTRABALL
 
-Pokemon = B51H125,50 #Electatrio,
+Pokemon = B51H125,50 #electabuzz dugtrio,
 	Moves = BULLDOZE,LIGHTSCREEN,THUNDERWAVE,DISCHARGE
 	AbilityIndex = 0
 	Item = 	SOFTSAND
 	Ball = ULTRABALL
 
-Pokemon = B68H76,52 #GOLCHAMP,
+Pokemon = B68H76,52 #golem machamp,
 	Moves = EARTHQUAKE,DYNAMICPUNCH,COUNTER,SCARYFACE
 	AbilityIndex = 0
 	Item = 	SOFTSAND
 	Ball = ULTRABALL
 
-Pokemon = B248H273,54 #DNIDOKING,
-	Moves = EARTHQUAKE,THRASH,MEGAHORN,POISONJAB
+Pokemon = B34H57,54 #	#nidking primeape,
+	Moves = EARTHQUAKE,CLOSECOMBAT,MEGAHORN,SWAGGER
 	AbilityIndex = 1
 	Item = 	SOFTSAND
 	Ball = ULTRABALL
@@ -2990,11 +3004,11 @@ Pokemon = B210H108,55 #LICKIBULL,
 	Item = SILKSCARF
 Pokemon = B171H203,55 #GIRATURN,
 	Moves = SPARK,DOUBLEHIT,POWERSWAP,AQUARING
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = SILKSCARF
 Pokemon = B115H206,56 #DUNSKHAN
 	Moves = DOUBLEHIT,COIL,DIG,DIZZYPUNCH
-	AbilityIndex = 2
+	AbilityIndex = 2	
 	Item = SILKSCARF
 Pokemon = B128H190,56 #AIROS
 	Moves = TICKLE,TAKEDOWN,WORKUP,REST
@@ -3010,11 +3024,11 @@ Pokemon = B210H108,82 #LICKIBULL,
 	Item = SILKSCARF
 Pokemon = B171H203,82 #GIRATURN,
 	Moves = SPARK,DOUBLEHIT,POWERSWAP,AQUARING
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = SILKSCARF
 Pokemon = B115H206,84 #DUNSKHAN
 	Moves = DOUBLEHIT,COIL,DIG,DIZZYPUNCH
-	AbilityIndex = 2
+	AbilityIndex = 2	
 	Item = SILKSCARF
 Pokemon = B128H254,84 #AMBIROS
 	Moves = TICKLE,DOUBLEHIT,WORKUP,REST
@@ -3023,7 +3037,7 @@ Pokemon = B241H113,85 #CHANTANK
 	Moves = METRONOME,REFRESH,ROLLOUT,MILKDRINK
 	Item = EVIOLITE
 Pokemon = B309H299,85 #GARKING
-	AbilityIndex = 1
+	AbilityIndex = 1						
 	Item = SILKSCARF
 ###################
 
@@ -3034,7 +3048,7 @@ Pokemon = B168H15,56 #BEEDOS,
 	Item = SILVERPOWDER
 Pokemon = B91H205,56 #Cloytress,
 	Moves = IRONDEFENSE,SPIKECANNON,EXPLOSION,BUGBITE
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = SILVERPOWDER
 Pokemon = B212H80,58 #Slowzor
 	Moves = RECOVER,PSYCHUP,XSCISSOR,IRONDEFENSE
@@ -3053,7 +3067,7 @@ Pokemon = B168H15,82 #BEEDOS,
 	Item = SILVERPOWDER
 Pokemon = B91H205,85 #Cloytress,
 	Moves = IRONDEFENSE,SPIKECANNON,EXPLOSION,BUGBITE
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = SILVERPOWDER
 Pokemon = B212H80,84 #Slowzor
 	Moves = RECOVER,PSYCHUP,XSCISSOR,IRONDEFENSE
@@ -3072,46 +3086,46 @@ Pokemon = B300H304,84
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B164H178,58 #XATOWL
 	Moves = LUCKYCHANT,PSYCHIC,REFLECT,AIRSLASH
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = SHARPBEAK
 Pokemon = B256H210,58 #GRANKROW
 	Moves = ROAR,FAIRYWIND,NIGHTSLASH,FEATHERDANCE
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = SHARPBEAK
 Pokemon = B229H227,60 #HOUNDMORY
 	Moves = FLAMETHROWER,FAINTATTACK,STEELWING,DEFOG
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = AIRBALLOON
 Pokemon = B269H105,61 #markoiss
 	Moves = BONERUSH,FOCUSENERGY,AIRSLASH,PROTECT
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = SHARPBEAK
 Pokemon = B18H217,63 #URSAm	ory
 	Moves = WINGATTACK,FURYSWIPES,REST,SCARYFACE
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = SHARPBEAK
 
 [LEADER_Falkner,Falkner,1]
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B164H178,82 #XATOWL
 	Moves = LUCKYCHANT,PSYCHIC,REFLECT,AIRSLASH
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = SHARPBEAK
 Pokemon = B256H210,82 #GRANKROW
 	Moves = ROAR,FAIRYWIND,NIGHTSLASH,FEATHERDANCE
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = SHARPBEAK
 Pokemon = B229H227,84 #HOUNDMORY
 	Moves = FLAMETHROWER,FAINTATTACK,STEELWING,DEFOG
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = SHARPBEAK
 Pokemon = B269H105,84 #markoiss
 	Moves = BONERUSH,FOCUSENERGY,AIRSLASH,PROTECT
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = SHARPBEAK
 Pokemon = B18H217,85 #URSAm	ory
 	Moves = WINGATTACK,FURYSWIPES,REST,SCARYFACE
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = SHARPBEAK
 Pokemon = B142H313,85 #DUSKDACTYL
 	Item = SHARPBEAK
@@ -3121,46 +3135,46 @@ Pokemon = B142H313,85 #DUSKDACTYL
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B130H160,62 #FERALIDOS
 	Moves = CRUNCH,FIREFANG,SCREECH,AQUATAIL
-	AbilityIndex = 0
+	AbilityIndex = 0				
 	Item = DRAGONFANG
 Pokemon = B148H232,62 #MAGNANAIR
 	Moves = THUNDERWAVE,DRAGONPULSE,MAGNITUDE,AQUARING
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = DRAGONFANG
 Pokemon = B230H272,63 #GLADRA
 	Moves = ICEBEAM,MIRRORCOAT,SMOKESCREEN,TWISTER
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = DRAGONFANG
 Pokemon = B6H168,63 #ARIAZARD
 	Moves = SPIDERWEB,FLAREBLITZ,PINMISSILE,OUTRAGE
-	AbilityIndex = 2
+	AbilityIndex = 2		
 	Item = DRAGONFANG
 Pokemon = B142H299,66 #GARDACTYL
 	Moves = DUALCHOP,DRAGONDANCE,IRONHEAD,CRUNCH
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = DRAGONFANG
 
 [LEADER_Clair,Clair,1]
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B130H160,82 #FERALIDOS
 	Moves = CRUNCH,FIREFANG,SCREECH,AQUATAIL
-	AbilityIndex = 0
+	AbilityIndex = 0				
 	Item = DRAGONFANG
 Pokemon = B148H232,82 #MAGNANAIR
 	Moves = THUNDERWAVE,DRAGONPULSE,MAGNITUDE,AQUARING
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = DRAGONFANG
 Pokemon = B230H272,84 #GLADRA
 	Moves = ICEBEAM,MIRRORCOAT,SMOKESCREEN,TWISTER
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = DRAGONFANG
 Pokemon = B6H168,84 #ARIAZARD
 	Moves = SPIDERWEB,FLAREBLITZ,PINMISSILE,OUTRAGE
-	AbilityIndex = 2
+	AbilityIndex = 2		
 	Item = DRAGONFANG
 Pokemon = B142H299,85 #GARDACTYL
 	Moves = DUALCHOP,DRAGONDANCE,IRONHEAD,CRUNCH
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = DRAGONFANG
 Pokemon = B278H149,85 #DRAGONPTILE
 	Item = DRAGONFANG
@@ -3170,23 +3184,23 @@ Pokemon = B278H149,85 #DRAGONPTILE
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B338H94,65 #Genroark
 	Moves = MEANLOOK,PURSUIT,SHADOWBALL,CURSE
-	AbilityIndex = 0
+	AbilityIndex = 0					
 	Item = SPELLTAG
 Pokemon = B289H262,63 #Weainja
 	Moves = GRUDGE,NIGHTSLASH,HEALBLOCK,SHADOWSNEAK
-	AbilityIndex = 0
+	AbilityIndex = 0			
 	Item = FOCUSSASH
 Pokemon = B295H36,65 #Cleftomb
 	Moves = CURSE,ATTRACT,MINIMIZE,OMINOUSWIND
-	AbilityIndex = 1
+	AbilityIndex = 1				
 	Item = SPELLTAG
 Pokemon = B329H143,64 #Snorslash
 	Moves = SWORDSDANCE,KINGSSHIELD,BODYSLAM,SHADOWPUNCH
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = LEFTOVERS
 Pokemon = B313H107,67 #Hitnoir
 	Moves = DRAINPUNCH,SHADOWCLAW,BULKUP,THUNDERPUNCH
-	AbilityIndex = 1
+	AbilityIndex = 1			
 	Item = BIGROOT
 ####################
 
@@ -3194,27 +3208,27 @@ Pokemon = B313H107,67 #Hitnoir
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B338H94,84 #Genroark
 	Moves = MEANLOOK,PURSUIT,SHADOWBALL,CURSE
-	AbilityIndex = 0
+	AbilityIndex = 0					
 	Item = SPELLTAG
 Pokemon = B289H262,82 #Weainja
 	Moves = GRUDGE,NIGHTSLASH,HEALBLOCK,SHADOWSNEAK
-	AbilityIndex = 0
+	AbilityIndex = 0			
 	Item = FOCUSSASH
 Pokemon = B295H36,84 #Cleftomb
 	Moves = CURSE,ATTRACT,MINIMIZE,OMINOUSWIND
-	AbilityIndex = 1
+	AbilityIndex = 1				
 	Item = SPELLTAG
 Pokemon = B313H329,84 #Aeginoir
 	Moves = SWORDSDANCE,KINGSSHIELD,MEANLOOK,SHADOWPUNCH
-	AbilityIndex = 1
+	AbilityIndex = 1		
 	Item = SPELLTAG
 Pokemon = B313H107,84 #Hitnoir
 	Moves = DRAINPUNCH,SHADOWCLAW,BULKUP,THUNDERPUNCH
-	AbilityIndex = 1
+	AbilityIndex = 1			
 	Item = BIGROOT
 Pokemon = B94H94,85 #Gengar (mega)
 	Moves = SHADOWBALL,ENERGYBALL,DESTINYBOND,SUCKERPUNCH
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = SPELLTAG
 #####################
 
@@ -3222,23 +3236,23 @@ Pokemon = B94H94,85 #Gengar (mega)
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B199H87,65 #Dewking
 	Moves = NASTYPLOT,BATONPASS,SAFEGUARD,ICESHARD
-	AbilityIndex = 0 
+	AbilityIndex = 0 			
 	Item = LEFTOVERS
 Pokemon = B308H274,64 #Mamodon
 	Moves = HAIL,PROTECT,IRONDEFENSE,EARTHQUAKE
-	AbilityIndex = 1
+	AbilityIndex = 1				
 	Item = ICYROCK
 Pokemon = B262H321,65 #Infervile
 	Moves = CLOSECOMBAT,FLAREBLITZ,ICEPUNCH,NIGHTSLASH
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = NEVERMELTICE
 Pokemon = B91H326,65 #Proboster
 	Moves = ICICLESPEAR,SPIKECANNON,IRONDEFENSE,REST
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = ROCKYHELMET
 Pokemon = B314H124,65 #Jynlord
 	Moves = PSYCHIC,BLIZZARD,SURF,FAKETEARS
-	AbilityIndex = 0
+	AbilityIndex = 0				
 	Item = WISEGLASSES
 #####################
 
@@ -3246,27 +3260,27 @@ Pokemon = B314H124,65 #Jynlord
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B199H87,84 #Dewking
 	Moves = NASTYPLOT,BATONPASS,SAFEGUARD,ICESHARD
-	AbilityIndex = 0 
+	AbilityIndex = 0 			
 	Item = LEFTOVERS
 Pokemon = B308H274,84 #Mamodon
 	Moves = HAIL,PROTECT,IRONDEFENSE,EARTHQUAKE
-	AbilityIndex = 1
+	AbilityIndex = 1				
 	Item = ICYROCK
 Pokemon = B262H321,85 #Infervile
 	Moves = CLOSECOMBAT,FLAREBLITZ,ICEPUNCH,NIGHTSLASH
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = NEVERMELTICE
 Pokemon = B91H326,85 #Proboster
 	Moves = ICICLESPEAR,SPIKECANNON,IRONDEFENSE,REST
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = ROCKYHELMET
 Pokemon = B314H124,85 #Jynlord
 	Moves = PSYCHIC,BLIZZARD,SURF,FAKETEARS
-	AbilityIndex = 0
+	AbilityIndex = 0				
 	Item = WISEGLASSES
 Pokemon = B101H131,86 #Lapode
 	Moves = PERISHSONG,SHEERCOLD,MIRRORCOAT,PROTECT
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = AIRBALLOON
 #####################
 
@@ -3278,19 +3292,19 @@ Pokemon = B85H227,66 #SKARDRIO
 	Item = METALCOAT
 Pokemon = B112H293,67 #METADON
 	Moves = STONEEDGE,MAGNETRISE,METEORMASH,IRONDEFENSE
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = EVIOLITE
 Pokemon = B9H263,66 #MAGNETOISE
 	Moves = IRONDEFENSE,HYDROCANNON,LOCKON,MIRRORSHOT
-	AbilityIndex = 1
+	AbilityIndex = 1		
 	Item = ZOOMLENS
 Pokemon = B331H212,67 #SCISHARP
 	Moves = SWORDSDANCE,NIGHTSLASH,XSCISSOR,FOCUSENERGY
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = RAZORCLAW
 Pokemon = B208H333,68 #AGLIX
 	Moves = EARTHQUAKE,DOUBLEEDGE,HEAVYSLAM,HEADSMASH
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = METALCOAT
 #####################
 
@@ -3302,19 +3316,19 @@ Pokemon = B85H227,84 #SKARDRIO
 	Item = METALCOAT
 Pokemon = B112H293,84 #METADON
 	Moves = STONEEDGE,MAGNETRISE,METEORMASH,IRONDEFENSE
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = EVIOLITE
 Pokemon = B9H263,85 #MAGNETOISE
 	Moves = IRONDEFENSE,HYDROCANNON,LOCKON,MIRRORSHOT
-	AbilityIndex = 1
+	AbilityIndex = 1		
 	Item = ZOOMLENS
 Pokemon = B331H212,84 #SCISHARP
 	Moves = SWORDSDANCE,NIGHTSLASH,XSCISSOR,FOCUSENERGY
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = RAZORCLAW
 Pokemon = B208H333,86 #AGLIX
 	Moves = EARTHQUAKE,DOUBLEEDGE,HEAVYSLAM,HEADSMASH
-	AbilityIndex = 0
+	AbilityIndex = 0	
 	Item = METALCOAT
 Pokemon = B268H329,85 #AEGIMORTAR
 	Moves = FIREPUNCH,SACREDSWORD,AERIALACE,THUNDERPUNCH
@@ -3326,23 +3340,23 @@ Pokemon = B268H329,85 #AEGIMORTAR
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B68H141,62 #KABUCHAMP
 	Moves = DYNAMICPUNCH,WATERFALL,STONEEDGE,SLASH
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = MUSCLEBAND
 Pokemon = B321H281,62 #BLAZNAPE
 	Moves = CLOSECOMBAT,BLAZEKICK,BRAVEBIRD,TAUNT
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = EXPERTBELT
 Pokemon = B57H62,64 #POLIAPE			#POLIAPE
 	Moves = CIRCLETHROW,BELLYDRUM,CLOSECOMBAT,THRASH
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = EXPERTBELT
 Pokemon = B334H296,63 #LUCAGON
 	Moves = AURASPHERE,DRAGONPULSE,DETECT,EARTHPOWER
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = WISEGLASSES
 Pokemon = B143H107,64 #HITMONLAX
 	Moves = REST,DIZZYPUNCH,SKYUPPERCUT,COUNTER
-	AbilityIndex = 1
+	AbilityIndex = 1			
 	Item = LEFTOVERS
 #####################
 
@@ -3350,23 +3364,23 @@ Pokemon = B143H107,64 #HITMONLAX
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B68H141,82 #KABUCHAMP
 	Moves = DYNAMICPUNCH,WATERFALL,STONEEDGE,SLASH
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = MUSCLEBAND
 Pokemon = B321H281,82 #BLAZNAPE
 	Moves = CLOSECOMBAT,BLAZEKICK,BRAVEBIRD,TAUNT
-	AbilityIndex = 0
+	AbilityIndex = 0		
 	Item = EXPERTBELT
 Pokemon = B57H62,84 #POLIAPE			#POLIAPE
 	Moves = CIRCLETHROW,BELLYDRUM,CLOSECOMBAT,THRASH
-	AbilityIndex = 3
+	AbilityIndex = 3		
 	Item = EXPERTBELT
 Pokemon = B334H296,83 #LUCAGON
 	Moves = AURASPHERE,DRAGONPULSE,DETECT,EARTHPOWER
-	AbilityIndex = 1
+	AbilityIndex = 1	
 	Item = WISEGLASSES
 Pokemon = B143H107,84 #HITMONLAX
 	Moves = REST,DIZZYPUNCH,SKYUPPERCUT,COUNTER
-	AbilityIndex = 1
+	AbilityIndex = 1			
 	Item = LEFTOVERS
 Pokemon = B288H273,83 #GLISLADE
 	Moves = SWORDSDANCE,LEAFBLADE,SKYUPPERCUT,DOUBLETEAM
@@ -3393,7 +3407,6 @@ Pokemon = BONSLY,5
 [RIVAL1,Blue,2]
 Pokemon = MEW,5 #bulbmander,
 Pokemon = BONSLY,5
-#################################
 
 #Blue encounter 2 (Viridian)	starter=bulbasaur
 
@@ -3638,26 +3651,24 @@ Pokemon = B132H242,100
 	Moves = TOXIC,COSMICPOWER,SOFTBOILED,TRANSFORM
 	AbilityIndex = 0
 	Item = LEFTOVERS
-
 ####################
 [ROBOT,G.R.E.E.N.]
 Pokemon = B299H94,100 
 	Moves = SWITCHEROO,DISABLE,RECOVER,
 	AbilityIndex = 4
 	Item = CHOICESCARF
-
 ####################
 [ROBOT,Y.E.L.L.O.W.]
 Pokemon = B309H184,100 
 	Moves = HYDROCANNON,GIGAIMPACT,CLOSECOMBAT,EARTHQUAKE
 	AbilityIndex = 4
-	Item = CHOICEBAND
+	Item = CHOICEBAND	
 ####################
 [ROBOT,B.L.U.E.]
 Pokemon = B296H289,100 
 	Moves = ENDEAVOR,VACUUMWAVE,SHADOWSNEAK,
 	AbilityIndex = 1
-	Item = FOCUSSASH
+	Item = FOCUSSASH	
 ####################
 
 [ROBOT,RED_2]
@@ -4097,7 +4108,7 @@ Pokemon = B20H162,42 #FURICATE
 	Ball = ROCKETBALL
 ##########################
 
-[ROCKETEXEC_M,Archer]
+[ROCKETEXEC_Archer,Archer]
 Pokemon = B57H228,44 #HOUNDAPE
 	Ball = ROCKETBALL
 Pokemon = B168H110,44 #WEEZDOS
@@ -4645,7 +4656,6 @@ Pokemon = B19H19,1
 	IV = 31,31,31,31,31,31
 	EV = 4,252,0,252,0,0
 	Happiness = 255
-
 ####################
 
 [YOUNGSTER,Mikey]
@@ -4904,7 +4914,7 @@ Pokemon = B124H272,61 #glisnx
 	Ball = ROCKETBALL
 ######################
 
-[ROCKETEXEC_F,Ariana]
+[ROCKETEXEC_Ariana,Ariana]
 Items = MAXPOTION
 Pokemon = B45H266,65 #VILEGROWTH
 	Ball = ROCKETBALL
@@ -4933,6 +4943,12 @@ Pokemon = B68H331,67 #BICHAMP
 ###########################
 ##	ICE MOUNTAINS   #######
 ###########################
+[DELIVERYMAN2,Klaus]
+Pokemon = B371H182,50	#klefki bellossom
+Pokemon = B339H234,50	#stantler sylveon
+Pokemon = B278H225,50	#sceptile delibird
+Pokemon = B439H448,50	#regice trevenant (b)
+Pokemon = B336H451,50	#salamence stufful
 
 [SKIER_F,Roxanne]
 Pokemon = B124H255,56 #MISMAJYNX
@@ -4962,6 +4978,153 @@ Pokemon = B308H221,52 #PILLODON
 Pokemon = B37H225,47 #VULBIRD
 Pokemon = B38H225,54 #NINEBIRD
 
+####################
+## PINKAN ISLAND ###
+####################
+
+[TEAMROCKET_F,Angelina]
+Pokemon = RATTATA,13
+	Ball = ROCKETBALL
+	
+[POLICE,Graham]
+Pokemon = SNUBBULL,13
+	
+[TEAMROCKET_F,Ellen]
+Pokemon = VENONAT,13
+	Ball = ROCKETBALL
+Pokemon = B493H238,14		#Scraggy - Smoochum
+	Ball = ROCKETBALL
+	
+[POLICE,Ripley]
+Pokemon = STUFFUL,13
+Pokemon = B58H491,14		#Growlithe - Swirlix
+	
+[TEAMROCKET_M,Nathan]
+Pokemon = B109H39,17		#Koffing - Jigglypuff
+	Ball = ROCKETBALL
+	
+[POLICE, Adams]
+Pokemon = B220H259,17		#Swinub - Happiny
+	
+[TEAMROCKET_F,Zoe]
+Pokemon = B215H79,20		#Sneasel - Slowpoke
+	Ball = ROCKETBALL
+	
+[POLICE,Rayne]
+Pokemon = B58H108,20		#Growlithe - Lickitung
+	
+[TEAMROCKET_M,Rufus]
+Pokemon = SNUBBULL,17
+	Ball = ROCKETBALL
+Pokemon = B228H222,18		#Houndour - Corsola
+	Ball = ROCKETBALL
+	
+[POLICE,Clifford]
+Pokemon = SNUBBULL,17
+Pokemon = B463H35,18		#Rockruff - Clefairy
+	
+[TEAMROCKET_M,Michael]
+Pokemon = B23H122,21		#Ekans - Mr. Mime
+	Ball = ROCKETBALL
+	
+[POLICE,Jackson]
+Pokemon = B451H432,21		#Stufful - Oricorio Pa'u
+
+
+	
+	
+	
+#######################Type experts 	#todo: sprinkle some new pokemon in the teams
+[TYPE_EXPERT_ELECTRIC,Ray]	#power plant
+Pokemon = B46H25,30 	#Paras / PIKACHU
+Pokemon = B81H74,30 	#magnemite / geodude
+Pokemon = B33H100,30 	#Nidorino / Voltorb
+Pokemon = B95H239,30 	#Onix / Elekid
+
+
+[TYPE_EXPERT_BUG,Bea]	#Safari Zone
+Pokemon = B102H193,30 	#exeggcute / yanma
+Pokemon = B26H363,30 	#scyther/ heracross
+Pokemon = B64H212,30 	#scizor/ kadabra
+Pokemon = B95H127,30 	#pinsir/ onix
+
+
+[TYPE_EXPERT_FAIRY,Luna]	#mt moon
+Pokemon = B44H35,30		#gloom / clefairy
+Pokemon = B39H32,30		#jigglypuff / nidoranm
+Pokemon = B209H43,30	#snubull / oddish
+Pokemon = B52H176,30	#meowth / togetic
+
+[TYPE_EXPERT_DRAGON,Draco]	#offshore road (40-45)
+Pokemon = B230H371,30 	#kingdra klefki
+Pokemon = B230H371,30 	#kingdra klefki
+Pokemon = B230H371,30 	#kingdra klefki
+
+[TYPE_EXPERT_FIGHTING,Floyd]	#dojo
+Pokemon = B97H456,30	#hypno / hawlucha
+Pokemon = B67H81,30	#machoke / magnemite
+Pokemon = B113H57,30	#chansey / primeape
+Pokemon = B280H153,30	#combusken / bayleef
+
+[TYPE_EXPERT_GROUND,Pedro]	#rock tunnel (range 20-25)
+Pokemon = B74H213,30		#geodude shuckle
+Pokemon = B58H27,30 		#growlithe sandshrew
+Pokemon = B47H392,30 		#parasect trapinch
+Pokemon = B104H183,30 		#cubone marill
+
+[TYPE_EXPERT_FIRE,Blaze]	#cinnabar mansion (40-45)
+Pokemon = B99H488,30 	#kingler torkoal
+Pokemon = B110H219,30 	#magcargo weezing
+Pokemon = B123H430,30 	#scyther oricorio
+Pokemon = B358H126,30 	#rotom magmar
+[TYPE_EXPERT_GRASS,Ivy]	#TBD
+Pokemon = SWINUB,30 
+
+[TYPE_EXPERT_ICE,Crystal]	#seafoam islands (40-45)
+Pokemon = B215H165,30 	#sneasel / seadra
+Pokemon = B424H421,30 	#scolipede / piloswine
+Pokemon = B124H97,30 	#jynx / hypno
+Pokemon = B429H492,30 	#froslass / slurpuff
+
+[TYPE_EXPERT_ROCK,Slate]	#TBD
+Pokemon = SWINUB,30 
+
+[TYPE_EXPERT_WATER,Marina]	#TBD		#route 25 (10-15)
+Pokemon = B100H501,30 	#voltorb / luvdisc
+Pokemon = B37H118,30 	#vulpix goldeen
+Pokemon = B194H134,30 	#vaporeon wooper
+Pokemon = B152H86,30 	#chikorita seel
+
+
+[TYPE_EXPERT_FLYING,Gale]	#TBD
+Pokemon = SWINUB,30 
+
+[TYPE_EXPERT_DARK,Raven]	#TBD
+Pokemon = SWINUB,30 
+
+[TYPE_EXPERT_STEEL,Silvia]	#TBD		#crimson city (30-35)
+Pokemon = B301H397,30		#lileep klink
+Pokemon = B26H371,30		#raichu klefki
+Pokemon = B292H396,30		#metang bagon
+Pokemon = B212H131,30		#scizor lapras
+
+[TYPE_EXPERT_PSYCHIC,Carl]	#TBD
+Pokemon = SWINUB,30
+
+[TYPE_EXPERT_GHOST,Evangeline]	#TBD
+Pokemon = SWINUB,30
+
+[TYPE_EXPERT_POISON,Marie]	#			#Sewers	(25-30)
+Pokemon = B84H454,30			#doduo mareanie
+Pokemon = B401H404,30			#roselia shroomish
+Pokemon = B438H434,30			#phantump trubbish
+Pokemon = B49H28,30			#venomoth sandslash
+
+[TYPE_EXPERT_NORMAL,Tim]	#Sewers		#cerulean (hotel) 10-15
+Pokemon = B43H294,30	#oddish bidood
+Pokemon = B167h451,30	#spinarak stufful
+Pokemon = B21h161,30	#spearow sentret
+Pokemon = B258H260,30	#Mime Jr Munchlax
 
 ##################
 ###################
@@ -9092,14 +9255,3 @@ Pokemon = B132H242,5
 
 
 #eof
-
-
-
-
-
-
-
-
-
-
-

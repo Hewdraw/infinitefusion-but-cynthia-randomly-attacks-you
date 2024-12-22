@@ -1,6 +1,6 @@
 
 module Settings
-  LATEST_GAME_RELEASE = "6.3.0"
+  LATEST_GAME_RELEASE = "6.4.0"
 
   SHINY_POKEMON_CHANCE = 16
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
@@ -16,14 +16,11 @@ module Settings
 
   # CUSTOM SPRITES
   AUTOGEN_SPRITES_REPO_URL = ""
-  
-  CUSTOM_SPRITES_REPO_URL = "https://bitbucket.org/infinitefusionsprites/customsprites/raw/main/CustomBattlers/"
-  CUSTOM_SPRITES_NEW_URL = "https://infinitefusion.net/CustomBattlers/"
-
+  CUSTOM_SPRITES_REPO_URL = ""
+  CUSTOM_SPRITES_NEW_URL = ""
   BASE_POKEMON_SPRITES_REPO_URL = ""
-  
-  BASE_POKEMON_ALT_SPRITES_REPO_URL = "https://bitbucket.org/infinitefusionsprites/customsprites/raw/main/Other/BaseSprites/"
-  BASE_POKEMON_ALT_SPRITES_NEW_URL = "https://infinitefusion.net/Other/BaseSprites/"
+  BASE_POKEMON_ALT_SPRITES_REPO_URL = ""
+  BASE_POKEMON_ALT_SPRITES_NEW_URL = ""
 
   BASE_POKEMON_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_base/"
   CUSTOM_FUSIONS_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_custom/"

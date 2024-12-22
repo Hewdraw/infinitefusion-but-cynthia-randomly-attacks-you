@@ -469,29 +469,29 @@
 464,BRICKMAIL,Brick Mail,Brick Mail,6,50,"Stationery featuring a print of a tough-looking brick pattern. Let a Pokémon hold it for delivery.",0,0,2,
 #-------------------------------
 465,XATTACK,X Attack,X Attacks,7,1000,"An item that sharply boosts the Attack stat of a Pokémon while it remains in battle.",0,3,0,
-466,XATTACK2,XX Attack 2,XX Attacks,7,0,"It sharply raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-467,XATTACK3,XXX Attack 3,XXX Attacks,7,0,"It drastically raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-468,XATTACK6,XXXX Attack 6,XXXX Attacks,7,0,"It raises the Attack stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
+466,XATTACK2,XX Attack,XX Attacks,7,0,"It sharply raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+467,XATTACK3,XXX Attack,XXX Attacks,7,0,"It drastically raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+468,XATTACK6,XXXX Attack,XXXX Attacks,7,0,"It raises the Attack stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
 469,XDEFENSE,X Defense,X Defenses,7,2000,"An item that sharply boosts the Defense of a Pokémon while it remains in battle.",0,3,0,
-470,XDEFENSE2,XX Defense 2,XX Defenses,7,0,"It sharply raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-471,XDEFENSE3,XXX Defense 3,XXX Defenses,7,0,"It drastically raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-472,XDEFENSE6,XXXX Defense 6,XXXX Defenses,7,0,"It raises the Defense stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
+470,XDEFENSE2,XX Defense,XX Defenses,7,0,"It sharply raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+471,XDEFENSE3,XXX Defense,XXX Defenses,7,0,"It drastically raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+472,XDEFENSE6,XXXX Defense,XXXX Defenses,7,0,"It raises the Defense stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
 473,XSPATK,X Sp. Atk,X Sp. Atks,7,1000,"An item that sharply boosts the Sp. Atk stat of a Pokémon while it remains in battle.",0,3,0,
-474,XSPATK2,XX Sp. Atk 2,XX Sp. Atks,7,0,"It sharply raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-475,XSPATK3,XXX Sp. Atk 3,XXX Sp. Atks,7,0,"It drastically raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-476,XSPATK6,XXXX Sp. Atk 6,XXXX Sp. Atks,7,0,"It raises the Sp. Atk stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
+474,XSPATK2,XX Sp. Atk,XX Sp. Atks,7,0,"It sharply raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+475,XSPATK3,XXX Sp. Atk,XXX Sp. Atks,7,0,"It drastically raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+476,XSPATK6,XXXX Sp. Atk,XXXX Sp. Atks,7,0,"It raises the Sp. Atk stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
 477,XSPDEF,X Sp. Def,X Sp. Defs,7,2000,"An item that sharply boosts the Sp. Def stat of a Pokémon while it remains in battle.",0,3,0,
-478,XSPDEF2,XX Sp. Def 2,XX Sp. Defs,7,0,"It sharply raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-479,XSPDEF3,XXX Sp. Def 3,XXX Sp. Defs,7,0,"It drastically raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-480,XSPDEF6,XXXX Sp. Def 6,XXXX Sp. Defs,7,0,"It raises the Sp. Def stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
+478,XSPDEF2,XX Sp. Def,XX Sp. Defs,7,0,"It sharply raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+479,XSPDEF3,XXX Sp. Def,XXX Sp. Defs,7,0,"It drastically raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+480,XSPDEF6,XXXX Sp. Def,XXXX Sp. Defs,7,0,"It raises the Sp. Def stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
 481,XSPEED,X Speed,X Speeds,7,1000,"An item that sharply boosts the Speed stat of a Pokémon while it remains in battle.",0,3,0,
-482,XSPEED2,XX Speed 2,XX Speeds,7,0,"It sharply raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-483,XSPEED3,XXX Speed 3,XXX Speeds,7,0,"It drastically raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-484,XSPEED6,XXXX Speed 6,XXXX Speeds,7,0,"It raises the Speed stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
+482,XSPEED2,XX Speed,XX Speeds,7,0,"It sharply raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+483,XSPEED3,XXX Speed,XXX Speeds,7,0,"It drastically raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+484,XSPEED6,XXXX Speed,XXXX Speeds,7,0,"It raises the Speed stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
 485,XACCURACY,X Accuracy,X Accuracies,7,1000,"An item that sharply boosts the accuracy of a Pokémon while it remains in battle.",0,3,0,
-486,XACCURACY2,XX Accuracy 2,XX Accuracies,7,0,"It sharply raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-487,XACCURACY3,XXX Accuracy 3,XXX Accuracies,7,0,"It drastically raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
-488,XACCURACY6,XXXX Accuracy 6,XXXX Accuracies,7,0,"It raises the accuracy of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
+486,XACCURACY2,XX Accuracy,XX Accuracies,7,0,"It sharply raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+487,XACCURACY3,XXX Accuracy,XXX Accuracies,7,0,"It drastically raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.",0,3,0,
+488,XACCURACY6,XXXX Accuracy,XXXX Accuracies,7,0,"It raises the accuracy of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.",0,3,0,
 489,DIREHIT,Dire Hit,Dire Hits,7,1000,"An item that raises the critical-hit ratio greatly. It wears off if the Pokémon is withdrawn.",0,3,0,
 490,DIREHIT2,Super Dire Hit,Super Dire Hits,7,0,"It sharply raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.",0,3,0,
 491,DIREHIT3,Hyper Dire Hit,Hyper Dire Hits,7,0,"It greatly raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.",0,3,0,
@@ -569,7 +569,7 @@
 561,OLDBOOT,Old Boot,Old Boots,1,100,"An old, worn-out leather boot. It's trash, but someone might like it...",1,1,0,
 562,INFINITESPLICERS,Infinite Splicers,Infinite Splicers,8,0,"Fuses the DNA of two Pokémon to create a new species. Can be reused as many times as you like.",5,0,6,
 563,EXPALL,Exp. All,Exp. Alls,8,0,"An item that can be used to share experience gained with every party member.",2,0,6,
-564,OAKSPARCEL,"Oak's Parcel","Oak's Parcels",8,0,"A mysterious parcel for Professor Oak.",0,0,6,
+564,OAKSPARCEL,"Parcel","Parcels",8,0,"A mysterious parcel that is meant to be delivered to someone.",0,0,6,
 565,POWERPLANTKEY,Power Plant Key,Power Plant Keys,8,0,"A key to the abandonned power plant on Route 10.",0,0,6,
 566,DAMAGEUP,unknown_item,unknown_items,2,2,This item has been removed from the game. It can be safely sold or deleted.,1,0,0,
 567,ACCURACYUP,unknown_item,unknown_items,2,2,This item has been removed from the game. It can be safely sold or deleted.1,0,0,
@@ -663,7 +663,7 @@
 655,TM118,TM118,TM118s,4,30000,"The target is hit with wings of steel. It may also raise the user's Defense stat.",3,0,0,STEELWING
 656,TM119,TM119,TM119s,4,30000,"The user attacks driven by frustration. Power increases if the user's previous move failed.",3,0,0,STOMPINGTANTRUM
 657,TM120,TM120,TM120s,4,30000,"The user attacks the target's throat. The target cannot use sound-based moves for two turns.",3,0,0,THROATCHOP
-658,TM00,TM00,TM00s,4,0,"A strange TM developped by Team Rocket. It appears to be related to Pokémon fusion.",3,0,0,FUSIONSWAP
+658,TM00,TM00,TM00s,4,20000,"It looks just like a regular TM, but it doesn't do anything.",3,0,0,FAKEMOVE
 659,TM121,TM121,TM121s,4,10000,"The user shoots boiling hot water at its target. It may also leave the target with a burn.",3,0,0,SCALD
 660,LINKINGCORD,Linking Cord,Linking Cords,1,6000,"A cable exuding a mysterious energy. It’s loved by certain Pokémon.",1,0,7,
 661,INVISIBALL,Invisiball,Invisiball,3,200,"A Pokéball that is completely invisble to the human eye. You shouldn't be able to obtain this item",0,4,4,
@@ -674,12 +674,12 @@
 666,SAFETYGOGGLES,Safety Goggles,Safety Goggles,1,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0,
 667,PROTECTIVEPADS,Protective Pads,Protective Pads,1,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0,
 668,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,1,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0,
-669,ELECTRICSEED,Electric Seed,Electric Seeds,1,4000,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain. It can only be used once.",0,0,0,
-670,PSYCHICSEED,Psychic Seed,Psychic Seeds,1,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain. It can only be used once.",0,0,0,
-671,MISTYSEED,Misty Seed,Misty Seeds,1,4000,"An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain. It can only be used once.",0,0,0,
-672,GRASSYSEED,Grassy Seed,Grassy Seeds,1,4000,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain. It can only be used once.",0,0,0,
-673,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,1,4000,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack. It can only be used once.",0,0,0,
-674,SNOWBALL,Snowball,Snowballs,1,4000,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack. It can only be used once.",0,0,0,
+669,ELECTRICSEED,Electric Seed,Electric Seeds,1,500,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain. It can only be used once.",0,0,0,
+670,PSYCHICSEED,Psychic Seed,Psychic Seeds,1,500,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain. It can only be used once.",0,0,0,
+671,MISTYSEED,Misty Seed,Misty Seeds,1,500,"An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain. It can only be used once.",0,0,0,
+672,GRASSYSEED,Grassy Seed,Grassy Seeds,1,500,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain. It can only be used once.",0,0,0,
+673,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,1,500,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack. It can only be used once.",0,0,0,
+674,SNOWBALL,Snowball,Snowballs,1,500,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack. It can only be used once.",0,0,0,
 675,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,1,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0,
 676,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,1,300,"An item to be held by a Pokémon. It boosts Speed when intimidated. It can be used only once.",0,0,0,
 677,DEBUGCANDY,Unknown item,Unknown items,2,0,"This item has been removed from the game. It can safely be sold or deleted.",0,0,8,
@@ -692,22 +692,28 @@
 684,SLEEPINGBAG,Sleeping Bag,Sleeping Bag,8,0,"A handy sleeping bag that can be used to sleep anywhere.",2,0,6,
 685,LUNARFEATHER,Lunar Feather,Lunar Feathers,8,0,"A feather that glows like the moon. It's said to possess the power to dispel nightmares. ",2,0,6,
 686,CORRUPTEDFEATHER,Corrupted Feather,Lunar Feathers,8,0,"A lunar feather that has been corrupted. It's said to possess the power to cause nightmares. ",2,0,6,
-687,EJECTPACK,Eject Pack,Eject Packs,1,0,"",0,0,0
-688,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"",0,0,0
-689,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"",0,0,0
-690,GARCHOMPITE,Garchompite,Garchompites,1,0,"",0,0,0
-691,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
-692,LUCARIONITE,Lucarionite,Lucarionites,1,0,"",0,0,0
-693,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"",0,0,0
-694,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
-695,MAWILITE,Mawilite,Mawilites,1,0,"",0,0,0
-696,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,
-697,METAGROSSITE,Metagrossite,Metagrossites,1,0,"",0,0,0
-698,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"",0,0,0
-699,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"",0,0,0
-700,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"",0,0,0
-701,ALTACHOMPITE,Altachompite,Altachompites,1,0,"",0,0,0
-702,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,0,"Washing Machines like these. Oddly ephemeral.",0,0,0
+687,BEDROOMKEY,Bedroom Key,Bedroom Keys,8,0,"A key that unlocks a secret door in the Lavender Town Pokémon House",0,0,6,
+688,ROCKETUNIFORM,Rocket Uniform,Rocket Uniforms,8,0,"The full uniform that every Team Rocket grunt wears. Putting it on might get you some odd looks...",2,0,6,
+689,WHIPPEDDREAM,Whipped Dream,Whipped Dreams,1,2000,"A soft and sweet treat made of fluffy, puffy and whirled cream. It's loved by a certain Pokémon.",0,0,0,
+690,LIFTKEY,Lift Key,Lift Keys,8,0,"A key that operates the elevator in the Team Rocket Hideout. It bears the Team Rocket logo.",0,0,6,
+691,PINKANBERRY,Pinkan Berry,Pinkan Berries,5,0,"A type of Berry that is only found on Pinkan Island. This berry turns Pokémon that eats it pink.",0,0,5,
+692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6,
+693,EJECTPACK,Eject Pack,Eject Packs,1,0,"",0,0,0
+694,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"",0,0,0
+695,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"",0,0,0
+696,GARCHOMPITE,Garchompite,Garchompites,1,0,"",0,0,0
+697,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
+698,LUCARIONITE,Lucarionite,Lucarionites,1,0,"",0,0,0
+699,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"",0,0,0
+700,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
+701,MAWILITE,Mawilite,Mawilites,1,0,"",0,0,0
+702,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,
+703,METAGROSSITE,Metagrossite,Metagrossites,1,0,"",0,0,0
+704,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"",0,0,0
+705,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"",0,0,0
+706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"",0,0,0
+707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"",0,0,0
+708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,0,"Washing Machines like these. Oddly ephemeral.",0,0,0
 
 
 
