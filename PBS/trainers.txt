@@ -2164,14 +2164,37 @@ Pokemon = B31H28,51 #nidoqueen + Sandslash
 #######GYMS#####
 ###################
 
-[LEADER_Brock,Brock]
-Pokemon = B16H74,9 #geogey
-	Moves = GUST,SANDATTACK,ROCKTOMB,ROCKPOLISH
-	AbilityIndex = 0
-Pokemon = B95H50,12 #digix
-	Moves = ROCKTOMB,BIND,DIG,RAGE
-#####P11195,12,FOCUSSASH,SANDATTACK,ROCKPOLISH,ROCKSLIDE,GUST,0		#Speardude
-#####P14405,14,ORANBERRY,ROCKSLIDE,BIND,WATERGUN,HYPNOSIS,1		#Polinix
+[LEADER_Brock,Brock,0]	
+Pokemon = AGEODUDE,5	
+	Offset = 1
+	Moves = EXPLOSION,SANDSTORM
+	Ability = GALVANIZE
+	Item = SMOOTHROCK
+	Gender = F
+	Nature = ADAMANT
+	IV = 8,8,8,8,8,8
+	EV = 32,0,0,0,0,0
+	Happiness = 255
+Pokemon = OMANYTE,5	
+	Offset = 0
+	Moves = SHELLSMASH,BUBBLEBEAM
+	Ability = WEAKARMOR
+	Item = FOCUSSASH
+	Gender = F
+	Nature = MODEST
+	IV = 8,8,8,8,8,8
+	EV = 0,0,0,0,32,0
+	Happiness = 255
+Pokemon = ONIX,5	
+	Offset = 3
+	Moves = BODYPRESS,BULLDOZE
+	Ability = STURDY
+	Item = ASSAULTVEST
+	Gender = F
+	Nature = IMPISH
+	IV = 8,8,8,8,8,8
+	EV = 0,0,32,0,0,0
+	Happiness = 255
 
 [LEADER_Brock,Brock,1]
 Items = FULLRESTORE,FULLRESTORE
@@ -2189,16 +2212,37 @@ Pokemon = B308H142,70 #AERODON
 	Item = HARDSTONE
 ###################
 
-[LEADER_Misty,Misty]
-Items = SUPERPOTION
-Pokemon = B118H39,19 #jigglydeen
-	Moves = WATERPULSE,DISARMINGVOICE,SING,HORNATTACK
-	AbilityIndex = 1
-	Item = MYSTICWATER
-Pokemon = B120H43,22 #Staryu-oddish,
-	Moves = WATERPULSE,RECOVER,MEGADRAIN,STUNSPORE
-	AbilityIndex = 3
-	Item = MYSTICWATER
+[LEADER_Misty,Misty,0]	
+Pokemon = PSYDUCK,5	
+	Offset = 2
+	Moves = RAINDANCE,PSYBEAM,CHILLINGWATER
+	Ability = SWIFTSWIM
+	Item = EVIOLITE
+	Gender = F
+	Nature = MODEST
+	IV = 8,8,8,8,8,8
+	EV = 64,0,0,0,0,0
+	Happiness = 255
+Pokemon = CHINCHOU,5	
+	Offset = 2
+	Moves = ICYWIND,ELECTROWEB,BUBBLEBEAM
+	Ability = VOLTABSORB
+	Item = LEFTOVERS
+	Gender = F
+	Nature = BOLD
+	IV = 8,8,8,8,8,8
+	EV = 64,0,0,0,0,0
+	Happiness = 255
+Pokemon = STARMIE,5	
+	Offset = 0
+	Moves = METEORBEAM,BRINE,PSYBEAM
+	Ability = ILLUMINATE
+	Item = POWERHERB
+	Gender = F
+	Nature = MODEST
+	IV = 8,8,8,8,8,8
+	EV = 0,0,0,0,64,0
+	Happiness = 255
 
 [LEADER_Misty,Misty,1]
 Items = FULLRESTORE,FULLRESTORE
@@ -2216,20 +2260,37 @@ Pokemon = B130H299,71 #GARDOS
 	Item = MYSTICWATER
 ###################
 
-[LEADER_Surge,Lt. Surge]
-Items = SUPERPOTION,SUPERPOTION
-Pokemon = B98H100,24 #voltby,
-	Moves = METALCLAW,BUBBLE,LIGHTSCREEN,SPARK
-	AbilityIndex = 1 
-	Item = MAGNET
-Pokemon = B50H25,24 #diglet + pikachu,
-	Moves = SANDATTACK,MUDSLAP,QUICKATTACK,THUNDERSHOCK
-	AbilityIndex = 1 
-	Item = MAGNET
-Pokemon = B125H26,26 #raibuzz,
-	Moves = THUNDERPUNCH,THUNDERWAVE,QUICKATTACK,DOUBLETEAM
-	AbilityIndex = 0 
+[LEADER_Surge,Lt. Surge,0]	
+Pokemon = HELECTRODE,5	
+	Offset = 2
+	Moves = CHLOROBLAST,ELECTRICTERRAIN,VOLTSWITCH
+	Ability = STATIC
+	Item = TERRAINEXTENDER
+	Gender = F
+	Nature = TIMID
+	IV = 16,16,16,16,16,16
+	EV = 96,0,0,0,0,0
+	Happiness = 255
+Pokemon = LANTURN,5	
+	Offset = 0
+	Moves = RISINGVOLTAGE,ICEBEAM,CHILLINGWATER
+	Ability = WATERABSORB
 	Item = SITRUSBERRY
+	Gender = F
+	Nature = ADAMANT
+	IV = 16,16,16,16,16,16
+	EV = 96,0,0,0,0,0
+	Happiness = 255
+Pokemon = ARAICHU,5	
+	Offset = 1
+	Moves = RISINGVOLTAGE,PSYSHOCK,SURF
+	Ability = SURGESURFER
+	Item = ASSAULTVEST
+	Gender = F
+	Nature = TIMID
+	IV = 16,16,16,16,16,16
+	EV = 0,0,0,0,96,0
+	Happiness = 255
 
 [LEADER_Surge,Lt. Surge,1]
 Items = FULLRESTORE,FULLRESTORE
@@ -2247,20 +2308,47 @@ Pokemon = B254H181,70 #AMPHAPOM
 	Item = MAGNET
 ###################
 
-[LEADER_Erika,Erika,0]
-Items = HYPERPOTION
-Pokemon = B84H103,33 #DODUO EXEGGUTOR,
-	Moves = PLUCK,FURYATTACK,SEEDBOMB,HYPNOSIS
-	AbilityIndex = 1
-	Item = MIRACLESEED
-Pokemon = B57H114,33 #PRIMEAPE TANGELA
-	Moves = ANCIENTPOWER,SEISMICTOSS,MEGADRAIN,SLEEPPOWDER
-	AbilityIndex = 0
-	Item = MIRACLESEED
-Pokemon = B71H45,35 #VILEPLUME VICTREEBELL,
-	Moves = SYNTHESIS,SUNNYDAY,SOLARBEAM,POISONPOWDER
-	AbilityIndex = 4
-	Item = 	SITRUSBERRY
+[LEADER_Erika,Erika,0]	
+Pokemon = JUMPLUFF,5	
+	Offset = 2
+	Moves = UTURN,SUNNYDAY,STRENGTHSAP
+	Ability = CHLOROPHYLL
+	Item = HEATROCK
+	Gender = F
+	Nature = JOLLY
+	IV = 16,16,16,16,16,16
+	EV = 128,0,0,0,0,0
+	Happiness = 255
+Pokemon = AEXEGGUTOR,5	
+	Offset = 0
+	Moves = SUNNYDAY,DRAGONPULSE,FLAMETHROWER
+	Ability = HARVEST
+	Item = SITRUSBERRY
+	Gender = F
+	Nature = MODEST
+	IV = 16,16,16,16,16,16
+	EV = 128,0,0,0,0,0
+	Happiness = 255
+Pokemon = VICTREEBEL,5	
+	Offset = 2
+	Moves = SOLARBEAM,SLUDGEWAVE,SYNTHESIS
+	Ability = CHLOROPHYLL
+	Item = LIFEORB
+	Gender = F
+	Nature = MODEST
+	IV = 16,16,16,16,16,16
+	EV = 0,0,0,0,128,0
+	Happiness = 255
+Pokemon = B266H182,5	
+	Offset = 2
+	Moves = SWORDSDANCE,LEAFBLADE,DRAINPUNCH
+	Ability = CHLOROPHYLL
+	Item = FIGHTINGGEM
+	Gender = F
+	Nature = JOLLY
+	IV = 16,16,16,16,16,16
+	EV = 0,128,0,0,0,0
+	Happiness = 255
 
 [LEADER_Erika,Erika,2]
 Items = FULLRESTORE,FULLRESTORE
@@ -2286,25 +2374,47 @@ Pokemon = B102H44,30 #GLOOCUTE,
 Pokemon = IVYSAUR,30 
 ###################
 
-[LEADER_Koga,Koga]
-Items = HYPERPOTION
-
-Pokemon = B88H49,35 #Grimer + Venomoth,
-	Moves = SIGNALBEAM,SLUDGEBOMB,FLING,DISABLE
-	AbilityIndex = 1
-	Item = POISONBARB
-Pokemon = B109H81,36 #magnemite + koffing
-	Moves = SLUDGEBOMB,SELFDESTRUCT,SONICBOOM,SUPERSONIC
-	AbilityIndex = 0
-	Item = 	POISONBARB
-Pokemon = B123H15,36 # scyther + beedrill,
-	Moves = AGILITY,PINMISSILE,POISONJAB,TOXICSPIKES
-	AbilityIndex = 0
-	Item = POISONBARB
-Pokemon = B89H113,38 #muk + chansey,
-	Moves = TOXIC,DOUBLETEAM,TAKEDOWN,ACIDARMOR
-	AbilityIndex = 1 
+[LEADER_Koga,Koga,0]	
+Pokemon = TOXICROAKSKUNTANK,5	
+	Offset = 4
+	Moves = TOXICSPIKES,TAILSLAP,DRAINPUNCH
+	Ability = STENCH
+	Item = LOADEDDICE
+	Gender = F
+	Nature = JOLLY
+	IV = 24,24,24,24,24,24
+	EV = 0,0,0,160,0,0
+	Happiness = 255
+Pokemon = CROBAT,5	
+	Offset = 2
+	Moves = UTURN,BRAVEBIRD,ROOST
+	Ability = INNERFOCUS
 	Item = BLACKSLUDGE
+	Gender = F
+	Nature = JOLLY
+	IV = 24,24,24,24,24,24
+	EV = 160,0,0,0,0,0
+	Happiness = 255
+Pokemon = AMUK,5	
+	Offset = 2
+	Moves = DRAINPUNCH,POISONJAB,KNOCKOFF
+	Ability = POISONTOUCH
+	Item = ASSAULTVEST
+	Gender = F
+	Nature = CAREFUL
+	IV = 24,24,24,24,24,24
+	EV = 160,0,0,0,0,0
+	Happiness = 255
+Pokemon = B49H73,5	
+	Offset = 2
+	Moves = QUIVERDANCE,SCALD,SLUDGEWAVE
+	Ability = TINTEDLENS
+	Item = BUNDLEOFBALLOONS
+	Gender = F
+	Nature = MODEST
+	IV = 24,24,24,24,24,24
+	EV = 0,0,0,0,160,0
+	Happiness = 255
 
 [LEADER_Koga,Koga,1]
 Items = FULLRESTORE,FULLRESTORE
@@ -2322,24 +2432,56 @@ Pokemon = B24H195,68 #ESPBOK
 	Item = POISONBARB
 ###################
 
-[LEADER_Sabrina,Sabrina]
-Items = MAXPOTION,MAXPOTION
-Pokemon = B122H97,41 #HYPMIME		psych/fairy
-	Moves = NASTYPLOT,BATONPASS,HYPNOSIS,PSYCHIC
-	AbilityIndex = 0
-	Item = TWISTEDSPOON
-Pokemon = B197H196,41 #ESREON		psych/DARK
-	Moves = MOONLIGHT,FUTURESIGHT,DARKPULSE,LIGHTSCREEN
-	AbilityIndex = 0	
-	Item = TWISTEDSPOON
-Pokemon = B80H65,42 #AlaBRO,			psych/water
-	Moves = PSYCHOCUT,SURF,RECOVER,AMNESIA
-	AbilityIndex = 0			
-	Item = TWISTEDSPOON
-Pokemon = B65H94,45 #GENKAZAM		psych/ghost
-	Moves = DESTINYBOND,SHADOWBALL,PSYCHOCUT,CALMMIND
-	AbilityIndex = 1	
-	Item = TWISTEDSPOON
+[LEADER_Sabrina,Sabrina,0]	
+Pokemon = B293H196,5	
+	Offset = 0
+	Moves = BADDYBAD,GLITZYGLOW,FLASHCANNON
+	Ability = MAGICBOUNCE
+	Item = LIGHTCLAY
+	Gender = F
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,192,0,0
+	Happiness = 255
+Pokemon = SLOWKING,5	
+	Offset = 2
+	Moves = CHILLYRECEPTION,SCALD,THUNDERWAVE
+	Ability = REGENERATOR
+	Item = COLBURBERRY
+	Gender = F
+	Nature = SASSY
+	IV = 31,31,31,31,31,31
+	EV = 192,0,0,0,0,0
+	Happiness = 255
+Pokemon = SIGILYPH,5	
+	Offset = 1
+	Moves = ROOST,COSMICPOWER,STOREDPOWER
+	Ability = MAGICGUARD
+	Item = LEFTOVERS
+	Gender = F
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 192,0,0,0,0,0
+	Happiness = 255
+Pokemon = WOBBUFFET,5	
+	Offset = -2
+	Moves = COUNTER,MIRRORCOAT,DESTINYBOND
+	Ability = SHADOWTAG
+	Item = CUSTAPBERRY
+	Gender = F
+	Nature = CALM
+	IV = 31,31,31,31,31,31
+	EV = 192,0,0,0,0,0
+	Happiness = 255
+Pokemon = B65H150,5	
+	Offset = 0
+	Moves = SHADOWBALL,AURASPHERE,PSYSTRIKE
+	Ability = MAGICGUARD
+	Item = LIFEORB
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 192,0,0,0,0,0
+	Happiness = 255
 
 [LEADER_Sabrina,Sabrina,1]
 Items = FULLRESTORE,FULLRESTORE
@@ -2358,24 +2500,57 @@ Pokemon = B296H196,70 #ESPRIO
 
 ###################
 
-[LEADER_Blaine,Blaine]
-Items = FULLRESTORE
-Pokemon = B78H44,47 #Gloodash,
-	Moves = SUNNYDAY,SOLARBEAM,FLAMETHROWER,TOXIC
-	AbilityIndex = 1
-	Item = CHARCOAL
-Pokemon = B59H38,47 #NINENINE
-	Moves = ROAR,FIREFANG,CONFUSERAY,THUNDERFANG
-	AbilityIndex = 0			
-	Item = CHARCOAL
-Pokemon = B112H126,49 #magmar + rhydon,
-	Moves = FIREPUNCH,DRILLRUN,CONFUSERAY,HAMMERARM
-	AbilityIndex = 0	
-	Item = PASSHOBERRY
-Pokemon = B142H6,51 #Chardactyl,
-	Moves = CRUNCH,SKYDROP,FIREBLAST,HYPERBEAM
-	AbilityIndex = 0
-	Item = CHARCOAL
+[LEADER_Blaine,Blaine,0]	
+Pokemon = NINETALES,5	
+	Offset = 1
+	Moves = SCORCHINGSANDS,WEATHERBALL,SOLARBEAM,OVERHEAT
+	Ability = DROUGHT
+	Item = EJECTPACK
+	Gender = F
+	Nature = MODEST
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,224,0,0
+	Happiness = 255
+Pokemon = TORKOALMAGMORTAR,5	
+	Offset = 1
+	Moves = SHELLSMASH,SEARINGSHOT,EARTHPOWER,SOLARBEAM
+	Ability = DROUGHT
+	Item = WHITEHERB
+	Gender = F
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,224,0,0
+	Happiness = 255
+Pokemon = CHARIZARD,5	
+	Offset = 3
+	Moves = SOLARBEAM,DRAGONPULSE,HEATWAVE,AIRSLASH
+	Ability = SOLARPOWER
+	Item = LIFEORB
+	Gender = F
+	Nature = JOLLY
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,224,0,0
+	Happiness = 255
+Pokemon = ROTOMMOWMAGCARGO,5	
+	Offset = 1
+	Moves = SHELLSMASH,LAVAPLUME,EARTHPOWER,SOLARBEAM
+	Ability = WEAKARMOR
+	Item = WHITEHERB
+	Gender = F
+	Nature = MODEST
+	IV = 31,31,31,31,31,31
+	EV = 224,0,0,0,0,0
+	Happiness = 255
+Pokemon = B136H59,5	
+	Offset = 2
+	Moves = SIZZLYSLIDE,SAPPYSEED,EXTREMESPEED,PLAYROUGH
+	Ability = INTIMIDATE
+	Item = ASSAULTVEST
+	Gender = F
+	Nature = ADAMANT
+	IV = 31,31,31,31,31,31
+	EV = 224,0,0,0,0,0
+	Happiness = 255
 
 [LEADER_Blaine,Blaine,1]
 Items = FULLRESTORE,FULLRESTORE
@@ -2393,42 +2568,73 @@ Pokemon = B268H302,71 #CRAMORTAR
 	Item = CHARCOAL
 ###################
 
-[LEADER_Giovanni,Giovanni,0]
-Items = FULLRESTORE,FULLRESTORE,FULLRESTORE
-Pokemon = B131H265,50 #Rhyras,
-	Moves = SURF,BULLDOZE,SANDSTORM,SING
-	AbilityIndex = 1
-	Item = 	SOFTSAND
-	Ball = ULTRABALL
-Pokemon = B131H265,50 #rhydon + lapras
-	Moves = SURF,BULLDOZE,SANDSTORM,SING
-	AbilityIndex = 1
-	Item = 	SMOOTHROCK
-	Ball = ULTRABALL
-
-Pokemon = B51H125,50 #electabuzz dugtrio,
-	Moves = BULLDOZE,LIGHTSCREEN,THUNDERWAVE,DISCHARGE
-	AbilityIndex = 0
-	Item = 	SOFTSAND
-	Ball = ULTRABALL
-
-Pokemon = B68H76,52 #golem machamp,
-	Moves = EARTHQUAKE,DYNAMICPUNCH,COUNTER,SCARYFACE
-	AbilityIndex = 0
-	Item = 	SOFTSAND
-	Ball = ULTRABALL
-
-Pokemon = B34H57,54 #	#nidking primeape,
-	Moves = EARTHQUAKE,CLOSECOMBAT,MEGAHORN,SWAGGER
-	AbilityIndex = 1
-	Item = 	SOFTSAND
-	Ball = ULTRABALL
-
-Pokemon = B143H112,54 #snordon,
-	Moves = EARTHQUAKE,REST,SNORE,HORNDRILL
-	AbilityIndex = 0
-	Item = 	SOFTSAND
-	Ball = ULTRABALL
+[LEADER_Giovanni,Giovanni,0]	
+Items = FULLRESTORE,FULLRESTORE	
+Pokemon = RHYDONHIPPOWDON,5	
+	Offset = -2
+	Moves = SLACKOFF,EARTHQUAKE,TOXIC,STEALTHROCK
+	Ability = SANDSTREAM
+	Item = EVIOLITE
+	Gender = F
+	Nature = CAREFUL
+	IV = 31,31,31,31,31,31
+	EV = 252,0,4,0,0,252
+	Happiness = 0
+	Ball = MASTERBALL
+Pokemon = SANDSLASHAMAROWAK,5	
+	Offset = -2
+	Moves = THOUSANDARROWS,FLAREBLITZ,SWORDSDANCE,KNOCKOFF
+	Ability = SANDRUSH
+	Item = THICKCLUB
+	Gender = F
+	Nature = JOLLY
+	IV = 31,31,31,31,31,31
+	EV = 4,252,0,252,0,0
+	Happiness = 0
+	Ball = MASTERBALL
+Pokemon = B208H361,5	
+	Offset = -2
+	Moves = BODYPRESS,DIAMONDSTORM,KNOCKOFF,EARTHQUAKE
+	Ability = INTIMIDATE
+	Item = ASSAULTVEST
+	Gender = F
+	Nature = IMPISH
+	IV = 31,31,31,31,31,31
+	EV = 252,0,252,0,0,4
+	Happiness = 0
+	Ball = MASTERBALL
+Pokemon = B299H273,5	
+	Offset = -2
+	Moves = EARTHQUAKE,FACADE,ROOST,SWORDSDANCE
+	Ability = POISONHEAL
+	Item = TOXICORB
+	Gender = F
+	Nature = JOLLY
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,0,4
+	Happiness = 0
+	Ball = MASTERBALL
+Pokemon = B34H103,5	
+	Offset = -2
+	Moves = EARTHPOWER,ENERGYBALL,ICEBEAM,THUNDERBOLT
+	Ability = SHEERFORCE
+	Item = LIFEORB
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 4,0,0,252,252,0
+	Happiness = 0
+	Ball = MASTERBALL
+Pokemon = MEWTWOMEWTWO,5	
+	Offset = -1
+	Moves = DRAINPUNCH,DREAMEATER,EARTHQUAKE,HEX
+	Ability = PRESSURE
+	Item = MEWTWONITE
+	Gender = F
+	Nature = JOLLY
+	IV = 31,31,31,31,31,31
+	EV = 252,0,4,252,0,0
+	Happiness = 0
+	Ball = MASTERBALL
 
 [LEADER_Giovanni,Giovanni,1]
 Items = FULLRESTORE,FULLRESTORE

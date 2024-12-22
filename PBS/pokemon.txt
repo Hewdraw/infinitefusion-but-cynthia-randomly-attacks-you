@@ -19256,7 +19256,249 @@ BaseStats = 83,112,75,61,92,70
 Abilities = LEVITATE
 Moves = 1,TACKLE
 Shape = Head
-
+#-------------------------------
+[1000812]
+Name = Geodude
+InternalName = AGEODUDE
+Type1 = ROCK
+Type2 = ELECTRIC
+BaseStats = 40,80,100,20,30,30
+GenderRate = Female50Percent
+GrowthRate = Parabolic
+BaseEXP = 60
+EffortPoints = 0,0,1,0,0,0
+Rareness = 255
+Happiness = 70
+Abilities = STURDY,ROCKHEAD
+HiddenAbility = SANDVEIL
+Moves = 1,TACKLE,1,DEFENSECURL,4,MUDSPORT,6,ROCKPOLISH,10,ROLLOUT,12,MAGNITUDE,16,ROCKTHROW,18,SMACKDOWN,22,BULLDOZE,24,SELFDESTRUCT,28,STEALTHROCK,30,ROCKBLAST,34,EARTHQUAKE,36,EXPLOSION,40,DOUBLEEDGE,42,STONEEDGE
+TutorMoves = ATTRACT,BLOCK,BRICKBREAK,BULLDOZE,CONFIDE,DOUBLETEAM,EARTHPOWER,EARTHQUAKE,EXPLOSION,FACADE,FIREBLAST,FIREPUNCH,FLAMETHROWER,FLING,FOCUSPUNCH,FRUSTRATION,GYROBALL,HIDDENPOWER,IRONDEFENSE,NATUREPOWER,POWERUPPUNCH,PROTECT,REST,RETURN,ROCKPOLISH,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SLEEPTALK,SMACKDOWN,SNORE,STEALTHROCK,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,THUNDERPUNCH,TOXIC,DIG,INCINERATE,ANCIENTPOWER,MUDSLAP,ROLLOUT,SUCKERPUNCH,ROCKCLIMB
+EggMoves = AUTOTOMIZE,BLOCK,CURSE,ENDURE,FLAIL,FOCUSPUNCH,HAMMERARM,MEGAPUNCH,ROCKCLIMB
+Compatibility = Mineral
+StepsToHatch = 4080
+Height = 0.4
+Weight = 20.0
+Color = Brown
+Shape = HeadArms
+Habitat = Mountain
+Kind = Rock
+Pokedex = It climbs mountain paths using only the power of its arms. Because they look just like boulders lining paths, hikers may step on them without noticing.
+WildItemUncommon = EVERSTONE
+BattlerPlayerX = 0
+BattlerPlayerY = 0
+BattlerEnemyX = -2
+BattlerEnemyY = 26
+BattlerAltitude = 16
+BattlerShadowX = 2
+BattlerShadowSize = 1
+#-------------------------------
+[1000813]
+Name = Electrode
+InternalName = HELECTRODE
+Type1 = ELECTRIC
+Type2 = GRASS
+BaseStats = 60,50,70,150,80,80
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 168
+EffortPoints = 0,0,0,2,0,0
+Rareness = 60
+Happiness = 70
+Abilities = STATIC,SOUNDPROOF
+HiddenAbility = AFTERMATH
+Moves = 1,MAGNETICFLUX,1,CHARGE,1,TACKLE,1,SONICBOOM,1,EERIEIMPULSE,4,SONICBOOM,6,EERIEIMPULSE,9,SPARK,11,ROLLOUT,13,SCREECH,16,CHARGEBEAM,20,SWIFT,22,ELECTROBALL,26,SELFDESTRUCT,29,LIGHTSCREEN,36,MAGNETRISE,41,DISCHARGE,47,EXPLOSION,54,GYROBALL,58,MIRRORCOAT
+TutorMoves = CHARGEBEAM,CONFIDE,DOUBLETEAM,EXPLOSION,FACADE,FOULPLAY,FRUSTRATION,GIGAIMPACT,GYROBALL,HIDDENPOWER,HYPERBEAM,LIGHTSCREEN,MAGICCOAT,MAGNETRISE,PROTECT,RAINDANCE,REST,RETURN,ROUND,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNORE,SUBSTITUTE,SWAGGER,TAUNT,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TORMENT,TOXIC,VOLTSWITCH,WILDCHARGE,FLASH,ROLLOUT,SUCKERPUNCH,SWIFT,TELEPORT
+Compatibility = Mineral
+StepsToHatch = 5355
+Height = 1.2
+Weight = 66.6
+Color = Red
+Shape = Head
+Habitat = Urban
+Kind = Ball
+Pokedex = They appear in great numbers at electric power plants. Because they feed on electricity, they cause massive and chaotic blackouts in nearby cities.
+BattlerPlayerX = 0
+BattlerPlayerY = 11
+BattlerEnemyX = 0
+BattlerEnemyY = 16
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[1000814]
+Name = Raichu
+InternalName = ARAICHU
+Type1 = ELECTRIC
+Type2 = PSYCHIC
+BaseStats = 60,90,55,110,95,85
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 214
+EffortPoints = 0,0,0,3,0,0
+Rareness = 75
+Happiness = 70
+Abilities = STATIC
+HiddenAbility = LIGHTNINGROD
+Moves = 1,THUNDERSHOCK,1,TAILWHIP,1,QUICKATTACK,1,THUNDERBOLT
+TutorMoves = ATTRACT,BRICKBREAK,CHARGEBEAM,CONFIDE,COVET,DOUBLETEAM,ECHOEDVOICE,ELECTROWEB,FACADE,FLING,FOCUSBLAST,FOCUSPUNCH,FRUSTRATION,GIGAIMPACT,GRASSKNOT,HELPINGHAND,HIDDENPOWER,HYPERBEAM,IRONTAIL,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,MAGNETRISE,PROTECT,RAINDANCE,REST,RETURN,ROCKSMASH,ROUND,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNORE,STRENGTH,SUBSTITUTE,SWAGGER,THIEF,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TOXIC,VOLTSWITCH,WILDCHARGE,DIG,FLASH,MUDSLAP,ROLLOUT,SWIFT,MEGAKICK,NASTYPLOT
+Compatibility = Field,Fairy
+StepsToHatch = 2805
+Height = 0.8
+Weight = 30.0
+Color = Yellow
+Shape = BipedalTail
+Habitat = Forest
+Kind = Mouse
+Pokedex = If it stores too much electricity, its behavior turns aggressive. To avoid this, it occasionally discharges excess energy and calms itself down.
+WildItemCommon = ORANBERRY
+BattlerPlayerX = 0
+BattlerPlayerY = 6
+BattlerEnemyX = 4
+BattlerEnemyY = 12
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
+[1000815]
+Name = Bad Exeggutor
+InternalName = AEXEGGUTOR
+Type1 = GRASS
+Type2 = DRAGON
+BaseStats = 95,105,85,45,125,65
+GenderRate = Female50Percent
+GrowthRate = Slow
+BaseEXP = 182
+EffortPoints = 0,0,0,0,2,0
+Rareness = 45
+Happiness = 70
+Abilities = CHLOROPHYLL
+HiddenAbility = HARVEST
+Moves = 0,STOMP,1,STOMP,1,SEEDBOMB,1,BARRAGE,1,HYPNOSIS,1,CONFUSION,17,PSYSHOCK,27,EGGBOMB,37,WOODHAMMER,47,LEAFSTORM
+TutorMoves = ATTRACT,BLOCK,CONFIDE,DOUBLETEAM,DREAMEATER,ENERGYBALL,EXPLOSION,FACADE,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRAVITY,HIDDENPOWER,HYPERBEAM,INFESTATION,LIGHTSCREEN,LOWKICK,NATUREPOWER,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,REFLECT,REST,RETURN,ROUND,SEEDBOMB,SKILLSWAP,SLEEPTALK,SLUDGEBOMB,SNORE,SOLARBEAM,STOMPINGTANTRUM,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,SWORDSDANCE,SYNTHESIS,TELEKINESIS,THIEF,TOXIC,TRICKROOM,WORRYSEED,ZENHEADBUTT,FLASH,ANCIENTPOWER,ROLLOUT,SOFTBOILED,TELEPORT,MEGAKICK,DRAGONDANCE,SPORE,MOONLIGHT
+Compatibility = Grass
+StepsToHatch = 5355
+Height = 2.0
+Weight = 120.0
+Color = Yellow
+Shape = HeadLegs
+Habitat = Forest
+Kind = Coconut
+Pokedex = Originally from the tropics, Exeggutor's heads grow larger from exposure to strong sunlight. It is said that when the heads fall, they group to form an Exeggcute.
+BattlerPlayerX = 0
+BattlerPlayerY = -7
+BattlerEnemyX = 0
+BattlerEnemyY = 3
+BattlerShadowX = 0
+BattlerShadowSize = 3
+#-------------------------------
+[1000816]
+Name = Skuntcroak
+InternalName = TOXICROAKSKUNTANK
+Type1 = POISON
+Type2 = FIGHTING
+BaseStats = 96,101,65,84,76,62
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000817]
+Name = Muk
+InternalName = AMUK
+Type1 = POISON
+Type2 = DARK
+BaseStats = 105,105,75,50,65,100
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 175
+EffortPoints = 1,1,0,0,0,0
+Rareness = 75
+Happiness = 70
+Abilities = STENCH,STICKYHOLD
+HiddenAbility = POISONTOUCH
+Moves = 0,VENOMDRENCH,1,VENOMDRENCH,1,POUND,1,POISONGAS,1,HARDEN,1,MUDSLAP,4,HARDEN,7,MUDSLAP,12,DISABLE,15,SLUDGE,18,MUDBOMB,21,MINIMIZE,26,FLING,29,SLUDGEBOMB,32,SLUDGEWAVE,37,SCREECH,40,GUNKSHOT,46,ACIDARMOR,52,BELCH,57,MEMENTO
+TutorMoves = ATTRACT,BLOCK,BRICKBREAK,CONFIDE,DARKPULSE,DOUBLETEAM,EXPLOSION,FACADE,FIREBLAST,FIREPUNCH,FLAMETHROWER,FLING,FOCUSBLAST,FOCUSPUNCH,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GUNKSHOT,HIDDENPOWER,HYPERBEAM,ICEPUNCH,INFESTATION,PAINSPLIT,PAYBACK,POISONJAB,POWERUPPUNCH,PROTECT,RAINDANCE,REST,RETURN,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SHADOWBALL,SHOCKWAVE,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNORE,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,TAUNT,THIEF,THUNDER,THUNDERBOLT,THUNDERPUNCH,TORMENT,TOXIC,VENOSHOCK,DIG,INCINERATE,MUDSLAP,TOXICSPIKES,RECOVER
+Compatibility = Amorphous
+StepsToHatch = 5355
+Height = 1.2
+Weight = 30.0
+Color = Purple
+Shape = HeadArms
+Habitat = Urban
+Kind = Sludge
+Pokedex = It prefers warm and humid habitats. In the summertime, the toxic substances in its body intensify, making Muk reek like putrid kitchen garbage.
+WildItemUncommon = NUGGET
+BattlerPlayerX = 0
+BattlerPlayerY = 6
+BattlerEnemyX = -2
+BattlerEnemyY = 17
+BattlerShadowX = 3
+BattlerShadowSize = 5
+#-------------------------------
+[1000818]
+Name = Sigilyph
+InternalName = SIGILYPH
+Type1 = PSYCHIC
+Type2 = FLYING
+BaseStats = 72,58,80,97,103,80
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000819]
+Name = Magmorkoal
+InternalName = TORKOALMAGMORTAR
+Type1 = FIRE
+BaseStats = 73,88,115,41,111,86
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000820]
+Name = Magtom
+InternalName = ROTOMMOWMAGCARGO
+Type1 = FIRE
+Type2 = GRASS
+BaseStats = 56,60,111,67,95,89
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000821]
+Name = Hippodon
+InternalName = RHYDONHIPPOWDON
+Type1 = GROUND
+Type2 = ROCK
+BaseStats = 107,124,119,42,60,53
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000822]
+Name = Maroslash
+InternalName = SANDSLASHAMAROWAK
+Type1 = FIRE
+Type2 = GROUND
+BaseStats = 65,93,110,58,48,71
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000823]
+Name = Mewtwo
+InternalName = MEWTWOMEWTWO
+Type1 = PSYCHIC
+BaseStats = 106,110,90,130,154,90
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000824]
+Name = Mewtwo
+InternalName = MEGAMEWTWOMEWTWO
+Type1 = PSYCHIC
+Type2 = FIGHTING
+BaseStats = 106,176,90,133,180,113
+Abilities = PSYCHOBREAK
+Moves = 1,TACKLE
+Shape = Head
 
 #eof
 

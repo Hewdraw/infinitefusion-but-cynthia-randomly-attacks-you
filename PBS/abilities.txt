@@ -251,3 +251,4 @@
 249,ADAPTINGPIXELS,Adapting Pixels,""
 250,PIXELATEDSANDS,Pixelated Sands,""
 251,CHARGEDEXPLOSIVE,Charged Explosive,""
+252,PSYCHOBREAK,Psycho Break,"todo"
