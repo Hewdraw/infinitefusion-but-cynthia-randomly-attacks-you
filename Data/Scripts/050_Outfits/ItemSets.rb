@@ -21,7 +21,7 @@ CLOTHES_GHOST    = "temp"
 CLOTHES_STEEL_M    = "steelworkerM"
 CLOTHES_STEEL_F    = "steelworkerF"
 
-CLOTHES_FIRE     = "firefigther"
+CLOTHES_FIRE     = "fire"
 
 CLOTHES_WATER    = "waterdress"
 
@@ -31,7 +31,7 @@ CLOTHES_ELECTRIC = "urbanelectric"
 
 CLOTHES_PSYCHIC  = "temp"
 
-CLOTHES_ICE      = "temp"
+CLOTHES_ICE      = "iceoutfit"
 
 CLOTHES_DRAGON   = "dragonconqueror"
 

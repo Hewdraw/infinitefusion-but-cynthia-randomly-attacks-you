@@ -396,7 +396,7 @@ def map_alt_sprite_letters_for_pokemon(spriteName)
           alt_sprites[letter] = main_or_alt
         end
       else  #letterless
-      main_or_alt = row[2] ? row[2] : nil
+      main_or_alt = row[2] ? row[2].gsub("\n","") : nil
       alt_sprites[""] = main_or_alt
       end
     end

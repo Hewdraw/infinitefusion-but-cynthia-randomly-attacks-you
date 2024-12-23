@@ -296,7 +296,6 @@ class PokemonDataBox < SpriteWrapper
                      0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
     end
 
-
     #Draw type icons (foe Pokémon only)
     if @battler.opposes?(0) && $PokemonSystem.type_icons
       drawEnemyTypeIcons(imagePos)
@@ -308,6 +307,7 @@ class PokemonDataBox < SpriteWrapper
   end
 
   def drawEnemyTypeIcons(imagePos)
+    return if @battler.is_a?(PokeBattle_FakeBattler)
     type1_number = GameData::Type.get(@battler.type1).id_number
     type2_number = GameData::Type.get(@battler.type2).id_number
 

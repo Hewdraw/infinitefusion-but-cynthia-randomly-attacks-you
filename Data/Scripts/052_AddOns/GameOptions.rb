@@ -200,8 +200,9 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                               "Prevents leveling above the next gym leader's highest leveled Pokemon"
     )
 
+    device_option_selected=$PokemonSystem.on_mobile ? 1 : 0
     options << EnumOption.new(_INTL("Device"), [_INTL("PC"), _INTL("Mobile")],
-                              proc { $PokemonSystem.on_mobile },
+                              proc { device_option_selected },
                               proc { |value| $PokemonSystem.on_mobile = value == 1 },
                               ["The intended device on which to play the game.",
                                "Disables some options that aren't supported when playing on mobile."]

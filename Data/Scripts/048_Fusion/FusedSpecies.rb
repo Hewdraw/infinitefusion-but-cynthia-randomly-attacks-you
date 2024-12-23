@@ -104,6 +104,14 @@ module GameData
       return @head_pokemon.id_number
     end
 
+    def get_body_species_symbol
+      return @body_pokemon.id
+    end
+
+    def get_head_species_symbol
+      return @head_pokemon.id
+    end
+
     def adjust_stats_with_evs
       GameData::Stat.each_main do |s|
         @base_stats[s.id] = 1 if !@base_stats[s.id] || @base_stats[s.id] <= 0

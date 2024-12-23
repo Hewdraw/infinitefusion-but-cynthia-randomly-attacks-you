@@ -842,10 +842,15 @@ def apply_concert_lighting(light, duration = 1)
 end
 
 def replaceFusionSpecies(pokemon, speciesToChange, newSpecies)
-  currentBody = pokemon.species_data.get_body_species()
-  currentHead = pokemon.species_data.get_head_species()
+  currentBody = pokemon.species_data.get_body_species_symbol()
+  currentHead = pokemon.species_data.get_head_species_symbol()
   should_update_body = currentBody == speciesToChange
   should_update_head = currentHead == speciesToChange
+
+  echoln speciesToChange
+  echoln currentBody
+  echoln currentHead
+
 
   return if !should_update_body && !should_update_head
 
@@ -853,6 +858,7 @@ def replaceFusionSpecies(pokemon, speciesToChange, newSpecies)
   newSpeciesHead = should_update_head ? newSpecies : currentHead
 
   newSpecies = getFusionSpecies(newSpeciesBody, newSpeciesHead)
+  echoln newSpecies.id_number
   pokemon.species = newSpecies
 end
 
@@ -982,7 +988,7 @@ def swapReleaseCaughtPokemon(caughtPokemon)
   index = pbGet(1)
   return false if index == -1
   releasedPokemon = $Trainer.party[index]
-  pbDisplay("#{releasedPokemon.name} was released.")
+  pbMessage("#{releasedPokemon.name} was released.")
   pbRemovePokemonAt(index)
   pbStorePokemon(caughtPokemon)
 
@@ -1483,7 +1489,8 @@ def isPlayerFemale()
   return pbGet(VAR_TRAINER_GENDER) == GENDER_FEMALE
 end
 
-def optionsMenu(options = [], cmdIfCancel = nil, startingOption = 0)
+def optionsMenu(options = [], cmdIfCancel = -1, startingOption = 0)
+  cmdIfCancel = -1 if !cmdIfCancel
   result = pbShowCommands(nil, options, cmdIfCancel, startingOption)
   echoln "menuResult :#{result}"
   return result
@@ -1503,7 +1510,7 @@ end
 #Returns if the current map is an outdoor map
 def isOutdoor()
   current_map = $game_map.map_id
-  map_metadata = GameData::MapMetadata.try_get(map_id)
+  map_metadata = GameData::MapMetadata.try_get(current_map)
   return map_metadata && map_metadata.outdoor_map
 end
 
