@@ -635,6 +635,14 @@ class PokeBattle_Battle
       # Harvest, Pickup
       BattleHandlers.triggerEORGainItemAbility(b.ability,b,self) if b.abilityActive?
     end
+    priority.each do |battler|
+      next if battler.fainted?
+      eachOtherSideBattler(battler.index) do |b|
+        if b.pbCanSleep?(battler,true,self,true)
+          b.pbSleep(nil, 999)
+        end
+      end
+    end
     pbGainExp
     return if @decision>0
     # Form checks

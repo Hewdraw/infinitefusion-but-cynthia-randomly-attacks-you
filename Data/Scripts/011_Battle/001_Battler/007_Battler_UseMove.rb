@@ -271,13 +271,13 @@ class PokeBattle_Battler
     # Pressure
     if !specialUsage
       targets.each do |b|
-        next unless b.opposes?(user) && b.hasActiveAbility?(:PRESSURE)
+        next unless b.opposes?(user) && b.hasActiveAbility?([:PRESSURE, :PSYCHOBREAK])
         PBDebug.log("[Ability triggered] #{b.pbThis}'s #{b.abilityName}")
         user.pbReducePP(move)
       end
       if move.pbTarget(user).affects_foe_side
         @battle.eachOtherSideBattler(user) do |b|
-          next unless b.hasActiveAbility?(:PRESSURE)
+          next unless b.hasActiveAbility?([:PRESSURE, :PSYCHOBREAK])
           PBDebug.log("[Ability triggered] #{b.pbThis}'s #{b.abilityName}")
           user.pbReducePP(move)
         end

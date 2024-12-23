@@ -561,6 +561,8 @@ BattleHandlers::AbilityOnFlinch.add(:STEADFAST,
   }
 )
 
+BattleHandlers::AbilityOnFlinch.copy(:STEADFAST, :PSYCHOBREAK)
+
 #===============================================================================
 # MoveBlockingAbility handlers
 #===============================================================================
@@ -2435,6 +2437,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:PRESSURE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is exerting its pressure!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:PSYCHOBREAK,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is exerting its pressure!",battler.pbThis))
+    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
+    battle.eachOtherSideBattler(battler.index) do |b|
+      if b.pbCanSleep?(battler,true,self,true)
+        b.pbSleep(nil, 999)
+      end
+    end
     battle.pbHideAbilitySplash(battler)
   }
 )

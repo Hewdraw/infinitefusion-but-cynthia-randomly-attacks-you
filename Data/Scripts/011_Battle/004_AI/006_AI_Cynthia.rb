@@ -113,7 +113,7 @@ class PokeBattle_AI
     user.eachMoveWithIndex do |move,i|
       next if user.dynamax != nil && move.statusMove?
       next if !@battle.pbCanChooseMove?(idxBattler,i,false)
-      if move.name == "The Skeleton Appears" && move.pp > 0
+      if move.name == "The Skeleton Appears"
         choices = [[i,100,100]]
         break
       end
@@ -132,21 +132,10 @@ class PokeBattle_AI
       logMsg += ", " if i<choices.length-1
     end
     #print(logMsg)
-    # Decide whether all choices are bad, and if so, try switching instead
-    badMoves = false
-    # if maxScore <= 33
-    #   badMoves = true
-    # end
-    if badMoves && pbEnemyShouldWithdrawEx?(idxBattler,true)
-      if $INTERNAL
-        PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will switch due to terrible moves")
-      end
-      return
-    end
     # Find any preferred moves and just choose from them
     preferredMoves = []
     choices.each do |c|
-      preferredMoves.push(c) if c[1]==maxScore   # Doubly prefer the best move
+      preferredMoves.push(c) if c[1]==maxScore
     end
     if preferredMoves.length>0
       m = preferredMoves[pbAIRandom(preferredMoves.length)]

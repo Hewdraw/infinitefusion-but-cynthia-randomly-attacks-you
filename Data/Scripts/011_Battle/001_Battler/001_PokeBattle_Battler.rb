@@ -316,6 +316,7 @@ class PokeBattle_Battler
       speedMult *= 1.1
     end
     # Calculation
+    return 1 if @battle.field.effects[PBEffects::TrickRoom]>0 && self.species == :REGIELEKI
     return [(speed * speedMult).round, 1].max
   end
 

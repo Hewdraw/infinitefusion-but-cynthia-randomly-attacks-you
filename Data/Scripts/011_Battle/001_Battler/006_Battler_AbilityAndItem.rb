@@ -22,6 +22,16 @@ class PokeBattle_Battler
     if switchIn && itemActive?
       BattleHandlers.triggerItemOnSwitchIn(self.item,self,@battle)
     end
+
+    @battle.eachOtherSideBattler(self.index) do |battler|
+      if battler.hasActiveAbility?(:PSYCHOBREAK)
+        @battle.eachOtherSideBattler(battler.index) do |b|
+          if b.pbCanSleep?(battler,true,self,true)
+            b.pbSleep(nil, 999)
+          end
+        end
+      end
+    end
     # Berry check, status-curing ability check
     pbHeldItemTriggerCheck if switchIn
     pbAbilityStatusCureCheck
@@ -129,6 +139,7 @@ class PokeBattle_Battler
   #=============================================================================
   def canConsumeBerry?
     return false if @battle.pbCheckOpposingAbility(:UNNERVE, @index)
+    return false if @battle.pbCheckOpposingAbility(:PSYCHOBREAK, @index)
     return true
   end
 
