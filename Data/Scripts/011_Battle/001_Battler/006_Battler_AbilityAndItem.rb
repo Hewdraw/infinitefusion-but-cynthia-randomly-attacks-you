@@ -27,7 +27,7 @@ class PokeBattle_Battler
       if battler.hasActiveAbility?(:PSYCHOBREAK)
         @battle.eachOtherSideBattler(battler.index) do |b|
           if b.pbCanSleep?(battler,true,self,true)
-            b.pbSleep(nil, 999)
+            b.pbInflictStatus(:SLEEP, 999, msg)
           end
         end
       end

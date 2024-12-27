@@ -9,14 +9,14 @@ Immunities = GHOST
 [1]
 Name = Fighting
 InternalName = FIGHTING
-Weaknesses = FLYING,PSYCHIC,FAIRY
+Weaknesses = FLYING,PSYCHIC,FAIRY,GUN
 Resistances = ROCK,BUG,DARK
 #-------------------------------
 [2]
 Name = Flying
 InternalName = FLYING
 Weaknesses = ROCK,ELECTRIC,ICE
-Resistances = FIGHTING,BUG,GRASS
+Resistances = FIGHTING,BUG,GRASS,GUN
 Immunities = GROUND
 #-------------------------------
 [3]
@@ -36,7 +36,7 @@ Immunities = ELECTRIC
 Name = Rock
 InternalName = ROCK
 Weaknesses = FIGHTING,GROUND,STEEL,WATER,GRASS
-Resistances = NORMAL,FLYING,POISON,FIRE
+Resistances = NORMAL,FLYING,POISON,FIRE,GUN
 #-------------------------------
 [6]
 Name = Bug
@@ -48,7 +48,7 @@ Resistances = FIGHTING,GROUND,GRASS
 Name = Ghost
 InternalName = GHOST
 Weaknesses = GHOST,DARK
-Resistances = POISON,BUG
+Resistances = POISON,BUG,GUN
 Immunities = NORMAL,FIGHTING
 #-------------------------------
 [8]
@@ -76,7 +76,7 @@ Name = Water
 InternalName = WATER
 IsSpecialType = true
 Weaknesses = GRASS,ELECTRIC
-Resistances = STEEL,FIRE,WATER,ICE
+Resistances = STEEL,FIRE,WATER,ICE,GUN
 #-------------------------------
 [12]
 Name = Grass
@@ -196,3 +196,10 @@ InternalName=ICEROCKSTEEL
 Weaknesses=GROUND,FIRE,WATER,ROCK
 Resistances=PSYCHIC,NORMAL,GRASS,PSYCHIC,ICE,DRAGON,FAIRY
 Immunities=POISON
+
+[28]
+Name=Gun
+InternalName=GUN
+Weaknesses=GROUND,ELECTRIC
+Resistances=POISON,GHOST,DRAGON,FAIRY
+Immunities=FLYING

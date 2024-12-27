@@ -21,7 +21,7 @@ end
 def UndertaleCommand(scene)
   pbBGMPlay("Megalovania")
   loop do
-    cmd = scene.pbCommandMenu()
+    cmd = scene.UndertaleCommandMenu()
     pbSEPlay("MenuSelect")
     case cmd
     when 0    # Fight
@@ -33,9 +33,9 @@ def UndertaleCommand(scene)
         return
       end
     when 1    # Act
-      print(1)
+      scene.UndertaleActMenu()
     when 2    # Item
-      print(2)
+      scene.UndertaleItemMenu
     when 3    # Mercy
       scene.pbEndBattle
       return
@@ -81,46 +81,14 @@ class Undertale_Scene
     @frameCounter += 1
     @frameCounter = @frameCounter%(Graphics.frame_rate*12/20)
   end
-
-  #=============================================================================
-  # Window displays
-  #=============================================================================
-  def pbShowWindow(windowType)
-    # NOTE: If you are not using fancy graphics for the command/fight menus, you
-    #       will need to make "messageBox" also visible if the windowtype if
-    #       COMMAND_BOX/FIGHT_BOX respectively.
-    #@sprites["messageBox"].visible    = (windowType==MESSAGE_BOX)
-    #@sprites["messageWindow"].visible = (windowType==MESSAGE_BOX)
-    @sprites["commandWindow"].visible = (windowType==COMMAND_BOX)
-  end
-
-
-  #=============================================================================
-  # Sprites
-  #=============================================================================
-  def pbAddSprite(id,x,y,filename,viewport)
-    sprite = IconSprite.new(x,y,viewport)
-    if filename
-      sprite.setBitmap(filename) rescue nil
-
-    end
-    @sprites[id] = sprite
-    return sprite
-  end
-
-  def pbDisposeSprites
-    pbDisposeSpriteHash(@sprites)
-  end
-
   #=============================================================================
   # Phases
   #=============================================================================
   def pbEndBattle()
-    pbShowWindow(BLANK)
     # Fade out all sprites
     pbBGMFade(1.0)
     pbFadeOutAndHide(@sprites)
-    pbDisposeSprites
+    pbDisposeSpriteHash(@sprites)
   end
 
   #=============================================================================
@@ -134,10 +102,13 @@ class Undertale_Scene
     @sprites = {}
     # Create command window
     @sprites["commandWindow"] = UndertaleMenu.new(@viewport, 200)
+    @sprites["actWindow"] = UndertaleActMenu.new(@viewport, 300)
+    @sprites["actWindow"].visible = false
+    @sprites["itemWindow"] = UndertaleItemMenu.new(@viewport, 300)
+    @sprites["itemWindow"].visible = false
   end
 
-  def pbCommandMenu()
-    pbShowWindow(COMMAND_BOX)
+  def UndertaleCommandMenu()
     cw = @sprites["commandWindow"]
     ret = -1
     loop do
@@ -152,9 +123,52 @@ class Undertale_Scene
       pbSEPlay("MenuCursor") if cw.index!=oldIndex
       # Actions
       if Input.trigger?(Input::USE)                 # Confirm choice
-        pbPlayDecisionSE
         ret = cw.index
         break
+      end
+    end
+    return ret
+  end
+
+  def UndertaleActMenu()
+    cw = @sprites["actWindow"]
+    cw.visible = true
+    ret = -1
+    loop do
+      oldIndex = cw.index
+      pbUpdate(cw)
+      # Update selected command
+      if Input.trigger?(Input::LEFT)
+        cw.index = 3-((3 - cw.index + 1) % 4)
+      elsif Input.trigger?(Input::RIGHT)
+        cw.index = (cw.index + 1) % 4
+      end
+      pbSEPlay("MenuCursor") if cw.index!=oldIndex
+      # Actions
+      if Input.trigger?(Input::BACK)                 # Confirm choice
+        return
+      end
+    end
+    return ret
+  end
+
+  def UndertaleItemMenu()
+    cw = @sprites["itemWindow"]
+    cw.visible = true
+    ret = -1
+    loop do
+      oldIndex = cw.index
+      pbUpdate(cw)
+      # Update selected command
+      if Input.trigger?(Input::LEFT)
+        cw.index = 3-((3 - cw.index + 1) % 4)
+      elsif Input.trigger?(Input::RIGHT)
+        cw.index = (cw.index + 1) % 4
+      end
+      pbSEPlay("MenuCursor") if cw.index!=oldIndex
+      # Actions
+      if Input.trigger?(Input::BACK)                 # Confirm choice
+        return
       end
     end
     return ret
@@ -197,7 +211,6 @@ class UndertaleMenu
   def index=(value)
     oldValue = @index
     @index = value
-    @cmdWindow.index = @index if @cmdWindow
     refresh if @index!=oldValue
   end
 
@@ -217,7 +230,6 @@ class UndertaleMenu
     oldMode  = @mode
     @index = index
     @mode  = mode
-    @cmdWindow.index = @index if @cmdWindow
     refresh if @index!=oldIndex || @mode!=oldMode
   end
 
@@ -254,11 +266,15 @@ class UndertaleMenu
     backgroundsprite = Sprite.new(viewport)
     backgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
     addSprite("background",backgroundsprite)
-    # Create bitmaps
-    # @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_command"))
-    # Create action buttons
-    # @buttons = Array.new(4) do |i|   # 4 command options, therefore 4 buttons
-    # end
+    pbSEPlay("appearboost")
+    pbWait(3)
+    @heartsprite = Sprite.new(viewport)
+    @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
+    @heartsprite.tone = Tone.new(0, -255, -255)
+    @heartsprite.angle -= 90
+    @heartsprite.x = Graphics.width / 2 + @heartsprite.width / 2
+    @heartsprite.y = Graphics.height / 2 - @heartsprite.height
+    addSprite("heartsprite", @heartsprite)
     @buttonmaps = [
       [
         Bitmap.new("Graphics/Undertale/UIFight/Default/000"),
@@ -283,33 +299,69 @@ class UndertaleMenu
       button.x      = (Graphics.width - button.width) * i/3
       button.y      = Graphics.height - button.height
       addSprite("button_#{i}",button)
+      button.visible = false
       next button
     end
-    @heartsprite = Sprite.new(viewport)
-    @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
-    @heartsprite.tone = Tone.new(0,-255,-255)
-    @heartsprite.angle -= 90
-    addSprite("heartsprite", @heartsprite)
-    # fightsprite = Sprite.new(viewport)
-    # fightsprite.bitmap = Bitmap.new("Graphics/Undertale/UIFight/Default/000")
-    # fightsprite.x = 0
-    # fightsprite.y = Graphics.height - fightsprite.height
-    # addSprite("button_0",fightsprite)
-    # actsprite = Sprite.new(viewport)
-    # actsprite.bitmap = Bitmap.new("Graphics/Undertale/UIAct/Default/000")
-    # actsprite.x = (Graphics.width - actsprite.width) * 1/3
-    # actsprite.y = Graphics.height - actsprite.height
-    # addSprite("button_1",actsprite)
-    # itemsprite = Sprite.new(viewport)
-    # itemsprite.bitmap = Bitmap.new("Graphics/Undertale/UIItem/Default/000")
-    # itemsprite.x = (Graphics.width - itemsprite.width) * 2/3
-    # itemsprite.y = Graphics.height - itemsprite.height
-    # addSprite("button_2",itemsprite)
-    # mercysprite = Sprite.new(viewport)
-    # mercysprite.bitmap = Bitmap.new("Graphics/Undertale/UIMercy/Default/000")
-    # mercysprite.x = Graphics.width - mercysprite.width
-    # mercysprite.y = Graphics.height - mercysprite.height
-    # addSprite("button_3",mercysprite)
+    pbWait(3)
+    @heartsprite.visible = false
+    pbWait(3)
+    @heartsprite.visible = true
+    pbWait(3)
+    @heartsprite.visible = false
+    pbWait(3)
+    @heartsprite.visible = true
+    @heartsprite.z = z + 4
+    heartspritecoords = [@heartsprite.x, @heartsprite.y]
+    targetcoords = [@buttons[0].x + 24, @buttons[0].y + 13]
+    movecoords = [(targetcoords[0] - heartspritecoords[0]), (targetcoords[1] - heartspritecoords[1])]
+    for i in 0...21
+      @heartsprite.x = heartspritecoords[0] + (movecoords[0] * i / 20)
+      @heartsprite.y = heartspritecoords[1] + (movecoords[1] * i / 20)
+      pbWait(1)
+    end
+    for i in 0...@buttons.length
+      button = @buttons[i]
+      button.bitmap = @buttonmaps[i][i==@index? 1 : 0]
+      button.visible = true
+    end
+    messageboxborder = Graphics.width / 100
+    @messagebox = Sprite.new(viewport)
+    @messagebox.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+    @messagebox.src_rect.height = Graphics.height / 3
+    @messagebox.y = Graphics.height / 2
+    @messagebox.tone = Tone.new(255, 255, 255)
+    addSprite("messagebox", @messagebox)
+    @messageboxinner = Sprite.new(viewport)
+    @messageboxinner.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+    @messageboxinner.src_rect.height = @messagebox.src_rect.height - (messageboxborder * 2)
+    @messageboxinner.src_rect.width = Graphics.width - (messageboxborder * 2)
+    @messageboxinner.y = @messagebox.y + messageboxborder
+    @messageboxinner.x = messageboxborder
+    addSprite("messageboxinner", @messageboxinner)
+    @msgBoxStar = Window_UnformattedTextPokemon.newWithSize("",
+       @messagebox.x, @messagebox.y, Graphics.width / 10, @messagebox.height, viewport)
+    @msgBoxStar.baseColor   = Color.new(255, 255, 255)
+    @msgBoxStar.shadowColor = nil
+    @msgBoxStar.windowskin  = nil
+    @msgBoxStar.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+    @msgBoxStar.contents.font.size = 25
+    @msgBoxStar.text = "*"
+    addSprite("msgBoxStar",@msgBoxStar)
+    @msgBox = Window_UnformattedTextPokemon.newWithSize("",
+       @messagebox.x + Graphics.width / 20, @messagebox.y, @messagebox.width - Graphics.width / 20, @messagebox.height, viewport)
+    @msgBox.baseColor   = Color.new(255, 255, 255)
+    @msgBox.shadowColor = nil
+    @msgBox.windowskin  = nil
+    @msgBox.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+    @msgBox.contents.font.size = 25
+    text = "You feel like you're going to have a bad time."
+    for i in 0..text.length()
+      @msgBox.text = text[0..i]
+      pbSEPlay("BattleText")
+      pbWait(1)
+    end
+    addSprite("msgBox",@msgBox)
+
     self.z = z
     refresh
   end
@@ -327,7 +379,6 @@ class UndertaleMenu
       i[1].z = value if !i[1].disposed?
     end
     # @msgBox.z    += 1
-    @cmdWindow.z += 1 if @cmdWindow
   end
 
   def refreshButtons
@@ -341,11 +392,218 @@ class UndertaleMenu
         @heartsprite.z = self.z + 4
       end
     end
+    @messagebox.z = self.z+1
+    @messageboxinner.z = self.z+2
+    @msgBoxStar.z = self.z+4
+    @msgBox.z = self.z+3
+  end
+
+  def refresh
+    @msgBox.refresh
+    @msgBoxStar.refresh
+    refreshButtons
+  end
+end
+
+class UndertaleActMenu
+
+  attr_accessor :x
+  attr_accessor :y
+  attr_reader   :z
+  attr_reader   :visible
+  attr_reader   :color
+  attr_reader   :index
+  attr_reader   :mode
+  # NOTE: Button width is half the width of the graphic containing them all.
+  BUTTON_HEIGHT = 46
+  TEXT_BASE_COLOR   = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
+  TEXT_SHADOW_COLOR = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
+
+  def disposed?; return @disposed; end
+
+  def visible=(value)
+    @visible = value
+    for i in @sprites
+      i[1].visible = (value && @visibility[i[0]]) if !i[1].disposed?
+    end
+  end
+
+  def color=(value)
+    @color = value
+    for i in @sprites
+      i[1].color = value if !i[1].disposed?
+    end
+  end
+
+  def index=(value)
+    oldValue = @index
+    @index = value
+    refresh if @index!=oldValue
+  end
+
+  def mode=(value)
+    oldValue = @mode
+    @mode = value
+    refresh if @mode!=oldValue
+  end
+
+  def addSprite(key,sprite)
+    @sprites[key]    = sprite
+    @visibility[key] = true
+  end
+
+  def setIndexAndMode(index,mode)
+    oldIndex = @index
+    oldMode  = @mode
+    @index = index
+    @mode  = mode
+    refresh if @index!=oldIndex || @mode!=oldMode
+  end
+
+  def refresh; end
+
+  def update
+    pbUpdateSpriteHash(@sprites)
+  end
+  # Lists of which button graphics to use in different situations/types of battle.
+
+  def initialize(viewport,z)
+    @x          = 0
+    @y          = 0
+    @z          = 0
+    @visible    = false
+    @color      = Color.new(0,0,0,0)
+    @index      = 0
+    @mode       = 0
+    @disposed   = false
+    @sprites    = {}
+    @visibility = {}
+    self.z = z
+    refresh
+  end
+
+  def dispose
+    return if disposed?
+    pbDisposeSpriteHash(@sprites)
+    @disposed = true
+    @buttonBitmap.dispose if @buttonBitmap
+  end
+
+  def z=(value)
+    @z = value
+    for i in @sprites
+      i[1].z = value if !i[1].disposed?
+    end
+    # @msgBox.z    += 1
+  end
+
+  def refreshButtons
   end
 
   def refresh
     # @msgBox.refresh
-    @cmdWindow.refresh if @cmdWindow
+    refreshButtons
+  end
+end
+
+
+class UndertaleItemMenu
+
+  attr_accessor :x
+  attr_accessor :y
+  attr_reader   :z
+  attr_reader   :visible
+  attr_reader   :color
+  attr_reader   :index
+  attr_reader   :mode
+  # NOTE: Button width is half the width of the graphic containing them all.
+  BUTTON_HEIGHT = 46
+  TEXT_BASE_COLOR   = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
+  TEXT_SHADOW_COLOR = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
+
+  def disposed?; return @disposed; end
+
+  def visible=(value)
+    @visible = value
+    for i in @sprites
+      i[1].visible = (value && @visibility[i[0]]) if !i[1].disposed?
+    end
+  end
+
+  def color=(value)
+    @color = value
+    for i in @sprites
+      i[1].color = value if !i[1].disposed?
+    end
+  end
+
+  def index=(value)
+    oldValue = @index
+    @index = value
+    refresh if @index!=oldValue
+  end
+
+  def mode=(value)
+    oldValue = @mode
+    @mode = value
+    refresh if @mode!=oldValue
+  end
+
+  def addSprite(key,sprite)
+    @sprites[key]    = sprite
+    @visibility[key] = true
+  end
+
+  def setIndexAndMode(index,mode)
+    oldIndex = @index
+    oldMode  = @mode
+    @index = index
+    @mode  = mode
+    refresh if @index!=oldIndex || @mode!=oldMode
+  end
+
+  def refresh; end
+
+  def update
+    pbUpdateSpriteHash(@sprites)
+  end
+  # Lists of which button graphics to use in different situations/types of battle.
+
+  def initialize(viewport,z)
+    @x          = 0
+    @y          = 0
+    @z          = 0
+    @visible    = false
+    @color      = Color.new(0,0,0,0)
+    @index      = 0
+    @mode       = 0
+    @disposed   = false
+    @sprites    = {}
+    @visibility = {}
+    self.z = z
+    refresh
+  end
+
+  def dispose
+    return if disposed?
+    pbDisposeSpriteHash(@sprites)
+    @disposed = true
+    @buttonBitmap.dispose if @buttonBitmap
+  end
+
+  def z=(value)
+    @z = value
+    for i in @sprites
+      i[1].z = value if !i[1].disposed?
+    end
+    # @msgBox.z    += 1
+  end
+
+  def refreshButtons
+  end
+
+  def refresh
+    # @msgBox.refresh
     refreshButtons
   end
 end

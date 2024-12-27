@@ -220,7 +220,7 @@ class PokeBattle_Battler
       newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
       @battle.pbRecallAndReplace(self.index,newPkmn)
       @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
-      user.pbEffectsOnSwitchIn(true)
+      self.pbEffectsOnSwitchIn(true)
     end
     return true
   end

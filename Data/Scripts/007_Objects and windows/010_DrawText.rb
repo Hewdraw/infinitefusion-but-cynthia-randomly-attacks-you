@@ -1126,8 +1126,12 @@ end
 
 def drawTextEx(bitmap,x,y,width,numlines,text,baseColor,shadowColor)
   normtext=getLineBrokenChunks(bitmap,text,width,nil,true)
-  renderLineBrokenChunksWithShadow(bitmap,x,y,normtext,numlines*32,
-     baseColor,shadowColor)
+  if shadowColor
+    renderLineBrokenChunksWithShadow(bitmap,x,y,normtext,numlines*32,
+       baseColor,shadowColor)
+  else
+    renderLineBrokenChunks(bitmap,x,y,normtext,numlines*32)
+  end
 end
 
 def drawFormattedTextEx(bitmap,x,y,width,text,baseColor=nil,shadowColor=nil,lineheight=32)

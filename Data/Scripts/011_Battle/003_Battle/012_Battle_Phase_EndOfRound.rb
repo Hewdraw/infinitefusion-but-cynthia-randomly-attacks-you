@@ -636,10 +636,10 @@ class PokeBattle_Battle
       BattleHandlers.triggerEORGainItemAbility(b.ability,b,self) if b.abilityActive?
     end
     priority.each do |battler|
-      next if battler.fainted?
+      next if battler.fainted? || !battler.hasActiveAbility?(:PSYCHOBREAK)
       eachOtherSideBattler(battler.index) do |b|
         if b.pbCanSleep?(battler,true,self,true)
-          b.pbSleep(nil, 999)
+          b.pbInflictStatus(:SLEEP, 999, msg)
         end
       end
     end

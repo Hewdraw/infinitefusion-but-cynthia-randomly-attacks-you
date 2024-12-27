@@ -84,38 +84,6 @@ Events.onStepTaken += proc {
   end
 }
 
-# Poison party Pokémon
-Events.onStepTakenTransferPossible += proc { |_sender, e|
-  handled = e[0]
-  next if handled[0]
-  next if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
-  if $PokemonGlobal.stepcount % 4 == 0 && Settings::POISON_IN_FIELD
-    flashed = false
-    for i in $Trainer.able_party
-      if i.status == :POISON && !i.hasAbility?(:IMMUNITY)
-        if !flashed
-          pbFlash(Color.new(163, 73, 164, 128), 8)
-          flashed = true
-        end
-        i.hp -= 1 if i.hp > 1 || Settings::POISON_FAINT_IN_FIELD
-        if i.hp == 1 && !Settings::POISON_FAINT_IN_FIELD
-          i.status = :NONE
-          pbMessage(_INTL("{1} survived the poisoning.\\nThe poison faded away!\1", i.name))
-          next
-        elsif i.hp == 0
-          i.changeHappiness("faint")
-          i.status = :NONE
-          pbMessage(_INTL("{1} fainted...", i.name))
-        end
-        if $Trainer.able_pokemon_count == 0
-          handled[0] = true
-          pbCheckAllFainted
-        end
-      end
-    end
-  end
-}
-
 def pbCheckAllFainted
   if $Trainer.able_pokemon_count == 0
     pbMessage(_INTL("You have no more Pokémon that can fight!\1"))
