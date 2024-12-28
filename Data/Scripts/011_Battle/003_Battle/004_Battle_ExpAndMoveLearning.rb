@@ -60,12 +60,15 @@ class PokeBattle_Battle
       next unless @opponent && @opponent[0].special_name?
       b.participants.each do |opponent|
         if rand(16) < $Trainer.badge_count && !opponent.fainted?
-          opponent.pokemon.exp += 1
-          opponent.level += 1
-          opponent.pbUpdate(false)
-          @scene.pbRefreshOne(opponent.index)
-          pbCommonAnimation("LevelUp", opponent)
-          pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", opponent.name, opponent.level))
+          gainedlevels = pkmn.isSelfFusion? ? 2 : 1
+          for i in 1..gainedlevels do
+            opponent.pokemon.exp += 1
+            opponent.level += 1
+            opponent.pbUpdate(false)
+            @scene.pbRefreshOne(opponent.index)
+            pbCommonAnimation("LevelUp", opponent)
+            pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", opponent.name, opponent.level))
+          end
         end
       end
       b.participants = []
