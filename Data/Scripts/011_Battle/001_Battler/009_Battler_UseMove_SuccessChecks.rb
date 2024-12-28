@@ -196,7 +196,7 @@ class PokeBattle_Battler
     return true if skipAccuracyCheck
     # Check status problems and continue their effects/cure them
     if @status == :SLEEP
-      if @battle.pbRandom(100)<33
+      if @battle.pbRandom(100) < ((@battle.pbWeather == :Snow || @battle.pbWeather == :Hail) ? 66 : 33)
         pbContinueStatus
         if !move.usableWhenAsleep?   # Snore/Sleep Talk
           @lastMoveFailed = true
