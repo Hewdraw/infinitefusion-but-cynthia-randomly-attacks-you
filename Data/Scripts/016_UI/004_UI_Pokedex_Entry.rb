@@ -21,7 +21,7 @@ class PokemonPokedexInfo_Scene
     @sprites["infosprite"].zoom_x = Settings::FRONTSPRITE_SCALE
     @sprites["infosprite"].zoom_y = Settings::FRONTSPRITE_SCALE
     @spritesLoader = BattleSpriteLoader.new
-
+    @randomEntryText = nil
     # @mapdata = pbLoadTownMapData
     # map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
     # mappos = (map_metadata) ? map_metadata.town_map_position : nil
@@ -323,7 +323,7 @@ class PokemonPokedexInfo_Scene
       #            species_data.pokedex_entry, base, shadow)
       #
       #
-
+      #$PokemonSystem.use_generated_dex_entries=true if $PokemonSystem.use_generated_dex_entries ==nil
       drawEntryText(overlay, species_data)
 
       # Draw the footprint
@@ -362,7 +362,8 @@ class PokemonPokedexInfo_Scene
     pbDrawImagePositions(overlay, imagepos)
   end
 
-  def drawEntryText(overlay, species_data)
+
+  def   drawEntryText(overlay, species_data)
     baseColor = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
     shadowCustom = Color.new(160, 200, 150)
@@ -374,12 +375,12 @@ class PokemonPokedexInfo_Scene
         entryText = customEntry
         shadowColor = shadowCustom
       else
-        aiEntry = getAIDexEntry(species_data.species, species_data.name)
-        if aiEntry
-          entryText = aiEntry
-          shadowColor = shadowAI
+        if $PokemonSystem.use_generated_dex_entries && species_data.is_a?(GameData::FusedSpecies)
+          @randomEntryText = species_data.get_random_dex_entry if !@randomEntryText
+          entryText = @randomEntryText
+          shadowColor = shadow
         else
-          entryText = species_data.pokedex_entry
+          entryText = "No custom Pokédex entry available for this Pokémon. Please consider submitting an entry for this Pokémon on the game's Discord."
           shadowColor = shadow
         end
       end

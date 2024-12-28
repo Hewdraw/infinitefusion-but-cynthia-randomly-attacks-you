@@ -349,6 +349,7 @@ def resetPinkanIsland()
   $game_switches[SWITCH_LEAVING_PINKAN_ISLAND]=false
   $game_switches[SWITCH_PINKAN_SIDE_POLICE]=false
   $game_switches[SWITCH_PINKAN_SIDE_ROCKET]=false
+  $game_switches[SWITCH_PINKAN_FINISHED]=false
 
   for map_id in Settings::PINKAN_ISLAND_MAPS
     map = $MapFactory.getMap(map_id,false)

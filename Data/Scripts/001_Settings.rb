@@ -5,8 +5,8 @@
 #==============================================================================#
 module Settings
   # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-  GAME_VERSION = '6.4.1'
-  GAME_VERSION_NUMBER = "6.4.1"
+  GAME_VERSION = '6.4.3'
+  GAME_VERSION_NUMBER = "6.4.3"
   LATEST_GAME_RELEASE = "6.4"
 
   POKERADAR_LIGHT_ANIMATION_RED_ID = 17
@@ -35,6 +35,8 @@ module Settings
   BASE_SPRITES_FILE_PATH = "Data/sprites/BASE_SPRITES"
   CUSTOM_DEX_ENTRIES_PATH = "Data/pokedex/dex.json"
   AI_DEX_ENTRIES_PATH = "Data/pokedex/generated_entries.json"
+  POKEDEX_ENTRIES_PATH = "Data/pokedex/all_entries.json"
+
   UPDATED_SPRITESHEETS_CACHE = "Data/sprites/updated_spritesheets_cache"
 
   BACK_ITEM_ICON_PATH = "Graphics/Items/back.png"

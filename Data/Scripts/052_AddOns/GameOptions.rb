@@ -110,6 +110,19 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                      },
                      "Automatically download missing custom sprites and Pokédex entries from the internet"
       )
+    #
+    generated_entries_option_selected=$PokemonSystem.use_generated_dex_entries ? 1 : 0
+    options << EnumOption.new(_INTL("Autogen dex entries"), [_INTL("Off"), _INTL("On")],
+                              proc { generated_entries_option_selected },
+                              proc { |value|
+                                $PokemonSystem.use_generated_dex_entries = value == 1
+                              },
+                              [
+                                "Fusions without a custom Pokédex entry display nothing.",
+                                "Fusions without a custom Pokédex entry display an auto-generated placeholder."
+
+                              ]
+    )
 
     if $game_switches && ($game_switches[SWITCH_NEW_GAME_PLUS] || $game_switches[SWITCH_BEAT_THE_LEAGUE]) #beat the league
       options <<
@@ -176,6 +189,8 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                                 proc { |value| $PokemonSystem.type_icons = value == 1 },
                                 "Display the enemy Pokémon type in battles."
       )
+
+
 
     end
     options << EnumOption.new(_INTL("Screen Size"), [_INTL("S"), _INTL("M"), _INTL("L"), _INTL("XL"), _INTL("Full")],

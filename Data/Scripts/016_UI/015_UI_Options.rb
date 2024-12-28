@@ -22,6 +22,7 @@ class PokemonSystem
   attr_accessor :max_nb_sprites_download
   attr_accessor :on_mobile
   attr_accessor :type_icons
+  attr_accessor :use_generated_dex_entries
 
   def initialize
     @textspeed = 1 # Text speed (0=slow, 1=normal, 2=fast)
@@ -43,6 +44,7 @@ class PokemonSystem
     @max_nb_sprites_download = 5
     @on_mobile = false
     @type_icons = true
+    @use_generated_dex_entries = true
   end
 end
 

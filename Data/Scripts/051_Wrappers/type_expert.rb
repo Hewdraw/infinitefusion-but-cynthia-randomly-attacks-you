@@ -131,6 +131,7 @@ def type_expert_battle(type_id)
         PokemonSelection.restore
         $game_switches[Settings::OVERRIDE_BATTLE_LEVEL_SWITCH]=false
         $game_switches[SWITCH_DONT_RANDOMIZE]=false
+        pbSet(VAR_CURRENT_GYM_TYPE, -1)
         return true
       end
     else
@@ -141,6 +142,7 @@ def type_expert_battle(type_id)
   PokemonSelection.restore
   $game_switches[Settings::OVERRIDE_BATTLE_LEVEL_SWITCH]=false
   $game_switches[SWITCH_DONT_RANDOMIZE]=false
+  pbSet(VAR_CURRENT_GYM_TYPE, -1)
   return false
 end
 
