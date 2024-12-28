@@ -35,7 +35,7 @@ def UndertaleCommand(scene)
     when 1    # Act
       scene.UndertaleActMenu()
     when 2    # Item
-      scene.UndertaleItemMenu
+      scene.UndertaleItemMenu()
     when 3    # Mercy
       scene.pbEndBattle
       return
@@ -324,6 +324,11 @@ class UndertaleMenu
       button.bitmap = @buttonmaps[i][i==@index? 1 : 0]
       button.visible = true
     end
+    @skeleton = Sprite.new(viewport)
+    @skeleton.bitmap = Bitmap.new("Graphics/Undertale/Skeleton")
+    @skeleton.x = Graphics.width / 2 - @skeleton.width / 2
+    @skeleton.y = Graphics.height / 4 - @skeleton.height / 2
+    addSprite("skeleton", @skeleton)
     messageboxborder = Graphics.width / 100
     @messagebox = Sprite.new(viewport)
     @messagebox.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
@@ -392,6 +397,7 @@ class UndertaleMenu
         @heartsprite.z = self.z + 4
       end
     end
+    @skeleton.z = self.z+1
     @messagebox.z = self.z+1
     @messageboxinner.z = self.z+2
     @msgBoxStar.z = self.z+4
