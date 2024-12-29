@@ -1453,16 +1453,16 @@ Pokemon = B19H46,13
 
 [SUPERNERD,Miguel]
 Pokemon = B88H109,16 
-Pokemon = GENESECT,14
-	Offset = -3
+Pokemon = GENESECT,7
+	Offset = -4
 	Moves = BUGBITE,SHOCKWAVE,HIDDENPOWER,MAGNETBOMB
 	HPType = ICE
-	Item = OCCABERRY
+	Item = LUMBERRY
 	Ability = DOWNLOAD
 	Gender = F
 	Nature = SERIOUS
-	IV = 16,16,16,16,16,16
-	EV = 0,0,0,0,0,0
+	IV = 31,16,16,16,16,16
+	EV = 252,0,0,0,0,0
 	Happiness = 255
 #########Route 6 ############
 
