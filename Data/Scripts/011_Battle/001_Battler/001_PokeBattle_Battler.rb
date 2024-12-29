@@ -612,25 +612,23 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis)) if showMsg
       return false
     end
-    if Settings::MECHANICS_GENERATION >= 6
-      if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
-        if showMsg
-          @battle.pbShowAbilitySplash(self)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
-          else
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, abilityName))
-          end
-          @battle.pbHideAbilitySplash(self)
+    if hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
+      if showMsg
+        @battle.pbShowAbilitySplash(self)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
+        else
+          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, abilityName))
         end
-        return false
+        @battle.pbHideAbilitySplash(self)
       end
-      if hasActiveItem?(:SAFETYGOGGLES)
-        if showMsg
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, itemName))
-        end
-        return false
+      return false
+    end
+    if hasActiveItem?(:SAFETYGOGGLES)
+      if showMsg
+        @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, itemName))
       end
+      return false
     end
     return true
   end
