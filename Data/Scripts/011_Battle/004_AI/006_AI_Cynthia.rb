@@ -286,7 +286,7 @@ class PokeBattle_AI
     accuracy = pbRoughAccuracy(move,user,target,100)
     damage *= accuracy/100.0
     # Two-turn attacks waste 2 turns to deal one lot of damage
-    if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
+    if (move.chargingTurnMove? && !(user.hasActiveItem?(:POWERHERB))) || move.function=="0C2"   # Hyper Beam
       damage *= 2/3   # Not halved because semi-invulnerable during use or hits first turn
     end
     # Convert damage to percentage of target's remaining HP
