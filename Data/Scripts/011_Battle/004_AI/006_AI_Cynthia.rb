@@ -145,15 +145,13 @@ class PokeBattle_AI
       return
     end
     # If there are no calculated choices, pick one at random
-    if choices.length==0
-      PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves; picking one at random")
-      user.eachMoveWithIndex do |_m,i|
-        next if !@battle.pbCanChooseMove?(idxBattler,i,false)
-        choices.push([i,100,-1])   # Move index, score, target
-      end
-      if choices.length==0   # No moves are physically possible to use; use Struggle
-        @battle.pbAutoChooseMove(user.index)
-      end
+    PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves; picking one at random")
+    user.eachMoveWithIndex do |_m,i|
+      next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+      choices.push([i,100,-1])   # Move index, score, target
+    end
+    if choices.length==0   # No moves are physically possible to use; use Struggle
+      @battle.pbAutoChooseMove(user.index)
     end
     # Log the result
     if @battle.choices[idxBattler][2]
