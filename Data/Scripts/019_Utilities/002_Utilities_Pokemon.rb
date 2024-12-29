@@ -71,7 +71,16 @@ def pbAddPokemon(pkmn, level = 1, see_form = true, dontRandomize=false, variable
     pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
     return false
   end
+  case pkmn
+  when :BONSLY
+    ability = :STURDY
+  else
+    ability = nil
+  end
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
+  if ability
+    pkmn.ability = ability
+  end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName
   pbMessage(_INTL("{1} obtained {2}!\\me[Pkmn get]\\wtnp[20]\1", $Trainer.name, species_name))
