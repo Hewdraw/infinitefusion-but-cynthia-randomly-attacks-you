@@ -25,6 +25,7 @@ class PokeBattle_AI
       opposingThreat *= damagethreshold
       maxThreat = opposingThreat + userThreat
       @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
+        next if pokemon.fainted?
         next if !@battle.pbCanSwitch?(idxBattler,i)
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(pokemon,69)
