@@ -1461,8 +1461,8 @@ Pokemon = GENESECT,7
 	Ability = DOWNLOAD
 	Gender = F
 	Nature = SERIOUS
-	IV = 31,16,16,16,16,16
-	EV = 252,0,0,0,0,0
+	IV = 31,16,31,16,16,31
+	EV = 252,0,126,0,0,130
 	Happiness = 255
 #########Route 6 ############
 
