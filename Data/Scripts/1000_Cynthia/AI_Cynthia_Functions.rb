@@ -1336,7 +1336,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0D5", "0D6" #todo
-      score *= 2 if opposingThreat < 100 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
+      score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
@@ -1346,7 +1346,7 @@ class PokeBattle_AI
       score -= 90 if @battle.positions[user.index].effects[PBEffects::Wish]>0
     #---------------------------------------------------------------------------
     when "0D8" #todo
-      score *= 2 if opposingThreat < 100 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
+      score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
@@ -2436,7 +2436,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "16D" #todo
-      score *= 2 if opposingThreat < 100 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
+      score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
