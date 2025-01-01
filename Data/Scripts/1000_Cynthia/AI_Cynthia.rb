@@ -219,12 +219,12 @@ class PokeBattle_AI
         totalScore += ((user.opposes?(b)) ? score : -score)
       end
       return totalscore if returnscore
-      choices.push([idxMove,totalScore,-1]) if totalScore>0
+      choices.push([idxMove,totalScore,-1])
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
       score = pbCynthiaGetMoveScore(move,user,user)
       return score if returnscore
-      choices.push([idxMove,score,-1]) if score>0
+      choices.push([idxMove,score,-1])
     else
       # If move affects one battler and you have to choose which one
       scoresAndTargets = []
@@ -232,7 +232,7 @@ class PokeBattle_AI
         next if !@battle.pbMoveCanTarget?(user.index,b.index,target_data)
         next if target_data.targets_foe && !user.opposes?(b)
         score = pbCynthiaGetMoveScore(move,user,b)
-        scoresAndTargets.push([score,b.index]) if score>0
+        scoresAndTargets.push([score,b.index])
       end
       if scoresAndTargets.length>0
         # Get the one best target for the move
