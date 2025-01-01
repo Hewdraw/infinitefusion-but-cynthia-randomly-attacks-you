@@ -1316,7 +1316,7 @@ class PokeBattle_AI
       else
         has_possible_type = false
         user.eachMoveWithIndex do |m,i|
-          break if Settings::MECHANICS_GENERATION >= 6 && i>0
+          break if i>0
           next if GameData::Type.get(m.type).pseudo_type
           next if user.pbHasType?(m.type)
           has_possible_type = true

@@ -541,6 +541,7 @@ class PokeBattle_Battler
   end
 
   def canChangeType?
+    return false if user.unteraTypes != nil
     return ![:MULTITYPE, :RKSSYSTEM].include?(@ability_id)
   end
 

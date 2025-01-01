@@ -109,7 +109,7 @@ end
 class PokeBattle_Move_007 < PokeBattle_ParalysisMove
   def tramplesMinimize?(param = 1)
     # Perfect accuracy and double damage (for Body Slam only)
-    return Settings::MECHANICS_GENERATION >= 6 if @id == :BODYSLAM
+    return true if @id == :BODYSLAM
     return super
   end
 
@@ -240,8 +240,7 @@ end
 #===============================================================================
 class PokeBattle_Move_010 < PokeBattle_FlinchMove
   def tramplesMinimize?(param = 1)
-    return super if @id == :DRAGONRUSH && Settings::MECHANICS_GENERATION <= 5
-    return true if param == 1 && Settings::MECHANICS_GENERATION >= 6 # Perfect accuracy
+    return true if param == 1 # Perfect accuracy
     return true if param == 2 # Double damage
     return super
   end
@@ -1146,7 +1145,7 @@ end
 class PokeBattle_Move_048 < PokeBattle_TargetStatDownMove
   def initialize(battle, move)
     super
-    @statDown = [:EVASION, (Settings::MECHANICS_GENERATION >= 6) ? 2 : 1]
+    @statDown = [:EVASION, 2]
   end
 end
 
@@ -1176,12 +1175,11 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       targetSide.effects[PBEffects::Spikes] > 0 ||
       targetSide.effects[PBEffects::ToxicSpikes] > 0 ||
       targetSide.effects[PBEffects::StickyWeb]
-    return false if Settings::MECHANICS_GENERATION >= 6 &&
-      (targetOpposingSide.effects[PBEffects::StealthRock] ||
+    return false if (targetOpposingSide.effects[PBEffects::StealthRock] ||
         targetOpposingSide.effects[PBEffects::Spikes] > 0 ||
         targetOpposingSide.effects[PBEffects::ToxicSpikes] > 0 ||
         targetOpposingSide.effects[PBEffects::StickyWeb])
-    return false if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
+    return false if @battle.field.terrain != :None
     return super
   end
 
@@ -1210,34 +1208,30 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       @battle.pbDisplay(_INTL("{1} is no longer protected by Safeguard!!", target.pbTeam))
     end
     if target.pbOwnSide.effects[PBEffects::StealthRock] ||
-      (Settings::MECHANICS_GENERATION >= 6 &&
-        target.pbOpposingSide.effects[PBEffects::StealthRock])
+        target.pbOpposingSide.effects[PBEffects::StealthRock]
       target.pbOwnSide.effects[PBEffects::StealthRock] = false
-      target.pbOpposingSide.effects[PBEffects::StealthRock] = false if Settings::MECHANICS_GENERATION >= 6
+      target.pbOpposingSide.effects[PBEffects::StealthRock] = false
       @battle.pbDisplay(_INTL("{1} blew away stealth rocks!", user.pbThis))
     end
     if target.pbOwnSide.effects[PBEffects::Spikes] > 0 ||
-      (Settings::MECHANICS_GENERATION >= 6 &&
-        target.pbOpposingSide.effects[PBEffects::Spikes] > 0)
+        target.pbOpposingSide.effects[PBEffects::Spikes] > 0
       target.pbOwnSide.effects[PBEffects::Spikes] = 0
-      target.pbOpposingSide.effects[PBEffects::Spikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+      target.pbOpposingSide.effects[PBEffects::Spikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away spikes!", user.pbThis))
     end
     if target.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 ||
-      (Settings::MECHANICS_GENERATION >= 6 &&
-        target.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0)
+        target.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
       target.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
-      target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0 if Settings::MECHANICS_GENERATION >= 6
+      target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
     end
     if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
-      (Settings::MECHANICS_GENERATION >= 6 &&
-        target.pbOpposingSide.effects[PBEffects::StickyWeb])
+        target.pbOpposingSide.effects[PBEffects::StickyWeb]
       target.pbOwnSide.effects[PBEffects::StickyWeb] = false
-      target.pbOpposingSide.effects[PBEffects::StickyWeb] = false if Settings::MECHANICS_GENERATION >= 6
+      target.pbOpposingSide.effects[PBEffects::StickyWeb] = false
       @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
     end
-    if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
+    if @battle.field.terrain != :None
       case @battle.field.terrain
       when :Electric
         @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
@@ -1290,7 +1284,6 @@ class PokeBattle_Move_04D < PokeBattle_TargetStatDownMove
   def initialize(battle, move)
     super
     inc = 2
-    inc = 1 if @id == :STRINGSHOT && Settings::MECHANICS_GENERATION <= 5
     @statDown = [:SPEED, inc]
   end
 end
@@ -1665,7 +1658,7 @@ class PokeBattle_Move_05E < PokeBattle_Move
     userTypes = user.pbTypes(true)
     @newTypes = []
     user.eachMoveWithIndex do |m, i|
-      break if Settings::MECHANICS_GENERATION >= 6 && i > 0
+      break if i > 0
       next if GameData::Type.get(m.type).pseudo_type
       next if userTypes.include?(m.type)
       @newTypes.push(m.type) if !@newTypes.include?(m.type)
@@ -2545,7 +2538,7 @@ end
 #===============================================================================
 class PokeBattle_Move_07E < PokeBattle_Move
   def damageReducedByBurn?
-    return Settings::MECHANICS_GENERATION <= 5;
+    return false;
   end
 
   def pbBaseDamage(baseDmg, user, target)

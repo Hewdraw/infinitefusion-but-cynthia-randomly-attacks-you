@@ -430,12 +430,9 @@ class PokeBattle_Battle
         coin = false
         @opponent.each_with_index do |trainer,i|
           @scene.pbShowOpponent(i)
-          if $PokemonGlobal.cynthiahandschance == nil
-            $PokemonGlobal.cynthiahandschance = 0
-          end
-          if $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
+          if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
             $PokemonGlobal.cynthiahandschance = 1
-            if $PokemonGlobal.cynthiahandschance > rand(100)
+            if rand(100) < $PokemonGlobal.cynthiahandschance
               $PokemonGlobal.cynthiahandschance = 1000
             end
             if $PokemonGlobal.battledepth == nil

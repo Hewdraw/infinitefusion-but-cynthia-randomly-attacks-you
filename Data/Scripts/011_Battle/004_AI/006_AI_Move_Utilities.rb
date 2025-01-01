@@ -206,7 +206,7 @@ class PokeBattle_AI
       baseDmg = move.pbNaturalGiftBaseDamage(user.item_id)
     when "09B"   # Heavy Slam
       baseDmg = move.pbBaseDamage(baseDmg,user,target)
-      baseDmg *= 2 if Settings::MECHANICS_GENERATION >= 7 && skill>=PBTrainerAI.mediumSkill &&
+      baseDmg *= 2 if skill>=PBTrainerAI.mediumSkill &&
                       target.effects[PBEffects::Minimize]
     when "0A0", "0BD", "0BE"   # Frost Breath, Double Kick, Twineedle
       baseDmg *= 2
@@ -481,7 +481,7 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.highSkill
       if user.status == :BURN && move.physicalMove?(type) &&
          !user.hasActiveAbility?(:GUTS) &&
-         !(Settings::MECHANICS_GENERATION >= 6 && move.function == "07E")   # Facade
+         !(move.function == "07E")   # Facade
         multipliers[:final_damage_multiplier] /= 2
       end
       if user.status == :FROZEN && move.specialMove?(type)

@@ -294,8 +294,7 @@ class PokeBattle_Battler
       end
       # Wide Guard
       if target.pbOwnSide.effects[PBEffects::WideGuard] && user.index!=target.index &&
-         move.pbTarget(user).num_targets > 1 &&
-         (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?) && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
+         move.pbTarget(user).num_targets > 1 && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
         @battle.pbCommonAnimation("WideGuard",target)
         @battle.pbDisplay(_INTL("Wide Guard protected {1}!",target.pbThis(true)))
         target.damageState.protected = true
@@ -439,22 +438,20 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
         return false
       end
-      if Settings::MECHANICS_GENERATION >= 6
-        if target.hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
-          @battle.pbShowAbilitySplash(target)
-          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-          else
-            @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
-          end
-          @battle.pbHideAbilitySplash(target)
-          return false
-        end
-        if target.hasActiveItem?(:SAFETYGOGGLES)
-          PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
+      if target.hasActiveAbility?(:OVERCOAT) && !@battle.moldBreaker
+        @battle.pbShowAbilitySplash(target)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-          return false
+        else
+          @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.",target.pbThis(true),target.abilityName))
         end
+        @battle.pbHideAbilitySplash(target)
+        return false
+      end
+      if target.hasActiveItem?(:SAFETYGOGGLES)
+        PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
+        @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+        return false
       end
     end
     # Substitute

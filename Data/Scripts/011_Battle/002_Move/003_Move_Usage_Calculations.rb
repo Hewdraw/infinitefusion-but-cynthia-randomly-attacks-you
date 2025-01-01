@@ -501,10 +501,8 @@ class PokeBattle_Move
   def pbAdditionalEffectChance(user,target,effectChance=0)
     return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
     ret = (effectChance>0) ? effectChance : @addlEffect
-    if Settings::MECHANICS_GENERATION >= 6 || @function != "0A4"   # Secret Power
-      ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
-                  user.pbOwnSide.effects[PBEffects::Rainbow]>0
-    end
+    ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
+                user.pbOwnSide.effects[PBEffects::Rainbow]>0
     if @battle.pbWeather == :Snow || @battle.pbWeather == :Hail
       if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187"].include?(@function)
         ret *= 2

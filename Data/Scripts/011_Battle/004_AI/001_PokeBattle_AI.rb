@@ -20,6 +20,7 @@ end
 class PokeBattle_AI
   def initialize(battle)
     @battle = battle
+    @threattable = {}
   end
 
   def pbAIRandom(x); return rand(x); end
@@ -60,7 +61,7 @@ class PokeBattle_AI
   # Choose an action
   #=============================================================================
   def pbDefaultChooseEnemyCommand(idxBattler)
-    if @battle.opponent && @battle.pbGetOwnerFromBattlerIndex(idxBattler).special_name? && !(@battle.battlers[idxBattler].name == "Cynthia")
+    if @battle.opponent && !(@battle.battlers[idxBattler].name == "Cynthia") #&& @battle.pbGetOwnerFromBattlerIndex(idxBattler).special_name?
       pbCynthiaChooseEnemyCommand(idxBattler)
       return
     end

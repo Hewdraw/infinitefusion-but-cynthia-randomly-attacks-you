@@ -575,7 +575,7 @@ class PokeBattle_ProtectMove < PokeBattle_Move
     else
       user.effects[@effect] = true
     end
-    user.effects[PBEffects::ProtectRate] *= (Settings::MECHANICS_GENERATION >= 6) ? 3 : 2
+    user.effects[PBEffects::ProtectRate] *= 3
     pbProtectMessage(user)
   end
 

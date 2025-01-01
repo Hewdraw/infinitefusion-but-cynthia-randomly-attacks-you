@@ -1383,7 +1383,7 @@ end
 #===============================================================================
 class PokeBattle_Move_144 < PokeBattle_Move
   def tramplesMinimize?(param = 1)
-    return true if param == 1 && Settings::MECHANICS_GENERATION >= 6 # Perfect accuracy
+    return true if param == 1 # Perfect accuracy
     return true if param == 2 # Double damage
     return super
   end
@@ -1591,7 +1591,7 @@ end
 #===============================================================================
 class PokeBattle_Move_14F < PokeBattle_Move
   def healingMove?
-    return Settings::MECHANICS_GENERATION >= 6;
+    return true;
   end
 
   def pbEffectAgainstTarget(user, target)

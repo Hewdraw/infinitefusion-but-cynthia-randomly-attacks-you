@@ -461,9 +461,9 @@ class PokeBattle_Battle
         else                   pbCommonAnimation("Wrap", b)
         end
         if b.takesIndirectDamage?
-          hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/8 : b.totalhp/16
+          hpLoss = b.totalhp/8
           if @battlers[b.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
-            hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? b.totalhp/6 : b.totalhp/8
+            hpLoss = b.totalhp/6
           end
           @scene.pbDamageAnimation(b)
           b.pbReduceHP(hpLoss,false)
