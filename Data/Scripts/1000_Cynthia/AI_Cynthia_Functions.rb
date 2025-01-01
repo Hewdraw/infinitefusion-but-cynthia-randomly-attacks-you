@@ -164,7 +164,7 @@ class PokeBattle_AI
       user.eachOpposing do |opponent|
         score = 0 if opponent.hasActiveAbility?(:UNAWARE)
       end
-      score += 32 if user.hasType?(:ELECTRIC) && user.effects[PBEffects::Charge] == 0 && opposingThreat < 50 && userThreat < 100
+      score += 32 if user.pbHasType?(:ELECTRIC) && user.effects[PBEffects::Charge] == 0 && opposingThreat < 50 && userThreat < 100
     #---------------------------------------------------------------------------
     when "022"
       score = [score, 66 - opposingThreat].max()
@@ -587,7 +587,6 @@ class PokeBattle_AI
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
-        print(userhp, " ", opposingPhysicalThreat*statincrease, " ", opposingThreat, " ", opposingPhysicalThreat)
       else
         score = 0
       end
@@ -1236,7 +1235,6 @@ class PokeBattle_AI
         calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
         if @battle.lastMoveUsed && !blacklist.include?(calledmove.function)
           score = pbCynthiaRegisterMove(user, calledmove, nil, true)
-          print(score)
         end
       else
         score = 0
@@ -1599,18 +1597,18 @@ class PokeBattle_AI
     when "0FF" #todo
       score *= 2 if user.hasActiveItem?(:HEATROCK)
       score *= 2 if user.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
-      score *= 1.5 if user.hasType?(:FIRE)
+      score *= 1.5 if user.pbHasType?(:FIRE)
       score *= 2 if user.pbHasMove?(:SOLARBEAM) || user.pbHasMove?(:SOLARBLADE) || user.pbHasMove?(:GROWTH) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:MOONLIGHT) || user.pbHasMove?(:SYNTHESIS) || user.pbHasMove?(:MORNINGSUN)
       score *= 2 if @battle.pbWeather == :Rain
       user.eachOpposing do |opponent|
-        score *= 2 if opponent.hasType?(:WATER) && outspeedsopponent
+        score *= 2 if opponent.pbHasType?(:WATER) && outspeedsopponent
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun
     #---------------------------------------------------------------------------
     when "100" #todo
       score *= 2 if user.hasActiveItem?(:DAMPROCK)
       score *= 2 if user.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
-      score *= 1.5 if user.hasType?(:WATER)
+      score *= 1.5 if user.pbHasType?(:WATER)
       score *= 2 if user.pbHasMove?(:THUNDER) || user.pbHasMove?(:HURRICANE) || user.pbHasMove?(:BLEAKWINDSTORM) || user.pbHasMove?(:WILDBOLTSTORM) || user.pbHasMove?(:SANDSEARSTORM) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:ELECTROSHOT)
       score *= 2 if @battle.pbWeather == :Sun
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain
@@ -1618,14 +1616,14 @@ class PokeBattle_AI
     when "101" #todo
       score *= 2 if user.hasActiveItem?(:SMOOTHROCK)
       score *= 2 if user.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
-      score *= 1.5 if user.hasType?(:ROCK)
+      score *= 1.5 if user.pbHasType?(:ROCK)
       score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:SHOREUP)
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
     #---------------------------------------------------------------------------
     when "102", "179"
       score *= 2 if user.hasActiveItem?(:ICYROCK)
       score *= 2 if user.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
-      score *= 1.5 if user.hasType?(:ICE)
+      score *= 1.5 if user.pbHasType?(:ICE)
       score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:BLIZZARD) || user.pbHasMove?(:AURORAVEIL)
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Hail || @battle.pbWeather == :Snow
     #---------------------------------------------------------------------------
@@ -2246,7 +2244,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "154"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:ELECTRICSEED)
-      score *= 1.3 if user.hasType?(:ELECTRIC)
+      score *= 1.3 if user.pbHasType?(:ELECTRIC)
       score *= 2 if user.effects[PBEffects::Yawn]>0
       score *= 2 if user.hasActiveAbility?[:SURGESURFER, :QUARKDRIVE, :HADRONENGINE]
       score *= 2 if user.pbHasMove?(:RISINGVOLTAGE) || user.pbHasMove?(:TERRAINPULSE) || user.pbHasMove?(:PSYBLADE)
@@ -2254,7 +2252,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "155"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:GRASSYSEED)
-      score *= 1.3 if user.hasType?(:GRASS)
+      score *= 1.3 if user.pbHasType?(:GRASS)
       score *= 2 if user.pbHasMove?(:GRASSYGLIDE) || user.pbHasMove?(:TERRAINPULSE)
       score = 0 if @battle.field.terrain == :Grassy
     #---------------------------------------------------------------------------
@@ -2488,7 +2486,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "173"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:PSYCHICSEED)
-      score *= 1.3 if user.hasType?(:PSYCHIC)
+      score *= 1.3 if user.pbHasType?(:PSYCHIC)
       score *= 2 if user.hasActiveAbility?[:SURGESURFER, :QUARKDRIVE, :HADRONENGINE]
       score *= 2 if user.pbHasMove?(:EXPANDINGFORCE) || user.pbHasMove?(:TERRAINPULSE)
       score = 0 if @battle.field.terrain == :Electric
