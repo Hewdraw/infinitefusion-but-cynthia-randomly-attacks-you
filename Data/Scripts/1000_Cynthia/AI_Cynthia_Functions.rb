@@ -7,9 +7,10 @@ class PokeBattle_AI
       change *= -1
     end
     stages =  originalstages + change
-    stages = [0, stages].min
-    stages = [12, stages].max
+    stages = [0, stages].max
+    stages = [12, stages].min
     stateffect = (stageMul[stages].to_f / stageDiv[stages].to_f) / (stageMul[originalstages].to_f / stageDiv[originalstages].to_f)
+    stateffect = (stateffect + (-1 * (originalstages - 6))) / (1 + (-1 * (originalstages - 6))) if change < 0 && originalstages < 6
     return stateffect
   end
 
@@ -28,12 +29,12 @@ class PokeBattle_AI
       if @threattable[user][opponent] == nil
         @threattable[user][opponent] = pbCynthiaAssessThreat(user, opponent, true, true)
       end
-      threat = @threattable[user][opponent][:highestDamage]
-      opposingThreat += threat
+      opposingThreat += @threattable[user][opponent][:highestDamage]
       opposingPhysicalThreat += @threattable[user][opponent][:physicalDamage]
       opposingSpecialThreat += @threattable[user][opponent][:specialDamage]
       outspeedsopponent = false if opponent.pbSpeed >= user.pbSpeed
     end
+    print(opposingThreat)
     case move.function
     #---------------------------------------------------------------------------
     when "000", "001", "002", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "092", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195"  # No extra effect
@@ -98,7 +99,7 @@ class PokeBattle_AI
     when "01C", "029"
       if !user.statStageAtMax?(:ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -112,7 +113,7 @@ class PokeBattle_AI
     when "01D", "01E", "0C8"
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
@@ -139,7 +140,7 @@ class PokeBattle_AI
     when "020"
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -153,7 +154,7 @@ class PokeBattle_AI
     when "021"
       if !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max)).ceil
@@ -192,7 +193,7 @@ class PokeBattle_AI
       if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
         defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max)).ceil
@@ -216,7 +217,7 @@ class PokeBattle_AI
         end
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
@@ -230,7 +231,7 @@ class PokeBattle_AI
         if move.function=="028"   # Growth
           statincrease = [pbCynthiaGetStatIncrease(:ATTACK, 2, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)].max if [:Sun, :HarshSun].include?(@battle.pbWeather)
         end
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userThreat * statincrease].max() if (userhp / [userThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -244,7 +245,7 @@ class PokeBattle_AI
     when "02A"
       if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max)).ceil
@@ -269,7 +270,7 @@ class PokeBattle_AI
         end
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max)).ceil
@@ -282,7 +283,7 @@ class PokeBattle_AI
       if !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
         defstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max)).ceil
@@ -300,7 +301,7 @@ class PokeBattle_AI
     when "02E"
       if !user.statStageAtMax?(:ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 2, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -314,7 +315,7 @@ class PokeBattle_AI
     when "02F", "136"
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 2, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userPhysicalThreat, opposingThreat / statincrease].max)).ceil
@@ -341,7 +342,7 @@ class PokeBattle_AI
     when "032"
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -355,7 +356,7 @@ class PokeBattle_AI
     when "033"
       if !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 2, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max)).ceil
@@ -389,7 +390,7 @@ class PokeBattle_AI
         end
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
@@ -414,7 +415,7 @@ class PokeBattle_AI
         end
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
@@ -428,7 +429,7 @@ class PokeBattle_AI
     when "038"
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 3, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
@@ -442,7 +443,7 @@ class PokeBattle_AI
     when "039"
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -458,7 +459,7 @@ class PokeBattle_AI
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 12, user)
         userhp = ((100 * user.hp / user.totalhp) - 50) / (100 * user.hp / user.totalhp)
         if user.hasActiveItem?(:SITRUSBERRY)
-          userhp = 100 * ((100 * user.hp / user.totalhp) + 25) / (100 * user.hp / user.totalhp)
+          userhp = 100.0 * ((100 * user.hp / user.totalhp) + 25) / (100 * user.hp / user.totalhp)
         end
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
@@ -475,7 +476,7 @@ class PokeBattle_AI
         if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
           defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user)
           atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, user)
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max)).ceil
@@ -496,7 +497,7 @@ class PokeBattle_AI
       if user.hasActiveAbility?(:CONTRARY)
         if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
           statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, -1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, user)].max()
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max)).ceil
@@ -525,7 +526,7 @@ class PokeBattle_AI
           end
           speedscore = 0 if outspeedsopponent
           score = [score, speedscore].max()
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max)).ceil
@@ -561,7 +562,7 @@ class PokeBattle_AI
       if user.hasActiveAbility?(:CONTRARY)
         if !user.statStageAtMax?(:SPECIAL_ATTACK)
           statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -2, user)
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
@@ -582,10 +583,11 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max).ceil
+        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
+        print(userhp, " ", opposingPhysicalThreat*statincrease, " ", opposingThreat, " ", opposingPhysicalThreat)
       else
         score = 0
       end
@@ -596,10 +598,10 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:DEFENSE,user)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userPhysicalThreat / statincrease if (userhp / ([userThreat / statincrease, opposingPhysicalThreat]).max).ceil < damagethreshold
+        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
       else
         score = 0
       end
@@ -622,7 +624,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
@@ -636,7 +638,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
@@ -664,7 +666,7 @@ class PokeBattle_AI
       if target.pbCanLowerStatStage?(:ATTACK,user) || target.pbCanLowerStatStage?(:DEFENSE,user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
         defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingPhysicalThreat * atkstatincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * atkstatincrease].max).ceil
@@ -679,7 +681,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, -2, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max).ceil
@@ -693,7 +695,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:DEFENSE,user)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -2, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
@@ -719,7 +721,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
@@ -734,7 +736,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -2, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
@@ -1228,6 +1230,17 @@ class PokeBattle_AI
          !GameData::Move.get(target.lastRegularMoveUsed).flags[/e/]   # Not copyable by Mirror Move
     #---------------------------------------------------------------------------
     when "0AF"
+      blacklist = ["002", "014", "158", "05C", "05D", "069", "071", "072", "073", "09C", "0AD", "0AA", "0AB", "0AC", "0E8", "149", "14A", "14B", "14C", "168", "0AE", "0AF", "0B0", "0B3", "0B4", "0B5", "0B6", "0B1", "0B2", "117", "16A", "0E6", "0E7", "0F1", "0F2", "0F3", "115", "171", "172", "133", "134"]
+      if outspeedsopponent
+        moveID = @battle.lastMoveUsed
+        calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+        if @battle.lastMoveUsed && !blacklist.include?(calledmove.function)
+          score = pbCynthiaRegisterMove(user, calledmove, nil, true)
+          print(score)
+        end
+      else
+        score = 0
+      end
     #---------------------------------------------------------------------------
     when "0B0" #todo
     #---------------------------------------------------------------------------
@@ -1584,37 +1597,37 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0FF" #todo
-      status *= 2 if user.hasActiveItem?(:HEATROCK)
-      status *= 2 if user.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
-      status *= 1.5 if user.hasType?(:FIRE)
-      status *= 2 if user.pbHasMove?(:SOLARBEAM) || user.pbHasMove?(:SOLARBLADE) || user.pbHasMove?(:GROWTH) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:MOONLIGHT) || user.pbHasMove?(:SYNTHESIS) || user.pbHasMove?(:MORNINGSUN)
-      status *= 2 if @battle.pbWeather == :Rain
+      score *= 2 if user.hasActiveItem?(:HEATROCK)
+      score *= 2 if user.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
+      score *= 1.5 if user.hasType?(:FIRE)
+      score *= 2 if user.pbHasMove?(:SOLARBEAM) || user.pbHasMove?(:SOLARBLADE) || user.pbHasMove?(:GROWTH) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:MOONLIGHT) || user.pbHasMove?(:SYNTHESIS) || user.pbHasMove?(:MORNINGSUN)
+      score *= 2 if @battle.pbWeather == :Rain
       user.eachOpposing do |opponent|
-        status *= 2 if opponent.hasType?(:WATER) && outspeedsopponent
+        score *= 2 if opponent.hasType?(:WATER) && outspeedsopponent
       end
-      status = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun
+      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun
     #---------------------------------------------------------------------------
     when "100" #todo
-      status *= 2 if user.hasActiveItem?(:DAMPROCK)
-      status *= 2 if user.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
-      status *= 1.5 if user.hasType?(:WATER)
-      status *= 2 if user.pbHasMove?(:THUNDER) || user.pbHasMove?(:HURRICANE) || user.pbHasMove?(:BLEAKWINDSTORM) || user.pbHasMove?(:WILDBOLTSTORM) || user.pbHasMove?(:SANDSEARSTORM) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:ELECTROSHOT)
-      status *= 2 if @battle.pbWeather == :Sun
-      status = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain
+      score *= 2 if user.hasActiveItem?(:DAMPROCK)
+      score *= 2 if user.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
+      score *= 1.5 if user.hasType?(:WATER)
+      score *= 2 if user.pbHasMove?(:THUNDER) || user.pbHasMove?(:HURRICANE) || user.pbHasMove?(:BLEAKWINDSTORM) || user.pbHasMove?(:WILDBOLTSTORM) || user.pbHasMove?(:SANDSEARSTORM) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:ELECTROSHOT)
+      score *= 2 if @battle.pbWeather == :Sun
+      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain
     #---------------------------------------------------------------------------
     when "101" #todo
-      status *= 2 if user.hasActiveItem?(:SMOOTHROCK)
-      status *= 2 if user.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
-      status *= 1.5 if user.hasType?(:ROCK)
-      status *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:SHOREUP)
-      status = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
+      score *= 2 if user.hasActiveItem?(:SMOOTHROCK)
+      score *= 2 if user.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
+      score *= 1.5 if user.hasType?(:ROCK)
+      score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:SHOREUP)
+      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
     #---------------------------------------------------------------------------
     when "102", "179"
-      status *= 2 if user.hasActiveItem?(:ICYROCK)
-      status *= 2 if user.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
-      status *= 1.5 if user.hasType?(:ICE)
-      status *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:BLIZZARD) || user.pbHasMove?(:AURORAVEIL)
-      status = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Hail || @battle.pbWeather == :Snow
+      score *= 2 if user.hasActiveItem?(:ICYROCK)
+      score *= 2 if user.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
+      score *= 1.5 if user.hasType?(:ICE)
+      score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:BLIZZARD) || user.pbHasMove?(:AURORAVEIL)
+      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Hail || @battle.pbWeather == :Snow
     #---------------------------------------------------------------------------
     when "103" #todo
       if user.pbOpposingSide.effects[PBEffects::Spikes]>=3
@@ -1700,7 +1713,7 @@ class PokeBattle_AI
         if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
           defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
           atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max)).ceil
@@ -1748,7 +1761,7 @@ class PokeBattle_AI
     when "112"
       if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE) || !(user.effects[PBEffects::Stockpile]>=3)
         statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max)).ceil
@@ -1999,7 +2012,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max).ceil
@@ -2013,7 +2026,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:ATTACK,user) || target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
         statincrease = [pbCynthiaGetStatIncrease(:ATTACK, -1, target), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)].max()
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingThreat * statincrease].max).ceil
@@ -2027,7 +2040,7 @@ class PokeBattle_AI
       if user.hasActiveAbility?(:CONTRARY)
         if !user.statStageAtMax?(:DEFENSE)
           statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user).max()
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
@@ -2048,7 +2061,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
@@ -2062,7 +2075,7 @@ class PokeBattle_AI
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -2, target)
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
@@ -2321,7 +2334,7 @@ class PokeBattle_AI
       if user.hasActiveAbility?(:CONTRARY)
         if !user.statStageAtMax?(:DEFENSE)
           statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user).max()
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
@@ -2508,7 +2521,7 @@ class PokeBattle_AI
         defstatincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max()
         userhp = ((100 * user.hp / user.totalhp) - 33) / (100 * user.hp / user.totalhp)
         if user.hasActiveItem?(:SITRUSBERRY)
-          userhp = 100 * ((100 * user.hp / user.totalhp) + 25) / (100 * user.hp / user.totalhp)
+          userhp = 100.0 * ((100 * user.hp / user.totalhp) + 25) / (100 * user.hp / user.totalhp)
         end
         speedscore = 100
         user.eachOpposing do |opponent|
@@ -2519,7 +2532,7 @@ class PokeBattle_AI
         end
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
-        userhp = 100
+        userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
         score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max)).ceil
@@ -2541,7 +2554,7 @@ class PokeBattle_AI
       if opposingThreat < (outspeedsopponent ? 49 : 32) || user.hasActiveItem?(:POWERHERB)
         if !user.statStageAtMax?(:SPECIAL_ATTACK)
           statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-          userhp = 100
+          userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
           score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold

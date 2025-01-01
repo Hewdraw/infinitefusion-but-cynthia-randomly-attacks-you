@@ -3617,6 +3617,7 @@ Pokemon = BONSLY,5
 Pokemon = MEW,5 #bulbmander,
 Pokemon = BONSLY,5
 	Ability = STURDY
+	Nature = JOLLY
 
 #Blue encounter 2 (Viridian)	starter=bulbasaur
 

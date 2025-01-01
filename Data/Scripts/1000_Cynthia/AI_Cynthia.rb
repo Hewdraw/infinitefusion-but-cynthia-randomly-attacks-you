@@ -21,7 +21,7 @@ class PokeBattle_AI
       opposingThreat = pbCynthiaAssessThreat(user, target)
       userThreat = pbCynthiaAssessThreat(target, user, false)
       break if userThreat >= 100 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
-      damagethreshold = (100/[userThreat, opposingThreat].max).ceil
+      damagethreshold = (100.0/[userThreat, opposingThreat].max).ceil
       damagethreshold -= 1 if user.pbSpeed > target.pbSpeed
       opposingThreat *= damagethreshold
       maxThreat = opposingThreat + userThreat
@@ -32,7 +32,7 @@ class PokeBattle_AI
         battler.pbInitialize(pokemon,69)
         opposingThreat = pbCynthiaAssessThreat(battler, target)
         userThreat = pbCynthiaAssessThreat(target, battler, false)
-        damagethreshold = (100/[userThreat, opposingThreat].max).ceil
+        damagethreshold = (100.0/[userThreat, opposingThreat].max).ceil
         damagethreshold += 1 if battler.pbSpeed <= target.pbSpeed
         opposingThreat *= damagethreshold
         currentThreat = opposingThreat + userThreat
@@ -91,12 +91,13 @@ class PokeBattle_AI
         when "0AF"
           blacklist = ["002", "014", "158", "05C", "05D", "069", "071", "072", "073", "09C", "0AD", "0AA", "0AB", "0AC", "0E8", "149", "14A", "14B", "14C", "168", "0AE", "0AF", "0B0", "0B3", "0B4", "0B5", "0B6", "0B1", "0B2", "117", "16A", "0E6", "0E7", "0F1", "0F2", "0F3", "115", "171", "172", "133", "134"]
           currentThreat[move] = 0
-          if target.pbSpeed >= user.pbSpeed
-            if @battle.lastMoveUsed && !blacklist.include?(PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@battle.lastMoveUsed)).function)
-              moveID = @battle.lastMoveUsed
-              calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+          if target.pbSpeed >= user.pbSpeed && @battle.lastMoveUsed
+            moveID = @battle.lastMoveUsed
+            calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+            if !blacklist.include?(calledmove.function)
               damage = pbCynthiaCalcDamage(calledmove,target,user)[key]
               currentThreat[move] = damage
+              threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
               threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && calledmove.physicalMove?
               threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && calledmove.specialMove?
             end
@@ -108,6 +109,7 @@ class PokeBattle_AI
               damage = pbCynthiaCalcDamage(calledmove,target,user)
               damage = damage[key]
               currentThreat[move] = damage if damage > currentThreat[move]
+              threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
               threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && calledmove.physicalMove?
               threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && calledmove.specialMove?
             end
@@ -132,6 +134,9 @@ class PokeBattle_AI
       threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && move.specialMove?
     end
     if detailed
+      threattable.each do |damagekey, value|
+        threattable[damagekey] = [[100, value*100/user.totalhp].min, 1].max
+      end
       return threattable
     end
     if currentThreat.length() == threattable[:statusCount]
@@ -200,8 +205,10 @@ class PokeBattle_AI
     end
   end
 
-  def pbCynthiaRegisterMove(user,idxMove,choices)
-    move = user.moves[idxMove]
+  def pbCynthiaRegisterMove(user,idxMove,choices, returnscore=false)
+    if idxMove.is_a?(Integer)
+      move = user.moves[idxMove]
+    end
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1
       # If move affects multiple battlers and you don't choose a particular one
@@ -211,10 +218,12 @@ class PokeBattle_AI
         score = pbCynthiaGetMoveScore(move,user,b)
         totalScore += ((user.opposes?(b)) ? score : -score)
       end
+      return totalscore if returnscore
       choices.push([idxMove,totalScore,-1]) if totalScore>0
     elsif target_data.num_targets == 0
       # If move has no targets, affects the user, a side or the whole field
       score = pbCynthiaGetMoveScore(move,user,user)
+      return score if returnscore
       choices.push([idxMove,score,-1]) if score>0
     else
       # If move affects one battler and you have to choose which one
@@ -228,6 +237,7 @@ class PokeBattle_AI
       if scoresAndTargets.length>0
         # Get the one best target for the move
         scoresAndTargets.sort! { |a,b| b[0]<=>a[0] }
+        return scoresAndTargets[0][0] if returnscore
         choices.push([idxMove,scoresAndTargets[0][0],scoresAndTargets[0][1]])
       end
     end
