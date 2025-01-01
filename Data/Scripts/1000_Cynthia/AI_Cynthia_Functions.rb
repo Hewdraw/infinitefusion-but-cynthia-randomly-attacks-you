@@ -101,7 +101,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -115,7 +115,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
+        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -142,7 +142,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -156,7 +156,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max)).ceil
+        score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -195,8 +195,8 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max)).ceil
-        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max.ceil)).ceil
+        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -219,7 +219,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -233,7 +233,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userThreat * statincrease].max() if (userhp / [userThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userThreat * statincrease].max() if (userhp / [userThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -247,7 +247,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max)).ceil
+        score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -272,8 +272,8 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max)).ceil
-        score = [score, userSpecialThreat * atkstatincrease].max() if (userhp / [userSpecialThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max.ceil)).ceil
+        score = [score, userSpecialThreat * atkstatincrease].max() if (userhp / [userSpecialThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -285,8 +285,8 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max)).ceil
-        score = [score, userSpecialThreat * atkstatincrease].max() if (userhp / [userSpecialThreat*atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max.ceil)).ceil
+        score = [score, userSpecialThreat * atkstatincrease].max() if (userhp / [userSpecialThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -303,7 +303,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -317,7 +317,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userPhysicalThreat, opposingThreat / statincrease].max)).ceil
+        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userPhysicalThreat, opposingThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -344,7 +344,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -358,7 +358,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max)).ceil
+        score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -392,7 +392,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -417,7 +417,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -431,7 +431,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
+        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -445,7 +445,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -462,7 +462,7 @@ class PokeBattle_AI
         end
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -478,8 +478,8 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max)).ceil
-          score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max).ceil < damagethreshold
+          score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max.ceil)).ceil
+          score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
         else
           score = 0
         end
@@ -499,7 +499,7 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max)).ceil
+          score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max.ceil)).ceil
         else
           score = 0
         end
@@ -528,7 +528,7 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max)).ceil
+          score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max.ceil)).ceil
         else
           score = 0
         end
@@ -564,7 +564,7 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+          score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
         else
           score = 0
         end
@@ -599,7 +599,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
+        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -625,7 +625,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
+        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -639,7 +639,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
+        score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -667,8 +667,8 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * atkstatincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * atkstatincrease].max).ceil
-        score = userPhysicalThreat / defstatincrease if (userhp / ([userPhysicalThreat / defstatincrease, opposingThreat]).max).ceil < damagethreshold
+        score = opposingPhysicalThreat * atkstatincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * atkstatincrease].max.ceil).ceil
+        score = userPhysicalThreat / defstatincrease if (userhp / ([userPhysicalThreat / defstatincrease, opposingThreat]).max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -682,7 +682,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max).ceil
+        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -696,7 +696,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
+        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -722,7 +722,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
+        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -737,7 +737,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max).ceil < damagethreshold
+        score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -1715,8 +1715,8 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max)).ceil
-          score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max).ceil < damagethreshold
+          score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max.ceil)).ceil
+          score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
         else
           score = 0
         end
@@ -1763,7 +1763,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max)).ceil
+        score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max.ceil)).ceil
       else
         score = 0
       end
@@ -2014,7 +2014,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max).ceil
+        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -2028,7 +2028,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingThreat * statincrease].max).ceil
+        score = opposingThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -2042,7 +2042,7 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
+          score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
         else
           score = 0
         end
@@ -2063,7 +2063,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
+        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -2077,7 +2077,7 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max).ceil
+        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
       else
         score = 0
       end
@@ -2336,7 +2336,7 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max)).ceil
+          score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
         else
           score = 0
         end
@@ -2535,8 +2535,8 @@ class PokeBattle_AI
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
         damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max)).ceil
-        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max).ceil < damagethreshold
+        score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max.ceil)).ceil
+        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
       else
         score = 0
       end
@@ -2557,7 +2557,7 @@ class PokeBattle_AI
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max).ceil < damagethreshold
+          score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
         else
           score = 0
         end
