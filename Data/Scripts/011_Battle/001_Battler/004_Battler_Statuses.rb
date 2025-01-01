@@ -505,12 +505,6 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMessages
       return false
     end
-    agender = user.gender
-    ogender = gender
-    if agender==2 || ogender==2 || agender==ogender
-      @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMessages
-      return false
-    end
     if !@battle.moldBreaker
       if hasActiveAbility?([:AROMAVEIL,:OBLIVIOUS])
         if showMessages
@@ -547,6 +541,11 @@ class PokeBattle_Battler
     @battle.pbCommonAnimation("Attract",self)
     msg = _INTL("{1} fell in love!",pbThis) if nil_or_empty?(msg)
     @battle.pbDisplay(msg)
+    agender = user.gender
+    ogender = gender
+    if agender==2 || ogender==2 || agender==ogender
+      @battle.pbDisplay(_INTL("Good for them."))
+    end
     # Destiny Knot
     if hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(self,false)
       user.pbAttract(self,_INTL("{1} fell in love from the {2}!",user.pbThis(true),itemName))
