@@ -251,7 +251,6 @@ class PokeBattle_AI
       score = 0
     end
     score += pbCynthiaGetMoveScoreStatus(move,user,target)
-    print(score, " ", move.name)
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       if !user.hasActiveItem?(:POWERHERB)
         score *= 1/2
