@@ -3425,7 +3425,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     # 80 => all Mega Stones
     # 10 => all Berries
     @flingPowers = {
-      130 => [:IRONBALL
+      130 => [:IRONBALL,:BIGNUGGET
              ],
       100 => [:HARDSTONE,:RAREBONE,
               # Fossils
@@ -3508,7 +3508,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               # Shards
               :BLUESHARD,:GREENSHARD,:REDSHARD,:YELLOWSHARD,
               # Valuables
-              :BALMMUSHROOM,:BIGMUSHROOM,:BIGNUGGET,:BIGPEARL,:COMETSHARD,
+              :BALMMUSHROOM,:BIGMUSHROOM,:BIGPEARL,:COMETSHARD,
               :NUGGET,:PEARL,:PEARLSTRING,:RELICBAND,:RELICCOPPER,:RELICCROWN,
               :RELICGOLD,:RELICSILVER,:RELICSTATUE,:RELICVASE,:STARDUST,
               :STARPIECE,:STRANGESOUVENIR,:TINYMUSHROOM

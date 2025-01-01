@@ -240,6 +240,9 @@ def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0,saveg
   yourPokemon.obtain_method = 2   # traded
   yourPokemon.reset_moves if resetmoves
   yourPokemon.record_first_moves
+  if yourPokemon.species == :SKARMORY
+    yourPokemon.item = GameData::Item.get(:TM118)
+  end
   $Trainer.pokedex.register(yourPokemon)
   $Trainer.pokedex.set_owned(yourPokemon.species)
   pbFadeOutInWithMusic {
