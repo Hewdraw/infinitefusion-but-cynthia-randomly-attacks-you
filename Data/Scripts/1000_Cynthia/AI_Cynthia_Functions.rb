@@ -78,7 +78,6 @@ class PokeBattle_AI
       score = 0 if !target.pbCanConfuse?(user,false,move)
     #---------------------------------------------------------------------------
     when "016"
-      score = 0 if target.pbCanAttract?(user,false) || (target.hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(target,false))
     #---------------------------------------------------------------------------
     when "018"
       score = 0 if ![:POISON, :BURN, :PARALYSIS].include?(user.status)
