@@ -1340,6 +1340,7 @@ class PokeBattle_AI
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
+      score = 0 if user.hp >= user.totalhp * 3 / 4
     #---------------------------------------------------------------------------
     when "0D7" #todo
       score -= 90 if @battle.positions[user.index].effects[PBEffects::Wish]>0
@@ -1349,6 +1350,7 @@ class PokeBattle_AI
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
+      score = 0 if user.hp >= user.totalhp * 3 / 4
     #---------------------------------------------------------------------------
     when "0D9" #todo
       if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
@@ -2438,6 +2440,7 @@ class PokeBattle_AI
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
+      score = 0 if user.hp >= user.totalhp * 3 / 4
     #---------------------------------------------------------------------------
     when "16E" #todo
       if target.hp==target.totalhp || (!target.canHeal?)
