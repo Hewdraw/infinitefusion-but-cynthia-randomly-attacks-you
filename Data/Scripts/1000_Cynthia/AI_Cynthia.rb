@@ -166,7 +166,6 @@ class PokeBattle_AI
       pbCynthiaRegisterMove(user,i,choices)
     end
     # Figure out useful information about the choices
-    print(choices)
     maxScore   = 0
     choices.each do |c|
       maxScore = c[1] if maxScore<c[1]
