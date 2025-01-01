@@ -1319,8 +1319,14 @@ Pokemon = B237H107,45
 ############Route 5##############
 
 [POKEMONBREEDER,Maude]
+Pokemon = TOGEPI,12
+	Offset = 5
+	Item = EVIOLITE
+	Moves = METRONOME
 Pokemon = TOGEPI,12 
-Pokemon = TOGEPI,12 
+	Offset = 5
+	Item = EVIOLITE
+	Moves = METRONOME
 Pokemon = B239H240,15 #magkid
 #--------------------------
 
