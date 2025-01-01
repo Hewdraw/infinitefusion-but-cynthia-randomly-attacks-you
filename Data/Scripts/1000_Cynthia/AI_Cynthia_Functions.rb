@@ -34,7 +34,6 @@ class PokeBattle_AI
       opposingSpecialThreat += @threattable[user][opponent][:specialDamage]
       outspeedsopponent = false if opponent.pbSpeed >= user.pbSpeed
     end
-    print(opposingThreat)
     case move.function
     #---------------------------------------------------------------------------
     when "000", "001", "002", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "092", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195"  # No extra effect
