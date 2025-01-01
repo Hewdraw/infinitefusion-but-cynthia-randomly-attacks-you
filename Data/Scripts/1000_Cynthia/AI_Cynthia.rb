@@ -74,31 +74,70 @@ class PokeBattle_AI
     return best
   end
 
-  def pbCynthiaAssessThreat(user, target, max=true)
-    currentThreat = []
+  def pbCynthiaAssessThreat(user, target, max=true, detailed = false)
+    key = :minDamage
+    key = :maxDamage if max
+    threattable = {
+      :highestDamage => 0,
+      :physicalDamage => 0,
+      :specialDamage => 0,
+      :statusCount => 0,
+    }
+    currentThreat = {}
     target.moves.each_with_index do |move,i|
-      currentThreat.push([move, pbCynthiaCalcDamage(move,target,user)])
+      if move.callsAnotherMove?
+        case move.function
+        when "0AE"
+        when "0AF"
+          blacklist = ["002", "014", "158", "05C", "05D", "069", "071", "072", "073", "09C", "0AD", "0AA", "0AB", "0AC", "0E8", "149", "14A", "14B", "14C", "168", "0AE", "0AF", "0B0", "0B3", "0B4", "0B5", "0B6", "0B1", "0B2", "117", "16A", "0E6", "0E7", "0F1", "0F2", "0F3", "115", "171", "172", "133", "134"]
+          currentThreat[move] = 0
+          if target.pbSpeed >= user.pbSpeed
+            if @battle.lastMoveUsed && !blacklist.include?(PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@battle.lastMoveUsed)).function)
+              moveID = @battle.lastMoveUsed
+              calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+              damage = pbCynthiaCalcDamage(calledmove,target,user)[key]
+              currentThreat[move] = damage
+              threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && calledmove.physicalMove?
+              threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && calledmove.specialMove?
+            end
+          end
+          user.moves.each do |usermove|
+            if !blacklist.include?(usermove.function)
+              moveID = usermove.id
+              calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+              damage = pbCynthiaCalcDamage(calledmove,target,user)
+              damage = damage[key]
+              currentThreat[move] = damage if damage > currentThreat[move]
+              threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && calledmove.physicalMove?
+              threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && calledmove.specialMove?
+            end
+          end
+        when "0B0"
+        when "0B3"
+        when "0B4"
+        when "0B5"
+        when "0B6"
+        end
+      else
+        currentThreat[move] = pbCynthiaCalcDamage(move,target,user)[key]
+      end
     end
-    maxdamage = 0
-    statusMoves = []
-    currentThreat.each do |move,damagetable|
+    currentThreat.each do |move,damage|
       if move.statusMove?
-        statusMoves.push(move)
+        threattable[:statusCount] += 1
         next
       end
-      if max
-        damage = damagetable[:maxDamage]
-      else
-        damage = damagetable[:minDamage]
-      end
-      if damage > maxdamage
-        maxdamage = damage
-      end
+      threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
+      threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && move.physicalMove?
+      threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && move.specialMove?
     end
-    if currentThreat.length() == statusMoves.length()
-      return 33
+    if detailed
+      return threattable
     end
-    return [[100, maxdamage*100/user.totalhp].min, 1].max
+    if currentThreat.length() == threattable[:statusCount]
+      return 32
+    end
+    return [[100, threattable[:highestDamage]*100/user.totalhp].min, 1].max
   end
 
   def pbCynthiaItemScore(idxBattler)

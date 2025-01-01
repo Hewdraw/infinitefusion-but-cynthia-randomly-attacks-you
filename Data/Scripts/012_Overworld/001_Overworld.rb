@@ -258,7 +258,7 @@ def pbBattleOnStepTaken(repel_active)
   end
   if rand(120) < $PokemonGlobal.cynthiachance || (repel_active && !$PokemonTemp.pokeradar)
     if $PokemonGlobal.cynthiahandschance == nil
-      $PokemonGlobal.cynthiahandschance = -1
+      $PokemonGlobal.cynthiahandschance = -10
     end
     $PokemonGlobal.cynthiahandschance += 1
     if rand(100) < $PokemonGlobal.cynthiahandschance
