@@ -3603,6 +3603,7 @@ Pokemon = B288H273,83 #GLISLADE
 Pokemon = MEW,5 #squirtmander,
 Pokemon = BONSLY,5
 	Ability = STURDY
+	Moves = FLAIL,COPYCAT
 
 #Blue encounter 1	starter=charmander
 
@@ -3610,6 +3611,7 @@ Pokemon = BONSLY,5
 Pokemon = MEW,5 #bulbtle,
 Pokemon = BONSLY,5
 	Ability = STURDY
+	Moves = FLAIL,COPYCAT
 
 #Blue encounter 1	starter=squirtle
 
@@ -3617,6 +3619,7 @@ Pokemon = BONSLY,5
 Pokemon = MEW,5 #bulbmander,
 Pokemon = BONSLY,5
 	Ability = STURDY
+	Moves = FLAIL,COPYCAT
 
 #Blue encounter 2 (Viridian)	starter=bulbasaur
 
