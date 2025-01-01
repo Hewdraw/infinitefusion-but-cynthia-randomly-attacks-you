@@ -253,6 +253,10 @@ end
 # Start a wild battle
 #===============================================================================
 def pbWildBattleCore(*args)
+  if args[2] == true
+    args[2] = nil
+    special = true
+  end
   outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
   canLose    = $PokemonTemp.battleRules["canLose"] || false
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
@@ -288,6 +292,11 @@ def pbWildBattleCore(*args)
       sp = nil
     else
       sp = arg
+    end
+  end
+  foeParty.each do |pkmn|
+    if pkmn.species == :MEOWTH && special
+      pkmn.item = :EVIOLITE
     end
   end
   raise _INTL("Expected a level after being given {1}, but one wasn't found.",sp) if sp
@@ -367,7 +376,7 @@ end
 # Standard methods that start a wild battle of various sizes
 #===============================================================================
 # Used when walking in tall grass, hence the additional code.
-def pbWildBattle(species, level, outcomeVar=1, canRun=true, canLose=false)
+def pbWildBattle(species, level, outcomeVar=1, canRun=true, canLose=false, special=false)
   if !species
     displayRandomizerErrorMessage()
     return
@@ -393,7 +402,7 @@ def pbWildBattle(species, level, outcomeVar=1, canRun=true, canLose=false)
   setBattleRule("cannotRun") if !canRun
   setBattleRule("canLose") if canLose
   # Perform the battle
-  decision = pbWildBattleCore(species, level)
+  decision = pbWildBattleCore(species, level, special)
   # Used by the Poké Radar to update/break the chain
   Events.onWildBattleEnd.trigger(nil,species,level,decision)
   # Return false if the player lost or drew the battle, and true if any other result
