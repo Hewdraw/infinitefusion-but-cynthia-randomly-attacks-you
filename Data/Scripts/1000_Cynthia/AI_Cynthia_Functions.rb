@@ -2602,7 +2602,7 @@ class PokeBattle_AI
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
     effectchance = pbRoughAccuracy(move,user,target,100) if move.statusMove?
-    score = score * effectchance
+    score = score * effectchance / 100
     return score
   end
 
