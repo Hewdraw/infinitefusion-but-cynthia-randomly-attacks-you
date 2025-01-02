@@ -96,7 +96,7 @@ class PokeBattle_AI
       score = 0 if user.status == :NONE || !target.pbCanInflictStatus?(user.status, user, false, move)
     #---------------------------------------------------------------------------
     when "01C", "029"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
         userhp = 100.0
@@ -111,7 +111,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "01D", "01E", "0C8"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
         userhp = 100.0
@@ -126,7 +126,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "01F"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPEED)
         score = 100
         statincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
@@ -140,7 +140,7 @@ class PokeBattle_AI
       score = 0 if outspeedsopponent
     #---------------------------------------------------------------------------
     when "020"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
         userhp = 100.0
@@ -155,7 +155,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "021"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
         userhp = 100.0
@@ -194,7 +194,7 @@ class PokeBattle_AI
       score = 0 if user.effects[PBEffects::FocusEnergy]>=1
     #---------------------------------------------------------------------------
     when "024", "025"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
         defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
@@ -211,7 +211,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "026"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
@@ -232,7 +232,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "027", "028"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max
         if move.function=="028"   # Growth
@@ -250,7 +250,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "02A"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max
         userhp = 100.0
@@ -265,7 +265,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "02B"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
@@ -289,7 +289,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "02C"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
         defstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
@@ -309,7 +309,7 @@ class PokeBattle_AI
       score = [score, 100 - opposingThreat].max()
     #---------------------------------------------------------------------------
     when "02E"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 2, user)
         userhp = 100.0
@@ -324,7 +324,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "02F", "136"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 2, user)
         userhp = 100.0
@@ -339,7 +339,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "030", "031"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPEED)
         score = 100
         statincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
@@ -353,7 +353,7 @@ class PokeBattle_AI
       score = 0 if outspeedsopponent
     #---------------------------------------------------------------------------
     when "032"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)
         userhp = 100.0
@@ -368,7 +368,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "033"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 2, user)
         userhp = 100.0
@@ -394,7 +394,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "035"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
         atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 2, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)].max()
@@ -420,7 +420,7 @@ class PokeBattle_AI
       score = 0 if outspeedsopponent && opposingThreat / defstatincrease >= 100
     #---------------------------------------------------------------------------
     when "036"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
@@ -444,7 +444,7 @@ class PokeBattle_AI
       score = [score, 66 - opposingThreat].max()
     #---------------------------------------------------------------------------
     when "038"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 3, user)
         userhp = 100.0
@@ -459,7 +459,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "039"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
         userhp = 100.0
@@ -474,7 +474,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "03A"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 12, user)
         userhp = ((100 * user.hp / user.totalhp) - 50) / (100 * user.hp / user.totalhp)
@@ -493,7 +493,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "03B"
       if user.hasActiveAbility?(:CONTRARY)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
           defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user)
           atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, user)
@@ -516,7 +516,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "03C"
       if user.hasActiveAbility?(:CONTRARY)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
           statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, -1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, user)].max()
           userhp = 100.0
@@ -537,7 +537,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "03D"
       if user.hasActiveAbility?(:CONTRARY)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
           speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, -1, user)
           defstatincrease = [pbCynthiaGetStatIncrease(:DEFENSE, -1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, user)].max()
@@ -583,7 +583,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "03F"
       if user.hasActiveAbility?(:CONTRARY)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:SPECIAL_ATTACK)
           statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -2, user)
           userhp = 100.0
@@ -1261,7 +1261,15 @@ class PokeBattle_AI
           score = pbCynthiaRegisterMove(user, calledmove, nil, true)
         end
       else
-        score = 0
+        user.eachOpposing do |opponent|
+          opponent.moves.each do |usermove|
+            if !blacklist.include?(usermove.function)
+              moveID = usermove.id
+              calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
+              score = [score, pbCynthiaRegisterMove(user, calledmove, nil, true)].max
+            end
+          end
+        end
       end
     #---------------------------------------------------------------------------
     when "0B0" #todo
@@ -1734,7 +1742,7 @@ class PokeBattle_AI
           end
         end
       else
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
           defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
           atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
@@ -1784,7 +1792,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "112"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE) || !(user.effects[PBEffects::Stockpile]>=3)
         statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max
         userhp = 100.0
@@ -2064,7 +2072,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "13B"
       if user.hasActiveAbility?(:CONTRARY)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:DEFENSE)
           statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user).max()
           userhp = 100.0
@@ -2359,7 +2367,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "15F"
       if user.hasActiveAbility?(:CONTRARY)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:DEFENSE)
           statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user).max()
           userhp = 100.0
@@ -2544,7 +2552,7 @@ class PokeBattle_AI
     when "180" #todo
     #---------------------------------------------------------------------------
     when "181"
-      score = 5
+      #score = 5
       if !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max()
@@ -2582,7 +2590,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "194" #todo
       if opposingThreat < (outspeedsopponent ? 49 : 32) || user.hasActiveItem?(:POWERHERB)
-        score = 5
+        #score = 5
         if !user.statStageAtMax?(:SPECIAL_ATTACK)
           statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
           userhp = 100.0
