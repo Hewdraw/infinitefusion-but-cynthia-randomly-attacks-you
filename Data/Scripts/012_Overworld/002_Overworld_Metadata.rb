@@ -66,6 +66,7 @@ class PokemonGlobalMetadata
   attr_accessor :hatsunemikuchance
   attr_accessor :battledepth
   attr_accessor :battlehplist
+  attr_accessor :cynthiaprevious
 
   def initialize
     # Movement

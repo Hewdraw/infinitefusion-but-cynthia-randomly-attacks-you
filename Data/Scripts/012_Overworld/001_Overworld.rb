@@ -333,13 +333,13 @@ def pbBattleOnStepTaken(repel_active)
       end
       pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
     elsif $PokemonGlobal.partner
-      pbDoubleTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())], nil, :CHAMPION_Sinnoh, "Cynthia", currentbadge[rand(currentbadge.length())])
+      pbDoubleTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", currentbadge[pbCynthiaRollEncounter], nil, :CHAMPION_Sinnoh, "Cynthia", currentbadge[pbCynthiaRollEncounter])
     elsif numbadges >= $Trainer.numbadges + 2
-      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())], false, 1, nil, :CHAMPION_Sinnoh2)
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[pbCynthiaRollEncounter], false, 1, nil, :CHAMPION_Sinnoh2)
     elsif numbadges > $Trainer.numbadges
-      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", "sorrgy accident..", false, currentbadge[rand(currentbadge.length())], false, 1, "Hatsune Miku", :CREATOR_Minecraft2)
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", "sorrgy accident..", false, currentbadge[pbCynthiaRollEncounter], false, 1, "Hatsune Miku", :CREATOR_Minecraft2)
     else
-      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[rand(currentbadge.length())])
+      pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[pbCynthiaRollEncounter])
     end
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?
@@ -354,6 +354,21 @@ def pbBattleOnStepTaken(repel_active)
   end
   $PokemonTemp.forceSingleBattle = false
   EncounterModifier.triggerEncounterEnd
+end
+
+def pbCynthiaRollEncounter
+  if $PokemonGlobal.cynthiaprevious == nil
+    $PokemonGlobal.cynthiaprevious = []
+  end
+  cynthiaencounter = rand(5)
+  if $PokemonGlobal.cynthiaprevious.include?(cynthiaencounter)
+    cynthiaencounter = rand(5)
+  end
+  $PokemonGlobal.cynthiaprevious.push(cynthiaencounter)
+  if $PokemonGlobal.cynthiaprevious.length > 2
+    $PokemonGlobal.cynthiaprevious.delete_at(0)
+  end
+  return cynthiaencounter
 end
 
 #===============================================================================
