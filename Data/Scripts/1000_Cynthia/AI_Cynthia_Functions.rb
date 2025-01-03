@@ -2283,7 +2283,7 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:ELECTRICSEED)
       score *= 1.3 if user.pbHasType?(:ELECTRIC)
       score *= 2 if user.effects[PBEffects::Yawn]>0
-      score *= 2 if user.hasActiveAbility?[:SURGESURFER, :QUARKDRIVE, :HADRONENGINE]
+      score *= 2 if user.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
       score *= 2 if user.pbHasMove?(:RISINGVOLTAGE) || user.pbHasMove?(:TERRAINPULSE) || user.pbHasMove?(:PSYBLADE)
       score = 0 if @battle.field.terrain == :Electric
     #---------------------------------------------------------------------------
@@ -2526,7 +2526,7 @@ class PokeBattle_AI
     when "173"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:PSYCHICSEED)
       score *= 1.3 if user.pbHasType?(:PSYCHIC)
-      score *= 2 if user.hasActiveAbility?[:SURGESURFER, :QUARKDRIVE, :HADRONENGINE]
+      score *= 2 if user.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
       score *= 2 if user.pbHasMove?(:EXPANDINGFORCE) || user.pbHasMove?(:TERRAINPULSE)
       score = 0 if @battle.field.terrain == :Electric
     #---------------------------------------------------------------------------

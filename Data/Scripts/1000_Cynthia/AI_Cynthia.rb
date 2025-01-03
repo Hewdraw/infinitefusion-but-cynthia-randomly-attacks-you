@@ -85,6 +85,9 @@ class PokeBattle_AI
     }
     currentThreat = {}
     target.moves.each_with_index do |move,i|
+      next if move.pp==0 && move.total_pp>0
+      next if !target.pbCanChooseMove?(move,true,false,false)
+      #todo encore
       if move.callsAnotherMove?
         case move.function
         when "0AE"
