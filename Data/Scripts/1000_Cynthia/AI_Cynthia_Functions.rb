@@ -2673,7 +2673,7 @@ class PokeBattle_AI
         when :averageDamage
           baseDmg = 71
         else
-          baseDmg = 150
+          baseDmg = 90 #assume they dont hit 9 or 10
         end
         baseDmg.each *= 2 if target.inTwoTurnAttack?("0CA")   # Dig
       when "096"   # Natural Gift
