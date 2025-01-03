@@ -62,7 +62,7 @@ class PokeBattle_AI
         battler.pbInitialize(party[i],69)
         opposingThreat = pbCynthiaAssessThreat(battler, target)
         userThreat = pbCynthiaAssessThreat(target, battler, false)
-        damagethreshold = (100/opposingThreat).ceil
+        damagethreshold = (100.0/opposingThreat).ceil
         damagethreshold -= 1 if battler.pbSpeed > target.pbSpeed
         currentThreat = opposingThreat - (userThreat / damagethreshold)
         if best == -1 || damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && userThreat > maxThreat)
