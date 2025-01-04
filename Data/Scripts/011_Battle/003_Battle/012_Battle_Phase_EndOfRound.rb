@@ -253,7 +253,7 @@ class PokeBattle_Battle
         b.effects[PBEffects::Obscured] -= 1
         if b.effects[PBEffects::Obscured] == 0
           b.stages[:EVASION] = 0
-          @battle.pbDisplay(_INTL("{1} is no longer obscured!",b.pbThis))
+          pbDisplay(_INTL("{1} is no longer obscured!",b.pbThis))
         end
       end
     end
