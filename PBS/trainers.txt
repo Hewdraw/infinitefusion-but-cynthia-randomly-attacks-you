@@ -1460,7 +1460,7 @@ Pokemon = B19H46,13
 [SUPERNERD,Miguel]
 Pokemon = B88H109,16 
 Pokemon = GENESECT,7
-	Offset = -4
+	Offset = -5
 	Moves = BUGBITE,SHOCKWAVE,HIDDENPOWER,MAGNETBOMB
 	HPType = ICE
 	Item = LUMBERRY
@@ -2241,7 +2241,7 @@ Pokemon = CHINCHOU,5
 	EV = 64,0,0,0,0,0
 	Happiness = 255
 Pokemon = STARMIE,5	
-	Offset = 0
+	Offset = -1
 	Moves = METEORBEAM,BRINE,PSYBEAM
 	Ability = ILLUMINATE
 	Item = POWERHERB
