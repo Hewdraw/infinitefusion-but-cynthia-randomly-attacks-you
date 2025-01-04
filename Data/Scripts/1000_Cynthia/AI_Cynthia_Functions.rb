@@ -2658,7 +2658,7 @@ class PokeBattle_AI
       # Trump Card, Flail, Electro Ball, Low Kick, Fling, Spit Up
       when "077", "078", "07B", "07C", "07D", "07E", "07F", "080", "085", "087",
            "089", "08A", "08B", "08C", "08E", "08F", "090", "091", "092", "097",
-           "098", "099", "09A", "0F7", "113", "176", "188", "192"
+           "098", "099", "09A", "0F7", "113", "176", "188", "192", "195"
         baseDmg = move.pbBaseDamage(baseDmg,user,target)
       when "086"   # Acrobatics
         baseDmg *= 2 if !user.item || user.hasActiveItem?(:FLYINGGEM)

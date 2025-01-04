@@ -2862,7 +2862,7 @@ end
 
 class PokeBattle_Move_195 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    baseDmg *= 2 if @battle.field.terrain == :Electric && b.affectedByTerrain?
+    baseDmg *= 2 if @battle.field.terrain == :Electric && user.affectedByTerrain?
     return baseDmg
   end
 end
