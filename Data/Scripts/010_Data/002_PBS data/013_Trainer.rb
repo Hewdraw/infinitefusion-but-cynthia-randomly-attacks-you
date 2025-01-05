@@ -17,6 +17,7 @@ module GameData
       "LoseText" => [:lose_text, "s"],
       "Pokemon" => [:pokemon, "ev", :Species], # Species, level
       "Offset" => [:offset, "s"],
+      "Status" => [:status, "s"],
       "Tera" => [:tera, "s"],
       "Dynamax" => [:dynamax, "b"],
       "HPType" => [:hptype, "s"],
@@ -342,6 +343,11 @@ module GameData
           pkmn.hiddenPower = hptype
         end
 
+        status = pkmn_data[:status]
+        if status != nil
+          pkmn.status = status
+        end
+        
         if pkmn_data[:tera] != nil
           pkmn.tera = pkmn_data[:tera].to_sym
         end

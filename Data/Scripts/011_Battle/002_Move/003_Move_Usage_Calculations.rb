@@ -460,7 +460,7 @@ class PokeBattle_Move
     end
     # Drowsy
     if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE))
-      multipliers[:final_damage_multiplier] *= 4/3
+      multipliers[:final_damage_multiplier] *= 4.0/3.0
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
