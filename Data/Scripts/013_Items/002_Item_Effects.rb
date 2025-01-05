@@ -806,6 +806,17 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY, proc { |item, pkmn, scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.add(:LEGENDARYCANDY, proc { |item, pkmn, scene|
+  if !(can_use_rare_candy(pkmn))
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  pbSet(VAR_STAT_RARE_CANDY,pbGet(VAR_STAT_RARE_CANDY)+1)
+  pbChangeLevel(pkmn, pkmn.level + 1, scene)
+  scene.pbHardRefresh
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:POMEGBERRY, proc { |item, pkmn, scene|
   next pbRaiseHappinessAndLowerEV(pkmn, scene, :HP, [
     _INTL("{1} adores you! Its base HP fell!", pkmn.name),

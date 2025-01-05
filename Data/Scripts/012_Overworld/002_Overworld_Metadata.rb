@@ -67,6 +67,7 @@ class PokemonGlobalMetadata
   attr_accessor :battledepth
   attr_accessor :battlehplist
   attr_accessor :cynthiaprevious
+  attr_accessor :hewdrawsbeaten
 
   def initialize
     # Movement
