@@ -112,7 +112,8 @@ class CommandMenuDisplay < BattleMenuBase
      [0,8,1,3]    # 4 = Bug Catching Contest
   ]
 
-  def initialize(viewport,z)
+  def initialize(viewport,z,battle=nil)
+    @battle = battle
     super(viewport)
     self.x = 0
     self.y = Graphics.height-96
@@ -141,6 +142,9 @@ class CommandMenuDisplay < BattleMenuBase
         button.src_rect.width  = @buttonBitmap.width/2
         button.src_rect.height = BUTTON_HEIGHT
         addSprite("button_#{i}",button)
+        if @battle && @battle.opponent && @battle.opponent[0].name == "Hewdraw" && @battle.opponent.length == 1
+          button.x += 1000 if i == 1
+        end
         next button
       end
     else
@@ -180,6 +184,9 @@ class CommandMenuDisplay < BattleMenuBase
   def refreshButtons
     return if !USE_GRAPHICS
     for i in 0...@buttons.length
+      if @battle && @battle.opponent && @battle.opponent[0].name == "Hewdraw" && @battle.opponent.length == 1
+        next if i == 1
+      end
       button = @buttons[i]
       button.src_rect.x = (i==@index) ? @buttonBitmap.width/2 : 0
       button.src_rect.y = MODES[@mode][i]*BUTTON_HEIGHT

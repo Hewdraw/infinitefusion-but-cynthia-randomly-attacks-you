@@ -40,7 +40,7 @@ class PokeBattle_Scene
     msgWindow.letterbyletter = true
     @sprites["messageWindow"] = msgWindow
     # Create command window
-    @sprites["commandWindow"] = CommandMenuDisplay.new(@viewport, 200)
+    @sprites["commandWindow"] = CommandMenuDisplay.new(@viewport, 200, @battle)
     # Create fight window
     @sprites["fightWindow"] = FightMenuDisplay.new(@viewport, 200)
     # Create targeting window

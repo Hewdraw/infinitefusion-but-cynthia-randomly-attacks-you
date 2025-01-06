@@ -37,8 +37,14 @@ class PokeBattle_Scene
       if Input.trigger?(Input::LEFT)
         cw.index -= 1 if (cw.index&1)==1
       elsif Input.trigger?(Input::RIGHT)
+        if @battle.opponent && @battle.opponent[0].name == "Hewdraw" && @battle.opponent.length == 1
+          next if cw.index == 0
+        end
         cw.index += 1 if (cw.index&1)==0
       elsif Input.trigger?(Input::UP)
+        if @battle.opponent && @battle.opponent[0].name == "Hewdraw" && @battle.opponent.length == 1
+          next if cw.index == 3
+        end
         cw.index -= 2 if (cw.index&2)==2
       elsif Input.trigger?(Input::DOWN)
         cw.index += 2 if (cw.index&2)==0

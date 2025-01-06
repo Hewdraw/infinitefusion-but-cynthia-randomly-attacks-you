@@ -192,7 +192,7 @@ def pbBattleOnStepTaken(repel_active)
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
+    pbTrainerBattle(:Non_Skeleton_Dev, "Hewdraw", nil, false, 1)
     return
   end
   encounter_type = $PokemonEncounters.encounter_type

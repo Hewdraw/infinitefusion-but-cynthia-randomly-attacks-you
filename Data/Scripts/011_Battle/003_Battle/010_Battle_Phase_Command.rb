@@ -214,6 +214,9 @@ class PokeBattle_Battle
         when 0    # Fight
           break if pbFightMenu(idxBattler)
         when 1    # Bag
+          if @opponent && @opponent[0].name == "Hewdraw" && @opponent.length == 1
+            next
+          end
           if pbItemMenu(idxBattler,actioned.length==1)
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
             break
