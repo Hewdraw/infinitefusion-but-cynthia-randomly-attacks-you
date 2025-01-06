@@ -60,18 +60,21 @@ def pbFishing(hasEncounter,rodType=1)
     if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
       $PokemonGlobal.cynthiaupgradechance += 18
     end
-    for mon in $Trainer.party
-      if pokemonExceedsLevelCap(mon) || numbadges == 16
-        $PokemonGlobal.cynthiaupgradechance += 1
-        if rand(25) < $PokemonGlobal.cynthiaupgradechance
-          numbadges += 1
-          $PokemonGlobal.cynthiaupgradechance = 0
-        end
-        break
-      end
-    end
-    if rand(30) == 0 && !(numbadges == 17)
+    badgeupgradechance = 32
+    if rand(25) < $PokemonGlobal.cynthiaupgradechance
       numbadges += 1
+      $PokemonGlobal.cynthiaupgradechance = 0
+      badgeupgradechance / 2
+    end
+    if rand(30) == 0
+      numbadges += 1
+      badgeupgradechance / 4
+    end
+    while rand(badgeupgradechance) == 0 && numbadges > $Trainer.numbadges
+      numbadges += 1
+      if badgeupgradechance == 16
+        badgeupgradechance / 2
+      end
     end
 
     if numbadges > 8 #temporary
