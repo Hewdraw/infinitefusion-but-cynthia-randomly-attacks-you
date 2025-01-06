@@ -83,6 +83,7 @@ class PokeBattle_Battle
   attr_reader   :endOfRound       # True during the end of round
   attr_accessor :moldBreaker      # True if Mold Breaker applies
   attr_reader   :struggle         # The Struggle move
+  attr_accessor :broken_buttons      # True if Mold Breaker applies
 
   include PokeBattle_BattleCommon
 
@@ -164,6 +165,10 @@ class PokeBattle_Battle
       @struggle = PokeBattle_Move.from_pokemon_move(self, Pokemon::Move.new(:STRUGGLE))
     else
       @struggle = PokeBattle_Struggle.new(self, nil)
+    end
+    @broken_buttons = []
+    if @opponent && @opponent[0].name == "Hewdraw" && @opponent.length == 1
+      @broken_buttons.push(1)
     end
   end
 

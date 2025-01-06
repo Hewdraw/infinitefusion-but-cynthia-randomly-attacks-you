@@ -3,7 +3,7 @@ class PokeBattle_Scene
   # The player chooses a main command for a Pokémon
   # Return values: -1=Cancel, 0=Fight, 1=Bag, 2=Pokémon, 3=Run, 4=Call
   #=============================================================================
-  def pbCommandMenu(idxBattler,firstAction)
+  def pbCommandMenu(idxBattler,firstAction,broken_buttons=[])
     shadowTrainer = (GameData::Type.exists?(:SHADOW) && @battle.trainerBattle?)
     cmds = [
        _INTL("What will\n{1} do?",@battle.battlers[idxBattler].name),
@@ -12,7 +12,7 @@ class PokeBattle_Scene
        _INTL("Pokémon"),
        (shadowTrainer) ? _INTL("Call") : (firstAction) ? _INTL("Run") : _INTL("Cancel")
     ]
-    ret = pbCommandMenuEx(idxBattler,cmds,(shadowTrainer) ? 2 : (firstAction) ? 0 : 1)
+    ret = pbCommandMenuEx(idxBattler,cmds,(shadowTrainer) ? 2 : (firstAction) ? 0 : 1, broken_buttons)
     ret = 4 if ret==3 && shadowTrainer   # Convert "Run" to "Call"
     ret = -1 if ret==3 && !firstAction   # Convert "Run" to "Cancel"
     return ret
@@ -23,7 +23,7 @@ class PokeBattle_Scene
   #       2 = regular battle with "Call" (for Shadow Pokémon battles)
   #       3 = Safari Zone
   #       4 = Bug Catching Contest
-  def pbCommandMenuEx(idxBattler,texts,mode=0)
+  def pbCommandMenuEx(idxBattler,texts,mode=0,broken_buttons=[])
     pbShowWindow(COMMAND_BOX)
     cw = @sprites["commandWindow"]
     cw.setTexts(texts)
@@ -33,20 +33,21 @@ class PokeBattle_Scene
     loop do
       oldIndex = cw.index
       pbUpdate(cw)
+      while broken_buttons.include?(cw.index)
+        cw.index = (cw.index+1) % 4
+      end
       # Update selected command
       if Input.trigger?(Input::LEFT)
+        next if broken_buttons.include?(cw.index - 1)
         cw.index -= 1 if (cw.index&1)==1
       elsif Input.trigger?(Input::RIGHT)
-        if @battle.opponent && @battle.opponent[0].name == "Hewdraw" && @battle.opponent.length == 1
-          next if cw.index == 0
-        end
+        next if broken_buttons.include?(cw.index + 1)
         cw.index += 1 if (cw.index&1)==0
       elsif Input.trigger?(Input::UP)
-        if @battle.opponent && @battle.opponent[0].name == "Hewdraw" && @battle.opponent.length == 1
-          next if cw.index == 3
-        end
+        next if broken_buttons.include?(cw.index - 2)
         cw.index -= 2 if (cw.index&2)==2
       elsif Input.trigger?(Input::DOWN)
+        next if broken_buttons.include?(cw.index + 2)
         cw.index += 2 if (cw.index&2)==0
       end
       pbPlayCursorSE if cw.index!=oldIndex

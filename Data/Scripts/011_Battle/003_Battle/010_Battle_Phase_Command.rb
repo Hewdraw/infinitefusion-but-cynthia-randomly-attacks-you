@@ -25,8 +25,8 @@ class PokeBattle_Battle
   #=============================================================================
   # Use main command menu (Fight/Pokémon/Bag/Run)
   #=============================================================================
-  def pbCommandMenu(idxBattler,firstAction)
-    return @scene.pbCommandMenu(idxBattler,firstAction)
+  def pbCommandMenu(idxBattler,firstAction,broken_buttons=[])
+    return @scene.pbCommandMenu(idxBattler,firstAction,broken_buttons)
   end
 
   #=============================================================================
@@ -204,7 +204,7 @@ class PokeBattle_Battle
       actioned.push(idxBattler)
       commandsEnd = false   # Whether to cancel choosing all other actions this round
       loop do
-        cmd = pbCommandMenu(idxBattler,actioned.length==1)
+        cmd = pbCommandMenu(idxBattler,actioned.length==1,@broken_buttons)
         # If being Sky Dropped, can't do anything except use a move
         if cmd>0 && @battlers[idxBattler].effects[PBEffects::SkyDrop]>=0
           pbDisplay(_INTL("Sky Drop won't let {1} go!",@battlers[idxBattler].pbThis(true)))
@@ -212,22 +212,29 @@ class PokeBattle_Battle
         end
         case cmd
         when 0    # Fight
+          next if @broken_buttons.include?(0)
           break if pbFightMenu(idxBattler)
         when 1    # Bag
-          if @opponent && @opponent[0].name == "Hewdraw" && @opponent.length == 1
-            next
-          end
+          next if @broken_buttons.include?(1)
           if pbItemMenu(idxBattler,actioned.length==1)
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
             break
           end
         when 2    # Pokémon
+          next if @broken_buttons.include?(2)
           break if pbPartyMenu(idxBattler)
         when 3    # Run
+          next if @broken_buttons.include?(3)
           # NOTE: "Run" is only an available option for the first battler the
           #       player chooses an action for in a round. Attempting to run
           #       from battle prevents you from choosing any other actions in
           #       that round.
+          if rand(100) == 0 || ($PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0) || (isRepelActive() && !$PokemonTemp.pokeradar)
+            pbDisplay(_INTL("nuh uh."))
+            broken_buttons.push(3)
+            @scene.sprites["commandWindow"].index = 0
+            break
+          end
           if pbRunMenu(idxBattler)
             commandsEnd = true
             break
