@@ -71,7 +71,7 @@ class PokeBattle_Move_004 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    return true if !target.pbCanSleep?(user, true, self)
+    return true if !target.pbCanSleep?(user, true, self, true)
     return false
   end
 
@@ -357,7 +357,7 @@ end
 #===============================================================================
 class PokeBattle_Move_018 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if ![:BURN, :POISON, :PARALYSIS].include?(user.status)
+    if ![:BURN, :POISON, :PARALYSIS, :FROZEN, :SLEEP].include?(user.status)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

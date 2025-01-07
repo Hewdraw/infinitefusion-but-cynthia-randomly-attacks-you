@@ -39,16 +39,8 @@ class PokeBattle_Battle
       @choices[idxBattler][2] = nil
       return -1
     end
-    if rand(100) == 0
-      pbDisplay(_INTL("nuh uh."))
-      return -1
-    end
     # Fleeing from trainer battles
     if trainerBattle?
-      if ($PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0) || (isRepelActive() && !$PokemonTemp.pokeradar)
-        pbDisplay(_INTL("nuh uh."))
-        return 0
-      end
       if $DEBUG && Input.press?(Input::CTRL)
         if pbDisplayConfirm(_INTL("Treat this battle as a win?"))
           @decision = 1

@@ -43,6 +43,23 @@ def UndertaleCommand(scene)
   end
 end
 
+def UndertaleShopSetup()
+  if $PokemonGlobal.shadrossstock == nil
+    $PokemonGlobal.shadrossstock = {}
+  end
+  stock = {
+    :BERRYJUICE => {
+      "badges" => 0,
+      "cost" => 1,
+    },
+  }
+  for key,value in stock
+    if !$PokemonGlobal.shadrossstock[key]
+      $PokemonGlobal.shadrossstock[key] = value
+    end
+  end
+end
+
 class Undertale_Scene
   attr_reader   :viewport
   attr_reader   :sprites
@@ -187,10 +204,7 @@ class UndertaleMenu
   attr_reader   :color
   attr_reader   :index
   attr_reader   :mode
-  # NOTE: Button width is half the width of the graphic containing them all.
-  BUTTON_HEIGHT = 46
-  TEXT_BASE_COLOR   = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
-  TEXT_SHADOW_COLOR = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
+  TEST = 10
 
   def disposed?; return @disposed; end
 
@@ -251,18 +265,6 @@ class UndertaleMenu
     @disposed   = false
     @sprites    = {}
     @visibility = {}
-    # self.x = 0
-    # self.y = Graphics.height-96
-    # Create message box (shows "What will X do?")
-    # @msgBox = Window_UnformattedTextPokemon.newWithSize("",
-    #    self.x+16,self.y+2,220,Graphics.height-self.y,viewport)
-    # @msgBox.baseColor   = TEXT_BASE_COLOR
-    # @msgBox.shadowColor = TEXT_SHADOW_COLOR
-    # @msgBox.windowskin  = nil
-    # addSprite("msgBox",@msgBox)
-    # Create background graphic
-    # background = IconSprite.new(self.x,self.y,viewport)
-    # background.setBitmap("Graphics/Pictures/Battle/overlay_command")
     backgroundsprite = Sprite.new(viewport)
     backgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
     addSprite("background",backgroundsprite)
@@ -420,10 +422,6 @@ class UndertaleActMenu
   attr_reader   :color
   attr_reader   :index
   attr_reader   :mode
-  # NOTE: Button width is half the width of the graphic containing them all.
-  BUTTON_HEIGHT = 46
-  TEXT_BASE_COLOR   = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
-  TEXT_SHADOW_COLOR = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
 
   def disposed?; return @disposed; end
 
@@ -522,10 +520,6 @@ class UndertaleItemMenu
   attr_reader   :color
   attr_reader   :index
   attr_reader   :mode
-  # NOTE: Button width is half the width of the graphic containing them all.
-  BUTTON_HEIGHT = 46
-  TEXT_BASE_COLOR   = PokeBattle_SceneConstants::MESSAGE_BASE_COLOR
-  TEXT_SHADOW_COLOR = PokeBattle_SceneConstants::MESSAGE_SHADOW_COLOR
 
   def disposed?; return @disposed; end
 

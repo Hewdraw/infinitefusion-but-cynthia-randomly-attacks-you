@@ -68,6 +68,8 @@ class PokemonGlobalMetadata
   attr_accessor :battlehplist
   attr_accessor :cynthiaprevious
   attr_accessor :hewdrawsbeaten
+  attr_accessor :shadrossstock
+  attr_accessor :shadrossmoney
 
   def initialize
     # Movement

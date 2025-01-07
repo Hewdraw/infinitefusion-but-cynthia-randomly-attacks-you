@@ -270,7 +270,6 @@ class PokeBattle_Battler
   end
 
   def pbCanSleepYawn?
-    return false if self.status != :NONE
     if affectedByTerrain?
       return false if [:Electric, :Misty].include?(@battle.field.terrain)
     end

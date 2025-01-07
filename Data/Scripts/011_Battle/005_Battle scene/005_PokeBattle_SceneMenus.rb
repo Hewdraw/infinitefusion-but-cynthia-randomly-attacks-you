@@ -131,6 +131,12 @@ class CommandMenuDisplay < BattleMenuBase
       addSprite("background",background)
       # Create bitmaps
       @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_command"))
+      @brokenbuttonmaps = [
+        Bitmap.new("Graphics/Pictures/Battle/BROKENFIGHT"),
+        Bitmap.new("Graphics/Pictures/Battle/BROKENBAG"),
+        Bitmap.new("Graphics/Pictures/Battle/BROKENPOKEMON"),
+        Bitmap.new("Graphics/Pictures/Battle/BROKENRUN")
+      ]
       # Create action buttons
       @buttons = Array.new(4) do |i|   # 4 command options, therefore 4 buttons
         button = SpriteWrapper.new(viewport)
@@ -143,8 +149,7 @@ class CommandMenuDisplay < BattleMenuBase
         button.src_rect.height = BUTTON_HEIGHT
         addSprite("button_#{i}",button)
         if @battle && @battle.broken_buttons && @battle.broken_buttons.include?(i)
-          button.bitmap = Bitmap.new("Graphics/Pictures/Battle/BROKENBAG") if i == 1
-          button.bitmap = Bitmap.new("Graphics/Pictures/Battle/BROKENRUN") if i == 3
+          button.bitmap = @brokenbuttonmaps[i]
         end
         next button
       end
@@ -186,12 +191,12 @@ class CommandMenuDisplay < BattleMenuBase
     return if !USE_GRAPHICS
     for i in 0...@buttons.length
       button = @buttons[i]
-      button.src_rect.x = (i==@index) ? @buttonBitmap.width/2 : 0
-      button.src_rect.y = MODES[@mode][i]*BUTTON_HEIGHT
       button.z          = self.z + ((i==@index) ? 3 : 2)
       if @battle && @battle.broken_buttons && @battle.broken_buttons.include?(i)
-        button.bitmap = Bitmap.new("Graphics/Pictures/Battle/BROKENBAG") if i == 1
-        button.bitmap = Bitmap.new("Graphics/Pictures/Battle/BROKENRUN") if i == 3
+        button.bitmap = @brokenbuttonmaps[i]
+      else
+        button.src_rect.x = (i==@index) ? @buttonBitmap.width/2 : 0
+        button.src_rect.y = MODES[@mode][i]*BUTTON_HEIGHT
       end
     end
   end
