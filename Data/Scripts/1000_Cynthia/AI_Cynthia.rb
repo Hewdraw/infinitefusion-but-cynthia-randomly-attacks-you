@@ -23,6 +23,9 @@ class PokeBattle_AI
       break if userThreat >= 95 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       damagethreshold = 100.0/opposingThreat.ceil
       damagethreshold -= 1 if user.pbSpeed > target.pbSpeed
+      bTypes = user.pbTypes(true)
+      stealthrock = user.takesIndirectDamage? && Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2]) > 1
+      damagethreshold += 1 if stealthrock
       maxThreshold = damagethreshold
       maxThreat = userThreat
       @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
