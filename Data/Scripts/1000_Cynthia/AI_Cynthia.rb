@@ -27,6 +27,8 @@ class PokeBattle_AI
       bTypes = user.pbTypes(true)
       stealthrock = user.takesIndirectDamage? && Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2]) > 1
       damagethreshold += 1 if stealthrock
+      damagethreshold += 1 if user.pbSpeed > target.pbSpeed && user.pbHasMove?(:AURORAVEIL) && !(user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow)
+      damagethreshold -= 1 if user.hasActiveAbility(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
       maxThreshold = damagethreshold
       maxThreat = userThreat
       @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
@@ -39,11 +41,14 @@ class PokeBattle_AI
         userhp = 100.0 - opposingThreat
         damagethreshold = (userhp/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
+        damagethreshold += 1 if battler.pbSpeed > target.pbSpeed && battler.pbHasMove?(:AURORAVEIL) && !(battler.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow)
+        damagethreshold += 1 if user.hasActiveAbility?(:REGENERATOR)
+        damagethreshold -= 1 if user.hasActiveAbility?(:GALEWINGS)
+        damagethreshold = 10 if user.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
         if damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && userThreat > maxThreat)
           maxThreat = userThreat
           maxThreshold = damagethreshold
-          @battle.pbRegisterSwitch(idxBattler,i)
-          willswitch = true
+          willswitch = true if @battle.pbRegisterSwitch(idxBattler,i)
         end
       end
     end
@@ -68,6 +73,10 @@ class PokeBattle_AI
         userThreat = pbCynthiaAssessThreat(target, battler, false)
         damagethreshold = (100.0/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
+        damagethreshold += 1 if battler.pbSpeed > target.pbSpeed && battler.pbHasMove?(:AURORAVEIL) && !(battler.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow)
+        damagethreshold += 1 if user.hasActiveAbility?(:REGENERATOR)
+        damagethreshold -= 1 if user.hasActiveAbility?(:GALEWINGS)
+        damagethreshold = 10 if user.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
         damagethreshold = 10 if userThreat >= 95 && battler.pbSpeed > target.pbSpeed
         if best == -1 || damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && userThreat > maxThreat)
           maxThreshold = damagethreshold
@@ -260,10 +269,11 @@ class PokeBattle_AI
     else
       score = 0
     end
+    score *= 1.5 if score >= 100
     score += pbCynthiaGetMoveScoreStatus(move,user,target)
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       if !user.hasActiveItem?(:POWERHERB)
-        score *= 1/2
+        score *= 0.5
       else
         score - 1
       end

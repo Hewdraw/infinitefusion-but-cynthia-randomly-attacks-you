@@ -183,7 +183,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "023"
       score = [score, 100 - opposingThreat].max()
-      score *= 1/2 if !outspeedsopponent
+      score *= 0.5 if !outspeedsopponent
       score *= 2 if user.hasActiveItem?(:SCOPELENS)
       score *= 1.5 if user.hasActiveAbility?([:SNIPER, :SUPERSNIPER])
       user.eachOpposing do |opponent|
@@ -3159,7 +3159,7 @@ class PokeBattle_AI
       end
       # Drowsy
       if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE))
-        multipliers[:final_damage_multiplier] *= 4/3
+        multipliers[:final_damage_multiplier] *= 4/3.0
       end
       # Aurora Veil, Reflect, Light Screen
       if !move.ignoresReflect? && !(key == :critDamage)
