@@ -21,8 +21,9 @@ class PokeBattle_AI
       opposingThreat = pbCynthiaAssessThreat(user, target)
       userThreat = pbCynthiaAssessThreat(target, user, false)
       break if userThreat >= 95 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
+      break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
       damagethreshold = 100.0/opposingThreat.ceil
-      damagethreshold -= 1 if user.pbSpeed > target.pbSpeed
+      damagethreshold += 1 if user.pbSpeed > target.pbSpeed
       bTypes = user.pbTypes(true)
       stealthrock = user.takesIndirectDamage? && Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2]) > 1
       damagethreshold += 1 if stealthrock
@@ -37,7 +38,7 @@ class PokeBattle_AI
         userThreat = pbCynthiaAssessThreat(target, battler, false)
         userhp = 100.0 - opposingThreat
         damagethreshold = (userhp/opposingThreat).ceil
-        damagethreshold -= 1 if battler.pbSpeed > target.pbSpeed
+        damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
         if damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && userThreat > maxThreat)
           maxThreat = userThreat
           maxThreshold = damagethreshold
@@ -66,7 +67,8 @@ class PokeBattle_AI
         opposingThreat = pbCynthiaAssessThreat(battler, target)
         userThreat = pbCynthiaAssessThreat(target, battler, false)
         damagethreshold = (100.0/opposingThreat).ceil
-        damagethreshold -= 1 if battler.pbSpeed > target.pbSpeed
+        damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
+        damagethreshold = 10 if userThreat >= 95 && battler.pbSpeed > target.pbSpeed
         if best == -1 || damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && userThreat > maxThreat)
           maxThreshold = damagethreshold
           maxThreat = userThreat
