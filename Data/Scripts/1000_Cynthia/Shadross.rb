@@ -1,4 +1,5 @@
 def Undertale()
+  UndertaleShopSetup()
   scene = Undertale_Scene.new
   playingBGS = nil
   playingBGM = nil
@@ -49,6 +50,22 @@ def UndertaleShopSetup()
   end
   stock = {
     :BERRYJUICE => {
+      "badges" => 0,
+      "cost" => 1,
+    },
+    :BERRYJUICE1 => {
+      "badges" => 0,
+      "cost" => 1,
+    },
+    :BERRYJUICE2 => {
+      "badges" => 0,
+      "cost" => 1,
+    },
+    :BERRYJUICE3 => {
+      "badges" => 0,
+      "cost" => 1,
+    },
+    :BERRYJUICE4 => {
       "badges" => 0,
       "cost" => 1,
     },
@@ -155,10 +172,10 @@ class Undertale_Scene
       oldIndex = cw.index
       pbUpdate(cw)
       # Update selected command
-      if Input.trigger?(Input::LEFT)
-        cw.index = 3-((3 - cw.index + 1) % 4)
-      elsif Input.trigger?(Input::RIGHT)
-        cw.index = (cw.index + 1) % 4
+      if Input.trigger?(Input::UP)
+        cw.index = cw.index - 1
+      elsif Input.trigger?(Input::DOWN)
+        cw.index = cw.index + 1
       end
       pbSEPlay("MenuCursor") if cw.index!=oldIndex
       # Actions
@@ -177,14 +194,17 @@ class Undertale_Scene
       oldIndex = cw.index
       pbUpdate(cw)
       # Update selected command
-      if Input.trigger?(Input::LEFT)
-        cw.index = 3-((3 - cw.index + 1) % 4)
-      elsif Input.trigger?(Input::RIGHT)
-        cw.index = (cw.index + 1) % 4
+      length = $PokemonGlobal.shadrossstock.length
+      if Input.trigger?(Input::UP)
+        cw.index = (length - 1)-(((length - 1) - cw.index + 1) % length)
+      elsif Input.trigger?(Input::DOWN)
+        print(cw.index, " ", length)
+        cw.index = (cw.index + 1) % length
       end
       pbSEPlay("MenuCursor") if cw.index!=oldIndex
       # Actions
       if Input.trigger?(Input::BACK)                 # Confirm choice
+        cw.visible = false
         return
       end
     end
@@ -580,6 +600,40 @@ class UndertaleItemMenu
     @disposed   = false
     @sprites    = {}
     @visibility = {}
+    shopboxborder = Graphics.width / 100
+    @shopbox = Sprite.new(viewport)
+    @shopbox.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+    @shopbox.src_rect.height = Graphics.height / 2
+    @shopbox.y = Graphics.height / 2
+    @shopbox.tone = Tone.new(255, 255, 255)
+    addSprite("shopbox", @shopbox)
+    @shopboxinner = Sprite.new(viewport)
+    @shopboxinner.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+    @shopboxinner.src_rect.height = @shopbox.src_rect.height - (shopboxborder * 2)
+    @shopboxinner.src_rect.width = Graphics.width - (shopboxborder * 2)
+    @shopboxinner.y = @shopbox.y + shopboxborder
+    @shopboxinner.x = shopboxborder
+    addSprite("shopboxinner", @shopboxinner)
+    @shoplistings = Array.new(5) do |i|
+      item = i
+      itemtext = Window_UnformattedTextPokemon.newWithSize("",
+         @shopbox.x + Graphics.width / 20, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 20, @shopbox.height, viewport)
+      itemtext.baseColor   = Color.new(255, 255, 255)
+      itemtext.shadowColor = nil
+      itemtext.windowskin  = nil
+      itemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+      itemtext.contents.font.size = 25
+      itemtext.text = "test" + i.to_s
+      addSprite("itemtext_#{i}",itemtext)
+      next itemtext
+    end
+    @heartsprite = Sprite.new(viewport)
+    @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
+    @heartsprite.tone = Tone.new(0, -255, -255)
+    @heartsprite.angle -= 90
+    @heartsprite.x = @shoplistings[@index].x + @heartsprite.width / 2
+    @heartsprite.y = @shoplistings[@index].y + Graphics.width / 20
+    addSprite("heartsprite",@heartsprite)
     self.z = z
     refresh
   end
@@ -600,6 +654,16 @@ class UndertaleItemMenu
   end
 
   def refreshButtons
+    @shopbox.z = self.z + 1
+    @shopboxinner.z = self.z + 2
+    for i in 0...@shoplistings.length
+      itemtext = @shoplistings[i]
+      itemtext.z = self.z + 3
+      if i==@index
+        @heartsprite.y = itemtext.y + Graphics.width / 20
+        @heartsprite.z = self.z+4
+      end
+    end
   end
 
   def refresh
