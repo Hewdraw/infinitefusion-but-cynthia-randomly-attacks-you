@@ -215,6 +215,10 @@ class PokeBattle_Battle
           next if @broken_buttons.include?(0)
           break if pbFightMenu(idxBattler)
         when 1    # Bag
+          if rand(100) == 0
+            pbDisplay(_INTL("nuh uh."))
+            break
+          end
           next if @broken_buttons.include?(1)
           if pbItemMenu(idxBattler,actioned.length==1)
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
