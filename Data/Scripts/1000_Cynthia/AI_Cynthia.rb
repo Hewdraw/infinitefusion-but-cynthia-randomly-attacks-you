@@ -28,7 +28,7 @@ class PokeBattle_AI
       stealthrock = user.takesIndirectDamage? && Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2]) > 1
       damagethreshold += 1 if stealthrock
       damagethreshold += 1 if user.pbSpeed > target.pbSpeed && user.pbHasMove?(:AURORAVEIL) && !(user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow)
-      damagethreshold -= 1 if user.hasActiveAbility(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
+      damagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
       maxThreshold = damagethreshold
       maxThreat = userThreat
       @battle.pbParty(idxBattler).each_with_index do |pokemon,i|

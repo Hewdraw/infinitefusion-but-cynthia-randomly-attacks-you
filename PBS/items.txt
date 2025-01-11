@@ -716,6 +716,21 @@
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",0,0,0
 709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
 710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,10000,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,0,
+711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"",0,0,0
+712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,8,0,"",0,0,0
+713,BOTTLECAP,Bottle Cap,Bottle Caps,8,0,"",0,0,0
+714,GOLDENBOTTLECAP,Golden Bottle Cap,Golden Bottle Caps,8,0,"",0,0,0
+715,FRESHSTARTMOCHI,Fresh-Start Mochi,Fresh-Start Mochis,1,0,"",0,0,0
+716,ABILITYPATCH,Ability Patch,Ability Patches,1,0,"",0,0,0
+717,HEALTHMOCHI,Health Mochi,Health Mochis,1,0,"",0,0,0
+718,MUSCLEMOCHI,Muscle Mochi,Muscle Mochis,1,0,"",0,0,0
+719,RESISTMOCHI,Resist Mochi,Resist Mochis,1,0,"",0,0,0
+720,GENIUSMOCHI,Genius Mochi,Genius Mochis,1,0,"",0,0,0
+721,CLEVERMOCHI,Clever Mochi,Clever Mochis,1,0,"",0,0,0
+722,SWIFTMOCHI,Swift Mochi,Swift Mochis,1,0,"",0,0,0
+723,KARMAKUT,Karma Kut,Karma Kuts,1,0,"",0,0,0
+724,KARMAKLEAN,Karma Klean,Karma Kleans,1,0,"",0,0,0
+725,KARMAKLIMB,Karma Klimb,Karma Klimbs,1,0,"",0,0,0
 
 
 

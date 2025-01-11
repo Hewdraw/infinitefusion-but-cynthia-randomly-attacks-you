@@ -45,36 +45,298 @@ def UndertaleCommand(scene)
 end
 
 def UndertaleShopSetup()
-  if $PokemonGlobal.shadrossstock == nil
-    $PokemonGlobal.shadrossstock = {}
-  end
-  stock = {
+  $PokemonGlobal.shadrossstock = {
+    :ULTRANECROZIUMZ => {
+      "badges" => 0,
+      "cost" => 48,
+      "amount" => 1,
+    },
     :BERRYJUICE => {
       "badges" => 0,
-      "cost" => 1,
+      "cost" => 2,
+      "amount" => 1,
     },
-    :BERRYJUICE1 => {
+    :RAGECANDYBAR => {
       "badges" => 0,
       "cost" => 1,
+      "amount" => 30,
     },
-    :BERRYJUICE2 => {
+    :RUSTYBOTTLECAP => {
       "badges" => 0,
       "cost" => 1,
+      "amount" => 6,
     },
-    :BERRYJUICE3 => {
+    :BOTTLECAP => {
+      "badges" => 0,
+      "cost" => 3,
+      "amount" => 6,
+    },
+    :GOLDENBOTTLECAP => {
+      "badges" => 0,
+      "cost" => 3,
+      "amount" => 1,
+    },
+    :FRESHSTARTMOCHI => {
       "badges" => 0,
       "cost" => 1,
+      "amount" => 50,
     },
-    :BERRYJUICE4 => {
+    :ABILITYCAPSULE => {
       "badges" => 0,
-      "cost" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :RARECANDY => {
+      "badges" => 0,
+      "cost" => 3,
+      "amount" => 5,
+    },
+    :AMULETCOIN => {
+      "badges" => 0,
+      "cost" => 3,
+      "amount" => 1,
+    },
+    :SMOKEBALL => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :WIDELENS => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :LUXURYBALL => {
+      "badges" => 1,
+      "cost" => 16,
+      "amount" => 25,
+    },
+    :FOCUSSASH => {
+      "badges" => 1,
+      "cost" => 6,
+      "amount" => 1,
+    },
+    :AIRBALLOON => {
+      "badges" => 1,
+      "cost" => 4,
+      "amount" => 2,
+    },
+    :BLUNDERPOLICY => {
+      "badges" => 1,
+      "cost" => 4,
+      "amount" => 2,
+    },
+    :ROCKYHELMET => {
+      "badges" => 1,
+      "cost" => 6,
+      "amount" => 1,
+    },
+    :QUICKCLAW => {
+      "badges" => 1,
+      "cost" => 4,
+      "amount" => 1,
+    },
+    :FOCUSBAND => {
+      "badges" => 1,
+      "cost" => 4,
+      "amount" => 1,
+    },
+    :WEAKNESSPOLICY => {
+      "badges" => 1,
+      "cost" => 4,
+      "amount" => 1,
+    },
+    :TERRAINEXTENDER => {
+      "badges" => 1,
+      "cost" => 6,
+      "amount" => 1,
+    },
+    :PPMAX => {
+      "badges" => 2,
+      "cost" => 6,
+      "amount" => 4,
+    },
+    :EXPERTBELT => {
+      "badges" => 2,
+      "cost" => 4,
+      "amount" => 1,
+    },
+    :SHELLBELL => {
+      "badges" => 2,
+      "cost" => 6,
+      "amount" => 1,
+    },
+    :FLAMEORB => {
+      "badges" => 2,
+      "cost" => 6,
+      "amount" => 1,
+    },
+    :TOXICORB => {
+      "badges" => 2,
+      "cost" => 6,
+      "amount" => 1,
+    },
+    :MUSCLEBAND => {
+      "badges" => 2,
+      "cost" => 4,
+      "amount" => 1,
+    },
+    :WISEGLASSES => {
+      "badges" => 2,
+      "cost" => 4,
+      "amount" => 1,
+    },
+    :ABILITYPATCH => {
+      "badges" => 3,
+      "cost" => 14,
+      "amount" => 1,
+    },
+    :BLACKSLUDGE => {
+      "badges" => 3,
+      "cost" => 9,
+      "amount" => 1,
+    },
+    :LUCKYPUNCH => {
+      "badges" => 3,
+      "cost" => 9,
+      "amount" => 1,
+    },
+    :LEEK => {
+      "badges" => 3,
+      "cost" => 9,
+      "amount" => 1,
+    },
+    :THICKCLUB => {
+      "badges" => 3,
+      "cost" => 9,
+      "amount" => 1,
+    },
+    :LIGHTBALL => {
+      "badges" => 3,
+      "cost" => 9,
+      "amount" => 1,
+    },
+    :CHOICESCARF => {
+      "badges" => 4,
+      "cost" => 12,
+      "amount" => 1,
+    },
+    :HEALTHMOCHI => {
+      "badges" => 5,
+      "cost" => 15,
+      "amount" => 10,
+    },
+    :MUSCLEMOCHI => {
+      "badges" => 5,
+      "cost" => 15,
+      "amount" => 10,
+    },
+    :RESISTMOCHI => {
+      "badges" => 5,
+      "cost" => 15,
+      "amount" => 10,
+    },
+    :GENIUSMOCHI => {
+      "badges" => 5,
+      "cost" => 15,
+      "amount" => 10,
+    },
+    :CLEVERMOCHI => {
+      "badges" => 5,
+      "cost" => 15,
+      "amount" => 10,
+    },
+    :SWIFTMOCHI => {
+      "badges" => 5,
+      "cost" => 15,
+      "amount" => 10,
+    },
+    :EVIOLITE => {
+      "badges" => 6,
+      "cost" => 12,
+      "amount" => 1,
+    },
+    :ASSAULTVEST => {
+      "badges" => 6,
+      "cost" => 12,
+      "amount" => 1,
+    },
+    :LIFEORB => {
+      "badges" => 7,
+      "cost" => 14,
+      "amount" => 1,
+    },
+    :LEFTOVERS => {
+      "badges" => 7,
+      "cost" => 14,
+      "amount" => 1,
+    },
+    :CHOICEBAND => {
+      "badges" => 8,
+      "cost" => 16,
+      "amount" => 1,
+    },
+    :CHOICESPECS => {
+      "badges" => 8,
+      "cost" => 16,
+      "amount" => 1,
+    },
+    :THROATSPRAY => {
+      "badges" => 8,
+      "cost" => 16,
+      "amount" => 3,
+    },
+    :KARMAKUT => {
+      "badges" => 8,
+      "cost" => 8,
+      "amount" => 5,
+    },
+    :KARMAKLEAN => {
+      "badges" => 8,
+      "cost" => 16,
+      "amount" => 5,
+    },
+    :KARMAKLIMB => {
+      "badges" => 8,
+      "cost" => 8,
+      "amount" => 5,
+    },
+    :HPUP => {
+      "badges" => 9,
+      "cost" => 4,
+      "amount" => 30,
+    },
+    :PROTEIN => {
+      "badges" => 9,
+      "cost" => 4,
+      "amount" => 30,
+    },
+    :IRON => {
+      "badges" => 9,
+      "cost" => 4,
+      "amount" => 30,
+    },
+    :CALCIUM => {
+      "badges" => 9,
+      "cost" => 2,
+      "amount" => 30,
+    },
+    :ZINC => {
+      "badges" => 9,
+      "cost" => 4,
+      "amount" => 30,
+    },
+    :CARBOS => {
+      "badges" => 9,
+      "cost" => 4,
+      "amount" => 30,
+    },
+    :BERSERKGENE => {
+      "badges" => 10,
+      "cost" => 30,
+      "amount" => 5,
     },
   }
-  for key,value in stock
-    if !$PokemonGlobal.shadrossstock[key]
-      $PokemonGlobal.shadrossstock[key] = value
-    end
-  end
 end
 
 class Undertale_Scene
@@ -170,14 +432,27 @@ class Undertale_Scene
     ret = -1
     loop do
       oldIndex = cw.index
+      olditemindex = cw.itemindex
       pbUpdate(cw)
       # Update selected command
       if Input.trigger?(Input::UP)
         cw.index = cw.index - 1
       elsif Input.trigger?(Input::DOWN)
         cw.index = cw.index + 1
+      # elsif Input.trigger?(Input::RIGHT) 
+      #   cw.index = cw.index + 1
+      #   cw.index = cw.index + 1
+      #   cw.index = cw.index + 1
+      #   cw.index = cw.index + 1
+      #   cw.index = cw.index + 1
+      # elsif Input.trigger?(Input::LEFT)
+      #   cw.index = cw.index - 1
+      #   cw.index = cw.index - 1
+      #   cw.index = cw.index - 1
+      #   cw.index = cw.index - 1
+      #   cw.index = cw.index - 1
       end
-      pbSEPlay("MenuCursor") if cw.index!=oldIndex
+      pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.itemindex != olditemindex
       # Actions
       if Input.trigger?(Input::BACK)                 # Confirm choice
         return
@@ -194,12 +469,10 @@ class Undertale_Scene
       oldIndex = cw.index
       pbUpdate(cw)
       # Update selected command
-      length = $PokemonGlobal.shadrossstock.length
       if Input.trigger?(Input::UP)
-        cw.index = (length - 1)-(((length - 1) - cw.index + 1) % length)
+        cw.index -= 1
       elsif Input.trigger?(Input::DOWN)
-        print(cw.index, " ", length)
-        cw.index = (cw.index + 1) % length
+        cw.index += 1
       end
       pbSEPlay("MenuCursor") if cw.index!=oldIndex
       # Actions
@@ -558,9 +831,21 @@ class UndertaleItemMenu
   end
 
   def index=(value)
-    oldValue = @index
-    @index = value
-    refresh if @index!=oldValue
+    if value < 0
+      value = 0
+    end
+    if value > 4
+      value = 4
+    end
+    if !((@itemindex==0 && value <= 2) || (@itemindex==($PokemonGlobal.shadrossstock.length-4) && value >= 2))
+      @itemindex += value - @index
+      @index = 2
+      refresh
+    else
+      oldValue = @index
+      @index = value
+      refresh if @index!=oldValue
+    end
   end
 
   def mode=(value)
@@ -596,6 +881,7 @@ class UndertaleItemMenu
     @visible    = false
     @color      = Color.new(0,0,0,0)
     @index      = 0
+    @itemindex  = 0
     @mode       = 0
     @disposed   = false
     @sprites    = {}
@@ -615,7 +901,8 @@ class UndertaleItemMenu
     @shopboxinner.x = shopboxborder
     addSprite("shopboxinner", @shopboxinner)
     @shoplistings = Array.new(5) do |i|
-      item = i
+      item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
+      item = GameData::Item.get(item) if item
       itemtext = Window_UnformattedTextPokemon.newWithSize("",
          @shopbox.x + Graphics.width / 20, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 20, @shopbox.height, viewport)
       itemtext.baseColor   = Color.new(255, 255, 255)
@@ -623,7 +910,8 @@ class UndertaleItemMenu
       itemtext.windowskin  = nil
       itemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
       itemtext.contents.font.size = 25
-      itemtext.text = "test" + i.to_s
+      itemtext.text = item.name if item
+      itemtext.text = "Exit" if !item
       addSprite("itemtext_#{i}",itemtext)
       next itemtext
     end
@@ -658,6 +946,10 @@ class UndertaleItemMenu
     @shopboxinner.z = self.z + 2
     for i in 0...@shoplistings.length
       itemtext = @shoplistings[i]
+      item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
+      item = GameData::Item.get(item) if item
+      itemtext.text = item.name if item
+      itemtext.text = "Exit" if !item
       itemtext.z = self.z + 3
       if i==@index
         @heartsprite.y = itemtext.y + Graphics.width / 20
