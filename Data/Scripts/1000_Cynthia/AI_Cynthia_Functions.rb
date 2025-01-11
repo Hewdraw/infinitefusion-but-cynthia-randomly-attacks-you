@@ -2427,6 +2427,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "167" #todo
+      score *= 2
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
       score *= 2 if outspeedsopponent
       score = 0 if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow

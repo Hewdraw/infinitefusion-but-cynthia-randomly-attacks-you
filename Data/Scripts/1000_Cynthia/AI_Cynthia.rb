@@ -74,9 +74,9 @@ class PokeBattle_AI
         damagethreshold = (100.0/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed && battler.pbHasMove?(:AURORAVEIL) && !(battler.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow)
-        damagethreshold += 1 if user.hasActiveAbility?(:REGENERATOR)
-        damagethreshold -= 1 if user.hasActiveAbility?(:GALEWINGS)
-        damagethreshold = 10 if user.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
+        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
+        damagethreshold -= 1 if battler.hasActiveAbility?(:GALEWINGS)
+        damagethreshold = 10 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
         damagethreshold = 10 if userThreat >= 95 && battler.pbSpeed > target.pbSpeed
         if best == -1 || damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && userThreat > maxThreat)
           maxThreshold = damagethreshold
