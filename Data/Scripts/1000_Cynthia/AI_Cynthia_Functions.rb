@@ -888,7 +888,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "05B"
-      score 100 if @battle.sideSizes[0]>=2 || @battle.sideSizes[1]>=2
+      score = 100 if @battle.sideSizes[0]>=2 || @battle.sideSizes[1]>=2
       score = 0 if user.pbOwnSide.effects[PBEffects::Tailwind]>0
     #---------------------------------------------------------------------------
     when "05C" #todo
