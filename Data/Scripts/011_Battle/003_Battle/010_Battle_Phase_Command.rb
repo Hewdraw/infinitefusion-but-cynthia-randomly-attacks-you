@@ -217,6 +217,10 @@ class PokeBattle_Battle
         when 1    # Bag
           if rand(100) == 0
             pbDisplay(_INTL("nuh uh."))
+            if @opponent
+              broken_buttons.push(1)
+              @scene.sprites["commandWindow"].index = 0
+            end
             break
           end
           next if @broken_buttons.include?(1)
