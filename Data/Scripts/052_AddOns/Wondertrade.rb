@@ -72,7 +72,7 @@ def pbWonderTrade(lvl, except = [], except2 = [], premiumWonderTrade = true)
   # The following excecption fields are for hardcoding the blacklisted pokemon
   # without adding them in the events.
   #except+=[]
-  except2 += [:ARCEUS, :MEW, :CELEBI, :LUGIA, :HOOH, :MEWTWO]
+  except2 += [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEW, :MEWTWO, :HOOH, :LUGIA, :RAYQUAZA, :KYOGRE, :GROUDON, :GENESECT, :KYUREM, :RESHIRAM, :ZEKROM, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :REGICE, :REGIROCK, :REGISTEEL, :CRESSELIA, :DARKRAI, :NECROZMA, :ENTEI, :RAIKOU, :SUICUNE, :CELEBI, :ARCEUS, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :MELOETTA, :DIANCIE]
   if pbGet(1) >= 0
     species = 0
     luck = rand(5) + 1
@@ -97,8 +97,7 @@ def pbWonderTrade(lvl, except = [], except2 = [], premiumWonderTrade = true)
         species = 0 if !customSpriteExistsSpecies(species)
       end
       if species > 0
-        skipLegendaryCheck = premiumWonderTrade && rand(100) < luck
-        species = 0 if pokemonIsPartLegendary(species) && !$game_switches[SWITCH_BEAT_THE_LEAGUE] && !skipLegendaryCheck
+        species = 0 if pokemonIsPartLegendary(species)
       end
       #Redo loop if below BST - 200
       species = 0 if bst < (chosenBST - 200)

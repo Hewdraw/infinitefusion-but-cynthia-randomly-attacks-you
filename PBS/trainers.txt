@@ -95,8 +95,15 @@ Pokemon = B51H93,34 #Hauntrio,
 #########################
 
 [HAUNTEDGIRL,???]
-Pokemon = B105H94,40 #Hauntwak,
-	Moves = SHADOWBONE,BONECLUB,THRASH,MEANLOOK
+Pokemon = B105H345,40 #Hauntwak,
+	Offset = 10
+	Moves = SWORDSDANCE,SHADOWBONE,SHADOWSNEAK,BONEMERANG
+	Nature = ADAMANT
+	Ability = BATTLEARMOR
+	Item = THICKCLUB
+	Gender = F
+	EVs = 252,252,0,0,0,4
+	IVs = 31,31,31,31,31,31
 
 [HAUNTEDGIRL,???,1]
 Pokemon = B373H421,65 #mimikyu sableye
@@ -1537,8 +1544,13 @@ Pokemon = B43H48,18 #Venoish,
 #------------------------
 
 [GAMBLER,Dirk]
-Pokemon = ODDISH,18 #Oddmite,
-Pokemon = B100H39,18 #Jigglyorb,
+Pokemon = ARCEUS,5
+	Offset = 10
+	Moves = METRONOME
+	Gender = F
+	Nature = BRAVE
+	IV = 31,31,31,31,31,31
+	Happiness = 255
 
 ######################
 ###  Celadon Gym ######
