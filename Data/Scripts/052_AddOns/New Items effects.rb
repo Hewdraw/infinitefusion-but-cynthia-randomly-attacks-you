@@ -1108,6 +1108,24 @@ ItemHandlers::BattleUseOnPokemon.add(:BALMMUSHROOM, proc { |item, pokemon, battl
   next pbBattleHPItem(pokemon, battler, 999, scene)
 })
 
+
+ItemHandlers::UseOnPokemon.add(:FLAMEORB, proc { |item, pkmn, scene|
+  if pkmn.status != :BURN
+    pkmn.status = :BURN
+    scene.pbRefresh
+    scene.pbDisplay(_INTL("{1} was burned.", pkmn.name))
+  end
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:TOXICORB, proc { |item, pkmn, scene|
+  if pkmn.status != :POISON
+    pkmn.status = :POISON
+    scene.pbRefresh
+    scene.pbDisplay(_INTL("{1} was poisoned.", pkmn.name))
+  end
+})
+
 #
 # #TRACKER (for roaming legendaries)
 # ItemHandlers::UseInField.add(:REVEALGLASS, proc { |item|
