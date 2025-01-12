@@ -296,7 +296,7 @@ ItemHandlers::UseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 100, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler, choices, scene|
   next pbBattleHPItem(pokemon, battler, 100, scene)
 })
 
@@ -304,7 +304,7 @@ ItemHandlers::UseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 100, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, battler, choices, scene|
   next pbBattleHPItem(pokemon, battler, 100, scene)
 })
 
@@ -312,7 +312,7 @@ ItemHandlers::UseOnPokemon.add(:COFFEE, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 50, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:COFFEE, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:COFFEE, proc { |item, pokemon, battler, choices, scene|
   next pbBattleHPItem(pokemon, battler, 50, scene)
 })
 
@@ -1175,7 +1175,7 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
   next 1 # Continue
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, choices, scene|
   if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
     next true
   end
@@ -1188,7 +1188,7 @@ ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
   next false
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, choices, scene|
   pbRaiseEffortValues(pokemon, :ATTACK, 252)
   next false
 })
@@ -1299,7 +1299,7 @@ ItemHandlers::UseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 100, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler, choices, scene|
   next pbBattleHPItem(pokemon, battler, 100, scene)
 })
 
@@ -1307,7 +1307,7 @@ ItemHandlers::UseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 100, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, battler, choices, scene|
   next pbBattleHPItem(pokemon, battler, 100, scene)
 })
 
@@ -2063,7 +2063,7 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
   next 1 # Continue
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, choices, scene|
   if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
     next true
   end
@@ -2076,7 +2076,7 @@ ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
   next false
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
+ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, choices, scene|
   pbRaiseEffortValues(pokemon, :ATTACK, 252)
   next false
 })
