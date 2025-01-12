@@ -153,7 +153,7 @@ class PokeBattle_AI
       return threattable
     end
     if currentThreat.length() == threattable[:statusCount]
-      return 32
+      return 19
     end
     return [[100, threattable[:highestDamage]*100/user.totalhp].min, 1].max
   end
