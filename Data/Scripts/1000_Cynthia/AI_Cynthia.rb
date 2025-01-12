@@ -22,6 +22,7 @@ class PokeBattle_AI
       userThreat = pbCynthiaAssessThreat(target, user, false)
       break if userThreat >= 95 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
+      break if user.level == 1
       damagethreshold = 100.0/opposingThreat.ceil
       damagethreshold += 1 if user.pbSpeed > target.pbSpeed
       bTypes = user.pbTypes(true)
