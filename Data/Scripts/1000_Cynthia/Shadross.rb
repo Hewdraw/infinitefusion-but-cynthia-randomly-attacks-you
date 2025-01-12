@@ -45,6 +45,16 @@ def UndertaleCommand(scene)
 end
 
 def UndertaleShopSetup()
+  if $PokemonGlobal.cynthiabadgetier && $Trainer.numbadges > $PokemonGlobal.cynthiabadgetier
+    $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
+    if !$PokemonGlobal.pcItemStorage
+      $PokemonGlobal.pcItemStorage = PCItemStorage.new
+    end
+    $PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN,999)
+    $PokemonGlobal.cynthiaupgradechance = 0
+    $PokemonGlobal.cynthiabadgetier = numbadges
+    $PokemonGlobal.cynthiachance = 1000
+  end
   $PokemonGlobal.shadrossstock = {
     :ULTRANECROZIUMZ => {
       "badges" => 0,
@@ -431,6 +441,20 @@ class Undertale_Scene
     cw.visible = true
     ret = -1
     loop do
+      break
+    end
+    return ret
+  end
+
+  def UndertaleItemMenu()
+    cw = @sprites["itemWindow"]
+    msgBox = @sprites["commandWindow"].sprites["msgBox"]
+    msgBox.text = ""
+    cw.visible = true
+    cw.visible = false
+    cw.visible = true
+    ret = -1
+    loop do
       oldIndex = cw.index
       olditemindex = cw.itemindex
       pbUpdate(cw)
@@ -439,49 +463,59 @@ class Undertale_Scene
         cw.index = cw.index - 1
       elsif Input.trigger?(Input::DOWN)
         cw.index = cw.index + 1
-      # elsif Input.trigger?(Input::RIGHT) 
-      #   cw.index = cw.index + 1
-      #   cw.index = cw.index + 1
-      #   cw.index = cw.index + 1
-      #   cw.index = cw.index + 1
-      #   cw.index = cw.index + 1
-      # elsif Input.trigger?(Input::LEFT)
-      #   cw.index = cw.index - 1
-      #   cw.index = cw.index - 1
-      #   cw.index = cw.index - 1
-      #   cw.index = cw.index - 1
-      #   cw.index = cw.index - 1
+      elsif Input.trigger?(Input::RIGHT) 
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+      elsif Input.trigger?(Input::LEFT)
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
       end
       pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.itemindex != olditemindex
       # Actions
-      if Input.trigger?(Input::BACK)                 # Confirm choice
-        return
-      end
-    end
-    return ret
-  end
-
-  def UndertaleItemMenu()
-    cw = @sprites["itemWindow"]
-    cw.visible = true
-    ret = -1
-    loop do
-      oldIndex = cw.index
-      pbUpdate(cw)
-      # Update selected command
-      if Input.trigger?(Input::UP)
-        cw.index -= 1
-      elsif Input.trigger?(Input::DOWN)
-        cw.index += 1
-      end
-      pbSEPlay("MenuCursor") if cw.index!=oldIndex
-      # Actions
-      if Input.trigger?(Input::BACK)                 # Confirm choice
+      if Input.trigger?(Input::USE)                 # Confirm choice
+        item = $PokemonGlobal.shadrossstock.keys[cw.itemindex + cw.index]
+        if !item
+          break
+        end
+        if $Trainer.numbadges < $PokemonGlobal.shadrossstock[item]["badges"]
+          text = "Weak ass."
+        elsif pbQuantity(:SINNOHCOIN) < $PokemonGlobal.shadrossstock[item]["cost"]
+          text = "Broke ass."
+        else
+          text = "Bought #{$PokemonGlobal.shadrossstock[item]["amount"]} #{$PokemonGlobal.shadrossstock[item]["amount"] == 1 ? GameData::Item.get(item).name : GameData::Item.get(item).name_plural}."
+          $PokemonBag.pbDeleteItem(:SINNOHCOIN, $PokemonGlobal.shadrossstock[item]["cost"])
+          $PokemonBag.pbStoreItem(item, $PokemonGlobal.shadrossstock[item]["amount"])
+        end
         cw.visible = false
-        return
+        msgBox.text = ""
+        pbWait(1)
+        for i in 0..text.length()
+          msgBox.text = text[0..i]
+          pbSEPlay("BattleText")
+          pbWait(1)
+        end
+        pbWait(40)
+        cw.visible = true
+      end
+      if Input.trigger?(Input::BACK)
+        break
       end
     end
-    return ret
+    cw.visible = false
+    pbWait(1)
+    text = "You feel like you're going to have a bad time."
+    for i in 0..text.length()
+      msgBox.text = text[0..i]
+      pbSEPlay("BattleText")
+      pbWait(1)
+    end
+    return
   end
 end
 
@@ -497,6 +531,7 @@ class UndertaleMenu
   attr_reader   :color
   attr_reader   :index
   attr_reader   :mode
+  attr_reader   :sprites
   TEST = 10
 
   def disposed?; return @disposed; end
@@ -812,6 +847,7 @@ class UndertaleItemMenu
   attr_reader   :visible
   attr_reader   :color
   attr_reader   :index
+  attr_reader   :itemindex
   attr_reader   :mode
 
   def disposed?; return @disposed; end
@@ -904,7 +940,7 @@ class UndertaleItemMenu
       item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
       item = GameData::Item.get(item) if item
       itemtext = Window_UnformattedTextPokemon.newWithSize("",
-         @shopbox.x + Graphics.width / 20, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 20, @shopbox.height, viewport)
+         @shopbox.x + Graphics.width / 10 + Graphics.width / 20, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 10 - Graphics.width / 20, @shopbox.height, viewport)
       itemtext.baseColor   = Color.new(255, 255, 255)
       itemtext.shadowColor = nil
       itemtext.windowskin  = nil
@@ -915,12 +951,45 @@ class UndertaleItemMenu
       addSprite("itemtext_#{i}",itemtext)
       next itemtext
     end
+    @shopamount = Array.new(5) do |i|
+      item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
+      itemtext = Window_UnformattedTextPokemon.newWithSize("",
+         @shopbox.x + Graphics.width / 20, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 20, @shopbox.height, viewport)
+      itemtext.baseColor   = Color.new(255, 255, 255)
+      itemtext.shadowColor = nil
+      itemtext.windowskin  = nil
+      itemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+      itemtext.contents.font.size = 25
+      itemtext.text = $PokemonGlobal.shadrossstock[item]["amount"].to_s if item
+      itemtext.text = "" if !item
+      addSprite("itemamount_#{i}",itemtext)
+      next itemtext
+    end
+    @shopprices = Array.new(5) do |i|
+      item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
+      itemcost = $PokemonGlobal.shadrossstock[item]["cost"] if item
+      itembadges = $PokemonGlobal.shadrossstock[item]["badges"] if item
+      itemtext = Window_UnformattedTextPokemon.newWithSize("",
+         @shopbox.x + Graphics.width / 10 + Graphics.width / 20 + Graphics.width * 1 / 2, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 10 - Graphics.width / 20 - Graphics.width * 1 / 2, @shopbox.height, viewport)
+      itemtext.baseColor   = Color.new(255, 255, 255)
+      itemtext.shadowColor = nil
+      itemtext.windowskin  = nil
+      itemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+      itemtext.contents.font.size = 25
+      itemtext.text = "#{itembadges} Badges" if item
+      itemtext.text = "#{itembadges} Badge" if item && itembadges == 1
+      itemtext.text = "#{itemcost} Coins" if item && itembadges <= $Trainer.numbadges
+      itemtext.text = "1 Coin" if item && itembadges <= $Trainer.numbadges && itemcost == 1
+      itemtext.text = "" if !item
+      addSprite("itemprice_#{i}",itemtext)
+      next itemtext
+    end
     @heartsprite = Sprite.new(viewport)
     @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
     @heartsprite.tone = Tone.new(0, -255, -255)
     @heartsprite.angle -= 90
-    @heartsprite.x = @shoplistings[@index].x + @heartsprite.width / 2
-    @heartsprite.y = @shoplistings[@index].y + Graphics.width / 20
+    @heartsprite.x = @shopboxinner.x + @heartsprite.width * 1.5
+    @heartsprite.y = @shoplistings[@index].y + Graphics.width / 20 + 1
     addSprite("heartsprite",@heartsprite)
     self.z = z
     refresh
@@ -952,9 +1021,27 @@ class UndertaleItemMenu
       itemtext.text = "Exit" if !item
       itemtext.z = self.z + 3
       if i==@index
-        @heartsprite.y = itemtext.y + Graphics.width / 20
-        @heartsprite.z = self.z+4
+        @heartsprite.y = itemtext.y + Graphics.width / 20 + 1
+        @heartsprite.z = self.z+5
       end
+    end
+    for i in 0...@shopamount.length
+      item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
+      itemtext = @shopamount[i]
+      itemtext.text = $PokemonGlobal.shadrossstock[item]["amount"].to_s if item
+      itemtext.text = "" if !item
+      itemtext.z = self.z + 4
+    end
+    for i in 0...@shopprices.length
+      item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
+      itemcost = $PokemonGlobal.shadrossstock[item]["cost"] if item
+      itembadges = $PokemonGlobal.shadrossstock[item]["badges"] if item
+      itemtext = @shopprices[i]
+      itemtext.text = "#{itembadges} Badges" if item
+      itemtext.text = "#{itemcost} Coins" if item && itembadges <= $Trainer.numbadges
+      itemtext.text = "1 Coin" if item && itembadges <= $Trainer.numbadges && itemcost == 1
+      itemtext.text = "" if !item
+      itemtext.z = self.z + 4
     end
   end
 

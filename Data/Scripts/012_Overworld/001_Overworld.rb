@@ -192,7 +192,7 @@ def pbBattleOnStepTaken(repel_active)
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    pbTrainerBattle(:Non_Skeleton_Dev, "Hewdraw", nil, false, 1)
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
     return
   end
   encounter_type = $PokemonEncounters.encounter_type
@@ -251,7 +251,10 @@ def pbBattleOnStepTaken(repel_active)
   end
   if numbadges > $PokemonGlobal.cynthiabadgetier
     $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
-    #$PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN, 999)
+    if !$PokemonGlobal.pcItemStorage
+      $PokemonGlobal.pcItemStorage = PCItemStorage.new
+    end
+    $PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN,999)
     $PokemonGlobal.cynthiaupgradechance = 0
     $PokemonGlobal.cynthiabadgetier = numbadges
     $PokemonGlobal.cynthiachance = 1000

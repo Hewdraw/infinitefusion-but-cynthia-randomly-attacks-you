@@ -457,8 +457,12 @@ class PokeBattle_Battle
             coin = true
           end
         end
-        if coin && $PokemonBag.pbStoreItem(:SINNOHCOIN, 1)
-          pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
+        if coin && $PokemonBag.pbStoreItem(:SINNOHCOIN, $Trainer.numbadges+1)
+          if $Trainer.numbadges == 0
+            pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
+          else
+            pbDisplayPaused(_INTL("You got #{$Trainer.numbadges+1} Sinnoh Coins for winning!"))
+          end
         end
       end
       # Gain money from winning a trainer battle, and from Pay Day

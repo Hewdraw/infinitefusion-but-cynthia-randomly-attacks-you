@@ -678,6 +678,8 @@ ItemHandlers::UseOnPokemon.add(:HPUP, proc { |item, pkmn, scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.copy(:HPUP, :HEALTHMOCHI)
+
 ItemHandlers::UseOnPokemon.add(:PROTEIN, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :ATTACK) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
@@ -687,6 +689,8 @@ ItemHandlers::UseOnPokemon.add(:PROTEIN, proc { |item, pkmn, scene|
   pkmn.changeHappiness("vitamin")
   next true
 })
+
+ItemHandlers::UseOnPokemon.copy(:PROTEIN, :MUSCLEMOCHI)
 
 ItemHandlers::UseOnPokemon.add(:IRON, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :DEFENSE) == 0
@@ -698,6 +702,8 @@ ItemHandlers::UseOnPokemon.add(:IRON, proc { |item, pkmn, scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.copy(:IRON, :RESISTMOCHI)
+
 ItemHandlers::UseOnPokemon.add(:CALCIUM, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :SPECIAL_ATTACK) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
@@ -707,6 +713,8 @@ ItemHandlers::UseOnPokemon.add(:CALCIUM, proc { |item, pkmn, scene|
   pkmn.changeHappiness("vitamin")
   next true
 })
+
+ItemHandlers::UseOnPokemon.copy(:CALCIUM, :GENIUSMOCHI)
 
 ItemHandlers::UseOnPokemon.add(:ZINC, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :SPECIAL_DEFENSE) == 0
@@ -718,6 +726,8 @@ ItemHandlers::UseOnPokemon.add(:ZINC, proc { |item, pkmn, scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.copy(:ZINC, :CLEVERMOCHI)
+
 ItemHandlers::UseOnPokemon.add(:CARBOS, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :SPEED) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
@@ -727,6 +737,8 @@ ItemHandlers::UseOnPokemon.add(:CARBOS, proc { |item, pkmn, scene|
   pkmn.changeHappiness("vitamin")
   next true
 })
+
+ItemHandlers::UseOnPokemon.copy(:CARBOS, :SWIFTMOCHI)
 
 ItemHandlers::UseOnPokemon.add(:HEALTHWING, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :HP, 1, false) == 0
@@ -786,6 +798,34 @@ ItemHandlers::UseOnPokemon.add(:SWIFTWING, proc { |item, pkmn, scene|
   end
   scene.pbDisplay(_INTL("{1}'s Speed increased.", pkmn.name))
   pkmn.changeHappiness("wing")
+  next true
+})
+
+ItemHandlers::UseOnPokemon.add(:FRESHSTARTMOCHI, proc { |item, pkmn, scene|
+  didsomething = false
+  GameData::Stat.each_main do |s|
+    didsomething = true if pkmn.ev[s.id] > 0
+    pkmn.ev[s.id] = 0
+  end
+  if !didsomething
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  scene.pbDisplay(_INTL("{1}'s stats decreased.", pkmn.name))
+  next true
+})
+
+ItemHandlers::UseOnPokemon.add(:GOLDENBOTTLECAP, proc { |item, pkmn, scene|
+  didsomething = false
+  GameData::Stat.each_main do |s|
+    didsomething = true if pkmn.iv[s.id] < 31
+    pkmn.iv[s.id] = 31
+  end
+  if !didsomething
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  scene.pbDisplay(_INTL("{1}'s stats increased.", pkmn.name))
   next true
 })
 
@@ -1095,6 +1135,35 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, pkmn, scene|
 
     #pkmn.ability = GameData::Ability.get((newabil == 0) ? abil1 : abil2).id
 	  scene.pbHardRefresh
+    scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, newabilname))
+    next true
+  end
+  next false
+})
+
+
+ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
+  abils = pkmn.getAbilityList
+  hiddenability = nil
+  abil1 = nil
+  for i in abils
+    abil1 = i[0] if i[1] == 0
+    hiddenability = i[0] if i[1] == 2
+  end
+  if hiddenability.nil? || (pkmn.hasHiddenAbility? && abil1.nil?)
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  newabil = 2
+  newabil = 0 if pkmn.hasHiddenAbility?
+  newabilname = GameData::Ability.get((newabil == 2) ? hiddenability : abil1).name
+  if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?",
+                           pkmn.name, newabilname))
+    pkmn.ability_index = newabil
+    pkmn.ability = GameData::Ability.get((newabil == 2) ? hiddenability : abil1).id
+
+    #pkmn.ability = GameData::Ability.get((newabil == 0) ? abil1 : abil2).id
+    scene.pbHardRefresh
     scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, newabilname))
     next true
   end

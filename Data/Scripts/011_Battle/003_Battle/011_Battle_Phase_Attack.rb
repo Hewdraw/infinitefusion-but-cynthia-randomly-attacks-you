@@ -107,7 +107,7 @@ class PokeBattle_Battle
   def pbAttackPhaseDynamax
     pbPriority.each do |b|
       next if !b.opposes?
-      b.dynamax = true if rand(100) == 0 && $Trainer.numbadges > 10 && (!@opponent || !@opponent.special_name)
+      b.dynamax = true if rand(100) == 0 && $Trainer.numbadges > 11 && !(@opponent && @opponent.special_name) && !b.dynamax
       next if !b.dynamax
       next unless @choices[b.index][0]==:UseMove && !b.fainted?
       pbDynamax(b.index)

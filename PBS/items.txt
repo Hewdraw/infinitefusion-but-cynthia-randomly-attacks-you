@@ -699,7 +699,7 @@
 691,PINKANBERRY,Pinkan Berry,Pinkan Berries,5,0,"A type of Berry that is only found on Pinkan Island. This berry turns Pokémon that eats it pink.",0,0,5,
 692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6,
 693,EJECTPACK,Eject Pack,Eject Packs,1,0,"",0,0,0
-694,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"",0,0,0
+694,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
 695,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"",0,0,0
 696,GARCHOMPITE,Garchompite,Garchompites,1,0,"",0,0,0
 697,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
@@ -716,21 +716,21 @@
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",0,0,0
 709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
 710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,10000,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,0,
-711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"",0,0,0
-712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,8,0,"",0,0,0
-713,BOTTLECAP,Bottle Cap,Bottle Caps,8,0,"",0,0,0
-714,GOLDENBOTTLECAP,Golden Bottle Cap,Golden Bottle Caps,8,0,"",0,0,0
-715,FRESHSTARTMOCHI,Fresh-Start Mochi,Fresh-Start Mochis,1,0,"",0,0,0
-716,ABILITYPATCH,Ability Patch,Ability Patches,1,0,"",0,0,0
-717,HEALTHMOCHI,Health Mochi,Health Mochis,1,0,"",0,0,0
-718,MUSCLEMOCHI,Muscle Mochi,Muscle Mochis,1,0,"",0,0,0
-719,RESISTMOCHI,Resist Mochi,Resist Mochis,1,0,"",0,0,0
-720,GENIUSMOCHI,Genius Mochi,Genius Mochis,1,0,"",0,0,0
-721,CLEVERMOCHI,Clever Mochi,Clever Mochis,1,0,"",0,0,0
-722,SWIFTMOCHI,Swift Mochi,Swift Mochis,1,0,"",0,0,0
-723,KARMAKUT,Karma Kut,Karma Kuts,1,0,"",0,0,0
-724,KARMAKLEAN,Karma Klean,Karma Kleans,1,0,"",0,0,0
-725,KARMAKLIMB,Karma Klimb,Karma Klimbs,1,0,"",0,0,0
+711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"This is a crystallized form of Z-Power. It upgrades Necrozma's Photon Geyser to a Z-Move.",0,0,0
+712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,8,0,"not programmed in yet. rip trick room strats",0,0,0
+713,BOTTLECAP,Bottle Cap,Bottle Caps,8,0,"not programmed in yet. try the golden bottle cap instead.",0,0,0
+714,GOLDENBOTTLECAP,Golden Bottle Cap,Golden Bottle Caps,8,0,"Maximizes all IVs for a Pokemon. Don't question how it does it.",1,0,0
+715,FRESHSTARTMOCHI,Fresh-Start Mochi,Fresh-Start Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It causes a Pokémon to lose all its base points.",1,0,0
+716,ABILITYPATCH,Ability Patch,Ability Patches,1,0,"A patch that can be used to change the regular Ability of a Pokémon to a rarer Ability..",1,0,0
+717,HEALTHMOCHI,Health Mochi,Health Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's HP stat.",1,0,0
+718,MUSCLEMOCHI,Muscle Mochi,Muscle Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Attack stat.",1,0,0
+719,RESISTMOCHI,Resist Mochi,Resist Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Defense stat.",1,0,0
+720,GENIUSMOCHI,Genius Mochi,Genius Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Atk stat.",1,0,0
+721,CLEVERMOCHI,Clever Mochi,Clever Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Def stat.",1,0,0
+722,SWIFTMOCHI,Swift Mochi,Swift Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Speed stat.",1,0,0
+723,KARMAKUT,Karma Kut,Karma Kuts,1,0,"not programmed in yet.",0,0,0
+724,KARMAKLEAN,Karma Klean,Karma Kleans,1,0,"not programmed in yet.",0,0,0
+725,KARMAKLIMB,Karma Klimb,Karma Klimbs,1,0,"not programmed in yet.",0,0,0
 
 
 
