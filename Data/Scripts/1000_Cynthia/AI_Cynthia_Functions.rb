@@ -72,7 +72,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "012"
       score += @threattable[user][target][:highestDamage]
-      score = 0 if !(user.turnCount==0) || target.hasActiveAbility?([:INNERFOCUS, :SHIELDDUST, :STEADFAST]) || target.effects[PBEffects::Substitute]>0
+      score = -100 if !(user.turnCount==0) || target.hasActiveAbility?([:INNERFOCUS, :SHIELDDUST, :STEADFAST]) || target.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "013", "014", "015", "040", "041"
       score = 0 if !target.pbCanConfuse?(user,false,move)
