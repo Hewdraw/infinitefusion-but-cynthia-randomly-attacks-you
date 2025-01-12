@@ -2441,7 +2441,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PSYCHOBREAK,
     battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!",battler.pbOpposingTeam))
     battle.eachOtherSideBattler(battler.index) do |b|
       if b.pbCanSleep?(battler,true,self,true)
-        b.pbInflictStatus(:SLEEP, 999, msg)
+        b.pbInflictStatus(:SLEEP, 999)
       end
     end
     battle.pbHideAbilitySplash(battler)
