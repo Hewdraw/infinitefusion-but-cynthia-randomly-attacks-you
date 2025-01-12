@@ -9,9 +9,7 @@ def Undertale()
     $game_system.bgm_pause
     $game_system.bgs_pause
   end
-  pbSceneStandby {
-    UndertaleCommand(scene)
-  }
+  UndertaleCommand(scene)
   if $game_system && $game_system.is_a?(Game_System)
     $game_system.bgm_resume(playingBGM)
     $game_system.bgs_resume(playingBGS)
