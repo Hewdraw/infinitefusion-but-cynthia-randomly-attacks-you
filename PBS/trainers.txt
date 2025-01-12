@@ -3975,17 +3975,17 @@ Pokemon = BIRDBOSS_3,50 #		#Articuno
 	Moves = HAZE,REFLECT,ICEBEAM,ROOST
 	Ball = INVISIBALL
 	AbilityIndex = 0
-	Item = CHARTIBERRY
+	Item = LEFTOVERS
 Pokemon = BIRDBOSS_2,50 #		#Moltres
 	Moves = TAILWIND,SAFEGUARD,FLAMETHROWER,ROOST
 	Ball = MASTERBALL
 	AbilityIndex = 0
-	Item = CHARTIBERRY
+	Item = LEFTOVERS
 Pokemon = BIRDBOSS_1,50 #		#Zapdos
 	Moves = LIGHTSCREEN,THUNDERBOLT,DRILLPECK,ROOST
 	Ball = INVISIBALL
 	AbilityIndex = 0
-	Item = CHARTIBERRY
+	Item = LEFTOVERS
 #########################
 
 #####
