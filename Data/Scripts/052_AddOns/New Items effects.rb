@@ -1124,6 +1124,7 @@ ItemHandlers::UseOnPokemon.add(:TOXICORB, proc { |item, pkmn, scene|
     scene.pbRefresh
     scene.pbDisplay(_INTL("{1} was poisoned.", pkmn.name))
   end
+  next false
 })
 
 #
