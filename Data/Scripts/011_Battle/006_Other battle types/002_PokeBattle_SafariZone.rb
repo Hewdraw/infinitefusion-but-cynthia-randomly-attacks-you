@@ -311,6 +311,7 @@ class PokeBattle_SafariZone
   attr_accessor :moneyGain        # Whether the player can gain/lose money
   attr_accessor :rules
   attr_accessor :ballCount
+  attr_accessor :broken_buttons
 
   include PokeBattle_BattleCommon
 
@@ -338,6 +339,7 @@ class PokeBattle_SafariZone
     ]
     @rules         = {}
     @ballCount     = 0
+    @broken_buttons = []
   end
 
   def defaultWeather=(value); @weather = value; end
