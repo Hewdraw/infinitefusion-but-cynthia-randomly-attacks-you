@@ -232,32 +232,32 @@ def UndertaleShopSetup()
     :HEALTHMOCHI => {
       "badges" => 5,
       "cost" => 15,
-      "amount" => 10,
+      "amount" => 26,
     },
     :MUSCLEMOCHI => {
       "badges" => 5,
       "cost" => 15,
-      "amount" => 10,
+      "amount" => 26,
     },
     :RESISTMOCHI => {
       "badges" => 5,
       "cost" => 15,
-      "amount" => 10,
+      "amount" => 26,
     },
     :GENIUSMOCHI => {
       "badges" => 5,
       "cost" => 15,
-      "amount" => 10,
+      "amount" => 26,
     },
     :CLEVERMOCHI => {
       "badges" => 5,
       "cost" => 15,
-      "amount" => 10,
+      "amount" => 26,
     },
     :SWIFTMOCHI => {
       "badges" => 5,
       "cost" => 15,
-      "amount" => 10,
+      "amount" => 26,
     },
     :EVIOLITE => {
       "badges" => 6,

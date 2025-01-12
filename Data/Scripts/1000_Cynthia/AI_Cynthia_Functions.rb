@@ -1727,7 +1727,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "10C" #todo
       score = 100 if opposingThreat < 25
-      score = 0 if opposingThreat >= 25
+      score = 0 if opposingThreat >= 25 || user.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "10D" #todo
       if user.pbHasType?(:GHOST)

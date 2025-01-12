@@ -96,13 +96,13 @@ Pokemon = B51H93,34 #Hauntrio,
 
 [HAUNTEDGIRL,???]
 Pokemon = B105H345,40 #Hauntwak,
-	Offset = 10
+	Offset = 7
 	Moves = SWORDSDANCE,SHADOWBONE,SHADOWSNEAK,BONEMERANG
 	Nature = ADAMANT
 	Ability = BATTLEARMOR
 	Item = THICKCLUB
 	Gender = F
-	EVs = 252,252,0,0,0,4
+	EVs = 252,0,128,0,0,132
 	IVs = 31,31,31,31,31,31
 
 [HAUNTEDGIRL,???,1]

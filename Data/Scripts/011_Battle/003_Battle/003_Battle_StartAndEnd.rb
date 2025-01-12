@@ -400,6 +400,9 @@ class PokeBattle_Battle
     moneyLost = oldMoney-pbPlayer.money
     if moneyLost>0
       if trainerBattle?
+        if @opponent[0].name == "Shadross"
+          $PokemonGlobal.shadrossmoney += moneyLost
+        end
         pbDisplayPaused(_INTL("You gave ${1} to the winner...",moneyLost.to_s_formatted))
       else
         pbDisplayPaused(_INTL("You panicked and dropped ${1}...",moneyLost.to_s_formatted))
