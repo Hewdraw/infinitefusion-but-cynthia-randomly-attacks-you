@@ -23,14 +23,15 @@ class PokeBattle_AI
       break if activeUserThreat >= 95 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
       break if user.level == 1
-      damagethreshold = 100.0/opposingThreat.ceil
-      damagethreshold += 1 if user.pbSpeed > target.pbSpeed
+      activeDamagethreshold = 100.0/opposingThreat.ceil
+      activeDamagethreshold += 1 if user.pbSpeed > target.pbSpeed
       # bTypes = user.pbTypes(true)
       # stealthrock = user.takesIndirectDamage? && Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2]) > 1
       # damagethreshold += 1 if stealthrock
-      damagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
-      damagethreshold -= 1 if (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || user.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-      maxThreshold = damagethreshold
+      activeDamagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
+      activeDamagethreshold -= 1 if (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || user.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
+      activeDamagethreshold = 5 if activeDamagethreshold > 5
+      maxThreshold = activeDamagethreshold
       maxThreat = activeUserThreat
       @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
         next if pokemon.fainted?
@@ -45,8 +46,9 @@ class PokeBattle_AI
         damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
         damagethreshold -= 1 if battler.hasActiveAbility?(:GALEWINGS)
         damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-        damagethreshold = 10 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
-        if damagethreshold > maxThreshold || ((damagethreshold == maxThreshold || damagethreshold >= 5) && (userThreat > activeUserThreat*2 && userThreat > maxThreat))
+        damagethreshold = 5 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat < 33
+        damagethreshold = 5 if damagethreshold > 5
+        if damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat && !(damagethreshold == activeDamagethreshold && userThreat < activeDamagethreshold*2))
           maxThreat = userThreat
           maxThreshold = damagethreshold
           willswitch = true if @battle.pbRegisterSwitch(idxBattler,i)
