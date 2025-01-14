@@ -1572,6 +1572,14 @@ BattleHandlers::EOREffectItem.add(:TOXICORB,
   }
 )
 
+BattleHandlers::EOREffectItem.add(:FROSTORB,
+  proc { |item,battler,battle|
+    next if !battler.pbCanFreeze?(nil,false)
+    battler.pbFreeze(_INTL("{1} got frostbite by the {2}!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
 #===============================================================================
 # CertainSwitchingUserItem handlers
 #===============================================================================

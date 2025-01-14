@@ -89,11 +89,11 @@ class PokeBattle_Battler
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when :BURN
-      hasImmuneType |= (pbHasType?(:FIRE) || pbHasType?(:ICEFIREELECTRIC))
+      hasImmuneType |= (pbHasType?(:FIRE) || pbHasType?(:ICEFIREELECTRIC)) && !hasActiveAbility?(:WILDFIRE)
     when :PARALYSIS
       hasImmuneType |= (pbHasType?(:ELECTRIC) || pbHasType?(:ICEFIREELECTRIC)) && Settings::MORE_TYPE_EFFECTS
     when :FROZEN
-      hasImmuneType |= (pbHasType?(:ICE) || pbHasType?(:ICEFIREELECTRIC))
+      hasImmuneType |= (pbHasType?(:ICE) || pbHasType?(:ICEFIREELECTRIC)) && !hasActiveAbility?(:ICEBODY)
     end
     if hasImmuneType
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages

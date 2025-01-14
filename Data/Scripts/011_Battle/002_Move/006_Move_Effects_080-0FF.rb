@@ -3473,7 +3473,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :MIRACLESEED,:MYSTICWATER,:NEVERMELTICE,:PASSORB,:POKEDOLL,
               :POKETOY,:PRISMSCALE,:PROTECTIVEPADS,:RAZORFANG,:SACREDASH,
               :SCOPELENS,:SHELLBELL,:SHOALSALT,:SHOALSHELL,:SMOKEBALL,:SNOWBALL,
-              :SOULDEW,:SPELLTAG,:TOXICORB,:TWISTEDSPOON,:UPGRADE,
+              :SOULDEW,:SPELLTAG,:TOXICORB,:FROSTORB,:TWISTEDSPOON,:UPGRADE,
               # Healing items
               :ANTIDOTE,:AWAKENING,:BERRYJUICE,:BIGMALASADA,:BLUEFLUTE,
               :BURNHEAL,:CASTELIACONE,:ELIXIR,:ENERGYPOWDER,:ENERGYROOT,:ETHER,
@@ -3587,6 +3587,8 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
       target.pbPoison(user) if target.pbCanPoison?(user,false,self)
     when :TOXICORB
       target.pbPoison(user,nil,true) if target.pbCanPoison?(user,false,self)
+    when :FROSTORB
+      target.pbFreeze(nil) if target.pbCanFreeze?(user,false,self)
     when :FLAMEORB
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     when :LIGHTBALL

@@ -59,7 +59,7 @@ class PokeBattle_AI
     when "00C", "00D", "00E", "135", "187" #todo better damage calcs
       score = 10 if opposingSpecialThreat < opposingPhysicalThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
-      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanFreeze?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET]) || target.pbHasMoveFunction?("0D9")
+      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanFreeze?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY]) || target.pbHasMoveFunction?("0D9")
     #---------------------------------------------------------------------------
     when "00F"
       #todo flinching (maybe handle elsewhere?)
@@ -3155,7 +3155,7 @@ class PokeBattle_AI
         multipliers[:final_damage_multiplier] /= 2
       end
       # Frostbite
-      if user.status == :FROZEN && move.specialMove?
+      if user.status == :FROZEN && move.specialMove? && !user.hasActiveAbility?(:ICEBODY)
         multipliers[:final_damage_multiplier] /= 2
       end
       # Drowsy

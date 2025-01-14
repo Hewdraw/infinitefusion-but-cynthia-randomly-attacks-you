@@ -404,13 +404,28 @@ class PokeBattle_Battle
     # Damage from frostbite
     priority.each do |b|
       next if b.status != :FROZEN
-      if b.takesIndirectDamage?
-        oldHP = b.hp
-        dmg = b.totalhp/16
-        b.pbContinueStatus { b.pbReduceHP(dmg,false) }
-        b.pbItemHPHealCheck
-        b.pbAbilitiesOnDamageTaken(oldHP)
-        b.pbFaint if b.fainted?
+      if b.hasActiveAbility?(:ICEBODY)
+        if b.canHeal?
+          anim_name = GameData::Status.get(:FROZEN).animation
+          pbCommonAnimation(anim_name, b) if anim_name
+          pbShowAbilitySplash(b)
+          b.pbRecoverHP(b.totalhp/8)
+          if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+            pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+          else
+            pbDisplay(_INTL("{1}'s {2} restored its HP.",b.pbThis,b.abilityName))
+          end
+          pbHideAbilitySplash(b)
+        end
+      else
+        if b.takesIndirectDamage?
+          oldHP = b.hp
+          dmg = b.totalhp/16
+          b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+          b.pbItemHPHealCheck
+          b.pbAbilitiesOnDamageTaken(oldHP)
+          b.pbFaint if b.fainted?
+        end
       end
     end
     # drowsy countdown

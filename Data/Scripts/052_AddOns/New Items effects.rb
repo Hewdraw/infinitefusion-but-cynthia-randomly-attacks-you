@@ -1127,6 +1127,15 @@ ItemHandlers::UseOnPokemon.add(:TOXICORB, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:FROSTORB, proc { |item, pkmn, scene|
+  if pkmn.status != :FROZEN
+    pkmn.status = :FROZEN
+    scene.pbRefresh
+    scene.pbDisplay(_INTL("{1} got frostbite.", pkmn.name))
+  end
+  next false
+})
+
 #
 # #TRACKER (for roaming legendaries)
 # ItemHandlers::UseInField.add(:REVEALGLASS, proc { |item|

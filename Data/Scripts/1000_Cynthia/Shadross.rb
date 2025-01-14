@@ -184,6 +184,11 @@ def UndertaleShopSetup()
       "cost" => 6,
       "amount" => 1,
     },
+    :FROSTORB => {
+      "badges" => 2,
+      "cost" => 6,
+      "amount" => 1,
+    },
     :MUSCLEBAND => {
       "badges" => 2,
       "cost" => 4,

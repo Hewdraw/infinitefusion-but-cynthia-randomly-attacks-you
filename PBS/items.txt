@@ -731,6 +731,7 @@
 723,KARMAKUT,Karma Kut,Karma Kuts,1,0,"not programmed in yet.",0,0,0
 724,KARMAKLEAN,Karma Klean,Karma Kleans,1,0,"not programmed in yet.",0,0,0
 725,KARMAKLIMB,Karma Klimb,Karma Klimbs,1,0,"not programmed in yet.",0,0,0
+726,FROSTORB,Frost Orb,Frost Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that frostbites the holder in battle.",1,0,0,
 
 
 
