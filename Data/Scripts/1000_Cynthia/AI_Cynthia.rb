@@ -82,7 +82,7 @@ class PokeBattle_AI
         damagethreshold = 5 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
         damagethreshold = 5 if damagethreshold > 5
         damagethreshold = 6 if userThreat >= 90 && battler.pbSpeed > target.pbSpeed
-        if best == -1 || damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat))
+        if best == -1 || damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat)
           maxThreshold = damagethreshold
           maxThreat = userThreat
           best = i
