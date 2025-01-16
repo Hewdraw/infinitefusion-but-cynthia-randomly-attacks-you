@@ -114,6 +114,111 @@ def UndertaleShopSetup()
       "cost" => 2,
       "amount" => 1,
     },
+    :LONELYMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :ADAMANTMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :NAUGHTYMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :BRAVEMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :BOLDMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :IMPISHMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :LAXMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :RELAXEDMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :MODESTMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :MILDMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :RASHMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :QUIETMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :CALMMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :GENTLEMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :CAREFULMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :SASSYMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :TIMIDMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :HASTYMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :JOLLYMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :NAIVEMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :SERIOUSMINT => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
     :LUXURYBALL => {
       "badges" => 1,
       "cost" => 16,

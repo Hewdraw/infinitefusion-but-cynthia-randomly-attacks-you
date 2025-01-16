@@ -732,6 +732,27 @@
 724,KARMAKLEAN,Karma Klean,Karma Kleans,1,0,"not programmed in yet.",0,0,0
 725,KARMAKLIMB,Karma Klimb,Karma Klimbs,1,0,"not programmed in yet.",0,0,0
 726,FROSTORB,Frost Orb,Frost Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that frostbites the holder in battle.",1,0,0,
+727,LONELYMINT,Lonely Mint,Lonely Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Defense stat may suffe",1,0,0
+728,ADAMANTMINT,Adamant Mint,Adamant Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
+729,NAUGHTYMINT,Naughty Mint,Naughty Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
+730,BRAVEMINT,Brave Mint,Brave Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Speed stat may suffer.",1,0,0
+731,BOLDMINT,Bold Mint,Bold Mints,1,0,"Having a Pokémon smell this mint can make its Defense stat grow stronger. However, its Attack stat may suffer.",1,0,0
+732,IMPISHMINT,Impish Mint,Impish Mints,1,0,"Having a Pokémon smell this mint can make its Defense stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
+733,LAXMINT,Lax Mint,Lax Mints,1,0,"Having a Pokémon smell this mint can make its Defense stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
+734,RELAXEDMINT,Relaxed Mint,Relaxed Mints,1,0,"Having a Pokémon smell this mint can make its Defense stat grow stronger. However, its Speed stat may suffer.",1,0,0
+735,MODESTMINT,Modest Mint,Modest Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Atk stat grow stronger. However, its Attack stat may suffer.",1,0,0
+736,MILDMINT,Mild Mint,Mild Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Atk stat grow stronger. However, its Defense stat may suffer.",1,0,0
+737,RASHMINT,Rash Mint,Rash Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Atk stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
+738,QUIETMINT,Quiet Mint,Quiet Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Atk stat grow stronger. However, its Speed stat may suffer.",1,0,0
+739,CALMMINT,Calm Mint,Calm Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Def stat grow stronger. However, its Attack stat may suffer.",1,0,0
+740,GENTLEMINT,Gentle Mint,Gentle Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Def stat grow stronger. However, its Defense stat may suffer.",1,0,0
+741,CAREFULMINT,Careful Mint,Careful Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Def stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
+742,SASSYMINT,Sassy Mint,Sassy Mints,1,0,"Having a Pokémon smell this mint can make its Sp. Def stat grow stronger. However, its Speed stat may suffer.",1,0,0
+743,TIMIDMINT,Timid Mint,Timid Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Attack stat may suffer.",1,0,0
+744,HASTYMINT,Hasty Mint,Hasty Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Defense stat may suffer.",1,0,0
+745,JOLLYMINT,Jolly Mint,Jolly Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
+746,NAIVEMINT,Naive Mint,Naive Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
+747,SERIOUSMINT,Serious Mint,Serious Mints,1,0,"Having a Pokémon smell this mint will cause its Attack, Defense, Sp. Atk, Sp. Def, and Speed stats to grow at an equal rate.",1,0,0
 
 
 

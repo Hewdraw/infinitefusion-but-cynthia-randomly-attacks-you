@@ -48,7 +48,7 @@ class PokeBattle_AI
         damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
         damagethreshold = 5 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat < 33
         damagethreshold = 5 if damagethreshold > 5
-        damagethreshold = 0 if opposingThreat > 95
+        damagethreshold = 0 if opposingThreat >= 100 || (opposingThreat >= 50 && battler.pbSpeed < target.pbSpeed)
         if damagethreshold > activeDamagethreshold && (damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat))
           maxThreat = userThreat
           maxThreshold = damagethreshold
