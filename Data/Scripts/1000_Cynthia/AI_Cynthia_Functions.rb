@@ -54,7 +54,7 @@ class PokeBattle_AI
     when "00A", "00B", "0C6" #todo better damage calcs
       score = 10 if opposingPhysicalThreat < opposingSpecialThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
-      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
+      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E", "135", "187" #todo better damage calcs
       score = 10 if opposingSpecialThreat < opposingPhysicalThreat
@@ -3151,7 +3151,7 @@ class PokeBattle_AI
       multipliers[:final_damage_multiplier] *= typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
       # Burn
       if user.status == :BURN && move.physicalMove? && move.damageReducedByBurn? &&
-         !user.hasActiveAbility?(:GUTS)
+         !user.hasActiveAbility?([:GUTS, :WILDFIRE)
         multipliers[:final_damage_multiplier] /= 2
       end
       # Frostbite
