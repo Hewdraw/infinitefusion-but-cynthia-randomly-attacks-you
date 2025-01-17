@@ -900,12 +900,10 @@ BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GAL
 
 BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if target.battle && target.battle.choices
-      if (target.battle.choices[target.index][0]!=:UseMove &&
-         target.battle.choices[target.index][0]!=:Shift) ||
-         target.movedThisRound?
-        mults[:base_damage_multiplier] *= 1.3
-      end
+    if (target.battle.choices[target.index][0]!=:UseMove &&
+       target.battle.choices[target.index][0]!=:Shift) ||
+       target.movedThisRound?
+      mults[:base_damage_multiplier] *= 1.3
     end
   }
 )

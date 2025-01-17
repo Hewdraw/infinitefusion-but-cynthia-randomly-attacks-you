@@ -1042,7 +1042,7 @@ class PokeBattle_AI
       if target.effects[PBEffects::Substitute]>0
         score -= 90
       end
-      if target.unstoppableAbility? || [:TRUANT, :SIMPLE].include?(target.ability)
+      if target.unstoppableAbility? || [:TRUANT, :SIMPLE].include?(target.ability_id)
         score -= 90
       end
     #---------------------------------------------------------------------------
@@ -1062,9 +1062,9 @@ class PokeBattle_AI
           :TRACE, :WONDERGUARD, :ZENMODE].include?(target.ability_id)
         score -= 90
       end
-      if target.ability == :TRUANT && user.opposes?(target)
+      if target.ability_id == :TRUANT && user.opposes?(target)
         score -= 90
-      elsif target.ability == :SLOWSTART && user.opposes?(target)
+      elsif target.ability_id == :SLOWSTART && user.opposes?(target)
         score -= 90
       end
     #---------------------------------------------------------------------------
@@ -1079,9 +1079,9 @@ class PokeBattle_AI
          :TRACE, :ZENMODE].include?(user.ability_id)
         score -= 90
       end
-      if user.ability == :TRUANT && user.opposes?(target)
+      if user.ability_id == :TRUANT && user.opposes?(target)
         score += 90
-      elsif user.ability == :SLOWSTART && user.opposes?(target)
+      elsif user.ability_id == :SLOWSTART && user.opposes?(target)
         score += 90
       end
     #---------------------------------------------------------------------------
@@ -1093,9 +1093,9 @@ class PokeBattle_AI
          [:ILLUSION, :MULTITYPE, :RKSSYSTEM, :WONDERGUARD].include?(target.ability_id)
         score -= 90
       end
-      if target.ability == :TRUANT && user.opposes?(target)
+      if target.ability_id == :TRUANT && user.opposes?(target)
         score -= 90
-      elsif target.ability == :SLOWSTART && user.opposes?(target)
+      elsif target.ability_id == :SLOWSTART && user.opposes?(target)
         score -= 90
       end
     #---------------------------------------------------------------------------
@@ -2807,19 +2807,20 @@ class PokeBattle_AI
         :final_damage_multiplier => 1.0
       }
 
-      if ((@battle.pbCheckGlobalAbility(:DARKAURA) || (switchin && switchin.ability == :DARKAURA)) && type == :DARK) ||
-         ((@battle.pbCheckGlobalAbility(:FAIRYAURA) || (switchin && switchin.ability == :FAIRYAURA)) && type == :FAIRY)
-        if @battle.pbCheckGlobalAbility(:AURABREAK) || (switchin && switchin.ability == :AURABREAK)
+      if ((@battle.pbCheckGlobalAbility(:DARKAURA) || (switchin && switchin.ability_id == :DARKAURA)) && type == :DARK) ||
+         ((@battle.pbCheckGlobalAbility(:FAIRYAURA) || (switchin && switchin.ability_id == :FAIRYAURA)) && type == :FAIRY)
+        if @battle.pbCheckGlobalAbility(:AURABREAK) || (switchin && switchin.ability_id == :AURABREAK)
           multipliers[:base_damage_multiplier] *= 2 / 3.0
           multipliers[:base_damage_multiplier] *= 4 / 3.0
         else
         end
       end
       if user.abilityActive?
-        if switchin == user && user.ability == :SLOWSTART
+        if switchin == user && user.ability.id == :SLOWSTART
           multipliers[:attack_multiplier] /= 2 if move.physicalMove?
         end
-        case user.ability
+        case user.ability_id
+        when :ROUGHSKIN
         when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS
           if type == :NORMAL
             multipliers[:base_damage_multiplier] *= 1.2
@@ -2866,7 +2867,7 @@ class PokeBattle_AI
              user,target,move,multipliers,baseDmg,type)
         end
         if target.abilityActive?
-          case user.ability
+          case user.ability_id
           when :FILTER,:SOLIDROCK
             if Effectiveness.super_effective?(typeMod)
               multipliers[:final_damage_multiplier] *= 0.75 if !user.hasMoldBreaker?
@@ -3022,7 +3023,7 @@ class PokeBattle_AI
       # Terrain moves
       terrain = @battle.field.terrain
       if switchin
-        case switchin.ability
+        case switchin.ability_id
         when :ELECTRICSURGE, :HADRONENGINE
           terrain = :Electric
         when :GRASSYSURGE
@@ -3049,7 +3050,7 @@ class PokeBattle_AI
       # Weather
       weather = @battle.pbWeather
       if switchin && @battle.field.weather == weather
-        case switchin.ability
+        case switchin.ability_id
         when :AIRLOCK, :CLOUDNINE
           weather = :None
         when :DELTASTREAM
