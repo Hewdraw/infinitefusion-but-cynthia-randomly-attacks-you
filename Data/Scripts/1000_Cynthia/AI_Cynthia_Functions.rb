@@ -2831,23 +2831,23 @@ class PokeBattle_AI
           end
         when :BLAZE
           if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp - pbCynthiaAssessThreat(user, target, false) <= user.totalhp / 3)) && type == :FIRE
-            mults[:attack_multiplier] *= 1.5
+            multipliers[:attack_multiplier] *= 1.5
           end
         when :DEFEATIST
           if user.hp <= user.totalhp / 2 || (target.pbSpeed > user.pbSpeed && user.hp - pbCynthiaAssessThreat(user, target, false) <= user.totalhp / 2)
-            mults[:attack_multiplier] /= 2
+            multipliers[:attack_multiplier] /= 2
           end
         when :OVERGROW
           if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp - pbCynthiaAssessThreat(user, target, false) <= user.totalhp / 3)) && type == :GRASS
-            mults[:attack_multiplier] *= 1.5
+            multipliers[:attack_multiplier] *= 1.5
           end
         when :SWARM
           if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp - pbCynthiaAssessThreat(user, target, false) <= user.totalhp / 3)) && type == :BUG
-            mults[:attack_multiplier] *= 1.5
+            multipliers[:attack_multiplier] *= 1.5
           end
         when :TORRENT
           if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp - pbCynthiaAssessThreat(user, target, false) <= user.totalhp / 3)) && type == :WATER
-            mults[:attack_multiplier] *= 1.5
+            multipliers[:attack_multiplier] *= 1.5
           end
         when :SNIPER, :SUPERSNIPER
           if key == :critDamage
@@ -2877,7 +2877,7 @@ class PokeBattle_AI
             multipliers[:final_damage_multiplier] /= 2 if move.contactMove? && !user.hasMoldBreaker?
           when :PRISMARMOR
             if Effectiveness.super_effective?(typeMod)
-              mults[:final_damage_multiplier] *= 0.75
+              multipliers[:final_damage_multiplier] *= 0.75
             end
           else
             BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
