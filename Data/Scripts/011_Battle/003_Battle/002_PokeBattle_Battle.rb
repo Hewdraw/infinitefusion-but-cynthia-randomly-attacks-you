@@ -84,6 +84,7 @@ class PokeBattle_Battle
   attr_accessor :moldBreaker      # True if Mold Breaker applies
   attr_reader   :struggle         # The Struggle move
   attr_accessor :broken_buttons
+  attr_accessor :nuh_uh
 
   include PokeBattle_BattleCommon
 
@@ -170,6 +171,7 @@ class PokeBattle_Battle
     if @opponent && @opponent[0].name == "Hewdraw" && @opponent.length == 1
       @broken_buttons.push(1)
     end
+    @nuh_uh = 1
   end
 
   #=============================================================================
