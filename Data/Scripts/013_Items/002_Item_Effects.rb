@@ -1156,7 +1156,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, pkmn, scene|
 
 
 ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
-  if pkmn.fused
+  if pkmn.isFusion?
     scene.pbDisplay(_INTL("{1} does not work on fusions.", item.name))
     next false
   end
