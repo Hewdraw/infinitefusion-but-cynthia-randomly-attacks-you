@@ -3151,7 +3151,7 @@ class PokeBattle_AI
       multipliers[:final_damage_multiplier] *= typeMod.to_f / Effectiveness::NORMAL_EFFECTIVE
       # Burn
       if user.status == :BURN && move.physicalMove? && move.damageReducedByBurn? &&
-         !user.hasActiveAbility?([:GUTS, :WILDFIRE)
+         !user.hasActiveAbility?([:GUTS, :WILDFIRE])
         multipliers[:final_damage_multiplier] /= 2
       end
       # Frostbite
