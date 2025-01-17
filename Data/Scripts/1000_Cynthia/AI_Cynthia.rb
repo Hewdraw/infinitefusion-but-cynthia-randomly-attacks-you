@@ -43,11 +43,10 @@ class PokeBattle_AI
         userhp = 100.0 - opposingThreat
         damagethreshold = (userhp/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
-        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
         damagethreshold -= 1 if battler.hasActiveAbility?(:GALEWINGS)
         damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-        damagethreshold = 5 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat < 33
         damagethreshold = 5 if damagethreshold > 5
+        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
         damagethreshold = 0 if opposingThreat >= 100 || (opposingThreat >= 50 && battler.pbSpeed < target.pbSpeed)
         if damagethreshold > activeDamagethreshold && (damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat))
           maxThreat = userThreat
@@ -77,10 +76,9 @@ class PokeBattle_AI
         userThreat = pbCynthiaAssessThreat(target, battler, false)
         damagethreshold = (100.0/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
-        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
         damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-        damagethreshold = 5 if battler.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33
         damagethreshold = 5 if damagethreshold > 5
+        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
         damagethreshold = 6 if userThreat >= 90 && battler.pbSpeed > target.pbSpeed
         if best == -1 || damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat)
           maxThreshold = damagethreshold
