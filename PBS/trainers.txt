@@ -2162,20 +2162,47 @@ Pokemon = B67H72,31 #Tentachoke,
 Items = MAXPOTION
 Pokemon = B95H24,32 #Arbix,
 	Ball = ULTRABALL
+	Offset = 0
 Pokemon = B131H111,32 #Rhyras,
 	Ball = ULTRABALL
+	Offset = 0
 Pokemon = B115H93,35 #Hauntkan,
 	Ball = ULTRABALL
+	Offset = 0
+Pokemon = GUZZLORD,5	
+	Offset = 0
+	Moves = KNOCKOFF,DRAGONTAIL,REST,SLEEPTALK
+	Ability = BEASTBOOST
+	Item = LEFTOVERS
+	Nature = IMPISH
+	IV = 31,31,31,31,31,31
+	EV = 4,0,252,0,0,252
+	Happiness = 0
+	Ball = MASTERBALL
 [ROCKETBOSS,Giovanni,4]		#Silph co
 Items = MAXPOTION
 Pokemon = B33H57,45 #nidorino + primeape
 	Ball = ULTRABALL
+	Offset = 0
 Pokemon = B131H112,45 #rhydon + lapras
 	Ball = ULTRABALL
+	Offset = 0
 Pokemon = B115H94,47 #gengar + kangaskhan
 	Ball = ULTRABALL
+	Offset = 0
 Pokemon = B31H28,51 #nidoqueen + Sandslash
 	Ball = ULTRABALL
+	Offset = 0
+Pokemon = GUZZLORD,44	
+	Offset = 4
+	Moves = KNOCKOFF,DRAGONTAIL,REST,SLEEPTALK
+	Ability = BEASTBOOST
+	Item = LEFTOVERS
+	Nature = IMPISH
+	IV = 31,31,31,31,31,31
+	EV = 4,0,252,0,0,252
+	Happiness = 0
+	Ball = MASTERBALL
 
 ##############################
 
