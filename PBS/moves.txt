@@ -791,7 +791,7 @@
 774,METEORBEAM,Meteor Beam,194,120,ROCK,Special,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 775,CHLOROBLAST,Chloroblast,170,150,GRASS,Special,95,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 776,RISINGVOLTAGE,Rising Voltage,195,70,ELECTRIC,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-777,CHILLYRECEPTION,Chilly Reception,000,140,ELECTRIC,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+777,CHILLYRECEPTION,Chilly Reception,196,0,ICE,Status,0,10,0,NearOther,0,,"Nice Smeargle/Ditto, jackass." #todo
 
 
 #  @id               = hash[:id]
