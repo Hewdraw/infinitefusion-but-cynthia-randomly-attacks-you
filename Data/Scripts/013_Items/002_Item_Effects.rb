@@ -830,7 +830,7 @@ ItemHandlers::UseOnPokemon.add(:GOLDENBOTTLECAP, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:SERIOUSMINT, proc { |item, pkmn, scene|
-  nature = item.name.chomp(" Mint")
+  nature = item.real_name.chomp(" Mint")
   if nature == pkmn.nature.real_name
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
