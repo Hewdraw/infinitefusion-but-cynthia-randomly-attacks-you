@@ -835,7 +835,7 @@ ItemHandlers::UseOnPokemon.add(:SERIOUSMINT, proc { |item, pkmn, scene|
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
-  pkmn.nature = nature
+  pkmn.nature = item.chomp("MINT").to_sym
   scene.pbDisplay(_INTL("{1}'s Nature has become {2}", pkmn.name, nature))
   next true
 })
