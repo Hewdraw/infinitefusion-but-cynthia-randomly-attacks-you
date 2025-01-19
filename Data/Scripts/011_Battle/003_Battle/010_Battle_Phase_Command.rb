@@ -215,7 +215,7 @@ class PokeBattle_Battle
           next if @broken_buttons.include?(0)
           break if pbFightMenu(idxBattler)
         when 1    # Bag
-          if rand(100) == < @nuh_uh
+          if rand(100) < @nuh_uh
             pbDisplay(_INTL("nuh uh."))
             if @opponent
               broken_buttons.push(1)
