@@ -18,16 +18,13 @@ class PokeBattle_AI
 
     willswitch = false
     user.eachOpposing do |target|
-      opposingThreat = pbCynthiaAssessThreat(user, target)
-      activeUserThreat = pbCynthiaAssessThreat(target, user, false)
+      opposingThreat = pbCynthiaGetThreat(user, target)[:highestDamage]
+      activeUserThreat = pbCynthiaGetThreat(target, user)[:highestDamage]
       break if activeUserThreat >= 90 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
       break if user.level == 1
       activeDamagethreshold = 100.0/opposingThreat.ceil
       activeDamagethreshold += 1 if user.pbSpeed > target.pbSpeed
-      # bTypes = user.pbTypes(true)
-      # stealthrock = user.takesIndirectDamage? && Effectiveness.calculate(:ROCK, bTypes[0], bTypes[1], bTypes[2]) > 1
-      # damagethreshold += 1 if stealthrock
       activeDamagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
       activeDamagethreshold -= 1 if (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || user.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
       activeDamagethreshold = 5 if activeDamagethreshold > 5
@@ -38,8 +35,8 @@ class PokeBattle_AI
         next if !@battle.pbCanSwitch?(idxBattler,i)
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(pokemon,69)
-        opposingThreat = pbCynthiaAssessThreat(battler, target)
-        userThreat = pbCynthiaAssessThreat(target, battler, false)
+        opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]
+        userThreat = pbCynthiaGetThreat(target, battler)[:highestDamage]
         userhp = 100.0 - opposingThreat
         damagethreshold = (userhp/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
@@ -72,8 +69,8 @@ class PokeBattle_AI
       enemies.each do |i|
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(party[i],69)
-        opposingThreat = pbCynthiaAssessThreat(battler, target)
-        userThreat = pbCynthiaAssessThreat(target, battler, false)
+        opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]
+        userThreat = pbCynthiaGetThreat(target, battler)[:highestDamage]
         damagethreshold = (100.0/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
         damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
@@ -90,78 +87,74 @@ class PokeBattle_AI
     return best
   end
 
-  def pbCynthiaAssessThreat(user, target, max=true, detailed = false)
-    key = :minDamage
-    key = :maxDamage if max
-    threattable = {
+  def pbCynthiaGetThreat(user, target, percentagetotal = true)
+    threattable = pbCynthiaAssessThreat(user, target)
+    maxhp = user.totalhp
+    maxhp = user.hp if !percentagetotal
+    for key, threat in threattable
+      next if key == :moves
+      threat = [[100, threat*100/maxhp].min, 1].max
+    end
+    return threattable
+  end
+
+  def pbCynthiaAssessThreat(user, target)
+    @threattable[target] = {} if !@threattable[target]
+    return @threattable[target][user] if @threattable[target][user]
+    @threattable[target][user] = {
       :highestDamage => 0,
       :physicalDamage => 0,
       :specialDamage => 0,
       :statusCount => 0,
+      :moves => {}
     }
-    currentThreat = {}
+
+    key = :minDamage
+    key = :maxDamage if target.pbOwnedByPlayer?
+
     target.moves.each_with_index do |move,i|
       next if move.pp==0 && move.total_pp>0
       next if !target.pbCanChooseMove?(move,true,false,false)
       #todo encore
+      @threattable[target][user][:moves][move] = pbCynthiaAssessMoveThreat(user, target, move)
+      if @threattable[target][user][:moves][move][:category] == :status
+        @threattable[target][user][:statusCount] += 1
+        next
+      end
+      damage = @threattable[target][user][:moves][move][key]
+      @threattable[target][user][:highestDamage] = damage if damage > @threattable[target][user][:highestDamage]
+      @threattable[target][user][:physicalDamage] = damage if damage > @threattable[target][user][:physicalDamage] && @threattable[target][user][:moves][move][:category] == :physical
+      @threattable[target][user][:specialDamage] = damage if damage > @threattable[target][user][:specialDamage] && @threattable[target][user][:moves][move][:category] == :special
+    end
+    return @threattable[target][user]
+  end
+
+  def pbCynthiaAssessMoveThreat(user, target, move)
       if move.callsAnotherMove?
         case move.function
-        when "0AE"
+        when "0AE" #todo
         when "0AF"
           blacklist = ["002", "014", "158", "05C", "05D", "069", "071", "072", "073", "09C", "0AD", "0AA", "0AB", "0AC", "0E8", "149", "14A", "14B", "14C", "168", "0AE", "0AF", "0B0", "0B3", "0B4", "0B5", "0B6", "0B1", "0B2", "117", "16A", "0E6", "0E7", "0F1", "0F2", "0F3", "115", "171", "172", "133", "134"]
-          currentThreat[move] = 0
-          if target.pbSpeed >= user.pbSpeed && @battle.lastMoveUsed
+          if @battle.lastMoveUsed
             moveID = @battle.lastMoveUsed
             calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
             if !blacklist.include?(calledmove.function)
-              damage = pbCynthiaCalcDamage(calledmove,target,user)[key]
-              currentThreat[move] = damage
-              threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
-              threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && calledmove.physicalMove?
-              threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && calledmove.specialMove?
+              return pbCynthiaAssessMoveThreat(calledmove,target,user)
             end
           end
-          user.moves.each do |usermove|
-            if !blacklist.include?(usermove.function)
-              moveID = usermove.id
-              calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
-              damage = pbCynthiaCalcDamage(calledmove,target,user)
-              damage = damage[key]
-              currentThreat[move] = damage if damage > currentThreat[move]
-              threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
-              threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && calledmove.physicalMove?
-              threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && calledmove.specialMove?
-            end
-          end
-        when "0B0"
-        when "0B3"
-        when "0B4"
-        when "0B5"
-        when "0B6"
+        when "0B0" #todo
+        when "0B3" #todo
+        when "0B4" #todo
+        when "0B5" #todo
+        when "0B6" #todo
         end
-      else
-        currentThreat[move] = pbCynthiaCalcDamage(move,target,user)[key]
       end
-    end
-    currentThreat.each do |move,damage|
-      if move.statusMove?
-        threattable[:statusCount] += 1
-        next
-      end
-      threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
-      threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && move.physicalMove?
-      threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && move.specialMove?
-    end
-    if detailed
-      threattable.each do |damagekey, value|
-        threattable[damagekey] = [[100, value*100/user.totalhp].min, 1].max
-      end
-      return threattable
-    end
-    if currentThreat.length() == threattable[:statusCount]
-      return 19
-    end
-    return [[100, threattable[:highestDamage]*100/user.totalhp].min, 1].max
+      damagetable = pbCynthiaCalcDamage(move,target,user)
+      damagetable[:category] = :status
+      damagetable[:category] = :physical if move.physicalMove?
+      damagetable[:category] = :special if move.specialMove?
+      return damagetable
+
   end
 
   def pbCynthiaItemScore(idxBattler)

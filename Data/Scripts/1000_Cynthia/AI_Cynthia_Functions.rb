@@ -17,21 +17,30 @@ class PokeBattle_AI
   def pbCynthiaGetMoveScoreStatus(move,user,target)
     skill = 100 #temporary
     score = 32
-    userThreattable = pbCynthiaAssessThreat(target, user, false, true)
+    userMaxThreattable = pbCynthiaGetThreat(target, user)
+    userMaxThreat = userMaxThreattable[:highestDamage]
+    userMaxPhysicalThreat = userMaxThreattable[:physicalDamage]
+    userMaxSpecialThreat = userMaxThreattable[:specialDamage]
+    userThreattable = pbCynthiaGetThreat(target, user, false)
     userThreat = userThreattable[:highestDamage]
     userPhysicalThreat = userThreattable[:physicalDamage]
     userSpecialThreat = userThreattable[:specialDamage]
+    opponentMaxThreat = 0
+    opposingMaxPhysicalThreat = 0
+    opposingMaxSpecialThreat = 0
     opposingThreat = 0
     opposingPhysicalThreat = 0
     opposingSpecialThreat = 0
     outspeedsopponent = true
     user.eachOpposing do |opponent|
-      if @threattable[user][opponent] == nil
-        @threattable[user][opponent] = pbCynthiaAssessThreat(user, opponent, true, true)
-      end
-      opposingThreat += @threattable[user][opponent][:highestDamage]
-      opposingPhysicalThreat += @threattable[user][opponent][:physicalDamage]
-      opposingSpecialThreat += @threattable[user][opponent][:specialDamage]
+      opponentMaxThreattable = pbCynthiaGetThreat(user, opponent, false)
+      opponentMaxThreat += opponentMaxThreattable[:highestDamage]
+      opposingMaxPhysicalThreat += opponentMaxThreattable[:physicalDamage]
+      opposingMaxSpecialThreat += opponentMaxThreattable[:specialDamage]
+      opposingThreattable = pbCynthiaGetThreat(user, opponent)
+      opposingThreat += opposingThreattable[:highestDamage]
+      opposingPhysicalThreat += opposingThreattable[:physicalDamage]
+      opposingSpecialThreat += opposingThreattable[:specialDamage]
       outspeedsopponent = false if opponent.pbSpeed >= user.pbSpeed
     end
     case move.function
@@ -42,24 +51,39 @@ class PokeBattle_AI
     when "003", "004" #sleep
       score *= 1.5 if user.hasActiveAbility?(:BADDREAMS)
       score *= 1.5 if user.pbHasMove?(:NIGHTMARE) || user.pbHasMove?(:DREAMEATER)
-      score = 0 if target.effects[PBEffects::Yawn]>0 || target.hasActiveAbility?([:MARVELSCALE, :GUTS, :QUICKFEET]) || target.pbHasMoveFunction?("011","0B4", "0D9") || !target.pbCanSleep?(user,false)
+      score = 0 if target.effects[PBEffects::Yawn]>0
+      score = 0 if target.hasActiveAbility?([:MARVELSCALE, :GUTS, :QUICKFEET])
+      score = 0 if target.pbHasMoveFunction?("011","0B4", "0D9")
+      score = 0 if !target.pbCanSleep?(user,false)
     # #---------------------------------------------------------------------------
-    when "005", "006", "0BE"
-      score = 0 if target.effects[PBEffects::Yawn]>0 || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD]) || target.pbHasMoveFunction?("0D9") || !target.pbCanPoison?(user,false) || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanPoisonSynchronize?(target))
+    when "005", "006", "0BE" #poison
+      score = 0 if target.effects[PBEffects::Yawn]>0 
+      score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD])
+      score = 0 if target.pbHasMoveFunction?("0D9")
+      score = 0 if !target.pbCanPoison?(user,false)
+      score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanPoisonSynchronize?(target)
     #---------------------------------------------------------------------------
-    when "007", "008", "009", "0C5"
+    when "007", "008", "009", "0C5" #paralyze
       score = 99 if target.pbSpeed > user.pbSpeed && target.pbSpeed / 4 < user.pbSpeed
-      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanParalyze?(user,false) || (move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))) || target.hasActiveAbility?([:QUICKFEET, :MARVELSCALE, :GUTS]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target))
+      score = 0 if target.effects[PBEffects::Yawn]>0
+      score = 0 if !target.pbCanParalyze?(user,false)
+      score = 0 if move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
+      score = 0 if target.hasActiveAbility?([:QUICKFEET, :MARVELSCALE, :GUTS])
+      score = 0 if target.pbHasMoveFunction?("0D9")
+      score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
     #---------------------------------------------------------------------------
-    when "00A", "00B", "0C6" #todo better damage calcs
+    when "00A", "00B", "0C6" #burn todo better damage calcs
       score = 10 if opposingPhysicalThreat < opposingSpecialThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
       score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
     #---------------------------------------------------------------------------
-    when "00C", "00D", "00E", "135", "187" #todo better damage calcs
+    when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
       score = 10 if opposingSpecialThreat < opposingPhysicalThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
-      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanFreeze?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY]) || target.pbHasMoveFunction?("0D9")
+      score = 0 if target.effects[PBEffects::Yawn]>0
+      score = 0 if !target.pbCanFreeze?(user,false)
+      score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY])
+      score = 0 if target.pbHasMoveFunction?("0D9")
     #---------------------------------------------------------------------------
     when "00F"
       #todo flinching (maybe handle elsewhere?)
@@ -71,14 +95,17 @@ class PokeBattle_AI
       #todo snore handle elsewhere
     #---------------------------------------------------------------------------
     when "012"
-      score += @threattable[user][target][:highestDamage]
-      score = -100 if !(user.turnCount==0) || target.hasActiveAbility?([:INNERFOCUS, :SHIELDDUST, :STEADFAST]) || target.effects[PBEffects::Substitute]>0
+      score += pbCynthiaGetThreat(user, target)[:highestDamage]
+      score = 0 if target.hasActiveAbility?([:INNERFOCUS, :SHIELDDUST, :STEADFAST])
+      score = 0 if target.effects[PBEffects::Substitute]>0
+      score = -100 if !(user.turnCount==0)
     #---------------------------------------------------------------------------
     when "013", "014", "015", "040", "041"
       score = 0 if !target.pbCanConfuse?(user,false,move)
     #---------------------------------------------------------------------------
     when "016"
-      score = 0 if !target.pbCanAttract?(user,false) || (target.hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(target,false))
+      score = 0 if !target.pbCanAttract?(user,false)
+      score = 0 if target.hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(target,false)
     #---------------------------------------------------------------------------
     when "018"
       score = 0 if ![:POISON, :BURN, :PARALYSIS].include?(user.status)
@@ -89,11 +116,13 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "01A"
-      score = 0 if user.pbOwnSide.effects[PBEffects::Safeguard]>0 || user.status != :NONE
+      score = 0 if user.pbOwnSide.effects[PBEffects::Safeguard]>0
+      score = 0 if user.status != :NONE
     #---------------------------------------------------------------------------
     when "01B"
       score *= 1.5
-      score = 0 if user.status == :NONE || !target.pbCanInflictStatus?(user.status, user, false, move)
+      score = 0 if user.status == :NONE
+      score = 0 if !target.pbCanInflictStatus?(user.status, user, false, move)
     #---------------------------------------------------------------------------
     when "01C", "029"
       #score = 5
@@ -1374,6 +1403,7 @@ class PokeBattle_AI
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
+      score = 0 if opposingMaxThreat >= 50
     #---------------------------------------------------------------------------
     when "0D7" #todo
       score -= 90 if @battle.positions[user.index].effects[PBEffects::Wish]>0
@@ -1384,6 +1414,7 @@ class PokeBattle_AI
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
+      score = 0 if opposingMaxThreat >= 50
     #---------------------------------------------------------------------------
     when "0D9" #todo
       if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
@@ -1726,8 +1757,8 @@ class PokeBattle_AI
       score += 10*(user.stages[:ACCURACY]-target.stages[:EVASION])
     #---------------------------------------------------------------------------
     when "10C" #todo
-      score = 100 if opposingThreat < 25
-      score = 0 if opposingThreat >= 25 || user.effects[PBEffects::Substitute]>0
+      score = 100 if opposingMaxThreat < 25
+      score = 0 if opposingMaxThreat >= 25 || user.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "10D" #todo
       if user.pbHasType?(:GHOST)
@@ -2479,6 +2510,7 @@ class PokeBattle_AI
       score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
+      score = 0 if opposingMaxThreat >= 50
     #---------------------------------------------------------------------------
     when "16E" #todo
       if target.hp==target.totalhp || (!target.canHeal?)
