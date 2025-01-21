@@ -23,7 +23,7 @@ class PokeBattle_AI
       break if activeUserThreat >= 90 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
       break if user.level == 1
-      activeDamagethreshold = 100.0/opposingThreat.ceil
+      activeDamagethreshold = (100.0/opposingThreat).ceil
       activeDamagethreshold += 1 if user.pbSpeed > target.pbSpeed
       activeDamagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
       activeDamagethreshold -= 1 if (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || user.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
