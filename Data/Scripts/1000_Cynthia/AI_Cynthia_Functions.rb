@@ -25,7 +25,7 @@ class PokeBattle_AI
     userThreat = userThreattable[:highestDamage]
     userPhysicalThreat = userThreattable[:physicalDamage]
     userSpecialThreat = userThreattable[:specialDamage]
-    opponentMaxThreat = 0
+    opposingMaxThreat = 0
     opposingMaxPhysicalThreat = 0
     opposingMaxSpecialThreat = 0
     opposingThreat = 0
@@ -34,7 +34,7 @@ class PokeBattle_AI
     outspeedsopponent = true
     user.eachOpposing do |opponent|
       opponentMaxThreattable = pbCynthiaGetThreat(user, opponent, false)
-      opponentMaxThreat += opponentMaxThreattable[:highestDamage]
+      opposingMaxThreat += opponentMaxThreattable[:highestDamage]
       opposingMaxPhysicalThreat += opponentMaxThreattable[:physicalDamage]
       opposingMaxSpecialThreat += opponentMaxThreattable[:specialDamage]
       opposingThreattable = pbCynthiaGetThreat(user, opponent)
