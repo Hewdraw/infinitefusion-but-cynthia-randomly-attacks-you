@@ -5700,7 +5700,7 @@ Pokemon = SHELLOS,5
 
 [CHAMPION_Sinnoh,Cynthia,11]
 Pokemon = RIOLU,5
-	Offset = 1
+	Offset = 2
 	Moves = DOUBLETEAM,POWERUPPUNCH
 	Item = BRIGHTPOWDER
 	Ability = PRANKSTER
@@ -6483,7 +6483,7 @@ Pokemon = PORYGON2,5
 	Happiness = 255
 Pokemon = SPIRITOMBGASTRODON,5
 	Offset = 2
-	Moves = DOUBLETEAM,RECOVER,SUBSTITUTE
+	Moves = WILLOWISP,RECOVER,SUBSTITUTE
 	Ability = PRESSURE
 	Item = LEFTOVERS
 	Gender = F
@@ -7151,7 +7151,7 @@ Pokemon = B352H275,5	#Roserade / Porygonz
 	Happiness = 255
 Pokemon = SPIRITOMB,5
 	Offset = 2
-	Moves = DOUBLETEAM,SUBSTITUTE,DARKPULSE,PAINSPLIT
+	Moves = WILLOWISP,SUBSTITUTE,DARKPULSE,PAINSPLIT
 	Ability = PRESSURE
 	Item = LEFTOVERS
 	Gender = F
@@ -7384,7 +7384,7 @@ Pokemon = KOMMOO,5
 [CHAMPION_Sinnoh,Cynthia,50]
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = B384H295,5 #Riolu / Spiritomb
-	Offset = 2
+	Offset = 4
 	Moves = REST,SLEEPTALK,SWORDSDANCE,CRUNCH
 	Ability = PRANKSTER
 	Item = EVIOLITE

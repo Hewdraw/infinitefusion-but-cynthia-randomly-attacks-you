@@ -93,7 +93,7 @@ class PokeBattle_AI
     maxhp = user.hp if !percentagetotal
     for key, threat in threattable
       next if key == :moves
-      threat = [[100, threat*100/maxhp].min, 1].max
+      threattable[key] = [[100, threat*100/maxhp].min, 1].max
     end
     return threattable
   end
