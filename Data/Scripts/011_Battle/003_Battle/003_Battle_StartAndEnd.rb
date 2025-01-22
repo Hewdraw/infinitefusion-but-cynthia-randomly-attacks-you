@@ -435,7 +435,7 @@ class PokeBattle_Battle
           @scene.pbShowOpponent(i)
           if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
             $PokemonGlobal.cynthiahandschance = 1
-            if rand(100) < $PokemonGlobal.cynthiahandschance
+            if rand(150) < $PokemonGlobal.cynthiahandschance
               $PokemonGlobal.cynthiahandschance = 1000
             end
             if $PokemonGlobal.battledepth == nil
