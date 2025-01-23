@@ -217,19 +217,19 @@ class GenOneStyle
     @sprites["selector"].opacity = 0
 
     @sprites["poke"] = Sprite.new(@viewport)
-    @sprites["poke"].bitmap = @spriteLoader.load_base_sprite(random_fusion_body).bitmap
-    @sprites["poke"].x = 400
-    @sprites["poke"].y = 100
+    @sprites["poke"].bitmap = pbBitmap("Graphics/Trainers/trainer115")
+    @sprites["poke"].x = Graphics.width
+    @sprites["poke"].y = 175
 
     @sprites["2poke"] = Sprite.new(@viewport)
-    @sprites["2poke"].bitmap = @spriteLoader.load_base_sprite(random_fusion_head).bitmap
-    @sprites["2poke"].x = -150
-    @sprites["2poke"].y = 100
+    @sprites["2poke"].bitmap = pbBitmap("Graphics/Trainers/trainer115")
+    @sprites["2poke"].x = 0 - @sprites["2poke"].width
+    @sprites["2poke"].y = 175
 
     @sprites["fpoke"] = Sprite.new(@viewport)
-    @sprites["fpoke"].bitmap = @spriteLoader.load_pif_sprite(random_fusion).bitmap
-    @sprites["fpoke"].x = 125
-    @sprites["fpoke"].y = 100
+    @sprites["fpoke"].bitmap = pbBitmap("Graphics/Trainers/trainer148")
+    @sprites["fpoke"].x = (Graphics.width - @sprites["fpoke"].width) / 2
+    @sprites["fpoke"].y = 175
     @sprites["fpoke"].z = 999
     @sprites["fpoke"].opacity = 0
 
@@ -361,13 +361,13 @@ class GenOneStyle
     @currentFrame += 1
     @skip = false
 
-    if @sprites["poke"].x < 175 #150
+    if @sprites["poke"].x < 250 #150
       makeShineEffect()
     end
     #update_selector_position()
     if @sprites["poke"].x > @sprites["2poke"].x
-      @sprites["poke"].x = @sprites["poke"].x - 1
-      @sprites["2poke"].x = @sprites["2poke"].x + 1
+      @sprites["poke"].x = @sprites["poke"].x - 2
+      @sprites["2poke"].x = @sprites["2poke"].x + 2
       #@sprites["effect"].opacity-=1
       #@sprites["bg"].opacity-=1
       #@sprites["bg2"].opacity+=3
@@ -381,28 +381,28 @@ class GenOneStyle
       @sprites["selector"].opacity = 0
       #wait(1)
       #end
-      @sprites["poke"].x = 400
+      @sprites["poke"].x = Graphics.width
       @sprites["poke"].tone = Tone.new(0, 0, 0, 0)
 
-      @sprites["2poke"].x = -150
+      @sprites["2poke"].x = 0 - @sprites["2poke"].width
       @sprites["2poke"].tone = Tone.new(0, 0, 0, 0)
 
       if @maxPoke < NB_POKEMON - 1
         @maxPoke += 5 #-1 pour que ca arrive pile. tant pis pour kyurem
       end
-      random_fusion = getRandomFusionForIntro()
-      random_fusion_body = random_fusion.body_id
-      random_fusion_head = random_fusion.head_id
+      # random_fusion = getRandomFusionForIntro()
+      # random_fusion_body = random_fusion.body_id
+      # random_fusion_head = random_fusion.head_id
 
-      @prevPoke1 = random_fusion_body
-      @prevPoke2 = random_fusion_head
+      # @prevPoke1 = random_fusion_body
+      # @prevPoke2 = random_fusion_head
 
-      @sprites["poke"].bitmap = @spriteLoader.load_base_sprite(random_fusion_body).bitmap
-      @sprites["2poke"].bitmap = @spriteLoader.load_base_sprite(random_fusion_head).bitmap
+      # @sprites["poke"].bitmap = @spriteLoader.load_base_sprite(random_fusion_body).bitmap
+      # @sprites["2poke"].bitmap = @spriteLoader.load_base_sprite(random_fusion_head).bitmap
 
-      wait(150)
+      wait(100)
 
-      @sprites["fpoke"].bitmap = @spriteLoader.load_pif_sprite(random_fusion).bitmap
+      # @sprites["fpoke"].bitmap = @spriteLoader.load_pif_sprite(random_fusion).bitmap
     end
 
     @sprites["fpoke"].opacity -= 10
