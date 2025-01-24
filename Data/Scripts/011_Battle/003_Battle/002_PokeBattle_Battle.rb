@@ -85,6 +85,7 @@ class PokeBattle_Battle
   attr_reader   :struggle         # The Struggle move
   attr_accessor :broken_buttons
   attr_accessor :nuh_uh
+  attr_accessor :legendary
 
   include PokeBattle_BattleCommon
 
@@ -168,10 +169,15 @@ class PokeBattle_Battle
       @struggle = PokeBattle_Struggle.new(self, nil)
     end
     @broken_buttons = []
-    if @opponent && @opponent[0].name == "Hewdraw" && @opponent.length == 1
-      @broken_buttons.push(1)
+    if @opponent && @opponent[0].name == "Hewdraw"
+      opponent.each do |trainer|
+        if trainer.name == "Hewdraw"
+          @broken_buttons.push(1)
+        end
+      end
     end
     @nuh_uh = 1
+    @legendary = false
   end
 
   #=============================================================================

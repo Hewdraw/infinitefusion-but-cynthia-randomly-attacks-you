@@ -449,6 +449,62 @@ def pb1v3WildBattle(species1, level1, species2, level2, species3, level3,
   return (decision!=2 && decision!=5)
 end
 
+
+#===============================================================================
+# Start a legendary battle
+#===============================================================================
+def pbLegendaryBattle(species, rewardItem=nil)
+  # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
+  if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
+    pbMessage(_INTL("SKIPPING BATTLE...")) if $DEBUG
+    pbMessage(_INTL("AFTER WINNING...")) if $DEBUG && $Trainer.able_pokemon_count > 0
+    $PokemonTemp.clearBattleRules
+    $PokemonGlobal.nextBattleBGM       = nil
+    $PokemonGlobal.nextBattleME        = nil
+    $PokemonGlobal.nextBattleCaptureME = nil
+    $PokemonGlobal.nextBattleBack      = nil
+    $PokemonTemp.forced_alt_sprites=nil
+    pbMEStop
+    return ($Trainer.able_pokemon_count == 0) ? 0 : 1   # Treat it as undecided/a win
+  end
+  # Record information about party Pokémon to be used at the end of battle (e.g.
+  # comparing levels for an evolution check)
+  Events.onStartBattle.trigger(nil)
+  # Generate trainers and their parties based on the arguments given
+  trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species)
+  return 0 if !trainer
+  # Calculate who the player trainer(s) and their party are
+  playerTrainers    = [$Trainer]
+  playerParty       = $Trainer.party
+  playerPartyStarts = [0]
+  # Create the battle scene (the visual side of it)
+  scene = pbNewBattleScene
+  # Create the battle class (the mechanics side of it)
+  battle = PokeBattle_Battle.new(scene,playerParty,trainer.party,playerTrainers,[trainer])
+  battle.party1starts = playerPartyStarts
+  # Set various other properties in the battle class
+  pbPrepareBattle(battle)
+  $PokemonTemp.clearBattleRules
+  # End the trainer intro music
+  Audio.me_stop
+  # Perform the battle itself
+  decision = 0
+  pbBattleAnimation(pbGetTrainerBattleBGM([trainer]),(battle.singleBattle?) ? 1 : 3,[trainer]) {
+    pbSceneStandby {
+      decision = battle.pbStartBattle
+    }
+    pbAfterBattle(decision,false)
+  }
+  Input.update
+  # Save the result of the battle in a Game Variable (1 by default)
+  #    0 - Undecided or aborted
+  #    1 - Player won
+  #    2 - Player lost
+  #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
+  #    5 - Draw
+  return decision==1 || decision==4
+end
+
 #===============================================================================
 # Start a trainer battle
 #===============================================================================
@@ -547,6 +603,7 @@ def pbTrainerBattleCore(*args)
   battle.party2starts = foePartyStarts
   battle.items        = foeItems
   battle.endSpeeches  = foeEndSpeeches
+  battle.legendary = true
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules

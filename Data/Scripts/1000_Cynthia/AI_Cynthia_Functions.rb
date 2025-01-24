@@ -2862,23 +2862,23 @@ class PokeBattle_AI
             multipliers[:base_damage_multiplier] *= 1.3
           end
         when :BLAZE
-          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)) <= user.totalhp / 3)) && type == :FIRE
+          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.totalhp / 3)) && type == :FIRE
             multipliers[:attack_multiplier] *= 1.5
           end
         when :DEFEATIST
-          if user.hp <= user.totalhp / 2 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)) <= user.totalhp / 2)
+          if user.hp <= user.totalhp / 2 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.totalhp / 2)
             multipliers[:attack_multiplier] /= 2
           end
         when :OVERGROW
-          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)) <= user.totalhp / 3)) && type == :GRASS
+          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.totalhp / 3)) && type == :GRASS
             multipliers[:attack_multiplier] *= 1.5
           end
         when :SWARM
-          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)) <= user.totalhp / 3)) && type == :BUG
+          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.totalhp / 3)) && type == :BUG
             multipliers[:attack_multiplier] *= 1.5
           end
         when :TORRENT
-          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)) <= user.totalhp / 3)) && type == :WATER
+          if (user.hp <= user.totalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.totalhp / 3)) && type == :WATER
             multipliers[:attack_multiplier] *= 1.5
           end
         when :SNIPER, :SUPERSNIPER

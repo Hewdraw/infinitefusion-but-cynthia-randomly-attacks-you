@@ -148,3 +148,5 @@
 145,CREATOR_Minecraft2,Creator of Minecraft,70,,,,Female,100,
 146,COOLTRAINER_MIKU,Cool Trainer,60,,,,Female,,
 147,CHAMPION_Sinnoh2,Champion,50,,,,Female,100,
+148,RENEGADE,Renegade,50,,,,Female,100, #temporary
+149,LEGENDARY_POKEMON,Legendary Pokémon,0,,,,Mixed,100,

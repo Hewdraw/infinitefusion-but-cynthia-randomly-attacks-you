@@ -72,7 +72,7 @@ class PokeBattle_Scene
       pbCreateTrainerBackSprite(i, p.trainer_type, @battle.player.length)
     end
     # Opposing trainer(s) sprites
-    if @battle.trainerBattle?
+    if @battle.trainerBattle? && !@battle.legendary
       @battle.opponent.each_with_index do |p, i|
         pbCreateTrainerFrontSprite(i, p.trainer_type, @battle.opponent.length, p.sprite_override)
       end
@@ -84,7 +84,7 @@ class PokeBattle_Scene
       pbCreatePokemonSprite(i)
     end
     # Wild battle, so set up the Pokémon sprite(s) accordingly
-    if @battle.wildBattle?
+    if @battle.wildBattle? || @battle.legendary
       @battle.pbParty(1).each_with_index do |pkmn, i|
         index = i * 2 + 1
         pbChangePokemon(index, pkmn)

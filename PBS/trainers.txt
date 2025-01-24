@@ -9579,5 +9579,16 @@ Pokemon = B132H242,5
 	Happiness = 255
 	Ball = LUXURYBALL
 
+####################### Legendary Teams
+[LEGENDARY_POKEMON,Deoxys,0]
+Pokemon = DEOXYS,11	
+	Offset = 10
+	Moves = KNOCKOFF,TAUNT,STEALTHROCK,NASTYPLOT
+	Ability = ADAPTABILITY
+	#Item = MYSTERIOUSMETEORS
+	Nature = SERIOUS
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,0,128,0,0,128
 
 #eof
