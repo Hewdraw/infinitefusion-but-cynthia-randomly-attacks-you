@@ -482,6 +482,7 @@ def pbLegendaryBattle(species, rewardItem=nil)
   # Create the battle class (the mechanics side of it)
   battle = PokeBattle_Battle.new(scene,playerParty,trainer.party,playerTrainers,[trainer])
   battle.party1starts = playerPartyStarts
+  battle.legendary = true
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules
@@ -603,7 +604,6 @@ def pbTrainerBattleCore(*args)
   battle.party2starts = foePartyStarts
   battle.items        = foeItems
   battle.endSpeeches  = foeEndSpeeches
-  battle.legendary = true
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules

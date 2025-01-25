@@ -151,7 +151,7 @@ class GenOneStyle
     @selector_pos = 0 #1: left, 0:right
 
     # sound file for playing the title screen BGM
-    bgm = "Pokemon Red-Blue Opening"
+    bgm = "Volo"
     @skip = false
     # speed of the effect movement
     @speed = 16
