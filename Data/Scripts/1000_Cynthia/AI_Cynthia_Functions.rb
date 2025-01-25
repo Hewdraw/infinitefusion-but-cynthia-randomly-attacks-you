@@ -908,13 +908,8 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "05A" #todo
-      if target.effects[PBEffects::Substitute]>0
-        score -= 90
-      elsif user.hp>=(user.hp+target.hp)/2
-        score -= 90
-      else
-        score += 40
-      end
+      score = 0 if user.hp>=(user.hp+target.hp)/2
+      score = 0 if target.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "05B"
       score = 100 if @battle.sideSizes[0]>=2 || @battle.sideSizes[1]>=2

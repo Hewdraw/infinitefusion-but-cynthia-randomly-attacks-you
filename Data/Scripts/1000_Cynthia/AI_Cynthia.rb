@@ -89,13 +89,15 @@ class PokeBattle_AI
 
   def pbCynthiaGetThreat(user, target, percentagetotal = true)
     threattable = pbCynthiaAssessThreat(user, target)
+    newtable = {}
     maxhp = user.totalhp
     maxhp = user.hp if !percentagetotal
     for key, threat in threattable
+      newtable[key] = threat
       next if key == :moves
-      threattable[key] = [[100, threat*100/maxhp].min, 1].max
+      newtable[key] = [[100, threat*100/maxhp].min, 1].max
     end
-    return threattable
+    return newtable
   end
 
   def pbCynthiaAssessThreat(user, target)
