@@ -105,6 +105,7 @@ class Pokemon
   attr_accessor :hiddenPowerType
   attr_accessor :tera
   attr_accessor :dynamax
+  attr_accessor :ace
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
   attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)

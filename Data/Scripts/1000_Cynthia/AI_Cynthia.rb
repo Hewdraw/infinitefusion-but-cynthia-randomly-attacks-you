@@ -143,7 +143,7 @@ class PokeBattle_AI
             moveID = @battle.lastMoveUsed
             calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
             if !blacklist.include?(calledmove.function)
-              return pbCynthiaAssessMoveThreat(calledmove,target,user)
+              return pbCynthiaAssessMoveThreat(user,target,calledmove)
             end
           end
         when "0B0" #todo
