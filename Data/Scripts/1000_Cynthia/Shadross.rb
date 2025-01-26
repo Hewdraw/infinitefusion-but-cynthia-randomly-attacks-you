@@ -50,7 +50,7 @@ def UndertaleShopSetup()
     end
     $PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN,999)
     $PokemonGlobal.cynthiaupgradechance = 0
-    $PokemonGlobal.cynthiabadgetier = numbadges
+    $PokemonGlobal.cynthiabadgetier = $Trainer.numbadges
     $PokemonGlobal.cynthiachance = 1000
   end
   $PokemonGlobal.shadrossstock = {

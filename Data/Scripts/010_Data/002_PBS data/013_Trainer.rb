@@ -20,6 +20,7 @@ module GameData
       "Status" => [:status, "s"],
       "Tera" => [:tera, "s"],
       "Dynamax" => [:dynamax, "b"],
+      "Raid" => [:raid, "b"],
       "HPType" => [:hptype, "s"],
       "Form" => [:form, "u"],
       "Name" => [:name, "s"],
@@ -313,17 +314,19 @@ module GameData
 
         if offset != nil
           offset = offset.to_i
-          highestlevel = 0
-          for mon in $Trainer.party
-            if mon.level > highestlevel
-              highestlevel = mon.level
-            end
+        else
+          offset = -3
+        end
+        highestlevel = 0
+        for mon in $Trainer.party
+          if mon.level > highestlevel
+            highestlevel = mon.level
           end
-          offset = pkmn_data[:offset].to_i
-          highestlevel += offset
-          if highestlevel > level
-            level = highestlevel
-          end
+        end
+        offset = pkmn_data[:offset].to_i
+        highestlevel += offset
+        if highestlevel > level
+          level = highestlevel
         end
 
 
