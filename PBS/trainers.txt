@@ -3905,7 +3905,9 @@ Pokemon = MEWTWO,70
 [ROBOT,R.E.D.]
 Pokemon = B132H242,100 
 	Moves = TOXIC,COSMICPOWER,SOFTBOILED,TRANSFORM
-	AbilityIndex = 0
+	Ability = IMPOSTER
+	EVs = 252,0,128,0,0,132
+	IVs = 31,31,31,31,31,31
 	Item = LEFTOVERS
 ####################
 [ROBOT,G.R.E.E.N.]
