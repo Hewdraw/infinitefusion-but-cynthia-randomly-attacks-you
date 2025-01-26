@@ -21,6 +21,7 @@ module GameData
       "Tera" => [:tera, "s"],
       "Dynamax" => [:dynamax, "b"],
       "Raid" => [:raid, "b"],
+      "Ace" => [:ace, "b"],
       "HPType" => [:hptype, "s"],
       "Form" => [:form, "u"],
       "Name" => [:name, "s"],
@@ -323,7 +324,6 @@ module GameData
             highestlevel = mon.level
           end
         end
-        offset = pkmn_data[:offset].to_i
         highestlevel += offset
         if highestlevel > level
           level = highestlevel
@@ -356,6 +356,7 @@ module GameData
         end
 
         pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
+        pkmn.ace = (pkmn_data[:ace]) ? true : nil
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined

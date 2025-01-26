@@ -33,6 +33,7 @@ class PokeBattle_AI
       @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
         next if pokemon.fainted?
         next if !@battle.pbCanSwitch?(idxBattler,i)
+        next if pokemon.ace
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(pokemon,69)
         opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]
@@ -67,6 +68,7 @@ class PokeBattle_AI
 
     @battle.battlers[idxBattler].eachOpposing do |target|
       enemies.each do |i|
+        next if pokemon.ace && enemies.length > 1
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(party[i],69)
         opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]

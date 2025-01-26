@@ -2673,6 +2673,7 @@ Pokemon = B34H103,5
 Pokemon = MEWTWOMEWTWO,5	
 	Offset = -3
 	Moves = DRAINPUNCH,DREAMEATER,EARTHQUAKE,HEX
+	Ace = TRUE
 	Ability = PRESSURE
 	Item = MEWTWONITE
 	Gender = F
