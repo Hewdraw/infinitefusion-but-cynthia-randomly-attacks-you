@@ -27,6 +27,7 @@ class PokeBattle_AI
       activeDamagethreshold += 1 if user.pbSpeed > target.pbSpeed
       activeDamagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
       activeDamagethreshold -= 1 if (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || user.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
+      activeDamagethreshold += 1
       activeDamagethreshold = 5 if activeDamagethreshold > 5
       maxThreshold = activeDamagethreshold
       maxThreat = activeUserThreat
