@@ -5148,6 +5148,7 @@ Pokemon = B208H71,46 #victreelix
 [YOUNGSTER,Joe]
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = GIGALITH,1
+	Offset = -100
 	Moves = SELFDESTRUCT
 	Ability = SANDSTREAM
 	Item = LUMBERRY
@@ -7563,6 +7564,7 @@ Pokemon = B299H134,5	#Garchomp / Vaporeon
 [CHAMPION_Sinnoh,Cynthia,48]
 Items = FULLRESTORE,FULLRESTORE
 Pokemon = GIGALITH,1
+	Offset = -100
 	Moves = SELFDESTRUCT
 	Ability = SANDSTREAM
 	Item = LUMBERRY
