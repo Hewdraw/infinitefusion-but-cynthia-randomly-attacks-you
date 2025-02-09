@@ -344,6 +344,7 @@ def pbBattleOnStepTaken(repel_active)
     else
       pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[pbCynthiaRollEncounter])
     end
+    $PokemonTemp.encounterTriggered = true
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
     if $PokemonEncounters.have_double_wild_battle?
       encounter2 = $PokemonEncounters.choose_wild_pokemon(encounter_type)
