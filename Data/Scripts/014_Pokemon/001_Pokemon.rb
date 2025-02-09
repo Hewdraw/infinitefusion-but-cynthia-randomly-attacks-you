@@ -317,7 +317,7 @@ class Pokemon
   end
 
   def isSelfFusion?
-    return isFusion? && getHeadID(species) == getBodyID(species)
+    return (isFusion? && getHeadID(species) == getBodyID(species)) || [:MEWTWOMEWTWO, :MEGAMEWTWOMEWTWO, :GENGARGENGAR, :MEGAGENGARGENGAR].include?(@species)
   end
 
   def isFusion?
