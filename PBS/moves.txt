@@ -456,7 +456,7 @@
 444,DEFENSECURL,Defense Curl,01E,0,NORMAL,Status,0,40,0,User,0,d,"The user curls up to conceal weak spots and raise its Defense stat."
 445,DISABLE,Disable,0B9,0,NORMAL,Status,100,20,0,NearOther,0,bce,"For four turns, this move prevents the target from using the move it last used."
 446,DOUBLETEAM,Double Team,022,0,NORMAL,Status,0,15,0,User,0,d,"By moving rapidly, the user makes illusory copies of itself to raise its evasiveness."
-447,ENCORE,Encore,0BC,0,NORMAL,Status,100,5,0,NearOther,0,bce,"The user compels the target to keep using only the move it last used for three turns."
+447,ENCORE,Encore,0BC,0,NORMAL,Status,100,1,0,NearOther,0,bce,"The user compels the target to keep using only the move it last used for three turns."
 448,ENDURE,Endure,0E8,0,NORMAL,Status,0,10,0,User,4,,"The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession."
 449,ENTRAINMENT,Entrainment,066,0,NORMAL,Status,100,15,0,NearOther,0,bce,"The user dances to compel the target to mimic it, making the target's Ability the same as the user's."
 450,FLASH,Flash,047,0,NORMAL,Status,100,20,0,NearOther,0,bce,"The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves."
