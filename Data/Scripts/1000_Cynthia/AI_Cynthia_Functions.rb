@@ -2560,7 +2560,7 @@ class PokeBattle_AI
       score = 0 if @battle.field.terrain == :Electric
     #---------------------------------------------------------------------------
     when "174" #todo
-      score -= 90 if user.turnCount > 0
+      score = -100 if user.turnCount > 0
     #---------------------------------------------------------------------------
     when "175" #todo flinch
       score += 30 if target.effects[PBEffects::Minimize]
