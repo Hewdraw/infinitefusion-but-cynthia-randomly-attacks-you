@@ -716,7 +716,7 @@
 699,THESKELETONAPPEARS,The Skeleton Appears,183,0,DARK,Status,100,1,0,User,6,bef,"Nice Smeargle/Ditto, jackass." #todo
 700,TRIPLEARROWS,Triple Arrows,000,90,FIGHTING,Physical,100,10,100,NearOther,0,befh,"Nice Smeargle/Ditto, jackass." #todo
 701,LASHOUT,Lash Out,000,75,DARK,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
-702,RAGEFIST,Rage Fist,000,50,GHOST,Physical,100,10,0,NearOther,0,abefj,"Nice Smeargle/Ditto, jackass." #todo
+702,RAGEFIST,Rage Fist,000,150,GHOST,Physical,100,10,0,NearOther,0,abefj,"Nice Smeargle/Ditto, jackass." #todo
 703,TACHYONCUTTER,Tachyon Cutter,185,50,STEEL,Special,0,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 704,PSYCHICNOISE,Psychic Noise,186,75,PSYCHIC,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 705,THUNDERCAGE,Thunder Cage,0D0,80,ELECTRIC,Special,90,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
@@ -784,7 +784,7 @@
 767,SOULSTEALING7STARSTRIKE,Soul-Stealing 7-Star Strike,000,195,GHOST,Physical,100,1,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 768,SPIRITBREAK,Spirit Break,000,75,FAIRY,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 769,SURGINGSTRIKES,Surgin Strikes,000,25,WATER,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-770,TRIPLEAXEL,Triple Axel,000,20,ICE,Physical,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+770,TRIPLEAXEL,Triple Axel,000,120,ICE,Physical,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 771,UPPERHAND,Upper Hand,000,65,FIGHTING,Physical,100,15,0,NearOther,3,abef,"Nice Smeargle/Ditto, jackass." #todo
 772,VICTORYDANCE,Victory Dance,000,0,FIGHTING,Status,0,10,0,User,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 773,WICKEDBLOW,Wicked Blow,000,75,DARK,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
@@ -792,6 +792,8 @@
 775,CHLOROBLAST,Chloroblast,170,150,GRASS,Special,95,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 776,RISINGVOLTAGE,Rising Voltage,195,70,ELECTRIC,Special,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 777,CHILLYRECEPTION,Chilly Reception,196,0,ICE,Status,0,10,0,NearOther,0,,"Nice Smeargle/Ditto, jackass." #todo
+778,FREEZINGGLARE,Freezing Glare,00D,90,PSYCHIC,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+779,WAVECRASH,Wave Crash,0FB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 
 
 #  @id               = hash[:id]

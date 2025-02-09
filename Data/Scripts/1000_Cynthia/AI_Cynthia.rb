@@ -349,6 +349,7 @@ class PokeBattle_AI
     damage = damagetable[:minDamage]
     # Account for accuracy of move
     accuracy = pbRoughAccuracy(move,user,target,100)
+    accuracy = 100 if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
     damage *= accuracy/100.0
     # Convert damage to percentage of target's remaining HP
     damagePercentage = damage*100.0/target.hp

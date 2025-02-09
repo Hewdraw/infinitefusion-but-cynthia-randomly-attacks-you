@@ -19510,6 +19510,177 @@ BaseStats = 106,176,90,133,180,113
 Abilities = PSYCHOBREAK
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000825]
+Name = Artirorus
+InternalName = AURORUSGARTICUNO
+Type1 = PSYCHIC
+Type2 = ICE
+BaseStats = 101,79,76,70,116,97
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000826]
+Name = Sandswine
+InternalName = MAMOSWINEASANDSLASH
+Type1 = ICE
+Type2 = GROUND
+BaseStats = 86,120,93,75,40,63
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000827]
+Name = Slowster
+InternalName = CLOYSTERGSLOWKING
+Type1 = POISON
+Type2 = ICE
+BaseStats = 80,85,146,56,101,88
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000828]
+Name = Scream Gong
+InternalName = DEWGONGSCREAMTAIL
+Type1 = FAIRY
+Type2 = ICE
+BaseStats = 106,68,86,83,66,108
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000829]
+Name = Lapbro
+InternalName = MEGAB80H131
+Type1 = WATER
+Type2 = PSYCHIC
+BaseStats = 118,146,100,40,100,90
+Abilities = SHELLARMOR
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000830]
+Name = Lucalem
+InternalName = AGOLEMLUCARIO
+Type1 = FIGHTING
+Type2 = ELECTRIC
+BaseStats = 73,116,110,60,95,68
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000831]
+Name = Annihilee
+InternalName = ANNIHILAPEHITMONLEE
+Type1 = FIGHTING
+Type2 = GHOST
+BaseStats = 70,116,71,89,40,103
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000832]
+Name = Blastcross
+InternalName = MEGAB214H9
+Type1 = WATER
+Type2 = FIGHTING
+BaseStats = 79,151,110,76,70,105
+Abilities = SKILLLINK
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000833]
+Name = Hitmonluna
+InternalName = URSALUNAHITMONCHAN
+Type1 = FIGHTING
+Type2 = NORMAL
+BaseStats = 76,128,96,58,38,100
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000834]
+Name = Armane
+InternalName = FLUTTERMANEARBOK
+Type1 = POISON
+Type2 = FAIRY
+BaseStats = 58,68,59,116,88,97
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000835]
+Name = Marosaur
+InternalName = VENUSAURAMAROWAK
+Type1 = FIRE
+Type2 = POISON
+BaseStats = 66,81,92,68,66,86
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000836]
+Name = Gengar
+InternalName = GENGARGENGAR
+Type1 = GHOST
+Type2 = POISON
+BaseStats = 60,65,60,110,130,75
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000837]
+Name = Gengar
+InternalName = MEGAGENGARGENGAR
+Type1 = GHOST
+Type2 = POISON
+BaseStats = 60,65,60,130,170,95
+Abilities = SHADOWTAG
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000838]
+Name = Dragodos
+InternalName = MEGAB130H149
+Type1 = DRAGON
+Type2 = DARK
+BaseStats = 92,148,104,80,90,110
+Abilities = MOLDBREAKER
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000839]
+Name = Bad Exegguitar
+InternalName = TYRANITARAEXEGGUTOR
+Type1 = GRASS
+Type2 = DARK
+BaseStats = 96,124,101,55,115,83
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000840]
+Name = Pidtales
+InternalName = ANINETALESPIDGEOT
+Type1 = FLYING
+Type2 = FAIRY
+BaseStats = 79,71,75,106,73,80
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000841]
+Name = Pidtales
+InternalName = MEGAANINETALESPIDGEOT
+Type1 = FLYING
+Type2 = FAIRY
+BaseStats = 79,71,76,113,117,86
+Abilities = NOGUARD
+Moves = 1,TACKLE
+Shape = Head
+
 
 #eof
 

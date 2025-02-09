@@ -775,7 +775,7 @@ BattleHandlers::DamageCalcUserItem.add(:STEELGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
      proc { |item,user,target,move,mults,baseDmg,type|
-       if (user.isFusionOf(:CUBONE) || user.isFusionOf(:MAROWAK)) && move.physicalMove?
+       if (user.isFusionOf(:CUBONE) || user.isFusionOf(:MAROWAK) || user.pokemon.species_data.id_number >= 1000099) && move.physicalMove?
          mults[:attack_multiplier] *= 2
        end
      }
