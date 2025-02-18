@@ -2,7 +2,6 @@ class PokeBattle_AI
   def pbCynthiaChooseEnemyCommand(idxBattler)
     user = @battle.battlers[idxBattler]
     @threattable = {}
-    @threattable[user] = {}
     choices = []
     if @battle.battlers[idxBattler].dynamax == nil || @battle.battlers[idxBattler].dynamax == true
       choices.push(*pbCynthiaItemScore(idxBattler))
@@ -20,7 +19,7 @@ class PokeBattle_AI
     willswitch = false
     user.eachOpposing do |target|
       opposingThreat = pbCynthiaGetThreat(user, target)[:highestDamage]
-      activeUserThreat = pbCynthiaGetThreat(target, user)[:highestDamage]
+      activeUserThreat = pbCynthiaGetThreat(target, user, false)[:highestDamage]
       break if activeUserThreat >= 90 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
       break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
       break if user.level == 1
@@ -39,12 +38,13 @@ class PokeBattle_AI
         battler = PokeBattle_Battler.new(@battle,69)
         battler.pbInitialize(pokemon,69)
         opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]
-        userThreat = pbCynthiaGetThreat(target, battler)[:highestDamage]
+        userThreat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
         userhp = 100.0 - opposingThreat
         damagethreshold = (userhp/opposingThreat).ceil
         damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
         damagethreshold -= 1 if battler.hasActiveAbility?(:GALEWINGS)
         damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
+        damagethreshold = 5 if battler.hasActiveAbility.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33 && (100 * user.hp / user.totalhp) > opposingThreat
         damagethreshold = 5 if damagethreshold > 5
         damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
         damagethreshold = 0 if opposingThreat >= 100 || (opposingThreat >= 50 && battler.pbSpeed < target.pbSpeed)
@@ -59,6 +59,7 @@ class PokeBattle_AI
   end
 
   def pbCynthiaSwitch(idxBattler,party)
+    @threattable = {}
     enemies = []
     party.each_with_index do |_p,i|
       enemies.push(i) if @battle.pbCanSwitchLax?(idxBattler,i)
@@ -90,6 +91,24 @@ class PokeBattle_AI
     end
     return best
   end
+
+  def pbCynthiaGetSwitchValue(user, switch)
+    activeUserThreat = 0
+    activeOpposingThreat = 0
+    battler = PokeBattle_Battler.new(@battle,69)
+    battler.pbInitialize(pokemon,69)
+    userThreat = 0
+    opposingThreat = 0
+    user.eachOpposing do |target|
+      activeOpposingThreat += pbCynthiaGetThreat(user, target)[:highestDamage]
+      threat = pbCynthiaGetThreat(target, user, false)[:highestDamage]
+      activeUserThreat = threat if threat > activeUserThreat
+      opposingThreat += pbCynthiaGetThreat(battler, target)[:highestDamage]
+      threat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
+      userThreat = threat if threat > userThreat
+    end
+  end
+
 
   def pbCynthiaGetThreat(user, target, percentagetotal = true)
     threattable = pbCynthiaAssessThreat(user, target)

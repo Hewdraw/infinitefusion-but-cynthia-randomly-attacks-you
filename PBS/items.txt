@@ -753,11 +753,11 @@
 745,JOLLYMINT,Jolly Mint,Jolly Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
 746,NAIVEMINT,Naive Mint,Naive Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
 747,SERIOUSMINT,Serious Mint,Serious Mints,1,0,"Having a Pokémon smell this mint will cause its Attack, Defense, Sp. Atk, Sp. Def, and Speed stats to grow at an equal rate.",1,0,0
-748,SLOWBRONITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
-749,HERACRONITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
-750,GENGARITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
-751,GYARADOSITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
-752,PIDGEOTITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
+748,SLOWBRONITE,Slowbronite,Slowbronites,1,0,"",0,0,0
+749,HERACRONITE,Heracronite,Heracronites,1,0,"",0,0,0
+750,GENGARITE,Gengarite,Gengarites,1,0,"",0,0,0
+751,GYARADOSITE,Gyaradosite,Gyaradosites,1,0,"",0,0,0
+752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"",0,0,0
 
 
 

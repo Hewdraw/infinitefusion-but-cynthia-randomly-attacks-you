@@ -197,6 +197,7 @@ class PokeBattle_Battle
     @scene.pbChangePokemon(battler,battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
     pbCommonAnimation("MegaEvolution2",battler)
+    @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
     pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, battler.pokemon.tera))
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end

@@ -2124,7 +2124,7 @@ end
 #===============================================================================
 class PokeBattle_Move_167 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if @battle.pbWeather != :Hail || @battle.pbWeather != :Snow
+    if @battle.pbWeather != :Hail && @battle.pbWeather != :Snow
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2869,7 +2869,7 @@ end
 
 class PokeBattle_Move_196 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    @battle.pbDisplay(_INTL("{1} is preparing to tell a chillingly bad joke!", pbThis))
+    @battle.pbDisplay(_INTL("{1} is preparing to tell a chillingly bad joke!", user.pbThis))
     if !@battle.pbCanChooseNonActive?(user.index) && @battle.pbWeather == :Snow
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -2890,5 +2890,53 @@ class PokeBattle_Move_196 < PokeBattle_Move
     @battle.moldBreaker = false
     switchedBattlers.push(user.index)
     user.pbEffectsOnSwitchIn(true)
+  end
+end
+
+class PokeBattle_Move_196 < PokeBattle_TwoTurnMove
+  def pbIsChargingTurn?(user)
+    # NOTE: Sky Drop doesn't benefit from Power Herb, probably because it works
+    #       differently (i.e. immobilises the target during use too).
+    @powerHerb = false
+    @chargingTurn = (user.effects[PBEffects::TwoTurnAttack].nil?)
+    @damagingTurn = (!user.effects[PBEffects::TwoTurnAttack].nil?)
+    return !@damagingTurn
+  end
+
+  def pbFailsAgainstTarget?(user,target)
+    if !target.opposes?(user)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if target.semiInvulnerable? ||
+       (target.effects[PBEffects::SkyDrop]>=0 && @chargingTurn)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if target.effects[PBEffects::SkyDrop]!=user.index && @damagingTurn
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} took {2} under the ground!",user.pbThis,targets[0].pbThis(true)))
+  end
+
+  def pbAttackingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} was freed from the TOMBSTONER!",targets[0].pbThis))
+  end
+
+  def pbChargingTurnEffect(user,target)
+    target.effects[PBEffects::SkyDrop] = user.index
+  end
+
+  def pbAttackingTurnEffect(user,target)
+    target.effects[PBEffects::SkyDrop] = -1
   end
 end

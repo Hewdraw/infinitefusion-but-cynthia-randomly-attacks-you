@@ -1134,8 +1134,11 @@ class PokeBattle_AI
       score -= 70
     #---------------------------------------------------------------------------
     when "070" #todo
-      score -= 90 if target.hasActiveAbility?(:STURDY)
-      score -= 90 if target.level>user.level
+      score = 0
+      score = 100 if user.hasActiveAbility?(:NOGUARD)
+      score = 100 if target.hasActiveAbility?(:NOGUARD)
+      score = -100 if target.hasActiveAbility?(:STURDY)
+      score = -100 if target.level>user.level
     #---------------------------------------------------------------------------
     when "071" #todo
       if target.effects[PBEffects::HyperBeam]>0
@@ -2456,7 +2459,8 @@ class PokeBattle_AI
       score *= 2
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
       score *= 2 if outspeedsopponent
-      score = 0 if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || @battle.pbWeather != :Hail || @battle.pbWeather != :Snow
+      score = 0 if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0
+      score = 0 if @battle.pbWeather != :Hail && @battle.pbWeather != :Snow
     #---------------------------------------------------------------------------
     when "168" #todo
       if user.effects[PBEffects::ProtectRate]>1 ||
@@ -2638,8 +2642,8 @@ class PokeBattle_AI
     # A score of 0 here means it absolutely should not be used
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
-    effectchance = pbRoughAccuracy(move,user,target,100) if move.statusMove?
-    score = score * effectchance / 100
+    effectchance = pbRoughAccuracy(move,user,target,100) if move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
+    score = score * effectchance / 100 if score > 0
     return score
   end
 
