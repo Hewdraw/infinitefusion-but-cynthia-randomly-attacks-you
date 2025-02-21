@@ -135,8 +135,7 @@ class PokeBattle_Battle
   # things happening (U-turn, Baton Pass, in def pbSwitch).
   def pbSwitchInBetween(idxBattler, checkLaxOnly = false, canCancel = false)
     return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) if pbOwnedByPlayer?(idxBattler)
-    return @battleAI.pbCynthiaSwitch(idxBattler, pbParty(idxBattler)) if self.opponent && self.pbGetOwnerFromBattlerIndex(idxBattler).special_name?
-    return @battleAI.pbDefaultChooseNewEnemy(idxBattler, pbParty(idxBattler))
+    return @battleAI.pbCynthiaSwitch(idxBattler, pbParty(idxBattler))
   end
 
   #=============================================================================

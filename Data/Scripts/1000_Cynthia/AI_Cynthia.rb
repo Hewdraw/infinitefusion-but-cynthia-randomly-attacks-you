@@ -13,46 +13,20 @@ class PokeBattle_AI
   end
 
   def pbCynthiaShouldWithdraw(idxBattler)
-    return false if @battle.sideSizes[0]>=2 || @battle.sideSizes[1]>=2
     user = @battle.battlers[idxBattler]
 
     willswitch = false
-    user.eachOpposing do |target|
-      opposingThreat = pbCynthiaGetThreat(user, target)[:highestDamage]
-      activeUserThreat = pbCynthiaGetThreat(target, user, false)[:highestDamage]
-      break if activeUserThreat >= 90 && (opposingThreat < 100 || user.pbSpeed > target.pbSpeed)
-      break if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) >= 66 && opposingThreat < 66
-      break if user.level == 1
-      activeDamagethreshold = (100.0/opposingThreat).ceil
-      activeDamagethreshold += 1 if user.pbSpeed > target.pbSpeed
-      activeDamagethreshold -= 1 if user.hasActiveAbility?(:REGENERATOR) && (100 * user.hp / user.totalhp) <= opposingThreat
-      activeDamagethreshold -= 1 if (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || user.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-      activeDamagethreshold += 1
-      activeDamagethreshold = 5 if activeDamagethreshold > 5
-      maxThreshold = activeDamagethreshold
-      maxThreat = activeUserThreat
-      @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
-        next if pokemon.fainted?
-        next if !@battle.pbCanSwitch?(idxBattler,i)
-        next if pokemon.ace
-        battler = PokeBattle_Battler.new(@battle,69)
-        battler.pbInitialize(pokemon,69)
-        opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]
-        userThreat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
-        userhp = 100.0 - opposingThreat
-        damagethreshold = (userhp/opposingThreat).ceil
-        damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
-        damagethreshold -= 1 if battler.hasActiveAbility?(:GALEWINGS)
-        damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-        damagethreshold = 5 if battler.hasActiveAbility.hasActiveAbility?(:REGENERATOR) && opposingThreat <= 33 && (100 * user.hp / user.totalhp) > opposingThreat
-        damagethreshold = 5 if damagethreshold > 5
-        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
-        damagethreshold = 0 if opposingThreat >= 100 || (opposingThreat >= 50 && battler.pbSpeed < target.pbSpeed)
-        if damagethreshold > activeDamagethreshold && (damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat))
-          maxThreat = userThreat
-          maxThreshold = damagethreshold
-          willswitch = true if @battle.pbRegisterSwitch(idxBattler,i)
-        end
+    bestSwitchValue = 0
+    @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
+      next if pokemon.fainted?
+      next if !@battle.pbCanSwitch?(idxBattler,i)
+      next if pokemon.ace
+      switchValue = pbCynthiaGetSwitchValue(user, pokemon)
+      print(switchValue, pokemon.name)
+      if switchValue > bestSwitchValue
+        next if !@battle.pbRegisterSwitch(idxBattler,i)
+        bestSwitchValue = switchValue
+        willswitch = true 
       end
     end
     return willswitch
@@ -66,27 +40,14 @@ class PokeBattle_AI
     end
     return -1 if enemies.length==0
     best = -1
-    maxThreat = 1000
-    maxThreshold = 0
+    bestSwitchValue = 0
 
-    @battle.battlers[idxBattler].eachOpposing do |target|
-      enemies.each do |i|
-        next if party[i].ace && enemies.length > 1
-        battler = PokeBattle_Battler.new(@battle,69)
-        battler.pbInitialize(party[i],69)
-        opposingThreat = pbCynthiaGetThreat(battler, target)[:highestDamage]
-        userThreat = pbCynthiaGetThreat(target, battler)[:highestDamage]
-        damagethreshold = (100.0/opposingThreat).ceil
-        damagethreshold += 1 if battler.pbSpeed > target.pbSpeed
-        damagethreshold += 1 if (battler.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow) || battler.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun || battler.hasActiveAbility?(:SANDSTREAM) && @battle.pbWeather != :Sandstorm || battler.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
-        damagethreshold = 5 if damagethreshold > 5
-        damagethreshold += 1 if battler.hasActiveAbility?(:REGENERATOR)
-        damagethreshold = 6 if userThreat >= 90 && battler.pbSpeed > target.pbSpeed
-        if best == -1 || damagethreshold > maxThreshold || (damagethreshold == maxThreshold && userThreat > maxThreat)
-          maxThreshold = damagethreshold
-          maxThreat = userThreat
-          best = i
-        end
+    enemies.each do |i|
+      next if party[i].ace && enemies.length > 1
+      switchValue = pbCynthiaGetSwitchValue(@battle.battlers[idxBattler], party[i])
+      if best == -1 || switchValue > bestSwitchValue
+        bestSwitchValue = switchValue
+        best = i
       end
     end
     return best
@@ -95,18 +56,64 @@ class PokeBattle_AI
   def pbCynthiaGetSwitchValue(user, switch)
     activeUserThreat = 0
     activeOpposingThreat = 0
+    activeUserOutspeeds = true
     battler = PokeBattle_Battler.new(@battle,69)
-    battler.pbInitialize(pokemon,69)
-    userThreat = 0
+    battler.pbInitialize(switch,69)
+    switchThreat = 0
     opposingThreat = 0
+    switchOutspeeds = true
     user.eachOpposing do |target|
+      opposingThreat += pbCynthiaGetThreat(battler, target)[:highestDamage]
+      threat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
+      switchThreat = threat if threat > switchThreat
+      switchOutspeeds = false if target.pbSpeed >= battler.pbSpeed
+      if user.fainted?
+        activeUserThreat = 1
+        activeOpposingThreat = 100
+        activeUserOutspeeds = false
+        next
+      end
+      activeUserOutspeeds = false if target.pbSpeed >= user.pbSpeed
       activeOpposingThreat += pbCynthiaGetThreat(user, target)[:highestDamage]
       threat = pbCynthiaGetThreat(target, user, false)[:highestDamage]
       activeUserThreat = threat if threat > activeUserThreat
-      opposingThreat += pbCynthiaGetThreat(battler, target)[:highestDamage]
-      threat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
-      userThreat = threat if threat > userThreat
     end
+
+    damagethreshold = ((100.0-opposingThreat)/opposingThreat).ceil #todo hazards
+    damagethreshold += 1 if switchOutspeeds
+    activeDamagethreshold = (100.0/activeOpposingThreat).ceil
+    activeDamagethreshold = (200.0/activeOpposingThreat).ceil if user.effects[PBEffects::Dynamax] > 0
+    activeDamagethreshold += 1 if activeUserOutspeeds
+    hitsDifferential = (1+(100.0/switchThreat).floor) / (100.0/activeUserThreat).floor
+    switchScore = damagethreshold - (activeDamagethreshold * hitsDifferential)
+    switchScore += pbCynthiaGetSwitchBonus(battler, opposingThreat)
+    switchScore += pbCynthiaGetSwitchBonus(user, activeOpposingThreat) if !user.fainted?
+    switchScore += (damagethreshold - activeDamagethreshold) * 0.5
+
+    #todo check when in turn order switch happens
+    return switchScore
+  end
+
+  def pbCynthiaGetSwitchBonus(user, threat)
+    switchScore = 0
+    switchScore += 2 if user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow && @battle.pbWeather != :Hail
+    switchScore += 2 if user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun
+    switchScore += 2 if user.hasActiveAbility?([:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS]) && @battle.pbWeather != :Sandstorm
+    switchScore += 2 if user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
+    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR)
+    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > opposingThreat && user.index == 69 
+    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > opposingThreat && user.index == 69
+    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp && user.index != 69
+    switchScore -= 10 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
+    switchScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
+    switchScore += 5 if user.effects[PBEffects::PerishSong]==1
+    switchScore += user.statusCount / 0.5 if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
+    switchScore -= 10 if user.effects[PBEffects::Substitute]>0
+    switchScore += 3 if user.effects[PBEffects::Curse]
+    switchScore += 2 if user.effects[PBEffects::Nightmare]
+    switchScore = -100 if user.level == 1
+    #todo wish
+    return switchScore
   end
 
 
@@ -118,7 +125,7 @@ class PokeBattle_AI
     for key, threat in threattable
       newtable[key] = threat
       next if key == :moves
-      newtable[key] = [[100, threat*100/maxhp].min, 1].max
+      newtable[key] = [[100, threat*100.0/maxhp].min, 1].max
     end
     return newtable
   end

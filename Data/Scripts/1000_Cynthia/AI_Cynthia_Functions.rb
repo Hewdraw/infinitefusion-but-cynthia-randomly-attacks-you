@@ -16,7 +16,8 @@ class PokeBattle_AI
 
   def pbCynthiaGetMoveScoreStatus(move,user,target)
     skill = 100 #temporary
-    score = 32
+    score = 16
+    score = 32 if move.statusMove?
     userMaxThreattable = pbCynthiaGetThreat(target, user)
     userMaxThreat = userMaxThreattable[:highestDamage]
     userMaxPhysicalThreat = userMaxThreattable[:physicalDamage]
@@ -1813,6 +1814,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "111" #todo
+      score = -16
       if @battle.positions[target.index].effects[PBEffects::FutureSightCounter]>0
         score -= 100
       elsif @battle.pbAbleNonActiveCount(user.idxOwnSide)==0

@@ -503,6 +503,8 @@ class PokeBattle_Battler
         return true if data.mega_stone == check_item
       end
     end
+    return true if check_item.name[-3..-1] == "ite" && item.name != "Eviolite"
+    return true if check_item.name == "Thunder Stone"
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end
