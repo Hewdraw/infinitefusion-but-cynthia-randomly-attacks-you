@@ -758,6 +758,7 @@
 750,GENGARITE,Gengarite,Gengarites,1,0,"",0,0,0
 751,GYARADOSITE,Gyaradosite,Gyaradosites,1,0,"",0,0,0
 752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"",0,0,0
+753,MYSTERIOUSMETEORS,Mysterious Meteors,Mysterious Meteors,1,0,"",0,0,0
 
 
 

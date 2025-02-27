@@ -637,7 +637,7 @@ class PokeBattle_Battler
   end
 
   def canHeal?
-    return false if fainted? || @hp >= @totalhp
+    return false if fainted? || (@hp >= @totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax)
     return false if @effects[PBEffects::HealBlock] > 0
     return true
   end
