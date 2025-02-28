@@ -1472,8 +1472,10 @@ end
 #===============================================================================
 class PokeBattle_Move_058 < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    @battle.pbDisplay(_INTL("But it failed!"))
-    return true if target.raid
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
   end
 
   def pbEffectAgainstTarget(user, target)
@@ -1491,8 +1493,10 @@ end
 #===============================================================================
 class PokeBattle_Move_059 < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    @battle.pbDisplay(_INTL("But it failed!"))
-    return true if target.raid
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
   end
 
   def pbEffectAgainstTarget(user, target)
@@ -2157,8 +2161,10 @@ end
 #===============================================================================
 class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
   def pbFailsAgainstTarget?(user,target)
-    @battle.pbDisplay(_INTL("But it failed!"))
-    return true if target.raid
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
   end
 
   def pbFixedDamage(user, target)
@@ -2250,10 +2256,13 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
     return false
   end
 
-  def pbAccuracyCheck(user, target)
+  def pbBaseAccuracy(user, target)
     acc = @accuracy + user.level - target.level
     acc -= 10 if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && !(user.pbHasType?(:ICE) || target.pbHasType?(:ICEFIREELECTRIC))
-    return @battle.pbRandom(100) < acc
+    return acc
+  end
+
+  def pbAccuracyCheck(user, target)
   end
 
   def pbFixedDamage(user, target)
