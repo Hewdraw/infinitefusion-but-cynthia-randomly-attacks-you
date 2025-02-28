@@ -356,6 +356,7 @@ module GameData
         end
 
         pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
+        pkmn.raid = (pkmn_data[:raid]) ? true : nil
         pkmn.ace = (pkmn_data[:ace]) ? true : nil
 
         trainer.party.push(pkmn)

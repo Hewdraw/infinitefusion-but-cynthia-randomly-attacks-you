@@ -20,7 +20,9 @@ class PokeBattle_Scene
       #       animation, i.e. add them to @animations so that they can play out
       #       while party lineups appear and messages show.
       pbShowPartyLineup(0,true)
-      pbShowPartyLineup(1,true)
+      if !@battle.legendaryBattle?
+        pbShowPartyLineup(1,true)
+      end
       return
     end
     # Wild battle: play wild Pokémon's intro animations (including cry), show
@@ -98,7 +100,7 @@ class PokeBattle_Scene
     # Make all trainers and party lineups disappear (player-side trainers may
     # animate throwing a Poké Ball)
     if @battle.opposes?(sendOuts[0][0])
-      fadeAnim = TrainerFadeAnimation.new(@sprites,@viewport,startBattle,sendOuts[0][1].name == "Cynthia")
+      fadeAnim = TrainerFadeAnimation.new(@sprites,@viewport,startBattle,(sendOuts[0][1].name == "Cynthia" || @battle.legendaryBattle?))
     else
       fadeAnim = PlayerFadeAnimation.new(@sprites,@viewport,startBattle)
     end

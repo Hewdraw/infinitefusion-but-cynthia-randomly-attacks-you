@@ -2854,11 +2854,12 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     failed = true
     targets.each do |b|
+      next if b.raid
       next if b.effects[PBEffects::PerishSong]>0   # Heard it before
       failed = false
       break
     end
-    if failed
+    if failed || @battle.legendary
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2866,6 +2867,7 @@ class PokeBattle_Move_0E5 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user,target)
+    return true if target.raid
     return target.effects[PBEffects::PerishSong]>0   # Heard it before
   end
 
@@ -3192,6 +3194,13 @@ end
 # If target has a losable item, damage is multiplied by 1.5.
 #===============================================================================
 class PokeBattle_Move_0F0 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+  end
+
   def pbBaseDamage(baseDmg,user,target)
     if target.item && !target.unlosableItem?(target.item)
        # NOTE: Damage is still boosted even if target has Sticky Hold or a
@@ -3220,6 +3229,13 @@ end
 # Items stolen from wild Pokémon are kept after the battle.
 #===============================================================================
 class PokeBattle_Move_0F1 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+  end
+
   def pbEffectAfterAllHits(user,target)
     return if @battle.wildBattle? && user.opposes?   # Wild Pokémon can't thieve
     return if user.fainted?
@@ -3259,7 +3275,7 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user,target)
-    if !user.item && !target.item
+    if (!user.item && !target.item) || target.raid
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -3355,6 +3371,13 @@ end
 # User consumes target's berry and gains its effect. (Bug Bite, Pluck)
 #===============================================================================
 class PokeBattle_Move_0F4 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+  end
+
   def pbEffectAfterAllHits(user,target)
     return if user.fainted? || target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
@@ -3374,6 +3397,13 @@ end
 # Target's berry/Gem is destroyed. (Incinerate)
 #===============================================================================
 class PokeBattle_Move_0F5 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+  end
+
   def pbEffectWhenDealingDamage(user,target)
     return if target.damageState.substitute || target.damageState.berryWeakened
     return if !target.item || (!target.item.is_berry? &&

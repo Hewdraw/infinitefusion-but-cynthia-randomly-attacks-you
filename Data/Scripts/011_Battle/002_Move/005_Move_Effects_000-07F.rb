@@ -1471,6 +1471,11 @@ end
 # Averages the user's and target's Special Attack. (Power Split)
 #===============================================================================
 class PokeBattle_Move_058 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true if target.raid
+  end
+
   def pbEffectAgainstTarget(user, target)
     newatk = ((user.attack + target.attack) / 2).floor
     newspatk = ((user.spatk + target.spatk) / 2).floor
@@ -1485,6 +1490,11 @@ end
 # Averages the user's and target's Special Defense. (Guard Split)
 #===============================================================================
 class PokeBattle_Move_059 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true if target.raid
+  end
+
   def pbEffectAgainstTarget(user, target)
     newdef = ((user.defense + target.defense) / 2).floor
     newspdef = ((user.spdef + target.spdef) / 2).floor
@@ -2146,6 +2156,11 @@ end
 # Halves the target's current HP. (Nature's Madness, Super Fang)
 #===============================================================================
 class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
+  def pbFailsAgainstTarget?(user,target)
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true if target.raid
+  end
+
   def pbFixedDamage(user, target)
     if target.effects[PBEffects::Dynamax] > 0
       return (target.hp / 4.0).round
@@ -2209,7 +2224,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
   end
 
   def pbFailsAgainstTarget?(user, target)
-    if target.level > user.level
+    if target.level > user.level || target.raid
       @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
       return true
     end

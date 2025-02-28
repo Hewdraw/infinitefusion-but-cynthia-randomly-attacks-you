@@ -47,6 +47,8 @@ class PokeBattle_Battler
   attr_accessor :stellarmoves
   attr_accessor :dynamax
   attr_accessor :undynamoves
+  attr_accessor :ace
+  attr_accessor :raid
 
   #=============================================================================
   # Complex accessors
@@ -261,6 +263,7 @@ class PokeBattle_Battler
   def pbThis(lowerCase = false)
     if opposes?
       if @battle.trainerBattle?
+        return lowerCase ? _INTL("the legendary {1}", name) : _INTL("The legendary {1}", name) if @battle.legendaryBattle?
         return lowerCase ? _INTL("the opposing {1}", name) : _INTL("The opposing {1}", name)
       else
         return lowerCase ? _INTL("the wild {1}", name) : _INTL("The wild {1}", name)
@@ -637,7 +640,7 @@ class PokeBattle_Battler
   end
 
   def canHeal?
-    return false if fainted? || (@hp >= @totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax)
+    return false if fainted? || (@hp >= @totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax))
     return false if @effects[PBEffects::HealBlock] > 0
     return true
   end

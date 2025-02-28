@@ -185,6 +185,7 @@ class PokeBattle_Battle
   #=============================================================================
   def wildBattle?;    return @opponent.nil?;  end
   def trainerBattle?; return !@opponent.nil?; end
+  def legendaryBattle?; return @legendary; end
 
   def get_default_battle_format()
     case $PokemonSystem.battle_type
@@ -638,6 +639,7 @@ class PokeBattle_Battle
   def pbThisEx(idxBattler,idxParty)
     party = pbParty(idxBattler)
     if opposes?(idxBattler)
+      return _INTL("The legendary {1}",party[idxParty].name) if legendaryBattle?
       return _INTL("The opposing {1}",party[idxParty].name) if trainerBattle?
       return _INTL("The wild {1}",party[idxParty].name)
     end

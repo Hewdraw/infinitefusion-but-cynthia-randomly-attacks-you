@@ -22,7 +22,7 @@ class BattleIntroAnimation < PokeBattle_Animation
       makeSlideSprite("player_#{i+1}",1,appearTime,PictureOrigin::Bottom)
     end
     # Opposing trainer sprite(s) or wild Pokémon sprite(s)
-    if @battle.trainerBattle?
+    if @battle.trainerBattle? && !@battle.legendaryBattle?
       @battle.opponent.each_with_index do |_p,i|
         makeSlideSprite("trainer_#{i+1}",-1,appearTime,PictureOrigin::Bottom)
       end
@@ -518,7 +518,7 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     battlerStartY = ballPos[1]
     battlerEndX = batSprite.x
     battlerEndY = batSprite.y
-    if @battler.pokemon.species == :CYNTHIA
+    if @battler.pokemon.species == :CYNTHIA || @battler.battle.legendaryBattle?
       # Set up Poké Ball sprite
       ball = addBallSprite(0,0,poke_ball)
       ball.setZ(0,1000)
@@ -549,6 +549,25 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     battler.setZoom(0,0)
     battler.setColor(0,col)
     # Battler animation
+    if @battler.battle.legendaryBattle?
+      battler.setVisible(0,true)
+      battler.setOpacity(0,255)
+      battler.moveXY(0,0,battlerEndX,battlerEndY)
+      battler.moveZoom(0,0,100,)
+      # NOTE: As soon as the battler sprite finishes zooming, and just as it
+      #       starts changing its tone to normal, it plays its intro animation.
+      col.alpha = 0
+      battler.moveColor(0,0,col)
+      if @shadowVisible
+        # Set up shadow sprite
+        shadow = addSprite(shaSprite,PictureOrigin::Center)
+        shadow.setOpacity(0,0)
+        # Shadow animation
+        shadow.setVisible(0,@shadowVisible)
+        shadow.moveOpacity(0,0,255)
+      end
+      return
+    end
     battlerAppear(battler,delay,battlerEndX,battlerEndY,batSprite,col)
     if @shadowVisible
       # Set up shadow sprite

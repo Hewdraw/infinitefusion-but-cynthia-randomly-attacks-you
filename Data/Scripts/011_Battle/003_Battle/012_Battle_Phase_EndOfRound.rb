@@ -209,6 +209,27 @@ class PokeBattle_Battle
     priority = pbPriority(true)   # in order of fastest -> slowest speeds only
     # Weather
     pbEORWeather(priority)
+    priority.each do |b|
+      next if !b.raid
+      didsomething = self.status != :None
+      resetstat = false
+      GameData::Stat.each_battle do |s|
+        resetstat = true if b.stages[s.id] < 0
+        b.stages[s.id] = 0
+      end
+      didsomething = didsomething || resetstat
+      pbCommonAnimation("StatUp", b) if resetstat
+      b.eachOpposing do |target|
+        resetstat = false
+        GameData::Stat.each_battle do |s|
+          resetstat = true if target.stages[s.id] > 0
+          target.stages[s.id] = 0
+        end
+        didsomething = didsomething || resetstat
+        pbCommonAnimation("StatDown", target) if resetstat
+      end
+      b.pbCureStatus()
+    end
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|
       next if !pos || pos.effects[PBEffects::FutureSightCounter]==0

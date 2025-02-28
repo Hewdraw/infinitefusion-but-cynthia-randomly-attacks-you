@@ -794,7 +794,7 @@
 777,CHILLYRECEPTION,Chilly Reception,196,0,ICE,Status,0,10,0,NearOther,0,,"Nice Smeargle/Ditto, jackass." #todo
 778,FREEZINGGLARE,Freezing Glare,00D,90,PSYCHIC,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 779,WAVECRASH,Wave Crash,0FB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
-780,TOMBSTONER,TOMBSTONER,190,90,GROUND,Physical,100,10,0,Other,0,abef,"The user takes the foe under the ground, then ???s it on the next turn. The foe cannot attack while underground." #TODO
+780,TOMBSTONER,TOMBSTONER,190,90,GROUND,Physical,100,10,0,Other,0,abef,"The user takes the foe under the ground, then releases it on the next turn. The foe cannot attack while underground." #TODO
 
 
 #  @id               = hash[:id]

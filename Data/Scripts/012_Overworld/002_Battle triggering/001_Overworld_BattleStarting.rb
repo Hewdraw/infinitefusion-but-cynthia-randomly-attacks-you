@@ -483,6 +483,7 @@ def pbLegendaryBattle(species, rewardItem=nil)
   battle = PokeBattle_Battle.new(scene,playerParty,trainer.party,playerTrainers,[trainer])
   battle.party1starts = playerPartyStarts
   battle.legendary = true
+  battle.broken_buttons.push(1)
   # Set various other properties in the battle class
   pbPrepareBattle(battle)
   $PokemonTemp.clearBattleRules

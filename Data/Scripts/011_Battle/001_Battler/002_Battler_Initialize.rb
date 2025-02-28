@@ -98,6 +98,8 @@ class PokeBattle_Battler
     @moves        = []
     @tera         = pkmn.tera
     @dynamax         = pkmn.dynamax
+    @ace = pkmn.ace
+    @raid = pkmn.raid
     pkmn.moves.each_with_index do |m,i|
       @moves[i] = PokeBattle_Move.from_pokemon_move(@battle,m)
     end

@@ -203,6 +203,7 @@ class PokeBattle_Battle
         sent = sendOuts[side][i]
         toSendOut.concat(sent)
         next if t.trainer_type == :WuhuIslandExecutioner
+        next if legendaryBattle?
         case sent.length
         when 1
           msg += _INTL("{1} sent out {2}!",t.full_name,@battlers[sent[0]].name)
@@ -360,7 +361,7 @@ class PokeBattle_Battle
     return if !@internalBattle || !@moneyGain
     return if @opponent && @opponent[0].trainer_type == :WuhuIslandExecutioner 
     # Money rewarded from opposing trainers
-    if trainerBattle?
+    if trainerBattle? && !legendaryBattle?
       tMoney = 0
       @opponent.each_with_index do |t,i|
         tMoney += pbMaxLevelInTeam(1, i) * t.base_money
@@ -399,7 +400,7 @@ class PokeBattle_Battle
     pbPlayer.money -= tMoney
     moneyLost = oldMoney-pbPlayer.money
     if moneyLost>0
-      if trainerBattle?
+      if trainerBattle? && !legendary
         if @opponent[0].name == "Shadross"
           $PokemonGlobal.shadrossmoney = 0 if $PokemonGlobal.shadrossmoney == nil
           $PokemonGlobal.shadrossmoney += moneyLost
