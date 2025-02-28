@@ -22,7 +22,6 @@ class PokeBattle_AI
       next if !@battle.pbCanSwitch?(idxBattler,i)
       next if pokemon.ace
       switchValue = pbCynthiaGetSwitchValue(user, pokemon)
-      print(switchValue, pokemon.name)
       if switchValue > bestSwitchValue
         next if !@battle.pbRegisterSwitch(idxBattler,i)
         bestSwitchValue = switchValue
@@ -102,8 +101,8 @@ class PokeBattle_AI
     switchScore += 2 if user.hasActiveAbility?([:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS]) && @battle.pbWeather != :Sandstorm
     switchScore += 2 if user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR)
-    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > opposingThreat && user.index == 69 
-    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > opposingThreat && user.index == 69
+    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat && user.index == 69 
+    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat && user.index == 69
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp && user.index != 69
     switchScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
     switchScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
