@@ -54,6 +54,10 @@ class Pokemon
 
   # @return [Array<Pokemon::Move>] the moves known by this Pokémon
   attr_accessor :moves
+
+  # @return [Array<Pokemon::Move>] All the moves ever learned by this Pokémon
+  attr_accessor :learned_moves
+
   # @return [Array<Integer>] the IDs of moves known by this Pokémon when it was obtained
   attr_accessor :first_moves
   # @return [Array<Symbol>] an array of ribbons owned by this Pokémon
@@ -868,9 +872,16 @@ class Pokemon
     first_move_index = knowable_moves.length - MAX_MOVES
     first_move_index = 0 if first_move_index < 0
     for i in first_move_index...knowable_moves.length
-      @moves.push(Pokemon::Move.new(knowable_moves[i]))
+      move = Pokemon::Move.new(knowable_moves[i])
+      @moves.push(move)
+      @learned_moves << move if !@learned_moves.include?(move)
     end
   end
+
+  def add_learned_move(move)
+    @learned_moves << move unless @learned_moves.include?(move)
+  end
+
 
   # Silently learns the given move. Will erase the first known move if it has to.
   # @param move_id [Symbol, String, Integer] ID of the move to learn
@@ -884,10 +895,13 @@ class Pokemon
       @moves.delete_at(i)
       return
     end
+    move = Pokemon::Move.new(move_data.id)
     # Move is not already known; learn it
-    @moves.push(Pokemon::Move.new(move_data.id))
+    @moves.push(move)
     # Delete the first known move if self now knows more moves than it should
     @moves.shift if numMoves > MAX_MOVES
+    @learned_moves << move if !@learned_moves.include?(move)
+    echoln @learned_moves
   end
 
   # Deletes the given move from the Pokémon.
@@ -1521,6 +1535,7 @@ class Pokemon
     @item = nil
     @mail = nil
     @moves = []
+    @learned_moves = []
     reset_moves if withMoves
     @first_moves = []
     @ribbons = []
