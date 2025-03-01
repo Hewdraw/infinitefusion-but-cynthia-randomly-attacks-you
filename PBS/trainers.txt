@@ -6254,16 +6254,6 @@ Pokemon = B299H134,73 #GARCHOMP / VAPOREON
 	Item = RINDOBERRY
 ####################### Cynthia Teams
 [CHAMPION_Sinnoh,Cynthia,1]	
-Pokemon = B68H265,5	
-	Offset = 0
-	Moves = HORNDRILL,FISSURE,DARKESTLARIAT,DYNAMICPUNCH
-	Ability = NOGUARD
-	Item = CHOICESCARF
-	Gender = F
-	Nature = JOLLY
-	IV = 31,31,31,31,31,31
-	EV = 252,4,0,252,0,0
-	Happiness = 255
 Pokemon = GIBLE,5
 	Offset = -1
 	Moves = TWISTER,MUDSLAP
