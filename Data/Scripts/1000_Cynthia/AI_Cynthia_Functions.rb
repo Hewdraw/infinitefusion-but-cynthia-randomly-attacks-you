@@ -2461,6 +2461,9 @@ class PokeBattle_AI
       score *= 2
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
       score *= 2 if outspeedsopponent
+      user.eachOpposing do |b|
+        score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
+      end
       score = 0 if user.pbOwnSide.effects[PBEffects::AuroraVeil]>0
       score = 0 if @battle.pbWeather != :Hail && @battle.pbWeather != :Snow
     #---------------------------------------------------------------------------
