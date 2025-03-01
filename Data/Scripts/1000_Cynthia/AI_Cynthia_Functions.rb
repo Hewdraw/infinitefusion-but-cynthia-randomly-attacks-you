@@ -2639,6 +2639,8 @@ class PokeBattle_AI
           score = 0 if opponent.hasActiveAbility?(:UNAWARE)
         end
       end
+    when "196" #todo
+      score = 5
     #---------------------------------------------------------------------------
     end
     # A score of 0 here means it absolutely should not be used
