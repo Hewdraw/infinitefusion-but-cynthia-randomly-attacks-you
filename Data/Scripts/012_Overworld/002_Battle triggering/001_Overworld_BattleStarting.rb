@@ -453,7 +453,7 @@ end
 #===============================================================================
 # Start a legendary battle
 #===============================================================================
-def pbLegendaryBattle(species, rewardItem=nil)
+def pbLegendaryBattle(species)
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
   if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
     pbMessage(_INTL("SKIPPING BATTLE...")) if $DEBUG
@@ -473,6 +473,10 @@ def pbLegendaryBattle(species, rewardItem=nil)
   # Generate trainers and their parties based on the arguments given
   trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species)
   return 0 if !trainer
+  if trainer.party[0].phasetwo
+    trainer.party[0].phasetwo = trainer.party[1]
+    trainer.party = [trainer.party[0]]
+  end
   # Calculate who the player trainer(s) and their party are
   playerTrainers    = [$Trainer]
   playerParty       = $Trainer.party
@@ -504,6 +508,9 @@ def pbLegendaryBattle(species, rewardItem=nil)
   #    2 - Player lost
   #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
   #    5 - Draw
+  if decision==1 || decision==4
+
+  end
   return decision==1 || decision==4
 end
 

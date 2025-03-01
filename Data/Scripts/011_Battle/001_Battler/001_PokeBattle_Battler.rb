@@ -49,6 +49,9 @@ class PokeBattle_Battler
   attr_accessor :undynamoves
   attr_accessor :ace
   attr_accessor :raid
+  attr_accessor :hpbars
+  attr_accessor :phasetwo
+
 
   #=============================================================================
   # Complex accessors

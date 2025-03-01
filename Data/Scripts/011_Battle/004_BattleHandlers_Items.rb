@@ -775,7 +775,7 @@ BattleHandlers::DamageCalcUserItem.add(:STEELGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
      proc { |item,user,target,move,mults,baseDmg,type|
-       if (user.isFusionOf(:CUBONE) || user.isFusionOf(:MAROWAK) || user.pokemon.species_data.id_number >= 1000099) && move.physicalMove?
+       if (user.isFusionOf(:CUBONE) || user.isFusionOf(:MAROWAK) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)) && move.physicalMove?
          mults[:attack_multiplier] *= 2
        end
      }
@@ -864,7 +864,7 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
     #       means it also cares about the Pokémon's form. Some forms cannot
     #       evolve even if the species generally can, and such forms are not
     #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || target.pokemon.species_data.id_number >= 1000099
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
       mults[:defense_multiplier] *= 1.5
     end
   }
@@ -980,13 +980,13 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number >= 1000099
+    next c+2 if user.isFusionOf(:FARFETCHD) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
   }
 )
 
 BattleHandlers::CriticalCalcUserItem.add(:LEEK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || user.pokemon.species_data.id_number >= 1000099
+    next c+2 if user.isFusionOf(:FARFETCHD) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
   }
 )
 

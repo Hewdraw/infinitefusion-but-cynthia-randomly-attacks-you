@@ -854,12 +854,6 @@ BattleHandlers::AccuracyCalcTargetAbility.add(:SANDVEIL,
   }
 )
 
-BattleHandlers::AccuracyCalcTargetAbility.add(:SNOWCLOAK,
-  proc { |ability,mods,user,target,move,type|
-    mods[:evasion_multiplier] *= 1.25 if target.battle.pbWeather == :Hail || target.battle.pbWeather == :Snow
-  }
-)
-
 BattleHandlers::AccuracyCalcTargetAbility.add(:STORMDRAIN,
   proc { |ability,mods,user,target,move,type|
     mods[:base_accuracy] = 0 if type == :WATER
@@ -1641,6 +1635,23 @@ BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
   proc { |ability,user,target,move,battle|
     next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
     target.pbRaiseStatStageByAbility(:SPEED,1,target,GameData::Ability.get(ability).real_name)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:SNOWCLOAK,
+  proc { |ability,user,target,move,battle|
+    next if !move.pbContactMove?(user)
+    next if user.frozen? || battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(target)
+    if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} frostbites {3}!",target.pbThis,target.abilityName,user.pbThis(true))
+      end
+      user.pbFreeze(target,msg)
+    end
+    battle.pbHideAbilitySplash(target)
   }
 )
 

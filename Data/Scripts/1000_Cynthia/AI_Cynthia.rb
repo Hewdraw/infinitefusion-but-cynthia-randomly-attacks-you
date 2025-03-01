@@ -156,6 +156,7 @@ class PokeBattle_AI
     target.moves.each_with_index do |move,i|
       next if move.pp==0 && move.total_pp>0
       next if !target.pbCanChooseMove?(move,true,false,false)
+      next if target.pbEncoredMoveIndex != i && target.pbEncoredMoveIndex >= 0
       #todo encore
       @threattable[target][user][:moves][move] = pbCynthiaAssessMoveThreat(user, target, move)
       if @threattable[target][user][:moves][move][:category] == :status

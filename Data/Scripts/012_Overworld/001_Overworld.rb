@@ -193,7 +193,7 @@ def pbBattleOnStepTaken(repel_active)
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
     #pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
-    pbLegendaryBattle("Deoxys")
+    pbLegendaryBattle("Articuno")
     return
   end
   encounter_type = $PokemonEncounters.encounter_type
@@ -231,10 +231,6 @@ def pbBattleOnStepTaken(repel_active)
       case first_pkmn.ability_id
       when :STENCH, :WHITESMOKE, :QUICKFEET, :INTIMIDATE, :KEENEYE
         chanceincrease *= 2
-      when :SNOWCLOAK
-        if GameData::Weather.get($game_screen.weather_type).category == :Hail || GameData::Weather.get($game_screen.weather_type).category == :Snow
-          chanceincrease *= 2
-        end
       when :SANDVEIL
         if GameData::Weather.get($game_screen.weather_type).category == :Sandstorm
           chanceincrease *= 2

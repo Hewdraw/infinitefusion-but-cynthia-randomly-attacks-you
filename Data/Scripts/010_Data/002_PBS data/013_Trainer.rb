@@ -21,6 +21,8 @@ module GameData
       "Tera" => [:tera, "s"],
       "Dynamax" => [:dynamax, "b"],
       "Raid" => [:raid, "b"],
+      "Hpbar" => [:hpbars, "s"],
+      "Phasetwo" => [:phasetwo, "b"],
       "Ace" => [:ace, "b"],
       "HPType" => [:hptype, "s"],
       "Form" => [:form, "u"],
@@ -357,6 +359,8 @@ module GameData
 
         pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
         pkmn.raid = (pkmn_data[:raid]) ? true : nil
+        pkmn.hpbars = (pkmn_data[:hpbars]) ? true : nil
+        pkmn.phasetwo = (pkmn_data[:phasetwo]) ? true : nil
         pkmn.ace = (pkmn_data[:ace]) ? true : nil
 
         trainer.party.push(pkmn)
