@@ -2643,7 +2643,6 @@ class PokeBattle_AI
       score = 5
     #---------------------------------------------------------------------------
     end
-    # A score of 0 here means it absolutely should not be used
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
     effectchance = pbRoughAccuracy(move,user,target,100) if move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
@@ -2673,20 +2672,26 @@ class PokeBattle_AI
         baseDmg *= 2 if target.effects[PBEffects::Minimize]
       # Sonic Boom, Dragon Rage, Super Fang, Night Shade, Endeavor
       when "06A", "06B", "06C", "06D", "06E"
-        damage = move.pbFixedDamage(user,target)
+        damagedictionary[key] = move.pbFixedDamage(user,target)
+        next
       when "06F"   # Psywave
         case key
         when :minDamage
-          damage = user.level/2.floor
+          damagedictionary[key] = user.level/2.floor
+          next
         when :averageDamage
-          damage = user.level
+          damagedictionary[key] = user.level
+          next
         else
-          damage = user.level*3/2.floor
+          damagedictionary[key] = user.level*3/2.floor
+          next
         end
       when "070"   # OHKO
-        damage = target.hp
+        damagedictionary[key] = target.hp
+        next
       when "071", "072", "073"   # Counter, Mirror Coat, Metal Burst
-        damage = 0
+        damagedictionary[key] = 0
+        next
       when "075", "076", "0D0", "12D"   # Surf, Earthquake, Whirlpool, Shadow Storm
         baseDmg = move.pbModifyDamage(baseDmg,user,target)
       # Gust, Twister, Venoshock, Smelling Salts, Wake-Up Slap, Facade, Hex, Brine,
@@ -2767,9 +2772,11 @@ class PokeBattle_AI
       when "0D3"   # Rollout
         baseDmg *= 2 if user.effects[PBEffects::DefenseCurl]
       when "0D4"   # Bide
-        damage = 0
+        damagedictionary[key] = 0
+        next
       when "0E1"   # Final Gambit
-        damage = user.hp
+        damagedictionary[key] = user.hp
+        next
       when "144"   # Flying Press
         if GameData::Type.exists?(:FLYING)
           targetTypes = target.pbTypes(true)
