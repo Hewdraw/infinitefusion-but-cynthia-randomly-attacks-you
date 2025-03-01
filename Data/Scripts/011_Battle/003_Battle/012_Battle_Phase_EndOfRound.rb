@@ -211,7 +211,8 @@ class PokeBattle_Battle
     pbEORWeather(priority)
     priority.each do |b|
       next if !b.raid
-      didsomething = self.status != :None
+      pbCommonAnimation("UltraBurst2", b)
+      didsomething = b.status != :None
       resetstat = false
       GameData::Stat.each_battle do |s|
         resetstat = true if b.stages[s.id] < 0

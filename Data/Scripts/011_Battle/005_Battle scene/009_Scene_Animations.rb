@@ -146,6 +146,9 @@ class PokeBattle_Scene
         if @battle.battlers[b[0]].shiny? || @battle.battlers[b[0]].glitter?
           pbCommonAnimation("Shiny",@battle.battlers[b[0]])
         end
+        if @battle.battlers[b[0]].raid && @battle.legendaryBattle?
+          pbCommonAnimation("UltraBurst2", @battle.battlers[b[0]])
+        end
     end
   end
 

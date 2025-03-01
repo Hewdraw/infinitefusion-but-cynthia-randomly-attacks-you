@@ -94,6 +94,9 @@ class PokeBattle_Battler
     pbAbilitiesOnFainting
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
+    if @battle.legendaryBattle? && @pokemon.raid
+      @battle.pbThrowPokeBall(@index, :POKEBALL, catch_rate = 255, showPlayer = true)
+    end
   end
 
   def updateSpirits()

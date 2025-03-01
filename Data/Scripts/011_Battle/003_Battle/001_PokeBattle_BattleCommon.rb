@@ -114,7 +114,7 @@ module PokeBattle_BattleCommon
     else
       battler = @battlers[idxBattler].pbDirectOpposing(true)
     end
-    if battler.fainted?
+    if battler.fainted? && !battler.battle.legendaryBattle?
       battler.eachAlly do |b|
         battler = b
         break
@@ -122,7 +122,7 @@ module PokeBattle_BattleCommon
     end
     # Messages
     itemName = GameData::Item.get(ball).name
-    if battler.fainted?
+    if battler.fainted? && !battler.battle.legendaryBattle?
       if itemName.starts_with_vowel?
         pbDisplay(_INTL("{1} threw an {2}!", pbPlayer.name, itemName))
       else
@@ -138,7 +138,7 @@ module PokeBattle_BattleCommon
     end
     # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
     # at a Shadow Pokémon)
-    if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
+    if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?) && !battler.battle.legendaryBattle?
       @scene.pbThrowAndDeflect(ball, 1)
       pbDisplay(_INTL("The Trainer blocked your Poké Ball! Don't be a thief!"))
       return
@@ -151,6 +151,8 @@ module PokeBattle_BattleCommon
     pkmn = battler.pokemon
     @criticalCapture = false
     numShakes = pbCaptureCalc(pkmn, battler, catch_rate, ball)
+    @criticalCapture = true if battler.battle.legendaryBattle?
+    numShakes = 4 if battler.battle.legendaryBattle?
     PBDebug.log("[Threw Poké Ball] #{itemName}, #{numShakes} shakes (4=capture)")
     # Animation of Ball throw, absorb, shake and capture/burst out
     @scene.pbThrow(ball, numShakes, @criticalCapture, battler.index, showPlayer)
@@ -187,7 +189,7 @@ module PokeBattle_BattleCommon
         @decision = (trainerBattle?) ? 1 : 4 # Battle ended by win/capture
       end
       # Modify the Pokémon's properties because of the capture
-      if GameData::Item.get(ball).is_snag_ball?
+      if GameData::Item.get(ball).is_snag_ball? || battler.battle.legendaryBattle?
         pkmn.owner = Pokemon::Owner.new_from_trainer(pbPlayer)
       end
       BallHandlers.onCatch(ball, self, pkmn)
