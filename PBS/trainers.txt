@@ -1709,23 +1709,26 @@ Pokemon = B93H328,57 #DOUTLER
 ##################
 
 [PLAYER,Martin]
-Pokemon = B37H272,56 
-Pokemon = B38H272,59 
-	Moves = AURORABEAM,FAIRYWIND,WILLOWISP,CONFUSERAY
-	AbilityIndex = 0
-#########################
+Pokemon = B54H428,51	#psyduck glalie
+Pokemon = B86H428,51	#seel glalie
+Pokemon = B55H428,55	#golduck glalie
+Pokemon = B87H428,55	#dewgong glalie
 
+#########################
 [PLAYER,Sidney]
-Pokemon = B208H221,62 #pilolix
+Pokemon = B318H428,58	#torterra glalie
+Pokemon = B358H428,58	#rotom glalie
+
 #########################
 
 [PLAYER,Maurice]
-Pokemon = B241H124,57 #MILNX
-Pokemon = B128H124,57 #TAUNX
+Pokemon = B336H428,60 #salamence glalie
 #########################
 
 [PLAYER,Wayne]
-Pokemon = B332H272,62 #MILNX
+Pokemon = B195H428,56	#quagsire glalie
+Pokemon = B80H428,56	#raichu glalie
+Pokemon = B26H428,56	#slowbro glalie
 #########################
 
 #################
