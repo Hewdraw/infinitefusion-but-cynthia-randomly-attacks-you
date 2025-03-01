@@ -1232,10 +1232,16 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A2", "190" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
+      user.eachOpposing do |b|
+        score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
+      end
       score = 0 if user.pbOwnSide.effects[PBEffects::Reflect]>0
     #---------------------------------------------------------------------------
     when "0A3", "189" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
+      user.eachOpposing do |b|
+        score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
+      end
       score = 0 if user.pbOwnSide.effects[PBEffects::LightScreen]>0
     #---------------------------------------------------------------------------
     when "0A6" #todo
