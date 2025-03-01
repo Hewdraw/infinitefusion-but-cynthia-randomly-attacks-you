@@ -88,6 +88,9 @@ class PokeBattle_AI
     switchScore += pbCynthiaGetSwitchBonus(battler, opposingThreat)
     switchScore += pbCynthiaGetSwitchBonus(user, activeOpposingThreat) if !user.fainted?
     switchScore += (damagethreshold - activeDamagethreshold) * 0.5
+    switchScore -= 1
+
+    #print(switch.name, " ", switchScore, " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
 
     #todo check when in turn order switch happens
     return switchScore
