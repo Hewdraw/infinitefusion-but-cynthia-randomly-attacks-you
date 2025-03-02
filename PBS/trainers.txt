@@ -10370,7 +10370,7 @@ Pokemon = B132H242,5
 ####################### Legendary Teams
 [LEGENDARY_POKEMON,Articuno,0]
 Pokemon = ARTICUNO,11	
-	Offset = -30
+	Offset = 10
 	Moves = AURORAVEIL,ROOST,BLIZZARD,AIRSLASH
 	Ability = SNOWWWARNING
 	Hpbar = 2
