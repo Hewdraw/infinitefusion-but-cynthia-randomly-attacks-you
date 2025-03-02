@@ -211,6 +211,14 @@ class PokeBattle_Battle
     pbEORWeather(priority)
     priority.each do |b|
       next if !b.raid
+      if b.raid.is_a?(Integer)
+        if b.raid > 1
+          b.raid -= 1
+        else
+          b.raid = true
+        end
+        next
+      end
       didsomething = b.status != :None
       resetstat = false
       GameData::Stat.each_battle do |s|
@@ -229,6 +237,8 @@ class PokeBattle_Battle
         pbCommonAnimation("StatDown", target) if resetstat
       end
       b.pbCureStatus()
+      pbDisplay(_INTL("{1} caused a Shockwave!",b.pbThis)) if didsomething
+      b.raid = 3 if didsomething
     end
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|

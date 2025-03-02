@@ -18291,9 +18291,9 @@ Shape = Head
 [1000315]
 Name = Gastrogon-Z
 InternalName = GASTRODONPORYGON2
-Type1 = WATER
-Type2 = NORMAL
-BaseStats = 102,81,69,73,106,79
+Type1 = NORMAL
+Type2 = GROUND
+BaseStats = 93,82,75,46,100,90
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
