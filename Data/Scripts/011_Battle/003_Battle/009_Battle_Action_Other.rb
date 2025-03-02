@@ -168,6 +168,7 @@ class PokeBattle_Battle
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
     # Trigger ability
     battler.pbEffectsOnSwitchIn
+    @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
   end
 
   def pbTerastallize(idxBattler)
