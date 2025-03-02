@@ -395,7 +395,7 @@ class PokeBattle_Battler
 
   def pbHasType?(type)
     return false if !type
-    return true if type == :ICE && isFusionOf?(:ARTICUNO) && hasActiveItem?(:ICESPHERE)
+    return true if type == :ICE && isFusionOf(:ARTICUNO) && hasActiveItem?(:ICESPHERE)
     return true if type == :PSYCHIC && isSpecies?(:GARTICUNO) && hasActiveItem?(:ICESPHERE)
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
