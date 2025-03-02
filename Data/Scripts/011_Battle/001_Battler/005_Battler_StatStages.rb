@@ -285,7 +285,7 @@ class PokeBattle_Battler
     return ret
   end
 
-  def pbLowerAttackStatStageIntimidate(user)
+  def pbLowerAttackStatStageIntimidate(user, stat=:ATTACK)
     return false if fainted?
     # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
     if @effects[PBEffects::Substitute]>0
@@ -298,7 +298,7 @@ class PokeBattle_Battler
       return false
     end
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-      return pbLowerStatStageByAbility(:ATTACK,1,user,false,false ,user.abilityName)
+      return pbLowerStatStageByAbility(stat,1,user,false,false ,user.abilityName)
     end
     # NOTE: These checks exist to ensure appropriate messages are shown if
     #       Intimidate is blocked somehow (i.e. the messages should mention the
@@ -310,8 +310,8 @@ class PokeBattle_Battler
         return false
       end
       if abilityActive?
-        if BattleHandlers.triggerStatLossImmunityAbility(self.ability,self,:ATTACK,@battle,false) ||
-           BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(self.ability,self,:ATTACK,@battle,false)
+        if BattleHandlers.triggerStatLossImmunityAbility(self.ability,self,stat,@battle,false) ||
+           BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(self.ability,self,stat,@battle,false)
           @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
              pbThis,abilityName,user.pbThis(true),user.abilityName))
           return false
@@ -319,15 +319,15 @@ class PokeBattle_Battler
       end
       eachAlly do |b|
         next if !b.abilityActive?
-        if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability,b,self,:ATTACK,@battle,false)
+        if BattleHandlers.triggerStatLossImmunityAllyAbility(b.ability,b,self,stat,@battle,false)
           @battle.pbDisplay(_INTL("{1} is protected from {2}'s {3} by {4}'s {5}!",
              pbThis,user.pbThis(true),user.abilityName,b.pbThis(true),b.abilityName))
           return false
         end
       end
     end
-    return false if !pbCanLowerStatStage?(:ATTACK,user)
-    return pbLowerStatStageByCause(:ATTACK,1,user,user.abilityName)
+    return false if !pbCanLowerStatStage?(stat,user)
+    return pbLowerStatStageByCause(stat,1,user,user.abilityName)
   end
 
   #=============================================================================

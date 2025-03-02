@@ -83,6 +83,7 @@ class PokeBattle_Battle
   attr_reader   :endOfRound       # True during the end of round
   attr_accessor :moldBreaker      # True if Mold Breaker applies
   attr_reader   :struggle         # The Struggle move
+  attr_accessor :battleAI
   attr_accessor :broken_buttons
   attr_accessor :nuh_uh
   attr_accessor :legendary

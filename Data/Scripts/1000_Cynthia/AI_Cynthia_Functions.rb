@@ -2818,7 +2818,7 @@ class PokeBattle_AI
       type = move.pbCalcType(user)
       typeMod = move.pbCalcTypeMod(type,user,target)
       atk, atkStage = move.pbGetAttackStats(user,target)
-      if switchin == target && target.hasActiveAbility?([:INTIMIDATE, :SKULK]) && move.physicalMove?
+      if switchin == target && target.hasActiveAbility?([:INTIMIDATE, :SKULK]) && move.physicalMove? #todo menace
         unless user.effects[PBEffects::Substitute]>0 || user.pbOwnSide.effects[PBEffects::Mist]>0 || user.hasActiveAbility?([:CLEARBODY, :WHITESMOKE, :HYPERCUTTER, :FULLMETALBODY]) || !user.pbCanLowerStatStage?(:ATTACK,target)
           if !target.hasActiveAbility?(:CONTRARY)
             atkStage -= 1

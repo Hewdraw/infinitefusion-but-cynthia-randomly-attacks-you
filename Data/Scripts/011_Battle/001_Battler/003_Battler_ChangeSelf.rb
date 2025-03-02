@@ -10,7 +10,7 @@ class PokeBattle_Battler
     self.hp -= amt
     PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
     raise _INTL("HP less than 0") if @hp<0
-    raise _INTL("HP greater than total HP") if @hp>@totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax)
+    raise _INTL("HP greater than total HP") if @hp>@totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax) && !(@hpbars && @hp<=totalhp*@hpbars)
     @battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
     @tookDamage = true if amt>0 && registerDamage
     return amt
@@ -24,7 +24,7 @@ class PokeBattle_Battler
     self.hp += amt
     PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
     raise _INTL("HP less than 0") if @hp<0
-    raise _INTL("HP greater than total HP") if @hp>@totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax)
+    raise _INTL("HP greater than total HP") if @hp>@totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax) && !(@hpbars && @hp<=totalhp*@hpbars)
     @battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
     return amt
   end
@@ -47,6 +47,47 @@ class PokeBattle_Battler
   end
 
   def pbFaint(showMessage=true)
+    if @pokemon && @pokemon.phasetwo
+      level = @level
+      @species = @pokemon.phasetwo.species
+      @pokemon.species = @pokemon.phasetwo.species
+      @level = level
+      @pokemon.item = @pokemon.phasetwo.item
+      @item_id = @pokemon.phasetwo.item
+      @pokemon.forget_all_moves
+      @moves = []
+      @pokemon.ability = @pokemon.phasetwo.ability
+      @pokemon.phasetwo.moves.each { |move| @pokemon.learn_move_ignoremax(move.id) }
+      @pokemon.moves.each { |move| @moves.push(PokeBattle_Move.from_pokemon_move(@battle,move))}
+      @pokemon.iv = @pokemon.phasetwo.iv
+      @pokemon.ev = @pokemon.phasetwo.ev
+      @pokemon.nature = @pokemon.phasetwo.nature
+      pbUpdate(true)
+      @battle.pbCommonAnimation("UltraBurst2", self)
+      @battle.scene.pbChangePokemon(self,@pokemon)
+      hpbars = 1
+      hpbars = @hpbars if @hpbars
+      oldhp = @hp.to_f
+      endhp = @totalhp * hpbars
+      time = 64
+      for i in 0..(time-1)
+        if oldhp+((endhp-oldhp) * i/time).round >= @hp + 1
+          @hp = oldhp+((endhp-oldhp) * i/time).round
+        end
+        @battle.scene.pbRefreshOne(@index)
+        pbWait(1)
+      end
+      @hp = @totalhp * hpbars
+      @battle.scene.pbRefreshOne(@index)
+      @pokemon.hp = @hp
+      @battle.scene.pbRefreshOne(@index)
+      @pokemon.phasetwo = @pokemon.phasetwo.phasetwo
+      @battle.pbCalculatePriority(false,[@index])
+      # Trigger ability
+      pbEffectsOnSwitchIn
+      @battle.battleAI.pbDefaultChooseEnemyCommand(@index)
+      return
+    end
     if !fainted?
       PBDebug.log("!!!***Can't faint with HP greater than 0")
       return
@@ -95,6 +136,12 @@ class PokeBattle_Battler
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
     if @battle.legendaryBattle? && @pokemon.raid
+      @pokemon.ev = {}
+      GameData::Stat.each_main do |s|
+        @pokemon.ev[s.id] = 0
+      end
+      @pokemon.raid = nil
+      @pokemon.hpbars = nil
       @battle.pbThrowPokeBall(@index, :POKEBALL, catch_rate = 255, showPlayer = true)
     end
   end

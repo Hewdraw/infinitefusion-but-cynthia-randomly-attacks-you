@@ -229,7 +229,7 @@ def pbBattleOnStepTaken(repel_active)
       chanceincrease *= 2
     else   # Ignore ability effects if an item effect applies
       case first_pkmn.ability_id
-      when :STENCH, :WHITESMOKE, :QUICKFEET, :INTIMIDATE, :KEENEYE
+      when :STENCH, :WHITESMOKE, :QUICKFEET, :INTIMIDATE, :MENACE, :KEENEYE
         chanceincrease *= 2
       when :SANDVEIL
         if GameData::Weather.get($game_screen.weather_type).category == :Sandstorm

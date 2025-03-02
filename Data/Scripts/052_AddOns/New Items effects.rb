@@ -1136,6 +1136,23 @@ ItemHandlers::UseOnPokemon.add(:FROSTORB, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
+  if pkmn.isSpecies?(:ARTICUNO)
+    level = pkmn.level
+    pkmn.species = :GARTICUNO
+    pkmn.level = level
+    next false
+  end
+  if pkmn.isSpecies?(:GARTICUNO)
+    level = pkmn.level
+    pkmn.species = :ARTICUNO
+    pkmn.level = level
+    next false
+  end
+  next false
+})
+
+
 #
 # #TRACKER (for roaming legendaries)
 # ItemHandlers::UseInField.add(:REVEALGLASS, proc { |item|

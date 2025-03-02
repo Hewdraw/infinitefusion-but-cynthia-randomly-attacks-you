@@ -508,9 +508,6 @@ def pbLegendaryBattle(species)
   #    2 - Player lost
   #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
   #    5 - Draw
-  if decision==1 || decision==4
-
-  end
   return decision==1 || decision==4
 end
 

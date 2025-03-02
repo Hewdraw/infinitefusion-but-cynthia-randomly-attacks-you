@@ -1545,6 +1545,8 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
       battle.scene.pbDamageAnimation(user)
       if target.effects[PBEffects::Dynamax] > 0
         user.pbReduceHP(target.damageState.hpLost/2,false)
+      elsif target.hpbars
+        user.pbReduceHP(target.damageState.hpLost/target.hpbars,false)
       else
         user.pbReduceHP(target.damageState.hpLost,false)
       end
@@ -2401,6 +2403,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
 )
 
 BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SKULK)
+
+
+BattleHandlers::AbilityOnSwitchIn.add(:MENACE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   proc { |ability,battler,battle|

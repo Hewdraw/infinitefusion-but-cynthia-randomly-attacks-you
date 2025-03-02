@@ -142,12 +142,23 @@ class PokeBattle_Scene
     sendOutAnims.each { |a| a[0].dispose; a[1].dispose }
     # Play shininess animations for shiny Pokémon
     sendOuts.each do |b|
-      next if !@battle.showAnims ||
+      if @battle.battlers[b[0]].hpbars
+        oldhp = @battle.battlers[b[0]].hp.to_f
+        endhp = @battle.battlers[b[0]].hp * @battle.battlers[b[0]].hpbars
+        time = 64
+        for i in 0..(time-1)
+          if oldhp+((endhp-oldhp) * i/time).round >= @battle.battlers[b[0]].hp + 1
+            @battle.battlers[b[0]].hp = oldhp+((endhp-oldhp) * i/time).round
+          end
+          pbRefreshOne(@battle.battlers[b[0]].index)
+          pbWait(1)
+        end
+        @battle.battlers[b[0]].hp = @battle.battlers[b[0]].totalhp * @battle.battlers[b[0]].hpbars
+        pbRefreshOne(@battle.battlers[b[0]].index)
+      end
+      next if !@battle.showAnims
         if @battle.battlers[b[0]].shiny? || @battle.battlers[b[0]].glitter?
           pbCommonAnimation("Shiny",@battle.battlers[b[0]])
-        end
-        if @battle.battlers[b[0]].raid && @battle.legendaryBattle?
-          pbCommonAnimation("UltraBurst2", @battle.battlers[b[0]])
         end
     end
   end

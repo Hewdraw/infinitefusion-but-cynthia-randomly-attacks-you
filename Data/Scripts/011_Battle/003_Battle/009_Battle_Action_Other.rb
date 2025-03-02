@@ -216,7 +216,6 @@ class PokeBattle_Battle
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
     oldhp = battler.hp.to_f
-    endhp = battler.hp * 2
     time = 64
     for i in 0..(time-1)
       sprite.zoom_x += 0.03125

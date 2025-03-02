@@ -10370,23 +10370,24 @@ Pokemon = B132H242,5
 ####################### Legendary Teams
 [LEGENDARY_POKEMON,Articuno,0]
 Pokemon = ARTICUNO,11	
-	Offset = 10
-	Moves = FREEZEDRY,BLIZZARD,AURORAVEIL,AIRSLASH
+	Offset = -30
+	Moves = AURORAVEIL,ROOST,BLIZZARD,AIRSLASH
 	Ability = SNOWWWARNING
+	Hpbar = 2
 	Phasetwo = TRUE
 	Item = LIGHTCLAY
-	Nature = SERIOUS
+	Nature = BOLD
 	Raid = TRUE
 	IV = 31,31,31,31,31,31
-	EV = 252,0,128,0,0,128
-Pokemon = ARTICUNO,11	
+	EV = 252,0,252,0,0,252
+Pokemon = GARTICUNO,11	
 	Offset = 10
-	Moves = FREEZEDRY,BLIZZARD,AURORAVEIL,AIRSLASH
-	Ability = SNOWWWARNING
-	Item = LIGHTCLAY
-	Nature = SERIOUS
+	Moves = FREEZINGGLARE,RECOVER,CALMMIND,BLIZZARD
+	Ability = MENACE
+	Hpbar = 2
+	Item = ICESPHERE
+	Nature = TIMID
 	Raid = TRUE
 	IV = 31,31,31,31,31,31
-	EV = 252,0,128,0,0,128
-
+	EV = 252,0,0,252,252,0
 #eof

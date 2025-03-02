@@ -876,6 +876,14 @@ BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:ICESPHERE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if (target.isFusionOf(:ARTICUNO) || target.isSpecies?(:GARTICUNO)) && move.specialMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.add(:KASIBBERRY,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:GHOST,type,target,mults)

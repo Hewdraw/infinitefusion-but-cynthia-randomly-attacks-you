@@ -87,7 +87,7 @@ class PokeBattle_Battler
     # NOTE: Although Destiny Bond is similar to Grudge, they don't apply at
     #       the same time (although Destiny Bond does check whether it's going
     #       to trigger at the same time as Grudge).
-    if user.effects[PBEffects::DestinyBondTarget]>=0 && !user.fainted? && !(user.effects[PBEffects::Dynamax] > 0)
+    if user.effects[PBEffects::DestinyBondTarget]>=0 && !user.fainted? && !(user.effects[PBEffects::Dynamax] > 0) && !(user.raid)
       dbName = @battle.battlers[user.effects[PBEffects::DestinyBondTarget]].pbThis
       @battle.pbDisplay(_INTL("{1} took its attacker down with it!",dbName))
       user.pbReduceHP(user.hp,false)

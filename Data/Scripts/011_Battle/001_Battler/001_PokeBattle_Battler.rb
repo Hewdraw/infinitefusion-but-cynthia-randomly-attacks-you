@@ -511,6 +511,7 @@ class PokeBattle_Battler
     end
     return true if check_item.name[-3..-1] == "ite" && item.name != "Eviolite"
     return true if check_item.name == "Thunder Stone"
+    return true if ["Ice Sphere", "Lightning Sphere", "Fire Sphere"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end
@@ -643,7 +644,7 @@ class PokeBattle_Battler
   end
 
   def canHeal?
-    return false if fainted? || (@hp >= @totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax))
+    return false if fainted? || (@hp >= @totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax)) || (@hp >= @totalhp && @hpbars && !(@hp<=@totalhp*@hpbars))
     return false if @effects[PBEffects::HealBlock] > 0
     return true
   end

@@ -359,7 +359,7 @@ module GameData
 
         pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
         pkmn.raid = (pkmn_data[:raid]) ? true : nil
-        pkmn.hpbars = (pkmn_data[:hpbars]) ? true : nil
+        pkmn.hpbars = (pkmn_data[:hpbars]) ? pkmn_data[:hpbars].to_i : nil
         pkmn.phasetwo = (pkmn_data[:phasetwo]) ? true : nil
         pkmn.ace = (pkmn_data[:ace]) ? true : nil
 
