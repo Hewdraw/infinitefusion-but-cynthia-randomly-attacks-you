@@ -496,6 +496,16 @@ BattleHandlers::StatLossImmunityAllyAbility.add(:FLOWERVEIL,
 # AbilityOnStatLoss handlers
 #===============================================================================
 
+BattleHandlers::AbilityOnStatLoss.add(:LEGENDARYPRESSURE,
+  proc { |ability,battler,stat,user|
+    case battler.pokemon.species
+    when :GARTICUNO
+      next if user && !user.opposes?(battler)
+      battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler,"Competitive")
+    end
+  }
+)
+
 BattleHandlers::AbilityOnStatLoss.add(:COMPETITIVE,
   proc { |ability,battler,stat,user|
     next if user && !user.opposes?(battler)
@@ -516,7 +526,7 @@ BattleHandlers::AbilityOnStatLoss.add(:DEFIANT,
 
 BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
   proc { |ability,battler,move,pri|
-    next pri+1 if battler.hp==battler.totalhp && move.type == :FLYING
+    next pri+1 if battler.hp==battler.adjustedTotalhp && move.type == :FLYING
   }
 )
 
@@ -904,7 +914,7 @@ BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
 
 BattleHandlers::DamageCalcUserAbility.add(:BLAZE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.hp <= user.totalhp / 3 && type == :FIRE
+    if user.hp <= user.adjustedTotalhp / 3 && type == :FIRE
       mults[:attack_multiplier] *= 1.5
     end
   }
@@ -928,7 +938,7 @@ BattleHandlers::DamageCalcUserAbility.add(:ADAPTINGSANDS,
 
 BattleHandlers::DamageCalcUserAbility.add(:DEFEATIST,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:attack_multiplier] /= 2 if user.hp <= user.totalhp / 2
+    mults[:attack_multiplier] /= 2 if user.hp <= user.adjustedTotalhp / 2
   }
 )
 
@@ -1017,7 +1027,7 @@ BattleHandlers::DamageCalcUserAbility.add(:NEUROFORCE,
 
 BattleHandlers::DamageCalcUserAbility.add(:OVERGROW,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.hp <= user.totalhp / 3 && type == :GRASS
+    if user.hp <= user.adjustedTotalhp / 3 && type == :GRASS
       mults[:attack_multiplier] *= 1.5
     end
   }
@@ -1119,7 +1129,7 @@ BattleHandlers::DamageCalcUserAbility.add(:STRONGJAW,
 
 BattleHandlers::DamageCalcUserAbility.add(:SWARM,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.hp <= user.totalhp / 3 && type == :BUG
+    if user.hp <= user.adjustedTotalhp / 3 && type == :BUG
       mults[:attack_multiplier] *= 1.5
     end
   }
@@ -1142,7 +1152,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TINTEDLENS,
 
 BattleHandlers::DamageCalcUserAbility.add(:TORRENT,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.hp <= user.totalhp / 3 && type == :WATER
+    if user.hp <= user.adjustedTotalhp / 3 && type == :WATER
       mults[:attack_multiplier] *= 1.5
     end
   }
@@ -1260,7 +1270,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:MARVELSCALE,
 
 BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] /= 2 if target.hp == target.totalhp
+    mults[:final_damage_multiplier] /= 2 if target.hp == target.adjustedTotalhp
   }
 )
 
@@ -1298,7 +1308,7 @@ BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:PRISMARMOR,
 
 BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:SHADOWSHIELD,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if target.hp==target.totalhp
+    if target.hp==target.adjustedTotalhp
       mults[:final_damage_multiplier] /= 2
     end
   }
@@ -1355,6 +1365,27 @@ BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR)
 #===============================================================================
 # TargetAbilityOnHit handlers
 #===============================================================================
+
+BattleHandlers::TargetAbilityOnHit.add(:LEGENDARYPRESSURE,
+  proc { |ability,user,target,move,battle|
+    case battler.pokemon.species
+    when :ARTICUNO
+      next if !move.pbContactMove?(user)
+      next if user.frozen? || battle.pbRandom(100)>=30
+      battle.pbShowAbilitySplash(target, false, true, "Snow Cloak")
+      if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+         user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        msg = nil
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          msg = _INTL("{1}'s {2} frostbites {3}!",target.pbThis,target.abilityName,user.pbThis(true))
+        end
+        user.pbFreeze(target,msg)
+      end
+      battle.pbHideAbilitySplash(target)
+    end
+  }
+)
+
 
 BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   proc { |ability,user,target,move,battle|
@@ -1832,7 +1863,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
 BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
-    next if target.damageState.initialHP<target.totalhp/2 || target.hp>=target.totalhp/2
+    next if target.damageState.initialHP<target.adjustedTotalhp/2 || target.hp>=target.adjustedTotalhp/2
     next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
     target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,GameData::Ability.get(ability).real_name)
   }
@@ -2180,6 +2211,29 @@ BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK)
 #===============================================================================
 # AbilityOnSwitchIn handlers
 #===============================================================================
+
+
+BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is emanating a legendary pressure!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+    case battler.pokemon.species
+    when :ARTICUNO
+      battle.pbShowAbilitySplash(battler, false, true, "Snow Warning")
+      battle.pbStartWeather(battler,:Snow,false)
+      battle.pbHideAbilitySplash(battler)
+    when :GARTICUNO
+      battle.pbShowAbilitySplash(battler, false, true, "Menace")
+      battle.eachOtherSideBattler(battler.index) do |b|
+        next if !b.near?(battler)
+        b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
+        b.pbItemOnIntimidatedCheck
+      end
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:AIRLOCK,
   proc { |ability,battler,battle|

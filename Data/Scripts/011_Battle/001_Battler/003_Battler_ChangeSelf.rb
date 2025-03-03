@@ -10,7 +10,7 @@ class PokeBattle_Battler
     self.hp -= amt
     PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
     raise _INTL("HP less than 0") if @hp<0
-    raise _INTL("HP greater than total HP") if @hp>@totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax) && !(@hpbars && @hp<=totalhp*@hpbars)
+    raise _INTL("HP greater than total HP") if @hp>@adjustedTotalhp
     @battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
     @tookDamage = true if amt>0 && registerDamage
     return amt
@@ -18,13 +18,13 @@ class PokeBattle_Battler
 
   def pbRecoverHP(amt,anim=true,anyAnim=true)
     amt = amt.round
-    amt = @totalhp-@hp if amt>@totalhp-@hp
-    amt = 1 if amt<1 && @hp<@totalhp
+    amt = @adjustedTotalhp-@hp if amt>@adjustedTotalhp-@hp
+    amt = 1 if amt<1 && @hp<@adjustedTotalhp
     oldHP = @hp
     self.hp += amt
     PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP}=>#{@hp})") if amt>0
     raise _INTL("HP less than 0") if @hp<0
-    raise _INTL("HP greater than total HP") if @hp>@totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax) && !(@hpbars && @hp<=totalhp*@hpbars)
+    raise _INTL("HP greater than total HP") if @hp>@adjustedTotalhp
     @battle.scene.pbHPChanged(self,oldHP,anim) if anyAnim && amt>0
     return amt
   end
@@ -211,10 +211,10 @@ class PokeBattle_Battler
   def pbChangeForm(newForm,msg)
     return if fainted? || @effects[PBEffects::Transform] || @form==newForm
     oldForm = @form
-    oldDmg = @totalhp-@hp
+    oldDmg = @adjustedTotalhp-@hp
     self.form = newForm
     pbUpdate(true)
-    @hp = @totalhp-oldDmg
+    @hp = @adjustedTotalhp-oldDmg
     @effects[PBEffects::WeightChange] = 0 if Settings::MECHANICS_GENERATION >= 6
     @battle.scene.pbChangePokemon(self,@pokemon)
     @battle.scene.pbRefreshOne(@index)
@@ -286,7 +286,7 @@ class PokeBattle_Battler
     pbCheckFormOnWeatherChange if !endOfRound
     # Darmanitan - Zen Mode
     if isSpecies?(:DARMANITAN) && self.ability == :ZENMODE
-      if @hp<=@totalhp/2
+      if @hp<=@adjustedTotalhp/2
         if @form!=1
           @battle.pbShowAbilitySplash(self,true)
           @battle.pbHideAbilitySplash(self)
@@ -300,7 +300,7 @@ class PokeBattle_Battler
     end
     # Minior - Shields Down
     if isSpecies?(:MINIOR) && self.ability == :SHIELDSDOWN
-      if @hp>@totalhp/2   # Turn into Meteor form
+      if @hp>@adjustedTotalhp/2   # Turn into Meteor form
         newForm = (@form>=7) ? @form-7 : @form
         if @form!=newForm
           @battle.pbShowAbilitySplash(self,true)
@@ -317,7 +317,7 @@ class PokeBattle_Battler
     end
     # Wishiwashi - Schooling
     if isSpecies?(:WISHIWASHI) && self.ability == :SCHOOLING
-      if @level>=20 && @hp>@totalhp/4
+      if @level>=20 && @hp>@adjustedTotalhp/4
         if @form!=1
           @battle.pbShowAbilitySplash(self,true)
           @battle.pbHideAbilitySplash(self)
@@ -331,7 +331,7 @@ class PokeBattle_Battler
     end
     # Zygarde - Power Construct
     if isSpecies?(:ZYGARDE) && self.ability == :POWERCONSTRUCT && endOfRound
-      if @hp<=@totalhp/2 && @form<2   # Turn into Complete Forme
+      if @hp<=@adjustedTotalhp/2 && @form<2   # Turn into Complete Forme
         newForm = @form+2
         @battle.pbDisplay(_INTL("You sense the presence of many!"))
         @battle.pbShowAbilitySplash(self,true)

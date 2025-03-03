@@ -84,6 +84,7 @@ class Trainer
   end
 
   def special_name?
+    return true if @trainer_type == :LEGENDARY_POKEMON
     Settings::RIVAL_NAMES.each do |rival|
       next if !$game_variables[rival[1]].is_a?(String)
       return true if @name == $game_variables[rival[1]]

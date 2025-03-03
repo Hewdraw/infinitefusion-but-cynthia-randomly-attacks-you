@@ -61,7 +61,7 @@ BattleHandlers::HPHealItem.add(:APICOTBERRY,
 BattleHandlers::HPHealItem.add(:BERRYJUICE,
   proc { |item,battler,battle,forced|
     next false if !battler.canHeal?
-    next false if !forced && battler.hp>battler.totalhp/2
+    next false if !forced && battler.hp>battler.adjustedTotalhp/2
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] Forced consuming of #{itemName}") if forced
     battle.pbCommonAnimation("UseItem",battler) if !forced

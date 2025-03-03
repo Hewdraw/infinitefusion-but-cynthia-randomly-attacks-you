@@ -155,6 +155,12 @@ class PokeBattle_Battler
     @battle.scene.pbRefreshOne(@index)
   end
 
+  def adjustedTotalhp
+    return @totalhp * 2 if @pokemon.dynamax.is_a?(Integer) && @pokemon.dynamax > 0
+    return @totalhp * @hpbars if @hpbars
+    return @totalhp
+  end
+
   #=============================================================================
   # Properties from Pokémon
   #=============================================================================
@@ -646,7 +652,7 @@ class PokeBattle_Battler
   end
 
   def canHeal?
-    return false if fainted? || (@hp >= @totalhp && !(@hp<=@totalhp*2 && @pokemon.dynamax)) || (@hp >= @totalhp && @hpbars && !(@hp<=@totalhp*@hpbars))
+    return false if fainted? || @hp >= @adjustedTotalhp
     return false if @effects[PBEffects::HealBlock] > 0
     return true
   end
@@ -794,13 +800,13 @@ class PokeBattle_Battler
   def checkHPRelatedFormChange(new_hp)
     if @ability_id == :SHIELDSDOWN
       if @pokemon.isFusionOf(:MINIOR_M)
-        if new_hp <= (@totalhp / 2)
+        if new_hp <= (@adjustedTotalhp / 2)
           changeBattlerForm(:MINIOR_M, :MINIOR_C,nil, :SHELLSMASH)
           @battle.pbDisplay(_INTL("{1} changed to the Core Form!", pbThis))
         end
       end
       if @pokemon.isFusionOf(:MINIOR_C)
-        if new_hp > (@totalhp / 2)
+        if new_hp > (@adjustedTotalhp / 2)
           changeBattlerForm(:MINIOR_C, :MINIOR_M,nil, :SHELLSMASH)
           @battle.pbDisplay(_INTL("{1} changed to the Meteor Form!", pbThis))
         end

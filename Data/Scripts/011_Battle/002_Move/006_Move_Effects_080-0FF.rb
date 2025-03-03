@@ -3,7 +3,7 @@
 #===============================================================================
 class PokeBattle_Move_080 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    baseDmg *= 2 if target.hp<=target.totalhp/2
+    baseDmg *= 2 if target.hp<=target.adjustedTotalhp/2
     return baseDmg
   end
 end
@@ -182,7 +182,7 @@ end
 #===============================================================================
 class PokeBattle_Move_08B < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    return [150*user.hp/user.totalhp,1].max
+    return [150*user.hp/user.adjustedTotalhp,1].max
   end
 end
 
@@ -193,7 +193,7 @@ end
 #===============================================================================
 class PokeBattle_Move_08C < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    return [120*target.hp/target.totalhp,1].max
+    return [120*target.hp/target.adjustedTotalhp,1].max
   end
 end
 
@@ -535,7 +535,7 @@ end
 class PokeBattle_Move_098 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
     ret = 20
-    n = 48*user.hp/user.totalhp
+    n = 48*user.hp/user.adjustedTotalhp
     if n<2;     ret = 200
     elsif n<5;  ret = 150
     elsif n<10; ret = 100
@@ -2563,7 +2563,7 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
   end
 
   def pbHealAmount(user)
-    return user.totalhp-user.hp
+    return user.adjustedTotalhp-user.hp
   end
 
   def pbEffectGeneral(user)
@@ -2692,7 +2692,7 @@ class PokeBattle_Move_0DF < PokeBattle_Move
   def healingMove?; return true; end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.hp==target.totalhp
+    if target.hp==target.adjustedTotalhp
       @battle.pbDisplay(_INTL("{1}'s HP is full!",target.pbThis))
       return true
     elsif !target.canHeal?

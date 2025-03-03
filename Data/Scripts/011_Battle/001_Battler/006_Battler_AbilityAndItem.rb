@@ -69,7 +69,7 @@ class PokeBattle_Battler
   def pbAbilitiesOnDamageTaken(oldHP,newHP=-1)
     return false if !abilityActive?
     newHP = @hp if newHP<0
-    return false if oldHP<@totalhp/2 || newHP>=@totalhp/2   # Didn't drop below half
+    return false if oldHP<@adjustedTotalhp/2 || newHP>=@adjustedTotalhp/2   # Didn't drop below half
     ret = BattleHandlers.triggerAbilityOnHPDroppedBelowHalf(self.ability,self,@battle)
     return ret   # Whether self has switched out
   end
@@ -145,8 +145,8 @@ class PokeBattle_Battler
 
   def canConsumePinchBerry?(check_gluttony = true)
     return false if !canConsumeBerry?
-    return true if @hp <= (@totalhp / 4)+1
-    return true if @hp <= (@totalhp / 2)+1 && (!check_gluttony || hasActiveAbility?(:GLUTTONY))
+    return true if @hp <= (@adjustedTotalhp / 4)+1
+    return true if @hp <= (@adjustedTotalhp / 2)+1 && (!check_gluttony || hasActiveAbility?(:GLUTTONY))
     return false
   end
 

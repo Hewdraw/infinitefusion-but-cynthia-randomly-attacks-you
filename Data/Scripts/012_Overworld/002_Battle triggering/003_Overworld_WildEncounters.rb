@@ -325,7 +325,7 @@ class PokemonEncounters
     # Some abilities alter the level of the wild Pokémon
     if first_pkmn
       case first_pkmn.ability_id
-      when :HUSTLE, :PRESSURE, :VITALSPIRIT
+      when :HUSTLE, :PRESSURE, :LEGENDARYPRESSURE, :VITALSPIRIT
         level = encounter[3] if rand(100) < 50   # Highest possible level
       end
     end

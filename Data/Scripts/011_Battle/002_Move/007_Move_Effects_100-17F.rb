@@ -2305,7 +2305,7 @@ class PokeBattle_Move_16E < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
-    if target.hp == target.totalhp
+    if target.hp == target.adjustedTotalhp
       @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis))
       return true
     elsif !target.canHeal?
@@ -2619,7 +2619,7 @@ class PokeBattle_Move_182 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
     @validTargets = []
     @battle.eachSameSideBattler(user) do |b|
-      next if b.hp==b.totalhp
+      next if b.hp==b.adjustedTotalhp
       @validTargets.push(b)
     end
     if @validTargets.length == 0

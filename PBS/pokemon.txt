@@ -18289,7 +18289,7 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000315]
-Name = Gastrogon-Z
+Name = Porytrodon
 InternalName = GASTRODONPORYGON2
 Type1 = NORMAL
 Type2 = GROUND

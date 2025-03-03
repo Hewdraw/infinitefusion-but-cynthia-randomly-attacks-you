@@ -191,11 +191,11 @@ class PokeBattle_Move
       elsif target.effects[PBEffects::Endure]
         target.damageState.endured = true
         damage -= 1
-      elsif damage==target.totalhp
+      elsif damage==target.adjustedTotalhp
         if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
           target.damageState.sturdy = true
           damage -= 1
-        elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.totalhp
+        elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.adjustedTotalhp
           target.damageState.focusSash = true
           damage -= 1
         elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10

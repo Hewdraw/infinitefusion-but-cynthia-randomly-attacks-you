@@ -491,7 +491,7 @@ class PokeBattle_HealingMove < PokeBattle_Move
   def pbHealAmount(user); return 1;    end
 
   def pbMoveFailed?(user,targets)
-    if user.hp==user.totalhp
+    if user.hp==user.adjustedTotalhp
       @battle.pbDisplay(_INTL("{1}'s HP is full!",user.pbThis))
       return true
     end

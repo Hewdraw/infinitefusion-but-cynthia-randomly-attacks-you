@@ -240,9 +240,9 @@ class PokeBattle_Battle
 
   def pbMessageOnRecall(battler)
     if battler.pbOwnedByPlayer?
-      if battler.hp <= battler.totalhp / 4
+      if battler.hp <= battler.adjustedTotalhp / 4
         pbDisplayBrief(_INTL("Good job, {1}! Come back!", battler.name))
-      elsif battler.hp <= battler.totalhp / 2
+      elsif battler.hp <= battler.adjustedTotalhp / 2
         pbDisplayBrief(_INTL("OK, {1}! Come back!", battler.name))
       elsif battler.turnCount >= 5
         pbDisplayBrief(_INTL("{1}, that's enough! Come back!", battler.name))
@@ -267,11 +267,11 @@ class PokeBattle_Battle
     end
     if pbOwnedByPlayer?(idxBattler)
       opposing = @battlers[idxBattler].pbDirectOpposing
-      if opposing.fainted? || opposing.hp == opposing.totalhp
+      if opposing.fainted? || opposing.hp == opposing.adjustedTotalhp
         pbDisplayBrief(_INTL("You're in charge, {1}!", newPkmnName))
-      elsif opposing.hp >= opposing.totalhp / 2
+      elsif opposing.hp >= opposing.adjustedTotalhp / 2
         pbDisplayBrief(_INTL("Go for it, {1}!", newPkmnName))
-      elsif opposing.hp >= opposing.totalhp / 4
+      elsif opposing.hp >= opposing.adjustedTotalhp / 4
         pbDisplayBrief(_INTL("Just a little more! Hang in there, {1}!", newPkmnName))
       else
         pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!", newPkmnName))
@@ -340,7 +340,7 @@ class PokeBattle_Battle
     if @positions[battler.index].effects[PBEffects::HealingWish]
       pbCommonAnimation("HealingWish", battler)
       pbDisplay(_INTL("The healing wish came true for {1}!", battler.pbThis(true)))
-      battler.pbRecoverHP(battler.totalhp)
+      battler.pbRecoverHP(battler.adjustedTotalhp)
       battler.pbCureStatus(false)
       @positions[battler.index].effects[PBEffects::HealingWish] = false
     end
@@ -348,7 +348,7 @@ class PokeBattle_Battle
     if @positions[battler.index].effects[PBEffects::LunarDance]
       pbCommonAnimation("LunarDance", battler)
       pbDisplay(_INTL("{1} became cloaked in mystical moonlight!", battler.pbThis))
-      battler.pbRecoverHP(battler.totalhp)
+      battler.pbRecoverHP(battler.adjustedTotalhp)
       battler.pbCureStatus(false)
       battler.eachMove { |m| m.pp = m.total_pp }
       @positions[battler.index].effects[PBEffects::LunarDance] = false
