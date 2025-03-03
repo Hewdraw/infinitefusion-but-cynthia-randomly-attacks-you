@@ -237,8 +237,12 @@ class PokeBattle_Battle
         pbCommonAnimation("StatDown", target) if resetstat
       end
       b.pbCureStatus()
-      pbDisplay(_INTL("{1} caused a Shockwave!",b.pbThis)) if didsomething
-      b.raid = 3 if didsomething
+      if didsomething
+        battle.pbShowAbilitySplash(battler)
+        battle.pbDisplay(_INTL("{1}'s legendary pressure pulses!",battler.pbThis))
+        battle.pbHideAbilitySplash(battler)
+        b.raid = 3
+      end
     end
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|

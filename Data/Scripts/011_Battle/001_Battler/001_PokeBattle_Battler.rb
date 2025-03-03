@@ -454,7 +454,8 @@ class PokeBattle_Battler
       # Abilities intended to be inherent properties of a certain species
       :COMATOSE,
       :RKSSYSTEM,
-      :CHARGEDEXPLOSIVE
+      :CHARGEDEXPLOSIVE,
+      :LEGENDARYPRESSURE
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -568,10 +569,8 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::SmackDown]
     return false if @battle.field.effects[PBEffects::Gravity] > 0
     return true if pbHasType?(:FLYING)
-    return true if hasActiveAbility?(:LEVITATE) && !@battle.moldBreaker
-    return true if hasActiveAbility?(:ENDER) && !@battle.moldBreaker
-    return true if hasActiveItem?(:AIRBALLOON)
-    return true if hasActiveItem?(:BUNDLEOFBALLOONS)
+    return true if hasActiveAbility?([:LEVITATE, :ENDER]) && !@battle.moldBreaker
+    return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS])
     return true if @effects[PBEffects::MagnetRise] > 0
     return true if @effects[PBEffects::Telekinesis] > 0
     return false
