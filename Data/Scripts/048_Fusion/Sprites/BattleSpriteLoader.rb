@@ -68,7 +68,7 @@ class BattleSpriteLoader
   def obtain_fusion_pif_sprite(head_id,body_id)
     substitution_id = get_sprite_substitution_id_for_fusion(head_id, body_id)
     pif_sprite = $PokemonGlobal.alt_sprite_substitutions[substitution_id] if $PokemonGlobal
-    pif_sprite.dump_info if pif_sprite
+    #pif_sprite.dump_info if pif_sprite
     if !pif_sprite
       pif_sprite = select_new_pif_fusion_sprite(head_id, body_id)
       local_path = check_for_local_sprite(pif_sprite)

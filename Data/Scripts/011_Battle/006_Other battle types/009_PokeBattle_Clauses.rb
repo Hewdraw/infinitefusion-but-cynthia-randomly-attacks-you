@@ -115,7 +115,6 @@ end
 
 class PokeBattle_Move_034   # Minimize
   alias __clauses__pbMoveFailed? pbMoveFailed? unless method_defined?(:__clauses__pbFailsAgainstTarget?)
-
   def pbMoveFailed?(user,targets)
     if !damagingMove? && @battle.rules["evasionclause"]
       @battle.pbDisplay(_INTL("But it failed!"))

@@ -107,8 +107,8 @@ module Settings
   BASE_POKEMON_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_base/"
   CUSTOM_FUSIONS_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_custom/"
 
-  BASE_POKEMON_SPRITESHEET_TRUE_SIZE_URL = "https://infinitefusion.net/spritesheets_truesize/spritesheets_base/"
-  CUSTOM_FUSIONS_SPRITESHEET_TRUE_SIZE_URL = "https://infinitefusion.net/spritesheets_truesize/spritesheets_custom/"
+  BASE_POKEMON_SPRITESHEET_TRUE_SIZE_URL = ""
+  CUSTOM_FUSIONS_SPRITESHEET_TRUE_SIZE_URL = ""
 
   RIVAL_STARTER_PLACEHOLDER_SPECIES = :MEW #(MEW)
   VAR_1_PLACEHOLDER_SPECIES = :DIALGA

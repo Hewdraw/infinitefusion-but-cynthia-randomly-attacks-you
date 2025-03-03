@@ -464,6 +464,7 @@ class PokemonPokedexInfo_Scene
     end
   end
 
+  #unused
   def getAIDexEntry(pokemonID, name)
     begin
       head_number = get_head_number_from_symbol(pokemonID).to_s

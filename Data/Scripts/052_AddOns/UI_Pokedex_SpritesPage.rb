@@ -185,7 +185,7 @@ class PokemonPokedexInfo_Scene
       sprite_path = alt_letter.split("_", 2)[1]
       pif_sprite.local_path = sprite_path
     end
-    pif_sprite.dump_info
+    #pif_sprite.dump_info
     return pif_sprite
   end
 

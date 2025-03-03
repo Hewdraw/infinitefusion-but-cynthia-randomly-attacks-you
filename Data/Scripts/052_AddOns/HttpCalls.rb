@@ -86,7 +86,7 @@ end
 
 def download_spritesheet(pif_sprite, dest)
   #return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS)
-  return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE, 60, 15)
+  return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE, 60, 15,false)
   case pif_sprite.type
   when :AUTOGEN
     return
