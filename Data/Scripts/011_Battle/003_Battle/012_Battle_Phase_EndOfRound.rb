@@ -238,9 +238,9 @@ class PokeBattle_Battle
       end
       b.pbCureStatus()
       if didsomething
-        battle.pbShowAbilitySplash(battler)
-        battle.pbDisplay(_INTL("{1}'s legendary pressure pulses!",battler.pbThis))
-        battle.pbHideAbilitySplash(battler)
+        @battle.pbShowAbilitySplash(battler)
+        @battle.pbDisplay(_INTL("{1}'s legendary pressure pulses!",battler.pbThis))
+        @battle.pbHideAbilitySplash(battler)
         b.raid = 3
       end
     end
