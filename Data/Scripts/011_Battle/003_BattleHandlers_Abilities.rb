@@ -1379,7 +1379,7 @@ BattleHandlers::TargetAbilityOnHit.add(:LEGENDARYPRESSURE,
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           msg = _INTL("{1}'s {2} frostbites {3}!",target.pbThis,target.abilityName,user.pbThis(true))
         end
-        user.pbFreeze(target,msg)
+        user.pbFreeze()
       end
       battle.pbHideAbilitySplash(target)
     end
