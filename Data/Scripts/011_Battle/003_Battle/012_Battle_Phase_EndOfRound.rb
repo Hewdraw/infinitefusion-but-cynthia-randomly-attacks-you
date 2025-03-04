@@ -237,11 +237,12 @@ class PokeBattle_Battle
         pbCommonAnimation("StatDown", target) if resetstat
       end
       b.pbCureStatus()
+      b.pbEffectsOnSwitchIn
       if didsomething
         pbShowAbilitySplash(b)
         pbDisplay(_INTL("{1}'s legendary pressure pulses!",b.pbThis))
         pbHideAbilitySplash(b)
-        b.raid = 3
+        b.raid = 4
       end
     end
     # Future Sight/Doom Desire

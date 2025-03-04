@@ -1457,7 +1457,7 @@ class Pokemon
     @speed = stats[:SPEED]
   end
 
-  def calc_stats_dynamaxed
+  def calc_stats_increased_hp(hpbars=2)
     base_stats = self.baseStats
     this_level = self.level
     this_IV = self.calcIV
@@ -1485,7 +1485,7 @@ class Pokemon
     hpDiff = (@totalhp*2) - @hp
     #@totalhp = stats[:HP]
     @totalhp = adjustHPForWonderGuard(stats)
-    calculated_hp = (@totalhp*2) - hpDiff
+    calculated_hp = (@totalhp*hpbars) - hpDiff
     @hp = calculated_hp > 0 ? calculated_hp : 0
     @attack = stats[:ATTACK]
     @defense = stats[:DEFENSE]
