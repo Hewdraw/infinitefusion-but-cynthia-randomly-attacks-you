@@ -1368,7 +1368,7 @@ BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR)
 
 BattleHandlers::TargetAbilityOnHit.add(:LEGENDARYPRESSURE,
   proc { |ability,user,target,move,battle|
-    case battler.pokemon.species
+    case target.pokemon.species
     when :ARTICUNO
       next if !move.pbContactMove?(user)
       next if user.frozen? || battle.pbRandom(100)>=30
