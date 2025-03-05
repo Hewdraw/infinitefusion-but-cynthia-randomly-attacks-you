@@ -316,7 +316,7 @@ class PokeBattle_AI
       if !user.hasActiveItem?(:POWERHERB)
         score *= 0.5
       else
-        score - 1
+        score -= 1
       end
     end
     # Don't prefer attacking the target if they'd be semi-invulnerable
@@ -341,13 +341,13 @@ class PokeBattle_AI
       score -= 80 if miss
     end
     # Pick a good move for the Choice items
-    if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) && !(user.effects[PBEffects::Dynamax] > 0)
-      if move.baseDamage>=60;     score += 60
-      elsif move.damagingMove?;   score += 30
-      elsif move.function=="0F2"; score += 70   # Trick
-      else;                       score -= 60
-      end
-    end
+    # if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) && !(user.effects[PBEffects::Dynamax] > 0)
+    #   if move.baseDamage>=60;     score += 60
+    #   elsif move.damagingMove?;   score += 30
+    #   elsif move.function=="0F2"; score += 70   # Trick
+    #   else;                       score -= 60
+    #   end
+    # end
     # If user is asleep, prefer moves that are usable while asleep
     if user.status == :SLEEP && !move.usableWhenAsleep?
       user.eachMove do |m|
@@ -357,25 +357,25 @@ class PokeBattle_AI
       end
     end
     # If user is frozen, prefer a move that can thaw the user
-    if user.status == :FROZEN
-      if move.thawsUser?
-        score += 40
-      else
-        user.eachMove do |m|
-          next unless m.thawsUser?
-          score -= 60
-          break
-        end
-      end
-    end
+    # if user.status == :FROZEN
+    #   if move.thawsUser?
+    #     score += 40
+    #   else
+    #     user.eachMove do |m|
+    #       next unless m.thawsUser?
+    #       score -= 60
+    #       break
+    #     end
+    #   end
+    # end
     # If target is frozen, don't prefer moves that could thaw them
-    if target.status == :FROZEN
-      user.eachMove do |m|
-        next if m.thawsUser?
-        score -= 60
-        break
-      end
-    end
+    # if target.status == :FROZEN
+    #   user.eachMove do |m|
+    #     next if m.thawsUser?
+    #     score -= 60
+    #     break
+    #   end
+    # end
     score = score.to_i
     score = 0 if score<0
     return score

@@ -65,6 +65,7 @@ class PokeBattle_Battler
       pbUpdate(true)
       @battle.pbCommonAnimation("UltraBurst2", self)
       @battle.scene.pbChangePokemon(self,@pokemon)
+      pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(@pokemon.species)
       hpbars = 1
       hpbars = @hpbars if @hpbars
       oldhp = @hp.to_f
@@ -142,6 +143,9 @@ class PokeBattle_Battler
       end
       @pokemon.raid = nil
       @pokemon.hpbars = nil
+      ability = @pokemon.getAbilityList[-1][0]
+      @pokemon.ability_index = 2
+      @pokemon.ability = GameData::Ability.get(ability).id
       @battle.pbThrowPokeBall(@index, :POKEBALL, catch_rate = 255, showPlayer = true)
     end
   end

@@ -237,8 +237,8 @@ class PokeBattle_Battle
         pbCommonAnimation("StatDown", target) if resetstat
       end
       b.pbCureStatus()
-      b.pbEffectsOnSwitchIn
       if didsomething
+        b.pbEffectsOnSwitchIn
         pbShowAbilitySplash(b)
         pbDisplay(_INTL("{1}'s legendary pressure pulses!",b.pbThis))
         pbHideAbilitySplash(b)
