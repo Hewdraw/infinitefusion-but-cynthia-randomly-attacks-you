@@ -1779,7 +1779,7 @@ BattleHandlers::UserAbilityOnHit.add(:LEGENDARYPRESSURE,
           battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
         end
         battle.pbHideAbilitySplash(target)
-      elsif target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      else
         msg = nil
         if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           msg = _INTL("{1}'s {2} paralyzed {3}!",user.pbThis,user.abilityName,target.pbThis(true))
@@ -1823,7 +1823,7 @@ BattleHandlers::UserAbilityOnHit.add(:STUN,
         battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
       end
       battle.pbHideAbilitySplash(target)
-    elsif target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+    else
       msg = nil
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} paralyzed {3}!",user.pbThis,user.abilityName,target.pbThis(true))
