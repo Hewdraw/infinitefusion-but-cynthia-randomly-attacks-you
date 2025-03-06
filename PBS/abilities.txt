@@ -253,6 +253,6 @@
 251,CHARGEDEXPLOSIVE,Charged Explosive,""
 252,PSYCHOBREAK,Psycho Break,"todo"
 253,MENACE,Menace,"Lowers the foe's Special Attack stat."
-254,STUN,Stun,"If it hits the opponent first, paralyzes (overwrite non-paralysis status)"
-255,GOAD,Goad,"Permanent Taunt while out. "
+254,STUN,Stun,"Paralyzes targets when the user moves before the target."
+255,GOAD,Goad,"Foe's are taunted and can only use attack moves."
 256,LEGENDARYPRESSURE,Legendary Pressure,""

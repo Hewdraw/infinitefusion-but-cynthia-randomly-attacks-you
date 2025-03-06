@@ -401,8 +401,12 @@ class PokeBattle_Battler
 
   def pbHasType?(type)
     return false if !type
-    return true if type == :ICE && isFusionOf(:ARTICUNO) && hasActiveItem?(:ICESPHERE)
-    return true if type == :PSYCHIC && isSpecies?(:GARTICUNO) && hasActiveItem?(:ICESPHERE)
+    return true if type == :PSYCHIC && isFusionOf(:ARTICUNO) && hasActiveItem?(:ICESPHERE)
+    return true if type == :ICE && isSpecies?(:GARTICUNO) && hasActiveItem?(:ICESPHERE)
+    return true if type == :FIGHTING && isFusionOf(:ZAPDOS) && hasActiveItem?(:LIGHTNINGSPHERE)
+    return true if type == :ELECTRIC && isSpecies?(:GZAPDOS) && hasActiveItem?(:LIGHTNINGSPHERE)
+    return true if type == :DARK && isFusionOf(:MOLTRES) && hasActiveItem?(:FIRESPHERE)
+    return true if type == :FIRE && isSpecies?(:GMOLTRES) && hasActiveItem?(:FIRESPHERE)
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end
@@ -519,8 +523,7 @@ class PokeBattle_Battler
       end
     end
     return true if check_item.name[-3..-1] == "ite" && item.name != "Eviolite"
-    return true if check_item.name == "Thunder Stone"
-    return true if ["Ice Sphere", "Lightning Sphere", "Fire Sphere"].include?(check_item.name)
+    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end

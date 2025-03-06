@@ -220,6 +220,11 @@ class PokeBattle_Battle
         next
       end
       didsomething = b.status != :None
+      didsomething = didsomething ||
+        (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
+        b.pokemon.species == :GARTICUNO ||
+        (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
+        (b.pokemon.species == :MOLTRES && pbWeather != :Sun)
       resetstat = false
       GameData::Stat.each_battle do |s|
         resetstat = true if b.stages[s.id] < 0
@@ -238,10 +243,13 @@ class PokeBattle_Battle
       end
       b.pbCureStatus()
       if didsomething
-        b.pbEffectsOnSwitchIn
         pbShowAbilitySplash(b)
         pbDisplay(_INTL("{1}'s legendary pressure pulses!",b.pbThis))
         pbHideAbilitySplash(b)
+        b.pbEffectsOnSwitchIn if (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
+          b.pokemon.species == :GARTICUNO ||
+          (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
+          (b.pokemon.species == :MOLTRES && pbWeather != :Sun)
         b.raid = 4
       end
     end

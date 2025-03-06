@@ -10393,4 +10393,51 @@ Pokemon = GARTICUNO,11
 	Raid = TRUE
 	IV = 31,31,31,31,31,31
 	EV = 252,0,0,252,252,0
+
+[LEGENDARY_POKEMON,Zapdos,0]
+Pokemon = ZAPDOS,11	
+	Offset = 8
+	Moves = ROOST,THUNDER,HURRICANE,WEATHERBALL
+	Ability = DRIZZLE
+	Hpbar = 2
+	Phasetwo = TRUE
+	Item = LIFEORB
+	Nature = TIMID
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,252,0
+Pokemon = GZAPDOS,11	
+	Offset = 8
+	Moves = BULKUP,THUNDEROUSKICK,DRILLPECK,SUPERCELLSLAM
+	Ability = STUN
+	Hpbar = 2
+	Item = LIGHTNINGSPHERE
+	Nature = ADAMANT
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,252,0,252,0,0
+
+[LEGENDARY_POKEMON,Moltres,0]
+Pokemon = MOLTRES,11	
+	Offset = 8
+	Moves = FLAMETHROWER,SOLARBEAM,AIRSLASH,SCORCHINGSANDS
+	Ability = DROUGHT
+	Hpbar = 2
+	Phasetwo = TRUE
+	Item = ASSAULTVEST
+	Nature = TIMID
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,252,0
+Pokemon = GMOLTRES,11	
+	Offset = 8
+	Moves = FLAMETHROWER,REST,SLEEPTALK,FIERYWRATH
+	Ability = GOAD
+	Hpbar = 2
+	Item = FIRESPHERE
+	Nature = CALM
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,0,252,0,0,252
+
 #eof

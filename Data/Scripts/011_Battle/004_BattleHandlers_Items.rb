@@ -8,6 +8,14 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
   }
 )
 
+BattleHandlers::SpeedCalcItem.add(:LIGHTNINGSPHERE,
+  proc { |item,battler,mult|
+    if target.isFusionOf(:ZAPDOS) || target.isSpecies?(:GZAPDOS)
+      next mult*1.5
+    end
+  }
+)
+
 BattleHandlers::SpeedCalcItem.add(:MACHOBRACE,
   proc { |item,battler,mult|
     next mult/2
@@ -549,6 +557,14 @@ BattleHandlers::DamageCalcUserItem.add(:FIGHTINGGEM,
 BattleHandlers::DamageCalcUserItem.add(:FIREGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleGem(user,:FIRE,move,mults,type)
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:FIRESPHERE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if (target.isFusionOf(:MOLTRES) || target.isSpecies?(:GMOLTRES)) && move.specialMove?
+      mults[:final_damage_multiplier] *= 1.5
+    end
   }
 )
 

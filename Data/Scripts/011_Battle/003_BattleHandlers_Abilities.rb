@@ -143,7 +143,7 @@ BattleHandlers::StatusImmunityAbility.add(:INSOMNIA,
   }
 )
 
-BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA,:SWEETVEIL,:VITALSPIRIT)
+BattleHandlers::StatusImmunityAbility.copy(:INSOMNIA,:SWEETVEIL,:VITALSPIRIT,:PSYCHOBREAK)
 
 BattleHandlers::StatusImmunityAbility.add(:LEAFGUARD,
   proc { |ability,battler,status|
@@ -502,6 +502,9 @@ BattleHandlers::AbilityOnStatLoss.add(:LEGENDARYPRESSURE,
     when :GARTICUNO
       next if user && !user.opposes?(battler)
       battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler,"Competitive")
+    when :GZAPDOS
+      next if user && !user.opposes?(battler)
+      battler.pbRaiseStatStageByAbility(:ATTACK,2,battler,"Defiant")
     end
   }
 )
@@ -1382,6 +1385,33 @@ BattleHandlers::TargetAbilityOnHit.add(:LEGENDARYPRESSURE,
         user.pbFreeze()
       end
       battle.pbHideAbilitySplash(target)
+    when :ZAPDOS
+      next if !move.pbContactMove?(user)
+      next if user.paralyzed? || battle.pbRandom(100)>=30
+      battle.pbShowAbilitySplash(target, false, true, "Static")
+      if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+         user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        msg = nil
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
+             target.pbThis,target.abilityName,user.pbThis(true))
+        end
+        user.pbParalyze(target,msg)
+      end
+      battle.pbHideAbilitySplash(target)
+    when :MOLTRES
+      next if !move.pbContactMove?(user)
+      next if user.burned? || battle.pbRandom(100)>=30
+      battle.pbShowAbilitySplash(target, false, true, "Flame Body")
+      if user.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+         user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        msg = nil
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          msg = _INTL("{1}'s {2} burned {3}!",target.pbThis,target.abilityName,user.pbThis(true))
+        end
+        user.pbBurn(target,msg)
+      end
+      battle.pbHideAbilitySplash(target)
     end
   }
 )
@@ -1737,6 +1767,30 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 # UserAbilityOnHit handlers
 #===============================================================================
 
+BattleHandlers::UserAbilityOnHit.add(:LEGENDARYPRESSURE,
+  proc { |ability,user,target,move,battle|
+    case user.pokemon.species
+    when :GZAPDOS
+      next if target.movedThisRound?
+      battle.pbShowAbilitySplash(user, false, true, "Stun")
+      if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+        battle.pbShowAbilitySplash(target)
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+        end
+        battle.pbHideAbilitySplash(target)
+      elsif target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        msg = nil
+        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          msg = _INTL("{1}'s {2} paralyzed {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+        end
+        target.pbParalyze(user,msg)
+      end
+      battle.pbHideAbilitySplash(user)
+    end
+  }
+)
+
 BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
@@ -1754,6 +1808,27 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
         msg = _INTL("{1}'s {2} poisoned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
       end
       target.pbPoison(user,msg)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:STUN,
+  proc { |ability,user,target,move,battle|
+    next if target.movedThisRound?
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanParalyze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} paralyzed {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbParalyze(user,msg)
     end
     battle.pbHideAbilitySplash(user)
   }
@@ -1859,6 +1934,18 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
 #===============================================================================
 # TargetAbilityAfterMoveUse handlers
 #===============================================================================
+
+BattleHandlers::TargetAbilityAfterMoveUse.add(:LEGENDARYPRESSURE,
+  proc { |ability,target,user,move,switched,battle|
+    case target.pokemon.species
+    when :GMOLTRES
+      next if !move.damagingMove?
+      next if target.damageState.initialHP<target.adjustedTotalhp/2 || target.hp>=target.adjustedTotalhp/2
+      next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
+      target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,"Berserk")
+    end
+  }
+)
 
 BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
   proc { |ability,target,user,move,switched,battle|
@@ -2220,6 +2307,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
     battle.pbHideAbilitySplash(battler)
     case battler.pokemon.species
     when :ARTICUNO
+      next if battle.field.weather==:Snow
       battle.pbShowAbilitySplash(battler, false, true, "Snow Warning")
       battle.pbStartWeather(battler,:Snow,false)
       battle.pbHideAbilitySplash(battler)
@@ -2230,6 +2318,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
         b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
         b.pbItemOnIntimidatedCheck
       end
+      battle.pbHideAbilitySplash(battler)
+    when :ZAPDOS
+      next if battle.field.weather==:Rain
+      battle.pbShowAbilitySplash(battler, false, true, "Drizzle")
+      battle.pbStartWeather(battler,:Rain,false)
+      battle.pbHideAbilitySplash(battler)
+    when :MOLTRES
+      next if battle.field.weather==:Sun
+      battle.pbShowAbilitySplash(battler, false, true, "Drought")
+      battle.pbStartWeather(battler,:Sun,false)
       battle.pbHideAbilitySplash(battler)
     end
   }

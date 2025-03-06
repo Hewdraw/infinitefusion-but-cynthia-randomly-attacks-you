@@ -1152,6 +1152,38 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:LIGHTNINGSPHERE, proc { |item, pkmn, scene|
+  if pkmn.isSpecies?(:ZAPDOS)
+    level = pkmn.level
+    pkmn.species = :GZAPDOS
+    pkmn.level = level
+    next false
+  end
+  if pkmn.isSpecies?(:GZAPDOS)
+    level = pkmn.level
+    pkmn.species = :ZAPDOS
+    pkmn.level = level
+    next false
+  end
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
+  if pkmn.isSpecies?(:MOLTRES)
+    level = pkmn.level
+    pkmn.species = :GMOLTRES
+    pkmn.level = level
+    next false
+  end
+  if pkmn.isSpecies?(:GMOLTRES)
+    level = pkmn.level
+    pkmn.species = :MOLTRES
+    pkmn.level = level
+    next false
+  end
+  next false
+})
+
 
 #
 # #TRACKER (for roaming legendaries)
