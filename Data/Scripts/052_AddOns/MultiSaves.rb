@@ -379,9 +379,22 @@ class PokemonLoadScreen
   def check_for_spritepack_update()
     $updated_spritesheets = [] if !$updated_spritesheets
     if new_spritepack_was_released()
-      reset_updated_spritesheets_cache()
-      $updated_spritesheets = []
-    end
+      pbFadeOutIn() {
+        return if !downloadAllowed?()
+        should_update = pbConfirmMessage("A new spritepack was released. Would you like to let the game update your game's sprites automatically?")
+        if should_update
+          updateCreditsFile()
+          updateOnlineCustomSpritesFile()
+          reset_updated_spritesheets_cache()
+          spritesLoader = BattleSpriteLoader.new
+          spritesLoader.clear_sprites_cache(:CUSTOM)
+          spritesLoader.clear_sprites_cache(:BASE)
+
+          $updated_spritesheets = []
+          pbMessage("Data files updated. New sprites will now be downloaded as you play!")
+        end
+    }
+      end
   end
 
   def reset_updated_spritesheets_cache()
@@ -426,9 +439,7 @@ class PokemonLoadScreen
 
   def pbStartLoadScreen
     updateHttpSettingsFile
-    updateCreditsFile
     updateCustomDexFile
-    updateOnlineCustomSpritesFile
     newer_version = find_newer_available_version
     if newer_version
       pbMessage(_INTL("Version {1} is now available! Please use the game's installer to download the newest version. Check the Discord for more information.", newer_version))
@@ -444,6 +455,7 @@ class PokemonLoadScreen
       pbMessage(_INTL("{1} new custom sprites were imported into the game", $game_temp.nb_imported_sprites.to_s))
     end
     checkEnableSpritesDownload
+
     $game_temp.nb_imported_sprites = nil
     copyKeybindings()
     save_file_list = SaveData::AUTO_SLOTS + SaveData::MANUAL_SLOTS
@@ -507,11 +519,11 @@ class PokemonLoadScreen
           @scene.pbEndScene
           Game.load(@save_data)
           $game_switches[SWITCH_V5_1] = true
+          check_for_spritepack_update()
           ensureCorrectDifficulty()
           setGameMode()
           initialize_alt_sprite_substitutions()
           $PokemonGlobal.autogen_sprites_cache = {}
-          check_for_spritepack_update()
           preload_party(@save_data[:player])
           return
         when cmd_new_game
