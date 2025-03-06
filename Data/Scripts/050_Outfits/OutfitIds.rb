@@ -16,6 +16,7 @@ CLOTHES_BREEDER="PKMBreeder"
 CLOTHES_FOSSIL_M ="sado"
 CLOTHES_FOSSIL_F ="sada"
 
+CLOTHES_TREVENANT= "trevenantforestkingcloak"
 
 CLOTHES_LASS_YELLOW ="lass"
 CLOTHES_LASS_BLUE ="lass2"
@@ -55,6 +56,8 @@ HAT_FROG = "froghat"
 HAT_SANTA = "santa"
 HAT_QMARKS = "glitzerset"
 HAT_SUDOWOODO = "sudowoodohorns"
+
+HAT_TREVENANT="trevenantforestkingcrown"
 
 HAT_CLOWN = "clownnose"
 
