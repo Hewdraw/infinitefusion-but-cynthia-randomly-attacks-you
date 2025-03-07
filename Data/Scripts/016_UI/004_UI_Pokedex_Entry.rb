@@ -278,7 +278,7 @@ class PokemonPokedexInfo_Scene
     end
   end
 
-  def drawPageInfo
+  def drawPageInfo(reloading=false)
     @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_info"))
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
@@ -324,7 +324,7 @@ class PokemonPokedexInfo_Scene
       #
       #
       #$PokemonSystem.use_generated_dex_entries=true if $PokemonSystem.use_generated_dex_entries ==nil
-      drawEntryText(overlay, species_data)
+      drawEntryText(overlay, species_data,reloading)
 
       # Draw the footprint
       footprintfile = GameData::Species.footprint_filename(@species, @form)
@@ -363,7 +363,7 @@ class PokemonPokedexInfo_Scene
   end
 
 
-  def   drawEntryText(overlay, species_data)
+  def   drawEntryText(overlay, species_data, reloading=false)
     baseColor = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
     shadowCustom = Color.new(160, 200, 150)
@@ -376,7 +376,7 @@ class PokemonPokedexInfo_Scene
         shadowColor = shadowCustom
       else
         if $PokemonSystem.use_generated_dex_entries && species_data.is_a?(GameData::FusedSpecies)
-          @randomEntryText = species_data.get_random_dex_entry if !@randomEntryText
+          @randomEntryText = species_data.get_random_dex_entry if !reloading
           entryText = @randomEntryText
           shadowColor = shadow
         else
@@ -425,7 +425,7 @@ class PokemonPokedexInfo_Scene
   def reloadDexEntry()
     overlay = @sprites["overlay"].bitmap
     overlay.clear
-    drawPageInfo
+    drawPageInfo(true)
   end
 
   def changeEntryPage()
