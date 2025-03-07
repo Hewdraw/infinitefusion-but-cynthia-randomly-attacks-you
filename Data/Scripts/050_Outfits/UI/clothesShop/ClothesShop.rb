@@ -164,7 +164,4 @@ def changeOutfit()
       break
     end
   end
-
-
-
 end

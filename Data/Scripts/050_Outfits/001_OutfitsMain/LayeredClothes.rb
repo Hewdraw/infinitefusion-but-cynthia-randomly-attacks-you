@@ -211,7 +211,6 @@ end
 
 def generateNPCClothedBitmapStatic(trainerAppearance,action = "walk")
   baseBitmapFilename = getBaseOverworldSpriteFilename(action, trainerAppearance.skin_color)
-
   baseSprite = AnimatedBitmap.new(baseBitmapFilename)
 
   baseBitmap = baseSprite.bitmap.clone # nekkid sprite
@@ -275,6 +274,7 @@ def generateNPCClothedBitmapStatic(trainerAppearance,action = "walk")
   return baseBitmap
 end
 
+#for continue screen
 def generateClothedBitmapStatic(trainer, action = "walk")
   baseBitmapFilename = getBaseOverworldSpriteFilename(action, trainer.skin_tone)
   if !pbResolveBitmap(baseBitmapFilename)
@@ -288,10 +288,13 @@ def generateClothedBitmapStatic(trainer, action = "walk")
   outfitFilename = getOverworldOutfitFilename(Settings::PLAYER_TEMP_OUTFIT_FALLBACK) if !pbResolveBitmap(outfitFilename)
   hairFilename = getOverworldHairFilename(trainer.hair)
   hatFilename = getOverworldHatFilename(trainer.hat)
+  hat2Filename = getOverworldHatFilename(trainer.hat2)
 
   # Use default values if color shifts are not set
   hair_color_shift = trainer.hair_color || 0
   hat_color_shift = trainer.hat_color || 0
+  hat2_color_shift = trainer.hat2_color || 0
+
   clothes_color_shift = trainer.clothes_color || 0
 
   # Use fallback outfit if the specified outfit cannot be resolved
@@ -303,6 +306,7 @@ def generateClothedBitmapStatic(trainer, action = "walk")
   outfitBitmap = AnimatedBitmap.new(outfitFilename, clothes_color_shift)
   hairBitmapWrapper = AnimatedBitmap.new(hairFilename, hair_color_shift) if pbResolveBitmap(hairFilename)
   hatBitmapWrapper = AnimatedBitmap.new(hatFilename, hat_color_shift) if pbResolveBitmap(hatFilename)
+  hat2BitmapWrapper = AnimatedBitmap.new(hat2Filename, hat2_color_shift) if pbResolveBitmap(hat2Filename)
 
   # Blit the outfit onto the base sprite
   baseBitmap.blt(0, 0, outfitBitmap.bitmap, outfitBitmap.bitmap.rect) if outfitBitmap
@@ -310,13 +314,20 @@ def generateClothedBitmapStatic(trainer, action = "walk")
   current_offset = [0, 0] # Replace this with getCurrentSpriteOffset() if needed
   positionHair(baseBitmap, hairBitmapWrapper.bitmap, current_offset) if hairBitmapWrapper
 
-  # Handle the hat - duplicate it for each frame if necessary
+  frame_count = 4
+  frame_width = baseSprite.bitmap.width / frame_count # Calculate frame width
+  if hat2BitmapWrapper
+    hat2_frame_bitmap = duplicateHatForFrames(hat2BitmapWrapper.bitmap, frame_count)
+    frame_count.times do |i|
+      # Calculate offset for each frame
+      frame_offset = [i * frame_width, 0]
+      # Adjust Y offset if frame index is odd
+      frame_offset[1] -= 2 if i.odd?
+      positionHat(baseBitmap, hat2_frame_bitmap, frame_offset, i, frame_width)
+    end
+  end
   if hatBitmapWrapper
-    frame_count = 4 # Assuming 4 frames for hair animation; adjust as needed
     hat_frame_bitmap = duplicateHatForFrames(hatBitmapWrapper.bitmap, frame_count)
-
-    frame_width = baseSprite.bitmap.width / frame_count # Calculate frame width
-
     frame_count.times do |i|
       # Calculate offset for each frame
       frame_offset = [i * frame_width, 0]

@@ -19,7 +19,6 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def set_secondary_hat(value)
-    echoln "WOWOWO setting secondary hat value"
     @is_secondary_hat = value
   end
 
