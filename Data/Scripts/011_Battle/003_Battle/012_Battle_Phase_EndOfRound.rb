@@ -535,13 +535,6 @@ class PokeBattle_Battle
     end
     # Taunt
     priority.each do |battler|
-      eachOtherSideBattler(battler.index) do |b|
-        if b.pbCanSleep?(battler,true,self,true)
-          b.pbInflictStatus(:SLEEP, 999)
-        end
-      end
-    end
-    priority.each do |battler|
       next if battler.fainted? || !(battler.hasActiveAbility?(:GOAD) || (battler.hasActiveAbility?(:LEGENDARYPRESSURE) && battler.isSpecies?(:GMOLTRES)))
       eachOtherSideBattler(battler.index) do |b|
         if !b.hasActiveAbility?(:OBLIVIOUS)
