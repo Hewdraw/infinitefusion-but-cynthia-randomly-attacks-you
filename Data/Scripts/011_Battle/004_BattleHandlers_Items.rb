@@ -10,7 +10,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:LIGHTNINGSPHERE,
   proc { |item,battler,mult|
-    if target.isFusionOf(:ZAPDOS) || target.isSpecies?(:GZAPDOS)
+    if battler.isFusionOf(:ZAPDOS) || battler.isSpecies?(:GZAPDOS)
       next mult*1.5
     end
   }

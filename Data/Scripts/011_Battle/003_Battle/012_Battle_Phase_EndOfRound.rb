@@ -219,7 +219,7 @@ class PokeBattle_Battle
         end
         next
       end
-      didsomething = b.status != :None
+      didsomething = b.status != :NONE
       didsomething = didsomething ||
         (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
         b.pokemon.species == :GARTICUNO ||

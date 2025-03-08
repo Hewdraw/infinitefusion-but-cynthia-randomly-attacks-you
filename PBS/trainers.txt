@@ -10396,7 +10396,7 @@ Pokemon = GARTICUNO,11
 
 [LEGENDARY_POKEMON,Zapdos,0]
 Pokemon = ZAPDOS,11	
-	Offset = 8
+	Offset = -28
 	Moves = ROOST,THUNDER,HURRICANE,WEATHERBALL
 	Ability = DRIZZLE
 	Hpbar = 2
@@ -10407,7 +10407,7 @@ Pokemon = ZAPDOS,11
 	IV = 31,31,31,31,31,31
 	EV = 252,0,0,252,252,0
 Pokemon = GZAPDOS,11	
-	Offset = 8
+	Offset = -28
 	Moves = BULKUP,THUNDEROUSKICK,DRILLPECK,SUPERCELLSLAM
 	Ability = STUN
 	Hpbar = 2
