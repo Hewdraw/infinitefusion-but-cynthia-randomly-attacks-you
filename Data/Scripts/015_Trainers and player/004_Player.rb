@@ -206,7 +206,6 @@ class Player < Trainer
     refreshPlayerOutfit()
   end
 
-  #todo change to set_hat_color(value,is_secondary)
   def set_hat_color(value, is_secondary=false)
     if is_secondary
       @hat2_color=value
@@ -218,6 +217,8 @@ class Player < Trainer
     $Trainer.dyed_hats[worn_hat] = value if value
     refreshPlayerOutfit()
   end
+
+  
   def hat_color=(value)
     @hat_color=value
     $Trainer.dyed_hats= {} if !$Trainer.dyed_hats
