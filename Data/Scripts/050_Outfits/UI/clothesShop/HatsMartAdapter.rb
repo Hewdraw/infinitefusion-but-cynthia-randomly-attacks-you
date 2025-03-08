@@ -1,9 +1,14 @@
 class HatsMartAdapter < OutfitsMartAdapter
+  attr_accessor :worn_clothes
+  attr_accessor :worn_clothes2
+
   DEFAULT_NAME = "[unknown]"
   DEFAULT_DESCRIPTION = "A headgear that trainers can wear."
 
   def initialize(stock = nil, isShop = nil, isSecondaryHat = false)
     super(stock,isShop,isSecondaryHat)
+    @worn_clothes =  $Trainer.hat(false)
+    @worn_clothes2 =  $Trainer.hat(true)
   end
 
   def toggleEvent(item)
@@ -11,8 +16,18 @@ class HatsMartAdapter < OutfitsMartAdapter
       $Trainer.set_hat(nil,@is_secondary_hat)
       @worn_clothes = nil
 
-      if pbConfirmMessage(_INTL("Do you want to take off your hat?"))
-        $Trainer.set_hat(nil,@is_secondary_hat)
+      hat1_name = get_hat_by_id($Trainer.hat) ? get_hat_by_id($Trainer.hat).name : "(Empty)"
+      hat2_name = get_hat_by_id($Trainer.hat2) ? get_hat_by_id($Trainer.hat2).name : "(Empty)"
+
+      cmd_remove_hat1 = "Remove #{hat1_name}"
+      cmd_remove_hat2 = "Remove #{hat2_name}"
+      options = [cmd_remove_hat1,cmd_remove_hat2, "Cancel"]
+      choice = optionsMenu(options)
+      if options[choice] == cmd_remove_hat1
+        $Trainer.set_hat(nil,false)
+        @worn_clothes = nil
+      elsif options[choice] == cmd_remove_hat2
+        $Trainer.set_hat(nil,true)
         @worn_clothes = nil
       end
     end
@@ -22,6 +37,10 @@ class HatsMartAdapter < OutfitsMartAdapter
     @is_secondary_hat = value
   end
 
+  def is_wearing_clothes(outfit_id)
+    return outfit_id == @worn_clothes || outfit_id == @worn_clothes2
+  end
+
   def toggleText()
     return
     # return if @isShop
@@ -29,15 +48,12 @@ class HatsMartAdapter < OutfitsMartAdapter
     # return "Remove hat: #{toggleKey}"
   end
 
-  def getName(item)
-    return item.id
+  def switchVersion(item,delta=1)
+    @is_secondary_hat = !@is_secondary_hat
   end
 
-  def getDisplayName(item)
-    return getName(item) if !item.name
-    name = item.name
-    name = "* #{name}" if item.id == $Trainer.favorite_hat(@is_secondary_hat)
-    return name
+  def getName(item)
+    return item.id
   end
 
   def getDescription(item)
@@ -151,7 +167,7 @@ class HatsMartAdapter < OutfitsMartAdapter
     return "Go without a hat and show off your #{hair_situation}!"
   end
 
-  def doSpecialItemAction(specialType)
-    toggleEvent(nil)
+  def doSpecialItemAction(specialType,item=nil)
+    toggleEvent(item)
   end
 end

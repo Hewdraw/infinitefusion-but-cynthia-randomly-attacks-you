@@ -197,7 +197,7 @@ class Player < Trainer
   def clothes_color=(value)
     echoln value
     echoln @clothes
-    echoln $Trainer.dyed_clothes
+    #echoln $Trainer.dyed_clothes
     echoln caller
 
     @clothes_color=value

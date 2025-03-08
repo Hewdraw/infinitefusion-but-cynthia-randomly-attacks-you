@@ -1,4 +1,5 @@
 class ClothesMartAdapter < OutfitsMartAdapter
+
   DEFAULT_NAME = "[unknown]"
   DEFAULT_DESCRIPTION = "A piece of clothing that trainers can wear."
   def toggleEvent(item)
@@ -14,13 +15,8 @@ class ClothesMartAdapter < OutfitsMartAdapter
   end
 
   def getName(item)
-    return item.id
-  end
-
-  def getDisplayName(item)
-    return getName(item) if !item.name
-    name = item.name
-    name = "* #{name}" if item.id == $Trainer.favorite_clothes
+    name= item.id
+    name = "* #{name}" if is_wearing_clothes(item.id)
     return name
   end
 

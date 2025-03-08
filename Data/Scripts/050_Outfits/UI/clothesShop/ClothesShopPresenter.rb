@@ -13,57 +13,10 @@ class ClothesShopPresenter < PokemonMartScreen
     @scene.pbEndBuyScene
   end
 
-  def playerHatActionsMenu(item, is_secondary=false)
-    is_player_hat = item.id == @adapter.worn_clothes
-    options = []
-    if is_player_hat
-      options << "Take off"
-    else
-      options << "Wear"
-    end
 
-    remove_dye_option_available = $Trainer.hat_color(@adapter.is_secondary_hat) != 0
-    options << "Remove dye" if remove_dye_option_available
-    options << "Mark as favorite" if $Trainer.favorite_hat(@adapter.is_secondary_hat) != item.id
-    options << "Unmark as favorite" if $Trainer.favorite_hat(@adapter.is_secondary_hat) == item.id
-
-    options << "Cancel"
-    # if $Trainer.hat_color != 0
-    choice = pbMessage("What would you like to do?", options, -1)
-    if choice == 0
-      if is_player_hat # remove
-        @adapter.doSpecialItemAction(:REMOVE)
-        @scene.pbEndBuyScene
-        return false
-      else
-        # wear
-        putOnClothes(item)
-        $Trainer.set_hat_color(@adapter.get_dye_color(item),@adapter.is_secondary_hat)
-        return false
-      end
-    elsif choice == 1 && remove_dye_option_available
-      if pbConfirm(_INTL("Are you sure you want to remove the dye from the {1}?", item.name))
-        $Trainer.set_hat_color(0,@adapter.is_secondary_hat)
-      end
-      return true
-    elsif options[choice] == "Mark as favorite"
-      slot = @adapter.is_secondary_hat ? "slot 1" : "slot 2"
-      $Trainer.set_favorite_hat(item.id,@adapter.is_secondary_hat)
-      pbSEPlay("GUI storage show party panel")
-      pbMessage("The #{item.name} is now your favorite (#{slot})!")
-      echoln "marked #{item.id} as favorite hat"
-    elsif options[choice] == "Unmark as favorite"
-      $Trainer.set_favorite_hat(nil,@adapter.is_secondary_hat)
-      pbSEPlay("GUI storage show party panel")
-      pbMessage("The #{item.name} is no longer marked as your favorite!")
-    end
-    echoln "cancelled"
-    return true
-  end
 
   # returns if should stay in the menu
   def playerClothesActionsMenu(item)
-    is_worn = item.id == @adapter.worn_clothes
     options = []
     options << "Wear"
     options << "Remove dye" if $Trainer.clothes_color != 0
@@ -106,7 +59,6 @@ class ClothesShopPresenter < PokemonMartScreen
           return
         elsif @adapter.is_a?(HatsMartAdapter)
           stay_in_menu = playerHatActionsMenu(item)
-          echoln stay_in_menu
           next if stay_in_menu
           return
         else

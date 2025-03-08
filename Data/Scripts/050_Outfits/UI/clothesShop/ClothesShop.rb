@@ -18,6 +18,8 @@ def genericOutfitsShopMenu(stock = [], itemType = nil, versions = false, isShop=
   end
 end
 
+
+
 def getPresenter(itemType, view, stock, adapter, versions)
   case itemType
   when :HAIR
@@ -110,9 +112,18 @@ SWAP_HAT_POSITIONS_CAPTION = "Switch hats position"
 #is_secondary only used for hats
 def openSelectOutfitMenu(stock = [], itemType =nil, is_secondary=false)
   adapter = getAdapter(itemType, stock, false, is_secondary)
-  view = ClothesShopView.new()
+  view = getView(itemType)
   presenter = ClothesShopPresenter.new(view, stock, adapter)
   presenter.pbBuyScreen
+end
+
+def getView(itemType)
+  case itemType
+  when :HAT
+    return HatShopView.new
+  else
+    return ClothesShopView.new
+  end
 end
 
 def changeClothesMenu()
@@ -134,31 +145,51 @@ def changeHatMenu(is_secondary_hat = false)
   openSelectOutfitMenu(stock, :HAT, is_secondary_hat)
 end
 
-def changeOutfit()
-  hat1_name = get_hat_by_id($Trainer.hat) ? get_hat_by_id($Trainer.hat).name : "(Empty)"
-  hat2_name = get_hat_by_id($Trainer.hat2) ? get_hat_by_id($Trainer.hat2).name : "(Empty)"
+# def changeOutfit()
+#   hat1_name = get_hat_by_id($Trainer.hat) ? get_hat_by_id($Trainer.hat).name : "(Empty)"
+#   hat2_name = get_hat_by_id($Trainer.hat2) ? get_hat_by_id($Trainer.hat2).name : "(Empty)"
+#
+#   commands = []
+#   commands[cmdClothes = commands.length] = _INTL("Change clothes")
+#   commands[cmdHat = commands.length] = _INTL("Change hat 1 (#{hat1_name})")
+#   commands[cmdHat2 = commands.length] = _INTL("Change hat 2 (#{hat2_name})")
+#   commands[switchHats = commands.length] = _INTL("Switch hat positions")
+#   commands[cmdQuit = commands.length] = _INTL("Quit")
+#
+#   #TODO change this into a graphical menu with icons
+#   loop do
+#     cmd = pbMessage(_INTL("What would you like to do?"), commands, cmdQuit + 1)
+#     if cmd == cmdClothes
+#       changeClothesMenu()
+#       break
+#     elsif cmd == cmdHat
+#       changeHatMenu()
+#       break
+#     elsif cmd == cmdHat2
+#       changeHatMenu(true)
+#       break
+#     elsif cmd == switchHats
+#       switchHatsPosition()
+#       break
+#     else
+#       break
+#     end
+#   end
+# end
 
+def changeOutfit()
   commands = []
+  commands[cmdHat = commands.length] = _INTL("Change hat")
   commands[cmdClothes = commands.length] = _INTL("Change clothes")
-  commands[cmdHat = commands.length] = _INTL("Change hat 1 (#{hat1_name})")
-  commands[cmdHat2 = commands.length] = _INTL("Change hat 2 (#{hat2_name})")
-  commands[switchHats = commands.length] = _INTL("Switch hat positions")
   commands[cmdQuit = commands.length] = _INTL("Quit")
 
-  #TODO change this into a graphical menu with icons
+  cmd = pbMessage(_INTL("What would you like to do?"), commands, cmdQuit + 1)
   loop do
-    cmd = pbMessage(_INTL("What would you like to do?"), commands, cmdQuit + 1)
     if cmd == cmdClothes
       changeClothesMenu()
       break
     elsif cmd == cmdHat
       changeHatMenu()
-      break
-    elsif cmd == cmdHat2
-      changeHatMenu(true)
-      break
-    elsif cmd == switchHats
-      switchHatsPosition()
       break
     else
       break

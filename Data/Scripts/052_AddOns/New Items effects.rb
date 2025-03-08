@@ -374,6 +374,24 @@ ItemHandlers::UseFromBag.add(:ODDKEYSTONE, proc { |item|
 })
 
 def useFavoriteOutfit()
+  cmd_switch = "Switch to favorite outfit"
+  cmd_mark_favorite = "Mark current outfit as favorite"
+  cmd_cancel = "Cancel"
+
+  options = [cmd_switch, cmd_mark_favorite, cmd_cancel]
+  choice = optionsMenu(options)
+  if options[choice] == cmd_switch
+    switchToFavoriteOutfit()
+  elsif options[choice] == cmd_mark_favorite
+    pbSEPlay("shiny", 80, 100)
+    $Trainer.favorite_clothes= $Trainer.clothes
+    $Trainer.favorite_hat = $Trainer.hat
+    $Trainer.favorite_hat2=$Trainer.hat2
+    pbMessage(_INTL("Your favorite outfit was updated!"))
+  end
+end
+
+def switchToFavoriteOutfit()
   if !$Trainer.favorite_clothes && !$Trainer.favorite_hat && !$Trainer.favorite_hat2
     pbMessage(_INTL("You can mark clothes and hats as your favorites in the outfits menu and use this to quickly switch to them!"))
     return 0

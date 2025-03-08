@@ -85,11 +85,6 @@ class HairMartAdapter < OutfitsMartAdapter
     return item.id
   end
 
-  def getDisplayName(item)
-    return getName(item) if !item.name
-    return item.name
-  end
-
   def getDescription(item)
     return DEFAULT_DESCRIPTION if !item.description
     return item.description
