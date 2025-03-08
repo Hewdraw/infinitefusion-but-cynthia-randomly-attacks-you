@@ -1470,6 +1470,7 @@ Pokemon = GENESECT,7
 	Offset = -5
 	Moves = BUGBITE,SHOCKWAVE,HIDDENPOWER,MAGNETBOMB
 	HPType = ICE
+	Ace = TRUE
 	Item = LUMBERRY
 	Ability = DOWNLOAD
 	Gender = F
