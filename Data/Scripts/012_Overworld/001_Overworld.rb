@@ -192,8 +192,8 @@ def pbBattleOnStepTaken(repel_active)
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    #pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
-    pbLegendaryBattle("Zapdos")
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
+    #pbLegendaryBattle("Moltres")
     return
   end
   encounter_type = $PokemonEncounters.encounter_type

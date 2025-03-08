@@ -2329,6 +2329,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
       battle.pbShowAbilitySplash(battler, false, true, "Drought")
       battle.pbStartWeather(battler,:Sun,false)
       battle.pbHideAbilitySplash(battler)
+    when :GMOLTRES
+      battle.pbShowAbilitySplash(battler, false, true, "Goad")
+      battle.eachOtherSideBattler(battler.index) do |b|
+        if b.hasActiveAbility?(:OBLIVIOUS)
+          battle.pbShowAbilitySplash(b)
+          battle.pbHideAbilitySplash(b)
+        else
+          b.effects[PBEffects::Taunt] = 1
+          battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))
+          b.pbItemStatusCureCheck
+        end
+      end
+      battle.pbHideAbilitySplash(battler)
     end
   }
 )
@@ -2521,6 +2534,23 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
     battle.pbShowAbilitySplash(battler)
     battle.pbStartTerrain(battler, :Grassy)
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:GOAD,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      if b.hasActiveAbility?(:OBLIVIOUS)
+        battle.pbShowAbilitySplash(b)
+        battle.pbHideAbilitySplash(b)
+      else
+        b.effects[PBEffects::Taunt] = 1
+        battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))
+        b.pbItemStatusCureCheck
+      end
+    end
+    battle.pbHideAbilitySplash(battler)
   }
 )
 

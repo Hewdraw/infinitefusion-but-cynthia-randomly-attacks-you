@@ -316,8 +316,8 @@ class PokeBattle_Battle
     for side in 0...2
       next if sides[side].effects[PBEffects::SeaOfFire]==0
       next if [:Rain, :HeavyRain].include?(curWeather)
-      @battle.pbCommonAnimation("SeaOfFire") if side==0
-      @battle.pbCommonAnimation("SeaOfFireOpp") if side==1
+      pbCommonAnimation("SeaOfFire") if side==0
+      pbCommonAnimation("SeaOfFireOpp") if side==1
       priority.each do |b|
         next if b.opposes?(side)
         next if !b.takesIndirectDamage? || b.pbHasType?(:FIRE) ||  b.pbHasType?(:ICEFIREELECTRIC)
@@ -534,6 +534,14 @@ class PokeBattle_Battle
       end
     end
     # Taunt
+    priority.each do |battler|
+      eachOtherSideBattler(battler.index) do |b|
+        if !b.hasActiveAbility?(:OBLIVIOUS)
+          b.effects[PBEffects::Taunt] += 1
+          b.pbItemStatusCureCheck
+        end
+      end
+    end
     pbEORCountDownBattlerEffect(priority,PBEffects::Taunt) { |battler|
       pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis))
     }
