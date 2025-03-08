@@ -120,6 +120,13 @@ class PokeBattle_AI
 
 
   def pbCynthiaGetThreat(user, target, percentagetotal = true)
+    return {
+      :highestDamage => 0,
+      :physicalDamage => 0,
+      :specialDamage => 0,
+      :statusCount => 0,
+      :moves => {}
+    } if !user
     newtable = {}
     if user != target
       threattable = pbCynthiaAssessThreat(user, target)
