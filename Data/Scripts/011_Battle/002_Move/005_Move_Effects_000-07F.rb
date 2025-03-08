@@ -1525,6 +1525,11 @@ class PokeBattle_Move_05A < PokeBattle_Move
     elsif user.hp < newHP;
       user.pbRecoverHP(newHP - user.hp, false)
     end
+    if target.effects[PBEffects::Dynamax] > 0
+      newHP = newHP * 2
+    elsif target.hpbars
+      newHP = newHP * target.hpbars
+    end
     if target.hp > newHP;
       target.pbReduceHP(target.hp - newHP, false, false)
     elsif target.hp < newHP;
