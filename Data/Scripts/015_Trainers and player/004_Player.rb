@@ -195,11 +195,6 @@ class Player < Trainer
   end
 
   def clothes_color=(value)
-    echoln value
-    echoln @clothes
-    #echoln $Trainer.dyed_clothes
-    echoln caller
-
     @clothes_color=value
     $Trainer.dyed_clothes= {} if !$Trainer.dyed_clothes
     $Trainer.dyed_clothes[@clothes] = value if value
@@ -218,7 +213,7 @@ class Player < Trainer
     refreshPlayerOutfit()
   end
 
-  
+
   def hat_color=(value)
     @hat_color=value
     $Trainer.dyed_hats= {} if !$Trainer.dyed_hats

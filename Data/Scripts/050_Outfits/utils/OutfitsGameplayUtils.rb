@@ -76,9 +76,11 @@ def putOnHat(outfit_id, silent = false, is_secondary=false)
 
   dye_color = $Trainer.dyed_hats[outfit_id]
   if dye_color
-    $Trainer.hat_color = dye_color
+    $Trainer.hat_color = dye_color if !is_secondary
+    $Trainer.hat2_color = dye_color if is_secondary
   else
-    $Trainer.hat_color = nil
+    $Trainer.hat_color = nil if !is_secondary
+    $Trainer.hat2_color = nil if is_secondary
   end
 
   $game_map.refreshPlayerOutfit()

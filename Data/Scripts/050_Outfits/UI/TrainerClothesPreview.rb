@@ -1,5 +1,5 @@
 class TrainerClothesPreview
-  attr_writer :pokeball, :clothes, :hat, :hat2, :hair, :skin_tone, :hair_color, :hat_color, :clothes_color
+  attr_writer :pokeball, :clothes, :hat, :hat2, :hair, :skin_tone, :hair_color, :hat_color,:hat2_color, :clothes_color
 
   def initialize(x = 0, y = 0, windowed = true, pokeball = nil)
     @playerBitmap = nil

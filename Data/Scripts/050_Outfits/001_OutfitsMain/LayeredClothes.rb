@@ -66,9 +66,15 @@ def setHairColor(hue_shift)
   refreshPlayerOutfit()
 end
 
-def shiftHatColor(incr)
-  $Trainer.hat_color = 0 if !$Trainer.hat_color
-  $Trainer.hat_color += incr
+def shiftHatColor(incr,secondary_hat=false)
+  if secondary_hat
+    $Trainer.hat2_color = 0 if !$Trainer.hat2_color
+    $Trainer.hat2_color += incr
+  else
+    $Trainer.hat_color = 0 if !$Trainer.hat_color
+    $Trainer.hat_color += incr
+  end
+
   refreshPlayerOutfit()
 end
 
@@ -144,6 +150,7 @@ def generate_front_trainer_sprite_bitmap(allowEasterEgg=true, pokeball = nil,
                                          clothes_id = nil, hat_id = nil, hat2_id=nil, hair_id = nil,
                                          skin_tone_id = nil, hair_color = nil, hat_color = nil, clothes_color = nil,
                                          hat2_color = nil)
+
   clothes_id = $Trainer.clothes if !clothes_id
   hat_id = $Trainer.hat if !hat_id
   hat2_id = $Trainer.hat2 if !hat2_id
