@@ -40,11 +40,11 @@ class ClothesMartAdapter < OutfitsMartAdapter
     previewWindow.updatePreview()
   end
 
-  def get_dye_color(item)
+  def get_dye_color(item_id)
     return 0 if isShop?
     $Trainer.dyed_clothes= {} if ! $Trainer.dyed_clothes
-    if $Trainer.dyed_clothes.include?(item.id)
-      return $Trainer.dyed_clothes[item.id]
+    if $Trainer.dyed_clothes.include?(item_id)
+      return $Trainer.dyed_clothes[item_id]
     end
     return 0
   end

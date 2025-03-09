@@ -42,8 +42,7 @@ class ClothesShopPresenter < PokemonMartScreen
     options << cmd_remove
 
     options << cmd_swap
-    dye_option_available = true#$Trainer.dyed_hats.include?(item.id) && $Trainer.dyed_hats[item.id] != 0
-    options << cmd_dye if dye_option_available
+    options << cmd_dye if $PokemonBag.pbHasItem?(:HATSDYEKIT)
     options << cmd_cancel
   end
 

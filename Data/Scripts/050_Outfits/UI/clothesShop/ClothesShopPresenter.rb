@@ -14,33 +14,56 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
 
+  def dyeClothes()
+    original_color = $Trainer.clothes_color
+    options = ["Shift up", "Shift down", "Reset", "Confirm", "Never Mind"]
+    previous_input = 0
+    ret = false
+    while (true)
+      choice = pbShowCommands(nil, options, options.length, previous_input,200)
+      previous_input = choice
+      case choice
+      when 0 #NEXT
+        pbSEPlay("GUI storage pick up", 80, 100)
+        shiftClothesColor(10)
+        ret = true
+      when 1 #PREVIOUS
+        pbSEPlay("GUI storage pick up", 80, 100)
+        shiftClothesColor(-10)
+        ret = true
+      when 2 #Reset
+        pbSEPlay("GUI storage pick up", 80, 100)
+        $Trainer.clothes_color = 0
+        ret = false
+      when 3 #Confirm
+        break
+      else
+        $Trainer.clothes_color = original_color
+        ret = false
+        break
+      end
+      @scene.updatePreviewWindow
+    end
+    return ret
+  end
+
 
   # returns if should stay in the menu
   def playerClothesActionsMenu(item)
+    cmd_wear = "Wear"
+    cmd_dye = "Dye Kit"
     options = []
-    options << "Wear"
-    options << "Remove dye" if $Trainer.clothes_color != 0
-    options << "Mark as favorite" if $Trainer.favorite_hat != item.id
-    options << "Unmark as favorite" if $Trainer.favorite_hat == item.id
+    options << cmd_wear
+    options << cmd_dye  if $PokemonBag.pbHasItem?(:CLOTHESDYEKIT)
     options << "Cancel"
     choice = pbMessage("What would you like to do?", options, -1)
 
-    if choice == 0
+    if options[choice] == cmd_wear
       putOnClothes(item)
       $Trainer.clothes_color = @adapter.get_dye_color(item.id)
       return false
-    elsif options[choice] == "Remove dye"
-      if pbConfirm(_INTL("Are you sure you want to remove the dye from the {1}?", item.name))
-        $Trainer.clothes_color = 0
-      end
-    elsif options[choice] == "Mark as favorite"
-      $Trainer.favorite_clothes = item.id
-      pbSEPlay("GUI storage show party panel")
-      pbMessage("The #{item.name} is now your favorite!")
-    elsif options[choice] == "Unmark favorite"
-      $Trainer.favorite_clothes = nil
-      pbSEPlay("GUI storage show party panel")
-      pbMessage("The #{item.name} is no longer marked as your favorite!")
+    elsif options[choice] == cmd_dye
+      dyeClothes()
     end
     return true
   end

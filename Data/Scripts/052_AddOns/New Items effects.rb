@@ -374,7 +374,7 @@ ItemHandlers::UseFromBag.add(:ODDKEYSTONE, proc { |item|
 })
 
 def useFavoriteOutfit()
-  cmd_switch = "Switch to favorite outfit"
+  cmd_switch = isWearingFavoriteOutfit() ? "Take off favorite outfit" : "Switch to favorite outfit"
   cmd_mark_favorite = "Mark current outfit as favorite"
   cmd_cancel = "Cancel"
 
@@ -406,9 +406,9 @@ def switchToFavoriteOutfit()
         $Trainer.last_worn_outfit = getDefaultClothes()
       end
       playOutfitChangeAnimation()
-      putOnClothes($Trainer.last_worn_outfit, true) if $Trainer.favorite_clothes
-      putOnHat($Trainer.last_worn_hat, true,false) if $Trainer.favorite_hat
-      putOnHat($Trainer.last_worn_hat2, true,true) if $Trainer.favorite_hat2
+      putOnClothes($Trainer.last_worn_outfit, true) #if $Trainer.favorite_clothes
+      putOnHat($Trainer.last_worn_hat, true,false) #if $Trainer.favorite_hat
+      putOnHat($Trainer.last_worn_hat2, true,true) #if $Trainer.favorite_hat2
 
     else
       return 0
