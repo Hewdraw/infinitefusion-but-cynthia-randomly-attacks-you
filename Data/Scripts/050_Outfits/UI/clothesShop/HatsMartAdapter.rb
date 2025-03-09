@@ -12,6 +12,7 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def toggleEvent(item)
+    return if isShop?
     $Trainer.set_hat(nil,@is_secondary_hat)
     @worn_clothes = nil
   end
@@ -32,6 +33,7 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def switchVersion(item,delta=1)
+    return if isShop?
     @is_secondary_hat = !@is_secondary_hat
   end
 

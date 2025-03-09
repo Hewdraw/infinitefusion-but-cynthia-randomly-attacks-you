@@ -76,6 +76,7 @@ class ClothesShopPresenter < PokemonMartScreen
       item = @scene.pbChooseBuyItem
       #break if !item
       if !item
+        break if @adapter.isShop?
         if pbConfirm(_INTL("Discard the changes to your outfit?"))
           break
         else
