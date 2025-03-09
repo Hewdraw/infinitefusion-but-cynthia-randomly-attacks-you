@@ -23,8 +23,13 @@ class ClothesShopView < PokemonMart_Scene
 
   end
 
-  def select_specific_item(scroll_to_item_id)
+  def select_specific_item(scroll_to_item_id,go_to_end_of_list_if_nil=false)
     itemwindow = @sprites["itemwindow"]
+    if !scroll_to_item_id && go_to_end_of_list_if_nil
+      itemwindow.index=@adapter.items.length-1
+      itemwindow.refresh
+    end
+
     i=0
     for item in @adapter.items
       next if !item.is_a?(Outfit)
@@ -104,6 +109,11 @@ class ClothesShopView < PokemonMart_Scene
     @sprites["itemtextwindow"].text = description
   end
 
+  def updatePreviewWindow
+    itemwindow= @sprites["itemwindow"]
+    @adapter.updateTrainerPreview(itemwindow.item, @sprites["trainerPreview"])
+  end
+
   def pbChooseBuyItem
     itemwindow = @sprites["itemwindow"]
     refreshStock(@adapter) if !itemwindow
@@ -137,8 +147,8 @@ class ClothesShopView < PokemonMart_Scene
           return nil
         elsif Input.trigger?(Input::USE)
           if itemwindow.item.is_a?(Symbol)
-            @adapter.doSpecialItemAction(itemwindow.item)
-            updateTrainerPreview()
+            ret = onSpecialActionTrigger(itemwindow)
+            return ret if ret
           elsif itemwindow.index < @stock.length
             pbRefresh
             return @stock[itemwindow.index]
@@ -148,6 +158,23 @@ class ClothesShopView < PokemonMart_Scene
         end
       end
     }
+  end
+
+  def onSpecialActionTrigger(itemwindow)
+    @adapter.doSpecialItemAction(itemwindow.item)
+    updateTrainerPreview()
+    return nil
+  end
+  def onItemClick(itemwindow)
+    if itemwindow.item.is_a?(Symbol)
+      @adapter.doSpecialItemAction(itemwindow.item)
+      updateTrainerPreview()
+    elsif itemwindow.index < @stock.length
+      pbRefresh
+      return @stock[itemwindow.index]
+    else
+      return nil
+    end
   end
 
   def switchItemVersion(itemwindow)

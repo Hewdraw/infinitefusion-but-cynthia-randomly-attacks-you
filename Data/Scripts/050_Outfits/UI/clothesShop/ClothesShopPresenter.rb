@@ -27,7 +27,7 @@ class ClothesShopPresenter < PokemonMartScreen
 
     if choice == 0
       putOnClothes(item)
-      $Trainer.clothes_color = @adapter.get_dye_color(item)
+      $Trainer.clothes_color = @adapter.get_dye_color(item.id)
       return false
     elsif options[choice] == "Remove dye"
       if pbConfirm(_INTL("Are you sure you want to remove the dye from the {1}?", item.name))
@@ -50,7 +50,15 @@ class ClothesShopPresenter < PokemonMartScreen
     item = nil
     loop do
       item = @scene.pbChooseBuyItem
-      break if !item
+      #break if !item
+      if !item
+        if pbConfirm(_INTL("Discard the changes to your outfit?"))
+          break
+        else
+          item = @scene.pbChooseBuyItem
+        end
+      end
+
 
       if !@adapter.isShop?
         if @adapter.is_a?(ClothesMartAdapter)

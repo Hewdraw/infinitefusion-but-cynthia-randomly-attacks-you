@@ -5,9 +5,9 @@
 #==============================================================================#
 module Settings
   # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-  GAME_VERSION = '6.4.6'
-  GAME_VERSION_NUMBER = "6.4.7"
-  LATEST_GAME_RELEASE = "6.4"
+  GAME_VERSION = '6.5'
+  GAME_VERSION_NUMBER = "6.5.0"
+  LATEST_GAME_RELEASE = "6.5"
 
   POKERADAR_LIGHT_ANIMATION_RED_ID = 17
   POKERADAR_LIGHT_ANIMATION_GREEN_ID = 18
@@ -575,7 +575,8 @@ module Settings
 
   # Available menu frames. These are graphic files in "Graphics/Windowskins/".
   MENU_WINDOWSKINS = [
-    "choice 1",
+    "default_transparent",
+    "default_opaque",
     "choice 2",
     "choice 3",
     "choice 4",

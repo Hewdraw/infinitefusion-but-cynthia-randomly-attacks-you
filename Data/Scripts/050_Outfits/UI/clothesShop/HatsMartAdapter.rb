@@ -12,25 +12,8 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def toggleEvent(item)
-    if !@isShop
-      $Trainer.set_hat(nil,@is_secondary_hat)
-      @worn_clothes = nil
-
-      hat1_name = get_hat_by_id($Trainer.hat) ? get_hat_by_id($Trainer.hat).name : "(Empty)"
-      hat2_name = get_hat_by_id($Trainer.hat2) ? get_hat_by_id($Trainer.hat2).name : "(Empty)"
-
-      cmd_remove_hat1 = "Remove #{hat1_name}"
-      cmd_remove_hat2 = "Remove #{hat2_name}"
-      options = [cmd_remove_hat1,cmd_remove_hat2, "Cancel"]
-      choice = optionsMenu(options)
-      if options[choice] == cmd_remove_hat1
-        $Trainer.set_hat(nil,false)
-        @worn_clothes = nil
-      elsif options[choice] == cmd_remove_hat2
-        $Trainer.set_hat(nil,true)
-        @worn_clothes = nil
-      end
-    end
+    $Trainer.set_hat(nil,@is_secondary_hat)
+    @worn_clothes = nil
   end
 
   def set_secondary_hat(value)
@@ -68,9 +51,24 @@ class HatsMartAdapter < OutfitsMartAdapter
 
   def updateTrainerPreview(item, previewWindow)
     if item.is_a?(Outfit)
-      previewWindow.set_hat(item.id,@is_secondary_hat)
-      $Trainer.set_hat(item.id,@is_secondary_hat)# unless $Trainer.hat==nil
-      set_dye_color(item,previewWindow)
+      hat1 = @is_secondary_hat ? get_hat_by_id($Trainer.hat) : item
+      hat2 = @is_secondary_hat ? item : get_hat_by_id($Trainer.hat2)
+
+      previewWindow.set_hat(hat1.id,false) if hat1
+      previewWindow.set_hat(hat2.id,true) if hat2
+
+      hat1_color=0
+      hat2_color=0
+      hat1_color = $Trainer.dyed_hats[hat1.id] if hat1 && $Trainer.dyed_hats.include?(hat1.id)
+      hat2_color = $Trainer.dyed_hats[hat2.id] if hat2 && $Trainer.dyed_hats.include?(hat2.id)
+      previewWindow.hat_color = hat1_color
+      previewWindow.hat2_color = hat2_color
+
+      $Trainer.hat = hat1&.id
+      $Trainer.hat2 = hat2&.id
+      $Trainer.hat_color = hat1_color
+      $Trainer.hat2_color = hat2_color
+
     else
       $Trainer.set_hat(nil,@is_secondary_hat)
       previewWindow.set_hat(nil,@is_secondary_hat)
@@ -81,33 +79,50 @@ class HatsMartAdapter < OutfitsMartAdapter
     previewWindow.updatePreview()
   end
   
-  def get_dye_color(item)
+  def get_dye_color(item_id)
+    return if !item_id
     return 0 if isShop?
     $Trainer.dyed_hats= {} if ! $Trainer.dyed_hats
-    if $Trainer.dyed_hats.include?(item.id)
-      return $Trainer.dyed_hats[item.id]
+    if $Trainer.dyed_hats.include?(item_id)
+      return $Trainer.dyed_hats[item_id]
     end
     return 0
   end
-  
-  
-  def set_dye_color(item,previewWindow)
+
+
+  def set_dye_color(item,previewWindow,is_secondary_hat=false)
+    return if !item
     if !isShop?
-      $Trainer.dyed_hats= {} if !$Trainer.dyed_hats
-      if $Trainer.dyed_hats.include?(item.id)
-        dye_color = $Trainer.dyed_hats[item.id]
-        $Trainer.set_hat_color(dye_color,@is_secondary_hat)
-        previewWindow.hat_color = dye_color
-      else
-        $Trainer.set_hat_color(0,@is_secondary_hat)
-        previewWindow.hat_color=0
-      end
-      #echoln $Trainer.dyed_hats
+
     else
-      $Trainer.set_hat_color(0,@is_secondary_hat)
+      $Trainer.set_hat_color(0,is_secondary_hat)
       previewWindow.hat_color=0
     end
   end
+  
+  # def set_dye_color(item,previewWindow,is_secondary_hat=false)
+  #   return if !item
+  #   if !isShop?
+  #     $Trainer.dyed_hats= {} if !$Trainer.dyed_hats
+  #
+  #     echoln item.id
+  #     echoln $Trainer.dyed_hats.include?(item.id)
+  #     echoln $Trainer.dyed_hats[item.id]
+  #
+  #     if $Trainer.dyed_hats.include?(item.id)
+  #       dye_color = $Trainer.dyed_hats[item.id]
+  #       $Trainer.set_hat_color(dye_color,is_secondary_hat)
+  #       previewWindow.hat_color = dye_color
+  #     else
+  #       $Trainer.set_hat_color(0,is_secondary_hat)
+  #       previewWindow.hat_color=0
+  #     end
+  #     #echoln $Trainer.dyed_hats
+  #   else
+  #     $Trainer.set_hat_color(0,is_secondary_hat)
+  #     previewWindow.hat_color=0
+  #   end
+  # end
 
 
   def addItem(item)
@@ -129,8 +144,11 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def reset_player_clothes()
-    $Trainer.set_hat(@worn_clothes,@is_secondary_hat)
-    $Trainer.set_hat_color($Trainer.dyed_hats[@worn_clothes],@is_secondary_hat) if  $Trainer.dyed_hats && $Trainer.dyed_hats[@worn_clothes]
+    $Trainer.set_hat(@worn_clothes,false)
+    $Trainer.set_hat(@worn_clothes2,true)
+
+    $Trainer.set_hat_color($Trainer.dyed_hats[@worn_clothes],false) if  $Trainer.dyed_hats && $Trainer.dyed_hats[@worn_clothes]
+    $Trainer.set_hat_color($Trainer.dyed_hats[@worn_clothes2],true) if  $Trainer.dyed_hats && $Trainer.dyed_hats[@worn_clothes2]
   end
 
   def get_unlocked_items_list()
@@ -162,7 +180,6 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def getSpecialItemDescription(specialType)
-    echoln $Trainer.hair
     hair_situation = !$Trainer.hair || getSimplifiedHairIdFromFullID($Trainer.hair) == HAIR_BALD ? "bald head" : "fabulous hair"
     return "Go without a hat and show off your #{hair_situation}!"
   end

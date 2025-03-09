@@ -28,11 +28,14 @@ class HatShopView < ClothesShopView
   def switchItemVersion(itemwindow)
     @adapter.switchVersion(itemwindow.item, 1)
     new_selected_hat = @adapter.is_secondary_hat ? $Trainer.hat2 : $Trainer.hat
-
-
-    echoln "scroll to #{new_selected_hat} (#{@adapter.is_secondary_hat}"
-    select_specific_item(new_selected_hat)
+    select_specific_item(new_selected_hat,true)
     updateTrainerPreview()
+  end
+
+  def onSpecialActionTrigger(itemwindow)
+    #@adapter.doSpecialItemAction(itemwindow.item)
+    #updateTrainerPreview()
+    return @stock[itemwindow.index]
   end
 
   def displayLayerIcons(selected_item=nil)
@@ -48,8 +51,8 @@ class HatShopView < ClothesShopView
     hat2Filename = getOverworldHatFilename($Trainer.hat2)
 
 
-    hat_color_shift = $Trainer.dyed_hats[@adapter.worn_clothes]
-    hat2_color_shift = $Trainer.dyed_hats[@adapter.worn_clothes2]
+    hat_color_shift = $Trainer.dyed_hats[$Trainer.hat]
+    hat2_color_shift = $Trainer.dyed_hats[$Trainer.hat2]
 
     hatBitmapWrapper = AnimatedBitmap.new(hat1Filename, hat_color_shift) if pbResolveBitmap(hat1Filename)
     hat2BitmapWrapper = AnimatedBitmap.new(hat2Filename, hat2_color_shift) if pbResolveBitmap(hat2Filename)
@@ -58,7 +61,7 @@ class HatShopView < ClothesShopView
     @sprites["wornHat_layer2"].bitmap = hat2BitmapWrapper.bitmap if hat2BitmapWrapper
 
     frame_width=80
-    frame_height=40
+    frame_height=80
 
     @sprites["wornHat_layer1"].src_rect.set(0, 0, frame_width, frame_height) if hatBitmapWrapper
     @sprites["wornHat_layer2"].src_rect.set(0, 0, frame_width, frame_height) if hat2BitmapWrapper
