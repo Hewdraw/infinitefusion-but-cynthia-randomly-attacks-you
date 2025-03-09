@@ -8,14 +8,15 @@ class Sprite_Player < Sprite_Character
 
     hatFilename = ""
     hairFilename = ""
-    @hair = Sprite_Hair.new(self, hairFilename, @character_name, @viewport)
     @hat = Sprite_Hat.new(self, hatFilename, @character_name, @viewport,3)
     @hat2 = Sprite_Hat.new(self, hatFilename, @character_name, @viewport,2)
+    @hair = Sprite_Hair.new(self, hairFilename, @character_name, @viewport)
 
     @previous_skinTone = 0
 
     @current_bitmap = nil
     @previous_action =nil
+    echoln "init playa"
     getClothedPlayerSprite(true)
   end
 
