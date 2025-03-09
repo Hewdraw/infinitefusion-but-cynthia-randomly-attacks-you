@@ -699,6 +699,8 @@
 691,PINKANBERRY,Pinkan Berry,Pinkan Berries,5,0,"A type of Berry that is only found on Pinkan Island. This berry turns Pokémon that eats it pink.",0,0,5,
 692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6,
 693,FAVORITEOUTFIT,Favorite Outfit,Favorite Outfits,8,0,"Allows you to quickly switch to the outfit you've marked as your favorite.",2,0,6,
+694,HATSDYEKIT,Hats Dye Kit,Hats Dye Kits,8,0,"A nifty kit that can be used to dye your hats in different colours from the Outfits menu",2,0,6,
+695,CLOTHESDYEKIT,Clothes Dye Kit,Hats Dye Kits,8,0,"A nifty kit that can be used to dye your clothes in different colours from the Outfits menu",2,0,6,
 
 
 

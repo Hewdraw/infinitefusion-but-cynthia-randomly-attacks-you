@@ -29,7 +29,6 @@ class ClothesShopView < PokemonMart_Scene
       itemwindow.index=@adapter.items.length-1
       itemwindow.refresh
     end
-
     i=0
     for item in @adapter.items
       next if !item.is_a?(Outfit)
@@ -117,7 +116,6 @@ class ClothesShopView < PokemonMart_Scene
   def pbChooseBuyItem
     itemwindow = @sprites["itemwindow"]
     refreshStock(@adapter) if !itemwindow
-    select_specific_item(@adapter.worn_clothes) if !@adapter.isShop?
     displayNewItem(itemwindow)
     @sprites["helpwindow"].visible = false
     pbActivateWindow(@sprites, "itemwindow") {

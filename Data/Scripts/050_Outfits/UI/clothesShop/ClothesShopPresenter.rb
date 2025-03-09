@@ -70,6 +70,7 @@ class ClothesShopPresenter < PokemonMartScreen
 
   def pbBuyScreen
     @scene.pbStartBuyScene(@stock, @adapter)
+    @scene.select_specific_item(@adapter.worn_clothes) if !@adapter.isShop?
     item = nil
     loop do
       item = @scene.pbChooseBuyItem

@@ -63,11 +63,11 @@ class Sprite_Player < Sprite_Character
     outfitFilename = getOverworldOutfitFilename(Settings::PLAYER_TEMP_OUTFIT_FALLBACK) if !pbResolveBitmap(outfitFilename)
     hairFilename = getOverworldHairFilename($Trainer.hair)
     hatFilename = getOverworldHatFilename($Trainer.hat)
-    hat2Filename = getOverworldHatFilename($Trainer.hat(true))
+    hat2Filename = getOverworldHatFilename($Trainer.hat2)
 
     hair_color_shift = $Trainer.hair_color
     hat_color_shift = $Trainer.hat_color
-    hat2_color_shift = $Trainer.hat_color(true)
+    hat2_color_shift = $Trainer.hat2_color
 
     clothes_color_shift = $Trainer.clothes_color
 

@@ -7,8 +7,8 @@ class HatsMartAdapter < OutfitsMartAdapter
 
   def initialize(stock = nil, isShop = nil, isSecondaryHat = false)
     super(stock,isShop,isSecondaryHat)
-    @worn_clothes =  $Trainer.hat(false)
-    @worn_clothes2 =  $Trainer.hat(true)
+    @worn_clothes =  $Trainer.hat
+    @worn_clothes2 =  $Trainer.hat2
   end
 
   def toggleEvent(item)
