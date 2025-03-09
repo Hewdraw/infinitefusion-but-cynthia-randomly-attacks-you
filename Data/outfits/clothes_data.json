@@ -182,12 +182,23 @@
         "howToGet": "found at sky pillar"
     },
     {
+        "id": "Eri",
+        "name": "Caph Squad Captain",
+        "tags": "paldea,"
+    },
+    {
         "id": "fantasyadventurersoutfit",
         "name": "Traveller Outfit",
         "done": "yes",
         "price": 0,
         "tags": "special,",
         "howToGet": "Given by exotic pokemon quest npc after completing all the quests"
+    },
+    {
+        "id": "fauxwrap",
+        "name": "Faux Wrap Dress",
+        "price": 3500,
+        "tags": "ecruteak"
     },
     {
         "id": "fighting",
@@ -325,7 +336,7 @@
     {
         "id": "kris",
         "name": "Crystal Classic",
-        "description": "An outfit worn by young female trainers that is popular in the Johto region.",
+        "description": "A popular Johtonian outfit worn by aspiring female trainers.",
         "price": 4000,
         "tags": "johto",
         "howToGet": "regional"
@@ -577,6 +588,18 @@
         "tags": "pokemon-budew,pokemon-roserade,pokemon-roselia,celadon"
     },
     {
+        "id": "sada",
+        "name": "Primitive Clothes (F)",
+        "price": 10000,
+        "howToGet": "fossil guy final"
+    },
+    {
+        "id": "sado",
+        "name": "Primitive Clothes (M)",
+        "price": 10000,
+        "howToGet": "fossil guy final"
+    },
+    {
         "id": "sandshrewoutfit",
         "name": "Sandshrew Outfit",
         "description": "A pants and cape set designed with a texture mimicking Sandshrew's hide that allows you to easily blend in with desert environments.",
@@ -654,6 +677,12 @@
         "done": "yes",
         "price": 1500,
         "tags": "default"
+    },
+    {
+        "id": "trevenantforestkingcloak",
+        "name": "Forest King Cloak",
+        "price": 25000,
+        "tags": "pokemon-phantump,pokemon-trevenant,"
     },
     {
         "id": "urbanelectric",

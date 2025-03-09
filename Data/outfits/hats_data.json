@@ -1,7 +1,7 @@
 [
     {
         "id": "absolhat",
-        "name": "absolhat",
+        "name": "Absol Cap",
         "price": 5000,
         "tags": "pokemon-absol,"
     },
@@ -142,11 +142,17 @@
         "howToGet": "type trainer"
     },
     {
+        "id": "cafe",
+        "name": "Sturdy Beret",
+        "price": 500,
+        "tags": "vermillion,"
+    },
+    {
         "id": "calem",
         "name": "Red Cap & Sunglasses",
-        "description": "A red cap adorned with sunglasses. It's popular with fledgling trainers in Kalos.",
+        "description": "A fashionable red cap adorned with sunglasses. It's popular with fledgling trainers in Kalos.",
         "done": "yes",
-        "len": 81,
+        "len": 93,
         "price": 3500,
         "tags": "hat,trainer,kalos,",
         "howToGet": "regional set"
@@ -168,6 +174,13 @@
         "price": 18000,
         "tags": "mask,trainer",
         "howToGet": "gym reward"
+    },
+    {
+        "id": "clay",
+        "name": "White Cowboy Hat",
+        "description": "A large cowboy hat popularized by the Unovan gym leader Clay.",
+        "price": 7500,
+        "tags": "hat,unova"
     },
     {
         "id": "clairbow",
@@ -304,6 +317,24 @@
         "price": 0,
         "tags": "nest,",
         "howToGet": "stay idle in celadon"
+    },
+    {
+        "id": "electrivireheadset",
+        "name": "Electivire Headset",
+        "price": 10000,
+        "tags": "hat,pokemon-elekid,pokemon-electabuzz,pokemon-electivire,"
+    },
+    {
+        "id": "elioSM",
+        "name": "Grey Cap",
+        "price": 1500,
+        "tags": "hat,alola,"
+    },
+    {
+        "id": "elioUSUM",
+        "name": "Bicolor Hat",
+        "price": 1500,
+        "tags": "hat,alola,"
     },
     {
         "id": "egg",
@@ -452,7 +483,7 @@
         "howToGet": "regional set"
     },
     {
-        "id": "goldfortuft",
+        "id": "gold2",
         "name": "Gold & Black Cap (hair)",
         "description": "A black and yellow cap, worn backwards. It's popular with fledgling trainers in Johto.",
         "done": "yes",
@@ -476,7 +507,7 @@
         "name": "Lace Covering",
         "description": "A delicate see-through lace covering that is worn over the head.",
         "done": "yes",
-        "price": 4500,
+        "price": 1500,
         "tags": "hat,vermillion"
     },
     {
@@ -553,7 +584,7 @@
     {
         "id": "hilda2",
         "name": "Pink & White Cap (hair)",
-        "description": "A sleek pink and white cap with a refined design, popular with fledgling trainers in Unova.",
+        "description": "A sleek pink and white cap with a refined design. Outfitted for the \"High-pony\" hairstyle.",
         "done": "yes",
         "price": 2000,
         "tags": "hat,trainer,unova,"
@@ -771,11 +802,11 @@
         "howToGet": "regional set"
     },
     {
-        "id": "nateforhair",
+        "id": "nate2",
         "name": "Red Visor (for hair)",
-        "description": "A red visor with a black and white Poké Ball on the front. It's popular with fledgling trainers in Unova.",
+        "description": "A red visor with a black and white Poké Ball on the front. Outfitted for the \"Short, Shaggy spikes\" hairstyle.",
         "done": "yes",
-        "len": 105,
+        "len": 110,
         "price": 2000,
         "tags": "hat,trainer,unova,",
         "howToGet": "regional set"
@@ -995,13 +1026,20 @@
     },
     {
         "id": "rosa",
-        "name": "Red & White Visor",
-        "description": "A light red and white visor. It's popular with fledgling trainers in Unova.",
+        "name": "Pink & White Visor",
+        "description": "A pink and white visor. It's popular with fledgling trainers in Unova.",
         "done": "yes",
-        "len": 75,
+        "len": 70,
         "price": 2000,
         "tags": "hat,trainer,unova,",
         "howToGet": "regional set"
+    },
+    {
+        "id": "rosa2",
+        "name": "Pink & White Visor (hair)",
+        "description": "A pink and white visor. Outfitted for the \"Long Pigtails Buns\" hairstyle.",
+        "price": 2000,
+        "tags": "hat,trainer,unova,"
     },
     {
         "id": "roseradeF",
@@ -1077,14 +1115,27 @@
         "howToGet": "trainer clothing store?"
     },
     {
+        "id": "seleneUSUM",
+        "name": "Alolan Sunhat",
+        "description": "A sun hat adorned with flowes. It's popular with fledgling trainers in Alola.",
+        "price": 2000,
+        "tags": "hat, weather-warm,alola,"
+    },
+    {
         "id": "serena",
         "name": "Red Hat w/ Glasses",
-        "description": "A red hat topped with white sunglasses. It's popular with fledgling trainers in Kalos.",
+        "description": "A fashionable hat topped with sunglasses. It's popular with fledgling trainers in Kalos.",
         "done": "yes",
-        "len": 86,
+        "len": 88,
         "price": 2000,
         "tags": "hat,trainer,kalos,",
         "howToGet": "trainer clothing store?"
+    },
+    {
+        "id": "simpleheadband",
+        "name": "Headband",
+        "price": 500,
+        "tags": "headband,default,"
     },
     {
         "id": "skierF",
@@ -1218,6 +1269,13 @@
         "len": 35,
         "price": 10000,
         "tags": "hat,"
+    },
+    {
+        "id": "trevenantforestkingcrown",
+        "name": "Forest King Crown",
+        "price": 15000,
+        "tags": "hat,pokemon-phantump,pokemon-trevenant,",
+        "howToGet": "Ilex forest at night"
     },
     {
         "id": "triangularsunglasses",

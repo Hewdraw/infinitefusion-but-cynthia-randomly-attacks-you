@@ -197,7 +197,7 @@
         "id": "hilda",
         "name": "High-pony",
         "description": "A voluminous high ponytail that shows you're ready for adventure. It's popular with new trainers in Unova!",
-        "price": 2000,
+        "price": 1500,
         "tags": "unova,"
     },
     {
@@ -235,7 +235,7 @@
         "id": "kris",
         "name": "Springy Pigtails",
         "description": "Springy pigtails that somehow defy gravity.",
-        "price": 2000,
+        "price": 1500,
         "tags": "johto,"
     },
     {
@@ -532,6 +532,11 @@
     {
         "id": "sabrinaRBY",
         "name": "Telekinetic Tresses"
+    },
+    {
+        "id": "sada",
+        "name": "Paradox Cut",
+        "tags": "paldea,"
     },
     {
         "id": "samurai",
