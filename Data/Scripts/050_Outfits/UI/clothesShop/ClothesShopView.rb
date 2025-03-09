@@ -117,6 +117,7 @@ class ClothesShopView < PokemonMart_Scene
   def pbChooseBuyItem
     itemwindow = @sprites["itemwindow"]
     refreshStock(@adapter) if !itemwindow
+    select_specific_item(@adapter.worn_clothes) if !@adapter.isShop?
     displayNewItem(itemwindow)
     @sprites["helpwindow"].visible = false
     pbActivateWindow(@sprites, "itemwindow") {
