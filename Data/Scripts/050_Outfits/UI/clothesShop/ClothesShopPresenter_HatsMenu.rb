@@ -115,9 +115,13 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
   def confirmPutClothes(item)
-    putOnHats()
-    $Trainer.hat_color = @adapter.get_dye_color($Trainer.hat)
-    $Trainer.hat2_color = @adapter.get_dye_color($Trainer.hat2)
+    if @adapter.is_a?(HatsMartAdapter)
+      putOnHats()
+      $Trainer.hat_color = @adapter.get_dye_color($Trainer.hat)
+      $Trainer.hat2_color = @adapter.get_dye_color($Trainer.hat2)
+    else
+      putOnClothes(item,false)
+    end
   end
 
   def playerHatActionsMenu(item)

@@ -8,9 +8,9 @@ class ClothesShopPresenter < PokemonMartScreen
     @use_versions = versions
   end
 
-  def putOnClothes(item)
+  def putOnClothes(item,end_scene=true)
     @adapter.putOnOutfit(item) if item
-    @scene.pbEndBuyScene
+    @scene.pbEndBuyScene if end_scene
   end
 
 
@@ -73,6 +73,7 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
   def quitMenuPrompt(item)
+    return true if !@adapter.is_a?(HatsMartAdapter)
     boolean_changes_detected = @adapter.player_changed_clothes?
     return true if !boolean_changes_detected
     pbPlayCancelSE
