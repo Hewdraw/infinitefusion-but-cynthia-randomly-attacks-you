@@ -68,6 +68,32 @@ class ClothesShopPresenter < PokemonMartScreen
     return true
   end
 
+  def confirmPutClothes(item)
+    putOnClothes(item)
+  end
+
+  def quitMenuPrompt(item)
+    boolean_changes_detected = @adapter.player_changed_clothes?
+    return true if !boolean_changes_detected
+    pbPlayCancelSE
+    cmd_confirm = "Set outfit"
+    cmd_discard = "Discard changes"
+    cmd_cancel = "Cancel"
+    options = [cmd_confirm,cmd_discard,cmd_cancel]
+    choice = pbMessage("You have unsaved changes!",options,2)
+    case options[choice]
+    when cmd_confirm
+      confirmPutClothes(item)
+      pbPlayDecisionSE
+      return true
+    when cmd_discard
+      pbPlayCloseMenuSE
+      return true
+    else
+      return false
+    end
+  end
+
   def pbBuyScreen
     @scene.pbStartBuyScene(@stock, @adapter)
     @scene.select_specific_item(@adapter.worn_clothes) if !@adapter.isShop?
@@ -77,11 +103,9 @@ class ClothesShopPresenter < PokemonMartScreen
       #break if !item
       if !item
         break if @adapter.isShop?
-        if pbConfirm(_INTL("Discard the changes to your outfit?"))
-          break
-        else
-          item = @scene.pbChooseBuyItem
-        end
+        quit_menu_choice = quitMenuPrompt(item)
+        break if quit_menu_choice
+        item = @scene.pbChooseBuyItem
       end
 
 
@@ -96,7 +120,7 @@ class ClothesShopPresenter < PokemonMartScreen
           return
         else
           if pbConfirm(_INTL("Would you like to put on the {1}?", item.name))
-            putOnClothes(item)
+            confirmPutClothes(item)
             return
           end
           next

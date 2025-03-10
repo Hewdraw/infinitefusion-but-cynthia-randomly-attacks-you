@@ -31,6 +31,10 @@ class HairMartAdapter < OutfitsMartAdapter
     @version = newVersion
   end
 
+  def player_changed_clothes?()
+    $Trainer.hairstyle != @worn_hair
+  end
+
   #player can't "own" hairstyles
   # if you want to go back one you had before, you have to pay again
   def itemOwned(item)

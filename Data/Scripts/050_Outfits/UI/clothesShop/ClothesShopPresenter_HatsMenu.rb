@@ -77,7 +77,6 @@ class ClothesShopPresenter < PokemonMartScreen
 
     playOutfitChangeAnimation()
     pbMessage(_INTL("You put on the hat(s)!\\wtnp[30]"))
-    @scene.pbEndBuyScene
   end
 
   def dyeOptions(secondary_hat=false,item)
@@ -115,6 +114,12 @@ class ClothesShopPresenter < PokemonMartScreen
     return ret
   end
 
+  def confirmPutClothes(item)
+    putOnHats()
+    $Trainer.hat_color = @adapter.get_dye_color($Trainer.hat)
+    $Trainer.hat2_color = @adapter.get_dye_color($Trainer.hat2)
+  end
+
   def playerHatActionsMenu(item)
     cmd_confirm = "Confirm"
     cmd_remove = "Remove hat"
@@ -128,10 +133,8 @@ class ClothesShopPresenter < PokemonMartScreen
       removeHat(item)
       return true
     elsif options[choice] == cmd_confirm
-      putOnHats()
-      $Trainer.hat_color = @adapter.get_dye_color($Trainer.hat)
-      $Trainer.hat2_color = @adapter.get_dye_color($Trainer.hat2)
-
+      confirmPutClothes(nil)
+      @scene.pbEndBuyScene
       return false
     elsif options[choice] == cmd_dye
       #removeDye(item)  selectHatColor

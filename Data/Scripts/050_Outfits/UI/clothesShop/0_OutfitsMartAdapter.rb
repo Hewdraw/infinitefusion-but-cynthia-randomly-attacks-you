@@ -25,6 +25,11 @@ class OutfitsMartAdapter < PokemonMartAdapter
     return outfit_id == @worn_clothes
   end
 
+  def player_changed_clothes?()
+    return false
+    #implement in inheriting classes
+  end
+
   def toggleText()
     return ""
   end

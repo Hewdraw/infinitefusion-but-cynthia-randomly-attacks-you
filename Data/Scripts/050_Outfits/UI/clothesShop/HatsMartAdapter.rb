@@ -9,12 +9,22 @@ class HatsMartAdapter < OutfitsMartAdapter
     super(stock,isShop,isSecondaryHat)
     @worn_clothes =  $Trainer.hat
     @worn_clothes2 =  $Trainer.hat2
+    @second_hat_visible = true
+  end
+
+  #Used in shops only
+  def toggleSecondHat()
+    @second_hat_visible = !@second_hat_visible
+    $Trainer.hat2 = @second_hat_visible ? @worn_clothes2 : nil
   end
 
   def toggleEvent(item)
-    return if isShop?
-    $Trainer.set_hat(nil,@is_secondary_hat)
-    @worn_clothes = nil
+    if isShop?
+      toggleSecondHat
+    else
+      $Trainer.set_hat(nil,@is_secondary_hat)
+      @worn_clothes = nil
+    end
   end
 
   def set_secondary_hat(value)
@@ -33,7 +43,8 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def switchVersion(item,delta=1)
-    return if isShop?
+    pbSEPlay("GUI storage put down", 80, 100)
+    return toggleSecondHat if isShop?
     @is_secondary_hat = !@is_secondary_hat
   end
 
@@ -58,6 +69,7 @@ class HatsMartAdapter < OutfitsMartAdapter
 
       previewWindow.set_hat(hat1.id,false) if hat1
       previewWindow.set_hat(hat2.id,true) if hat2
+      previewWindow.set_hat(nil,true) if !@second_hat_visible #for toggling in shops
 
       hat1_color=0
       hat2_color=0
@@ -137,6 +149,12 @@ class HatsMartAdapter < OutfitsMartAdapter
 
   def get_current_clothes()
     return $Trainer.hat(@is_secondary_hat)
+  end
+
+  def player_changed_clothes?()
+    echoln("Trainer hat: #{$Trainer.hat}, Worn hat: #{@worn_clothes}")
+    echoln("Trainer hat2: #{$Trainer.hat2}, Worn hat2: #{@worn_clothes2}")
+    $Trainer.hat != @worn_clothes || $Trainer.hat2 != @worn_clothes2
   end
 
   def putOnOutfit(item)
