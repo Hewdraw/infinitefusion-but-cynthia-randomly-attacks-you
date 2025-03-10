@@ -31,14 +31,14 @@ def pbStorePokemon(pkmn)
       if creator
         pbMessage(_INTL("Box \"{1}\" on {2}'s PC was full.\1", curboxname, creator))
       else
-        pbMessage(_INTL("Box \"{1}\" on someone's PC was full.\1", curboxname))
+        pbMessage(_INTL("Box \"{1}\" on the PC was full.\1", curboxname))
       end
       pbMessage(_INTL("{1} was transferred to box \"{2}.\"", pkmn.name, boxname))
     else
       if creator
         pbMessage(_INTL("{1} was transferred to {2}'s PC.\1", pkmn.name, creator))
       else
-        pbMessage(_INTL("{1} was transferred to someone's PC.\1", pkmn.name))
+        pbMessage(_INTL("{1} was transferred to the PC.\1", pkmn.name))
       end
       pbMessage(_INTL("It was stored in box \"{1}.\"", boxname))
     end

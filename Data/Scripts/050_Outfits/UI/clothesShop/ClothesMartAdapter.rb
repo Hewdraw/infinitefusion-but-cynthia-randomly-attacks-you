@@ -78,8 +78,8 @@ class ClothesMartAdapter < OutfitsMartAdapter
   end
 
   def putOnOutfit(item)
-    putOnClothes(item.id)
-    @worn_clothes = item.id
+    putOnClothes(item.id) if item
+    @worn_clothes = item.id if item
   end
 
   def reset_player_clothes()

@@ -9,7 +9,7 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
   def putOnClothes(item)
-    @adapter.putOnOutfit(item)
+    @adapter.putOnOutfit(item) if item
     @scene.pbEndBuyScene
   end
 
