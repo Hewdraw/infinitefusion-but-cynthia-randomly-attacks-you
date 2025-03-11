@@ -79,10 +79,22 @@ def sortCustomBattlers()
   Dir.foreach(Settings::CUSTOM_SPRITES_TO_IMPORT_FOLDER) do |filename|
     next if filename == '.' or filename == '..'
     next if !filename.end_with?(".png")
-    headNum = filename.split('.')[0]
+    split_name = filename.split('.')
+
+    headNum = split_name[0]
     oldPath = Settings::CUSTOM_SPRITES_TO_IMPORT_FOLDER + filename
-    newDir = Settings::CUSTOM_BATTLERS_FOLDER_INDEXED + headNum.to_s
+
+    echoln split_name
+    echoln split_name.length
+
+    is_base_sprite = split_name.length ==2
+    if is_base_sprite #fusion sprite
+      newDir = Settings::CUSTOM_BASE_SPRITE_FOLDER
+    else
+      newDir = Settings::CUSTOM_BATTLERS_FOLDER_INDEXED + headNum.to_s
+    end
     newPath = newDir + "/" + filename
+
     begin
       if File.file?(newPath)
         alreadyExists[oldPath] = newPath

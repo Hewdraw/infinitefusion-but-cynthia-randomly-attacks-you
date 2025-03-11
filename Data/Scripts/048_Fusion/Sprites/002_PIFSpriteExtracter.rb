@@ -2,27 +2,33 @@ class PIFSpriteExtracter
   COLUMNS = 20               # Number of columns in the spritesheet
   @@spritesheet_cache = SpritesBitmapCache.new
 
+  #factor by which the sprite needs to be resized to get it to base game resolution (288x288)
+  def get_resize_scale
+    return 1
+  end
+
   def load_sprite(pif_sprite,download_allowed=true)
     begin
-    start_time = Time.now
-    bitmap = @@spritesheet_cache.get_bitmap(pif_sprite)
-    loaded_from_spritesheet=false
+      start_time = Time.now
+      bitmap = @@spritesheet_cache.get_bitmap(pif_sprite)
+      loaded_from_spritesheet=false
 
-    if !bitmap
-      download_new_spritesheet(pif_sprite) if should_update_spritesheet?(pif_sprite) && download_allowed
-      if pbResolveBitmap(getSpritesheetPath(pif_sprite))
-        bitmap = load_bitmap_from_spritesheet(pif_sprite)
-        loaded_from_spritesheet=true
-        @@spritesheet_cache.add(pif_sprite, bitmap)
-      else
-        return nil
+      if !bitmap
+        download_new_spritesheet(pif_sprite) if should_update_spritesheet?(pif_sprite) && download_allowed
+        if pbResolveBitmap(getSpritesheetPath(pif_sprite))
+          bitmap = load_bitmap_from_spritesheet(pif_sprite)
+          loaded_from_spritesheet=true
+          @@spritesheet_cache.add(pif_sprite, bitmap)
+        else
+          return nil
+        end
       end
-    end
-    sprite_bitmap = AnimatedBitmap.from_bitmap(bitmap)
-    end_time = Time.now
-    source = loaded_from_spritesheet ? :"spritesheet" : "cache"
-    echoln "Loaded sprite for <head:#{pif_sprite.head_id}, body: #{pif_sprite.body_id}, variant: #{pif_sprite.alt_letter}> from #{source} in #{end_time - start_time} seconds"
-    return sprite_bitmap
+      sprite_bitmap = AnimatedBitmap.from_bitmap(bitmap)
+      sprite_bitmap.scale_bitmap(get_resize_scale())
+      end_time = Time.now
+      source = loaded_from_spritesheet ? :"spritesheet" : "cache"
+      echoln "Loaded sprite for <head:#{pif_sprite.head_id}, body: #{pif_sprite.body_id}, variant: #{pif_sprite.alt_letter}> from #{source} in #{end_time - start_time} seconds"
+      return sprite_bitmap
     rescue Exception
       e = $!
       echoln "Error loading sprite: #{e}" if bitmap
@@ -85,41 +91,8 @@ class PIFSpriteExtracter
     @@spritesheet_cache.clear
   end
 
-  end
+end
 
 class PokemonGlobalMetadata
   attr_accessor :current_spritepack_date
 end
-
-
-
-
-
-# class SpritesBitmapCache
-#   @@cache = {} # Cache storage for spritesheets
-#   @@usage_order = [] # Tracks usage order for LRU eviction
-#
-#   def self.fetch(key)
-#     if @@cache.key?(key)
-#       # Move key to the end to mark it as recently used
-#       @@usage_order.delete(key)
-#       @@usage_order << key
-#       return @@cache[key]
-#     end
-#
-#     # Load spritesheet via block if not found in cache
-#     spritesheet = yield
-#
-#     if @@cache.size >= Settings::SPRITE_CACHE_MAX_NB
-#       # Evict least recently used (first in order)
-#       oldest_key = @@usage_order.shift
-#       @@cache.delete(oldest_key)
-#       echoln "Evicted: #{oldest_key} from spritesheet cache"
-#     end
-#
-#     # Add new spritesheet to cache and track its usage
-#     @@cache[key] = spritesheet
-#     @@usage_order << key
-#     spritesheet
-#   end
-# end

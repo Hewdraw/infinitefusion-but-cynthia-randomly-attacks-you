@@ -1,6 +1,6 @@
 class AutogenExtracter < PIFSpriteExtracter
   SPRITESHEET_FOLDER_PATH = "Graphics\\Battlers\\spritesheets_autogen\\"
-  SPRITE_SIZE = 288 # Each sprite is 288x288 pixels
+  SPRITE_SIZE = 96 # Size of each sprite in the spritesheet
   COLUMNS = 10 # Number of columns in the spritesheet
   SHEET_WIDTH = SPRITE_SIZE * COLUMNS # 2880 pixels wide spritesheet
 
@@ -32,6 +32,9 @@ class AutogenExtracter < PIFSpriteExtracter
     return "#{SPRITESHEET_FOLDER_PATH}#{head_id}.png"
   end
 
+  def get_resize_scale
+    return 3
+  end
   #
   #   # Check cache before loading from disk
   #   sprite_bitmap = @@spritesheet_cache.fetch(pif_sprite) do

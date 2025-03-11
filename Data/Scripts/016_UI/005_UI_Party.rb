@@ -1254,7 +1254,7 @@ class PokemonPartyScreen
         end
       end
       commands[cmdSwitch = commands.length] = _INTL("Switch") if @party.length > 1
-      commands[cmdHat = commands.length] = _INTL("Hat") if !pkmn.egg? && $game_switches[SWITCH_UNLOCKED_POKEMON_HATS]
+      commands[cmdHat = commands.length] = _INTL("Hat") if canPutHatOnPokemon(pkmn)
       if !pkmn.egg?
         if pkmn.mail
           commands[cmdMail = commands.length] = _INTL("Mail")

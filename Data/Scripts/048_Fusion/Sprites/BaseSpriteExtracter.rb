@@ -7,8 +7,7 @@ class BaseSpriteExtracter < PIFSpriteExtracter
   end
 
   SPRITESHEET_FOLDER_PATH = "Graphics/CustomBattlers/spritesheets/spritesheets_base/"
-  SPRITE_SIZE = 288 # Original sprite size
-  SCALED_SIZE = 288 # Scaled sprite size
+  SPRITE_SIZE = 96 # Original sprite size
   NB_COLUMNS_BASESPRITES = 10
   SHEET_WIDTH = SPRITE_SIZE * NB_COLUMNS_BASESPRITES # 2880 pixels wide spritesheet
   def load_bitmap_from_spritesheet(pif_sprite)
@@ -54,5 +53,9 @@ class BaseSpriteExtracter < PIFSpriteExtracter
     return true if !pbResolveBitmap(spritesheet_file)
 
     return !$updated_spritesheets.include?(spritesheet_file)
+  end
+
+  def get_resize_scale
+    return 3
   end
 end

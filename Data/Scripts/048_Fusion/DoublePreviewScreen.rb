@@ -111,7 +111,7 @@ class DoublePreviewScreen
     spriteLoader = BattleSpriteLoader.new
     bitmap = spriteLoader.load_fusion_sprite(head_pokemon,body_pokemon)
     bitmap.scale_bitmap(Settings::FRONTSPRITE_SCALE)
-
+    pif_sprite = spriteLoader.obtain_fusion_pif_sprite(head_pokemon,body_pokemon)
     #hasCustom = picturePath.include?("CustomBattlers")
     #hasCustom = customSpriteExistsBase(body_pokemon,head_pokemon)
     hasCustom = customSpriteExists(body_pokemon,head_pokemon)
@@ -123,10 +123,12 @@ class DoublePreviewScreen
     drawFusionInformation(dexNumber, level, x)
 
     if !$Trainer.seen?(dexNumber)
-      if hasCustom
-        previewwindow.picture.pbSetColor(150, 255, 150, 200)
+      if pif_sprite.local_path()
+        previewwindow.picture.pbSetColor(170, 200, 250, 200)  #blue
+      elsif hasCustom
+        previewwindow.picture.pbSetColor(150, 255, 150, 200)  #green
       else
-        previewwindow.picture.pbSetColor(255, 255, 255, 200)
+        previewwindow.picture.pbSetColor(255, 255, 255, 200)  #white
       end
     end
     return previewwindow

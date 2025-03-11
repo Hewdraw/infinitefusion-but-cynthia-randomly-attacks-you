@@ -6,8 +6,7 @@ class CustomSpriteExtracter < PIFSpriteExtracter
   end
 
   SPRITESHEET_FOLDER_PATH = "Graphics/CustomBattlers/spritesheets/spritesheets_custom/"
-  SPRITE_SIZE = 288           # Original sprite size
-  SCALED_SIZE = 288          # Scaled sprite size
+  SPRITE_SIZE = 96           # Original sprite size
   SHEET_WIDTH = SPRITE_SIZE * COLUMNS # 2880 pixels wide spritesheet
 
   def load_bitmap_from_spritesheet(pif_sprite)
@@ -58,6 +57,11 @@ class CustomSpriteExtracter < PIFSpriteExtracter
 
   def load_sprite_directly(head_id,body_id,alt_letter="")
     load_sprite(PIFSprite.new(:CUSTOM,head_id,body_id,alt_letter))
+  end
+
+
+  def get_resize_scale
+    return 3
   end
 
   #

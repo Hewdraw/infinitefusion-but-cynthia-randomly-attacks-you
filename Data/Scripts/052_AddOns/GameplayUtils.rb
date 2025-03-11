@@ -759,7 +759,7 @@ def give_date_specific_hats()
   current_date = Time.new
   if (current_date.day == 24 || current_date.day == 25) && current_date.month == 12
     if !$Trainer.unlocked_hats.include?(HAT_SANTA)
-      pbCallBub(2,@event_id,true)
+      pbCallBub(2, @event_id, true)
       pbMessage("Hi! We're giving out a special hat today for the holidays season. Enjoy!")
       obtainHat(HAT_SANTA)
     end
@@ -851,7 +851,6 @@ def replaceFusionSpecies(pokemon, speciesToChange, newSpecies)
   echoln currentBody
   echoln currentHead
 
-
   return if !should_update_body && !should_update_head
 
   newSpeciesBody = should_update_body ? newSpecies : currentBody
@@ -897,26 +896,35 @@ end
 #@formatter:off
 def get_constellation_variable(pokemon)
   case pokemon
-  when :IVYSAUR;    return  VAR_CONSTELLATION_IVYSAUR
-  when :WARTORTLE;  return  VAR_CONSTELLATION_WARTORTLE
-  when :ARCANINE;   return  VAR_CONSTELLATION_ARCANINE
-  when :MACHOKE;    return  VAR_CONSTELLATION_MACHOKE
-  when :RAPIDASH;   return  VAR_CONSTELLATION_RAPIDASH
-  when :GYARADOS;   return  VAR_CONSTELLATION_GYARADOS
-  when :ARTICUNO;   return  VAR_CONSTELLATION_ARTICUNO
-  when :MEW;        return  VAR_CONSTELLATION_MEW
-  # when :POLITOED;   return  VAR_CONSTELLATION_POLITOED
-  # when :URSARING;   return  VAR_CONSTELLATION_URSARING
-  # when :LUGIA;      return  VAR_CONSTELLATION_LUGIA
-  # when :HOOH;       return  VAR_CONSTELLATION_HOOH
-  # when :CELEBI;     return  VAR_CONSTELLATION_CELEBI
-  # when :SLAKING;    return  VAR_CONSTELLATION_SLAKING
-  # when :JIRACHI;    return  VAR_CONSTELLATION_JIRACHI
-  # when :TYRANTRUM;  return  VAR_CONSTELLATION_TYRANTRUM
-  # when :SHARPEDO;   return  VAR_CONSTELLATION_SHARPEDO
-  # when :ARCEUS;     return  VAR_CONSTELLATION_ARCEUS
+  when :IVYSAUR;
+    return VAR_CONSTELLATION_IVYSAUR
+  when :WARTORTLE;
+    return VAR_CONSTELLATION_WARTORTLE
+  when :ARCANINE;
+    return VAR_CONSTELLATION_ARCANINE
+  when :MACHOKE;
+    return VAR_CONSTELLATION_MACHOKE
+  when :RAPIDASH;
+    return VAR_CONSTELLATION_RAPIDASH
+  when :GYARADOS;
+    return VAR_CONSTELLATION_GYARADOS
+  when :ARTICUNO;
+    return VAR_CONSTELLATION_ARTICUNO
+  when :MEW;
+    return VAR_CONSTELLATION_MEW
+    # when :POLITOED;   return  VAR_CONSTELLATION_POLITOED
+    # when :URSARING;   return  VAR_CONSTELLATION_URSARING
+    # when :LUGIA;      return  VAR_CONSTELLATION_LUGIA
+    # when :HOOH;       return  VAR_CONSTELLATION_HOOH
+    # when :CELEBI;     return  VAR_CONSTELLATION_CELEBI
+    # when :SLAKING;    return  VAR_CONSTELLATION_SLAKING
+    # when :JIRACHI;    return  VAR_CONSTELLATION_JIRACHI
+    # when :TYRANTRUM;  return  VAR_CONSTELLATION_TYRANTRUM
+    # when :SHARPEDO;   return  VAR_CONSTELLATION_SHARPEDO
+    # when :ARCEUS;     return  VAR_CONSTELLATION_ARCEUS
   end
 end
+
 #@formatter:on
 
 def promptCaughtPokemonAction(pokemon)
@@ -1366,6 +1374,8 @@ def get_mart_exclusive_items(city)
     items_list = [:PSYCHICGEM, :FIGHTINGGEM, :FRIENDBALL]
   when :CINNABAR;
     items_list = [:FIREGEM, :ICEGEM, :HEAVYBALL]
+  when :CRIMSON;
+    items_list = [:DRAGONGEM, :LEVELBALL]
   when :GOLDENROD;
     items_list = [:EVERSTONE, :MOONSTONE, :SUNSTONE, :DUSKSTONE, :DAWNSTONE, :SHINYSTONE]
   when :AZALEA;
@@ -1396,7 +1406,7 @@ def get_mart_exclusive_items(city)
   return items_list
 end
 
-def calculate_pokemon_weight(pokemon)
+def calculate_pokemon_weight(pokemon, nerf = 0)
 
   base_weight = pokemon.weight
   ivs = []
@@ -1424,18 +1434,20 @@ def calculate_pokemon_weight(pokemon)
 
   # Cap the weight between min and max values
   weight = [[weight, min_weight].max, max_weight].min
-
+  weight -= nerf if weight - nerf > min_weight
   return weight.round(2) # Round to 2 decimal places
 end
 
-def generate_weight_contest_entries(species, level, resultsVariable)
+#nerf: remove x kg from each generated pokemon
+def generate_weight_contest_entries(species, level, resultsVariable, nerf = 0)
   #echoln "Generating Pokemon"
   pokemon1 = pbGenerateWildPokemon(species, level) #Pokemon.new(species,level)
   pokemon2 = pbGenerateWildPokemon(species, level) #Pokemon.new(species,level)
   new_weights = []
-  new_weights << calculate_pokemon_weight(pokemon1)
-  new_weights << calculate_pokemon_weight(pokemon2)
+  new_weights << calculate_pokemon_weight(pokemon1, nerf)
+  new_weights << calculate_pokemon_weight(pokemon2, nerf)
   echoln new_weights
+  echoln "(nerfed by -#{nerf})"
   pbSet(resultsVariable, new_weights.max)
 
 end
@@ -1523,13 +1535,12 @@ QUEST_REWARDS = [
   QuestReward.new(10, :LANTERN, 1, "This will allow you to illuminate caves without having to use a HM! Practical, isn't it?"),
   QuestReward.new(15, :LINKINGCORD, 3, "This strange cable triggers the evolution of Pokémon that typically evolve via trade. I know you'll put it to good use!"),
   QuestReward.new(20, :SLEEPINGBAG, 1, "This handy item will allow you to sleep anywhere you want. You won't even need hotels anymore!"),
-  QuestReward.new(30, :MISTSTONE, 1, "This rare stone can evolve any Pokémon, regardless of their level or evolution method. Use it wisely!"),
-  QuestReward.new(45, :MASTERBALL, 1, "This rare ball can catch any Pokémon. Don't waste it!"),
-  QuestReward.new(60, :GSBALL, 1, "This mysterious ball is rumored to be the key to call upon the protector of Ilex Forest.  It's a precious relic."),
+  QuestReward.new(30, :MISTSTONE, 1, "This rare stone can evolve any Pokémon, regardless of their level or evolution method. Use it wisely!", true),
+  QuestReward.new(50, :GSBALL, 1, "This mysterious ball is rumored to be the key to call upon the protector of Ilex Forest.  It's a precious relic."),
+  QuestReward.new(60, :MASTERBALL, 1, "This rare ball can catch any Pokémon. Don't waste it!", true),
 ]
 
-
-def turnEventTowardsEvent(turning,turnedTowards)
+def turnEventTowardsEvent(turning, turnedTowards)
   event_x = turnedTowards.x
   event_y = turnedTowards.y
   if turning.x < event_x
@@ -1557,46 +1568,7 @@ def turnPlayerTowardsEvent(event)
   end
 end
 
-def getQuestReward(eventId)
-  $PokemonGlobal.questRewardsObtained = [] if !$PokemonGlobal.questRewardsObtained
-  echoln $PokemonGlobal.questRewardsObtained
-  nb_quests_completed = pbGet(VAR_STAT_QUESTS_COMPLETED)
-  rewards_to_give = []
-  for reward in QUEST_REWARDS
-    rewards_to_give << reward if nb_quests_completed >= reward.nb_quests && !$PokemonGlobal.questRewardsObtained.include?(reward.item)
-  end
-
-  #Give rewards
-  for reward in rewards_to_give
-    if !reward.can_have_multiple
-      next if $PokemonBag.pbQuantity(reward.item) >= 1
-    end
-    pbCallBub(2, eventId)
-    pbMessage("Also, there's one more thing...")
-    pbCallBub(2, eventId)
-    pbMessage("As a gift for having helped so many people, I want to give you this.")
-    pbReceiveItem(reward.item, reward.quantity)
-    $PokemonGlobal.questRewardsObtained << reward.item
-  end
-
-  #Calculate how many until next reward
-  for reward in QUEST_REWARDS
-    nextReward = reward
-    break if !$PokemonGlobal.questRewardsObtained.include?(reward.item)
-  end
-  pbCallBub(2, eventId)
-  nb_to_next_reward = nextReward.nb_quests - nb_quests_completed
-  pbCallBub(2, eventId)
-  if nb_to_next_reward == 0
-    pbMessage("I have no more rewards to give you! Thanks for helping all these people!")
-  elsif nb_to_next_reward == 1
-    pbMessage("Help #{nb_to_next_reward} more person and I'll give you something good!")
-  else
-    pbMessage("Help #{nb_to_next_reward} more people and I'll give you something good!")
-  end
-end
-
-def displaySpriteWindowWithMessage(pif_sprite, message = "", x = 0, y = 0,z=0)
+def displaySpriteWindowWithMessage(pif_sprite, message = "", x = 0, y = 0, z = 0)
   spriteLoader = BattleSpriteLoader.new
   sprite_bitmap = spriteLoader.load_pif_sprite_directly(pif_sprite)
   pictureWindow = PictureWindow.new(sprite_bitmap.bitmap)
@@ -1618,3 +1590,121 @@ def select_any_pokemon()
   return pbChooseList(commands, 0, nil, 1)
 end
 
+SWITCH_SS_ANNE_DEPARTED = 88
+SWITCH_SNORLAX_GONE_ROUTE_12 = 110
+SWITCH_TELEPORT_NPC = 122
+SWITCH_GOT_DIVE = 317
+SWITCH_GOT_ROCK_CLIMB = 661
+SWITCH_GOT_WATERFALL = 388
+
+def fixMissedHMs()
+  #Flash
+  if $PokemonBag.pbQuantity(:HM08) < 1 && $PokemonGlobal.questRewardsObtained.include?(:HM08)
+    pbReceiveItem(:HM08)
+  end
+
+  #Cut
+  if $PokemonBag.pbQuantity(:HM01) < 1 && $game_switches[SWITCH_SS_ANNE_DEPARTED]
+    pbReceiveItem(:HM01)
+  end
+
+  #Strength
+  if $PokemonBag.pbQuantity(:HM04) < 1 && $game_switches[SWITCH_SNORLAX_GONE_ROUTE_12]
+    pbReceiveItem(:HM04)
+  end
+
+  #Surf
+  if $PokemonBag.pbQuantity(:HM03) < 1 && $game_self_switches[[107, 1, "A"]]
+    pbReceiveItem(:HM03)
+  end
+
+  #Teleport
+  if $PokemonBag.pbQuantity(:HM07) < 1 && $game_switches[SWITCH_TELEPORT_NPC]
+    pbReceiveItem(:HM07)
+  end
+
+  #Fly
+  if $PokemonBag.pbQuantity(:HM02) < 1 && $game_self_switches[[439, 1, "B"]]
+    pbReceiveItem(:HM02)
+  end
+
+  #Waterfall
+  if $PokemonBag.pbQuantity(:HM05) < 1 && $game_switches[SWITCH_GOT_WATERFALL]
+    pbReceiveItem(:HM05)
+  end
+
+  #Dive
+  if $PokemonBag.pbQuantity(:HM06) < 1 && $game_switches[SWITCH_GOT_DIVE]
+    pbReceiveItem(:HM06)
+  end
+
+  #Rock Climb
+  if $PokemonBag.pbQuantity(:HM10) < 1 && $game_switches[SWITCH_GOT_ROCK_CLIMB]
+    pbReceiveItem(:HM10)
+  end
+end
+
+def fixFinishedRocketQuests()
+  fix_broken_TR_quests()
+
+  var_tr_missions_cerulean = 288
+
+  switch_tr_mission_cerulean_4 = 1116
+  switch_tr_mission_celadon_1 = 1084
+  switch_tr_mission_celadon_2 = 1086
+  switch_tr_mission_celadon_3 = 1088
+  switch_tr_mission_celadon_4 = 1110
+  switch_pinkan_done = 1119
+
+  nb_cerulean_missions = pbGet(var_tr_missions_cerulean)
+
+  finishTRQuest("tr_cerulean_1", :SUCCESS, true) if nb_cerulean_missions >= 1 && !pbCompletedQuest?("tr_cerulean_1")
+  echoln pbCompletedQuest?("tr_cerulean_1")
+  finishTRQuest("tr_cerulean_2", :SUCCESS, true) if nb_cerulean_missions >= 2 && !pbCompletedQuest?("tr_cerulean_2")
+  finishTRQuest("tr_cerulean_3", :SUCCESS, true) if nb_cerulean_missions >= 3 && !pbCompletedQuest?("tr_cerulean_3")
+  finishTRQuest("tr_cerulean_4", :SUCCESS, true) if $game_switches[switch_tr_mission_cerulean_4] && !pbCompletedQuest?("tr_cerulean_4")
+
+  finishTRQuest("tr_celadon_1", :SUCCESS, true) if $game_switches[switch_tr_mission_celadon_1] && !pbCompletedQuest?("tr_celadon_1")
+  finishTRQuest("tr_celadon_2", :SUCCESS, true) if $game_switches[switch_tr_mission_celadon_2] && !pbCompletedQuest?("tr_celadon_2")
+  finishTRQuest("tr_celadon_3", :SUCCESS, true) if $game_switches[switch_tr_mission_celadon_3] && !pbCompletedQuest?("tr_celadon_3")
+  finishTRQuest("tr_celadon_4", :SUCCESS, true) if $game_switches[switch_tr_mission_celadon_4] && !pbCompletedQuest?("tr_celadon_4")
+
+  finishTRQuest("tr_pinkan", :SUCCESS, true) if $game_switches[switch_pinkan_done] && !pbCompletedQuest?("tr_pinkan")
+end
+
+def fix_broken_TR_quests()
+  for trainer_quest in $Trainer.quests
+    if trainer_quest.id == 0 #tr quests were all set to ID 0 instead of their real ID in v 6.4.0
+      for rocket_quest_id in TR_QUESTS.keys
+        rocket_quest = TR_QUESTS[rocket_quest_id]
+        next if !rocket_quest
+        if trainer_quest.name == rocket_quest.name
+          trainer_quest.id = rocket_quest_id
+        end
+      end
+    end
+  end
+end
+
+def failAllIncompleteRocketQuests()
+  for trainer_quest in $Trainer.quests
+    finishTRQuest("tr_cerulean_1", :FAILURE) if trainer_quest.id == "tr_cerulean_1" && !pbCompletedQuest?("tr_cerulean_1")
+    finishTRQuest("tr_cerulean_2", :FAILURE) if trainer_quest.id == "tr_cerulean_2" && !pbCompletedQuest?("tr_cerulean_2")
+    finishTRQuest("tr_cerulean_3", :FAILURE) if trainer_quest.id == "tr_cerulean_3" && !pbCompletedQuest?("tr_cerulean_3")
+    finishTRQuest("tr_cerulean_4", :FAILURE) if trainer_quest.id == "tr_cerulean_4" && !pbCompletedQuest?("tr_cerulean_4")
+
+    finishTRQuest("tr_celadon_1", :FAILURE) if trainer_quest.id == "tr_celadon_1" && !pbCompletedQuest?("tr_celadon_1")
+    finishTRQuest("tr_celadon_2", :FAILURE) if trainer_quest.id == "tr_celadon_2" && !pbCompletedQuest?("tr_celadon_2")
+    finishTRQuest("tr_celadon_3", :FAILURE) if trainer_quest.id == "tr_celadon_3" && !pbCompletedQuest?("tr_celadon_3")
+    finishTRQuest("tr_celadon_4", :FAILURE) if trainer_quest.id == "tr_celadon_4" && !pbCompletedQuest?("tr_celadon_4")
+  end
+end
+
+def qmarkMaskCheck()
+  if $Trainer.seen_qmarks_sprite
+    unless hasHat?(HAT_QMARKS)
+      obtainHat(HAT_QMARKS)
+      obtainClothes(CLOTHES_GLITCH)
+    end
+  end
+end

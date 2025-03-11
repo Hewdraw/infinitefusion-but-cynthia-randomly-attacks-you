@@ -4,6 +4,9 @@ class BattleSpriteLoader
   end
 
   def load_pif_sprite_directly(pif_sprite)
+    if pif_sprite.local_path && pbResolveBitmap(pif_sprite.local_path)
+      return AnimatedBitmap.new(pif_sprite.local_path)
+    end
     extractor = get_sprite_extractor_instance(pif_sprite.type)
     return extractor.load_sprite(pif_sprite)
   end
@@ -22,8 +25,8 @@ class BattleSpriteLoader
   def preload_sprite_from_pokemon(pokemon)
     return if !pokemon
     substitution_id = get_sprite_substitution_id_from_dex_number(pokemon.species)
-    echoln substitution_id
-    echoln $PokemonGlobal.alt_sprite_substitutions
+    # echoln substitution_id
+    # echoln $PokemonGlobal.alt_sprite_substitutions
     pif_sprite = $PokemonGlobal.alt_sprite_substitutions[substitution_id] if $PokemonGlobal
     if !pif_sprite
       pif_sprite = get_pif_sprite_from_species(pokemon.species)
@@ -65,19 +68,25 @@ class BattleSpriteLoader
   def obtain_fusion_pif_sprite(head_id,body_id)
     substitution_id = get_sprite_substitution_id_for_fusion(head_id, body_id)
     pif_sprite = $PokemonGlobal.alt_sprite_substitutions[substitution_id] if $PokemonGlobal
+    pif_sprite.dump_info if pif_sprite
     if !pif_sprite
       pif_sprite = select_new_pif_fusion_sprite(head_id, body_id)
+      local_path = check_for_local_sprite(pif_sprite)
+      if local_path
+        pif_sprite.local_path = local_path
+        pif_sprite.type = :CUSTOM
+      end
       substitution_id = get_sprite_substitution_id_for_fusion(head_id, body_id)
       $PokemonGlobal.alt_sprite_substitutions[substitution_id] = pif_sprite if $PokemonGlobal
     end
     return pif_sprite
   end
 
+
   def load_fusion_sprite(head_id, body_id)
     pif_sprite = obtain_fusion_pif_sprite(head_id,body_id)
-    local_path = check_for_local_sprite(pif_sprite)
-    if local_path
-      return AnimatedBitmap.new(local_path)
+    if pif_sprite.local_path
+      return AnimatedBitmap.new(pif_sprite.local_path)
     end
     extractor = get_sprite_extractor_instance(pif_sprite.type)
     loaded_sprite = extractor.load_sprite(pif_sprite, @download_allowed)
@@ -94,9 +103,8 @@ class BattleSpriteLoader
       pif_sprite = select_new_pif_base_sprite(dex_number)
       $PokemonGlobal.alt_sprite_substitutions[substitution_id] = pif_sprite if $PokemonGlobal
     end
-    local_path = check_for_local_sprite(pif_sprite)
-    if local_path
-      return AnimatedBitmap.new(local_path)
+    if pif_sprite.local_path
+      return AnimatedBitmap.new(pif_sprite.local_path)
     end
     extractor = get_sprite_extractor_instance(pif_sprite.type)
     loaded_sprite = extractor.load_sprite(pif_sprite)
@@ -111,6 +119,7 @@ class BattleSpriteLoader
       new_extractor = get_sprite_extractor_instance(:AUTOGEN)
       return new_extractor.load_sprite(pif_sprite)
     else
+      $Trainer.seen_qmarks_sprite=true if $Trainer
       #If autogen or base sprite aren't able to load a sprite then we have nothing else to load -> show a ? instead.
       return AnimatedBitmap.new(Settings::DEFAULT_SPRITE_PATH)
     end
@@ -137,6 +146,7 @@ class BattleSpriteLoader
   end
 
   def check_for_local_sprite(pif_sprite)
+    return pif_sprite.local_path if pif_sprite.local_path
     if pif_sprite.type == :BASE
       sprite_path = "#{Settings::CUSTOM_BASE_SPRITES_FOLDER}#{pif_sprite.head_id}#{pif_sprite.alt_letter}.png"
     else

@@ -125,7 +125,7 @@
         "done": "yes",
         "len": 64,
         "price": 0,
-        "tags": "headband,type-bug,special,",
+        "tags": "headband,azalea",
         "howToGet": "type trainer"
     },
     {
@@ -142,6 +142,7 @@
         "id": "carbink",
         "name": "Carbink Headband",
         "description": "A cute, rock-solid headband resembling Carbink.",
+        "done": "yes",
         "price": 5000,
         "tags": "hat,pokemon-carbink"
     },
@@ -245,8 +246,8 @@
         "name": "Designer Headphones",
         "description": "Stylish headphones with an electrifying design that adds a spark to your look.",
         "done": "yes",
-        "price": 0,
-        "tags": "type-electric,special,",
+        "price": 30000,
+        "tags": "hat",
         "howToGet": "type trainer"
     },
     {
@@ -333,8 +334,9 @@
         "id": "firefigther",
         "name": "Firefighter Hat",
         "description": "A safety helmet made for brave heroes who put their lives on the line every day.",
+        "done": "yes",
         "price": 0,
-        "tags": "type-fire,special,",
+        "tags": "hat, cinnabar,",
         "howToGet": "type trainer"
     },
     {
@@ -365,6 +367,15 @@
         "price": 18000,
         "tags": "hat,trainer",
         "howToGet": "gym reward"
+    },
+    {
+        "id": "glitzerset",
+        "name": "Glitched Mask",
+        "description": "An odd mask that makes you look like you just stepped out of a corrupted save file. ",
+        "done": "yes",
+        "price": 10000,
+        "tags": "mask,special,",
+        "howToGet": "Obtained by defeating a Pokemon without a sprite"
     },
     {
         "id": "glasses",
@@ -432,8 +443,16 @@
         "done": "yes",
         "len": 63,
         "price": 10000,
-        "tags": "floating,",
+        "tags": "floating,pokemon-shedinja",
         "howToGet": "reward for beating the ilex forest shedinja encounter? reward for showing a shedinja to someone?"
+    },
+    {
+        "id": "headlacecovering",
+        "name": "Lace Covering",
+        "description": "A delicate see-through lace covering that is worn over the head.",
+        "done": "yes",
+        "price": 4500,
+        "tags": "hat,vermillion"
     },
     {
         "id": "headparas",
@@ -590,6 +609,7 @@
         "id": "ludicolosombrero",
         "name": "Ludicolo Sombrero",
         "description": "A festive Sombrero that is often worn during fiestas.",
+        "done": "yes",
         "len": 53,
         "price": 18000,
         "tags": "hat,pokemon-lotad,pokemon-lombre,pokemon-ludicolo,weather-warm,"
@@ -608,6 +628,7 @@
         "id": "lycanrochooddown",
         "name": "Lycanroc Hood (down)",
         "description": "A fluffy hood. Down for those who want a little sun.",
+        "done": "yes",
         "price": 12000,
         "tags": "pokemon-rockruff,pokemon-lycanroc_d,pokemon-lycanroc_n,"
     },
@@ -615,6 +636,7 @@
         "id": "lycanrochoodup",
         "name": "Lycanroc Hood (up)",
         "description": "A fluffy hood. Up for those who shy away from the sun",
+        "done": "yes",
         "price": 12000,
         "tags": "pokemon-rockruff,pokemon-lycanroc_d,pokemon-lycanroc_n,"
     },
@@ -775,7 +797,7 @@
     {
         "id": "parashroom",
         "name": "Mushroom",
-        "description": "a Tochukaso mushroom that normally grows on Paras and Parasect. Wear it. WEAR IT.",
+        "description": "A Tochukaso mushroom that normally grows on Paras and Parasect. Wear it. WEAR IT.",
         "done": "yes",
         "len": 81,
         "price": 8000,
@@ -813,7 +835,7 @@
     },
     {
         "id": "pikhatchuf",
-        "name": "Head Pikachu",
+        "name": "Head Pikachu (F)",
         "description": "A female Pikachu that has taken a liking to perching atop a trainer's head.",
         "done": "yes",
         "len": 75,
@@ -823,7 +845,7 @@
     },
     {
         "id": "pikhatchum",
-        "name": "Head Pikachu",
+        "name": "Head Pikachu (M)",
         "description": "A male Pikachu that has taken a liking to perching atop a trainer's head.",
         "done": "yes",
         "len": 73,
@@ -959,6 +981,14 @@
         "tags": "glasses,mask,pokemon-budew,pokemon-roselia,pokemon-roserade,celadon"
     },
     {
+        "id": "sableyemask",
+        "name": "Sableye Mask",
+        "description": "A creepy, gem-eyed disguise that lets you channel your inner trickster.",
+        "done": "yes",
+        "price": 4500,
+        "tags": "mask,pokemon-sableye"
+    },
+    {
         "id": "sabrinasballs",
         "name": "Levitating Balls",
         "description": "A few Poké Balls that permanently levitate with psychokinetic energy.",
@@ -981,6 +1011,7 @@
         "id": "santa",
         "name": "Festive Hat",
         "description": "A warm, snug stocking cap worn during a festive holiday season.",
+        "done": "yes",
         "price": 25000,
         "tags": "hat,"
     },
@@ -1022,6 +1053,14 @@
         "len": 44,
         "price": 3500,
         "tags": "hat,weather-cold,blackthorn,mahogany"
+    },
+    {
+        "id": "skittyTV",
+        "name": "Skitty TV",
+        "description": "A wearable TV themed like a Skitty. Use it to watch your battle replays!",
+        "price": 5000,
+        "tags": "hat,",
+        "howToGet": "goldenrod radio tower"
     },
     {
         "id": "sleepmask",
@@ -1141,6 +1180,14 @@
         "tags": "glasses,violet,"
     },
     {
+        "id": "tvhead",
+        "name": "TV Head",
+        "description": "A TV worn as a helmet that could probably be used to watch replays of your battles... If only it worked!",
+        "done": "yes",
+        "price": 4500,
+        "tags": "hat,"
+    },
+    {
         "id": "veteranM",
         "name": "Black Flat Cap",
         "description": "A black flat cap, often worn by Veteran trainers.",
@@ -1163,6 +1210,7 @@
         "id": "waterdress",
         "name": "Straw Hat",
         "description": "A simple hat made out of straw that is typically worn by bug-catchers.",
+        "done": "yes",
         "price": 1500,
         "tags": "hat,pewter,",
         "howToGet": "trainer clothing store?"

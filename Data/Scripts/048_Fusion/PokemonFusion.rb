@@ -954,6 +954,7 @@ end
 def drawSpriteCredits(pif_sprite, viewport)
   overlay = BitmapSprite.new(Graphics.width, Graphics.height, @viewport).bitmap
   return if pif_sprite.type == :AUTOGEN
+  return if pif_sprite.local_path
   x = Graphics.width / 2
   y = 240
   spritename = pif_sprite.to_filename()
