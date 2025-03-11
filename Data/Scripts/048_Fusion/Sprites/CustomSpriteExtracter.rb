@@ -12,9 +12,14 @@ class CustomSpriteExtracter < PIFSpriteExtracter
   def load_bitmap_from_spritesheet(pif_sprite)
     body_id = pif_sprite.body_id
     spritesheet_file = getSpritesheetPath(pif_sprite)
+
+    echoln spritesheet_file
     spritesheet_bitmap = AnimatedBitmap.new(spritesheet_file).bitmap
 
     sprite_x_position,sprite_y_position  =get_sprite_position_on_spritesheet(body_id,SPRITE_SIZE,COLUMNS)
+    echoln sprite_x_position
+    echoln sprite_y_position
+
     src_rect = Rect.new(sprite_x_position, sprite_y_position, SPRITE_SIZE, SPRITE_SIZE)
 
     sprite_bitmap = Bitmap.new(SPRITE_SIZE, SPRITE_SIZE)

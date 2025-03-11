@@ -12,6 +12,8 @@ class OutfitsMartAdapter < PokemonMartAdapter
     @worn_clothes = get_current_clothes()
     @isShop = isShop
     @version = nil
+    $Trainer.dyed_hats = {} if !$Trainer.dyed_hats
+    $Trainer.dyed_clothes = {} if !$Trainer.dyed_clothes
   end
 
   def getDisplayName(item)

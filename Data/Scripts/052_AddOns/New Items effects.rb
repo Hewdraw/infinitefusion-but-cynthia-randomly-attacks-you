@@ -416,6 +416,8 @@ def switchToFavoriteOutfit()
 
   else
     if (Kernel.pbConfirmMessage("Put on your favorite outfit?"))
+      echoln "favorite clothes: #{$Trainer.favorite_clothes}, favorite hat: #{$Trainer.favorite_hat}, favorite hat2: #{$Trainer.favorite_hat2}"
+
       playOutfitChangeAnimation()
       putOnClothes($Trainer.favorite_clothes, true) if $Trainer.favorite_clothes
       putOnHat($Trainer.favorite_hat, true, false) if $Trainer.favorite_hat

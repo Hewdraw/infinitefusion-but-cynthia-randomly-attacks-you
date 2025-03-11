@@ -138,10 +138,8 @@ class ClothesShopPresenter < PokemonMartScreen
       return true
     elsif options[choice] == cmd_confirm
       confirmPutClothes(nil)
-      @scene.pbEndBuyScene
-      return false
+      return true
     elsif options[choice] == cmd_dye
-      #removeDye(item)  selectHatColor
       dyeOptions(@adapter.is_secondary_hat,item)
       return true
     elsif options[choice] == cmd_swap
