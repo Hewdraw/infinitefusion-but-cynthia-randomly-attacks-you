@@ -312,6 +312,7 @@ end
 
 def get_random_alt_letter_for_custom(head_id, body_id, onlyMain = true)
   spriteName = _INTL("{1}.{2}", head_id, body_id)
+  echoln spriteName
   if onlyMain
     alts_list = list_main_sprites_letters(spriteName)
     return nil if alts_list.empty?
