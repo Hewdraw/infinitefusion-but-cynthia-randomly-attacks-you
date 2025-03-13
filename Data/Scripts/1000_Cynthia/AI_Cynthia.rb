@@ -108,7 +108,7 @@ class PokeBattle_AI
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat && user.index == 69
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp && user.index != 69
     switchScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
-    switchScore += 2 if user.hasActiveAbility?(:REGENERATOR) && @battle.positions[user.index].effects[PBEffects::Wish]>0
+    switchScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
     switchScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
     switchScore += 5 if user.effects[PBEffects::PerishSong]==1
     switchScore += [0, (user.statusCount / 0.5) - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD]) && user.index != 69
