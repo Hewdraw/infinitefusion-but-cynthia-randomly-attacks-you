@@ -18,6 +18,9 @@ CLOTHES_FOSSIL_F ="sada"
 
 CLOTHES_TREVENANT= "trevenantforestkingcloak"
 
+CLOTHES_WAITRESS = "maid"
+CLOTHES_WAITER = "butler"
+
 CLOTHES_LASS_YELLOW ="lass"
 CLOTHES_LASS_BLUE ="lass2"
 
@@ -69,6 +72,7 @@ HAT_BREEDER_3="egg"
 
 HAT_BREEDEROUTFIT="PKMBreeder"
 
+HAT_WAITRESS = "maid"
 
 FUSION_HAT = "fusionnerd"
 FUSION_OUTFIT = "fusionnerd"

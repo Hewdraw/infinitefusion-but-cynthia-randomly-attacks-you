@@ -108,6 +108,12 @@
         "howToGet": "type trainer"
     },
     {
+        "id": "butler",
+        "name": "Butler Uniform",
+        "price": 5000,
+        "tags": "special,"
+    },
+    {
         "id": "BusinessSuit",
         "name": "Business Suit",
         "description": "A classy, professional-looking business suit.",
@@ -255,7 +261,8 @@
     {
         "id": "glitzerset",
         "name": "Glitzer",
-        "price": 2550
+        "price": 2550,
+        "tags": "special,"
     },
     {
         "id": "gothhoodie",
@@ -375,6 +382,7 @@
         "len": 74,
         "done": "yes",
         "price": 0,
+        "tags": "special,",
         "howToGet": "starting outfit"
     },
     {
@@ -410,8 +418,9 @@
     },
     {
         "id": "maid",
-        "name": "Waitress Uniform",
-        "price": 5000
+        "name": "Maid Uniform",
+        "price": 5000,
+        "tags": "special,"
     },
     {
         "id": "marshweater",
@@ -596,12 +605,14 @@
         "id": "sada",
         "name": "Primitive Clothes (F)",
         "price": 10000,
+        "tags": "special",
         "howToGet": "fossil guy final"
     },
     {
         "id": "sado",
         "name": "Primitive Clothes (M)",
         "price": 10000,
+        "tags": "special",
         "howToGet": "fossil guy final"
     },
     {

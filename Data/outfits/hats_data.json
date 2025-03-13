@@ -503,6 +503,13 @@
         "howToGet": "reward for beating the ilex forest shedinja encounter? reward for showing a shedinja to someone?"
     },
     {
+        "id": "haxorushelmet",
+        "name": "Jaw Helmet",
+        "description": "A fearsome helmet crafted in the shape of a Haxorus's jaw. It is sure to intimidate your enemies! ",
+        "price": 8000,
+        "tags": "pokemon-axew,pokemon-fraxure,pokemon-haxorus,"
+    },
+    {
         "id": "headlacecovering",
         "name": "Lace Covering",
         "description": "A delicate see-through lace covering that is worn over the head.",
@@ -1317,6 +1324,12 @@
         "price": 2000,
         "tags": "hat,trainer,galar,",
         "howToGet": "trainer clothing store?"
+    },
+    {
+        "id": "voltorbitembarrette",
+        "name": "Pokéball Barrette",
+        "price": 1500,
+        "tags": "hariclip,pokemon-voltorb,pokemon-electrode,"
     },
     {
         "id": "waterdress",
