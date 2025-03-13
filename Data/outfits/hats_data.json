@@ -723,6 +723,12 @@
         "howToGet": "regional set"
     },
     {
+        "id": "maid",
+        "name": "Mob Cap",
+        "price": 1500,
+        "tags": "hat,"
+    },
+    {
         "id": "magicap",
         "name": "Magikarp Balaclava",
         "description": "A balaclava made to look like a Magikarp.",
@@ -1220,7 +1226,7 @@
     },
     {
         "id": "surgeglasses",
-        "name": "Sunglasses",
+        "name": "Surge Shades",
         "description": "Shockingly cool sunglasses.",
         "done": "yes",
         "len": 27,

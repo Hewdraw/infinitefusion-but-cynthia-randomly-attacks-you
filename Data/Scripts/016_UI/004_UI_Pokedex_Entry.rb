@@ -688,7 +688,7 @@ class PokemonPokedexInfo_Scene
       pbUpdate
       dorefresh = false
       if Input.trigger?(Input::ACTION)
-        changeEntryPage()
+        #changeEntryPage()
       elsif Input.trigger?(Input::BACK)
         pbPlayCloseMenuSE
         break

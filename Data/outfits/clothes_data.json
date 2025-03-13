@@ -130,7 +130,7 @@
         "description": "A mysterious long black cloak or dress, worn over black leggings.",
         "len": 65,
         "done": "yes",
-        "price": 10000,
+        "price": 6500,
         "tags": "lavender,",
         "howToGet": "city exclusive outfit"
     },
@@ -407,6 +407,11 @@
         "name": "Lycanroc Coat",
         "price": 18000,
         "tags": "pokemon-rockruff,pokemon-lycanroc_d,pokemon-lycanroc_n,"
+    },
+    {
+        "id": "maid",
+        "name": "Waitress Uniform",
+        "price": 5000
     },
     {
         "id": "marshweater",
