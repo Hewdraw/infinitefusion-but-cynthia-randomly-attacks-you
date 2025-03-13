@@ -762,7 +762,7 @@
 754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",1,0,0,
 755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",1,0,0,
 756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",1,0,0,
-
+757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,0,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",1,0,0,
 
 
 #    attr_reader :id

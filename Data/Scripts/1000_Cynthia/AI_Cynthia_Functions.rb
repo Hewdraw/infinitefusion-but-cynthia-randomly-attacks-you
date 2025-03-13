@@ -1232,6 +1232,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A2", "190" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
+      score *= 2 if opposingMaxThreat == opposingMaxPhysicalThreat
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -1239,6 +1240,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A3", "189" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
+      score *= 2 if opposingMaxThreat == opposingMaxSpecialThreat
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end

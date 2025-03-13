@@ -225,6 +225,7 @@ class PokeBattle_Battle
             break
           end
           @nuh_uh += 3
+          @nuh_uh += 27 if legendaryBattle?
           next if @broken_buttons.include?(1)
           if pbItemMenu(idxBattler,actioned.length==1)
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])

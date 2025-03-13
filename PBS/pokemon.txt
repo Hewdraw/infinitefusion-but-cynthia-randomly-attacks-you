@@ -19145,6 +19145,26 @@ Abilities = SNOWCLOAK
 HiddenAbility = SNOWWARNING
 Moves = 1,TACKLE
 Shape = Quadruped
+#-------------------------------
+[1000715]
+Name = Clodreon
+InternalName = UMBREONCLODSIRE
+Type1 = POISON
+Type2 = DARK
+BaseStats = 118,68,93,50,50,110
+Abilities = DROUGHT
+Moves = 1,TACKLE
+Shape = Quadruped
+#-------------------------------
+[1000716]
+Name = Alomolix
+InternalName = STEELIXALOMOMOLA
+Type1 = WATER
+Type2 = GROUND
+BaseStats = 135,81,160,41,45,51
+Abilities = DROUGHT
+Moves = 1,TACKLE
+Shape = Quadruped
 
 #Misc
 #-------------------------------

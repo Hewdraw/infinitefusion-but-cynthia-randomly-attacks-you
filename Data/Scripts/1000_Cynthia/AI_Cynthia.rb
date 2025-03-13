@@ -108,16 +108,23 @@ class PokeBattle_AI
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat && user.index == 69
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp && user.index != 69
     switchScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
+    switchScore += 2 if user.hasActiveAbility?(:REGENERATOR) && @battle.positions[user.index].effects[PBEffects::Wish]>0
     switchScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
     switchScore += 5 if user.effects[PBEffects::PerishSong]==1
-    switchScore += [0, (user.statusCount / 0.5) - 1.5].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD]) && user.index != 69
+    switchScore += [0, (user.statusCount / 0.5) - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD]) && user.index != 69
     switchScore -= 5 if user.effects[PBEffects::Substitute]>0
     switchScore += 3 if user.effects[PBEffects::Curse]
     switchScore += 2 if user.effects[PBEffects::Nightmare]
+    switchScore += 1 if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == 0
+    switchScore += 1 if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
+    switchScore += 1 if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 2
+    switchScore += 3 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
+    switchScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
+    switchScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
+    switchScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
     #todo wish
     return switchScore
   end
-
 
   def pbCynthiaGetThreat(user, target, percentagetotal = true)
     return {
