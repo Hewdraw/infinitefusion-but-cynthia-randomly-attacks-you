@@ -53,12 +53,12 @@ class PokeBattle_AI
   end
 
   def pbCynthiaGetSwitchValue(user, switch)
-    activeUserThreat = 0
+    activeUserThreat = 10
     activeOpposingThreat = 0
     activeUserOutspeeds = true
     battler = PokeBattle_Battler.new(@battle,69)
     battler.pbInitialize(switch,69)
-    switchThreat = 0
+    switchThreat = 10
     opposingThreat = 0
     switchOutspeeds = true
     user.eachOpposing do |target|
@@ -107,7 +107,7 @@ class PokeBattle_AI
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat && user.index == 69 
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat && user.index == 69
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp && user.index != 69
-    switchScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
+    switchScore += 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
     switchScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
     switchScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
     switchScore += 5 if user.effects[PBEffects::PerishSong]==1
@@ -123,6 +123,7 @@ class PokeBattle_AI
     switchScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
     switchScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
     #todo wish
+    #print(user.name, " ", threat, " ", switchScore)
     return switchScore
   end
 
@@ -325,7 +326,9 @@ class PokeBattle_AI
       score = 0
     end
     score *= 1.5 if score >= 100
-    score += pbCynthiaGetMoveScoreStatus(move,user,target)
+    if score > 0 || move.statusMove?
+      score += pbCynthiaGetMoveScoreStatus(move,user,target)
+    end
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       if !user.hasActiveItem?(:POWERHERB)
         score *= 0.5
