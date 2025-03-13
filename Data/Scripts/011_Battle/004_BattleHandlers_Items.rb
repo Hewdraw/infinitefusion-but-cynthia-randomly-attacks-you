@@ -561,8 +561,8 @@ BattleHandlers::DamageCalcUserItem.add(:FIREGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:FIRESPHERE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 1.5 if target.isSpecies?(:GMOLTRES) && move.specialMove?
-    mults[:final_damage_multiplier] *= 1.3 if target.isFusionOf(:MOLTRES) && move.specialMove?
+    mults[:final_damage_multiplier] *= 1.5 if user.isSpecies?(:GMOLTRES) && move.specialMove?
+    mults[:final_damage_multiplier] *= 1.3 if user.isFusionOf(:MOLTRES) && move.specialMove?
   }
 )
 
