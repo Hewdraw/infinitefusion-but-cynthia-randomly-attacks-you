@@ -10,9 +10,8 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:LIGHTNINGSPHERE,
   proc { |item,battler,mult|
-    if battler.isFusionOf(:ZAPDOS) || battler.isSpecies?(:GZAPDOS)
-      next mult*1.5
-    end
+    next mult*1.5 if battler.isSpecies?(:GZAPDOS)
+    next mult*1.3 if battler.isFusionOf(:ZAPDOS)
   }
 )
 
@@ -560,11 +559,10 @@ BattleHandlers::DamageCalcUserItem.add(:FIREGEM,
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:FIRESPHERE,
+BattleHandlers::DamageCalcUserItem.add(:FIRESPHERE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:MOLTRES) || target.isSpecies?(:GMOLTRES)) && move.specialMove?
-      mults[:final_damage_multiplier] *= 1.5
-    end
+    mults[:final_damage_multiplier] *= 1.5 if target.isSpecies?(:GMOLTRES) && move.specialMove?
+    mults[:final_damage_multiplier] *= 1.3 if target.isFusionOf(:MOLTRES) && move.specialMove?
   }
 )
 
@@ -894,9 +892,8 @@ BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
 
 BattleHandlers::DamageCalcTargetItem.add(:ICESPHERE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:ARTICUNO) || target.isSpecies?(:GARTICUNO)) && move.specialMove?
-      mults[:defense_multiplier] *= 1.5
-    end
+    mults[:defense_multiplier] *= 1.5 if target.isSpecies?(:GARTICUNO) && move.specialMove?
+    mults[:defense_multiplier] *= 1.3 if target.isFusionOf(:ARTICUNO) && move.specialMove?
   }
 )
 
