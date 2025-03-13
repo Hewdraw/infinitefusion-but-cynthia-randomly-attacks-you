@@ -85,8 +85,10 @@ class PokeBattle_AI
     activeDamagethreshold += 1 if activeUserOutspeeds
     hitsDifferential = (1+(100.0/switchThreat).floor) / (100.0/activeUserThreat).floor
     switchScore = damagethreshold - (activeDamagethreshold * hitsDifferential)
-    switchScore += pbCynthiaGetSwitchBonus(battler, opposingThreat)
-    switchScore += pbCynthiaGetSwitchBonus(user, activeOpposingThreat) if !user.fainted?
+    #print(user.name, " ", switch.name, " ", switchScore)
+    switchScore += pbCynthiaGetSwitchBonus(battler, opposingThreat, damagethreshold)
+    switchScore += pbCynthiaGetSwitchBonus(user, activeOpposingThreat, activeDamagethreshold) if !user.fainted?
+    #print(user.name, " ", switch.name, " ", switchScore) 
     switchScore += (damagethreshold - activeDamagethreshold) * 0.5
     switchScore -= 1
 
@@ -96,32 +98,51 @@ class PokeBattle_AI
     return switchScore
   end
 
-  def pbCynthiaGetSwitchBonus(user, threat)
+  def pbCynthiaGetSwitchBonus(user, threat, damagethreshold)
     return -100 if user.level == 1
     switchScore = 0
+    switchInScore = 0
+    switchOutScore = 0
+    activeScore = 0
+
     switchScore += 2 if user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING]) && @battle.pbWeather != :Snow && @battle.pbWeather != :Hail
     switchScore += 2 if user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun
     switchScore += 2 if user.hasActiveAbility?([:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS]) && @battle.pbWeather != :Sandstorm
     switchScore += 2 if user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR)
-    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat && user.index == 69 
-    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat && user.index == 69
-    switchScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp && user.index != 69
-    switchScore += 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66 && user.index != 69
-    switchScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
-    switchScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
-    switchScore += 5 if user.effects[PBEffects::PerishSong]==1
-    switchScore += [0, (user.statusCount / 0.5) - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD]) && user.index != 69
-    switchScore -= 5 if user.effects[PBEffects::Substitute]>0
-    switchScore += 3 if user.effects[PBEffects::Curse]
-    switchScore += 2 if user.effects[PBEffects::Nightmare]
-    switchScore += 1 if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == 0
-    switchScore += 1 if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
-    switchScore += 1 if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 2
-    switchScore += 3 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
-    switchScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
-    switchScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
-    switchScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
+
+    switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
+    switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
+
+    switchOutScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp
+    switchOutScore += 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66
+    switchOutScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
+    switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
+    switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
+    switchOutScore += [0, (user.statusCount / 0.5) - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
+    switchOutScore -= 5 if user.effects[PBEffects::Substitute]>0
+    switchOutScore += 3 if user.effects[PBEffects::Curse]
+    switchOutScore += 2 if user.effects[PBEffects::Nightmare]
+
+    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
+    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
+    opponenthaspoison = false
+    @battle.pbParty(0).each_with_index do |pkmn,i|
+      if pkmn.pbHasType?(:POISON) && !pkmn.airborne?  
+        opponenthaspoison = true
+        break
+      end
+    end
+    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 2 && !opponenthaspoison
+    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min*2 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
+    activeScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
+    activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
+    activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
+
+    switchScore += switchInScore if user.index == 69
+    switchScore += switchOutScore if user.index != 69
+    switchScore += activeScore if user.index == 69
+    switchScore -= activeScore if user.index != 69
     #todo wish
     #print(user.name, " ", threat, " ", switchScore)
     return switchScore
@@ -325,7 +346,7 @@ class PokeBattle_AI
     else
       score = 0
     end
-    score *= 1.5 if score >= 100
+    score *= 1.5 if score >= 100  
     if score > 0 || move.statusMove?
       score += pbCynthiaGetMoveScoreStatus(move,user,target)
     end
