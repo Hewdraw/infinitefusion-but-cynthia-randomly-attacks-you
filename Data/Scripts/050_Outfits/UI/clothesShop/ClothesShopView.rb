@@ -142,6 +142,7 @@ class ClothesShopView < PokemonMart_Scene
         end
 
         if Input.trigger?(Input::BACK)
+          echoln "backibacki"
           pbPlayCloseMenuSE
           return nil
         elsif Input.trigger?(Input::USE)

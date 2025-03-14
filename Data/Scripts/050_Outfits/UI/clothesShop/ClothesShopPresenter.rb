@@ -106,7 +106,8 @@ class ClothesShopPresenter < PokemonMartScreen
         break if @adapter.isShop?
         quit_menu_choice = quitMenuPrompt()
         break if quit_menu_choice
-        item = @scene.pbChooseBuyItem
+        next
+        #item = @scene.pbChooseBuyItem
       end
 
 
