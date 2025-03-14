@@ -101,13 +101,11 @@ class ClothesShopPresenter < PokemonMartScreen
     item = nil
     loop do
       item = @scene.pbChooseBuyItem
-      #break if !item
       if !item
         break if @adapter.isShop?
         quit_menu_choice = quitMenuPrompt()
         break if quit_menu_choice
         next
-        #item = @scene.pbChooseBuyItem
       end
 
 
@@ -155,7 +153,6 @@ class ClothesShopPresenter < PokemonMartScreen
       @stock.compact!
       pbDisplayPaused(_INTL("Here you are! Thank you!")) { pbSEPlay("Mart buy item") }
       @adapter.addItem(item)
-      # break
     end
     @scene.pbEndBuyScene
   end

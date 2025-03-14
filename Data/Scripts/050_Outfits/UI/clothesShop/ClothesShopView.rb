@@ -53,9 +53,6 @@ class ClothesShopView < PokemonMart_Scene
     pbScrollMap(DIRECTION_LEFT, 7, 6)
     pbScrollMap(DIRECTION_DOWN, 5, 6)
     $game_player.turn_generic(@initial_direction)
-    #$scene.reset_map(true)
-    #pbRefreshSceneMap
-    # $scene.reset_map(false)
   end
 
   def refreshStock(adapter)
@@ -70,9 +67,6 @@ class ClothesShopView < PokemonMart_Scene
       @subscene.pbRefresh
     else
       itemwindow = @sprites["itemwindow"]
-      #@sprites["icon"].item = itemwindow.item
-      #@sprites["icon"].item = itemwindow.item
-
       item = itemwindow.item
       if itemwindow.item
         if itemwindow.item.is_a?(Symbol)
@@ -142,7 +136,6 @@ class ClothesShopView < PokemonMart_Scene
         end
 
         if Input.trigger?(Input::BACK)
-          echoln "backibacki"
           pbPlayCloseMenuSE
           return nil
         elsif Input.trigger?(Input::USE)
