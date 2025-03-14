@@ -125,6 +125,8 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
   def playerHatActionsMenu(item)
+    echoln caller
+
     cmd_confirm = "Confirm"
     cmd_remove = "Remove hat"
     cmd_cancel = "Cancel"

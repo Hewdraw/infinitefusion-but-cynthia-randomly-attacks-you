@@ -38,15 +38,28 @@ class HatShopView < ClothesShopView
     return @stock[itemwindow.index]
   end
 
-  def displayLayerIcons(selected_item=nil)
+  def handleHatlessLayerIcons(selected_item)
+    other_hat = @adapter.is_secondary_hat ? $Trainer.hat : $Trainer.hat2
     if !selected_item.is_a?(Hat)
       if @adapter.is_secondary_hat
         @sprites["wornHat_layer2"].bitmap=nil
       else
         @sprites["wornHat_layer1"].bitmap=nil
       end
-      return
     end
+    if !other_hat.is_a?(Hat)
+      if @adapter.is_secondary_hat
+        @sprites["wornHat_layer1"].bitmap=nil
+      else
+        @sprites["wornHat_layer2"].bitmap=nil
+      end
+    end
+
+  end
+  def displayLayerIcons(selected_item=nil)
+    echoln selected_item
+    handleHatlessLayerIcons(selected_item)
+
     hat1Filename = getOverworldHatFilename($Trainer.hat)
     hat2Filename = getOverworldHatFilename($Trainer.hat2)
 
@@ -65,6 +78,10 @@ class HatShopView < ClothesShopView
 
     @sprites["wornHat_layer1"].src_rect.set(0, 0, frame_width, frame_height) if hatBitmapWrapper
     @sprites["wornHat_layer2"].src_rect.set(0, 0, frame_width, frame_height) if hat2BitmapWrapper
+
+    echoln hatBitmapWrapper
+    echoln hat2BitmapWrapper
+
   end
 
 

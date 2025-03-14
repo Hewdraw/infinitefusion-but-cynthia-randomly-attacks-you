@@ -48,7 +48,7 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
 
-  # returns if should stay in the menu
+  # returns true if should stay in the menu
   def playerClothesActionsMenu(item)
     cmd_wear = "Wear"
     cmd_dye = "Dye Kit"
@@ -59,9 +59,9 @@ class ClothesShopPresenter < PokemonMartScreen
     choice = pbMessage("What would you like to do?", options, -1)
 
     if options[choice] == cmd_wear
-      putOnClothes(item)
+      putOnClothes(item,false)
       $Trainer.clothes_color = @adapter.get_dye_color(item.id)
-      return false
+      return true
     elsif options[choice] == cmd_dye
       dyeClothes()
     end
@@ -72,8 +72,8 @@ class ClothesShopPresenter < PokemonMartScreen
     putOnClothes(item)
   end
 
-  def quitMenuPrompt(item)
-    return true if !@adapter.is_a?(HatsMartAdapter)
+  def quitMenuPrompt()
+    return true if !(@adapter.is_a?(HatsMartAdapter) || @adapter.is_a?(ClothesMartAdapter))
     boolean_changes_detected = @adapter.player_changed_clothes?
     return true if !boolean_changes_detected
     pbPlayCancelSE
@@ -81,10 +81,10 @@ class ClothesShopPresenter < PokemonMartScreen
     cmd_discard = "Discard changes"
     cmd_cancel = "Cancel"
     options = [cmd_confirm,cmd_discard,cmd_cancel]
-    choice = pbMessage("You have unsaved changes!",options,2)
+    choice = pbMessage("You have unsaved changes!",options,3)
     case options[choice]
     when cmd_confirm
-      confirmPutClothes(item)
+      @adapter.putOnSelectedOutfit
       pbPlayDecisionSE
       return true
     when cmd_discard
@@ -104,7 +104,7 @@ class ClothesShopPresenter < PokemonMartScreen
       #break if !item
       if !item
         break if @adapter.isShop?
-        quit_menu_choice = quitMenuPrompt(item)
+        quit_menu_choice = quitMenuPrompt()
         break if quit_menu_choice
         item = @scene.pbChooseBuyItem
       end

@@ -81,6 +81,11 @@ class ClothesMartAdapter < OutfitsMartAdapter
     $Trainer.clothes != @worn_clothes
   end
 
+  def putOnSelectedOutfit()
+    putOnClothes($Trainer.clothes)
+    @worn_clothes = $Trainer.clothes
+  end
+
   def putOnOutfit(item)
     putOnClothes(item.id) if item
     @worn_clothes = item.id if item

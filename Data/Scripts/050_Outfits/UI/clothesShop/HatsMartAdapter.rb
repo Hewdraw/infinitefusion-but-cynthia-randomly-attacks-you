@@ -157,6 +157,14 @@ class HatsMartAdapter < OutfitsMartAdapter
     $Trainer.hat != @worn_clothes || $Trainer.hat2 != @worn_clothes2
   end
 
+  def putOnSelectedOutfit()
+    putOnHat($Trainer.hat,true,false) if $Trainer.hat
+    putOnHat($Trainer.hat2,true,true) if $Trainer.hat2
+
+    @worn_clothes = $Trainer.hat
+    @worn_clothes2 = $Trainer.hat2
+  end
+
   def putOnOutfit(item)
     return unless item.is_a?(Outfit)
     putOnHat(item.id,false,@is_secondary_hat)
