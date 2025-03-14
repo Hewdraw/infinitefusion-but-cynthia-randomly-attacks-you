@@ -80,7 +80,7 @@ class ClothesShopPresenter < PokemonMartScreen
     cmd_confirm = "Set outfit"
     cmd_discard = "Discard changes"
     cmd_cancel = "Cancel"
-    options = [cmd_confirm,cmd_discard,cmd_cancel]
+    options = [cmd_discard,cmd_confirm,cmd_cancel]
     choice = pbMessage("You have unsaved changes!",options,3)
     case options[choice]
     when cmd_confirm

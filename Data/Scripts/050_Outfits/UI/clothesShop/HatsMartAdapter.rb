@@ -158,11 +158,15 @@ class HatsMartAdapter < OutfitsMartAdapter
   end
 
   def putOnSelectedOutfit()
+
     putOnHat($Trainer.hat,true,false) if $Trainer.hat
     putOnHat($Trainer.hat2,true,true) if $Trainer.hat2
 
     @worn_clothes = $Trainer.hat
     @worn_clothes2 = $Trainer.hat2
+
+    playOutfitChangeAnimation()
+    pbMessage(_INTL("You put on the hat(s)!\\wtnp[30]"))
   end
 
   def putOnOutfit(item)

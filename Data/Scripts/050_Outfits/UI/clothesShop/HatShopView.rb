@@ -57,7 +57,6 @@ class HatShopView < ClothesShopView
 
   end
   def displayLayerIcons(selected_item=nil)
-    echoln selected_item
     handleHatlessLayerIcons(selected_item)
 
     hat1Filename = getOverworldHatFilename($Trainer.hat)
@@ -78,10 +77,6 @@ class HatShopView < ClothesShopView
 
     @sprites["wornHat_layer1"].src_rect.set(0, 0, frame_width, frame_height) if hatBitmapWrapper
     @sprites["wornHat_layer2"].src_rect.set(0, 0, frame_width, frame_height) if hat2BitmapWrapper
-
-    echoln hatBitmapWrapper
-    echoln hat2BitmapWrapper
-
   end
 
 
