@@ -333,20 +333,22 @@ def generate_appearance_from_name(name)
   hairstyles_list = $PokemonGlobal.hairstyles_data.keys
 
   hat = hats_list[convert_letter_to_number(seed[0],hats_list.length)]
-  hat_color = convert_letter_to_number(seed[1],100)
+  hat_color = convert_letter_to_number(seed[1],200)
   hat_color = 0 if convert_letter_to_number(seed[2]) % 2 == 0 #1/2 chance of no dyed hat
 
   clothes = clothes_list[convert_letter_to_number(seed[3],clothes_list.length)]
-  clothes_color = convert_letter_to_number(seed[4],100)
+  clothes_color = convert_letter_to_number(seed[4],200)
   clothes_color = 0 if convert_letter_to_number(seed[5]) % 2 == 0 #1/2 chance of no dyed clothes
 
   hair_base = hairstyles_list[convert_letter_to_number(seed[6],hairstyles_list.length)]
   hair_number = [1,2,3,4][convert_letter_to_number(seed[7],3)]
   hair=getFullHairId(hair_base,hair_number)
-  hair_color = convert_letter_to_number(seed[8],100)
-  echoln hair_color
-
+  hair_color = convert_letter_to_number(seed[8],200)
   hair_color = 0 if convert_letter_to_number(seed[9]) % 2 == 0 #1/2 chance of no dyed hair
+
+  echoln hair_color
+  echoln clothes_color
+  echoln hat_color
 
   skin_tone = [1,2,3,4,5,6][convert_letter_to_number(seed[10],5)]
   return TrainerAppearance.new(skin_tone,hat,clothes, hair,
