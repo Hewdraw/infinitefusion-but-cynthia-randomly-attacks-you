@@ -874,11 +874,13 @@ class Pokemon
     for i in first_move_index...knowable_moves.length
       move = Pokemon::Move.new(knowable_moves[i])
       @moves.push(move)
+      @learned_moves = [] if !@learned_moves
       @learned_moves << move if !@learned_moves.include?(move)
     end
   end
 
   def add_learned_move(move)
+    @learned_moves = [] if !@learned_moves
     @learned_moves << move unless @learned_moves.include?(move)
   end
 
@@ -900,6 +902,7 @@ class Pokemon
     @moves.push(move)
     # Delete the first known move if self now knows more moves than it should
     @moves.shift if numMoves > MAX_MOVES
+    @learned_moves = [] if !@learned_moves
     @learned_moves << move if !@learned_moves.include?(move)
     echoln @learned_moves
   end
