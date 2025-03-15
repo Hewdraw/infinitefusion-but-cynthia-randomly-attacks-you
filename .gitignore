@@ -12,3 +12,6 @@ Data/sprites/sprites_rate_limit.log
 .gitignore
 Game.rxproj
 .DS_Store
+PBS/*
+Game.rxproj
+rpgmaker.sh
