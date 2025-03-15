@@ -654,11 +654,11 @@ def validate_regirock_steel_puzzle()
 end
 
 def registeel_ice_press_switch(letter)
-  order = pbGet(1)
+  order = pbGet(VAR_REGI_PUZZLE_SWITCH_PRESSED)
   solution = "ssBSBGG" # GGSBBss"
   registeel_ice_reset_switches() if !order.is_a?(String)
   order << letter
-  pbSet(1, order)
+  pbSet(VAR_REGI_PUZZLE_SWITCH_PRESSED, order)
   if order == solution
     echoln "OK"
     pbSEPlay("Evolution start", nil, 130)
@@ -674,7 +674,7 @@ def registeel_ice_reset_switches()
     pbSetSelfSwitch(switch_id, "A", false)
     echoln "reset" + switch_id.to_s
   end
-  pbSet(1, "")
+  pbSet(VAR_REGI_PUZZLE_SWITCH_PRESSED, "")
 end
 
 def regirock_steel_move_boulder()
