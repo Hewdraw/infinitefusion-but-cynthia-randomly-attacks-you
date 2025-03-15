@@ -1718,3 +1718,63 @@ def qmarkMaskCheck()
     end
   end
 end
+
+
+def purchaseDyeKitMenu(hats_kit_price=0,clothes_kit_price=0)
+
+  commands = []
+  command_hats = "Hats Dye Kit ($#{hats_kit_price})"
+  command_clothes = "Clothes Dye Kit ($#{clothes_kit_price})"
+  command_cancel = "Cancel"
+
+  commands << command_hats if !$PokemonBag.pbHasItem?(:HATSDYEKIT)
+  commands << command_clothes if !$PokemonBag.pbHasItem?(:CLOTHESDYEKIT)
+  commands << command_cancel
+
+  if commands.length <= 1
+    pbCallBub(2,@event_id)
+    pbMessage("\\C[1]Dye Kits\\C[0] can be used to dye clothes all sorts of colours!")
+
+    pbCallBub(2,@event_id)
+    pbMessage("You can use them at any time when you change clothes.")
+    return
+  end
+  pbCallBub(2,@event_id)
+  pbMessage("\\GWelcome! Are you interested in dyeing your outfits different colours?")
+
+  pbCallBub(2,@event_id)
+  pbMessage("I make handy \\C[1]Dye Kits\\C[0] from my Smeargle's paint that can be used to dye your outfits any color you want!")
+
+  pbCallBub(2,@event_id)
+  pbMessage("\\GWhat's more is that it's reusable so you can go completely wild with it if you want! Are you interested?")
+
+  choice = optionsMenu(commands,commands.length)
+  case commands[choice]
+  when command_hats
+    if $Trainer.money < hats_kit_price
+      pbCallBub(2,@event_id)
+      pbMessage("Oh, you don't have enough money...")
+      return
+    end
+    pbMessage("\\G\\PN purchased the dye kit.")
+    $Trainer.money -= hats_kit_price
+    pbSEPlay("SlotsCoin")
+    Kernel.pbReceiveItem(:HATSDYEKIT)
+    pbCallBub(2,@event_id)
+    pbMessage("\\GHere you go! Have fun dyeing your hats!")
+  when command_clothes
+    if $Trainer.money < clothes_kit_price
+      pbCallBub(2,@event_id)
+      pbMessage("Oh, you don't have enough money...")
+      return
+    end
+    pbMessage("\\G\\PN purchased the dye kit.")
+    $Trainer.money -= clothes_kit_price
+    pbSEPlay("SlotsCoin")
+    Kernel.pbReceiveItem(:CLOTHESDYEKIT)
+    pbCallBub(2,@event_id)
+    pbMessage("\\GHere you go! Have fun dyeing your clothes!")
+  end
+  pbCallBub(2,@event_id)
+  pbMessage("You can use \\C[1]Dye Kits\\C[0] at any time when you change clothes.")
+end

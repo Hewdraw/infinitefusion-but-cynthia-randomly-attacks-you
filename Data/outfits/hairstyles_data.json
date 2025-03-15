@@ -140,7 +140,16 @@
     },
     {
         "id": "fusionnerd",
+        "name": "Side-Swept Fringe",
+        "description": "A bold, asymmetrical hairstyle where strands fuse into a stylish wave.",
         "price": 1000
+    },
+    {
+        "id": "gardevoir",
+        "name": "Guardian Fringe",
+        "description": "A neat fringe that covers one eye that is styled to look like a Gardevoir.",
+        "price": 3000,
+        "howToGet": "saffron boutique"
     },
     {
         "id": "gary",
