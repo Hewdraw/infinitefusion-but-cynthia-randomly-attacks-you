@@ -810,6 +810,7 @@ module Game
   end
 
   def self.backup_savefile(save_path, slot)
+    begin
     backup_dir = File.join(File.dirname(save_path), "backups")
     Dir.mkdir(backup_dir) if !Dir.exist?(backup_dir)
 
@@ -837,6 +838,10 @@ module Game
         echoln excess_backups
         excess_backups.each { |old_backup| File.delete(old_backup) }
       end
+    end
+    rescue => e
+      echoln ("There was an error while creating a backup savefile.")
+      echoln("Error: #{e.message}")
     end
   end
 
