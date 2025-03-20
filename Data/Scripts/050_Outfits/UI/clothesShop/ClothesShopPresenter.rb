@@ -116,7 +116,9 @@ class ClothesShopPresenter < PokemonMartScreen
           next if stay_in_menu
           return
         elsif @adapter.is_a?(HatsMartAdapter)
+          echoln pbGet(1)
           stay_in_menu = playerHatActionsMenu(item)
+          echoln pbGet(1)
           next if stay_in_menu
           return
         else

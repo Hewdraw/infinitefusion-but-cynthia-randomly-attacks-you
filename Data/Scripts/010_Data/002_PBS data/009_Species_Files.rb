@@ -363,6 +363,12 @@ def pbPlayCry(pkmn, volume = 90, pitch = nil)
   GameData::Species.play_cry(pkmn, volume, pitch)
 end
 
+
+def play_cry(species, volume = 90, pitch = 100)
+  echoln species
+  GameData::Species.play_cry_from_species(species,0,volume, pitch)
+end
+
 # @deprecated This alias is slated to be removed in v20.
 def pbPlayCrySpecies(species, form = 0, volume = 90, pitch = nil)
   Deprecation.warn_method('pbPlayCrySpecies', 'v20', 'Pokemon.play_cry(species, form)')
