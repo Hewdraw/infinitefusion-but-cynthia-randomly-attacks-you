@@ -319,6 +319,11 @@
         "howToGet": "stay idle in celadon"
     },
     {
+        "id": "eeveeears",
+        "name": "Eevee Ears",
+        "tags": "hairband,pokemon-eevee,"
+    },
+    {
         "id": "electrivireheadset",
         "name": "Electivire Headset",
         "price": 10000,
@@ -1106,6 +1111,30 @@
         "done": "yes",
         "price": 25000,
         "tags": "hat,pokemon-delibird,"
+    },
+    {
+        "id": "scribbles1",
+        "name": "Mask Scribbles",
+        "description": "Markings in the shape of a mask drawn on your face by a mischievous Jigglypuff!",
+        "tags": "special,mask,"
+    },
+    {
+        "id": "scribbles2",
+        "name": "Moustache Scribbles",
+        "description": "Markings in the shape of a moustache drawn on your face by a mischievous Jigglypuff!",
+        "tags": "special,mask,"
+    },
+    {
+        "id": "scribbles3",
+        "name": "Circle Scribbles",
+        "description": "Markings in the shape of a circle drawn on your face by a mischievous Jigglypuff!",
+        "tags": "special,mask,"
+    },
+    {
+        "id": "scribbles4",
+        "name": "Swirly Scribbles",
+        "description": "Markings in the shape of a swirl drawn on your face by a mischievous Jigglypuff!",
+        "tags": "special,mask,"
     },
     {
         "id": "seacaptain",

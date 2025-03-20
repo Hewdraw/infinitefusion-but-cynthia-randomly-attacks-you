@@ -1778,3 +1778,23 @@ def purchaseDyeKitMenu(hats_kit_price=0,clothes_kit_price=0)
   pbCallBub(2,@event_id)
   pbMessage("You can use \\C[1]Dye Kits\\C[0] at any time when you change clothes.")
 end
+
+def giveJigglypuffScribbles(possible_versions = [1,2,3,4])
+  selected_scribbles_version = possible_versions.sample
+  case selected_scribbles_version
+  when 1
+    scribbles_id= HAT_SCRIBBLES1
+  when 2
+    scribbles_id= HAT_SCRIBBLES2
+  when 3
+    scribbles_id= HAT_SCRIBBLES3
+  when 4
+    scribbles_id= HAT_SCRIBBLES4
+  end
+  return if !scribbles_id
+
+  if !hasHat?(scribbles_id)
+    $Trainer.unlocked_hats << scribbles_id
+  end
+  putOnHat(scribbles_id,true,true)
+end

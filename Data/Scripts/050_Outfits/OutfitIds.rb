@@ -85,6 +85,10 @@ HAT_FLOWER = "mikufairy"
 HAT_SKITTY_TV = "skittyTV"
 HAT_TVHEAD = "tvhead"
 
+HAT_SCRIBBLES1 = "scribbles1"
+HAT_SCRIBBLES2 = "scribbles2"
+HAT_SCRIBBLES3 = "scribbles3"
+HAT_SCRIBBLES4 = "scribbles4"
 
 HAT_CARDBOARD_BOX = "box"
 HAT_CAPTAIN = "seacaptain"
