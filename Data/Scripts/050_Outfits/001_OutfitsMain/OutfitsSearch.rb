@@ -167,3 +167,55 @@ def get_hair_by_id(id)
   update_global_outfit_lists()
   return $PokemonGlobal.hairstyles_data.has_key?(id) ? $PokemonGlobal.hairstyles_data[id] : nil
 end
+
+
+def generate_clothes_choice(baseOptions=true,additionalIds=[],additionalTags=[],filterOutTags=[])
+  list = []
+  list += additionalIds
+  list += search_clothes(additionalTags)
+  if baseOptions
+    list += get_clothes_base_options()
+    list += search_clothes(get_regional_sets_tags())
+  end
+  return list
+end
+
+
+CITY_OUTFIT_TAGS= [
+  "pewter","cerulean","vermillion","lavender","celadon","fuchsia","cinnabar",
+  "crimson","goldenrod","azalea", "violet", "blackthorn", "mahogany", "ecruteak",
+  "olivine","cianwood", "kin"
+]
+def list_city_exclusive_clothes()
+  tags_list = CITY_OUTFIT_TAGS
+  echoln search_clothes(tags_list)
+  return search_clothes(tags_list)
+end
+
+def list_city_exclusive_hats()
+  tags_list = CITY_OUTFIT_TAGS
+  return search_hats(tags_list)
+end
+
+def list_city_exclusive_hairstyles()
+  tags_list = CITY_OUTFIT_TAGS
+  return search_hairstyles(tags_list)
+end
+
+def list_regional_clothes()
+  selector = OutfitSelector.new
+  tags_list = selector.get_regional_sets_tags()
+  return search_clothes(tags_list)
+end
+
+def list_regional_hats()
+  selector = OutfitSelector.new
+  tags_list = selector.get_regional_sets_tags()
+  return search_hats(tags_list)
+end
+
+def list_regional_hairstyles()
+  selector = OutfitSelector.new
+  tags_list = selector.get_regional_sets_tags()
+  return search_hairstyles(tags_list)
+end

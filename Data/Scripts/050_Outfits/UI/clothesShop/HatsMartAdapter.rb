@@ -27,6 +27,14 @@ class HatsMartAdapter < OutfitsMartAdapter
     end
   end
 
+  def list_regional_set_items()
+    return list_regional_hats
+  end
+
+  def list_city_exclusive_items
+    return list_city_exclusive_hats
+  end
+
   def set_secondary_hat(value)
     @is_secondary_hat = value
   end

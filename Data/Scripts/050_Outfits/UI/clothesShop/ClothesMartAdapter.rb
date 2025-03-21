@@ -10,6 +10,14 @@ class ClothesMartAdapter < OutfitsMartAdapter
     end
   end
 
+  def list_regional_set_items()
+    return list_regional_clothes
+  end
+
+  def list_city_exclusive_items
+    return list_city_exclusive_clothes
+  end
+
   def initialize(stock = nil, isShop = nil)
     super
   end
@@ -103,4 +111,6 @@ class ClothesMartAdapter < OutfitsMartAdapter
   def isWornItem?(item)
     super
   end
+
+
 end

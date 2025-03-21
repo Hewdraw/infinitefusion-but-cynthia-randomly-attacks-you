@@ -6,6 +6,13 @@ class OutfitsMartAdapter < PokemonMartAdapter
   WORN_ITEM_BASE_COLOR = MessageConfig::BLUE_TEXT_MAIN_COLOR
   WORN_ITEM_SHADOW_COLOR = MessageConfig::BLUE_TEXT_SHADOW_COLOR
 
+
+  REGIONAL_SET_BASE_COLOR =   Color.new(76,72,104)
+  REGIONAL_SET_SHADOW_COLOR =   Color.new(173,165,189)
+
+  CITY_EXCLUSIVE_BASE_COLOR =   Color.new(72 , 104, 83)
+  CITY_EXCLUSIVE_SHADOW_COLOR =   Color.new(165, 189, 178)
+
   def initialize(stock = [], isShop = true, isSecondaryHat = false)
     @is_secondary_hat = isSecondaryHat
     @items = stock
@@ -14,6 +21,19 @@ class OutfitsMartAdapter < PokemonMartAdapter
     @version = nil
     $Trainer.dyed_hats = {} if !$Trainer.dyed_hats
     $Trainer.dyed_clothes = {} if !$Trainer.dyed_clothes
+
+    #todo: refactor to get the list from the first search when
+    # setting the stock instead of searching twice
+    @regional_set_items = @isShop ? list_regional_set_items : []
+    @city_exclusive_items = @isShop ? list_city_exclusive_items : []
+  end
+
+  def list_regional_set_items()
+    return []
+  end
+
+  def list_city_exclusive_items()
+    return []
   end
 
   def getDisplayName(item)
@@ -85,13 +105,23 @@ class OutfitsMartAdapter < PokemonMartAdapter
     super
   end
 
+  def isItemInRegionalSet(item)
+    return @regional_set_items.include?(item.id)
+  end
+
+  def isItemCityExclusive(item)
+    return @city_exclusive_items.include?(item.id)
+  end
+
   def getBaseColorOverride(item)
-    return WORN_ITEM_BASE_COLOR if isWornItem?(item)
-    return nil
+      return REGIONAL_SET_BASE_COLOR if isItemInRegionalSet(item)
+      return CITY_EXCLUSIVE_BASE_COLOR  if isItemCityExclusive(item)
+      return nil
   end
 
   def getShadowColorOverride(item)
-    return WORN_ITEM_SHADOW_COLOR if isWornItem?(item)
+    return REGIONAL_SET_SHADOW_COLOR if isItemInRegionalSet(item)
+    return CITY_EXCLUSIVE_SHADOW_COLOR  if isItemCityExclusive(item)
     return nil
   end
 
