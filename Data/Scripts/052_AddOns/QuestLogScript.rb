@@ -87,13 +87,14 @@ QUESTS = {
   "pewter_1" => Quest.new("pewter_1", "Mushroom Gathering", "A lady in Pewter City wants you to bring her 3 TinyMushroom from Viridian Forest to make a stew.", QuestBranchHotels, "BW (74)", "Pewter City", HotelQuestColor),
   "pewter_2" =>Quest.new("pewter_2", "Lost Medicine", "A youngster in Pewter City needs your help to find a lost Revive. He lost it by sitting on a bench somewhere in Pewter City.", QuestBranchHotels, "BW (19)", "Pewter City", HotelQuestColor),
   "pewter_3" =>Quest.new("pewter_3", "Bug Evolution ", "A Bug Catcher in Pewter City wants you to show him a fully-evolved Bug Pokémon.", QuestBranchHotels, "BWBugCatcher_male", "Pewter City", HotelQuestColor),
-  63 => Quest.new(63, "I Choose You!", "A Pikachu in the PokéMart has lost its official Pokémon League Hat. Find one and give it to the Pikachu!", QuestBranchField, "YOUNGSTER_LeagueHat", "Pewter City", FieldQuestColor),
+  "pewter_field_1" => Quest.new("pewter_field_1", "Nectar garden", "An old man wants you to bring differently colored flowers for the city's garden.", QuestBranchField, "BW (039)", "Pewter City", FieldQuestColor),
+  "pewter_field_2" => Quest.new("pewter_field_2", "I Choose You!", "A Pikachu in the PokéMart has lost its official Pokémon League Hat. Find one and give it to the Pikachu!", QuestBranchField, "YOUNGSTER_LeagueHat", "Pewter City", FieldQuestColor),
 
   #Cerulean hotel
-  3 => Quest.new(3, "Playing Cupid", "A boy in Cerulean City wants you bring a love letter to a Pokémon Breeder named Maude. She's probably somewhere in one of the routes near Cerulean City", QuestBranchHotels, "BW (18)", "Cerulean City", HotelQuestColor),
-  4 => Quest.new(4, "Fishing for Sole", "A fisherman wants you to fish up an old boot. Hook it up with the old rod in any body of water.", QuestBranchHotels, "BW (71)", "Cerulean City", HotelQuestColor),
+  "cerulean_1" => Quest.new("cerulean_1", "Playing Cupid", "A boy in Cerulean City wants you bring a love letter to a Pokémon Breeder named Maude. She's probably somewhere in one of the routes near Cerulean City", QuestBranchHotels, "BW (18)", "Cerulean City", HotelQuestColor),
+  "cerulean_2" => Quest.new("cerulean_2", "Type Experts", "Defeat all of the Type Experts scattered around the Kanto region (#{pbGet(VAR_TYPE_EXPERTS_BEATEN)}/#{TOTAL_NB_TYPE_EXPERTS})", QuestBranchHotels, "expert-normal", "Cerulean City", HotelQuestColor),
+
   5 => Quest.new(5, "Johto Pokémon", "A traveler in the PokéMart wants you to show him a Pokémon native to the Johto region.", QuestBranchHotels, "traveler_johto", "Cerulean City", HotelQuestColor),
-  "cerulean_2" => Quest.new(5, "Type Experts", "Defeat all of the Type Experts scattered around the Kanto region (#{pbGet(VAR_TYPE_EXPERTS_BEATEN)}/#{TOTAL_NB_TYPE_EXPERTS})", QuestBranchHotels, "expert-normal", "Cerulean City", HotelQuestColor),
 
   #Route 24
   6 => Quest.new(6, "Field Research (Part 1)", "Professor Oak's aide wants you to catch an Abra.", QuestBranchField, "BW (82)", "Route 24", FieldQuestColor),
@@ -101,11 +102,11 @@ QUESTS = {
   8 => Quest.new(8, "Field Research (Part 3)", "Professor Oak's aide wants you to catch a Buneary using the Pokéradar.", QuestBranchField, "BW (82)", "Route 24", FieldQuestColor),
 
   #Vermillion City
-  9 => Quest.new(9, "Unusual Types 1", "A woman at the hotel wants you to show her a Water/Fire-type Pokémon", QuestBranchHotels, "BW (58)", "Vermillion City", HotelQuestColor),
-  10 => Quest.new(10, "Trainer House", "Earn 10 Trainer Points at the Trainer House in Viridian City", QuestBranchHotels, "BW (55)", "Vermillion City", HotelQuestColor),
-  11 => Quest.new(11, "Powering the Lighthouse", "Catch some Voltorb to power up the lighthouse", QuestBranchHotels, "BW (43)", "Vermillion City", HotelQuestColor),
-  12 => Quest.new(12, "Seafood Cocktail ", "Get some steamed Krabby legs from the S.S. Anne's kitchen and bring them back to the hotel before they get cold", QuestBranchHotels, "BW (36)", "Vermillion City", HotelQuestColor),
-  13 => Quest.new(13, "Building Materials ", "Get some wooden planks from Viridian City and some Bricks from Pewter City.", QuestBranchField, "BW (36)", "Vermillion City", FieldQuestColor),
+  "vermillion_2" => Quest.new("vermillion_2", "Fishing for Sole", "A fisherman wants you to fish up an old boot. Hook it up with the old rod in any body of water.", QuestBranchHotels, "BW (71)", "Cerulean City", HotelQuestColor),
+  "vermillion_1" => Quest.new("vermillion_1", "Unusual Types 1", "A woman at the hotel wants you to show her a Water/Fire-type Pokémon", QuestBranchHotels, "BW (58)", "Vermillion City", HotelQuestColor),
+    11 => Quest.new(11, "Powering the Lighthouse", "Catch some Voltorb to power up the lighthouse", QuestBranchHotels, "BW (43)", "Vermillion City", HotelQuestColor),
+  "vermillion_3" => Quest.new("vermillion_3", "Seafood Cocktail ", "Get some steamed Krabby legs from the S.S. Anne's kitchen and bring them back to the hotel before they get cold", QuestBranchHotels, "BW (36)", "Vermillion City", HotelQuestColor),
+  "vermillion_field_1" => Quest.new("vermillion_field_1", "Building Materials ", "Get some wooden planks from Viridian City and some Bricks from Pewter City.", QuestBranchField, "BW (36)", "Vermillion City", FieldQuestColor),
   64 => Quest.new(64, "Waiter on the Water", "The S.S. Anne waiter wants you to take restaurant orders while he went to get a replacement cake.", QuestBranchField, "BW (53)", "S.S. Anne", FieldQuestColor),
 
   #Celadon City
@@ -178,7 +179,6 @@ QUESTS = {
   52 => Quest.new(52, "The long night (Part 5)", "You found a strange fruit that appears to be related to the mysterious darkness. Go see professor Oak to have it analyzed.", QuestBranchLegendary, "BW029", "Safari Zone", LegendaryQuestColor),
   53 => Quest.new(53, "The long night (Part 6)", "The strange plant you found appears to glow in the mysterious darkness that now covers the entire region. Try to follow the glow to find out the source of the disturbance.", QuestBranchLegendary, "BW-oak", "Pallet Town", LegendaryQuestColor),
 
-  54 => Quest.new(54, "Nectar garden", "An old man wants you to bring differently colored flowers for the city's garden.", QuestBranchField, "BW (039)", "Pewter City", FieldQuestColor),
   55 => Quest.new(55, "The Cursed Forest", "A child wants you to find a floating tree stump in Ilex Forest. What could she be talking about?", QuestBranchHotels, "BW109", "Goldenrod City", HotelQuestColor),
   56 => Quest.new(56, "Bitey Pokémon", "A fisherman wants to know what is the sharp-toothed Pokémon that bit him in the Safari Zone's lake.", QuestBranchHotels, "BW (71)", "Fuchsia City", HotelQuestColor),
 
@@ -219,22 +219,31 @@ def showNewQuestMessage(title,description, show_description)
 end
 
 def isQuestAlreadyAccepted?(id)
-  $Trainer.quests = [] if $Trainer.quests.class == NilClass
-  for quest in $Trainer.quests
-    return true if quest.id == id
-  end
-  return false
+  $Trainer.quests ||= []  # Initializes quests as an empty array if nil
+  $Trainer.quests.any? { |quest| quest.id.to_s == id.to_s }
 end
+
 
 def finishQuest(id, silent=false)
   return if pbCompletedQuest?(id)
   pbMEPlay("Register phone") if !silent
   Kernel.pbMessage("\\C[6]Quest completed!") if !silent
 
+
+
+
   $game_variables[222] += 1 # karma
   $game_variables[97] -= 1 #nb. quests active
   $game_variables[98] += 1 #nb. quests completed
   pbSetQuest(id, true)
+
+
+  # character_sprite = $scene.spriteset.character_sprites[@event_id]
+  # echoln character_sprite
+  # if character_sprite
+  #   character_sprite.removeQuestIcon
+  # end
+  # $scene.reset_map(true,false)  #to remove the quest icon
 end
 
 def pbCompletedQuest?(id)
@@ -267,10 +276,10 @@ end
 def pbSetQuest(id, completed)
   $Trainer.quests = [] if $Trainer.quests.class == NilClass
   for q in $Trainer.quests
-    echoln id
-    echoln q.id
-    echoln q.completed
-    echoln "----"
+    # echoln id
+    # echoln q.id
+    # echoln q.completed
+    # echoln "----"
     q.completed = completed if q.id == id
   end
 end
