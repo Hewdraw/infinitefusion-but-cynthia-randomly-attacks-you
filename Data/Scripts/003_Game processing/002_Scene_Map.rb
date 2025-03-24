@@ -81,6 +81,14 @@ class Scene_Map
     $game_switches[SWITCH_ILEX_FOREST_SPOOKED_POKEMON] = false
   end
 
+  def clear_quest_icons()
+    for sprite in $scene.spriteset.character_sprites
+      if sprite.is_a?(Sprite_Character) && sprite.questIcon
+         sprite.removeQuestIcon
+      end
+    end
+  end
+
   def transfer_player(cancelVehicles = true)
     reset_switches_for_map_transfer()
     $game_temp.player_transferring = false
@@ -88,6 +96,7 @@ class Scene_Map
     autofade($game_temp.player_new_map_id)
     pbBridgeOff
     @spritesetGlobal.playersprite.clearShadows
+    clear_quest_icons()
     if $game_map.map_id != $game_temp.player_new_map_id
       $MapFactory.setup($game_temp.player_new_map_id)
     end

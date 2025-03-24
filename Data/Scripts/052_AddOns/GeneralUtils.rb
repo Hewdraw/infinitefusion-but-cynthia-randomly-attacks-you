@@ -508,3 +508,13 @@ def new_spritepack_was_released()
   end
   return false
 end
+
+
+def get_spritecharacter_for_event(event_id)
+  for sprite in $scene.spriteset.character_sprites
+    if sprite.character.id == event_id
+      return sprite
+    end
+  end
+end
+

@@ -9,9 +9,9 @@ class Sprite_Character
   alias questIcon_init initialize
   def initialize(viewport, character = nil)
     questIcon_init(viewport,character)
-    @quest_switch = detectQuestSwitch(character)
-    if @quest_switch
-      echoln "balablbi #{@quest_switch}"
+    quest_id = detectQuestSwitch(character)
+    if quest_id
+      echoln "balablbi #{quest_id}"
       addQuestMarkerToSprite
     end
   end
@@ -20,7 +20,7 @@ class Sprite_Character
   def update
     questIcon_update
     positionQuestIndicator if @questIcon
-    removeQuestIcon if @questIcon && isQuestAlreadyAccepted?(@quest_switch)
+    #removeQuestIcon if @questIcon && isQuestAlreadyAccepted?(@quest_switch)
   end
 
   # Event name must contain questNPC(x) for a quest icon to be displayed

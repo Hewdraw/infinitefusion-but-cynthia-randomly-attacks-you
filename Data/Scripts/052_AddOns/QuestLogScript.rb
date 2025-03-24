@@ -107,7 +107,7 @@ QUESTS = {
     11 => Quest.new(11, "Powering the Lighthouse", "Catch some Voltorb to power up the lighthouse", QuestBranchHotels, "BW (43)", "Vermillion City", HotelQuestColor),
   "vermillion_3" => Quest.new("vermillion_3", "Seafood Cocktail ", "Get some steamed Krabby legs from the S.S. Anne's kitchen and bring them back to the hotel before they get cold", QuestBranchHotels, "BW (36)", "Vermillion City", HotelQuestColor),
   "vermillion_field_1" => Quest.new("vermillion_field_1", "Building Materials ", "Get some wooden planks from Viridian City and some Bricks from Pewter City.", QuestBranchField, "BW (36)", "Vermillion City", FieldQuestColor),
-  64 => Quest.new(64, "Waiter on the Water", "The S.S. Anne waiter wants you to take restaurant orders while he went to get a replacement cake.", QuestBranchField, "BW (53)", "S.S. Anne", FieldQuestColor),
+  "vermillion_field_2" => Quest.new("vermillion_field_2", "Waiter on the Water", "The S.S. Anne waiter wants you to take restaurant orders while he went to get a replacement cake.", QuestBranchField, "BW (53)", "S.S. Anne", FieldQuestColor),
 
   #Celadon City
   14 => Quest.new(14, "Sun or Moon", "Show the Pokémon that Eevee evolves when exposed to a Moon or Sun stone to help the scientist with her research.", QuestBranchHotels, "BW (82)", "Celadon City", HotelQuestColor),
@@ -203,6 +203,8 @@ def pbAcceptNewQuest(id, bubblePosition = 20, show_description=true)
   title = QUESTS[id].name
   description = QUESTS[id].desc
   showNewQuestMessage(title,description,show_description)
+  character_sprite = get_spritecharacter_for_event(@event_id)
+  character_sprite.removeQuestIcon if character_sprite
 
   pbAddQuest(id)
 end
@@ -237,6 +239,9 @@ def finishQuest(id, silent=false)
   $game_variables[98] += 1 #nb. quests completed
   pbSetQuest(id, true)
 
+
+  character_sprite = get_spritecharacter_for_event(@event_id)
+  character_sprite.removeQuestIcon if character_sprite
 
   # character_sprite = $scene.spriteset.character_sprites[@event_id]
   # echoln character_sprite
