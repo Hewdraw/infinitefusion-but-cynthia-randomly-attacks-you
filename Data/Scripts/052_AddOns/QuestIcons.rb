@@ -7,13 +7,10 @@ class Sprite_Character
   attr_accessor :questIcon
 
   alias questIcon_init initialize
-  def initialize(viewport, character = nil)
+  def initialize(viewport, character = nil, is_follower=nil)
     questIcon_init(viewport,character)
     quest_id = detectQuestSwitch(character)
-    if quest_id
-      echoln "balablbi #{quest_id}"
-      addQuestMarkerToSprite
-    end
+    addQuestMarkerToSprite if quest_id
   end
 
   alias questIcon_update update
@@ -23,11 +20,18 @@ class Sprite_Character
     #removeQuestIcon if @questIcon && isQuestAlreadyAccepted?(@quest_switch)
   end
 
+  alias questIcon_dispose dispose
+  def dispose
+    questIcon_dispose
+    removeQuestIcon
+  end
   # Event name must contain questNPC(x) for a quest icon to be displayed
   # Where x is the quest ID
   # if the quest has not already been accepted, the quest marker will be shown
   def detectQuestSwitch(event)
     return nil if event.is_a?(Game_Player)
+    return nil if event.erased
+    return nil unless pbGetActiveEventPage(event)
     name = event.name.clone
     match = name.match(/#{Regexp.escape(QUEST_NPC_TRIGGER)}\(([^)]+)\)/)  # Capture anything inside parentheses
     return nil unless match
@@ -60,7 +64,7 @@ class Sprite_Character
 
   def removeQuestIcon()
     echoln "REMOVAL for #{self}"
-    @questIcon.dispose
+    @questIcon.dispose if @questIcon
     @questIcon = nil
   end
 
