@@ -98,6 +98,7 @@ QUESTS = {
   "pewter_3" =>Quest.new("pewter_3", "Bug Evolution ", "A Bug Catcher in Pewter City wants you to show him a fully-evolved Bug Pokémon.", QuestBranchHotels, "BWBugCatcher_male", "Pewter City", HotelQuestColor),
   "pewter_field_1" => Quest.new("pewter_field_1", "Nectar garden", "An old man wants you to bring differently colored flowers for the city's garden.", QuestBranchField, "BW (039)", "Pewter City", FieldQuestColor),
   "pewter_field_2" => Quest.new("pewter_field_2", "I Choose You!", "A Pikachu in the PokéMart has lost its official Pokémon League Hat. Find one and give it to the Pikachu!", QuestBranchField, "YOUNGSTER_LeagueHat", "Pewter City", FieldQuestColor),
+  "pewter_field_3" => Quest.new("pewter_field_3", "Prehistoric Amber!", "Meetup with a scientist in Viridian Forest to look for prehistoric amber.", QuestBranchField, "BW (82)", "Pewter City", FieldQuestColor),
 
   #Cerulean hotel
   "cerulean_1" => Quest.new("cerulean_1", "Playing Cupid", "A boy in Cerulean City wants you bring a love letter to a Pokémon Breeder named Maude. She's probably somewhere in one of the routes near Cerulean City", QuestBranchHotels, "BW (18)", "Cerulean City", HotelQuestColor),
@@ -234,11 +235,9 @@ def finishQuest(id, silent=false)
   Kernel.pbMessage("\\C[6]Quest completed!") if !silent
 
 
-
-
-  $game_variables[222] += 1 # karma
-  $game_variables[97] -= 1 #nb. quests active
-  $game_variables[98] += 1 #nb. quests completed
+  $game_variables[VAR_KARMA] += 1 # karma
+  $game_variables[VAR_NB_QUEST_ACTIVE] -= 1 #nb. quests active
+  $game_variables[VAR_NB_QUEST_COMPLETED] += 1 #nb. quests completed
   pbSetQuest(id, true)
 end
 
