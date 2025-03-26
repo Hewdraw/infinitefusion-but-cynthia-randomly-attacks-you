@@ -1074,6 +1074,7 @@ def exportFusedPokemonForShowdown(pokemon)
     fusionLine = _INTL("Fusion: {1}\n", body_pokemon_species.name)
   end
   evsLine = calculateEvLineForShowdown(pokemon)
+  natureLine = "#{GameData::Nature.get(pokemon.nature).real_name} Nature"
   ivsLine = calculateIvLineForShowdown(pokemon)
 
   move1 = "", move2 = "", move3 = "", move4 = ""
@@ -1087,6 +1088,7 @@ def exportFusedPokemonForShowdown(pokemon)
     levelLine + "\n" +
     fusionLine +
     evsLine + "\n" +
+    natureLine + "\n" +
     ivsLine + "\n" +
     move1 + "\n" +
     move2 + "\n" +
