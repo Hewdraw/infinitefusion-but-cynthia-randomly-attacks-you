@@ -783,7 +783,7 @@
 766,SHATTEREDPSYCHE,Shattered Psyche,000,180,PSYCHIC,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 767,SOULSTEALING7STARSTRIKE,Soul-Stealing 7-Star Strike,000,195,GHOST,Physical,100,1,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 768,SPIRITBREAK,Spirit Break,000,75,FAIRY,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-769,SURGINGSTRIKES,Surgin Strikes,000,25,WATER,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+769,SURGINGSTRIKES,Surging Strikes,000,25,WATER,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 770,TRIPLEAXEL,Triple Axel,000,120,ICE,Physical,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 771,UPPERHAND,Upper Hand,000,65,FIGHTING,Physical,100,15,0,NearOther,3,abef,"Nice Smeargle/Ditto, jackass." #todo
 772,VICTORYDANCE,Victory Dance,000,0,FIGHTING,Status,0,10,0,User,0,bef,"Nice Smeargle/Ditto, jackass." #todo

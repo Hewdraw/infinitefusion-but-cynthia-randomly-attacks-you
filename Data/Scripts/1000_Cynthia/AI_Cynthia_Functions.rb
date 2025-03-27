@@ -1094,21 +1094,13 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "066" #todo
-      score -= 40   # don't prefer this move
-      if target.effects[PBEffects::Substitute]>0
-        score -= 90
-      end
-      if !user.ability || user.ability==target.ability ||
+      score = 0 if !user.hasActiveAbility?([:TRUANT, :SLOWSTART])
+      score = 100 if user.pbHasType?(:GHOST) && user.hasActiveAbility?(:NORMALIZE) && outspeedsopponent
+      score = 0 if target.effects[PBEffects::Substitute]>0
+      score = 0 if !user.ability || user.ability==target.ability ||
         [:MULTITYPE, :RKSSYSTEM, :TRUANT].include?(target.ability_id) ||
         [:FLOWERGIFT, :FORECAST, :ILLUSION, :IMPOSTER, :MULTITYPE, :RKSSYSTEM,
          :TRACE, :ZENMODE].include?(user.ability_id)
-        score -= 90
-      end
-      if user.ability_id == :TRUANT && user.opposes?(target)
-        score += 90
-      elsif user.ability_id == :SLOWSTART && user.opposes?(target)
-        score += 90
-      end
     #---------------------------------------------------------------------------
     when "067" #todo
       score -= 40   # don't prefer this move

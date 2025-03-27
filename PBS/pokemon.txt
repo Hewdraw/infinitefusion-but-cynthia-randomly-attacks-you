@@ -19700,6 +19700,193 @@ BaseStats = 79,71,76,113,117,86
 Abilities = NOGUARD
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000842]
+Name = Delpunny
+InternalName = LOPUNNYDELCATTY
+Type1 = NORMAL
+BaseStats = 68,72,77,100,54,68
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000843]
+Name = Delpunny
+InternalName = LOPUNNYDELCATTYTERAGHOST
+Type1 = GHOST
+BaseStats = 68,72,77,100,54,68
+Abilities = NORMALIZE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000844]
+Name = Cincros
+InternalName = PBLAZETAUROSCINCCINO
+Type1 = NORMAL
+Type2 = FIRE
+BaseStats = 75,105,90,105,53,63
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000845]
+Name = Sawros
+InternalName = TAUROSSAWSBUCK
+Type1 = NORMAL
+BaseStats = 78,100,86,105,53,70
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000846]
+Name = Blistusk
+InternalName = GREATTUSKBLISSEY
+Type1 = NORMAL
+Type2 = FIGHTING
+BaseStats = 208,90,90,76,67,107
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000847]
+Name = Ursafable
+InternalName = CLEFABLEBLOODMOONURSALUNA
+Type1 = GROUND
+Type2 = FAIRY
+BaseStats = 107,70,88,57,121,73
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000848]
+Name = Slowvor
+InternalName = KLEAVORSLOWKING
+Type1 = WATER
+Type2 = ROCK
+BaseStats = 86,115,90,66,81,96
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000849]
+Name = Beezor
+InternalName = MEGAB212H15
+Type1 = BUG
+Type2 = STEEL
+BaseStats = 66,150,106,98,31,86
+Abilities = ADAPTIVETECHNICIAN
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000850]
+Name = Zapliper
+InternalName = PELIPPERZAPDOS
+Type1 = ELECTRIC
+Type2 = FLYING
+BaseStats = 80,63,95,76,115,83
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000851]
+Name = Lubundle
+InternalName = IRONBUNDLELUGIA
+Type1 = PSYCHIC
+Type2 = WATER
+BaseStats = 89,83,119,127,101,122
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000852]
+Name = Starapdactyl
+InternalName = AERODACTYLSTARAPTOR
+Type1 = FLYING
+Type2 = ROCK
+BaseStats = 83,110,66,120,53,65
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000853]
+Name = Starapdactyl
+InternalName = MEGAAERODACTYLSTARAPTOR
+Type1 = FLYING
+Type2 = ROCK
+BaseStats = 83,130,80,133,56,71
+Abilities = TOUGHCLAWS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000854]
+Name = Togecuno
+InternalName = GARTICUNOTOGEKISS
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 86,73,88,90,121,110
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000855]
+Name = Fearifetch'd
+InternalName = SIRFETCHDFEAROW
+Type1 = FLYING
+Type2 = DARK
+BaseStats = 64,120,85,76,63,68
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000856]
+Name = Annihireloom
+InternalName = BRELOOMANNIHILAPE
+Type1 = FIGHTING
+Type2 = GRASS
+BaseStats = 93,125,80,76,53,80
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000857]
+Name = Maslash
+InternalName = ASANDSLASHMACHAMP
+Type1 = FIGHTING
+Type2 = STEEL
+BaseStats = 85,110,106,61,51,78
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000858]
+Name = Medibull
+InternalName = GRANBULLMEDICHAM
+Type1 = FIGHTING
+Type2 = FAIRY
+BaseStats = 70,100,75,56,60,70
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000859]
+Name = Medibull
+InternalName = MEGAGRANBULLMEDICHAM
+Type1 = FIGHTING
+Type2 = FAIRY
+BaseStats = 70,113,78,63,73,76
+Abilities = PUREPOWER
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000860]
+Name = Ursalee
+InternalName = HITMONLEEURSALUNA
+Type1 = GROUND
+Type2 = FIGHTING
+BaseStats = 103,126,70,74,41,90
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
 
 #Legendary Raids
 #-------------------------------

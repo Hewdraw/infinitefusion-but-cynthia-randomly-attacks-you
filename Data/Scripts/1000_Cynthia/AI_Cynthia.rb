@@ -22,7 +22,7 @@ class PokeBattle_AI
       next if pokemon.ace
       switchValue = pbCynthiaGetSwitchValue(user, pokemon)
       if switchValue > bestSwitchValue
-        next if !@battle.pbRegisterSwitch(idxBattler,i)
+        next unless pbCynthiaChooseMoves(idxBattler, true) || @battle.pbRegisterSwitch(idxBattler,i)
         bestSwitchValue = switchValue
         willswitch = true 
       end
@@ -125,6 +125,7 @@ class PokeBattle_AI
     switchOutScore += 3 if user.effects[PBEffects::Curse]
     switchOutScore += 2 if user.effects[PBEffects::Nightmare]
     switchOutScore -= 2 if user.turnCount == 0
+    switchOutScore += 1 if user.pbHasMove?(:UTURN) || user.pbHasMove?(:VOLTSWITCH) || user.pbHasMove?(:FLIPTURN) || user.pbHasMove?(:PARTINGSHOT)
 
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
@@ -249,13 +250,14 @@ class PokeBattle_AI
     items = @battle.pbGetOwnerItems(idxBattler)
   end
 
-  def pbCynthiaChooseMoves(idxBattler)
+  def pbCynthiaChooseMoves(idxBattler, switch=false)
     user        = @battle.battlers[idxBattler]
     # Get scores and targets for each move
     # NOTE: A move is only added to the choices array if it has a non-zero
     #       score.
     choices     = []
     user.eachMoveWithIndex do |move,i|
+      next if switch && ![:UTURN,:VOLTSWITCH,:FLIPTURN,:TELEPORT,:PARTINGSHOT,:BATONPASS,:CHILLYRECEPTION,:SHEDTAIL].include?(move.id)
       next if user.dynamax != nil && move.statusMove?
       next if !@battle.pbCanChooseMove?(idxBattler,i,false)
       if move.name == "The Skeleton Appears"
@@ -287,15 +289,16 @@ class PokeBattle_AI
       PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[m[0]].name}")
       @battle.pbRegisterMove(idxBattler,m[0],false)
       @battle.pbRegisterTarget(idxBattler,m[2]) if m[2]>=0
-      return
+      return true
     end
+    return false if switch
     # If there are no calculated choices, pick one at random
     PBDebug.log("[AI] #{user.pbThis} (#{user.index}) doesn't want to use any moves; picking one at random")
     user.eachMoveWithIndex do |_m,i|
       next if !@battle.pbCanChooseMove?(idxBattler,i,false)
       choices.push([i,100,-1])   # Move index, score, target
     end
-    if choices.length==0   # No moves are physically possible to use; use Struggle
+    if choices.length==0  # No moves are physically possible to use; use Struggle
       @battle.pbAutoChooseMove(user.index)
     end
     # Log the result
