@@ -6,7 +6,6 @@ class PokeBattle_AI
     if @battle.battlers[idxBattler].dynamax == nil || @battle.battlers[idxBattler].dynamax == true
       choices.push(*pbCynthiaItemScore(idxBattler))
       return if pbCynthiaShouldWithdraw(idxBattler)
-      return if @battle.pbAutoFightMenu(idxBattler)
     end
     @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbCynthiaChooseMoves(idxBattler)
@@ -110,6 +109,8 @@ class PokeBattle_AI
     switchScore += 2 if user.hasActiveAbility?([:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS]) && @battle.pbWeather != :Sandstorm
     switchScore += 2 if user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR)
+    switchScore += 1 if user.hasActiveAbility?(:INTIMIDATE)
+    switchScore += 1 if user.pbHasMove?(:FAKEOUT) && !(user.turnCount == 0 && user.index != 69)
 
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
@@ -123,6 +124,7 @@ class PokeBattle_AI
     switchOutScore -= 5 if user.effects[PBEffects::Substitute]>0
     switchOutScore += 3 if user.effects[PBEffects::Curse]
     switchOutScore += 2 if user.effects[PBEffects::Nightmare]
+    switchOutScore -= 2 if user.turnCount == 0
 
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
@@ -138,12 +140,15 @@ class PokeBattle_AI
     activeScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
     activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
     activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
+    activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
+
+    activeScore *= 2 if @battle.turnCount == 0 && user.index != 69  
 
     switchScore += switchInScore if user.index == 69
     switchScore += switchOutScore if user.index != 69
     switchScore += activeScore if user.index == 69
     switchScore -= activeScore if user.index != 69
-    #todo wish
+    #todo wish logic
     #print(user.name, " ", threat, " ", switchScore)
     return switchScore
   end

@@ -697,7 +697,20 @@ class PokeBattle_Battler
       if targets.length > 0 && numTargets == 0 && !move.worksWithNoTargets?
         targets.each do |b|
           next if !b.damageState.missed || b.damageState.magicCoat
+          sprite = @battle.scene.sprites["pokemon_" + b.index.to_s]
+          time = 8
+          pbSEPlay("UltraInstinct")
+          for i in 0..(time-1)
+            sprite.x += 10
+            @battle.scene.pbRefreshOne(b.index)
+            pbWait(1)
+          end
           pbMissMessage(move, user, b)
+          for i in 0..(time-1)
+            sprite.x -= 10
+            @battle.scene.pbRefreshOne(b.index)
+            pbWait(1)
+          end
         end
         move.pbCrashDamage(user)
         user.pbItemHPHealCheck
@@ -740,7 +753,20 @@ class PokeBattle_Battler
     # Messages about missed target(s) (relevant for multi-target moves only)
     targets.each do |b|
       next if !b.damageState.missed
+      sprite = @battle.scene.sprites["pokemon_" + b.index.to_s]
+      time = 8
+      pbSEPlay("UltraInstinct")
+      for i in 0..(time-1)
+        sprite.x += 10
+        @battle.scene.pbRefreshOne(b.index)
+        pbWait(1)
+      end
       pbMissMessage(move, user, b)
+      for i in 0..(time-1)
+        sprite.x -= 10
+        @battle.scene.pbRefreshOne(b.index)
+        pbWait(1)
+      end
     end
     # Deal the damage (to all allies first simultaneously, then all foes
     # simultaneously)
