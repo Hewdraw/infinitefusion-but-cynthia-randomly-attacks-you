@@ -797,6 +797,9 @@
 780,TOMBSTONER,TOMBSTONER,190,90,GROUND,Physical,100,10,0,Other,0,abef,"The user takes the foe under the ground, then releases it on the next turn. The foe cannot attack while underground." #TODO
 781,EXPANDINGFORCE,Expanding Force,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
+783,RAGINGBULL,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
+784,TIDYUP,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
+785,STONEAXE,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
 
 
 #  @id               = hash[:id]

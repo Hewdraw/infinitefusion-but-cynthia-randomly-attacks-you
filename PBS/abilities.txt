@@ -256,3 +256,4 @@
 254,STUN,Stun,"Paralyzes targets when the user moves first."
 255,GOAD,Goad,"Foe's are taunted and can only use attack moves."
 256,LEGENDARYPRESSURE,Legendary Pressure,""
+257,ADAPTIVETECHNICIAN,Legendary Pressure,""

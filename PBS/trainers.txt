@@ -4034,7 +4034,7 @@ Pokemon = ANINETALESPIDGEOT,5
 
 ###################
 
-LEADER_Whitney,Whitney,0]	
+[LEADER_Whitney,Whitney,0]	
 Pokemon = B241H36,5	
 	Offset = 20
 	Moves = ROLLOUT,DEFENSECURL,MILKDRINK
@@ -4122,7 +4122,7 @@ Pokemon = B309H299,85 #GARKING
 	Item = SILKSCARF
 ###################
 
-LEADER_Kurt,Kurt,0]	
+[LEADER_Kurt,Kurt,0]	
 Pokemon = B213H168,5	
 	Offset = 3
 	Moves = SHELLSMASH,FOULPLAY,TOXICSPIKES,STICKYWEB
@@ -4206,7 +4206,7 @@ Pokemon = B300H304,84
 	Item = SILVERPOWDER
 #####################
 
-LEADER_Falkner,Falkner,0]	
+[LEADER_Falkner,Falkner,0]	
 Pokemon = PELIPPERZAPDOS,5	
 	Offset = 1
 	Moves = HURRICANE,ROOST,THUNDER,VOLTSWITCH
@@ -4249,7 +4249,7 @@ Pokemon = SIRFETCHDFEAROW,5
 	Offset = 2
 	Moves = AGILITY,DRILLRUN,LEAFBLADE,NIGHTSLASH
 	Ability = SNIPER
-	Item = LEAK
+	Item = LEEK
 	Gender = F
 	Nature = ADAMANT
 	IV = 31,31,31,31,31,31
@@ -4497,7 +4497,7 @@ Pokemon = B268H329,85 #AEGIMORTAR
 	Item = METALCOAT
 #####################
 
-LEADER_Chuck,Chuck,0]	
+[LEADER_Chuck,Chuck,0]	
 Pokemon = HITMONTOPHYPNO,5	
 	Offset = 4
 	Moves = LIGHTSCREEN,REFLECT,TELEPORT,THUNDERWAVE
@@ -4540,7 +4540,7 @@ Pokemon = ASANDSLASHMACHAMP,5
 	Happiness = 255
 Pokemon = GRANBULLMEDICHAM,5	
 	Offset = 2
-	Moves = HIGHJUMPKICK,PLAYROUGH,TRAILBLAZE,BULLETPUNCH
+	Moves = HIJUMPKICK,PLAYROUGH,TRAILBLAZE,BULLETPUNCH
 	Ability = INTIMIDATE
 	Item = MEDICHAMITE
 	Gender = F
@@ -6421,9 +6421,9 @@ Pokemon = B299H134,73 #GARCHOMP / VAPOREON
 	Item = RINDOBERRY
 ####################### Cynthia Teams
 [CHAMPION_Sinnoh,Cynthia,1]	
-Pokemon = GIBLE,5
+Pokemon = TOGEKISS,5
 	Offset = -1
-	Moves = TWISTER,MUDSLAP
+	Moves = ROOST
 	Ability = ROUGHSKIN
 	Gender = F
 	Nature = MODEST
