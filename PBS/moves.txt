@@ -799,7 +799,7 @@
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
 783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,""
 784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"" #TODO hazard clear
-785,STONEAXE,Coaching,000,65,ROCK,Physical,90,15,100,Other,0,abef,""
+785,STONEAXE,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,""
 
 
 #  @id               = hash[:id]
