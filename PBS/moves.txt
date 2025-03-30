@@ -794,12 +794,12 @@
 777,CHILLYRECEPTION,Chilly Reception,196,0,ICE,Status,0,10,0,NearOther,0,,"Nice Smeargle/Ditto, jackass." #todo
 778,FREEZINGGLARE,Freezing Glare,00D,90,PSYCHIC,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 779,WAVECRASH,Wave Crash,0FB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
-780,TOMBSTONER,TOMBSTONER,190,90,GROUND,Physical,100,10,0,Other,0,abef,"The user takes the foe under the ground, then releases it on the next turn. The foe cannot attack while underground." #TODO
-781,EXPANDINGFORCE,Expanding Force,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
-782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
-783,RAGINGBULL,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
-784,TIDYUP,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
-785,STONEAXE,Coaching,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO
+780,TOMBSTONER,TOMBSTONER,190,90,GROUND,Physical,100,10,0,NearOther,0,abef,"The user takes the foe under the ground, then releases it on the next turn. The foe cannot attack while underground." #TODO
+781,EXPANDINGFORCE,Expanding Force,000,90,GROUND,Physical,100,10,0,Other,0,abef,"todo lmao" #TODO moveset
+782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
+783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,""
+784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"" #TODO hazard clear
+785,STONEAXE,Coaching,000,65,ROCK,Physical,90,15,100,Other,0,abef,""
 
 
 #  @id               = hash[:id]
@@ -816,3 +816,19 @@
 #  @priority         = hash[:priority]
 #  @flags            = hash[:flags]
 #  @real_description = hash[:description] || "???"
+
+#  def contactMove?;       return @flags[/a/]; end
+#  def canProtectAgainst?; return @flags[/b/]; end
+#  def canMagicCoat?;      return @flags[/c/]; end
+#  def canSnatch?;         return @flags[/d/]; end
+#  def canMirrorMove?;     return @flags[/e/]; end
+#  def canKingsRock?;      return @flags[/f/]; end
+#  def thawsUser?;         return @flags[/g/]; end
+#  def highCriticalRate?;  return @flags[/h/]; end
+#  def bitingMove?;        return @flags[/i/]; end
+#  def punchingMove?;      return @flags[/j/]; end
+#  def soundMove?;         return @flags[/k/]; end
+#  def powderMove?;        return @flags[/l/]; end
+#  def pulseMove?;         return @flags[/m/]; end
+#  def bombMove?;          return @flags[/n/]; end
+#  def danceMove?;         return @flags[/o/]; end

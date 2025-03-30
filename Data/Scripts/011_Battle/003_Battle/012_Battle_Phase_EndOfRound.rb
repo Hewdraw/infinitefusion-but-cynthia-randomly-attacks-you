@@ -224,7 +224,12 @@ class PokeBattle_Battle
         (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
         b.pokemon.species == :GARTICUNO ||
         (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
-        (b.pokemon.species == :MOLTRES && pbWeather != :Sun)
+        (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
+      b.eachOpposing do |target|
+        didsomething = didsomething ||
+          (b.pokemon.species == :GMOLTRES && target[PBEffects::Taunt] == 0)
+      end
+
       resetstat = false
       GameData::Stat.each_battle do |s|
         resetstat = true if b.stages[s.id] < 0
@@ -244,12 +249,17 @@ class PokeBattle_Battle
       b.pbCureStatus()
       if didsomething
         pbShowAbilitySplash(b)
-        pbDisplay(_INTL("{1}'s legendary pressure pulses!",b.pbThis))
+        pbDisplay(_INTL("{1} removed negative effects from itself!",b.pbThis))
+        pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
         pbHideAbilitySplash(b)
+        b.eachOpposing do |target|
+          target[PBEffects::GastroAcid] = true
+        end
         b.pbEffectsOnSwitchIn if (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
           b.pokemon.species == :GARTICUNO ||
           (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
-          (b.pokemon.species == :MOLTRES && pbWeather != :Sun)
+          (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
+          b.pokemon.species == :GMOLTRES
         b.raid = 4
       end
     end
@@ -534,15 +544,6 @@ class PokeBattle_Battle
       end
     end
     # Taunt
-    priority.each do |battler|
-      next if battler.fainted? || !(battler.hasActiveAbility?(:GOAD) || (battler.hasActiveAbility?(:LEGENDARYPRESSURE) && battler.isSpecies?(:GMOLTRES)))
-      eachOtherSideBattler(battler.index) do |b|
-        if !b.hasActiveAbility?(:OBLIVIOUS)
-          b.effects[PBEffects::Taunt] += 1
-          b.pbItemStatusCureCheck
-        end
-      end
-    end
     pbEORCountDownBattlerEffect(priority,PBEffects::Taunt) { |battler|
       pbDisplay(_INTL("{1}'s taunt wore off!",battler.pbThis))
     }

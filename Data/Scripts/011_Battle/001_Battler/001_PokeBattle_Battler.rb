@@ -459,7 +459,9 @@ class PokeBattle_Battler
       :COMATOSE,
       :RKSSYSTEM,
       :CHARGEDEXPLOSIVE,
-      :LEGENDARYPRESSURE
+      :LEGENDARYPRESSURE,
+      :PROTOSYNTHESIS,
+      :QUARKDRIVE
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -486,7 +488,9 @@ class PokeBattle_Battler
       :IMPOSTER,
       # Abilities intended to be inherent properties of a certain species
       :COMATOSE,
-      :RKSSYSTEM
+      :RKSSYSTEM,
+      :PROTOSYNTHESIS,
+      :QUARKDRIVE
     ]
     return ability_blacklist.include?(abil.id)
   end

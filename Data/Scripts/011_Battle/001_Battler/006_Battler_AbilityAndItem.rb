@@ -7,6 +7,7 @@ class PokeBattle_Battler
     @battle.pbOnActiveOne(self) if switchIn
     # Primal Revert upon entering battle
     @battle.pbPrimalReversion(@index) if !fainted?
+    @battle.pbMegaEvolve(@index) if !fainted? && species == :CREEPER
     # Ending primordial weather, checking Trace
     pbContinualAbilityChecks(true)
     if self.species == :WROTOM && $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)
@@ -30,20 +31,6 @@ class PokeBattle_Battler
             b.pbInflictStatus(:SLEEP, 999)
           end
         end
-      end
-      if battler.hasActiveAbility?(:GOAD) || (battler.hasActiveAbility?(:LEGENDARYPRESSURE) && battler.isSpecies?(:GMOLTRES))
-        @battle.pbShowAbilitySplash(battler, false, true, "Goad")
-        @battle.eachOtherSideBattler(battler.index) do |b|
-          if b.hasActiveAbility?(:OBLIVIOUS)
-            @battle.pbShowAbilitySplash(b)
-            @battle.pbHideAbilitySplash(b)
-          else
-            b.effects[PBEffects::Taunt] = 1
-            @battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))
-            b.pbItemStatusCureCheck
-          end
-        end
-        battle.pbHideAbilitySplash(battler)
       end
     end
     # Berry check, status-curing ability check

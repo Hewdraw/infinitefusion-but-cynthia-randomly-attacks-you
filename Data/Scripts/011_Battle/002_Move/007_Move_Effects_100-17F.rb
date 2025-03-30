@@ -72,7 +72,7 @@ end
 #===============================================================================
 class PokeBattle_Move_105 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if user.pbOpposingSide.effects[PBEffects::StealthRock]
+    if user.pbOpposingSide.effects[PBEffects::StealthRock] && statusMove?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2520,7 +2520,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
 end
 
 class PokeBattle_Move_177 < PokeBattle_Move
-  def pbBaseType(user)
+  def pbCalcType(user)
     if user.unteraTypes != nil
       if user.unteraTypes.include?(:STELLAR)
         return :QMARKS
@@ -2528,6 +2528,7 @@ class PokeBattle_Move_177 < PokeBattle_Move
         return user.type1
       end
     end
+    return super
   end
 
   def pbBaseDamage(baseDmg,user,target)

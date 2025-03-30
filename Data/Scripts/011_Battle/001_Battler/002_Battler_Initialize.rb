@@ -289,6 +289,8 @@ class PokeBattle_Battler
     @effects[PBEffects::Yawn]                = 0
     @effects[PBEffects::Dynamax]                = 0
     @effects[PBEffects::Obscured]                = 0
+    @effects[PBEffects::Protosynthesis]                = 0
+    @effects[PBEffects::QuarkDrive]                = 0
   end
 
   #=============================================================================

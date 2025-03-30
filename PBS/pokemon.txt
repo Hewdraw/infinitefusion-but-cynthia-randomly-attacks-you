@@ -18837,6 +18837,15 @@ BaseStats = 130,180,70,140,50,70
 Abilities = CHARGEDEXPLOSIVE
 Moves = 1,TACKLE
 Shape = Head
+[1000501]
+Name = Tyranwile
+InternalName = MEGAB300H248
+Type1 = ROCK
+Type2 = FAIRY
+BaseStats = 83,114,120,53,81,98
+Abilities = POWEREDSANDS
+Moves = 1,TACKLE
+Shape = Head
 
 #Hatsune Miku Fusions
 [1000600]

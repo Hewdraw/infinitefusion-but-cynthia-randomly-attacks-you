@@ -1646,6 +1646,36 @@ BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   }
 )
 
+BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
+  proc { |item,battler,battle|
+    effect = nil
+    effect = PBEffects::Protosynthesis if battler.hasActiveAbility?(:PROTOSYNTHESIS) && [:Sun, :HarshSun].include?(battle.pbWeather)
+    effect = PBEffects::QuarkDrive if battler.hasActiveAbility?(:QUARKDRIVE) && battle.field.terrain != :Electric
+    if effect && battler.effects[effect] == 0 
+      stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
+      stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
+      stats = [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
+      stats2 = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
+      stats.each_with_index do |stat,i|
+        stage = battler.stages[stat]
+        stat = stats2[i] * stageMul[stage] / stageDiv[stage]
+      end
+      stats.each_with_index do |stat,i|
+        if stat >= stats.max
+          battler.effects[effect] = i + 11
+          break
+        end
+      end
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL("The Booster Energy was used up..."))
+      battler.pbRemoveItem()
+      battle.pbCommonAnimation("UseItem",battler)
+      battle.pbDisplay(_INTL("{1} used its Booster Energy to activate Protosynthesis!",battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
 #===============================================================================
 # ItemOnIntimidated handlers
 #===============================================================================

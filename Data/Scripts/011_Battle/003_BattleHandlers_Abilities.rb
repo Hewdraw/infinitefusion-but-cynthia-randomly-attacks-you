@@ -8,6 +8,19 @@ BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    next mult*1.5 if user.effects[PBEffects::Protosynethesis] % 10 == 5
+  }
+)
+
+
+BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    next mult*1.5 if user.effects[PBEffects::QuarkDrive] % 10 == 5
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:QUICKFEET,
   proc { |ability,battler,mult|
     next mult*1.5 if battler.pbHasAnyStatus?
@@ -987,7 +1000,7 @@ BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER)
+BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS)
 
 BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1032,6 +1045,22 @@ BattleHandlers::DamageCalcUserAbility.add(:OVERGROW,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.hp <= user.adjustedTotalhp / 3 && type == :GRASS
       mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:PROTOSYNTHESIS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if (user.effects[PBEffects::Protosynethesis] % 10 == 1 && move.physicalMove?) || (user.effects[PBEffects::Protosynethesis] % 10 == 3 && move.specialMove?)
+      mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:QUARKDRIVE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if (user.effects[PBEffects::QuarkDrive] % 10 == 1 && move.physicalMove?) || (user.effects[PBEffects::QuarkDrive] % 10 == 3 && move.specialMove?)
+      mults[:attack_multiplier] *= 1.3
     end
   }
 )
@@ -1146,6 +1175,8 @@ BattleHandlers::DamageCalcUserAbility.add(:TECHNICIAN,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:TECHNICIAN, :ADAPTIVETECHNICIAN)
 
 BattleHandlers::DamageCalcUserAbility.add(:TINTEDLENS,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1277,6 +1308,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if (user.effects[PBEffects::Protosynethesis] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::Protosynethesis] % 10 == 4 && move.specialMove?)
+      mults[:final_damage_multiplier] /= 1.3
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if move.soundMove?
@@ -1284,6 +1323,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
 )
 
 BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK)
+
+BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if (user.effects[PBEffects::QuarkDrive] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::QuarkDrive] % 10 == 4 && move.specialMove?)
+      mults[:final_damage_multiplier] /= 1.3
+    end
+  }
+)
 
 BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -2336,7 +2383,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
           battle.pbShowAbilitySplash(b)
           battle.pbHideAbilitySplash(b)
         else
-          b.effects[PBEffects::Taunt] = 1
+          b.effects[PBEffects::Taunt] = 4
           battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))
           b.pbItemStatusCureCheck
         end
@@ -2545,7 +2592,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GOAD,
         battle.pbShowAbilitySplash(b)
         battle.pbHideAbilitySplash(b)
       else
-        b.effects[PBEffects::Taunt] = 1
+        b.effects[PBEffects::Taunt] = 4
         battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))
         b.pbItemStatusCureCheck
       end
@@ -2677,7 +2724,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS)
+BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS, :POWEREDSANDS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|

@@ -424,7 +424,7 @@ class PokeBattle_Move
     end
     # STAB
     if type && user.pbHasType?(type) || (user.pbHasType?(:ICEFIREELECTRIC) && (type == :ELECTRIC || type == :FIRE || type == :ICE))
-      if user.hasActiveAbility?(:ADAPTABILITY) || user.hasActiveAbility?(:ADAPTINGPIXELS)
+      if user.hasActiveAbility?([:ADAPTABILITY, :ADAPTINGPIXELS, :ADAPTIVETECHNICIAN])
         multipliers[:final_damage_multiplier] *= 2
       else
         multipliers[:final_damage_multiplier] *= 1.5

@@ -247,6 +247,30 @@ class PokeBattle_Battler
 
   def pbCheckFormOnWeatherChange
     return if fainted? || @effects[PBEffects::Transform]
+    if hasActiveAbility?(:PROTOSYNTHESIS)
+      if [:Sun, :HarshSun].include?(@battle.pbWeather) && !@effects[PBEffects::Protosynthesis]
+        stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
+        stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
+        stats = [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
+        stats2 = [@attack, @defense, @spatk, @spdef, @speed]
+        stats.each_with_index do |stat,i|
+          stage = @stages[stat]
+          stat = stats2[i] * stageMul[stage] / stageDiv[stage]
+        end
+        stats.each_with_index do |stat,i|
+          if stat >= stats.max
+            @effects[PBEffects::Protosynthesis] = i + 1
+            break
+          end
+        end
+        @battle.pbShowAbilitySplash(battler)
+        @battle.pbDisplay(_INTL("The harsh sunlight activated {1}'s Protosynthesis!", battler.pbThis))
+        @battle.pbHideAbilitySplash(battler)
+      end
+      if ![:Sun, :HarshSun].include?(@battle.field.weather) && @effects[PBEffects::Protosynthesis] < 10
+        @effects[PBEffects::Protosynthesis] = 0
+      end
+    end
     # Castform - Forecast
     if isSpecies?(:CASTFORM)
       if hasActiveAbility?(:FORECAST)

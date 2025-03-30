@@ -124,8 +124,12 @@ class PokeBattle_AI
     switchOutScore -= 5 if user.effects[PBEffects::Substitute]>0
     switchOutScore += 3 if user.effects[PBEffects::Curse]
     switchOutScore += 2 if user.effects[PBEffects::Nightmare]
-    switchOutScore -= 2 if user.turnCount == 0
+    switchOutScore -= 1 if user.turnCount == 0
     switchOutScore += 1 if user.pbHasMove?(:UTURN) || user.pbHasMove?(:VOLTSWITCH) || user.pbHasMove?(:FLIPTURN) || user.pbHasMove?(:PARTINGSHOT)
+    switchOutScore -= 1 if user.effects[PBEffects::Protosynthesis] > 0
+    switchOutScore -= 1 if user.effects[PBEffects::Protosynthesis] > 10
+    switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 0
+    switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
 
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3

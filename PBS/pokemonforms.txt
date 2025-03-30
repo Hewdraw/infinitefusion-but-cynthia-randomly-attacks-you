@@ -202,3 +202,52 @@ Height = 1.0
 Weight = 23.5
 Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
 Generation = 6
+#-------------------------------
+[B212H15,1]
+FormName = Mega Beezor
+MegaStone = BEEZORITE
+UnMegaForm = B212H15
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+#-------------------------------
+[AERODACTYLSTARAPTOR,1]
+FormName = Mega Starapdactyl
+MegaStone = AERODACTYLITE
+UnMegaForm = AERODACTYLSTARAPTOR
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+#-------------------------------
+[GRANBULLMEDICHAM,1]
+FormName = Mega Medibull
+MegaStone = MEDICHAMITE
+UnMegaForm = GRANBULLMEDICHAM
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+#-------------------------------
+[B300H248,1]
+FormName = Mega Tyranwile
+MegaStone = TYRANWILITE
+UnMegaForm = B300H248
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+
