@@ -1649,7 +1649,7 @@ BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
 BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
   proc { |item,battler,battle|
     effect = nil
-    effect = PBEffects::Protosynthesis if battler.hasActiveAbility?(:PROTOSYNTHESIS) && [:Sun, :HarshSun].include?(battle.pbWeather)
+    effect = PBEffects::Protosynthesis if battler.hasActiveAbility?(:PROTOSYNTHESIS) && ![:Sun, :HarshSun].include?(battle.pbWeather)
     effect = PBEffects::QuarkDrive if battler.hasActiveAbility?(:QUARKDRIVE) && battle.field.terrain != :Electric
     if effect && battler.effects[effect] == 0 
       stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
