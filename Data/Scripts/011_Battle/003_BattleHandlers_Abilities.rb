@@ -10,7 +10,7 @@ BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
 
 BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    next mult*1.5 if user.effects[PBEffects::Protosynethesis] % 10 == 5
+    next mult*1.5 if user.effects[PBEffects::ProtoSynthesis] % 10 == 5
   }
 )
 
@@ -1051,7 +1051,7 @@ BattleHandlers::DamageCalcUserAbility.add(:OVERGROW,
 
 BattleHandlers::DamageCalcUserAbility.add(:PROTOSYNTHESIS,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if (user.effects[PBEffects::Protosynethesis] % 10 == 1 && move.physicalMove?) || (user.effects[PBEffects::Protosynethesis] % 10 == 3 && move.specialMove?)
+    if (user.effects[PBEffects::ProtoSynthesis] % 10 == 1 && move.physicalMove?) || (user.effects[PBEffects::ProtoSynthesis] % 10 == 3 && move.specialMove?)
       mults[:attack_multiplier] *= 1.3
     end
   }
@@ -1310,7 +1310,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
 
 BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if (user.effects[PBEffects::Protosynethesis] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::Protosynethesis] % 10 == 4 && move.specialMove?)
+    if (user.effects[PBEffects::ProtoSynthesis] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::ProtoSynthesis] % 10 == 4 && move.specialMove?)
       mults[:final_damage_multiplier] /= 1.3
     end
   }
