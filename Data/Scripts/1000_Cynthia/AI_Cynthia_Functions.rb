@@ -58,6 +58,7 @@ class PokeBattle_AI
       score = 0 if !target.pbCanSleep?(user,false)
     # #---------------------------------------------------------------------------
     when "005", "006", "0BE" #poison
+      score += [user.hp / user.totalhp / 2 - opposingThreat, 0].max if move.function == 006
       score = 0 if target.effects[PBEffects::Yawn]>0 
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD])
       score = 0 if target.pbHasMoveFunction?("0D9")
