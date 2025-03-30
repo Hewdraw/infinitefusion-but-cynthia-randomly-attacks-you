@@ -119,6 +119,8 @@ begin
     FusionSwap          = 113
     Dynamax                = 114
     Obscured                = 115
+    Protosynthesis                = 115
+    QuarkDrive                = 115
 
     #===========================================================================
     # These effects apply to a battler position
