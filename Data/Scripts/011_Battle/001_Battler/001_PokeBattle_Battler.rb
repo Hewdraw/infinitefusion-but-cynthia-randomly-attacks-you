@@ -489,6 +489,7 @@ class PokeBattle_Battler
       # Abilities intended to be inherent properties of a certain species
       :COMATOSE,
       :RKSSYSTEM,
+      :LEGENDARYPRESSURE,
       :PROTOSYNTHESIS,
       :QUARKDRIVE
     ]
