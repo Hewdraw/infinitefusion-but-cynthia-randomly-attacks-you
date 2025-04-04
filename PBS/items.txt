@@ -705,7 +705,7 @@
 697,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
 698,LUCARIONITE,Lucarionite,Lucarionites,1,0,"",0,0,0
 699,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"",0,0,0
-700,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
+700,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"",0,0,0
 701,MAWILITE,Mawilite,Mawilites,1,0,"",0,0,0
 702,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,
 703,METAGROSSITE,Metagrossite,Metagrossites,1,0,"",0,0,0
