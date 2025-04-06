@@ -173,7 +173,7 @@ class PokeBattle_AI
       maxthreat = 0
       user.eachOpposing do |opponent|
         threat = pbCynthiaAssessThreat(user, opponent)
-        if threat[:highestDamage] > maxthreat
+        if threat[:highestDamage] >= maxthreat
           threattable = threat
         end
       end
