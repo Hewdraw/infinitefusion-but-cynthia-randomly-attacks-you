@@ -3165,7 +3165,7 @@ class PokeBattle_AI
       end
       multipliers[:final_damage_multiplier] *= random / 100.0
       # STAB
-      if type && (user.pbHasType?(type) || (user.pbHasType?(:ICEFIREELECTRIC) && (type == :ELECTRIC || type == :FIRE || type == :ICE)))
+      if type && (user.pbHasType?(type)
         if user.hasActiveAbility?([:ADAPTABILITY, :ADAPTINGPIXELS, :ADAPTIVETECHNICIAN])
           multipliers[:final_damage_multiplier] *= 2
         else

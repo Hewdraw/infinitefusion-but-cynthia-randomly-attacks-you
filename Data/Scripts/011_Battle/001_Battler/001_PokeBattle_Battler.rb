@@ -407,6 +407,8 @@ class PokeBattle_Battler
     return true if type == :ELECTRIC && isSpecies?(:GZAPDOS) && hasActiveItem?(:LIGHTNINGSPHERE)
     return true if type == :DARK && isFusionOf(:MOLTRES) && hasActiveItem?(:FIRESPHERE)
     return true if type == :FIRE && isSpecies?(:GMOLTRES) && hasActiveItem?(:FIRESPHERE)
+    return true if [:FIRE, :WATER, :GRASS].include?(type) && pbHasType?(:FIREWATERGRASS)
+    return true if [:ICE, :FIRE, :ELECTRIC].include?(type) && pbHasType?(:ICEFIREELECTRIC)
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end
@@ -618,7 +620,7 @@ class PokeBattle_Battler
 
   def takesHailDamage?
     return false if !takesIndirectDamage?
-    return false if pbHasType?(:ICE) || pbHasType?(:ICEFIREELECTRIC)
+    return false if pbHasType?(:ICE)
     return false if inTwoTurnAttack?("0CA", "0CB") # Dig, Dive
     return false if hasActiveAbility?([:OVERCOAT, :ICEBODY, :SNOWCLOAK])
     return false if hasActiveItem?(:SAFETYGOGGLES)
