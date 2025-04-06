@@ -2240,7 +2240,35 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
     return @id == :FISSURE;
   end
 
-  def pbFailsAgainstTarget?(user, target)
+  # def pbFailsAgainstTarget?(user, target)
+  #   if target.level > user.level || target.raid
+  #     @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
+  #     return true
+  #   end
+  #   if target.effects[PBEffects::Dynamax] > 0
+  #     @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
+  #     return true
+  #   end
+  #   if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
+  #     @battle.pbShowAbilitySplash(target)
+  #     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+  #       @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
+  #     else
+  #       @battle.pbDisplay(_INTL("But it failed to affect {1} because of its {2}!",
+  #                               target.pbThis(true), target.abilityName))
+  #     end
+  #     @battle.pbHideAbilitySplash(target)
+  #     return true
+  #   end
+  #   if @id == :SHEERCOLD && target.pbHasType?(:ICE)
+  #     @battle.pbDisplay(_INTL("But it failed!"))
+  #     return true
+  #   end
+  #   return false
+  # end
+
+  def pbMoveFailed?(user, targets)
+    target = targets[0]
     if target.level > user.level || target.raid
       @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
       return true
@@ -2260,7 +2288,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       @battle.pbHideAbilitySplash(target)
       return true
     end
-    if @id == :SHEERCOLD && (target.pbHasType?(:ICE) || target.pbHasType?(:ICEFIREELECTRIC))
+    if @id == :SHEERCOLD && target.pbHasType?(:ICE)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2269,7 +2297,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
 
   def pbBaseAccuracy(user, target)
     acc = @accuracy + user.level - target.level
-    acc -= 10 if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && !(user.pbHasType?(:ICE) || target.pbHasType?(:ICEFIREELECTRIC))
+    acc -= 10 if Settings::MECHANICS_GENERATION >= 7 && @id == :SHEERCOLD && !user.pbHasType?(:ICE)
     return acc
   end
 
