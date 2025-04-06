@@ -89,7 +89,7 @@ class Trainer
       next if !$game_variables[rival[1]].is_a?(String)
       return true if @name == $game_variables[rival[1]]
     end
-    return ["Cynthia", "Hatsune Miku", "Shadross", "Hewdraw", "Dennis", "Miguel", "Naomi", "Brock", "Misty", "Lt. Surge", "Erika", "Koga", "Sabrina", "Blaine", "Giovanni", "Lorelei", "Bruno", "Agatha", "Lance"].include?(@name)
+    return ["Cynthia", "Hatsune Miku", "Shadross", "Hewdraw", "Dennis", "Miguel", "Naomi", "Brock", "Misty", "Lt. Surge", "Erika", "Koga", "Sabrina", "Blaine", "Giovanni", "Lorelei", "Bruno", "Agatha", "Lance", "Whitney", "Kurt", "Falkner", "Clair", "Morty", "Pryce", "Jasmine", "Chuck"].include?(@name)
   end
 
   #=============================================================================
