@@ -135,7 +135,7 @@ class PokeBattle_AI
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
     opponenthaspoison = false
     @battle.pbParty(0).each_with_index do |pkmn,i|
-      if pkmn.pbHasType?(:POISON) && !pkmn.airborne?  
+      if pkmn.pbHasType?(:POISON)# && !pkmn.airborne? todo
         opponenthaspoison = true
         break
       end
