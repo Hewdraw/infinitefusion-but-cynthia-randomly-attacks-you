@@ -129,6 +129,7 @@ class PokeBattle_Move
       BattleHandlers.triggerAccuracyCalcUserAbility(user.ability,
          modifiers,user,target,self,@calcType)
       @battle.pbShowAbilitySplash(user) if user.hasActiveAbility?(:NOGUARD)
+      @battle.pbHideAbilitySplash(target) if user.hasActiveAbility?(:NOGUARD)
     end
     user.eachAlly do |b|
       next if !b.abilityActive?
@@ -139,6 +140,7 @@ class PokeBattle_Move
       BattleHandlers.triggerAccuracyCalcTargetAbility(target.ability,
          modifiers,user,target,self,@calcType)
       @battle.pbShowAbilitySplash(target) if target.hasActiveAbility?(:NOGUARD)
+      @battle.pbHideAbilitySplash(target) if user.hasActiveAbility?(:NOGUARD)
     end
     # Item effects that alter accuracy calculation
     if user.itemActive?
