@@ -19732,7 +19732,7 @@ Shape = Head
 #-------------------------------
 [1000843]
 Name = Delpunny
-InternalName = LOPUNNYDELCATTYTERAGHOST
+InternalName = LOPUNNYDELCATTYGHOST
 Type1 = GHOST
 BaseStats = 68,72,77,100,54,68
 Abilities = NORMALIZE
