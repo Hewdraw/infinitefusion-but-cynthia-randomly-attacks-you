@@ -227,7 +227,7 @@ class PokeBattle_Battle
         (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
       b.eachOpposing do |target|
         didsomething = didsomething ||
-          (b.pokemon.species == :GMOLTRES && target[PBEffects::Taunt] == 0)
+          (b.pokemon.species == :GMOLTRES && target.effects[PBEffects::Taunt] == 0)
       end
 
       resetstat = false
@@ -253,7 +253,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
         pbHideAbilitySplash(b)
         b.eachOpposing do |target|
-          target[PBEffects::GastroAcid] = true
+          target.effects[PBEffects::GastroAcid] = true
         end
         b.pbEffectsOnSwitchIn if (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
           b.pokemon.species == :GARTICUNO ||
