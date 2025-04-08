@@ -51,6 +51,7 @@ class Game_System
   def bgm_play_internal2(name,volume,pitch,position) # :nodoc:
     vol = volume
     vol *= $PokemonSystem.bgmvolume/100.0
+    vol+=30
     vol = vol.to_i
     begin
       Audio.bgm_play(name,vol,pitch,position)
