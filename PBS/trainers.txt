@@ -10185,7 +10185,7 @@ Pokemon = B299H131,5
 
 [CREATOR_Minecraft,Hatsune Miku,9]	
 Pokemon = B300H248,5	
-	Offset = 0
+	Offset = -2
 	Moves = DIAMONDSTORM,PLAYROUGH,SUCKERPUNCH,EARTHQUAKE
 	Ability = INTIMIDATE
 	Item = TYRANWILITE

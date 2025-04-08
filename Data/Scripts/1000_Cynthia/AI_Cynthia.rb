@@ -121,7 +121,7 @@ class PokeBattle_AI
     switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
     switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
     switchOutScore += [0, (user.statusCount / 0.5) - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
-    switchOutScore -= 5 if user.effects[PBEffects::Substitute]>0
+    switchOutScore -= 10 if user.effects[PBEffects::Substitute]>0
     switchOutScore += 3 if user.effects[PBEffects::Curse]
     switchOutScore += 2 if user.effects[PBEffects::Nightmare]
     switchOutScore -= 1 if user.turnCount == 0
