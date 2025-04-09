@@ -201,20 +201,39 @@ PokemonDebugMenuCommands.register("setlevel", {
     if pkmn.egg?
       screen.pbDisplay(_INTL("{1} is an egg.", pkmn.name))
     else
-      params = ChooseNumberParams.new
-      params.setRange(1, GameData::GrowthRate.max_level)
-      params.setDefaultValue(pkmn.level)
-      level = pbMessageChooseNumber(
-         _INTL("Set the Pokémon's level (max. {1}).", params.maxNumber), params) { screen.pbUpdate }
-      if level != pkmn.level
+      screen.pbRefreshSingle(pkmnid)
+
+      if $PokemonSystem.level_caps==1
+        choice= pbMessage(_INTL("Set to which level?"),[_INTL("Set to level cap"), _INTL("Set to specific level"), _INTL("Cancel")],2)
+        if choice==0
+          level = getCurrentLevelCap()
+        elsif choice == 1
+          level = promptSetLevelToNumber(pkmn,screen)
+        else
+            return
+        end
+      else
+        level = promptSetLevelToNumber(pkmn,screen)
+      end
+      if level && level != pkmn.level
         pkmn.level = level
         pkmn.calc_stats
+        screen.pbUpdate
         screen.pbRefreshSingle(pkmnid)
       end
     end
     next false
   }
 })
+
+def promptSetLevelToNumber(pkmn,screen)
+  params = ChooseNumberParams.new
+  params.setRange(1, GameData::GrowthRate.max_level)
+  params.setDefaultValue(pkmn.level)
+  level = pbMessageChooseNumber(
+    _INTL("Set the Pokémon's level (max. {1}).", params.maxNumber), params) { screen.pbUpdate }
+  return level
+end
 
 PokemonDebugMenuCommands.register("setexp", {
   "parent"      => "levelstats",
