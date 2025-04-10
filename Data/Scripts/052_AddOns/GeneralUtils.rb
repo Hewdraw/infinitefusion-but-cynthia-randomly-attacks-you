@@ -481,10 +481,15 @@ def get_difficulty_text
   end
 end
 
-def pokemonExceedsLevelCap(pokemon)
-  return false if $Trainer.badge_count >= Settings::NB_BADGES
+def getCurrentLevelCap()
   current_max_level = Settings::LEVEL_CAPS[$Trainer.badge_count]
   current_max_level *= Settings::HARD_MODE_LEVEL_MODIFIER if $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
+  return current_max_level
+end
+
+def pokemonExceedsLevelCap(pokemon)
+  return false if $Trainer.badge_count >= Settings::NB_BADGES
+  current_max_level = getCurrentLevelCap()
   return pokemon.level >= current_max_level
 end
 
