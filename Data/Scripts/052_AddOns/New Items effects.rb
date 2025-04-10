@@ -1626,6 +1626,10 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
         end
       end
 
+      fused_pokemon_learned_moved = pokemon.learned_moves
+      pokemon.learned_moves = fused_pokemon_learned_moved
+      poke2.learned_moves = fused_pokemon_learned_moved
+
       pokemon.ability_index = pokemon.body_original_ability_index if pokemon.body_original_ability_index
       poke2.ability_index = pokemon.head_original_ability_index if pokemon.head_original_ability_index
 
