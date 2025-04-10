@@ -190,7 +190,7 @@ class MoveRelearnerScreen
       end
       if move
         if @scene.pbConfirm(_INTL("Teach {1}?", GameData::Move.get(move).name))
-          if pbLearnMove(pkmn, move)
+          if pbLearnMove(pkmn, move, false, true)
             @scene.pbEndScene
             return true
           end

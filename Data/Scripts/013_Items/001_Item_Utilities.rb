@@ -445,6 +445,7 @@ def pbLearnMove(pkmn, move, ignoreifknown = false, bymachine = false, fast = fal
   end
   pkmnname = pkmn.name
   movename = GameData::Move.get(move).name
+  pkmn.add_learned_move(move) if !bymachine
   if pkmn.hasMove?(move)
     pbMessage(_INTL("{1} already knows {2}.", pkmnname, movename), &block) if !ignoreifknown
     return false
@@ -462,7 +463,12 @@ def pbLearnMove(pkmn, move, ignoreifknown = false, bymachine = false, fast = fal
     if forgetmove >= 0
       oldmovename = pkmn.moves[forgetmove].name
       oldmovepp = pkmn.moves[forgetmove].pp
+      forgotten_move = pkmn.moves[forgetmove]
+      pkmn.add_learned_move(forgotten_move)
+
       pkmn.moves[forgetmove] = Pokemon::Move.new(move) # Replaces current/total PP
+      pkmn.add_learned_move(move)
+
       if bymachine && Settings::TAUGHT_MACHINES_KEEP_OLD_PP
         pkmn.moves[forgetmove].pp = [oldmovepp, pkmn.moves[forgetmove].total_pp].min
       end

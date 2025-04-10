@@ -1190,6 +1190,43 @@ class PokemonPartyScreen
     end
   end
 
+  def pbRememberMoves(pokemon)
+    learnable_moves = pokemon.learned_moves
+    learnable_moves = [] if !learnable_moves
+    #exclude current moves
+    echoln "learned moves: #{learnable_moves}"
+    for current_move in pokemon.moves
+      echoln current_move.id
+      if learnable_moves.include?(current_move.id)
+        learnable_moves.delete(current_move.id)
+      end
+    end
+    move_ids = []
+    for move in learnable_moves
+      if move.is_a?(Symbol)
+        move_ids << move
+      end
+    end
+
+    if move_ids.empty?
+      pbMessage(_INTL("{1} has no moves to remember!",pokemon.name))
+      return false
+    end
+
+    echoln move_ids
+
+    retval = true
+    pbFadeOutIn {
+      scene = MoveRelearner_Scene.new
+      screen = MoveRelearnerScreen.new(scene)
+      if !learnable_moves.empty?
+        retval = screen.pbStartScreen(pokemon, move_ids)
+      else
+        return false
+      end
+    }
+    return retval
+  end
   def pbPokemonRename(pkmn, pkmnid)
     cmd = 0
     loop do
@@ -1240,6 +1277,7 @@ class PokemonPartyScreen
       cmdMail = -1
       cmdItem = -1
       cmdHat = -1
+      cmdLearnMove = -1
 
       # Build the commands
       commands[cmdSummary = commands.length] = _INTL("Summary")
@@ -1263,6 +1301,8 @@ class PokemonPartyScreen
         end
       end
       commands[cmdNickname = commands.length] = _INTL("Nickname") if !pkmn.egg?
+      commands[cmdLearnMove = commands.length] = _INTL("Remember moves")
+
       commands[commands.length] = _INTL("Cancel")
       command = @scene.pbShowCommands(_INTL("Do what with {1}?", pkmn.name), commands)
       havecommand = false
@@ -1324,6 +1364,8 @@ class PokemonPartyScreen
         }
       elsif cmdHat >= 0 && command == cmdHat
         pbPokemonHat(pkmn)
+      elsif cmdLearnMove > 0 && command == cmdLearnMove
+        pbRememberMoves(pkmn)
       elsif cmdNickname >= 0 && command == cmdNickname
         pbPokemonRename(pkmn, pkmnid)
       elsif cmdDebug >= 0 && command == cmdDebug

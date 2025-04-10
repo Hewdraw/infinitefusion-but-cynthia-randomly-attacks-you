@@ -55,7 +55,7 @@ class Pokemon
   # @return [Array<Pokemon::Move>] the moves known by this Pokémon
   attr_accessor :moves
 
-  # @return [Array<Pokemon::Move>] All the moves ever learned by this Pokémon
+  # @return [Array<Symbol>] All the move (ids) ever learned by this Pokémon
   attr_accessor :learned_moves
 
   # @return [Array<Integer>] the IDs of moves known by this Pokémon when it was obtained
@@ -874,14 +874,20 @@ class Pokemon
     for i in first_move_index...knowable_moves.length
       move = Pokemon::Move.new(knowable_moves[i])
       @moves.push(move)
-      @learned_moves = [] if !@learned_moves
-      @learned_moves << move if !@learned_moves.include?(move)
+      add_learned_move(move)
     end
   end
 
   def add_learned_move(move)
     @learned_moves = [] if !@learned_moves
-    @learned_moves << move unless @learned_moves.include?(move)
+    if move.is_a?(Symbol)
+      @learned_moves << move unless @learned_moves.include?(move)
+    else
+      move_id = move.id
+      if move_id
+        @learned_moves << move_id unless @learned_moves.include?(move_id)
+      end
+    end
   end
 
 
@@ -902,9 +908,7 @@ class Pokemon
     @moves.push(move)
     # Delete the first known move if self now knows more moves than it should
     @moves.shift if numMoves > MAX_MOVES
-    @learned_moves = [] if !@learned_moves
-    @learned_moves << move if !@learned_moves.include?(move)
-    echoln @learned_moves
+    add_learned_move(move)
   end
 
   # Deletes the given move from the Pokémon.
@@ -912,17 +916,23 @@ class Pokemon
   def forget_move(move_id)
     move_data = GameData::Move.try_get(move_id)
     return if !move_data
+    add_learned_move(move_id)
     @moves.delete_if { |m| m.id == move_data.id }
   end
 
   # Deletes the move at the given index from the Pokémon.
   # @param index [Integer] index of the move to be deleted
   def forget_move_at_index(index)
+    move_id = @moves[index].id
+    add_learned_move(move_id)
     @moves.delete_at(index)
   end
 
   # Deletes all moves from the Pokémon.
   def forget_all_moves
+    for move in @moves
+      add_learned_move(move)
+    end
     @moves.clear
   end
 
