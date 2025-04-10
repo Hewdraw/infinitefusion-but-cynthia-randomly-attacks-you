@@ -977,8 +977,10 @@ class Pokemon
   end
 
   def pokemon_can_learn_move(species_data, move_data)
+    moveset = species_data.moves.map { |pair| pair[1] }
     return species_data.tutor_moves.include?(move_data.id) ||
-      species_data.moves.include?(move_data.id) ||
+      species_data.moves.include?(move_data.id) ||  ##this is formatted as such [[1, :PECK],[etc.]] so it never finds anything when move_data is just the symbol. Leaving it there in case something depends on that for some reason.
+      moveset.include?(move_data.id) ||
       species_data.egg_moves.include?(move_data.id)
   end
 
@@ -1599,7 +1601,6 @@ class Pokemon
     @hat_y = 0
     @size_category = determine_size_category()
     @sprite_scale=determine_scale()
-    echoln @sprite_scale
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)

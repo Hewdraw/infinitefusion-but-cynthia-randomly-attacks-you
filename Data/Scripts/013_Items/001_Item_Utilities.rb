@@ -445,7 +445,6 @@ def pbLearnMove(pkmn, move, ignoreifknown = false, bymachine = false, fast = fal
   end
   pkmnname = pkmn.name
   movename = GameData::Move.get(move).name
-  pkmn.add_learned_move(move) if !bymachine
   if pkmn.hasMove?(move)
     pbMessage(_INTL("{1} already knows {2}.", pkmnname, movename), &block) if !ignoreifknown
     return false

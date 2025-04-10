@@ -1196,7 +1196,6 @@ class PokemonPartyScreen
     #exclude current moves
     echoln "learned moves: #{learnable_moves}"
     for current_move in pokemon.moves
-      echoln current_move.id
       if learnable_moves.include?(current_move.id)
         learnable_moves.delete(current_move.id)
       end
@@ -1204,7 +1203,7 @@ class PokemonPartyScreen
     move_ids = []
     for move in learnable_moves
       if move.is_a?(Symbol)
-        move_ids << move
+        move_ids << move if pokemon.compatible_with_move?(move)
       end
     end
 
