@@ -61,13 +61,16 @@ class Game_Event < Game_Character
     echoln "MATCH"
     echoln quest_id
     return nil if isQuestAlreadyAccepted?(quest_id)
+
     return quest_id
   end
 
   def validateEventIsCompatibleWithIcons(event)
     return false if event.is_a?(Game_Player)
     return false if event.erased
-    return false unless pbGetActiveEventPage(event)
+    page = pbGetActiveEventPage(event)
+    return false unless page
+    return false if page.graphic.character_name.empty?
     return true
   end
 
