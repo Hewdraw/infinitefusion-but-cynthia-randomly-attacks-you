@@ -155,7 +155,7 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
     end
     if event == $game_player
       currentTag = $game_player.pbTerrainTag
-      if currentTag.waterfall_crest || currentTag.waterfall
+      if isTerrainWaterfall(currentTag)
         pbDescendWaterfall
       elsif currentTag.ice && !$PokemonGlobal.sliding
         pbSlideOnIce
@@ -165,6 +165,10 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
     end
   end
 }
+
+def isTerrainWaterfall(currentTag)
+  return currentTag.waterfall_crest || currentTag.waterfall
+end
 
 def isRepelActive()
   return false if $game_switches[SWITCH_USED_AN_INCENSE]

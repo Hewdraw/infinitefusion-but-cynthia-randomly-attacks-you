@@ -1800,3 +1800,7 @@ def giveJigglypuffScribbles(possible_versions = [1,2,3,4])
   end
   putOnHat(scribbles_id,true,true)
 end
+
+
+
+

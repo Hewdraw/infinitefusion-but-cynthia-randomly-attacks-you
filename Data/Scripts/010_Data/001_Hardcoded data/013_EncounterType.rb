@@ -1,4 +1,5 @@
 module GameData
+
   class EncounterType
     attr_reader :id
     attr_reader :real_name
