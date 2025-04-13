@@ -84,7 +84,7 @@ class PokeBattle_Battler
     when :SLEEP
       # No type is immune to sleep
     when :POISON
-      if !(user && user.hasActiveAbility?(:CORROSION))
+      if !(user && (user.hasActiveAbility?(:CORROSION) || (user.hasActiveAbility?(:LEGENDARYPRESSURE) && user.pokemon.species == :TYRANTRUM_CARDBOARD)))
         hasImmuneType |= pbHasType?(:POISON)
         hasImmuneType |= pbHasType?(:STEEL)
       end

@@ -36,6 +36,12 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
       @battle.pbHideAbilitySplash(target)
       pbItemHPHealCheck
+    elsif target.hasActiveAbility?(:LEGENDARYPRESSURE) && target.pokemon.species == :TYRANTRUM_CARDBOARD
+      @battle.pbShowAbilitySplash(target, false, true, "Liquid Ooze")
+      pbReduceHP(amt)
+      @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!",pbThis))
+      @battle.pbHideAbilitySplash(target)
+      pbItemHPHealCheck
     else
       msg = _INTL("{1} had its energy drained!",target.pbThis) if nil_or_empty?(msg)
       @battle.pbDisplay(msg)

@@ -1980,6 +1980,12 @@ class PokeBattle_Move_160 < PokeBattle_Move
       @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
       @battle.pbHideAbilitySplash(target)
       user.pbItemHPHealCheck
+    elsif target.hasActiveAbility?(:LEGENDARYPRESSURE) && target.pokemon.species == :TYRANTRUM_CARDBOARD
+      @battle.pbShowAbilitySplash(target, "Liquid Ooze")
+      user.pbReduceHP(healAmt)
+      @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
+      @battle.pbHideAbilitySplash(target)
+      user.pbItemHPHealCheck
     elsif user.canHeal?
       healAmt = (healAmt * 1.3).floor if user.hasActiveItem?(:BIGROOT)
       user.pbRecoverHP(healAmt)
