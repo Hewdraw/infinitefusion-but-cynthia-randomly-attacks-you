@@ -1519,10 +1519,10 @@ class PokeBattle_AI
       score = 1
     #---------------------------------------------------------------------------
     when "0EB" #todo
-      score = opposingThreat / 2
-      score += 10 * target.pbOwnSide.effects[PBEffects::Spikes]
-      score += 10 * target.pbOwnSide.effects[PBEffects::ToxicSpikes]
-      score += 10 * target.pbOwnSide.effects[PBEffects::StealthRock]
+      score = opposingThreat / 3
+      score += 10 if target.pbOwnSide.effects[PBEffects::Spikes]>0
+      score += 10 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
+      score += 10 if target.pbOwnSide.effects[PBEffects::StealthRock]
       score = 0 if target.effects[PBEffects::Ingrain] || target.hasActiveAbility?(:SUCTIONCUPS)
       ch = 0
       @battle.pbParty(target.index).each_with_index do |pkmn,i|
