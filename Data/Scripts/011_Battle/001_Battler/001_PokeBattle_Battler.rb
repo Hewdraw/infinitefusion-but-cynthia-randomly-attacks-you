@@ -382,6 +382,7 @@ class PokeBattle_Battler
   # same type more than once, and should not include any invalid type numbers
   # (e.g. -1).
   def pbTypes(withType3 = false)
+    return [:QMARKS] if hasActiveItem?(:PYRITE)
     ret = [@type1]
     ret.push(@type2) if @type2 != @type1
     # Burn Up erases the Fire-type.

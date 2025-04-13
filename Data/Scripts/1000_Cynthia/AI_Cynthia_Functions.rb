@@ -1519,21 +1519,16 @@ class PokeBattle_AI
       score = 1
     #---------------------------------------------------------------------------
     when "0EB" #todo
-      if target.effects[PBEffects::Ingrain] ||
-         (skill>=PBTrainerAI.highSkill && target.hasActiveAbility?(:SUCTIONCUPS))
-        score -= 90
-      else
-        ch = 0
-        @battle.pbParty(target.index).each_with_index do |pkmn,i|
-          ch += 1 if @battle.pbCanSwitchLax?(target.index,i)
-        end
-        score -= 90 if ch==0
+      score = opposingThreat / 2
+      score += 10 * target.pbOwnSide.effects[PBEffects::Spikes]
+      score += 10 * target.pbOwnSide.effects[PBEffects::ToxicSpikes]
+      score += 10 * target.pbOwnSide.effects[PBEffects::StealthRock]
+      score = 0 if target.effects[PBEffects::Ingrain] || target.hasActiveAbility?(:SUCTIONCUPS)
+      ch = 0
+      @battle.pbParty(target.index).each_with_index do |pkmn,i|
+        ch += 1 if @battle.pbCanSwitchLax?(target.index,i)
       end
-      if score>20
-        score += 50 if target.pbOwnSide.effects[PBEffects::Spikes]>0
-        score += 50 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
-        score += 50 if target.pbOwnSide.effects[PBEffects::StealthRock]
-      end
+      score = 0 if ch==0
     #---------------------------------------------------------------------------
     when "0EC" #todo
       if !target.effects[PBEffects::Ingrain] &&
@@ -1755,6 +1750,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "10C" #todo
       score = 100 if opposingMaxThreat < 25
+      score = 0 if user.hp <= user.totalhp/4
       score = 0 if opposingMaxThreat >= 25 || user.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "10D" #todo

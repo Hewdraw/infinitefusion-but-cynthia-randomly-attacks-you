@@ -17446,36 +17446,6 @@ BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 5
 
-#-------------------------------
-[1000050]
-Name = Cool Dino
-InternalName = COOLERDINO
-Type1 = QMARKS
-BaseStats = 500,1,500,1,1,500
-GenderRate = Genderless
-GrowthRate = Slow
-BaseEXP = 1
-EffortPoints = 3,0,0,0,0,0
-Rareness = 3
-Happiness = 0
-Abilities = INTIMIDATE
-HiddenAbility = PRESSURE
-Moves = 1,HAPPYHOUR,1,RECYCLE
-Compatibility = Undiscovered
-StepsToHatch = 30855
-Height = 4.5
-Weight = 750.0
-Color = Black
-Shape = Head
-Kind = Cardboard
-Pokedex = Property of the Goldenrod Dept. Store.
-BattlerPlayerX = 0
-BattlerPlayerY = 32
-BattlerEnemyX = 0
-BattlerEnemyY = 3
-BattlerShadowX = 0
-BattlerShadowSize = 2
-
 #Cynthia Pokemon
 [1000099]
 Name = Cynthia
@@ -19979,6 +19949,35 @@ Color = Red
 Category = Malevolent
 Pokedex = This Pokémon's sinister, flame-like aura will consume the spirit of any creature it hits. Victims become burned-out shadows of themselves.
 Generation = 8
+#-------------------------------
+[1000903]
+Name = Cool Dino
+InternalName = COOLERDINO
+Type1 = QMARKS
+BaseStats = 500,1,500,1,1,500
+GenderRate = Genderless
+GrowthRate = Slow
+BaseEXP = 1
+EffortPoints = 3,0,0,0,0,0
+Rareness = 3
+Happiness = 0
+Abilities = INTIMIDATE
+HiddenAbility = PRESSURE
+Moves = 1,HAPPYHOUR,1,RECYCLE
+Compatibility = Undiscovered
+StepsToHatch = 30855
+Height = 4.5
+Weight = 750.0
+Color = Black
+Shape = Head
+Kind = Cardboard
+Pokedex = Property of the Goldenrod Dept. Store.
+BattlerPlayerX = 0
+BattlerPlayerY = 32
+BattlerEnemyX = 0
+BattlerEnemyY = 3
+BattlerShadowX = 0
+BattlerShadowSize = 2
 
 
 

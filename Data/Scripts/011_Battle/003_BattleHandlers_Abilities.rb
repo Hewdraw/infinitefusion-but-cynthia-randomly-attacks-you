@@ -263,6 +263,37 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
 # StatusCureAbility handlers
 #===============================================================================
 
+BattleHandlers::StatusCureAbility.add(:LEGENDARYPRESSURE,
+  proc { |ability,battler|
+    case battler.pokemon.species
+    when :TYRANTRUM_CARDBOARD
+      next if battler.effects[PBEffects::Attract]<0 &&
+              (battler.effects[PBEffects::Taunt]==0)
+      battler.battle.pbShowAbilitySplash(battler, false, true, "Oblivious")
+      if battler.effects[PBEffects::Attract]>=0
+        battler.pbCureAttract
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battler.battle.pbDisplay(_INTL("{1} got over its infatuation.",battler.pbThis))
+        else
+          battler.battle.pbDisplay(_INTL("{1}'s Oblivious cured its infatuation status!",
+             battler.pbThis))
+        end
+      end
+      if battler.effects[PBEffects::Taunt]>0
+        battler.effects[PBEffects::Taunt] = 0
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battler.battle.pbDisplay(_INTL("{1}'s Taunt wore off!",battler.pbThis))
+        else
+          battler.battle.pbDisplay(_INTL("{1}'s Oblivious made its taunt wear off!",
+             battler.pbThis))
+        end
+      end
+      battler.battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+
 BattleHandlers::StatusCureAbility.add(:IMMUNITY,
   proc { |ability,battler|
     next if battler.status != :POISON
@@ -2389,6 +2420,23 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
         end
       end
       battle.pbHideAbilitySplash(battler)
+    when :COOLERDINO
+      battle.pbShowAbilitySplash(battler, false, true, "Intimidate")
+      battle.eachOtherSideBattler(battler.index) do |b|
+        next if !b.near?(battler)
+        b.pbLowerAttackStatStageIntimidate(battler)
+        b.pbItemOnIntimidatedCheck
+      end
+      battle.pbHideAbilitySplash(battler)
+      pbWait(1)
+      battle.pbShowAbilitySplash(battler, false, true, "Menace")
+      battle.eachOtherSideBattler(battler.index) do |b|
+        next if !b.near?(battler)
+        b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
+        b.pbItemOnIntimidatedCheck
+      end
+      battle.pbHideAbilitySplash(battler)
+
     end
   }
 )

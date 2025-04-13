@@ -768,6 +768,7 @@
 760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"",0,0,0
 761,MEDICHAMITE,Medichamite,Medichamites,1,0,"",0,0,0
 762,TYRANWILITE,Tyranwilite,Tyranwilites,1,0,"",0,0,0
+763,PYRITE,Pyrite,Pyrite,1,0,"Fool's Gold. Makes the holder ???-Type.",0,0,0
 
 
 #    attr_reader :id

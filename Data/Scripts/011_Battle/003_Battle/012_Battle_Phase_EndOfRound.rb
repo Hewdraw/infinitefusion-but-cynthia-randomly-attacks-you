@@ -225,6 +225,7 @@ class PokeBattle_Battle
         b.pokemon.species == :GARTICUNO ||
         (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
         (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
+        b.pokemon.species == :COOLERDINO
       b.eachOpposing do |target|
         didsomething = didsomething ||
           (b.pokemon.species == :GMOLTRES && target.effects[PBEffects::Taunt] == 0)
@@ -259,7 +260,8 @@ class PokeBattle_Battle
           b.pokemon.species == :GARTICUNO ||
           (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
           (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
-          b.pokemon.species == :GMOLTRES
+          b.pokemon.species == :GMOLTRES ||
+          b.pokemon.species == :COOLERDINO
         b.raid = 4
       end
     end

@@ -72,7 +72,9 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation("UltraBurst2", self)
       @battle.scene.pbChangePokemon(self,@pokemon)
       pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(@pokemon.species)
+      pbBGMPlay("CoolDino") if @pokemon.species == :COOLERDINO
       hpbars = 1
+      @hpbars = @pokemon.phasetwo.hpbars if @pokemon.phasetwo.hpbars
       hpbars = @hpbars if @hpbars
       oldhp = @hp.to_f
       endhp = @totalhp * hpbars
@@ -143,6 +145,11 @@ class PokeBattle_Battler
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
     if @battle.legendaryBattle? && @pokemon.raid
+      if @pokemon.species == :COOLERDINO
+        @pokemon.species = :TYRANTRUM
+        @pokemon.name = "Cool Dino"
+        @pokemon.item = :PYRITE
+      end
       @pokemon.ev = {}
       GameData::Stat.each_main do |s|
         @pokemon.ev[s.id] = 0
