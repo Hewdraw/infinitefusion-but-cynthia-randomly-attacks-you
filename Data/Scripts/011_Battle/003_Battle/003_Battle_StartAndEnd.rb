@@ -470,6 +470,9 @@ class PokeBattle_Battle
             pbDisplayPaused(_INTL("You got #{$Trainer.numbadges+1} Sinnoh Coins for winning!"))
           end
         end
+        if trainerBattle? && @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:HEAVYDUTYBOOTS)
+          pbDisplayPaused(_INTL("You got boots!? for winning!"))
+        end
       end
       # Gain money from winning a trainer battle, and from Pay Day
       pbGainMoney if @decision!=4
