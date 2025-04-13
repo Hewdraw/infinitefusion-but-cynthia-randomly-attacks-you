@@ -206,7 +206,7 @@ class PokeBattle_Battler
     move = choice[2] # In case disobedience changed the move to be used
     return if !move # if move was not chosen somehow
     # Subtract PP
-    if !specialUsage
+    if !specialUsage || !self.raid
       if !pbReducePP(move)
         @battle.pbDisplay(_INTL("{1} used {2}!", pbThis, move.name))
         @battle.pbDisplay(_INTL("But there was no PP left for the move!"))

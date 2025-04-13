@@ -1750,6 +1750,9 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "10C" #todo
       score = 100 if opposingMaxThreat < 25
+      user.eachOpposing do |b|
+        score = 0 if b.hasActiveAbility?(:INFILTRATOR)
+      end
       score = 0 if user.hp <= user.totalhp/4
       score = 0 if opposingMaxThreat >= 25 || user.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
