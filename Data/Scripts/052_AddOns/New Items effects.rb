@@ -627,7 +627,7 @@ ItemHandlers::UseOnPokemon.add(:DNAREVERSER, proc { |item, pokemon, scene|
 
 def reverseFusion(pokemon)
   if pokemon.owner.name  == "RENTAL"
-    pbDisplay(_INTL("You cannot unfuse a rental pokémon!"))
+    pbMessage(_INTL("You cannot reverse a rental pokémon!"))
     return
   end
 
@@ -1553,7 +1553,7 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
     return false
   end
   if pokemon.owner.name  == "RENTAL"
-    pbDisplay(_INTL("You cannot unfuse a rental pokémon!"))
+    scene.pbDisplay(_INTL("You cannot unfuse a rental pokémon!"))
     return
   end
 
