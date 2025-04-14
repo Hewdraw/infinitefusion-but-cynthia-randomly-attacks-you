@@ -626,6 +626,11 @@ ItemHandlers::UseOnPokemon.add(:DNAREVERSER, proc { |item, pokemon, scene|
 })
 
 def reverseFusion(pokemon)
+  if pokemon.owner.name  == "RENTAL"
+    pbDisplay(_INTL("You cannot unfuse a rental pokémon!"))
+    return
+  end
+
   body = getBasePokemonID(pokemon.species, true)
   head = getBasePokemonID(pokemon.species, false)
   newspecies = (head) * Settings::NB_POKEMON + body
@@ -1546,6 +1551,10 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
   if pokemon.species_data.id_number > (NB_POKEMON * NB_POKEMON) + NB_POKEMON # triple fusion
     scene.pbDisplay(_INTL("{1} cannot be unfused.", pokemon.name))
     return false
+  end
+  if pokemon.owner.name  == "RENTAL"
+    pbDisplay(_INTL("You cannot unfuse a rental pokémon!"))
+    return
   end
 
   pokemon.spriteform_body = nil
