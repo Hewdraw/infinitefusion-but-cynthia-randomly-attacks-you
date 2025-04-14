@@ -5729,8 +5729,14 @@ Pokemon = B115H217,49 #URSAKHAN
 
 [COOLTRAINER_M,Nick]
 Pokemon = B156H6,46 #QUIRIZARD
+	Offset = 5
+	Item = EVIOLITE
 Pokemon = B153H3,46 #BAYSAUR
+	Offset = 5
+	Item = EVIOLITE
 Pokemon = B159H9,46 #BLASTNAW
+	Offset = 5
+	Item = EVIOLITE
 ###########################
 
 [COOLTRAINER_F,Gwen]
