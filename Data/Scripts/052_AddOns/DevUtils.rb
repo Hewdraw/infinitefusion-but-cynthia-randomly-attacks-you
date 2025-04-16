@@ -157,3 +157,35 @@ def search_event_scripts(target_string)
   end
 end
 
+
+
+
+def print_map_tiles
+  # Define output file path
+  file_path = "/Users/chardub/Documents/infinitefusion/TileIDs_Output.txt"
+
+  # Open file for writing
+  File.open(file_path, "w") do |file|
+    map = $game_map
+    width = map.width
+    height = map.height
+
+    (0...3).each do |z| # For each layer: 0, 1, 2
+      file.puts("Layer #{z}:")
+      (0...height).each do |y|
+        row_ids = []
+        (0...width).each do |x|
+          tile_id = map.data[x, y, z]
+          row_ids << tile_id
+        end
+        file.puts(row_ids.join(", "))
+      end
+      file.puts("") # Add a blank line between layers
+    end
+  end
+
+  echoln("Tile IDs exported to #{file_path}")
+
+
+end
+
