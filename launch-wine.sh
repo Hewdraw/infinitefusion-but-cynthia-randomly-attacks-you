@@ -1,1 +1,1 @@
-wine "$(dirname "$0")/Game.exe"
+wine "$(dirname "$0")/InfiniteFusion.exe"
