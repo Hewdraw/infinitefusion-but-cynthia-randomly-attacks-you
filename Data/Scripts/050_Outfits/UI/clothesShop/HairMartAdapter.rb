@@ -107,7 +107,6 @@ class HairMartAdapter < OutfitsMartAdapter
 
   def getItemIcon(item)
     return Settings::BACK_ITEM_ICON_PATH if !item
-    itemId = getCurrentHairId(item.id)
     return getOverworldHatFilename(item.id)
   end
 
@@ -115,6 +114,7 @@ class HairMartAdapter < OutfitsMartAdapter
     item = @previous_item if !item
     item = @previous_item if item.is_a?(Symbol)
     @previous_item = find_first_item() if !item.is_a?(Symbol)
+
     displayed_hat = @hat_visible ? @worn_hat : nil
     displayed_hat2 = @hat_visible ? @worn_hat2 : nil
 
@@ -198,6 +198,12 @@ class HairMartAdapter < OutfitsMartAdapter
 
   def doSpecialItemAction(specialType)
     switchVersion(nil,1)
+  end
+
+  def currentVersionExists?(item)
+    hairId = getCurrentHairId(item.id)
+    filename = getOverworldHairFilename(hairId)
+    return pbResolveBitmap(filename)
   end
 
 end

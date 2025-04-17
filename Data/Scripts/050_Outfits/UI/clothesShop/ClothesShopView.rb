@@ -94,6 +94,7 @@ class ClothesShopView < PokemonMart_Scene
         description = @adapter.getSpecialItemDescription(itemwindow.item)
       else
         description = @adapter.getDescription(itemwindow.item)
+        @adapter.updateVersion(itemwindow.item)
       end
       @adapter.updateTrainerPreview(itemwindow.item, @sprites["trainerPreview"])
     else

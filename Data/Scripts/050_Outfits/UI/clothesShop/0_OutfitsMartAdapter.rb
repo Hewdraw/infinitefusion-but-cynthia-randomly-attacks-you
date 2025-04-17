@@ -148,4 +148,12 @@ class OutfitsMartAdapter < PokemonMartAdapter
   def showQuantity?(item)
     super
   end
+
+  def updateVersion(item)
+    @version = 1 if !currentVersionExists?(item)
+  end
+
+  def currentVersionExists?(item)
+    return true
+  end
 end

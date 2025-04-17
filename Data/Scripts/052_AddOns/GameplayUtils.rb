@@ -1299,7 +1299,7 @@ end
 def exit_pokemart()
   pokemart_entrances = {
     :PEWTER => [380, 43, 24],
-    :CERULEAN => [1, 19, 22],
+    :CERULEAN => [1, 24, 22],
     :VERMILLION => [19, 32, 13],
     :LAVENDER => [50, 20, 23],
     :CELADON => [95, 18, 15], # not a real pokemart
