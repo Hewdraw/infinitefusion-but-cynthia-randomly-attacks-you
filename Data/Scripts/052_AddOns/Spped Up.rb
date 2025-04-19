@@ -58,7 +58,7 @@ module Graphics
     if $PokemonSystem && $PokemonSystem.speedup == 1
       speedStage = SPEEDUP_STAGES[$GameSpeed]
     else
-      speedStage = 1
+      speedStage =$PokemonSystem.speedup 1
       if Input.press?(Input::AUX1) && $CanToggle
         $PokemonSystem.speedup_speed = Settings::DEFAULT_SPEED_UP_SPEED if !$PokemonSystem.speedup_speed || $PokemonSystem.speedup_speed==0
         speedStage=$PokemonSystem.speedup_speed+1
@@ -67,5 +67,20 @@ module Graphics
     return unless $frame % speedStage == 0
     fast_forward_update
     $frame = 0
+  end
+end
+
+
+
+class PokemonSystem
+  attr_accessor :speedup
+  attr_accessor :speedup_speed
+
+
+  alias pokemonSystem_SpeedUp initialize
+  def initialize
+    pokemonSystem_SpeedUp
+    @speedup = 0 #0= hold, 1=toggle
+    @speedup_speed = 3 #for hold only
   end
 end
