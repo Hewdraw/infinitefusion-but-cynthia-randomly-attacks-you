@@ -2,28 +2,29 @@
 #
 #===============================================================================
 class TilemapRenderer
-  attr_reader   :tilesets
-  attr_reader   :autotiles
+  attr_reader :tilesets
+  attr_reader :autotiles
+  attr_reader :custom_autotile_ids
   attr_accessor :tone
   attr_accessor :color
-  attr_reader   :viewport
-  attr_accessor :ox        # Does nothing
-  attr_accessor :oy        # Does nothing
-  attr_accessor :visible   # Does nothing
+  attr_reader :viewport
+  attr_accessor :ox # Does nothing
+  attr_accessor :oy # Does nothing
+  attr_accessor :visible # Does nothing
 
-  DISPLAY_TILE_WIDTH      = Game_Map::TILE_WIDTH rescue 32
-  DISPLAY_TILE_HEIGHT     = Game_Map::TILE_HEIGHT rescue 32
-  SOURCE_TILE_WIDTH       = 32
-  SOURCE_TILE_HEIGHT      = 32
-  ZOOM_X                  = DISPLAY_TILE_WIDTH / SOURCE_TILE_WIDTH
-  ZOOM_Y                  = DISPLAY_TILE_HEIGHT / SOURCE_TILE_HEIGHT
-  TILESET_TILES_PER_ROW   = 8
-  AUTOTILES_COUNT         = 8   # Counting the blank tile as an autotile
-  TILES_PER_AUTOTILE      = 48
-  TILESET_START_ID        = AUTOTILES_COUNT * TILES_PER_AUTOTILE
+  DISPLAY_TILE_WIDTH = Game_Map::TILE_WIDTH rescue 32
+  DISPLAY_TILE_HEIGHT = Game_Map::TILE_HEIGHT rescue 32
+  SOURCE_TILE_WIDTH = 32
+  SOURCE_TILE_HEIGHT = 32
+  ZOOM_X = DISPLAY_TILE_WIDTH / SOURCE_TILE_WIDTH
+  ZOOM_Y = DISPLAY_TILE_HEIGHT / SOURCE_TILE_HEIGHT
+  TILESET_TILES_PER_ROW = 8
+  AUTOTILES_COUNT = 8 # Counting the blank tile as an autotile
+  TILES_PER_AUTOTILE = 48
+  TILESET_START_ID = AUTOTILES_COUNT * TILES_PER_AUTOTILE
   # If an autotile's filename ends with "[x]", its frame duration will be x/20
   # seconds instead.
-  AUTOTILE_FRAME_DURATION = 5   # In 1/20ths of a second
+  AUTOTILE_FRAME_DURATION = 5 # In 1/20ths of a second
 
   # Filenames of extra autotiles for each tileset. Each tileset's entry is an
   # array containing two other arrays (you can leave either of those empty, but
@@ -44,9 +45,27 @@ class TilemapRenderer
   #    6 => [["Water rock", "Sea deep"], []]
 
   EXTRA_AUTOTILES = {
-    # 23 => {
-    #   384 => "flowers_pink",
-    # }
+    23 => {
+      1232 => "flowers_orange[10]",
+      1240 => "flowers_pink[10]",
+      1248 => "flowers_yellow[10]",
+      1256 => "flowers_blue[10]",
+      1264 => "flowers_purple[10]",
+      1272 => "flowers_red[10]",
+      1280 => "flowers_grey[10]",
+      1288 => "flowers_white[10]",
+
+    },
+    30 => {
+      2620 => "flowers_orange[10]",
+      2628 => "flowers_pink[10]",
+      2636 => "flowers_yellow[10]",
+      2644 => "flowers_blue[10]",
+      2652 => "flowers_purple[10]",
+      2660 => "flowers_red[10]",
+      2668 => "flowers_grey[10]",
+      2676 => "flowers_white[10]",
+    }
   }
 
   #=============================================================================
@@ -57,11 +76,11 @@ class TilemapRenderer
     attr_accessor :bitmaps
 
     def initialize
-      @bitmaps      = {}
-      @bitmap_wraps = {}   # Whether each tileset is a mega texture and has multiple columns
-      @load_counts  = {}
-      @bridge       = 0
-      @changed      = true
+      @bitmaps = {}
+      @bitmap_wraps = {} # Whether each tileset is a mega texture and has multiple columns
+      @load_counts = {}
+      @bridge = 0
+      @changed = true
     end
 
     def [](filename)
@@ -129,10 +148,10 @@ class TilemapRenderer
 
     def initialize
       super
-      @frame_counts    = {}   # Number of frames in each autotile
-      @frame_durations = {}   # How long each frame lasts per autotile
-      @current_frames  = {}   # Which frame each autotile is currently showing
-      @timer     = 0.0#System.uptime
+      @frame_counts = {} # Number of frames in each autotile
+      @frame_durations = {} # How long each frame lasts per autotile
+      @current_frames = {} # Which frame each autotile is currently showing
+      @timer = 0.0 # System.uptime
     end
 
     def []=(filename, value)
@@ -203,15 +222,24 @@ class TilemapRenderer
     end
 
     def set_src_rect(tile, tile_id)
-      return if nil_or_empty?(tile.filename)
-      return if !@bitmaps[tile.filename]
-      frame = current_frame(tile.filename)
-      if @bitmaps[tile.filename].height == SOURCE_TILE_HEIGHT
+      filename = tile.filename
+
+      # Check if this tile_id was overridden to use a specific autotile
+      override_filename = @custom_autotile_ids && @custom_autotile_ids[tile_id]
+      filename = override_filename if override_filename
+
+      return if nil_or_empty?(filename)
+      return unless @bitmaps[filename]
+
+      frame = current_frame(filename)
+
+      if @bitmaps[filename].height == SOURCE_TILE_HEIGHT
         tile.src_rect.x = frame * SOURCE_TILE_WIDTH
         tile.src_rect.y = 0
         return
       end
-      wraps = @bitmap_wraps[tile.filename]
+
+      wraps = @bitmap_wraps[filename]
       high_id = ((tile_id % TILES_PER_AUTOTILE) >= TILES_PER_AUTOTILE / 2)
       tile.src_rect.x = 0
       tile.src_rect.y = (tile_id % TILES_PER_AUTOTILE) * SOURCE_TILE_HEIGHT
@@ -220,6 +248,9 @@ class TilemapRenderer
         tile.src_rect.y -= SOURCE_TILE_HEIGHT * TILES_PER_AUTOTILE / 2
       end
       tile.src_rect.x += frame * SOURCE_TILE_WIDTH * (wraps ? 2 : 1)
+
+      # Override the filename in the tile object for consistency
+      tile.filename = filename if override_filename
     end
 
     def update
@@ -249,57 +280,58 @@ class TilemapRenderer
     attr_accessor :need_refresh
 
     def set_bitmap(filename, tile_id, autotile, animated, priority, bitmap)
-      self.bitmap       = bitmap
-      self.src_rect     = Rect.new(0, 0, SOURCE_TILE_WIDTH, SOURCE_TILE_HEIGHT)
-      self.zoom_x       = ZOOM_X
-      self.zoom_y       = ZOOM_Y
-      @filename         = filename
-      @tile_id          = tile_id
-      @is_autotile      = autotile
-      @animated         = animated
-      @priority         = priority
+      self.bitmap = bitmap
+      self.src_rect = Rect.new(0, 0, SOURCE_TILE_WIDTH, SOURCE_TILE_HEIGHT)
+      self.zoom_x = ZOOM_X
+      self.zoom_y = ZOOM_Y
+      @filename = filename
+      @tile_id = tile_id
+      @is_autotile = autotile
+      @animated = animated
+      @priority = priority
       @shows_reflection = false
-      @bridge           = false
-      self.visible      = !bitmap.nil?
-      @need_refresh     = true
+      @bridge = false
+      self.visible = !bitmap.nil?
+      @need_refresh = true
     end
   end
 
   #-----------------------------------------------------------------------------
 
   def initialize(viewport)
-    @tilesets               = TilesetBitmaps.new
-    @autotiles              = AutotileBitmaps.new
+    @tilesets = TilesetBitmaps.new
+    @autotiles = AutotileBitmaps.new
+    @custom_autotile_ids = {} # key: tile_id, value: filename
     @tiles_horizontal_count = (Graphics.width.to_f / DISPLAY_TILE_WIDTH).ceil + 1
-    @tiles_vertical_count   = (Graphics.height.to_f / DISPLAY_TILE_HEIGHT).ceil + 1
-    @tone                   = Tone.new(0, 0, 0, 0)
-    @old_tone               = Tone.new(0, 0, 0, 0)
-    @color                  = Color.new(0, 0, 0, 0)
-    @old_color              = Color.new(0, 0, 0, 0)
-    @self_viewport          = Viewport.new(0, 0, Graphics.width, Graphics.height)
-    @viewport               = (viewport) ? viewport : @self_viewport
-    @old_viewport_ox        = 0
-    @old_viewport_oy        = 0
+    @tiles_vertical_count = (Graphics.height.to_f / DISPLAY_TILE_HEIGHT).ceil + 1
+    @tone = Tone.new(0, 0, 0, 0)
+    @old_tone = Tone.new(0, 0, 0, 0)
+    @color = Color.new(0, 0, 0, 0)
+    @old_color = Color.new(0, 0, 0, 0)
+    @self_viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+    @viewport = (viewport) ? viewport : @self_viewport
+    @old_viewport_ox = 0
+    @old_viewport_oy = 0
     # NOTE: The extra tiles horizontally/vertically hang off the left and top
     #       edges of the screen, because the pixel_offset values are positive
     #       and are added to the tile sprite coordinates.
-    @tiles                  = []
+    @tiles = []
     @tiles_horizontal_count.times do |i|
       @tiles[i] = []
       @tiles_vertical_count.times do |j|
         @tiles[i][j] = Array.new(3) { TileSprite.new(@viewport) }
       end
     end
-    @current_map_id         = 0
-    @tile_offset_x          = 0
-    @tile_offset_y          = 0
-    @pixel_offset_x         = 0
-    @pixel_offset_y         = 0
-    @ox                     = 0
-    @oy                     = 0
-    @visible                = true
-    @need_refresh           = true
-    @disposed               = false
+    @current_map_id = 0
+    @tile_offset_x = 0
+    @tile_offset_y = 0
+    @pixel_offset_x = 0
+    @pixel_offset_y = 0
+    @ox = 0
+    @oy = 0
+    @visible = true
+    @need_refresh = true
+    @disposed = false
   end
 
   def dispose
@@ -343,9 +375,11 @@ class TilemapRenderer
   end
 
   def add_extra_autotiles(tileset_id)
-    return if !EXTRA_AUTOTILES[tileset_id]
-    EXTRA_AUTOTILES[tileset_id].each do |arr|
-      arr.each { |filename| add_autotile(filename) }
+    overrides = EXTRA_AUTOTILES[tileset_id]
+    return unless overrides
+    overrides.each do |tile_id, filename|
+      @autotiles.add(filename)
+      @custom_autotile_ids[tile_id] = filename
     end
   end
 
@@ -367,28 +401,38 @@ class TilemapRenderer
     if tile_id < TILES_PER_AUTOTILE
       tile.set_bitmap("", tile_id, false, false, 0, nil)
       tile.shows_reflection = false
-      tile.bridge           = false
+      tile.bridge = false
     else
       terrain_tag = map.terrain_tags[tile_id] || 0
       terrain_tag_data = GameData::TerrainTag.try_get(terrain_tag)
       priority = map.priorities[tile_id] || 0
       single_autotile_start_id = TILESET_START_ID
       true_tileset_start_id = TILESET_START_ID
-      extra_autotile_arrays = EXTRA_AUTOTILES[map.tileset_id]
-      if extra_autotile_arrays
-        large_autotile_count = extra_autotile_arrays[0].length
-        single_autotile_count = extra_autotile_arrays[1].length
-        single_autotile_start_id += large_autotile_count * TILES_PER_AUTOTILE
-        true_tileset_start_id += large_autotile_count * TILES_PER_AUTOTILE
-        true_tileset_start_id += single_autotile_count
-      end
-      if tile_id < true_tileset_start_id
-        filename = ""
-        if tile_id < TILESET_START_ID   # Real autotiles
+      # extra_autotile_arrays = EXTRA_AUTOTILES[map.tileset_id]
+      # if extra_autotile_arrays
+      #   large_autotile_count = extra_autotile_arrays[0].length
+      #   single_autotile_count = extra_autotile_arrays[1].length
+      #   single_autotile_start_id += large_autotile_count * TILES_PER_AUTOTILE
+      #   true_tileset_start_id += large_autotile_count * TILES_PER_AUTOTILE
+      #   true_tileset_start_id += single_autotile_count
+      # end
+
+      filename = nil
+      extra_autotile_hash = EXTRA_AUTOTILES[map.tileset_id]
+
+      if extra_autotile_hash && extra_autotile_hash[tile_id]
+        # Custom tile_id override
+        filename = extra_autotile_hash[tile_id]
+        tile.set_bitmap(filename, tile_id, true, @autotiles.animated?(filename),
+                        priority, @autotiles[filename])
+      elsif tile_id < true_tileset_start_id
+        # Default behavior
+        if tile_id < TILESET_START_ID # Real autotiles
           filename = map.autotile_names[(tile_id / TILES_PER_AUTOTILE) - 1]
-        elsif tile_id < single_autotile_start_id   # Large extra autotiles
+        elsif tile_id < single_autotile_start_id # Large extra autotiles
           filename = extra_autotile_arrays[0][(tile_id - TILESET_START_ID) / TILES_PER_AUTOTILE]
-        else   # Single extra autotiles
+        else
+          # Single extra autotiles
           filename = extra_autotile_arrays[1][tile_id - single_autotile_start_id]
         end
         tile.set_bitmap(filename, tile_id, true, @autotiles.animated?(filename),
@@ -397,8 +441,9 @@ class TilemapRenderer
         filename = map.tileset_name
         tile.set_bitmap(filename, tile_id, false, false, priority, @tilesets[filename])
       end
+
       tile.shows_reflection = terrain_tag_data&.shows_reflections
-      tile.bridge           = terrain_tag_data&.bridge
+      tile.bridge = terrain_tag_data&.bridge
     end
     refresh_tile_src_rect(tile, tile_id)
   end
@@ -453,7 +498,7 @@ class TilemapRenderer
           @tile_offset_x -= offsets[0]
           @tile_offset_y -= offsets[1]
         else
-          ret = true   # Need a full refresh
+          ret = true # Need a full refresh
         end
       else
         ret = true
@@ -562,7 +607,7 @@ class TilemapRenderer
     @screen_moved_vertically = false
     if $PokemonGlobal.bridge != @bridge
       @bridge = $PokemonGlobal.bridge
-      @screen_moved_vertically = true   # To update bridge tiles' z values
+      @screen_moved_vertically = true # To update bridge tiles' z values
     end
     do_full_refresh = true if check_if_screen_moved
     # Update all tile sprites
@@ -615,7 +660,7 @@ class TilemapRenderer
         coord.each do |tile|
           tile.set_bitmap("", 0, false, false, 0, nil)
           tile.shows_reflection = false
-          tile.bridge           = false
+          tile.bridge = false
         end
       end
     end
