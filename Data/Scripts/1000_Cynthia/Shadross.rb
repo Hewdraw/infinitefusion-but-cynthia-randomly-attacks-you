@@ -92,7 +92,7 @@ def UndertaleShopSetup()
     :ABILITYCAPSULE => {
       "badges" => 0,
       "cost" => 2,
-      "amount" => 1,
+      "amount" => 2,
     },
     :RARECANDY => {
       "badges" => 0,
