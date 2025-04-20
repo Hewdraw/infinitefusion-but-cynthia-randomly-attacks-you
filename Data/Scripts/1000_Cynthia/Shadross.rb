@@ -306,7 +306,7 @@ def UndertaleShopSetup()
     },
     :ABILITYPATCH => {
       "badges" => 3,
-      "cost" => 14,
+      "cost" => 7,
       "amount" => 1,
     },
     :BLACKSLUDGE => {
