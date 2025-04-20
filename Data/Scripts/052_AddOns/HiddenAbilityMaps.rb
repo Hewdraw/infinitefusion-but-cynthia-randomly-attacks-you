@@ -24,7 +24,7 @@ def changeHiddenMap()
 end
 
 Events.onWildPokemonCreate+=proc {|sender,e|
-  if player_on_hidden_ability_map || isAlwaysHiddenAbilityMap($game_map.map_id)
+  if player_on_hidden_ability_map || isAlwaysHiddenAbilityMap($game_map.map_id) || rand(8) == 0
     pokemon=e[0]
     chosenAbility = pokemon.getAbilityList.sample #format: [[:ABILITY, index],...]
     pokemon.ability = chosenAbility[0]
