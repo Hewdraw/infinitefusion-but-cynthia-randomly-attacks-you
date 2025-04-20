@@ -686,7 +686,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:FLASHFIRE, :WILDFIRE)
+BattleHandlers::MoveImmunityTargetAbility.copy(:FLASHFIRE, :WILDFIRE, :WIRED)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:LIGHTNINGROD,
   proc { |ability,user,target,move,type,battle|
@@ -1267,6 +1267,12 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:FLOWERGIFT,
     if move.physicalMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
       mults[:attack_multiplier] *= 1.5
     end
+  }
+)
+
+BattleHandlers::DamageCalcUserAllyAbility.add(:WIRED,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 1.3
   }
 )
 

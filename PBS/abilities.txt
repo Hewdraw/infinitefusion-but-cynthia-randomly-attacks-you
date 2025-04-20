@@ -258,3 +258,4 @@
 256,LEGENDARYPRESSURE,Legendary Pressure,""
 257,ADAPTIVETECHNICIAN,Adaptive Technician,""
 258,POWEREDSANDS,Powered Sands,""
+259,WIRED,Wired,"" #todo

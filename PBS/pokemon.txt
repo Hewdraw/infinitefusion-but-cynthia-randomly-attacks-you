@@ -18812,6 +18812,16 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+[1000412]
+Name = Redstone Monstrocity
+InternalName = REDSTONEMONSTROCITY
+Type1 = ROCK
+Type2 = GROUND
+BaseStats = 155,145,200,20,20,140
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Hatsune Miku Megas
@@ -18831,6 +18841,46 @@ Type1 = ROCK
 Type2 = FAIRY
 BaseStats = 83,114,120,53,81,98
 Abilities = POWEREDSANDS
+Moves = 1,TACKLE
+Shape = Head
+[1000502]
+Name = Genvoir
+InternalName = MEGAB287H94 
+Type1 = GHOST
+Type2 = FAIRY
+BaseStats = 62,78,70,110,168,108
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000503]
+Name = Poryrouge
+InternalName = ARMAROUGEPORYGONZPSYCHIC
+Type2 = PSYCHIC
+BaseStats = 85,66,90,80,131,76
+GenderRate = Female50Percent
+Abilities = ADAPTABILITY
+Moves = 1,TACKLE
+Shape = Head
+[1000504]
+Name = Alcrerene
+InternalName = GMAXHATTERENEALCREMIE 
+Type1 = FAIRY
+Type2 = PSYCHIC
+BaseStats = 62,80,88,40,118,115
+GenderRate = Female50Percent
+Abilities = MAGICBOUNCE
+Moves = 1,TACKLE
+Shape = Head
+[1000505]
+Name = Garderos
+InternalName = MEGAB181H287 
+Type1 = PSYCHIC
+Type2 = DRAGON
+BaseStats = 75,91,91,63,165,126
+GenderRate = Female50Percent
+Abilities = PIXILATE
 Moves = 1,TACKLE
 Shape = Head
 
@@ -18939,6 +18989,61 @@ InternalName = EXCADRILLFLAREON
 Type1 = FIRE
 Type2 = STEEL
 BaseStats = 80,133,60,80,80,95
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000610]
+Name = Primatricity
+InternalName = TOXTRICITYPRIMARINA 
+Type1 = WATER
+Type2 = POISON
+BaseStats = 78,90,71,70,122,100
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000611]
+Name = Melomin
+InternalName = SHAYMINSKYMELOETTA 
+Type1 = NORMAL
+Type2 = FLYING
+BaseStats = 100,94,75,114,125,110
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000612]
+Name = Chandeedee
+InternalName = INDEEDEEFCHANSEY 
+Type1 = NORMAL
+Type2 = PSYCHIC
+BaseStats = 190,38,45,73,55,105
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000613]
+Name = Poryrouge
+InternalName = ARMAROUGEPORYGONZ 
+Type1 = NORMAL
+Type2 = PSYCHIC
+BaseStats = 85,66,90,80,131,76
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000614]
+Name = Alcrerene
+InternalName = HATTERENEALCREMIE 
+Type1 = FAIRY
+Type2 = PSYCHIC
+BaseStats = 62,80,88,40,118,115
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT

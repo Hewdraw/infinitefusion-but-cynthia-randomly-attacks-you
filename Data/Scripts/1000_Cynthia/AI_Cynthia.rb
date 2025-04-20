@@ -18,7 +18,7 @@ class PokeBattle_AI
     bestSwitchValue = 0
     @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
       next if pokemon.fainted?
-      next if !@battle.pbCanSwitch?(idxBattler,i)
+      next if !@battle.pbCanSwitch?(idxBattler,i,nil,true, pbCynthiaChooseMoves(idxBattler, true))
       next if pokemon.ace
       switchValue = pbCynthiaGetSwitchValue(user, pokemon)
       if switchValue > bestSwitchValue
@@ -53,12 +53,12 @@ class PokeBattle_AI
 
   def pbCynthiaGetSwitchValue(user, switch)
     activeUserThreat = 10
-    activeOpposingThreat = 0
+    activeOpposingThreat = 10
     activeUserOutspeeds = true
     battler = PokeBattle_Battler.new(@battle,69)
     battler.pbInitialize(switch,69)
     switchThreat = 10
-    opposingThreat = 0
+    opposingThreat = 10
     switchOutspeeds = true
     user.eachOpposing do |target|
       opposingThreat += pbCynthiaGetThreat(battler, target)[:highestDamage]
@@ -120,7 +120,7 @@ class PokeBattle_AI
     switchOutScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
     switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
     switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
-    switchOutScore += [0, (user.statusCount / 0.5) - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
+    switchOutScore += [0, user.statusCount - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
     switchOutScore -= 10 if user.effects[PBEffects::Substitute]>0
     switchOutScore += 3 if user.effects[PBEffects::Curse]
     switchOutScore += 2 if user.effects[PBEffects::Nightmare]
@@ -130,6 +130,7 @@ class PokeBattle_AI
     switchOutScore -= 1 if user.effects[PBEffects::Protosynthesis] > 10
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 0
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
+    switchOutScore += 1 if user.effects[PBEffects::Yawn]
 
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
     activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
@@ -207,7 +208,6 @@ class PokeBattle_AI
       next if !target.pbCanChooseMove?(move,true,false,false)
       next if target.pbEncoredMoveIndex != i && target.pbEncoredMoveIndex >= 0
       next if pbCheckMoveImmunity(100,move,target,user,100)
-      #todo encore
       @threattable[target][user][:moves][move] = pbCynthiaAssessMoveThreat(user, target, move)
       if @threattable[target][user][:moves][move][:category] == :status
         @threattable[target][user][:statusCount] += 1

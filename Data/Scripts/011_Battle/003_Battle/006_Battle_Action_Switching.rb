@@ -38,7 +38,7 @@ class PokeBattle_Battle
   # switch out (and that its replacement at party index idxParty can switch in).
   # NOTE: Messages are only shown while in the party screen when choosing a
   #       command for the next round.
-  def pbCanSwitch?(idxBattler, idxParty = -1, partyScene = nil)
+  def pbCanSwitch?(idxBattler, idxParty = -1, partyScene = nil,switchmove=false)
     # Check whether party Pokémon can switch in
     return false if !pbCanSwitchLax?(idxBattler, idxParty, partyScene)
     # Make sure another battler isn't already choosing to switch to the party
@@ -49,6 +49,7 @@ class PokeBattle_Battle
                                  pbParty(idxBattler)[idxParty].name)) if partyScene
       return false
     end
+    return true if switchmove
     # Check whether battler can switch out
     battler = @battlers[idxBattler]
     return true if battler.fainted?

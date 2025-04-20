@@ -136,9 +136,12 @@ class PokeBattle_Battle
     end
     # Mega Evolve
     if !force
-      case battler.pokemon.megaMessage
-      when 1   # Rayquaza
+      case battler.pokemon.species
+      when :RAYQUAZA   # Rayquaza
         pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
+      when :CREEPER
+        pbDisplay(_INTL("{1} got charged by its {2}!",
+           battler.pbThis,battler.itemName))
       else
         pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
            battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
@@ -213,6 +216,17 @@ class PokeBattle_Battle
     battler.effects[PBEffects::Dynamax] = 3
     battler.effects[PBEffects::Encore] = 0
     battler.effects[PBEffects::Torment] = 0
+    if battler.pokemon.gigantamax
+      tempspecies = ("GMAX" + battler.pokemon.species.to_s).to_sym
+      level = battler.level
+      battler.pokemon.species = tempspecies
+      battler.species = tempspecies
+      battler.level = level
+      battler.pbUpdate(true)
+      @scene.pbChangePokemon(battler,battler.pokemon)
+      @scene.pbRefreshOne(idxBattler)
+      pbCommonAnimation("MegaEvolution2",battler)
+    end
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
     oldhp = battler.hp.to_f
@@ -279,6 +293,17 @@ class PokeBattle_Battle
     sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
     @scene.pbRefreshOne(idxBattler)
     battler.effects[PBEffects::Dynamax] = 0
+    if battler.pokemon.gigantamax
+      tempspecies = (battler.pokemon.species.to_s[4..-1]).to_sym
+      level = battler.level
+      battler.pokemon.species = tempspecies
+      battler.species = tempspecies
+      battler.level = level
+      battler.pbUpdate(true)
+      @scene.pbChangePokemon(battler,battler.pokemon)
+      @scene.pbRefreshOne(idxBattler)
+      pbCommonAnimation("MegaEvolution2",battler)
+    end
     pbCommonAnimation("StatDown",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxsmall"))
     oldhp = battler.hp.to_f

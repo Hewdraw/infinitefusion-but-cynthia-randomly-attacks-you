@@ -7,7 +7,7 @@ class PokeBattle_Battler
     @battle.pbOnActiveOne(self) if switchIn
     # Primal Revert upon entering battle
     @battle.pbPrimalReversion(@index) if !fainted?
-    @battle.pbMegaEvolve(@index) if !fainted? && species == :CREEPER
+    @battle.pbMegaEvolve(@index) if !fainted? && self.species == :CREEPER
     # Ending primordial weather, checking Trace
     pbContinualAbilityChecks(true)
     if self.species == :WROTOM && $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)

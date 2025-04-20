@@ -410,6 +410,7 @@ class PokeBattle_Battler
     return true if type == :FIRE && isSpecies?(:GMOLTRES) && hasActiveItem?(:FIRESPHERE)
     return true if [:FIRE, :WATER, :GRASS].include?(type) && pbHasType?(:FIREWATERGRASS)
     return true if [:ICE, :FIRE, :ELECTRIC].include?(type) && pbHasType?(:ICEFIREELECTRIC)
+    return true if [:FIRE, :PSYCHIC, :ELECTRIC].include?(type) && hasActiveAbility?(:WIRED)
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end

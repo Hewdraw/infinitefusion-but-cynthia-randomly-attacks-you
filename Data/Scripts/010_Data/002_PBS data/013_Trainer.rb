@@ -20,6 +20,7 @@ module GameData
       "Status" => [:status, "s"],
       "Tera" => [:tera, "s"],
       "Dynamax" => [:dynamax, "b"],
+      "Gigantamax" => [:gigantamax, "b"],
       "Raid" => [:raid, "b"],
       "Hpbar" => [:hpbars, "s"],
       "Phasetwo" => [:phasetwo, "b"],
@@ -358,6 +359,7 @@ module GameData
         end
 
         pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
+        pkmn.gigantamax = (pkmn_data[:gigantamax]) ? true : nil
         pkmn.raid = (pkmn_data[:raid]) ? true : nil
         pkmn.hpbars = (pkmn_data[:hpbars]) ? pkmn_data[:hpbars].to_i : nil
         pkmn.phasetwo = (pkmn_data[:phasetwo]) ? true : nil
