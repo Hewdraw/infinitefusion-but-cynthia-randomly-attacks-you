@@ -18,7 +18,7 @@ class PokeBattle_AI
     bestSwitchValue = 0
     @battle.pbParty(idxBattler).each_with_index do |pokemon,i|
       next if pokemon.fainted?
-      next if !@battle.pbCanSwitch?(idxBattler,i,nil,true, pbCynthiaChooseMoves(idxBattler, true))
+      next if !@battle.pbCanSwitch?(idxBattler,i,nil, pbCynthiaChooseMoves(idxBattler, true))
       next if pokemon.ace
       switchValue = pbCynthiaGetSwitchValue(user, pokemon)
       if switchValue > bestSwitchValue
