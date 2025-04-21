@@ -13,6 +13,7 @@ class PokeBattle_AI
 
   def pbCynthiaShouldWithdraw(idxBattler)
     user = @battle.battlers[idxBattler]
+    return false if user.ace || user.level == 1
 
     willswitch = false
     bestSwitchValue = 0
@@ -52,18 +53,19 @@ class PokeBattle_AI
   end
 
   def pbCynthiaGetSwitchValue(user, switch)
-    activeUserThreat = 10
-    activeOpposingThreat = 10
+    activeUserThreat = 1
+    activeOpposingThreat = 1
     activeUserOutspeeds = true
     battler = PokeBattle_Battler.new(@battle,69)
     battler.pbInitialize(switch,69)
-    switchThreat = 10
-    opposingThreat = 10
+    switchThreat = 1
+    opposingThreat = 1
     switchOutspeeds = true
     user.eachOpposing do |target|
+      next if target.fainted?
       opposingThreat += pbCynthiaGetThreat(battler, target)[:highestDamage]
       threat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
-      switchThreat = threat if threat > switchThreat
+      switchThreat = [threat, switchThreat].max
       switchOutspeeds = false if target.pbSpeed >= battler.pbSpeed
       if user.fainted?
         activeUserThreat = 1
@@ -74,8 +76,9 @@ class PokeBattle_AI
       activeUserOutspeeds = false if target.pbSpeed >= user.pbSpeed
       activeOpposingThreat += pbCynthiaGetThreat(user, target)[:highestDamage]
       threat = pbCynthiaGetThreat(target, user, false)[:highestDamage]
-      activeUserThreat = threat if threat > activeUserThreat
+      activeUserThreat = [threat, activeUserThreat].max
     end
+
 
     damagethreshold = ((100.0-opposingThreat)/opposingThreat).ceil #todo hazards
     damagethreshold += 1 if switchOutspeeds
@@ -98,7 +101,6 @@ class PokeBattle_AI
   end
 
   def pbCynthiaGetSwitchBonus(user, threat, damagethreshold)
-    return -100 if user.level == 1
     switchScore = 0
     switchInScore = 0
     switchOutScore = 0
@@ -114,16 +116,17 @@ class PokeBattle_AI
 
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
+    switchInScore -= 100 if user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
 
     switchOutScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp
     switchOutScore += 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66
     switchOutScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
-    switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0
+    switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0 && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
     switchOutScore += [0, user.statusCount - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
     switchOutScore -= 10 if user.effects[PBEffects::Substitute]>0
-    switchOutScore += 3 if user.effects[PBEffects::Curse]
-    switchOutScore += 2 if user.effects[PBEffects::Nightmare]
+    switchOutScore += 3 if user.effects[PBEffects::Curse] && !user.hasActiveAbility?(:MAGICGUARD)
+    switchOutScore += 2 if user.effects[PBEffects::Nightmare] && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore -= 1 if user.turnCount == 0
     switchOutScore += 1 if user.pbHasMove?(:UTURN) || user.pbHasMove?(:VOLTSWITCH) || user.pbHasMove?(:FLIPTURN) || user.pbHasMove?(:PARTINGSHOT)
     switchOutScore -= 1 if user.effects[PBEffects::Protosynthesis] > 0
@@ -186,6 +189,7 @@ class PokeBattle_AI
       next if key == :moves
       newtable[key] = [[100, threat*100.0/maxhp].min, 1].max
     end
+    #print(user.name, " ", target.name, " ", newtable)
     return newtable
   end
 
@@ -245,6 +249,7 @@ class PokeBattle_AI
       damagetable[:category] = :status
       damagetable[:category] = :physical if move.physicalMove?
       damagetable[:category] = :special if move.specialMove?
+      damagetable[:name] = move.name
       return damagetable
 
   end
@@ -261,13 +266,13 @@ class PokeBattle_AI
     #       score.
     choices     = []
     user.eachMoveWithIndex do |move,i|
-      next if switch && ![:UTURN,:VOLTSWITCH,:FLIPTURN,:TELEPORT,:PARTINGSHOT,:BATONPASS,:CHILLYRECEPTION,:SHEDTAIL].include?(move.id)
       next if user.dynamax != nil && move.statusMove?
       next if !@battle.pbCanChooseMove?(idxBattler,i,false)
       if move.name == "The Skeleton Appears"
         choices = [[i,100,100]]
         break
       end
+      next if switch && ![:UTURN,:VOLTSWITCH,:FLIPTURN,:TELEPORT,:PARTINGSHOT,:BATONPASS,:CHILLYRECEPTION,:SHEDTAIL].include?(move.id)
       pbCynthiaRegisterMove(user,i,choices)
     end
     # Figure out useful information about the choices
@@ -362,6 +367,7 @@ class PokeBattle_AI
     if score > 0 || move.statusMove?
       score += pbCynthiaGetMoveScoreStatus(move,user,target)
     end
+    #print(move.name, " ", user.name, " ", target.name, " ", score)
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       if !user.hasActiveItem?(:POWERHERB)
         score *= 0.5

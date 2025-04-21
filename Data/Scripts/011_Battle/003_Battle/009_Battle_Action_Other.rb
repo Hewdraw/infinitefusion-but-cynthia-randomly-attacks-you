@@ -156,6 +156,7 @@ class PokeBattle_Battle
     battler.pbUpdate(true)
     @scene.pbChangePokemon(battler,battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
+    battler.pbUpdate(true)
     pbCommonAnimation("MegaEvolution2",battler)
     megaName = battler.pokemon.megaName
     if !force

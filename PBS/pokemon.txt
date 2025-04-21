@@ -18883,6 +18883,15 @@ GenderRate = Female50Percent
 Abilities = PIXILATE
 Moves = 1,TACKLE
 Shape = Head
+[1000506]
+Name = Shedgle
+InternalName = SMEARGLESHEDINJAELECTRIC
+Type1 = ELECTRIC
+BaseStats = 19,43,38,63,26,35
+GenderRate = Female50Percent
+Abilities = WONDERGUARD
+Moves = 1,TACKLE
+Shape = Head
 
 #Hatsune Miku Fusions
 [1000600]
@@ -19044,6 +19053,17 @@ InternalName = HATTERENEALCREMIE
 Type1 = FAIRY
 Type2 = PSYCHIC
 BaseStats = 62,80,88,40,118,115
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+[1000615]
+Name = Shedgle
+InternalName = SMEARGLESHEDINJA 
+Type1 = BUG
+Type2 = NORMAL
+BaseStats = 19,43,38,63,26,35
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT

@@ -389,6 +389,7 @@ module GameData
             end
           end
           for move in pkmn.moves
+            next if move.pp == 1
             move.ppup = 3
             move.pp = move.total_pp
           end

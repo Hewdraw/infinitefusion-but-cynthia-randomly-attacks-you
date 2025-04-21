@@ -800,10 +800,10 @@
 783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,""
 784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"" #TODO hazard clear
 785,STONEAXE,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,""
-786,REVIVALBLESSING,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo
-787,SALTCURE,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo
-788,DECORATE,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo
-789,ARMORCANNON,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo
+786,REVIVALBLESSING,Revival Blessing,197,0,NORMAL,Status,0,1,0,User,0,,"" #partial todo
+787,SALTCURE,Salt Cure,198,40,ROCK,Physical,100,15,100,Other,0,bef,"" #todo
+788,DECORATE,Decorate,199,0,FAIRY,Status,0,15,0,NearAlly,0,,"" #todo
+789,ARMORCANNON,Stone Axe,03C,120,FIRE,Special,100,5,100,Other,0,bef,"" #todo
 790,FIRESPIT,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo
 791,QUASICONNECTIVITY,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo
 792,REDSTONEDUSTER,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"" #todo

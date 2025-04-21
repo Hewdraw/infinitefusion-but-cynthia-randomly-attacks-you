@@ -1498,13 +1498,13 @@ class PokeBattle_AI
       score = 0 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
     #---------------------------------------------------------------------------
     when "0E8" #todo
-      score -= 25 if user.hp>user.totalhp/2
-      if skill>=PBTrainerAI.mediumSkill
-        score -= 90 if user.effects[PBEffects::ProtectRate]>1
-        score -= 90 if target.effects[PBEffects::HyperBeam]>0
-      else
-        score -= user.effects[PBEffects::ProtectRate]*40
+      score = 1
+      score = 0 if opposingThreat < 100
+      user.eachAlly do |ally|
+        score = 200 if ally.hasActiveAbility?([:EXPLOSIVE, :CHARGEDEXPLOSIVE])
       end
+      score = 1 if user.effects[PBEffects::ProtectRate]>1
+      score = 0 if target.effects[PBEffects::HyperBeam]>0
     #---------------------------------------------------------------------------
     when "0E9" #todo
       if target.hp==1
@@ -2641,6 +2641,24 @@ class PokeBattle_AI
       end
     when "196" #todo
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
+    #---------------------------------------------------------------------------
+    when "197" #todo
+      score = 200
+      faintedlist = []
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        next if !pkmn || !pkmn.fainted?
+        faintedlist.append(pkmn)
+      end
+      #print(faintedlist)
+      score = 0 if faintedlist.length == 0
+    #---------------------------------------------------------------------------
+    when "198" #todo
+      score *= 2 if target.pbHasType?(:WATER) || target.pbHasType?(:STEEL)
+      score = 0 if target.effects[PBEffects::SaltCure]
+    #---------------------------------------------------------------------------
+    when "199" #todo
+      score *= 2 if user.pbSpeed > target.pbSpeed
     #---------------------------------------------------------------------------
     end
     effectchance = 100

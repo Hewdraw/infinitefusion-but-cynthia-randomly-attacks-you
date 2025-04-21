@@ -121,6 +121,7 @@ begin
     Obscured                = 115
     Protosynthesis                = 116
     QuarkDrive                = 117
+    SaltCure                = 118
 
     #===========================================================================
     # These effects apply to a battler position

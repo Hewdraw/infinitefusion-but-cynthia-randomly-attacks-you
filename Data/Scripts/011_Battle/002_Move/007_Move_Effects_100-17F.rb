@@ -2947,3 +2947,62 @@ class PokeBattle_Move_196 < PokeBattle_TwoTurnMove
     target.effects[PBEffects::SkyDrop] = -1
   end
 end
+
+class PokeBattle_Move_197 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    faintedlist = []
+    party = @battle.pbParty(user.index)
+    party.each do |pkmn|
+      next if !pkmn || !pkmn.fainted?
+      faintedlist.append(pkmn)
+    end
+    if faintedlist.length == 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    faintedlist = []
+    party = @battle.pbParty(user.index)
+    party.each do |pkmn|
+      next if !pkmn || !pkmn.fainted?
+      faintedlist.append(pkmn)
+    end
+    battler = faintedlist[rand(faintedlist.length())]
+    battler.hp = (battler.totalhp / 2).floor
+    battler.hp = 1 if battler.hp <= 0
+    @battle.scene.pbRefresh
+    @battle.scene.pbDisplay(_INTL("{1}'s HP was restored.", battler.name))
+    @battle.battlers.each do |b|
+      next unless b.pokemon == battler
+      @battle.pbRecallAndReplace(battler.index, idxParty)
+    end
+  end
+end
+
+class PokeBattle_Move_198 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if target.effects[PBEffects::SaltCure]>=0
+    return if target.fainted? || target.damageState.substitute
+    return if target.status != :BURN
+    target.effects[PBEffects::SaltCure] == 1
+    @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
+  end
+end
+
+#===============================================================================
+# Increases target's Special Defense by 1 stage. (Aromatic Mist)
+#===============================================================================
+class PokeBattle_Move_199 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user, target)
+    return true if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user, self, true) && !target.pbCanRaiseStatStage?(:ATTACK, user, self, true)
+    return false
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    target.pbRaiseStatStage(:SPECIAL_ATTACK, 2, user)
+    target.pbRaiseStatStage(:ATTACK, 2, user)
+  end
+end

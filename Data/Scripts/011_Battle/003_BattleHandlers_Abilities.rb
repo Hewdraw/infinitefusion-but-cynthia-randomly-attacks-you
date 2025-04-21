@@ -753,7 +753,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:CHARGEDEXPLOSIVE,
   proc { |ability,user,target,move,type,battle|
     motordrive = pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
     voltabsorb = pbBattleMoveImmunityHealAbility(user,target,move,type,:ELECTRIC,battle)
-    return motordrive || voltabsorb 
+    next motordrive || voltabsorb 
   }
 )
 

@@ -113,6 +113,7 @@ class PokeBattle_Battler
         @battle.pbPriority(true).each do |b|
           next if !b
           next if b == self
+          next if b.effects[PBEffects::Endure]
           if b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
             @battle.scene.pbDamageAnimation(b)
             b.pbReduceHP(b.totalhp/4,false)

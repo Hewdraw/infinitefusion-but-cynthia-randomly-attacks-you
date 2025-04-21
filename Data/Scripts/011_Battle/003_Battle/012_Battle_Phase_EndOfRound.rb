@@ -401,6 +401,16 @@ class PokeBattle_Battle
       pbDisplay(_INTL("The Hyper Mode attack hurts {1}!",b.pbThis(true)))
       b.pbFaint if b.fainted?
     end
+    # Salt Cure
+    priority.each do |b|
+      next if !b.effects[PBEffects::SaltCure]
+      next if !b.takesIndirectDamage?
+      oldHP = b.hp
+      dmg = (b.pbHasType?(:STEEL) || b.pbHasType?(:WATER)) ? b.totalhp/4 : b.totalhp/8
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+    end
     # Damage from poisoning
     priority.each do |b|
       next if b.fainted?
