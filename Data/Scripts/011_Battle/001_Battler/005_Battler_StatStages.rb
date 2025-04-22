@@ -216,8 +216,9 @@ class PokeBattle_Battler
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
     if hasActiveItem?(:EJECTPACK) && @battle.pbCanSwitch?(self.index,-1,false) && @battle.pbAbleCount(self.index) > 1
+      itemname = self.itemName
       @battle.pbCommonAnimation("UseItem",self,nil); pbConsumeItem(false,true)
-      @battle.pbDisplay(_INTL("{1} is switched out with the {2}!",pbThis,self.item.name))
+      @battle.pbDisplay(_INTL("{1} is switched out with the {2}!",pbThis,itemname))
       newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
       @battle.pbRecallAndReplace(self.index,newPkmn)
       @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
@@ -261,7 +262,9 @@ class PokeBattle_Battler
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
     if hasActiveItem?(:EJECTPACK) && @battle.pbCanSwitch?(self.index,-1,false) && @battle.pbAbleCount(self.index) > 1
+      itemname = self.itemName
       @battle.pbCommonAnimation("UseItem",self,nil); pbConsumeItem(false,true)
+      @battle.pbDisplay(_INTL("{1} is switched out with the {2}!",pbThis,itemname))
       newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
       @battle.pbRecallAndReplace(self.index,newPkmn)
       @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
