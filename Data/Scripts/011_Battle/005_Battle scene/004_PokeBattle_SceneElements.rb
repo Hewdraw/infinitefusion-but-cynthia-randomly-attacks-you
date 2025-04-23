@@ -358,7 +358,7 @@ class PokemonDataBox < SpriteWrapper
       #       fit in with the rest of the graphics which are doubled in size.
       w = ((w/2.0).round)*2
     end
-    if @battler.pokemon.dynamax != nil || @battler.hpbars != nil
+    if @battler.pokmon && (@battler.pokemon.dynamax != nil || @battler.hpbars != nil)
       if self.hp > @battler.totalhp
         @hpBar1.visible = true
         @hpBar1.y = 60
