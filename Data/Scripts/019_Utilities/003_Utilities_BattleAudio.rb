@@ -5,8 +5,12 @@ def pbGetWildBattleBGM(_wildParty)   # wildParty is an array of Pokémon objects
   if $PokemonGlobal.nextBattleBGM
     return $PokemonGlobal.nextBattleBGM.clone
   end
-  if rand(300) <= 1
+  if rand(200) 0
     $PokemonGlobal.cynthiachance += 1000
+    if rand(10) == 0
+      $PokemonGlobal.hatsunemikuchance += 1000
+      return pbStringToAudioFile("Miku")
+    end
     return pbStringToAudioFile("CynthiaEncounter1")
   end
   ret = nil
@@ -69,8 +73,12 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
   if $PokemonGlobal.nextBattleBGM
     return $PokemonGlobal.nextBattleBGM.clone
   end
-  if rand(100) <= 1
+  if rand(75) = 0
     $PokemonGlobal.cynthiachance += 1000
+    if rand(10) == 0
+      $PokemonGlobal.hatsunemikuchance += 1000
+      return pbStringToAudioFile("Miku")
+    end
     return pbStringToAudioFile("CynthiaEncounter1")
   end
   ret = nil
@@ -115,7 +123,7 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     if trainer_type_data.id == :Skeleton_Dev
       return pbStringToAudioFile("ShadHewDuel")
     end
-    if trainer_type_data.id == :CREATOR_Minecraft || trainer_type_data.id == :CREATOR_Minecraft2 || trainer_type_data.id == :COOLTRAINER_MIKU || (trainer_type_data.id == :Non_Skeleton_Dev && trainerarray.length() == 1)
+    if trainer_type_data.id == :CREATOR_Minecraft || trainer_type_data.id == :CREATOR_Minecraft2 || trainer_type_data.id == :COOLTRAINER_MIKU
       return pbStringToAudioFile("Miku")
     end
     if trainer_type_data.id == :YOUNGSTER && trainer_type_data.name == "Joe"
