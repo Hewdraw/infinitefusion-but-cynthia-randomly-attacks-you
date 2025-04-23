@@ -20019,6 +20019,16 @@ BaseStats = 103,126,70,74,41,90
 Abilities = LEVITATE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000861]
+Name = Guzzlord
+InternalName = GUZZLORD
+Type1 = DARK
+Type2 = DRAGON
+BaseStats = 233,101,53,43,97,53
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
 
 #Legendary Raids
 #-------------------------------

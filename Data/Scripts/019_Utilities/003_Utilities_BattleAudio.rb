@@ -5,7 +5,7 @@ def pbGetWildBattleBGM(_wildParty)   # wildParty is an array of Pokémon objects
   if $PokemonGlobal.nextBattleBGM
     return $PokemonGlobal.nextBattleBGM.clone
   end
-  if rand(200) 0
+  if rand(200) == 0
     $PokemonGlobal.cynthiachance += 1000
     if rand(10) == 0
       $PokemonGlobal.hatsunemikuchance += 1000
@@ -73,7 +73,7 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
   if $PokemonGlobal.nextBattleBGM
     return $PokemonGlobal.nextBattleBGM.clone
   end
-  if rand(75) = 0
+  if rand(75) == 0
     $PokemonGlobal.cynthiachance += 1000
     if rand(10) == 0
       $PokemonGlobal.hatsunemikuchance += 1000
