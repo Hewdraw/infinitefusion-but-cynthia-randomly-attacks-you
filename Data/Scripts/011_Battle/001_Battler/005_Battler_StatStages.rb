@@ -216,7 +216,7 @@ class PokeBattle_Battler
       BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
     if hasActiveItem?(:EJECTPACK) && @battle.pbCanSwitch?(self.index,-1,false) && @battle.pbAbleCount(self.index) > 1
-      itemname = self.itemName
+      itemname = self.item.name
       @battle.pbCommonAnimation("UseItem",self,nil); pbConsumeItem(false,true)
       @battle.pbDisplay(_INTL("{1} is switched out with the {2}!",pbThis,itemname))
       newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
