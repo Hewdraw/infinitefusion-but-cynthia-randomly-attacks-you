@@ -317,6 +317,7 @@ class PokeBattle_SafariZone
   include PokeBattle_BattleCommon
 
   def pbRandom(x); return rand(x); end
+  def legendaryBattle?; return false; end
 
   #=============================================================================
   # Initialize the battle class
