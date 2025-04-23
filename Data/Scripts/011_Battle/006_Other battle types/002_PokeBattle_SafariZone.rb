@@ -6,6 +6,7 @@ class PokeBattle_FakeBattler
   attr_reader :index
   attr_reader :pokemon
   attr_reader :owned
+  attr_reader :hpbars
 
   def initialize(battle,index)
     @battle  = battle
