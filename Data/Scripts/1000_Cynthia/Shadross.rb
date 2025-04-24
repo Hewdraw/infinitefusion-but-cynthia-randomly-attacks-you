@@ -341,32 +341,32 @@ def UndertaleShopSetup()
     },
     :HEALTHMOCHI => {
       "badges" => 5,
-      "cost" => 10,
+      "cost" => 5,
       "amount" => 52,
     },
     :MUSCLEMOCHI => {
       "badges" => 5,
-      "cost" => 10,
+      "cost" => 5,
       "amount" => 52,
     },
     :RESISTMOCHI => {
       "badges" => 5,
-      "cost" => 10,
+      "cost" => 5,
       "amount" => 52,
     },
     :GENIUSMOCHI => {
       "badges" => 5,
-      "cost" => 10,
+      "cost" => 5,
       "amount" => 52,
     },
     :CLEVERMOCHI => {
       "badges" => 5,
-      "cost" => 10,
+      "cost" => 5,
       "amount" => 52,
     },
     :SWIFTMOCHI => {
       "badges" => 5,
-      "cost" => 10,
+      "cost" => 5,
       "amount" => 52,
     },
     :EVIOLITE => {
@@ -421,32 +421,32 @@ def UndertaleShopSetup()
     },
     :HPUP => {
       "badges" => 9,
-      "cost" => 4,
+      "cost" => 2,
       "amount" => 30,
     },
     :PROTEIN => {
       "badges" => 9,
-      "cost" => 4,
+      "cost" => 2,
       "amount" => 30,
     },
     :IRON => {
       "badges" => 9,
-      "cost" => 4,
+      "cost" => 2,
       "amount" => 30,
     },
     :CALCIUM => {
       "badges" => 9,
-      "cost" => 2,
+      "cost" => 1,
       "amount" => 30,
     },
     :ZINC => {
       "badges" => 9,
-      "cost" => 4,
+      "cost" => 2,
       "amount" => 30,
     },
     :CARBOS => {
       "badges" => 9,
-      "cost" => 4,
+      "cost" => 2,
       "amount" => 30,
     },
     :BERSERKGENE => {
