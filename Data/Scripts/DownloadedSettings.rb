@@ -2,10 +2,10 @@
 module Settings
   LATEST_GAME_RELEASE = "6.4.0"
 
-  SHINY_POKEMON_CHANCE = 16
+  SHINY_POKEMON_CHANCE = 64 #16
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
   WIKI_URL = "https://infinitefusion.fandom.com/"
-  STARTUP_MESSAGES = ""
+  STARTUP_MESSAGES = "Infinite Fusion is 10 years old today! Increased shiny rates for everyone!"
   
   CREDITS_FILE_URL = "https://infinitefusion.net/Sprite Credits.csv"
 

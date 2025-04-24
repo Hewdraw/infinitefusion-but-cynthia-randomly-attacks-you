@@ -81,6 +81,7 @@ class PokeBattle_AI
 
 
     damagethreshold = ((100.0-opposingThreat)/opposingThreat).ceil #todo hazards
+    damagethreshold = (100.0/opposingThreat).ceil if user.fainted? #todo hazards
     damagethreshold += 1 if switchOutspeeds
     activeDamagethreshold = (100.0/activeOpposingThreat).ceil
     activeDamagethreshold = (200.0/activeOpposingThreat).ceil if user.effects[PBEffects::Dynamax] > 0
@@ -94,7 +95,7 @@ class PokeBattle_AI
     switchScore += (damagethreshold - activeDamagethreshold) * 0.5
     switchScore -= 1
 
-    #print(switch.name, " ", switchScore, " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
+    #print(switch.name, " ", switchScore, " ", hitsDifferential, " ", damagethreshold - (activeDamagethreshold * hitsDifferential), " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
 
     #todo check when in turn order switch happens
     return switchScore
@@ -116,10 +117,9 @@ class PokeBattle_AI
 
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
-    switchInScore -= 100 if user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
 
     switchOutScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp
-    switchOutScore += 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66
+    switchOutScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66
     switchOutScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
     switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0 && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
@@ -135,21 +135,23 @@ class PokeBattle_AI
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
     switchOutScore += 1 if user.effects[PBEffects::Yawn]
 
-    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
-    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
-    opponenthaspoison = false
-    @battle.pbParty(0).each_with_index do |pkmn,i|
-      if pkmn.pbHasType?(:POISON)# && !pkmn.airborne? todo
-        opponenthaspoison = true
-        break
+    if threat < 25
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
+      opponenthaspoison = false
+      @battle.pbParty(0).each_with_index do |pkmn,i|
+        if pkmn.pbHasType?(:POISON)# && !pkmn.airborne? todo
+          opponenthaspoison = true
+          break
+        end
       end
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 1 && !opponenthaspoison
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min*2 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
+      activeScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
+      activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
+      activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
+      activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
     end
-    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 2 && !opponenthaspoison
-    activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1)*2, damagethreshold].min*2 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
-    activeScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
-    activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
-    activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
-    activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
 
     activeScore *= 2 if @battle.turnCount == 0 && user.index != 69  
 
@@ -158,7 +160,8 @@ class PokeBattle_AI
     switchScore += activeScore if user.index == 69
     switchScore -= activeScore if user.index != 69
     #todo wish logic
-    #print(user.name, " ", threat, " ", switchScore)
+    #todo switch less into dragon tail
+    #print(user.name, " ", threat, " ", damagethreshold, " ", switchScore, " ", switchInScore, " ", switchOutScore, " ", activeScore)
     return switchScore
   end
 
