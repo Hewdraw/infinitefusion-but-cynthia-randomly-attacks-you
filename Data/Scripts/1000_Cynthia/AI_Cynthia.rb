@@ -135,9 +135,9 @@ class PokeBattle_AI
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
     switchOutScore += 1 if user.effects[PBEffects::Yawn]
 
-    if threat < 25
-      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
-      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
+    if threat < 33
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:SPIKES) && user.pbOpposingSide.effects[PBEffects::Spikes] < 3
       opponenthaspoison = false
       @battle.pbParty(0).each_with_index do |pkmn,i|
         if pkmn.pbHasType?(:POISON)# && !pkmn.airborne? todo
@@ -145,13 +145,13 @@ class PokeBattle_AI
           break
         end
       end
-      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 1 && !opponenthaspoison
-      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold].min*2 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
-      activeScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
-      activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
-      activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
-      activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:TOXICSPIKES) && user.pbOpposingSide.effects[PBEffects::ToxicSpikes] < 1 && !opponenthaspoison
+      activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min*2 if user.pbHasMove?(:STICKYWEB) && user.pbOpposingSide.effects[PBEffects::StickyWeb] == 0
     end
+    activeScore += 1 if (user.pbHasMove?(:REFLECT) || user.pbHasMove?(:BADDYBAD)) && user.pbOwnSide.effects[PBEffects::Reflect] == 0
+    activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
+    activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
+    activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
 
     activeScore *= 2 if @battle.turnCount == 0 && user.index != 69  
 
