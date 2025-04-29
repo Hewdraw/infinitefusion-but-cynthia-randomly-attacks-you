@@ -79,6 +79,8 @@ class PokeBattle_AI
       activeUserThreat = [threat, activeUserThreat].max
     end
 
+    opposingThreat = [opposingThreat, 100].min
+    activeOpposingThreat = [activeOpposingThreat, 100].min
 
     damagethreshold = ((100.0-opposingThreat)/opposingThreat).ceil #todo hazards
     damagethreshold = (100.0/opposingThreat).ceil if user.fainted? #todo hazards
