@@ -158,7 +158,7 @@ class PokeBattle_Move
   #=============================================================================
   def pbCheckDamageAbsorption(user,target)
     # Substitute will take the damage
-    if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user) &&
+    if (target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0) && !ignoresSubstitute?(user) &&
        (!user || user.index!=target.index)
       target.damageState.substitute = true
       return
@@ -175,6 +175,13 @@ class PokeBattle_Move
     damage = target.damageState.calcDamage
     # Substitute takes the damage
     if target.damageState.substitute
+      if target.effects[PBEffects::RedstoneCube]>0
+        damage = target.effects[PBEffects::RedstoneCube] if damage>target.effects[PBEffects::RedstoneCube]
+        target.damageState.hpLost       = damage
+        target.damageState.totalHPLost += damage
+        user.pbBurn(target) if user.pbCanBurn(target) && contactMove?
+        return
+      end
       damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]
       target.damageState.hpLost       = damage
       target.damageState.totalHPLost += damage
@@ -214,6 +221,10 @@ class PokeBattle_Move
   #=============================================================================
   def pbInflictHPDamage(target)
     if target.damageState.substitute
+      if target.effects[PBEffects::RedstoneCube] > 0
+        target.effects[PBEffects::RedstoneCube] -= target.damageState.hpLost
+        return
+      end
       target.effects[PBEffects::Substitute] -= target.damageState.hpLost
     else
       target.hp -= target.damageState.hpLost
@@ -285,6 +296,10 @@ class PokeBattle_Move
     if target.damageState.substitute && target.effects[PBEffects::Substitute]==0
       target.effects[PBEffects::Substitute] = 0
       @battle.pbDisplay(_INTL("{1}'s substitute faded!",target.pbThis))
+    end
+    if target.damageState.substitute && target.effects[PBEffects::RedstoneCube]==0
+      target.effects[PBEffects::RedstoneCube] = 0
+      @battle.pbDisplay(_INTL("{1}'s redstone cube faded!",target.pbThis))
     end
   end
 

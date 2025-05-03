@@ -133,7 +133,7 @@ class PokeBattle_Battler
       return pbCanRaiseStatStage?(stat,user,move,showFailMsg,true)
     end
     if !user || user.index!=@index   # Not self-inflicted
-      if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user))
+      if (@effects[PBEffects::Substitute]>0 || @effects[PBEffects::RedstoneCube]>0) && !(move && move.ignoresSubstitute?(user))
         @battle.pbDisplay(_INTL("{1} is protected by its substitute!",pbThis)) if showFailMsg
         return false
       end
@@ -291,7 +291,7 @@ class PokeBattle_Battler
   def pbLowerAttackStatStageIntimidate(user, stat=:ATTACK)
     return false if fainted?
     # NOTE: Substitute intentially blocks Intimidate even if self has Contrary.
-    if @effects[PBEffects::Substitute]>0
+    if @effects[PBEffects::Substitute]>0 || @effects[PBEffects::RedstoneCube]>0
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("{1} is protected by its substitute!",pbThis))
       else

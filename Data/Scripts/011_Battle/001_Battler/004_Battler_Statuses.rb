@@ -46,7 +46,7 @@ class PokeBattle_Battler
       return false
     end
     # Trying to inflict a status problem on a Pokémon behind a substitute
-    if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
+    if (@effects[PBEffects::Substitute]>0 || @effects[PBEffects::RedstoneCube]>0) && !(move && move.ignoresSubstitute?(user)) &&
        !selfInflicted
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
       return false
@@ -438,7 +438,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} is already confused.",pbThis)) if showMessages
       return false
     end
-    if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user)) &&
+    if (@effects[PBEffects::Substitute]>0 || @effects[PBEffects::RedstoneCube]>0) && !(move && move.ignoresSubstitute?(user)) &&
        !selfInflicted
       @battle.pbDisplay(_INTL("But it failed!")) if showMessages
       return false

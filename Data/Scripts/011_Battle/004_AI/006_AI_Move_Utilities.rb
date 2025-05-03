@@ -103,13 +103,15 @@ class PokeBattle_AI
       when :GROUND
         return true if target.airborne? && !move.hitsFlyingTargets?
       when :FIRE
-        return true if target.hasActiveAbility?(:FLASHFIRE)
+        return true if target.hasActiveAbility?([:FLASHFIRE, :HEATSINK])
       when :WATER
         return true if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB])
       when :GRASS
         return true if target.hasActiveAbility?(:SAPSIPPER)
       when :ELECTRIC
         return true if target.hasActiveAbility?([:LIGHTNINGROD,:MOTORDRIVE,:VOLTABSORB])
+      when :ICE
+        return true if target.hasActiveAbility?(:POLAR)
       end
       return true if Effectiveness.not_very_effective?(typeMod) &&
                      target.hasActiveAbility?(:WONDERGUARD)
@@ -124,7 +126,7 @@ class PokeBattle_AI
         return true if target.hasActiveAbility?(:OVERCOAT)
         return true if target.hasActiveItem?(:SAFETYGOGGLES)
       end
-      return true if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
+      return true if (target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0) && move.statusMove? &&
                      !move.ignoresSubstitute?(user) && user.index!=target.index
       return true if user.hasActiveAbility?(:PRANKSTER) &&
                      target.pbHasType?(:DARK) && target.opposes?(user)
@@ -493,7 +495,7 @@ class PokeBattle_AI
     end
     # Aurora Veil, Reflect, Light Screen
     if skill>=PBTrainerAI.highSkill
-      if !move.ignoresReflect? && !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))
+      if !move.ignoresReflect? && !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || move.function == "201")
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target) > 1
             multipliers[:final_damage_multiplier] *= 2 / 3.0

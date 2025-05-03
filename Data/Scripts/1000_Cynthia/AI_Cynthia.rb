@@ -113,6 +113,10 @@ class PokeBattle_AI
     switchScore += 2 if user.hasActiveAbility?(:DROUGHT) && @battle.pbWeather != :Sun
     switchScore += 2 if user.hasActiveAbility?([:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS]) && @battle.pbWeather != :Sandstorm
     switchScore += 2 if user.hasActiveAbility?(:DRIZZLE) && @battle.pbWeather != :Rain
+    switchScore += 2 if user.hasActiveAbility?(:PSYCHICSURGE) && @battle.field.terrain != :Psychic
+    switchScore += 2 if user.hasActiveAbility?(:ELECTRICSURGE) && @battle.field.terrain != :Electric
+    switchScore += 2 if user.hasActiveAbility?(:GRASSYSURGE) && @battle.field.terrain != :Grassy
+    switchScore += 1 if user.hasActiveAbility?(:MISTYSURGE) && @battle.field.terrain != :Misty
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR)
     switchScore += 1 if user.hasActiveAbility?(:INTIMIDATE)
     switchScore += 1 if user.pbHasMove?(:FAKEOUT) && !(user.turnCount == 0 && user.index != 69)
@@ -126,7 +130,7 @@ class PokeBattle_AI
     switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0 && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
     switchOutScore += [0, user.statusCount - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])
-    switchOutScore -= 10 if user.effects[PBEffects::Substitute]>0
+    switchOutScore -= 10 if user.effects[PBEffects::Substitute]>0 || user.effects[PBEffects::RedstoneCube]>0
     switchOutScore += 3 if user.effects[PBEffects::Curse] && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore += 2 if user.effects[PBEffects::Nightmare] && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore -= 1 if user.turnCount == 0
@@ -154,6 +158,7 @@ class PokeBattle_AI
     activeScore += 1 if (user.pbHasMove?(:LIGHTSCREEN) || user.pbHasMove?(:GLITZYGLOW)) && user.pbOwnSide.effects[PBEffects::LightScreen] == 0
     activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
     activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
+    activeScore += 5 if user.pbHasMove?(:TRICKROOM) && @battle.field.effects[PBEffects::TrickRoom] == 0
 
     activeScore *= 2 if @battle.turnCount == 0 && user.index != 69  
 

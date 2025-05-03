@@ -77,8 +77,8 @@ def pbFishing(hasEncounter,rodType=1)
       end
     end
 
-    if numbadges > 9 #temporary
-      numbadges = 9
+    if numbadges > 11 #temporary
+      numbadges = 11
     end
     pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
     return false

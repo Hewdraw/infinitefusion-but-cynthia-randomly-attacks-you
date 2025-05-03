@@ -455,7 +455,7 @@ class PokeBattle_Battler
       end
     end
     # Substitute
-    if target.effects[PBEffects::Substitute]>0 && move.statusMove? &&
+    if (target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0) && move.statusMove? &&
        !move.ignoresSubstitute?(user) && user.index!=target.index
       PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
       @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis(true)))

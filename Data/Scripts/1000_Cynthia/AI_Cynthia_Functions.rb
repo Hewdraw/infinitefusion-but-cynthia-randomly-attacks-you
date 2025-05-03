@@ -81,7 +81,7 @@ class PokeBattle_AI
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
       score = 0 if @field.effects[PBEffects::TrickRoom]>0
     #---------------------------------------------------------------------------
-    when "00A", "00B", "0C6" #burn todo better damage calcs
+    when "00A", "00B", "0C6", "201" #burn todo better damage calcs
       score = 10 if opposingPhysicalThreat < opposingSpecialThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
       score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
@@ -1222,13 +1222,12 @@ class PokeBattle_AI
       score += 25 if user.effects[PBEffects::Rage]
     #---------------------------------------------------------------------------
     when "09C"
-      hasAlly = false
+      score = 0
       user.eachAlly do |b|
-        hasAlly = true
-        score += 30
+        score = [score, pbCynthiaGetThreat(b, b) * 0.3]
+        score *= 2 if pbCynthiaCompareSpeed(target, user)
         break
       end
-      score -= 90 if !hasAlly
     #---------------------------------------------------------------------------
     when "09D" #todo
       score = 0 if user.effects[PBEffects::MudSport]
@@ -1576,8 +1575,12 @@ class PokeBattle_AI
     when "0EF" #todo
       score -= 90 if target.effects[PBEffects::MeanLook]>=0
     #---------------------------------------------------------------------------
-    when "0F0" #todo
-      score += 20 if target.item
+    when "0F0", "202" #todo
+      score *= 3 if [:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE].include?(target.item)
+      score *= 2 if [:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME].include?(target.item)
+      score = 0 if !target.item
+      score = 0 if target.unlosableItem?(target.item)
+      score = 0 if target.hasActiveAbility?(:STICKYHOLD) && !user.hasMoldBreaker?
     #---------------------------------------------------------------------------
     when "0F1" #todo
       if !user.item && target.item
@@ -1869,12 +1872,22 @@ class PokeBattle_AI
     when "116" #todo?
     #---------------------------------------------------------------------------
     when "117" #todo
-      hasAlly = false
+      ally = nil
       user.eachAlly do |b|
-        hasAlly = true
+        ally = b
         break
       end
-      score -= 90 if !hasAlly
+      allythreat = 0
+      if ally
+        user.eachOpposing do |b|
+          allythreat += pbCynthiaGetThreat(ally, b)
+        end
+        if allythreat > opposingMaxThreat * 2
+          score = allythreat
+        end
+      else
+        score = 0
+      end
     #---------------------------------------------------------------------------
     when "118" #todo
       if @battle.field.effects[PBEffects::Gravity]>0
@@ -1924,7 +1937,10 @@ class PokeBattle_AI
     when "11E" #todo
     #---------------------------------------------------------------------------
     when "11F" #todo
-      score = 100 if !outspeedsopponent
+      score = 101 if !outspeedsopponent
+      user.eachAlly do |b|
+        score = 0 if b.pbHasMove?(:TRICKROOM) && pbCynthiaGetThreat(b, b)[:highestDamage] > userMaxThreat
+      end
       score = 0 if outspeedsopponent
       score = 0 if @battle.field.effects[PBEffects::TrickRoom] > 0
     #---------------------------------------------------------------------------
@@ -3173,7 +3189,7 @@ class PokeBattle_AI
           multipliers[:defense_multiplier] *= 1.5
         end
       when :Snow
-        if target.pbHasType?(:ICE) && move.physicalMove?
+        if target.pbHasType?(:ICE) && move.physicalMove? && move.function != "202"
           multipliers[:defense_multiplier] *= 1.5
         end
       end
@@ -3237,7 +3253,7 @@ class PokeBattle_AI
       end
       # Aurora Veil, Reflect, Light Screen
       if !move.ignoresReflect? && !(key == :critDamage)
-         !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))
+         !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || move.function == "201")
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target)>1
             multipliers[:final_damage_multiplier] *= 2 / 3.0

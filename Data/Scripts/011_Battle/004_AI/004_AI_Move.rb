@@ -266,7 +266,7 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill
       if !target.hasActiveAbility?(:INNERFOCUS) &&
           !target.hasActiveAbility?(:SHIELDDUST) &&
-          target.effects[PBEffects::Substitute]==0
+          (target.effects[PBEffects::Substitute]==0 || target.effects[PBEffects::RedstoneCube]==0)
         canFlinch = false
         if move.canKingsRock? && user.hasActiveItem?([:KINGSROCK,:RAZORFANG])
           canFlinch = true

@@ -694,6 +694,18 @@ BattleHandlers::MoveImmunityTargetAbility.add(:LIGHTNINGROD,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:HEATSINK,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:FIRE,:SPECIAL_ATTACK,1,battle)
+  }
+)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:POLAR,
+  proc { |ability,user,target,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:ICE,:SPECIAL_ATTACK,1,battle)
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
   proc { |ability,user,target,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
@@ -896,6 +908,18 @@ BattleHandlers::AccuracyCalcUserAllyAbility.add(:VICTORYSTAR,
 BattleHandlers::AccuracyCalcTargetAbility.add(:LIGHTNINGROD,
   proc { |ability,mods,user,target,move,type|
     mods[:base_accuracy] = 0 if type == :ELECTRIC
+  }
+)
+
+BattleHandlers::AccuracyCalcTargetAbility.add(:HEATSINK,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if type == :FIRE
+  }
+)
+
+BattleHandlers::AccuracyCalcTargetAbility.add(:POLAR,
+  proc { |ability,mods,user,target,move,type|
+    mods[:base_accuracy] = 0 if type == :ICE
   }
 )
 
@@ -2062,7 +2086,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
     next if battle.wildBattle? && target.opposes?
     next if !move.contactMove?
     next if switched.include?(user.index)
-    next if user.effects[PBEffects::Substitute]>0 || target.damageState.substitute
+    next if user.effects[PBEffects::Substitute]>0 || user.effects[PBEffects::RedstoneCube] > 0 || target.damageState.substitute
     next if target.item || !user.item
     next if user.unlosableItem?(user.item) || target.unlosableItem?(user.item)
     battle.pbShowAbilitySplash(target)
@@ -2297,6 +2321,31 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
     if battler.turnCount>0 && battler.pbCanRaiseStatStage?(:SPEED,battler)
       ability_name = GameData::Ability.get(ability).real_name
       battler.pbRaiseStatStageByAbility(:SPEED,1,battler,true,ability_name)
+    end
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:WIRED,
+  proc { |ability,battler,battle|
+    # A Pokémon's turnCount is 0 if it became active after the beginning of a
+    # round
+    if battler.turnCount>0 && battler.turnCount % 2 == 0
+      battler.eachAlly do |b|
+        next if b.effects[PBEffects::RedstoneCube] > 0
+        subLife = b.totalhp / 4
+        subLife = 1 if subLife < 1
+        b.effects[PBEffects::Trapping] = 0
+        b.effects[PBEffects::TrappingMove] = nil
+        b.effects[PBEffects::RedstoneCube] = subLife
+        @battle.pbDisplay(_INTL("{1} put in a redstone cube for {2}!", battler.pbThis, b.pbThis))
+      end
+      next if battler.effects[PBEffects::RedstoneCube] > 0
+      subLife = battler.totalhp / 4
+      subLife = 1 if subLife < 1
+      battler.effects[PBEffects::Trapping] = 0
+      battler.effects[PBEffects::TrappingMove] = nil
+      battler.effects[PBEffects::RedstoneCube] = subLife
+      @battle.pbDisplay(_INTL("{1} put in a redstone cube!", battler.pbThis))
     end
   }
 )
@@ -2663,6 +2712,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
     next if choice.effects[PBEffects::Transform] ||
             choice.effects[PBEffects::Illusion] ||
             choice.effects[PBEffects::Substitute]>0 ||
+            choice.effects[PBEffects::RedstoneCube]>0 ||
             choice.effects[PBEffects::SkyDrop]>=0 ||
             choice.semiInvulnerable?
     battle.pbShowAbilitySplash(battler,true)

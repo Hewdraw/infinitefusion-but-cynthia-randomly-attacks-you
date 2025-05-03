@@ -2237,7 +2237,7 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user)
+    if (target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube] > 0) && !ignoresSubstitute?(user)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -3062,7 +3062,7 @@ end
 class PokeBattle_Move_0EC < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
     if @battle.wildBattle? && target.level<=user.level && @battle.canRun &&
-       (target.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(user))
+       ((target.effects[PBEffects::Substitute]==0 || target.effects[PBEffects::RedstoneCube]==0) || ignoresSubstitute?(user))
       @battle.decision = 3
     end
   end

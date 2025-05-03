@@ -407,7 +407,7 @@ class PokeBattle_Move
         multipliers[:defense_multiplier] *= 1.5
       end
     when :Snow
-      if target.pbHasType?(:ICE) && physicalMove?
+      if target.pbHasType?(:ICE) && physicalMove? && @function != "202"
         multipliers[:defense_multiplier] *= 1.5
       end
     end
@@ -468,7 +468,7 @@ class PokeBattle_Move
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
-       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))
+       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || @function == "201")
       if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0

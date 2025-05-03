@@ -137,6 +137,7 @@ class PokeBattle_Move
 
   def ignoresSubstitute?(user)   # user is the Pokémon using this move
     return true if soundMove?
+    return true if @function == "201"
     return true if user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))
     return false
   end

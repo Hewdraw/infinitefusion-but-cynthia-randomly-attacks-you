@@ -207,7 +207,7 @@ end
 #===============================================================================
 class PokeBattle_Move_10C < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if user.effects[PBEffects::Substitute] > 0
+    if user.effects[PBEffects::Substitute] > 0 || user.effects[PBEffects::RedstoneCube] > 0
       @battle.pbDisplay(_INTL("{1} already has a substitute!", user.pbThis))
       return true
     end
@@ -2346,7 +2346,7 @@ class PokeBattle_Move_16F < PokeBattle_Move
 
   def pbFailsAgainstTarget?(user, target)
     return false if !@healing
-    if target.effects[PBEffects::Substitute] > 0 && !ignoresSubstitute?(user)
+    if (target.effects[PBEffects::Substitute] > 0 || target.effects[PBEffects::RedstoneCube] > 0) && !ignoresSubstitute?(user)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2915,7 +2915,7 @@ class PokeBattle_Move_196 < PokeBattle_TwoTurnMove
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(user)
+    if target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0 && !ignoresSubstitute?(user)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2992,9 +2992,6 @@ class PokeBattle_Move_198 < PokeBattle_Move
   end
 end
 
-#===============================================================================
-# Increases target's Special Defense by 1 stage. (Aromatic Mist)
-#===============================================================================
 class PokeBattle_Move_199 < PokeBattle_Move
   def pbFailsAgainstTarget?(user, target)
     return true if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user, self, true) && !target.pbCanRaiseStatStage?(:ATTACK, user, self, true)
@@ -3004,5 +3001,94 @@ class PokeBattle_Move_199 < PokeBattle_Move
   def pbEffectAgainstTarget(user, target)
     target.pbRaiseStatStage(:SPECIAL_ATTACK, 2, user)
     target.pbRaiseStatStage(:ATTACK, 2, user)
+  end
+end
+
+class PokeBattle_Move_200 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    if @battle.field.terrain == :Psychic
+      baseDmg *= 1.5
+    end
+    return baseDmg
+  end
+end
+
+class PokeBattle_Move_201 < PokeBattle_BurnMove
+  def pbGetDefenseStats(user, target)
+    return target.spdef, target.stages[:SPECIAL_DEFENSE] + 6
+  end
+
+  def pbEffectWhenDealingDamage(user, target)
+    hitAlly = []
+    target.eachAlly do |b|
+      next if !b.near?(target.index)
+      next if !b.takesIndirectDamage?
+      hitAlly.push([b.index, b.hp])
+      b.pbReduceHP(b.totalhp / 16, false)
+    end
+    if hitAlly.length == 2
+      @battle.pbDisplay(_INTL("The bursting flame hit {1} and {2}!",
+                              @battle.battlers[hitAlly[0][0]].pbThis(true),
+                              @battle.battlers[hitAlly[1][0]].pbThis(true)))
+    elsif hitAlly.length > 0
+      hitAlly.each do |b|
+        @battle.pbDisplay(_INTL("The bursting flame hit {1}!",
+                                @battle.battlers[b[0]].pbThis(true)))
+      end
+    end
+    switchedAlly = []
+    hitAlly.each do |b|
+      @battle.battlers[b[0]].pbItemHPHealCheck
+      if @battle.battlers[b[0]].pbAbilitiesOnDamageTaken(b[1])
+        switchedAlly.push(@battle.battlers[b[0]])
+      end
+    end
+    switchedAlly.each { |b| b.pbEffectsOnSwitchIn(true) }
+  end
+end
+
+class PokeBattle_Move_202 < PokeBattle_Move
+  def pbCalcAccuracyMultipliers(user,target,multipliers)
+    super
+    modifiers[:evasion_stage] = 0
+  end
+
+  def pbGetDefenseStats(user,target)
+    ret1, _ret2 = super
+    return ret1, 6   # Def/SpDef stat stage
+  end
+
+  def pbFailsAgainstTarget?(user,target)
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+  end
+
+  def pbEffectAfterAllHits(user,target)
+    return if target.fainted?
+    return if target.damageState.unaffected
+    if !(target.inTwoTurnAttack?("0CE") || target.effects[PBEffects::SkyDrop] >= 0) # Sky Drop
+      if !(!target.airborne? && !target.inTwoTurnAttack?("0C9", "0CC")) # Fly/Bounce
+        target.effects[PBEffects::SmackDown] = true
+        if target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
+          target.effects[PBEffects::TwoTurnAttack] = nil
+          @battle.pbClearChoice(target.index) if !target.movedThisRound?
+        end
+        target.effects[PBEffects::MagnetRise] = 0
+        target.effects[PBEffects::Telekinesis] = 0
+        @battle.pbDisplay(_INTL("{1} fell straight down!", target.pbThis))
+      end
+    end
+    return if @battle.wildBattle? && user.opposes?   # Wild Pokémon can't knock off
+    return if user.fainted?
+    return if target.damageState.unaffected
+    return if !target.item || target.unlosableItem?(target.item)
+    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    itemName = target.itemName
+    target.pbRemoveItem(false)
+    @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
+    return if !target.pbCanConfuse?(user,false,self)
+    target.pbConfuse
   end
 end

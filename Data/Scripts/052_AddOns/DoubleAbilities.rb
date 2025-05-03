@@ -70,7 +70,7 @@ class PokeBattle_Battler
 
   def pbCheckDamageAbsorption(user, target)
     # Substitute will take the damage
-    if target.effects[PBEffects::Substitute] > 0 && !ignoresSubstitute?(user) &&
+    if (target.effects[PBEffects::Substitute] > 0 || target.effects[PBEffects::RedstoneCube] > 0) && !ignoresSubstitute?(user) &&
       (!user || user.index != target.index)
       target.damageState.substitute = true
       return

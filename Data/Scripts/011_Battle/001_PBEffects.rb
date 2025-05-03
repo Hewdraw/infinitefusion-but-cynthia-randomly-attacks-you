@@ -122,6 +122,7 @@ begin
     Protosynthesis                = 116
     QuarkDrive                = 117
     SaltCure                = 118
+    RedstoneCube        = 119
 
     #===========================================================================
     # These effects apply to a battler position

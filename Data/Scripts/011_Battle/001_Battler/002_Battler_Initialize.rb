@@ -149,6 +149,7 @@ class PokeBattle_Battler
       @effects[PBEffects::PowerTrick]        = false
       @effects[PBEffects::Substitute]        = 0
       @effects[PBEffects::Telekinesis]       = 0
+      @effects[PBEffects::RedstoneCube]      = 0
     end
     @fainted               = (@hp==0)
     @initialHP             = 0
