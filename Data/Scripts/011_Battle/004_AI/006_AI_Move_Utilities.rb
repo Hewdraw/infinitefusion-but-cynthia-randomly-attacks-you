@@ -490,7 +490,7 @@ class PokeBattle_AI
         multipliers[:final_damage_multiplier] /= 2
       end
       if target.status == :SLEEP
-        multipliers[:final_damage_multiplier] *= 4/3
+        multipliers[:final_damage_multiplier] *= 4/3.0
       end
     end
     # Aurora Veil, Reflect, Light Screen

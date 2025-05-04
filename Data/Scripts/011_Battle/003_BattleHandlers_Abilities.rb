@@ -1002,7 +1002,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
 BattleHandlers::DamageCalcUserAbility.add(:ADAPTINGSANDS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if type == :DRAGON || type == :FIGHTING || type == :STEEL || type == :GROUND
-      mults[:attack_multiplier] *= 4/3
+      mults[:attack_multiplier] *= 4/3.0
     end
   }
 )
