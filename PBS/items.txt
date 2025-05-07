@@ -771,6 +771,7 @@
 763,PYRITE,Pyrite,Pyrite,1,0,"Fool's Gold. Makes the holder ???-Type.",0,0,0
 764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"",0,0,0
 765,GARDEROSITE,Garderosite,Garderosites,1,0,"",0,0,0
+766,BEEGPP,Beeg PP,Beeg PPs,2,10000,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
 
 
 #    attr_reader :id
