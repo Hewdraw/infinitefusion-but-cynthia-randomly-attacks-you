@@ -10447,7 +10447,7 @@ Pokemon = THEWARDEN,5
 
 [MECH_Miku,Hatsune Mechu,0]
 Pokemon = HATSUNEMECHU,5	
-	Offset = 5
+	Offset = 12
 	Moves = MIKUMIKUBEAM,TWINBEAMSLASH,POWERUP,LEAK
 	Ability = LEGENDARYPRESSURE
 	Item = LEFTOVERS
