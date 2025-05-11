@@ -18553,6 +18553,18 @@ Shape = Head
 
 #Hatsune Miku Pokemon
 #-------------------------------
+[1000399]
+Name = Hatsune Mechu
+InternalName = HATSUNEMECHU
+Type1 = STEEL
+Type2 = FLYING
+BaseStats = 140,145,160,95,145,95
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
 [1000400]
 Name = Wingull
 InternalName = WINGULL

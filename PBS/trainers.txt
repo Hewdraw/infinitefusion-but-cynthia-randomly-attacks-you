@@ -10445,6 +10445,20 @@ Pokemon = THEWARDEN,5
 	EV = 252,252,0,4,0,0
 	Happiness = 255
 
+[MECH_Miku,Hatsune Mechu,0]
+Pokemon = HATSUNEMECHU,5	
+	Offset = 5
+	Moves = MIKUMIKUBEAM,TWINBEAMSLASH,POWERUP,LEAK
+	Ability = LEGENDARYPRESSURE #MOLDBREAKER/BULLETPROOF/FULLMETALBODY
+	Item = LEFTOVERS
+	Gender = F
+	Nature = NAIVE
+	Raid = True
+	Hpbar = 3
+	IV = 31,0,31,31,31,31
+	EV = 126,126,126,126,126,126
+	Happiness = 255
+
 [Non_Skeleton_Dev,Hewdraw,0]
 Pokemon = ANINETALES,75
 	Offset = 0

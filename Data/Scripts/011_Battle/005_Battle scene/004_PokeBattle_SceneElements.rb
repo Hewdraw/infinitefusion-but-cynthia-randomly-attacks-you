@@ -96,6 +96,7 @@ class PokemonDataBox < SpriteWrapper
     @numbersBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/icon_numbers"))
     @hpBarBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
     @hpBar1Bitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
+    @hpBar2Bitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_hp"))
     @expBarBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/overlay_exp"))
     # Create sprite to draw HP numbers on
     @hpNumbers = BitmapSprite.new(124,16,viewport)
@@ -110,6 +111,10 @@ class PokemonDataBox < SpriteWrapper
     @hpBar1.bitmap = @hpBar1Bitmap.bitmap
     @hpBar1.src_rect.height = @hpBar1Bitmap.height/3
     @sprites["hpBar1"] = @hpBar1
+    @hpBar2 = SpriteWrapper.new(viewport)
+    @hpBar2.bitmap = @hpBar2Bitmap.bitmap
+    @hpBar2.src_rect.height = @hpBar2Bitmap.height/3
+    @sprites["hpBar2"] = @hpBar2
     # Create sprite wrapper that displays Exp bar
     @expBar = SpriteWrapper.new(viewport)
     @expBar.bitmap = @expBarBitmap.bitmap
@@ -130,6 +135,9 @@ class PokemonDataBox < SpriteWrapper
     if @hpBar1 != nil
       @hpBar1Bitmap.dispose
     end
+    if @hpBar2 != nil
+      @hpBar2Bitmap.dispose
+    end
     @expBarBitmap.dispose
     @contents.dispose
     super
@@ -140,6 +148,9 @@ class PokemonDataBox < SpriteWrapper
     @hpBar.x     = value+@spriteBaseX+12#102
     if @hpBar1 != nil
       @hpBar1.x     = value+@spriteBaseX+12#102
+    end
+    if @hpBar2 != nil
+      @hpBar2.x     = value+@spriteBaseX+12#102
     end
     @expBar.x    = value+@spriteBaseX+24
     @hpNumbers.x = value+@spriteBaseX+80
@@ -155,6 +166,13 @@ class PokemonDataBox < SpriteWrapper
         @hpBar1.y     = value-1000
       end
     end
+    if @hpBar2 != nil
+      if self.hp > @battler.totalhp * 2
+        @hpBar2.y     = value+80
+      else
+        @hpBar2.y     = value-1000
+      end
+    end
     @expBar.y    = value+64
     @hpNumbers.y = value+52
   end
@@ -164,6 +182,9 @@ class PokemonDataBox < SpriteWrapper
     @hpBar.z     = value+1
     if @hpBar1 != nil
       @hpBar1.z     = value
+    end
+    if @hpBar2 != nil
+      @hpBar2.z     = value
     end
     @expBar.z    = value+1
     @hpNumbers.z = value+2
@@ -369,6 +390,17 @@ class PokemonDataBox < SpriteWrapper
         @hpBar1.src_rect.width = width
       else
         @hpBar1.visible = false
+      end
+      if self.hp > @battler.totalhp*2
+        @hpBar2.visible = true
+        @hpBar2.y = 80
+        width = @hpBar2Bitmap.width.to_f*(self.hp-@battler.totalhp*2)/@battler.totalhp
+        # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
+        #       fit in with the rest of the graphics which are doubled in size.
+        width = ((width/2.0).round)*2
+        @hpBar2.src_rect.width = width
+      else
+        @hpBar2.visible = false
       end
     end
     @hpBar.src_rect.width = w

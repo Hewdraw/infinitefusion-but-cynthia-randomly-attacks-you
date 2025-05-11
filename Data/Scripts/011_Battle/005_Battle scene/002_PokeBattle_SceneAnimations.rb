@@ -518,7 +518,7 @@ class PokeballTrainerSendOutAnimation < PokeBattle_Animation
     battlerStartY = ballPos[1]
     battlerEndX = batSprite.x
     battlerEndY = batSprite.y
-    if @battler.pokemon.species == :CYNTHIA || @battler.battle.legendaryBattle?
+    if @battler.pokemon.species == :CYNTHIA || @battler.pokemon.species == :HATSUNEMECHU || @battler.battle.legendaryBattle?
       # Set up Poké Ball sprite
       ball = addBallSprite(0,0,poke_ball)
       ball.setZ(0,1000)

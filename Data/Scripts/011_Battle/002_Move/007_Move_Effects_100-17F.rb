@@ -3092,3 +3092,87 @@ class PokeBattle_Move_202 < PokeBattle_Move
     target.pbConfuse
   end
 end
+
+class PokeBattle_Move_203 < PokeBattle_ParalysisMove
+  def pbMoveFailed?(user, targets)
+    if @battle.lastMoveUsed == @id
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+end
+
+class PokeBattle_Move_204 < PokeBattle_BurnMove
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 2;    end
+end
+
+
+class PokeBattle_Move_205 < PokeBattle_Move
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} is charging spiritual energies!",user.pbThis))
+  end
+
+  def healingMove?;       return true; end
+  def pbHealAmount(user)
+    return (user.totalhp/2.0).round
+  end
+  def initialize(battle, move)
+    super
+    @statUp = [:ATTACK, 1, :SPEED, 1, :SPECIAL_ATTACK, 1]
+  end
+
+  def pbEffectGeneral(user)
+    if user.hp != user.adjustedTotalhp
+      amt = pbHealAmount(user)
+      user.pbRecoverHP(amt)
+      @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+    end
+    showAnim = true
+    for i in 0...@statUp.length/2
+      next if !user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+      if user.pbRaiseStatStage(@statUp[i*2],@statUp[i*2+1],user,showAnim)
+        showAnim = false
+      end
+    end
+  end
+end
+
+class PokeBattle_Move_206 < PokeBattle_Move
+  def ignoresSubstitute?(user); return true; end
+
+  def pbEffectAgainstTarget(user,target)
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+    target.pbResetStatStages
+    @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!",target.pbThis))
+    user.effects[PBEffects::FocusEnergy] += 1
+    @battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
+    return if @battle.wildBattle? && user.opposes?   # Wild Pokémon can't knock off
+    return if user.fainted?
+    return if !target.item || target.unlosableItem?(target.item)
+    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    itemName = target.itemName
+    target.pbRemoveItem(false)
+    @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
+  end
+
+  def pbFailsAgainstTarget?(user,target)
+    if target.raid
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+  end
+end
+
+class PokeBattle_Move_207 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if @battle.lastMoveUsed == @id
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+end

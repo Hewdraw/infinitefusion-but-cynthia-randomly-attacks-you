@@ -202,7 +202,7 @@ class PokeBattle_Battle
         msg += "\r\n" if msg.length>0
         sent = sendOuts[side][i]
         toSendOut.concat(sent)
-        next if t.trainer_type == :WuhuIslandExecutioner
+        next if t.trainer_type == :WuhuIslandExecutioner || t.trainer_type == :MECH_Miku
         next if legendaryBattle?
         case sent.length
         when 1
@@ -460,14 +460,17 @@ class PokeBattle_Battle
           msg = (@endSpeeches[i] && @endSpeeches[i]!="") ? @endSpeeches[i] : "..."
           pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
           if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
-            coin = true
+            coin = $Trainer.numbadges+1
+          end
+          if trainer.name == "Hatsune Mechu"
+            coin = 30
           end
         end
-        if coin && $PokemonBag.pbStoreItem(:SINNOHCOIN, $Trainer.numbadges+1)
-          if $Trainer.numbadges == 0
+        if coin && $PokemonBag.pbStoreItem(:SINNOHCOIN, coin)
+          if coin == 1
             pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
           else
-            pbDisplayPaused(_INTL("You got #{$Trainer.numbadges+1} Sinnoh Coins for winning!"))
+            pbDisplayPaused(_INTL("You got #{coin} Sinnoh Coins for winning!"))
           end
         end
         if trainerBattle? && @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:HEAVYDUTYBOOTS)

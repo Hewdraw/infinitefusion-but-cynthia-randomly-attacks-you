@@ -567,6 +567,7 @@ class PokeBattle_Battler
   end
 
   def hasMoldBreaker?
+    return true if hasActiveAbility?(:LEGENDARYPRESSURE) && @pokemon.species == :HATSUNEMECHU
     return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :CHARGEDEXPLOSIVE])
   end
 

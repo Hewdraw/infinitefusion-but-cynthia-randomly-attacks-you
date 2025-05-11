@@ -192,8 +192,8 @@ def pbBattleOnStepTaken(repel_active)
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    #pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
-    pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, true, 10)
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
+    #pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, true, 10)
     #pbLegendaryBattle("Cool Dino")
     return
   end

@@ -1,7 +1,7 @@
 class PokeBattle_AI
   def pbCynthiaCompareSpeed(user, target)
     outspeedsopponent = user.pbSpeed > target.pbSpeed
-    outspeedsopponent = user.pbSpeed < target.pbSpeed if @field.effects[PBEffects::TrickRoom]>0
+    outspeedsopponent = user.pbSpeed < target.pbSpeed if @battle.field.effects[PBEffects::TrickRoom]>0
     return outspeedsopponent
   end
 
@@ -81,7 +81,7 @@ class PokeBattle_AI
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
       score = 0 if @field.effects[PBEffects::TrickRoom]>0
     #---------------------------------------------------------------------------
-    when "00A", "00B", "0C6", "201" #burn todo better damage calcs
+    when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
       score = 10 if opposingPhysicalThreat < opposingSpecialThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
       score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
@@ -1225,7 +1225,7 @@ class PokeBattle_AI
       score = 0
       user.eachAlly do |b|
         score = [score, pbCynthiaGetThreat(b, b) * 0.3]
-        score *= 2 if pbCynthiaCompareSpeed(target, user)
+        score *= 2 if pbCynthiaCompareSpeed(b, user)
         break
       end
     #---------------------------------------------------------------------------
@@ -2689,6 +2689,49 @@ class PokeBattle_AI
     when "199" #todo
       score *= 2 if user.pbSpeed > target.pbSpeed
     #---------------------------------------------------------------------------
+    when "203"
+      score = 99 if target.pbSpeed > user.pbSpeed && target.pbSpeed / 4 < user.pbSpeed
+      score = 0 if target.effects[PBEffects::Yawn]>0
+      score = 0 if !target.pbCanParalyze?(user,false)
+      score = 0 if move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
+      score = 0 if target.hasActiveAbility?([:QUICKFEET, :MARVELSCALE, :GUTS])
+      score = 0 if target.pbHasMoveFunction?("0D9")
+      score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
+      score = 0 if @field.effects[PBEffects::TrickRoom]>0
+      score = -100 if @battle.lastMoveUsed == move.id
+    #---------------------------------------------------------------------------
+    when "205"
+      score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
+      if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
+        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
+        atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max()
+        speedscore = 100
+        user.eachOpposing do |opponent|
+          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
+          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
+          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
+        end
+        speedscore = 0 if @field.effects[PBEffects::TrickRoom]>0
+        speedscore = 0 if outspeedsopponent
+        score = [score, speedscore].max()
+        userhp = 100.0
+        userhp = userhp - opposingThreat if !outspeedsopponent
+        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
+        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
+      else
+        score = 0
+      end
+    #---------------------------------------------------------------------------
+    when "206"
+      score *= 2 if user.effects[PBEffects::FocusEnergy] < 3
+      score *= 3 if [:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE].include?(target.item)
+      score *= 2 if [:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME].include?(target.item)
+      score /= 2 if (!target.item) || target.unlosableItem?(target.item)
+    #---------------------------------------------------------------------------
+    when "207"
+      score = 0
+      score = -100 if @battle.lastMoveUsed == move.id
+    #---------------------------------------------------------------------------
     end
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
@@ -2697,6 +2740,7 @@ class PokeBattle_AI
     return score
   end
 
+    
   def pbCynthiaCalcDamage(move,user,target)
     damagedictionary = {
       :minDamage => 0,
@@ -2773,7 +2817,7 @@ class PokeBattle_AI
         baseDmg *= 2 if target.effects[PBEffects::Minimize]
       when "0A0"  # Frost Breath
         key = :critDamage
-      when "0BD", "0BE"   #Double Kick, Twineedle
+      when "0BD", "0BE", "204"   #Double Kick, Twineedle
         baseDmg *= 2
       when "0BF"   # Triple Kick
         case originalkey

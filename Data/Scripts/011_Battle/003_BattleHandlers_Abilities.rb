@@ -496,6 +496,24 @@ BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::StatLossImmunityAbilityNonIgnorable.add(:FULLMETALBODY,
   proc { |ability,battler,stat,battle,showMessages|
+    case battler.pokemon.species
+    when :HATSUNEMECHU
+      if showMessages
+        battle.pbShowAbilitySplash(battler, false, true, "Full Metal Body")
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!",battler.pbThis))
+        else
+          battle.pbDisplay(_INTL("{1}'s {2} prevents stat loss!",battler.pbThis,battler.abilityName))
+        end
+        battle.pbHideAbilitySplash(battler)
+      end
+      next true
+    end
+  }
+)
+
+BattleHandlers::StatLossImmunityAbilityNonIgnorable.add(:FULLMETALBODY,
+  proc { |ability,battler,stat,battle,showMessages|
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -642,6 +660,24 @@ BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY)
 #===============================================================================
 # MoveImmunityTargetAbility handlers
 #===============================================================================
+
+BattleHandlers::MoveImmunityTargetAbility.add(:LEGENDARYPRESSURE,
+  proc { |ability,user,target,move,type,battle|
+    case user.pokemon.species
+    when :HATSUNEMECHU
+      next false if !move.bombMove?
+      battle.pbShowAbilitySplash(target, false, true, "Bulletproof")
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      else
+        battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
+           target.pbThis,target.abilityName,move.name))
+      end
+      battle.pbHideAbilitySplash(target)
+      next true
+    end
+  }
+)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
   proc { |ability,user,target,move,type,battle|
@@ -2491,7 +2527,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
         b.pbItemOnIntimidatedCheck
       end
       battle.pbHideAbilitySplash(battler)
-
+    when :HATSUNEMECHU
+      battle.pbShowAbilitySplash(battler, false, true, "Mold Breaker")
+      battle.pbDisplay(_INTL("{1} breaks the mold!",battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
     end
   }
 )

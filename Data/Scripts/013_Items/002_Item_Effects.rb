@@ -719,6 +719,16 @@ ItemHandlers::UseOnPokemon.add(:IRON, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.copy(:IRON, :RESISTMOCHI)
 
+ItemHandlers::UseOnPokemon.add(:MECHUMETAL, proc { |item, pkmn, scene|
+  if pbRaiseEffortValues(pkmn, :DEFENSE) == 0
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  scene.pbDisplay(_INTL("{1}'s Defense increased.", pkmn.name))
+  pkmn.changeHappiness("vitamin")
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:CALCIUM, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :SPECIAL_ATTACK) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
