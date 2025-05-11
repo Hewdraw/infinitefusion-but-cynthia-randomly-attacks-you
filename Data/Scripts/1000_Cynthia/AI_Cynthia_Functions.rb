@@ -2698,7 +2698,7 @@ class PokeBattle_AI
       score = 0 if target.pbHasMoveFunction?("0D9")
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
       score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-      score = -100 if @battle.lastMoveUsed == move.id
+      score = -100 if user.lastRegularMoveUsed == move.id
     #---------------------------------------------------------------------------
     when "205"
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
@@ -2730,7 +2730,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "207"
       score = 0
-      score = -100 if @battle.lastMoveUsed == move.id
+      score = -100 if user.lastRegularMoveUsed == move.id
     #---------------------------------------------------------------------------
     end
     effectchance = 100

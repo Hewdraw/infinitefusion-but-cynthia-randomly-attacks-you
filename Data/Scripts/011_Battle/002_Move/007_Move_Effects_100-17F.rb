@@ -3094,9 +3094,6 @@ class PokeBattle_Move_202 < PokeBattle_Move
 end
 
 class PokeBattle_Move_203 < PokeBattle_ParalysisMove
-  def pbMoveFailed?(user, targets)
-    pbSEPlay("MIKUMIKUBEAM")
-  end
 end
 
 class PokeBattle_Move_204 < PokeBattle_BurnMove
@@ -3105,7 +3102,7 @@ class PokeBattle_Move_204 < PokeBattle_BurnMove
 end
 
 
-class PokeBattle_Move_205 < PokeBattle_Move
+class PokeBattle_Move_205 < PokeBattle_TwoTurnMove
   def pbChargingTurnMessage(user,targets)
     @battle.pbDisplay(_INTL("{1} is charging spiritual energies!",user.pbThis))
   end
