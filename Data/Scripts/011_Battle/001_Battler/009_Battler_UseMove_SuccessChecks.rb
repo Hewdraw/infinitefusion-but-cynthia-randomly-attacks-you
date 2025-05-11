@@ -8,6 +8,13 @@ class PokeBattle_Battler
   # move) or an unusable move may be called by another move such as Metronome.
   #=============================================================================
   def pbCanChooseMove?(move,commandPhase,showMessages=true,specialUsage=false)
+    if ["203", "207"].include?(move.function)
+      if @battle.lastMoveUsed == move.id
+        @battle.pbDisplay(_INTL("But it failed!"))
+        return false
+      end
+      return true
+    end
     # Disable
     if @effects[PBEffects::DisableMove]==move.id && !specialUsage
       if showMessages

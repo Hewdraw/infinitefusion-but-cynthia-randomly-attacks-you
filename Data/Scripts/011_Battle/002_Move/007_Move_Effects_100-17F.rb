@@ -3095,11 +3095,7 @@ end
 
 class PokeBattle_Move_203 < PokeBattle_ParalysisMove
   def pbMoveFailed?(user, targets)
-    if @battle.lastMoveUsed == @id
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
+    pbSEPlay("MIKUMIKUBEAM")
   end
 end
 
@@ -3168,11 +3164,4 @@ class PokeBattle_Move_206 < PokeBattle_Move
 end
 
 class PokeBattle_Move_207 < PokeBattle_Move
-  def pbMoveFailed?(user, targets)
-    if @battle.lastMoveUsed == @id
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
 end

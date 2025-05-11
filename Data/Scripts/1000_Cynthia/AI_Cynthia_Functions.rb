@@ -79,7 +79,7 @@ class PokeBattle_AI
       score = 0 if target.hasActiveAbility?([:QUICKFEET, :MARVELSCALE, :GUTS])
       score = 0 if target.pbHasMoveFunction?("0D9")
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
-      score = 0 if @field.effects[PBEffects::TrickRoom]>0
+      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
       score = 10 if opposingPhysicalThreat < opposingSpecialThreat
@@ -178,7 +178,7 @@ class PokeBattle_AI
       else
         score = 0
       end
-      score = 0 if @field.effects[PBEffects::TrickRoom]>0
+      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
       score = 0 if outspeedsopponent
     #---------------------------------------------------------------------------
     when "020"
@@ -264,7 +264,7 @@ class PokeBattle_AI
           atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
         end
         speedscore = 0 if outspeedsopponent
-        speedscore = 0 if @field.effects[PBEffects::TrickRoom]>0
+        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
         score = [score, speedscore].max()
         userhp = 100.0
         userhp = userhp - opposingThreat if !outspeedsopponent
@@ -320,7 +320,7 @@ class PokeBattle_AI
           atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
           defstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
         end
-        speedscore = 0 if @field.effects[PBEffects::TrickRoom]>0
+        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
         userhp = 100.0
@@ -394,7 +394,7 @@ class PokeBattle_AI
       else
         score = 0
       end
-      score = 0 if @field.effects[PBEffects::TrickRoom]>0
+      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
       score = 0 if outspeedsopponent
     #---------------------------------------------------------------------------
     when "032"
@@ -449,7 +449,7 @@ class PokeBattle_AI
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
           atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
         end
-        speedscore = 0 if @field.effects[PBEffects::TrickRoom]>0
+        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
         userhp = 100.0
@@ -476,7 +476,7 @@ class PokeBattle_AI
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
           atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
         end
-        speedscore = 0 if @field.effects[PBEffects::TrickRoom]>0
+        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
         userhp = 100.0
@@ -2697,7 +2697,7 @@ class PokeBattle_AI
       score = 0 if target.hasActiveAbility?([:QUICKFEET, :MARVELSCALE, :GUTS])
       score = 0 if target.pbHasMoveFunction?("0D9")
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
-      score = 0 if @field.effects[PBEffects::TrickRoom]>0
+      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
       score = -100 if @battle.lastMoveUsed == move.id
     #---------------------------------------------------------------------------
     when "205"
@@ -2711,7 +2711,7 @@ class PokeBattle_AI
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
           atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
         end
-        speedscore = 0 if @field.effects[PBEffects::TrickRoom]>0
+        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
         speedscore = 0 if outspeedsopponent
         score = [score, speedscore].max()
         userhp = 100.0

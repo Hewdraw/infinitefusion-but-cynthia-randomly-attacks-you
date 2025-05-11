@@ -741,6 +741,10 @@ class PokeBattle_Battler
       pbSEPlay("SkeletonGuitar")
       animationid = :SCARYFACE
     end
+    if animationid == :MIKUMIKUBEAM
+      pbSEPlay("MIKUMIKUBEAM")
+      animationid = :HYPERBEAM
+    end
     move.pbShowAnimation(animationid, user, targets, hitNum)
     # Type-boosting Gem consume animation/message
     if user.effects[PBEffects::GemConsumed] && hitNum == 0
