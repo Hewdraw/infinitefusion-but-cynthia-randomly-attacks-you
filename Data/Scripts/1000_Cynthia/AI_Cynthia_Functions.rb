@@ -50,7 +50,11 @@ class PokeBattle_AI
       opposingSpecialThreat += opposingThreattable[:specialDamage]
       outspeedsopponent = pbCynthiaCompareSpeed(user, opponent)
     end
-    case move.function
+    movefunction = move.function
+    if movefunction == "188"
+      movefunction += move.type.to_s
+    end
+    case movefunction
     #---------------------------------------------------------------------------
     when "000", "001", "002", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "092", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195"  # No extra effect
       score = 0
@@ -133,7 +137,7 @@ class PokeBattle_AI
       score = 0 if user.status == :NONE
       score = 0 if !target.pbCanInflictStatus?(user.status, user, false, move)
     #---------------------------------------------------------------------------
-    when "01C", "029"
+    when "01C", "029", "188FIGHTING"
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
       if !user.statStageAtMax?(:ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
@@ -148,7 +152,7 @@ class PokeBattle_AI
         score = 0 if opponent.hasActiveAbility?(:UNAWARE)
       end
     #---------------------------------------------------------------------------
-    when "01D", "01E", "0C8"
+    when "01D", "01E", "0C8", "188STEEL"
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
       if !user.statStageAtMax?(:DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
@@ -166,7 +170,7 @@ class PokeBattle_AI
         score += [100 - opposingThreat, 0].max
       end
     #---------------------------------------------------------------------------
-    when "01F"
+    when "01F", "188FLYING"
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
       if !user.statStageAtMax?(:SPEED)
         score = 100
@@ -181,7 +185,7 @@ class PokeBattle_AI
       score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
       score = 0 if outspeedsopponent
     #---------------------------------------------------------------------------
-    when "020"
+    when "020", "188POISON"
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
       if !user.statStageAtMax?(:SPECIAL_ATTACK)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
@@ -196,7 +200,7 @@ class PokeBattle_AI
         score = 0 if opponent.hasActiveAbility?(:UNAWARE)
       end
     #---------------------------------------------------------------------------
-    when "021"
+    when "021", "188GROUND"
       score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
       if !user.statStageAtMax?(:SPECIAL_DEFENSE)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
@@ -650,7 +654,7 @@ class PokeBattle_AI
       end
       score = 0 if user.effects[PBEffects::FocusEnergy]>= 2 && user.hasActiveItem?(:SCOPELENS)
     #---------------------------------------------------------------------------
-    when "042"
+    when "042", "188DRAGON"
       score = 0
       if target.pbCanLowerStatStage?(:ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
@@ -664,7 +668,7 @@ class PokeBattle_AI
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
-    when "043"
+    when "043", "188GHOST"
       score = 0
       if target.pbCanLowerStatStage?(:DEFENSE,user)
         statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, target)
@@ -678,7 +682,7 @@ class PokeBattle_AI
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
-    when "044"
+    when "044", "188NORMAL"
       if target.pbCanLowerStatStage?(:SPEED,user)
         score = 100
         statincrease = pbCynthiaGetStatIncrease(:SPEED, -1, target)
@@ -690,7 +694,7 @@ class PokeBattle_AI
       score = 0 if outspeedsopponent
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
-    when "045"
+    when "045", "188BUG"
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
@@ -704,7 +708,7 @@ class PokeBattle_AI
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
-    when "046"
+    when "046", "188DARK"
       score = 0
       if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
         statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, target)
@@ -1674,7 +1678,7 @@ class PokeBattle_AI
         score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
       end
     #---------------------------------------------------------------------------
-    when "0FF" #todo
+    when "0FF", "188FIRE" #todo
       score *= 2 if user.hasActiveItem?(:HEATROCK)
       score *= 2 if user.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
       score *= 1.5 if user.pbHasType?(:FIRE)
@@ -1685,7 +1689,7 @@ class PokeBattle_AI
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun
     #---------------------------------------------------------------------------
-    when "100" #todo
+    when "100", "188WATER" #todo
       score *= 2 if user.hasActiveItem?(:DAMPROCK)
       score *= 2 if user.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
       score *= 1.5 if user.pbHasType?(:WATER)
@@ -1693,14 +1697,14 @@ class PokeBattle_AI
       score *= 2 if @battle.pbWeather == :Sun
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain
     #---------------------------------------------------------------------------
-    when "101" #todo
+    when "101", "188ROCK" #todo
       score *= 2 if user.hasActiveItem?(:SMOOTHROCK)
       score *= 2 if user.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
       score *= 1.5 if user.pbHasType?(:ROCK)
       score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:SHOREUP)
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
     #---------------------------------------------------------------------------
-    when "102", "179"
+    when "102", "179", "188ICE"
       score *= 2 if user.hasActiveItem?(:ICYROCK)
       score *= 2 if user.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
       score *= 1.5 if user.pbHasType?(:ICE)
@@ -2336,7 +2340,7 @@ class PokeBattle_AI
       score = 100
       score = 0 if user.pbOpposingSide.effects[PBEffects::StickyWeb]
     #---------------------------------------------------------------------------
-    when "154"
+    when "154", "188ELECTRIC"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:ELECTRICSEED)
       score *= 1.3 if user.pbHasType?(:ELECTRIC)
       score *= 2 if user.effects[PBEffects::Yawn]>0
@@ -2344,13 +2348,13 @@ class PokeBattle_AI
       score *= 2 if user.pbHasMove?(:RISINGVOLTAGE) || user.pbHasMove?(:TERRAINPULSE) || user.pbHasMove?(:PSYBLADE)
       score = 0 if @battle.field.terrain == :Electric
     #---------------------------------------------------------------------------
-    when "155"
+    when "155", "188GRASS"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:GRASSYSEED)
       score *= 1.3 if user.pbHasType?(:GRASS)
       score *= 2 if user.pbHasMove?(:GRASSYGLIDE) || user.pbHasMove?(:TERRAINPULSE)
       score = 0 if @battle.field.terrain == :Grassy
     #---------------------------------------------------------------------------
-    when "156"
+    when "156", "188FAIRY"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:MISTYSEED)
       score *= 2 if user.effects[PBEffects::Yawn]>0
       score *= 2 if user.pbHasMove?(:MISTYEXPLOSION) || user.pbHasMove?(:TERRAINPULSE)
@@ -2587,12 +2591,12 @@ class PokeBattle_AI
     when "172" #todo
       score += 20   # Because of possible burning
     #---------------------------------------------------------------------------
-    when "173"
+    when "173", "188PSYCHIC"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:PSYCHICSEED)
       score *= 1.3 if user.pbHasType?(:PSYCHIC)
       score *= 2 if user.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
       score *= 2 if user.pbHasMove?(:EXPANDINGFORCE) || user.pbHasMove?(:TERRAINPULSE)
-      score = 0 if @battle.field.terrain == :Electric
+      score = 0 if @battle.field.terrain == :Psychic
     #---------------------------------------------------------------------------
     when "174" #todo
       score = -100 if user.turnCount > 0
