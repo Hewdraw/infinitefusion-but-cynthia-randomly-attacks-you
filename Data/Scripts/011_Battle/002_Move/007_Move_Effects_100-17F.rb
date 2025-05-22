@@ -2719,61 +2719,62 @@ class PokeBattle_Move_188 < PokeBattle_Move
   end
 
   def pbAdditionalEffect(user,target)
-    if type == :NORMAL
+    case type
+    when :NORMAL
       @battle.eachSameSideBattler(target) do |b|
         b.pbLowerStatStage(:SPEED,1,user)
       end
-    elsif type == :FIGHTING
+    when :FIGHTING
       @battle.eachSameSideBattler(user) do |b|
         b.pbRaiseStatStage(:ATTACK,1,user)
       end
-    elsif type == :FLYING
+    when :FLYING
       @battle.eachSameSideBattler(user) do |b|
         b.pbRaiseStatStage(:SPEED,1,user)
       end
-    elsif type == :POISON
+    when :POISON
       @battle.eachSameSideBattler(user) do |b|
         b.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
       end
-    elsif type == :GROUND
+    when :GROUND
       @battle.eachSameSideBattler(user) do |b|
         b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
       end
-    elsif type == :ROCK
+    when :ROCK
       @battle.pbStartWeather(user,:Sandstorm,true,false)
-    elsif type == :BUG
+    when :BUG
       @battle.eachSameSideBattler(target) do |b|
         b.pbLowerStatStage(:SPECIAL_ATTACK,1,user)
       end
-    elsif type == :GHOST
+    when :GHOST
       @battle.eachSameSideBattler(target) do |b|
         b.pbLowerStatStage(:DEFENSE,1,user)
       end
-    elsif type == :STEEL
+    when :STEEL
       @battle.eachSameSideBattler(user) do |b|
         b.pbRaiseStatStage(:DEFENSE,1,user)
       end
-    elsif type == :FIRE
+    when :FIRE
       @battle.pbStartWeather(user,:Sun,true,false)
-    elsif type == :WATER
+    when :WATER
       @battle.pbStartWeather(user,:Rain,true,false)
-    elsif type == :GRASS
+    when :GRASS
       @battle.pbStartTerrain(user, :Grass)
-    elsif type == :ELECTRIC
+    when :ELECTRIC
       @battle.pbStartTerrain(user, :Electric)
-    elsif type == :PSYCHIC
+    when :PSYCHIC
       @battle.pbStartTerrain(user, :Psychic)
-    elsif type == :ICE
+    when :ICE
       @battle.pbStartWeather(user,:Hail,true,false)
-    elsif type == :DRAGON
+    when :DRAGON
       @battle.eachSameSideBattler(target) do |b|
         b.pbLowerStatStage(:ATTACK,1,user)
       end
-    elsif type == :DARK
+    when :DARK
       @battle.eachSameSideBattler(target) do |b|
         b.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
       end
-    elsif type == :FAIRY
+    when :FAIRY
       @battle.pbStartTerrain(user, :Fairy)
     end
   end

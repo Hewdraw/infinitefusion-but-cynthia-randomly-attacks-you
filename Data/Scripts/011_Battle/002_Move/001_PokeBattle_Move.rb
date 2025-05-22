@@ -17,6 +17,7 @@ class PokeBattle_Move
   attr_accessor :calcType
   attr_accessor :powerBoost
   attr_accessor :snatched
+  attr_accessor :zmove
 
   def to_int; return @id; end
 
@@ -42,6 +43,7 @@ class PokeBattle_Move
     @calcType   = nil
     @powerBoost = false   # For Aerilate, Pixilate, Refrigerate, Galvanize
     @snatched   = false
+    @zmove = nil
   end
 
   # This is the code actually used to generate a PokeBattle_Move object. The

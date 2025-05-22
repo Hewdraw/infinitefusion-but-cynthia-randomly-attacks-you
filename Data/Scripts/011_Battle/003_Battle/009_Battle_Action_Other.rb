@@ -339,6 +339,61 @@ class PokeBattle_Battle
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
+  def pbGetZMove(battler)
+    item = battler.item_id
+    typezmoves = {
+      :NORMALIUMZ => :NORMAL,
+      :FIGHTINIUMZ => :FIGHTING,
+      :FLYINIUMZ => :FLYING,
+      :POISONIUMZ => :POISON,
+      :GROUNDIUMZ => :GROUND,
+      :ROCKIUMZ => :ROCK,
+      :BUGINIUMZ => :BUG,
+      :GHOSTIUMZ => :GHOST,
+      :FIRIUMZ => :FIRE,
+      :WATERIUMZ => :WATER,
+      :GRASSIUMZ => :GRASS,
+      :ELECTRIUMZ => :ELECTRIC,
+      :PSYCHIUMZ => :PSYCHIC,
+      :ICIUMZ => :ICE,
+      :DRAGONIUMZ => :DRAGON,
+      :DARKINIUMZ => :DARK,
+      :FAIRIUMZ => :FAIRY
+    }
+    movezmoves = {
+      :PIKANIUMZ => :VOLTTACKLE,
+      :PIKASHUNIUMZ => :THUNDERBOLT,
+      :ALORAICHIUMZ => :THUNDERBOLT,
+      :EEVIUMZ => :LASTRESORT,
+      :PRIMARIUMZ => :SPARKLINGARIA,
+      :KOMMONIUMZ => :CLANGINGSCALES
+    }
+    moverequirement = nil
+    if typezmoves[item]
+      moverequirement = typezmoves[item]
+    end
+    if movezmoves[item]
+      moverequirement = movezmoves[item]
+    end
+    return nil if !moverequirement
+    highestpower = 0
+    highestpowermove = nil
+    battler.moves.each do |move|
+      next if ![move.type, move.id].include?(moverequirement)
+      next if !(highestpower > move.baseDamage)
+      highestpower = move.baseDamage
+      highestpowermove = move
+    end
+    zmove = pbZMove(move)
+  end
+
+  def pbZMove(move)
+
+    if move.statusMove?
+      return
+    end
+  end
+
   #=============================================================================
   # Primal Reverting a battler
   #=============================================================================

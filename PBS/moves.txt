@@ -733,24 +733,24 @@
 716,FREEZYFROST,Freezy Frost,187,90,ICE,Special,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 717,SPARKLYSWIRL,Sparkly Swirl,191,90,FAIRY,Special,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 718,VEEVEEVOLLEY,Veevee Volley,192,1,NORMAL,Physical,0,20,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
-719,MAXSTRIKE,Max Strike,188,90,NORMAL,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-720,MAXKNUCKLE,Max Knuckle,188,90,FIGHTING,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-721,MAXAIRSTREAM,Max Airstream,188,90,FLYING,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-722,MAXOOZE,Max Ooze,188,90,POISON,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-723,MAXQUAKE,Max Quake,188,90,GROUND,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-724,MAXROCKFALL,Max Rockfall,188,90,ROCK,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-725,MAXFLUTTERBY,Max Flutterby,188,90,BUG,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-726,MAXPHANTASM,Max Phantasm,188,90,GHOST,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-727,MAXSTEELSPIKE,Max Steelspike,188,90,STEEL,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-728,MAXFLARE,Max Flare,188,90,FIRE,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-729,MAXGEYSER,Max Geyser,188,90,WATER,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-730,MAXOVERGROWTH,Max Overgrowth,188,90,GRASS,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-731,MAXLIGHTNING,Max Lightning,188,90,ELECTRIC,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-732,MAXMINDSTORM,Max Mindstorm,188,90,PSYCHIC,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-733,MAXHAILSTORM,Max Hailstorm,188,90,ICE,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-734,MAXWYRMWIND,Max Wyrmwind,188,90,DRAGON,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-735,MAXDARKNESS,Max Darkness,188,90,DARK,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-736,MAXSTARFALL,Max Starfall,188,90,FAIRY,Physical,0,3,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+719,MAXSTRIKE,Max Strike,188,90,NORMAL,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+720,MAXKNUCKLE,Max Knuckle,188,90,FIGHTING,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+721,MAXAIRSTREAM,Max Airstream,188,90,FLYING,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+722,MAXOOZE,Max Ooze,188,90,POISON,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+723,MAXQUAKE,Max Quake,188,90,GROUND,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+724,MAXROCKFALL,Max Rockfall,188,90,ROCK,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+725,MAXFLUTTERBY,Max Flutterby,188,90,BUG,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+726,MAXPHANTASM,Max Phantasm,188,90,GHOST,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+727,MAXSTEELSPIKE,Max Steelspike,188,90,STEEL,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+728,MAXFLARE,Max Flare,188,90,FIRE,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+729,MAXGEYSER,Max Geyser,188,90,WATER,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+730,MAXOVERGROWTH,Max Overgrowth,188,90,GRASS,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+731,MAXLIGHTNING,Max Lightning,188,90,ELECTRIC,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+732,MAXMINDSTORM,Max Mindstorm,188,90,PSYCHIC,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+733,MAXHAILSTORM,Max Hailstorm,188,90,ICE,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+734,MAXWYRMWIND,Max Wyrmwind,188,90,DRAGON,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."	
+735,MAXDARKNESS,Max Darkness,188,90,DARK,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+736,MAXSTARFALL,Max Starfall,188,90,FAIRY,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
 737,MAXGUARD,Max Guard,0AA,0,NORMAL,Status,0,3,0,User,4,,"Nice Smeargle/Ditto, jackass."
 738,POLTERGEIST,Max Guard,193,110,GHOST,Physical,90,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 739,ESPERWING,Esper Wing,01F,80,PSYCHIC,Special,100,10,100,NearOther,0,befh,"Nice Smeargle/Ditto, jackass." #todo
@@ -760,13 +760,13 @@
 743,JETPUNCH,Jet Punch,000,60,WATER,Physical,100,15,0,NearOther,1,abef,"Nice Smeargle/Ditto, jackass."
 744,AXEKICK,Axe Kick,000,120,FIGHTING,Physical,90,10,30,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 745,THUNDEROUSKICK,Thunderous Kick,000,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
-746,ALLOUTPUMMELING,All-Out Pummeling,000,180,FIGHTING,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+746,CYNTHIAALLOUTPUMMELING,All-Out Pummeling,000,180,FIGHTING,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 747,BITTERMALICE,Bitter Malice,000,75,GHOST,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-748,BREAKNECKBLITZ,Breakneck Blitz,000,180,NORMAL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+748,CYNTHIABREAKNECKBLITZ,Breakneck Blitz,000,180,NORMAL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 749,COLLISIONCOURSE,Collision Course,000,100,FIGHTING,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 750,COMEUPPANCE,Comeuppance,000,80,DARK,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
-751,CONTINENTALCRUSH,Continental Crush,000,180,ROCK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-752,CORKSCREWCRASH,Corkscrew Crash,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+751,CYNTHIACONTINENTALCRUSH,Continental Crush,000,180,ROCK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+752,CYNTHIACORKSCREWCRASH,Corkscrew Crash,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 753,FIERYWRATH,Fiery Wrath,000,90,DARK,Special,100,10,20,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 754,GMAXONEBLOW,GMAX One Blow,000,180,DARK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 755,GMAXMELTDOWN,GMAX Meltdown,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
@@ -780,7 +780,7 @@
 763,NORETREAT,No Retreat,000,0,FIGHTING,Status,0,5,0,User,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 764,PULVERIZINGPANCAKE,Pulverizing Pancake,000,210,NORMAL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 765,RUINATION,Ruination,000,1,DARK,Special,90,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-766,SHATTEREDPSYCHE,Shattered Psyche,000,180,PSYCHIC,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+766,CYNTHIASHATTEREDPSYCHE,Shattered Psyche,000,180,PSYCHIC,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 767,SOULSTEALING7STARSTRIKE,Soul-Stealing 7-Star Strike,000,195,GHOST,Physical,100,1,0,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 768,SPIRITBREAK,Spirit Break,000,75,FAIRY,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 769,SURGINGSTRIKES,Surging Strikes,000,25,WATER,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
@@ -811,6 +811,25 @@
 794,TWINBEAMSLASH,Twin Beam Slash,204,70,FIRE,Physical,100,20,30,Other,0,bef,"" #todo
 795,POWERUP,Power Up!,205,0,ELECTRIC,Status,0,5,0,User,0,,"" #todo
 796,LEAK,Leak?!,206,0,GRASS,Status,0,40,0,Other,0,abef,"" #todo
+797,BREAKNECKBLITZ,Breackneck Blitz,205,100,NORMAL,Physical,0,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+798,ALLOUTPUMMELING,All-Out Pummeling,205,100,FIGHTING,Physical,0,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+799,SUPERSONICSKYSTRIKE,Supersonic Skystrike,205,100,FLYING,Physical,0,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+800,ACIDDOWNPOUR,Acid Downpour,205,100,POISON,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+801,TECTONICRAGE,Tectonic Rage,205,100,GROUND,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+802,CONTINENTALCRUSH,Continental Crush,205,100,ROCK,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+803,SAVAGESPINOUT,Savage Spin-Out,205,100,BUG,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+804,NEVERENDINGNIGHTMARE,Never-Ending Nightmare,205,90,GHOST,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+805,CORKSCREWCRASH,Corkscrew Crash,205,100,STEEL,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+806,INFERNOOVERDRIVE,Inferno Overdrive,205,100,FIRE,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+807,HYDROVORTEX,Hydro Vortex,205,100,WATER,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+808,BLOOMDOOM,Bloom Doom,205,100,GRASS,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+809,GIGAVOLTHAVOC,Gigavolt Havoc,205,100,ELECTRIC,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+810,SHATTEREDPSYCHE,Shattered Psyche,205,100,PSYCHIC,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+811,SUBZEROSLAMMER,Subzero Slammer,205,100,ICE,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."	
+812,DEVASTATINGDRAKE,Devestating Drake,205,100,DRAGON,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+813,BLACKHOLEECLIPSE,Black Hole Eclipse,205,100,DARK,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+814,TWINKLETACKLE,Twinkle Tackle,205,100,FAIRY,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+
 
 
 #  @id               = hash[:id]

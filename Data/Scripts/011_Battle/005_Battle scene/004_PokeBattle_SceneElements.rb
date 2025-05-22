@@ -120,7 +120,7 @@ class PokemonDataBox < SpriteWrapper
     @expBar.bitmap = @expBarBitmap.bitmap
     @sprites["expBar"] = @expBar
     # Create sprite wrapper that displays everything except the above
-    @contents = BitmapWrapper.new(@databoxBitmap.width+14,@databoxBitmap.height)
+    @contents = BitmapWrapper.new(@databoxBitmap.width+14,@databoxBitmap.height+14)
     self.bitmap  = @contents
     self.visible = false
     self.z       = 150+((@battler.index)/2)*5
