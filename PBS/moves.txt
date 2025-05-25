@@ -829,6 +829,10 @@
 812,DEVASTATINGDRAKE,Devestating Drake,207,100,DRAGON,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
 813,BLACKHOLEECLIPSE,Black Hole Eclipse,207,100,DARK,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
 814,TWINKLETACKLE,Twinkle Tackle,207,100,FAIRY,Physical,0,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+815,ZCCONVERSION,Z Conversion,208,0,NORMAL,Status,0,1,0,User,0,d,"The user changes its type to become the same type as one of its moves."
+816,CLANGEROUSSOULBLAZE,Clangerous Soulblaze,209,185,DRAGON,Special,0,1,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+817,ZSLEEPTALK,Z Sleep Talk,210,0,NORMAL,Status,0,1,0,User,0,,"While it is asleep, the user randomly uses one of the moves it knows."
+818,EXTREMEEVOBOOST,Extreme Evoboost,211,0,NORMAL,Status,0,1,0,User,0,f,"Nice Smeargle/Ditto, jackass."
 
 
 

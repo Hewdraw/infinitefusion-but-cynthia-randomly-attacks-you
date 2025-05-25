@@ -533,6 +533,7 @@ class PokeBattle_Battler
       end
     end
     return true if check_item.name[-3..-1] == "ite" && check_item.name != "Eviolite"
+    return true if check_item.name[-5..-1] == "ium Z"
     return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)

@@ -3167,3 +3167,98 @@ class PokeBattle_Move_207 < PokeBattle_Move
     user.zmove -= 1
   end
 end
+
+class PokeBattle_Move_208 < PokeBattle_Move_05E
+  def pbInitialEffect(user,targets,hitNum)
+    @battle.pbDisplay(_INTL("{1} surrounded itself with its Z-Power!",user.pbThis))
+    user.pbRaiseStatStage(:ATTACK,1,user)
+    user.pbRaiseStatStage(:DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+    user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPEED,1,user)
+    user.zmove -= 1
+  end
+end
+
+class PokeBattle_Move_209 < PokeBattle_Move_207
+  def pbAdditionalEffect(user, target)
+    user.pbRaiseStatStage(:ATTACK,1,user)
+    user.pbRaiseStatStage(:DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+    user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPEED,1,user)
+  end
+end
+
+class PokeBattle_Move_210 < PokeBattle_Move_207
+  def usableWhenAsleep?; return true; end
+  def callsAnotherMove?; return true; end
+
+  def initialize(battle,move)
+    super
+    @moveBlacklist = [
+       "0D1",   # Uproar
+       "0D4",   # Bide
+       # Struggle, Chatter, Belch
+       "002",   # Struggle                            # Not listed on Bulbapedia
+       "014",   # Chatter                             # Not listed on Bulbapedia
+       "158",   # Belch
+       # Moves that affect the moveset (except Transform)
+       "05C",   # Mimic
+       "05D",   # Sketch
+       # Moves that call other moves
+       "0AE",   # Mirror Move
+       "0AF",   # Copycat
+       "0B0",   # Me First
+       "0B3",   # Nature Power                        # Not listed on Bulbapedia
+       "0B4",   # Sleep Talk
+       "0B5",   # Assist
+       "0B6",   # Metronome
+       # Two-turn attacks
+       "0C3",   # Razor Wind
+       "0C4",   # Solar Beam, Solar Blade
+       "0C5",   # Freeze Shock
+       "0C6",   # Ice Burn
+       "0C7",   # Sky Attack
+       "0C8",   # Skull Bash
+       "0C9",   # Fly
+       "0CA",   # Dig
+       "0CB",   # Dive
+       "0CC",   # Bounce
+       "0CD",   # Shadow Force
+       "0CE",   # Sky Drop
+       "12E",   # Shadow Half
+       "14D",   # Phantom Force
+       "14E",   # Geomancy
+       # Moves that start focussing at the start of the round
+       "115",   # Focus Punch
+       "171",   # Shell Trap
+       "172"    # Beak Blast
+    ]
+  end
+
+  def pbMoveFailed?(user,targets)
+    @sleepTalkMoves = []
+    user.eachMoveWithIndex do |m,i|
+      next if @moveBlacklist.include?(m.function)
+      next if !@battle.pbCanChooseMove?(user.index,i,false,true)
+      @sleepTalkMoves.push(i)
+    end
+    if !user.asleep? || @sleepTalkMoves.length==0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    choice = @sleepTalkMoves[@battle.pbRandom(@sleepTalkMoves.length)]
+    move = user.moves[choice]
+    zmove = pbZMove(move)
+    move = zmove if zmove
+    user.pbUseMoveSimple(zmove.id,user.pbDirectOpposing.index)
+  end
+end
+
+class PokeBattle_Move_211 < PokeBattle_Move_207
+end

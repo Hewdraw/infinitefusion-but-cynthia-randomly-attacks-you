@@ -773,7 +773,24 @@
 765,GARDEROSITE,Garderosite,Garderosites,1,0,"",0,0,0
 766,BEEGPP,Beeg PP,Beeg PPs,2,10000,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
 767,MECHUMETAL,Mechu Metal,Mechu Metals,2,128,"Infinitely dense iron.",1,3,0,
-777,NORMALIUMZ,Garderosite,Garderosites,1,0,"",0,0,0
+777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"",0,0,0
+778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"",0,0,0
+779,FLYINIUMZ,Flyiunium Z,Flyiunium Zs,1,0,"",0,0,0
+780,POISONIUMZ,Poisonium Z,Poisonium Zs,1,0,"",0,0,0
+781,GROUNDIUMZ,Groundium Z,Groundium Zs,1,0,"",0,0,0
+782,ROCKIUMZ,Rockium Z,Rockium Zs,1,0,"",0,0,0
+783,BUGINIUMZ,Buginium Z,Buginium Zs,1,0,"",0,0,0
+784,GHOSTIUMZ,Ghostium Z,Ghostium Zs,1,0,"",0,0,0
+785,STEELIUMZ,Steelium Z,Steelium Zs,1,0,"",0,0,0
+786,FIRIUMZ,Firium Z,Firium Zs,1,0,"",0,0,0
+787,WATERIUMZ,Waterium Z,Waterium Zs,1,0,"",0,0,0
+788,GRASSIUMZ,Grassium Z,Grassium Zs,1,0,"",0,0,0
+789,ELECTRIUMZ,Electrium Z,Electrium Zs,1,0,"",0,0,0
+790,PSYCHIUMZ,Psychium Z,Psychium Zs,1,0,"",0,0,0
+791,ICIUMZ,Icium Z,Icium Zs,1,0,"",0,0,0
+792,DRAGONIUMZ,Dragonium Z,Dragonium Zs,1,0,"",0,0,0
+793,DARKINIUMZ,Darkinium Z,Darkinium Zs,1,0,"",0,0,0
+794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
 
 
 #    attr_reader :id

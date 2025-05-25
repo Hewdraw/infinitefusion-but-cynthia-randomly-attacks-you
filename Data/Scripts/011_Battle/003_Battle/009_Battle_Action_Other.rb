@@ -399,13 +399,21 @@ class PokeBattle_Battle
       :ALORAICHIUMZ => :STOKEDSPARKSURFER,
       :EEVIUMZ => :EXTREMEEVOBOOST,
       :PRIMARIUMZ => :OCEANICOPERETTA,
-      :KOMMONIUMZ => :CLANGEROUSSOULBLAZE
+      :KOMMONIUMZ => :CLANGOROUSSOULBLAZE
     }
     if movezmoves[item]
       zmove = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(movezmoves[item]))
       return zmove
     end
-    return false if move.statusMove?
+    statuszmoves = {
+      :CONVERSION => :ZCONVERSION
+      :SLEEPTALK => :ZSLEEPTALK
+    }
+    if move.statusMove?
+      return false if !statuszmoves[move.id]
+      zmove = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(statuszmoves[move.id]))
+      return zmove
+    end
     typezmoves = {
       :NORMAL => :BREAKNECKBLITZ,
       :FIGHTING => :ALLOUTPUMMELING,
