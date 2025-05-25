@@ -51,6 +51,7 @@ class PokeBattle_Battler
   attr_accessor :raid
   attr_accessor :hpbars
   attr_accessor :phasetwo
+  attr_accessor :zmove
 
 
   #=============================================================================

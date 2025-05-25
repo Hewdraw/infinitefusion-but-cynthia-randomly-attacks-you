@@ -4,7 +4,11 @@ class PokeBattle_Battle
   #=============================================================================
   def pbCanChooseMove?(idxBattler,idxMove,showMessages,sleepTalk=false)
     battler = @battlers[idxBattler]
-    move = battler.moves[idxMove]
+    if idxMove.is_a?(Integer)
+      move = battler.moves[idxMove]
+    else
+      move = idxMove
+    end
     return false unless move
     if move.pp==0 && move.total_pp>0 && !sleepTalk
       pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
@@ -69,7 +73,11 @@ class PokeBattle_Battle
 
   def pbRegisterMove(idxBattler,idxMove,showMessages=true)
     battler = @battlers[idxBattler]
-    move = battler.moves[idxMove]
+    if idxMove.is_a?(Integer)
+      move = battler.moves[idxMove]
+    else
+      move = idxMove
+    end
     return false if !pbCanChooseMove?(idxBattler,idxMove,showMessages)
     @choices[idxBattler][0] = :UseMove   # "Use move"
     @choices[idxBattler][1] = idxMove    # Index of move to be used

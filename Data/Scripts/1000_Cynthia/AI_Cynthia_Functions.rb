@@ -56,7 +56,7 @@ class PokeBattle_AI
     end
     case movefunction
     #---------------------------------------------------------------------------
-    when "000", "001", "002", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "092", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195"  # No extra effect
+    when "000", "001", "002", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "092", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195", "207"  # No extra effect
       score = 0
     #---------------------------------------------------------------------------
     when "003", "004" #sleep
@@ -1580,8 +1580,8 @@ class PokeBattle_AI
       score -= 90 if target.effects[PBEffects::MeanLook]>=0
     #---------------------------------------------------------------------------
     when "0F0", "202" #todo
-      score *= 3 if [:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE].include?(target.item)
-      score *= 2 if [:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME].include?(target.item)
+      score *= 3 if target.hasActiveItem([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE])
+      score *= 2 if target.hasActiveItem([:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME])
       score = 0 if !target.item
       score = 0 if target.unlosableItem?(target.item)
       score = 0 if target.hasActiveAbility?(:STICKYHOLD) && !user.hasMoldBreaker?
@@ -2728,8 +2728,8 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "206"
       score *= 2 if user.effects[PBEffects::FocusEnergy] < 3
-      score *= 3 if [:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE].include?(target.item)
-      score *= 2 if [:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME].include?(target.item)
+      score *= 3 if target.hasActiveItem?([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE])
+      score *= 2 if target.hasActiveItem?([:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME])
       score /= 2 if (!target.item) || target.unlosableItem?(target.item)
     #---------------------------------------------------------------------------
     when "207"

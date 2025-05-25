@@ -3162,4 +3162,8 @@ class PokeBattle_Move_206 < PokeBattle_Move
 end
 
 class PokeBattle_Move_207 < PokeBattle_Move
+  def pbInitialEffect(user,targets,hitNum)
+    @battle.pbDisplay(_INTL("{1} surrounded itself with its Z-Power!",user.pbThis))
+    user.zmove -= 1
+  end
 end

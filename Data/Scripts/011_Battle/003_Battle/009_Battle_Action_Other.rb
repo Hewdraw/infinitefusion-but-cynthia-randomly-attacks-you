@@ -339,7 +339,7 @@ class PokeBattle_Battle
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
-  def pbGetZMove(battler)
+  def pbGetZMoves(battler)
     item = battler.item_id
     typezmoves = {
       :NORMALIUMZ => :NORMAL,
@@ -350,6 +350,7 @@ class PokeBattle_Battle
       :ROCKIUMZ => :ROCK,
       :BUGINIUMZ => :BUG,
       :GHOSTIUMZ => :GHOST,
+      :STEELIUMZ => :STEEL,
       :FIRIUMZ => :FIRE,
       :WATERIUMZ => :WATER,
       :GRASSIUMZ => :GRASS,
@@ -368,30 +369,84 @@ class PokeBattle_Battle
       :PRIMARIUMZ => :SPARKLINGARIA,
       :KOMMONIUMZ => :CLANGINGSCALES
     }
-    moverequirement = nil
+    itemtable = nil
     if typezmoves[item]
-      moverequirement = typezmoves[item]
+      itemtable = typezmoves
     end
     if movezmoves[item]
-      moverequirement = movezmoves[item]
+      itemtable = movezmoves
     end
-    return nil if !moverequirement
-    highestpower = 0
-    highestpowermove = nil
+    return [] if !itemtable
+    zmovelist = []
     battler.moves.each do |move|
-      next if ![move.type, move.id].include?(moverequirement)
-      next if !(highestpower > move.baseDamage)
-      highestpower = move.baseDamage
-      highestpowermove = move
+      next if ![move.type, move.id].include?(itemtable[item]) 
+      zmovelist.append(move)
     end
-    zmove = pbZMove(move)
+    return [] if zmovelist.length() == 0
+    retlist = []
+    zmovelist.each do |move|
+      zmove = pbZMove(move, item)
+      next if !zmove
+      retlist.append(zmove)
+    end
+    return retlist
   end
 
-  def pbZMove(move)
-
-    if move.statusMove?
-      return
+  def pbZMove(move, item=nil)
+    movezmoves = {
+      :PIKANIUMZ => :CATASTROPIKA,
+      :PIKASHUNIUMZ => :TENMILLIONVOLTTHUNDERBOLT,
+      :ALORAICHIUMZ => :STOKEDSPARKSURFER,
+      :EEVIUMZ => :EXTREMEEVOBOOST,
+      :PRIMARIUMZ => :OCEANICOPERETTA,
+      :KOMMONIUMZ => :CLANGEROUSSOULBLAZE
+    }
+    if movezmoves[item]
+      zmove = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(movezmoves[item]))
+      return zmove
     end
+    return false if move.statusMove?
+    typezmoves = {
+      :NORMAL => :BREAKNECKBLITZ,
+      :FIGHTING => :ALLOUTPUMMELING,
+      :FLYING => :SUPERSONICSKYSTRIKE,
+      :POISON => :ACIDDOWNPOUR,
+      :GROUND => :TECTONICRAGE,
+      :ROCK => :CONTINENTALCRUSH,
+      :BUG => :SAVAGESPINOUT,
+      :GHOST => :NEVERENDINGNIGHTMARE,
+      :STEEL => :CORKSCREWCRASH,
+      :FIRE => :INFERNOOVERDRIVE,
+      :WATER => :HYDROVORTEX,
+      :GRASS => :BLOOMDOOM,
+      :ELECTRIC => :GIGAVOLTHAVOC,
+      :PSYCHIC => :SHATTEREDPSYCHE,
+      :ICE => :SUBZEROSLAMMER,
+      :DRAGON => :DEVASTATINGDRAKE,
+      :DARK => :BLACKHOLEECLIPSE,
+      :FAIRY => :TWINKLETACKLE
+    }
+    return false if !typezmoves[move.type]
+    zmove = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(typezmoves[move.type]))
+    zmove.category = move.category
+    powertable = {
+      0...60 => 100,
+      60...70 => 120,
+      70...80 => 140,
+      80...90 => 160,
+      90...100 => 175,
+      100...110 => 180,
+      110...120 => 185,
+      120...130 => 190,
+      130...140 => 195,
+      140.. => 200
+    }
+    powertable.each do |key, value|
+      next if !key.include?(move.baseDamage)
+      zmove.baseDamage = value
+      break
+    end
+    return zmove
   end
 
   #=============================================================================

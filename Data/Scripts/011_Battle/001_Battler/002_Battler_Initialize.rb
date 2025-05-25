@@ -33,6 +33,7 @@ class PokeBattle_Battler
     @participants   = []
     @moves          = []
     @iv             = {}
+    @zmove = 1
     GameData::Stat.each_main { |s| @iv[s.id] = 0 }
   end
 

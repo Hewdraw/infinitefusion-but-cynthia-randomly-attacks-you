@@ -94,6 +94,10 @@ class PokeBattle_Move
     @category = value
   end
 
+  def baseDamage=(value)
+    @baseDamage = value
+  end
+
   def damagingMove?; return @category!=2; end
   def statusMove?;   return @category==2; end
 

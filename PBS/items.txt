@@ -773,6 +773,7 @@
 765,GARDEROSITE,Garderosite,Garderosites,1,0,"",0,0,0
 766,BEEGPP,Beeg PP,Beeg PPs,2,10000,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
 767,MECHUMETAL,Mechu Metal,Mechu Metals,2,128,"Infinitely dense iron.",1,3,0,
+777,NORMALIUMZ,Garderosite,Garderosites,1,0,"",0,0,0
 
 
 #    attr_reader :id

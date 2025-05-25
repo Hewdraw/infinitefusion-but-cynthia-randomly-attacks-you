@@ -285,6 +285,11 @@ class PokeBattle_AI
       next if switch && ![:UTURN,:VOLTSWITCH,:FLIPTURN,:TELEPORT,:PARTINGSHOT,:BATONPASS,:CHILLYRECEPTION,:SHEDTAIL].include?(move.id)
       pbCynthiaRegisterMove(user,i,choices)
     end
+    if user.zmove > 0
+      @battle.pbGetZMoves(user).each do |move|
+        pbCynthiaRegisterMove(user,move,choices)
+      end
+    end
     # Figure out useful information about the choices
     maxScore   = 0
     choices.each do |c|
@@ -292,11 +297,11 @@ class PokeBattle_AI
     end
     # Log the available choices
     logMsg = "[AI] Move choices for #{user.pbThis(true)} (#{user.index}): "
-    choices.each_with_index do |c,i|
-      logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
-      logMsg += " (target #{c[2]})" if c[2]>=0
-      logMsg += ", " if i<choices.length-1
-    end
+    # choices.each_with_index do |c,i|
+    #   logMsg += "#{user.moves[c[0]].name}=#{c[1]}"
+    #   logMsg += " (target #{c[2]})" if c[2]>=0
+    #   logMsg += ", " if i<choices.length-1
+    # end
     #print(logMsg)
     # Find any preferred moves and just choose from them
     preferredMoves = []
@@ -305,7 +310,7 @@ class PokeBattle_AI
     end
     if preferredMoves.length>0
       m = preferredMoves[pbAIRandom(preferredMoves.length)]
-      PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[m[0]].name}")
+      #PBDebug.log("[AI] #{user.pbThis} (#{user.index}) prefers #{user.moves[m[0]].name}")
       @battle.pbRegisterMove(idxBattler,m[0],false)
       @battle.pbRegisterTarget(idxBattler,m[2]) if m[2]>=0
       return true
