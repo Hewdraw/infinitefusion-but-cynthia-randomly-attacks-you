@@ -40,6 +40,13 @@
         "tags": "default"
     },
     {
+        "id": "brendan",
+        "name": "Ruby Spikes",
+        "description": "Short hair with sharp, upward spikes at the front and crown. This style is popular with fledgling trainers in Hoenn.",
+        "price": 500,
+        "tags": "hoenn"
+    },
+    {
         "id": "brock",
         "name": "Short, Neat Spikes",
         "description": "Neatly arranged spikes that look intimidating and disciplined. The style was popularized by Gym Leader Brock.",
@@ -92,6 +99,13 @@
         "price": 500,
         "tags": "fuchsia",
         "howToGet": "fuchsia specialty"
+    },
+    {
+        "id": "eeveetail",
+        "name": "Eevee Tail",
+        "description": "A puffy ponytail that looks just like the tail of an Eevee.",
+        "price": 3000,
+        "howToGet": "saffron boutique"
     },
     {
         "id": "elm",
@@ -293,6 +307,13 @@
         "howToGet": "start"
     },
     {
+        "id": "leafeonbob",
+        "name": "Verdant Bob",
+        "description": "A peculiar hairstyle that's meant to resembles the leaves of a Leadeon.",
+        "price": 3000,
+        "tags": "pokemon,"
+    },
+    {
         "id": "lenora",
         "name": "Side-Swept Bob",
         "description": "A smooth bob with side-swept bangs. The style was popularized by the Unovan Gym Leader Lenora.",
@@ -361,7 +382,7 @@
     },
     {
         "id": "may",
-        "name": "Layered Side Fringe",
+        "name": "Sapphire Side Tails",
         "description": "Medium-length brown hair with a fringe and side-swept bangs. This style is popular with fledgling trainers in Hoenn.",
         "done": "yes",
         "price": 1500,
@@ -422,6 +443,13 @@
         "price": 500,
         "tags": "short, untied, spiky,celadon,",
         "howToGet": "Celadon City special"
+    },
+    {
+        "id": "mullet",
+        "name": "Mullet",
+        "description": "Business in the front, party in the back!",
+        "price": 500,
+        "tags": "vermillion"
     },
     {
         "id": "nate",

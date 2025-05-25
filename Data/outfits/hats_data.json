@@ -107,6 +107,14 @@
     },
     {
         "id": "brendanRSE",
+        "name": "Ruby Cap",
+        "description": "A red bandana and white beanie combo. It's popular with fledgling trainers in Hoenn.",
+        "price": 3500,
+        "tags": "hat, headband,trainer,hoenn,",
+        "howToGet": "regional set"
+    },
+    {
+        "id": "brendanE",
         "name": "Emerald Cap",
         "description": "A green bandana and white beanie combo. It's popular with fledgling trainers in Hoenn.",
         "done": "yes",
@@ -790,6 +798,14 @@
         "howToGet": "regional set"
     },
     {
+        "id": "mayE",
+        "name": "Green Bandana",
+        "description": "A green bandana worn as a hat. It's popular with fledgling trainers in Hoenn.",
+        "price": 2000,
+        "tags": "hairclip, headband,trainer,hoenn,",
+        "howToGet": "regional set"
+    },
+    {
         "id": "mikufairy",
         "name": "Fairy Flower",
         "description": "A flower hairclip that is similar to the one worn by a famous singer.",
@@ -883,6 +899,20 @@
         "price": 10000,
         "tags": "mask,",
         "howToGet": "Goldenrod tunnel exclusive"
+    },
+    {
+        "id": "omanyte",
+        "name": "Spiral Shell Beanie",
+        "description": "A spiral-shaped beanie that is reminescent of the shell of an extinct Pokémon.",
+        "price": 8000,
+        "tags": "hat, pokemon-omanyte,pokemon-omastar"
+    },
+    {
+        "id": "orange",
+        "name": "Oran Berry",
+        "description": "Just an Oran Berry that's balanced on your head. Simplicity at its best!",
+        "price": 1000,
+        "tags": "hat,"
     },
     {
         "id": "parashroom",
@@ -1033,6 +1063,13 @@
         "tags": "hat,trainer,sinnoh"
     },
     {
+        "id": "rayquazatiara",
+        "name": "Sky Tiara",
+        "description": "A glorious tiara modeled after a ruler of the skies. It looks rare and expensive!",
+        "price": 45000,
+        "tags": "headband,pokemon-rayquaza"
+    },
+    {
         "id": "rocketcap",
         "name": "Team Rocket Cap",
         "description": "A black cap that all Team Rocket Grunts must wear as part of their uniform.",
@@ -1147,6 +1184,13 @@
         "howToGet": "lying around in the ss anne capt cabin"
     },
     {
+        "id": "seedothelmet",
+        "name": "Acorn Helmet",
+        "description": "A sturdy helmet that resembles a Seedot's head.",
+        "price": 4000,
+        "tags": "hat,pokemon-seedot,pokemon-nuzleaf,pokemon-shiftry,"
+    },
+    {
         "id": "seleneSM",
         "name": "Pompom Beanie",
         "description": "A beanie with a flower-shaped pompom. It's popular with fledgling trainers in Alola.",
@@ -1172,6 +1216,13 @@
         "price": 2000,
         "tags": "hat,trainer,kalos,",
         "howToGet": "trainer clothing store?"
+    },
+    {
+        "id": "silphscope",
+        "name": "Silph Scope",
+        "description": "A scope that makes unseeable Pokémon visible. It is made by Silph Co.",
+        "price": 0,
+        "tags": "heaband,special"
     },
     {
         "id": "simpleheadband",
@@ -1205,6 +1256,13 @@
         "price": 8000,
         "tags": "mask,",
         "howToGet": "Sleep at hotel"
+    },
+    {
+        "id": "slurpuffcake",
+        "name": "Slurpuff Cake",
+        "description": "Wearing this tasty cake on top of your head makes it so that you never have to stop eating it!",
+        "price": 5000,
+        "tags": "hat,pokemon-slurpuff,pokemon-swirlix,"
     },
     {
         "id": "slowking",
@@ -1295,6 +1353,13 @@
         "len": 50,
         "price": 12000,
         "tags": "hairclip,pokemon-sylveon"
+    },
+    {
+        "id": "tentacruel",
+        "name": "Head Tentacruel",
+        "description": "A small Tentacruel that picked your head as a resting spot. Watch out for those tentacles!",
+        "price": 6000,
+        "tags": "hat,special"
     },
     {
         "id": "tophat",
