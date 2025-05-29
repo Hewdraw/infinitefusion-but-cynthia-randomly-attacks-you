@@ -723,7 +723,8 @@ class PokeBattle_AI
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
     when "047"
-      score = 66 - opposingThreat
+      score = 34 - opposingThreat
+      score *= (6 - target.stages[:ACCURACY]) / 6.0
       score = 0 if !target.pbCanLowerStatStage?(:ACCURACY,user)
     #---------------------------------------------------------------------------
     when "049"
