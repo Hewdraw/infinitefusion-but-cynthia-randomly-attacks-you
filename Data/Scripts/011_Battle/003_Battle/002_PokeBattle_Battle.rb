@@ -707,12 +707,12 @@ class PokeBattle_Battle
     # End Primordial Sea, Desolate Land, Delta Stream
     case @field.weather
     when :HarshSun
-      if !pbCheckGlobalAbility(:DESOLATELAND) && @field.weatherDuration > 0
+      if !pbCheckGlobalAbility(:DESOLATELAND) && !(@field.weatherDuration > 0)
         @field.weather = :None
         pbDisplay("The harsh sunlight faded!")
       end
     when :HeavyRain
-      if !pbCheckGlobalAbility(:PRIMORDIALSEA) && @field.weatherDuration > 0
+      if !pbCheckGlobalAbility(:PRIMORDIALSEA) && !(@field.weatherDuration > 0)
         @field.weather = :None
         pbDisplay("The heavy rain has lifted!")
       end
