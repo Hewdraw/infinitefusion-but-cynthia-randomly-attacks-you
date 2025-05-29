@@ -1236,12 +1236,6 @@ class PokeBattle_AI
         break
       end
     #---------------------------------------------------------------------------
-    when "09D" #todo
-      score = 0 if user.effects[PBEffects::MudSport]
-    #---------------------------------------------------------------------------
-    when "09E" #todo
-      score = 0 if user.effects[PBEffects::WaterSport]
-    #---------------------------------------------------------------------------
     when "0A1"
       score = 0 if user.pbOwnSide.effects[PBEffects::LuckyChant]>0
     #---------------------------------------------------------------------------
@@ -1683,7 +1677,7 @@ class PokeBattle_AI
         score -= 40 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST])
       end
     #---------------------------------------------------------------------------
-    when "0FF", "188FIRE" #todo
+    when "0FF", "188FIRE", "09D" #todo
       score *= 2 if user.hasActiveItem?(:HEATROCK)
       score *= 2 if user.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
       score *= 1.5 if user.pbHasType?(:FIRE)
@@ -1692,15 +1686,15 @@ class PokeBattle_AI
       user.eachOpposing do |opponent|
         score *= 2 if opponent.pbHasType?(:WATER) && outspeedsopponent
       end
-      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun
+      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
     #---------------------------------------------------------------------------
-    when "100", "188WATER" #todo
+    when "100", "188WATER", "09E" #todo
       score *= 2 if user.hasActiveItem?(:DAMPROCK)
       score *= 2 if user.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
       score *= 1.5 if user.pbHasType?(:WATER)
       score *= 2 if user.pbHasMove?(:THUNDER) || user.pbHasMove?(:HURRICANE) || user.pbHasMove?(:BLEAKWINDSTORM) || user.pbHasMove?(:WILDBOLTSTORM) || user.pbHasMove?(:SANDSEARSTORM) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:ELECTROSHOT)
       score *= 2 if @battle.pbWeather == :Sun
-      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain
+      score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
     #---------------------------------------------------------------------------
     when "101", "188ROCK" #todo
       score *= 2 if user.hasActiveItem?(:SMOOTHROCK)

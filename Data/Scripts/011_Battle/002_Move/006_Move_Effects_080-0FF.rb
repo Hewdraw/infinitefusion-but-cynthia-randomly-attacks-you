@@ -651,18 +651,10 @@ end
 #===============================================================================
 # Weakens Electric attacks. (Mud Sport)
 #===============================================================================
-class PokeBattle_Move_09D < PokeBattle_Move
-  def pbMoveFailed?(user,targets)
-    if @battle.field.effects[PBEffects::MudSportField]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    @battle.field.effects[PBEffects::MudSportField] = 5
-    @battle.pbDisplay(_INTL("Electricity's power was weakened!"))
+class PokeBattle_Move_09D < PokeBattle_WeatherMove
+  def initialize(battle,move)
+    super
+    @weatherType = :HarshSun
   end
 end
 
@@ -671,18 +663,10 @@ end
 #===============================================================================
 # Weakens Fire attacks. (Water Sport)
 #===============================================================================
-class PokeBattle_Move_09E < PokeBattle_Move
-  def pbMoveFailed?(user,targets)
-    if @battle.field.effects[PBEffects::WaterSportField]>0
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    @battle.field.effects[PBEffects::WaterSportField] = 5
-    @battle.pbDisplay(_INTL("Fire's power was weakened!"))
+class PokeBattle_Move_09E < PokeBattle_WeatherMove
+  def initialize(battle, move)
+    super
+    @weatherType = :HeavyRain
   end
 end
 
