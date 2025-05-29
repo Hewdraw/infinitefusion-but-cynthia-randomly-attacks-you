@@ -468,6 +468,7 @@ BattleHandlers::DamageCalcUserItem.copy(:BLACKBELT,:FISTPLATE)
 BattleHandlers::DamageCalcUserItem.add(:BLACKGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.2 if type == :DARK
+    mults[:base_damage_multiplier] *= 1.2 if move.id == :BODYPRESS
   }
 )
 
