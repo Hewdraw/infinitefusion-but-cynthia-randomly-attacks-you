@@ -1441,13 +1441,13 @@ BattleHandlers::EVGainModifierItem.add(:POWERWEIGHT,
 
 BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
   proc { |item,weather,duration,battler,battle|
-    next 8 if weather == :Rain
+    next 8 if weather == :Rain || weather == :HeavyRain
   }
 )
 
 BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   proc { |item,weather,duration,battler,battle|
-    next 8 if weather == :Sun
+    next 8 if weather == :Sun || weather == :HarshSun
   }
 )
 
