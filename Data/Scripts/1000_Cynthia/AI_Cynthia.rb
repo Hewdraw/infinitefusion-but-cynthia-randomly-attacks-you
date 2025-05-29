@@ -7,8 +7,37 @@ class PokeBattle_AI
       choices.push(*pbCynthiaItemScore(idxBattler))
       return if pbCynthiaShouldWithdraw(idxBattler)
     end
-    @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbCynthiaChooseMoves(idxBattler)
+    if @battle.choices[idxBattler][0]==:UseMove && user.tera && user.unteraTypes == nil
+      if user.tera == :STELLAR || user.hasActiveAbility?(:WONDERGUARD) || user.hasActiveAbility?(:NORMALIZE)
+        user.willtera = true
+      else
+        user.willtera = pbCynthiaShouldTera(idxBattler)
+      end
+    end
+  end
+
+  def pbCynthiaShouldTera(idxBattler)
+    user = @battle.battlers[idxBattler]
+    userThreat = 1
+    opposingThreat = 1
+    teraUserThreat = 1
+    teraOpposingThreat = 1
+    user.eachOpposing do |target|
+      next if target.fainted?
+      opposingThreat += pbCynthiaGetThreat(user, target)[:highestDamage]
+      threat = pbCynthiaGetThreat(target, user, false)[:highestDamage]
+      userThreat = [threat, userThreat].max
+      teraOpposingThreat += pbCynthiaGetThreat(user, target, true, user)[:highestDamage]
+      threat = pbCynthiaGetThreat(target, user, false, user)[:highestDamage]
+      teraUserThreat = [threat, teraUserThreat].max
+    end
+
+    if teraUserThreat > userThreat || teraOpposingThreat < opposingThreat
+      return true
+    end
+
+    return nil
   end
 
   def pbCynthiaShouldWithdraw(idxBattler)
@@ -172,7 +201,7 @@ class PokeBattle_AI
     return switchScore
   end
 
-  def pbCynthiaGetThreat(user, target, percentagetotal = true)
+  def pbCynthiaGetThreat(user, target, percentagetotal = true, tera = nil)
     return {
       :highestDamage => 0,
       :physicalDamage => 0,
@@ -182,11 +211,11 @@ class PokeBattle_AI
     } if !user
     newtable = {}
     if user != target
-      threattable = pbCynthiaAssessThreat(user, target)
+      threattable = pbCynthiaAssessThreat(user, target, tera)
     else
       maxthreat = 0
       user.eachOpposing do |opponent|
-        threat = pbCynthiaAssessThreat(user, opponent)
+        threat = pbCynthiaAssessThreat(user, opponent, tera)
         if threat[:highestDamage] >= maxthreat
           threattable = threat
         end
@@ -203,10 +232,12 @@ class PokeBattle_AI
     return newtable
   end
 
-  def pbCynthiaAssessThreat(user, target)
+  def pbCynthiaAssessThreat(user, target, tera = nil)
     @threattable[target] = {} if !@threattable[target]
-    return @threattable[target][user] if @threattable[target][user]
-    @threattable[target][user] = {
+    if !tera
+      return @threattable[target][user] if @threattable[target][user]
+    end
+    threattable = {
       :highestDamage => 0,
       :physicalDamage => 0,
       :specialDamage => 0,
@@ -222,20 +253,25 @@ class PokeBattle_AI
       next if !target.pbCanChooseMove?(move,true,false,false)
       next if target.pbEncoredMoveIndex != i && target.pbEncoredMoveIndex >= 0
       next if pbCheckMoveImmunity(100,move,target,user,100)
-      @threattable[target][user][:moves][move] = pbCynthiaAssessMoveThreat(user, target, move)
-      if @threattable[target][user][:moves][move][:category] == :status
-        @threattable[target][user][:statusCount] += 1
+      threattable[:moves][move] = pbCynthiaAssessMoveThreat(user, target, move, tera)
+      if threattable[:moves][move][:category] == :status
+        threattable[:statusCount] += 1
         next
       end
-      damage = @threattable[target][user][:moves][move][key]
-      @threattable[target][user][:highestDamage] = damage if damage > @threattable[target][user][:highestDamage]
-      @threattable[target][user][:physicalDamage] = damage if damage > @threattable[target][user][:physicalDamage] && @threattable[target][user][:moves][move][:category] == :physical
-      @threattable[target][user][:specialDamage] = damage if damage > @threattable[target][user][:specialDamage] && @threattable[target][user][:moves][move][:category] == :special
+      damage = threattable[:moves][move][key]
+      threattable[:highestDamage] = damage if damage > threattable[:highestDamage]
+      threattable[:physicalDamage] = damage if damage > threattable[:physicalDamage] && threattable[:moves][move][:category] == :physical
+      threattable[:specialDamage] = damage if damage > threattable[:specialDamage] && threattable[:moves][move][:category] == :special
     end
-    return @threattable[target][user]
+
+    if !tera
+      @threattable[target][user] = threattable
+    end
+
+    return threattable
   end
 
-  def pbCynthiaAssessMoveThreat(user, target, move)
+  def pbCynthiaAssessMoveThreat(user, target, move, tera=nil)
       if move.callsAnotherMove?
         case move.function
         when "0AE" #todo
@@ -245,7 +281,7 @@ class PokeBattle_AI
             moveID = @battle.lastMoveUsed
             calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
             if !blacklist.include?(calledmove.function)
-              return pbCynthiaAssessMoveThreat(user,target,calledmove)
+              return pbCynthiaAssessMoveThreat(user,target,calledmove,tera)
             end
           end
         when "0B0" #todo
@@ -255,7 +291,7 @@ class PokeBattle_AI
         when "0B6" #todo
         end
       end
-      damagetable = pbCynthiaCalcDamage(move,target,user)
+      damagetable = pbCynthiaCalcDamage(move,target,user,tera)
       damagetable[:category] = :status
       damagetable[:category] = :physical if move.physicalMove?
       damagetable[:category] = :special if move.specialMove?

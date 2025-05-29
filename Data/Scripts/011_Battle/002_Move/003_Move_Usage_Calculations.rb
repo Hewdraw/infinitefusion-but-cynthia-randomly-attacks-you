@@ -61,12 +61,13 @@ class PokeBattle_Move
     return ret
   end
 
-  def pbCalcTypeMod(moveType,user,target)
+  def pbCalcTypeMod(moveType,user,target,tera=nil)
     return Effectiveness::NORMAL_EFFECTIVE if !moveType
     return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
-       target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+       (target.pbHasType?(:FLYING) || (target == tera && target.tera == :FLYING)) && target.hasActiveItem?(:IRONBALL)
     # Determine types
     tTypes = target.pbTypes(true)
+    tTypes = [target.tera] if target == tera
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     if moveType == :SHADOW
@@ -76,8 +77,16 @@ class PokeBattle_Move
         typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
       end
     else
-      tTypes.each_with_index do |type,i|
-        typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
+      if target == tera && target.tera == :FLYING
+        target.effects[PBEffects::MagnetRise] += 1 #temporary airborne
+        tTypes.each_with_index do |type,i|
+          typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
+        end
+        target.effects[PBEffects::MagnetRise] -= 1
+      else
+        tTypes.each_with_index do |type,i|
+          typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
+        end
       end
     end
     # Multiply all effectivenesses together

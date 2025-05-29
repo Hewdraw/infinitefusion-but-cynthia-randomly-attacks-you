@@ -98,7 +98,8 @@ class PokeBattle_Battle
 
   def pbAttackPhaseTerastallize
     pbPriority.each do |b|
-      next if !b.tera
+      next unless b.tera
+      next unless b.willtera == true
       next unless @choices[b.index][0]==:UseMove && !b.fainted?
       pbTerastallize(b.index)
     end

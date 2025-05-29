@@ -406,7 +406,7 @@ class PokeBattle_Battle
       return zmove
     end
     statuszmoves = {
-      :CONVERSION => :ZCONVERSION
+      :CONVERSION => :ZCONVERSION,
       :SLEEPTALK => :ZSLEEPTALK
     }
     if move.statusMove?

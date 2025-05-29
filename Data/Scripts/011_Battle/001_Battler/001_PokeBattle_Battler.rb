@@ -44,6 +44,7 @@ class PokeBattle_Battler
   attr_accessor :initialHP # Set at the start of each move's usage
   attr_accessor :tera
   attr_accessor :unteraTypes
+  attr_accessor :willtera
   attr_accessor :stellarmoves
   attr_accessor :dynamax
   attr_accessor :undynamoves

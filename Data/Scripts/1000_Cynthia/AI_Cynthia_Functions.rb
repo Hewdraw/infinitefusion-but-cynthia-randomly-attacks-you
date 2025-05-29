@@ -2745,7 +2745,7 @@ class PokeBattle_AI
   end
 
     
-  def pbCynthiaCalcDamage(move,user,target)
+  def pbCynthiaCalcDamage(move,user,target,tera=nil)
     damagedictionary = {
       :minDamage => 0,
       :averageDamage => 0,
@@ -2900,7 +2900,10 @@ class PokeBattle_AI
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
       stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
       type = move.pbCalcType(user)
-      typeMod = move.pbCalcTypeMod(type,user,target)
+      if tera == user && move.function == "177"
+        type = user.tera
+      end
+      typeMod = move.pbCalcTypeMod(type,user,target,tera)
       atk, atkStage = move.pbGetAttackStats(user,target)
       if switchin == target && target.hasActiveAbility?([:INTIMIDATE, :SKULK]) && move.physicalMove? #todo menace
         unless user.effects[PBEffects::Substitute]>0 || user.pbOwnSide.effects[PBEffects::Mist]>0 || user.hasActiveAbility?([:CLEARBODY, :WHITESMOKE, :HYPERCUTTER, :FULLMETALBODY]) || !user.pbCanLowerStatStage?(:ATTACK,target)
@@ -3233,11 +3236,11 @@ class PokeBattle_AI
           multipliers[:final_damage_multiplier] *= 1.5
         end
       when :Sandstorm
-        if (target.hasActiveAbility?(:ADAPTINGSANDS) || target.pbHasType?(:ROCK)) && move.specialMove? && move.function != "122"   # Psyshock
+        if (target.hasActiveAbility?(:ADAPTINGSANDS) || target.pbHasType?(:ROCK) || (target == tera && target.tera == :ROCK)) && move.specialMove? && move.function != "122"   # Psyshock
           multipliers[:defense_multiplier] *= 1.5
         end
       when :Snow
-        if target.pbHasType?(:ICE) && move.physicalMove? && move.function != "202"
+        if (target.pbHasType?(:ICE) || (target == tera && target.tera == :ICE)) && move.physicalMove? && move.function != "202"
           multipliers[:defense_multiplier] *= 1.5
         end
       end
@@ -3259,28 +3262,41 @@ class PokeBattle_AI
       end
       multipliers[:final_damage_multiplier] *= random / 100.0
       # STAB
-      if type && user.pbHasType?(type)
-        if user.hasActiveAbility?([:ADAPTABILITY, :ADAPTINGPIXELS, :ADAPTIVETECHNICIAN])
-          multipliers[:final_damage_multiplier] *= 2
-        else
+      if user == tera
+        if type && user.tera == type
+          if user.hasActiveAbility?([:ADAPTABILITY, :ADAPTINGPIXELS, :ADAPTIVETECHNICIAN])
+            multipliers[:final_damage_multiplier] *= 2
+          else
+            multipliers[:final_damage_multiplier] *= 1.5
+          end
+        end
+        if type && user.pbHasType?(type)
           multipliers[:final_damage_multiplier] *= 1.5
         end
-      end
-      if user.unteraTypes != nil
-        if user.unteraTypes.include?(:STELLAR)
-          if user.stellarmoves == nil
-            user.stellarmoves = []
+      else
+        if type && user.pbHasType?(type)
+          if user.hasActiveAbility?([:ADAPTABILITY, :ADAPTINGPIXELS, :ADAPTIVETECHNICIAN])
+            multipliers[:final_damage_multiplier] *= 2
+          else
+            multipliers[:final_damage_multiplier] *= 1.5
           end
-          if !user.stellarmoves.include?(GameData::Type.get(type).id)
+        end
+        if user.unteraTypes != nil
+          if user.unteraTypes.include?(:STELLAR)
+            if user.stellarmoves == nil
+              user.stellarmoves = []
+            end
+            if !user.stellarmoves.include?(GameData::Type.get(type).id)
+              if type && user.unteraTypes.include?(GameData::Type.get(type).id)
+                multipliers[:final_damage_multiplier] *= 1.5
+              else
+                multipliers[:final_damage_multiplier] *= 1.2
+              end
+            end
+          else
             if type && user.unteraTypes.include?(GameData::Type.get(type).id)
               multipliers[:final_damage_multiplier] *= 1.5
-            else
-              multipliers[:final_damage_multiplier] *= 1.2
             end
-          end
-        else
-          if type && user.unteraTypes.include?(GameData::Type.get(type).id)
-            multipliers[:final_damage_multiplier] *= 1.5
           end
         end
       end
