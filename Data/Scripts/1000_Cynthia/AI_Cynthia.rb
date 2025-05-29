@@ -169,6 +169,7 @@ class PokeBattle_AI
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 0
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
     switchOutScore += 1 if user.effects[PBEffects::Yawn]
+    switchOutScore -= 5 if user.pbHasMove?(:EXPLOSION) || user.pbHasMove?(:SELFDESTRUCT) || user.pbHasMove?(:MEMENTO) || user.pbHasMove?(:HEALINGWISH)
 
     if threat < 33
       activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false

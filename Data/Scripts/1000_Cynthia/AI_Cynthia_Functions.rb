@@ -23,7 +23,6 @@ class PokeBattle_AI
   def pbCynthiaGetMoveScoreStatus(move,user,target)
     skill = 100 #temporary
     score = 16
-    score = 32 if move.statusMove?
     userMaxThreattable = pbCynthiaGetThreat(target, user)
     userMaxThreat = userMaxThreattable[:highestDamage]
     userMaxPhysicalThreat = userMaxThreattable[:physicalDamage]
@@ -1488,18 +1487,20 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0E0" #todo
-      score = 100
-      score = 0 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = opposingThreat
+      score = -100 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
     #---------------------------------------------------------------------------
     when "0E1" #todo
+      score = opposingThreat
+      score = -100 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
     #---------------------------------------------------------------------------
     when "0E2" #todo
-      score = 100
-      score = 0 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = opposingThreat
+      score = -100 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
     #---------------------------------------------------------------------------
     when "0E3", "0E4"
-      score = 100
-      score = 0 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = opposingThreat
+      score = -100 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
     #---------------------------------------------------------------------------
     when "0E5" #todo
       if @battle.pbAbleNonActiveCount(user.idxOwnSide)==0
