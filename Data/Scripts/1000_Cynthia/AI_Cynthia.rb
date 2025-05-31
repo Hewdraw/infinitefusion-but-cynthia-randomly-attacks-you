@@ -162,7 +162,7 @@ class PokeBattle_AI
     switchOutScore -= 10 if user.effects[PBEffects::Substitute]>0 || user.effects[PBEffects::RedstoneCube]>0
     switchOutScore += 3 if user.effects[PBEffects::Curse] && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore += 2 if user.effects[PBEffects::Nightmare] && !user.hasActiveAbility?(:MAGICGUARD)
-    switchOutScore -= 1 if user.turnCount == 0
+    switchOutScore -= 1 if user.turnCount == 0 && @battle.turnCount != 0
     switchOutScore += 1 if user.pbHasMove?(:UTURN) || user.pbHasMove?(:VOLTSWITCH) || user.pbHasMove?(:FLIPTURN) || user.pbHasMove?(:PARTINGSHOT)
     switchOutScore -= 1 if user.effects[PBEffects::Protosynthesis] > 0
     switchOutScore -= 1 if user.effects[PBEffects::Protosynthesis] > 10
@@ -170,6 +170,10 @@ class PokeBattle_AI
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
     switchOutScore += 1 if user.effects[PBEffects::Yawn]
     switchOutScore -= 5 if user.pbHasMove?(:EXPLOSION) || user.pbHasMove?(:SELFDESTRUCT) || user.pbHasMove?(:MEMENTO) || user.pbHasMove?(:HEALINGWISH)
+    user.eachOpposing do |target|
+      switchOutScore -= 1 if target.pbHasMove?(:CALMMIND) || target.pbHasMove?(:BULKUP)
+      switchOutScore -= 2 if target.pbHasMove?(:NASTYPLOT) || target.pbHasMove?(:SWORDSDANCE) || target.pbHasMove?(:DRAGONDANCE) || target.pbHasMove?(:QUIVERDANCE)
+    end
 
     if threat < 33
       activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
