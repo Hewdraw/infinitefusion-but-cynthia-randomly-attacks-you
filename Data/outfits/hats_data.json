@@ -291,6 +291,13 @@
         "howToGet": "type trainer"
     },
     {
+        "id": "diancie",
+        "name": "Jewel Crown",
+        "description": "A regal looking crown inspired by the jewels on a Diancie.",
+        "price": 50000,
+        "tags": "hat,pokemon-diancie"
+    },
+    {
         "id": "dragonitehorns",
         "name": "Dragonite Horns",
         "price": 4500,
@@ -865,6 +872,13 @@
         "howToGet": "quest in a broken down pokecenter, gotta help heal up a bunch of mons that are in critical condition (give potions etc to npc mons)? "
     },
     {
+        "id": "nya",
+        "name": "Kitten Headband",
+        "description": "A cute headband that ressembles the ears of a Skitty.",
+        "price": 3500,
+        "tags": "headband, pokemon-skitty, pokemon-delcatty,"
+    },
+    {
         "id": "ogremaskblue",
         "name": "Wellspring Mask",
         "description": "A blue carved wooden mask patterned after the face of an ogre.",
@@ -1357,7 +1371,7 @@
     {
         "id": "tentacruel",
         "name": "Head Tentacruel",
-        "description": "A small Tentacruel that picked your head as a resting spot. Watch out for those tentacles!",
+        "description": "A tiny Tentacruel that picked your head as a resting spot. Watch out for those tentacles!",
         "price": 6000,
         "tags": "hat,special"
     },
