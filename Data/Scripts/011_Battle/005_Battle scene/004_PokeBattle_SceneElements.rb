@@ -245,10 +245,10 @@ class PokemonDataBox < SpriteWrapper
     pbDrawNumber(@battler.level,self.bitmap,@spriteBaseX+162,16) if !$game_switches[SWITCH_NO_LEVELS_MODE]
     # Draw shiny icon
     if @battler.shiny?
-      shinyX = (@battler.opposes?(0)) ? -6 : -6   # Foe's/player's
+      shinyX = (@battler.opposes?(0)) ? -8 : -6   # Foe's/player's
 
       pokeRadarShiny= !@battler.pokemon.debugShiny? && !@battler.pokemon.naturalShiny?
-      addShinyStarsToGraphicsArray(imagePos,@spriteBaseX+shinyX,35, @battler.pokemon.bodyShiny?,@battler.pokemon.headShiny?,@battler.pokemon.debugShiny?, pokeRadarShiny)
+      addShinyStarsToGraphicsArray(imagePos,@spriteBaseX+shinyX,15, @battler.pokemon.bodyShiny?,@battler.pokemon.headShiny?,@battler.pokemon.debugShiny?, pokeRadarShiny)
     end
     # Draw Mega Evolution/Primal Reversion icon
     if @battler.mega?

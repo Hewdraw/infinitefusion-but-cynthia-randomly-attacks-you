@@ -132,7 +132,7 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                               },
                               [
                                 "Auto-selected sprites follow standard Pokémon sprites rules.",
-                                "Auto-selected sprites can be anything, including references, sprites, memes, and joke sprites."
+                                "Auto-selected sprites can be anything, including references, memes, jokes, etc."
                               ]
     ) ? 1 : 0
 
