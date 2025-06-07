@@ -48,7 +48,7 @@ class PokemonSystem
     @type_icons = true
     @use_generated_dex_entries = true
     @use_custom_eggs = true
-    @include_alt_sprites_in_random = true
+    @include_alt_sprites_in_random = false
   end
 end
 
