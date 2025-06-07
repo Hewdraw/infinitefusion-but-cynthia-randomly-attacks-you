@@ -90,12 +90,6 @@
         "howToGet": "city exclusive outfit"
     },
     {
-        "id": "breloomcap",
-        "name": "Breloom Cap",
-        "price": 8000,
-        "tags": "pokemon-shroomish,pokemon-breloom"
-    },
-    {
         "id": "bughakama",
         "name": "Bug Hakama Dress",
         "description": "A traditionnal looking hakama dress, that captures the essence of bug-type Pokémon, complete with a bug-catching net!",
@@ -552,13 +546,6 @@
         "howToGet": "city-exclusive outfit"
     },
     {
-        "id": "pumpkaboohelmet",
-        "name": "Pumpkaboo Helmet",
-        "description": "A hollowed out pumpkin that looks like a Pumpkaboo!",
-        "price": 1031,
-        "tags": "pokemon-pumpkaboo,pokemon-gourgeist,"
-    },
-    {
         "id": "Ramos",
         "name": "Gardener Outfit",
         "description": "An outfit worn by gardeners. It was popularized by a certain Gym Leader from the Kalos region.",
@@ -657,13 +644,6 @@
         "done": "yes",
         "price": 12000,
         "tags": "pokemon-slowpoke,pokemon-slowbro,pokemon-slowking"
-    },
-    {
-        "id": "sneaselfeather",
-        "name": "Sharp Feather",
-        "description": "A feather worn on the head that ressembles the ear of a Sneasel.",
-        "price": 4000,
-        "tags": "pokemon-sneasel,pokemon-weavile,"
     },
     {
         "id": "SnowCoatFemale",

@@ -96,6 +96,12 @@
         "howToGet": "reward for hatching x number of eggs? for getting every baby mon?"
     },
     {
+        "id": "breloomcap",
+        "name": "Breloom Cap",
+        "price": 8000,
+        "tags": "pokemon-shroomish,pokemon-breloom"
+    },
+    {
         "id": "brendanORAS",
         "name": "Sporty Cap",
         "description": "A black bandana and white beanie combo. It's popular with fledgling trainers in Hoenn.",
@@ -1032,6 +1038,13 @@
         "howToGet": "gym reward"
     },
     {
+        "id": "pumpkaboohelmet",
+        "name": "Pumpkaboo Helmet",
+        "description": "A hollowed out pumpkin that looks like a Pumpkaboo!",
+        "price": 1031,
+        "tags": "pokemon-pumpkaboo,pokemon-gourgeist,"
+    },
+    {
         "id": "Ramos",
         "name": "Green Flat cap",
         "description": "A green flat cap that was popularized by a certain Gym Leader from Kalos.",
@@ -1286,6 +1299,13 @@
         "len": 78,
         "price": 15000,
         "tags": "hat,pokemon-slowbro,pokemon-slowking,pokemon-shellder"
+    },
+    {
+        "id": "sneaselfeather",
+        "name": "Sharp Feather",
+        "description": "A feather worn on the head that ressembles the ear of a Sneasel.",
+        "price": 4000,
+        "tags": "pokemon-sneasel,pokemon-weavile,"
     },
     {
         "id": "snorlaxhat",
