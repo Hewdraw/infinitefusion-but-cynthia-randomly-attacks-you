@@ -24,13 +24,13 @@ class StartersSelectionScene
     @foreground = displayPicture("Graphics/Pictures/Trades/hoenn_starter_bag_foreground.png", -20, -20)
     @foreground.z=999
 
-    @pokeball_closed_left = displayPicture("Graphics/Pictures/Trades/trade_pokeball_closed_1.png", POKEBALL_LEFT_X, POKEBALL_LEFT_Y)
+    @pokeball_closed_left = displayPicture("Graphics/Pictures/StarterSelection/trade_pokeball_closed_1.png", POKEBALL_LEFT_X, POKEBALL_LEFT_Y)
     @pokeball_closed_left.z=2
 
-    @pokeball_closed_middle = displayPicture("Graphics/Pictures/Trades/trade_pokeball_closed_2.png", POKEBALL_MIDDLE_X, POKEBALL_MIDDLE_Y)
+    @pokeball_closed_middle = displayPicture("Graphics/Pictures/StarterSelection/trade_pokeball_closed_2.png", POKEBALL_MIDDLE_X, POKEBALL_MIDDLE_Y)
     @pokeball_closed_middle.z=100
 
-    @pokeball_closed_right = displayPicture("Graphics/Pictures/Trades/trade_pokeball_closed_3.png", POKEBALL_RIGHT_X, POKEBALL_RIGHT_Y)
+    @pokeball_closed_right = displayPicture("Graphics/Pictures/StarterSelection/trade_pokeball_closed_3.png", POKEBALL_RIGHT_X, POKEBALL_RIGHT_Y)
     @pokeball_closed_right.z=2
 
 
@@ -142,8 +142,21 @@ class StartersSelectionScene
     @shown_starter_species = @starters_species[@index]
 
     updateOpenPokeballPosition
-    @pokeball_open_back = displayPicture("Graphics/Pictures/Trades/trade_pokeball_open_back",@shown_pokemon_x, @shown_pokemon_y,2)
-    @pokeball_open_front = displayPicture("Graphics/Pictures/Trades/trade_pokeball_open_front",@shown_pokemon_x, @shown_pokemon_y,50)
+
+    case @index
+    when 0
+      picture_back_path ="Graphics/Pictures/StarterSelection/BACKleftball"
+      picture_front_path = "Graphics/Pictures/StarterSelection/FRONTleftball"
+    when 1
+      picture_back_path ="Graphics/Pictures/StarterSelection/BACKcenterball"
+      picture_front_path = "Graphics/Pictures/StarterSelection/FRONTcenterball"
+    when 2
+      picture_back_path ="Graphics/Pictures/StarterSelection/BACKrightball"
+      picture_front_path = "Graphics/Pictures/StarterSelection/FRONTrightball"
+    end
+
+    @pokeball_open_back = displayPicture(picture_back_path,@shown_pokemon_x, @shown_pokemon_y,2)
+    @pokeball_open_front = displayPicture(picture_front_path,@shown_pokemon_x, @shown_pokemon_y,50)
 
     updatePokemonSprite
   end
