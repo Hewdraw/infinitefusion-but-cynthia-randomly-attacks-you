@@ -180,8 +180,8 @@ class HallOfFame_Scene
     if !@singlerow
       ret = 92 + 128 * ypositionformula(battlernumber) / 2
     else
-      y_position_base = 200
-      height_increase = 30
+      y_position_base = 125
+      height_increase = 20
       # Calculate the decrement based on the battlernumber:
       # Each pair (1-2, 3-4, etc.) will decrease y by height_increase
       y_decrement = 40 - height_increase * (battlernumber / 2)

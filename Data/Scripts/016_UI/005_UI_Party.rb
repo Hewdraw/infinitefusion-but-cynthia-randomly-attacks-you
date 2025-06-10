@@ -1231,7 +1231,8 @@ class PokemonPartyScreen
     splicerItem = selectSplicer()
     return unless splicerItem
     if pbDNASplicing(pokemon,@scene,splicerItem)
-      $PokemonBag.pbDeleteItem(splicerItem, 1) unless splicerItem == :INFINITESPLICERS || splicerItem == :INFINITESPLICER2
+      echoln splicerItem
+      $PokemonBag.pbDeleteItem(splicerItem, 1) unless splicerItem == :INFINITESPLICERS || splicerItem == :INFINITESPLICERS2
     end
   end
 

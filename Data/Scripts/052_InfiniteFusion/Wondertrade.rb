@@ -128,6 +128,10 @@ def pbWonderTrade(lvl, except = [], except2 = [], premiumWonderTrade = true)
     tname = getSpriterCreditForDexNumber(species)
     tname = randTrainerNames[rand(randTrainerNames.size)] if ! tname
     newpoke = pbStartTrade(pbGet(1), species, pname, tname, 0, true) # Starts the trade
+
+    echoln newpoke
+    echholn newpoke.species
+
     #lower level by 1 to prevent abuse
     if poke.level > 25
       newpoke.level = poke.level - 1

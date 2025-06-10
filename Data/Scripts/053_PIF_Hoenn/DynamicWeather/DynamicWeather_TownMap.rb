@@ -76,6 +76,7 @@ end
 def get_current_map_weather_icon
   return if !$game_weather
   current_weather= $game_weather.current_weather[$game_map.map_id]
+  return if !current_weather
   weather_type = current_weather[0]
   weather_intensity = current_weather[1]
   icon = get_full_weather_icon_name(weather_type,weather_intensity)

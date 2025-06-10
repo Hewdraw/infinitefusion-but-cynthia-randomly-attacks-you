@@ -125,10 +125,15 @@ Events.onStepTaken += proc { |sender, e|
         $game_temp.surf_patches.delete_at(index)
         echoln "surf patch encounter!"
         wild_pokemon = $PokemonEncounters.choose_wild_pokemon(:Water)
-        species = wild_pokemon[0]
-        level = wild_pokemon[1]
-        pbWildBattle(species, level)
-        break
+        if wild_pokemon
+          species = wild_pokemon[0]
+          level = wild_pokemon[1]
+          pbWildBattle(species, level)
+          break
+        else
+          pbItemBall(:OLDBOOT)
+        end
+
       end
     end
   end

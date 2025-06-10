@@ -251,4 +251,5 @@ def pbStartTrade(pokemonIndex,newpoke,nickname,trainerName,trainerGender=0,saveg
   $Trainer.party[pokemonIndex] = yourPokemon
 
   setDialogIconOff(@event_id) if @event_id
+  return yourPokemon
 end
