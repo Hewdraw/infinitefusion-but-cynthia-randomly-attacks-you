@@ -1205,7 +1205,7 @@ class PokeBattle_AI
     when "09C"
       score = 0
       user.eachAlly do |b|
-        score = [score, pbCynthiaGetThreat(b, b) * 0.3]
+        score = [score, pbCynthiaGetThreat(b, b)[:highestDamage] * 0.3]
         score *= 2 if pbCynthiaCompareSpeed(b, user)
         break
       end
@@ -1812,12 +1812,11 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "113" #todo
-      score -= 100 if user.effects[PBEffects::Stockpile]==0
+      score = -100 if user.effects[PBEffects::Stockpile]==0
     #---------------------------------------------------------------------------
     when "114" #todo
-      if user.effects[PBEffects::Stockpile]==0
-        score -= 90
-      elsif user.hp==user.totalhp
+      score = -100 if user.effects[PBEffects::Stockpile]==0
+      if user.hp==user.totalhp
         score -= 90
       else
         mult = [0,25,50,100][user.effects[PBEffects::Stockpile]]
