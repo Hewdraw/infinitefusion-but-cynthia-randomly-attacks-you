@@ -548,7 +548,7 @@ def pbTrainerBattleCore(*args)
       foeEndSpeeches.push(arg.lose_text)
       foeItems.push(arg.items)
     elsif arg.is_a?(Array)   # [trainer type, trainer name, ID, speech (optional)]
-      if arg[1] == "Cynthia" #todo temporary
+      if arg[1] == "Cynthia" && arg[0] == :CHAMPION_Sinnoh && arg[2] > 0 #todo temporary
         trainer = nil
         trainerid = arg[2]
         while !trainer && trainerid > 0
