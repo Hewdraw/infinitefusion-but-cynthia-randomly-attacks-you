@@ -64,8 +64,8 @@ class Sprite_Character
   def checkModifySpriteGraphics(character)
     PIF_typeExpert_checkModifySpriteGraphics(character)
     return if character == $game_player
-    setSpriteToAppearance($Trainer.rival_appearance) if isPlayerFemale && character.name == HOENN_RIVAL_EVENT_NAME && character.character_name == TEMPLATE_CHARACTER_FILE
-    setSpriteToAppearance($Trainer.rival_appearance) if isPlayerMale && character.name == HOENN_RIVAL_EVENT_NAME && character.character_name == TEMPLATE_CHARACTER_FILE
+    setSpriteToAppearance($Trainer.rival_appearance) if isPlayerFemale && character.name.start_with?(HOENN_RIVAL_EVENT_NAME) && character.character_name == TEMPLATE_CHARACTER_FILE
+    setSpriteToAppearance($Trainer.rival_appearance) if isPlayerMale && character.name.start_with?(HOENN_RIVAL_EVENT_NAME) && character.character_name == TEMPLATE_CHARACTER_FILE
   end
 end
 

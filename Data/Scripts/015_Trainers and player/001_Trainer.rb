@@ -8,6 +8,7 @@ class Trainer
   attr_accessor :language
   attr_accessor :party
   attr_accessor :quests
+  attr_accessor :quests_repaired
   attr_accessor :sprite_override
   attr_accessor :custom_appearance
   attr_accessor :lowest_difficulty

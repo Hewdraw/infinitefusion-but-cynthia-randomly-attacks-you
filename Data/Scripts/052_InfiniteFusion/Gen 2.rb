@@ -129,6 +129,9 @@ def GetSpriteName(poke1, poke2, isFused)
   return ret
 end
 
+def isPartPokemon(src, target)
+  return Kernel.isPartPokemon(src, target)
+end
 #in: pokemon number
 def Kernel.isPartPokemon(src, target)
 

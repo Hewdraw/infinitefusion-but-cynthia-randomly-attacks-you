@@ -297,6 +297,33 @@ def useSleepingBag()
   return 1
 end
 
+def useFieldSleepingBag()
+  currentSecondsValue = pbGet(UnrealTime::EXTRA_SECONDS)
+  confirmed = Kernel.pbConfirmMessage("Sleep for an hour?")
+  if confirmed
+    oldDay = getDayOfTheWeek()
+    timeAdded = 0
+    timeAdded = 3600
+
+    pbSet(UnrealTime::EXTRA_SECONDS, currentSecondsValue + timeAdded)
+    pbSEPlay("Sleep", 100)
+    pbFadeOutIn {
+      $game_weather.update_weather
+      Kernel.pbMessage(_INTL("{1} slept for a while...", $Trainer.name))
+      $scene.reset_map(false)
+    }
+    time = pbGetTimeNow.strftime("%I:%M %p")
+    newDay = getDayOfTheWeek()
+    if newDay != oldDay
+      Kernel.pbMessage(_INTL("The current time is now {1} on {2}.", time, newDay.downcase.capitalize))
+    else
+      Kernel.pbMessage(_INTL("The current time is now {1}.", time))
+    end
+    return 1
+  end
+
+end
+
 ItemHandlers::UseFromBag.add(:SLEEPINGBAG, proc { |item|
   mapMetadata = GameData::MapMetadata.try_get($game_map.map_id)
   if !mapMetadata || !mapMetadata.outdoor_map
@@ -313,6 +340,24 @@ ItemHandlers::UseInField.add(:SLEEPINGBAG, proc { |item|
     next 0
   end
   next useSleepingBag()
+})
+
+ItemHandlers::UseFromBag.add(:FIELDSLEEPINGBAG, proc { |item|
+  mapMetadata = GameData::MapMetadata.try_get($game_map.map_id)
+  if !mapMetadata || !mapMetadata.outdoor_map
+    Kernel.pbMessage(_INTL("Can't use that here..."))
+    next 0
+  end
+  next useFieldSleepingBag()
+})
+
+ItemHandlers::UseInField.add(:FIELDSLEEPINGBAG, proc { |item|
+  mapMetadata = GameData::MapMetadata.try_get($game_map.map_id)
+  if !mapMetadata || !mapMetadata.outdoor_map
+    Kernel.pbMessage(_INTL("Can't use that here..."))
+    next 0
+  end
+  next useFieldSleepingBag()
 })
 
 ItemHandlers::UseFromBag.add(:ROCKETUNIFORM, proc { |item|
@@ -1159,18 +1204,16 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
   next 1 # Continue
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 30, scene)
+ItemHandlers::BattleUseOnPokemon.add(:BANANA,proc { |item,pokemon,battler,choices,scene|
+  pbBattleHPItem(pokemon,battler,30,scene)
 })
+
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 30, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 50, scene)
-})
-ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  next pbHPItem(pokemon, 50, scene)
+ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, choices, scene|
+  pbBattleHPItem(pokemon, battler, 50, scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:TRANSGENDERSTONE, proc { |item, pokemon, scene|
@@ -1275,16 +1318,16 @@ ItemHandlers::UseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 100, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 100, scene)
+ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler, choices, scene|
+  pbBattleHPItem(pokemon, battler, 100, scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, scene|
   next pbHPItem(pokemon, 100, scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 100, scene)
+ItemHandlers::BattleUseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, battler, choices, scene|
+  pbBattleHPItem(pokemon, battler, 100, scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:RAGECANDYBAR, proc { |item, pokemon, scene|
@@ -2043,19 +2086,6 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
   next 1 # Continue
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 30, scene)
-})
-ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  next pbHPItem(pokemon, 30, scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, scene|
-  next pbBattleHPItem(pokemon, battler, 50, scene)
-})
-ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  next pbHPItem(pokemon, 50, scene)
-})
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
   blacklisted_maps = [

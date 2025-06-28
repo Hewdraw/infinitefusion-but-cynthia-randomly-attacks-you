@@ -393,11 +393,11 @@ class PokemonLoadScreen
           updateCreditsFile()
           updateOnlineCustomSpritesFile()
           reset_updated_spritesheets_cache()
+          $updated_spritesheets = []
           spritesLoader = BattleSpriteLoader.new
           spritesLoader.clear_sprites_cache(:CUSTOM)
           spritesLoader.clear_sprites_cache(:BASE)
 
-          $updated_spritesheets = []
           pbMessage("Data files updated. New sprites will now be downloaded as you play!")
         end
     }

@@ -65,12 +65,12 @@ module GameData
     def self.egg_sprite_filename(species, form)
       return "Graphics/Battlers/Eggs/000" if $PokemonSystem.use_custom_eggs
       dexNum = getDexNumberForSpecies(species)
-      bitmapFileName = sprintf("Graphics/Battlers/Eggs/%03d", dexNum) rescue nil
+      bitmapFileName = sprintf("Graphics/Battlers/Eggs/%d", dexNum) rescue nil
       if !pbResolveBitmap(bitmapFileName)
         if isTripleFusion?(dexNum)
           bitmapFileName = "Graphics/Battlers/Eggs/egg_base"
         else
-          bitmapFileName = sprintf("Graphics/Battlers/Eggs/%03d", dexNum)
+          bitmapFileName = sprintf("Graphics/Battlers/Eggs/%d", dexNum)
           if !pbResolveBitmap(bitmapFileName)
             bitmapFileName = sprintf("Graphics/Battlers/Eggs/000")
           end

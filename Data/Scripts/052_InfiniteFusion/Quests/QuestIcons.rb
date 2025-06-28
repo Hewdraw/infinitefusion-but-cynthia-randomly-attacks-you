@@ -78,8 +78,6 @@ class Game_Event < Game_Character
     return nil unless match
     quest_id = match[1]
     quest_id = quest_id.gsub(/^['"]|['"]$/, '')  # Remove quotes if they exist
-    echoln "MATCH"
-    echoln quest_id
     return nil if isQuestAlreadyAccepted?(quest_id)
 
     return quest_id
@@ -173,7 +171,6 @@ class Sprite_Character
     end
     return if !iconPath
     @questIcon.bmp(iconPath)
-    echoln @questIcon.bitmap
     positionQuestIndicator if @questIcon
   end
 

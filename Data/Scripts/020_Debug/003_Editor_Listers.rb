@@ -396,10 +396,17 @@ class ItemLister
     @commands.clear
     @ids.clear
     cmds = []
+    end_of_list = [:POKEBALL, :RARECANDY, :DNASPLICERS, :DNAREVERSER, :SLEEPINGBAG]
     GameData::Item.each do |item|
       cmds.push([item.id_number, item.id, item.real_name])
     end
     cmds.sort! { |a, b| a[2].downcase <=> b[2].downcase }
+
+    end_of_list.each do |item_sym|
+      item = GameData::Item.get(item_sym)
+      cmds.push([item.id_number, item.id, item.real_name])
+    end
+
     if @includeNew
       @commands.push(_INTL("[NEW ITEM]"))
       @ids.push(true)
