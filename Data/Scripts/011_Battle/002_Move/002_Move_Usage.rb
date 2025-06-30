@@ -293,13 +293,9 @@ class PokeBattle_Move
     if !multiHitMove? && user.effects[PBEffects::ParentalBond]==0
       pbEffectivenessMessage(user,target,numTargets)
     end
-    if target.damageState.substitute && target.effects[PBEffects::Substitute]==0
+    if target.damageState.substitute && target.effects[PBEffects::Substitute]==0 && target.effects[PBEffects::RedstoneCube]==0
       target.effects[PBEffects::Substitute] = 0
       @battle.pbDisplay(_INTL("{1}'s substitute faded!",target.pbThis))
-    end
-    if target.damageState.substitute && target.effects[PBEffects::RedstoneCube]==0
-      target.effects[PBEffects::RedstoneCube] = 0
-      @battle.pbDisplay(_INTL("{1}'s redstone cube faded!",target.pbThis))
     end
   end
 
