@@ -147,11 +147,16 @@ class PokeBattle_AI
     switchScore += 2 if user.hasActiveAbility?(:GRASSYSURGE) && @battle.field.terrain != :Grassy
     switchScore += 1 if user.hasActiveAbility?(:MISTYSURGE) && @battle.field.terrain != :Misty
     switchScore += 1 if user.hasActiveAbility?(:REGENERATOR)
-    switchScore += 1 if user.hasActiveAbility?(:INTIMIDATE)
+    user.eachOpposing do |target|
+      switchScore += 1 if user.hasActiveAbility?(:INTIMIDATE) && target.effects[PBEffects::Substitute] == 0 && !target.hasActiveAbility?([:DEFIANT, :COMPETITIVE, :FULLMETALBODY, :CLEARBODY, :HYPERCUTTER, :WHITESMOKE])
+    end
     switchScore += 1 if user.pbHasMove?(:FAKEOUT) && !(user.turnCount == 0 && user.index != 69)
 
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
+    user.eachOpposing do |target|
+      switchInScore -= 3 if user.hasActiveAbility?(:INTIMIDATE) && target.effects[PBEffects::Substitute] == 0 && target.hasActiveAbility?([:DEFIANT, :COMPETITIVE])
+    end
 
     switchOutScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp
     switchOutScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66
@@ -174,6 +179,8 @@ class PokeBattle_AI
       switchOutScore -= 1 if target.pbHasMove?(:CALMMIND) || target.pbHasMove?(:BULKUP)
       switchOutScore -= 2 if target.pbHasMove?(:NASTYPLOT) || target.pbHasMove?(:SWORDSDANCE) || target.pbHasMove?(:DRAGONDANCE) || target.pbHasMove?(:QUIVERDANCE)
     end
+    switchOutScore -= 1 if user.hasActiveAbility?(:NATURALCURE) && user.pbHasMove?(:REST) && !user.status
+    switchOutScore += 1 if user.hasActiveAbility?(:NATURALCURE) && user.status
 
     if threat < 33
       activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false

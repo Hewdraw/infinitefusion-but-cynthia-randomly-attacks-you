@@ -395,7 +395,6 @@ class PokeBattle_FixedDamageMove < PokeBattle_Move
   def pbFixedDamage(user,target); return 1; end
 
   def pbCalcDamage(user,target,numTargets=1)
-    target.damageState.critical   = false
     target.damageState.calcDamage = pbFixedDamage(user,target)
     target.damageState.calcDamage = 1 if target.damageState.calcDamage<1
   end
