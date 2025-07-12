@@ -274,3 +274,39 @@ Height = 1.0
 Weight = 23.5
 Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
 Generation = 6
+#-------------------------------
+[ALTARIATORNADUSTHERION,1]
+FormName = Mega Tornadria
+MegaStone = ALTARIANITE
+UnMegaForm = ALTARIATORNADUSTHERION
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+#-------------------------------
+[GARCHOMPGIGALITH,1]
+FormName = Mega Gigachomp
+MegaStone = GARCHOMPITE
+UnMegaForm = GARCHOMPGIGALITH
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+#-------------------------------
+[HARCANINELUCARIO,1]
+FormName = Mega Lucanine
+MegaStone = LUCARIONITE
+UnMegaForm = HARCANINELUCARIO
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6

@@ -17915,6 +17915,42 @@ Abilities = PIXELATEDSANDS
 HiddenAbility = PIXELATEDSANDS
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000207]
+Name = Tornadria
+InternalName = MEGAALTARIATORNADUSTHERION
+Type1 = FLYING
+Type2 = FAIRY
+BaseStats = 77,106,100,93,110,95
+GenderRate = Female50Percent
+Abilities = PIXILATE
+HiddenAbility = PIXILATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000208]
+Name = Gigachomp
+InternalName = MEGAGARCHOMPGIGALITH
+Type1 = ROCK
+Type2 = GROUND
+BaseStats = 92,158,120,69,80,85
+GenderRate = Female50Percent
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000209]
+Name = Lucanine
+InternalName = MEGAHARCANINELUCARIO
+Type1 = FIGHTING
+Type2 = ROCK
+BaseStats = 78,113,76,90,108,73
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
 
 
 
@@ -18086,6 +18122,63 @@ Name = Vaporcor
 InternalName = GLISCORVAPOREONFIRE
 Type1 = FIRE
 BaseStats = 111,85,103,85,88,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000259]
+Name = Lucamorus
+InternalName = ENAMORUSLUCARIOSTELLAR
+Type1 = FIGHTING
+Type2 = STEEL
+BaseStats = 71,113,70,100,121,73
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000260]
+Name = Enamochomp
+InternalName = GARCHOMPENAMORUSSTELLAR
+Type1 = FAIRY
+Type2 = GROUND
+BaseStats = 85,125,86,103,116,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000261]
+Name = Vapororus
+InternalName = LANDORUSTHERIANVAPOREONELECTRIC
+Type1 = ELECTRIC
+BaseStats = 116,118,80,82,108,90
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000262]
+Name = Landcor
+InternalName = GLISCORLANDORUSTHERIANNORMAL
+Type1 = NORMAL
+BaseStats = 84,111,113,93,85,78
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000263]
+Name = Thundceon
+InternalName = GLACEONTHUNDURUSELECTRIC
+Type1 = ELECTRIC
+BaseStats = 74,78,96,80,126,85
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
@@ -18544,6 +18637,234 @@ InternalName = KOMMOOTORNADUS
 Type1 = FLYING
 Type2 = FIGHTING
 BaseStats = 77,111,106,93,116,88
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000338]
+Name = Thundchomp
+InternalName = GARCHOMPTHUNDURUS
+Type1 = ELECTRIC
+Type2 = GROUND
+BaseStats = 88,125,86,105,110,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000339]
+Name = Poryorus
+InternalName = LANDORUSPORYGONZ
+Type1 = NORMAL
+Type2 = FLYING
+BaseStats = 86,110,83,97,128,76
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000340]
+Name = Lucamorus
+InternalName = ENAMORUSLUCARIO
+Type1 = FIGHTING
+Type2 = STEEL
+BaseStats = 71,113,70,100,121,73
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000341]
+Name = Tornadria
+InternalName = ALTARIATORNADUSTHERION
+Type1 = FLYING
+Type2 = DRAGON
+BaseStats = 77,80,86,93,96,95
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000342]
+Name = Enamochomp
+InternalName = GARCHOMPENAMORUS
+Type1 = FAIRY
+Type2 = GROUND
+BaseStats = 85,125,86,103,116,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000343]
+Name = Gigachomp
+InternalName = GARCHOMPGIGALITH
+Type1 = ROCK
+Type2 = GROUND
+BaseStats = 92,131,106,76,66,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000344]
+Name = Lucanine
+InternalName = HARCANINELUCARIO
+Type1 = FIGHTING
+Type2 = ROCK
+BaseStats = 78,113,76,90,108,73
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000345]
+Name = Vapororus
+InternalName = LANDORUSTHERIANVAPOREON
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 116,118,80,82,108,90
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000346]
+Name = Enamochomp
+InternalName = GARCHOMPENAMORUSTHERIAN
+Type1 = FAIRY
+Type2 = GROUND
+BaseStats = 85,125,100,83,116,95
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000347]
+Name = Thundgon-Z
+InternalName = PORYGONZTHUNDURUSTHERIAN
+Type1 = ELECTRIC
+Type2 = NORMAL
+BaseStats = 81,88,70,93,141,78
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000348]
+Name = Tornadeon
+InternalName = JOLTEONTORNADUSTHERIAN
+Type1 = FLYING
+Type2 = ELECTRIC
+BaseStats = 74,76,66,127,110,91
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000349]
+Name = Landcor
+InternalName = GLISCORLANDORUSTHERIAN
+Type1 = GROUND
+Type2 = FLYING
+BaseStats = 84,111,113,93,85,78
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000350]
+Name = Thundvee
+InternalName = EEVEETHUNDURUS
+Type1 = ELECTRIC
+Type2 = NORMAL
+BaseStats = 74,88,70,87,105,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000351]
+Name = Togemorus
+InternalName = ENAMORUSTOGEKISS
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 81,93,78,97,125,103
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000352]
+Name = Arcafeon
+InternalName = LEAFEONHARCANINE
+Type1 = FIRE
+Type2 = GRASS
+BaseStats = 85,111,113,93,83,75
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000353]
+Name = Arcafeon
+InternalName = EEVEEHARCANINE
+Type1 = FIRE
+Type2 = NORMAL
+BaseStats = 85,88,73,80,85,81
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000354]
+Name = Thundceon
+InternalName = GLACEONTHUNDURUS
+Type1 = ELECTRIC
+Type2 = ICE
+BaseStats = 74,78,96,80,126,85
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000355]
+Name = Landpeon
+InternalName = ESPEONLANDORUS
+Type1 = GROUND
+Type2 = PSYCHIC
+BaseStats = 81,85,70,107,120,85
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000356]
+Name = Poryus
+InternalName = TORNADUSPORYGON2
+Type1 = NORMAL
+Type2 = FLYING
+BaseStats = 83,103,76,94,111,90
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
