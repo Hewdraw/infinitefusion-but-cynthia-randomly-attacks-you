@@ -1,6 +1,6 @@
 
 module Settings
-  LATEST_GAME_RELEASE = "6.4.0"
+  LATEST_GAME_RELEASE = "6.6.1"
 
   SHINY_POKEMON_CHANCE = 16
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
@@ -14,7 +14,7 @@ module Settings
 
 
   VERSION_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/infinitefusion-e18/main/Data/VERSION"
-  CUSTOM_DEX_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/pif-downloadables/refs/heads/master/dex.json"
+  CUSTOM_DEX_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/pokedex-entries/main/dex.json"
 
   # CUSTOM SPRITES
   AUTOGEN_SPRITES_REPO_URL = ""
@@ -44,7 +44,7 @@ module Settings
   AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/rate_limit.log'  # Path to the log file
 
   #Spritepack
-  NEWEST_SPRITEPACK_MONTH = 5
+  NEWEST_SPRITEPACK_MONTH = 6
   NEWEST_SPRITEPACK_YEAR = 2025
 
 

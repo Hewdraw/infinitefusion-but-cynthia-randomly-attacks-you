@@ -2471,7 +2471,7 @@ BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK)
 
 BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
   proc { |ability,battler,battle|
-    battle.pbShowAbilitySplash(battler)
+    battle.pbShowAbilitySplash(battler, false, true, "Legendary Pressure")
     battle.pbDisplay(_INTL("{1} is emanating a legendary pressure!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
     case battler.pokemon.species

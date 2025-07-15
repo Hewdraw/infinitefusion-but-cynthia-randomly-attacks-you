@@ -1421,8 +1421,8 @@ def pbCompileTrainers
       end
       # Level
       poke[TPLEVEL]=poke[TPLEVEL].to_i
-      raise _INTL("Bad level: {1} (must be from 1-{2})\r\n{3}",poke[TPLEVEL],
-        PBExperience::MAXLEVEL,FileLineData.linereport) if poke[TPLEVEL]<=0 || poke[TPLEVEL]>PBExperience::MAXLEVEL
+      # raise _INTL("Bad level: {1} (must be from 1-{2})\r\n{3}",poke[TPLEVEL],
+      #   PBExperience::MAXLEVEL,FileLineData.linereport) if poke[TPLEVEL]<=0 || poke[TPLEVEL]>PBExperience::MAXLEVEL
       # Held item
       if !poke[TPITEM] || poke[TPITEM]==""
         poke[TPITEM]=TPDEFAULTS[TPITEM]

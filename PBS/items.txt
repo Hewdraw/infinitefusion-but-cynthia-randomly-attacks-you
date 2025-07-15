@@ -791,6 +791,8 @@
 792,DRAGONIUMZ,Dragonium Z,Dragonium Zs,1,0,"",0,0,0
 793,DARKINIUMZ,Darkinium Z,Darkinium Zs,1,0,"",0,0,0
 794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
+795,KOMMONIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
+796,EEVIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
 
 
 #    attr_reader :id

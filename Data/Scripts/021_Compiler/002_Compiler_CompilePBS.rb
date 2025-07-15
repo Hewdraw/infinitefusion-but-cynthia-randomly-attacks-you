@@ -1164,7 +1164,7 @@ module Compiler
           property_value.compact!
         when "Pokemon"
           if property_value[1] > max_level
-            raise _INTL("Bad level: {1} (must be 1-{2}).\r\n{3}", property_value[1], max_level, FileLineData.linereport)
+            #raise _INTL("Bad level: {1} (must be 1-{2}).\r\n{3}", property_value[1], max_level, FileLineData.linereport)
           end
         when "Name"
           if property_value.length > Pokemon::MAX_NAME_SIZE
@@ -1304,7 +1304,7 @@ module Compiler
             case i
             when 1   # Level
               if value > max_level
-                raise _INTL("Bad level: {1} (must be 1-{2}).\r\n{3}", value, max_level, FileLineData.linereport)
+                #raise _INTL("Bad level: {1} (must be 1-{2}).\r\n{3}", value, max_level, FileLineData.linereport)
               end
             when 12   # IV
               if value > Pokemon::IV_STAT_LIMIT

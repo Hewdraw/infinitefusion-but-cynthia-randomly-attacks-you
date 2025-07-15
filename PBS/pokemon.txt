@@ -17828,6 +17828,26 @@ BattlerEnemyY = 11
 BattlerAltitude = 8
 BattlerShadowX = 0
 BattlerShadowSize = 1
+[1000119]
+Name = Dudunsparce
+InternalName = DUDUNSPARCE
+Type1 = NORMAL
+BaseStats = 1,170,115,92,120,95
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
+[1000120]
+Name = Dududududududududududududududududududunsparce
+InternalName = DUDUDUNSPARCE
+Type1 = NORMAL
+BaseStats = 1,170,115,92,120,95
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Generation = 6
 
 #Cynthia Megas
 [1000200]

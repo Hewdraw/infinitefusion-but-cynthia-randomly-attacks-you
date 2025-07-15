@@ -181,6 +181,7 @@ class PokeBattle_AI
     end
     switchOutScore -= 1 if user.hasActiveAbility?(:NATURALCURE) && user.pbHasMove?(:REST) && !user.status
     switchOutScore += 1 if user.hasActiveAbility?(:NATURALCURE) && user.status
+    switchOutScore -= 3 if (user.hasActiveAbility?(:STURDY) || user.hasActiveItem?(:FOCUSSASH)) && user.hp == user.totalhp && threat > 90
 
     if threat < 33
       activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
