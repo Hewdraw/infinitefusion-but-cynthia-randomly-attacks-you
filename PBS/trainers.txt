@@ -6427,16 +6427,7 @@ Pokemon = B299H134,73 #GARCHOMP / VAPOREON
 	Item = RINDOBERRY
 ####################### Cynthia Teams
 [CHAMPION_Sinnoh,Cynthia,1]	
-Pokemon = DUDUDUNSPARCE,5	
-	Offset = -1
-	Moves = TWISTER,MUDSLAP
-	Ability = ROUGHSKIN
-	Gender = F
-	Nature = MODEST
-	IV = 0,0,0,0,0,0
-	EV = 0,0,0,0,0,0
-	Happiness = 255
-Pokemon = DUDUDUNSPARCE,5	
+Pokemon = GIBLE,5	
 	Offset = -1
 	Moves = TWISTER,MUDSLAP
 	Ability = ROUGHSKIN

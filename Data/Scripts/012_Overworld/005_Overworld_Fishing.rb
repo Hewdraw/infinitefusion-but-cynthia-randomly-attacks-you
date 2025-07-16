@@ -43,46 +43,7 @@ end
 
 def pbFishing(hasEncounter,rodType=1)
   pbBGMPlay(pbStringToAudioFile("shrimpmiku"))
-  mikumaxchance = 70
-  if $PokemonGlobal.hatsunemikuchance == nil
-    $PokemonGlobal.hatsunemikuchance = 1
-  else
-    $PokemonGlobal.hatsunemikuchance += 1
-  end
-  if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
-    $PokemonGlobal.hatsunemikuchance += 3
-    mikumaxchance = 30
-  end
-  if rand(mikumaxchance) < $PokemonGlobal.hatsunemikuchance
-    numbadges = $Trainer.numbadges
-
-    $PokemonGlobal.hatsunemikuchance = 0
-    if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
-      $PokemonGlobal.cynthiaupgradechance += 18
-    end
-    badgeupgradechance = 32
-    if rand(25) < $PokemonGlobal.cynthiaupgradechance
-      numbadges += 1
-      $PokemonGlobal.cynthiaupgradechance = 0
-      badgeupgradechance / 2
-    end
-    if rand(30) == 0
-      numbadges += 1
-      badgeupgradechance / 4
-    end
-    while rand(badgeupgradechance) == 0 && numbadges > $Trainer.numbadges
-      numbadges += 1
-      if badgeupgradechance == 16
-        badgeupgradechance / 2
-      end
-    end
-
-    if numbadges > 11 #temporary
-      numbadges = 11
-    end
-    pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", "sorrgy accident..", true, numbadges)
-    return false
-  end
+  return false if pbEncounterCynthia("Shrimp Miku")
   autohook= Settings::FISHING_AUTO_HOOK || $game_switches[SWITCH_FISHING_AUTOHOOK]
   speedup = ($Trainer.first_pokemon && [:STICKYHOLD, :SUCTIONCUPS].include?($Trainer.first_pokemon.ability_id))
   biteChance = 20+(25*rodType)   # 45, 70, 95

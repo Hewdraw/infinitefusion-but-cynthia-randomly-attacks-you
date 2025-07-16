@@ -189,10 +189,13 @@ end
 
 def pbBattleOnStepTaken(repel_active)
   return if $Trainer.able_pokemon_count == 0
+  if rand(10000) == 0 && $PokemonGlobal.cynthiachance != nil
+    return if pbEncounterCynthia()
+  end
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
-    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, true, 1)
+    pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
     #pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, true, 0)
     #pbLegendaryBattle("Cool Dino")
     return
@@ -234,20 +237,6 @@ def pbBattleOnStepTaken(repel_active)
   EncounterModifier.triggerEncounterEnd
 end
 
-def pbCynthiaRollEncounter
-  if $PokemonGlobal.cynthiaprevious == nil
-    $PokemonGlobal.cynthiaprevious = []
-  end
-  cynthiaencounter = rand(5)
-  if $PokemonGlobal.cynthiaprevious.include?(cynthiaencounter)
-    cynthiaencounter = rand(5)
-  end
-  $PokemonGlobal.cynthiaprevious.push(cynthiaencounter)
-  if $PokemonGlobal.cynthiaprevious.length > 2
-    $PokemonGlobal.cynthiaprevious.delete_at(0)
-  end
-  return cynthiaencounter
-end
 
 #===============================================================================
 # Checks when moving between maps
