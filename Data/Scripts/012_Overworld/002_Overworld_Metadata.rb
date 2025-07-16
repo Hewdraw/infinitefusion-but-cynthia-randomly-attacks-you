@@ -60,6 +60,7 @@ class PokemonGlobalMetadata
   attr_accessor :questRewardsObtained
   #cynthia values
   attr_accessor :cynthiachance
+  attr_accessor :cynthiafieldchance
   attr_accessor :cynthiaupgradechance
   attr_accessor :cynthiabadgetier
   attr_accessor :cynthiahandschance

@@ -189,8 +189,17 @@ end
 
 def pbBattleOnStepTaken(repel_active)
   return if $Trainer.able_pokemon_count == 0
-  if rand(10000) == 0 && $PokemonGlobal.cynthiachance != nil
-    return if pbEncounterCynthia()
+  if $PokemonGlobal.cynthiachance != nil && $Trainer.numbadges >= 3
+    if $PokemonGlobal.cynthiafieldchance == nil
+      $PokemonGlobal.cynthiafieldchance = 0
+    end
+    $PokemonGlobal.cynthiafieldchance += 1
+    if rand(100000) < $PokemonGlobal.cynthiafieldchance
+      $PokemonGlobal.cynthiafieldchance = 0
+      $PokemonGlobal.nextBattleBGM = "VSCynthia2"
+      pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
+      return
+    end
   end
   return if !$PokemonEncounters.encounter_possible_here?
   if $PokemonGlobal.cynthiachance == nil
