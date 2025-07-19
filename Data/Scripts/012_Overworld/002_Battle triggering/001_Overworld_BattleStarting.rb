@@ -515,6 +515,18 @@ end
 # Start a trainer battle
 #===============================================================================
 def pbTrainerBattleCore(*args)
+  if args.length == 2
+    if $PokemonGlobal.cynthiadoubleschance == nil
+      $PokemonGlobal.cynthiadoubleschance = 0
+    end
+    if $Trainer.numbadges > 2
+      $PokemonGlobal.cynthiadoubleschance += 1
+    end
+    if rand(150) < $PokemonGlobal.cynthiadoubleschance
+      setBattleRule("triple")
+      args.push(pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, true))
+    end
+  end
   outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
   canLose    = $PokemonTemp.battleRules["canLose"] || false
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
