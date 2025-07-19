@@ -516,13 +516,14 @@ end
 #===============================================================================
 def pbTrainerBattleCore(*args)
   if args.length == 2
-    if $PokemonGlobal.cynthiadoubleschance == nil
-      $PokemonGlobal.cynthiadoubleschance = 0
+    if $PokemonGlobal.cynthiatripleschance == nil
+      $PokemonGlobal.cynthiatripleschance = 0
     end
     if $Trainer.numbadges > 2
-      $PokemonGlobal.cynthiadoubleschance += 1
+      $PokemonGlobal.cynthiatripleschance += 1
     end
-    if rand(150) < $PokemonGlobal.cynthiadoubleschance
+    if (rand(20) == $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance > 0) || (rand(80) < $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance == 0)
+      $PokemonGlobal.cynthiatripleschance = 0
       setBattleRule("triple")
       args.push(pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, true))
     end
@@ -765,6 +766,7 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
       $PokemonGlobal.cynthiadoubleschance += 1
     end
     if rand(150) < $PokemonGlobal.cynthiadoubleschance
+      $PokemonGlobal.cynthiadoubleschance = 0
       setBattleRule("double")
       decision = pbTrainerBattleCore(pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, true), [trainerID,trainerName,trainerPartyID,endSpeech])
     else

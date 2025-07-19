@@ -61,6 +61,7 @@ class PokemonGlobalMetadata
   #cynthia values
   attr_accessor :cynthiachance
   attr_accessor :cynthiadoubleschance
+  attr_accessor :cynthiatripleschance
   attr_accessor :cynthiafieldchance
   attr_accessor :cynthiaupgradechance
   attr_accessor :cynthiabadgetier
