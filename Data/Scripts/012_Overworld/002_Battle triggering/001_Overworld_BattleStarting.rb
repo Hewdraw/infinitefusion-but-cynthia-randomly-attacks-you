@@ -746,7 +746,18 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
        [trainerID,trainerName,trainerPartyID,endSpeech]
     )
   else
-    decision = pbTrainerBattleCore([trainerID,trainerName,trainerPartyID,endSpeech,name_override,trainer_type_overide])
+    if $PokemonGlobal.cynthiadoubleschance == nil
+      $PokemonGlobal.cynthiadoubleschance = 0
+    end
+    if $Trainer.numbadges > 2
+      $PokemonGlobal.cynthiadoubleschance += 1
+    end
+    if rand(150) < $PokemonGlobal.cynthiadoubleschance
+      setBattleRule("double")
+      decision = pbTrainerBattleCore(pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, true), [trainerID,trainerName,trainerPartyID,endSpeech])
+    else
+      decision = pbTrainerBattleCore([trainerID,trainerName,trainerPartyID,endSpeech,name_override,trainer_type_overide])
+    end
   end
   # Finish off the recorded waiting trainer, because they have now been battled
   if decision==1 && $PokemonTemp.waitingTrainer   # Win
