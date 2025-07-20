@@ -709,6 +709,7 @@ class Pokemon
   def hasAbility?(check_ability = nil)
     current_ability = self.ability
     return !current_ability.nil? if check_ability.nil?
+    return check_ability.include?(current_ability) if check_ability.is_a?(Array)
     return current_ability == check_ability
   end
 

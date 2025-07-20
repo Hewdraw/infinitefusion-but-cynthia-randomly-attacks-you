@@ -1641,9 +1641,10 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:HEATROCK)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 2 if pkmn.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
-        score *= 1.5 if pkmn.pbHasType?(:FIRE)
-        score *= 1.5 if pkmn.pbHasMove?(:SOLARBEAM) || pkmn.pbHasMove?(:SOLARBLADE) || pkmn.pbHasMove?(:GROWTH) || pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:MOONLIGHT) || pkmn.pbHasMove?(:SYNTHESIS) || pkmn.pbHasMove?(:MORNINGSUN)
+        next if !pkmn || !pkmn.fainted?
+        score *= 2 if pkmn.hasAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
+        score *= 1.5 if pkmn.hasType?(:FIRE)
+        score *= 1.5 if pkmn.hasMove?(:SOLARBEAM) || pkmn.hasMove?(:SOLARBLADE) || pkmn.hasMove?(:GROWTH) || pkmn.hasMove?(:WEATHERBALL) || pkmn.hasMove?(:MOONLIGHT) || pkmn.hasMove?(:SYNTHESIS) || pkmn.hasMove?(:MORNINGSUN)
       end
       score *= 2 if @battle.pbWeather == :Rain
       user.eachOpposing do |opponent|
@@ -1655,9 +1656,10 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:DAMPROCK)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 2 if pkmn.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
-        score *= 1.5 if pkmn.pbHasType?(:WATER)
-        score *= 1.5 if pkmn.pbHasMove?(:THUNDER) || pkmn.pbHasMove?(:HURRICANE) || pkmn.pbHasMove?(:BLEAKWINDSTORM) || pkmn.pbHasMove?(:WILDBOLTSTORM) || pkmn.pbHasMove?(:SANDSEARSTORM) || pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:ELECTROSHOT)
+        next if !pkmn || !pkmn.fainted?
+        score *= 2 if pkmn.hasAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
+        score *= 1.5 if pkmn.hasType?(:WATER)
+        score *= 1.5 if pkmn.hasMove?(:THUNDER) || pkmn.hasMove?(:HURRICANE) || pkmn.hasMove?(:BLEAKWINDSTORM) || pkmn.hasMove?(:WILDBOLTSTORM) || pkmn.hasMove?(:SANDSEARSTORM) || pkmn.hasMove?(:WEATHERBALL) || pkmn.hasMove?(:ELECTROSHOT)
       end
       score *= 2 if @battle.pbWeather == :Sun
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
@@ -1666,9 +1668,10 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:SMOOTHROCK)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 2 if pkmn.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
-        score *= 1.5 if pkmn.pbHasType?(:ROCK)
-        score *= 1.5 if pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:SHOREUP)
+        next if !pkmn || !pkmn.fainted?
+        score *= 2 if pkmn.hasAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
+        score *= 1.5 if pkmn.hasType?(:ROCK)
+        score *= 1.5 if pkmn.hasMove?(:WEATHERBALL) || pkmn.hasMove?(:SHOREUP)
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
     #---------------------------------------------------------------------------
@@ -1676,9 +1679,10 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:ICYROCK)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 2 if pkmn.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
-        score *= 1.5 if pkmn.pbHasType?(:ICE)
-        score *= 1.5 if pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:BLIZZARD) || pkmn.pbHasMove?(:AURORAVEIL)
+        next if !pkmn || !pkmn.fainted?
+        score *= 2 if pkmn.hasAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
+        score *= 1.5 if pkmn.hasType?(:ICE)
+        score *= 1.5 if pkmn.hasMove?(:WEATHERBALL) || pkmn.hasMove?(:BLIZZARD) || pkmn.hasMove?(:AURORAVEIL)
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Hail || @battle.pbWeather == :Snow
     #---------------------------------------------------------------------------
@@ -2311,10 +2315,11 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 1.3 if pkmn.pbHasType?(:ELECTRIC)
-        score *= 1.5 if pkmn.hasActiveItem?(:ELECTRICSEED)
-        score *= 2 if pkmn.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
-        score *= 1.5 if pkmn.pbHasMove?(:RISINGVOLTAGE) || pkmn.pbHasMove?(:TERRAINPULSE) || pkmn.pbHasMove?(:PSYBLADE)
+        next if !pkmn || !pkmn.fainted?
+        score *= 1.3 if pkmn.hasType?(:ELECTRIC)
+        score *= 1.5 if pkmn.hasItem?(:ELECTRICSEED)
+        score *= 2 if pkmn.hasAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
+        score *= 1.5 if pkmn.hasMove?(:RISINGVOLTAGE) || pkmn.hasMove?(:TERRAINPULSE) || pkmn.hasMove?(:PSYBLADE)
       end
       score *= 2 if user.effects[PBEffects::Yawn]>0
       score = 0 if @battle.field.terrain == :Electric
@@ -2323,9 +2328,10 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 1.3 if pkmn.pbHasType?(:GRASS)
-        score *= 1.5 if pkmn.hasActiveItem?(:GRASSYSEED)
-        score *= 1.5 if pkmn.pbHasMove?(:GRASSYGLIDE) || pkmn.pbHasMove?(:TERRAINPULSE)
+        next if !pkmn || !pkmn.fainted?
+        score *= 1.3 if pkmn.hasType?(:GRASS)
+        score *= 1.5 if pkmn.hasItem?(:GRASSYSEED)
+        score *= 1.5 if pkmn.hasMove?(:GRASSYGLIDE) || pkmn.hasMove?(:TERRAINPULSE)
       end
       score = 0 if @battle.field.terrain == :Grassy
     #---------------------------------------------------------------------------
@@ -2333,8 +2339,9 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 1.5 if pkmn.hasActiveItem?(:MISTYSEED)
-        score *= 1.5 if pkmn.pbHasMove?(:MISTYEXPLOSION) || pkmn.pbHasMove?(:TERRAINPULSE)
+        next if !pkmn || !pkmn.fainted?
+        score *= 1.5 if pkmn.hasItem?(:MISTYSEED)
+        score *= 1.5 if pkmn.hasMove?(:MISTYEXPLOSION) || pkmn.hasMove?(:TERRAINPULSE)
       end
       score *= 2 if user.effects[PBEffects::Yawn]>0
       score = 0 if @battle.field.terrain == :Misty
@@ -2573,9 +2580,10 @@ class PokeBattle_AI
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
-        score *= 1.5 if pkmn.hasActiveItem?(:PSYCHICSEED)
-        score *= 1.3 if pkmn.pbHasType?(:PSYCHIC)
-        score *= 1.5 if pkmn.pbHasMove?(:EXPANDINGFORCE) || pkmn.pbHasMove?(:TERRAINPULSE)
+        next if !pkmn || !pkmn.fainted?
+        score *= 1.5 if pkmn.hasItem?(:PSYCHICSEED)
+        score *= 1.3 if pkmn.hasType?(:PSYCHIC)
+        score *= 1.5 if pkmn.hasMove?(:EXPANDINGFORCE) || pkmn.hasMove?(:TERRAINPULSE)
       end
       score = 0 if @battle.field.terrain == :Psychic
     #---------------------------------------------------------------------------
