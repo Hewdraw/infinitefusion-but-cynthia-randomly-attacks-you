@@ -7042,36 +7042,36 @@ Pokemon = GIBLE,5
 	EV = 96,0,0,0,0,0
 	Happiness = 255
 
-[CHAMPION_Sinnoh,Cynthia,23]
-Pokemon = HGROWLITHE,5
+[CHAMPION_Sinnoh,Cynthia,23]	
+Pokemon = TYNAMO,5	
 	Offset = 1
-	Moves = OVERHEAT,STEALTHROCK,POWERGEM
-	Ability = INTIMIDATE
-	Item = EJECTPACK
+	Moves = CHARGEBEAM,KNOCKOFF,THUNDERWAVE
+	Ability = LEVITATE
+	Item = METRONOME
 	Gender = F
-	Nature = MODEST
+	Nature = TIMID
 	IV = 16,16,16,16,16,16
 	EV = 0,0,0,96,0,0
 	Happiness = 255
-Pokemon = ROSELIA,5,REST,LEECHSEED
-	Offset = 1
-	Moves = LEAFSTORM
-	Ability = NATURALCURE
-	Item = EJECTPACK
+Pokemon = RIOLURUFFLET,5	
+	Offset = 0
+	Moves = AERIALACE,POWERUPPUNCH,BULLDOZE
+	Ability = HUSTLE
+	Item = METRONOME
 	Gender = F
-	Nature = MODEST
+	Nature = JOLLY
 	IV = 16,16,16,16,16,16
 	EV = 0,0,0,96,0,0
 	Happiness = 255
-Pokemon = GIBLE,5
+Pokemon = EEVEE,5	
 	Offset = 1
-	Moves = DRACOMETEOR,DRAGONRAGE,SCORCHINGSANDS
-	Ability = ROUGHSKIN
-	Item = EJECTPACK
+	Moves = LASTRESORT,TRAILBLAZE
+	Ability = ADAPTABILITY
+	Item = METRONOME
 	Gender = F
-	Nature = MODEST
+	Nature = ADAMANT
 	IV = 16,16,16,16,16,16
-	EV = 0,0,0,96,0,0
+	EV = 0,96,0,0,0,0
 	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,24]

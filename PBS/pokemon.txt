@@ -18890,6 +18890,18 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000357]
+Name = Ruffolu
+InternalName = RIOLURUFFLET
+Type1 = FLYING
+Type2 = FIGHTING
+BaseStats = 60,74,43,60,36,46
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Hatsune Miku Pokemon
