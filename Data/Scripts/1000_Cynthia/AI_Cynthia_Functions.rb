@@ -1639,9 +1639,12 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0FF", "188FIRE", "09D" #todo
       score *= 2 if user.hasActiveItem?(:HEATROCK)
-      score *= 2 if user.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
-      score *= 1.5 if user.pbHasType?(:FIRE)
-      score *= 2 if user.pbHasMove?(:SOLARBEAM) || user.pbHasMove?(:SOLARBLADE) || user.pbHasMove?(:GROWTH) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:MOONLIGHT) || user.pbHasMove?(:SYNTHESIS) || user.pbHasMove?(:MORNINGSUN)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 2 if pkmn.hasActiveAbility?([:CHLOROPHYLL, :HARVEST, :FLOWERGIFT, :FORECAST, :LEAFGUARD, :SOLARPOWER, :PROTOSYNTHESIS, :ORICHALCUMPULSE])
+        score *= 1.5 if pkmn.pbHasType?(:FIRE)
+        score *= 1.5 if pkmn.pbHasMove?(:SOLARBEAM) || pkmn.pbHasMove?(:SOLARBLADE) || pkmn.pbHasMove?(:GROWTH) || pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:MOONLIGHT) || pkmn.pbHasMove?(:SYNTHESIS) || pkmn.pbHasMove?(:MORNINGSUN)
+      end
       score *= 2 if @battle.pbWeather == :Rain
       user.eachOpposing do |opponent|
         score *= 2 if opponent.pbHasType?(:WATER) && outspeedsopponent
@@ -1650,24 +1653,33 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "100", "188WATER", "09E" #todo
       score *= 2 if user.hasActiveItem?(:DAMPROCK)
-      score *= 2 if user.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
-      score *= 1.5 if user.pbHasType?(:WATER)
-      score *= 2 if user.pbHasMove?(:THUNDER) || user.pbHasMove?(:HURRICANE) || user.pbHasMove?(:BLEAKWINDSTORM) || user.pbHasMove?(:WILDBOLTSTORM) || user.pbHasMove?(:SANDSEARSTORM) || user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:ELECTROSHOT)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 2 if pkmn.hasActiveAbility?([:SWIFTSWIM, :DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH])
+        score *= 1.5 if pkmn.pbHasType?(:WATER)
+        score *= 1.5 if pkmn.pbHasMove?(:THUNDER) || pkmn.pbHasMove?(:HURRICANE) || pkmn.pbHasMove?(:BLEAKWINDSTORM) || pkmn.pbHasMove?(:WILDBOLTSTORM) || pkmn.pbHasMove?(:SANDSEARSTORM) || pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:ELECTROSHOT)
+      end
       score *= 2 if @battle.pbWeather == :Sun
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
     #---------------------------------------------------------------------------
     when "101", "188ROCK" #todo
       score *= 2 if user.hasActiveItem?(:SMOOTHROCK)
-      score *= 2 if user.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
-      score *= 1.5 if user.pbHasType?(:ROCK)
-      score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:SHOREUP)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 2 if pkmn.hasActiveAbility?([:SANDRUSH, :SANDFORCE, :SANDVEIL])
+        score *= 1.5 if pkmn.pbHasType?(:ROCK)
+        score *= 1.5 if pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:SHOREUP)
+      end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
     #---------------------------------------------------------------------------
     when "102", "179", "188ICE"
       score *= 2 if user.hasActiveItem?(:ICYROCK)
-      score *= 2 if user.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
-      score *= 1.5 if user.pbHasType?(:ICE)
-      score *= 2 if user.pbHasMove?(:WEATHERBALL) || user.pbHasMove?(:BLIZZARD) || user.pbHasMove?(:AURORAVEIL)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 2 if pkmn.hasActiveAbility?([:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :FORECAST, :ICEFACE])
+        score *= 1.5 if pkmn.pbHasType?(:ICE)
+        score *= 1.5 if pkmn.pbHasMove?(:WEATHERBALL) || pkmn.pbHasMove?(:BLIZZARD) || pkmn.pbHasMove?(:AURORAVEIL)
+      end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Hail || @battle.pbWeather == :Snow
     #---------------------------------------------------------------------------
     when "103" #todo
@@ -2296,23 +2308,35 @@ class PokeBattle_AI
       score = 0 if user.pbOpposingSide.effects[PBEffects::StickyWeb]
     #---------------------------------------------------------------------------
     when "154", "188ELECTRIC"
-      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:ELECTRICSEED)
-      score *= 1.3 if user.pbHasType?(:ELECTRIC)
+      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 1.3 if pkmn.pbHasType?(:ELECTRIC)
+        score *= 1.5 if pkmn.hasActiveItem?(:ELECTRICSEED)
+        score *= 2 if pkmn.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
+        score *= 1.5 if pkmn.pbHasMove?(:RISINGVOLTAGE) || pkmn.pbHasMove?(:TERRAINPULSE) || pkmn.pbHasMove?(:PSYBLADE)
+      end
       score *= 2 if user.effects[PBEffects::Yawn]>0
-      score *= 2 if user.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
-      score *= 2 if user.pbHasMove?(:RISINGVOLTAGE) || user.pbHasMove?(:TERRAINPULSE) || user.pbHasMove?(:PSYBLADE)
       score = 0 if @battle.field.terrain == :Electric
     #---------------------------------------------------------------------------
     when "155", "188GRASS"
-      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:GRASSYSEED)
-      score *= 1.3 if user.pbHasType?(:GRASS)
-      score *= 2 if user.pbHasMove?(:GRASSYGLIDE) || user.pbHasMove?(:TERRAINPULSE)
+      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 1.3 if pkmn.pbHasType?(:GRASS)
+        score *= 1.5 if pkmn.hasActiveItem?(:GRASSYSEED)
+        score *= 1.5 if pkmn.pbHasMove?(:GRASSYGLIDE) || pkmn.pbHasMove?(:TERRAINPULSE)
+      end
       score = 0 if @battle.field.terrain == :Grassy
     #---------------------------------------------------------------------------
     when "156", "188FAIRY"
-      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:MISTYSEED)
+      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 1.5 if pkmn.hasActiveItem?(:MISTYSEED)
+        score *= 1.5 if pkmn.pbHasMove?(:MISTYEXPLOSION) || pkmn.pbHasMove?(:TERRAINPULSE)
+      end
       score *= 2 if user.effects[PBEffects::Yawn]>0
-      score *= 2 if user.pbHasMove?(:MISTYEXPLOSION) || user.pbHasMove?(:TERRAINPULSE)
       score = 0 if @battle.field.terrain == :Misty
     #---------------------------------------------------------------------------
     when "158" #todo
@@ -2546,10 +2570,13 @@ class PokeBattle_AI
       score += 20   # Because of possible burning
     #---------------------------------------------------------------------------
     when "173", "188PSYCHIC"
-      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER) || user.hasActiveItem?(:PSYCHICSEED)
-      score *= 1.3 if user.pbHasType?(:PSYCHIC)
-      score *= 2 if user.hasActiveAbility?([:SURGESURFER, :QUARKDRIVE, :HADRONENGINE])
-      score *= 2 if user.pbHasMove?(:EXPANDINGFORCE) || user.pbHasMove?(:TERRAINPULSE)
+      score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
+      party = @battle.pbParty(user.index)
+      party.each do |pkmn|
+        score *= 1.5 if pkmn.hasActiveItem?(:PSYCHICSEED)
+        score *= 1.3 if pkmn.pbHasType?(:PSYCHIC)
+        score *= 1.5 if pkmn.pbHasMove?(:EXPANDINGFORCE) || pkmn.pbHasMove?(:TERRAINPULSE)
+      end
       score = 0 if @battle.field.terrain == :Psychic
     #---------------------------------------------------------------------------
     when "174" #todo

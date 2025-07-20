@@ -2309,7 +2309,7 @@ Pokemon = B130H299,71 #GARDOS
 
 [LEADER_Surge,Lt. Surge,0]	
 Pokemon = HELECTRODE,5	
-	Offset = 2
+	Offset = 4
 	Moves = CHLOROBLAST,ELECTRICTERRAIN,VOLTSWITCH
 	Ability = STATIC
 	Item = TERRAINEXTENDER
@@ -2319,7 +2319,7 @@ Pokemon = HELECTRODE,5
 	EV = 96,0,0,0,0,0
 	Happiness = 255
 Pokemon = LANTURN,5	
-	Offset = 0
+	Offset = 2
 	Moves = RISINGVOLTAGE,ICEBEAM,CHILLINGWATER
 	Ability = WATERABSORB
 	Item = SITRUSBERRY
