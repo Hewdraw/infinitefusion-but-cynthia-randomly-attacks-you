@@ -59,7 +59,7 @@ class PokeBattle_Battle
       next unless b.fainted?
       next unless @opponent && @opponent[0].special_name?
       b.participants.each do |opponent|
-        if (rand(16) < $Trainer.badge_count && !opponent.fainted?) || opponent.pokemon.species == :DUDUNSPARCE #todo evolutions
+        if (rand(16) < $Trainer.badge_count && !opponent.fainted?) || opponent.pokemon.species.to_s[-11..-1] == "DUDUNSPARCE"
           gainedlevels = opponent.pokemon.isSelfFusion? ? 2 : 1
           for i in 1..gainedlevels do
             opponent.pokemon.exp += 1
@@ -68,6 +68,42 @@ class PokeBattle_Battle
             @scene.pbRefreshOne(opponent.index)
             pbCommonAnimation("LevelUp", opponent)
             pbDisplayPaused(_INTL("{1} grew to Lv. {2}!", opponent.name, opponent.level))
+          end
+          if opponent.pokemon.species.to_s[-11..-1] == "DUDUNSPARCE"
+            evo = PokemonEvolutionScene.new
+            if opponent.pokemon.species != :DUDUDUDUDUDUDUDUNSPARCE
+              evo.pbStartScreen(opponent.pokemon, ("DU" + opponent.pokemon.species.to_s).to_sym)
+              evo.pbEvolution(false)
+              opponent.species = opponent.pokemon.species
+              opponent.name = opponent.pokemon.name
+            else
+              evo.pbStartScreen(opponent.pokemon, opponent.pokemon.species)
+              evo.pbEvolution(false)
+              opponent.name = ("Du" + opponent.name).capitalize
+            end
+            opponent.ability = :STAMINA
+            @scene.pbChangePokemon(opponent,opponent.pokemon)
+            @scene.pbRefreshOne(opponent.index)
+            opponent.pbUpdate(false)
+            if opponent.pokemon.species == "DUDUDUNSPARCE"
+              newmove = Pokemon::Move.new(:HYPERIMPALER)
+              if opponent.effects[PBEffects::Dynamax] > 0
+                opponent.undynamoves.each_with_index do |move,i|
+                  if battler.moves[i].name == "Hyper Drill"
+                    battler.moves[i] = newmove
+                    pbDisplay(_INTL("{1} learned {2}!", opponent.name, "Hyper Impaler")) { pbSEPlay("Pkmn move learnt") }
+                  end
+                end
+              else
+                battler.pokemon.moves.each_with_index do |move,i|
+                  if move.name == "Hyper Drill"
+                    battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,newmove)
+                    pbDisplay(_INTL("{1} learned {2}!", opponent.name, "Hyper Impaler")) { pbSEPlay("Pkmn move learnt") }
+                  end
+                end
+              end
+            end
+            evo.pbEndScreen
           end
         end
       end
@@ -271,6 +307,51 @@ class PokeBattle_Battle
   # Learning a move
   #=============================================================================
   def pbLearnMove(idxParty, newMove)
+    pkmn = pbParty(0)[idxParty]
+    return if !pkmn
+    pkmnName = pkmn.name
+    battler = pbFindBattler(idxParty)
+    moveName = GameData::Move.get(newMove).name
+    # Pokémon already knows the move
+    return if pkmn.moves.any? { |m| m && m.id == newMove }
+    # Pokémon has space for the new move; just learn it
+    if pkmn.moves.length < Pokemon::MAX_MOVES
+      pkmn.moves.push(Pokemon::Move.new(newMove))
+      pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
+      if battler
+        battler.moves.push(PokeBattle_Move.from_pokemon_move(self, pkmn.moves.last))
+        battler.pbCheckFormOnMovesetChange
+      end
+      return
+    end
+    # Pokémon already knows the maximum number of moves; try to forget one to learn the new move
+    loop do
+      pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows {3} moves.",
+                            pkmnName, moveName, pkmn.moves.length.to_word))
+      if pbDisplayConfirm(_INTL("Forget a move to learn {1}?", moveName))
+        pbDisplayPaused(_INTL("Which move should be forgotten?"))
+        forgetMove = @scene.pbForgetMove(pkmn, newMove)
+        if forgetMove >= 0
+          oldMoveName = pkmn.moves[forgetMove].name
+          pkmn.moves[forgetMove] = Pokemon::Move.new(newMove) # Replaces current/total PP
+          battler.moves[forgetMove] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[forgetMove]) if battler
+          pbDisplayPaused(_INTL("1, 2, and... ... ... Ta-da!"))
+          pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...", pkmnName, oldMoveName))
+          pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
+          battler.pbCheckFormOnMovesetChange if battler
+          break
+        elsif pbDisplayConfirm(_INTL("Give up on learning {1}?", moveName))
+          pbDisplay(_INTL("{1} did not learn {2}.", pkmnName, moveName))
+          break
+        end
+      elsif pbDisplayConfirm(_INTL("Give up on learning {1}?", moveName))
+        pbDisplay(_INTL("{1} did not learn {2}.", pkmnName, moveName))
+        break
+      end
+    end
+  end
+
+  def pbCynthiaLearnMove(idxParty, newMove)
     pkmn = pbParty(0)[idxParty]
     return if !pkmn
     pkmnName = pkmn.name

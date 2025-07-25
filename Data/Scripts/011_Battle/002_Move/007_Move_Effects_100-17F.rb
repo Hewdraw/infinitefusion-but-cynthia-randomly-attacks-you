@@ -3191,6 +3191,12 @@ class PokeBattle_Move_209 < PokeBattle_Move_207
 end
 
 class PokeBattle_Move_210 < PokeBattle_Move_207
+  def pbInitialEffect(user,targets,hitNum)
+    super
+    user.effects[PBEffects::FocusEnergy] = 2
+    @battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
+  end
+
   def usableWhenAsleep?; return true; end
   def callsAnotherMove?; return true; end
 
@@ -3233,7 +3239,8 @@ class PokeBattle_Move_210 < PokeBattle_Move_207
        # Moves that start focussing at the start of the round
        "115",   # Focus Punch
        "171",   # Shell Trap
-       "172"    # Beak Blast
+       "172",    # Beak Blast
+       "210"    # Z Sleep Talk
     ]
   end
 
@@ -3261,4 +3268,73 @@ class PokeBattle_Move_210 < PokeBattle_Move_207
 end
 
 class PokeBattle_Move_211 < PokeBattle_Move_207
+  def pbEffectGeneral(user)
+    user.pbRaiseStatStage(:ATTACK,2,user)
+    user.pbRaiseStatStage(:DEFENSE,2,user)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK,2,user)
+    user.pbRaiseStatStage(:SPECIAL_DEFENSE,2,user)
+    user.pbRaiseStatStage(:SPEED,2,user)
+  end
+end
+
+class PokeBattle_Move_212 < PokeBattle_Move_188
+  def healingMove?;       return true; end
+  def pbHealAmount(target)
+    return (target.totalhp/6.0).round
+  end
+
+  def pbAdditionalEffect(user,target)
+    @battle.eachSameSideBattler(user) do |b|
+      next if b.hp==b.adjustedTotalhp
+      amt = pbHealAmount(b)
+      b.pbRecoverHP(amt)
+      @battle.pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
+    end
+    @battle.eachSameSideBattler(target) do |b|
+      return if !b.pbCanConfuse?(user,false,self)
+      b.pbConfuse
+    end
+  end
+end
+
+class PokeBattle_Move_213 < PokeBattle_Move
+  def multiHitMove?; return true; end
+  def ignoresReflect?
+    return true;
+  end
+
+  def pbNumHits(user,targets)
+    hitamount = 1
+    speciesname = user.species.to_s
+    while speciesname.length > 1
+      if speciesname[0,2] == "DU"
+        hitamount += 1
+        speciesname[0,2] = ""
+        next
+      end
+      break
+    end
+    return hitamount
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0
+      user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::Reflect] > 0
+      user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+      user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
+    end
+  end
+end
+
+class PokeBattle_Move_210 < PokeBattle_Move_207
+  def pbEffectGeneral(user)
+    @battle.pbStartTerrain(user, :Psychic)
+  end
 end

@@ -204,6 +204,9 @@ class PokeBattle_Battler
       return
     end
     move = choice[2] # In case disobedience changed the move to be used
+    if user.hasActiveAbility?(:GENESIS) && user.zmove > 0
+      move = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(:GENESISSUPERNOVA))
+    end
     return if !move # if move was not chosen somehow
     # Subtract PP
     if !specialUsage || !self.raid
@@ -233,7 +236,7 @@ class PokeBattle_Battler
     # Calculate the move's type during this usage
     move.calcType = move.pbCalcType(self)
     # Start effect of Mold Breaker
-    @battle.moldBreaker = hasMoldBreaker?
+    @battle.moldBreaker = hasMoldBreaker? || ["213"].include?(move.function)
     # Remember that user chose a two-turn move
     if move.pbIsChargingTurn?(self)
       # Beginning the use of a two-turn attack
@@ -411,7 +414,7 @@ class PokeBattle_Battler
             magicCoater = b.index
             b.effects[PBEffects::MagicCoat] = false
             break
-          elsif (b.hasActiveAbility?(:MAGICBOUNCE) || b.hasActiveAbility?(:ENDER)) && !@battle.moldBreaker &&
+          elsif b.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE]) && !@battle.moldBreaker &&
             !b.effects[PBEffects::MagicBounce]
             magicBouncer = b.index
             b.effects[PBEffects::MagicBounce] = true

@@ -1299,7 +1299,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0B3" #todo?
     #---------------------------------------------------------------------------
-    when "0B4" #todo
+    when "0B4", "210" #todo
       if user.asleep?
         score += 100   # Because it can only be used while asleep
       else
@@ -2721,6 +2721,12 @@ class PokeBattle_AI
       score = 0
       score = -100 if user.lastRegularMoveUsed == move.id
     #---------------------------------------------------------------------------
+    when "208", "209", "211" #todo
+      score = 99
+    #---------------------------------------------------------------------------
+    when "212" #todo
+      score *= 3
+    #---------------------------------------------------------------------------
     end
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
@@ -2880,6 +2886,8 @@ class PokeBattle_AI
         end
       when "0F0"
         baseDmg *= 1.5 if target.item && !target.unlosableItem?(target.item)
+      when "213"
+        baseDmg *= move.pbNumHits(user, target)
       end
       
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -3302,7 +3310,7 @@ class PokeBattle_AI
       end
       # Aurora Veil, Reflect, Light Screen
       if !move.ignoresReflect? && !(key == :critDamage)
-         !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || move.function == "201")
+         !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || ["201", "213"].include?(move.function))
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target)>1
             multipliers[:final_damage_multiplier] *= 2 / 3.0

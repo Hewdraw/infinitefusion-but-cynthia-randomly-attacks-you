@@ -261,3 +261,5 @@
 259,WIRED,Wired,"" #todo
 260,HEATSINK,Heatsink,"Draws in all Fire-type moves to up Sp. Attack."
 261,POLAR,Polar,"Draws in all Ice-type moves to up Sp. Attack."
+262,POWERBOUNCE,Power Bounce,""
+263,GENESIS,Genesis,"Upgrades Mew's Psychic to a Z-Move."

@@ -793,6 +793,7 @@
 794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
 795,KOMMONIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
 796,EEVIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
+797,MAWANCITE,Mawancite,Mawancites,1,0,"",0,0,0
 
 
 #    attr_reader :id

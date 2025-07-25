@@ -555,7 +555,7 @@ class PokemonEvolutionScene
     pbBGMPlay("Evolution")
     canceled = false
     begin
-      pbUpdateNarrowScreen
+      pbUpdateNarrowScreen if @pokemon.owner.is_a?(Player)
       metaplayer1.update
       metaplayer2.update
       Graphics.update
@@ -594,9 +594,15 @@ class PokemonEvolutionScene
 
     newspeciesname = GameData::Species.get(@newspecies).name
     if !reversing
-      pbMessageDisplay(@sprites["msgwindow"],
+      if !@pokemon.owner.is_a?(Player)
+        pbMessageDisplay(@sprites["msgwindow"],
                        _INTL("\\se[]Congratulations! Your {1} evolved into {2}!\\wt[80]",
                              @pokemon.name,newspeciesname)) { pbUpdate }
+      else
+        pbMessageDisplay(@sprites["msgwindow"],
+                       _INTL("\\se[]Congratulations! Hatsune Miku's {1} evolved into {2}!\\wt[80]",
+                             @pokemon.name,newspeciesname)) { pbUpdate }
+      end
     else
       pbMessageDisplay(@sprites["msgwindow"],
                        _INTL("\\se[]{1} has been turned into {2}!\\wt[80]",
@@ -618,6 +624,8 @@ class PokemonEvolutionScene
     @pokemon.species = @newspecies
     @pokemon.form    = 0 if @pokemon.isSpecies?(:MOTHIM)
     @pokemon.calc_stats
+
+    return if !@pokemon.owner.is_a?(Player)
     # See and own evolved species
     #
 

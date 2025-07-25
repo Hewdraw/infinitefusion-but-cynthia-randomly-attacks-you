@@ -768,10 +768,10 @@
 751,CYNTHIACONTINENTALCRUSH,Continental Crush,000,180,ROCK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 752,CYNTHIACORKSCREWCRASH,Corkscrew Crash,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 753,FIERYWRATH,Fiery Wrath,000,90,DARK,Special,100,10,20,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-754,GMAXONEBLOW,GMAX One Blow,000,180,DARK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-755,GMAXMELTDOWN,GMAX Meltdown,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-756,GMAXSMITE,GMAX Smite,000,180,FAIRY,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-757,GMAXTERROR,GMAX Terror,000,180,GHOST,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+754,GMAXONEBLOW,G-Max One Blow,000,180,DARK,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+755,GMAXMELTDOWN,G-Max Meltdown,000,180,STEEL,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+756,GMAXSMITE,G-Max Smite,000,180,FAIRY,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+757,GMAXTERROR,G-Max Terror,000,180,GHOST,Physical,100,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 758,HEADLONGRUSH,Headlong Rush,000,120,GROUND,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 759,HARDPRESS,Hard Press,000,100,STEEL,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 760,JAWLOCK,Jaw Lock,000,80,DARK,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
@@ -834,6 +834,11 @@
 817,ZSLEEPTALK,Z Sleep Talk,210,0,NORMAL,Status,0,1,0,User,0,,"While it is asleep, the user randomly uses one of the moves it knows."
 818,EXTREMEEVOBOOST,Extreme Evoboost,211,0,NORMAL,Status,0,1,0,User,0,f,"Nice Smeargle/Ditto, jackass."
 819,FLIPTURN,Flip Turn,0EE,60,WATER,Physical,100,20,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+820,GMAXSMITEFINALE,G-Max Smite Finale,212,90,FAIRY,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
+821,HYPERDRILL,Hyper Drill,000,100,NORMAL,Physical,100,5,0,NearOther,0,aef,"Nice Smeargle/Ditto, jackass."
+822,HYPERIMPALER,Hyper Impaler,213,40,NORMAL,Physical,100,5,0,NearOther,0,aefh,"Nice Smeargle/Ditto, jackass."
+823,DRAGONENERGY,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass."
+824,GENESISSUPERNOVA,Genesis Supernova,214,185,PSYCHIC,Special,0,1,100,NearOther,0,f,"After obtaining Z-Power, the user, Mew, attacks the target with full force. The terrain will be charged with psychic energy."
 
 
 

@@ -1091,7 +1091,7 @@ BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS)
+BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS, :POWERBOUNCE)
 
 BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
   proc { |ability,user,target,move,mults,baseDmg,type|

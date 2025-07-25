@@ -208,6 +208,26 @@ class PokeBattle_Battle
   end
 
   def pbDynamax(idxBattler)
+    maxmoves = {
+      :NORMAL => :MAXSTRIKE,
+      :FIGHTING => :MAXKNUCKLE,
+      :FLYING => :MAXAIRSTREAM,
+      :POISON => :MAXOOZE,
+      :GROUND => :MAXQUAKE,
+      :ROCK => :MAXROCKFALL,
+      :BUG => :MAXFLUTTERBY,
+      :GHOST => :MAXPHANTASM,
+      :STEEL => :MAXSTEELSPIKE,
+      :FIRE => :MAXFLARE,
+      :WATER => :MAXGEYSER,
+      :GRASS => :MAXOVERGROWTH,
+      :ELECTRIC => :MAXLIGHTNING,
+      :PSYCHIC => :MAXMINDSTORM,
+      :ICE => :MAXHAILSTORM,
+      :DRAGON => :MAXWYRMWIND,
+      :DARK => :MAXDARKNESS,
+      :FAIRY => :MAXSTARFALL
+    }
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
     return if battler.pokemon.dynamax != true
@@ -227,6 +247,9 @@ class PokeBattle_Battle
       @scene.pbChangePokemon(battler,battler.pokemon)
       @scene.pbRefreshOne(idxBattler)
       pbCommonAnimation("MegaEvolution2",battler)
+      if tempspecies == :GMAXHATTERENEALCREMIE
+        maxmoves[:FAIRY] = :GMAXSMITEFINALE
+      end
     end
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
@@ -252,26 +275,6 @@ class PokeBattle_Battle
     battler.undynamoves = battler.pokemon.moves.clone
     battler.pokemon.forget_all_moves
     battler.moves = []
-    maxmoves = {
-      :NORMAL => :MAXSTRIKE,
-      :FIGHTING => :MAXKNUCKLE,
-      :FLYING => :MAXAIRSTREAM,
-      :POISON => :MAXOOZE,
-      :GROUND => :MAXQUAKE,
-      :ROCK => :MAXROCKFALL,
-      :BUG => :MAXFLUTTERBY,
-      :GHOST => :MAXPHANTASM,
-      :STEEL => :MAXSTEELSPIKE,
-      :FIRE => :MAXFLARE,
-      :WATER => :MAXGEYSER,
-      :GRASS => :MAXOVERGROWTH,
-      :ELECTRIC => :MAXLIGHTNING,
-      :PSYCHIC => :MAXMINDSTORM,
-      :ICE => :MAXHAILSTORM,
-      :DRAGON => :MAXWYRMWIND,
-      :DARK => :MAXDARKNESS,
-      :FAIRY => :MAXSTARFALL
-    }
     battler.undynamoves.each_with_index do |move,i|
       if !(move.category == 2)
         move = Pokemon::Move.new(maxmoves[move.type])
