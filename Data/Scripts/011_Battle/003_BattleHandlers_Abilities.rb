@@ -589,6 +589,18 @@ BattleHandlers::AbilityOnStatLoss.add(:DEFIANT,
 # PriorityChangeAbility handlers
 #===============================================================================
 
+BattleHandlers::PriorityChangeAbility.add(:LEGENDARYPRESSURE,
+  proc { |ability,battler,move,pri|
+    case battler.pokemon.species
+    when :MEW
+      if move.statusMove?
+        battler.effects[PBEffects::Prankster] = true
+        next pri+1
+      end
+    end
+  }
+)
+
 BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
   proc { |ability,battler,move,pri|
     next pri+1 if battler.hp==battler.adjustedTotalhp && move.type == :FLYING

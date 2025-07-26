@@ -437,8 +437,11 @@ class PokeBattle_Battler
 
   def hasActiveAbility?(check_ability, ignore_fainted = false)
     return false if !abilityActive?(ignore_fainted)
-    return check_ability.include?(@ability_id) if check_ability.is_a?(Array)
-    return self.ability == check_ability
+    if !check_ability.is_a?(Array)
+      check_ability = [check_ability]
+    end
+    return true if check_ability.include?(:MAGICBOUNCE) && hasActiveAbility?(:LEGENDARYPRESSURE) && @pokemon.species == :MEW
+    return check_ability.include?(@ability_id)
   end
 
   alias hasWorkingAbility hasActiveAbility?
