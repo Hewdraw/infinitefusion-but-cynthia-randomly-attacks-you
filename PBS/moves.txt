@@ -839,6 +839,11 @@
 822,HYPERIMPALER,Hyper Impaler,213,40,NORMAL,Physical,100,5,0,NearOther,0,aefh,"Nice Smeargle/Ditto, jackass."
 823,DRAGONENERGY,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass."
 824,GENESISSUPERNOVA,Genesis Supernova,214,185,PSYCHIC,Special,0,1,100,NearOther,0,f,"After obtaining Z-Power, the user, Mew, attacks the target with full force. The terrain will be charged with psychic energy."
+825,ICESPINNER,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+826,TEMPERFLARE,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+827,BURNINGJEALOUSY,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+828,SKITTERSMACK,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+829,TERRAINPULSE,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 
 
 

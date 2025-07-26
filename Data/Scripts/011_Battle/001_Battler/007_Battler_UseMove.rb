@@ -204,8 +204,10 @@ class PokeBattle_Battler
       return
     end
     move = choice[2] # In case disobedience changed the move to be used
-    if user.hasActiveAbility?(:GENESIS) && user.zmove > 0
-      move = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(:GENESISSUPERNOVA))
+    if (hasActiveAbility?(:GENESIS) || hasActiveAbility?(:LEGENDARYPRESSURE) && @pokemon.species == :MEW) && @zmove > 0 && move.id == :PSYCHIC
+      @battle.pbShowAbilitySplash(self, false, true, "Genesis")
+      move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESISSUPERNOVA))
+      @battle.pbHideAbilitySplash(self)
     end
     return if !move # if move was not chosen somehow
     # Subtract PP

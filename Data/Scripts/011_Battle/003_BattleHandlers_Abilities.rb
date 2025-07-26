@@ -8,16 +8,16 @@ BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
-  proc { |ability,user,target,move,mults,baseDmg,type|
-    next mult*1.5 if user.effects[PBEffects::Protosynthesis] % 10 == 5
+BattleHandlers::SpeedCalcAbility.add(:PROTOSYNTHESIS,
+  proc { |ability,battler,mult|
+    next mult*1.5 if battler.effects[PBEffects::Protosynthesis] % 10 == 5
   }
 )
 
 
-BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
-  proc { |ability,user,target,move,mults,baseDmg,type|
-    next mult*1.5 if user.effects[PBEffects::QuarkDrive] % 10 == 5
+BattleHandlers::SpeedCalcAbility.add(:QUARKDRIVE,
+  proc { |ability,battler,mult|
+    next mult*1.5 if battler.effects[PBEffects::QuarkDrive] % 10 == 5
   }
 )
 

@@ -61,6 +61,8 @@ class PokeBattle_AI
     when "003", "004" #sleep
       score *= 1.5 if user.hasActiveAbility?(:BADDREAMS)
       score *= 1.5 if user.pbHasMove?(:NIGHTMARE) || user.pbHasMove?(:DREAMEATER)
+      score *= 2 if [:Snow, :Hail].include?(@battle.pbWeather)
+      score *= 2 if userThreat < 67
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if target.hasActiveAbility?([:MARVELSCALE, :GUTS, :QUICKFEET])
       score = 0 if target.pbHasMoveFunction?("011","0B4", "0D9")
@@ -169,7 +171,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "01F", "188FLYING"
       if !user.statStageAtMax?(:SPEED)
-        score = 100
+        score = 101
         statincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         user.eachOpposing do |opponent|
           score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
@@ -253,7 +255,7 @@ class PokeBattle_AI
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        speedscore = 100
+        speedscore = 101
         user.eachOpposing do |opponent|
           speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
@@ -306,7 +308,7 @@ class PokeBattle_AI
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
         defstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
-        speedscore = 100
+        speedscore = 101
         user.eachOpposing do |opponent|
           speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
@@ -374,7 +376,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "030", "031"
       if !user.statStageAtMax?(:SPEED)
-        score = 100
+        score = 101
         statincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
         user.eachOpposing do |opponent|
           score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
@@ -429,7 +431,7 @@ class PokeBattle_AI
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
         atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 2, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)].max()
-        speedscore = 100
+        speedscore = 101
         user.eachOpposing do |opponent|
           speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
@@ -455,7 +457,7 @@ class PokeBattle_AI
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
         atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        speedscore = 100
+        speedscore = 101
         user.eachOpposing do |opponent|
           speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
@@ -567,7 +569,7 @@ class PokeBattle_AI
         if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
           speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, -1, user)
           defstatincrease = [pbCynthiaGetStatIncrease(:DEFENSE, -1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, user)].max()
-          speedscore = 100
+          speedscore = 101
           user.eachOpposing do |opponent|
             speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
             speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
@@ -591,7 +593,7 @@ class PokeBattle_AI
     when "03E"
       if user.hasActiveAbility?(:CONTRARY)
         if !user.statStageAtMax?(:SPEED)
-          score = 100
+          score = 101
           statincrease = pbCynthiaGetStatIncrease(:SPEED, -1, user)
           user.eachOpposing do |opponent|
             score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
@@ -639,6 +641,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -653,6 +656,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -665,6 +669,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if outspeedsopponent
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -679,6 +684,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -693,11 +699,13 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
     when "047"
       score *= (6 - target.stages[:ACCURACY]) / 6.0
+      score *= 0.5
       score = 0 if !target.pbCanLowerStatStage?(:ACCURACY,user)
     #---------------------------------------------------------------------------
     when "049"
@@ -722,6 +730,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -736,6 +745,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -750,6 +760,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -762,6 +773,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if outspeedsopponent
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -776,6 +788,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT, :OBLIVIOUS])
       score = 0 if user.gender==2 || target.gender==2 || user.gender==target.gender
@@ -791,6 +804,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -1281,9 +1295,9 @@ class PokeBattle_AI
         end
       else
         user.eachOpposing do |opponent|
-          opponent.moves.each do |usermove|
-            if !blacklist.include?(usermove.function)
-              moveID = usermove.id
+          opponent.moves.each do |opponentmove|
+            if !blacklist.include?(opponentmove.function)
+              moveID = opponentmove.id
               calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
               score = [score, pbCynthiaRegisterMove(user, calledmove, nil, true)].max
             end
@@ -1313,8 +1327,17 @@ class PokeBattle_AI
     when "0B7" #todo
       score -= 90 if target.effects[PBEffects::Torment]
     #---------------------------------------------------------------------------
-    when "0B8" #todo
-      score -= 90 if user.effects[PBEffects::Imprison]
+    when "0B8"
+      score = 0
+      user.eachOpposing do |opponent|
+        totalthreat = 0
+        opponent.moves.each do |opponentmove|
+          totalthreat += pbCynthiaGetThreat(user, opponent, false)[:moves][opponentmove][:maxDamage]
+        end
+        opponent.moves.each do |opponentmove|
+          score += 100.0 * pbCynthiaGetThreat(user, opponent, false)[:moves][opponentmove][:maxDamage] / totalthreat
+        end
+      end
     #---------------------------------------------------------------------------
     when "0B9" #todo
       score -= 90 if target.effects[PBEffects::Disable]>0
@@ -2086,6 +2109,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -2100,6 +2124,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -2135,6 +2160,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -2149,6 +2175,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if user.hasActiveAbility?(:UNAWARE)
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
     #---------------------------------------------------------------------------
@@ -2358,6 +2385,7 @@ class PokeBattle_AI
       else
         score = 0
       end
+      score *= 0.5
       score = 0 if outspeedsopponent
       score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
       score += 32 if !(target.effects[PBEffects::Yawn]>0 || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD]) || target.pbHasMoveFunction?("0D9") || !target.pbCanPoison?(user,false) || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanPoisonSynchronize?(target)))
@@ -2473,7 +2501,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "167" #todo
-      score *= 2
+      score *= 4
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
       score *= 2 if outspeedsopponent
       user.eachOpposing do |b|
@@ -2694,7 +2722,7 @@ class PokeBattle_AI
       if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
         speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
         atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max()
-        speedscore = 100
+        speedscore = 101
         user.eachOpposing do |opponent|
           speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
           speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)

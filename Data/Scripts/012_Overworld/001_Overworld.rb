@@ -206,7 +206,7 @@ def pbBattleOnStepTaken(repel_active)
     $PokemonGlobal.cynthiachance = 0
     pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
     #pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, true, 0)
-    #pbLegendaryBattle("Cool Dino")
+    #pbLegendaryBattle("Mew")
     return
   end
   encounter_type = $PokemonEncounters.encounter_type

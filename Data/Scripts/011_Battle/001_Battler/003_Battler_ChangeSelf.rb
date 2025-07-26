@@ -155,6 +155,9 @@ class PokeBattle_Battler
       GameData::Stat.each_main do |s|
         @pokemon.ev[s.id] = 0
       end
+      if @pokemon.moves.length > 4
+        @pokemon.moves = @pokemon.moves[0..3]
+      end
       @pokemon.raid = nil
       @pokemon.hpbars = nil
       ability = @pokemon.getAbilityList[-1][0]
