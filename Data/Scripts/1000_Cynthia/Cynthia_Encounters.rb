@@ -1,4 +1,4 @@
-def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trainer = false)
+def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trainer = false, badge_bonus = 0)
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
   end
@@ -48,7 +48,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
       $PokemonGlobal.cynthiabadgetier = numbadges
       $PokemonGlobal.cynthiachance = 1000
     end
-    if rand(120) < $PokemonGlobal.cynthiachance || (isRepelActive() && !$PokemonTemp.pokeradar)
+    if rand(180) < $PokemonGlobal.cynthiachance || (isRepelActive() && !$PokemonTemp.pokeradar)
       encounter_type = [:CHAMPION_Sinnoh, "Cynthia"]
       if $PokemonGlobal.cynthiahandschance == nil
         $PokemonGlobal.cynthiahandschance = -10
@@ -62,6 +62,8 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   end
 
   return false if !encounter_type
+
+  numbadges += badge_bonus
 
   if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
     $PokemonGlobal.cynthiaupgradechance += 18

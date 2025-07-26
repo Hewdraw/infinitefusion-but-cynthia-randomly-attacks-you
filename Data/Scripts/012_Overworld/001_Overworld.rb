@@ -194,7 +194,7 @@ def pbBattleOnStepTaken(repel_active)
       $PokemonGlobal.cynthiafieldchance = 0
     end
     $PokemonGlobal.cynthiafieldchance += 1
-    if rand(1500000) < $PokemonGlobal.cynthiafieldchance
+    if rand(3000000) < $PokemonGlobal.cynthiafieldchance
       $PokemonGlobal.cynthiafieldchance = 0
       $PokemonGlobal.nextBattleBGM = "VSCynthia2"
       pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])

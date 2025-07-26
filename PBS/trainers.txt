@@ -2338,6 +2338,16 @@ Pokemon = ARAICHU,5
 	IV = 16,16,16,16,16,16
 	EV = 0,0,0,0,96,0
 	Happiness = 255
+Pokemon = DODRIOELECTIVIRE,5	
+	Offset = 1
+	Moves = PLASMAFISTS,POWERUPPUNCH,BRAVEBIRD
+	Ability = MOTORDRIVE
+	Item = LIFEORB
+	Gender = F
+	Nature = JOLLY
+	IV = 16,16,16,16,16,16
+	EV = 0,96,0,0,0,0
+	Happiness = 255
 
 [LEADER_Surge,Lt. Surge,1]
 Items = FULLRESTORE,FULLRESTORE
