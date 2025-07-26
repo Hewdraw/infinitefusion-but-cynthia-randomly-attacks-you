@@ -18952,6 +18952,19 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000358]
+Name = Ruffvee
+InternalName = EEVEERUFFLET
+Type1 = FLYING
+Type2 = NORMAL
+BaseStats = 68,77,63,70,46,61
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+
 
 
 #Hatsune Miku Pokemon

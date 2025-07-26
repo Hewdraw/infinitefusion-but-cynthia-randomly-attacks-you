@@ -6945,6 +6945,16 @@ Pokemon = EEVEE,5
 	IV = 16,16,16,16,16,16
 	EV = 0,0,0,0,0,96
 	Happiness = 255
+Pokemon = B384H175,5	
+	Offset = 4
+	Moves = CRUNCH,HIJUMPKICK,SOFTBOILED
+	Ability = PRANKSTER
+	Item = WIDELENS
+	Gender = F
+	Nature = ADAMANT
+	IV = 16,16,16,16,16,16
+	EV = 96,0,0,0,0,0
+	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,20]
 Pokemon = PORYGON,5
@@ -6977,6 +6987,17 @@ Pokemon = FEEBAS,5
 	IV = 16,16,16,16,16,16
 	EV = 0,0,0,0,96,0
 	Happiness = 255
+Pokemon = EELEKTRIK,5	
+	Offset = 1
+	Moves = THUNDER,HIDDENPOWER,VOLTSWITCH
+	HPType = WATER
+	Ability = LEVITATE
+	Item = WISEGLASSES
+	Gender = F
+	Nature = MODEST
+	IV = 16,16,16,16,16,16
+	EV = 96,0,0,0,0,0
+	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,21]
 Pokemon = TOGEPISHELLOS,5
@@ -7000,6 +7021,16 @@ Pokemon = HGROWLITHE,5
 	EV = 0,96,0,0,0,0
 	Happiness = 255
 Pokemon = GIBLE,5
+	Offset = 2
+	Moves = SWORDSDANCE,SCALESHOT,EARTHQUAKE
+	Ability = ROUGHSKIN
+	Item = LUMBERRY
+	Gender = F
+	Nature = ADAMANT
+	IV = 16,16,16,16,16,16
+	EV = 0,96,0,0,0,0
+	Happiness = 255
+Pokemon = GIBLE,5	
 	Offset = 2
 	Moves = SWORDSDANCE,SCALESHOT,EARTHQUAKE
 	Ability = ROUGHSKIN
@@ -7041,6 +7072,16 @@ Pokemon = GIBLE,5
 	IV = 16,16,16,16,16,16
 	EV = 96,0,0,0,0,0
 	Happiness = 255
+Pokemon = EEVEERUFFLET,5
+	Offset = 1
+	Moves = VEEVEEVOLLEY,AERIALACE,AGILITY
+	Ability = HUSTLE
+	Item = METRONOME
+	Gender = F
+	Nature = ADAMANT
+	IV = 16,16,16,16,16,16
+	EV = 0,96,0,0,0,0
+	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,23]	
 Pokemon = TYNAMO,5	
@@ -7072,6 +7113,16 @@ Pokemon = EEVEE,5
 	Nature = ADAMANT
 	IV = 16,16,16,16,16,16
 	EV = 0,96,0,0,0,0
+	Happiness = 255
+Pokemon = TOGEPI,5	
+	Offset = 8
+	Moves = METRONOME,SOFTBOILED,THUNDERWAVE
+	Ability = SUPERLUCK
+	Item = SITRUSBERRY
+	Gender = F
+	Nature = BOLD
+	IV = 16,16,16,16,16,16
+	EV = 96,0,0,0,0,0
 	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,24]
