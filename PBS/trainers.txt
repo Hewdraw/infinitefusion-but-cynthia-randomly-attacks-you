@@ -7030,15 +7030,16 @@ Pokemon = GIBLE,5
 	IV = 16,16,16,16,16,16
 	EV = 0,96,0,0,0,0
 	Happiness = 255
-Pokemon = GIBLE,5	
+Pokemon = JANGMOO,5	
 	Offset = 2
-	Moves = SWORDSDANCE,SCALESHOT,EARTHQUAKE
-	Ability = ROUGHSKIN
-	Item = LUMBERRY
+	Moves = DRAGONPULSE,FOCUSBLAST,HIDDENPOWER
+	HPType = ICE
+	Ability = BULLETPROOF
+	Item = CHOICESPECS
 	Gender = F
-	Nature = ADAMANT
+	Nature = MODEST
 	IV = 16,16,16,16,16,16
-	EV = 0,96,0,0,0,0
+	EV = 0,0,0,0,96,0
 	Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,22]
