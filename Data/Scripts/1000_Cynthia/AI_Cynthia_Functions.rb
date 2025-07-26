@@ -1219,7 +1219,7 @@ class PokeBattle_AI
     when "09C"
       score = 0
       user.eachAlly do |b|
-        score = [score, pbCynthiaGetThreat(b, b)[:highestDamage] * 0.3]
+        score = [score, pbCynthiaGetThreat(b, b)[:highestDamage] * 0.3].max
         score *= 2 if pbCynthiaCompareSpeed(b, user)
         break
       end
