@@ -149,24 +149,13 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
     losequote = "sorrgy accident.."
   end
   if encounter_type[1] == "Cynthia"
-    if $PokemonGlobal.partner
-      #pbDoubleTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", currentbadge[pbCynthiaRollEncounter(currentbadge)], nil, :CHAMPION_Sinnoh, "Cynthia", currentbadge[pbCynthiaRollEncounter])
-      return true
-    end
     if numbadges >= $Trainer.numbadges + 2
       if !trainer_override
         trainer_override = [nil, :CHAMPION_Sinnoh2]
       end
-      #pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[pbCynthiaRollEncounter], false, 1, nil, :CHAMPION_Sinnoh2)
-      return true
     elsif numbadges > $Trainer.numbadges && !trainer_override
-      if !trainer_override
-        trainer_override = ["Hatsune Miku", :CREATOR_Minecraft2]
-        losequote = "sorrgy accident.."
-      end
-      #pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", "sorrgy accident..", false, currentbadge[pbCynthiaRollEncounter], false, 1, "Hatsune Miku", :CREATOR_Minecraft2)
-    else
-      #pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, currentbadge[pbCynthiaRollEncounter])
+      trainer_override = ["Hatsune Miku", :CREATOR_Minecraft2]
+      losequote = "sorrgy accident.."
     end
   end
 
