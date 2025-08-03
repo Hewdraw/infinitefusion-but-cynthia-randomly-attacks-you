@@ -170,7 +170,6 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   if !trainer_override
     trainer_override = [nil, nil]
   end
-  #pbTrainerBattle(encounter_type[0] , encounter_type[1], nil, false, 7)
   pbTrainerBattle(encounter_type[0], encounter_type[1], losequote, doublebattle, pbCynthiaRollEncounter(encounter_id), false, 1, trainer_override[0], trainer_override[1])
   return true
 end
