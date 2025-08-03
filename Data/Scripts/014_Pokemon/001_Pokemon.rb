@@ -289,7 +289,7 @@ class Pokemon
 
   def shiny=(value)
     @shiny = value
-    if value && Settings::SHINY_POKEMON_CHANCE != S_CHANCE_VALIDATOR
+    if value && Settings::ACTUAL_SHINY_POKEMON_CHANCE != S_CHANCE_VALIDATOR
       @debug_shiny = true
     end
   end
@@ -647,14 +647,14 @@ class Pokemon
       b = a & 0xFFFF
       c = (a >> 16) & 0xFFFF
       d = b ^ c
-      is_shiny = d < Settings::SHINY_POKEMON_CHANCE
+      is_shiny = d < Settings::ACTUAL_SHINY_POKEMON_CHANCE
       if is_shiny
         @shiny = true
         @natural_shiny = true
       end
 
     end
-    if @shiny && Settings::SHINY_POKEMON_CHANCE != S_CHANCE_VALIDATOR
+    if @shiny && Settings::ACTUAL_SHINY_POKEMON_CHANCE != S_CHANCE_VALIDATOR
       @debug_shiny = true
       @natural_shiny = false
     end
