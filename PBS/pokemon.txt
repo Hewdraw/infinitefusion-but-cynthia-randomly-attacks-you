@@ -20553,6 +20553,16 @@ BattlerEnemyY = 8
 BattlerAltitude = 13
 BattlerShadowX = 0
 BattlerShadowSize = 1
+#-------------------------------
+[1000863]
+Name = Ferawellow
+InternalName = SWELLOWFERALIGATR
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 76,91,73,109,77,72
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
 
 #Legendary Raids
 #-------------------------------

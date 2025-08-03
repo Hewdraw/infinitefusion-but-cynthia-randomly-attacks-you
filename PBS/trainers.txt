@@ -45,7 +45,15 @@ Pokemon = B92H4,33 #Chartly,
 ##########################
 
 [CHANNELER,Deborah]
-Pokemon = B92H7,33 #Squirtltly,
+Pokemon = FeraligatrGengar,5	
+	Offset = 0
+	Moves = FOCUSBLAST,SCALD,SHADOWBALL,NASTYPLOT
+	Ability = SHEERFORCE
+	Item = LIFEORB
+	Nature = TIMID
+	IV = 31,0,31,31,31,31
+	EV = 4,0,0,252,252,0
+	Happiness = 255
 ##############################
 ###########F4###########
 
@@ -378,6 +386,15 @@ Pokemon = B106H110,32 #Weelee
 [BIRDKEEPER,James]
 Pokemon = B17H2,34 #Ivyeotto,
 Pokemon = B22H5,34 #Charrow,
+Pokemon = SWELLOWFERALIGATR,5	
+	Offset = 0
+	Moves = DRAGONDANCE,WATERFALL,BRAVEBIRD,EARTHQUAKE
+	Ability = GUTS
+	Item = FLAMEORB
+	Nature = ADAMANT
+	IV = 31,0,31,31,31,31
+	EV = 252,0,0,252,0,0
+	Happiness = 255
 ############################
 
 [FISHERMAN,Wallace]
