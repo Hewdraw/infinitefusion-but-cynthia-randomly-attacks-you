@@ -211,59 +211,41 @@ class PokeBattle_Battle
     pbEORWeather(priority)
     priority.each do |b|
       next if !b.raid
-      if b.raid.is_a?(Integer)
-        if b.raid > 1
-          b.raid -= 1
-        else
-          b.raid = true
-        end
+      raidcooldown = 4
+      if !b.raid.is_a?(Integer)
+        b.raid = raidcooldown
+      end
+      b.raid -= 1
+      next if b.raid > 1
+      pbShowAbilitySplash(b, false, true, "Legendary Pressure")
+      if b.raid == 1
+        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
+        pbHideAbilitySplash(b)
         next
       end
-      didsomething = b.status != :NONE
-      didsomething = didsomething ||
-        (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
-        b.pokemon.species == :GARTICUNO ||
-        (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
-        (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
-        b.pokemon.species == :COOLERDINO
-      b.eachOpposing do |target|
-        didsomething = didsomething ||
-          (b.pokemon.species == :GMOLTRES && target.effects[PBEffects::Taunt] == 0)
-      end
-
+      b.pbEffectsOnSwitchIn
       resetstat = false
       GameData::Stat.each_battle do |s|
         resetstat = true if b.stages[s.id] < 0
         b.stages[s.id] = 0 if b.stages[s.id] < 0
       end
-      didsomething = didsomething || resetstat
       pbCommonAnimation("StatUp", b) if resetstat
+      b.pbCureStatus()
+      pbDisplay(_INTL("{1} removed negative effects from itself!",b.pbThis))
       b.eachOpposing do |target|
         resetstat = false
         GameData::Stat.each_battle do |s|
           resetstat = true if target.stages[s.id] > 0
           target.stages[s.id] = 0 if target.stages[s.id] > 0
         end
-        didsomething = didsomething || resetstat
         pbCommonAnimation("StatDown", target) if resetstat
       end
-      b.pbCureStatus()
-      if didsomething
-        pbShowAbilitySplash(b)
-        pbDisplay(_INTL("{1} removed negative effects from itself!",b.pbThis))
-        pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
-        pbHideAbilitySplash(b)
-        b.eachOpposing do |target|
-          target.effects[PBEffects::GastroAcid] = true
-        end
-        b.pbEffectsOnSwitchIn if (b.pokemon.species == :ARTICUNO && pbWeather != :Snow) ||
-          b.pokemon.species == :GARTICUNO ||
-          (b.pokemon.species == :ZAPDOS && pbWeather != :Rain) ||
-          (b.pokemon.species == :MOLTRES && pbWeather != :Sun) ||
-          b.pokemon.species == :GMOLTRES ||
-          b.pokemon.species == :COOLERDINO
-        b.raid = 4
+      b.eachOpposing do |target|
+        target.effects[PBEffects::GastroAcid] = true
       end
+      pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
+      pbHideAbilitySplash(b)
+      b.raid = raidcooldown
     end
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|
