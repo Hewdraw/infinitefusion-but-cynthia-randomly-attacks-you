@@ -8,7 +8,7 @@ class PokeBattle_Battler
     # Target's ability
     if target.abilityActive?(true)
       oldHP = user.hp
-      BattleHandlers.triggerTargetAbilityOnHit(target.ability,user,target,move,@battle)
+      BattleHandlers.triggerTargetAbilityOnHit(target.ability,target,user,move,@battle)
       user.pbItemHPHealCheck if user.hp<oldHP
     end
     # User's ability

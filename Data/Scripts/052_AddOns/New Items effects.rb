@@ -2189,3 +2189,10 @@ ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
   end
   next 1
 })
+
+ItemHandlers::UseOnPokemon.add(:ANCESTRALGENE, proc { |item, pkmn, scene|
+  scene.pbDisplay(_INTL("Stored {1} Ability.", pkmn.ability.name))
+  #item.stored_ability = pkmn.ability
+  GameData::Item.get(item).real_name = pkmn.ability.name + " Gene"
+  next false
+})

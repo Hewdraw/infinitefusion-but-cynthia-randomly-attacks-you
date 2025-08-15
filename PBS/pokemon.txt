@@ -18976,8 +18976,8 @@ Type1 = STEEL
 Type2 = FLYING
 BaseStats = 140,145,160,95,145,95
 GenderRate = Female50Percent
-Abilities = DROUGHT
-HiddenAbility = DROUGHT
+Abilities = BULLETPROOF,FULLMETALBODY
+HiddenAbility = MOLDBREAKER
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------

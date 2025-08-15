@@ -227,8 +227,8 @@ module BattleHandlers
     return (ret!=nil) ? ret : false
   end
 
-  def self.triggerMoveImmunityTargetAbility(ability,user,target,move,type,battle)
-    ret = MoveImmunityTargetAbility.trigger(ability,user,target,move,type,battle)
+  def self.triggerMoveImmunityTargetAbility(ability,target,user,move,type,battle)
+    ret = MoveImmunityTargetAbility.trigger(ability,target,user,move,type,battle)
     return (ret!=nil) ? ret : false
   end
 
@@ -241,16 +241,16 @@ module BattleHandlers
 
   #=============================================================================
 
-  def self.triggerAccuracyCalcUserAbility(ability,mods,user,target,move,type)
-    AccuracyCalcUserAbility.trigger(ability,mods,user,target,move,type)
+  def self.triggerAccuracyCalcUserAbility(ability,user,mods,target,move,type)
+    AccuracyCalcUserAbility.trigger(ability,user,mods,target,move,type)
   end
 
-  def self.triggerAccuracyCalcUserAllyAbility(ability,mods,user,target,move,type)
-    AccuracyCalcUserAllyAbility.trigger(ability,mods,user,target,move,type)
+  def self.triggerAccuracyCalcUserAllyAbility(ability,user,mods,target,move,type)
+    AccuracyCalcUserAllyAbility.trigger(ability,user,mods,target,move,type)
   end
 
-  def self.triggerAccuracyCalcTargetAbility(ability,mods,user,target,move,type)
-    AccuracyCalcTargetAbility.trigger(ability,mods,user,target,move,type)
+  def self.triggerAccuracyCalcTargetAbility(ability,user,mods,target,move,type)
+    AccuracyCalcTargetAbility.trigger(ability,user,mods,target,move,type)
   end
 
   def self.triggerAccuracyCalcUserItem(item,mods,user,target,move,type)
@@ -267,20 +267,20 @@ module BattleHandlers
     DamageCalcUserAbility.trigger(ability,user,target,move,mults,baseDmg,type)
   end
 
-  def self.triggerDamageCalcUserAllyAbility(ability,user,target,move,mults,baseDmg,type)
-    DamageCalcUserAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+  def self.triggerDamageCalcUserAllyAbility(ability,bearer,user,target,move,mults,baseDmg,type)
+    DamageCalcUserAllyAbility.trigger(ability,bearer,user,target,move,mults,baseDmg,type)
   end
 
-  def self.triggerDamageCalcTargetAbility(ability,user,target,move,mults,baseDmg,type)
+  def self.triggerDamageCalcTargetAbility(ability,target,user,move,mults,baseDmg,type)
     DamageCalcTargetAbility.trigger(ability,user,target,move,mults,baseDmg,type)
   end
 
-  def self.triggerDamageCalcTargetAbilityNonIgnorable(ability,user,target,move,mults,baseDmg,type)
+  def self.triggerDamageCalcTargetAbilityNonIgnorable(ability,target,user,move,mults,baseDmg,type)
     DamageCalcTargetAbilityNonIgnorable.trigger(ability,user,target,move,mults,baseDmg,type)
   end
 
-  def self.triggerDamageCalcTargetAllyAbility(ability,user,target,move,mults,baseDmg,type)
-    DamageCalcTargetAllyAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+  def self.triggerDamageCalcTargetAllyAbility(ability,bearer,user,target,move,mults,baseDmg,type)
+    DamageCalcTargetAllyAbility.trigger(ability,bearer,user,target,move,mults,baseDmg,type)
   end
 
   def self.triggerDamageCalcUserItem(item,user,target,move,mults,baseDmg,type)
@@ -298,8 +298,8 @@ module BattleHandlers
     return (ret!=nil) ? ret : c
   end
 
-  def self.triggerCriticalCalcTargetAbility(ability,user,target,c)
-    ret = CriticalCalcTargetAbility.trigger(ability,user,target,c)
+  def self.triggerCriticalCalcTargetAbility(ability,target,user,c)
+    ret = CriticalCalcTargetAbility.trigger(ability,target,user,c)
     return (ret!=nil) ? ret : c
   end
 
@@ -315,8 +315,8 @@ module BattleHandlers
 
   #=============================================================================
 
-  def self.triggerTargetAbilityOnHit(ability,user,target,move,battle)
-    TargetAbilityOnHit.trigger(ability,user,target,move,battle)
+  def self.triggerTargetAbilityOnHit(ability,target,user,move,battle)
+    TargetAbilityOnHit.trigger(ability,target,user,move,battle)
   end
 
   def self.triggerUserAbilityOnHit(ability,user,target,move,battle)
@@ -392,8 +392,8 @@ module BattleHandlers
 
   #=============================================================================
 
-  def self.triggerEORWeatherAbility(ability,weather,battler,battle)
-    EORWeatherAbility.trigger(ability,weather,battler,battle)
+  def self.triggerEORWeatherAbility(ability,battler,weather,battle)
+    EORWeatherAbility.trigger(ability,battler,weather,battle)
   end
 
   def self.triggerEORHealingAbility(ability,battler,battle)
@@ -428,8 +428,8 @@ module BattleHandlers
     return (ret!=nil) ? ret : false
   end
 
-  def self.triggerTrappingTargetAbility(ability,switcher,bearer,battle)
-    ret = TrappingTargetAbility.trigger(ability,switcher,bearer,battle)
+  def self.triggerTrappingTargetAbility(ability,bearer,switcher,battle)
+    ret = TrappingTargetAbility.trigger(ability,bearer,switcher,battle)
     return (ret!=nil) ? ret : false
   end
 

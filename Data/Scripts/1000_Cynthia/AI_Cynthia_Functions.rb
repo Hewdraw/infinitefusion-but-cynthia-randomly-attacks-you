@@ -3025,7 +3025,7 @@ class PokeBattle_AI
         user.eachAlly do |b|
           next if !b.abilityActive?
           BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
-             user,target,move,multipliers,baseDmg,type)
+             b,user,target,move,multipliers,baseDmg,type)
         end
         if target.abilityActive?
           case user.ability_id
@@ -3042,15 +3042,15 @@ class PokeBattle_AI
             end
           else
             BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
-               user,target,move,multipliers,baseDmg,type) if !user.hasMoldBreaker?
+               target,user,move,multipliers,baseDmg,type) if !user.hasMoldBreaker?
             BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,
-               user,target,move,multipliers,baseDmg,type)
+               target,user,move,multipliers,baseDmg,type)
           end
         end
         target.eachAlly do |b|
           next if !b.abilityActive?
           BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
-             user,target,move,multipliers,baseDmg,type)
+             b,user,target,move,multipliers,baseDmg,type)
         end
       end
       # Item effects that alter damage

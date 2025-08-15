@@ -31,7 +31,7 @@ class PokeBattle_AI
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
     # Foresight
-    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight] || (user.hasActiveAbility?(:LEGENDARYPRESSURE) && user.pokemon.species == :COOLERDINO)
+    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
@@ -316,7 +316,7 @@ class PokeBattle_AI
       user.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
-           user,target,move,multipliers,baseDmg,type)
+           b,user,target,move,multipliers,baseDmg,type)
       end
     end
     if skill>=PBTrainerAI.bestSkill && !moldBreaker && target.abilityActive?
@@ -331,14 +331,14 @@ class PokeBattle_AI
       end
       if canCheck
         BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
-           user,target,move,multipliers,baseDmg,type)
+           target,user,move,multipliers,baseDmg,type)
       end
     end
     if skill>=PBTrainerAI.bestSkill && !moldBreaker
       target.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
-           user,target,move,multipliers,baseDmg,type)
+           b,user,target,move,multipliers,baseDmg,type)
       end
     end
     # Item effects that alter damage
@@ -543,7 +543,7 @@ class PokeBattle_AI
       end
       if skill>=PBTrainerAI.bestSkill
         if c>=0 && !moldBreaker && target.abilityActive?
-          c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+          c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,target,user,c)
         end
       end
       # Item effects that alter critical hit rate
@@ -618,18 +618,18 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill
       if user.abilityActive?
         BattleHandlers.triggerAccuracyCalcUserAbility(user.ability,
-           modifiers,user,target,move,type)
+           user,modifiers,target,move,type)
       end
       user.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerAccuracyCalcUserAllyAbility(b.ability,
-           modifiers,user,target,move,type)
+           user,modifiers,target,move,type)
       end
     end
     if skill>=PBTrainerAI.bestSkill
       if target.abilityActive? && !moldBreaker
         BattleHandlers.triggerAccuracyCalcTargetAbility(target.ability,
-           modifiers,user,target,move,type)
+           user,modifiers,target,move,type)
       end
     end
     # Item effects that alter accuracy calculation

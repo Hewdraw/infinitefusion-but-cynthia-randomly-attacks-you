@@ -73,7 +73,7 @@ class PokeBattle_Battle
     priority.each do |b|
       # Weather-related abilities
       if b.abilityActive?
-        BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
+        BattleHandlers.triggerEORWeatherAbility(b.ability,b,curWeather,self)
         b.pbFaint if b.fainted?
       end
       # Weather damage
@@ -211,14 +211,14 @@ class PokeBattle_Battle
     pbEORWeather(priority)
     priority.each do |b|
       next if !b.raid
-      raidcooldown = 4
+      raidcooldown = 1
       if !b.raid.is_a?(Integer)
         b.raid = raidcooldown
       end
       b.raid -= 1
       next if b.raid > 1
-      pbShowAbilitySplash(b, false, true, "Legendary Pressure")
       if b.raid == 1
+        pbShowAbilitySplash(b)
         pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
         pbHideAbilitySplash(b)
         next

@@ -17,7 +17,7 @@ class PokeBattle_Battle
                     @field.effects[PBEffects::FairyLock]>0
     eachOtherSideBattler(idxBattler) do |b|
       return false if b.abilityActive? &&
-                      BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
+                      BattleHandlers.triggerTrappingTargetAbility(b.ability,b,battler,self)
       return false if b.itemActive? &&
                       BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
     end
@@ -114,7 +114,7 @@ class PokeBattle_Battle
       # Trapping abilities/items
       eachOtherSideBattler(idxBattler) do |b|
         next if !b.abilityActive?
-        if BattleHandlers.triggerTrappingTargetAbility(b.ability,battler,b,self)
+        if BattleHandlers.triggerTrappingTargetAbility(b.ability,b,battler,self)
           pbDisplayPaused(_INTL("{1} prevents escape with {2}!",b.pbThis,b.abilityName))
           return 0
         end

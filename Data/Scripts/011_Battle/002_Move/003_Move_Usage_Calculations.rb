@@ -36,7 +36,7 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
     # Foresight
-    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight] || (user.hasActiveAbility?(:LEGENDARYPRESSURE) && user.pokemon.species == :COOLERDINO)
+    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
@@ -136,18 +136,18 @@ class PokeBattle_Move
     # Ability effects that alter accuracy calculation
     if user.abilityActive?
       BattleHandlers.triggerAccuracyCalcUserAbility(user.ability,
-         modifiers,user,target,self,@calcType)
+         user,modifiers,target,self,@calcType)
       @battle.pbShowAbilitySplash(user) if user.hasActiveAbility?(:NOGUARD)
       @battle.pbHideAbilitySplash(user) if user.hasActiveAbility?(:NOGUARD)
     end
     user.eachAlly do |b|
       next if !b.abilityActive?
       BattleHandlers.triggerAccuracyCalcUserAllyAbility(b.ability,
-         modifiers,user,target,self,@calcType)
+         user,modifiers,target,self,@calcType)
     end
     if target.abilityActive? && !@battle.moldBreaker
       BattleHandlers.triggerAccuracyCalcTargetAbility(target.ability,
-         modifiers,user,target,self,@calcType)
+         user,modifiers,target,self,@calcType)
       @battle.pbShowAbilitySplash(target) if target.hasActiveAbility?(:NOGUARD)
       @battle.pbHideAbilitySplash(target) if target.hasActiveAbility?(:NOGUARD)
     end
@@ -193,7 +193,7 @@ class PokeBattle_Move
       c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
     end
     if c>=0 && target.abilityActive? && !@battle.moldBreaker
-      c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,user,target,c)
+      c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,target,user,c)
     end
     # Item effects that alter critical hit rate
     if c>=0 && user.itemActive?
@@ -306,18 +306,18 @@ class PokeBattle_Move
       user.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
-           user,target,self,multipliers,baseDmg,type)
+           b,user,target,self,multipliers,baseDmg,type)
       end
       if target.abilityActive?
         BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
-           user,target,self,multipliers,baseDmg,type) if !@battle.moldBreaker
+           target,user,self,multipliers,baseDmg,type) if !@battle.moldBreaker
         BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,
-           user,target,self,multipliers,baseDmg,type)
+           target,user,self,multipliers,baseDmg,type)
       end
       target.eachAlly do |b|
         next if !b.abilityActive?
         BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
-           user,target,self,multipliers,baseDmg,type)
+           b,user,target,self,multipliers,baseDmg,type)
       end
     end
     # Item effects that alter damage

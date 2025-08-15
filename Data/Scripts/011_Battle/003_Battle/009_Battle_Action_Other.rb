@@ -132,7 +132,7 @@ class PokeBattle_Battle
     trainerName = pbGetOwnerName(idxBattler)
     # Break Illusion
     if battler.hasActiveAbility?(:ILLUSION)
-      BattleHandlers.triggerTargetAbilityOnHit(battler.ability,nil,battler,nil,self)
+      BattleHandlers.triggerTargetAbilityOnHit(battler.ability,battler,nil,nil,self)
     end
     # Mega Evolve
     if !force
@@ -182,7 +182,7 @@ class PokeBattle_Battle
     trainerName = pbGetOwnerName(idxBattler)
     # Break Illusion
     if battler.hasActiveAbility?(:ILLUSION)
-      BattleHandlers.triggerTargetAbilityOnHit(battler.ability,nil,battler,nil,self)
+      BattleHandlers.triggerTargetAbilityOnHit(battler.ability,battler,nil,nil,self)
     end
     #pbDisplay(_INTL("{1} is Terastallizing into the {2}-Type!", battler.pbThis, battler.pokemon.tera))
     #pbCommonAnimation("MegaEvolution",battler)

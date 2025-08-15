@@ -83,7 +83,7 @@ class PokeBattle_Move
     ret = false
     if target.abilityActive?
       ret = BattleHandlers.triggerMoveImmunityTargetAbility(target.ability,
-         user,target,self,@calcType,@battle)
+         target,user,self,@calcType,@battle)
     end
     return ret
   end

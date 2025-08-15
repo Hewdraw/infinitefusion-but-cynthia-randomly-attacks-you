@@ -505,6 +505,7 @@ end
 #===============================================================================
 class AbilitySplashBar < SpriteWrapper
   attr_reader :battler
+  attr_accessor :ability_name
 
   TEXT_BASE_COLOR   = Color.new(0,0,0)
   TEXT_SHADOW_COLOR = Color.new(248,248,248)

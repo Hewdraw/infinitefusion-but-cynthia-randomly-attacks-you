@@ -53,6 +53,7 @@ class PokeBattle_Battler
   attr_accessor :hpbars
   attr_accessor :phasetwo
   attr_accessor :zmove
+  attr_accessor :tempability
 
 
   #=============================================================================
@@ -436,11 +437,19 @@ class PokeBattle_Battler
   end
 
   def hasActiveAbility?(check_ability, ignore_fainted = false)
+    @tempability = nil
     return false if !abilityActive?(ignore_fainted)
     if !check_ability.is_a?(Array)
       check_ability = [check_ability]
     end
-    return true if check_ability.include?(:MAGICBOUNCE) && hasActiveAbility?(:LEGENDARYPRESSURE) && @pokemon.species == :MEW
+    if !check_ability.include?(:LEGENDARYPRESSURE) && hasActiveAbility?(:LEGENDARYPRESSURE)
+      for ability in @pokemon.getAbilityList
+        if check_ability.include?(ability[0])
+          @tempability = GameData::Ability.get(ability[0]).real_name
+          return true
+        end
+      end
+    end
     return check_ability.include?(@ability_id)
   end
 
@@ -573,7 +582,6 @@ class PokeBattle_Battler
   end
 
   def hasMoldBreaker?
-    return true if hasActiveAbility?(:LEGENDARYPRESSURE) && @pokemon.species == :HATSUNEMECHU
     return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :CHARGEDEXPLOSIVE])
   end
 

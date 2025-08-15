@@ -263,37 +263,6 @@ BattleHandlers::AbilityOnStatusInflicted.add(:SYNCHRONIZE,
 # StatusCureAbility handlers
 #===============================================================================
 
-BattleHandlers::StatusCureAbility.add(:LEGENDARYPRESSURE,
-  proc { |ability,battler|
-    case battler.pokemon.species
-    when :TYRANTRUM_CARDBOARD
-      next if battler.effects[PBEffects::Attract]<0 &&
-              (battler.effects[PBEffects::Taunt]==0)
-      battler.battle.pbShowAbilitySplash(battler, false, true, "Oblivious")
-      if battler.effects[PBEffects::Attract]>=0
-        battler.pbCureAttract
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battler.battle.pbDisplay(_INTL("{1} got over its infatuation.",battler.pbThis))
-        else
-          battler.battle.pbDisplay(_INTL("{1}'s Oblivious cured its infatuation status!",
-             battler.pbThis))
-        end
-      end
-      if battler.effects[PBEffects::Taunt]>0
-        battler.effects[PBEffects::Taunt] = 0
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battler.battle.pbDisplay(_INTL("{1}'s Taunt wore off!",battler.pbThis))
-        else
-          battler.battle.pbDisplay(_INTL("{1}'s Oblivious made its taunt wear off!",
-             battler.pbThis))
-        end
-      end
-      battler.battle.pbHideAbilitySplash(battler)
-    end
-  }
-)
-
-
 BattleHandlers::StatusCureAbility.add(:IMMUNITY,
   proc { |ability,battler|
     next if battler.status != :POISON
@@ -496,24 +465,6 @@ BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::StatLossImmunityAbilityNonIgnorable.add(:FULLMETALBODY,
   proc { |ability,battler,stat,battle,showMessages|
-    case battler.pokemon.species
-    when :HATSUNEMECHU
-      if showMessages
-        battle.pbShowAbilitySplash(battler, false, true, "Full Metal Body")
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1}'s stats cannot be lowered!",battler.pbThis))
-        else
-          battle.pbDisplay(_INTL("{1}'s {2} prevents stat loss!",battler.pbThis,battler.abilityName))
-        end
-        battle.pbHideAbilitySplash(battler)
-      end
-      next true
-    end
-  }
-)
-
-BattleHandlers::StatLossImmunityAbilityNonIgnorable.add(:FULLMETALBODY,
-  proc { |ability,battler,stat,battle,showMessages|
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -558,19 +509,6 @@ BattleHandlers::StatLossImmunityAllyAbility.add(:FLOWERVEIL,
 # AbilityOnStatLoss handlers
 #===============================================================================
 
-BattleHandlers::AbilityOnStatLoss.add(:LEGENDARYPRESSURE,
-  proc { |ability,battler,stat,user|
-    case battler.pokemon.species
-    when :GARTICUNO
-      next if user && !user.opposes?(battler)
-      battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler,"Competitive")
-    when :GZAPDOS
-      next if user && !user.opposes?(battler)
-      battler.pbRaiseStatStageByAbility(:ATTACK,2,battler,"Defiant")
-    end
-  }
-)
-
 BattleHandlers::AbilityOnStatLoss.add(:COMPETITIVE,
   proc { |ability,battler,stat,user|
     next if user && !user.opposes?(battler)
@@ -588,18 +526,6 @@ BattleHandlers::AbilityOnStatLoss.add(:DEFIANT,
 #===============================================================================
 # PriorityChangeAbility handlers
 #===============================================================================
-
-BattleHandlers::PriorityChangeAbility.add(:LEGENDARYPRESSURE,
-  proc { |ability,battler,move,pri|
-    case battler.pokemon.species
-    when :MEW
-      if move.statusMove?
-        battler.effects[PBEffects::Prankster] = true
-        next pri+1
-      end
-    end
-  }
-)
 
 BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
   proc { |ability,battler,move,pri|
@@ -673,26 +599,8 @@ BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY)
 # MoveImmunityTargetAbility handlers
 #===============================================================================
 
-BattleHandlers::MoveImmunityTargetAbility.add(:LEGENDARYPRESSURE,
-  proc { |ability,user,target,move,type,battle|
-    case user.pokemon.species
-    when :HATSUNEMECHU
-      next false if !move.bombMove?
-      battle.pbShowAbilitySplash(target, false, true, "Bulletproof")
-      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-      else
-        battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
-           target.pbThis,target.abilityName,move.name))
-      end
-      battle.pbHideAbilitySplash(target)
-      next true
-    end
-  }
-)
-
 BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next false if !move.bombMove?
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -709,7 +617,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
 BattleHandlers::MoveImmunityTargetAbility.copy(:BULLETPROOF,:ENDER)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next false if user.index==target.index
     next false if type != :FIRE
     battle.pbShowAbilitySplash(target)
@@ -737,37 +645,37 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
 BattleHandlers::MoveImmunityTargetAbility.copy(:FLASHFIRE, :WILDFIRE, :WIRED)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:LIGHTNINGROD,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPECIAL_ATTACK,1,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:HEATSINK,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:FIRE,:SPECIAL_ATTACK,1,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:POLAR,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:ICE,:SPECIAL_ATTACK,1,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:SAPSIPPER,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:GRASS,:ATTACK,1,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next false if !move.soundMove?
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -782,13 +690,13 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:WATER,:SPECIAL_ATTACK,1,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:TELEPATHY,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next false if move.statusMove?
     next false if user.index==target.index || target.opposes?(user)
     battle.pbShowAbilitySplash(target)
@@ -804,13 +712,13 @@ BattleHandlers::MoveImmunityTargetAbility.add(:TELEPATHY,
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:VOLTABSORB,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:ELECTRIC,battle)
   }
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:CHARGEDEXPLOSIVE,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     motordrive = pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
     voltabsorb = pbBattleMoveImmunityHealAbility(user,target,move,type,:ELECTRIC,battle)
     next motordrive || voltabsorb 
@@ -818,7 +726,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:CHARGEDEXPLOSIVE,
 )
 
 BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:WATER,battle)
   }
 )
@@ -826,7 +734,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
 BattleHandlers::MoveImmunityTargetAbility.copy(:WATERABSORB,:DRYSKIN)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
-  proc { |ability,user,target,move,type,battle|
+  proc { |ability,target,user,move,type,battle|
     next false if move.name == "Fire Fang"
     next false if move.statusMove?
     next false if !type || Effectiveness.super_effective?(target.damageState.typeMod)
@@ -900,7 +808,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
 #===============================================================================
 
 BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:accuracy_multiplier] *= 1.3
   }
 )
@@ -908,13 +816,13 @@ BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
 BattleHandlers::AccuracyCalcUserAbility.copy(:COMPOUNDEYES,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::AccuracyCalcUserAbility.add(:HUSTLE,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:accuracy_multiplier] *= 0.8 if move.physicalMove?
   }
 )
 
 BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0
   }
 )
@@ -922,19 +830,19 @@ BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
 BattleHandlers::AccuracyCalcUserAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::AccuracyCalcUserAbility.add(:NOGUARD,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:base_accuracy] = 0
   }
 )
 
 BattleHandlers::AccuracyCalcUserAbility.add(:UNAWARE,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:evasion_stage] = 0 if move.damagingMove?
   }
 )
 
 BattleHandlers::AccuracyCalcUserAbility.add(:VICTORYSTAR,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:accuracy_multiplier] *= 1.1
   }
 )
@@ -944,7 +852,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:VICTORYSTAR,
 #===============================================================================
 
 BattleHandlers::AccuracyCalcUserAllyAbility.add(:VICTORYSTAR,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:accuracy_multiplier] *= 1.1
   }
 )
@@ -954,55 +862,55 @@ BattleHandlers::AccuracyCalcUserAllyAbility.add(:VICTORYSTAR,
 #===============================================================================
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:LIGHTNINGROD,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:base_accuracy] = 0 if type == :ELECTRIC
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:HEATSINK,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:base_accuracy] = 0 if type == :FIRE
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:POLAR,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:base_accuracy] = 0 if type == :ICE
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:NOGUARD,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:base_accuracy] = 0
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:SANDVEIL,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:evasion_multiplier] *= 1.25 if target.battle.pbWeather == :Sandstorm
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:STORMDRAIN,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:base_accuracy] = 0 if type == :WATER
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:accuracy_multiplier] /= 2 if target.effects[PBEffects::Confusion] > 0
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:UNAWARE,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     mods[:accuracy_stage] = 0 if move.damagingMove?
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:WONDERSKIN,
-  proc { |ability,mods,user,target,move,type|
+  proc { |ability,user,mods,target,move,type|
     if move.statusMove? && user.opposes?(target)
       mods[:base_accuracy] = 50 if mods[:base_accuracy] > 50
     end
@@ -1328,14 +1236,14 @@ BattleHandlers::DamageCalcUserAbility.add(:WATERBUBBLE,
 #===============================================================================
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:BATTERY,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,bearer,user,target,move,mults,baseDmg,type|
     next if !move.specialMove?
     mults[:final_damage_multiplier] *= 1.3
   }
 )
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:FLOWERGIFT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,bearer,user,target,move,mults,baseDmg,type|
     if move.physicalMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
       mults[:attack_multiplier] *= 1.5
     end
@@ -1343,7 +1251,7 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:FLOWERGIFT,
 )
 
 BattleHandlers::DamageCalcUserAllyAbility.add(:WIRED,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,bearer,user,target,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 1.3
   }
 )
@@ -1353,13 +1261,13 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:WIRED,
 #===============================================================================
 
 BattleHandlers::DamageCalcTargetAbility.add(:DRYSKIN,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.25 if type == :FIRE
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if Effectiveness.super_effective?(target.damageState.typeMod)
       mults[:final_damage_multiplier] *= 0.75
     end
@@ -1369,7 +1277,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
 BattleHandlers::DamageCalcTargetAbility.copy(:FILTER,:SOLIDROCK)
 
 BattleHandlers::DamageCalcTargetAbility.add(:FLOWERGIFT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if move.specialMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
       mults[:defense_multiplier] *= 1.5
     end
@@ -1377,20 +1285,20 @@ BattleHandlers::DamageCalcTargetAbility.add(:FLOWERGIFT,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:FLUFFY,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 2 if move.calcType == :FIRE
     mults[:final_damage_multiplier] /= 2 if move.contactMove?
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:FURCOAT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 2 if move.physicalMove? || move.function == "122"   # Psyshock
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if user.battle.field.terrain == :Grassy
       mults[:defense_multiplier] *= 1.5
     end
@@ -1398,13 +1306,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:HEATPROOF,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] /= 2 if type == :FIRE
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:MARVELSCALE,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if target.pbHasAnyStatus? && move.physicalMove?
       mults[:defense_multiplier] *= 1.5
     end
@@ -1412,13 +1320,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:MARVELSCALE,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if target.hp == target.adjustedTotalhp
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if (user.effects[PBEffects::Protosynthesis] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::Protosynthesis] % 10 == 4 && move.specialMove?)
       mults[:final_damage_multiplier] /= 1.3
     end
@@ -1426,7 +1334,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if move.soundMove?
   }
 )
@@ -1434,7 +1342,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
 BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK)
 
 BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if (user.effects[PBEffects::QuarkDrive] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::QuarkDrive] % 10 == 4 && move.specialMove?)
       mults[:final_damage_multiplier] /= 1.3
     end
@@ -1442,13 +1350,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] /= 2 if type == :FIRE || type == :ICE
   }
 )
 
 BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if type == :FIRE
   }
 )
@@ -1458,7 +1366,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
 #===============================================================================
 
 BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:PRISMARMOR,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if Effectiveness.super_effective?(target.damageState.typeMod)
       mults[:final_damage_multiplier] *= 0.75
     end
@@ -1466,7 +1374,7 @@ BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:PRISMARMOR,
 )
 
 BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:SHADOWSHIELD,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,target,user,move,mults,baseDmg,type|
     if target.hp==target.adjustedTotalhp
       mults[:final_damage_multiplier] /= 2
     end
@@ -1478,7 +1386,7 @@ BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:SHADOWSHIELD,
 #===============================================================================
 
 BattleHandlers::DamageCalcTargetAllyAbility.add(:FLOWERGIFT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,bearer,user,target,move,mults,baseDmg,type|
     if move.specialMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
       mults[:defense_multiplier] *= 1.5
     end
@@ -1486,7 +1394,7 @@ BattleHandlers::DamageCalcTargetAllyAbility.add(:FLOWERGIFT,
 )
 
 BattleHandlers::DamageCalcTargetAllyAbility.add(:FRIENDGUARD,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+  proc { |ability,bearer,user,target,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 0.75
   }
 )
@@ -1514,7 +1422,7 @@ BattleHandlers::CriticalCalcUserAbility.copy(:SUPERLUCK, :SUPERSNIPER)
 #===============================================================================
 
 BattleHandlers::CriticalCalcTargetAbility.add(:BATTLEARMOR,
-  proc { |ability,user,target,c|
+  proc { |ability,target,user,c|
     next -1
   }
 )
@@ -1525,56 +1433,8 @@ BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR)
 # TargetAbilityOnHit handlers
 #===============================================================================
 
-BattleHandlers::TargetAbilityOnHit.add(:LEGENDARYPRESSURE,
-  proc { |ability,user,target,move,battle|
-    case target.pokemon.species
-    when :ARTICUNO
-      next if !move.pbContactMove?(user)
-      next if user.frozen? || battle.pbRandom(100)>=30
-      battle.pbShowAbilitySplash(target, false, true, "Snow Cloak")
-      if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-         user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-        msg = nil
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} frostbites {3}!",target.pbThis,target.abilityName,user.pbThis(true))
-        end
-        user.pbFreeze()
-      end
-      battle.pbHideAbilitySplash(target)
-    when :ZAPDOS
-      next if !move.pbContactMove?(user)
-      next if user.paralyzed? || battle.pbRandom(100)>=30
-      battle.pbShowAbilitySplash(target, false, true, "Static")
-      if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-         user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-        msg = nil
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} paralyzed {3}! It may be unable to move!",
-             target.pbThis,target.abilityName,user.pbThis(true))
-        end
-        user.pbParalyze(target,msg)
-      end
-      battle.pbHideAbilitySplash(target)
-    when :MOLTRES
-      next if !move.pbContactMove?(user)
-      next if user.burned? || battle.pbRandom(100)>=30
-      battle.pbShowAbilitySplash(target, false, true, "Flame Body")
-      if user.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
-         user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
-        msg = nil
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} burned {3}!",target.pbThis,target.abilityName,user.pbThis(true))
-        end
-        user.pbBurn(target,msg)
-      end
-      battle.pbHideAbilitySplash(target)
-    end
-  }
-)
-
-
 BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !target.fainted?
     next if !move.pbContactMove?(user)
     battle.pbShowAbilitySplash(target)
@@ -1604,7 +1464,7 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !target.damageState.critical
     next if !target.pbCanRaiseStatStage?(:ATTACK,target)
     battle.pbShowAbilitySplash(target)
@@ -1621,7 +1481,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if user.fainted?
     next if user.effects[PBEffects::Disable]>0
     next if user.effects[PBEffects::Dynamax] > 0
@@ -1651,7 +1511,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if target.fainted?
     next if !move.pbContactMove?(user)
     next if battle.pbRandom(100)>=30
@@ -1670,7 +1530,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     # NOTE: This ability has a 30% chance of triggering, not a 30% chance of
     #       inflicting a status condition. It can try (and fail) to inflict a
     #       status condition that the user is immune to.
@@ -1718,7 +1578,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     next if user.burned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
@@ -1735,7 +1595,7 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     user.pbLowerStatStageByAbility(:SPEED,1,target,true,true,GameData::Ability.get(ability).real_name)
   }
@@ -1744,7 +1604,7 @@ BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
 BattleHandlers::TargetAbilityOnHit.copy(:GOOEY,:TANGLINGHAIR)
 
 BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     # NOTE: This intentionally doesn't show the ability splash.
     next if !target.effects[PBEffects::Illusion]
     target.effects[PBEffects::Illusion] = nil
@@ -1755,7 +1615,7 @@ BattleHandlers::TargetAbilityOnHit.add(:ILLUSION,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !target.fainted? || user.dummy
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -1779,7 +1639,7 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
@@ -1800,14 +1660,14 @@ BattleHandlers::TargetAbilityOnHit.add(:IRONBARBS,
 BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS,:ROUGHSKIN)
 
 BattleHandlers::TargetAbilityOnHit.add(:JUSTIFIED,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if move.calcType != :DARK
     target.pbRaiseStatStageByAbility(:ATTACK,1,target,GameData::Ability.get(ability).real_name)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     next if user.fainted?
     next if user.unstoppableAbility? || user.ability == ability
@@ -1834,7 +1694,7 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
 BattleHandlers::TargetAbilityOnHit.copy(:MUMMY, :ZOMBIE)
 
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     next if user.poisoned? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
@@ -1851,14 +1711,14 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
     target.pbRaiseStatStageByAbility(:SPEED,1,target,GameData::Ability.get(ability).real_name)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:SNOWCLOAK,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     next if user.frozen? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
@@ -1875,13 +1735,13 @@ BattleHandlers::TargetAbilityOnHit.add(:SNOWCLOAK,
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     target.pbRaiseStatStageByAbility(:DEFENSE,1,target,GameData::Ability.get(ability).real_name)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
     next if user.paralyzed? || battle.pbRandom(100)>=30
     battle.pbShowAbilitySplash(target)
@@ -1901,14 +1761,14 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
 BattleHandlers::TargetAbilityOnHit.copy(:STATIC,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if move.calcType != :WATER
     target.pbRaiseStatStageByAbility(:DEFENSE,2,target,GameData::Ability.get(ability).real_name)
   }
 )
 
 BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
-  proc { |ability,user,target,move,battle|
+  proc { |ability,target,user,move,battle|
     next if !move.physicalMove?
     next if !target.pbCanLowerStatStage?(:DEFENSE, target) &&
             !target.pbCanRaiseStatStage?(:SPEED, target)
@@ -1922,30 +1782,6 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 #===============================================================================
 # UserAbilityOnHit handlers
 #===============================================================================
-
-BattleHandlers::UserAbilityOnHit.add(:LEGENDARYPRESSURE,
-  proc { |ability,user,target,move,battle|
-    case user.pokemon.species
-    when :GZAPDOS
-      next if target.movedThisRound?
-      battle.pbShowAbilitySplash(user, false, true, "Stun")
-      if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
-        battle.pbShowAbilitySplash(target)
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
-        end
-        battle.pbHideAbilitySplash(target)
-      else
-        msg = nil
-        if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          msg = _INTL("{1}'s {2} paralyzed {3}!",user.pbThis,user.abilityName,target.pbThis(true))
-        end
-        target.pbParalyze(user,msg)
-      end
-      battle.pbHideAbilitySplash(user)
-    end
-  }
-)
 
 BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   proc { |ability,user,target,move,battle|
@@ -2091,18 +1927,6 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
 # TargetAbilityAfterMoveUse handlers
 #===============================================================================
 
-BattleHandlers::TargetAbilityAfterMoveUse.add(:LEGENDARYPRESSURE,
-  proc { |ability,target,user,move,switched,battle|
-    case target.pokemon.species
-    when :GMOLTRES
-      next if !move.damagingMove?
-      next if target.damageState.initialHP<target.adjustedTotalhp/2 || target.hp>=target.adjustedTotalhp/2
-      next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-      target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,"Berserk")
-    end
-  }
-)
-
 BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
   proc { |ability,target,user,move,switched,battle|
     next if !move.damagingMove?
@@ -2166,7 +1990,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
 #===============================================================================
 
 BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
-  proc { |ability,weather,battler,battle|
+  proc { |ability,battler,weather,battle|
     case weather
     when :Sun, :HarshSun
       battle.pbShowAbilitySplash(battler)
@@ -2190,7 +2014,7 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
 )
 
 BattleHandlers::EORWeatherAbility.add(:ICEBODY,
-  proc { |ability,weather,battler,battle|
+  proc { |ability,battler,weather,battle|
     next unless (weather == :Hail || weather == :Snow)
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
@@ -2205,7 +2029,7 @@ BattleHandlers::EORWeatherAbility.add(:ICEBODY,
 )
 
 BattleHandlers::EORWeatherAbility.add(:RAINDISH,
-  proc { |ability,weather,battler,battle|
+  proc { |ability,battler,weather,battle|
     next unless [:Rain, :HeavyRain].include?(weather)
     next if !battler.canHeal?
     battle.pbShowAbilitySplash(battler)
@@ -2220,7 +2044,7 @@ BattleHandlers::EORWeatherAbility.add(:RAINDISH,
 )
 
 BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
-  proc { |ability,weather,battler,battle|
+  proc { |ability,battler,weather,battle|
     next unless [:Sun, :HarshSun].include?(weather)
     battle.pbShowAbilitySplash(battler)
     battle.scene.pbDamageAnimation(battler)
@@ -2457,19 +2281,19 @@ BattleHandlers::EORGainItemAbility.add(:PICKUP,
 #===============================================================================
 
 BattleHandlers::TrappingTargetAbility.add(:ARENATRAP,
-  proc { |ability,switcher,bearer,battle|
+  proc { |ability,bearer,switcher,battle|
     next true if !switcher.airborne?
   }
 )
 
 BattleHandlers::TrappingTargetAbility.add(:MAGNETPULL,
-  proc { |ability,switcher,bearer,battle|
+  proc { |ability,bearer,switcher,battle|
     next true if switcher.pbHasType?(:STEEL)
   }
 )
 
 BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
-  proc { |ability,switcher,bearer,battle|
+  proc { |ability,bearer,switcher,battle|
     next true if !switcher.hasActiveAbility?(:SHADOWTAG)
   }
 )
@@ -2483,67 +2307,9 @@ BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK)
 
 BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
   proc { |ability,battler,battle|
-    battle.pbShowAbilitySplash(battler, false, true, "Legendary Pressure")
+    battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is emanating a legendary pressure!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
-    case battler.pokemon.species
-    when :ARTICUNO
-      next if battle.field.weather==:Snow
-      battle.pbShowAbilitySplash(battler, false, true, "Snow Warning")
-      battle.pbStartWeather(battler,:Snow,false)
-      battle.pbHideAbilitySplash(battler)
-    when :GARTICUNO
-      battle.pbShowAbilitySplash(battler, false, true, "Menace")
-      battle.eachOtherSideBattler(battler.index) do |b|
-        next if !b.near?(battler)
-        b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
-        b.pbItemOnIntimidatedCheck
-      end
-      battle.pbHideAbilitySplash(battler)
-    when :ZAPDOS
-      next if battle.field.weather==:Rain
-      battle.pbShowAbilitySplash(battler, false, true, "Drizzle")
-      battle.pbStartWeather(battler,:Rain,false)
-      battle.pbHideAbilitySplash(battler)
-    when :MOLTRES
-      next if battle.field.weather==:Sun
-      battle.pbShowAbilitySplash(battler, false, true, "Drought")
-      battle.pbStartWeather(battler,:Sun,false)
-      battle.pbHideAbilitySplash(battler)
-    when :GMOLTRES
-      battle.pbShowAbilitySplash(battler, false, true, "Goad")
-      battle.eachOtherSideBattler(battler.index) do |b|
-        if b.hasActiveAbility?(:OBLIVIOUS)
-          battle.pbShowAbilitySplash(b)
-          battle.pbHideAbilitySplash(b)
-        else
-          b.effects[PBEffects::Taunt] = 4
-          battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))
-          b.pbItemStatusCureCheck
-        end
-      end
-      battle.pbHideAbilitySplash(battler)
-    when :COOLERDINO
-      battle.pbShowAbilitySplash(battler, false, true, "Intimidate")
-      battle.eachOtherSideBattler(battler.index) do |b|
-        next if !b.near?(battler)
-        b.pbLowerAttackStatStageIntimidate(battler)
-        b.pbItemOnIntimidatedCheck
-      end
-      battle.pbHideAbilitySplash(battler)
-      pbWait(1)
-      battle.pbShowAbilitySplash(battler, false, true, "Menace")
-      battle.eachOtherSideBattler(battler.index) do |b|
-        next if !b.near?(battler)
-        b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
-        b.pbItemOnIntimidatedCheck
-      end
-      battle.pbHideAbilitySplash(battler)
-    when :HATSUNEMECHU
-      battle.pbShowAbilitySplash(battler, false, true, "Mold Breaker")
-      battle.pbDisplay(_INTL("{1} breaks the mold!",battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-    end
   }
 )
 

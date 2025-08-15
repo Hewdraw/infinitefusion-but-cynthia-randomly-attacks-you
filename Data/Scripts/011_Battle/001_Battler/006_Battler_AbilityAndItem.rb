@@ -14,7 +14,6 @@ class PokeBattle_Battler
     end
     # Abilities that trigger upon switching in
     if (!fainted? && unstoppableAbility?) || abilityActive?
-      pbBattleWeatherAbility(:Snow, self, @battle) if hasActiveItem?(:ANCESTRALGENE) && @pokemon.species == :MEW #TODO
       BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
     end
     @battle.pbMegaEvolve(@index) if !fainted? && self.species == :CREEPER
@@ -100,7 +99,6 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",pbThis,choice.pbThis(true),choice.abilityName))
         @battle.pbHideAbilitySplash(self)
         if !onSwitchIn && (unstoppableAbility? || abilityActive?)
-          pbBattleWeatherAbility(:Snow, self, @battle) if hasActiveItem?(:ANCESTRALGENE) && @pokemon.species == :MEW #TODO
           BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
         end
       end

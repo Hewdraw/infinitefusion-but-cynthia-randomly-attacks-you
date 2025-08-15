@@ -265,7 +265,20 @@ end
 class SpeciesHandlerHash < HandlerHash2
 end
 
-class AbilityHandlerHash < HandlerHash2
+class AbilityHandlerHash < HandlerHash2  
+  def trigger(entry, *args)
+    user = args[0]
+    user.tempability = nil
+    retvalue = super(entry, *args)
+    if user.hasActiveAbility?(:LEGENDARYPRESSURE)
+      for ability in user.pokemon.getAbilityList
+        user.tempability = GameData::Ability.get(ability[0]).real_name
+        ret = super(ability[0], *args)
+        retvalue = retvalue || ret
+      end
+    end
+    return retvalue
+  end
 end
 
 class ItemHandlerHash < HandlerHash2

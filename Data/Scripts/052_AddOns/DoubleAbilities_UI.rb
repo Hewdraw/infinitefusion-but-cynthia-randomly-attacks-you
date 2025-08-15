@@ -52,11 +52,15 @@ class PokeBattle_Scene
     else
       pbHideAbilitySplash(battler) if @sprites["abilityBar_#{side}"].visible
     end
+
     if abilityName
       @sprites["abilityBar_#{side}"].ability_name = abilityName if !secondAbility
       @sprites["ability2Bar_#{side}"].ability_name = abilityName if secondAbility
+    elsif battler.tempability
+      @sprites["abilityBar_#{side}"].ability_name = battler.tempability
+    else
+      @sprites["abilityBar_#{side}"].ability_name = battler.abilityName
     end
-
 
     @sprites["abilityBar_#{side}"].battler = battler
     @sprites["ability2Bar_#{side}"].battler = battler if @sprites["ability2Bar_#{side}"]

@@ -77,7 +77,7 @@ class PokeBattle_Battle
     # Trapping abilities/items
     eachOtherSideBattler(idxBattler) do |b|
       next if !b.abilityActive?
-      if BattleHandlers.triggerTrappingTargetAbility(b.ability, battler, b, self)
+      if BattleHandlers.triggerTrappingTargetAbility(b.ability, b, battler, self)
         partyScene.pbDisplay(_INTL("{1}'s {2} prevents switching!",
                                    b.pbThis, b.abilityName)) if partyScene
         return false
