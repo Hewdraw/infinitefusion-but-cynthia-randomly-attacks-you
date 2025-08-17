@@ -473,10 +473,24 @@ def pbLegendaryBattle(species)
   # Generate trainers and their parties based on the arguments given
   trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species)
   return 0 if !trainer
-  if trainer.party[0].phasetwo
-    trainer.party[0].phasetwo = trainer.party[1]
-    trainer.party = [trainer.party[0]]
+  party = []
+  skip_mon = false
+  trainer.party.each_with_index do |mon,i|
+    if skip_mon
+      skip_mon = false
+      next
+    end
+    if (rand(65536) / Settings::ACTUAL_SHINY_POKEMON_CHANCE) < 1
+      mon.shiny = true
+      mon.natural_shiny = true
+    end
+    if mon.phasetwo
+      mon.phasetwo = trainer.party[i+1]
+      skip_mon = true
+    end
+    party.push(mon)
   end
+  trainer.party = party
   # Calculate who the player trainer(s) and their party are
   playerTrainers    = [$Trainer]
   playerParty       = $Trainer.party

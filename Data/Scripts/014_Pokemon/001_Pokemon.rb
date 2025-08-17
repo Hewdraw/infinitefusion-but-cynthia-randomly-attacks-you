@@ -127,7 +127,7 @@ class Pokemon
   # Maximum number of moves a Pokémon can know at once
   MAX_MOVES = 4
 
-  S_CHANCE_VALIDATOR = 16
+  S_CHANCE_VALIDATOR = 256
 
   def print_all_attributes
     echoln("Spriteform Body: #{@spriteform_body}")

@@ -30,7 +30,7 @@ module GameData
     MINIMUM_DEX_DIF = 20
 
     def self.calculateShinyHueOffset(dex_number, isBodyShiny = false, isHeadShiny = false)
-      if dex_number >= 1000700
+      if dex_number >= 1000700 && dex_number < 1000800
         return 0
       end
       if dex_number <= NB_POKEMON
