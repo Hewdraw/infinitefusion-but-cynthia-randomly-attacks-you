@@ -48,7 +48,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
       $PokemonGlobal.cynthiabadgetier = numbadges
       $PokemonGlobal.cynthiachance = 1000
     end
-    if rand(180) < $PokemonGlobal.cynthiachance || (isRepelActive() && !$PokemonTemp.pokeradar)
+    if rand(140) < $PokemonGlobal.cynthiachance || (isRepelActive() && !$PokemonTemp.pokeradar)
       encounter_type = [:CHAMPION_Sinnoh, "Cynthia"]
       if $PokemonGlobal.cynthiahandschance == nil
         $PokemonGlobal.cynthiahandschance = -10
