@@ -387,7 +387,8 @@ class PokeBattle_AI
       move = idxMove
     end
     if user.hasActiveAbility?(:GENESIS) && move.id == :PSYCHIC && user.zmove > 0
-      move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESIS))
+      move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESISSUPERNOVA))
+      return
     end
     target_data = move.pbTarget(user)
     if target_data.num_targets > 1

@@ -476,6 +476,9 @@ def pbLegendaryBattle(species)
   party = []
   skip_mon = false
   trainer.party.each_with_index do |mon,i|
+    if mon.hasItem?(:ANCESTRALGENE)
+      $PokemonGlobal.ancestralgeneability = :SNOWWWARNING 
+    end
     if skip_mon
       skip_mon = false
       next

@@ -48,7 +48,7 @@ class PokeBattle_AI
       opposingSpecialThreat += opposingThreattable[:specialDamage]
       outspeedsopponent = pbCynthiaCompareSpeed(user, opponent)
     end
-    score = [user.hp / user.totalhp / 2 - opposingThreat, 0].max
+    score = [100.0 * [user.hp, user.totalhp].max / user.totalhp / 2 - opposingThreat, 1.0].max
     movefunction = move.function
     if movefunction == "188"
       movefunction += move.type.to_s
@@ -1332,11 +1332,12 @@ class PokeBattle_AI
       score = 0
       user.eachOpposing do |opponent|
         totalthreat = 0
-        opponent.moves.each do |opponentmove|
-          totalthreat += pbCynthiaGetThreat(user, opponent, false)[:moves][opponentmove][:maxDamage]
+        opponentmoves = pbCynthiaGetThreat(user, opponent, false)[:moves]
+        opponentmoves.each do |opponentmove, damagetable|
+          totalthreat += damagetable[:maxDamage]
         end
-        opponent.moves.each do |opponentmove|
-          score += 100.0 * pbCynthiaGetThreat(user, opponent, false)[:moves][opponentmove][:maxDamage] / totalthreat
+        opponentmoves.each do |opponentmove, damagetable|
+          score += 100.0 * damagetable[:maxDamage] / totalthreat
         end
       end
     #---------------------------------------------------------------------------
@@ -1392,11 +1393,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0CE" #todo?
     #---------------------------------------------------------------------------
-    when "0CF" #todo
-      score += 40 if target.effects[PBEffects::Trapping]==0
-    #---------------------------------------------------------------------------
-    when "0D0" #todo
-      score += 40 if target.effects[PBEffects::Trapping]==0
+    when "0CF", "0D0" #todo 
     #---------------------------------------------------------------------------
     when "0D1" #todo
     #---------------------------------------------------------------------------
@@ -2542,16 +2539,15 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "16C" #todo
+      score = 0
       if target.effects[PBEffects::ThroatChop]==0
-        hasSoundMove = false
-        user.eachMove do |m|
-          next if !m.soundMove?
-          hasSoundMove = true
-          break
+        user.eachOpposing do |opponent|
+          opponent.eachMove do |m|
+            next if !m.soundMove?
+            score += 25
+          end
         end
-        score = 40 if hasSoundMove
       end
-      score = 0 if !hasSoundMove
     #---------------------------------------------------------------------------
     when "16D" #todo
       score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
@@ -2759,7 +2755,8 @@ class PokeBattle_AI
     end
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
-    effectchance = pbRoughAccuracy(move,user,target,100) if move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
+    effectchance = [pbRoughAccuracy(move,user,target,100), 100].min if move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
+    effectchance *= 100 / [pbRoughAccuracy(move,user,target,100), 100].min if !move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     score = score * effectchance / 100 if score > 0
     return score
   end
@@ -2977,7 +2974,7 @@ class PokeBattle_AI
         end
       end
       if user.abilityActive?
-        if switchin == user && user.ability.id == :SLOWSTART
+        if switchin == user && user.ability_id == :SLOWSTART
           multipliers[:attack_multiplier] /= 2 if move.physicalMove?
         end
         case user.ability_id

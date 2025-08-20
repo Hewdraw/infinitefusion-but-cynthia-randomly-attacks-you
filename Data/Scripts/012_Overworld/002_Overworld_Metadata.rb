@@ -73,6 +73,7 @@ class PokemonGlobalMetadata
   attr_accessor :hewdrawsbeaten
   attr_accessor :shadrossstock
   attr_accessor :shadrossmoney
+  attr_accessor :ancestralgeneability
 
   def initialize
     # Movement

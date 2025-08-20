@@ -211,7 +211,7 @@ class PokeBattle_Battle
     pbEORWeather(priority)
     priority.each do |b|
       next if !b.raid
-      raidcooldown = 1
+      raidcooldown = 5
       if !b.raid.is_a?(Integer)
         b.raid = raidcooldown
       end

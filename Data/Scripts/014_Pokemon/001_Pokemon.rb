@@ -1366,6 +1366,10 @@ class Pokemon
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
+    if hasItem(:ANCESTRALGENE)
+      ret[:ATTACK] = [ret[:ATTACK], 100].min
+      ret[:SPECIAL_ATTACK] = [ret[:SPECIAL_ATTACK], 100].min
+    end
     return ret
   end
 
