@@ -214,44 +214,44 @@ end
 
 class PokemonFusionScene
 
-  # def pbChooseAbility(ability1Id,ability2Id)
-  #   ability1 = GameData::Ability.get(ability1Id)
-  #   ability2 = GameData::Ability.get(ability2Id)
-  #   availableNatures = []
-  #   availableNatures << @pokemon1.nature
-  #   availableNatures << @pokemon2.nature
+  def pbChooseAbility(ability1Id,ability2Id)
+    ability1 = GameData::Ability.get(ability1Id)
+    ability2 = GameData::Ability.get(ability2Id)
+    availableNatures = []
+    availableNatures << @pokemon1.nature
+    availableNatures << @pokemon2.nature
 
-  #   setAbilityAndNatureAndNickname([ability1,ability2], availableNatures)
-  # end
+    setAbilityAndNatureAndNickname([ability1,ability2], availableNatures)
+  end
 
 
-  # def setAbilityAndNatureAndNickname(abilitiesList, naturesList)
-  #   clearUIForMoves
-  #   if $game_switches[SWITCH_DOUBLE_ABILITIES]
-  #     scene = FusionSelectOptionsScene.new(nil, naturesList, @pokemon1, @pokemon2)
-  #     screen = PokemonOptionScreen.new(scene)
-  #     screen.pbStartScreen
+  def setAbilityAndNatureAndNickname(abilitiesList, naturesList)
+    clearUIForMoves
+    if $game_switches[SWITCH_DOUBLE_ABILITIES]
+      scene = FusionSelectOptionsScene.new(nil, naturesList, @pokemon1, @pokemon2)
+      screen = PokemonOptionScreen.new(scene)
+      screen.pbStartScreen
 
-  #     @pokemon1.ability = abilitiesList[0]
-  #     @pokemon1.ability2 = abilitiesList[1]
-  #   else
-  #     scene = FusionSelectOptionsScene.new(abilitiesList, naturesList, @pokemon1, @pokemon2)
-  #     screen = PokemonOptionScreen.new(scene)
-  #     screen.pbStartScreen
+      @pokemon1.ability = abilitiesList[0]
+      @pokemon1.ability2 = abilitiesList[1]
+    else
+      scene = FusionSelectOptionsScene.new(abilitiesList, naturesList, @pokemon1, @pokemon2)
+      screen = PokemonOptionScreen.new(scene)
+      screen.pbStartScreen
 
-  #     selectedAbility = scene.selectedAbility
-  #     @pokemon1.body_original_ability_index = @pokemon1.ability_index
-  #     @pokemon1.head_original_ability_index = @pokemon2.ability_index
+      selectedAbility = scene.selectedAbility
+      @pokemon1.body_original_ability_index = @pokemon1.ability_index
+      @pokemon1.head_original_ability_index = @pokemon2.ability_index
 
-  #     @pokemon1.ability = selectedAbility
-  #     @pokemon1.ability_index = getAbilityIndexFromID(selectedAbility.id,@pokemon1)
-  #   end
+      @pokemon1.ability = selectedAbility
+      @pokemon1.ability_index = getAbilityIndexFromID(selectedAbility.id,@pokemon1)
+    end
 
-  #   @pokemon1.nature = scene.selectedNature
-  #   if scene.hasNickname
-  #     @pokemon1.name = scene.nickname
-  #   end
-  # end
+    @pokemon1.nature = scene.selectedNature
+    if scene.hasNickname
+      @pokemon1.name = scene.nickname
+    end
+  end
 
 end
 
