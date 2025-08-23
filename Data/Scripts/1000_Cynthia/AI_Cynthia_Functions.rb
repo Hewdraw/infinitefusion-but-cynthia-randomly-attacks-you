@@ -1574,7 +1574,7 @@ class PokeBattle_AI
       score -= 90 if target.effects[PBEffects::MeanLook]>=0
     #---------------------------------------------------------------------------
     when "0F0", "202" #todo
-      score *= 3 if target.hasActiveItem?([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE])
+      score *= 3 if target.hasActiveItem?([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE, :REAPERCLOTH])
       score *= 2 if target.hasActiveItem?([:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME])
       score = 0 if !target.item
       score = 0 if target.unlosableItem?(target.item)
@@ -2738,7 +2738,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "206"
       score *= 2 if user.effects[PBEffects::FocusEnergy] < 3
-      score *= 3 if target.hasActiveItem?([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE])
+      score *= 3 if target.hasActiveItem?([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE, :REAPERCLOTH])
       score *= 2 if target.hasActiveItem?([:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME])
       score /= 2 if (!target.item) || target.unlosableItem?(target.item)
     #---------------------------------------------------------------------------
