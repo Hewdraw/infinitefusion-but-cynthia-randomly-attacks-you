@@ -2756,8 +2756,8 @@ class PokeBattle_AI
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
     effectchance = [pbRoughAccuracy(move,user,target,100), 100].min if move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
-    effectchance *= 100 / [pbRoughAccuracy(move,user,target,100), 100].min if !move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
-    score = score * effectchance / 100 if score > 0
+    effectchance = effectchance * [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
+    score = score * effectchance / 100.0 if score > 0
     return score
   end
 
