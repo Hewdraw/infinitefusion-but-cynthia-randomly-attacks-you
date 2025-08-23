@@ -885,6 +885,8 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
+
 BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:DRAGON,type,target,mults)
