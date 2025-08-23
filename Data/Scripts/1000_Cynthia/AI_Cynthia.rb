@@ -125,6 +125,7 @@ class PokeBattle_AI
     #print(user.name, " ", switch.name, " ", switchScore) 
     switchScore += (damagethreshold - activeDamagethreshold) * 0.5
     switchScore -= 1
+    switchScore -= 10 if opposingThreat == 100
 
     #print(switch.name, " ", switchScore, " ", hitsDifferential, " ", damagethreshold - (activeDamagethreshold * hitsDifferential), " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
 
