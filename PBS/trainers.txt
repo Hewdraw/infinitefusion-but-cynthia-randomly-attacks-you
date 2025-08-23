@@ -475,8 +475,8 @@ Pokemon = B109H45,33 #Vilefing,
 ################################
 
 [TWINS,Kiri & Jan]
-Pokemon = B7H4,34 #Chartle,
-Pokemon = B1H7,34 #Squirtbasaur,
+Pokemon = B158H4,34 #Chartle,
+Pokemon = B1H158,34 #Squirtbasaur,
 Pokemon = B4H1,34 #Bulbmander,
 
 ################################

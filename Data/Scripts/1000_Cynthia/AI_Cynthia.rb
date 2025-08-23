@@ -89,10 +89,12 @@ class PokeBattle_AI
     battler.pbInitialize(switch,69)
     switchThreat = 1
     opposingThreat = 1
+    opposingMaxThreat = 0
     switchOutspeeds = true
     user.eachOpposing do |target|
       next if target.fainted?
       opposingThreat += pbCynthiaGetThreat(battler, target)[:highestDamage]
+      opposingMaxThreat += pbCynthiaGetThreat(battler, target, false)[:highestDamage]
       threat = pbCynthiaGetThreat(target, battler, false)[:highestDamage]
       switchThreat = [threat, switchThreat].max
       switchOutspeeds = false if target.pbSpeed >= battler.pbSpeed
@@ -125,7 +127,7 @@ class PokeBattle_AI
     #print(user.name, " ", switch.name, " ", switchScore) 
     switchScore += (damagethreshold - activeDamagethreshold) * 0.5
     switchScore -= 1
-    switchScore -= 10 if pbCynthiaGetThreat(battler, target, false)[:highestDamage] >= 100
+    switchScore -= 10 if opposingMaxThreat >= 100
 
     #print(switch.name, " ", switchScore, " ", hitsDifferential, " ", damagethreshold - (activeDamagethreshold * hitsDifferential), " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
 
