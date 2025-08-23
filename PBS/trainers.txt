@@ -448,6 +448,7 @@ Pokemon = B68H83,38 #Farchamp,
 ##############################
 
 [BIRDKEEPER,Benny]
+Pokemon = ZAPMOLTICUNO,32
 Pokemon = SPEAROW,32 
 Pokemon = B73H21,32 #Spearcruel,
 ###############################
