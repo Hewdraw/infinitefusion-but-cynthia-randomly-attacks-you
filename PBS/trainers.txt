@@ -420,6 +420,9 @@ Pokemon = B113H40,34 #Wigglysey,
 ###############################
 
 [BIRDKEEPER,Carter]
+Pokemon = ZAPDOS,33
+Pokemon = MOLTRES,33
+Pokemon = ARTICUNO,33
 Pokemon = PIDGEOTTO,33 #HYPGEY,
 Pokemon = DODUO,33 #MR. DUO,
 Pokemon = B17H108,33 #LICKIEOTTO,
