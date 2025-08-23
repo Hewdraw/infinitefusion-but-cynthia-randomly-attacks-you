@@ -421,11 +421,17 @@ Pokemon = B113H40,34 #Wigglysey,
 
 [BIRDKEEPER,Carter]
 Pokemon = ZAPDOS,33
+	Ability = LEGENDARYPRESSURE
 Pokemon = MOLTRES,33
+	Ability = LEGENDARYPRESSURE
 Pokemon = ARTICUNO,33
+	Ability = LEGENDARYPRESSURE
 Pokemon = PIDGEOTTO,33 #HYPGEY,
+	Ability = LEGENDARYPRESSURE
 Pokemon = DODUO,33 #MR. DUO,
+	Ability = LEGENDARYPRESSURE
 Pokemon = B17H108,33 #LICKIEOTTO,
+	Ability = LEGENDARYPRESSURE
 #####################
 
 [BIRDKEEPER,Mitch]
@@ -452,8 +458,11 @@ Pokemon = B68H83,38 #Farchamp,
 
 [BIRDKEEPER,Benny]
 Pokemon = ZAPMOLTICUNO,32
+	Ability = LEGENDARYPRESSURE
 Pokemon = SPEAROW,32 
+	Ability = LEGENDARYPRESSURE
 Pokemon = B73H21,32 #Spearcruel,
+	Ability = LEGENDARYPRESSURE
 ###############################
 
 [BIKER,Gerald]
