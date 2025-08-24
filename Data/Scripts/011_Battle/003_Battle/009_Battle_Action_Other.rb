@@ -266,7 +266,7 @@ class PokeBattle_Battle
       pbWait(1)
     end
     battler.pokemon.dynamax = 3
-    battler.hp = endhp
+    battler.hp = oldhp * 2
     sprite.zoom_x -= 2
     sprite.zoom_y -= 2
     sprite.y -= 128
