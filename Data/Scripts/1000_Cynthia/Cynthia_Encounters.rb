@@ -133,11 +133,14 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
     if rand(mikumaxchance) < $PokemonGlobal.hatsunemikuchance
       encounter_type = [:CREATOR_Minecraft, "Hatsune Miku"]
       $PokemonGlobal.hatsunemikuchance = 0
-      encounter_id = numbadges
-      if encounter_id > 11 #temporary
-        encounter_id = 11
-      end
     end
+  end
+
+  if encounter_type[1] == "Hatsune Miku"
+      encounter_id = numbadges
+      if encounter_id > 12 #temporary
+        encounter_id = 12
+      end
   end
 
   if !encounter_type.is_a?(Array)
