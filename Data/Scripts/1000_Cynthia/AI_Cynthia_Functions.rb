@@ -75,7 +75,7 @@ class PokeBattle_AI
       score = 0 if target.pbHasMoveFunction?("0D9")
       score = 0 if !target.pbCanPoison?(user,false)
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanPoisonSynchronize?(target)
-      score = 0 if target.hasType?(:POISON) || target.hasType?(:STEEL)
+      score = 0 if target.pbHasType??(:POISON) || target.pbHasType??(:STEEL)
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5", "0FD" #paralyze
       score = 99 if target.pbSpeed > user.pbSpeed && target.pbSpeed / 4 < user.pbSpeed
@@ -86,13 +86,13 @@ class PokeBattle_AI
       score = 0 if target.pbHasMoveFunction?("0D9")
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
       score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-      score = 0 if target.hasType?(:ELECTRIC)
+      score = 0 if target.pbHasType??(:ELECTRIC)
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
       score = 10 if opposingPhysicalThreat < opposingSpecialThreat
       score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
       score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
-      score = 0 if target.hasType?(:FIRE)
+      score = 0 if target.pbHasType??(:FIRE)
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
       score = 10 if opposingSpecialThreat < opposingPhysicalThreat
@@ -101,7 +101,7 @@ class PokeBattle_AI
       score = 0 if !target.pbCanFreeze?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY])
       score = 0 if target.pbHasMoveFunction?("0D9")
-      score = 0 if target.hasType?(:ICE)
+      score = 0 if target.pbHasType??(:ICE)
     #---------------------------------------------------------------------------
     when "00F"
       #todo flinching (maybe handle elsewhere?)
