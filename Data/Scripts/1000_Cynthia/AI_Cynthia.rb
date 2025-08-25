@@ -7,6 +7,7 @@ class PokeBattle_AI
       choices.push(*pbCynthiaItemScore(idxBattler))
       return if pbCynthiaShouldWithdraw(idxBattler)
     end
+    @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbCynthiaChooseMoves(idxBattler)
     if @battle.choices[idxBattler][0]==:UseMove && user.tera && user.unteraTypes == nil
       if user.tera == :STELLAR || user.hasActiveAbility?(:WONDERGUARD) || user.hasActiveAbility?(:NORMALIZE)
@@ -125,8 +126,8 @@ class PokeBattle_AI
     switchScore += pbCynthiaGetSwitchBonus(battler, opposingThreat, damagethreshold)
     switchScore += pbCynthiaGetSwitchBonus(user, activeOpposingThreat, activeDamagethreshold) if !user.fainted?
     #print(user.name, " ", switch.name, " ", switchScore) 
-    switchScore += (damagethreshold - activeDamagethreshold) * 0.5
-    switchScore -= 1
+    switchScore += (damagethreshold - activeDamagethreshold)
+    switchScore -= 3
     switchScore -= 10 if opposingMaxThreat >= 100
 
     #print(switch.name, " ", switchScore, " ", hitsDifferential, " ", damagethreshold - (activeDamagethreshold * hitsDifferential), " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
@@ -181,10 +182,12 @@ class PokeBattle_AI
     user.eachOpposing do |target|
       switchOutScore -= 1 if target.pbHasMove?(:CALMMIND) || target.pbHasMove?(:BULKUP)
       switchOutScore -= 2 if target.pbHasMove?(:NASTYPLOT) || target.pbHasMove?(:SWORDSDANCE) || target.pbHasMove?(:DRAGONDANCE) || target.pbHasMove?(:QUIVERDANCE)
+      switchOutScore -= 2 if target.pbHasMove?(:WHIRLWIND) || target.pbHasMove?(:ROAR) || target.pbHasMove?(:DRAGONTAIL)
     end
     switchOutScore -= 1 if user.hasActiveAbility?(:NATURALCURE) && user.pbHasMove?(:REST) && !user.status
     switchOutScore += 1 if user.hasActiveAbility?(:NATURALCURE) && user.status
     switchOutScore -= 3 if (user.hasActiveAbility?(:STURDY) || user.hasActiveItem?(:FOCUSSASH)) && user.hp == user.totalhp && threat > 90
+    switchOutScore += GameData::Stat.each_battle { |s| totalStages += user.stages[s.id] }
 
     if threat < 33
       activeScore += [(@battle.pbAbleTeamCounts(0)[0]-1), damagethreshold-1].min if user.pbHasMove?(:STEALTHROCK) && user.pbOpposingSide.effects[PBEffects::StealthRock] == false
@@ -204,6 +207,9 @@ class PokeBattle_AI
     activeScore += 1 if user.pbHasMove?(:AURORAVEIL) && (@battle.pbWeather == :Snow || @battle.pbWeather == :Hail || (user.hasActiveAbility?([:SNOWWARNING, :SNOWWWARNING] && user.index == 69)))
     activeScore += 3 if user.pbHasMove?(:TAILWIND) && user.pbOwnSide.effects[PBEffects::Tailwind] == 0 && @battle.sideSizes[1] >= 2
     activeScore += 5 if user.pbHasMove?(:TRICKROOM) && @battle.field.effects[PBEffects::TrickRoom] == 0
+    user.eachOpposing do |target|
+      activeScore -= 3 if target.pbHasMove?(:WILLOWISP) && pbCynthiaGetThreat(target, user)[:specialDamage] == 0
+    end
 
     activeScore *= 2 if @battle.turnCount == 0 && user.index != 69  
 
@@ -212,7 +218,6 @@ class PokeBattle_AI
     switchScore += activeScore if user.index == 69
     switchScore -= activeScore if user.index != 69
     #todo wish logic
-    #todo switch less into dragon tail
     #print(user.name, " ", threat, " ", damagethreshold, " ", switchScore, " ", switchInScore, " ", switchOutScore, " ", activeScore)
     return switchScore
   end
@@ -437,6 +442,11 @@ class PokeBattle_AI
     score *= 1.5 if score >= 100  
     if score > 0 || move.statusMove?
       score += pbCynthiaGetMoveScoreStatus(move,user,target)
+    end
+    if move.statusMove?
+      if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && target != user
+        score = 0
+      end
     end
     #print(move.name, " ", user.name, " ", target.name, " ", score)
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam

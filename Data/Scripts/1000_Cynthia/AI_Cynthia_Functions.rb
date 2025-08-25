@@ -827,6 +827,7 @@ class PokeBattle_AI
       score = 0 if target.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "051" #todo
+      score = 0
       stages = 0
       @battle.eachBattler do |b|
         totalStages = 0
@@ -1866,9 +1867,9 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "115" #todo
-      score += 50 if target.effects[PBEffects::HyperBeam]>0
-      score -= 35 if target.hp<=target.totalhp/2   # If target is weak, no
-      score -= 70 if target.hp<=target.totalhp/4   # need to risk this move
+      score = -100
+      score = 0 if user.effects[PBEffects::Substitute] || user.effects[PBEffects::RedstoneCube]
+      score = 0 if opposingThreat == 0
     #---------------------------------------------------------------------------
     when "116" #todo?
     #---------------------------------------------------------------------------
