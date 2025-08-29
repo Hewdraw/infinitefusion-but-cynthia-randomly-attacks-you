@@ -94,6 +94,11 @@ def UndertaleShopSetup()
       "cost" => 2,
       "amount" => 2,
     },
+    :OVALSTONE => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
     :RARECANDY => {
       "badges" => 0,
       "cost" => 3,
