@@ -2446,7 +2446,7 @@ class PokeBattle_AI
     when "15F"
       if user.hasActiveAbility?(:CONTRARY)
         if !user.statStageAtMax?(:DEFENSE)
-          statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user).max()
+          statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user)
           userhp = 100.0
           userhp = userhp - opposingThreat if !outspeedsopponent
           damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil

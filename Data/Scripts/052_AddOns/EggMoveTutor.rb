@@ -10,8 +10,11 @@ end
 
 class MoveRelearnerScreen
   def pbStartScreenEgg(pkmn)
-    baby = pbGetBabySpecies(pkmn.species)
-    moves = pbGetSpeciesEggMoves(baby)
+    moves = []
+    pbCreatePreEvolutionTree(pkmn.species).each do |species|
+      moves.push(pbGetSpeciesEggMoves(species))
+    end
+    moves = moves.flatten
 
     @scene.pbStartScene(pkmn, moves)
     loop do
@@ -28,5 +31,14 @@ class MoveRelearnerScreen
         return false
       end
     end
+  end
+
+  def pbCreatePreEvolutionTree(species)
+    array = []
+    if pbGetPreviousForm(species)
+      array = pbCreatePreEvolutionTree(pbGetPreviousForm(species))
+    end
+    array.push(species)
+    return array
   end
 end
