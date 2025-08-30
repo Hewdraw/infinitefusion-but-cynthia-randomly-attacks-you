@@ -46,7 +46,7 @@
 46,COMETSHARD,Comet Shard,Comet Shards,1,12000,"A shard which fell to the ground when a comet approached. A maniac will buy it for a high price.",0,0,0,
 47,NUGGET,Nugget,Nuggets,1,10000,"A nugget of pure gold that gives off a lustrous gleam. It can be sold at a high price to shops.",0,0,0,
 48,BIGNUGGET,Big Nugget,Big Nuggets,1,20000,"A big nugget of pure gold that gives off a lustrous gleam. A maniac will buy it for a high price.",0,0,0,
-49,HEARTSCALE,Heart Scale,Heart Scales,1,100,"A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.",0,0,0,
+49,HEARTSCALE,Heart Scale,Heart Scales,1,3000,"A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.",0,0,0,
 50,SLOWPOKETAIL,Slowpoke Tail,Slowpoke Tails,1,10000,"A very tasty tail of something. It can be sold at a high price to shops.",0,0,0,
 51,RAREBONE,Rare Bone,Rare Bones,1,2000,"A bone that is extremely valuable for Pokémon archaeology. It can be sold for a high price to shops.",0,0,0,
 52,RELICCOPPER,Relic Copper,Relic Coppers,1,2000,"A copper coin used in a civilization about 3,000 years ago. It can be sold for a high price.",0,0,0,

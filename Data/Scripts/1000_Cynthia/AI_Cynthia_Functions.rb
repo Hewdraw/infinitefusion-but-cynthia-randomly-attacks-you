@@ -1882,7 +1882,7 @@ class PokeBattle_AI
       allythreat = 0
       if ally
         user.eachOpposing do |b|
-          allythreat += pbCynthiaGetThreat(ally, b)
+          allythreat += pbCynthiaGetThreat(ally, b)[:highestDamage]
         end
         if allythreat > opposingMaxThreat * 2
           score = allythreat
