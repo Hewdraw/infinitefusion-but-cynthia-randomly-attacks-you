@@ -45,7 +45,7 @@ Pokemon = B92H4,33 #Chartly,
 ##########################
 
 [CHANNELER,Deborah]
-Pokemon = FeraligatrGengar,5	
+Pokemon = B160H94,5	
 	Offset = 0
 	Moves = FOCUSBLAST,SCALD,SHADOWBALL,NASTYPLOT
 	Ability = SHEERFORCE

@@ -183,6 +183,7 @@ class PokeBattle_AI
       switchOutScore -= 1 if target.pbHasMove?(:CALMMIND) || target.pbHasMove?(:BULKUP)
       switchOutScore -= 2 if target.pbHasMove?(:NASTYPLOT) || target.pbHasMove?(:SWORDSDANCE) || target.pbHasMove?(:DRAGONDANCE) || target.pbHasMove?(:QUIVERDANCE)
       switchOutScore -= 2 if target.pbHasMove?(:WHIRLWIND) || target.pbHasMove?(:ROAR) || target.pbHasMove?(:DRAGONTAIL)
+      switchOutScore -= 3 if target.pbHasMove?(:BELLYDRUM) || target.pbHasMove?(:SHELLSMASH)
     end
     switchOutScore -= 1 if user.hasActiveAbility?(:NATURALCURE) && user.pbHasMove?(:REST) && !user.status
     switchOutScore += 1 if user.hasActiveAbility?(:NATURALCURE) && user.status
