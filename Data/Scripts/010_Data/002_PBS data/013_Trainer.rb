@@ -387,6 +387,9 @@ module GameData
             if mon.ability == :WONDERGUARD
               pkmn.learn_move_ignoremax(:FIREFANG)
             end
+            if mon.isFusionOf(:TOGEPI) || mon.isFusionOf(:TOGETIC) || mon.isFusionOf(:TOGEKISS) || mon.species.to_s.include?("TOGEPI") || mon.species.to_s.include?("TOGETIC") || mon.species.to_s.include?("TOGEKISS")
+              pkmn.learn_move_ignoremax(:METRONOME)
+            end
           end
           for move in pkmn.moves
             next if move.pp == 1
