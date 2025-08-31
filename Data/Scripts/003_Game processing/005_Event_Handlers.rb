@@ -277,7 +277,7 @@ class AbilityHandlerHash < HandlerHash2
         retvalue = retvalue || ret
       end
     end
-    if user.hasActiveItem?(:ANCESTRALGENE) && user.isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
+    if user.item_id == :ANCESTRALGENE && user.isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
       user.tempability = GameData::Ability.get($PokemonGlobal.ancestralgeneability).real_name
       ret = super($PokemonGlobal.ancestralgeneability, *args)
       retvalue = retvalue || ret

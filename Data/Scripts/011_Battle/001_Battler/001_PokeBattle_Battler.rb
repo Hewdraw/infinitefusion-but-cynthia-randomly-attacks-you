@@ -439,7 +439,7 @@ class PokeBattle_Battler
   def hasActiveAbility?(check_ability, ignore_fainted = false)
     @tempability = nil
     return false if !abilityActive?(ignore_fainted)
-    if !check_ability.is_a?(Array)
+    if !check_ability.is_a?(Array)  
       check_ability = [check_ability]
     end
     if !check_ability.include?(:LEGENDARYPRESSURE) && hasActiveAbility?(:LEGENDARYPRESSURE)
@@ -448,6 +448,12 @@ class PokeBattle_Battler
           @tempability = GameData::Ability.get(ability[0]).real_name
           return true
         end
+      end
+    end
+    if @item_id == :ANCESTRALGENE && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
+      if check_ability.include?($PokemonGlobal.ancestralgeneability)
+        @tempability = GameData::Ability.get($PokemonGlobal.ancestralgeneability).real_name
+        return true
       end
     end
     return check_ability.include?(@ability_id)
