@@ -19298,8 +19298,8 @@ Type1 = GHOST
 Type2 = FAIRY
 BaseStats = 62,78,70,110,168,108
 GenderRate = Female50Percent
-Abilities = DROUGHT
-HiddenAbility = DROUGHT
+Abilities = PIXILTAG
+HiddenAbility = PIXILTAG
 Moves = 1,TACKLE
 Shape = Head
 [1000503]

@@ -263,3 +263,4 @@
 261,POLAR,Polar,"Draws in all Ice-type moves to up Sp. Attack."
 262,POWERBOUNCE,Power Bounce,""
 263,GENESIS,Genesis,"Upgrades Mew's Psychic to a Z-Move."
+264,PIXILTAG,Pixil Tag,""

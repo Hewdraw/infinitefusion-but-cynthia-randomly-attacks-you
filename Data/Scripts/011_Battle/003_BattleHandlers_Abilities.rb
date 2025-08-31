@@ -793,7 +793,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:PIXILATE,
   }
 )
 
-BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS)
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXILTAG)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
   proc { |ability,user,move,type|
@@ -2298,7 +2298,7 @@ BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
   }
 )
 
-BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK)
+BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK, :PIXILTAG)
 
 #===============================================================================
 # AbilityOnSwitchIn handlers
