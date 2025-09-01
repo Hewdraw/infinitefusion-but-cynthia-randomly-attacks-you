@@ -1342,9 +1342,10 @@ class PokeBattle_AI
           totalthreat += damagetable[:maxDamage]
         end
         opponentmoves.each do |opponentmove, damagetable|
-          score += 100.0 * damagetable[:maxDamage] / totalthreat
+          score += 10 + (100.0 * damagetable[:maxDamage] / totalthreat) if user.pbHasMove?(opponentmove.id)
         end
       end
+      score = 0 if user.effects[PBEffects::Imprison]
     #---------------------------------------------------------------------------
     when "0B9" #todo
       score -= 90 if target.effects[PBEffects::Disable]>0

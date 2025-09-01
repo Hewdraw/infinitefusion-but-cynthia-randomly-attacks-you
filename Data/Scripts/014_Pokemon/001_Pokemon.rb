@@ -1406,7 +1406,7 @@ class Pokemon
   end
 
   def adjustHPForWonderGuard(stats)
-    return self.ability == :WONDERGUARD ? 1 : stats[:HP]
+    return self.ability == :WONDERGUARD || ($PokemonGlobal.ancestralgeneability == :WONDERGUARD && hasItem?(:ANCESTRALGENE)) ? 1 : stats[:HP]
   end
 
   def checkHPRelatedFormChange()
