@@ -795,6 +795,11 @@
 796,EEVIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
 797,MAWANCITE,Mawancite,Mawancites,1,0,"",0,0,0
 798,ANCESTRALGENE,Ancestral Gene,Ancestral Genes,1,0,"Use to Copy. When held by Mew, gives Ability but inhibits attacking potential.",1,0,0
+799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"",0,0,0
+800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"",0,0,0
+801,MINECRAFTBALL,Minecraft Ball,Minecraft Balls,1,0,"",0,0,0
+802,MAXMUSHROOM,MAX Mushroom,MAX Mushrooms,1,0,"",0,0,0
+803,MEGARING,Mega Ring,Mega Rings,1,0,"",0,0,0
 
 
 #    attr_reader :id
