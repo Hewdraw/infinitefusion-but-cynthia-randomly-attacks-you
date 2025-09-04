@@ -16,208 +16,236 @@ class PokeBattle_AI
     stages = [0, stages].max
     stages = [12, stages].min
     stateffect = (stageMul[stages].to_f / stageDiv[stages].to_f) / (stageMul[originalstages].to_f / stageDiv[originalstages].to_f)
-    stateffect = (stateffect + (-1 * (originalstages - 6))) / (1 + (-1 * (originalstages - 6))) if change < 0 && originalstages < 6
+    #stateffect = (stateffect + (-1 * (originalstages - 6))) / (1 + (-1 * (originalstages - 6))) if change < 0 && originalstages < 6
     return stateffect
+  end
+
+  def pbCynthiaCalculateStatScore(statarray,user,target,recursion=false)
+    score = 0
+    statarray.each do |stat|
+      if target.hasActiveAbility?(:UNBURDEN) && target.hasActiveItem?(:WHITEHERB)
+        score = pbCynthiaCalculateStatScore([[:SPEED, 2]],user,target,true)
+        break
+      end
+      next if stat[1] < 0 && target.hasActiveItem?(:WHITEHERB)
+      stateffect = pbCynthiaGetStatIncrease(stat[0], stat[1], target)
+      if stat[0] == :SPEED #todo trick room
+        tempscore = [0.0, 0]
+        target.eachOpposing do |opponent|
+          if target.pbSpeed < opponent.pbSpeed && opponent.pbSpeed < target.pbSpeed * stateffect
+            tempscore[0] += 99
+          end
+          if target.pbSpeed * stateffect < opponent.pbSpeed && opponent.pbSpeed < target.pbSpeed
+            tempscore[0] -= 99
+          end
+          tempscore[1] += 1
+        end
+        score += tempscore[0] / tempscore[1]
+        next
+      end
+      damagekey = [:specialDamage, :physicalDamage]
+      damagekey = [:physicalDamage, :specialDamage] if [:ATTACK, :DEFENSE].include?(stat[0])
+      maxdamage = 0
+      boostdamage = 0
+      target.eachOpposing do |opponent|
+        next if opponent.hasActiveAbility?(:UNAWARE)
+        damagearray = [target, opponent]
+        damagearray = [opponent, target] if [:ATTACK, :SPECIAL_ATTACK].include?(stat[0])
+        maxdamage = [pbCynthiaGetThreat(*damagearray)[:highestDamage], maxdamage].max
+        boostdamage = [pbCynthiaGetThreat(*damagearray)[damagekey[0]] * stateffect, pbCynthiaGetThreat(*damagearray)[damagekey[1]], boostdamage].max
+      end
+      score += (boostdamage - maxdamage) * pbCynthiaGetDamageInfo(user)[:damagethreshold]
+    end
+    if user.opposes?(target)
+      score *= -1
+      if !recursion
+        score += pbCynthiaCalculateStatScore([[:ATTACK, 2]],user,target,true) if target.hasActiveAbility?(:DEFIANT)
+        score += pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 2]],user,target,true) if target.hasActiveAbility?(:COMPETITIVE)
+      end
+    end
+    return score
+  end
+
+  def pbCynthiaGetDamageInfo(user, target=nil) #todo potential optimizations
+    damageinfo = {}
+    damageinfo[:userMaxThreat] = 0
+    damageinfo[:userMaxPhysicalThreat] = 0
+    damageinfo[:userMaxSpecialThreat] = 0
+    damageinfo[:userThreat] = 0
+    damageinfo[:userPhysicalThreat] = 0
+    damageinfo[:userSpecialThreat] = 0
+    damageinfo[:opposingMaxThreat] = 0
+    damageinfo[:opposingMaxPhysicalThreat] = 0
+    damageinfo[:opposingMaxSpecialThreat] = 0
+    damageinfo[:opposingThreat] = 0
+    damageinfo[:opposingPhysicalThreat] = 0
+    damageinfo[:opposingSpecialThreat] = 0
+    damageinfo[:outspeedsopponent] = true
+    user.eachOpposing do |opponent|
+      userMaxThreattable = pbCynthiaGetThreat(opponent, user)
+      damageinfo[:userMaxThreat] = [userMaxThreattable[:highestDamage], damageinfo[:userMaxThreat]].max
+      damageinfo[:userMaxPhysicalThreat] = [userMaxThreattable[:physicalDamage], damageinfo[:userMaxPhysicalThreat]].max
+      damageinfo[:userMaxSpecialThreat] = [userMaxThreattable[:specialDamage], damageinfo[:userMaxSpecialThreat]].max
+      userThreattable = pbCynthiaGetThreat(opponent, user, false)
+      damageinfo[:userThreat] = [userThreattable[:highestDamage], damageinfo[:userThreat]].max
+      damageinfo[:userPhysicalThreat] = [userThreattable[:physicalDamage], damageinfo[:userPhysicalThreat]].max
+      damageinfo[:userSpecialThreat] = [userThreattable[:specialDamage], damageinfo[:userSpecialThreat]].max
+      opponentMaxThreattable = pbCynthiaGetThreat(user, opponent)
+      damageinfo[:opposingMaxThreat] += opponentMaxThreattable[:highestDamage]
+      damageinfo[:opposingMaxPhysicalThreat] += opponentMaxThreattable[:physicalDamage]
+      damageinfo[:opposingMaxSpecialThreat] += opponentMaxThreattable[:specialDamage]
+      opponentThreattable = pbCynthiaGetThreat(user, opponent, false)
+      damageinfo[:opposingThreat] += opponentThreattable[:highestDamage]
+      damageinfo[:opposingPhysicalThreat] += opponentThreattable[:physicalDamage]
+      damageinfo[:opposingSpecialThreat] += opponentThreattable[:specialDamage]
+      damageinfo[:outspeedsopponent] = pbCynthiaCompareSpeed(user, opponent) if damageinfo[:outspeedsopponent]
+    end
+    if target
+      damageinfo[:targetMaxThreattable] = pbCynthiaGetThreat(user, target)
+      damageinfo[:targetMaxThreat] = damageinfo[:targetMaxThreattable][:highestDamage]
+      damageinfo[:targetMaxPhysicalThreat] = damageinfo[:targetMaxThreattable][:physicalDamage]
+      damageinfo[:targetMaxSpecialThreat] = damageinfo[:targetMaxThreattable][:specialDamage]
+      damageinfo[:targetThreattable] = pbCynthiaGetThreat(user, target, false)
+      damageinfo[:targetThreat] = damageinfo[:targetThreattable][:highestDamage]
+      damageinfo[:targetPhysicalThreat] = damageinfo[:targetThreattable][:physicalDamage]
+      damageinfo[:targetSpecialThreat] = damageinfo[:targetThreattable][:specialDamage]
+      damageinfo[:outspeedstarget] = pbCynthiaCompareSpeed(user, target)
+    end
+    userhp = 100.0 * user.adjustedTotalhp / user.totalhp
+    userhp = userhp - damageinfo[:opposingThreat] if !damageinfo[:outspeedsopponent]
+    damageinfo[:userdamagethreshold] = (userhp / damageinfo[:opposingThreat]).ceil - 1
+    damageinfo[:opposingdamagethreshold] = (100.0 / damageinfo[:userThreat]).ceil - 1
+    damageinfo[:damagethreshold] = [damageinfo[:userdamagethreshold], damageinfo[:opposingdamagethreshold]].min
+    return damageinfo
   end
 
   def pbCynthiaGetMoveScoreStatus(move,user,target)
     skill = 100 #temporary
-    userMaxThreattable = pbCynthiaGetThreat(target, user)
-    userMaxThreat = userMaxThreattable[:highestDamage]
-    userMaxPhysicalThreat = userMaxThreattable[:physicalDamage]
-    userMaxSpecialThreat = userMaxThreattable[:specialDamage]
-    userThreattable = pbCynthiaGetThreat(target, user, false)
-    userThreat = userThreattable[:highestDamage]
-    userPhysicalThreat = userThreattable[:physicalDamage]
-    userSpecialThreat = userThreattable[:specialDamage]
-    opposingMaxThreat = 0
-    opposingMaxPhysicalThreat = 0
-    opposingMaxSpecialThreat = 0
-    opposingThreat = 0
-    opposingPhysicalThreat = 0
-    opposingSpecialThreat = 0
-    outspeedsopponent = true
-    user.eachOpposing do |opponent|
-      opponentMaxThreattable = pbCynthiaGetThreat(user, opponent, false)
-      opposingMaxThreat += opponentMaxThreattable[:highestDamage]
-      opposingMaxPhysicalThreat += opponentMaxThreattable[:physicalDamage]
-      opposingMaxSpecialThreat += opponentMaxThreattable[:specialDamage]
-      opposingThreattable = pbCynthiaGetThreat(user, opponent)
-      opposingThreat += opposingThreattable[:highestDamage]
-      opposingPhysicalThreat += opposingThreattable[:physicalDamage]
-      opposingSpecialThreat += opposingThreattable[:specialDamage]
-      outspeedsopponent = pbCynthiaCompareSpeed(user, opponent)
-    end
-    score = [100.0 * [user.hp, user.totalhp].max / user.totalhp / 2 - opposingThreat, 1.0].max
+    damageinfo = pbCynthiaGetDamageInfo(user, target)
+    score = [100.0 * [user.hp, user.totalhp].max / user.totalhp / 2 - damageinfo[:opposingThreat], 1.0].max
+    # movedamage = 0
+    # movedamage = pbCynthiaGetThreat(user, target, false)[:moves][move][:minDamage] if target != user
     movefunction = move.function
     if movefunction == "188"
       movefunction += move.type.to_s
     end
     case movefunction
     #---------------------------------------------------------------------------
-    when "000", "001", "002", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195", "207"  # No extra effect
+    when "000", "001", "002", "017", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195", "207"  # No extra effect
       score = 0
     #---------------------------------------------------------------------------
     when "003", "004" #sleep
-      score *= 1.5 if user.hasActiveAbility?(:BADDREAMS)
-      score *= 1.5 if user.pbHasMove?(:NIGHTMARE) || user.pbHasMove?(:DREAMEATER)
-      score *= 2 if [:Snow, :Hail].include?(@battle.pbWeather)
-      score *= 2 if userThreat < 67
+      sleepturns = [damageinfo[:damagethreshold], 4].min
+      score = sleepturns * damageinfo[:userThreat] / 3.0
+      score += 100 * sleepturns / 3.0
+      score += 100 * sleepturns / 3.0 if [:Snow, :Hail].include?(@battle.pbWeather)
+      score += 100 * sleepturns / 8.0 if user.hasActiveAbility?(:BADDREAMS)
       score = 0 if target.effects[PBEffects::Yawn]>0
-      score = 0 if target.hasActiveAbility?([:MARVELSCALE, :GUTS, :QUICKFEET])
-      score = 0 if target.pbHasMoveFunction?("011","0B4", "0D9")
+      score = 0 if target.hasActiveAbility?([:GUTS, :QUICKFEET])
+      score = 0 if target.hasActiveAbility?(:MARVELSCALE) && damageinfo[:userPhysicalThreat] > damageinfo[:userSpecialThreat]
+      score = 0 if target.pbHasMoveFunction?("011","0B4", "0D9", "191")
       score = 0 if !target.pbCanSleep?(user,false)
     # #---------------------------------------------------------------------------
-    when "005", "006", "0BE" #poison
-      score += [user.hp / user.totalhp / 2 - opposingThreat, 0].max if move.function == 006
+    when "005", "006", "0BE", "159" #poison
+      score = 100 * damageinfo[:damagethreshold] / 8.0
+      score = 100 * (0..damageinfo[:damagethreshold]).sum / 16.0 if movefunction == 006 || @battle.pbWeather == :Sandstorm
       score = 0 if target.effects[PBEffects::Yawn]>0 
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD])
-      score = 0 if target.pbHasMoveFunction?("0D9")
+      score = 0 if target.pbHasMoveFunction?("0D9", "191")
       score = 0 if !target.pbCanPoison?(user,false)
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanPoisonSynchronize?(target)
       score = 0 if target.pbHasType?(:POISON) || target.pbHasType?(:STEEL)
+      score += pbCynthiaCalculateStatScore([[:SPEED, -1]], user, target) if movefunction == "159"
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5", "0FD" #paralyze
-      score = 99 if target.pbSpeed > user.pbSpeed && target.pbSpeed / 4 < user.pbSpeed
+      score = 100 * damageinfo[:damagethreshold] / 4.0
+      score += damageinfo[:targetThreat] if !damageinfo[:outspeedstarget] && target.pbSpeed / 4 < user.pbSpeed
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanParalyze?(user,false)
       score = 0 if move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
       score = 0 if target.hasActiveAbility?([:QUICKFEET, :MARVELSCALE, :GUTS])
-      score = 0 if target.pbHasMoveFunction?("0D9")
+      score = 0 if target.pbHasMoveFunction?("0D9", "191")
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
-      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-      score = 0 if target.pbHasType?(:ELECTRIC)
+      score = 0 if @battle.field.effects[PBEffects::TrickRoom]
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
-      score = 10 if opposingPhysicalThreat < opposingSpecialThreat
-      score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
-      score = 0 if target.effects[PBEffects::Yawn]>0 || !target.pbCanBurn?(user,false) || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE]) || target.pbHasMoveFunction?("0D9") || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
+      score = 100 * damageinfo[:damagethreshold] / 16.0
+      score = 0 if target.hasActiveAbility?(:MAGICGUARD)
+      score += (damageinfo[:targetPhysicalThreat] - [damageinfo[:targetPhysicalThreat] / 2.0, damageinfo[:targetSpecialThreat]].max) * damageinfo[:damagethreshold]
+      score = 0 if target.effects[PBEffects::Yawn]>0
+      score = 0 if !target.pbCanBurn?(user,false)
+      score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE])
+      score = 0 if target.pbHasMoveFunction?("0D9", "191")
+      score = 0 if (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
       score = 0 if target.pbHasType?(:FIRE)
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
-      score = 10 if opposingSpecialThreat < opposingPhysicalThreat
-      score -= 10 if target.hasActiveAbility?(:MAGICGUARD)
+      score = 100 * damageinfo[:damagethreshold] / 16.0
+      score = 0 if target.hasActiveAbility?(:MAGICGUARD)
+      score += (damageinfo[:targetSpecialThreat] - [damageinfo[:targetSpecialThreat] / 2.0, damageinfo[:targetPhysicalThreat]].max) * damageinfo[:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanFreeze?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY])
       score = 0 if target.pbHasMoveFunction?("0D9")
       score = 0 if target.pbHasType?(:ICE)
     #---------------------------------------------------------------------------
-    when "00F"
-      #todo flinching (maybe handle elsewhere?)
-    #---------------------------------------------------------------------------
-    when "010"
-      #todo stomp handle elsewhere
-    #---------------------------------------------------------------------------
-    when "011"
-      #todo snore handle elsewhere
+    when "00F", "010", "011"
+      score = 0
+      score += damageinfo[:targetThreat] if damageinfo[:outspeedstarget]
+      score = 0 if target.hasActiveAbility?([:INNERFOCUS, :STEADFAST])
+      score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
     #---------------------------------------------------------------------------
     when "012"
-      score += pbCynthiaGetThreat(user, target)[:highestDamage]
-      score = 0 if target.hasActiveAbility?([:INNERFOCUS, :SHIELDDUST, :STEADFAST])
-      score = 0 if target.effects[PBEffects::Substitute]>0
+      score = damageinfo[:targetThreat]
+      score = 0 if target.hasActiveAbility?([:INNERFOCUS, :STEADFAST])
+      score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
       score = -100 if !(user.turnCount==0)
     #---------------------------------------------------------------------------
     when "013", "014", "015", "040", "041"
+      score = 100 * [damageinfo[:damagethreshold], 2].min / 3.0
       score = 0 if !target.pbCanConfuse?(user,false,move)
     #---------------------------------------------------------------------------
     when "016"
+      score = 100 * damageinfo[:damagethreshold] / 2.0
       score = 0 if !target.pbCanAttract?(user,false)
       score = 0 if target.hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(target,false)
     #---------------------------------------------------------------------------
-    when "018"
+    when "018" #todo
       score = 0 if ![:POISON, :BURN, :PARALYSIS].include?(user.status)
     #---------------------------------------------------------------------------
-    when "019", "191"
+    when "019", "191" #todo
+      score = 0
       @battle.pbParty(user.index).each do |pkmn|
         score += 20 if pkmn && pkmn.status != :NONE
       end
     #---------------------------------------------------------------------------
-    when "01A"
+    when "01A" #todo
       score = 0 if user.pbOwnSide.effects[PBEffects::Safeguard]>0
       score = 0 if user.status != :NONE
     #---------------------------------------------------------------------------
-    when "01B"
+    when "01B" #todo
       score *= 1.5
       score = 0 if user.status == :NONE
       score = 0 if !target.pbCanInflictStatus?(user.status, user, false, move)
     #---------------------------------------------------------------------------
     when "01C", "029", "188FIGHTING"
-      if !user.statStageAtMax?(:ATTACK)
-        statincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1]], user, user)
     #---------------------------------------------------------------------------
     when "01D", "01E", "0C8", "188STEEL"
-      if !user.statStageAtMax?(:DEFENSE)
-        statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
-      if move.function == "01E" && user.effects[PBEffects::DefenseCurl] == false && (user.pbHasMove?(:ROLLOUT) || user.pbHasMove?(:ICEBALL))
-        score += [100 - opposingThreat, 0].max
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, 1]], user, user)
     #---------------------------------------------------------------------------
     when "01F", "188FLYING"
-      if !user.statStageAtMax?(:SPEED)
-        score = 101
-        statincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
-        user.eachOpposing do |opponent|
-          score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
-          score = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-        end
-      else
-        score = 0
-      end
-      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-      score = 0 if outspeedsopponent
+      score = pbCynthiaCalculateStatScore([[:SPEED, 1]], user, user)
     #---------------------------------------------------------------------------
     when "020", "188POISON"
-      if !user.statStageAtMax?(:SPECIAL_ATTACK)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 1]], user, user)
     #---------------------------------------------------------------------------
     when "021", "188GROUND"
-      if !user.statStageAtMax?(:SPECIAL_DEFENSE)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
-      score += 32 if user.pbHasType?(:ELECTRIC) && user.effects[PBEffects::Charge] == 0 && opposingThreat < 50 && userThreat < 100
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_DEFENSE, 1]], user, user)
+      #todo charge
     #---------------------------------------------------------------------------
     when "022"
-      score = [score, 66 - opposingThreat].max()
+      score = [score, 66 - damageinfo[:opposingThreat]].max()
       score = 0 if user.stages[:EVASION] >= 1
       user.eachOpposing do |opponent|
         opponent.eachMove do |opponentmove|
@@ -228,8 +256,8 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "023"
-      score = [score, 100 - opposingThreat].max()
-      score *= 0.5 if !outspeedsopponent
+      score = [score, 100 - damageinfo[:opposingThreat]].max()
+      score *= 0.5 if !damageinfo[:outspeedsopponent]
       score *= 2 if user.hasActiveItem?(:SCOPELENS)
       score *= 1.5 if user.hasActiveAbility?([:SNIPER, :SUPERSNIPER])
       user.eachOpposing do |opponent|
@@ -240,188 +268,43 @@ class PokeBattle_AI
       score = 0 if user.effects[PBEffects::FocusEnergy]>=1
     #---------------------------------------------------------------------------
     when "024", "025"
-      if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
-        defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
-        atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max.ceil)).ceil
-        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:DEFENSE, 1]], user, user)
     #---------------------------------------------------------------------------
     when "026"
-      if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK)
-        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
-        atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        speedscore = 101
-        user.eachOpposing do |opponent|
-          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        speedscore = 0 if outspeedsopponent
-        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-        score = [score, speedscore].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:SPEED, 1]], user, user)
     #---------------------------------------------------------------------------
     when "027", "028"
-      if !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
-        statincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max
-        if move.function=="028"   # Growth
-          statincrease = [pbCynthiaGetStatIncrease(:ATTACK, 2, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)].max if [:Sun, :HarshSun].include?(@battle.pbWeather)
-        end
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userThreat * statincrease].max() if (userhp / [userThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:SPECIAL_ATTACK, 1]], user, user)
     #---------------------------------------------------------------------------
     when "02A"
-      if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
-        statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, 1], [:SPECIAL_DEFENSE, 1]], user, user)
     #---------------------------------------------------------------------------
     when "02B"
-      if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
-        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
-        atkstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        defstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
-        speedscore = 101
-        user.eachOpposing do |opponent|
-          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-          defstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-        speedscore = 0 if outspeedsopponent
-        score = [score, speedscore].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max.ceil)).ceil
-        score = [score, userSpecialThreat * atkstatincrease].max() if (userhp / [userSpecialThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
+      score = pbCynthiaCalculateStatScore([[:SPEED, 1], [:SPECIAL_ATTACK, 1], [:SPECIAL_DEFENSE, 1]], user, user)
     #---------------------------------------------------------------------------
     when "02C"
-      if !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
-        defstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)
-        atkstatincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / defstatincrease].max.ceil)).ceil
-        score = [score, userSpecialThreat * atkstatincrease].max() if (userhp / [userSpecialThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 1], [:SPECIAL_DEFENSE, 1]], user, user)
     #---------------------------------------------------------------------------
     when "02D"
-      score = [score, 100 - opposingThreat].max()
+      score = [score, 100 - damageinfo[:opposingThreat]].max()
     #---------------------------------------------------------------------------
     when "02E"
-      if !user.statStageAtMax?(:ATTACK)
-        statincrease = pbCynthiaGetStatIncrease(:ATTACK, 2, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 2]], user, user)
     #---------------------------------------------------------------------------
     when "02F", "136"
-      if !user.statStageAtMax?(:DEFENSE)
-        statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 2, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userPhysicalThreat, opposingThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, 2]], user, user)
     #---------------------------------------------------------------------------
     when "030", "031"
-      if !user.statStageAtMax?(:SPEED)
-        score = 101
-        statincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
-        user.eachOpposing do |opponent|
-          score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
-          score = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-        end
-      else
-        score = 0
-      end
-      score = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-      score = 0 if outspeedsopponent
+      score = pbCynthiaCalculateStatScore([[:SPEED, 2]], user, user)
     #---------------------------------------------------------------------------
     when "032"
-      if !user.statStageAtMax?(:SPECIAL_ATTACK)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 2]], user, user)
     #---------------------------------------------------------------------------
     when "033"
-      if !user.statStageAtMax?(:SPECIAL_DEFENSE)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 2, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingSpecialThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingSpecialThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_DEFENSE, 2]], user, user)
     #---------------------------------------------------------------------------
     when "034"
-      score = [score, 66 - opposingThreat].max()
+      score = [score, 66 - damageinfo[:opposingThreat]].max()
       score = 0 if user.stages[:EVASION] >= 1
       user.eachOpposing do |opponent|
         opponent.eachMove do |opponentmove|
@@ -432,280 +315,54 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "035"
-      if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
-        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
-        atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 2, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 2, user)].max()
-        speedscore = 101
-        user.eachOpposing do |opponent|
-          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-        speedscore = 0 if outspeedsopponent
-        score = [score, speedscore].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      defstatincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].min()
-      if user.hasActiveItem?(:WHITEHERB)
-        defstatincrease = 1
-      end
-      score = 0 if outspeedsopponent && opposingThreat / defstatincrease >= 100
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 2], [:DEFENSE, -1], [:SPEED, 2], [:SPECIAL_ATTACK, 2], [:SPECIAL_DEFENSE, -1]], user, user)
     #---------------------------------------------------------------------------
     when "036"
-      if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK)
-        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 2, user)
-        atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-        speedscore = 101
-        user.eachOpposing do |opponent|
-          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-        speedscore = 0 if outspeedsopponent
-        score = [score, speedscore].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:SPEED, 2]], user, user)
     #---------------------------------------------------------------------------
     when "037"
-      score = [score, 66 - opposingThreat].max()
+      score = [score, 66 - damageinfo[:opposingThreat]].max()
     #---------------------------------------------------------------------------
     when "038"
-      if !user.statStageAtMax?(:DEFENSE)
-        statincrease = pbCynthiaGetStatIncrease(:DEFENSE, 3, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingPhysicalThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, 3]], user, user)
     #---------------------------------------------------------------------------
     when "039"
-      if !user.statStageAtMax?(:SPECIAL_ATTACK)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 3]], user, user)
     #---------------------------------------------------------------------------
     when "03A"
-      if !user.statStageAtMax?(:ATTACK)
-        statincrease = pbCynthiaGetStatIncrease(:ATTACK, 12, user)
-        userhp = ((100 * user.hp / user.totalhp) - 50) / (100 * user.hp / user.totalhp)
-        if user.hasActiveItem?(:SITRUSBERRY)
-          userhp = 100.0 * ((100 * user.hp / user.totalhp) + 25) / (100 * user.hp / user.totalhp)
-        end
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userPhysicalThreat * statincrease].max() if (userhp / [userPhysicalThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 12]], user, user)
+      score -= 50
     #---------------------------------------------------------------------------
     when "03B"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
-          defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user)
-          atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, user)
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max.ceil)).ceil
-          score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -1], [:DEFENSE, -1]], user, user)
     #---------------------------------------------------------------------------
     when "03C"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
-          statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, -1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, user)].max()
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max.ceil)).ceil
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -1], [:SPECIAL_DEFENSE, -1]], user, user)
     #---------------------------------------------------------------------------
     when "03D"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
-          speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, -1, user)
-          defstatincrease = [pbCynthiaGetStatIncrease(:DEFENSE, -1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, user)].max()
-          speedscore = 101
-          user.eachOpposing do |opponent|
-            speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-            speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-            defstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-          end
-          speedscore = 0 if outspeedsopponent
-          score = [score, speedscore].max()
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max.ceil)).ceil
-        else
-          score = 0
-        end
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -1], [:SPEED, -1], [:SPECIAL_DEFENSE, -1]], user, user)
     #---------------------------------------------------------------------------
     when "03E"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:SPEED)
-          score = 101
-          statincrease = pbCynthiaGetStatIncrease(:SPEED, -1, user)
-          user.eachOpposing do |opponent|
-            score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
-            score = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          end
-        else
-          score = 0
-        end
-        score = 0 if outspeedsopponent
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
+      score = pbCynthiaCalculateStatScore([[:SPEED, -1]], user, user)
     #---------------------------------------------------------------------------
     when "03F"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:SPECIAL_ATTACK)
-          statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -2, user)
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, -2]], user, user)
       score = 0 if user.effects[PBEffects::FocusEnergy]>= 2 && user.hasActiveItem?(:SCOPELENS)
     #---------------------------------------------------------------------------
     when "042", "188DRAGON"
-      score = 0
-      if target.pbCanLowerStatStage?(:ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
     when "043", "188GHOST"
-      score = 0
-      if target.pbCanLowerStatStage?(:DEFENSE,user)
-        statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -1]], user, target)
     #---------------------------------------------------------------------------
     when "044", "188NORMAL"
-      if target.pbCanLowerStatStage?(:SPEED,user)
-        score = 100
-        statincrease = pbCynthiaGetStatIncrease(:SPEED, -1, target)
-        score = 0 if user.pbSpeed <= target.pbSpeed * statincrease
-        score = 0 if target.hasActiveAbility?(:SPEEDBOOST)
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if outspeedsopponent
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPEED, -1]], user, target)
     #---------------------------------------------------------------------------
     when "045", "188BUG"
-      score = 0
-      if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
     when "046", "188DARK"
-      score = 0
-      if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_DEFENSE, -1]], user, target)
     #---------------------------------------------------------------------------
     when "047"
       score *= (6 - target.stages[:ACCURACY]) / 6.0
@@ -722,95 +379,22 @@ class PokeBattle_AI
       score = 0 if !target.pbCanLowerStatStage?(:EVASION,user)
     #---------------------------------------------------------------------------
     when "04A"
-      score = 0
-      if target.pbCanLowerStatStage?(:ATTACK,user) || target.pbCanLowerStatStage?(:DEFENSE,user)
-        atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
-        defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * atkstatincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * atkstatincrease].max.ceil).ceil
-        score = userPhysicalThreat / defstatincrease if (userhp / ([userPhysicalThreat / defstatincrease, opposingThreat]).max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -1], [:DEFENSE, -1]], user, target)
     #---------------------------------------------------------------------------
     when "04B"
-      score = 0
-      if target.pbCanLowerStatStage?(:ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:ATTACK, -2, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -2]], user, target)
     #---------------------------------------------------------------------------
     when "04C"
-      score = 0
-      if target.pbCanLowerStatStage?(:DEFENSE,user)
-        statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -2, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userPhysicalThreat / statincrease if (userhp / ([userPhysicalThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -2]], user, target)
     #---------------------------------------------------------------------------
     when "04D"
-      if target.pbCanLowerStatStage?(:SPEED,user)
-        score = 100
-        statincrease = pbCynthiaGetStatIncrease(:SPEED, -2, target)
-        score = 0 if user.pbSpeed <= target.pbSpeed * statincrease
-        score = 0 if target.hasActiveAbility?(:SPEEDBOOST)
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if outspeedsopponent
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPEED, -2]], user, target)
     #---------------------------------------------------------------------------
     when "04E"
-      score = 0
-      if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT, :OBLIVIOUS])
-      score = 0 if user.gender==2 || target.gender==2 || user.gender==target.gender
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, -2]], user, target)
     #---------------------------------------------------------------------------
     when "04F"
-      score = 0
-      if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, -2, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = userSpecialThreat / statincrease if (userhp / ([userSpecialThreat / statincrease, opposingThreat]).max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_DEFENSE, -2]], user, target)
     #---------------------------------------------------------------------------
     when "050" #todo
       avg = 0; anyChange = false
@@ -1109,7 +693,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "066" #todo
       score = 0 if !user.hasActiveAbility?([:TRUANT, :SLOWSTART])
-      score = 100 if user.pbHasType?(:GHOST) && user.hasActiveAbility?(:NORMALIZE) && outspeedsopponent
+      score = 100 if user.pbHasType?(:GHOST) && user.hasActiveAbility?(:NORMALIZE) && damageinfo[:outspeedsopponent]
       score = 0 if target.effects[PBEffects::Substitute]>0
       score = 0 if !user.ability || user.ability==target.ability ||
         [:MULTITYPE, :RKSSYSTEM, :TRUANT].include?(target.ability_id) ||
@@ -1216,7 +800,7 @@ class PokeBattle_AI
       score += 30 if oppspeed>attspeed
     #---------------------------------------------------------------------------
     when "092"
-      score = [50 - opposingThreat, 0].min
+      score = [50 - damageinfo[:opposingThreat], 0].min
     #---------------------------------------------------------------------------
     when "093" #todo
       score += 25 if user.effects[PBEffects::Rage]
@@ -1234,7 +818,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A2", "190" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
-      score *= 2 if opposingMaxThreat == opposingMaxPhysicalThreat
+      score *= 2 if damageinfo[:opposingMaxThreat] == damageinfo[:opposingMaxPhysicalThreat]
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -1242,7 +826,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A3", "189" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
-      score *= 2 if opposingMaxThreat == opposingMaxSpecialThreat
+      score *= 2 if damageinfo[:opposingMaxThreat] == damageinfo[:opposingMaxSpecialThreat]
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -1292,7 +876,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0AF"
       blacklist = ["002", "014", "158", "05C", "05D", "069", "071", "072", "073", "09C", "0AD", "0AA", "0AB", "0AC", "0E8", "149", "14A", "14B", "14C", "168", "0AE", "0AF", "0B0", "0B3", "0B4", "0B5", "0B6", "0B1", "0B2", "117", "16A", "0E6", "0E7", "0F1", "0F2", "0F3", "115", "171", "172", "133", "134"]
-      if outspeedsopponent
+      if damageinfo[:outspeedsopponent]
         moveID = @battle.lastMoveUsed
         calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
         if @battle.lastMoveUsed && !blacklist.include?(calledmove.function)
@@ -1415,23 +999,23 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0D5", "0D6" #todo
-      score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
-      score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
-      score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
+      score *= 2 if damageinfo[:opposingThreat] < 66 && damageinfo[:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[:outspeedsopponent]
+      score *= 2 if damageinfo[:opposingThreat] < 100 && user.hp <= user.totalhp / 2
+      score *= 2 if damageinfo[:opposingThreat] < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
-      score = 0 if opposingMaxThreat >= 50
+      score = 0 if damageinfo[:opposingMaxThreat] >= 50
     #---------------------------------------------------------------------------
     when "0D7" #todo
       score -= 90 if @battle.positions[user.index].effects[PBEffects::Wish]>0
     #---------------------------------------------------------------------------
     when "0D8" #todo
-      score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
-      score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
-      score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
+      score *= 2 if damageinfo[:opposingThreat] < 66 && damageinfo[:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[:outspeedsopponent]
+      score *= 2 if damageinfo[:opposingThreat] < 100 && user.hp <= user.totalhp / 2
+      score *= 2 if damageinfo[:opposingThreat] < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
-      score = 0 if opposingMaxThreat >= 50
+      score = 0 if damageinfo[:opposingMaxThreat] >= 50
     #---------------------------------------------------------------------------
     when "0D9" #todo
       if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
@@ -1482,20 +1066,20 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0E0" #todo
-      score = opposingThreat
-      score = -(userThreat - 1) if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = damageinfo[:opposingThreat]
+      score = -(damageinfo[:userThreat] - 1) if (damageinfo[:opposingThreat] < 100 && damageinfo[:outspeedsopponent]) || (damageinfo[:opposingThreat] < 50 && !damageinfo[:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E1" #todo
-      score = opposingThreat
-      score = -(userThreat - 1) if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = damageinfo[:opposingThreat]
+      score = -(damageinfo[:userThreat] - 1) if (damageinfo[:opposingThreat] < 100 && damageinfo[:outspeedsopponent]) || (damageinfo[:opposingThreat] < 50 && !damageinfo[:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E2" #todo
-      score = opposingThreat
-      score = -(userThreat - 1) if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = damageinfo[:opposingThreat]
+      score = -(damageinfo[:userThreat] - 1) if (damageinfo[:opposingThreat] < 100 && damageinfo[:outspeedsopponent]) || (damageinfo[:opposingThreat] < 50 && !damageinfo[:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E3", "0E4"
-      score = opposingThreat
-      score = -(userThreat - 1) if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = damageinfo[:opposingThreat]
+      score = -(damageinfo[:userThreat] - 1) if (damageinfo[:opposingThreat] < 100 && damageinfo[:outspeedsopponent]) || (damageinfo[:opposingThreat] < 50 && !damageinfo[:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E5" #todo
       if @battle.pbAbleNonActiveCount(user.idxOwnSide)==0
@@ -1511,11 +1095,11 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0E7" #todo
       score = 100
-      score = 0 if (opposingThreat < 100 && outspeedsopponent) || (opposingThreat < 50 && !outspeedsopponent)
+      score = 0 if (damageinfo[:opposingThreat] < 100 && damageinfo[:outspeedsopponent]) || (damageinfo[:opposingThreat] < 50 && !damageinfo[:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E8" #todo
       score = 1
-      score = 0 if opposingThreat < 100
+      score = 0 if damageinfo[:opposingThreat] < 100
       user.eachAlly do |ally|
         score = 201 if ally.hasActiveAbility?([:EXPLOSIVE, :CHARGEDEXPLOSIVE])
       end
@@ -1535,7 +1119,7 @@ class PokeBattle_AI
       score = 1
     #---------------------------------------------------------------------------
     when "0EB" #todo
-      score = opposingThreat / 3
+      score = damageinfo[:opposingThreat] / 3
       score += 10 if target.pbOwnSide.effects[PBEffects::Spikes]>0
       score += 10 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
       score += 10 if target.pbOwnSide.effects[PBEffects::StealthRock]
@@ -1675,7 +1259,7 @@ class PokeBattle_AI
       end
       score *= 2 if @battle.pbWeather == :Rain
       user.eachOpposing do |opponent|
-        score *= 2 if opponent.pbHasType?(:WATER) && outspeedsopponent
+        score *= 2 if opponent.pbHasType?(:WATER) && damageinfo[:outspeedsopponent]
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
     #---------------------------------------------------------------------------
@@ -1771,12 +1355,12 @@ class PokeBattle_AI
       score += 10*(user.stages[:ACCURACY]-target.stages[:EVASION])
     #---------------------------------------------------------------------------
     when "10C" #todo
-      score = 100 if opposingMaxThreat < 25
+      score = 100 if damageinfo[:opposingMaxThreat] < 25
       user.eachOpposing do |b|
         score = 0 if b.hasActiveAbility?(:INFILTRATOR)
       end
       score = 0 if user.hp <= user.totalhp/4
-      score = 0 if opposingMaxThreat >= 25 || user.effects[PBEffects::Substitute]>0
+      score = 0 if damageinfo[:opposingMaxThreat] >= 25 || user.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "10D" #todo
       if user.pbHasType?(:GHOST)
@@ -1791,21 +1375,7 @@ class PokeBattle_AI
           end
         end
       else
-        if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:ATTACK)
-          defstatincrease = pbCynthiaGetStatIncrease(:DEFENSE, 1, user)
-          atkstatincrease = pbCynthiaGetStatIncrease(:ATTACK, 1, user)
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, opposingPhysicalThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / defstatincrease].max.ceil)).ceil
-          score = [score, userPhysicalThreat * atkstatincrease].max() if (userhp / [userPhysicalThreat*atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        score = 0 if outspeedsopponent && opposingThreat > 32
+        score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:DEFENSE, 1], [:SPEED, -1]], user, user)
       end
     #---------------------------------------------------------------------------
     when "10E" #todo
@@ -1841,18 +1411,8 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "112"
-      if !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPECIAL_DEFENSE) || !(user.effects[PBEffects::Stockpile]>=3)
-        statincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingThreat * statincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / statincrease].max.ceil)).ceil
-      else
-        score = 0
-      end
-      user.eachOpposing do |opponent|
-        score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, 1], [:SPECIAL_DEFENSE, 1]], user, user)
+      score = 0 if user.effects[PBEffects::Stockpile]>=3
     #---------------------------------------------------------------------------
     when "113" #todo
       score = -100 if user.effects[PBEffects::Stockpile]==0
@@ -1870,7 +1430,7 @@ class PokeBattle_AI
     when "115" #todo
       score = -100
       score = 0 if user.effects[PBEffects::Substitute] || user.effects[PBEffects::RedstoneCube]
-      score = 0 if opposingThreat == 0
+      score = 0 if damageinfo[:opposingThreat] == 0
     #---------------------------------------------------------------------------
     when "116" #todo?
     #---------------------------------------------------------------------------
@@ -1885,7 +1445,7 @@ class PokeBattle_AI
         user.eachOpposing do |b|
           allythreat += pbCynthiaGetThreat(ally, b)[:highestDamage]
         end
-        if allythreat > opposingMaxThreat * 2
+        if allythreat > damageinfo[:opposingMaxThreat] * 2
           score = allythreat
         end
       else
@@ -1940,11 +1500,11 @@ class PokeBattle_AI
     when "11E" #todo
     #---------------------------------------------------------------------------
     when "11F" #todo
-      score = 101 if !outspeedsopponent
+      score = 101 if !damageinfo[:outspeedsopponent]
       user.eachAlly do |b|
-        score = 0 if b.pbHasMove?(:TRICKROOM) && pbCynthiaGetThreat(b, b)[:highestDamage] > userMaxThreat
+        score = 0 if b.pbHasMove?(:TRICKROOM) && pbCynthiaGetThreat(b, b)[:highestDamage] > damageinfo[:userMaxThreat]
       end
-      score = 0 if outspeedsopponent
+      score = 0 if damageinfo[:outspeedsopponent]
       score = 0 if @battle.field.effects[PBEffects::TrickRoom] > 0
     #---------------------------------------------------------------------------
     when "120" #todo
@@ -2096,141 +1656,46 @@ class PokeBattle_AI
       score = 0
     #---------------------------------------------------------------------------
     when "138" #todo
-      if target.statStageAtMax?(:SPECIAL_DEFENSE)
-        score -= 90
-      else
-        score -= target.stages[:SPECIAL_DEFENSE]*10
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_DEFENSE, 1]], user, target)
     #---------------------------------------------------------------------------
     when "139"
-      score = 0
-      if target.pbCanLowerStatStage?(:ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:ATTACK, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingPhysicalThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
     when "13A"
-      score = 0
-      if target.pbCanLowerStatStage?(:ATTACK,user) || target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-        statincrease = [pbCynthiaGetStatIncrease(:ATTACK, -1, target), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -1], [:SPECIAL_ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
     when "13B"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:DEFENSE)
-          statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user).max()
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
-      score = -100 if !user.isSpecies?(:HOOPA) || user.form!=1
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -1]], user, user)
     #---------------------------------------------------------------------------
     when "13C"
-      score = 0
-      if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -1, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
     when "13D"
-      score = 0
-      if target.pbCanLowerStatStage?(:SPECIAL_ATTACK,user)
-        statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, -2, target)
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = opposingSpecialThreat * statincrease if damagethreshold < (userhp / [userThreat, opposingSpecialThreat * statincrease].max.ceil).ceil
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if user.hasActiveAbility?(:UNAWARE)
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, -2]], user, target)
     #---------------------------------------------------------------------------
-    when "13E" #todo
-      count = 0
+    when "13E"
+      score = 0
       @battle.eachBattler do |b|
-        if b.pbHasType?(:GRASS) && !b.airborne? &&
-           (!b.statStageAtMax?(:ATTACK) || !b.statStageAtMax?(:SPECIAL_ATTACK))
-          count += 1
-          if user.opposes?(b)
-            score -= 20
-          else
-            score -= user.stages[:ATTACK]*10
-            score -= user.stages[:SPECIAL_ATTACK]*10
-          end
+        if b.pbHasType?(:GRASS) && !b.airborne?
+          score += pbCynthiaCalculateStatScore([[:ATTACK, 1], [:SPECIAL_ATTACK, 1]], user, b)
         end
       end
-      score -= 95 if count==0
     #---------------------------------------------------------------------------
     when "13F" #todo
-      count = 0
+      score = 0
       @battle.eachBattler do |b|
-        if b.pbHasType?(:GRASS) && !b.statStageAtMax?(:DEFENSE)
-          count += 1
-          if user.opposes?(b)
-            score -= 20
-          else
-            score -= user.stages[:DEFENSE]*10
-          end
+        if b.pbHasType?(:GRASS)
+          score = pbCynthiaCalculateStatScore([[:DEFENSE, 1]], user, b)
         end
       end
-      score -= 95 if count==0
     #---------------------------------------------------------------------------
     when "140" #todo
-      count=0
+      score = 0
       @battle.eachBattler do |b|
-        if b.poisoned? &&
-           (!b.statStageAtMin?(:ATTACK) ||
-           !b.statStageAtMin?(:SPECIAL_ATTACK) ||
-           !b.statStageAtMin?(:SPEED))
-          count += 1
-          if user.opposes?(b)
-            score += user.stages[:ATTACK]*10
-            score += user.stages[:SPECIAL_ATTACK]*10
-            score += user.stages[:SPEED]*10
-          else
-            score -= 20
-          end
+        if b.poisoned?
+          score = pbCynthiaCalculateStatScore([[:ATTACK, -1], [:SPEED, -1], [:SPECIAL_ATTACK, -1]], user, b)
         end
       end
-      score -= 95 if count==0
     #---------------------------------------------------------------------------
     when "141" #todo
       if target.effects[PBEffects::Substitute]>0
@@ -2295,31 +1760,9 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "14D" #todo
     #---------------------------------------------------------------------------
-    when "14E" #todo
-      if user.statStageAtMax?(:SPECIAL_ATTACK) &&
-         user.statStageAtMax?(:SPECIAL_DEFENSE) &&
-         user.statStageAtMax?(:SPEED)
-        score -= 90
-      else
-        score -= user.stages[:SPECIAL_ATTACK]*10   # Only *10 instead of *20
-        score -= user.stages[:SPECIAL_DEFENSE]*10   # because two-turn attack
-        score -= user.stages[:SPEED]*10
-        hasSpecialAttack = false
-        user.eachMove do |m|
-          next if !m.specialMove?(m.type)
-          hasSpecialAttack = true
-          break
-        end
-        if hasSpecialAttack
-          score += 20
-        else
-          score -= 90
-        end
-        aspeed = pbRoughStat(user,:SPEED,skill)
-        ospeed = pbRoughStat(target,:SPEED,skill)
-        score += 30 if aspeed<ospeed && aspeed*2>ospeed
-      end
-      score = 100 if user.hasActiveItem?(:POWERHERB)
+    when "14E"
+      score = pbCynthiaCalculateStatScore([[:SPEED, 2], [:SPECIAL_ATTACK, 2], [:SPECIAL_DEFENSE, 2]], user, user)
+      score /= 2.0 if !user.hasActiveItem?(:POWERHERB)
     #---------------------------------------------------------------------------
     when "14F" #todo
       if skill>=PBTrainerAI.highSkill && target.hasActiveAbility?(:LIQUIDOOZE)
@@ -2380,20 +1823,6 @@ class PokeBattle_AI
     when "158" #todo
       score -= 90 if !user.belched?
     #---------------------------------------------------------------------------
-    when "159" #todo
-      if target.pbCanLowerStatStage?(:SPEED,user)
-        score = 100
-        statincrease = pbCynthiaGetStatIncrease(:SPEED, -1, target)
-        score = 0 if user.pbSpeed <= target.pbSpeed * statincrease
-        score = 0 if target.hasActiveAbility?(:SPEEDBOOST)
-      else
-        score = 0
-      end
-      score *= 0.5
-      score = 0 if outspeedsopponent
-      score = 0 if target.hasActiveAbility?([:CONTRARY, :COMPETITIVE, :DEFIANT])
-      score += 32 if !(target.effects[PBEffects::Yawn]>0 || target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD]) || target.pbHasMoveFunction?("0D9") || !target.pbCanPoison?(user,false) || (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanPoisonSynchronize?(target)))
-    #---------------------------------------------------------------------------
     when "15A" #todo
       if target.opposes?(user)
         score -= 40 if target.status == :BURN
@@ -2445,44 +1874,13 @@ class PokeBattle_AI
       score = 0
     #---------------------------------------------------------------------------
     when "15F"
-      if user.hasActiveAbility?(:CONTRARY)
-        if !user.statStageAtMax?(:DEFENSE)
-          statincrease = pbCynthiaGetStatIncrease(:DEFENSE, -1, user)
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = opposingPhysicalThreat * statincrease if damagethreshold < (userhp / ([userThreat, opposingPhysicalThreat / statincrease].max.ceil)).ceil
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-      elsif user.hasActiveItem?(:WHITEHERB) && user.hasActiveAbility?(:UNBURDEN)
-        score = 100
-      else
-        score = -32
-      end
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -1]], user, user)
     #---------------------------------------------------------------------------
     when "160" #todo
-      if target.statStageAtMin?(:ATTACK)
-        score -= 90
-      else
-        if target.pbCanLowerStatStage?(:ATTACK,user)
-          score += target.stages[:ATTACK]*20
-          hasPhysicalAttack = false
-          target.eachMove do |m|
-            next if !m.physicalMove?(m.type)
-            hasPhysicalAttack = true
-            break
-          end
-          if hasPhysicalAttack
-            score += 20
-          else
-            score -= 90
-          end
-        end
-        score += (user.totalhp-user.hp)*50/user.totalhp
+      score = pbCynthiaCalculateStatScore([[:ATTACK, -1]], user, target)
+      if score > 0
+        score *= 2
+        #todo healing
       end
     #---------------------------------------------------------------------------
     when "161" #todo
@@ -2507,7 +1905,7 @@ class PokeBattle_AI
     when "167" #todo
       score *= 4
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
-      score *= 2 if outspeedsopponent
+      score *= 2 if damageinfo[:outspeedsopponent]
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -2556,12 +1954,12 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "16D" #todo
-      score *= 2 if opposingThreat < 66 && opposingThreat > 33 && user.hp <= user.totalhp * 3 / 4 && !outspeedsopponent
-      score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 2
-      score *= 2 if opposingThreat < 100 && user.hp <= user.totalhp / 4
+      score *= 2 if damageinfo[:opposingThreat] < 66 && damageinfo[:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[:outspeedsopponent]
+      score *= 2 if damageinfo[:opposingThreat] < 100 && user.hp <= user.totalhp / 2
+      score *= 2 if damageinfo[:opposingThreat] < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
-      score = 0 if opposingMaxThreat >= 50
+      score = 0 if damageinfo[:opposingMaxThreat] >= 50
     #---------------------------------------------------------------------------
     when "16E" #todo
       if target.hp==target.totalhp || (!target.canHeal?)
@@ -2625,46 +2023,13 @@ class PokeBattle_AI
       score += 30 if target.effects[PBEffects::Minimize]
     #---------------------------------------------------------------------------
     when "176" #todo flinch
-      if !user.statStageAtMax?(:SPEED)
-        score = 100
-        statincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
-        user.eachOpposing do |opponent|
-          score = 0 if user.pbSpeed * statincrease <= opponent.pbSpeed
-          score = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-        end
-      else
-        score = 0
-      end
-      score = 0 if outspeedsopponent
+      score = pbCynthiaCalculateStatScore([[:DEFENSE, -1], [:SPEED, 1]], user, user)
     #---------------------------------------------------------------------------
     when "180" #todo
     #---------------------------------------------------------------------------
     when "181"
-      if !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:DEFENSE) || !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:SPECIAL_ATTACK) || !user.statStageAtMax?(:SPECIAL_DEFENSE)
-        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
-        atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max()
-        defstatincrease = [pbCynthiaGetStatIncrease(:DEFENSE, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_DEFENSE, 1, user)].max()
-        userhp = ((100 * user.hp / user.totalhp) - 33) / (100 * user.hp / user.totalhp)
-        if user.hasActiveItem?(:SITRUSBERRY)
-          userhp = 100.0 * ((100 * user.hp / user.totalhp) + 25) / (100 * user.hp / user.totalhp)
-        end
-        speedscore = 100
-        user.eachOpposing do |opponent|
-          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-          defstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        speedscore = 0 if outspeedsopponent
-        score = [score, speedscore].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, opposingThreat * defstatincrease].max() if damagethreshold < (userhp / ([userThreat, opposingThreat / defstatincrease].max.ceil)).ceil
-        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:DEFENSE, 1], [:SPEED, 1], [:SPECIAL_ATTACK, 1], [:SPECIAL_DEFENSE, 1]], user, user)
+      score -= 33
     #---------------------------------------------------------------------------
     when "182" #todo
     #---------------------------------------------------------------------------
@@ -2676,20 +2041,8 @@ class PokeBattle_AI
     when "193" #todo
     #---------------------------------------------------------------------------
     when "194" #todo
-      if opposingThreat < (outspeedsopponent ? 49 : 32) || user.hasActiveItem?(:POWERHERB)
-        if !user.statStageAtMax?(:SPECIAL_ATTACK)
-          statincrease = pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)
-          userhp = 100.0
-          userhp = userhp - opposingThreat if !outspeedsopponent
-          damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-          score = [score, userSpecialThreat * statincrease].max() if (userhp / [userSpecialThreat*statincrease, opposingThreat].max.ceil).ceil < damagethreshold
-        else
-          score = 0
-        end
-        user.eachOpposing do |opponent|
-          score = 0 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-      end
+      score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 1]], user, user)
+      score /= 2.0 if !user.hasActiveItem?(:POWERHERB)
     when "196" #todo
     #---------------------------------------------------------------------------
     when "197" #todo
@@ -2722,25 +2075,9 @@ class PokeBattle_AI
       score = -100 if user.lastRegularMoveUsed == move.id
     #---------------------------------------------------------------------------
     when "205"
-      if !user.statStageAtMax?(:SPEED) || !user.statStageAtMax?(:ATTACK) || !user.statStageAtMax?(:SPECIAL_ATTACK)
-        speedstatincrease = pbCynthiaGetStatIncrease(:SPEED, 1, user)
-        atkstatincrease = [pbCynthiaGetStatIncrease(:ATTACK, 1, user), pbCynthiaGetStatIncrease(:SPECIAL_ATTACK, 1, user)].max()
-        speedscore = 101
-        user.eachOpposing do |opponent|
-          speedscore = 0 if user.pbSpeed * speedstatincrease <= opponent.pbSpeed
-          speedscore = 0 if opponent.hasActiveAbility?(:SPEEDBOOST)
-          atkstatincrease = 1 if opponent.hasActiveAbility?(:UNAWARE)
-        end
-        speedscore = 0 if @battle.field.effects[PBEffects::TrickRoom]>0
-        speedscore = 0 if outspeedsopponent
-        score = [score, speedscore].max()
-        userhp = 100.0
-        userhp = userhp - opposingThreat if !outspeedsopponent
-        damagethreshold = (userhp / [userThreat, opposingThreat].max).ceil
-        score = [score, userThreat * atkstatincrease].max() if (userhp / [userThreat * atkstatincrease, opposingThreat].max.ceil).ceil < damagethreshold
-      else
-        score = 0
-      end
+      score = pbCynthiaCalculateStatScore([[:ATTACK, 1, :SPEED, 1, :SPECIAL_ATTACK, 1]], user, user)
+      score += 50 #todo healing
+      score /= 2.0 if !user.hasActiveItem?(:POWERHERB)
     #---------------------------------------------------------------------------
     when "206"
       score *= 2 if user.effects[PBEffects::FocusEnergy] < 3
@@ -2761,7 +2098,6 @@ class PokeBattle_AI
     end
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
-    effectchance = [pbRoughAccuracy(move,user,target,100), 100].min if move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     effectchance = effectchance * [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     score = score * effectchance / 100.0 if score > 0
     return score

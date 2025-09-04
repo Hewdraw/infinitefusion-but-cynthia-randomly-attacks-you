@@ -45,17 +45,17 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                                 MessageConfig.pbSetTextSpeed(MessageConfig.pbSettingToTextSpeed(value))
                               }, "Sets the speed at which the text is displayed"
     )
-    if $game_switches
-      options << EnumOption.new(_INTL("Difficulty"), [_INTL("Easy"), _INTL("Normal"), _INTL("Hard")],
-                                proc { $Trainer.selected_difficulty },
-                                proc { |value|
-                                  setDifficulty(value)
-                                  @manually_changed_difficulty=true
-                                }, ["All Pokémon in the team gain experience. Otherwise the same as Normal difficulty.",
-                                    "The default experience. Levels are similar to the official games.",
-                                    "Higher levels and smarter AI. All trainers have access to healing items."]
-      )
-    end
+    # if $game_switches
+    #   options << EnumOption.new(_INTL("Difficulty"), [_INTL("Easy"), _INTL("Normal"), _INTL("Hard")],
+    #                             proc { $Trainer.selected_difficulty },
+    #                             proc { |value|
+    #                               setDifficulty(value)
+    #                               @manually_changed_difficulty=true
+    #                             }, ["All Pokémon in the team gain experience. Otherwise the same as Normal difficulty.",
+    #                                 "The default experience. Levels are similar to the official games.",
+    #                                 "Higher levels and smarter AI. All trainers have access to healing items."]
+    #   )
+    # end
 
     if $game_switches
       options <<
@@ -124,24 +124,24 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                               ]
     )
 
-    if $game_switches && ($game_switches[SWITCH_NEW_GAME_PLUS] || $game_switches[SWITCH_BEAT_THE_LEAGUE]) #beat the league
-      options <<
-        EnumOption.new(_INTL("Battle type"), [_INTL("1v1"), _INTL("2v2"), _INTL("3v3")],
-                       proc { $PokemonSystem.battle_type },
-                       proc { |value|
-                         if value == 0
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
-                         elsif value == 1
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [2, 2]
-                         elsif value == 2
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [3, 3]
-                         else
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
-                         end
-                         $PokemonSystem.battle_type = value
-                       }, "Sets the number of Pokémon sent out in battles (when possible)"
-        )
-    end
+    # if $game_switches && ($game_switches[SWITCH_NEW_GAME_PLUS] || $game_switches[SWITCH_BEAT_THE_LEAGUE]) #beat the league
+    #   options <<
+    #     EnumOption.new(_INTL("Battle type"), [_INTL("1v1"), _INTL("2v2"), _INTL("3v3")],
+    #                    proc { $PokemonSystem.battle_type },
+    #                    proc { |value|
+    #                      if value == 0
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
+    #                      elsif value == 1
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [2, 2]
+    #                      elsif value == 2
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [3, 3]
+    #                      else
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
+    #                      end
+    #                      $PokemonSystem.battle_type = value
+    #                    }, "Sets the number of Pokémon sent out in battles (when possible)"
+    #     )
+    # end
 
     options << EnumOption.new(_INTL("Battle Effects"), [_INTL("On"), _INTL("Off")],
                               proc { $PokemonSystem.battlescene },
@@ -209,11 +209,11 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                               "Start surfing automatically when interacting with water"
     )
 
-    options << EnumOption.new(_INTL("Level caps"), [_INTL("Off"), _INTL("On")],
-                              proc { $PokemonSystem.level_caps },
-                              proc { |value| $PokemonSystem.level_caps = value },
-                              "Prevents leveling above the next gym leader's highest leveled Pokemon"
-    )
+    # options << EnumOption.new(_INTL("Level caps"), [_INTL("Off"), _INTL("On")],
+    #                           proc { $PokemonSystem.level_caps },
+    #                           proc { |value| $PokemonSystem.level_caps = value },
+    #                           "Prevents leveling above the next gym leader's highest leveled Pokemon"
+    # )
 
     device_option_selected=$PokemonSystem.on_mobile ? 1 : 0
     options << EnumOption.new(_INTL("Device"), [_INTL("PC"), _INTL("Mobile")],

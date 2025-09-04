@@ -205,17 +205,11 @@ def restoreDefaultCharacterSprite(charset_number = 0)
 end
 
 def setDifficulty(index)
-  $Trainer.selected_difficulty = index
-  case index
-  when 0 #EASY
-    $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = true
-    $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = false
-  when 1 #NORMAL
-    $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = false
-    $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = false
-  when 2 # HARD
-    $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = false
-    $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = true
+  $Trainer.selected_difficulty = 1
+  $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = false
+  $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = false
+  $Trainer.selected_difficulty = 2 if $Trainer.numbadges > 8
+  $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = true if $Trainer.numbadges > 8
   end
 end
 

@@ -210,7 +210,7 @@ class PokeBattle_Battle
     exp = i if i >= 0
     # Make sure Exp doesn't exceed the maximum
 
-    exp = 0 if $PokemonSystem.level_caps==1 && pokemonExceedsLevelCap(pkmn)
+    exp = 0 if pokemonExceedsLevelCap(pkmn)
 
     expFinal = growth_rate.add_exp(pkmn.exp, exp)
     expGained = expFinal - pkmn.exp

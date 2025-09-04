@@ -178,6 +178,7 @@ class PokeBattle_AI
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 0
     switchOutScore -= 1 if user.effects[PBEffects::QuarkDrive] > 10
     switchOutScore += 1 if user.effects[PBEffects::Yawn]
+    switchOutScore -= 3 if user.effects[PBEffects::Dynamax] > 0
     switchOutScore -= 5 if user.pbHasMove?(:EXPLOSION) || user.pbHasMove?(:SELFDESTRUCT) || user.pbHasMove?(:MEMENTO) || user.pbHasMove?(:HEALINGWISH)
     user.eachOpposing do |target|
       switchOutScore -= 1 if target.pbHasMove?(:CALMMIND) || target.pbHasMove?(:BULKUP)
@@ -237,13 +238,13 @@ class PokeBattle_AI
     else
       maxthreat = 0
       user.eachOpposing do |opponent|
-        threat = pbCynthiaAssessThreat(user, opponent, tera)
+        threat = pbCynthiaAssessThreat(opponent, user, tera)
         if threat[:highestDamage] >= maxthreat
           threattable = threat
         end
       end
     end
-    maxhp = user.totalhp
+    maxhp = user.adjustedTotalhp
     maxhp = user.hp if !percentagetotal
     for key, threat in threattable
       newtable[key] = threat
@@ -440,14 +441,13 @@ class PokeBattle_AI
     else
       score = 0
     end
-    score *= 1.5 if score >= 100  
+    score *= 2 if score >= 100
     if score > 0 || move.statusMove?
       score += pbCynthiaGetMoveScoreStatus(move,user,target)
     end
+    score *= [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     if move.statusMove?
-      if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && target != user
-        score = 0
-      end
+      return 0 if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && target != user
     end
     #print(move.name, " ", user.name, " ", target.name, " ", score)
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
@@ -494,6 +494,9 @@ class PokeBattle_AI
         break
       end
     end
+    if user.status != :SLEEP && move.usableWhenAsleep?
+      score = 0
+    end
     # If user is frozen, prefer a move that can thaw the user
     # if user.status == :FROZEN
     #   if move.thawsUser?
@@ -519,16 +522,12 @@ class PokeBattle_AI
     return score
   end
 
-  def pbCynthiaGetMoveScoreDamage(move,user,target) #todo imposter
+  def pbCynthiaGetMoveScoreDamage(move,user,target)
     # Don't prefer moves that are ineffective because of abilities or effects
     return 0 if pbCheckMoveImmunity(100,move,user,target,100)
     # Calculate how much damage the move will do (roughly)
     damagetable = pbCynthiaCalcDamage(move,user,target)
     damage = damagetable[:minDamage]
-    # Account for accuracy of move
-    accuracy = pbRoughAccuracy(move,user,target,100)
-    accuracy = 100 if user.hasActiveAbility?(:NOGUARD) || target.hasActiveAbility?(:NOGUARD)
-    damage *= accuracy/100.0
     # Convert damage to percentage of target's remaining HP
     damagePercentage = damage*100.0/target.hp
     # Adjust score

@@ -228,8 +228,10 @@ class Trainer
     @language = pbGetLanguage
     @party = []
     @sprite_override = sprite_override
-    @lowest_difficulty=2  #On hard by default, lowered whenever the player selects another difficulty
-    @selected_difficulty=2  #On hard by default, lowered whenever the player selects another difficulty
+    @lowest_difficulty=1  #On hard by default, lowered whenever the player selects another difficulty
+    @selected_difficulty=1  #On hard by default, lowered whenever the player selects another difficulty
+    $PokemonSystem.battle_type = 0
+    $PokemonSystem.level_caps = 1
     @game_mode =0  #classic
   end
 end

@@ -1152,16 +1152,16 @@ class PokeBattle_Move_13B < PokeBattle_StatDownMove
     @statDown = [:DEFENSE, 1]
   end
 
-  def pbMoveFailed?(user, targets)
-    if !user.isSpecies?(:HOOPA)
-      @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true)))
-      return true
-    elsif user.form != 1
-      @battle.pbDisplay(_INTL("But {1} can't use it the way it is now!", user.pbThis(true)))
-      return true
-    end
-    return false
-  end
+  # def pbMoveFailed?(user, targets)
+  #   if !user.isSpecies?(:HOOPA)
+  #     @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis(true)))
+  #     return true
+  #   elsif user.form != 1
+  #     @battle.pbDisplay(_INTL("But {1} can't use it the way it is now!", user.pbThis(true)))
+  #     return true
+  #   end
+  #   return false
+  # end
 
   def pbAccuracyCheck(user, target)
     ; return true;

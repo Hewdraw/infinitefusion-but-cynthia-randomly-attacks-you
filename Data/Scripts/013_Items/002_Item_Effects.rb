@@ -869,7 +869,7 @@ ItemHandlers::UseOnPokemon.copy(:SERIOUSMINT, :LONELYMINT, :ADAMANTMINT, :NAUGHT
 
 def can_use_rare_candy(pkmn)
   return false if pkmn.level >= GameData::GrowthRate.max_level || pkmn.shadowPokemon?
-  return false if $PokemonSystem.level_caps==1 && pokemonExceedsLevelCap(pkmn)
+  return false if pokemonExceedsLevelCap(pkmn)
   return true
 end
 

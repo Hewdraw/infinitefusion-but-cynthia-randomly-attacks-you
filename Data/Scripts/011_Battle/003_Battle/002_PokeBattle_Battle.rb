@@ -189,11 +189,11 @@ class PokeBattle_Battle
   def legendaryBattle?; return @legendary; end
 
   def get_default_battle_format()
-    case $PokemonSystem.battle_type
-    when 0 then return [1, 1]
-    when 1 then return [2, 2]
-    when 2 then return [3, 3]
-    end
+    # case $PokemonSystem.battle_type
+    # when 0 then return [1, 1]
+    # when 1 then return [2, 2]
+    # when 2 then return [3, 3]
+    # end
     return [1,1]
   end
 

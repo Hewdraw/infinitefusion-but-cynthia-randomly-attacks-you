@@ -355,8 +355,7 @@ class PokemonLoadScreen
   #So that the options menu is set on the correct difficulty on older saves
   def ensureCorrectDifficulty()
     $Trainer.selected_difficulty = 1 #normal
-    $Trainer.selected_difficulty = 0 if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
-    $Trainer.selected_difficulty = 2 if $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges > 8
+    $Trainer.selected_difficulty = 2 if $Trainer.numbadges > 8
     $Trainer.lowest_difficulty = $Trainer.selected_difficulty if !$Trainer.lowest_difficulty
   end
 

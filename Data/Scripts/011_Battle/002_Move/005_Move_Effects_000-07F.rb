@@ -1301,10 +1301,6 @@ class PokeBattle_Move_04E < PokeBattle_TargetStatDownMove
   def pbFailsAgainstTarget?(user, target)
     return true if super
     return false if damagingMove?
-    if user.gender == 2 || target.gender == 2 || user.gender == target.gender
-      @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
-      return true
-    end
     if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -1319,7 +1315,6 @@ class PokeBattle_Move_04E < PokeBattle_TargetStatDownMove
   end
 
   def pbAdditionalEffect(user, target)
-    return if user.gender == 2 || target.gender == 2 || user.gender == target.gender
     return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
     super
   end
