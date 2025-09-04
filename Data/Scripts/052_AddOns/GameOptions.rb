@@ -156,6 +156,12 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                                "No prompt to switch Pokémon before the opponent sends the next one"]
     )
 
+    options << EnumOption.new(_INTL("AI Player"), [_INTL("Off"), _INTL("On")],
+                              proc { $PokemonSystem.aicontrolplayer },
+                              proc { |value| $PokemonSystem.aicontrolplayer = value },
+                              "Makes the AI control the player in trainer battles."
+    )
+
     options << NumberOption.new(_INTL("Speech Frame"), 1, Settings::SPEECH_WINDOWSKINS.length,
                                 proc { $PokemonSystem.textskin },
                                 proc { |value|

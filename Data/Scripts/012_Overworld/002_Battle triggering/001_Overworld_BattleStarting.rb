@@ -136,7 +136,7 @@ def pbPrepareBattle(battle)
   battle.moneyGain = battleRules["moneyGain"] if !battleRules["moneyGain"].nil?
   # Whether the player is able to switch when an opponent's Pokémon faints
   battle.switchStyle = ($PokemonSystem.battlestyle==0)
-  if battle.opponent != nil && (battle.opponent[0].special_name? || $Trainer.numbadges > 8)
+  if (battle.opponent != nil && (battle.opponent[0].special_name? || $Trainer.numbadges >= 8)) || $PokemonSystem.aicontrolplayer == 1
     battle.switchStyle = false
   end
   battle.setBattleMode("2v1") if battle.opponent && (battle.opponent[0].trainer_type == :WuhuIslandExecutioner || battle.opponent[0].trainer_type == :MECH_Miku) && $Trainer.able_pokemon_count > 1

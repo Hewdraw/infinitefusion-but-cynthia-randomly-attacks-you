@@ -196,7 +196,7 @@ class PokeBattle_Battle
       next if @choices[idxBattler][0]!=:None    # Action is forced, can't choose one
       next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
       # AI controls this battler
-      if @controlPlayer || !pbOwnedByPlayer?(idxBattler)
+      if ($PokemonSystem.aicontrolplayer == 1 && @opponent) || !pbOwnedByPlayer?(idxBattler)
         @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
         next
       end

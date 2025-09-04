@@ -467,14 +467,14 @@ def is_higher_version(gameVersion, latestVersion)
 end
 
 def get_current_game_difficulty
-  return :HARD if $Trainer.numbadges > 8
+  return :HARD if $Trainer.numbadges >= 8
   return :NORMAL
 end
 
 def get_difficulty_text
   if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
     return "Easy"
-  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges > 8
+  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges >= 8
     return "Hard"
   else
     return "Normal"
@@ -484,7 +484,7 @@ end
 def pokemonExceedsLevelCap(pokemon)
   return false if $Trainer.badge_count >= Settings::NB_BADGES
   current_max_level = Settings::LEVEL_CAPS[$Trainer.badge_count]
-  current_max_level *= Settings::HARD_MODE_LEVEL_MODIFIER if $Trainer.numbadges > 8
+  current_max_level *= Settings::HARD_MODE_LEVEL_MODIFIER if $Trainer.numbadges >= 8
   return pokemon.level >= current_max_level
 end
 

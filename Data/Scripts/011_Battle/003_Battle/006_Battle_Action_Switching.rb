@@ -135,7 +135,7 @@ class PokeBattle_Battle
   # For choosing a replacement Pokémon when prompted in the middle of other
   # things happening (U-turn, Baton Pass, in def pbSwitch).
   def pbSwitchInBetween(idxBattler, checkLaxOnly = false, canCancel = false)
-    return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) if pbOwnedByPlayer?(idxBattler)
+    return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) if pbOwnedByPlayer?(idxBattler) && !($PokemonSystem.aicontrolplayer == 1)
     return @battleAI.pbCynthiaSwitch(idxBattler, pbParty(idxBattler))
   end
 
@@ -175,7 +175,7 @@ class PokeBattle_Battle
             end
             switchMessageHard = _INTL("{1} is about to send in a new Pokémon. Will you switch your Pokémon?", opponent.fullname)
             switchMessageNormal = _INTL("{1} is about to send in {2}. Will you switch your Pokémon?", opponent.full_name, enemyParty[idxPartyForName].name)
-            switchMessage = $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges > 8 ? switchMessageHard : switchMessageNormal
+            switchMessage = $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || $Trainer.numbadges >= 8 ? switchMessageHard : switchMessageNormal
             if pbDisplayConfirm(switchMessage)
               idxPlayerPartyNew = pbSwitchInBetween(0, false, true)
               if idxPlayerPartyNew >= 0
