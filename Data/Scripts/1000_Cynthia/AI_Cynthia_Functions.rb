@@ -1026,27 +1026,34 @@ class PokeBattle_AI
         score += 30 if user.status != :NONE
       end
     #---------------------------------------------------------------------------
-    when "0DA" #todo
-      score -= 90 if user.effects[PBEffects::AquaRing]
+    when "0DA"
+      score = 100 * damageinfo[:damagethreshold] / 16.0
+      score *= 1.3 if user.hasActiveItem?(:BIGROOT)
+      score = 0 if user.effects[PBEffects::HealBlock]
+      score = 0 if user.effects[PBEffects::AquaRing]
     #---------------------------------------------------------------------------
-    when "0DB" #todo
-      score -= 90 if user.effects[PBEffects::Ingrain]
+    when "0DB" #todo switch move check
+      score = 100 * damageinfo[:damagethreshold] / 16.0
+      score *= 1.3 if user.hasActiveItem?(:BIGROOT)
+      score = 0 if user.effects[PBEffects::HealBlock]
+      score = 0 if user.effects[PBEffects::Ingrain]
     #---------------------------------------------------------------------------
-    when "0DC", "184" #todo
-      if target.effects[PBEffects::LeechSeed]>=0
-        score -= 90
-      elsif skill>=PBTrainerAI.mediumSkill && target.pbHasType?(:GRASS)
-        score -= 90
+    when "0DC", "184"
+      score = 100 * damageinfo[:damagethreshold] / 4.0
+      if !target.hasActiveAbility?(:LIQUIDOOZE)
+        score *= 1.15 if user.hasActiveItem?(:BIGROOT) && !user.effects[PBEffects::HealBlock]
+        score /= 2.0 if user.effects[PBEffects::HealBlock]
       else
-        score += 60 if user.turnCount==0
+        score /= 1.15 if user.hasActiveItem?(:BIGROOT)
+        score /= 4.0
       end
+      score /= damageinfo[:damagethreshold] if target.pbHasMove?(:RAPIDSPIN)
+      score = 0 if target.pbHasType?(:GRASS)
+      score = 0 if target.effects[PBEffects::LeechSeed]
     #---------------------------------------------------------------------------
     when "0DD" #todo
-      if target.hasActiveAbility?(:LIQUIDOOZE)
-        score -= 70
-      else
-        score += 20 if user.hp<=user.totalhp/2
-      end
+      score = 0
+      score = 10 if user.hp < user.adjustedTotalhp
     #---------------------------------------------------------------------------
     when "0DE" #todo
       if !target.asleep?
