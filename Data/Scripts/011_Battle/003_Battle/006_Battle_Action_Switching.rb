@@ -135,7 +135,7 @@ class PokeBattle_Battle
   # For choosing a replacement Pokémon when prompted in the middle of other
   # things happening (U-turn, Baton Pass, in def pbSwitch).
   def pbSwitchInBetween(idxBattler, checkLaxOnly = false, canCancel = false)
-    return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) if pbOwnedByPlayer?(idxBattler) && !($PokemonSystem.aicontrolplayer == 1)
+    return pbPartyScreen(idxBattler, checkLaxOnly, canCancel) if pbOwnedByPlayer?(idxBattler) && !($PokemonSystem.aicontrolplayer == 1 && @opponent)
     return @battleAI.pbCynthiaSwitch(idxBattler, pbParty(idxBattler))
   end
 

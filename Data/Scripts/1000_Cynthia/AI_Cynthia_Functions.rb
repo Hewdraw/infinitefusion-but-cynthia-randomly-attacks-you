@@ -29,6 +29,7 @@ class PokeBattle_AI
       end
       next if stat[1] < 0 && target.hasActiveItem?(:WHITEHERB)
       stateffect = pbCynthiaGetStatIncrease(stat[0], stat[1], target)
+      next if stateffect == 0
       if stat[0] == :SPEED #todo trick room
         tempscore = [0.0, 0]
         target.eachOpposing do |opponent|
@@ -876,12 +877,16 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0AF"
       blacklist = ["002", "014", "158", "05C", "05D", "069", "071", "072", "073", "09C", "0AD", "0AA", "0AB", "0AC", "0E8", "149", "14A", "14B", "14C", "168", "0AE", "0AF", "0B0", "0B3", "0B4", "0B5", "0B6", "0B1", "0B2", "117", "16A", "0E6", "0E7", "0F1", "0F2", "0F3", "115", "171", "172", "133", "134"]
-      if damageinfo[:outspeedsopponent]
-        moveID = @battle.lastMoveUsed
+      lastmovescore = 0
+      moveID = @battle.lastMoveUsed
+      if moveID
         calledmove = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
-        if @battle.lastMoveUsed && !blacklist.include?(calledmove.function)
-          score = pbCynthiaRegisterMove(user, calledmove, nil, true)
+        if !blacklist.include?(calledmove.function)
+          lastmovescore = pbCynthiaRegisterMove(user, calledmove, nil, true)
         end
+      end
+      if damageinfo[:outspeedsopponent]
+        score = lastmovescore
       else
         user.eachOpposing do |opponent|
           opponent.moves.each do |opponentmove|
@@ -893,6 +898,8 @@ class PokeBattle_AI
           end
         end
       end
+      score -= 1
+      score = 0 if lastmovescore == 0
     #---------------------------------------------------------------------------
     when "0B0" #todo
     #---------------------------------------------------------------------------
