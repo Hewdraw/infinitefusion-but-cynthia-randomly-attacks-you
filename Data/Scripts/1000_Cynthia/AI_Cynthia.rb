@@ -449,6 +449,7 @@ class PokeBattle_AI
     if move.statusMove?
       return 0 if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && target != user
     end
+    return 0 if move.powderMove? && target.pbHasType?(:GRASS) && target != user
     #print(move.name, " ", user.name, " ", target.name, " ", score)
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       if !user.hasActiveItem?(:POWERHERB)
