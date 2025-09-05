@@ -2981,7 +2981,6 @@ class PokeBattle_Move_198 < PokeBattle_Move
   def pbAdditionalEffect(user, target)
     return if target.effects[PBEffects::SaltCure]>=0
     return if target.fainted? || target.damageState.substitute
-    return if target.status != :BURN
     target.effects[PBEffects::SaltCure] == 1
     @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
   end
