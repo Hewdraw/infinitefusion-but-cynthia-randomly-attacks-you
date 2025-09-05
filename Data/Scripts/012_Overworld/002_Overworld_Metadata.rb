@@ -74,6 +74,7 @@ class PokemonGlobalMetadata
   attr_accessor :shadrossstock
   attr_accessor :shadrossmoney
   attr_accessor :ancestralgeneability
+  attr_accessor :cactusheight
 
   def initialize
     # Movement

@@ -194,21 +194,3 @@ def pbCynthiaRollEncounter(badgelist)
   end
   return badgelist[cynthiaencounter]
 end
-
-def mcChest(opponent, badge_bonus=0)
-  opponent_override = nil
-  if opponent == "Miku"
-    opponent = [:CREATOR_Minecraft, "Hatsune Miku"]
-    opponent_override = [nil, nil]
-  elsif opponent == "Miku2"
-    opponent = [:CHAMPION_Sinnoh, "Cynthia"]
-    opponent_override = ["Hatsune Miku", :CREATOR_Minecraft2]
-  elsif opponent == "Cynthia"
-    opponent = [:CHAMPION_Sinnoh, "Cynthia"]
-    opponent_override = [nil, nil]
-  elsif opponent == "Cynthia2"
-    opponent = [:CHAMPION_Sinnoh, "Cynthia"]
-    opponent_override = [nil, :CHAMPION_Sinnoh2]
-  end
-  pbEncounterCynthia(opponent, opponent_override, false, badge_bonus)
-end

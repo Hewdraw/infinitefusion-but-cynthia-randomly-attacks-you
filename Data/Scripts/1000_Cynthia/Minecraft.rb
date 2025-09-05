@@ -1,3 +1,21 @@
+def mcChest(opponent, badge_bonus=0)
+  opponent_override = nil
+  if opponent == "Miku"
+    opponent = [:CREATOR_Minecraft, "Hatsune Miku"]
+    opponent_override = [nil, nil]
+  elsif opponent == "Miku2"
+    opponent = [:CHAMPION_Sinnoh, "Cynthia"]
+    opponent_override = ["Hatsune Miku", :CREATOR_Minecraft2]
+  elsif opponent == "Cynthia"
+    opponent = [:CHAMPION_Sinnoh, "Cynthia"]
+    opponent_override = [nil, nil]
+  elsif opponent == "Cynthia2"
+    opponent = [:CHAMPION_Sinnoh, "Cynthia"]
+    opponent_override = [nil, :CHAMPION_Sinnoh2]
+  end
+  pbEncounterCynthia(opponent, opponent_override, false, badge_bonus)
+end
+
 def enderChest()
   itemlist = getEnderChestItems()
   raritylist = getEnderChestWeights()
@@ -167,4 +185,12 @@ def getEnderChestItems()
       [:MEGARING, 1],
     ],
   ]
+end
+
+def cactus()
+  cactusarray = [11, 78, 79, 80]
+  $PokemonGlobal.cactusheight = 3 if $PokemonGlobal.cactusheight == nil
+  return if !pbWildBattle(:CACNEA, 5 + $PokemonGlobal.cactusheight)
+  pbSetSelfSwitch(cactusarray[$PokemonGlobal.cactusheight], "A", true)
+  $PokemonGlobal.cactusheight -= 1
 end
