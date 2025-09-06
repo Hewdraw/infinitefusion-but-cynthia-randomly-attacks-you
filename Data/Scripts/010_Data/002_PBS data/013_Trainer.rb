@@ -336,7 +336,7 @@ module GameData
         ####
 
         #trainer rematch infinite fusion edit
-        if isRematch
+        if isRematch && tr_name != "Cynthia"
           nbRematch = getNumberRematch(rematchId)
           level = getRematchLevel(level, nbRematch)
           species = getSpecies(evolveRematchPokemon(nbRematch, species)).id
