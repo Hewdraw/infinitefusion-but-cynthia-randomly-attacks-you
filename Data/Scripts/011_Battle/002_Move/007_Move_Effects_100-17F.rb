@@ -3326,7 +3326,7 @@ class PokeBattle_Move_213 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_210 < PokeBattle_Move_207
+class PokeBattle_Move_214 < PokeBattle_Move_207
   def pbEffectGeneral(user)
     @battle.pbStartTerrain(user, :Psychic)
   end

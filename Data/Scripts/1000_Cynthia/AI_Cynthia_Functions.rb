@@ -915,6 +915,7 @@ class PokeBattle_AI
       else
         score -= 90
       end
+      score += 1 if movefunction == "120"
     #---------------------------------------------------------------------------
     when "0B5" #todo
     #---------------------------------------------------------------------------
@@ -2020,7 +2021,7 @@ class PokeBattle_AI
     when "172" #todo
       score += 20   # Because of possible burning
     #---------------------------------------------------------------------------
-    when "173", "188PSYCHIC"
+    when "173", "188PSYCHIC", "214"
       score *= 2 if user.hasActiveItem?(:TERRAINEXTENDER)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|

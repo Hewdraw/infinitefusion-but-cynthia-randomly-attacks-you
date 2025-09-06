@@ -2548,7 +2548,7 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
   end
 
   def pbHealAmount(user)
-    return user.adjustedTotalhp-user.hp
+    return (user.totalhp*3/4.0).round
   end
 
   def pbEffectGeneral(user)
