@@ -1407,6 +1407,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "110" #todo
+      score = 0
       score += 30 if user.effects[PBEffects::Trapping]>0
       score += 30 if user.effects[PBEffects::LeechSeed]>=0
       if @battle.pbAbleNonActiveCount(user.idxOwnSide)>0
