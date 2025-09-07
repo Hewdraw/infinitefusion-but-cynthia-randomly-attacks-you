@@ -164,7 +164,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5", "0FD" #paralyze
       score = 100 * damageinfo[:info][:damagethreshold] / 4.0
-      score += damageinfo[:info][:targetThreat] if !damageinfo[:info][:outspeedstarget] && target.pbSpeed / 4 < user.pbSpeed
+      score += damageinfo[target][:targetThreat] if !damageinfo[:info][:outspeedstarget] && target.pbSpeed / 4 < user.pbSpeed
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanParalyze?(user,false)
       score = 0 if move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
@@ -176,7 +176,7 @@ class PokeBattle_AI
     when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
       score = 100 * damageinfo[:info][:damagethreshold] / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
-      score += (damageinfo[:info][:targetPhysicalThreat] - [damageinfo[:info][:targetPhysicalThreat] / 2.0, damageinfo[:info][:targetSpecialThreat]].max) * damageinfo[:info][:damagethreshold]
+      score += (damageinfo[target][:targetPhysicalThreat] - [damageinfo[target][:targetPhysicalThreat] / 2.0, damageinfo[target][:targetSpecialThreat]].max) * damageinfo[:info][:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanBurn?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE])
@@ -187,7 +187,7 @@ class PokeBattle_AI
     when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
       score = 100 * damageinfo[:info][:damagethreshold] / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
-      score += (damageinfo[:info][:targetSpecialThreat] - [damageinfo[:info][:targetSpecialThreat] / 2.0, damageinfo[:info][:targetPhysicalThreat]].max) * damageinfo[:info][:damagethreshold]
+      score += (damageinfo[target][:targetSpecialThreat] - [damageinfo[target][:targetSpecialThreat] / 2.0, damageinfo[target][:targetPhysicalThreat]].max) * damageinfo[:info][:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanFreeze?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY])
@@ -196,12 +196,12 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "00F", "010", "011"
       score = 0
-      score += damageinfo[:info][:targetThreat] if damageinfo[:info][:outspeedstarget]
+      score += damageinfo[target][:targetThreat] if damageinfo[:info][:outspeedstarget]
       score = 0 if target.hasActiveAbility?([:INNERFOCUS, :STEADFAST])
       score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
     #---------------------------------------------------------------------------
     when "012"
-      score = damageinfo[:info][:targetThreat]
+      score = damageinfo[target][:targetThreat]
       score = 0 if target.hasActiveAbility?([:INNERFOCUS, :STEADFAST])
       score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
       score = -100 if !(user.turnCount==0)
