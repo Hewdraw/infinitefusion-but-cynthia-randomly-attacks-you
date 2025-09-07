@@ -223,12 +223,16 @@ class PokeBattle_Battle
         pbHideAbilitySplash(b)
         next
       end
+      pbCommonAnimation("UltraBurst2", b)
       b.pbEffectsOnSwitchIn
       resetstat = false
       GameData::Stat.each_battle do |s|
         resetstat = true if b.stages[s.id] < 0
         b.stages[s.id] = 0 if b.stages[s.id] < 0
       end
+      b.effects[PBEffects::Confusion] = 0
+      b.effects[PBEffects::Curse] = false
+      b.effects[PBEffects::LeechSeed] = -1
       pbCommonAnimation("StatUp", b) if resetstat
       b.pbCureStatus()
       pbDisplay(_INTL("{1} removed negative effects from itself!",b.pbThis))

@@ -30,6 +30,7 @@ class PokeBattle_AI
       next if stat[1] < 0 && target.hasActiveItem?(:WHITEHERB)
       stateffect = pbCynthiaGetStatIncrease(stat[0], stat[1], target)
       next if stateffect == 0
+      score += stat[1]
       if stat[0] == :SPEED #todo trick room
         tempscore = [0.0, 0]
         target.eachOpposing do |opponent|
@@ -58,7 +59,7 @@ class PokeBattle_AI
       score += (boostdamage - maxdamage) * pbCynthiaGetDamageInfo(user)[:damagethreshold]
     end
     if user.opposes?(target)
-      score *= -1
+      score *= -0.75
       if !recursion
         score += pbCynthiaCalculateStatScore([[:ATTACK, 2]],user,target,true) if target.hasActiveAbility?(:DEFIANT)
         score += pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 2]],user,target,true) if target.hasActiveAbility?(:COMPETITIVE)
@@ -114,8 +115,8 @@ class PokeBattle_AI
     end
     userhp = 100.0 * user.adjustedTotalhp / user.totalhp
     userhp = userhp - damageinfo[:opposingThreat] if !damageinfo[:outspeedsopponent]
-    damageinfo[:userdamagethreshold] = (userhp / damageinfo[:opposingThreat]).ceil - 1
-    damageinfo[:opposingdamagethreshold] = (100.0 / damageinfo[:userThreat]).ceil - 1
+    damageinfo[:userdamagethreshold] = (userhp / damageinfo[:opposingThreat]).ceil
+    damageinfo[:opposingdamagethreshold] = (100.0 / damageinfo[:userThreat]).ceil
     damageinfo[:damagethreshold] = [damageinfo[:userdamagethreshold], damageinfo[:opposingdamagethreshold]].min
     return damageinfo
   end

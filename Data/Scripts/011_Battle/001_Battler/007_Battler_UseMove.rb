@@ -274,7 +274,7 @@ class PokeBattle_Battler
     targets = pbFindTargets(choice, move, user)
     targets = pbChangeTargets(move, user, targets)
     # Pressure
-    if !specialUsage || !self.raid
+    if !specialUsage && !self.raid
       targets.each do |b|
         next unless b.opposes?(user) && b.hasActiveAbility?([:PRESSURE, :PSYCHOBREAK, :LEGENDARYPRESSURE])
         PBDebug.log("[Ability triggered] #{b.pbThis}'s #{b.abilityName}")

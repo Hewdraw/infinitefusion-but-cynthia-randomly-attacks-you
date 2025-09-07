@@ -2841,7 +2841,7 @@ end
 
 
 class PokeBattle_Move_193 < PokeBattle_Move
-  def pbMoveFailed?(user, targets)
+  def pbFailsAgainstTarget?(user,target)
     if !target.item
       @battle.pbDisplay(_INTL("But it failed!"))
       return true

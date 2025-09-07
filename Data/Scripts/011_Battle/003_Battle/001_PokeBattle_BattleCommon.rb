@@ -138,7 +138,12 @@ module PokeBattle_BattleCommon
     end
     # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
     # at a Shadow Pokémon)
-    if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?) && !battler.battle.legendaryBattle?
+    if battler.battle.legendaryBattle? && battler.hp > 0
+      pbShowAbilitySplash(battler)
+      @scene.pbThrowAndDeflect(ball, 1)
+      pbDisplay(_INTL("{1}'s Legendary Pressure deflects the ball", battler.name))
+      pbHideAbilitySplash(battler)
+    elsif trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
       @scene.pbThrowAndDeflect(ball, 1)
       pbDisplay(_INTL("The Trainer blocked your Poké Ball! Don't be a thief!"))
       return
