@@ -56,7 +56,7 @@ class PokeBattle_AI
         maxdamage = [pbCynthiaGetThreat(*damagearray)[:highestDamage], maxdamage].max
         boostdamage = [pbCynthiaGetThreat(*damagearray)[damagekey[0]] * stateffect, pbCynthiaGetThreat(*damagearray)[damagekey[1]], boostdamage].max
       end
-      score += (boostdamage - maxdamage) * pbCynthiaGetDamageInfo(user)[:damagethreshold]
+      score += (boostdamage - maxdamage) * pbCynthiaGetDamageInfo(user)[:info][:damagethreshold]
     end
     if user.opposes?(target)
       score *= -0.75
