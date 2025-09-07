@@ -850,6 +850,7 @@ ItemHandlers::UseOnPokemon.add(:GOLDENBOTTLECAP, proc { |item, pkmn, scene|
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
+  pkmn.calc_stats
   scene.pbDisplay(_INTL("{1}'s stats increased.", pkmn.name))
   next true
 })
@@ -861,6 +862,7 @@ ItemHandlers::UseOnPokemon.add(:SERIOUSMINT, proc { |item, pkmn, scene|
     next false
   end
   pkmn.nature = item.name.chomp("MINT").to_sym
+  pkmn.calc_stats
   scene.pbDisplay(_INTL("{1}'s Nature has become {2}", pkmn.name, nature))
   next true
 })

@@ -23,7 +23,7 @@ class PokeBattle_AI
   def pbCynthiaCalculateStatScore(statarray,user,target,recursion=false)
     score = 0
     statarray.each do |stat|
-      if target.hasActiveAbility?(:UNBURDEN) && target.hasActiveItem?(:WHITEHERB)
+      if target.hasActiveAbility?(:UNBURDEN) && target.hasActiveItem?(:WHITEHERB) && stat[1] < 0
         score = pbCynthiaCalculateStatScore([[:SPEED, 2]],user,target,true)
         break
       end

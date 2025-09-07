@@ -66,13 +66,7 @@ def pbFishing(hasEncounter,rodType=1)
     end
     if hasEncounter && rand(100)<biteChance
       $scene.spriteset.addUserAnimation(Settings::EXCLAMATION_ANIMATION_ID,$game_player.x,$game_player.y,true,3)
-      frames = Graphics.frame_rate - rand(Graphics.frame_rate/2)   # 0.5-1 second
-      if !pbWaitForInput(msgWindow,message+_INTL("\r\nOh! A bite!"),frames)
-        pbFishingEnd
-        $game_player.setDefaultCharName(nil,oldpattern)
-        pbMessageDisplay(msgWindow,_INTL("The Pokémon got away..."))
-        break
-      end
+      pbMessageDisplay(msgWindow,_INTL("Oh! A bite!"))
 
       itemChance = rand((rodType)*5)
       if itemChance<=1
