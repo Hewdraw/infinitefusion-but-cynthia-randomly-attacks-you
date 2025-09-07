@@ -2,6 +2,7 @@ class PokeBattle_AI
   def pbCynthiaChooseEnemyCommand(idxBattler)
     user = @battle.battlers[idxBattler]
     @threattable = {}
+    @damagetable = {}
     choices = []
     if @battle.battlers[idxBattler].dynamax == nil || @battle.battlers[idxBattler].dynamax == true
       choices.push(*pbCynthiaItemScore(idxBattler))
