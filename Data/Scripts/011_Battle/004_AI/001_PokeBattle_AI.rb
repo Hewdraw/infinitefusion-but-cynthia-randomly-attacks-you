@@ -21,7 +21,7 @@ class PokeBattle_AI
   def initialize(battle)
     @battle = battle
     @threattable = {}
-    @damagetable = {}
+    @damageinfo = {}
   end
 
   def pbAIRandom(x); return rand(x); end
