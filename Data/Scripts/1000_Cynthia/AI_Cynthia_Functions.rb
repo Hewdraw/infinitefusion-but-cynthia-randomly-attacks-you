@@ -127,7 +127,7 @@ class PokeBattle_AI
   def pbCynthiaGetMoveScoreStatus(move,user,target)
     skill = 100 #temporary
     damageinfo = pbCynthiaGetDamageInfo(user, target)
-    score = [100.0 * [user.hp, user.totalhp].max / user.totalhp / 2 - damageinfo[user][:info][:opposingThreat], 1.0].max
+    score = [100.0 * [user.hp, user.totalhp].max / user.totalhp / 2 - damageinfo[:info][:opposingThreat], 1.0].max
     # movedamage = 0
     # movedamage = pbCynthiaGetThreat(user, target, false)[:moves][move][:minDamage] if target != user
     movefunction = move.function
@@ -140,20 +140,20 @@ class PokeBattle_AI
       score = 0
     #---------------------------------------------------------------------------
     when "003", "004" #sleep
-      sleepturns = [damageinfo[user][:info][:damagethreshold], 4].min
-      score = sleepturns * damageinfo[user][:info][:userThreat] / 3.0
+      sleepturns = [damageinfo[:info][:damagethreshold], 4].min
+      score = sleepturns * damageinfo[:info][:userThreat] / 3.0
       score += 100 * sleepturns / 3.0
       score += 100 * sleepturns / 3.0 if [:Snow, :Hail].include?(@battle.pbWeather)
       score += 100 * sleepturns / 8.0 if user.hasActiveAbility?(:BADDREAMS)
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if target.hasActiveAbility?([:GUTS, :QUICKFEET])
-      score = 0 if target.hasActiveAbility?(:MARVELSCALE) && damageinfo[user][:info][:userPhysicalThreat] > damageinfo[user][:info][:userSpecialThreat]
+      score = 0 if target.hasActiveAbility?(:MARVELSCALE) && damageinfo[:info][:userPhysicalThreat] > damageinfo[:info][:userSpecialThreat]
       score = 0 if target.pbHasMoveFunction?("011","0B4", "0D9", "191")
       score = 0 if !target.pbCanSleep?(user,false)
     # #---------------------------------------------------------------------------
     when "005", "006", "0BE", "159" #poison
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 8.0
-      score = 100 * (0..damageinfo[user][:info][:damagethreshold]).sum / 16.0 if movefunction == 006 || @battle.pbWeather == :Sandstorm
+      score = 100 * damageinfo[:info][:damagethreshold] / 8.0
+      score = 100 * (0..damageinfo[:info][:damagethreshold]).sum / 16.0 if movefunction == 006 || @battle.pbWeather == :Sandstorm
       score = 0 if target.effects[PBEffects::Yawn]>0 
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD])
       score = 0 if target.pbHasMoveFunction?("0D9", "191")
@@ -163,8 +163,8 @@ class PokeBattle_AI
       score += pbCynthiaCalculateStatScore([[:SPEED, -1]], user, target) if movefunction == "159"
     #---------------------------------------------------------------------------
     when "007", "008", "009", "0C5", "0FD" #paralyze
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 4.0
-      score += damageinfo[user][:info][:targetThreat] if !damageinfo[user][:info][:outspeedstarget] && target.pbSpeed / 4 < user.pbSpeed
+      score = 100 * damageinfo[:info][:damagethreshold] / 4.0
+      score += damageinfo[:info][:targetThreat] if !damageinfo[:info][:outspeedstarget] && target.pbSpeed / 4 < user.pbSpeed
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanParalyze?(user,false)
       score = 0 if move.id == :THUNDERWAVE && Effectiveness.ineffective?(pbCalcTypeMod(move.type,user,target))
@@ -174,9 +174,9 @@ class PokeBattle_AI
       score = 0 if @battle.field.effects[PBEffects::TrickRoom]
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 16.0
+      score = 100 * damageinfo[:info][:damagethreshold] / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
-      score += (damageinfo[user][:info][:targetPhysicalThreat] - [damageinfo[user][:info][:targetPhysicalThreat] / 2.0, damageinfo[user][:info][:targetSpecialThreat]].max) * damageinfo[user][:info][:damagethreshold]
+      score += (damageinfo[:info][:targetPhysicalThreat] - [damageinfo[:info][:targetPhysicalThreat] / 2.0, damageinfo[:info][:targetSpecialThreat]].max) * damageinfo[:info][:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanBurn?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE])
@@ -185,9 +185,9 @@ class PokeBattle_AI
       score = 0 if target.pbHasType?(:FIRE)
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 16.0
+      score = 100 * damageinfo[:info][:damagethreshold] / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
-      score += (damageinfo[user][:info][:targetSpecialThreat] - [damageinfo[user][:info][:targetSpecialThreat] / 2.0, damageinfo[user][:info][:targetPhysicalThreat]].max) * damageinfo[user][:info][:damagethreshold]
+      score += (damageinfo[:info][:targetSpecialThreat] - [damageinfo[:info][:targetSpecialThreat] / 2.0, damageinfo[:info][:targetPhysicalThreat]].max) * damageinfo[:info][:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanFreeze?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET, :ICEBODY])
@@ -196,22 +196,22 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "00F", "010", "011"
       score = 0
-      score += damageinfo[user][:info][:targetThreat] if damageinfo[user][:info][:outspeedstarget]
+      score += damageinfo[:info][:targetThreat] if damageinfo[:info][:outspeedstarget]
       score = 0 if target.hasActiveAbility?([:INNERFOCUS, :STEADFAST])
       score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
     #---------------------------------------------------------------------------
     when "012"
-      score = damageinfo[user][:info][:targetThreat]
+      score = damageinfo[:info][:targetThreat]
       score = 0 if target.hasActiveAbility?([:INNERFOCUS, :STEADFAST])
       score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
       score = -100 if !(user.turnCount==0)
     #---------------------------------------------------------------------------
     when "013", "014", "015", "040", "041"
-      score = 100 * [damageinfo[user][:info][:damagethreshold], 2].min / 3.0
+      score = 100 * [damageinfo[:info][:damagethreshold], 2].min / 3.0
       score = 0 if !target.pbCanConfuse?(user,false,move)
     #---------------------------------------------------------------------------
     when "016"
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 2.0
+      score = 100 * damageinfo[:info][:damagethreshold] / 2.0
       score = 0 if !target.pbCanAttract?(user,false)
       score = 0 if target.hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(target,false)
     #---------------------------------------------------------------------------
@@ -250,7 +250,7 @@ class PokeBattle_AI
       #todo charge
     #---------------------------------------------------------------------------
     when "022"
-      score = [score, 66 - damageinfo[user][:info][:opposingThreat]].max()
+      score = [score, 66 - damageinfo[:info][:opposingThreat]].max()
       score = 0 if user.stages[:EVASION] >= 1
       user.eachOpposing do |opponent|
         opponent.eachMove do |opponentmove|
@@ -261,8 +261,8 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "023"
-      score = [score, 100 - damageinfo[user][:info][:opposingThreat]].max()
-      score *= 0.5 if !damageinfo[user][:info][:outspeedsopponent]
+      score = [score, 100 - damageinfo[:info][:opposingThreat]].max()
+      score *= 0.5 if !damageinfo[:info][:outspeedsopponent]
       score *= 2 if user.hasActiveItem?(:SCOPELENS)
       score *= 1.5 if user.hasActiveAbility?([:SNIPER, :SUPERSNIPER])
       user.eachOpposing do |opponent|
@@ -291,7 +291,7 @@ class PokeBattle_AI
       score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 1], [:SPECIAL_DEFENSE, 1]], user, user)
     #---------------------------------------------------------------------------
     when "02D"
-      score = [score, 100 - damageinfo[user][:info][:opposingThreat]].max()
+      score = [score, 100 - damageinfo[:info][:opposingThreat]].max()
     #---------------------------------------------------------------------------
     when "02E"
       score = pbCynthiaCalculateStatScore([[:ATTACK, 2]], user, user)
@@ -309,7 +309,7 @@ class PokeBattle_AI
       score = pbCynthiaCalculateStatScore([[:SPECIAL_DEFENSE, 2]], user, user)
     #---------------------------------------------------------------------------
     when "034"
-      score = [score, 66 - damageinfo[user][:info][:opposingThreat]].max()
+      score = [score, 66 - damageinfo[:info][:opposingThreat]].max()
       score = 0 if user.stages[:EVASION] >= 1
       user.eachOpposing do |opponent|
         opponent.eachMove do |opponentmove|
@@ -326,7 +326,7 @@ class PokeBattle_AI
       score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:SPEED, 2]], user, user)
     #---------------------------------------------------------------------------
     when "037"
-      score = [score, 66 - damageinfo[user][:info][:opposingThreat]].max()
+      score = [score, 66 - damageinfo[:info][:opposingThreat]].max()
     #---------------------------------------------------------------------------
     when "038"
       score = pbCynthiaCalculateStatScore([[:DEFENSE, 3]], user, user)
@@ -698,7 +698,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "066" #todo
       score = 0 if !user.hasActiveAbility?([:TRUANT, :SLOWSTART])
-      score = 100 if user.pbHasType?(:GHOST) && user.hasActiveAbility?(:NORMALIZE) && damageinfo[user][:info][:outspeedsopponent]
+      score = 100 if user.pbHasType?(:GHOST) && user.hasActiveAbility?(:NORMALIZE) && damageinfo[:info][:outspeedsopponent]
       score = 0 if target.effects[PBEffects::Substitute]>0
       score = 0 if !user.ability || user.ability==target.ability ||
         [:MULTITYPE, :RKSSYSTEM, :TRUANT].include?(target.ability_id) ||
@@ -805,7 +805,7 @@ class PokeBattle_AI
       score += 30 if oppspeed>attspeed
     #---------------------------------------------------------------------------
     when "092"
-      score = [50 - damageinfo[user][:info][:opposingThreat], 0].min
+      score = [50 - damageinfo[:info][:opposingThreat], 0].min
     #---------------------------------------------------------------------------
     when "093" #todo
       score += 25 if user.effects[PBEffects::Rage]
@@ -823,7 +823,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A2", "190" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
-      score *= 2 if damageinfo[user][:info][:opposingMaxThreat] == damageinfo[user][:info][:opposingMaxPhysicalThreat]
+      score *= 2 if damageinfo[:info][:opposingMaxThreat] == damageinfo[:info][:opposingMaxPhysicalThreat]
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -831,7 +831,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0A3", "189" #TODO
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
-      score *= 2 if damageinfo[user][:info][:opposingMaxThreat] == damageinfo[user][:info][:opposingMaxSpecialThreat]
+      score *= 2 if damageinfo[:info][:opposingMaxThreat] == damageinfo[:info][:opposingMaxSpecialThreat]
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -889,7 +889,7 @@ class PokeBattle_AI
           lastmovescore = pbCynthiaRegisterMove(user, calledmove, nil, true)
         end
       end
-      if damageinfo[user][:info][:outspeedsopponent]
+      if damageinfo[:info][:outspeedsopponent]
         score = lastmovescore
       else
         user.eachOpposing do |opponent|
@@ -1011,23 +1011,23 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0D5", "0D6" #todo
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 66 && damageinfo[user][:info][:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[user][:info][:outspeedsopponent]
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 2
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 4
+      score *= 2 if damageinfo[:info][:opposingThreat] < 66 && damageinfo[:info][:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[:info][:outspeedsopponent]
+      score *= 2 if damageinfo[:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 2
+      score *= 2 if damageinfo[:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
-      score = 0 if damageinfo[user][:info][:opposingMaxThreat] >= 50
+      score = 0 if damageinfo[:info][:opposingMaxThreat] >= 50
     #---------------------------------------------------------------------------
     when "0D7" #todo
       score -= 90 if @battle.positions[user.index].effects[PBEffects::Wish]>0
     #---------------------------------------------------------------------------
     when "0D8" #todo
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 66 && damageinfo[user][:info][:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[user][:info][:outspeedsopponent]
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 2
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 4
+      score *= 2 if damageinfo[:info][:opposingThreat] < 66 && damageinfo[:info][:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[:info][:outspeedsopponent]
+      score *= 2 if damageinfo[:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 2
+      score *= 2 if damageinfo[:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
-      score = 0 if damageinfo[user][:info][:opposingMaxThreat] >= 50
+      score = 0 if damageinfo[:info][:opposingMaxThreat] >= 50
     #---------------------------------------------------------------------------
     when "0D9" #todo
       if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
@@ -1039,19 +1039,19 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0DA"
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 16.0
+      score = 100 * damageinfo[:info][:damagethreshold] / 16.0
       score *= 1.3 if user.hasActiveItem?(:BIGROOT)
       score = 0 if user.effects[PBEffects::HealBlock]
       score = 0 if user.effects[PBEffects::AquaRing]
     #---------------------------------------------------------------------------
     when "0DB" #todo switch move check
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 16.0
+      score = 100 * damageinfo[:info][:damagethreshold] / 16.0
       score *= 1.3 if user.hasActiveItem?(:BIGROOT)
       score = 0 if user.effects[PBEffects::HealBlock]
       score = 0 if user.effects[PBEffects::Ingrain]
     #---------------------------------------------------------------------------
     when "0DC", "184"
-      score = 100 * damageinfo[user][:info][:damagethreshold] / 4.0
+      score = 100 * damageinfo[:info][:damagethreshold] / 4.0
       if !target.hasActiveAbility?(:LIQUIDOOZE)
         score *= 1.15 if user.hasActiveItem?(:BIGROOT) && !user.effects[PBEffects::HealBlock]
         score /= 2.0 if user.effects[PBEffects::HealBlock]
@@ -1059,7 +1059,7 @@ class PokeBattle_AI
         score /= 1.15 if user.hasActiveItem?(:BIGROOT)
         score /= 4.0
       end
-      score /= damageinfo[user][:info][:damagethreshold] if target.pbHasMove?(:RAPIDSPIN)
+      score /= damageinfo[:info][:damagethreshold] if target.pbHasMove?(:RAPIDSPIN)
       score = 0 if target.pbHasType?(:GRASS)
       score = 0 if target.effects[PBEffects::LeechSeed]
     #---------------------------------------------------------------------------
@@ -1085,20 +1085,20 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0E0" #todo
-      score = damageinfo[user][:info][:opposingThreat]
-      score = -(damageinfo[user][:info][:userThreat] - 1) if (damageinfo[user][:info][:opposingThreat] < 100 && damageinfo[user][:info][:outspeedsopponent]) || (damageinfo[user][:info][:opposingThreat] < 50 && !damageinfo[user][:info][:outspeedsopponent])
+      score = damageinfo[:info][:opposingThreat]
+      score = -(damageinfo[:info][:userThreat] - 1) if (damageinfo[:info][:opposingThreat] < 100 && damageinfo[:info][:outspeedsopponent]) || (damageinfo[:info][:opposingThreat] < 50 && !damageinfo[:info][:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E1" #todo
-      score = damageinfo[user][:info][:opposingThreat]
-      score = -(damageinfo[user][:info][:userThreat] - 1) if (damageinfo[user][:info][:opposingThreat] < 100 && damageinfo[user][:info][:outspeedsopponent]) || (damageinfo[user][:info][:opposingThreat] < 50 && !damageinfo[user][:info][:outspeedsopponent])
+      score = damageinfo[:info][:opposingThreat]
+      score = -(damageinfo[:info][:userThreat] - 1) if (damageinfo[:info][:opposingThreat] < 100 && damageinfo[:info][:outspeedsopponent]) || (damageinfo[:info][:opposingThreat] < 50 && !damageinfo[:info][:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E2" #todo
-      score = damageinfo[user][:info][:opposingThreat]
-      score = -(damageinfo[user][:info][:userThreat] - 1) if (damageinfo[user][:info][:opposingThreat] < 100 && damageinfo[user][:info][:outspeedsopponent]) || (damageinfo[user][:info][:opposingThreat] < 50 && !damageinfo[user][:info][:outspeedsopponent])
+      score = damageinfo[:info][:opposingThreat]
+      score = -(damageinfo[:info][:userThreat] - 1) if (damageinfo[:info][:opposingThreat] < 100 && damageinfo[:info][:outspeedsopponent]) || (damageinfo[:info][:opposingThreat] < 50 && !damageinfo[:info][:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E3", "0E4"
-      score = damageinfo[user][:info][:opposingThreat]
-      score = -(damageinfo[user][:info][:userThreat] - 1) if (damageinfo[user][:info][:opposingThreat] < 100 && damageinfo[user][:info][:outspeedsopponent]) || (damageinfo[user][:info][:opposingThreat] < 50 && !damageinfo[user][:info][:outspeedsopponent])
+      score = damageinfo[:info][:opposingThreat]
+      score = -(damageinfo[:info][:userThreat] - 1) if (damageinfo[:info][:opposingThreat] < 100 && damageinfo[:info][:outspeedsopponent]) || (damageinfo[:info][:opposingThreat] < 50 && !damageinfo[:info][:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E5" #todo
       if @battle.pbAbleNonActiveCount(user.idxOwnSide)==0
@@ -1114,11 +1114,11 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "0E7" #todo
       score = 100
-      score = 0 if (damageinfo[user][:info][:opposingThreat] < 100 && damageinfo[user][:info][:outspeedsopponent]) || (damageinfo[user][:info][:opposingThreat] < 50 && !damageinfo[user][:info][:outspeedsopponent])
+      score = 0 if (damageinfo[:info][:opposingThreat] < 100 && damageinfo[:info][:outspeedsopponent]) || (damageinfo[:info][:opposingThreat] < 50 && !damageinfo[:info][:outspeedsopponent])
     #---------------------------------------------------------------------------
     when "0E8" #todo
       score = 1
-      score = 0 if damageinfo[user][:info][:opposingThreat] < 100
+      score = 0 if damageinfo[:info][:opposingThreat] < 100
       user.eachAlly do |ally|
         score = 201 if ally.hasActiveAbility?([:EXPLOSIVE, :CHARGEDEXPLOSIVE])
       end
@@ -1138,7 +1138,7 @@ class PokeBattle_AI
       score = 1
     #---------------------------------------------------------------------------
     when "0EB" #todo
-      score = damageinfo[user][:info][:opposingThreat] / 3
+      score = damageinfo[:info][:opposingThreat] / 3
       score += 10 if target.pbOwnSide.effects[PBEffects::Spikes]>0
       score += 10 if target.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
       score += 10 if target.pbOwnSide.effects[PBEffects::StealthRock]
@@ -1278,7 +1278,7 @@ class PokeBattle_AI
       end
       score *= 2 if @battle.pbWeather == :Rain
       user.eachOpposing do |opponent|
-        score *= 2 if opponent.pbHasType?(:WATER) && damageinfo[user][:info][:outspeedsopponent]
+        score *= 2 if opponent.pbHasType?(:WATER) && damageinfo[:info][:outspeedsopponent]
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
     #---------------------------------------------------------------------------
@@ -1374,12 +1374,12 @@ class PokeBattle_AI
       score += 10*(user.stages[:ACCURACY]-target.stages[:EVASION])
     #---------------------------------------------------------------------------
     when "10C" #todo
-      score = 100 if damageinfo[user][:info][:opposingMaxThreat] < 25
+      score = 100 if damageinfo[:info][:opposingMaxThreat] < 25
       user.eachOpposing do |b|
         score = 0 if b.hasActiveAbility?(:INFILTRATOR)
       end
       score = 0 if user.hp <= user.totalhp/4
-      score = 0 if damageinfo[user][:info][:opposingMaxThreat] >= 25 || user.effects[PBEffects::Substitute]>0
+      score = 0 if damageinfo[:info][:opposingMaxThreat] >= 25 || user.effects[PBEffects::Substitute]>0
     #---------------------------------------------------------------------------
     when "10D" #todo
       if user.pbHasType?(:GHOST)
@@ -1450,7 +1450,7 @@ class PokeBattle_AI
     when "115" #todo
       score = -100
       score = 0 if user.effects[PBEffects::Substitute] || user.effects[PBEffects::RedstoneCube]
-      score = 0 if damageinfo[user][:info][:opposingThreat] == 0
+      score = 0 if damageinfo[:info][:opposingThreat] == 0
     #---------------------------------------------------------------------------
     when "116" #todo?
     #---------------------------------------------------------------------------
@@ -1465,7 +1465,7 @@ class PokeBattle_AI
         user.eachOpposing do |b|
           allythreat += pbCynthiaGetThreat(ally, b)[:highestDamage]
         end
-        if allythreat > damageinfo[user][:info][:opposingMaxThreat] * 2
+        if allythreat > damageinfo[:info][:opposingMaxThreat] * 2
           score = allythreat
         end
       else
@@ -1520,11 +1520,11 @@ class PokeBattle_AI
     when "11E" #todo
     #---------------------------------------------------------------------------
     when "11F" #todo
-      score = 101 if !damageinfo[user][:info][:outspeedsopponent]
+      score = 101 if !damageinfo[:info][:outspeedsopponent]
       user.eachAlly do |b|
-        score = 0 if b.pbHasMove?(:TRICKROOM) && pbCynthiaGetThreat(b, b)[:highestDamage] > damageinfo[user][:info][:userMaxThreat]
+        score = 0 if b.pbHasMove?(:TRICKROOM) && pbCynthiaGetThreat(b, b)[:highestDamage] > damageinfo[:info][:userMaxThreat]
       end
-      score = 0 if damageinfo[user][:info][:outspeedsopponent]
+      score = 0 if damageinfo[:info][:outspeedsopponent]
       score = 0 if @battle.field.effects[PBEffects::TrickRoom] > 0
     #---------------------------------------------------------------------------
     when "120" #todo
@@ -1925,7 +1925,7 @@ class PokeBattle_AI
     when "167" #todo
       score *= 4
       score *= 2 if user.hasActiveItem?(:LIGHTCLAY)
-      score *= 2 if damageinfo[user][:info][:outspeedsopponent]
+      score *= 2 if damageinfo[:info][:outspeedsopponent]
       user.eachOpposing do |b|
         score = 0 if b.pbHasMove?(:BRICKBREAK) || b.pbHasMove?(:PSYCHICFANGS) || b.pbHasMove?(:DEFOG)
       end
@@ -1974,12 +1974,12 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "16D" #todo
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 66 && damageinfo[user][:info][:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[user][:info][:outspeedsopponent]
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 2
-      score *= 2 if damageinfo[user][:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 4
+      score *= 2 if damageinfo[:info][:opposingThreat] < 66 && damageinfo[:info][:opposingThreat] > 33 && user.hp <= user.totalhp * 3 / 4 && !damageinfo[:info][:outspeedsopponent]
+      score *= 2 if damageinfo[:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 2
+      score *= 2 if damageinfo[:info][:opposingThreat] < 100 && user.hp <= user.totalhp / 4
       score = 0 if !user.canHeal?
       score = 0 if user.hp >= user.totalhp * 3 / 4
-      score = 0 if damageinfo[user][:info][:opposingMaxThreat] >= 50
+      score = 0 if damageinfo[:info][:opposingMaxThreat] >= 50
     #---------------------------------------------------------------------------
     when "16E" #todo
       if target.hp==target.totalhp || (!target.canHeal?)
