@@ -156,6 +156,7 @@ class PokeBattle_AI
       switchScore += 1 if user.hasActiveAbility?(:INTIMIDATE) && target.effects[PBEffects::Substitute] == 0 && !target.hasActiveAbility?([:DEFIANT, :COMPETITIVE, :FULLMETALBODY, :CLEARBODY, :HYPERCUTTER, :WHITESMOKE])
     end
     switchScore += 1 if user.pbHasMove?(:FAKEOUT) && !(user.turnCount == 0 && user.index != 69)
+    switchScore += 1 if user.pbHasMove?(:VOLTSWITCH) || user.pbHasMove?(:UTURN) || user.pbHasMove?(:FLIPTURN)
 
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
@@ -448,7 +449,7 @@ class PokeBattle_AI
     end
     score *= [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     if move.statusMove?
-      return 0 if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && target != user
+      return 0 if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && user.opposes?(target)
     end
     return 0 if move.powderMove? && (target.pbHasType?(:GRASS) || target.hasActiveAbility?(:OVERCOAT) || target.hasActiveItem?(:SAFETYGOGGLES)) && target != user
     #print(move.name, " ", user.name, " ", target.name, " ", score)
