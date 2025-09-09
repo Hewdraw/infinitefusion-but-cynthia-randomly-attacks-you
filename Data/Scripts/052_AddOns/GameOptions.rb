@@ -189,12 +189,12 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                                 ["Combines both Pokémon's party icons",
                                  "Uses the same party icon for all fusions"]
       )
-      battle_type_icon_option_selected=$PokemonSystem.type_icons ? 1 : 0
-      options << EnumOption.new(_INTL("Battle Type Icons"), [_INTL("Off"), _INTL("On")],
-                                proc { battle_type_icon_option_selected },
-                                proc { |value| $PokemonSystem.type_icons = value == 1 },
-                                "Display the enemy Pokémon type in battles."
-      )
+      # battle_type_icon_option_selected=$PokemonSystem.type_icons ? 1 : 0
+      # options << EnumOption.new(_INTL("Battle Type Icons"), [_INTL("Off"), _INTL("On")],
+      #                           proc { battle_type_icon_option_selected },
+      #                           proc { |value| $PokemonSystem.type_icons = value == 1 },
+      #                           "Display the enemy Pokémon type in battles."
+      # )
 
 
 

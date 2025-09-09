@@ -318,7 +318,7 @@ class PokemonDataBox < SpriteWrapper
     end
 
     #Draw type icons (foe Pokémon only)
-    if @battler.opposes?(0) && $PokemonSystem.type_icons
+    if @battler.opposes?(0)# && $PokemonSystem.type_icons
       drawEnemyTypeIcons(imagePos)
     end
 
