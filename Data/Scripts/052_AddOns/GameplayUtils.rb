@@ -1187,7 +1187,7 @@ end
 
 #Get difficulty for displaying in-game
 def getDisplayDifficulty
-  if $game_switches[SWITCH_GAME_DIFFICULTY_EASY] || $Trainer.lowest_difficulty <= 0
+  if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
     return getDisplayDifficultyFromIndex(0)
   elsif $Trainer.lowest_difficulty <= 1
     return getDisplayDifficultyFromIndex(1)
