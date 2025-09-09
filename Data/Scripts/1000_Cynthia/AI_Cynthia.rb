@@ -155,18 +155,17 @@ class PokeBattle_AI
     user.eachOpposing do |target|
       switchScore += 1 if user.hasActiveAbility?(:INTIMIDATE) && target.effects[PBEffects::Substitute] == 0 && !target.hasActiveAbility?([:DEFIANT, :COMPETITIVE, :FULLMETALBODY, :CLEARBODY, :HYPERCUTTER, :WHITESMOKE])
     end
-    switchScore += 1 if user.pbHasMove?(:FAKEOUT) && !(user.turnCount == 0 && user.index != 69)
-    switchScore += 1 if user.pbHasMove?(:VOLTSWITCH) || user.pbHasMove?(:UTURN) || user.pbHasMove?(:FLIPTURN)
 
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 33 && 100.0 * user.hp / user.totalhp > threat
     switchInScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat <= 16 && 100.0 * user.hp / user.totalhp > threat
+    switchInScore += 1 if user.pbHasMove?(:FAKEOUT) && !(user.turnCount == 0 && user.index != 69)
     user.eachOpposing do |target|
       switchInScore -= 3 if user.hasActiveAbility?(:INTIMIDATE) && target.effects[PBEffects::Substitute] == 0 && target.hasActiveAbility?([:DEFIANT, :COMPETITIVE])
     end
 
-    switchOutScore += 1 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0 * user.hp / user.totalhp
+    switchOutScore += 5 if user.hasActiveAbility?(:REGENERATOR) && threat >= 100.0
     switchOutScore -= 5 if user.hasActiveAbility?(:REGENERATOR) && threat <= 66 && 100.0 * user.hp / user.totalhp > 66
-    switchOutScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 &&  @battle.positions[user.index].effects[PBEffects::Wish]>0
+    switchOutScore += 2 if user.hasActiveAbility?(:REGENERATOR) && user.index != 69 && @battle.positions[user.index].effects[PBEffects::Wish]>0
     switchOutScore += 1 if user.effects[PBEffects::LeechSeed] >= 0 && !user.hasActiveAbility?(:MAGICGUARD)
     switchOutScore += 5 if user.effects[PBEffects::PerishSong]==1
     switchOutScore += [0, user.statusCount - 2].max if user.status == :POISON && !user.hasActiveAbility?([:POISONHEAL, :MAGICGUARD])

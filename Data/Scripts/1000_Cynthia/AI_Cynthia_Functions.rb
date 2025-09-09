@@ -9,9 +9,6 @@ class PokeBattle_AI
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
     originalstages = target.stages[stat] + 6
-    if target.hasActiveAbility?(:CONTRARY)
-      change *= -1
-    end
     stages =  originalstages + change
     stages = [0, stages].max
     stages = [12, stages].min
@@ -23,6 +20,8 @@ class PokeBattle_AI
   def pbCynthiaCalculateStatScore(statarray,user,target,recursion=false)
     score = 0
     statarray.each do |stat|
+      stat[1] *= -1 if target.hasActiveAbility?(:CONTRARY)
+      stat[1] *= 2 if target.hasActiveAbility?(:SIMPLE)
       if target.hasActiveAbility?(:UNBURDEN) && target.hasActiveItem?(:WHITEHERB) && stat[1] < 0
         score = pbCynthiaCalculateStatScore([[:SPEED, 2]],user,target,true)
         break
@@ -30,7 +29,7 @@ class PokeBattle_AI
       next if stat[1] < 0 && target.hasActiveItem?(:WHITEHERB)
       stateffect = pbCynthiaGetStatIncrease(stat[0], stat[1], target)
       next if stateffect == 0
-      score += stateffect - 1
+      score += stat[1]
       if stat[0] == :SPEED #todo trick room
         tempscore = [0.0, 0]
         target.eachOpposing do |opponent|

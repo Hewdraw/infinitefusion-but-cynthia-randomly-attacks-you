@@ -879,13 +879,21 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
     #       means it also cares about the Pokémon's form. Some forms cannot
     #       evolve even if the species generally can, and such forms are not
     #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf?(:PRIMEAPE) || target.isFusionOf?(:MRMIME) || target.isFusionOf?(:GIRAFARIG) || target.isFusionOf?(:DUNSPARCE) || target.isFusionOf?(:QWILFISH) || target.isFusionOf?(:URSARING) || target.isFusionOf?(:CORSOLA) || target.isFusionOf?(:STANTLER) || target.isFusionOf?(:LINOONE) || target.isFusionOf?(:BISHARP) || target.isFusionOf?(:RAICHU)
       mults[:defense_multiplier] *= 1.5
     end
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
+
+BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if target.isFusionOf?(:TYRANTRUM)
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
 
 BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
   proc { |item,user,target,move,mults,baseDmg,type|

@@ -299,7 +299,7 @@ class Pokemon
   end
 
   def debugShiny?
-    return !@natural_shiny || @debug_shiny
+    return @debug_shiny
   end
 
   def bodyShiny?
