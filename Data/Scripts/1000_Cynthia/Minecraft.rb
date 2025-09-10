@@ -17,7 +17,8 @@ def mcChest(opponent, badge_bonus=0)
 end
 
 def enderChest()
-  itemlist = getEnderChestItems()
+  $PokemonBag.pbDeleteItem(:SINNOHCOIN, 10)
+  itemlist = getEnderChestItems() 
   raritylist = getEnderChestWeights()
   totalrarities = raritylist.sum
   for item in 1..10
@@ -39,12 +40,22 @@ def enderChest()
     end
     randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
     itemname = (randomitem[1] > 1) ? GameData::Item.get(randomitem[0]).name_plural : GameData::Item.get(randomitem[0]).name
-    if $PokemonBag.pbStoreItem(*randomitem)
-      pbMessage(_INTL("You got #{randomitem[1]} #{itemname}!"))
+    itemcolor = getEnderChestRarityColors()[randomrarity]
+    if $PokemonBag.pbStoreItem(*randomitem) 
+      pbMessage("You got #{randomitem[1]} \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
   end
 end
 
+def getEnderChestRarityColors()
+  return [
+    7, #gray
+    3, #green
+    1, #blue
+    6, #yellow
+    2, #red
+  ]
+end
     
 def getEnderChestWeights()
   return [
