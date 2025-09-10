@@ -74,7 +74,7 @@ class PokeBattle_AI
 
     enemies.each do |i|
       next if party[i].ace && enemies.length > 1
-      switchValue = pbCynthiaGetSwitchValue(@battle.battlers[idxBattler], party[i])
+      switchValue = pbCynthiaGetSwitchValue(@battle.battlers[idxBattler], party[i], true)
       if best == -1 || switchValue > bestSwitchValue
         bestSwitchValue = switchValue
         best = i
@@ -83,7 +83,7 @@ class PokeBattle_AI
     return best
   end
 
-  def pbCynthiaGetSwitchValue(user, switch)
+  def pbCynthiaGetSwitchValue(user, switch, midturn = false)
     activeUserThreat = 1
     activeOpposingThreat = 1
     activeUserOutspeeds = true
@@ -129,7 +129,7 @@ class PokeBattle_AI
     #print(user.name, " ", switch.name, " ", switchScore) 
     switchScore += (damagethreshold - activeDamagethreshold)
     switchScore -= 3
-    switchScore -= 10 if opposingMaxThreat >= 100
+    switchScore -= 10 if opposingMaxThreat >= 100 || (opposingMaxThreat >= 50 && !switchOutspeeds && !midturn)
 
     #print(switch.name, " ", switchScore, " ", hitsDifferential, " ", damagethreshold - (activeDamagethreshold * hitsDifferential), " ", opposingThreat, " ", switchThreat, " ", activeUserThreat, " ", activeOpposingThreat)
 
