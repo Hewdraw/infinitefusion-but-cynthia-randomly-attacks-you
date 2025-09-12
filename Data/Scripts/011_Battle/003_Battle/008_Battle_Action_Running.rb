@@ -53,12 +53,32 @@ class PokeBattle_Battle
         if pbDisplayConfirm(_INTL("Would you like to forfeit the match and quit now?"))
           pbSEPlay("Battle flee")
           pbDisplay(_INTL("{1} forfeited the match!",self.pbPlayer.name))
+          @opponent.each_with_index do |trainer, i|
+            if trainer.name == "Hewdraw"
+              @scene.pbShowOpponent(i)
+              pbDisplayPaused("coward")
+            end
+            if trainer.name == "Shadross"
+              @scene.pbShowOpponent(i)
+              pbDisplayPaused("Bitch ass")
+            end
+          end
           @decision = 2
           return 1
         end
       elsif pbDisplayConfirm(_INTL("Would you like to forfeit the match and quit now?"))
         pbSEPlay("Battle flee")
         pbDisplay(_INTL("{1} forfeited the match!",self.pbPlayer.name))
+        @opponent.each_with_index do |trainer, i|
+          if trainer.name == "Hewdraw"
+            @scene.pbShowOpponent(i)
+            pbDisplayPaused("coward")
+          end
+          if trainer.name == "Shadross"
+            @scene.pbShowOpponent(i)
+            pbDisplayPaused("Bitch ass")
+          end
+        end
         @decision = 3
         return 1
       end
