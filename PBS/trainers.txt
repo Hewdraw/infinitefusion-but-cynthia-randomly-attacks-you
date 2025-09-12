@@ -11072,4 +11072,32 @@ Pokemon = COOLERDINO,5
 	EV = 0,0,252,0,0,0
 	Happiness = 255
 
+
+[LEGENDARY_POKEMON,Creeper,0]
+Pokemon = CREEPER,5	
+	Offset = 10
+	Moves = EXPLOSION
+	Ability = LEGENDARYPRESSURE
+	Item = CHOICEBAND
+	Hpbar = 5
+	Nature = ADAMANT
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,252,0,252,0,0
+	Happiness = 255
+
+
+[LEGENDARY_POKEMON,Charged Creeper,0]
+Pokemon = CREEPER,5	
+	Offset = 10
+	Moves = EXPLOSION
+	Ability = LEGENDARYPRESSURE
+	Item = THUNDERSTONE
+	Hpbar = 5
+	Nature = ADAMANT
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,252,0,252,0,0
+	Happiness = 255
+
 #eof

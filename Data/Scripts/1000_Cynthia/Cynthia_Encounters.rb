@@ -1,4 +1,4 @@
-def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trainer = false, badge_bonus = 0)
+def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trainer = false, badge_bonus = 0, amount=1)
   if $PokemonGlobal.cynthiachance == nil
     $PokemonGlobal.cynthiachance = 0
   end
@@ -166,7 +166,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
     return [encounter_type[0], encounter_type[1], pbCynthiaRollEncounter(encounter_id), losequote]
   end
 
-  if !doublebattle && $PokemonGlobal.partner
+  if (!doublebattle && $PokemonGlobal.partner) || amount == 2
     pbDoubleTrainerBattle(encounter_type[0], encounter_type[1], pbCynthiaRollEncounter(encounter_id), losequote, encounter_type[0], encounter_type[1], pbCynthiaRollEncounter(encounter_id), losequote)
     return true
   end

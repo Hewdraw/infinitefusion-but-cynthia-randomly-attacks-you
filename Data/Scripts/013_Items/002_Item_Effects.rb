@@ -98,6 +98,7 @@ def pbRepel(item, steps)
   end
   pbUseItemMessage(item)
   $PokemonGlobal.repel = steps
+  $PokemonGlobal.cynthiachance = 1000
   pbBGMPlay(pbStringToAudioFile("CynthiaEncounter1"))
   return 3
 end

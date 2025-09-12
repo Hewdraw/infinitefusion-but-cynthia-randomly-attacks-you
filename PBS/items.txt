@@ -800,6 +800,11 @@
 801,MINECRAFTBALL,Minecraft Ball,Minecraft Balls,1,0,"",0,0,0
 802,MAXMUSHROOM,MAX Mushroom,MAX Mushrooms,1,0,"",0,0,0
 803,MEGARING,Mega Ring,Mega Rings,1,0,"",0,0,0
+804,ELYTRA,Elytra,Elytras,1,0,"",0,0,0
+805,ENDERPEARL,Ender Pearl,Ender Pearls,1,0,"",0,0,0
+806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"",0,0,0
+807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"",0,0,0
+808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"",0,0,0
 
 
 #    attr_reader :id

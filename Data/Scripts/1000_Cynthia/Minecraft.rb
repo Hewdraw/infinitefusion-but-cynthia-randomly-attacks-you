@@ -45,6 +45,24 @@ def enderChest()
       pbMessage("You got #{randomitem[1]} \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
   end
+
+  if rand(10) == 0
+    eventlist = getEventList()
+    randomevent = eventlist[rand(eventlist.length)]
+    pbMessage("You got #{randomevent[1]} \\C[5]#{randomevent[0]}\\C[0]!")
+    randomevent[2].call
+  end
+end
+
+def getEventList()
+  return [
+    ["Hatsune Miku", 1, lambda {pbEncounterCynthia(encounter_type = "Hatsune Miku", nil, false, 1)}],
+    ["Cynthia", 2, lambda {pbEncounterCynthia(encounter_type = [:CHAMPION_Sinnoh, "Cynthia"], nil, false, 0, 2)}],
+    ["Dennis", 1, lambda {pbTrainerBattle(:TEAMROCKET, "Dennis")}],
+    ["Creeper", 1, lambda {pbLegendaryBattle("Creeper")}],
+    ["Thunder Stone and 1 Creeper", 1, lambda {pbLegendaryBattle("Charged Creeper")}],
+    ["Max Repel", 1, lambda {pbRepel(:MAXREPEL, 250)}],
+  ]
 end
 
 def getEnderChestRarityColors()
@@ -69,7 +87,7 @@ end
 
 def getEnderChestItems()
   return [
-    [
+    [ #common
       [:NUGGET, 5],
       [:SLOWPOKETAIL, 5],
       [:RELICGOLD, 5],
@@ -143,7 +161,7 @@ def getEnderChestItems()
       [:CLEVERMOCHI, 5],
       [:SWIFTMOCHI, 5],
     ],
-    [
+    [ #rare
       [:BIGNUGGET, 5],
       [:RELICCROWN, 5],
       [:PEARLSTRING, 5],
@@ -172,8 +190,9 @@ def getEnderChestItems()
       [:BLUNDERPOLICY, 5],
       [:THROATSPRAY, 5],
       [:FROSTORB, 1],
+      [:MISTSTONE, 1]
     ],
-    [
+    [ #super rare
       [:CHOICEBAND, 1],
       [:CHOICESPECS, 1],
       [:CHOICESCARF, 1],
@@ -189,6 +208,11 @@ def getEnderChestItems()
       [:TOTEMOFUNDYING, 1],
       [:ENDCRYSTAL, 1],
       [:MINECRAFTBALL, 1],
+      [:ELYTRA, 1],
+      [:ENDERPEARL, 1],
+      [:DIAMONDCHESTPLATE, 1],
+      [:GOLDENAPPLE, 1],
+      [:ENCHANTINGTABLE, 1],
     ],
     [
       [:ULTRANECROZIUMZ, 1],

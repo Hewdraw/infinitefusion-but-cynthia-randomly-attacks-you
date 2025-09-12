@@ -139,7 +139,7 @@ class PokeBattle_Battler
     pbAbilitiesOnFainting
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
-    if @battle.legendaryBattle? && @pokemon.raid
+    if @battle.legendaryBattle? && @pokemon.raid && @pokemon.name != "Creeper"
       if @pokemon.species == :COOLERDINO
         @pokemon.species = :TYRANTRUM
         @pokemon.name = "Cool Dino"
