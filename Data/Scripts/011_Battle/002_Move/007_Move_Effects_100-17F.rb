@@ -2984,6 +2984,13 @@ class PokeBattle_Move_198 < PokeBattle_Move
     target.effects[PBEffects::SaltCure] == 1
     @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
   end
+  
+  def pbEffectAgainstTarget(user,target)
+    return if target.effects[PBEffects::SaltCure]>=0
+    return if target.fainted? || target.damageState.substitute
+    target.effects[PBEffects::SaltCure] == 1
+    @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
+  end
 end
 
 class PokeBattle_Move_199 < PokeBattle_Move
