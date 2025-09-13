@@ -1203,6 +1203,8 @@ class PokeBattle_AI
     when "0F0", "202" #todo
       score *= 3 if target.hasActiveItem?([:LIGHTBALL, :THICKCLUB, :PYRITE, :EVIOLITE, :REAPERCLOTH])
       score *= 2 if target.hasActiveItem?([:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME])
+      score = 1 if target.hasActiveItem?([:POWERHERB, :ENDCRYSTAL]) #todo add more consumables
+      score = 1 if target.hasActiveAbility?([:UNBURDEN])
       score = 0 if !target.item
       score = 0 if target.unlosableItem?(target.item)
       score = 0 if target.hasActiveAbility?(:STICKYHOLD) && !user.hasMoldBreaker?
