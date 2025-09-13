@@ -539,7 +539,7 @@ def pbTrainerBattleCore(*args)
     if $Trainer.numbadges > 2
       $PokemonGlobal.cynthiatripleschance += 1
     end
-    if (rand(20) == $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance > 0) || (rand(80) < $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance == 0)
+    if !$PokemonGlobal.partner && ((rand(20) == $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance > 0) || (rand(80) < $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance == 0))
       $PokemonGlobal.cynthiatripleschance = 0
       setBattleRule("triple")
       args.push(pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, true))
