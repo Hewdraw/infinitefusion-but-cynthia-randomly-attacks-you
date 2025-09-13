@@ -179,7 +179,7 @@ class PokeBattle_Move
         damage = target.effects[PBEffects::RedstoneCube] if damage>target.effects[PBEffects::RedstoneCube]
         target.damageState.hpLost       = damage
         target.damageState.totalHPLost += damage
-        user.pbBurn(target) if user.pbCanBurn(target) && contactMove?
+        user.pbBurn(target) if user.pbCanBurn?(target) && contactMove?
         return
       end
       damage = target.effects[PBEffects::Substitute] if damage>target.effects[PBEffects::Substitute]

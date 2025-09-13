@@ -236,7 +236,7 @@ class PokeBattle_Battle
     @scene.pbRefreshOne(idxBattler)
     battler.effects[PBEffects::Dynamax] = 3
     battler.effects[PBEffects::Encore] = 0
-    battler.effects[PBEffects::Torment] = 0
+    battler.effects[PBEffects::Torment] = false
     if battler.pokemon.gigantamax
       tempspecies = ("GMAX" + battler.pokemon.species.to_s).to_sym
       level = battler.level
