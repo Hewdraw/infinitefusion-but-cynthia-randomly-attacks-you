@@ -1068,7 +1068,7 @@ class PokeBattle_AI
       score = 0 if user.effects[PBEffects::Ingrain]
     #---------------------------------------------------------------------------
     when "0DC", "184" #todo more properly
-      score = 100 * damageinfo[:info][:damagethreshold] / 2.5
+      score = 100 * (damageinfo[:info][:damagethreshold] + 1) / 2.5
       if !target.hasActiveAbility?(:LIQUIDOOZE)
         score *= 1.15 if user.hasActiveItem?(:BIGROOT) && !user.effects[PBEffects::HealBlock]
         score /= 2.0 if user.effects[PBEffects::HealBlock]

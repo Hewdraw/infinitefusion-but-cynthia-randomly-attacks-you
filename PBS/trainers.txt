@@ -2455,11 +2455,46 @@ Pokemon = B45H192,70 #SUNPLUME
 ###################
 
 [LEADER_Erika,Erika,1]
-Pokemon = B114H70,30 #Weepingella,
-	Moves = RAZORLEAF,SLEEPPOWDER,POISONPOWDER,CONSTRICT
-Pokemon = B102H44,30 #GLOOCUTE,
-	Moves = LEECHSEED,REFLECT,BARRAGE,MEGADRAIN
-Pokemon = IVYSAUR,30 
+Pokemon = JUMPLUFF,5	
+	Offset = 4
+	Moves = UTURN,SUNNYDAY,STRENGTHSAP
+	Ability = CHLOROPHYLL
+	Item = HEATROCK
+	Gender = F
+	Nature = JOLLY
+	IV = 16,16,16,16,16,16
+	EV = 128,0,0,0,0,0
+	Happiness = 255
+Pokemon = AEXEGGUTOR,5	
+	Offset = 2
+	Moves = SUNNYDAY,DRAGONPULSE,FLAMETHROWER
+	Ability = HARVEST
+	Item = SITRUSBERRY
+	Gender = F
+	Nature = MODEST
+	IV = 16,16,16,16,16,16
+	EV = 128,0,0,0,0,0
+	Happiness = 255
+Pokemon = VICTREEBEL,5	
+	Offset = 6
+	Moves = SOLARBEAM,SLUDGEWAVE,SYNTHESIS
+	Ability = CHLOROPHYLL
+	Item = LIFEORB
+	Gender = F
+	Nature = MODEST
+	IV = 16,16,16,16,16,16
+	EV = 0,0,0,0,128,0
+	Happiness = 255
+Pokemon = B266H182,5	
+	Offset = 7
+	Moves = SWORDSDANCE,LEAFBLADE,DRAINPUNCH
+	Ability = CHLOROPHYLL
+	Item = FIGHTINGGEM
+	Gender = F
+	Nature = JOLLY
+	IV = 16,16,16,16,16,16
+	EV = 0,128,0,0,0,0
+	Happiness = 255
 ###################
 
 [LEADER_Koga,Koga,0]	
