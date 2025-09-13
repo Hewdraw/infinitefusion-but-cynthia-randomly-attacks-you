@@ -30,6 +30,7 @@ class PokeBattle_AI
       stateffect = pbCynthiaGetStatIncrease(stat[0], stat[1], target)
       next if stateffect == 0
       score += stat[1]
+      score += stat[1] * 5 if user.pbHasMove?(:STOREDPOWER) && stat[1] > 0
       if stat[0] == :SPEED #todo trick room
         tempscore = [0.0, 0]
         target.eachOpposing do |opponent|
@@ -325,7 +326,15 @@ class PokeBattle_AI
       score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:SPEED, 2]], user, user)
     #---------------------------------------------------------------------------
     when "037"
-      score = [score, 66 - damageinfo[:info][:opposingThreat]].max()
+      statscore = 0
+      statamount = 0.0
+      [[:ATTACK, 2], [:DEFENSE, 2], [:SPEED, 2], [:SPECIAL_ATTACK, 2], [:SPECIAL_DEFENSE, 2]].each do |stat|
+        currentstat = pbCynthiaCalculateStatScore([stat], user, user)
+        next if currentstat == 0
+        statscore += currentstat
+        statamount += 1
+      end #todo evasion/accuracy
+      score = statscore / statamount
     #---------------------------------------------------------------------------
     when "038"
       score = pbCynthiaCalculateStatScore([[:DEFENSE, 3]], user, user)
@@ -1010,36 +1019,32 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "0D5", "0D6", "16D"
-      healamount = 50
-      healamount = 66 if [:Sandstorm].include?(@battle.pbWeather) && move.function == "16D"
+      healamount = 50.0
+      healamount = 66.6 if [:Sandstorm].include?(@battle.pbWeather) && movefunction == "16D"
       missinghp = 100.0 * (user.adjustedTotalhp - user.hp) / user.totalhp
+      if movefunction == "0D8"
+        healamount = 25.0
+        healamount = 50.0 if [:None, :StrongWinds].include?(@battle.pbWeather)
+        healamount = 66.6 if [:Sun, :HarshSun].include?(@battle.pbWeather)
+      end
       missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
       score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
-      score = 0 if [healamount, missinghp].min < healamount / 2.0
+      score = 1 if damageinfo[:info][:opposingMaxThreat] > healamount
+      score = 1 if [healamount, missinghp].min < healamount / 2.0
       score = 0 if !user.canHeal?
       score = 0 if user.hp == user.adjustedTotalhp
     #---------------------------------------------------------------------------
     when "0D7"
-      healamount = 50
+      healamount = 50.0
       missinghp = 100.0 * (user.adjustedTotalhp - user.hp) / user.totalhp
       missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
       score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
-      score = 0 if [healamount, missinghp].min < healamount / 2.0
-      score = 0 if missinghp + damageinfo[:info][:opposingMaxThreat] > user.adjustedTotalhp && !(user.pbHasMove?(:PROTECT) || user.pbHasMove?(:DETECT))
+      score = 1 if damageinfo[:info][:opposingMaxThreat] > healamount
+      score = 1 if [healamount, missinghp].min < healamount / 2.0
+      score = 1 if missinghp + damageinfo[:info][:opposingMaxThreat] > user.adjustedTotalhp && !(user.pbHasMove?(:PROTECT) || user.pbHasMove?(:DETECT))
       score = 0 if !user.canHeal?
       score = 0 if user.hp == user.adjustedTotalhp
       score = 0 if @battle.positions[user.index].effects[PBEffects::Wish]>0
-    #---------------------------------------------------------------------------
-    when "0D8"
-      healamount = 25
-      healamount = 50 if [:None, :StrongWinds].include?(@battle.pbWeather)
-      healamount = 66 if [:Sun, :HarshSun].include?(@battle.pbWeather)
-      missinghp = 100.0 * (user.adjustedTotalhp - user.hp) / user.totalhp
-      missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
-      score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
-      score = 0 if [healamount, missinghp].min < healamount / 2.0
-      score = 0 if !user.canHeal?
-      score = 0 if user.hp == user.adjustedTotalhp
     #---------------------------------------------------------------------------
     when "0D9" #todo
       if user.hp==user.totalhp || !user.pbCanSleep?(user,false,nil,true)
@@ -1062,8 +1067,8 @@ class PokeBattle_AI
       score = 0 if user.effects[PBEffects::HealBlock]
       score = 0 if user.effects[PBEffects::Ingrain]
     #---------------------------------------------------------------------------
-    when "0DC", "184"
-      score = 100 * damageinfo[:info][:damagethreshold] / 3.0
+    when "0DC", "184" #todo more properly
+      score = 100 * damageinfo[:info][:damagethreshold] / 2.5
       if !target.hasActiveAbility?(:LIQUIDOOZE)
         score *= 1.15 if user.hasActiveItem?(:BIGROOT) && !user.effects[PBEffects::HealBlock]
         score /= 2.0 if user.effects[PBEffects::HealBlock]
@@ -1071,7 +1076,8 @@ class PokeBattle_AI
         score /= 1.15 if user.hasActiveItem?(:BIGROOT)
         score /= 4.0
       end
-      score /= damageinfo[:info][:damagethreshold] / 2 if target.pbHasMove?(:RAPIDSPIN)
+      score /= damageinfo[:info][:damagethreshold] / 2.0 if target.pbHasMove?(:RAPIDSPIN)
+      score = 0 if target.hasActiveAbility?(:MAGICGUARD)
       score = 0 if target.pbHasType?(:GRASS)
       score = 0 if target.effects[PBEffects::LeechSeed] > -1
     #---------------------------------------------------------------------------
