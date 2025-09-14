@@ -450,11 +450,9 @@ class PokeBattle_Battler
         end
       end
     end
-    if @item_id == :ANCESTRALGENE && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
-      if check_ability.include?($PokemonGlobal.ancestralgeneability)
-        @tempability = GameData::Ability.get($PokemonGlobal.ancestralgeneability).real_name
-        return true
-      end
+    if check_ability.include?($PokemonGlobal.ancestralgeneability) && @item_id == :ANCESTRALGENE && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
+      @tempability = GameData::Ability.get($PokemonGlobal.ancestralgeneability).real_name
+      return true
     end
     return check_ability.include?(@ability_id)
   end

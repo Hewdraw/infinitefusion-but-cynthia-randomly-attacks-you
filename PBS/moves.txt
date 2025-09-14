@@ -720,7 +720,7 @@
 703,TACHYONCUTTER,Tachyon Cutter,185,50,STEEL,Special,0,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 704,PSYCHICNOISE,Psychic Noise,186,75,PSYCHIC,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass." #todo
 705,THUNDERCAGE,Thunder Cage,0D0,80,ELECTRIC,Special,90,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-706,ZIPPYZAP,Zippy Zap,000,50,ELECTRIC,Physical,100,15,0,NearOther,2,ab,"Nice Smeargle/Ditto, jackass." #todo
+706,ZIPPYZAP,Zippy Zap,0A0,50,ELECTRIC,Physical,100,15,0,NearOther,2,ab,"Nice Smeargle/Ditto, jackass." #todo
 707,FLOATYFALL,Floaty Fall,00F,90,FLYING,Physical,95,15,0,NearOther,30,ab,"Nice Smeargle/Ditto, jackass." #todo
 708,SPLISHYSPLASH,Splishy Splash,007,90,WATER,Special,100,15,30,AllNearFoes,0,b,"Nice Smeargle/Ditto, jackass." #todo
 709,PIKAPAPOW,Pika Papow,000,102,ELECTRIC,Special,0,20,0,NearOther,0,bf,"Nice Smeargle/Ditto, jackass." #todo

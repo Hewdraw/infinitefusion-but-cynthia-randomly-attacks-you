@@ -344,6 +344,11 @@ def UndertaleShopSetup()
       "cost" => 12,
       "amount" => 1,
     },
+    :LOADEDDICE => {
+      "badges" => 4,
+      "cost" => 12,
+      "amount" => 1,
+    },
     :HEALTHMOCHI => {
       "badges" => 5,
       "cost" => 5,

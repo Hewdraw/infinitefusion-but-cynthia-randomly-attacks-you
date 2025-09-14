@@ -120,12 +120,7 @@ class PokeBattle_AI
     userhp = userhp - @damageinfo[user][:info][:opposingThreat] if !@damageinfo[user][:info][:outspeedsopponent]
     @damageinfo[user][:info][:userdamagethreshold] = (userhp / @damageinfo[user][:info][:opposingThreat]).ceil - 1
     @damageinfo[user][:info][:opposingdamagethreshold] = (100.0 / @damageinfo[user][:info][:userThreat]).ceil - 1
-    @damageinfo[user][:info][:damagethreshold] = [[@damageinfo[user][:info][:userdamagethreshold], @damageinfo[user][:info][:opposingdamagethreshold]].min, 1].max
-    if @battle.legendarybattle?
-      user.eachOpposing do |opponent|
-        @damageinfo[user][:info][:damagethreshold] = [@damageinfo[user][:info][:damagethreshold], opponent.raid].max if opponent.raid
-      end
-    end
+    @damageinfo[user][:info][:damagethreshold] = [@damageinfo[user][:info][:userdamagethreshold], @damageinfo[user][:info][:opposingdamagethreshold]].min
     return @damageinfo[user]
   end
 
@@ -157,8 +152,8 @@ class PokeBattle_AI
       score = 0 if !target.pbCanSleep?(user,false)
     # #---------------------------------------------------------------------------
     when "005", "006", "0BE", "159" #poison
-      score = 100 * damageinfo[:info][:damagethreshold] / 8.0
-      score = 100 * (0..damageinfo[:info][:damagethreshold]).sum / 16.0 if movefunction == 006 || @battle.pbWeather == :Sandstorm
+      score = 100 * [damageinfo[:info][:damagethreshold], 1].max / 8.0
+      score = 100 * (0..[damageinfo[:info][:damagethreshold], 1].max).sum / 16.0 if movefunction == 006 || @battle.pbWeather == :Sandstorm
       score = 0 if target.effects[PBEffects::Yawn]>0 
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:TOXICBOOST,:QUICKFEET, :POISONHEAL, :MAGICGUARD])
       score = 0 if target.pbHasMoveFunction?("0D9", "191")
@@ -179,7 +174,7 @@ class PokeBattle_AI
       score = 0 if @battle.field.effects[PBEffects::TrickRoom]
     #---------------------------------------------------------------------------
     when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
-      score = 100 * damageinfo[:info][:damagethreshold] / 16.0
+      score = 100 * [damageinfo[:info][:damagethreshold], 1].max / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
       score += (damageinfo[target][:targetPhysicalThreat] - [damageinfo[target][:targetPhysicalThreat] / 2.0, damageinfo[target][:targetSpecialThreat]].max) * damageinfo[:info][:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
@@ -190,7 +185,7 @@ class PokeBattle_AI
       score = 0 if target.pbHasType?(:FIRE)
     #---------------------------------------------------------------------------
     when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
-      score = 100 * damageinfo[:info][:damagethreshold] / 16.0
+      score = 100 * [damageinfo[:info][:damagethreshold], 1].max / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
       score += (damageinfo[target][:targetSpecialThreat] - [damageinfo[target][:targetSpecialThreat] / 2.0, damageinfo[target][:targetPhysicalThreat]].max) * damageinfo[:info][:damagethreshold]
       score = 0 if target.effects[PBEffects::Yawn]>0
@@ -1032,6 +1027,7 @@ class PokeBattle_AI
         healamount = 50.0 if [:None, :StrongWinds].include?(@battle.pbWeather)
         healamount = 66.6 if [:Sun, :HarshSun].include?(@battle.pbWeather)
       end
+      healamount -= 5
       missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
       score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
       score = 1 if damageinfo[:info][:opposingMaxThreat] > healamount
@@ -1040,7 +1036,7 @@ class PokeBattle_AI
       score = 0 if user.hp == user.adjustedTotalhp
     #---------------------------------------------------------------------------
     when "0D7"
-      healamount = 50.0
+      healamount = 45.0
       missinghp = 100.0 * (user.adjustedTotalhp - user.hp) / user.totalhp
       missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
       score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
@@ -1073,7 +1069,7 @@ class PokeBattle_AI
       score = 0 if user.effects[PBEffects::Ingrain]
     #---------------------------------------------------------------------------
     when "0DC", "184" #todo more properly
-      score = 100 * (damageinfo[:info][:damagethreshold] + 1) / 2.5
+      score = 100 * ([damageinfo[:info][:damagethreshold], 1].max + 1) / 2.5
       if !target.hasActiveAbility?(:LIQUIDOOZE)
         score *= 1.15 if user.hasActiveItem?(:BIGROOT) && !user.effects[PBEffects::HealBlock]
         score /= 2.0 if user.effects[PBEffects::HealBlock]
@@ -1081,7 +1077,7 @@ class PokeBattle_AI
         score /= 1.15 if user.hasActiveItem?(:BIGROOT)
         score /= 4.0
       end
-      score /= damageinfo[:info][:damagethreshold] / 2.0 if target.pbHasMove?(:RAPIDSPIN)
+      score /= [damageinfo[:info][:damagethreshold], 1].max / 2.0 if target.pbHasMove?(:RAPIDSPIN)
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
       score = 0 if target.pbHasType?(:GRASS)
       score = 0 if target.effects[PBEffects::LeechSeed] > -1
