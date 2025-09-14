@@ -11005,7 +11005,7 @@ Pokemon = B132H242,5
 ####################### Legendary Teams
 [LEGENDARY_POKEMON,Articuno,0]
 Pokemon = ARTICUNO,11	
-	Offset = 8
+	Offset = 5
 	Moves = AURORAVEIL,ROOST,BLIZZARD,AIRSLASH
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 2
@@ -11016,7 +11016,7 @@ Pokemon = ARTICUNO,11
 	IV = 31,31,31,31,31,31
 	EV = 252,0,252,0,0,252
 Pokemon = GARTICUNO,11	
-	Offset = 8
+	Offset = 5
 	Moves = FREEZINGGLARE,RECOVER,CALMMIND,BLIZZARD
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 2
@@ -11028,7 +11028,7 @@ Pokemon = GARTICUNO,11
 
 [LEGENDARY_POKEMON,Zapdos,0]
 Pokemon = ZAPDOS,11	
-	Offset = 8
+	Offset = 5
 	Moves = ROOST,THUNDER,HURRICANE,WEATHERBALL
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 2
@@ -11039,7 +11039,7 @@ Pokemon = ZAPDOS,11
 	IV = 31,31,31,31,31,31
 	EV = 252,0,0,252,252,0
 Pokemon = GZAPDOS,11	
-	Offset = 8
+	Offset = 5
 	Moves = BULKUP,THUNDEROUSKICK,DRILLPECK,SUPERCELLSLAM
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 2
@@ -11051,7 +11051,7 @@ Pokemon = GZAPDOS,11
 
 [LEGENDARY_POKEMON,Moltres,0]
 Pokemon = MOLTRES,11	
-	Offset = 8
+	Offset = 5
 	Moves = FLAMETHROWER,SOLARBEAM,AIRSLASH,SCORCHINGSANDS
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 2
@@ -11062,7 +11062,7 @@ Pokemon = MOLTRES,11
 	IV = 31,31,31,31,31,31
 	EV = 252,0,0,252,252,0
 Pokemon = GMOLTRES,11	
-	Offset = 8
+	Offset = 5
 	Moves = FLAMETHROWER,REST,SLEEPTALK,FIERYWRATH
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 2

@@ -755,7 +755,7 @@
 738,POLTERGEIST,Poltergeist,193,110,GHOST,Physical,90,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 739,ESPERWING,Esper Wing,01F,80,PSYCHIC,Special,100,10,100,NearOther,0,befh,"Nice Smeargle/Ditto, jackass." #todo
 740,OVERDRIVE,Overdrive,000,80,ELECTRIC,Special,100,10,0,AllNearFoes,0,befk,"Nice Smeargle/Ditto, jackass."
-741,GIGATONHAMMER,Gigaton Hammer,207,160,STEEL,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+741,GIGATONHAMMER,Gigaton Hammer,203,160,STEEL,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 742,TORCHSONG,Torch Song,020,80,FIRE,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass."
 743,JETPUNCH,Jet Punch,000,60,WATER,Physical,100,15,0,NearOther,1,abef,"Nice Smeargle/Ditto, jackass."
 744,AXEKICK,Axe Kick,000,120,FIGHTING,Physical,90,10,30,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo

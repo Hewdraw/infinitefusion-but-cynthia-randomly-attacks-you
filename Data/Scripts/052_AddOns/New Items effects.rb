@@ -1274,15 +1274,6 @@ ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
   next false
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:HPMAX, proc { |item, pokemon, battler, choices, scene|
-  pbRaiseEffortValues(pokemon, :HP, 252)
-  next false
-})
-ItemHandlers::UseOnPokemon.add(:HPMAX, proc { |item, pokemon, scene|
-  pbRaiseEffortValues(pokemon, :HP, 252)
-  next false
-})
-
 ItemHandlers::UseOnPokemon.add(:TRANSGENDERSTONE, proc { |item, pokemon, scene|
   if pokemon.gender == 0
     pokemon.makeFemale
