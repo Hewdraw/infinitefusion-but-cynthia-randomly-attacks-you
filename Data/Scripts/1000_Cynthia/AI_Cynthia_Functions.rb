@@ -120,7 +120,12 @@ class PokeBattle_AI
     userhp = userhp - @damageinfo[user][:info][:opposingThreat] if !@damageinfo[user][:info][:outspeedsopponent]
     @damageinfo[user][:info][:userdamagethreshold] = (userhp / @damageinfo[user][:info][:opposingThreat]).ceil - 1
     @damageinfo[user][:info][:opposingdamagethreshold] = (100.0 / @damageinfo[user][:info][:userThreat]).ceil - 1
-    @damageinfo[user][:info][:damagethreshold] = [@damageinfo[user][:info][:userdamagethreshold], @damageinfo[user][:info][:opposingdamagethreshold], 1].min
+    @damageinfo[user][:info][:damagethreshold] = [[@damageinfo[user][:info][:userdamagethreshold], @damageinfo[user][:info][:opposingdamagethreshold]].min, 1].max
+    if @battle.legendarybattle?
+      user.eachOpposing do |opponent|
+        @damageinfo[user][:info][:damagethreshold] = [@damageinfo[user][:info][:damagethreshold], opponent.raid].max if opponent.raid
+      end
+    end
     return @damageinfo[user]
   end
 
