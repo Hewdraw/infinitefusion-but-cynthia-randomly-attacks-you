@@ -27,7 +27,7 @@ BattleHandlers::SpeedCalcItem.copy(:MACHOBRACE,:POWERANKLET,:POWERBAND,
 
 BattleHandlers::SpeedCalcItem.add(:QUICKPOWDER,
   proc { |item,battler,mult|
-    next mult*2 if battler.isFusionOf(:DITTO) &&
+    next mult*3 if battler.isFusionOf(:DITTO) &&
                    !battler.effects[PBEffects::Transform]
   }
 )
@@ -923,7 +923,7 @@ BattleHandlers::DamageCalcTargetItem.add(:KEBIABERRY,
 BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
   proc { |item,user,target,move,mults,baseDmg,type|
     if target.isFusionOf(:DITTO) && !target.effects[PBEffects::Transform]
-      mults[:defense_multiplier] *= 1.5
+      mults[:defense_multiplier] *= 3
     end
   }
 )
