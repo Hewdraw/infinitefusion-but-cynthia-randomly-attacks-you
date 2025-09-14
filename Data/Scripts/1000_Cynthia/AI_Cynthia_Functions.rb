@@ -120,7 +120,7 @@ class PokeBattle_AI
     userhp = userhp - @damageinfo[user][:info][:opposingThreat] if !@damageinfo[user][:info][:outspeedsopponent]
     @damageinfo[user][:info][:userdamagethreshold] = (userhp / @damageinfo[user][:info][:opposingThreat]).ceil - 1
     @damageinfo[user][:info][:opposingdamagethreshold] = (100.0 / @damageinfo[user][:info][:userThreat]).ceil - 1
-    @damageinfo[user][:info][:damagethreshold] = [@damageinfo[user][:info][:userdamagethreshold], @damageinfo[user][:info][:opposingdamagethreshold]].min
+    @damageinfo[user][:info][:damagethreshold] = [@damageinfo[user][:info][:userdamagethreshold], @damageinfo[user][:info][:opposingdamagethreshold], 1].min
     return @damageinfo[user]
   end
 
@@ -1481,7 +1481,7 @@ class PokeBattle_AI
         break
       end
       allythreat = 0
-      if ally
+      if ally && !ally.fainted?
         user.eachOpposing do |b|
           allythreat += pbCynthiaGetThreat(ally, b)[:highestDamage]
         end

@@ -837,6 +837,7 @@ ItemHandlers::UseOnPokemon.add(:FRESHSTARTMOCHI, proc { |item, pkmn, scene|
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
+  pkmn.calc_stats
   scene.pbDisplay(_INTL("{1}'s stats decreased.", pkmn.name))
   next true
 })
