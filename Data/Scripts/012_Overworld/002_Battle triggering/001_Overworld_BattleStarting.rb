@@ -782,7 +782,7 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
     if $Trainer.numbadges > 2
       $PokemonGlobal.cynthiadoubleschance += 1
     end
-    if !([:MECH_Miku, :WuhuIslandExecutioner].include?(trainerID) || !battleRules["birdboss"].nil?) && rand(150) < $PokemonGlobal.cynthiadoubleschance
+    if !([:MECH_Miku, :WuhuIslandExecutioner].include?(trainerID) || !$PokemonTemp.battleRules["birdboss"].nil?) && rand(150) < $PokemonGlobal.cynthiadoubleschance
       $PokemonGlobal.cynthiadoubleschance = 0
       setBattleRule("double")
       decision = pbTrainerBattleCore(pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, true), [trainerID,trainerName,trainerPartyID,endSpeech])
