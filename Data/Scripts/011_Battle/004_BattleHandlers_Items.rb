@@ -1612,6 +1612,14 @@ BattleHandlers::EOREffectItem.add(:FROSTORB,
   }
 )
 
+BattleHandlers::EOREffectItem.add(:SHOCKORB,
+  proc { |item,battler,battle|
+    next if !battler.pbCanParalyze?(nil,false)
+    battler.pbParalyze(_INTL("{1} got paralyzed by the {2}!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
 #===============================================================================
 # CertainSwitchingUserItem handlers
 #===============================================================================

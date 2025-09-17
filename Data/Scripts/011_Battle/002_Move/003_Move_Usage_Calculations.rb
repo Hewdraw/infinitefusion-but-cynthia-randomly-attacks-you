@@ -374,7 +374,7 @@ class PokeBattle_Move
     when :Psychic
       multipliers[:base_damage_multiplier] *= 1.5 if type == :PSYCHIC && user.affectedByTerrain?
     when :Misty
-      multipliers[:base_damage_multiplier] /= 1.3 if target.pbHasType?(:FAIRY) target.affectedByTerrain?
+      multipliers[:base_damage_multiplier] /= 1.3 if target.pbHasType?(:FAIRY) && target.affectedByTerrain?
     end
     # Badge multipliers
     if @battle.internalBattle

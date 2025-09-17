@@ -254,7 +254,7 @@ class PokeBattle_Battler
     end
     # Paralysis
     if @status == :PARALYSIS
-      if @battle.pbRandom(100)<25
+      if @battle.pbRandom(100)<25 && !hasActiveAbility?(:QUICKFEET)
         pbContinueStatus
         @lastMoveFailed = true
         return false

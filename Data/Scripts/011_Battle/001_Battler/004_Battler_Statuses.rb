@@ -242,6 +242,10 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} was burned!", pbThis))
       when :PARALYSIS
         @battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
+        if self.species == :CREEPER
+          @battle.pbDisplay(_INTL("{1} got charged by the paralysis!",self.pbThis(true).capitalize))
+          @battle.pbMegaEvolve(self.index, true)
+        end
       when :FROZEN
         @battle.pbDisplay(_INTL("{1} got frostbite!", pbThis))
       end

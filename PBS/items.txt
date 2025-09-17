@@ -805,6 +805,7 @@
 806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"",0,0,0
 807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"",0,0,0
 808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"",0,0,0
+809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that paralyzes the holder in battle.",1,0,0,
 
 
 #    attr_reader :id

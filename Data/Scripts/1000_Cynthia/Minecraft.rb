@@ -176,6 +176,8 @@ def getEnderChestItems()
       [:METRONOME, 1],
       [:FLAMEORB, 1],
       [:TOXICORB, 1],
+      [:FROSTORB, 1],
+      [:SHOCKORB, 1],
       [:LIGHTBALL, 1],
       [:THICKCLUB, 1],
       [:STICK, 1],
@@ -189,7 +191,6 @@ def getEnderChestItems()
       [:EJECTPACK, 5],
       [:BLUNDERPOLICY, 5],
       [:THROATSPRAY, 5],
-      [:FROSTORB, 1],
       [:MISTSTONE, 1]
     ],
     [ #super rare

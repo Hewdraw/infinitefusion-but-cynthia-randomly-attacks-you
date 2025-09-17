@@ -17,9 +17,13 @@ class PokeBattle_Battler
       BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
     end
     @battle.pbMegaEvolve(@index) if !fainted? && self.species == :CREEPER
-    if target.species == :CREEPER && @battle.field.terrain == :Electric
-      @battle.pbDisplay(_INTL("{1} got charged by the terrain!",target.pbThis(true).capitalize))
-      @battle.pbMegaEvolve(target.index, true)
+    if self.species == :CREEPER && @battle.field.terrain == :Electric
+      @battle.pbDisplay(_INTL("{1} got charged by the terrain!",self.pbThis(true).capitalize))
+      @battle.pbMegaEvolve(self.index, true)
+    end
+    if self.species == :CREEPER && self.paralyzed?
+      @battle.pbDisplay(_INTL("{1} got charged by the paralysis!",self.pbThis(true).capitalize))
+      @battle.pbMegaEvolve(self.index, true)
     end
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
