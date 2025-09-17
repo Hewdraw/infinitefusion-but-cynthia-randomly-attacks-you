@@ -64,22 +64,21 @@ end
 #===============================================================================
 # Giving Pokémon to the player (will send to storage if party is full)
 #===============================================================================
-def pbAddPokemon(pkmn, level = 1, see_form = true, dontRandomize=false, variableToSave=nil)
-  return false if !pkmn
+def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, variableToSave=nil)
+  return false if !pkmnspecies
   if pbBoxesFull?
     pbMessage(_INTL("There's no more room for Pokémon!\1"))
     pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
     return false
   end
-  case pkmn
+  pkmn = Pokemon.new(pkmnspecies, level) if !pkmnspecies.is_a?(Pokemon)
+  case pkmnspecies
   when :BONSLY
-    ability = :STURDY
-  else
-    ability = nil
-  end
-  pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
-  if ability
-    pkmn.ability = ability
+    pkmn.ability = :STURDY
+  when :B218H301
+    pkmn.ability = :SUCTIONCUPS
+    pkmn.item = :CHERISHBALL
+    pkmn.moves = [Pokemon::Move.new(:SWALLOW), Pokemon::Move.new(:SPITUP), Pokemon::Move.new(:STOCKPILE), Pokemon::Move.new(:BULLETSEED)]
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName

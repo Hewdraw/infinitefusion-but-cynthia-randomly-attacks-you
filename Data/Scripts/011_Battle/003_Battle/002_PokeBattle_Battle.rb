@@ -760,6 +760,12 @@ class PokeBattle_Battle
     end
     # Check for terrain seeds that boost stats in a terrain
     eachBattler { |b| b.pbItemTerrainStatBoostCheck }
+    eachBattler { |b| 
+      if b.species == :CREEPER
+        @battle.pbDisplay(_INTL("{1} got charged by the terrain!",b.pbThis(true).capitalize))
+        @battle.pbMegaEvolve(b.index, true)
+      end
+    }
   end
 
   #=============================================================================
