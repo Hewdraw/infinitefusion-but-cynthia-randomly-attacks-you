@@ -71,6 +71,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
     return false
   end
+  pkmn = pkmnspecies
   pkmn = Pokemon.new(pkmnspecies, level) if !pkmnspecies.is_a?(Pokemon)
   case pkmnspecies
   when :BONSLY
