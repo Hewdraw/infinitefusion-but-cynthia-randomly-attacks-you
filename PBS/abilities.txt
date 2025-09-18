@@ -264,3 +264,4 @@
 262,POWERBOUNCE,Power Bounce,""
 263,GENESIS,Genesis,"Upgrades Mew's Psychic to a Z-Move."
 264,PIXILTAG,Pixil Tag,""
+265,ICESCALES,Pixil Tag,""

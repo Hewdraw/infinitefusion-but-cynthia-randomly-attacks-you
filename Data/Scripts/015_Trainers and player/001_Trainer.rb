@@ -118,8 +118,7 @@ class Trainer
     return ret
   end
 
-  def
-  highest_level_pokemon_in_party
+  def highest_level_pokemon_in_party
     max_level = 0
     for pokemon in @party
       if pokemon.level > max_level

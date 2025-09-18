@@ -650,6 +650,8 @@ class PokeBattle_Battle
     # Trick Room
     pbEORCountDownFieldEffect(PBEffects::TrickRoom,
        _INTL("The twisted dimensions returned to normal!"))
+    pbEORCountDownFieldEffect(PBEffects::InverseRoom,
+       _INTL("The inverted dimensions returned to normal!"))
     # Gravity
     pbEORCountDownFieldEffect(PBEffects::Gravity,
        _INTL("Gravity returned to normal!"))

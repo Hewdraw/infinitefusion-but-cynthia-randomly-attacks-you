@@ -176,7 +176,7 @@ class PokeBattle_Battle
       case @opponent.length
       when 1
         pbDisplayPaused(_INTL("You are challenged by {1}!",@opponent[0].full_name))
-        if @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Naomi"
+        if @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Naomi" || rand(256) == 0
           @scene.pbCommonAnimation("Shiny",@opponent[0])
           if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
             pbDisplayPaused(_INTL("It's Miku Monday! Miku makes every Monday better!"))

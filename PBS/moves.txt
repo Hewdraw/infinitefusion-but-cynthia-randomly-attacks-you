@@ -843,6 +843,8 @@
 826,TEMPERFLARE,Temper Flare,166,75,FIRE,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 827,BURNINGJEALOUSY,Burning Jealosy,000,70,FIRE,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 828,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,90,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
+829,GREATERMETRONOME,Greater Metronome,214,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... twice!"
+830,POPULATIONBOMB,Skitter Smack,045,70,BUG,Physical,90,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 
 
 

@@ -21,6 +21,7 @@ begin
       @effects[PBEffects::MudSportField]   = 0
       @effects[PBEffects::PayDay]          = 0
       @effects[PBEffects::TrickRoom]       = 0
+      @effects[PBEffects::InverseRoom]       = 0
       @effects[PBEffects::WaterSportField] = 0
       @effects[PBEffects::WonderRoom]      = 0
       @defaultWeather  = :None

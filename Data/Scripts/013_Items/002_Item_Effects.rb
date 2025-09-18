@@ -699,7 +699,7 @@ ItemHandlers::UseOnPokemon.add(:HPMAX, proc { |item, pokemon, scene|
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
-  scene.pbDisplay(_INTL("{1}'s Defense increased.", pkmn.name))
+  scene.pbDisplay(_INTL("{1}'s HP increased.", pkmn.name))
   pkmn.changeHappiness("vitamin")
   next false
 })

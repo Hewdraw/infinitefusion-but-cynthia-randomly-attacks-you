@@ -536,10 +536,7 @@ class PokeBattle_Scene
   def pbAnimationCore(animation,user,target,oppMove=false)
     return if !animation
     @briefMessage = false
-    mikuSprite = false
-    if user && user.name && (user.name == "Hatsune Miku" || user.name == "Naomi")
-      mikuSprite = true
-    end
+    mikuSprite = user && user.is_a?(Trainer)
 
     if mikuSprite
       userSprite = @sprites["trainer_1"]
