@@ -3381,7 +3381,6 @@ class PokeBattle_Move_215 < PokeBattle_Move
        "0B3",   # Nature Power
        "0B4",   # Sleep Talk
        "0B5",   # Assist
-       "0B6",   # Metronome
        # Move-redirecting and stealing moves
        "0B1",   # Magic Coat                          # Not listed on Bulbapedia
        "0B2",   # Snatch
@@ -3403,32 +3402,13 @@ class PokeBattle_Move_215 < PokeBattle_Move
        "134"    # Celebrate
     ]
     @moveBlacklistSignatures = [
-       :SNARL,
-       # Signature moves
-       :DIAMONDSTORM,     # Diancie (Gen 6)
-       :FLEURCANNON,      # Magearna (Gen 7)
-       :FREEZESHOCK,      # Black Kyurem (Gen 5)
-       :HYPERSPACEFURY,   # Hoopa Unbound (Gen 6)
-       :HYPERSPACEHOLE,   # Hoopa Confined (Gen 6)
-       :ICEBURN,          # White Kyurem (Gen 5)
-       :LIGHTOFRUIN,      # Eternal Flower Floette (Gen 6)
-       :MINDBLOWN,        # Blacephalon (Gen 7)
-       :PHOTONGEYSER,     # Necrozma (Gen 7)
-       :PLASMAFISTS,      # Zeraora (Gen 7)
-       :RELICSONG,        # Meloetta (Gen 5)
-       :SECRETSWORD,      # Keldeo (Gen 5)
-       :SPECTRALTHIEF,    # Marshadow (Gen 7)
-       :STEAMERUPTION,    # Volcanion (Gen 6)
-       :TECHNOBLAST,      # Genesect (Gen 5)
-       :THOUSANDARROWS,   # Zygarde (Gen 6)
-       :THOUSANDWAVES,    # Zygarde (Gen 6)
-       :VCREATE,           # Victini (Gen 5)
        :FAKEMOVE          #not a real move
     ]
   end
 
   def pbMoveFailed?(user,targets)
     @metronomeMove = nil
+    @metronomeMove2 = nil
     move_keys = GameData::Move::DATA.keys
     # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
     #       a row. This is too unlikely to care about, though.
@@ -3438,10 +3418,18 @@ class PokeBattle_Move_215 < PokeBattle_Move
       next if @moveBlacklist.include?(move_data.function_code)
       next if @moveBlacklistSignatures.include?(move_data.id)
       next if move_data.type == :SHADOW
+      if @metronomeMove
+        @metronomeMove2 = move_data.id
+        break
+      end
       @metronomeMove = move_data.id
-      break
     end
     if !@metronomeMove
+      move_id = move_keys[@battle.pbRandom(move_keys.length)]
+      move_data = GameData::Move.get(move_id)
+      @metronomeMove = move_data.id
+    end
+    if !@metronomeMove2
       move_id = move_keys[@battle.pbRandom(move_keys.length)]
       move_data = GameData::Move.get(move_id)
       @metronomeMove = move_data.id
@@ -3451,5 +3439,6 @@ class PokeBattle_Move_215 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     user.pbUseMoveSimple(@metronomeMove)
+    user.pbUseMoveSimple(@metronomeMove2)
   end
 end
