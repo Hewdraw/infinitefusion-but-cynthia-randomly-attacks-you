@@ -694,7 +694,7 @@ ItemHandlers::UseOnPokemon.add(:HPUP, proc { |item, pkmn, scene|
   next true
 })
 
-ItemHandlers::UseOnPokemon.add(:HPMAX, proc { |item, pokemon, scene|
+ItemHandlers::UseOnPokemon.add(:HPMAX, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :HP, 252) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false

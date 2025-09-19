@@ -92,6 +92,9 @@ class PokeBattle_Move
     # Multiply all effectivenesses together
     ret = 1
     typeMods.each { |m| ret *= m }
+    if @battle.field.effects[PBEffects::InverseRoom]
+      ret = Effectiveness::NORMAL_EFFECTIVE * (Effectiveness::NORMAL_EFFECTIVE / ret)
+    end
     return ret
   end
 
