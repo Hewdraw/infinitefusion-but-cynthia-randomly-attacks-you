@@ -203,7 +203,7 @@ def getEnderChestItems()
       [:LOADEDDICE, 1],
       [:HEAVYDUTYBOOTS, 1],
     ],
-    [
+    [ #secret rare
       [:SACREDASH, 1],
       [:BUNDLEOFBALLOONS, 1],
       [:TOTEMOFUNDYING, 1],
@@ -215,7 +215,7 @@ def getEnderChestItems()
       [:GOLDENAPPLE, 1],
       [:ENCHANTINGTABLE, 1],
     ],
-    [
+    [ #ultimate rare
       [:ULTRANECROZIUMZ, 1],
       [:MAXMUSHROOM, 1],
       [:MEGARING, 1],

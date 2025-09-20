@@ -845,6 +845,7 @@
 828,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,90,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 829,GREATERMETRONOME,Greater Metronome,215,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... twice!"
 830,POPULATIONBOMB,Skitter Smack,045,70,BUG,Physical,90,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
+831,GREATESTMETRONOME,Greatest Metronome,216,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... thrice!"
 
 
 

@@ -901,10 +901,14 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.add(:LEGENDARYCANDY, proc { |item, pkmn, scene|
   $PokemonGlobal.cynthiachance += 1
   if !(can_use_rare_candy(pkmn))
+    if pkmn.level > Settings::LEVEL_CAPS[$Trainer.badge_count]
+      pbChangeLevel(pkmn, pkmn.level - 1, scene)
+      scene.pbHardRefresh
+      next false
+    end
     scene.pbDisplay(_INTL("It didn't have any effect... or did it?"))
     next false
   end
-  pbSet(VAR_STAT_RARE_CANDY,pbGet(VAR_STAT_RARE_CANDY)+1)
   pbChangeLevel(pkmn, pkmn.level + 1, scene)
   scene.pbHardRefresh
   next false
