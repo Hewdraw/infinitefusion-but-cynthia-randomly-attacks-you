@@ -700,7 +700,7 @@
 692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6,
 693,EJECTPACK,Eject Pack,Eject Packs,1,0,"",0,0,0
 694,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
-695,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"",0,0,0
+695,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"todo",0,0,0
 696,GARCHOMPITE,Garchompite,Garchompites,1,0,"",0,0,0
 697,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
 698,LUCARIONITE,Lucarionite,Lucarionites,1,0,"",0,0,0

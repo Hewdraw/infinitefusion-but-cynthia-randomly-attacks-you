@@ -91,9 +91,10 @@ class PokeBattle_Move
     end
     # Multiply all effectivenesses together
     ret = 1
-    typeMods.each { |m| ret *= m }
-    if @battle.field.effects[PBEffects::InverseRoom]
-      ret = Effectiveness::NORMAL_EFFECTIVE * (Effectiveness::NORMAL_EFFECTIVE / ret)
+    if @battle.field.effects[PBEffects::InverseRoom] > 0
+      typeMods.each { |m| ret *= Effectiveness::NORMAL_EFFECTIVE_ONE * (Effectiveness::NORMAL_EFFECTIVE_ONE / [m, 1].max) }
+    else
+      typeMods.each { |m| ret *= m }
     end
     return ret
   end

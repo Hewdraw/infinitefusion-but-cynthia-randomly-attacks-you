@@ -3,6 +3,7 @@ class PokeBattle_AI
     user = @battle.battlers[idxBattler]
     @threattable = {}
     @damageinfo = {}
+    @activemon = user
     choices = []
     if @battle.battlers[idxBattler].dynamax == nil || @battle.battlers[idxBattler].dynamax == true
       choices.push(*pbCynthiaItemScore(idxBattler))
@@ -270,7 +271,7 @@ class PokeBattle_AI
     }
 
     key = :minDamage
-    key = :maxDamage if target.pbOwnedByPlayer?
+    key = :maxDamage if target.opposes?(@activemon)
 
     target.moves.each_with_index do |move,i|
       next if move.pp==0 && move.total_pp>0

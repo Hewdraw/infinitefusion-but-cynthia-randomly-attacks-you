@@ -927,12 +927,12 @@ class PokeBattle_AI
       else
         score -= 90
       end
-      score += 1 if movefunction == "120"
+      score += 10 if movefunction == "210"
     #---------------------------------------------------------------------------
     when "0B5" #todo
     #---------------------------------------------------------------------------
     when "0B6"
-      score = rand(33)
+      score = rand(50)
     #---------------------------------------------------------------------------
     when "0B7" #todo
       score -= 90 if target.effects[PBEffects::Torment]
@@ -2130,7 +2130,7 @@ class PokeBattle_AI
       score *= 3
     #---------------------------------------------------------------------------
     when "215" 
-      score = rand(100)
+      score = 10 + rand(50) + rand(50)
     end
     effectchance = 100
     effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
