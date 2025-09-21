@@ -2254,7 +2254,7 @@ class PokeBattle_AI
         end
       when "0C1"   # Beat Up
         mult = 0
-        @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn,_i|
+        pbParty(user.index).each do |pkmn,_i|
           mult += 1 if pkmn && pkmn.able? && pkmn.status == :NONE
         end
         baseDmg *= mult
