@@ -1265,12 +1265,22 @@ ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
   next false
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, choices, scene|
-  pbRaiseEffortValues(pokemon, :ATTACK, 252)
+ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pkmn, battler, choices, scene|
+  if pbRaiseEffortValues(pkmn, :ATTACK, 252) == 0
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pkmn.name))
+  pkmn.changeHappiness("vitamin")
   next false
 })
-ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  pbRaiseEffortValues(pokemon, :ATTACK, 252)
+ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pkmn, scene|
+  if pbRaiseEffortValues(pkmn, :ATTACK, 252) == 0
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pkmn.name))
+  pkmn.changeHappiness("vitamin")
   next false
 })
 
