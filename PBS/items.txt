@@ -698,23 +698,23 @@
 690,LIFTKEY,Lift Key,Lift Keys,8,0,"A key that operates the elevator in the Team Rocket Hideout. It bears the Team Rocket logo.",0,0,6,
 691,PINKANBERRY,Pinkan Berry,Pinkan Berries,5,0,"A type of Berry that is only found on Pinkan Island. This berry turns Pokémon that eats it pink.",0,0,5,
 692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6,
-693,EJECTPACK,Eject Pack,Eject Packs,1,0,"",0,0,0
+693,EJECTPACK,Eject Pack,Eject Packs,1,0,"todo",0,0,0
 694,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
 695,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"todo",0,0,0
-696,GARCHOMPITE,Garchompite,Garchompites,1,0,"",0,0,0
-697,ALTARIANITE,Altarianite,Altarianites,1,0,"",0,0,0
-698,LUCARIONITE,Lucarionite,Lucarionites,1,0,"",0,0,0
-699,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"",0,0,0
-700,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"",0,0,0
-701,MAWILITE,Mawilite,Mawilites,1,0,"",0,0,0
+696,GARCHOMPITE,Garchompite,Garchompites,1,0,"todo",0,0,0
+697,ALTARIANITE,Altarianite,Altarianites,1,0,"todo",0,0,0
+698,LUCARIONITE,Lucarionite,Lucarionites,1,0,"todo",0,0,0
+699,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
+700,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
+701,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0
 702,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,
-703,METAGROSSITE,Metagrossite,Metagrossites,1,0,"",0,0,0
-704,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"",0,0,0
-705,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"",0,0,0
-706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"",0,0,0
-707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"",0,0,0
+703,METAGROSSITE,Metagrossite,Metagrossites,1,0,"todo",0,0,0
+704,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"todo",0,0,0
+705,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"todo",0,0,0
+706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"todo",0,0,0
+707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",0,0,0
-709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"",0,0,0
+709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"todo",0,0,0
 710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,10000,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,0,
 711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"This is a crystallized form of Z-Power. It upgrades Necrozma's Photon Geyser to a Z-Move.",0,0,0
 712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,8,0,"not programmed in yet. rip trick room strats",0,0,0
@@ -753,58 +753,58 @@
 745,JOLLYMINT,Jolly Mint,Jolly Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
 746,NAIVEMINT,Naive Mint,Naive Mints,1,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
 747,SERIOUSMINT,Serious Mint,Serious Mints,1,0,"Having a Pokémon smell this mint will cause its Attack, Defense, Sp. Atk, Sp. Def, and Speed stats to grow at an equal rate.",1,0,0
-748,SLOWBRONITE,Slowbronite,Slowbronites,1,0,"",0,0,0
-749,HERACRONITE,Heracronite,Heracronites,1,0,"",0,0,0
-750,GENGARITE,Gengarite,Gengarites,1,0,"",0,0,0
-751,GYARADOSITE,Gyaradosite,Gyaradosites,1,0,"",0,0,0
-752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"",0,0,0
-753,MYSTERIOUSMETEORS,Mysterious Meteors,Mysterious Meteors,1,0,"",0,0,0
+748,SLOWBRONITE,Slowbronite,Slowbronites,1,0,"todo",0,0,0
+749,HERACRONITE,Heracronite,Heracronites,1,0,"todo",0,0,0
+750,GENGARITE,Gengarite,Gengarites,1,0,"todo",0,0,0
+751,GYARADOSITE,Gyaradosite,Gyaradosites,1,0,"todo",0,0,0
+752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"todo",0,0,0
+753,MYSTERIOUSMETEORS,Mysterious Meteors,Mysterious Meteors,1,0,"todo",0,0,0
 754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",1,0,0,
 755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",1,0,0,
 756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",1,0,0,
 757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,0,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",1,0,0,
 758,HPMAX,HP Max,Hp Maxes,2,128,"Makes you healthier!",1,3,0,
-759,BEEZORITE,Beezorite,Beezorites,1,0,"",0,0,0
-760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"",0,0,0
-761,MEDICHAMITE,Medichamite,Medichamites,1,0,"",0,0,0
-762,TYRANWILITE,Tyranwilite,Tyranwilites,1,0,"",0,0,0
+759,BEEZORITE,Beezorite,Beezorites,1,0,"todo",0,0,0
+760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"todo",0,0,0
+761,MEDICHAMITE,Medichamite,Medichamites,1,0,"todo",0,0,0
+762,TYRANWILITE,Tyranwilite,Tyranwilites,1,0,"todo",0,0,0
 763,PYRITE,Pyrite,Pyrite,1,0,"Fool's Gold. Makes the holder ???-Type.",0,0,0
-764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"",0,0,0
-765,GARDEROSITE,Garderosite,Garderosites,1,0,"",0,0,0
+764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"todo",0,0,0
+765,GARDEROSITE,Garderosite,Garderosites,1,0,"todo",0,0,0
 766,BEEGPP,Beeg PP,Beeg PPs,2,10000,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
 767,MECHUMETAL,Mechu Metal,Mechu Metals,2,128,"Infinitely dense iron.",1,3,0,
-777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"",0,0,0
-778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"",0,0,0
-779,FLYINIUMZ,Flyiunium Z,Flyiunium Zs,1,0,"",0,0,0
-780,POISONIUMZ,Poisonium Z,Poisonium Zs,1,0,"",0,0,0
-781,GROUNDIUMZ,Groundium Z,Groundium Zs,1,0,"",0,0,0
-782,ROCKIUMZ,Rockium Z,Rockium Zs,1,0,"",0,0,0
-783,BUGINIUMZ,Buginium Z,Buginium Zs,1,0,"",0,0,0
-784,GHOSTIUMZ,Ghostium Z,Ghostium Zs,1,0,"",0,0,0
-785,STEELIUMZ,Steelium Z,Steelium Zs,1,0,"",0,0,0
-786,FIRIUMZ,Firium Z,Firium Zs,1,0,"",0,0,0
-787,WATERIUMZ,Waterium Z,Waterium Zs,1,0,"",0,0,0
-788,GRASSIUMZ,Grassium Z,Grassium Zs,1,0,"",0,0,0
-789,ELECTRIUMZ,Electrium Z,Electrium Zs,1,0,"",0,0,0
-790,PSYCHIUMZ,Psychium Z,Psychium Zs,1,0,"",0,0,0
-791,ICIUMZ,Icium Z,Icium Zs,1,0,"",0,0,0
-792,DRAGONIUMZ,Dragonium Z,Dragonium Zs,1,0,"",0,0,0
-793,DARKINIUMZ,Darkinium Z,Darkinium Zs,1,0,"",0,0,0
-794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"",0,0,0
-795,KOMMONIUMZ,Kommonium Z,Kommonium Zs,1,0,"",0,0,0
-796,EEVIUMZ,Eevium Z,Eevium Zs,1,0,"",0,0,0
-797,MAWANCITE,Mawancite,Mawancites,1,0,"",0,0,0
+777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"todo",0,0,0
+778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"todo",0,0,0
+779,FLYINIUMZ,Flyiunium Z,Flyiunium Zs,1,0,"todo",0,0,0
+780,POISONIUMZ,Poisonium Z,Poisonium Zs,1,0,"todo",0,0,0
+781,GROUNDIUMZ,Groundium Z,Groundium Zs,1,0,"todo",0,0,0
+782,ROCKIUMZ,Rockium Z,Rockium Zs,1,0,"todo",0,0,0
+783,BUGINIUMZ,Buginium Z,Buginium Zs,1,0,"todo",0,0,0
+784,GHOSTIUMZ,Ghostium Z,Ghostium Zs,1,0,"todo",0,0,0
+785,STEELIUMZ,Steelium Z,Steelium Zs,1,0,"todo",0,0,0
+786,FIRIUMZ,Firium Z,Firium Zs,1,0,"todo",0,0,0
+787,WATERIUMZ,Waterium Z,Waterium Zs,1,0,"todo",0,0,0
+788,GRASSIUMZ,Grassium Z,Grassium Zs,1,0,"todo",0,0,0
+789,ELECTRIUMZ,Electrium Z,Electrium Zs,1,0,"todo",0,0,0
+790,PSYCHIUMZ,Psychium Z,Psychium Zs,1,0,"todo",0,0,0
+791,ICIUMZ,Icium Z,Icium Zs,1,0,"todo",0,0,0
+792,DRAGONIUMZ,Dragonium Z,Dragonium Zs,1,0,"todo",0,0,0
+793,DARKINIUMZ,Darkinium Z,Darkinium Zs,1,0,"todo",0,0,0
+794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"todo",0,0,0
+795,KOMMONIUMZ,Kommonium Z,Kommonium Zs,1,0,"todo",0,0,0
+796,EEVIUMZ,Eevium Z,Eevium Zs,1,0,"todo",0,0,0
+797,MAWANCITE,Mawancite,Mawancites,1,0,"todo",0,0,0
 798,ANCESTRALGENE,Ancestral Gene,Ancestral Genes,1,0,"Use to Copy. When held by Mew, gives Ability but inhibits attacking potential.",1,0,0
-799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"",0,0,0
-800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"",0,0,0
-801,MINECRAFTBALL,Minecraft Ball,Minecraft Balls,1,0,"",0,0,0
-802,MAXMUSHROOM,MAX Mushroom,MAX Mushrooms,1,0,"",0,0,0
-803,MEGARING,Mega Ring,Mega Rings,1,0,"",0,0,0
-804,ELYTRA,Elytra,Elytras,1,0,"",0,0,0
-805,ENDERPEARL,Ender Pearl,Ender Pearls,1,0,"",0,0,0
-806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"",0,0,0
-807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"",0,0,0
-808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"todo",0,0,0
+799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"todo",0,0,0
+800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"todo",0,0,0
+801,MINECRAFTBALL,Minecraft Ball,Minecraft Balls,1,0,"todo",0,0,0
+802,MAXMUSHROOM,MAX Mushroom,MAX Mushrooms,1,0,"todo",0,0,0
+803,MEGARING,Mega Ring,Mega Rings,1,0,"todo",0,0,0
+804,ELYTRA,Elytra,Elytras,1,0,"todo",0,0,0
+805,ENDERPEARL,Ender Pearl,Ender Pearls,1,0,"todo",0,0,0
+806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"todo",0,0,0
+807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"todo",0,0,0
+808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"Magic craft item. Swaps attacking stats.",0,0,0
 809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that paralyzes the holder in battle.",1,0,0,
 
 
