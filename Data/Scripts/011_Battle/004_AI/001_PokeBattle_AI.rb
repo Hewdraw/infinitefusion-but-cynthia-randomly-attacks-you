@@ -22,6 +22,7 @@ class PokeBattle_AI
     @battle = battle
     @threattable = {}
     @damageinfo = {}
+    @activemon = nil
   end
 
   def pbAIRandom(x); return rand(x); end

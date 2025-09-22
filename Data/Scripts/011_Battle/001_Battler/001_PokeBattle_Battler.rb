@@ -13,8 +13,6 @@ class PokeBattle_Battler
   attr_accessor :moves
   attr_accessor :gender
   attr_accessor :iv
-  attr_accessor :attack
-  attr_accessor :spatk
   attr_accessor :speed
   attr_accessor :stages
   attr_reader :totalhp
@@ -112,12 +110,26 @@ class PokeBattle_Battler
     @pokemon.item = @item_id if @pokemon
   end
 
+  def attack
+    return @spatk if hasActiveItem?(:ENCHANTINGTABLE)
+    return @attack
+  end
+
+  attr_writer :attack
+
   def defense
     return @spdef if @battle.field.effects[PBEffects::WonderRoom] > 0
     return @defense
   end
 
   attr_writer :defense
+
+  def spatk
+    return @attack if hasActiveItem?(:ENCHANTINGTABLE)
+    return @spatk
+  end
+
+  attr_writer :spatk
 
   def spdef
     return @defense if @battle.field.effects[PBEffects::WonderRoom] > 0
@@ -599,7 +611,7 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::Ingrain]
     return false if @effects[PBEffects::SmackDown]
     return false if @battle.field.effects[PBEffects::Gravity] > 0
-    return true if pbHasType?(:FLYING)
+    return true if pbHasType?(:FLYING) && @battle.field.effects[PBEffects::InverseRoom] == 0
     return true if hasActiveAbility?([:LEVITATE, :ENDER]) && !@battle.moldBreaker
     return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS])
     return true if @effects[PBEffects::MagnetRise] > 0

@@ -365,7 +365,7 @@ class PokeBattle_AI
     when "042", "188DRAGON"
       score = pbCynthiaCalculateStatScore([[:ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
-    when "043", "188GHOST"
+    when "043", "188GHOST", "216" 
       score = pbCynthiaCalculateStatScore([[:DEFENSE, -1]], user, target)
     #---------------------------------------------------------------------------
     when "044", "188NORMAL"
@@ -2060,7 +2060,9 @@ class PokeBattle_AI
     when "176" #todo flinch
       score = pbCynthiaCalculateStatScore([[:DEFENSE, -1], [:SPEED, 1]], user, user)
     #---------------------------------------------------------------------------
-    when "180" #todo
+    when "180"
+      score = 0
+      score = -100 if user.lastRegularMoveUsed == move.id
     #---------------------------------------------------------------------------
     when "181"
       score = pbCynthiaCalculateStatScore([[:ATTACK, 1], [:DEFENSE, 1], [:SPEED, 1], [:SPECIAL_ATTACK, 1], [:SPECIAL_DEFENSE, 1]], user, user)
@@ -2120,10 +2122,6 @@ class PokeBattle_AI
       score *= 2 if target.hasActiveItem?([:LEFTOVER, :CHOICEBAND, :CHOICESPECS, :LIFEORB, :ASSAULTVEST, :METRONOME])
       score /= 2 if (!target.item) || target.unlosableItem?(target.item)
     #---------------------------------------------------------------------------
-    when "207"
-      score = 0
-      score = -100 if user.lastRegularMoveUsed == move.id
-    #---------------------------------------------------------------------------
     when "208", "209", "211" #todo
       score = 99
     #---------------------------------------------------------------------------
@@ -2132,9 +2130,15 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "215" 
       score = 10 + rand(50) + rand(50)
+    #---------------------------------------------------------------------------
     end
     effectchance = 100
-    effectchance = move.pbAdditionalEffectChance(user,target) if move.addlEffect > 0
+    if move.addlEffect > 0
+      effectchance = move.addlEffect
+      effectchance = 10 if ["009", "00B", "00E"].include?(movefunction)
+      effectchance = 50 if ["216"].include?(movefunction)
+      effectchance = move.pbAdditionalEffectChance(user,target, effectchance)
+    end
     effectchance = effectchance * [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !move.statusMove? && !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     score = score * effectchance / 100.0 if score > 0
     return score
@@ -2157,7 +2161,7 @@ class PokeBattle_AI
     end
     damagedictionary.each do |key,damage|
       originalkey = key
-      key = :critDamage if user.hasActiveItem?(:LEEK)
+      key = :critDamage if user.hasActiveItem?(:LEEK) || user.hasActiveItem?(:STICK)
       baseDmg = move.baseDamage
       case move.function
       when "010"   # Stomp

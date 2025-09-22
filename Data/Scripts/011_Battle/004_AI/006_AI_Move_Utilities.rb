@@ -55,7 +55,7 @@ class PokeBattle_AI
   def pbCalcTypeMod(moveType,user,target)
     return Effectiveness::NORMAL_EFFECTIVE if !moveType
     return Effectiveness::NORMAL_EFFECTIVE if moveType == :GROUND &&
-       target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL)
+       target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL) && @battle.field.effects[PBEffects::InverseRoom] == 0
     # Determine types
     tTypes = target.pbTypes(true)
     # Get effectivenesses

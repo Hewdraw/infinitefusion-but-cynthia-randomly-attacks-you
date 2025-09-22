@@ -189,6 +189,7 @@ class PokeBattle_Move
     end
     # Disguise takes the damage
     return if target.damageState.disguise
+    target.effects[PBEffects::RageFist] = [target.effects[PBEffects::RageFist] + 1, 7].min if target.pbHasMove?(:RAGEFIST) #todo account for multiple mons having rage fist
     # Target takes the damage
     if damage>=target.hp
       damage = target.hp

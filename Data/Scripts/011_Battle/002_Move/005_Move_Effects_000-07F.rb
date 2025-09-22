@@ -1721,6 +1721,7 @@ class PokeBattle_Move_05F < PokeBattle_Move
     GameData::Type.each do |t|
       next if t.pseudo_type || user.pbHasType?(t.id) ||
         !Effectiveness.resistant_type?(target.lastMoveUsedType, t.id)
+      next if [:ICEFIREELECTRIC, :FIREWATERELECTRIC, :WATERGROUNDFLYING, :GHOSTSTEELWATER, :FIREWATERGRASS, :GRASSSTEEL, :BUGSTEELPSYCHIC, :ICEROCKSTEEL].include?(t.id)
       @newTypes.push(t.id)
     end
     if @newTypes.length == 0

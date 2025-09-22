@@ -123,6 +123,7 @@ begin
     QuarkDrive                = 117
     SaltCure                = 118
     RedstoneCube        = 119
+    RageFist        = 120
 
     #===========================================================================
     # These effects apply to a battler position

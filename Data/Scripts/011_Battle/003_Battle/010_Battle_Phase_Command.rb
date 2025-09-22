@@ -213,6 +213,15 @@ class PokeBattle_Battle
         case cmd
         when 0    # Fight
           next if @broken_buttons.include?(0)
+          if @battlers[idxBattler].hasActiveAbility?(:WONDERGUARD) && @battlers[idxBattler].hasActiveAbility?(:STURDY)
+            pbDisplay(_INTL("nuh uh."))
+            @nuh_uh = 1
+            if @opponent
+              broken_buttons.push(0)
+              @scene.sprites["commandWindow"].index = 0
+            end
+            break
+          end
           break if pbFightMenu(idxBattler)
         when 1    # Bag
           if rand(100) < @nuh_uh

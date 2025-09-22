@@ -339,7 +339,7 @@ def UndertaleShopSetup()
       "cost" => 9,
       "amount" => 1,
     },
-    :LEEK => {
+    :STICK => {
       "badges" => 3,
       "cost" => 9,
       "amount" => 1,
@@ -478,6 +478,11 @@ def UndertaleShopSetup()
       "badges" => 10,
       "cost" => 30,
       "amount" => 5,
+    },
+    :ENCHANTINGTABLE => {
+      "badges" => 12,
+      "cost" => 20,
+      "amount" => 1,
     },
   }
 end

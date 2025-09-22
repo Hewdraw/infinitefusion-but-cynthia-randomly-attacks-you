@@ -2576,9 +2576,8 @@ class PokeBattle_Move_179 < PokeBattle_WeatherMove
   end
 end
 
-# class PokeBattle_Move_180 < PokeBattle_Move
-#   #todo alluring voice
-# end
+class PokeBattle_Move_180 < PokeBattle_Move
+end
 
 
 class PokeBattle_Move_181 < PokeBattle_Move
@@ -2846,6 +2845,7 @@ class PokeBattle_Move_193 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
+    @battle.pbDisplay(_INTL("{1} is about to be attacked by its {2}!", target.pbThis, target.itemName))
     return false
   end
 end
@@ -3556,5 +3556,58 @@ class PokeBattle_Move_215 < PokeBattle_Move
     user.pbUseMoveSimple(@metronomeMove)
     user.pbUseMoveSimple(@metronomeMove2)
     user.pbUseMoveSimple(@metronomeMove3)
+  end
+end
+
+class PokeBattle_Move_216 < PokeBattle_Move
+  def flinchingMove?
+    return true;
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    chance = pbAdditionalEffectChance(user, target, 50)
+    chance2 = pbAdditionalEffectChance(user, target, 30)
+    return if chance == 0 && chance2 == 0
+    if @battle.pbRandom(100) < chance
+      target.pbLowerStatStage(:DEFENSE,1,user) if target.pbCanLowerStatStage?(:DEFENSE,user,self)
+    end
+    target.pbFlinch(user) if @battle.pbRandom(100) < chance2
+  end
+end
+
+class PokeBattle_Move_217 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    raisedstat = false
+    GameData::Stat.each_battle { |s| raisedstat = true if target.stages[s.id] > 0 }
+    return if !raisedstat
+    target.pbConfuse(user) if target.pbCanConfuse?(user,false,self)
+  end
+end
+
+class PokeBattle_Move_218 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    raisedstat = false
+    GameData::Stat.each_battle { |s| raisedstat = true if target.stages[s.id] > 0 }
+    return if !raisedstat
+    target.pbBurn(user) if target.pbCanBurn?(user,false,self)
+  end
+end
+
+class PokeBattle_Move_219 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    loweredstat = false
+    GameData::Stat.each_battle { |s| loweredstat = true if user.stages[s.id] < 0 }
+    return baseDmg if !loweredstat
+    return baseDmg * 2
+  end
+end
+
+class PokeBattle_Move_220 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    print(user.effects[PBEffects::RageFist])
+    return baseDmg * user.effects[PBEffects::RageFist]
   end
 end

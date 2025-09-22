@@ -162,6 +162,7 @@ def getEnderChestItems()
       [:SWIFTMOCHI, 5],
     ],
     [ #rare
+      [:DIAMOND, 1],
       [:BIGNUGGET, 5],
       [:RELICCROWN, 5],
       [:PEARLSTRING, 5],
