@@ -160,6 +160,7 @@ def getEnderChestItems()
       [:GENIUSMOCHI, 5],
       [:CLEVERMOCHI, 5],
       [:SWIFTMOCHI, 5],
+      [:REDCARD, 5],
     ],
     [ #rare
       [:DIAMOND, 1],

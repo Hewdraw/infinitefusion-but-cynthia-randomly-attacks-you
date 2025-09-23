@@ -27,8 +27,7 @@ BattleHandlers::SpeedCalcItem.copy(:MACHOBRACE,:POWERANKLET,:POWERBAND,
 
 BattleHandlers::SpeedCalcItem.add(:QUICKPOWDER,
   proc { |item,battler,mult|
-    next mult*3 if battler.isFusionOf(:DITTO) &&
-                   !battler.effects[PBEffects::Transform]
+    next mult*1.1 if battler.isFusionOf(:DITTO)
   }
 )
 
@@ -448,6 +447,12 @@ BattleHandlers::AccuracyCalcTargetItem.copy(:BRIGHTPOWDER,:LAXINCENSE)
 #===============================================================================
 # DamageCalcUserItem handlers
 #===============================================================================
+
+BattleHandlers::DamageCalcUserItem.add(:ENCHANTINGTABLE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -922,8 +927,8 @@ BattleHandlers::DamageCalcTargetItem.add(:KEBIABERRY,
 
 BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if target.isFusionOf(:DITTO) && !target.effects[PBEffects::Transform]
-      mults[:defense_multiplier] *= 3
+    if target.isFusionOf(:DITTO)
+      mults[:defense_multiplier] *= 1.3
     end
   }
 )

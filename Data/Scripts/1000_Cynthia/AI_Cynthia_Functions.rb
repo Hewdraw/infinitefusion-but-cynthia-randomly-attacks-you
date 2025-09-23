@@ -173,10 +173,15 @@ class PokeBattle_AI
       score = 0 if target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanParalyzeSynchronize?(target)
       score = 0 if @battle.field.effects[PBEffects::TrickRoom]
     #---------------------------------------------------------------------------
-    when "00A", "00B", "0C6", "201", "204" #burn todo better damage calcs
+    when "00A", "00B", "0C6", "201", "204", "218" #burn todo better damage calcs
       score = 100 * [damageinfo[:info][:damagethreshold], 1].max / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
       score += (damageinfo[target][:targetPhysicalThreat] - [damageinfo[target][:targetPhysicalThreat] / 2.0, damageinfo[target][:targetSpecialThreat]].max) * damageinfo[:info][:damagethreshold]
+      if movefunction == "218"
+        raisedstat = false
+        GameData::Stat.each_battle { |s| raisedstat = true if target.stages[s.id] > 0 }
+        score = 0 if !raisedstat
+      end
       score = 0 if target.effects[PBEffects::Yawn]>0
       score = 0 if !target.pbCanBurn?(user,false)
       score = 0 if target.hasActiveAbility?([:GUTS,:MARVELSCALE,:QUICKFEET,:FLAREBOOST, :WILDFIRE])
@@ -206,8 +211,13 @@ class PokeBattle_AI
       score = 0 if (target.effects[PBEffects::Substitute] || target.effects[PBEffects::RedstoneCube]) && !move.ignoresSubstitute?(user)
       score = -100 if !(user.turnCount==0)
     #---------------------------------------------------------------------------
-    when "013", "014", "015", "040", "041"
+    when "013", "014", "015", "040", "041", "217"
       score = 100 * [damageinfo[:info][:damagethreshold], 2].min / 3.0
+      if movefunction == "217"
+        raisedstat = false
+        GameData::Stat.each_battle { |s| raisedstat = true if target.stages[s.id] > 0 }
+        score = 0 if !raisedstat
+      end
       score = 0 if !target.pbCanConfuse?(user,false,move)
     #---------------------------------------------------------------------------
     when "016"
@@ -365,7 +375,7 @@ class PokeBattle_AI
     when "042", "188DRAGON"
       score = pbCynthiaCalculateStatScore([[:ATTACK, -1]], user, target)
     #---------------------------------------------------------------------------
-    when "043", "188GHOST", "216" 
+    when "043", "188GHOST", "216", "221"
       score = pbCynthiaCalculateStatScore([[:DEFENSE, -1]], user, target)
     #---------------------------------------------------------------------------
     when "044", "188NORMAL"
@@ -2131,6 +2141,8 @@ class PokeBattle_AI
     when "215" 
       score = 10 + rand(50) + rand(50)
     #---------------------------------------------------------------------------
+    when "223"
+      score = 15 + rand(50) + rand(50) + rand(50)
     end
     effectchance = 100
     if move.addlEffect > 0
@@ -2196,7 +2208,8 @@ class PokeBattle_AI
       # Trump Card, Flail, Electro Ball, Low Kick, Fling, Spit Up
       when "077", "078", "07B", "07C", "07D", "07E", "07F", "080", "085", "087",
            "089", "08A", "08B", "08C", "08E", "08F", "090", "091", "092", "097",
-           "098", "099", "09A", "0F7", "113", "176", "188", "192", "195"
+           "098", "099", "09A", "0F7", "113", "176", "188", "192", "195", "219",
+           "220", "222"
         baseDmg = move.pbBaseDamage(baseDmg,user,target)
       when "086"   # Acrobatics
         baseDmg *= 2 if !user.item || user.hasActiveItem?(:FLYINGGEM)

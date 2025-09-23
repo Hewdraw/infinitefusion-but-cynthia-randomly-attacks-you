@@ -164,7 +164,7 @@ class PokeBattle_Move
       return
     end
     # Disguise will take the damage
-    if !@battle.moldBreaker && target.isFusionOf(:MIMIKYU) &&
+    if !@battle.moldBreaker &&
        target.form==0 && target.ability == :DISGUISE
       target.damageState.disguise = true
       return
