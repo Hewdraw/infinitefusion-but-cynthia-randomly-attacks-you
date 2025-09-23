@@ -189,7 +189,7 @@ class PokeBattle_AI
       score = 0 if (target.hasActiveAbility?(:SYNCHRONIZE) && user.pbCanBurnSynchronize?(target))
       score = 0 if target.pbHasType?(:FIRE)
     #---------------------------------------------------------------------------
-    when "00C", "00D", "00E", "135", "187" #frostbite todo better damage calcs
+    when "00C", "00D", "00E", "135", "187", "224" #frostbite todo better damage calcs
       score = 100 * [damageinfo[:info][:damagethreshold], 1].max / 16.0
       score = 0 if target.hasActiveAbility?(:MAGICGUARD)
       score += (damageinfo[target][:targetSpecialThreat] - [damageinfo[target][:targetSpecialThreat] / 2.0, damageinfo[target][:targetPhysicalThreat]].max) * damageinfo[:info][:damagethreshold]
@@ -2209,7 +2209,7 @@ class PokeBattle_AI
       when "077", "078", "07B", "07C", "07D", "07E", "07F", "080", "085", "087",
            "089", "08A", "08B", "08C", "08E", "08F", "090", "091", "092", "097",
            "098", "099", "09A", "0F7", "113", "176", "188", "192", "195", "219",
-           "220", "222"
+           "220", "222", "224"
         baseDmg = move.pbBaseDamage(baseDmg,user,target)
       when "086"   # Acrobatics
         baseDmg *= 2 if !user.item || user.hasActiveItem?(:FLYINGGEM)

@@ -761,7 +761,7 @@
 744,AXEKICK,Axe Kick,221,120,FIGHTING,Physical,90,10,30,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 745,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 746,CYNTHIAALLOUTPUMMELING,All-Out Pummeling,000,180,FIGHTING,Physical,100,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
-747,BITTERMALICE,Bitter Malice,224,75,GHOST,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+747,BITTERMALICE,Bitter Malice,224,60,GHOST,Special,100,15,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 748,CYNTHIABREAKNECKBLITZ,Breakneck Blitz,000,180,NORMAL,Physical,100,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
 749,COLLISIONCOURSE,Collision Course,222,100,FIGHTING,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 750,COMEUPPANCE,Comeuppance,073,1,DARK,Physical,100,10,0,None,0,abef,"Nice Smeargle/Ditto, jackass."
