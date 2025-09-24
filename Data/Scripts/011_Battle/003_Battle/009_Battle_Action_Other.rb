@@ -199,6 +199,7 @@ class PokeBattle_Battle
     battler.unteraTypes = types
     battler.pbUpdate(true)
     battler.ability = ability
+    battler.pokemon.ability = ability
     @scene.pbChangePokemon(battler,battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
     pbCommonAnimation("MegaEvolution2",battler)
