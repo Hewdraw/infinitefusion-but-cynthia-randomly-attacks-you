@@ -3647,3 +3647,19 @@ class PokeBattle_Move_224 < PokeBattle_FreezeMove
     return baseDmg
   end
 end
+
+class PokeBattle_Move_225 < PokeBattle_Move
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets)
+    return 4 + rand(7) if user.hasActiveItem?(:LOADEDDICE)
+    return 10
+  end
+
+  def successCheckPerHit?
+    return @accCheckPerHit
+  end
+
+  def pbOnStartUse(user,targets)
+    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?(:LOADEDDICE)
+  end
+end

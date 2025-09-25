@@ -436,6 +436,12 @@ BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
 # AccuracyCalcTargetItem handlers
 #===============================================================================
 
+BattleHandlers::AccuracyCalcUserItem.add(:BUNDLEOFBALLOONS,
+  proc { |item,mods,user,target,move,type|
+    mods[:accuracy_multiplier] *= 1.2
+  }
+)
+
 BattleHandlers::AccuracyCalcTargetItem.add(:BRIGHTPOWDER,
   proc { |item,mods,user,target,move,type|
     mods[:accuracy_multiplier] *= 0.9
@@ -1057,7 +1063,20 @@ BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
 
 BattleHandlers::TargetItemOnHit.add(:BUNDLEOFBALLOONS,
   proc { |item,user,target,move,battle|
-    battle.pbDisplay(_INTL("One of {1}'s balloons popped!",target.pbThis,target.itemName))
+    if move.type == :FIRE && (!battle.pbCheckGlobalAbility(:DAMP) || battle.moldBreaker)
+      battle.pbDisplay(_INTL("{1}'s balloons exploded!",target.pbThis))
+      if target.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        battle.scene.pbDamageAnimation(target)
+        target.pbReduceHP(user.totalhp/4,false)
+      end
+      if battler.pbCanBurn?(nil,false)
+        battler.pbBurn(nil,_INTL("{1} was burned by the explosion!",target.pbThis,target.itemName))
+      end
+      target.pbConsumeItem(false,true)
+      target.pbSymbiosis
+    else
+      battle.pbDisplay(_INTL("One of {1}'s balloons popped!",target.pbThis,target.itemName))
+    end
   }
 )
 
@@ -1571,7 +1590,7 @@ BattleHandlers::EORHealingItem.add(:BUNDLEOFBALLOONS,
   proc { |item,battler,battle|
     next if !battler.canHeal?
     battle.pbCommonAnimation("UseItem",battler)
-    battler.pbRecoverHP(battler.totalhp/16)
+    battler.pbRecoverHP(battler.totalhp/24)
     battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
        battler.pbThis,battler.itemName))
   }
