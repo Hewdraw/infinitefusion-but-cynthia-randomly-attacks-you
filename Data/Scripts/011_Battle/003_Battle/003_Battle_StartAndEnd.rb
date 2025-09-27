@@ -176,18 +176,28 @@ class PokeBattle_Battle
       case @opponent.length
       when 1
         pbDisplayPaused(_INTL("You are challenged by {1}!",@opponent[0].full_name))
-        if @opponent[0].name == "Hatsune Miku" || @opponent[0].name == "Naomi" || rand(256) == 0
-          @scene.pbCommonAnimation("Shiny",@opponent[0])
-          if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
-            pbDisplayPaused(_INTL("It's Miku Monday! Miku makes every Monday better!"))
-          end
-        end
       when 2
         pbDisplayPaused(_INTL("You are challenged by {1} and {2}!",@opponent[0].full_name,
            @opponent[1].full_name))
       when 3
         pbDisplayPaused(_INTL("You are challenged by {1}, {2} and {3}!",
            @opponent[0].full_name,@opponent[1].full_name,@opponent[2].full_name))
+      end
+      mikubattle = false
+      @opponent.each do |trainer|
+        if [:Upside_Down_Dev].include?(trainer.trainer_type)
+          @effects[PBEffects::InverseRoom] = 10000
+          pbDisplayPaused(_INTL("The battlefield turned inverted!"))
+        end
+        if ["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(256) == 0
+          @scene.pbCommonAnimation("Shiny",trainer)
+        end
+        if ["Hatsune Miku", "Naomi"].include?(trainer.name)
+          mikubattle = true
+        end
+      end
+      if mikubattle && getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
+        pbDisplayPaused(_INTL("It's Miku Monday! Miku makes every Monday better!"))
       end
     end
     # Send out Pokémon (opposing trainers first)

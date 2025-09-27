@@ -146,6 +146,7 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
   if (battletype==1 || battletype==3) && (foe.length==1 || (foe.length==2 && foe[0].trainer_type == foe[1].trainer_type))  # Against single trainer
     tr_type = foe[0].trainer_type
     tr_number= GameData::TrainerType.get(tr_type).id_number
+    tr_type = :COOLTRAINER_MIKU if tr_type == :COOLTRAINER_F && rand(25) && $Trainer.numbadges >= 8
 
     if tr_type
       tbargraphic = sprintf("vsBar_%s", tr_type.to_s) rescue nil

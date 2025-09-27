@@ -19803,7 +19803,7 @@ Name = Shedvor
 InternalName = KLEAVORSHEDINJA
 Type1 = BUG
 Type2 = ROCK
-BaseStats = SPIRITSHACKLE,STONEAXE,UTURN,KNOCKOFF
+BaseStats = 24,120,78,70,35,43
 Abilities = DROUGHT
 Moves = 1,TACKLE
 Shape = Quadruped
@@ -19830,7 +19830,7 @@ Shape = Quadruped
 #-------------------------------
 [1000721]
 Name = Frosmopult
-InternalName = DRAGPULTFROSMOTH
+InternalName = DRAGAPULTFROSMOTH
 Type1 = ICE
 Type2 = GHOST
 BaseStats = 76,101,70,116,116,85

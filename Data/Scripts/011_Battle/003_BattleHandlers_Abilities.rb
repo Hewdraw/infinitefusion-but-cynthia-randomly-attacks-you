@@ -1311,6 +1311,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:HEATPROOF,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:ICESCALES,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 2 if move.specialMove?
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:MARVELSCALE,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if target.pbHasAnyStatus? && move.physicalMove?
