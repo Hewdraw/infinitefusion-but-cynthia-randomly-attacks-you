@@ -2093,7 +2093,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "198" #todo
       score *= 2 if target.pbHasType?(:WATER) || target.pbHasType?(:STEEL)
-      score = 0 if target.effects[PBEffects::SaltCure]
+      score = 0 if target.effects[PBEffects::SaltCure] > 0
     #---------------------------------------------------------------------------
     when "199" #todo
       score *= 2 if user.pbSpeed > target.pbSpeed

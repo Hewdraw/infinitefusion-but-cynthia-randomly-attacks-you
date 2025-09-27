@@ -2963,6 +2963,10 @@ class PokeBattle_Move_197 < PokeBattle_Move
     party = @battle.pbParty(user.index)
     party.each do |pkmn|
       next if !pkmn || !pkmn.fainted?
+      if pkmn.species == :CREEPER
+        faintedlist = [pkmn]
+        break
+      end
       faintedlist.append(pkmn)
     end
     battler = faintedlist[rand(faintedlist.length())]
@@ -2972,6 +2976,7 @@ class PokeBattle_Move_197 < PokeBattle_Move
     @battle.scene.pbDisplay(_INTL("{1}'s HP was restored.", battler.name))
     @battle.battlers.each do |b|
       next unless b.pokemon == battler
+      next unless battler.index
       @battle.pbRecallAndReplace(battler.index, idxParty)
     end
   end
@@ -2979,14 +2984,14 @@ end
 
 class PokeBattle_Move_198 < PokeBattle_Move
   def pbAdditionalEffect(user, target)
-    return if target.effects[PBEffects::SaltCure]>=0
+    return if target.effects[PBEffects::SaltCure]>0
     return if target.fainted? || target.damageState.substitute
     target.effects[PBEffects::SaltCure] == 1
     @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
   end
   
   def pbEffectAgainstTarget(user,target)
-    return if target.effects[PBEffects::SaltCure]>=0
+    return if target.effects[PBEffects::SaltCure]>0
     return if target.fainted? || target.damageState.substitute
     target.effects[PBEffects::SaltCure] == 1
     @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
