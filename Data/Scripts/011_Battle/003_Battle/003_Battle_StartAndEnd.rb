@@ -186,7 +186,7 @@ class PokeBattle_Battle
       mikubattle = false
       @opponent.each do |trainer|
         if [:Upside_Down_Dev].include?(trainer.trainer_type)
-          trainer.battle.effects[PBEffects::InverseRoom] = 10000
+          @field.effects[PBEffects::InverseRoom] = 10000
           pbDisplayPaused(_INTL("The battlefield turned inverted!"))
         end
         if ["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(256) == 0
