@@ -1069,8 +1069,8 @@ BattleHandlers::TargetItemOnHit.add(:BUNDLEOFBALLOONS,
         battle.scene.pbDamageAnimation(target)
         target.pbReduceHP(user.totalhp/4,false)
       end
-      if battler.pbCanBurn?(nil,false)
-        battler.pbBurn(nil,_INTL("{1} was burned by the explosion!",target.pbThis,target.itemName))
+      if target.pbCanBurn?(nil,false)
+        target.pbBurn(nil,_INTL("{1} was burned by the explosion!",target.pbThis,target.itemName))
       end
       target.pbConsumeItem(false,true)
       target.pbSymbiosis
