@@ -408,8 +408,9 @@ module GameData
         end
 
         pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
-        pkmn.shiny = (pkmn_data[:shininess]) ? true : false
-        pkmn.natural_shiny = (pkmn_data[:shininess]) ? true : false
+        shininess = pkmn_data[:shininess] || rand(256)
+        pkmn.shiny = shininess ? true : false
+        pkmn.natural_shiny = shininess ? true : false
         if pkmn_data[:nature]
           pkmn.nature = pkmn_data[:nature]
         else
