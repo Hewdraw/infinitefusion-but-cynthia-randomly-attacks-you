@@ -75,7 +75,7 @@ class PokeBattle_AI
     ret = 1
     typeMods.each { |m| ret *= m }
     if @battle.field.effects[PBEffects::InverseRoom] > 0
-      typeMods.each { |m| ret *= (Effectiveness::NORMAL_EFFECTIVE_ONE * Effectiveness::NORMAL_EFFECTIVE_ONE) / [m, 1].max
+      typeMods.each { |m| ret *= (Effectiveness::NORMAL_EFFECTIVE_ONE * Effectiveness::NORMAL_EFFECTIVE_ONE) / [m, 1].max}
     else
       typeMods.each { |m| ret *= m }
     end
