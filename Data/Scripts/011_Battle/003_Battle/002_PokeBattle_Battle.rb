@@ -170,7 +170,7 @@ class PokeBattle_Battle
       @struggle = PokeBattle_Struggle.new(self, nil)
     end
     @broken_buttons = []
-    if @opponent && @opponent[0].name == "Hewdraw"
+    if @opponent
       opponent.each do |trainer|
         if trainer.name == "Hewdraw"
           @broken_buttons.push(1)

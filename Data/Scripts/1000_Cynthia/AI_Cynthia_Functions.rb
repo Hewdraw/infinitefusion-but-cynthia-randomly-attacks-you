@@ -245,6 +245,9 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "01C", "029", "188FIGHTING"
       score = pbCynthiaCalculateStatScore([[:ATTACK, 1]], user, user)
+      if user.pbHasMove?(:POPULATIONBOMB) && user.stages[:ACCURACY] == 0
+        score += 100
+      end
     #---------------------------------------------------------------------------
     when "01D", "01E", "0C8", "188STEEL"
       score = pbCynthiaCalculateStatScore([[:DEFENSE, 1]], user, user)
@@ -971,25 +974,10 @@ class PokeBattle_AI
       score -= 90 if target.effects[PBEffects::HealBlock]>0
     #---------------------------------------------------------------------------
     when "0BC" #todo
-      aspeed = pbRoughStat(user,:SPEED,skill)
-      ospeed = pbRoughStat(target,:SPEED,skill)
-      if target.effects[PBEffects::Encore]>0
-        score -= 90
-      elsif aspeed>ospeed
-        if !target.lastRegularMoveUsed
-          score -= 90
-        else
-          moveData = GameData::Move.get(target.lastRegularMoveUsed)
-          if moveData.category == 2 &&   # Status move
-             [:User, :BothSides].include?(moveData.target)
-            score += 60
-          elsif moveData.category != 2 &&   # Damaging move
-             moveData.target == :NearOther &&
-             Effectiveness.ineffective?(pbCalcTypeMod(moveData.type, target, user))
-            score += 60
-          end
-        end
-      end
+      score = 1 #todo
+      score = 1 if !damageinfo[:info][:outspeedsopponent]
+      score = 0 if target.effects[PBEffects::Encore]>0
+      score = 0 if !target.lastRegularMoveUsed
     #---------------------------------------------------------------------------
     when "0C2" #todo?
     #---------------------------------------------------------------------------
@@ -2239,7 +2227,7 @@ class PokeBattle_AI
       when "0BF"   # Triple Kick
         case originalkey
         when :minDamage
-          baseDmg = 10
+          baseDmg *= 3
         when :averageDamage
           baseDmg = 47 #todo accuracy check
         else
@@ -2310,6 +2298,19 @@ class PokeBattle_AI
         baseDmg *= 1.5 if target.item && !target.unlosableItem?(target.item)
       when "213"
         baseDmg *= move.pbNumHits(user, target)
+      when "225"
+        if user.stages[:ACCURACY] > 0
+          baseDmg *= 10
+        else
+          case originalkey
+          when :minDamage
+            baseDmg *= 4
+          when :averageDamage
+            baseDmg *= 6 #todo accuracy check
+          else
+            baseDmg *= 10   # Hits do x1, x2, x3 baseDmg in turn, for x6 in total
+          end
+        end
       end
       
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
