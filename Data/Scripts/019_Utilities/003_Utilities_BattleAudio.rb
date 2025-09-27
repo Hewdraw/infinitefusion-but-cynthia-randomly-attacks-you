@@ -120,7 +120,7 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
       return pbStringToAudioFile("TheSkeletonAppears")
     end
-    if trainer_type_data.id == :Non_Skeleton_Dev && trainerarray.length() == 1
+    if [:Non_Skeleton_Dev, :Upside_Down_Dev].include?(trainer_type_data.id) && trainerarray.length() == 1
       return pbStringToAudioFile("CtcUNOwen")
     end
     if trainer_type_data.id == :Skeleton_Dev
