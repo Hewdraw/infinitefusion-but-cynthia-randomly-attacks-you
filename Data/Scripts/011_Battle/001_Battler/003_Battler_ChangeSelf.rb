@@ -62,6 +62,8 @@ class PokeBattle_Battler
       @pokemon.iv = @pokemon.phasetwo.iv
       @pokemon.ev = @pokemon.phasetwo.ev
       @pokemon.nature = @pokemon.phasetwo.nature
+      @pokemon.name = @pokemon.phasetwo.name
+      @name = @pokemon.name
       pbUpdate(true)
       @battle.pbCommonAnimation("UltraBurst2", self)
       @battle.scene.pbChangePokemon(self,@pokemon)
