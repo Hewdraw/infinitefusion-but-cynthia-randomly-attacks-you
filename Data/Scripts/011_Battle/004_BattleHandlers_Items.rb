@@ -694,7 +694,7 @@ BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
+    stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
         mults[:base_damage_multiplier] *= 1.3 if (i == 0 && move.physicalMove?) || (i == 2 && move.specialMove?)
@@ -964,9 +964,9 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
+BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
+    stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
         mults[:defense_multiplier] *= 1.3 if (i == 1 && move.physicalMove?) || (i == 3 && move.specialMove?)
