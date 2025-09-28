@@ -189,7 +189,7 @@ class PokeBattle_Battler
     return true if move.pp<0          # Don't reduce PP for special calls of moves
     return true if move.total_pp<=0   # Infinite PP, can always be used
     return false if move.pp==0        # Ran out of PP, couldn't reduce
-    pbSetPP(move,move.pp-1) if move.pp>0 && !@raid.nil?
+    pbSetPP(move,move.pp-1) if move.pp>0 && @raid.nil?
     return true
   end
 
