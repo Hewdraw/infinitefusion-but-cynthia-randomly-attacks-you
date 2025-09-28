@@ -1019,14 +1019,15 @@ class PokeBattle_AI
     when "0D5", "0D6", "16D"
       healamount = 50.0
       healamount = 66.6 if [:Sandstorm].include?(@battle.pbWeather) && movefunction == "16D"
-      missinghp = 100.0 * (user.adjustedTotalhp - user.hp) / user.adjustedTotalhp
       if movefunction == "0D8"
         healamount = 25.0
         healamount = 50.0 if [:None, :StrongWinds].include?(@battle.pbWeather)
         healamount = 66.6 if [:Sun, :HarshSun].include?(@battle.pbWeather)
       end
       healamount -= 5
+      missinghp = 100.0 * (user.adjustedTotalhp - user.hp) / user.adjustedTotalhp
       missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
+      print(missinghp)
       score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
       score = 1 if damageinfo[:info][:opposingMaxThreat] > healamount
       score = 1 if [healamount, missinghp].min < healamount / 2.0
