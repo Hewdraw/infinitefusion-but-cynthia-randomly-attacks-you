@@ -1016,7 +1016,7 @@ class PokeBattle_AI
         score -= 50
       end
     #---------------------------------------------------------------------------
-    when "0D5", "0D6", "16D", "0d8"
+    when "0D5", "0D6", "16D", "0D8"
       healamount = 50.0
       healamount = 66.6 if [:Sandstorm].include?(@battle.pbWeather) && movefunction == "16D"
       if movefunction == "0D8"
