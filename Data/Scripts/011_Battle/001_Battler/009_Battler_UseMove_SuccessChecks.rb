@@ -93,7 +93,7 @@ class PokeBattle_Battler
     end
     # Assault Vest (prevents choosing status moves but doesn't prevent
     # executing them)
-    if hasActiveItem?(:ASSAULTVEST) && move.statusMove? && commandPhase
+    if (hasActiveItem?(:ASSAULTVEST) || hasActiveItem?(:DIAMONDCHESTPLATE)) && move.statusMove? && commandPhase
       if showMessages
         msg = _INTL("The effects of the {1} prevent status moves from being used!",
            itemName)

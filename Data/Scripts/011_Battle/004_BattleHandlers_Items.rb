@@ -865,6 +865,12 @@ BattleHandlers::DamageCalcTargetItem.add(:ASSAULTVEST,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:DIAMONDCHESTPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.add(:BABIRIBERRY,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:STEEL,type,target,mults)
