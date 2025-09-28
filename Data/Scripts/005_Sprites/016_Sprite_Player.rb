@@ -60,7 +60,7 @@ class Sprite_Player < Sprite_Character
     @charbitmap.bitmap.clone #nekkid sprite
     baseBitmap = @charbitmap.bitmap.clone #nekkid sprite
 
-    if $game_player.hasGraphicsOverride?
+    if $game_player.hasGraphicsOverride? && @character_name != "fish"
       @hair.update(@character_name, "", 0) if @hair
       @hat.update(@character_name, "", 0) if @hat
       @hat2.update(@character_name, "", 0) if @hat2
@@ -84,6 +84,7 @@ class Sprite_Player < Sprite_Character
     hat2_color_shift = 0 if !hat2_color_shift
 
     clothes_color_shift = 0 if !clothes_color_shift
+
     @hair.update(@character_name, hairFilename, hair_color_shift) if @hair
     @hat.update(@character_name, hatFilename, hat_color_shift) if @hat
     @hat2.update(@character_name, hat2Filename, hat2_color_shift) if @hat2

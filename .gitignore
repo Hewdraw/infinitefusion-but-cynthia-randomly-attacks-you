@@ -3,13 +3,8 @@ Graphics/Battlers/Shiny/*
 
 Graphics/CustomBattlers/spritesheets/*
 Graphics/CustomBattlers/*
-Data/sprites/*
 Data/VERSION
 infinitefusion.sh
-Data/sprites/CUSTOM_SPRITES
-Data/sprites
-Data/sprites/updated_spritesheets_cache
-Data/sprites/sprites_rate_limit.log
 .gitignore
 Game.rxproj
 .DS_Store
