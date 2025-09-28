@@ -396,9 +396,9 @@ def pbGetGoldString
     moneyString = _INTL("${1}", $Trainer.money.to_s_formatted)
   rescue
     if $data_system.respond_to?("words")
-      moneyString = _INTL("{1} {2}", $game_party.gold, $data_system.words.gold)
+      moneyString = "#{$game_party.gold} #{$data_system.words.gold}"
     else
-      moneyString = _INTL("{1} {2}", $game_party.gold, Vocab.gold)
+      moneyString = "#{$game_party.gold} #{Vocab.gold}"
     end
   end
   return moneyString
@@ -474,6 +474,8 @@ def pbDisplayHeartScalesWindow(msgwindow)
   return pointswindow
 end
 
+
+
 def pbDisplayCoinsWindow(msgwindow, goldwindow)
   coinString = ($Trainer) ? $Trainer.coins.to_s_formatted : "0"
   coinwindow = Window_AdvancedTextPokemon.new(_INTL("Coins:\n<ar>{1}</ar>", coinString))
@@ -493,6 +495,22 @@ end
 def pbDisplayBattlePointsWindow(msgwindow)
   pointsString = ($Trainer) ? $Trainer.battle_points.to_s_formatted : "0"
   pointswindow = Window_AdvancedTextPokemon.new(_INTL("Battle Points:\n<ar>{1}</ar>", pointsString))
+  pointswindow.setSkin("Graphics/Windowskins/goldskin")
+  pointswindow.resizeToFit(pointswindow.text, Graphics.width)
+  pointswindow.width = 160 if pointswindow.width <= 160
+  if msgwindow.y == 0
+    pointswindow.y = Graphics.height - pointswindow.height
+  else
+    pointswindow.y = 0
+  end
+  pointswindow.viewport = msgwindow.viewport
+  pointswindow.z = msgwindow.z
+  return pointswindow
+end
+
+def pbDisplayQuestPointsWindow(msgwindow)
+  pointsString = ($Trainer) ? $Trainer.quest_points.to_s_formatted : "0"
+  pointswindow = Window_AdvancedTextPokemon.new(_INTL("Quest Points:\n<ar>{1}</ar>", pointsString))
   pointswindow.setSkin("Graphics/Windowskins/goldskin")
   pointswindow.resizeToFit(pointswindow.text, Graphics.width)
   pointswindow.width = 160 if pointswindow.width <= 160
@@ -594,6 +612,12 @@ def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = ni
   text.gsub!(/\\pog/i, "")
   text.gsub!(/\\b/i, "<c3=3050C8,D0D0C8>")
   text.gsub!(/\\r/i, "<c3=E00808,D0D0C8>")
+  text.gsub!(/\\mu\[(.*?)\]/i) do
+    $Trainer && isPlayerMale() ? $1 : ""
+  end
+  text.gsub!(/\\fu\[(.*?)\]/i) do
+    $Trainer && isPlayerFemale() ? $1 : ""
+  end
   text.gsub!(/\\[Ww]\[([^\]]*)\]/) {
     w = $1.to_s
     if w == ""
@@ -632,7 +656,7 @@ def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = ni
   ### Controls
   textchunks = []
   controls = []
-  while text[/(?:\\(f|ff|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|ft|hs|wd|wm|op|cl|wu|\.|\||\!|\^))/i]
+  while text[/(?:\\(f|ff|ts|cl|me|se|wt|wtnp|ch)\[([^\]]*)\]|\\(g|cn|pt|ft|qp|hs|wd|wm|op|cl|wu|\.|\||\!|\^))/i]
     textchunks.push($~.pre_match)
     if $~[1]
       controls.push([$~[1].downcase, $~[2], -1])
@@ -757,6 +781,9 @@ def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = ni
       when "hs" # Display heartscakes
         goldwindow.dispose if goldwindow
         goldwindow = pbDisplayHeartScalesWindow(msgwindow)
+      when "qp" # Display quest points
+        goldwindow.dispose if goldwindow
+        goldwindow = pbDisplayQuestPointsWindow(msgwindow)
       when "cn" # Display coins window
         coinwindow.dispose if coinwindow
         coinwindow = pbDisplayCoinsWindow(msgwindow, goldwindow)

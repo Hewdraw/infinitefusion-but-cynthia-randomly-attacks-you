@@ -1,5 +1,5 @@
 class BetterRegionMap
-  DEBUG_WEATHER = true
+  DEBUG_WEATHER = $DEBUG
   def update_weather_icon(location)
     return
     return nil if !location

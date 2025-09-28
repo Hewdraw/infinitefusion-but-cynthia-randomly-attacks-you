@@ -3,41 +3,41 @@
 # HTTP utility functions
 #
 #############################
-#
 
 def pbPostData(url, postdata, filename=nil, depth=0)
-  if url[/^http:\/\/([^\/]+)(.*)$/]
-    host = $1
-    path = $2
-    path = "/" if path.length==0
-    userAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.14) Gecko/2009082707 Firefox/3.0.14"
-    body = postdata.map { |key, value|
-      keyString   = key.to_s
-      valueString = value.to_s
-      keyString.gsub!(/[^a-zA-Z0-9_\.\-]/n) { |s| sprintf('%%%02x', s[0]) }
-      valueString.gsub!(/[^a-zA-Z0-9_\.\-]/n) { |s| sprintf('%%%02x', s[0]) }
-      next "#{keyString}=#{valueString}"
-    }.join('&')
-    ret = HTTPLite.post_body(
-      url,
-      body,
-      "application/x-www-form-urlencoded",
-      {
-        "Host" => host, # might not be necessary
-        "Proxy-Connection" => "Close",
-        "Content-Length" => body.bytesize.to_s,
-        "Pragma" => "no-cache",
-        "User-Agent" => userAgent
-      }
-    ) rescue ""
-    return ret if !ret.is_a?(Hash)
-    return "" if ret[:status] != 200
-    return ret[:body] if !filename
-    File.open(filename, "wb"){|f|f.write(ret[:body])}
+  return "" unless url =~ /^https?:\/\/([^\/]+)(.*)$/
+  host = $1
+  path = $2
+  path = "/" if path.empty?
+
+  userAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.14) Gecko/2009082707 Firefox/3.0.14"
+
+  # Serialize as JSON
+  body = serialize_json(postdata)
+
+  ret = HTTPLite.post_body(
+    url,
+    body,
+    "application/json",
+    {
+      "Host" => host,
+      "Proxy-Connection" => "Close",
+      "Content-Length" => body.bytesize.to_s,
+      "Pragma" => "no-cache",
+      "User-Agent" => userAgent
+    }
+  ) rescue ""
+
+  return "" if !ret.is_a?(Hash)
+  return "" if ret[:status] != 200
+  if filename
+    File.open(filename, "wb") { |f| f.write(ret[:body]) }
     return ""
   end
-  return ""
+  ret[:body]
 end
+
+
 
 def pbDownloadData(url, filename = nil, authorization = nil, depth = 0, &block)
   return nil if !downloadAllowed?()
@@ -73,14 +73,20 @@ def pbDownloadToFile(url, file)
   end
 end
 
-def pbPostToString(url, postdata)
+def pbPostToString(url, postdata, timeout = 30)
+  safe_postdata = postdata.transform_values(&:to_s)
   begin
-    data = pbPostData(url, postdata)
-    return data
-  rescue
+    data = pbPostData(url, safe_postdata)
+    return data || ""
+  rescue MKXPError => e
+    echoln("[Remote AI] Exception: #{e.message}")
     return ""
   end
 end
+
+
+
+
 
 def pbPostToFile(url, postdata, file)
   begin
@@ -89,7 +95,7 @@ def pbPostToFile(url, postdata, file)
   end
 end
 
-def serialize_value(value)
+def serialize_value_legacy(value)
   if value.is_a?(Hash)
     serialize_json(value)
   elsif value.is_a?(String)
@@ -102,16 +108,46 @@ end
 
 
 def serialize_json(data)
-  #echoln data
-  # Manually serialize the JSON data into a string
-  parts = ["{"]
-  data.each_with_index do |(key, value), index|
-    parts << "\"#{key}\":#{serialize_value(value)}"
-    parts << "," unless index == data.size - 1
+  if data.is_a?(Hash)
+    parts = ["{"]
+    data.each_with_index do |(key, value), index|
+      parts << "\"#{key}\":#{serialize_value(value)}"
+      parts << "," unless index == data.size - 1
+    end
+    parts << "}"
+    return parts.join
+  else
+    return serialize_value(data)
   end
-  parts << "}"
-  return parts.join
 end
+
+def serialize_value(value)
+  case value
+  when String
+    "\"#{escape_json_string(value)}\""
+  when Numeric
+    value.to_s
+  when TrueClass, FalseClass
+    value.to_s
+  when NilClass
+    "null"
+  when Array
+    "[" + value.map { |v| serialize_value(v) }.join(",") + "]"
+  when Hash
+    serialize_json(value)
+  else
+    raise "Unsupported type: #{value.class}"
+  end
+end
+
+def escape_json_string(str)
+  # Minimal escape handling
+  str.gsub(/["\\]/) { |m| "\\#{m}" }
+    .gsub("\n", "\\n")
+    .gsub("\t", "\\t")
+    .gsub("\r", "\\r")
+end
+
 
 
 def downloadAllowed?()
@@ -139,6 +175,42 @@ def clean_json_string(str)
   }
   return cleaned_str
 end
+
+
+# json.rb - lightweight JSON parser for MKXP/RGSS XP
+
+# Lightweight JSON for MKXP/RGSS XP
+module JSON
+  module_function
+
+  # Convert Ruby object (hash/array/etc) into JSON string
+  def generate(obj)
+    case obj
+    when Hash
+      "{" + obj.map { |k, v| "\"#{k}\":#{generate(v)}" }.join(",") + "}"
+    when Array
+      "[" + obj.map { |v| generate(v) }.join(",") + "]"
+    when String, Symbol
+      "\"#{obj.to_s}\""
+    when TrueClass, FalseClass
+      obj.to_s
+    when NilClass
+      "null"
+    when Numeric
+      obj.to_s
+    else
+      raise "Unsupported type #{obj.class}"
+    end
+  end
+
+  # Simple parser (not full JSON) — optional
+  def parse(str)
+    return nil if str.nil? || str.strip.empty?
+    eval(str)
+  end
+end
+
+
 
 
 

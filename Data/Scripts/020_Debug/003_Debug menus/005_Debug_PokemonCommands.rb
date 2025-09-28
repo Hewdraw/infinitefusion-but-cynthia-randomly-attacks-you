@@ -900,7 +900,7 @@ PokemonDebugMenuCommands.register("speciesform", {
         pbMessage('Body species?')
         body_species = pbChooseSpeciesList(old_body_dex,NB_POKEMON)
 
-        fused_species_dex = getFusionSpecies(body_species.species,head_species.species)
+        fused_species_dex = getFusionSpecies(body_species.species, head_species.species)
         species = GameData::Species.get(fused_species_dex)
 
         if species && species != pkmn.species
@@ -919,21 +919,21 @@ PokemonDebugMenuCommands.register("speciesform", {
         # GameData::Species.each do |sp|
         #   next if sp.species != pkmn.species
         #   form_name = sp.form_name
-        #   form_name = _INTL("Unnamed form") if !form_name || form_name.empty?
+        #   form_name = "Unnamed form" if !form_name || form_name.empty?
         #   form_name = sprintf("%d: %s", sp.form, form_name)
         #   formcmds[0].push(sp.form)
         #   formcmds[1].push(form_name)
         #   cmd2 = sp.form if pkmn.form == sp.form
         # end
         # if formcmds[0].length <= 1
-        #   screen.pbDisplay(_INTL("Species {1} only has one form.", pkmn.speciesName))
+        #   screen.pbDisplay("Species {1} only has one form.", pkmn.speciesName)
         # else
-        #   cmd2 = screen.pbShowCommands(_INTL("Set the Pokémon's form."), formcmds[1], cmd2)
+        #   cmd2 = screen.pbShowCommands("Set the Pokémon's form."), formcmds[1], cmd2
         #   next if cmd2 < 0
         #   f = formcmds[0][cmd2]
         #   if f != pkmn.form
         #     if MultipleForms.hasFunction?(pkmn, "getForm")
-        #       next if !screen.pbConfirm(_INTL("This species decides its own form. Override?"))
+        #       next if !screen.pbConfirm("This species decides its own form. Override?")
         #       pkmn.forced_form = f
         #     end
         #     pkmn.form = f
@@ -1066,8 +1066,7 @@ PokemonDebugMenuCommands.register("setribbons", {
       commands = []
       ids = []
       GameData::Ribbon.each do |ribbon_data|
-        commands.push(_INTL("{1} {2}",
-           (pkmn.hasRibbon?(ribbon_data.id)) ? "[Y]" : "[  ]", ribbon_data.name))
+        commands.push("#{pkmn.hasRibbon?(ribbon_data.id) ? '[Y]' : '[  ]'} #{ribbon_data.name}")
         ids.push(ribbon_data.id)
       end
       commands.push(_INTL("Give all"))

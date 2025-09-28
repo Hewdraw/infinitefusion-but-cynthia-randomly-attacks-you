@@ -59,7 +59,7 @@
 #           basestatsum += $pkmn_dex[species][5][4] # Special Attack
 #           basestatsum += $pkmn_dex[species][5][5] # Special Defense
 #         end
-#         #Kernel.pbMessage(_INTL("total = {1}, {2}",basestatsum, PBSpecies.getName(species)))
+#         #Kernel.pbMessage("total = {1}, {2}",basestatsum, PBSpecies.getName(species))
 #       else
 #         if $game_switches[841]
 #           species = getRandomCustomSprite()

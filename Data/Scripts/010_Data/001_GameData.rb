@@ -54,14 +54,12 @@ module GameData
       end
 
       if !self::DATA.has_key?(other)
-        #echoln _INTL("Unknown ID {1}.", other)
-        return self::get(:PIKACHU)
+        if self == GameData::Item
+          return nil
+        else
+          return self::get(:PIKACHU)
+        end
       end
-
-      #if other == :Species
-
-      #     end
-
       return self::DATA[other]
     end
 

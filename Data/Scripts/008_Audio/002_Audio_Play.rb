@@ -101,7 +101,6 @@ end
 # volume -- Volume of the file, up to 100
 # pitch -- Pitch of the file, normally 100
 def pbMEPlay(param,volume=nil,pitch=nil)
-  echoln param
   return if !param
   param=pbResolveAudioFile(param,volume,pitch)
   if param.name && param.name!=""

@@ -12,7 +12,7 @@ def printNPCTrainerCurrentTeam(trainer)
   echoln "Trainer's current team is: #{team_string}"
 end
 
-def applyTrainerRandomEvents(trainer)
+def applyTrainerRandomEvents(trainer,event_type=nil)
   if trainer.has_pending_action
     echoln "Trainer has pending action"
   end
@@ -28,20 +28,21 @@ def applyTrainerRandomEvents(trainer)
     [:CATCH,   3],
     [:FUSE,    6],
     [:REVERSE, 1],
-    [:UNFUSE,  20]
+    [:UNFUSE,  2]
   ]
 
   # Create a flat array of events based on weight
   event_pool = weighted_events.flat_map { |event, weight| [event] * weight }
 
   selected_event = event_pool.sample
-
+  selected_event = event_type if event_type
   if selected_event
     echoln "Trying to do random event: #{selected_event}"
   end
 
 
   return trainer if selected_event.nil?
+  original_team = trainer.currentTeam.clone
 
   case selected_event
   when :CATCH
@@ -53,7 +54,12 @@ def applyTrainerRandomEvents(trainer)
   when :REVERSE
     trainer = reverse_random_team_pokemon(trainer)
   end
-  trainer.set_pending_action(true)
+  new_team = trainer.currentTeam
+
+  echoln original_team
+  echoln new_team
+  team_changed = original_team != new_team
+  trainer.set_pending_action(team_changed)
   printNPCTrainerCurrentTeam(trainer)
   return trainer
 end

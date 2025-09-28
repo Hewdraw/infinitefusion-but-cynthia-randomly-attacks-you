@@ -177,7 +177,8 @@ BallHandlers::ModifyCatchRate.add(:LEVELBALL,proc { |ball,catchRate,battle,battl
 
 BallHandlers::ModifyCatchRate.add(:LUREBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   multiplier = (Settings::NEW_POKE_BALL_CATCH_RATES) ? 5 : 3
-  catchRate *= multiplier if GameData::EncounterType.get($PokemonTemp.encounterType).type == :fishing
+  encounterType = GameData::EncounterType.try_get($PokemonTemp.encounterType)
+  catchRate *= multiplier if encounterType.is_a?(GameData::EncounterType) && encounterType.type == :fishing
   next [catchRate,255].min
 })
 

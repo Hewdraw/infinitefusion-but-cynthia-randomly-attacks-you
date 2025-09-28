@@ -77,10 +77,10 @@ class ReadyMenuButton < SpriteWrapper
       if !GameData::Item.get(@command[0]).is_important?
         qty = $PokemonBag.pbQuantity(@command[0])
         if qty>99
-          textpos.push([_INTL(">99"),230,16,1,
+          textpos.push([">99",230,16,1,
              Color.new(248,248,248),Color.new(40,40,40),1])
         else
-          textpos.push([_INTL("x{1}",qty),230,16,1,
+          textpos.push(["x#{qty}",230,16,1,
              Color.new(248,248,248),Color.new(40,40,40),1])
         end
       end

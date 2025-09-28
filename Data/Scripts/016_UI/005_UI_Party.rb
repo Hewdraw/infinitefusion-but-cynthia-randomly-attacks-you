@@ -234,7 +234,7 @@ class PokemonPartyPanel < SpriteWrapper
     @overlaysprite = BitmapSprite.new(Graphics.width, Graphics.height, viewport)
     @overlaysprite.z = self.z + 4
     @hpbar = AnimatedBitmap.new("Graphics/Pictures/Party/overlay_hp")
-    @statuses = AnimatedBitmap.new(_INTL("Graphics/Pictures/statuses"))
+    @statuses = AnimatedBitmap.new("Graphics/Pictures/statuses")
     @selected = false
     @preselected = false
     @switching = false
@@ -421,9 +421,9 @@ class PokemonPartyPanel < SpriteWrapper
         end
         # Draw gender symbol
         if @pokemon.male?
-          textpos.push([_INTL("♂"), 224, 10, 0, Color.new(0, 112, 248), Color.new(120, 184, 232)])
+          textpos.push(["♂", 224, 10, 0, Color.new(0, 112, 248), Color.new(120, 184, 232)])
         elsif @pokemon.female?
-          textpos.push([_INTL("♀"), 224, 10, 0, Color.new(232, 32, 16), Color.new(248, 168, 184)])
+          textpos.push(["♀", 224, 10, 0, Color.new(232, 32, 16), Color.new(248, 168, 184)])
         end
         # Draw shiny icon
         if @pokemon.shiny?
@@ -1322,7 +1322,7 @@ class PokemonPartyScreen
         end
       end
       commands[cmdNickname = commands.length] = _INTL("Nickname") if !pkmn.egg?
-      #commands[cmdLearnMove = commands.length] = _INTL("Remember moves")
+      commands[cmdLearnMove = commands.length] = _INTL("Remember moves")
 
       if playerHasFusionItems
         if pkmn.isFusion?

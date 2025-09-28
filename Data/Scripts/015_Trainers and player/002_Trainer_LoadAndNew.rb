@@ -38,8 +38,7 @@ def pbNewTrainer(tr_type, tr_name, tr_version, save_changes = true)
         params = ChooseNumberParams.new
         params.setRange(1, GameData::GrowthRate.max_level)
         params.setDefaultValue(10)
-        level = pbMessageChooseNumber(_INTL("Set the level for {1} (max. #{params.maxNumber}).",
-                                            GameData::Species.get(species).name), params)
+        level = pbMessageChooseNumber(_INTL("Set the level for {1} (max. {2}).", GameData::Species.get(species).name, params.maxNumber), params)
         party.push([species, level])
         break
       else
@@ -124,7 +123,7 @@ def pbMissingTrainer(tr_type, tr_name, tr_version)
   raise _INTL("Trainer type {1} does not exist.", tr_type) if !tr_type_data
   tr_type = tr_type_data.id
   if !$DEBUG
-    #raise _INTL("Can't find trainer ({1}, {2}, ID {3})", tr_type.to_s, tr_name, tr_version)
+    #raise "Can't find trainer ({1}, {2}, ID {3})", tr_type.to_s, tr_name, tr_version
     message = ""
     if $game_switches[SWITCH_MODERN_MODE]
       message << "[MODERN MODE] "

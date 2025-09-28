@@ -60,6 +60,13 @@ class Sprite_Player < Sprite_Character
     @charbitmap.bitmap.clone #nekkid sprite
     baseBitmap = @charbitmap.bitmap.clone #nekkid sprite
 
+    if $game_player.hasGraphicsOverride?
+      @hair.update(@character_name, "", 0) if @hair
+      @hat.update(@character_name, "", 0) if @hat
+      @hat2.update(@character_name, "", 0) if @hat2
+      return baseBitmap
+    end
+
     outfitFilename = getOverworldOutfitFilename($Trainer.clothes, @character_name) #
     outfitFilename = getOverworldOutfitFilename(Settings::PLAYER_TEMP_OUTFIT_FALLBACK) if !pbResolveBitmap(outfitFilename)
     hairFilename = getOverworldHairFilename($Trainer.hair)

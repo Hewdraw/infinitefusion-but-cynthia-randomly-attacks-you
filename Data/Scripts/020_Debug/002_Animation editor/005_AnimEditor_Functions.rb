@@ -100,7 +100,7 @@ def pbAnimName(animation,cmdwin)
     Input.update
     window.update
     if window.changed?(okbutton) || Input.triggerex?(:RETURN)
-      cmdwin.commands[cmdwin.index]=_INTL("{1} {2}",cmdwin.index,window.controls[0].text)
+      cmdwin.commands[cmdwin.index]= "#{cmdwin.index} #{window.controls[0].text}"
       animation.name=window.controls[0].text
       break
     end
@@ -117,7 +117,7 @@ def pbAnimList(animations,canvas,animwin)
   commands=[]
   for i in 0...animations.length
     animations[i]=PBAnimation.new if !animations[i]
-    commands[commands.length]=_INTL("{1} {2}",i,animations[i].name)
+    commands[commands.length]="#{i} #{animations[i].name}"
   end
   cmdwin=pbListWindow(commands,320)
   cmdwin.height=416
@@ -143,7 +143,7 @@ def pbAnimList(animations,canvas,animwin)
       animations.resize(newsize)
       commands.clear
       for i in 0...animations.length
-        commands[commands.length]=_INTL("{1} {2}",i,animations[i].name)
+        commands[commands.length]= "#{i} #{animations[i].name}"
       end
       cmdwin.commands=commands
       cmdwin.index=animations.selected
@@ -166,7 +166,7 @@ def pbAnimList(animations,canvas,animwin)
       elsif cmd2==2 # Delete
         if pbConfirmMessage(_INTL("Are you sure you want to delete this animation?"))
           animations[cmdwin.index]=PBAnimation.new
-          cmdwin.commands[cmdwin.index]=_INTL("{1} {2}",cmdwin.index,animations[cmdwin.index].name)
+          cmdwin.commands[cmdwin.index]= "#{cmdwin.index} #{animations[cmdwin.index].name}"
           cmdwin.refresh
         end
       end

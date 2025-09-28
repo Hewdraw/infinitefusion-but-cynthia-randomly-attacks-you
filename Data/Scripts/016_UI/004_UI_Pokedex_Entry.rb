@@ -11,7 +11,7 @@ class PokemonPokedexInfo_Scene
     @region = region
     @page = 1
     @entry_page = 0
-    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @typebitmap = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_types")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
     @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -141,7 +141,7 @@ class PokemonPokedexInfo_Scene
     @index = 0
     @page = 1
     @brief = true
-    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @typebitmap = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_types")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
     @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -239,10 +239,10 @@ class PokemonPokedexInfo_Scene
   #   # ret.each do |entry|
   #   #   if !entry[0] || entry[0].empty?   # Necessarily applies only to form 0
   #   #     case entry[1]
-  #   #     when 0 then entry[0] = _INTL("Male")
-  #   #     when 1 then entry[0] = _INTL("Female")
+  #   #     when 0 then entry[0] = "Male"
+  #   #     when 1 then entry[0] = "Female"
   #   #     else
-  #   #       entry[0] = (multiple_forms) ? _INTL("One Form") : _INTL("Genderless")
+  #   #       entry[0] = multiple_forms ? "One Form" : "Genderless"
   #   #     end
   #   #   end
   #   #   entry[1] = 0 if entry[1] == 2   # Genderless entries are treated as male
@@ -279,14 +279,14 @@ class PokemonPokedexInfo_Scene
   end
 
   def drawPageInfo(reloading=false)
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_info"))
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_info")
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
 
     imagepos = []
     if @brief
-      imagepos.push([_INTL("Graphics/Pictures/Pokedex/overlay_info"), 0, 0])
+      imagepos.push(["Graphics/Pictures/Pokedex/overlay_info", 0, 0])
     end
     species_data = GameData::Species.get_species_form(@species, @form)
     # Write various bits of text
@@ -298,7 +298,7 @@ class PokemonPokedexInfo_Scene
     indexText = sprintf("%03d", indexNumber)
     # end
     textpos = [
-      [_INTL("{1}{2} {3}", indexText, " ", species_data.name),
+      ["#{indexText}  #{species_data.name}",
        246, 36, 0, Color.new(248, 248, 248), Color.new(0, 0, 0)],
       [_INTL("Height"), 314, 152, 0, base, shadow],
       [_INTL("Weight"), 314, 184, 0, base, shadow]
@@ -380,7 +380,7 @@ class PokemonPokedexInfo_Scene
           entryText = @randomEntryText
           shadowColor = shadow
         else
-          entryText = "No custom Pokédex entry available for this Pokémon. Please consider submitting an entry for this Pokémon on the game's Discord."
+          entryText = _INTL("No custom Pokédex entry available for this Pokémon. Please consider submitting an entry for this Pokémon on the game's Discord. Auto-generated Pokédex entries can be enabled in the options menu.")
           shadowColor = shadow
         end
       end
@@ -522,7 +522,7 @@ class PokemonPokedexInfo_Scene
   end
 
   def drawPageArea
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_area"))
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_area")
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
@@ -598,7 +598,7 @@ class PokemonPokedexInfo_Scene
   end
 
   def drawPageForms
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_forms"))
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_forms")
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)

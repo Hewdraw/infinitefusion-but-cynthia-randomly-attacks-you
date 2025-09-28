@@ -31,7 +31,6 @@ class PokemonEncounters
     if $game_switches && $game_switches[SWITCH_RANDOM_WILD] && $game_switches[SWITCH_RANDOM_WILD_AREA]
       mode= GameData::EncounterRandom
     end
-    echoln mode
     return mode
   end
 

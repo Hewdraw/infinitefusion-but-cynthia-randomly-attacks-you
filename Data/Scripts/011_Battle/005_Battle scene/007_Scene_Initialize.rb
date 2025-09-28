@@ -124,7 +124,7 @@ class PokeBattle_Scene
     time = getBackdropTimeSuffix()
     base_path = getBackdropBasePath(backdrop_type)
     default_name = base_path + filename
-    time_adjusted_name = _INTL("{1}{2}_{3}",base_path,filename,time)
+    time_adjusted_name = "#{base_path}#{filename}_#{time}"
     if pbResolveBitmap(time_adjusted_name)
       return time_adjusted_name
     end

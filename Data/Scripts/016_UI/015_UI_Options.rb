@@ -23,7 +23,7 @@ class PokemonSystem
   attr_accessor :on_mobile
   attr_accessor :type_icons
   attr_accessor :use_generated_dex_entries
-  attr_accessor :use_custom_eggs
+  attr_accessor :hide_custom_eggs
   attr_accessor :include_alt_sprites_in_random
 
   def initialize
@@ -47,7 +47,7 @@ class PokemonSystem
     @on_mobile = false
     @type_icons = true
     @use_generated_dex_entries = true
-    @use_custom_eggs = true
+    @hide_custom_eggs = true
     @include_alt_sprites_in_random = false
   end
 end

@@ -65,7 +65,7 @@ class PokemonLoadPanel < SpriteWrapper
         textpos.push([@title,16*2,2*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([_INTL("Badges:"),16*2,53*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         textpos.push([@trainer.badge_count.to_s,103*2,53*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        # textpos.push([_INTL("Pokédex:"),16*2,69*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        # textpos.push(["Pokédex:",16*2,69*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
         # textpos.push([@trainer.pokedex.seen_count.to_s,103*2,69*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
 
         textpos.push([_INTL(getDisplayDifficultyFromIndex(@trainer.lowest_difficulty)),16*2,69*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
@@ -334,11 +334,13 @@ class PokemonLoadScreen
         return
       when cmd_new_game
         @scene.pbEndScene
-        Game.start_new
+        Game.start_new(new_game_plus)
+        echoln new_game_plus
+        @save_data[:player].new_game_plus_unlocked=new_game_plus
         return
       when cmd_new_game_plus
         @scene.pbEndScene
-        Game.start_new(@save_data[:bag],@save_data[:storage_system],@save_data[:player])
+        Game.start_new(new_game_plus,@save_data[:bag],@save_data[:storage_system],@save_data[:player])
         @save_data[:player].new_game_plus_unlocked=true
         return
       when cmd_mystery_gift

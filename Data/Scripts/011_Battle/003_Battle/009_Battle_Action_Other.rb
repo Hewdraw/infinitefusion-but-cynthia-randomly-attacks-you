@@ -74,7 +74,7 @@ class PokeBattle_Battle
     end
     # NOTE: Add your own Mega objects for particular NPC trainers here.
 #    if pbGetOwnerFromBattlerIndex(idxBattler).trainer_type == :BUGCATCHER
-#      return _INTL("Mega Net")
+#      return "Mega Net"
 #    end
     return _INTL("Mega Ring")
   end

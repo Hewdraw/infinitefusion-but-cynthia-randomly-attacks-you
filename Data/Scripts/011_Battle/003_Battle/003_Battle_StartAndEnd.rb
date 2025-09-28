@@ -55,10 +55,10 @@ class PokeBattle_Battle
           requireds[idxTrainer] += 1
         end
         # Compare the have values with the need values
-        if requireds.length>sideCounts.length
-          raise _INTL("Error: def pbGetOwnerIndexFromBattlerIndex gives invalid owner index ({1} for battle type {2}v{3}, trainers {4}v{5})",
-             requireds.length-1,@sideSizes[0],@sideSizes[1],side1counts.length,side2counts.length)
-        end
+        # if requireds.length>sideCounts.length
+        #   raise "Error: def pbGetOwnerIndexFromBattlerIndex gives invalid owner index ({1} for battle type {2}v{3}, trainers {4}v{5}",
+        #      requireds.length-1,@sideSizes[0],@sideSizes[1],side1counts.length,side2counts.length)
+        # end
         sideCounts.each_with_index do |_count,i|
           if !requireds[i] || requireds[i]==0
             raise _INTL("Player-side trainer {1} has no battler position for their Pokémon to go (trying {2}v{3} battle)",

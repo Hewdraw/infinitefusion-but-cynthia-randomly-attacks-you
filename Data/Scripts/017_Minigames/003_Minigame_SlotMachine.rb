@@ -32,8 +32,8 @@ class SlotMachineReel < BitmapSprite
     @stopping=false
     @slipping=0
     @index=rand(@reel.length)
-    @images=AnimatedBitmap.new(_INTL("Graphics/Pictures/Slot Machine/images"))
-    @shading=AnimatedBitmap.new(_INTL("Graphics/Pictures/Slot Machine/ReelOverlay"))
+    @images=AnimatedBitmap.new("Graphics/Pictures/Slot Machine/images")
+    @shading=AnimatedBitmap.new("Graphics/Pictures/Slot Machine/ReelOverlay")
     update
   end
 
@@ -88,7 +88,7 @@ class SlotMachineScore < BitmapSprite
     @viewport=Viewport.new(x,y,70,22)
     @viewport.z=99999
     super(70,22,@viewport)
-    @numbers=AnimatedBitmap.new(_INTL("Graphics/Pictures/Slot Machine/numbers"))
+    @numbers=AnimatedBitmap.new("Graphics/Pictures/Slot Machine/numbers")
     self.score=score
   end
 

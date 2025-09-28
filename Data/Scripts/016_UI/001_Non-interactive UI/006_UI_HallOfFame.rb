@@ -422,11 +422,17 @@ class HallOfFame_Scene
     if $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE]
       gameMode = "Randomized mode"
     end
+
+    if $game_switches[SWITCH_LEGENDARY_MODE]
+      gameMode = "Legendary mode"
+    end
+
     if $game_switches[ENABLED_DEBUG_MODE_AT_LEAST_ONCE] || $DEBUG
       gameMode = "Debug mode"
     end
     return gameMode
   end
+
 
   def writeGameMode(overlay, x, y, gameMode = nil, difficulty = nil)
     gameMode = getCurrentGameMode() if !gameMode

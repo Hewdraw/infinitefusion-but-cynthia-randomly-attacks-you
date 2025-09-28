@@ -25,6 +25,8 @@ class Pokemon
   attr_accessor :hat
   attr_accessor :hat_x
   attr_accessor :hat_y
+  attr_accessor :hat_mirrored_horizontal
+  attr_accessor :hat_mirrored_vertical
 
   # @return [Integer] the number of steps until this Pokémon hatches, 0 if this Pokémon is not an egg
   attr_accessor :steps_to_hatch
@@ -56,7 +58,7 @@ class Pokemon
   attr_accessor :moves
 
   # @return [Array<Symbol>] All the move (ids) ever learned by this Pokémon
-  attr_accessor :learned_moves
+  attr_reader :learned_moves
 
   # @return [Array<Integer>] the IDs of moves known by this Pokémon when it was obtained
   attr_accessor :first_moves
@@ -891,6 +893,7 @@ class Pokemon
   end
 
 
+
   # Silently learns the given move. Will erase the first known move if it has to.
   # @param move_id [Symbol, String, Integer] ID of the move to learn
   def learn_move(move_id)
@@ -1244,7 +1247,7 @@ class Pokemon
     current_head = @species_data.head_pokemon
 
     choices = [
-      #_INTL("Evolve both!"),
+      # "Evolve both!",
       _INTL("Evolve head!"),
       _INTL("Evolve body!"),
       _INTL("Don't evolve")
@@ -1599,6 +1602,9 @@ class Pokemon
     @hat = nil
     @hat_x = 0
     @hat_y = 0
+    @hat_mirrored_horizontal = false
+    @hat_mirrored_vertical = false
+
     @size_category = determine_size_category()
     @sprite_scale=determine_scale()
     calc_stats

@@ -2542,7 +2542,7 @@ end
 # class PokeBattle_Move_XXX < PokeBattle_Move
 #   def pbMoveFailed?(user,targets)
 #     if targets[0].effects[PBEffects::Transform]
-#       @battle.pbDisplay(_INTL("But it failed!"))
+#       @battle.pbDisplay("But it failed!")
 #       return true
 #     end
 #     return false
@@ -2552,7 +2552,7 @@ end
 #     if target.effects[PBEffects::Transform] ||
 #       target.effects[PBEffects::Illusion] ||
 #       !target.pokemon.isFusion?
-#       @battle.pbDisplay(_INTL("But it failed!"))
+#       @battle.pbDisplay("But it failed!")
 #       return true
 #     end
 #     return false

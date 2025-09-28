@@ -109,7 +109,7 @@ end
 # def displayProgress(current,total,bst)
 #   return if bst >= 100
 #   return if bst >= 20 && current % 10 != 0
-#   Kernel.pbMessageNoSound(_INTL("\\ts[]Generating encounters file...\\n Map {1}/{2}\\^",current,total))
+#   Kernel.pbMessageNoSound("\\ts[]Generating encounters file...\\n Map {1}/{2}\\^",current,total)
 # end
 
 #
@@ -145,7 +145,7 @@ end
 #
 #   def pbMapEncounter(mapID,enctype)
 #     if enctype<0 || enctype>EncounterTypes::EnctypeChances.length
-#       raise ArgumentError.new(_INTL("Encounter type out of range"))
+#       raise ArgumentError.new("Encounter type out of range")
 #     end
 #     data=load_data(getEncountersFilePath())
 #     if data.is_a?(Hash) && data[mapID]

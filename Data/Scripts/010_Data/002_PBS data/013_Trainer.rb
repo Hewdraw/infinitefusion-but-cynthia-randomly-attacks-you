@@ -197,7 +197,8 @@ module GameData
       gym_type = GameData::Type.get(type_id)
       while true
         new_species = $game_switches[SWITCH_RANDOM_GYM_CUSTOMS] ? getSpecies(getNewCustomSpecies(old_species, customsList, bst_range)) : getSpecies(getNewSpecies(old_species, bst_range))
-        if new_species.hasType?(gym_type)
+        if new_species.hasType?(gym_type) || $game_switches[SWITCH_RANDOM_GYM_CUSTOMS] || $game_switches[SWITCH_LEGENDARY_MODE]
+          # Note: gym Type validation is handled in-house for legendary mode
           return new_species
         end
       end
@@ -218,6 +219,9 @@ module GameData
         end
       end
       new_species = generateRandomGymSpecies(species)
+      if !new_species
+        return species
+      end
       if $game_switches[SWITCH_RANDOM_GYM_PERSIST_TEAMS]
         add_generated_species_to_gym_array(new_species, trainerId)
       end
@@ -392,7 +396,7 @@ module GameData
           secondary_ability_index = pkmn.ability_index == 0 ? 1 : 0
           pkmn.ability2_index = secondary_ability_index
           pkmn.ability2 = pkmn.getAbilityList[secondary_ability_index][0]
-          #print _INTL("Primary: {1}, Secondary: {2}",pkmn.ability.id, pkmn.ability2.id)
+          #print "Primary: {1}, Secondary: {2}",pkmn.ability.id, pkmn.ability2.id
         end
 
         pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)

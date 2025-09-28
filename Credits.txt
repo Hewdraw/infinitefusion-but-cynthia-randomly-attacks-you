@@ -107,9 +107,9 @@ casinoluck<s>ymirbot
 
 
 ###################################
-###	Custom Pok?dex entries					###
+###	Custom Pokedex entries					###
 ###################################
-### Pok?dex entries quality control (Unown)
+### Pokedex entries quality control (Unown)
 luvischlo<s>char_latte3412<s>strawbearycandy
 bobosmith01<s>griddle<s>.izik
 knilk<s>lordjoostmeister<s>.realthree
@@ -127,6 +127,10 @@ Maruno (http://pokemonessentials.wikia.com/wiki/Pok%C3%A9mon_Essentials_Wiki)
 ###########################################################
 Playtesting was done by various members of the Discord channel. 
 Special thanks to all of you!
+
+Elite 4 rematch teams
+duskrd<s>anaconja
+
 ###########################################################
 ###			Graphics			  #
 ###########################################################
@@ -139,6 +143,14 @@ Gen 4 Legendary trio eggs by calicorn
 Nintendo
 GameFreak
 
+
+########################
+###			Translations			  #
+########################
+French translation:
+anthonygourmand
+locpic_
+blood.wolf58 (Willi)
 
 #######################################################################
 The following ressources were also used 

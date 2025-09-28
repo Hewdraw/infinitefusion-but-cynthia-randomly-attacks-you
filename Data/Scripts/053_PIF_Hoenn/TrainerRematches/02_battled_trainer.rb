@@ -4,6 +4,7 @@ class BattledTrainer
 
   attr_accessor :trainerType
   attr_accessor :trainerName
+  attr_accessor :trainerKey
 
   attr_accessor :currentTeam  #list of Pokemon. The game selects in this list for trade offers. They can increase levels & involve as you rebattle them.
 
@@ -19,8 +20,6 @@ class BattledTrainer
   #Healing items that are in that list can be used by the trainer in rematches
   #
   attr_accessor :foundItems
-
-
   attr_accessor :nb_rematches
 
   #What the trainer currently wants to do
@@ -47,7 +46,8 @@ class BattledTrainer
 
   attr_accessor :friendship #increases the more you interact with them, unlocks more interact options
   attr_accessor :friendship_level
-  def initialize(trainerType,trainerName,trainerVersion)
+  def initialize(trainerType,trainerName,trainerVersion,trainerKey)
+    @trainerKey = trainerKey
     @trainerType = trainerType
     @trainerName = trainerName
     @currentTeam = loadOriginalTrainerTeam(trainerVersion)
@@ -83,7 +83,7 @@ class BattledTrainer
       @friendship_level += 1
 
       trainerClassName = GameData::TrainerType.get(@trainerType).real_name
-      pbMessage(_INTL("\\C[3]Friendship increased with #{trainerClassName} #{@trainerName}!"))
+      pbMessage(_INTL("\\C[3]Friendship increased with {1} {2}!",trainerClassName,@trainerName))
       case @friendship_level
       when 1
         pbMessage(_INTL("You can now trade with each other!"))

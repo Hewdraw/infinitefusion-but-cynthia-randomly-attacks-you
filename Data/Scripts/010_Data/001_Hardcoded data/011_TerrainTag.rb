@@ -27,9 +27,15 @@ module GameData
     attr_reader :flowerYellow
     attr_reader :flowerBlue
     attr_reader :flower
+
     attr_reader :trashcan
     attr_reader :sharpedoObstacle
     attr_reader :underwater #only visible when diving
+
+    attr_reader :secretBase_tree
+    attr_reader :secretBase_cave
+    attr_reader :secretBase_bush
+
 
     DATA = {}
 
@@ -82,10 +88,19 @@ module GameData
       @sharpedoObstacle = hash[:sharpedoObstacle] || false
       @underwater = hash[:underwater] || false
 
+      @secretBase_tree = hash[:secretBase_tree] || false
+      @secretBase_cave = hash[:secretBase_cave] || false
+      @secretBase_bush = hash[:secretBase_bush] || false
+
     end
 
     def can_surf_freely
       return @can_surf && !@waterfall && !@waterfall_crest
+    end
+
+    def can_secret_base
+      return false if Settings::GAME_ID != :IF_HOENN
+      return @secretBase_tree || @secretBase_cave || @secretBase_bush
     end
   end
 end
@@ -299,4 +314,23 @@ GameData::TerrainTag.register({
                                 :id_number => 28,
                                 :battle_environment => :underwater,
                                 :underwater => true,
+                              })
+
+
+GameData::TerrainTag.register({
+                                :id => :Secretbase_Tree,
+                                :id_number => 29,
+                                :secretBase_tree => true,
+                              })
+
+GameData::TerrainTag.register({
+                                :id => :Secretbase_Cave,
+                                :id_number => 30,
+                                :secretBase_cave => true,
+                              })
+
+GameData::TerrainTag.register({
+                                :id => :Secretbase_Bush,
+                                :id_number => 31,
+                                :secretBase_bush => true,
                               })

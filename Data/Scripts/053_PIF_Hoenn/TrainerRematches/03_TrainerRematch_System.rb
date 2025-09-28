@@ -30,7 +30,7 @@ end
 def registerBattledTrainer(event_id, mapId, trainerType, trainerName, trainerVersion=0)
   key = [event_id,mapId]
   $PokemonGlobal.battledTrainers = {} unless $PokemonGlobal.battledTrainers
-  trainer = BattledTrainer.new(trainerType, trainerName, trainerVersion)
+  trainer = BattledTrainer.new(trainerType, trainerName, trainerVersion,key)
   $PokemonGlobal.battledTrainers[key] = trainer
   return trainer
 end
@@ -58,13 +58,24 @@ end
 
 def updateRebattledTrainer(event_id,map_id,updated_trainer)
   key = [event_id,map_id]
+  updateRebattledTrainerWithKey(key,updated_trainer)
+end
+
+def updateRebattledTrainerWithKey(key,updated_trainer)
   $PokemonGlobal.battledTrainers = {} if !$PokemonGlobal.battledTrainers
   $PokemonGlobal.battledTrainers[key] = updated_trainer
 end
 
-def getRebattledTrainer(event_id,map_id)
-  key = [event_id,map_id]
+def getRebattledTrainerKey(event_id, map_id)
+  return [event_id,map_id]
+end
+
+def getRebattledTrainerFromKey(key)
   $PokemonGlobal.battledTrainers = {} if !$PokemonGlobal.battledTrainers
   return $PokemonGlobal.battledTrainers[key]
+end
+def getRebattledTrainer(event_id,map_id)
+  key = getRebattledTrainerKey(event_id, map_id)
+  return getRebattledTrainerFromKey(key)
 end
 

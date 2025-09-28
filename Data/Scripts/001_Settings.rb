@@ -5,9 +5,12 @@
 #==============================================================================#
 module Settings
   # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-  GAME_VERSION = '6.6.2'
-  GAME_VERSION_NUMBER = "6.6.2"
+  GAME_VERSION = '6.7.0'
+  GAME_VERSION_NUMBER = "6.7.0"
   LATEST_GAME_RELEASE = "6.6"
+
+  KANTO = GAME_ID == :IF_KANTO
+  HOENN = GAME_ID == :IF_HOENN
 
   POKERADAR_LIGHT_ANIMATION_RED_ID = 17
   POKERADAR_LIGHT_ANIMATION_GREEN_ID = 18
@@ -33,7 +36,7 @@ module Settings
   BATTLERS_FOLDER = "Graphics/Battlers/Autogens/"
   DOWNLOADED_SPRITES_FOLDER = "Graphics/temp/"
   DEFAULT_SPRITE_PATH = "Graphics/Battlers/Special/000.png"
-  CREDITS_FILE_PATH = "Data/sprites/Sprite Credits.csv"
+  CREDITS_FILE_PATH = "Data/sprites/Sprite_Credits.csv"
   VERSION_FILE_PATH = "Data/VERSION"
   CUSTOM_SPRITES_FILE_PATH = "Data/sprites/CUSTOM_SPRITES"
   BASE_SPRITES_FILE_PATH = "Data/sprites/BASE_SPRITES"
@@ -66,8 +69,12 @@ module Settings
   SPRITES_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/infinitefusion-e18/main/Data/sprites/CUSTOM_SPRITES"
   BASE_SPRITES_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/infinitefusion-e18/main/Data/sprites/BASE_SPRITES"
 
-  CREDITS_FILE_URL = "https://infinitefusion.net/Sprite Credits.csv"
+  CREDITS_FILE_URL = "https://infinitefusion.net/customsprites/Sprite_Credits.csv"
   CUSTOM_DEX_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/pif-downloadables/refs/heads/master/dex.json"
+
+
+  SECRETBASE_UPLOAD_URL = "http://secretbases-upload.pkmninfinitefusion.workers.dev"
+  SECRETBASE_DOWNLOAD_URL = "https://secretbase-download.pkmninfinitefusion.workers.dev"
 
   STARTUP_MESSAGES = ""
 
@@ -175,12 +182,19 @@ module Settings
   # always inherit egg moves from its father.
   BREEDING_CAN_INHERIT_EGG_MOVES_FROM_MOTHER = (MECHANICS_GENERATION >= 6)
 
+
   KANTO_STARTERS = [:BULBASAUR, :CHARMANDER, :SQUIRTLE]
   JOHTO_STARTERS = [:CHIKORITA, :CYNDAQUIL, :TOTODILE]
   HOENN_STARTERS = [:TREECKO, :TORCHIC, :MUDKIP]
   SINNOH_STARTERS = [:TURTWIG, :CHIMCHAR, :PIPLUP]
   KALOS_STARTERS = [:CHESPIN, :FENNEKIN, :FROAKIE]
 
+  DEFAULT_STARTERS = Settings::GAME_ID == :IF_KANTO ? KANTO_STARTERS : HOENN_STARTERS
+
+
+  GRASS_STARTERS = [:BULBASAUR,:CHIKORITA,:TREECKO,:TURTWIG,:CHESPIN]
+  FIRE_STARTERS = [:CHARMANDER,:CYNDAQUIL, :TORCHIC, :CHIMCHAR, :FENNEKIN]
+  WATER_STARTERS = [:SQUIRTLE, :TOTODILE, :MUDKIP, :PIPLUP, :FROAKIE]
 
   #=============================================================================
 
@@ -345,7 +359,7 @@ module Settings
   # Dex list, no matter which region the player is currently in.
   def self.pokedex_names
     return [
-      # [_INTL("Kanto Pokédex"), 0]
+      # ["Kanto Pokédex", 0]
     ]
   end
 
@@ -543,11 +557,15 @@ module Settings
   # file in the Data folder. Edit only if you have 2 or more languages to choose
   # from.
   LANGUAGES = [
-    #  ["English", "english.dat"],
-    #  ["Deutsch", "deutsch.dat"]
+      ["English", "english.dat"],
+      ["Français", "french.dat"]
   ]
 
-
+  #Experimental
+  REMOTE_BATTLES_CONTROL = false
+  REMOTE_NPC_DIALOG = false
+  REMOTE_BATTLE_CONTROL_SERVER_URL = "http://127.0.0.1:5000/choose_move"
+  REMOTE_NPC_DIALOG_SERVER_URL = "http://127.0.0.1:5000"
   #Technical
   SPRITE_CACHE_MAX_NB=100
   NEWEST_SPRITEPACK_MONTH = 12
@@ -576,7 +594,7 @@ module Settings
     "speech hgss 18",
     "speech hgss 19",
     "speech hgss 20",
-    "speech pl 18"
+    "speech pl 18",
   ]
 
   # Available menu frames. These are graphic files in "Graphics/Windowskins/".

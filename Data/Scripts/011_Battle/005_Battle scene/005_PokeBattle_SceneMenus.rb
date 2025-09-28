@@ -129,7 +129,7 @@ class CommandMenuDisplay < BattleMenuBase
       background.setBitmap("Graphics/Pictures/Battle/overlay_command")
       addSprite("background",background)
       # Create bitmaps
-      @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_command"))
+      @buttonBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_command")
       # Create action buttons
       @buttons = Array.new(4) do |i|   # 4 command options, therefore 4 buttons
         button = SpriteWrapper.new(viewport)
@@ -229,10 +229,10 @@ class FightMenuDisplay < BattleMenuBase
     #       0=don't show, 1=show unpressed, 2=show pressed
     if USE_GRAPHICS
       # Create bitmaps
-      @buttonBitmap  = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_fight"))
-      @typeBitmap    = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-      @megaEvoBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_mega"))
-      @shiftBitmap   = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_shift"))
+      @buttonBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_fight")
+      @typeBitmap    = AnimatedBitmap.new("Graphics/Pictures/types")
+      @megaEvoBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_mega")
+      @shiftBitmap   = AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_shift")
       # Create background graphic
       background = IconSprite.new(0,Graphics.height-96,viewport)
       background.setBitmap("Graphics/Pictures/Battle/overlay_fight")
@@ -468,7 +468,7 @@ class TargetMenuDisplay < BattleMenuBase
     # NOTE: @mode is for which buttons are shown as selected.
     #       0=select 1 button (@index), 1=select all buttons with text
     # Create bitmaps
-    @buttonBitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Battle/cursor_target"))
+    @buttonBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/cursor_target")
     # Create target buttons
     @buttons = Array.new(maxIndex+1) do |i|
       numButtons = @sideSizes[i%2]

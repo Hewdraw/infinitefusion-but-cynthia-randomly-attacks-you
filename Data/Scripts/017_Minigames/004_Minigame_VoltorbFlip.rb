@@ -112,7 +112,7 @@ class VoltorbFlip
       pbMessage(_INTL("You've gathered {1} Coins. You cannot gather any more.", Settings::MAX_COINS.to_s_formatted))
       $Trainer.coins = Settings::MAX_COINS   # As a precaution
       @quit=true
-#    elsif !pbConfirmMessage(_INTL("Play Voltorb Flip Lv. {1}?",@level)) && $Trainer.coins<Settings::MAX_COINS
+#    elsif !pbConfirmMessage("Play Voltorb Flip Lv. {1}?",@level) && $Trainer.coins<Settings::MAX_COINS
 #      @quit=true
     else
       @sprites["curtain"].opacity=0
@@ -364,8 +364,8 @@ class VoltorbFlip
       if count==0
         @sprites["curtain"].opacity=100
         pbMessage(_INTL("\\me[Voltorb Flip Win]Game clear!\\wtnp[40]"))
-#        pbMessage(_INTL("You've found all of the hidden x2 and x3 cards."))
-#        pbMessage(_INTL("This means you've found all the Coins in this game, so the game is now over."))
+#        pbMessage("You've found all of the hidden x2 and x3 cards.")
+#        pbMessage("This means you've found all the Coins in this game, so the game is now over.")
         pbMessage(_INTL("\\se[Voltorb Flip Gain Coins]{1} received {2} Coins!",$Trainer.name,@points.to_s_formatted))
         # Update level text
         @sprites["level"].bitmap.clear
@@ -386,8 +386,8 @@ class VoltorbFlip
           @level+=1
           pbMessage(_INTL("\\se[Voltorb Flip Level Up]Advanced to Game Lv. {1}!",@level.to_s))
 #          if @firstRound
-#            pbMessage(_INTL("Congratulations!"))
-#            pbMessage(_INTL("You can receive even more Coins in the next game!"))
+#            pbMessage("Congratulations!")
+#            pbMessage("You can receive even more Coins in the next game!")
             @firstRound=false
 #
         end
@@ -407,7 +407,7 @@ class VoltorbFlip
     elsif Input.trigger?(Input::BACK)
       @sprites["curtain"].opacity=100
       if @points==0
-        if pbConfirmMessage("You haven't found any Coins! Are you sure you want to quit?")
+        if pbConfirmMessage(_INTL("You haven't found any Coins! Are you sure you want to quit?"))
           @sprites["curtain"].opacity=0
           pbShowAndDispose
           @quit=true

@@ -46,9 +46,9 @@ class PokemonBoxIcon
     else
       self.setBitmapDirectly(createFusionIcon(@pokemon.species, @pokemon.spriteform_head, @pokemon.spriteform_body, @pokemon.bodyShiny?, @pokemon.headShiny?))
       if fusion_enabled
-        self.visible = true
+        self.opacity = 255
       else
-        self.visible = false
+        self.opacity = 80
       end
     end
     self.src_rect = Rect.new(0, 0, self.bitmap.height, self.bitmap.height)

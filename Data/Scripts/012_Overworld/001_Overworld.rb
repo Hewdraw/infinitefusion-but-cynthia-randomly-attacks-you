@@ -339,7 +339,7 @@ Events.onMapChange += proc { |_sender, e|
 #   currently_roaming = $PokemonGlobal.roamPosition.keys
 #   currently_roaming.each do |roamer_id|
 #     roamerOnCurrentMap = $PokemonGlobal.roamPosition[roamer_id] == $game_map.map_id
-#     echoln _INTL("{1} is on map {2}",roamer_id,$game_map.map_id)
+#     echoln "{1} is on map {2}",roamer_id,$game_map.map_id
 #     echoln $PokemonGlobal.roamPokemon
 #     if roamerOnCurrentMap
 #       next if $PokemonGlobal.roamPokemonCaught[roamer_id]
@@ -844,7 +844,7 @@ def pbItemBall(item, quantity = 1, item_name = "", canRandom = true)
   pocket = item.pocket
   move = item.move
   if $PokemonBag.pbStoreItem(item, quantity) # If item can be picked up
-    meName = (item.is_key_item?) ? "Key item get" : "Item get"
+    meName = (item.is_key_item?) ? _INTL("Key item get") : _INTL("Item get")
     text_color = item.is_key_item? ? "\\c[3]" : "\\c[1]"
 
     if item == :LEFTOVERS
@@ -852,11 +852,11 @@ def pbItemBall(item, quantity = 1, item_name = "", canRandom = true)
     elsif item.is_machine? # TM or HM
       pbMessage(_INTL("\\me[{1}]You found \\c[1]{2} {3}\\c[0]!\\wtnp[30]", meName, itemname, GameData::Move.get(move).name))
     elsif quantity > 1
-      pbMessage(_INTL("\\me[{1}]You found {2} #{text_color}{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname))
+      pbMessage(_INTL("\\me[{1}]You found {2} {4}{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname, text_color))
     elsif itemname.starts_with_vowel?
-      pbMessage(_INTL("\\me[{1}]You found an #{text_color}{2}\\c[0]!\\wtnp[30]", meName, itemname))
+      pbMessage(_INTL("\\me[{1}]You found an {3}{2}\\c[0]!\\wtnp[30]", meName, itemname, text_color))
     else
-      pbMessage(_INTL("\\me[{1}]You found a #{text_color}{2}\\c[0]!\\wtnp[30]", meName, itemname))
+      pbMessage(_INTL("\\me[{1}]You found a {3}{2}\\c[0]!\\wtnp[30]", meName, itemname, text_color))
     end
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
                     itemname, pocket, PokemonBag.pocketNames()[pocket]))
@@ -907,7 +907,7 @@ def pbReceiveItem(item, quantity = 1, item_name = "", music = nil, canRandom = t
   itemname = (quantity > 1) ? item.name_plural : item.name
   pocket = item.pocket
   move = item.move
-  meName = (item.is_key_item?) ? "Key item get" : "Item get"
+  meName = (item.is_key_item?) ? _INTL("Key item get") : _INTL("Item get")
   text_color = item.is_key_item? ? "\\c[3]" : "\\c[1]"
   if item == :LEFTOVERS || item == :MUSHROOMSPORES
     pbMessage(_INTL("\\me[{1}]You obtained some \\c[1]{2}\\c[0]!\\wtnp[30]", meName, itemname))
@@ -917,16 +917,15 @@ def pbReceiveItem(item, quantity = 1, item_name = "", music = nil, canRandom = t
     # end
     pbMessage(_INTL("\\me[{1}]You obtained \\c[1]{2} {3}\\c[0]!\\wtnp[30]", meName, itemname, GameData::Move.get(move).name))
   elsif quantity > 1
-    pbMessage(_INTL("\\me[{1}]You obtained {2} #{text_color}{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname))
+    pbMessage(_INTL("\\me[{1}]You obtained {2} {4}{3}\\c[0]!\\wtnp[30]", meName, quantity, itemname, text_color))
   elsif itemname.starts_with_vowel?
-    pbMessage(_INTL("\\me[{1}]You obtained an #{text_color}{2}\\c[0]!\\wtnp[30]", meName, itemname))
+    pbMessage(_INTL("\\me[{1}]You obtained an {3}{2}\\c[0]!\\wtnp[30]", meName, itemname, text_color))
   else
-    pbMessage(_INTL("\\me[{1}]You obtained a #{text_color}{2}\\c[0]!\\wtnp[30]", meName, itemname))
+    pbMessage(_INTL("\\me[{1}]You obtained a {3}{2}\\c[0]!\\wtnp[30]", meName, itemname, text_color))
   end
   promptRegisterItem(item)
   if $PokemonBag.pbStoreItem(item, quantity) # If item can be added
-    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-                    itemname, pocket, PokemonBag.pocketNames()[pocket]))
+    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].", itemname, pocket, PokemonBag.pocketNames()[pocket]))
     updatePinkanBerryDisplay()
     return true
   end

@@ -234,11 +234,11 @@ class PokemonPokedex_Scene
   def pbStartScene(filter_owned=false)
     @filter_owned=filter_owned
     @sliderbitmap       = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_slider")
-    @typebitmap         = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @typebitmap         = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_types")
     @shapebitmap        = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_shapes")
     @hwbitmap           = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_hw")
     @selbitmap          = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchsel")
-    @searchsliderbitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_searchslider"))
+    @searchsliderbitmap = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_searchslider")
     @sprites = {}
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
@@ -1034,12 +1034,7 @@ class PokemonPokedex_Scene
     @orderCommands[MODELIGHTEST]  = _INTL("Lightest")
     @orderCommands[MODETALLEST]   = _INTL("Tallest")
     @orderCommands[MODESMALLEST]  = _INTL("Smallest")
-    @nameCommands = [_INTL("A"),_INTL("B"),_INTL("C"),_INTL("D"),_INTL("E"),
-                    _INTL("F"),_INTL("G"),_INTL("H"),_INTL("I"),_INTL("J"),
-                    _INTL("K"),_INTL("L"),_INTL("M"),_INTL("N"),_INTL("O"),
-                    _INTL("P"),_INTL("Q"),_INTL("R"),_INTL("S"),_INTL("T"),
-                    _INTL("U"),_INTL("V"),_INTL("W"),_INTL("X"),_INTL("Y"),
-                    _INTL("Z")]
+    @nameCommands = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     @typeCommands = []
 
     count = 0

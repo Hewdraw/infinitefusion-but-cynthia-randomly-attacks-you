@@ -239,6 +239,13 @@
         "howToGet": "saffron boutique"
     },
     {
+        "id": "idolf",
+        "name": "Demi Bob",
+        "description": "A soft, short bob with a glamorous edge.",
+        "price": 500,
+        "tags": "saffron"
+    },
+    {
         "id": "janine",
         "name": "Spiky Ponytail",
         "description": "Slicked back hair tied in a tight spiky ponytail. The style was popularized by Gym Leader Koga's daughter, Janine.",
@@ -310,6 +317,7 @@
         "id": "leafeonbob",
         "name": "Verdant Bob",
         "description": "A peculiar hairstyle that's meant to resembles the leaves of a Leafeon.",
+        "done": "yes",
         "price": 3000,
         "tags": "pokemon,"
     },
@@ -352,6 +360,7 @@
         "id": "lunarbob",
         "name": "Lunar Cut",
         "description": "A bob cut shaped like a crescent moon, with a sleek, curved silhouette.",
+        "done": "yes",
         "price": 5000,
         "tags": "special",
         "howToGet": "quest? cresselia outfit"
@@ -360,6 +369,7 @@
         "id": "lycanrocshorthair",
         "name": "Lupine Cut",
         "description": "A sleek cut that is reminiscent of a Lycanroc's mane",
+        "done": "yes",
         "price": 3000,
         "tags": "special"
     },
@@ -367,6 +377,7 @@
         "id": "lyra",
         "name": "Peppy Pigtails",
         "description": "Bouncy pigtails with a playful charm that gives off a carefree vibes.",
+        "done": "yes",
         "price": 1500,
         "tags": "johto,"
     },
@@ -448,6 +459,7 @@
         "id": "mullet",
         "name": "Mullet",
         "description": "Business in the front, party in the back!",
+        "done": "yes",
         "price": 500,
         "tags": "vermillion"
     },
@@ -472,6 +484,20 @@
         "howToGet": "protag special - unlocked after quest, show a Pokemon from unova"
     },
     {
+        "id": "nursejoy",
+        "name": "Joyful Puffs",
+        "description": "Neatly coiled twin buns perched high on each side, radiating care and warmth.",
+        "price": 5000,
+        "tags": "special"
+    },
+    {
+        "id": "nursejoyalt",
+        "name": "Side Joyful Puff",
+        "description": "A single coiled bun perched high on one side, radiating care and warmth.",
+        "price": 5000,
+        "tags": "special"
+    },
+    {
         "id": "officeworkerF",
         "name": "Waist-Length Hair",
         "description": "Long, flowing waist-length hair with short, chunky bangs. It's popular with a lot of trainers with corporate jobs.",
@@ -480,6 +506,13 @@
         "price": 500,
         "tags": "long, untied, smooth,saffron,",
         "howToGet": "Saffron city special"
+    },
+    {
+        "id": "oricoriopuffs",
+        "name": "Pom-Pom Puffs",
+        "description": "Big, bubbly twin puffs bursting with cheer!",
+        "price": 500,
+        "tags": "special"
     },
     {
         "id": "painter",
@@ -509,8 +542,17 @@
     {
         "id": "pompadour",
         "name": "Pompadour",
+        "description": "A dramatic, swept-back hairstyle with towering volume at the front.",
         "price": 2000,
         "tags": "violet,"
+    },
+    {
+        "id": "punktails",
+        "name": "Punk Tails",
+        "description": "High, wild twin ponytails bursting with volume and rebellion.",
+        "done": "yes",
+        "price": 500,
+        "tags": "celadon"
     },
     {
         "id": "red",
@@ -587,6 +629,12 @@
         "done": "yes",
         "price": 500,
         "tags": "short, untied, smooth,cinnabar,"
+    },
+    {
+        "id": "shortbeard",
+        "name": "Short Beard",
+        "description": "Either you miraculously got the ability to grow beard as a child, or you got creative with glue and salon floor clippings.",
+        "price": 500
     },
     {
         "id": "shortcut",

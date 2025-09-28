@@ -179,7 +179,7 @@ class PokeBattle_Battle
       dontAnimate = true
       # debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
       # raise RuntimeError.new(
-      #   echoln  _INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
+      #   echoln  "{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
       #         pkmn.name, debugInfo)
       pbDisplayPaused(_INTL("{1}'s growth rate has changed to '{2}''. Its level will be adjusted to reflect its current exp.", pkmn.name, pkmn.growth_rate.real_name))
     end

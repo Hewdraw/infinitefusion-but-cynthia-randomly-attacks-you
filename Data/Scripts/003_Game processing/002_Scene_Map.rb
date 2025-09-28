@@ -218,6 +218,12 @@ class Scene_Map
     end
     return if $game_temp.message_window_showing
     if !pbMapInterpreterRunning?
+      if $game_temp.moving_furniture
+        placeFurnitureMenu() if Input.trigger?(Input::USE)
+        rotate__held_furniture_left if Input.trigger?(Input::JUMPDOWN)
+        rotate_held_furniture_right if Input.trigger?(Input::JUMPUP)
+      end
+
       if Input.trigger?(Input::USE)
         $PokemonTemp.hiddenMoveEventCalling = true
       elsif Input.trigger?(Input::BACK)
@@ -225,7 +231,7 @@ class Scene_Map
           $game_temp.menu_calling = true
           $game_temp.menu_beep = true
           dayOfWeek = getDayOfTheWeek().to_s
-          $scene.spriteset.addUserSprite(LocationWindow.new($game_map.name+ "\n"+ pbGetTimeNow.strftime("%I:%M %p") + "\n" + dayOfWeek))
+          $scene.spriteset.addUserSprite(LocationWindow.new($game_map.name+ "\n"+ pbGetTimeNow.strftime(_INTL("%I:%M %p")) + "\n" + dayOfWeek))
         end
       elsif Input.trigger?(Input::SPECIAL)
         unless $game_system.menu_disabled || $game_player.moving?

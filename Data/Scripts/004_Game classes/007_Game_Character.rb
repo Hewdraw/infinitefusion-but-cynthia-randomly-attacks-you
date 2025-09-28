@@ -25,7 +25,10 @@ class Game_Character
   attr_reader :move_speed
   attr_accessor :walk_anime
   attr_writer :bob_height
-  attr_accessor :under_everything
+  attr_accessor :under_everything #under even grass
+  attr_accessor :under_player     #always under the player, but over grass, etc.
+  attr_accessor :direction_fix
+  attr_accessor :always_on_top
 
   def initialize(map = nil)
     @map = map
@@ -77,6 +80,7 @@ class Game_Character
     @locked = false
     @prelock_direction = 0
     @under_everything=false
+    @under_player = false
     @forced_z=nil
   end
 
@@ -339,6 +343,7 @@ class Game_Character
 
   def screen_z(height = 0)
     return -1 if @under_everything
+    return 0 if @under_player
     return 999 if @always_on_top
     return @forced_z if @forced_z
     z = screen_y_ground
@@ -352,6 +357,17 @@ class Game_Character
     end
     # Add z if height exceeds 32
     return z + ((height > Game_Map::TILE_HEIGHT) ? Game_Map::TILE_HEIGHT - 1 : 0)
+  end
+
+  def opposite_direction
+    case @direction
+    when DIRECTION_LEFT; return DIRECTION_RIGHT
+    when DIRECTION_RIGHT; return DIRECTION_LEFT
+    when DIRECTION_UP; return DIRECTION_DOWN
+    when DIRECTION_DOWN; return DIRECTION_UP
+    else
+      return DIRECTION_ALL
+    end
   end
 
   #=============================================================================
@@ -897,6 +913,27 @@ class Game_Character
       move_down(false)
     end
     @direction_fix = last_direction_fix
+  end
+
+  def jump_forward
+    case $game_player.direction
+    when DIRECTION_DOWN
+      x_direction = 0
+      y_direction = 1
+    when DIRECTION_UP
+      x_direction = 0
+      y_direction = -1
+    when DIRECTION_LEFT
+      x_direction = -1
+      y_direction = 0
+    when DIRECTION_RIGHT
+      x_direction = 1
+      y_direction = 0
+    else
+      x_direction = 0
+      y_direction = 0
+    end
+    jump(x_direction, y_direction)
   end
 
   def jump(x_plus, y_plus)

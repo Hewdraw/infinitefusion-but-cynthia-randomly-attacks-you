@@ -12,8 +12,8 @@ class Game_Picture
   attr_reader   :number                   # picture number
   attr_accessor  :name                     # file name
   attr_reader   :origin                   # starting point
-  attr_reader   :x                        # x-coordinate
-  attr_reader   :y                        # y-coordinate
+  attr_accessor   :x                        # x-coordinate
+  attr_accessor   :y                        # y-coordinate
   attr_accessor   :zoom_x                   # x directional zoom rate
   attr_accessor   :zoom_y                   # y directional zoom rate
   attr_accessor   :opacity                  # opacity level

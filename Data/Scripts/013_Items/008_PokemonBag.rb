@@ -121,6 +121,7 @@ class PokemonBag
 
   def pbQuantity(item)
     item = GameData::Item.get(item)
+    return 0 unless item
     pocket = item.pocket
     return ItemStorageHelper.pbQuantity(@pockets[pocket], item.id)
   end

@@ -9,11 +9,19 @@ class PokemonHatPresenter
 
     @x_pos = pokemon.hat_x ? pokemon.hat_x : 0
     @y_pos = pokemon.hat_y ? pokemon.hat_y : 0
+    @hat_mirrored_horizontal = pokemon.hat_mirrored_horizontal ? pokemon.hat_mirrored_horizontal : false
+    @hat_mirrored_vertical = pokemon.hat_mirrored_vertical ? pokemon.hat_mirrored_vertical : false
     @hat_id = pokemon.hat ? pokemon.hat : 1
     @viewport = nil
     @previewwindow = nil
 
     @original_pokemon_bitmap = nil
+
+    @min_x, @max_x = -64, 88
+    @min_y, @max_y = -120, 120  # Safe symmetric range
+
+    @hatBitmapWrapper = AnimatedBitmap.new(@hatFilename, 0) if pbResolveBitmap(@hatFilename)
+
   end
 
   def pbStartScreen
@@ -31,6 +39,8 @@ class PokemonHatPresenter
 
   def updatePokemonHatPosition()
     @pokemon.hat = @hat_id
+    @pokemon.hat_mirrored_horizontal=@hat_mirrored_horizontal
+    @pokemon.hat_mirrored_vertical=@hat_mirrored_vertical
     @pokemon.hat_x = @x_pos
     @pokemon.hat_y = @y_pos
   end
@@ -49,6 +59,9 @@ class PokemonHatPresenter
       Input.update
       @hat_id = selector.selectNextOutfit(@hat_id, 1, selector.hats_list, [], false, "hat",$Trainer.unlocked_hats,false) if Input.trigger?(Input::RIGHT)
       @hat_id = selector.selectNextOutfit(@hat_id, -1, selector.hats_list, [], false, "hat",$Trainer.unlocked_hats,false) if Input.trigger?(Input::LEFT)
+      flipHatVertically if Input.trigger?(Input::JUMPUP)
+      flipHatHorizontally if Input.trigger?(Input::JUMPDOWN)
+      resetHatPosition if Input.trigger?(Input::SPECIAL)
       break if Input.trigger?(Input::USE)
       return false if Input.trigger?(Input::BACK)
       @view.update()
@@ -60,21 +73,64 @@ class PokemonHatPresenter
 
   def position_hat
     @view.display_move_arrows
-    min_x, max_x = -64, 88
-    min_y, max_y = -20, 140
+
     loop do
       Graphics.update
       Input.update
-      @x_pos += PIXELS_PER_MOVEMENT if Input.repeat?(Input::RIGHT) && @x_pos < max_x
-      @x_pos -= PIXELS_PER_MOVEMENT if Input.repeat?(Input::LEFT) && @x_pos > min_x
-      @y_pos += PIXELS_PER_MOVEMENT if Input.repeat?(Input::DOWN) && @y_pos < max_y
-      @y_pos -= PIXELS_PER_MOVEMENT if Input.repeat?(Input::UP) && @y_pos > min_y
+      @x_pos += PIXELS_PER_MOVEMENT if Input.repeat?(Input::RIGHT) && @x_pos < @max_x
+      @x_pos -= PIXELS_PER_MOVEMENT if Input.repeat?(Input::LEFT) && @x_pos > @min_x
+      @y_pos += PIXELS_PER_MOVEMENT if Input.repeat?(Input::DOWN) && @y_pos < @max_y
+      @y_pos -= PIXELS_PER_MOVEMENT if Input.repeat?(Input::UP) && @y_pos > @min_y
+      flipHatHorizontally if Input.trigger?(Input::JUMPDOWN)
+      flipHatVertically if Input.trigger?(Input::JUMPUP)
+      resetHatPosition if Input.trigger?(Input::SPECIAL)
+
       break if Input.trigger?(Input::USE)
       return false if Input.trigger?(Input::BACK)
       @view.update()
     end
     @view.hide_move_arrows
     return true
+  end
+
+
+
+  def flipHatHorizontally()
+    @hat_mirrored_horizontal = !@hat_mirrored_horizontal
+    pbSEPlay("GUI storage pick up")
+    @hatBitmapWrapper.mirror_horizontally
+    pbWait(8)
+  end
+
+
+  def flipHatVertically()
+    pbSEPlay("GUI storage pick up")
+    @hat_mirrored_vertical = !@hat_mirrored_vertical
+    @hatBitmapWrapper.mirror_vertically
+
+    # Compensate for visual shift after vertical flip
+    hat_height = @hatBitmapWrapper.bitmap.height
+    offset = hat_height - 40
+
+    if @hat_mirrored_vertical
+      @y_pos -= offset
+    else
+      @y_pos += offset
+    end
+    @y_pos = [[@y_pos, @min_y].max, @max_y].min
+    pbWait(8)
+  end
+
+  def resetHatPosition
+    if pbConfirmMessage(_INTL("Reset hat position?"))
+      pbSEPlay("GUI naming tab swap end")
+      @x_pos=0
+      @y_pos=0
+      @hatBitmapWrapper.mirror_horizontally if @hat_mirrored_horizontal
+      @hatBitmapWrapper.mirror_vertically if @hat_mirrored_vertical
+      @hat_mirrored_horizontal = false
+      @hat_mirrored_vertical = false
+    end
   end
 
   def initialize_bitmap()
@@ -94,9 +150,9 @@ class PokemonHatPresenter
 
   def getPokemonHatBitmap()
     @hatFilename = getTrainerSpriteHatFilename(@hat_id)
-    hatBitmapWrapper = AnimatedBitmap.new(@hatFilename, 0) if pbResolveBitmap(@hatFilename)
+    @hatBitmapWrapper = AnimatedBitmap.new(@hatFilename, 0) if pbResolveBitmap(@hatFilename)
     pokemon_bitmap = @original_pokemon_bitmap.bitmap.clone
-    pokemon_bitmap.blt(@x_pos, @y_pos, hatBitmapWrapper.bitmap, hatBitmapWrapper.bitmap.rect) if hatBitmapWrapper
+    pokemon_bitmap.blt(@x_pos, @y_pos, @hatBitmapWrapper.bitmap, @hatBitmapWrapper.bitmap.rect) if @hatBitmapWrapper
     return pokemon_bitmap
   end
 

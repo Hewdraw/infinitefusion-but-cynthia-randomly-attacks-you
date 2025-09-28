@@ -81,7 +81,7 @@ class ClothesShopPresenter < PokemonMartScreen
 
   def dyeOptions(secondary_hat=false,item)
     original_color = secondary_hat ? $Trainer.hat2_color : $Trainer.hat_color
-    options = ["Shift up", "Shift down", "Reset", "Confirm", "Never Mind"]
+    options = [_INTL("Shift up"), _INTL("Shift down"), _INTL("Reset"), _INTL("Confirm"), _INTL("Never Mind")]
     previous_input = 0
     while (true)
       choice = pbShowCommands(nil, options, options.length, previous_input,200)
@@ -125,14 +125,14 @@ class ClothesShopPresenter < PokemonMartScreen
   end
 
   def playerHatActionsMenu(item)
-    cmd_confirm = "Confirm"
-    cmd_remove = "Remove hat"
-    cmd_cancel = "Cancel"
-    cmd_dye = "Dye Kit"
-    cmd_swap = "Swap hat positions"
+    cmd_confirm = _INTL("Confirm")
+    cmd_remove = _INTL("Remove hat")
+    cmd_cancel = _INTL("Cancel")
+    cmd_dye = _INTL("Dye Kit")
+    cmd_swap = _INTL("Swap hat positions")
 
     options = build_options_menu(item,cmd_confirm,cmd_remove,cmd_dye,cmd_swap,cmd_cancel)
-    choice = pbMessage("What would you like to do?", options, -1,nil,0)
+    choice = pbMessage(_INTL("What would you like to do?"), options, -1,nil,0)
     if options[choice] == cmd_remove
       removeHat(item)
       return true

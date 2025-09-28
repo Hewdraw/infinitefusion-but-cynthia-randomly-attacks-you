@@ -44,6 +44,8 @@ HAT_SILPHSCOPE = "silphscope"
 HAT_BRENDAN = "brendanRSE"
 HAT_MAY = "mayRSE"
 HAT_ORAN = "orange"
+HAT_FLOWERS = "grassexpert"
+HAT_LUCHA = "hawluchamask"
 
 
 HAT_PARASHROOM = "parashroom"
@@ -156,6 +158,7 @@ HAIR_LATIAS="SpecialLatias"
 HAIR_GARDEVOIR="gardevoir"
 HAIR_EEVEE="eeveetail"
 HAIR_LEAFEON="leafeonbob"
+HAIR_ORICORIO="oricoriopuffs"
 
 HAIR_BRENDAN = "buzzcut"
 HAIR_MAY = "may"

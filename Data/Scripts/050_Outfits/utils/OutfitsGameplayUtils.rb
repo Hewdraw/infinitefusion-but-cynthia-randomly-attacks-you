@@ -10,12 +10,12 @@ def obtainHat(outfit_id,secondary=false)
   echoln "obtained new hat: " + outfit_id
   outfit = get_hat_by_id(outfit_id)
   if !outfit
-    pbMessage(_INTL("The hat #{outfit_id} is invalid."))
+    pbMessage(_INTL("The hat {1} is invalid.", outfit_id))
     return
   end
   $Trainer.unlocked_hats << outfit_id if !$Trainer.unlocked_hats.include?(outfit_id)
   obtainOutfitMessage(outfit)
-  if pbConfirmMessage("Would you like to put it on right now?")
+  if pbConfirmMessage(_INTL("Would you like to put it on right now?"))
     putOnHat(outfit_id, false, false) if !secondary
     putOnHat(outfit_id, false, true) if secondary
     return true
@@ -28,7 +28,7 @@ def unlockHat(outfit_id)
   echoln "obtained new hat: " + outfit_id
   outfit = get_hat_by_id(outfit_id)
   if !outfit
-    pbMessage(_INTL("The hat #{outfit_id} is invalid."))
+    pbMessage(_INTL("The hat {1} is invalid.", outfit_id))
     return
   end
   $Trainer.unlocked_hats << outfit_id if !$Trainer.unlocked_hats.include?(outfit_id)
@@ -39,13 +39,13 @@ def obtainClothes(outfit_id)
   echoln "obtained new clothes: " + outfit_id
   outfit = get_clothes_by_id(outfit_id)
   if !outfit
-    pbMessage(_INTL("The clothes #{outfit_id} are invalid."))
+    pbMessage(_INTL("The clothes {1} are invalid.", outfit_id))
     return
   end
   return if !outfit
   $Trainer.unlocked_clothes << outfit_id if !$Trainer.unlocked_clothes.include?(outfit_id)
   obtainOutfitMessage(outfit)
-  if pbConfirmMessage("Would you like to put it on right now?")
+  if pbConfirmMessage(_INTL("Would you like to put it on right now?"))
     putOnClothes(outfit_id)
     return true
   end
@@ -56,7 +56,7 @@ def obtainNewHairstyle(full_outfit_id)
   split_outfit_id = getSplitHairFilenameAndVersionFromID(full_outfit_id)
   hairstyle_id = split_outfit_id[1]
   hairstyle = get_hair_by_id(hairstyle_id)
-  musical_effect = "Key item get"
+  musical_effect = _INTL("Key item get")
   pbMessage(_INTL("\\me[{1}]Your hairstyle was changed to \\c[1]{2}\\c[0] hairstyle!\\wtnp[30]", musical_effect, hairstyle.name))
   return true
 end
@@ -152,7 +152,7 @@ end
 
 def obtainOutfitMessage(outfit)
   pictureViewport = showOutfitPicture(outfit)
-  musical_effect = "Key item get"
+  musical_effect = _INTL("Key item get")
   pbMessage(_INTL("\\me[{1}]You obtained a \\c[1]{2}\\c[0]!\\wtnp[30]", musical_effect, outfit.name))
   pictureViewport.dispose if pictureViewport
 end
@@ -274,6 +274,22 @@ def export_current_outfit()
   Input.clipboard = exportedString
 end
 
+def export_current_outfit_to_json
+  appearance = {
+    skin_color:     $Trainer.skin_tone || 0,
+    hat:            $Trainer.hat || nil,
+    hat2:           $Trainer.hat2 || nil,
+    clothes:        $Trainer.clothes,
+    hair:           $Trainer.hair,
+    hair_color:     $Trainer.hair_color || 0,
+    clothes_color:  $Trainer.clothes_color || 0,
+    hat_color:      $Trainer.hat_color || 0,
+    hat2_color:     $Trainer.hat2_color || 0
+  }
+  return appearance
+end
+
+
 def clearEventCustomAppearance(event_id)
   return if !$scene.is_a?(Scene_Map)
   event_sprite = $scene.spriteset.character_sprites[@event_id]
@@ -288,7 +304,7 @@ end
 
 def setEventAppearance(event_id, trainerAppearance)
   return if !$scene.is_a?(Scene_Map)
-  event_sprite = $scene.spriteset.character_sprites[@event_id]
+  event_sprite = $scene.spriteset.character_sprites[event_id]
   for sprite in $scene.spriteset.character_sprites
     if sprite.character.id == event_id
       event_sprite = sprite

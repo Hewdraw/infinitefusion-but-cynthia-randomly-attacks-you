@@ -275,7 +275,7 @@ def pbHiddenPower(pkmn,forcedType=nil)
   if Settings::MECHANICS_GENERATION <= 5
     powerMin = 30
     powerMax = 70
-    power |= (iv[:HP]&2)>>1
+    power = (iv[:HP]&2)>>1
     power |= (iv[:ATTACK]&2)
     power |= (iv[:DEFENSE]&2)<<1
     power |= (iv[:SPEED]&2)<<2
@@ -2995,7 +2995,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       return true
     end
     # if @battle.wildBattle? && target.level>user.level
-    #   @battle.pbDisplay(_INTL("But it failed!"))
+    #   @battle.pbDisplay("But it failed!")
     #   return true
     # end
     if @battle.trainerBattle?

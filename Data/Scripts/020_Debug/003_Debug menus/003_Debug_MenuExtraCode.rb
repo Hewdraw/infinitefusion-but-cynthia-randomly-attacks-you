@@ -20,7 +20,7 @@ def pbWarpToMapFly
 end
 
 def pbWarpToMap
-  choice = pbMessage("type", [_INTL("List"),_INTL("Map id"), _INTL("Town map")], 0)
+  choice = pbMessage(_INTL("type"), [_INTL("List"),_INTL("Map id"), _INTL("Town map")], 0)
   if choice == 0
     map = pbWarpToMapList
   elsif choice == 1

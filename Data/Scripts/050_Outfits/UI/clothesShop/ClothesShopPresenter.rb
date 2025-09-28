@@ -16,7 +16,7 @@ class ClothesShopPresenter < PokemonMartScreen
 
   def dyeClothes()
     original_color = $Trainer.clothes_color
-    options = ["Shift up", "Shift down", "Reset", "Confirm", "Never Mind"]
+    options = [_INTL("Shift up"), _INTL("Shift down"), _INTL("Reset"), _INTL("Confirm"), _INTL("Never Mind")]
     previous_input = 0
     ret = false
     while (true)
@@ -50,13 +50,13 @@ class ClothesShopPresenter < PokemonMartScreen
 
   # returns true if should stay in the menu
   def playerClothesActionsMenu(item)
-    cmd_wear = "Wear"
-    cmd_dye = "Dye Kit"
+    cmd_wear = _INTL("Wear")
+    cmd_dye = _INTL("Dye Kit")
     options = []
     options << cmd_wear
     options << cmd_dye  if $PokemonBag.pbHasItem?(:CLOTHESDYEKIT)
-    options << "Cancel"
-    choice = pbMessage("What would you like to do?", options, -1)
+    options << _INTL("Cancel")
+    choice = pbMessage(_INTL("What would you like to do?"), options, -1)
 
     if options[choice] == cmd_wear
       putOnClothes(item,false)
@@ -77,11 +77,11 @@ class ClothesShopPresenter < PokemonMartScreen
     boolean_changes_detected = @adapter.player_changed_clothes?
     return true if !boolean_changes_detected
     pbPlayCancelSE
-    cmd_confirm = "Set outfit"
-    cmd_discard = "Discard changes"
-    cmd_cancel = "Cancel"
+    cmd_confirm = _INTL("Set outfit")
+    cmd_discard = _INTL("Discard changes")
+    cmd_cancel = _INTL("Cancel")
     options = [cmd_discard,cmd_confirm,cmd_cancel]
-    choice = pbMessage("You have unsaved changes!",options,3)
+    choice = pbMessage(_INTL("You have unsaved changes!"),options,3)
     case options[choice]
     when cmd_confirm
       @adapter.putOnSelectedOutfit

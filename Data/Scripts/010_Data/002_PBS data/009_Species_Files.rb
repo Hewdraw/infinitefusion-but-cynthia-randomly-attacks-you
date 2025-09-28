@@ -63,7 +63,7 @@ module GameData
     #   return (ret) ? ret : pbResolveBitmap("Graphics/Pokemon/Eggs/000")
     # end
     def self.egg_sprite_filename(species, form)
-      return "Graphics/Battlers/Eggs/000" if $PokemonSystem.use_custom_eggs
+      return "Graphics/Battlers/Eggs/000" if $PokemonSystem.hide_custom_eggs
       dexNum = getDexNumberForSpecies(species)
       bitmapFileName = sprintf("Graphics/Battlers/Eggs/%d", dexNum) rescue nil
       if !pbResolveBitmap(bitmapFileName)
