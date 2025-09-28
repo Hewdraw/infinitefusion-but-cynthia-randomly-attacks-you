@@ -955,6 +955,14 @@ BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:DRAGONSMAW,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if type == :DRAGON
+      mults[:attack_multiplier] *= 1.5
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:ADAPTINGSANDS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if type == :DRAGON || type == :FIGHTING || type == :STEEL || type == :GROUND
