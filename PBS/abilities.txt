@@ -265,3 +265,4 @@
 263,GENESIS,Genesis,"Upgrades Mew's Psychic to a Z-Move."
 264,PIXILTAG,Pixil Tag,""
 265,ICESCALES,Pixil Tag,""
+266,DRAGONSMAW,Pixil Tag,"todo"
