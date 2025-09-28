@@ -189,7 +189,7 @@ class PokeBattle_Battler
     return true if move.pp<0          # Don't reduce PP for special calls of moves
     return true if move.total_pp<=0   # Infinite PP, can always be used
     return false if move.pp==0        # Ran out of PP, couldn't reduce
-    pbSetPP(move,move.pp-1) if move.pp>0
+    pbSetPP(move,move.pp-1) if move.pp>0 && !@raid.nil?
     return true
   end
 
@@ -261,7 +261,7 @@ class PokeBattle_Battler
   def pbCheckFormOnWeatherChange
     return if fainted? || @effects[PBEffects::Transform]
     if hasActiveAbility?(:PROTOSYNTHESIS)
-      if [:Sun, :HarshSun].include?(@battle.pbWeather) && !@effects[PBEffects::Protosynthesis]
+      if [:Sun, :HarshSun].include?(@battle.pbWeather) && @effects[PBEffects::Protosynthesis] == 0
         stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
         stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
         stats = [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
@@ -276,11 +276,11 @@ class PokeBattle_Battler
             break
           end
         end
-        @battle.pbShowAbilitySplash(battler)
-        @battle.pbDisplay(_INTL("The harsh sunlight activated {1}'s Protosynthesis!", battler.pbThis))
-        @battle.pbHideAbilitySplash(battler)
+        @battle.pbShowAbilitySplash(self)
+        @battle.pbDisplay(_INTL("The harsh sunlight activated {1}'s Protosynthesis!", pbThis))
+        @battle.pbHideAbilitySplash(self)
       end
-      if ![:Sun, :HarshSun].include?(@battle.field.weather) && @effects[PBEffects::Protosynthesis] < 10
+      if ![:Sun, :HarshSun].include?(@battle.pbWeather) && @effects[PBEffects::Protosynthesis] < 10
         @effects[PBEffects::Protosynthesis] = 0
       end
     end
