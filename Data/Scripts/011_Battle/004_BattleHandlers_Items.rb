@@ -8,6 +8,19 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
   }
 )
 
+BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
+  proc { |item,battler,mult|
+    stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
+    stats.each_with_index do |stat,i|
+      if stat >= stats.max
+        next mult*1.3 if i == 4
+        break
+      end
+    end
+    next mult
+  }
+)
+
 BattleHandlers::SpeedCalcItem.add(:LIGHTNINGSPHERE,
   proc { |item,battler,mult|
     next mult*1.5 if battler.isSpecies?(:GZAPDOS)
@@ -679,6 +692,18 @@ BattleHandlers::DamageCalcUserItem.add(:MIRACLESEED,
 
 BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
+BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
+    stats.each_with_index do |stat,i|
+      if stat >= stats.max
+        mults[:base_damage_multiplier] *= 1.3 if (i == 0 && move.physicalMove?) || (i == 2 && move.specialMove?)
+        break
+      end
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserItem.add(:MUSCLEBAND,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.1 if move.physicalMove?
@@ -935,6 +960,18 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
   proc { |item,user,target,move,mults,baseDmg,type|
     if target.isFusionOf(:DITTO)
       mults[:defense_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
+    stats.each_with_index do |stat,i|
+      if stat >= stats.max
+        mults[:defense_multiplier] *= 1.3 if (i == 1 && move.physicalMove?) || (i == 3 && move.specialMove?)
+        break
+      end
     end
   }
 )
