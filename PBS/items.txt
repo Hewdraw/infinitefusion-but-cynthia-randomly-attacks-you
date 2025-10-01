@@ -807,6 +807,7 @@
 808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"Magic craft item. Swaps and slightly buffs attacking stats.",0,0,0
 809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that paralyzes the holder in battle.",1,0,0,
 810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"A Booster Energy device that brings out paradoxical potential out of viable targets",0,0,0
+811,HEALIES,Healies,Healies,8,0,"todo",2,0,6
 
 
 #    attr_reader :id

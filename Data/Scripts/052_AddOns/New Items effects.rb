@@ -2231,3 +2231,15 @@ ItemHandlers::UseOnPokemon.add(:ANCESTRALGENE, proc { |item, pkmn, scene|
   $PokemonGlobal.ancestralgeneability = pkmn.ability_id
   next false
 })
+
+ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
+  $Trainer.party.each { |pkmn| pkmn.heal }
+  pbMessage(_INTL("Your Pokémon were fully healed."))
+  next true
+})
+
+ItemHandlers::UseInField.add(:HEALIES, proc { |item|
+  $Trainer.party.each { |pkmn| pkmn.heal }
+  pbMessage(_INTL("Your Pokémon were fully healed."))
+  next true
+})

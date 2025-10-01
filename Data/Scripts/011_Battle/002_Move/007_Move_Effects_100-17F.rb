@@ -838,6 +838,14 @@ end
 # (Trick Room)
 #===============================================================================
 class PokeBattle_Move_11F < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if @battle.field.effects[PBEffects::TrickRoom] > 100
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
   def pbEffectGeneral(user)
     if @battle.field.effects[PBEffects::TrickRoom] > 0
       @battle.field.effects[PBEffects::TrickRoom] = 0

@@ -26,7 +26,7 @@ def UndertaleCommand(scene)
     when 0    # Fight
       $PokemonGlobal.nextBattleBack = "Lava"
       $PokemonGlobal.nextBattleBGM = nil
-      if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+      if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2)
         $PokemonGlobal.battledepth = -1
         scene.pbEndBattle
         return

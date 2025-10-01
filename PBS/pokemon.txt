@@ -19584,6 +19584,16 @@ Abilities = TRANSISTOR
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
+[1000702]
+Name = Regidrago
+InternalName = REGIDRAGO
+Type1 = DRAGON
+BaseStats = 200,100,50,80,100,50
+EffortPoints = 0,0,0,3,0,0
+Abilities = DRAGONSMAW
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
 [1000703]
 Name = Mawile
 InternalName = MAWILESHINY

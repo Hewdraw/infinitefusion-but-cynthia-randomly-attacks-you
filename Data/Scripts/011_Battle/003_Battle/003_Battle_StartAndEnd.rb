@@ -189,6 +189,12 @@ class PokeBattle_Battle
           @field.effects[PBEffects::InverseRoom] = 10000
           pbDisplayPaused(_INTL("The battlefield turned inverted!"))
         end
+        if trainer.trainer_type == :Skeleton_Dev && trainer.first_pokemon.poke_ball == :PREMIERBALL
+          @field.effects[PBEffects::InverseRoom] = 10000
+          pbDisplayPaused(_INTL("The battlefield turned inverted!"))
+          @field.effects[PBEffects::TrickRoom] = 10000
+          pbDisplayPaused(_INTL("The battlefield turned twisted!"))
+        end
         if ["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(256) == 0
           @scene.pbCommonAnimation("Shiny",trainer)
         end
@@ -488,6 +494,10 @@ class PokeBattle_Battle
         end
         if trainerBattle? && @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:HEAVYDUTYBOOTS)
           pbDisplayPaused(_INTL("You got boots!? for winning!"))
+        end
+
+        if trainerBattle? && @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
+          pbDisplayPaused(_INTL("You got Healies for winning!"))
         end
       end
       # Gain money from winning a trainer battle, and from Pay Day
