@@ -110,6 +110,7 @@ class Pokemon
   attr_accessor :raid
   attr_accessor :hpbars
   attr_accessor :phasetwo
+  attr_accessor :unparadox
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
   attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)

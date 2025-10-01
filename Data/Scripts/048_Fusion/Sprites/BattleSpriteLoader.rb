@@ -269,8 +269,8 @@ class BattleSpriteLoader
       return sprintf(base_path + "480.483.486")
     when Settings::ZAPMOLCUNO_NB + 30
       return sprintf(base_path + "481.484.487")
-    when 1000099..1001000
-      return sprintf(base_path + dexNum.to_s)
+    when 1000099..1002000
+      return sprintf(base_path + "Cynthia/" + GameData::Species.get(dexNum).id.to_s)
     else
       return sprintf(base_path + "000")
     end

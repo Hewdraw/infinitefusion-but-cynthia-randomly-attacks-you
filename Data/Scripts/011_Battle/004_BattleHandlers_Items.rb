@@ -10,6 +10,30 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,mult|
+    paradoxlist = [
+      :ENTEI, :GOUGINGFIRE,
+      :SUICUNE, :WALKINGWAKE,
+      :ENTEI, :RAGINGBOLT,
+      :PHANPY, :DONPHAN, :IRONTREADS,
+      :IRONTREADS, :GREATTUSK,
+      :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
+      :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
+      :LARVESTA, :VOLCARONA, :IRONMOTH,
+      :IRONMOTH, :SLITHERWING,
+      :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
+      :BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
+      :DELIBIRD, :IRONBUNDLE,
+      :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
+      :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
+      :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+    ]
+    isparadox = false
+    paradoxlist.each do |paradox|
+      if battler.isFusionOf?(paradox)
+        isparadox = true
+      end
+    end
+    next if !isparadox
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -694,6 +718,30 @@ BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
+    paradoxlist = [
+      :ENTEI, :GOUGINGFIRE,
+      :SUICUNE, :WALKINGWAKE,
+      :ENTEI, :RAGINGBOLT,
+      :PHANPY, :DONPHAN, :IRONTREADS,
+      :IRONTREADS, :GREATTUSK,
+      :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
+      :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
+      :LARVESTA, :VOLCARONA, :IRONMOTH,
+      :IRONMOTH, :SLITHERWING,
+      :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
+      :BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
+      :DELIBIRD, :IRONBUNDLE,
+      :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
+      :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
+      :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+    ]
+    isparadox = false
+    paradoxlist.each do |paradox|
+      if user.isFusionOf?(paradox)
+        isparadox = true
+      end
+    end
+    next if !isparadox
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -972,7 +1020,31 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
 
 BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
+    paradoxlist = [
+      :ENTEI, :GOUGINGFIRE,
+      :SUICUNE, :WALKINGWAKE,
+      :ENTEI, :RAGINGBOLT,
+      :PHANPY, :DONPHAN, :IRONTREADS,
+      :IRONTREADS, :GREATTUSK,
+      :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
+      :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
+      :LARVESTA, :VOLCARONA, :IRONMOTH,
+      :IRONMOTH, :SLITHERWING,
+      :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
+      :BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
+      :DELIBIRD, :IRONBUNDLE,
+      :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
+      :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
+      :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+    ]
+    isparadox = false
+    paradoxlist.each do |paradox|
+      if target.isFusionOf?(paradox)
+        isparadox = true
+      end
+    end
+    next if !isparadox
+    stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
         mults[:defense_multiplier] *= 1.3 if (i == 1 && move.physicalMove?) || (i == 3 && move.specialMove?)

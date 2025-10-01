@@ -1184,6 +1184,41 @@ ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene|
+  paradoxlist = {
+    [:ENTEI] => :GOUGINGFIRE,
+    [:SUICUNE] => :WALKINGWAKE,
+    [:ENTEI] => :RAGINGBOLT,
+    [:PHANPY, :DONPHAN] => :IRONTREADS,
+    [:IRONTREADS] => :GREATTUSK,
+    [:IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF] => :SCREAMTAIL,
+    [:MISDREAVUS, :MISMAGIUS] => :FLUTTERMANE,
+    [:LARVESTA, :VOLCARONA] => :IRONMOTH,
+    [:IRONMOTH] => :SLITHERWING,
+    [:MAGNEMITE, :MAGNETON, :MAGNEZONE] => :SANDYSHOCKS,
+    [:BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE] => :ROARINGMOON,
+    [:DELIBIRD] => :IRONBUNDLE,
+    [:DEINO, :ZWEILOUS, :HYDREIGON] => :IRONJUGULIS,
+    [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => :IRONTHORNS,
+    [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => :IRONVALIANT,
+  }
+  paradoxlist.each do |unparadox, paradox|
+    if unparadox.include?(pkmn.species)
+      if pkmn.unparadox.nil?
+        pkmn.unparadox = pkmn.species
+      end
+      pkmn.species = paradox
+      next false
+    end
+  end
+  if !pkmn.unparadox.nil?
+    pkmn.species = pkmn.unparadox
+    pkmn.unparadox = nil
+    next false
+  end
+  next false
+})
+
 
 #
 # #TRACKER (for roaming legendaries)
