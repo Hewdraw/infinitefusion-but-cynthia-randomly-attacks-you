@@ -2,7 +2,7 @@ def spriteOptionsMenu
   commands = []
   cmd_manual_update= _INTL("Update sprites manually")
   cmd_clear_sprite_cache = _INTL("Clear sprite cache")
-  cmd_reset_alt_sprites  = _INTL("Reset selected sprites")
+  cmd_reset_alt_sprites  = _INTL("Reset displayed alt sprites")
   cmd_cancel = _INTL("Cancel")
   commands << cmd_manual_update
   commands << cmd_clear_sprite_cache

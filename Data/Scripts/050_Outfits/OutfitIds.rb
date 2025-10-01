@@ -24,6 +24,10 @@ CLOTHES_WAITER = "butler"
 CLOTHES_LASS_YELLOW ="lass"
 CLOTHES_LASS_BLUE ="lass2"
 
+CLOTHES_ROCKET_WHITE_M ="RocketJames"
+CLOTHES_ROCKET_WHITE_F ="RocketJessie"
+
+
 DEFAULT_OUTFIT_MALE = "red"
 DEFAULT_OUTFIT_FEMALE = "leaf"
 STARTING_OUTFIT = "pikajamas"
@@ -47,7 +51,7 @@ HAT_ORAN = "orange"
 HAT_FLOWERS = "grassexpert"
 HAT_LUCHA = "hawluchamask"
 
-
+HAT_EEVEE_EARS = "eeveeears"
 HAT_PARASHROOM = "parashroom"
 HAT_AERODACTYL = "aerodactylSkull"
 HAT_DUSKULL_MASK = "duskullmask"

@@ -1,4 +1,13 @@
 
+def exportTeamForShowdown()
+  message = ""
+  for pokemon in $Trainer.party
+    message << exportFusedPokemonForShowdown(pokemon)
+    message << "\n"
+  end
+  Input.clipboard = message
+end
+
 # Output example
 # Clefnair (Clefable) @ Life Orb
 # Ability: Magic Guard

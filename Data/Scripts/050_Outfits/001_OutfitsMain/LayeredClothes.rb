@@ -139,29 +139,30 @@ def getCurrentPokeball(allowEasterEgg=true)
   return nil
 end
 
-def generate_front_trainer_sprite_bitmap_from_appearance(trainerAppearance)
+def generate_front_trainer_sprite_bitmap_from_appearance(trainerAppearance,is_trainer=true)
   echoln trainerAppearance.hat
   return generate_front_trainer_sprite_bitmap(false,nil,trainerAppearance.clothes,trainerAppearance.hat,trainerAppearance.hat2,
                                               trainerAppearance.hair,trainerAppearance.skin_color,
                                               trainerAppearance.hair_color,trainerAppearance.hat_color,trainerAppearance.clothes_color,
-                                              trainerAppearance.hat2_color)
+                                              trainerAppearance.hat2_color,
+                                              is_trainer)
 end
 
 def generate_front_trainer_sprite_bitmap(allowEasterEgg=true, pokeball = nil,
                                          clothes_id = nil, hat_id = nil, hat2_id=nil, hair_id = nil,
                                          skin_tone_id = nil, hair_color = nil, hat_color = nil, clothes_color = nil,
-                                         hat2_color = nil)
+                                         hat2_color = nil, is_trainer=true)
 
-  clothes_id = $Trainer.clothes if !clothes_id
-  hat_id = $Trainer.hat if !hat_id
-  hat2_id = $Trainer.hat2 if !hat2_id
+  clothes_id = $Trainer.clothes if !clothes_id && is_trainer
+  hat_id = $Trainer.hat if !hat_id && is_trainer
+  hat2_id = $Trainer.hat2 if !hat2_id && is_trainer
 
-  hair_id = $Trainer.hair if !hair_id
-  skin_tone_id = $Trainer.skin_tone if !skin_tone_id
-  hair_color = $Trainer.hair_color if !hair_color
-  hat_color = $Trainer.hat_color if !hat_color
-  hat2_color = $Trainer.hat2_color if !hat2_color
-  clothes_color = $Trainer.clothes_color if !clothes_color
+  hair_id = $Trainer.hair if !hair_id && is_trainer
+  skin_tone_id = $Trainer.skin_tone if !skin_tone_id && is_trainer
+  hair_color = $Trainer.hair_color if !hair_color && is_trainer
+  hat_color = $Trainer.hat_color if !hat_color && is_trainer
+  hat2_color = $Trainer.hat2_color if !hat2_color && is_trainer
+  clothes_color = $Trainer.clothes_color if !clothes_color && is_trainer
 
   hairFilename = getTrainerSpriteHairFilename(hair_id) #_INTL(Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_HAIR_FOLDER + "/hair_trainer_{1}", $Trainer.hair)
   outfitFilename = getTrainerSpriteOutfitFilename(clothes_id) #_INTL(Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_CLOTHES_FOLDER + "/clothes_trainer_{1}", $Trainer.clothes)
@@ -375,13 +376,14 @@ def duplicateHatForFrames(hatBitmap, frame_count)
   return duplicatedBitmap
 end
 
-def add_hat_to_bitmap(bitmap, hat_id, x_pos, y_pos, scale = 1, mirrored = false)
+def add_hat_to_bitmap(bitmap, hat_id, x_pos, y_pos, scale = 1, mirrored_horizontal = false, mirrored_vertical = false)
   base_scale = 1.5 #coz hat & poke sprites aren't the same size
   adjusted_scale = base_scale * scale
   hat_filename = getTrainerSpriteHatFilename(hat_id)
   hatBitmapWrapper = AnimatedBitmap.new(hat_filename, 0) if pbResolveBitmap(hat_filename)
   hatBitmapWrapper.scale_bitmap(adjusted_scale) if hatBitmapWrapper
-  hatBitmapWrapper.mirror if hatBitmapWrapper && mirrored
+  hatBitmapWrapper.mirror_horizontally if hatBitmapWrapper && mirrored_horizontal
+  hatBitmapWrapper.mirror_vertically if hatBitmapWrapper && mirrored_vertical
   bitmap.blt(x_pos * adjusted_scale, y_pos * adjusted_scale, hatBitmapWrapper.bitmap, hatBitmapWrapper.bitmap.rect) if hatBitmapWrapper
 end
 

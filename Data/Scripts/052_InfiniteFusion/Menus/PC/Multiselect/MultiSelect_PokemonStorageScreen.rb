@@ -133,25 +133,26 @@ class PokemonStorageScreen
 
   def multipleSelectedPokemonCommands(selected, pokemonCount)
     commands = []
-    cmdMove = -1
-    cmdRelease = -1
-    cmdCancel = -1
-    cmdSort = -1
+    cmdMove = _INTL("Move")
+    cmdRelease = _INTL("Release")
+    cmdCancel = _INTL("Cancel")
+    cmdSort = _INTL("Sort")
 
     helptext = _INTL("Selected {1} Pokémon.", pokemonCount)
 
-    commands[cmdMove = commands.length] = _INTL("Move")
-    commands[cmdSort = commands.length] = _INTL("Sort")
-    commands[cmdRelease = commands.length] = _INTL("Release") if $DEBUG
-    commands[cmdCancel = commands.length] = _INTL("Cancel")
+    commands << cmdMove
+    commands << cmdSort
+    commands << cmdRelease if $DEBUG
+    commands << cmdCancel
 
-    command = pbShowCommands(helptext, commands)
+    chosen = pbShowCommands(helptext, commands)
 
-    if command == cmdMove
+    case commands[chosen]
+    when cmdMove
       pbHoldMulti(selected[0], selected[1])
-    elsif command == cmdSort
+    when cmdSort
       pbSortMulti(selected[0])
-    elsif command == cmdRelease
+    when cmdRelease
       pbReleaseMulti(selected[0])
     end
   end

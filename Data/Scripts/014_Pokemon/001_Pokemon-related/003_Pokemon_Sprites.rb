@@ -59,7 +59,7 @@ class PokemonSprite < SpriteWrapper
     if pokemon.hat
       new_bitmap = Bitmap.new(base_bitmap.width, base_bitmap.height)
       new_bitmap.blt(0, 0, base_bitmap.bitmap, base_bitmap.bitmap.rect)
-      add_hat_to_bitmap(new_bitmap, pokemon.hat, pokemon.hat_x, pokemon.hat_y)
+      add_hat_to_bitmap(new_bitmap, pokemon.hat, pokemon.hat_x, pokemon.hat_y, 1, pokemon.hat_mirrored_horizontal,pokemon.hat_mirrored_vertical)
       @_iconbitmap = SpriteWrapper.new
       @_iconbitmap.bitmap = new_bitmap
     else

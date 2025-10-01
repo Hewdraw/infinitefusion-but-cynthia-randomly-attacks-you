@@ -21,7 +21,8 @@ class PokemonHatPresenter
     @min_y, @max_y = -120, 120  # Safe symmetric range
 
     @hatBitmapWrapper = AnimatedBitmap.new(@hatFilename, 0) if pbResolveBitmap(@hatFilename)
-
+    @hatBitmapWrapper.mirror_horizontally if @hatBitmapWrapper &&  @hat_mirrored_horizontal
+    @hatBitmapWrapper.mirror_vertically if @hatBitmapWrapper && @hat_mirrored_vertical
   end
 
   def pbStartScreen
@@ -66,7 +67,7 @@ class PokemonHatPresenter
       return false if Input.trigger?(Input::BACK)
       @view.update()
     end
-    @pokemon.hat = @hat_id
+    updatePokemonHatPosition
     @view.hide_select_arrows
 
   end
@@ -89,13 +90,21 @@ class PokemonHatPresenter
       return false if Input.trigger?(Input::BACK)
       @view.update()
     end
+    resetHatVisualFlip
     @view.hide_move_arrows
     return true
   end
 
+  #Let the sprite display stuff handle the actual flipping
+  def resetHatVisualFlip
+    return unless @hatBitmapWrapper
+    @hatBitmapWrapper.mirror_horizontally if @hat_mirrored_horizontal
+    @hatBitmapWrapper.mirror_vertically if @hat_mirrored_vertical
+  end
 
 
   def flipHatHorizontally()
+    return unless @hatBitmapWrapper
     @hat_mirrored_horizontal = !@hat_mirrored_horizontal
     pbSEPlay("GUI storage pick up")
     @hatBitmapWrapper.mirror_horizontally
@@ -104,6 +113,7 @@ class PokemonHatPresenter
 
 
   def flipHatVertically()
+    return unless @hatBitmapWrapper
     pbSEPlay("GUI storage pick up")
     @hat_mirrored_vertical = !@hat_mirrored_vertical
     @hatBitmapWrapper.mirror_vertically

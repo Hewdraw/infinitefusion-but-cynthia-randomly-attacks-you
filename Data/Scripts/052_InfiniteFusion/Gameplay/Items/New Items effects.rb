@@ -1118,8 +1118,8 @@ ItemHandlers::UseOnPokemon.add(:POISONMUSHROOM, proc { |item, pkmn, scene|
   next pbHPItem(pkmn, 10, scene)
 })
 ItemHandlers::BattleUseOnPokemon.add(:POISONMUSHROOM, proc { |item, pokemon, battler, choices, scene|
-  if battler.status != :POISON
-    battler.status = :POISON
+  if pokemon.status != :POISON
+    pokemon.status = :POISON
     scene.pbRefresh
     scene.pbDisplay(_INTL("{1} was poisoned from eating the mushroom.", pokemon.name))
   end
@@ -1331,6 +1331,7 @@ ItemHandlers::BattleUseOnPokemon.add(:ROCKETMEAL, proc { |item, pokemon, battler
 })
 
 ItemHandlers::UseOnPokemon.add(:FANCYMEAL, proc { |item, pokemon, scene|
+
   next pbHPItem(pokemon, 100, scene)
 })
 
@@ -1343,6 +1344,7 @@ ItemHandlers::UseOnPokemon.add(:COFFEE, proc { |item, pokemon, scene|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:COFFEE, proc { |item, pokemon, battler, choices, scene|
+  battler.pbRaiseStatStage(:SPEED,(Settings::X_STAT_ITEMS_RAISE_BY_TWO_STAGES) ? 2 : 1,battler) if battler
   pbBattleHPItem(pokemon, battler, 50, scene)
 })
 

@@ -27,7 +27,7 @@ def initializeLegendaryMode()
   $game_switches[SWITCH_GYM_RANDOM_EACH_BATTLE] = false
   $game_switches[SWITCH_RANDOM_GYM_PERSIST_TEAMS] = true
   $game_switches[SWITCH_LEGENDARY_MODE] = true
-
+  $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE] = true
   addLegendaryEggsToPC
   $PokemonSystem.hide_custom_eggs = true
   $PokemonSystem.type_icons = true
