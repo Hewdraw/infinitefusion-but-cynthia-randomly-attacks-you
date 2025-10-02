@@ -43,7 +43,7 @@ end
 def getCurrentLevelCap()
   current_max_level = Settings::LEVEL_CAPS[$Trainer.badge_count]
   current_max_level *= Settings::HARD_MODE_LEVEL_MODIFIER if $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
-  return current_max_level
+  return current_max_level.floor
 end
 
 def pokemonExceedsLevelCap(pokemon)

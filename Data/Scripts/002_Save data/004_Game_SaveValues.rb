@@ -129,7 +129,7 @@ end
 SaveData.register(:game_version) do
   load_in_bootup
   ensure_class :String
-  save_value { Settings::GAME_VERSION }
+  save_value { Settings::GAME_VERSION_NUMBER }
   load_value { |value| $game_version = value }
-  new_game_value { Settings::GAME_VERSION }
+  new_game_value { Settings::GAME_VERSION_NUMBER }
 end

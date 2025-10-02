@@ -99,7 +99,7 @@ end
 
 def list_unlocked_league_tiers
   unlocked_tiers =[]
-  unlocked_tiers << 1 if $game_switches[SWITCH_BEAT_THE_LEAGUE]
+  unlocked_tiers << 1 if $game_switches[SWITCH_LEAGUE_TIER_1]
   unlocked_tiers << 2 if $game_switches[SWITCH_LEAGUE_TIER_2]
   unlocked_tiers << 3 if $game_switches[SWITCH_LEAGUE_TIER_3]
   unlocked_tiers << 4 if $game_switches[SWITCH_LEAGUE_TIER_4]
@@ -111,7 +111,7 @@ def select_league_tier
   #validateE4Data
   available_tiers = list_unlocked_league_tiers
   return 0 if available_tiers.empty?
-  return available_tiers[0] if available_tiers.length == 1
+  #return available_tiers[0] if available_tiers.length == 1
 
   available_tiers.reverse!
   commands = []
@@ -139,17 +139,16 @@ def unlock_new_league_tiers
   tiers_to_unlock << 3 if current_tier == 2 && $game_switches[SWITCH_BEAT_MT_SILVER]
   tiers_to_unlock << 4 if current_tier == 3 && $game_variables[VAR_NB_GYM_REMATCHES] >= 16
   tiers_to_unlock << 5 if current_tier == 4
-
   tiers_to_unlock.each do |tier|
-    next if tier == 1 || tier == 0
-
+    next if tier == 0
+    $game_switches[SWITCH_LEAGUE_TIER_1] = true if tiers_to_unlock.include?(1)
     $game_switches[SWITCH_LEAGUE_TIER_2] = true if tiers_to_unlock.include?(2)
     $game_switches[SWITCH_LEAGUE_TIER_3] = true if tiers_to_unlock.include?(3)
     $game_switches[SWITCH_LEAGUE_TIER_4] = true if tiers_to_unlock.include?(4)
     $game_switches[SWITCH_LEAGUE_TIER_5] = true if tiers_to_unlock.include?(5)
     unless currently_unlocked_tiers.include?(tier)
       pbMEPlay("Key item get")
-      pbMessage(_INTL("{1} unlocked the \\C[1]Tier {2} League Rematches\\C[0]!",$Trainer.name,tier))
+      pbMessage(_INTL("{1} unlocked \\C[1]Tier {2} League Rematches\\C[0]!",$Trainer.name,tier))
     end
   end
 end

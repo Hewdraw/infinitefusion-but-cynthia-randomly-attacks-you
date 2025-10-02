@@ -745,6 +745,7 @@ def addBackgroundPlane(sprites,planename,background,viewport=nil)
       end
     end
   end
+  return sprites[planename]
 end
 
 # Adds a background to the sprite hash.

@@ -156,7 +156,7 @@ def addLegendaryEggsToPC()
   legendaries_species = LEGENDARIES_LIST.shuffle
   legendaries_species.each do |species|
     pokemon = Pokemon.new(species, Settings::EGG_LEVEL)
-    pokemon.steps_to_hatch = pokemon.species_data.hatch_steps
+    pokemon.steps_to_hatch = pokemon.species_data.hatch_steps/2
     pokemon.name = "Egg"
     $PokemonStorage.pbStoreCaught(pokemon)
   end

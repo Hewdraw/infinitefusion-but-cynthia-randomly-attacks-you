@@ -5,8 +5,7 @@
 #==============================================================================#
 module Settings
   # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-  GAME_VERSION = '6.7.1'
-  GAME_VERSION_NUMBER = GAME_VERSION  #kinda used interchangibly #todo: refactor
+  GAME_VERSION_NUMBER = "6.7.2"
   LATEST_GAME_RELEASE = "6.6"
 
   KANTO = GAME_ID == :IF_KANTO

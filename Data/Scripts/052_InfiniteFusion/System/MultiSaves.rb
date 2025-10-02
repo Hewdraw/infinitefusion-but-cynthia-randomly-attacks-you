@@ -225,7 +225,7 @@ module SaveData
     end
     echoln '' if conversions_to_run.length > 0
     save_data[:essentials_version] = Essentials::VERSION
-    save_data[:game_version] = Settings::GAME_VERSION
+    save_data[:game_version] = Settings::GAME_VERSION_NUMBER
     return true
   end
 end
