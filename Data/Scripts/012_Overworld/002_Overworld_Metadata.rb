@@ -75,6 +75,8 @@ class PokemonGlobalMetadata
   attr_accessor :shadrossmoney
   attr_accessor :ancestralgeneability
   attr_accessor :cactusheight
+  attr_accessor :enderchest
+  attr_accessor :healies
 
   def initialize
     # Movement

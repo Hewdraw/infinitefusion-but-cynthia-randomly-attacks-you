@@ -1136,6 +1136,15 @@ ItemHandlers::UseOnPokemon.add(:FROSTORB, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:SHOCKORB, proc { |item, pkmn, scene|
+  if pkmn.status != :PARALYSIS
+    pkmn.status = :PARALYSIS
+    scene.pbRefresh
+    scene.pbDisplay(_INTL("{1} got paralyzed.", pkmn.name))
+  end
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ARTICUNO)
     level = pkmn.level
@@ -2235,11 +2244,11 @@ ItemHandlers::UseOnPokemon.add(:ANCESTRALGENE, proc { |item, pkmn, scene|
 ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each { |pkmn| pkmn.heal }
   pbMessage(_INTL("Your Pokémon were fully healed."))
-  next true
+  $PokemonGlobal.healies = true
 })
 
 ItemHandlers::UseInField.add(:HEALIES, proc { |item|
   $Trainer.party.each { |pkmn| pkmn.heal }
   pbMessage(_INTL("Your Pokémon were fully healed."))
-  next true
+  $PokemonGlobal.healies = true
 })

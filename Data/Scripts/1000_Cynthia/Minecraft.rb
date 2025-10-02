@@ -47,10 +47,12 @@ def enderChest()
   end
 
   if rand(10) == 0
+    $PokemonGlobal.enderChest = true
     eventlist = getEventList()
     randomevent = eventlist[rand(eventlist.length)]
     pbMessage("You got #{randomevent[1]} \\C[5]#{randomevent[0]}\\C[0]!")
     randomevent[2].call
+    $PokemonGlobal.enderChest = nil
   end
 end
 

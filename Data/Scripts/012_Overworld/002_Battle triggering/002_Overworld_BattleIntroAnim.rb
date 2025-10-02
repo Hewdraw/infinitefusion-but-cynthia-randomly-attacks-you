@@ -35,13 +35,18 @@ def pbBattleAnimation(bgm=nil,battletype=0,foe=nil)
   #pbWait(Graphics.frame_rate/4)
   pbMEStop
   # Play battle music
+  override = nil
+  if foe[0].is_a?(Trainer) && foe[0].trainer_type == :COOLTRAINER_F && rand(25) == 0 && $Trainer.numbadges >= 8
+    override = :COOLTRAINER_MIKU
+    bgm = pbStringToAudioFile("Miku")
+  end
   bgm = pbGetWildBattleBGM([]) if !bgm
   pbBGMPlay(bgm)
   # Take screenshot of game, for use in some animations
   $game_temp.background_bitmap.dispose if $game_temp.background_bitmap
   $game_temp.background_bitmap = Graphics.snap_to_bitmap
   # Check for custom battle intro animations
-  handled = pbBattleAnimationOverride(viewport,battletype,foe)
+  handled = pbBattleAnimationOverride(viewport,battletype,foe,override)
   # Default battle intro animation
   if !handled
     # Determine which animation is played
@@ -140,13 +145,13 @@ end
 #===============================================================================
 # Vs. battle intro animation
 #===============================================================================
-def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
+def pbBattleAnimationOverride(viewport,battletype=0,foe=nil, override = nil)
   ##### VS. animation, by Luka S.J. #####
   ##### Tweaked by Maruno           #####
   if (battletype==1 || battletype==3) && (foe.length==1 || (foe.length==2 && foe[0].trainer_type == foe[1].trainer_type))  # Against single trainer
     tr_type = foe[0].trainer_type
+    tr_type = override if override
     tr_number= GameData::TrainerType.get(tr_type).id_number
-    tr_type = :COOLTRAINER_MIKU if tr_type == :COOLTRAINER_F && rand(25) && $Trainer.numbadges >= 8
 
     if tr_type
       tbargraphic = sprintf("vsBar_%s", tr_type.to_s) rescue nil
@@ -357,7 +362,7 @@ end
 
 alias __over1__pbBattleAnimationOverride pbBattleAnimationOverride
 
-def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
+def pbBattleAnimationOverride(viewport,battletype=0,foe=nil,override=nil)
   # The following example runs a common event that ought to do a custom
   # animation if some condition is true:
   #
@@ -368,5 +373,5 @@ def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
   #
   # The following line needs to call the aliased method if the custom transition
   # animation was NOT shown.
-  return __over1__pbBattleAnimationOverride(viewport,battletype,foe)
+  return __over1__pbBattleAnimationOverride(viewport,battletype,foe,override)
 end

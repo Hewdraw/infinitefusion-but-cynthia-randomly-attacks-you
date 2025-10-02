@@ -2241,7 +2241,7 @@ class PokeBattle_Move_0CE < PokeBattle_TwoTurnMove
     return false
   end
 
-  def pbCalcTypeMod(movetype,user,target)
+  def pbCalcTypeMod(movetype,user,target,tera=nil)
     return Effectiveness::INEFFECTIVE if target.pbHasType?(:FLYING)
     return super
   end

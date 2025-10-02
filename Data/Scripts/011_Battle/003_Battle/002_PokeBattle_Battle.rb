@@ -177,6 +177,7 @@ class PokeBattle_Battle
         end
       end
     end
+    @broken_buttons.push(3) if $PokemonGlobal.enderchest
     @nuh_uh = 1
     @legendary = false
   end

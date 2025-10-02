@@ -109,6 +109,8 @@ class Game_Player < Game_Character
     ret.concat(pbTriggeredCounterEvents(triggers))
     return false if ret.length==0
     for event in ret
+      $PokemonGlobal.sliding = false
+      $PokemonGlobal.healies = false
       event.start
     end
     return true

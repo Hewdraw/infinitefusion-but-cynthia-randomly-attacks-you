@@ -2259,9 +2259,7 @@ class PokeBattle_AI
         end
       when "0C1"   # Beat Up
         mult = 0
-        pbParty(user.index).each do |pkmn,_i|
-          mult += 1 if pkmn && pkmn.able? && pkmn.status == :NONE
-        end
+        mult = rand(5) + 1 #todo
         baseDmg *= mult
       when "0C4"   # Solar Beam
         baseDmg = move.pbBaseDamageMultiplier(baseDmg,user,target)

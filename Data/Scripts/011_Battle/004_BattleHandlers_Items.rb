@@ -29,7 +29,7 @@ BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
     ]
     isparadox = false
     paradoxlist.each do |paradox|
-      if battler.isFusionOf?(paradox)
+      if battler.isFusionOf(paradox)
         isparadox = true
       end
     end
@@ -737,7 +737,7 @@ BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
     ]
     isparadox = false
     paradoxlist.each do |paradox|
-      if user.isFusionOf?(paradox)
+      if user.isFusionOf(paradox)
         isparadox = true
       end
     end
@@ -1039,7 +1039,7 @@ BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
     ]
     isparadox = false
     paradoxlist.each do |paradox|
-      if target.isFusionOf?(paradox)
+      if target.isFusionOf(paradox)
         isparadox = true
       end
     end

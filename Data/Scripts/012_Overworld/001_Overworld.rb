@@ -125,7 +125,7 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
       currentTag = $game_player.pbTerrainTag
       if currentTag.waterfall_crest || currentTag.waterfall
         pbDescendWaterfall
-      elsif currentTag.ice && !$PokemonGlobal.sliding
+      elsif (currentTag.ice || $PokemonGlobal.healies) && !$PokemonGlobal.sliding
         pbSlideOnIce
       elsif currentTag.waterCurrent && !$PokemonGlobal.sliding
         pbSlideOnWater
@@ -452,6 +452,7 @@ def pbEventCanReachPlayer?(event, player, distance)
   when 8 # Up
     real_distance = event.y - event.height - player.y
   end
+
   if real_distance > 0
     real_distance.times do |i|
       return false if !event.can_move_from_coordinate?(event.x + i * delta_x, event.y + i * delta_y, event.direction)
@@ -617,7 +618,7 @@ def pbLedge(_xOffset, _yOffset)
 end
 
 def pbSlideOnIce
-  return if !$game_player.pbTerrainTag.ice
+  return if !$game_player.pbTerrainTag.ice && !$PokemonGlobal.healies
   $PokemonGlobal.sliding = true
   direction = $game_player.direction
   oldwalkanime = $game_player.walk_anime
@@ -625,18 +626,21 @@ def pbSlideOnIce
   $game_player.walk_anime = false
   loop do
     break if !$game_player.can_move_in_direction?(direction)
-    break if !$game_player.pbTerrainTag.ice
+    break if !$game_player.pbTerrainTag.ice && !$PokemonGlobal.healies
+    break if !$PokemonGlobal.sliding
     $game_player.move_forward
     while $game_player.moving?
       pbUpdateSceneMap
       Graphics.update
       Input.update
+      $game_system.map_interpreter.update
     end
   end
   $game_player.center($game_player.x, $game_player.y)
   $game_player.straighten
   $game_player.walk_anime = oldwalkanime
   $PokemonGlobal.sliding = false
+  $PokemonGlobal.healies = false
 end
 
 def pbSlideOnWater

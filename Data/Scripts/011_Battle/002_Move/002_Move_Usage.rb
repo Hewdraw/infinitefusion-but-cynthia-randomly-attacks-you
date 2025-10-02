@@ -165,7 +165,7 @@ class PokeBattle_Move
     end
     # Disguise will take the damage
     if !@battle.moldBreaker &&
-       target.form==0 && target.ability == :DISGUISE
+       !target.pokemon.disguise && target.ability == :DISGUISE
       target.damageState.disguise = true
       return
     end
@@ -308,8 +308,13 @@ class PokeBattle_Move
       else
         @battle.pbDisplay(_INTL("{1}'s disguise served it as a decoy!",target.pbThis))
       end
+
+      dmg = target.totalhp/8
+      target.pbReduceHP(dmg,false)
+      target.pbItemHPHealCheck
+      target.pbFaint if target.fainted?
       @battle.pbHideAbilitySplash(target)
-      target.pbChangeForm(1,_INTL("{1}'s disguise was busted!",target.pbThis))
+      target.pokemon.disguise = true
     elsif target.damageState.endured
       @battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
     elsif target.damageState.sturdy
