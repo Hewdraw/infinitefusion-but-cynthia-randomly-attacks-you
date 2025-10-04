@@ -625,6 +625,7 @@ def pbSlideOnIce
   oldwalkanime = $game_player.walk_anime
   $game_player.straighten
   $game_player.walk_anime = false
+  timer = 50
   loop do
     break if !$game_player.can_move_in_direction?(direction)
     break if !$game_player.pbTerrainTag.ice && !$PokemonGlobal.healies
@@ -637,6 +638,11 @@ def pbSlideOnIce
       Input.update
       $game_system.map_interpreter.update
     end
+    timer -= 1
+    break if timer <= 0
+  end
+  if timer <= 0 && $PokemonGlobal.healies
+    pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
   end
   $game_player.center($game_player.x, $game_player.y)
   $game_player.straighten
