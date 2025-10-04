@@ -1010,11 +1010,7 @@ def pbSweetScent
     break if viewport.color.alpha <= 0
   end
   viewport.dispose
-  enctype = $PokemonEncounters.encounter_type
-  if enctype || !$PokemonEncounters.encounter_possible_here? ||
-    !pbEncounter(enctype)
-    pbMessage(_INTL("There appears to be nothing here..."))
-  end
+  pbBattleOnStepTaken(false,true)
 end
 
 HiddenMoveHandlers::CanUseMove.add(:SWEETSCENT, proc { |move, pkmn, showmsg|

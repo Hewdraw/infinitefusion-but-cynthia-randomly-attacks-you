@@ -187,7 +187,7 @@ def getEncounter(encounter_type)
   return encounter
 end
 
-def pbBattleOnStepTaken(repel_active)
+def pbBattleOnStepTaken(repel_active, guarantee=false)
   return if $Trainer.able_pokemon_count == 0
   if $PokemonGlobal.cynthiachance != nil && $Trainer.numbadges >= 3
     if $PokemonGlobal.cynthiafieldchance == nil
@@ -211,7 +211,7 @@ def pbBattleOnStepTaken(repel_active)
   end
   encounter_type = $PokemonEncounters.encounter_type
   return if !encounter_type
-  return if !$PokemonEncounters.encounter_triggered?(encounter_type, repel_active)
+  return if !$PokemonEncounters.encounter_triggered?(encounter_type, repel_active) && !guarantee
   $PokemonTemp.encounterType = encounter_type
 
   encounter = getEncounter(encounter_type)
