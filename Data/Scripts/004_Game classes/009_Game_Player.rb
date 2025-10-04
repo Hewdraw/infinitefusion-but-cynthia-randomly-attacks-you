@@ -366,7 +366,7 @@ class Game_Player < Game_Character
   end
 
   def update_event_triggering
-    return if moving?
+    return if moving? && !($PokemonGlobal.healies && !$PokemonGlobal.sliding)
     # Try triggering events upon walking into them/in front of them
     if @moved_this_frame
       $PokemonTemp.dependentEvents.pbTurnDependentEvents

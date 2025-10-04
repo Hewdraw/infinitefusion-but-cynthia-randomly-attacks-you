@@ -728,9 +728,9 @@
 720,GENIUSMOCHI,Genius Mochi,Genius Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Atk stat.",1,0,0
 721,CLEVERMOCHI,Clever Mochi,Clever Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Def stat.",1,0,0
 722,SWIFTMOCHI,Swift Mochi,Swift Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Speed stat.",1,0,0
-723,KARMAKUT,Karma Kut,Karma Kuts,1,0,"not programmed in yet.",0,0,0
-724,KARMAKLEAN,Karma Klean,Karma Kleans,1,0,"not programmed in yet.",0,0,0
-725,KARMAKLIMB,Karma Klimb,Karma Klimbs,1,0,"not programmed in yet.",0,0,0
+
+
+
 726,FROSTORB,Frost Orb,Frost Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that frostbites the holder in battle.",1,0,0,
 727,LONELYMINT,Lonely Mint,Lonely Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Defense stat may suffe",1,0,0
 728,ADAMANTMINT,Adamant Mint,Adamant Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0

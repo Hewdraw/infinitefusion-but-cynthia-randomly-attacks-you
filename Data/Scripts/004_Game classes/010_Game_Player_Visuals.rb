@@ -87,6 +87,9 @@ class Game_Player < Game_Character
         self.move_speed = 3   # Walking, diving
       end
     end
+    if $PokemonGlobal.healies
+      self.move_speed = 6
+    end
     super
   end
 

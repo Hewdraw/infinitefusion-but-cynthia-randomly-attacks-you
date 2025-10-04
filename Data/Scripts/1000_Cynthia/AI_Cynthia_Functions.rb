@@ -1029,7 +1029,7 @@ class PokeBattle_AI
       missinghp += damageinfo[:info][:opposingMaxThreat] if !damageinfo[:info][:outspeedsopponent]
       score = (2 - (damageinfo[:info][:opposingMaxThreat] / [healamount, missinghp].min)) ** 2 * [healamount, missinghp].min
       score = 1 if damageinfo[:info][:opposingMaxThreat] > healamount
-      score = 1 if [healamount, missinghp].min < healamount / 2.0
+      score = 1 if [healamount, missinghp].min < healamount / 1.5
       score = 1 if user.hp > user.adjustedTotalhp * 3 / 4.0
       score = 0 if !user.canHeal?
       score = 0 if user.hp == user.adjustedTotalhp

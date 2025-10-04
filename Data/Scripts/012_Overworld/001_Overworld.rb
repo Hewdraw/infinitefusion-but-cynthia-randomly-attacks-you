@@ -125,10 +125,10 @@ Events.onStepTakenFieldMovement += proc { |_sender, e|
       currentTag = $game_player.pbTerrainTag
       if currentTag.waterfall_crest || currentTag.waterfall
         pbDescendWaterfall
-      elsif (currentTag.ice || $PokemonGlobal.healies) && !$PokemonGlobal.sliding
-        pbSlideOnIce
       elsif currentTag.waterCurrent && !$PokemonGlobal.sliding
         pbSlideOnWater
+      elsif (currentTag.ice || $PokemonGlobal.healies) && !$PokemonGlobal.sliding
+        pbSlideOnIce
       end
     end
   end
@@ -628,6 +628,7 @@ def pbSlideOnIce
     break if !$game_player.can_move_in_direction?(direction)
     break if !$game_player.pbTerrainTag.ice && !$PokemonGlobal.healies
     break if !$PokemonGlobal.sliding
+    break if $game_player.pbTerrainTag.waterCurrent
     $game_player.move_forward
     while $game_player.moving?
       pbUpdateSceneMap
@@ -645,6 +646,7 @@ end
 
 def pbSlideOnWater
   return if !$game_player.pbTerrainTag.waterCurrent
+  $PokemonGlobal.healies = false
   $PokemonGlobal.sliding = true
   direction = $game_player.direction
   oldwalkanime = $game_player.walk_anime

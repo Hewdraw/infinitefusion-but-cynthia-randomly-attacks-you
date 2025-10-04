@@ -429,21 +429,6 @@ def UndertaleShopSetup()
       "cost" => 16,
       "amount" => 3,
     },
-    :KARMAKUT => {
-      "badges" => 8,
-      "cost" => 8,
-      "amount" => 5,
-    },
-    :KARMAKLEAN => {
-      "badges" => 8,
-      "cost" => 16,
-      "amount" => 5,
-    },
-    :KARMAKLIMB => {
-      "badges" => 8,
-      "cost" => 8,
-      "amount" => 5,
-    },
     :HPUP => {
       "badges" => 9,
       "cost" => 2,
