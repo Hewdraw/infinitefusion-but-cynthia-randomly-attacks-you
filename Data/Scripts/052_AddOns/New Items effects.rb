@@ -1197,13 +1197,13 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
   paradoxlist = {
     [:ENTEI] => :GOUGINGFIRE,
     [:SUICUNE] => :WALKINGWAKE,
-    [:ENTEI] => :RAGINGBOLT,
-    [:PHANPY, :DONPHAN] => :IRONTREADS,
+    [:RAIKOU] => :RAGINGBOLT,
     [:IRONTREADS] => :GREATTUSK,
+    [:PHANPY, :DONPHAN] => :IRONTREADS,
     [:IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF] => :SCREAMTAIL,
     [:MISDREAVUS, :MISMAGIUS] => :FLUTTERMANE,
-    [:LARVESTA, :VOLCARONA] => :IRONMOTH,
     [:IRONMOTH] => :SLITHERWING,
+    [:LARVESTA, :VOLCARONA] => :IRONMOTH,
     [:MAGNEMITE, :MAGNETON, :MAGNEZONE] => :SANDYSHOCKS,
     [:BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE] => :ROARINGMOON,
     [:DELIBIRD] => :IRONBUNDLE,
@@ -1217,13 +1217,17 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
         pkmn.unparadox = pkmn.species
       end
       pkmn.species = paradox
-      next false
+      break
     end
-  end
-  if !pkmn.unparadox.nil?
-    pkmn.species = pkmn.unparadox
-    pkmn.unparadox = nil
-    next false
+    if paradox == pkmn.species
+      if !pkmn.unparadox.nil?
+        pkmn.species = pkmn.unparadox
+        pkmn.unparadox = nil
+      else
+        pkmn.species = unparadox[0]
+      end
+      break
+    end
   end
   next false
 })

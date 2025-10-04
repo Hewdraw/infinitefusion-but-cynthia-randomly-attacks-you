@@ -1,6 +1,6 @@
 
 module Settings
-  LATEST_GAME_RELEASE = "6.6.1"
+  LATEST_GAME_RELEASE = "6.7.2"
 
   SHINY_POKEMON_CHANCE = 16
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
