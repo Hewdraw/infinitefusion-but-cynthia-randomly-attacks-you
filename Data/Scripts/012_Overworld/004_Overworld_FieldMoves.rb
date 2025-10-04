@@ -1010,7 +1010,9 @@ def pbSweetScent
     break if viewport.color.alpha <= 0
   end
   viewport.dispose
-  pbBattleOnStepTaken(false,true)
+  if !pbBattleOnStepTaken(false,true)
+    pbMessage(_INTL("There appears to be nothing here..."))
+  end
 end
 
 HiddenMoveHandlers::CanUseMove.add(:SWEETSCENT, proc { |move, pkmn, showmsg|
