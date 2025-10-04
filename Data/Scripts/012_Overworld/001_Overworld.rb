@@ -244,6 +244,7 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
   end
   $PokemonTemp.forceSingleBattle = false
   EncounterModifier.triggerEncounterEnd
+  return true
 end
 
 
