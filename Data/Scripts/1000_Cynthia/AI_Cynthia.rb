@@ -449,6 +449,9 @@ class PokeBattle_AI
     score *= [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     if move.statusMove?
       return 0 if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && user.opposes?(target)
+      user.eachOpposing do |opponent| #todo
+        return 1 if user.hasActiveAbility?(:PRANKSTER) && opponent.pbHasType?(:DARK) && [:METRONOME, :GREATERMETRONOME, :GREATESTMETRONOME].include?(move.id)
+      end
     end
     return 0 if target.hasActiveAbility?(:MAGICBOUNCE) && user.opposes?(target) && move.canMagicCoat? && !user.hasMoldBreaker?
     return 0 if move.powderMove? && (target.pbHasType?(:GRASS) || target.hasActiveAbility?(:OVERCOAT) || target.hasActiveItem?(:SAFETYGOGGLES)) && target != user
