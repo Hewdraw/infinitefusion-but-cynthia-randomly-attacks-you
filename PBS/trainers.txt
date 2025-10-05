@@ -820,7 +820,7 @@ Pokemon = B80H117,39 #seabro
 [SWIMMER_F,Connie]
 Pokemon = B120H2,35 #IVYU
 Pokemon = B120H5,35 #CHARYU
-Pokemon = B120H8,35 #WARYU
+Pokemon = B120H159,35 #WARYU
 
 ##########################
 
