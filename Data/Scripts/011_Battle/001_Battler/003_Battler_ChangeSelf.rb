@@ -64,6 +64,57 @@ class PokeBattle_Battler
       @pokemon.nature = @pokemon.phasetwo.nature
       @pokemon.name = @pokemon.phasetwo.name
       @name = @pokemon.name
+      if @pokemon.split
+        @pokemon.split.each_with_index do |mon,i|
+          @battle.battlers.each do |ally|
+            next if !ally
+            next if ally.opposes?(@index)
+            next if ally.index == @index
+            next if !ally.ability_id == :DEATH
+            ally.pokemon = mon
+            ally.species = mon.species
+            # ally.pokemon.species = mon.species
+            ally.level = mon.level
+            # ally.pokemon.item = mon.item
+            ally.item_id = mon.item_id
+            # ally.pokemon.forget_all_moves
+            ally.moves = []
+            # ally.pokemon.ability = mon.ability
+            ally.ability = mon.ability
+            #mon.moves.each { |move| ally.pokemon.learn_move_ignoremax(move.id)}
+            ally.pokemon.moves.each { |move| ally.moves.push(PokeBattle_Move.from_pokemon_move(@battle,move))}
+            # ally.pokemon.iv = mon.iv
+            # ally.pokemon.ev = mon.ev
+            # ally.pokemon.nature = mon.nature
+            # ally.pokemon.name = mon.name
+            ally.name = mon.name
+            ally.pbUpdate(true)
+            # ally.hpbars = mon.hpbars if mon.hpbars
+            ally.hp = mon.hp
+            # ally.pokemon.hp = mon.hp
+            ally.pbInitEffects(false)
+            ally.effects = @effects
+            ally.stages = @stages
+            ally.raid = true
+            ally.pbUpdate(true)
+            party = []
+            skipped = false
+            @battle.party2.each do |partymon|
+              if partymon.ability_id == :DEATH && !skipped
+                party.push(mon)
+                skipped = true
+                next
+              end
+              party.push(partymon)
+            end
+            @battle.party2 = party
+            @battle.pbCommonAnimation("UltraBurst2", ally)
+            @battle.scene.pbChangePokemon(ally,ally.pokemon)
+            @battle.scene.pbRefreshOne(ally.index)
+            break
+          end
+        end
+      end
       pbUpdate(true)
       @battle.pbCommonAnimation("UltraBurst2", self)
       @battle.scene.pbChangePokemon(self,@pokemon)
@@ -101,7 +152,7 @@ class PokeBattle_Battler
     @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis)) if showMessage
     updateSpirits()
     PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
-    @battle.scene.pbFaintBattler(self)
+    @battle.scene.pbFaintBattler(self) if !@ability_id == :DEATH
     pbInitEffects(false)
     if self.hasActiveAbility?(:EXPLOSIVE, true) || self.hasActiveAbility?(:CHARGEDEXPLOSIVE, true)
       if !@battle.pbCheckGlobalAbility(:DAMP)
@@ -136,7 +187,7 @@ class PokeBattle_Battler
     @pokemon.makeUnprimal if primal?
     # Do other things
     @battle.pbClearChoice(@index)   # Reset choice
-    pbOwnSide.effects[PBEffects::LastRoundFainted] = @battle.turnCount
+    pbOwnSide.effects[PBEffects::LastRoundFainted] = @battle.turnCount if !@ability_id == :DEATH
     # Check other battlers' abilities that trigger upon a battler fainting
     pbAbilitiesOnFainting
     # Check for end of primordial weather

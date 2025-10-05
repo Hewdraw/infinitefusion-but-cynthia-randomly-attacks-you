@@ -87,6 +87,7 @@ class PokeBattle_Battle
   attr_accessor :broken_buttons
   attr_accessor :nuh_uh
   attr_accessor :legendary
+  attr_accessor :party2
 
   include PokeBattle_BattleCommon
 

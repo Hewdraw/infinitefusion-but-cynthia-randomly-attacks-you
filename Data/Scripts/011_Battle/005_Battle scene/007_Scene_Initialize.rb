@@ -84,16 +84,19 @@ class PokeBattle_Scene
       pbCreatePokemonSprite(i)
     end
     # Wild battle, so set up the Pokémon sprite(s) accordingly
-    if @battle.wildBattle? || @battle.legendaryBattle?
+    if @battle.wildBattle?
       @battle.pbParty(1).each_with_index do |pkmn, i|
         index = i * 2 + 1
         pbChangePokemon(index, pkmn)
         pkmnSprite = @sprites["pokemon_#{index}"]
-        if !@battle.legendaryBattle?
-          pkmnSprite.tone = Tone.new(-80, -80, -80)
-        end
         pkmnSprite.visible = true
       end
+    end
+    if @battle.legendaryBattle?
+      pkmn = @battle.pbParty(1)[0]
+      pbChangePokemon(1, pkmn)
+      pkmnSprite = @sprites["pokemon_#{1}"]
+      pkmnSprite.visible = true
     end
   end
 

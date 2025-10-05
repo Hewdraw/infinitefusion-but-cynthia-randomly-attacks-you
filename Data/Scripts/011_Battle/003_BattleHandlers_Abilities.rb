@@ -2319,6 +2319,13 @@ BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK, :PIXILTAG)
 #===============================================================================
 
 
+BattleHandlers::AbilityOnSwitchIn.add(:DEATH,
+  proc { |ability,battler,battle|
+    battler.hp = 0
+    battler.pbFaint(false)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)

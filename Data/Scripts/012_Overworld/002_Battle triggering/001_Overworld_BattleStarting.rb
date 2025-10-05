@@ -491,11 +491,16 @@ def pbLegendaryBattle(species)
       mon.phasetwo = trainer.party[i+1]
       skip_mon = 1
       if mon.split
-        mon.split = trainer.party[i+2]
-        skip_mon = 2
+        skip_mon = mon.split
+        mon.split = []
+        for j in 1...skip_mon
+          mon.split.push(trainer.party[i+j+1])
+          party.push(Pokemon.new(:STARTER,1,trainer))
+        end
+        $PokemonTemp.recordBattleRule(skip_mon.to_s + "v" + skip_mon.to_s)
       end
     end
-    party.push(mon)
+    party.unshift(mon)
   end
   trainer.party = party
   # Calculate who the player trainer(s) and their party are

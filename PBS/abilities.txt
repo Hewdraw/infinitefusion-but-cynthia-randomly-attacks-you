@@ -268,3 +268,4 @@
 266,DRAGONSMAW,Dragon's Maw,""
 267,EARTHEATER,Dragon's Maw,"todo"
 268,GORILLATACTICS,Dragon's Maw,"todo"
+269,DEATH,Death,"die"

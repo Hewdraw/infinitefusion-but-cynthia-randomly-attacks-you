@@ -265,6 +265,9 @@ class PokemonDataBox < SpriteWrapper
   def refresh
     self.bitmap.clear
     return if !@battler.pokemon
+    if @battler.ability_id == :DEATH
+      return
+    end
     textPos = []
     imagePos = []
     # Draw background panel
@@ -363,7 +366,7 @@ class PokemonDataBox < SpriteWrapper
 
   def refreshHP
     @hpNumbers.bitmap.clear
-    return if !@battler.pokemon
+    return if !@battler.pokemon || @battler.ability_id == :DEATH
     # Show HP numbers
     if @showHP
       pbDrawNumber(self.hp,@hpNumbers.bitmap,54,2,1)
@@ -477,6 +480,7 @@ class PokemonDataBox < SpriteWrapper
   def updatePositions(frameCounter)
     self.x = @spriteX
     self.y = @spriteY
+    self.x += 1000 if @battler.ability_id == :DEATH
     # Data box bobbing while Pokémon is selected
     if @selected==1 || @selected==2   # Choosing commands/targeted or damaged
       case (frameCounter/QUARTER_ANIM_PERIOD).floor

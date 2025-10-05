@@ -64,6 +64,10 @@ class PokeBattle_Battler
     @pokemon.level = value if @pokemon
   end
 
+  def pokemon=(value)
+    @pokemon = value
+  end
+
   def unteraTypes=(value)
     @unteraTypes = value
   end
