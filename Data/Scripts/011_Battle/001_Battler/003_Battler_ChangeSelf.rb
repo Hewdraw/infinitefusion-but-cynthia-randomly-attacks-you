@@ -111,6 +111,7 @@ class PokeBattle_Battler
             @battle.pbCommonAnimation("UltraBurst2", ally)
             @battle.scene.pbChangePokemon(ally,ally.pokemon)
             @battle.scene.pbRefreshOne(ally.index)
+            ally.pbEffectsOnSwitchIn
             break
           end
         end
