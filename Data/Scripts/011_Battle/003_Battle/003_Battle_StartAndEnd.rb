@@ -548,7 +548,7 @@ class PokeBattle_Battle
     ##### CAUGHT WILD POKÉMON #####
     when 4
       if legendaryBattle?
-        eachBattler do |battler|
+        @battlers.each do |battler|
           next if !battler.raid
           next if battler.pokemon.species == :CREEPER
           if battler.pokemon.species == :COOLERDINO
