@@ -321,6 +321,8 @@ module GameData
         else
           offset = -3
         end
+        shininess = pkmn_data[:shininess] || rand(256) == 0
+        offset = [5, offset].max if shininess
         highestlevel = 0
         for mon in $Trainer.party
           if mon.level > highestlevel
@@ -408,7 +410,6 @@ module GameData
         end
 
         pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)
-        shininess = pkmn_data[:shininess] || rand(256) == 0
         pkmn.shiny = shininess ? true : false
         pkmn.natural_shiny = shininess ? true : false
         if pkmn_data[:nature]

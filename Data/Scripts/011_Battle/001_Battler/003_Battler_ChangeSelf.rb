@@ -141,26 +141,6 @@ class PokeBattle_Battler
     pbAbilitiesOnFainting
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
-    if @battle.legendaryBattle? && @pokemon.raid && @pokemon.name != "Creeper"
-      if @pokemon.species == :COOLERDINO
-        @pokemon.species = :TYRANTRUM
-        @pokemon.name = "Cool Dino"
-        @pokemon.item = :PYRITE
-      end
-      @pokemon.ev = {}
-      GameData::Stat.each_main do |s|
-        @pokemon.ev[s.id] = 0
-      end
-      if @pokemon.moves.length > 4
-        @pokemon.moves = @pokemon.moves[0..3]
-      end
-      @pokemon.raid = nil
-      @pokemon.hpbars = nil
-      ability = @pokemon.getAbilityList[-1][0]
-      @pokemon.ability_index = 2
-      @pokemon.ability = GameData::Ability.get(ability).id
-      @battle.pbThrowPokeBall(@index, :POKEBALL, catch_rate = 255, showPlayer = true)
-    end
   end
 
   def updateSpirits()

@@ -5889,7 +5889,7 @@ Pokemon = POLITOED,46
 [FISHERMAN,Justin]
 Pokemon = MAGIKARP,5 
 Pokemon = B6H129,45 #MAGIZARD
-Pokemon = B9H129,45 #MAGITOISE
+Pokemon = B160H129,45 #MAGITOISE
 Pokemon = B3H129,45 #MAGISAUR
 ############################
 
