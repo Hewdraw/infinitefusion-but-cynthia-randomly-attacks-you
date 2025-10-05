@@ -109,6 +109,7 @@ class Pokemon
   attr_accessor :ace
   attr_accessor :raid
   attr_accessor :hpbars
+  attr_accessor :split
   attr_accessor :phasetwo
   attr_accessor :unparadox
   attr_accessor :disguise

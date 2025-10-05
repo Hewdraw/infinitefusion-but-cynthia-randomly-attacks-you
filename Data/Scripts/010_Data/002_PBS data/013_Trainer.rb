@@ -23,6 +23,7 @@ module GameData
       "Gigantamax" => [:gigantamax, "b"],
       "Raid" => [:raid, "b"],
       "Hpbar" => [:hpbars, "s"],
+      "Split" => [:split, "s"],
       "Phasetwo" => [:phasetwo, "b"],
       "Ace" => [:ace, "b"],
       "HPType" => [:hptype, "s"],
@@ -364,6 +365,7 @@ module GameData
         pkmn.gigantamax = (pkmn_data[:gigantamax]) ? true : nil
         pkmn.raid = (pkmn_data[:raid]) ? true : nil
         pkmn.hpbars = (pkmn_data[:hpbars]) ? pkmn_data[:hpbars].to_i : nil
+        pkmn.split = (pkmn_data[:split]) ? pkmn_data[:split].to_i : nil
         pkmn.phasetwo = (pkmn_data[:phasetwo]) ? true : nil
         pkmn.ace = (pkmn_data[:ace]) ? true : nil
 

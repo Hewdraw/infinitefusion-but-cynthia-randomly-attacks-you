@@ -84,7 +84,8 @@ class PokeBattle_Battler
     end
     # Imprison
     @battle.eachOtherSideBattler(@index) do |b|
-      next if !b.effects[PBEffects::Imprison] || !b.pbHasMove?(move.id) || b.raid
+      next if !b.effects[PBEffects::Imprison] || !b.pbHasMove?(move.id)
+      next if @raid
       if showMessages
         msg = _INTL("{1} can't use its sealed {2}!",pbThis,move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

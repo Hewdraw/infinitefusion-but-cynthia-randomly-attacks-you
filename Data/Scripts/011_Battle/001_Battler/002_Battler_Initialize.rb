@@ -103,6 +103,7 @@ class PokeBattle_Battler
     @raid = pkmn.raid
     @hpbars = pkmn.hpbars
     @phasetwo = pkmn.phasetwo
+    @split = pkmn.split
     pkmn.moves.each_with_index do |m,i|
       @moves[i] = PokeBattle_Move.from_pokemon_move(@battle,m)
     end

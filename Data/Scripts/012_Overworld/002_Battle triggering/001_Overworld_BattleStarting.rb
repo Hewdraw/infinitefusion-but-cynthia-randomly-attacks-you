@@ -474,13 +474,13 @@ def pbLegendaryBattle(species)
   trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species)
   return 0 if !trainer
   party = []
-  skip_mon = false
+  skip_mon = 0
   trainer.party.each_with_index do |mon,i|
     if mon.hasItem?(:ANCESTRALGENE)
       $PokemonGlobal.ancestralgeneability = :SNOWWWARNING 
     end
-    if skip_mon
-      skip_mon = false
+    if skip_mon > 0
+      skip_mon -= 1
       next
     end
     if (rand(65536) / Settings::ACTUAL_SHINY_POKEMON_CHANCE) < 1
@@ -489,7 +489,11 @@ def pbLegendaryBattle(species)
     end
     if mon.phasetwo
       mon.phasetwo = trainer.party[i+1]
-      skip_mon = true
+      skip_mon = 1
+      if mon.split
+        mon.split = trainer.party[i+2]
+        skip_mon = 2
+      end
     end
     party.push(mon)
   end
