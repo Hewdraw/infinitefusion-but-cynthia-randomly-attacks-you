@@ -48,101 +48,7 @@ class PokeBattle_Battler
 
   def pbFaint(showMessage=true)
     if @pokemon && @pokemon.phasetwo
-      level = @level
-      @species = @pokemon.phasetwo.species
-      @pokemon.species = @pokemon.phasetwo.species
-      @level = level
-      @pokemon.item = @pokemon.phasetwo.item
-      @item_id = @pokemon.phasetwo.item
-      @pokemon.forget_all_moves
-      @moves = []
-      @pokemon.ability = @pokemon.phasetwo.ability
-      @pokemon.phasetwo.moves.each { |move| @pokemon.learn_move_ignoremax(move.id) }
-      @pokemon.moves.each { |move| @moves.push(PokeBattle_Move.from_pokemon_move(@battle,move))}
-      @pokemon.iv = @pokemon.phasetwo.iv
-      @pokemon.ev = @pokemon.phasetwo.ev
-      @pokemon.nature = @pokemon.phasetwo.nature
-      @pokemon.name = @pokemon.phasetwo.name
-      @name = @pokemon.name
-      if @pokemon.split
-        @pokemon.split.each_with_index do |mon,i|
-          @battle.battlers.each do |ally|
-            next if !ally
-            next if ally.opposes?(@index)
-            next if ally.index == @index
-            next if !ally.ability_id == :DEATH
-            ally.pokemon = mon
-            ally.species = mon.species
-            # ally.pokemon.species = mon.species
-            ally.level = mon.level
-            # ally.pokemon.item = mon.item
-            ally.item_id = mon.item_id
-            # ally.pokemon.forget_all_moves
-            ally.moves = []
-            # ally.pokemon.ability = mon.ability
-            ally.ability = mon.ability
-            #mon.moves.each { |move| ally.pokemon.learn_move_ignoremax(move.id)}
-            ally.pokemon.moves.each { |move| ally.moves.push(PokeBattle_Move.from_pokemon_move(@battle,move))}
-            # ally.pokemon.iv = mon.iv
-            # ally.pokemon.ev = mon.ev
-            # ally.pokemon.nature = mon.nature
-            # ally.pokemon.name = mon.name
-            ally.name = mon.name
-            ally.pbUpdate(true)
-            # ally.hpbars = mon.hpbars if mon.hpbars
-            ally.hp = mon.hp
-            # ally.pokemon.hp = mon.hp
-            ally.pbInitEffects(false)
-            ally.effects = @effects
-            ally.stages = @stages
-            ally.raid = true
-            ally.pbUpdate(true)
-            party = []
-            skipped = false
-            @battle.party2.each do |partymon|
-              if partymon.ability_id == :DEATH && !skipped
-                party.push(mon)
-                skipped = true
-                next
-              end
-              party.push(partymon)
-            end
-            @battle.party2 = party
-            @battle.pbCommonAnimation("UltraBurst2", ally)
-            @battle.scene.pbChangePokemon(ally,ally.pokemon)
-            @battle.scene.pbRefreshOne(ally.index)
-            ally.pbEffectsOnSwitchIn
-            break
-          end
-        end
-      end
-      pbUpdate(true)
-      @battle.pbCommonAnimation("UltraBurst2", self)
-      @battle.scene.pbChangePokemon(self,@pokemon)
-      pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(@pokemon.species)
-      pbBGMPlay("CoolDino") if @pokemon.species == :COOLERDINO
-      hpbars = 1
-      @hpbars = @pokemon.phasetwo.hpbars if @pokemon.phasetwo.hpbars
-      hpbars = @hpbars if @hpbars
-      oldhp = @hp.to_f
-      endhp = @totalhp * hpbars
-      time = 64
-      for i in 0..(time-1)
-        if oldhp+((endhp-oldhp) * i/time).round >= @hp + 1
-          @hp = oldhp+((endhp-oldhp) * i/time).round
-        end
-        @battle.scene.pbRefreshOne(@index)
-        pbWait(1)
-      end
-      @hp = @totalhp * hpbars
-      @battle.scene.pbRefreshOne(@index)
-      @pokemon.hp = @hp
-      @battle.scene.pbRefreshOne(@index)
-      @pokemon.phasetwo = @pokemon.phasetwo.phasetwo
-      @battle.pbCalculatePriority(false,[@index])
-      # Trigger ability
-      pbEffectsOnSwitchIn
-      @battle.battleAI.pbDefaultChooseEnemyCommand(@index)
+      pbPhaseShift
       return
     end
     if !fainted?
@@ -193,6 +99,85 @@ class PokeBattle_Battler
     pbAbilitiesOnFainting
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
+  end
+
+  def pbPhaseShift
+    mons = [self]
+    @battle.pbCommonAnimation("UltraBurst2", self)
+    if @pokemon.split
+      @pokemon.split.each_with_index do |mon,i|
+        @battle.battlers.each do |ally|
+          next if !ally
+          next if ally.opposes?(@index)
+          next if ally.index == @index
+          next if !ally.ability_id == :DEATH
+          ally.pbPhaseShiftInner(mon, self)
+          mons.push(ally)
+          break
+        end
+      end
+    end
+    pbPhaseShiftInner(@pokemon.phasetwo)
+    party = []
+    mons.each do |mon|
+      party.push(mon.pokemon)
+      mon.pokemon.hp = mon.adjustedTotalhp
+    end
+    @battle.party2 = party
+    @battle.scene.pbRefresh
+    time = 64
+    for i in 0..(time-1)
+      mons.each do |mon|
+        mon.hp = 0 if i == 0
+        if (mon.adjustedTotalhp * i/time).round >= mon.hp + 1
+          mon.hp = (mon.adjustedTotalhp * i/time).round
+        end
+        @battle.scene.pbRefreshOne(mon.index)
+      end
+      pbWait(1)
+    end
+    mons.each do |mon|
+      mon.hp = mon.adjustedTotalhp
+    end
+    mons.each do |mon|
+      @battle.scene.pbRefreshOne(mon.index)
+      mon.pokemon.hp = mon.hp
+      @battle.scene.pbRefreshOne(mon.index)
+      @battle.pbCalculatePriority(false,[mon.index])
+      # Trigger ability
+      mon.pbEffectsOnSwitchIn
+      @battle.battleAI.pbDefaultChooseEnemyCommand(mon.index)
+    end
+  end
+
+  def pbPhaseShiftInner(pokemon, splitfrom=nil)
+    @pokemon = pokemon
+    @species = pokemon.species
+    @level = pokemon.level
+    @item_id = pokemon.item_id
+    @moves = []
+    @ability_id = :LEGENDARYPRESSURE
+    @pokemon.moves.each { |move| @moves.push(PokeBattle_Move.from_pokemon_move(@battle,move))}
+    @name = pokemon.name
+    if splitfrom
+      pbInitEffects(false)
+      @effects = splitfrom.effects
+      @stages = splitfrom.stages
+      @status = splitfrom.status
+      @raid = splitfrom.raid
+      if splitfrom.shiny?
+        @pokemon.shiny = splitfrom.pokemon.shiny
+        @pokemon.natural_shiny = splitfrom.pokemon.natural_shiny
+      end
+      party = []
+      skipped = false
+    end
+    pbUpdate(true)
+    @battle.scene.pbChangePokemon(self,@pokemon)
+    @battle.scene.pbRefreshOne(@index)
+    @hpbars = pokemon.hpbars if pokemon.hpbars
+    pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(pokemon.species)
+    pbBGMPlay("CoolDino") if pokemon.species == :COOLERDINO
   end
 
   def updateSpirits()
