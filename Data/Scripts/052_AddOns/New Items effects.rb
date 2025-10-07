@@ -1150,7 +1150,7 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
     level = pkmn.level
     pkmn.species = :WROTOM
     pkmn.level = level
-    next false
+    next true
   end
   if pkmn.isSpecies?(:ROTOM)
     level = pkmn.level
