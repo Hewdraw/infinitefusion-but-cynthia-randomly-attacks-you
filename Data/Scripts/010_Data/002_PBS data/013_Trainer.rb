@@ -339,7 +339,7 @@ module GameData
         ####
 
         #trainer rematch infinite fusion edit
-        if isRematch && (tr_name != "Cynthia" && tr_name != "Hatsune Miku")
+        if isRematch && !["Cynthia", "Shadross", "Hatsune Miku"].include?(tr_name)
           nbRematch = getNumberRematch(rematchId)
           level = getRematchLevel(level, nbRematch)
           species = getSpecies(evolveRematchPokemon(nbRematch, species)).id

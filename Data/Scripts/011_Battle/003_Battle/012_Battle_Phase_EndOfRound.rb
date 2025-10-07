@@ -217,8 +217,8 @@ class PokeBattle_Battle
       end
       b.raid -= 1
       next if b.raid > 1
+      pbShowAbilitySplash(b,false,true,"Legendary Pressure")
       if b.raid == 1
-        pbShowAbilitySplash(b)
         pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
         pbHideAbilitySplash(b)
         next
