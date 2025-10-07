@@ -17,6 +17,7 @@ class PokeBattle_Battler
         level = @level
         @pokemon.species = :ROTOM
         @species = :ROTOM
+        @battle.scene.pbChangePokemon(self,@pokemon)
         @level = level
       end
     end
