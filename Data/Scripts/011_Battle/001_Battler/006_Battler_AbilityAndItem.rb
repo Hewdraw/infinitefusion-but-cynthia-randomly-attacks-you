@@ -9,8 +9,15 @@ class PokeBattle_Battler
     @battle.pbPrimalReversion(@index) if !fainted?
     # Ending primordial weather, checking Trace
     pbContinualAbilityChecks(true)
-    if self.species == :WROTOM && $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)
-      @battle.pbDisplay(_INTL("{1} has taken a Sinnoh Coin", self.pbThis))
+    if self.species == :WROTOM
+      if $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)
+        @battle.pbDisplay(_INTL("{1} has taken a Sinnoh Coin", self.pbThis))
+      elsif pbOwnedByPlayer?
+        @battle.pbDisplay(_INTL("{1} thinks you're a broke ass", self.pbThis))
+        level = pkmn.level
+        pkmn.species = :ROTOM
+        pkmn.level = level
+      end
     end
     # Abilities that trigger upon switching in
     if (!fainted? && unstoppableAbility?) || abilityActive?
