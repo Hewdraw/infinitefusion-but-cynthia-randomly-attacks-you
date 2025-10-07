@@ -848,7 +848,7 @@
 831,GREATESTMETRONOME,Greatest Metronome,223,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... thrice!"
 832,BURNINGBULWARK,Burning Bulwark,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
 883,DRAGONCHEER,Dragon Cheer,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-884,HYDROSTEAM,Hydro Steam,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
+884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,0,15,0,NearOther,0,bef,""
 885,THUNDERCLAP,Thunder Clap,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
 886,MISTYEXPLOSION,Misty Explosion,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
 887,STEELROLLER,Steel Roller,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"

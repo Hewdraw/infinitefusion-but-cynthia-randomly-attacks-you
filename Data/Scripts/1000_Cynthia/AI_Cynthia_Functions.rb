@@ -2624,7 +2624,7 @@ class PokeBattle_AI
       end
       case weather
       when :Sun
-        if type == :FIRE
+        if type == :FIRE || move.id == :HYDROSTEAM
           multipliers[:final_damage_multiplier] *= 1.5
         elsif type == :WATER
           multipliers[:final_damage_multiplier] /= 2

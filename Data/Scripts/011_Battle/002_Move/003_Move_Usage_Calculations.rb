@@ -404,7 +404,7 @@ class PokeBattle_Move
     # Weather
     case @battle.pbWeather
     when :Sun, :HarshSun
-      if type == :FIRE
+      if type == :FIRE || @id == :HYDROSTEAM
         multipliers[:final_damage_multiplier] *= 1.5
       elsif type == :WATER
         multipliers[:final_damage_multiplier] /= 2
