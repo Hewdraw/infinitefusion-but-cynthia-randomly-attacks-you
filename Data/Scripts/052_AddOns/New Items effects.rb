@@ -1145,6 +1145,23 @@ ItemHandlers::UseOnPokemon.add(:SHOCKORB, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
+  if pkmn.isSpecies?(:ROTOM)
+    level = pkmn.level
+    pkmn.species = :WROTOM
+    pkmn.level = level
+    next false
+  end
+  if pkmn.isSpecies?(:ROTOM)
+    level = pkmn.level
+    pkmn.species = :WROTOM
+    pkmn.level = level
+    next false
+  end
+  next false
+})
+
+
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ARTICUNO)
     level = pkmn.level

@@ -19642,17 +19642,6 @@ Pokedex = Its two sets of jaws thrash about violently as if they each had a will
 Generation = 6
 Shape = Bipedal
 #-------------------------------
-[1000705]
-Name = Rotom
-InternalName = WROTOM
-Type1 = ELECTRIC
-Type2 = WATER
-BaseStats = 50,65,107,86,105,107
-Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
-Shape = Head
-BattlerPlayerX = 1
-BattlerShadowSize = 2
-#-------------------------------
 [1000706]
 Name = Metagross
 InternalName = METAGROSSSHINY
@@ -21045,7 +21034,38 @@ Category = Paradox
 Pokedex = It has some similarities to a mad scientist’s invention covered in a paranormal magazine.
 Generation = 9
 
-
+#-------------------------------
+[1001100]
+Name = Rotom
+InternalName = WROTOM
+Type1 = ELECTRIC
+Type2 = WATER
+BaseStats = 50,65,107,86,105,107
+GenderRate = Genderless
+GrowthRate = Medium
+BaseEXP = 154
+EffortPoints = 0,0,0,1,1,0
+Rareness = 45
+Happiness = 70
+Abilities = LEVITATE
+HiddenAbility = LEVITATE
+Moves = 1,DISCHARGE,1,CHARGE,1,TRICK,1,ASTONISH,1,THUNDERWAVE,1,THUNDERSHOCK,1,CONFUSERAY,8,UPROAR,15,DOUBLETEAM,22,SHOCKWAVE,29,OMINOUSWIND,36,SUBSTITUTE,43,ELECTROBALL,50,HEX,57,CHARGE,64,DISCHARGE
+TutorMoves = ALLYSWITCH,CHARGEBEAM,CONFIDE,DARKPULSE,DEFOG,DOUBLETEAM,DREAMEATER,ELECTROWEB,FACADE,FOULPLAY,FRUSTRATION,HIDDENPOWER,LIGHTSCREEN,PAINSPLIT,PROTECT,PSYCHUP,RAINDANCE,REFLECT,REST,RETURN,ROUND,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNATCH,SNORE,SPITE,SUBSTITUTE,SUNNYDAY,SWAGGER,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICK,UPROAR,VOLTSWITCH,WILLOWISP,FLASH,MUDSLAP,OMINOUSWIND,SUCKERPUNCH,SWIFT,NASTYPLOT
+Compatibility = Amorphous
+StepsToHatch = 5355
+Height = 0.3
+Weight = 0.3
+Color = Red
+Shape = Head
+Kind = Plasma
+Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
+BattlerPlayerX = 0
+BattlerPlayerY = -9
+BattlerEnemyX = 0
+BattlerEnemyY = 27
+BattlerAltitude = 25
+BattlerShadowX = 0
+BattlerShadowSize = 1
 
 
 #eof

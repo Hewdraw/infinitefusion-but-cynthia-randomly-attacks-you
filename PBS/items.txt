@@ -713,7 +713,7 @@
 705,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"todo",0,0,0
 706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"todo",0,0,0
 707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
-708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",0,0,0
+708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
 709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"todo",0,0,0
 710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,10000,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,0,
 711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"This is a crystallized form of Z-Power. It upgrades Necrozma's Photon Geyser to a Z-Move.",0,0,0
