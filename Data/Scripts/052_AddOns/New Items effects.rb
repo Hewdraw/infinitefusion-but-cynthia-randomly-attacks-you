@@ -1153,9 +1153,9 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
     pbLearnMove(:HYDROPUMP)
     next true
   end
-  if pkmn.isSpecies?(:ROTOM)
+  if pkmn.isSpecies?(:WROTOM)
     level = pkmn.level
-    pkmn.species = :WROTOM
+    pkmn.species = :ROTOM
     pkmn.level = level
     next true
   end
