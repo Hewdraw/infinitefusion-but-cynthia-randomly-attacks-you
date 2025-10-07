@@ -14,9 +14,10 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} has taken a Sinnoh Coin", self.pbThis))
       elsif pbOwnedByPlayer?
         @battle.pbDisplay(_INTL("{1} thinks you're a broke ass", self.pbThis))
-        level = pkmn.level
-        pkmn.species = :ROTOM
-        pkmn.level = level
+        level = @level
+        @pokemon.species = :ROTOM
+        @species = :ROTOM
+        @level = level
       end
     end
     # Abilities that trigger upon switching in
