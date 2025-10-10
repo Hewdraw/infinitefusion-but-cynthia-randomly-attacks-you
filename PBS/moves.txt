@@ -846,14 +846,15 @@
 829,GREATERMETRONOME,Greater Metronome,215,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... twice!"
 830,POPULATIONBOMB,Population Bomb,225,20,NORMAL,Physical,90,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 831,GREATESTMETRONOME,Greatest Metronome,223,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... thrice!"
-832,BURNINGBULWARK,Burning Bulwark,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
+832,BURNINGBULWARK,Burning Bulwark,0AA,0,FIRE,Status,0,10,0,User,4,,"todo"
 883,DRAGONCHEER,Dragon Cheer,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,0,15,0,NearOther,0,bef,""
-885,THUNDERCLAP,Thunder Clap,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-886,MISTYEXPLOSION,Misty Explosion,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-887,STEELROLLER,Steel Roller,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-888,STEELBEAM,Steel Beam,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-889,POUNCE,Pounce,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
+884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,0,15,0,NearOther,0,bef,"" #hardcoded
+885,THUNDERCLAP,Thunder Clap,116,70,ELECTRIC,Special,100,5,0,NearOther,1,bef,""
+886,MISTYEXPLOSION,Misty Explosion,000,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,"todo"
+887,STEELROLLER,Steel Roller,000,130,STEEL,Physical,100,5,0,NearOther,0,abef,"todo"
+888,STEELBEAM,Steel Beam,170,140,STEEL,Special,95,5,0,NearOther,0,bef,""
+889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,""
+890,ULTIMATEJUDGMENT,Judgement Ultima,226,200,QMARKS,Special,0,1,0,User,0,ef,"todo"
 
 
 

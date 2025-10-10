@@ -367,6 +367,17 @@ class PokeBattle_Battler
           end
           return false
         end
+        # Baneful Bunker
+        if target.effects[PBEffects::BurningBulwark]
+          @battle.pbCommonAnimation("BanefulBunker",target)
+          @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+          target.damageState.protected = true
+          @battle.successStates[user.index].protected = true
+          if move.pbContactMove?(user) && user.affectedByContactEffect?
+            user.pbBurn(target) if user.pbCanBurn?(target,false)
+          end
+          return false
+        end
         # Mat Block
         if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
           # NOTE: Confirmed no common animation for this effect.

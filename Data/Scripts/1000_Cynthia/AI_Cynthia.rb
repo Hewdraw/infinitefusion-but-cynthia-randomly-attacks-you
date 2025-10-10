@@ -12,16 +12,15 @@ class PokeBattle_AI
     @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbCynthiaChooseMoves(idxBattler)
     if @battle.choices[idxBattler][0]==:UseMove && user.tera && user.unteraTypes == nil
-      if user.tera == :STELLAR || user.hasActiveAbility?(:WONDERGUARD) || user.hasActiveAbility?(:NORMALIZE)
-        user.willtera = true
-      else
-        user.willtera = pbCynthiaShouldTera(idxBattler)
-      end
+      user.willtera = pbCynthiaShouldTera(idxBattler)
     end
   end
 
   def pbCynthiaShouldTera(idxBattler)
     user = @battle.battlers[idxBattler]
+    return true if user.pbTypes(false) == [user.tera]
+    return true if user.tera == :STELLAR
+    return true if user.hasActiveAbility?([:WONDERGUARD, :NORMALIZE])
     userThreat = 1
     opposingThreat = 1
     teraUserThreat = 1

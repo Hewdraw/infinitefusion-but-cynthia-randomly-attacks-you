@@ -124,6 +124,7 @@ begin
     SaltCure                = 118
     RedstoneCube        = 119
     RageFist        = 120
+    BurningBulwark        = 121
 
     #===========================================================================
     # These effects apply to a battler position

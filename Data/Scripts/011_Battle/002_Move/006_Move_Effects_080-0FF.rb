@@ -1064,6 +1064,7 @@ class PokeBattle_Move_0AD < PokeBattle_Move
     target.pbOwnSide.effects[PBEffects::MatBlock]     = false
     target.pbOwnSide.effects[PBEffects::QuickGuard]   = false
     target.pbOwnSide.effects[PBEffects::WideGuard]    = false
+    target.effects[PBEffects::BurningBulwark]          = false
   end
 end
 
@@ -2193,6 +2194,7 @@ class PokeBattle_Move_0CD < PokeBattle_TwoTurnMove
     target.pbOwnSide.effects[PBEffects::MatBlock]     = false
     target.pbOwnSide.effects[PBEffects::QuickGuard]   = false
     target.pbOwnSide.effects[PBEffects::WideGuard]    = false
+    target.effects[PBEffects::BurningBulwark]          = false
   end
 end
 

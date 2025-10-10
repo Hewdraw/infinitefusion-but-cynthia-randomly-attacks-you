@@ -1184,6 +1184,7 @@ class PokeBattle_Move_13B < PokeBattle_StatDownMove
     target.pbOwnSide.effects[PBEffects::MatBlock] = false
     target.pbOwnSide.effects[PBEffects::QuickGuard] = false
     target.pbOwnSide.effects[PBEffects::WideGuard] = false
+    target.effects[PBEffects::BurningBulwark] = false
   end
 end
 
@@ -1468,6 +1469,7 @@ class PokeBattle_Move_147 < PokeBattle_Move
     target.pbOwnSide.effects[PBEffects::MatBlock] = false
     target.pbOwnSide.effects[PBEffects::QuickGuard] = false
     target.pbOwnSide.effects[PBEffects::WideGuard] = false
+    target.effects[PBEffects::BurningBulwark] = false
   end
 end
 
@@ -3674,5 +3676,27 @@ class PokeBattle_Move_225 < PokeBattle_Move
 
   def pbOnStartUse(user,targets)
     @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?(:LOADEDDICE)
+  end
+end
+
+class PokeBattle_Move_226 < PokeBattle_Move
+  # def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+
+  #   animation = IconSprite.new(user.battle.scene.viewport)
+  #   animation.setBitmap("Graphics/Animations/UltimateJudgement")
+  #   animation.src_rect.height = Graphics.height
+  #   animation.src_rect.width = Graphics.width
+  #   animation.x = 0
+  #   animation.y = 0
+  #   animation.z = 10000
+  #   pbWait(100)
+  #   animation.dispose
+  # end
+end
+
+class PokeBattle_Move_227 < PokeBattle_ProtectMove
+  def initialize(battle, move)
+    super
+    @effect = PBEffects::BurningBulwark
   end
 end
