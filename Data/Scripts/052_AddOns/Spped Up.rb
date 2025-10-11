@@ -50,6 +50,12 @@ module Graphics
   end
 
   def self.update
+    if $PokemonGlobal.healiestimer
+      $PokemonGlobal.healiestimer -= 1
+      if $PokemonGlobal.healiestimer < 0
+        pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
+      end
+    end
     if $PokemonGlobal && $PokemonGlobal.speedupdisabled == true
       fast_forward_update
       return
