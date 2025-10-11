@@ -626,6 +626,7 @@ def pbSlideOnIce
   $game_player.straighten
   $game_player.walk_anime = false
   $PokemonGlobal.healiestimer = 400 if $PokemonGlobal.healies
+  timer = 75
   loop do
     break if !$game_player.can_move_in_direction?(direction)
     break if !$game_player.pbTerrainTag.ice && !$PokemonGlobal.healies
@@ -638,13 +639,27 @@ def pbSlideOnIce
       Input.update
       $game_system.map_interpreter.update
     end
+    timer -= 1
+    break if timer <= 0
   end
-  $PokemonGlobal.healiestimer = nil
+  if timer <= 0 && $PokemonGlobal.healies
+    pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
+  end
+  $PokemonGlobal.healiestimer = nil if $PokemonGlobal.healies
   $game_player.center($game_player.x, $game_player.y)
   $game_player.straighten
   $game_player.walk_anime = oldwalkanime
   $PokemonGlobal.sliding = false
   $PokemonGlobal.healies = false
+end
+
+def healiesTimerCheck
+  return if !$PokemonGlobal.healiestimer
+  $PokemonGlobal.healiestimer -= 1
+  if $PokemonGlobal.healiestimer < 0
+    $PokemonGlobal.healiestimer = nil
+    pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
+  end
 end
 
 def pbSlideOnWater
