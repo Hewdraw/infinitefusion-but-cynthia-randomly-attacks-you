@@ -639,6 +639,7 @@ def pbSlideOnIce
       $game_system.map_interpreter.update
     end
   end
+  $PokemonGlobal.healiestimer = nil
   $game_player.center($game_player.x, $game_player.y)
   $game_player.straighten
   $game_player.walk_anime = oldwalkanime
