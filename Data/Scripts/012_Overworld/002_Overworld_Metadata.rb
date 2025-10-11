@@ -78,6 +78,7 @@ class PokemonGlobalMetadata
   attr_accessor :enderchest
   attr_accessor :healies
   attr_accessor :speedupdisabled
+  attr_accessor :metronomelog
 
   def initialize
     # Movement

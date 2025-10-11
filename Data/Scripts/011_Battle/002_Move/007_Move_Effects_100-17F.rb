@@ -3414,7 +3414,14 @@ class PokeBattle_Move_215 < PokeBattle_Move
        "172",   # Beak Blast
        # Event moves that do nothing
        "133",   # Hold Hands
-       "134"    # Celebrate
+       "134",    # Celebrate
+       "0CE",
+       "190",
+       "0D2",
+       "0C4",
+       "0C2",
+       "194",
+       "205"
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move
@@ -3598,7 +3605,14 @@ class PokeBattle_Move_223 < PokeBattle_Move
        "172",   # Beak Blast
        # Event moves that do nothing
        "133",   # Hold Hands
-       "134"    # Celebrate
+       "134",    # Celebrate
+       "0CE",
+       "190",
+       "0D2",
+       "0C4",
+       "0C2",
+       "194",
+       "205"
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move
@@ -3647,6 +3661,10 @@ class PokeBattle_Move_223 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
+    if !$PokemonGlobal.metronomelog
+      $PokemonGlobal.metronomelog = []
+    end
+    $PokemonGlobal.metronomelog << [@metronomeMove, @metronomeMove2, @metronomeMove3]
     user.pbUseMoveSimple(@metronomeMove)
     user.pbUseMoveSimple(@metronomeMove2)
     user.pbUseMoveSimple(@metronomeMove3)

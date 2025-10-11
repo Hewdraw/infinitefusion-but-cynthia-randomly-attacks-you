@@ -1601,7 +1601,14 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
        "172",   # Beak Blast
        # Event moves that do nothing
        "133",   # Hold Hands
-       "134"    # Celebrate
+       "134",    # Celebrate
+       "0CE",
+       "190",
+       "0D2",
+       "0C4",
+       "0C2",
+       "194",
+       "205"
     ]
     @moveBlacklistSignatures = [
        :SNARL,

@@ -625,7 +625,7 @@ def pbSlideOnIce
   oldwalkanime = $game_player.walk_anime
   $game_player.straighten
   $game_player.walk_anime = false
-  timer = 50
+  timer = 75
   loop do
     break if !$game_player.can_move_in_direction?(direction)
     break if !$game_player.pbTerrainTag.ice && !$PokemonGlobal.healies
