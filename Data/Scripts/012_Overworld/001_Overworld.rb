@@ -658,7 +658,6 @@ def healiesTimerCheck
   $PokemonGlobal.healiestimer -= 1
   if $PokemonGlobal.healiestimer < 0
     $PokemonGlobal.healiestimer = nil
-    pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
     return true
   end
 end
