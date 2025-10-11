@@ -836,7 +836,7 @@
 819,FLIPTURN,Flip Turn,0EE,60,WATER,Physical,100,20,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 820,GMAXSMITEFINALE,G-Max Smite Finale,212,90,FAIRY,Physical,0,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
 821,HYPERDRILL,Hyper Drill,000,100,NORMAL,Physical,100,5,0,NearOther,0,aef,"Nice Smeargle/Ditto, jackass."
-822,HYPERIMPALER,Hyper Impaler,213,40,NORMAL,Physical,100,5,0,NearOther,0,aefh,"Nice Smeargle/Ditto, jackass."
+822,HYPERIMPALER,Hyper Impaler,213,30,NORMAL,Physical,100,5,0,NearOther,0,aefh,"Nice Smeargle/Ditto, jackass."
 823,DRAGONENERGY,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass."
 824,GENESISSUPERNOVA,Genesis Supernova,214,185,PSYCHIC,Special,0,1,100,NearOther,0,f,"After obtaining Z-Power, the user, Mew, attacks the target with full force. The terrain will be charged with psychic energy."
 825,ICESPINNER,Ice Spinner,000,80,ICE,Physical,100,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo

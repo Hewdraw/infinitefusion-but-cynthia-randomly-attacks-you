@@ -85,7 +85,7 @@ class PokeBattle_Battle
             @scene.pbChangePokemon(opponent,opponent.pokemon)
             @scene.pbRefreshOne(opponent.index)
             opponent.pbUpdate(false)
-            if opponent.pokemon.species == "DUDUDUNSPARCE"
+            if opponent.pokemon.species == :DUDUDUNSPARCE
               newmove = Pokemon::Move.new(:HYPERIMPALER)
               if opponent.effects[PBEffects::Dynamax] > 0
                 opponent.undynamoves.each_with_index do |move,i|
