@@ -728,9 +728,9 @@
 720,GENIUSMOCHI,Genius Mochi,Genius Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Atk stat.",1,0,0
 721,CLEVERMOCHI,Clever Mochi,Clever Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Def stat.",1,0,0
 722,SWIFTMOCHI,Swift Mochi,Swift Mochis,1,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Speed stat.",1,0,0
-
-
-
+723,WELLSPRINGMASK,Wellspring Mask,Wellspring Masks,1,0,"todo",0,0,0,
+724,HEARTHFLAMEMASK,Hearthflame Mask,Hearthflame Masks,1,4000,"An item to be held by a Pokémon. This headband ups Attack, but allows the use of only one move.",0,0,0,
+725,CORNERSTONEMASK,Cornerstone Mask,Cornerstone Masks,1,4000,"An item to be held by a Pokémon. This headband ups Attack, but allows the use of only one move.",0,0,0,
 726,FROSTORB,Frost Orb,Frost Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that frostbites the holder in battle.",1,0,0,
 727,LONELYMINT,Lonely Mint,Lonely Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Defense stat may suffe",1,0,0
 728,ADAMANTMINT,Adamant Mint,Adamant Mints,1,0,"Having a Pokémon smell this mint can make its Attack stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0

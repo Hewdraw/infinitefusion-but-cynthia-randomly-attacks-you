@@ -3680,23 +3680,45 @@ class PokeBattle_Move_225 < PokeBattle_Move
 end
 
 class PokeBattle_Move_226 < PokeBattle_Move
-  # def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-
-  #   animation = IconSprite.new(user.battle.scene.viewport)
-  #   animation.setBitmap("Graphics/Animations/UltimateJudgement")
-  #   animation.src_rect.height = Graphics.height
-  #   animation.src_rect.width = Graphics.width
-  #   animation.x = 0
-  #   animation.y = 0
-  #   animation.z = 10000
-  #   pbWait(100)
-  #   animation.dispose
-  # end
+  def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+    bgm = $game_system.playing_bgm
+    pbBGMStop(1)
+    pbBGMPlay("UltimateJudgement")
+    $PokemonGlobal.speedupdisabled = true
+    delay = (Graphics.frame_rate*60*0.905).to_i
+    animation = IconSprite.new(user.battle.scene.viewport)
+    animation.setBitmap("Graphics/Animations/gifs/UltimateJudgement000")
+    animation.z = 10000
+    testvalue = 0
+    pbWait(delay)
+    animation.dispose
+    animation = IconSprite.new(user.battle.scene.viewport)
+    animation.setBitmap("Graphics/Animations/gifs/UltimateJudgement001")
+    animation.z = 10001
+    testvalue = 0
+    pbWait(delay)
+    animation.dispose
+    animation = IconSprite.new(user.battle.scene.viewport)
+    animation.setBitmap("Graphics/Animations/gifs/UltimateJudgement002")
+    animation.z = 10002
+    testvalue = 0
+    pbWait(delay)
+    animation.dispose
+    $PokemonGlobal.speedupdisabled = false
+    pbBGMPlay(bgm)
+  end
 end
 
 class PokeBattle_Move_227 < PokeBattle_ProtectMove
   def initialize(battle, move)
     super
     @effect = PBEffects::BurningBulwark
+  end
+end
+
+class PokeBattle_Move_228 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1, :SPEED, 1]
   end
 end

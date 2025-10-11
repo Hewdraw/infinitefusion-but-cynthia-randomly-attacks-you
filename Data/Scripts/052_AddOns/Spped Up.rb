@@ -50,6 +50,10 @@ module Graphics
   end
 
   def self.update
+    if $PokemonGlobal && $PokemonGlobal.speedupdisabled == true
+      fast_forward_update
+      return
+    end
     if $CanToggle && Input.trigger?(Input::AUX1)
       $GameSpeed += 1
       $GameSpeed = 0 if $GameSpeed >= SPEEDUP_STAGES.size

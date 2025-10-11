@@ -77,6 +77,7 @@ class PokemonGlobalMetadata
   attr_accessor :cactusheight
   attr_accessor :enderchest
   attr_accessor :healies
+  attr_accessor :speedupdisabled
 
   def initialize
     # Movement

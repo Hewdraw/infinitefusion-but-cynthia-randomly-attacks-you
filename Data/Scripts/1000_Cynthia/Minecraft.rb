@@ -218,6 +218,9 @@ def getEnderChestItems()
       [:DIAMONDCHESTPLATE, 1],
       [:GOLDENAPPLE, 1],
       [:ENCHANTINGTABLE, 1],
+      [:WELLSPRINGMASK, 1],
+      [:HEARTHFLAMEMASK, 1],
+      [:CORNERSTONEMASK, 1],
     ],
     [ #ultimate rare
       [:ULTRANECROZIUMZ, 1],

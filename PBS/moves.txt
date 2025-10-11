@@ -424,7 +424,7 @@
 412,WRAP,Wrap,0CF,15,NORMAL,Physical,90,20,0,NearOther,0,abef,"A long body or vines are used to wrap and squeeze the target for four to five turns."
 413,CONSTRICT,Constrict,044,10,NORMAL,Physical,100,35,10,NearOther,0,abef,"The foe is attacked with long, creeping tentacles or vines. It may also lower the target's Speed."
 414,BIDE,Bide,0D4,1,NORMAL,Physical,0,10,0,None,1,abf,"The user endures attacks for two turns, then strikes back to cause double the damage taken."
-415,CRUSHGRIP,Crush Grip,08C,1,NORMAL,Physical,100,5,0,NearOther,0,abef,"The target is crushed with great force. The attack is more powerful the more HP the target has left."
+415,CRUSHGRIP,Crush Grip,228,120,NORMAL,Physical,90,5,30,NearOther,0,abef,"The target is crushed with great force."
 416,ENDEAVOR,Endeavor,06E,1,NORMAL,Physical,100,5,0,NearOther,0,abef,"An attack move that cuts down the target's HP to equal the user's HP."
 417,FLAIL,Flail,098,1,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user flails about aimlessly to attack. It becomes more powerful the less HP the user has."
 418,FRUSTRATION,Frustration,000,102,NORMAL,Physical,100,20,0,NearOther,0,abef,"A full-power attack."
@@ -803,10 +803,10 @@
 786,REVIVALBLESSING,Revival Blessing,197,0,NORMAL,Status,0,1,0,User,0,,"" #partial todo
 787,SALTCURE,Salt Cure,198,40,ROCK,Physical,100,15,100,Other,0,bef,""
 788,DECORATE,Decorate,199,0,FAIRY,Status,0,15,0,NearAlly,0,,""
-789,ARMORCANNON,Stone Axe,03C,120,FIRE,Special,100,5,100,Other,0,bef,""
+789,ARMORCANNON,Armor Cannon,03C,120,FIRE,Special,100,5,100,Other,0,bef,""
 790,FIRESPIT,Fire Spit,201,100,FIRE,Physical,85,10,20,AllNearFoes,0,bef,""
 791,QUASICONNECTIVITY,Quasi Connectivity,202,90,PSYCHIC,Physical,100,10,100,AllNearFoes,0,bef,"" #todo
-792,REDSTONEDUSTER,Stone Axe,105,65,ROCK,Physical,90,15,100,AllNearFoes,0,abef,"" #todo
+792,REDSTONEDUSTER,Redstone Duster,105,65,ROCK,Physical,90,15,100,AllNearFoes,0,abef,"" #todo
 793,MIKUMIKUBEAM,Miku Miku Beam!!!,203,140,ELECTRIC,Special,100,20,30,AllNearFoes,0,bef,"" #todo
 794,TWINBEAMSLASH,Twin Beam Slash,204,70,FIRE,Physical,100,20,30,Other,0,bef,"" #todo
 795,POWERUP,Power Up!,205,0,ELECTRIC,Status,0,5,0,User,0,,"" #todo
@@ -854,7 +854,7 @@
 887,STEELROLLER,Steel Roller,000,130,STEEL,Physical,100,5,0,NearOther,0,abef,"todo"
 888,STEELBEAM,Steel Beam,170,140,STEEL,Special,95,5,0,NearOther,0,bef,""
 889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,""
-890,ULTIMATEJUDGMENT,Judgement Ultima,226,200,QMARKS,Special,0,1,0,User,0,ef,"todo"
+890,ULTIMATEJUDGMENT,Judgement Ultima,226,200,QMARKS,Special,0,1,0,NearOther,0,ef,"todo"
 
 
 
