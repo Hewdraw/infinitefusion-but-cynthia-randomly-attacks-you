@@ -50,7 +50,7 @@ module Graphics
   end
 
   def self.update
-    if $PokemonGlobal.healiestimer
+    if $PokemonGlobal && $PokemonGlobal.healiestimer
       $PokemonGlobal.healiestimer -= 1
       if $PokemonGlobal.healiestimer < 0
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
