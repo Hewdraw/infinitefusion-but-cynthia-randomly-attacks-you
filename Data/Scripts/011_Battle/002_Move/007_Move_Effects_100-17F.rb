@@ -3276,7 +3276,7 @@ class PokeBattle_Move_210 < PokeBattle_Move_207
   def pbEffectGeneral(user)
     choice = @sleepTalkMoves[@battle.pbRandom(@sleepTalkMoves.length)]
     move = user.moves[choice]
-    zmove = pbZMove(move)
+    zmove = @battle.pbZMove(move)
     move = zmove if zmove
     user.pbUseMoveSimple(zmove.id,user.pbDirectOpposing.index)
   end
