@@ -21,6 +21,9 @@ def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
   if !trainer_data
     trainer_data = GameData::Trainer.try_get(tr_type, tr_name, tr_version)
   end
+  if !trainer_data && [:CHAMPION_Sinnoh, :CREATOR_Minecraft].include?(tr_type) && tr_version > 0 #todo temporary
+    return pbLoadTrainer(tr_type,tr_name,tr_version - 1)
+  end
   return (trainer_data) ? trainer_data.to_trainer : nil
 end
 

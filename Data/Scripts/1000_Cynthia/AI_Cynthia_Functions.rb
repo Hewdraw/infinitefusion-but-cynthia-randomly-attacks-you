@@ -51,6 +51,7 @@ class PokeBattle_AI
       boostdamage = 0
       target.eachOpposing do |opponent|
         next if opponent.hasActiveAbility?(:UNAWARE)
+        next if opponent.pbHasMove?(:FREEZYFROST) || opponent.pbHasMove?(:HAZE)
         damagearray = [target, opponent]
         damagearray = [opponent, target] if [:ATTACK, :SPECIAL_ATTACK].include?(stat[0])
         maxdamage = [pbCynthiaGetThreat(*damagearray)[:highestDamage], maxdamage].max

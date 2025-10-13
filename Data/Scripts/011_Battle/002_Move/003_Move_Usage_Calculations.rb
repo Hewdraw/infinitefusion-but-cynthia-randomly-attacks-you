@@ -445,7 +445,7 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] *= 1.5
       end
     end
-    if user.unteraTypes != nil
+    if type && user.unteraTypes != nil
       if user.unteraTypes.include?(:STELLAR)
         if user.stellarmoves == nil
           user.stellarmoves = []

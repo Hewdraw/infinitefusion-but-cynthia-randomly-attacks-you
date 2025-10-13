@@ -27,13 +27,7 @@ BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
       :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
       :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
     ]
-    isparadox = false
-    paradoxlist.each do |paradox|
-      if battler.isFusionOf(paradox)
-        isparadox = true
-      end
-    end
-    next if !isparadox
+    next unless paradoxlist.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(battler.getBodyID(battler.species)).species) || paradoxlist.include?(GameData::Species.get(battler.getHeadID(battler.species)).species)))
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -735,13 +729,7 @@ BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
       :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
       :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
     ]
-    isparadox = false
-    paradoxlist.each do |paradox|
-      if user.isFusionOf(paradox)
-        isparadox = true
-      end
-    end
-    next if !isparadox
+    next unless paradoxlist.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(user.getBodyID(user.species)).species) || paradoxlist.include?(GameData::Species.get(user.getHeadID(user.species)).species)))
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -1037,13 +1025,7 @@ BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
       :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
       :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
     ]
-    isparadox = false
-    paradoxlist.each do |paradox|
-      if target.isFusionOf(paradox)
-        isparadox = true
-      end
-    end
-    next if !isparadox
+    next unless paradoxlist.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(target.getBodyID(target.species)).species) || paradoxlist.include?(GameData::Species.get(target.getHeadID(target.species)).species)))
     stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max

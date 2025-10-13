@@ -587,16 +587,7 @@ def pbTrainerBattleCore(*args)
       foeEndSpeeches.push(arg.lose_text)
       foeItems.push(arg.items)
     elsif arg.is_a?(Array)   # [trainer type, trainer name, ID, speech (optional)]
-      if [:CHAMPION_Sinnoh, :CHAMPION_Sinnoh2, :CREATOR_Minecraft].include?(arg[0]) && arg[2] > 0 #todo temporary
-        trainer = nil
-        trainerid = arg[2]
-        while !trainer && trainerid > 0
-          trainer = pbLoadTrainer(arg[0],arg[1],trainerid)
-          trainerid -= 1
-        end
-      else
-        trainer = pbLoadTrainer(arg[0],arg[1],arg[2])
-      end
+      trainer = pbLoadTrainer(arg[0],arg[1],arg[2])
       if !trainer && $game_switches[SWITCH_MODERN_MODE] #retry without modern mode
         $game_switches[SWITCH_MODERN_MODE]=false
         trainer = pbLoadTrainer(arg[0],arg[1],arg[2])

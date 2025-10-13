@@ -767,6 +767,30 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} got charged by the terrain!",b.pbThis(true).capitalize))
         pbMegaEvolve(b.index, true)
       end
+      if b.hasActiveAbility?(:QUARKDRIVE)
+        if @field.terrain == :Electric && b.effects[PBEffects::QuarkDrive] == 0
+          stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
+          stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
+          stats = [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
+          stats2 = [b.attack, b.defense, b.spatk, b.spdef, b.speed]
+          stats.each_with_index do |stat,i|
+            stage = b.stages[stat]
+            stat = stats2[i] * stageMul[stage] / stageDiv[stage]
+          end
+          stats.each_with_index do |stat,i|
+            if stat >= stats.max
+              b.effects[PBEffects::QuarkDrive] = i + 1
+              break
+            end
+          end
+          pbShowAbilitySplash(b)
+          pbDisplay(_INTL("The electric terrain activated {1}'s Quark Drive!", b.pbThis))
+          pbHideAbilitySplash(b)
+        end
+        if @field.terrain != :Electric && b.effects[PBEffects::QuarkDrive] < 10
+          b.effects[PBEffects::QuarkDrive] = 0
+        end
+      end
     }
   end
 

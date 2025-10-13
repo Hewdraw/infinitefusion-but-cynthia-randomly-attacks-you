@@ -18017,8 +18017,8 @@ Type1 = FIGHTING
 Type2 = ROCK
 BaseStats = 78,113,76,90,108,73
 GenderRate = Female50Percent
-Abilities = DROUGHT
-HiddenAbility = DROUGHT
+Abilities = ADAPTABILITY
+HiddenAbility = ADAPTABILITY
 Moves = 1,TACKLE
 Shape = Head
 

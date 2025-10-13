@@ -2778,7 +2778,7 @@ class PokeBattle_Move_188 < PokeBattle_Move
         b.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
       end
     when :FAIRY
-      @battle.pbStartTerrain(user, :Fairy)
+      @battle.pbStartTerrain(user, :Misty)
     end
   end
 end
@@ -3415,13 +3415,26 @@ class PokeBattle_Move_215 < PokeBattle_Move
        # Event moves that do nothing
        "133",   # Hold Hands
        "134",    # Celebrate
-       "0CE",
-       "190",
-       "0D2",
-       "0C4",
        "0C2",
+       "0C3",
+       "0C4",
+       "0C5",
+       "0C6",
+       "0C7",
+       "0C8",
+       "0C9",
+       "0CA",
+       "0CB",
+       "0CC",
+       "0CD",
+       "0CE",
+       "0D1",
+       "0D2",
+       "0D3",
+       "0D4",
+       "190",
        "194",
-       "205"
+       "205",
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move
@@ -3606,13 +3619,26 @@ class PokeBattle_Move_223 < PokeBattle_Move
        # Event moves that do nothing
        "133",   # Hold Hands
        "134",    # Celebrate
-       "0CE",
-       "190",
-       "0D2",
-       "0C4",
        "0C2",
+       "0C3",
+       "0C4",
+       "0C5",
+       "0C6",
+       "0C7",
+       "0C8",
+       "0C9",
+       "0CA",
+       "0CB",
+       "0CC",
+       "0CD",
+       "0CE",
+       "0D1",
+       "0D2",
+       "0D3",
+       "0D4",
+       "190",
        "194",
-       "205"
+       "205",
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move

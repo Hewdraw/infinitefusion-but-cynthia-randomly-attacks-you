@@ -1602,13 +1602,26 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
        # Event moves that do nothing
        "133",   # Hold Hands
        "134",    # Celebrate
-       "0CE",
-       "190",
-       "0D2",
-       "0C4",
        "0C2",
+       "0C3",
+       "0C4",
+       "0C5",
+       "0C6",
+       "0C7",
+       "0C8",
+       "0C9",
+       "0CA",
+       "0CB",
+       "0CC",
+       "0CD",
+       "0CE",
+       "0D1",
+       "0D2",
+       "0D3",
+       "0D4",
+       "190",
        "194",
-       "205"
+       "205",
     ]
     @moveBlacklistSignatures = [
        :SNARL,
