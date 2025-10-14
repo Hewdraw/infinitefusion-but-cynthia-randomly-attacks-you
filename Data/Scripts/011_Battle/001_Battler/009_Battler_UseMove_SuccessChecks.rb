@@ -53,7 +53,7 @@ class PokeBattle_Battler
     if @effects[PBEffects::ChoiceBand]
       if hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) &&
          pbHasMove?(@effects[PBEffects::ChoiceBand]) && !(@effects[PBEffects::Dynamax] > 0)
-        if move.id!=@effects[PBEffects::ChoiceBand]
+        if move.id!=@effects[PBEffects::ChoiceBand] && pbHasMove?(move.id)
           if showMessages
             msg = _INTL("{1} allows the use of only {2}!",itemName,
                GameData::Move.get(@effects[PBEffects::ChoiceBand]).name)
