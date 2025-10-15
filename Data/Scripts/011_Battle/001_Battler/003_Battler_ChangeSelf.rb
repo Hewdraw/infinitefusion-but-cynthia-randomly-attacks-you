@@ -177,6 +177,7 @@ class PokeBattle_Battler
     @battle.scene.pbRefreshOne(@index)
     @hpbars = pokemon.hpbars if pokemon.hpbars
     pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(pokemon.species)
+    pbBGMPlay("VSParadoxBeasts") if [:GOUGINGFIRE, :WALKINGWAKE, :RAGINGBOLT].include?(pokemon.species)
     pbBGMPlay("CoolDino") if pokemon.species == :COOLERDINO
   end
 
