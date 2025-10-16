@@ -2720,7 +2720,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:UNNERVE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:PROTOSYNTHESIS,
   proc { |ability,battler,battle|
-    if [:Sun, :HarshSun].include?(battle.pbWeather) && @effects[PBEffects::Protosynthesis] == 0
+    if [:Sun, :HarshSun].include?(battle.pbWeather) && battler.effects[PBEffects::Protosynthesis] == 0
       stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
       stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
       stats = [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
