@@ -650,7 +650,9 @@ class Pokemon
       b = a & 0xFFFF
       c = (a >> 16) & 0xFFFF
       d = b ^ c
-      is_shiny = d < Settings::ACTUAL_SHINY_POKEMON_CHANCE
+      shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
+      shinychance *= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
+      is_shiny = d < shinychance
       if is_shiny
         @shiny = true
         @natural_shiny = true

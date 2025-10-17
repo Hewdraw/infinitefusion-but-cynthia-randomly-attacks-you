@@ -106,7 +106,7 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill
       case type
       when :GROUND
-        return true if target.airborne? && !move.hitsFlyingTargets?
+        return true if (target.airborne? && !move.hitsFlyingTargets?) || target.hasActiveAbility?([:EARTHEATER])
       when :FIRE
         return true if target.hasActiveAbility?([:FLASHFIRE, :HEATSINK])
       when :WATER

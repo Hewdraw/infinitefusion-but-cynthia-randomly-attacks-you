@@ -410,13 +410,6 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
   elsif itemrnd<(chances[0]+chances[1]+chances[2])
     genwildpoke.item = items[2]
   end
-  # Shiny Charm makes shiny Pokémon more likely to generate
-  if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
-    2.times do   # 3 times as likely
-      break if genwildpoke.shiny?
-      genwildpoke.personalID = rand(2**16) | rand(2**16) << 16
-    end
-  end
   # Give Pokérus
   genwildpoke.givePokerus if rand(65536) < Settings::POKERUS_CHANCE
   # Change wild Pokémon's gender/nature depending on the lead party Pokémon's

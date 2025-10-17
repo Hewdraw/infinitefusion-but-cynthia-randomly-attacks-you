@@ -172,7 +172,9 @@ def pbPokeRadarHighlightGrass(showmessage = true)
         # Choose a rarity for the grass (0=normal, 1=rare, 2=shiny)
         s = (rand(100) < 25) ? 1 : 0
         if $PokemonTemp.pokeradar && $PokemonTemp.pokeradar[2] > 0
-          v = [(65536 / Settings::ACTUAL_SHINY_POKEMON_CHANCE) - $PokemonTemp.pokeradar[2] * 200, 200].max
+          shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
+          shinychance *= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
+          v = [(65536 / shinychance) - $PokemonTemp.pokeradar[2] * 200, 200].max
           v = 0xFFFF / v
           v = rand(65536) / v
           s = 2 if v == 0

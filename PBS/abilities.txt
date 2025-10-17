@@ -266,6 +266,6 @@
 264,PIXILTAG,Pixil Tag,""
 265,ICESCALES,Ice Scales,""
 266,DRAGONSMAW,Dragon's Maw,""
-267,EARTHEATER,Dragon's Maw,"todo"
+267,EARTHEATER,Earth Eater,"todo"
 268,GORILLATACTICS,Dragon's Maw,"todo"
 269,DEATH,Death,"die"

@@ -483,7 +483,9 @@ def pbLegendaryBattle(species)
       skip_mon -= 1
       next
     end
-    if (rand(65536) / Settings::ACTUAL_SHINY_POKEMON_CHANCE) < 1
+    shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
+    shinychance *= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
+    if (rand(65536) / shinychance) < 1
       mon.shiny = true
       mon.natural_shiny = true
     end

@@ -616,6 +616,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
 
 BattleHandlers::MoveImmunityTargetAbility.copy(:BULLETPROOF,:ENDER)
 
+BattleHandlers::MoveImmunityTargetAbility.add(:EARTHEATER,
+  proc { |ability,target,user,move,type,battle|
+    next pbBattleMoveImmunityHealAbility(user,target,move,type,:GROUND,battle)
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
   proc { |ability,target,user,move,type,battle|
     next false if user.index==target.index
