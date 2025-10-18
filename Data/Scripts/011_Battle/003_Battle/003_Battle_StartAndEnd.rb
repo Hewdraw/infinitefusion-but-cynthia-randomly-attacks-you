@@ -366,7 +366,7 @@ class PokeBattle_Battle
       PBDebug.logonerr { pbEndOfRoundPhase }
       break if @decision>0
       @turnCount += 1
-      if @turnCount >= 50 && rand(20) == 0
+      if @turnCount >= 75 && rand(20) == 0
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
       end
     end

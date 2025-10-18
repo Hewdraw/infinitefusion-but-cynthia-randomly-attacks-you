@@ -242,7 +242,7 @@ def UndertaleShopSetup()
     :FOCUSSASH => {
       "badges" => 1,
       "cost" => 6,
-      "amount" => 1,
+      "amount" => 3,
     },
     :AIRBALLOON => {
       "badges" => 1,

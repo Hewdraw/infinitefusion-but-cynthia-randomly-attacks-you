@@ -403,29 +403,30 @@ class HallOfFame_Scene
   end
 
   def getCurrentGameMode()
-    gameMode = "Classic mode"
-    if $game_switches[SWITCH_MODERN_MODE]
-      gameMode = "Remix mode"
-    end
-    if $game_switches[SWITCH_EXPERT_MODE]
-      gameMode = "Expert mode"
-    end
-    if $game_switches[SWITCH_SINGLE_POKEMON_MODE]
-      pokemon_number = pbGet(VAR_SINGLE_POKEMON_MODE)
-      if pokemon_number.is_a?(Integer) && pokemon_number > 0
-        pokemon = GameData::Species.get(pokemon_number)
-        gameMode = pokemon.real_name + " mode"
-      else
-        gameMode = "Debug mode"
-      end
-    end
-    if $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE]
-      gameMode = "Randomized mode"
-    end
-    if $game_switches[ENABLED_DEBUG_MODE_AT_LEAST_ONCE] || $DEBUG
-      gameMode = "Debug mode"
-    end
-    return gameMode
+    return "Cynthia mode"
+    # gameMode = "Classic mode"
+    # if $game_switches[SWITCH_MODERN_MODE]
+    #   gameMode = "Remix mode"
+    # end
+    # if $game_switches[SWITCH_EXPERT_MODE]
+    #   gameMode = "Expert mode"
+    # end
+    # if $game_switches[SWITCH_SINGLE_POKEMON_MODE]
+    #   pokemon_number = pbGet(VAR_SINGLE_POKEMON_MODE)
+    #   if pokemon_number.is_a?(Integer) && pokemon_number > 0
+    #     pokemon = GameData::Species.get(pokemon_number)
+    #     gameMode = pokemon.real_name + " mode"
+    #   else
+    #     gameMode = "Debug mode"
+    #   end
+    # end
+    # if $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE]
+    #   gameMode = "Randomized mode"
+    # end
+    # if $game_switches[ENABLED_DEBUG_MODE_AT_LEAST_ONCE] || $DEBUG
+    #   gameMode = "Debug mode"
+    # end
+    # return gameMode
   end
 
   def writeGameMode(overlay, x, y, gameMode = nil, difficulty = nil)
