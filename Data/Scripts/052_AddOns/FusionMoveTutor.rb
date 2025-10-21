@@ -174,6 +174,16 @@ class FusionTutorService
       # compatibleMoves << :TORCHSONG if canLearnMove(:BLAZEKICK)
       # compatibleMoves << :AQUASTEP if canLearnMove(:MUDDYWATER)
       # compatibleMoves << :MATCHAGOTCHA if hasType(:GRASS) && canLearnMove(:SCALD)
+      compatibleMoves << :DRACOMETEOR if hasType(:DRAGON)
+      compatibleMoves << :HEADSMASH if hasType(:ROCK)
+      compatibleMoves << :VOLTTACKLE if hasType(:ELECTRIC)
+      compatibleMoves << :BRAVEBIRD if hasType(:FLYING)
+      compatibleMoves << :DRILLPECK if canLearnMove(:PECK)
+      compatibleMoves << :WOODHAMMER if hasType(:GRASS)
+      compatibleMoves << :DOUBLEEDGE if hasType(:NORMAL)
+      compatibleMoves << :SUBMISSION if hasType(:FIGHTING)
+      compatibleMoves << :FLAREBLITZ if hasType(:FIRE)
+
     end
     if includeLegendaries
       #legendary moves (only available after a certain trigger, maybe a different npc)
