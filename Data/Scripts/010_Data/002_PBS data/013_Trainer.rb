@@ -387,8 +387,6 @@ module GameData
           pkmn.reset_moves
         end
         pkmn.learn_move_ignoremax(:METRONOME) if pkmn.isFusionOf(:TOGEPI) || pkmn.species.to_s.include?("TOGEPI")
-        pkmn.learn_move_ignoremax(:GREATERMETRONOME) if pkmn.isFusionOf(:TOGETIC) || pkmn.species.to_s.include?("TOGETIC")
-        pkmn.learn_move_ignoremax(:GREATESTMETRONOME) if pkmn.isFusionOf(:TOGEKISS) || pkmn.species.to_s.include?("TOGEKISS")
         if trainer.special_name?
           for mon in $Trainer.party
             if mon.ability == :WONDERGUARD
