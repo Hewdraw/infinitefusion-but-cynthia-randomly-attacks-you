@@ -2022,7 +2022,7 @@ class PokeBattle_AI
       elsif reserves==0 && foes==0
         score += 80   # want to draw
       else
-        score -= (user.totalhp-user.hp)*75/user.totalhp
+        score -= (user.totalhp-user.hp)*75/user.totalhp if !user.hasActiveAbility?(:MAGICGUARD)
       end
     #---------------------------------------------------------------------------
     when "171"
