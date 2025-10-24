@@ -163,18 +163,19 @@ class MoveRelearnerScreen
   def pbGetRelearnableMoves(pkmn)
     return [] if !pkmn || pkmn.egg? || pkmn.shadowPokemon?
     moves = []
-    pkmn.getMoveList.each do |m|
-      next if m[0] > pkmn.level || pkmn.hasMove?(m[1])
-      moves.push(m[1]) if !moves.include?(m[1])
-    end
-    tmoves = []
-    if pkmn.first_moves
-      for i in pkmn.first_moves
-        tmoves.push(i) if !pkmn.hasMove?(i) && !moves.include?(i)
+    pbCreatePreEvolutionTree(pkmn.species).each do |species|
+      GameData::Species.get_species_form(species, 0).moves.each do |m|
+        next if m[0] > pkmn.level || pkmn.hasMove?(m[1])
+        moves.push(m[1]) if !moves.include?(m[1])
       end
     end
-    moves = tmoves + moves
-    return moves | []   # remove duplicates
+    if pkmn.first_moves
+      for i in pkmn.first_moves
+        moves.push(i) if !pkmn.hasMove?(i) && !moves.include?(i)
+      end
+    end
+    moves = moves.flatten.uniq
+    return moves
   end
 
   def pbStartScreen(pkmn,moves=nil)

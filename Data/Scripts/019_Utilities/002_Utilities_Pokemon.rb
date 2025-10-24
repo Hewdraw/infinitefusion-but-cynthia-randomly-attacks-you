@@ -80,6 +80,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     pkmn.ability = :SUCTIONCUPS
     pkmn.item = :CHERISHBALL
     pkmn.moves = [Pokemon::Move.new(:SWALLOW), Pokemon::Move.new(:SPITUP), Pokemon::Move.new(:STOCKPILE), Pokemon::Move.new(:BULLETSEED)]
+    pkmn.givePokerus
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName

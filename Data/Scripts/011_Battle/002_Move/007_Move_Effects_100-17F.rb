@@ -3766,3 +3766,17 @@ class PokeBattle_Move_228 < PokeBattle_TargetMultiStatDownMove
     @statDown = [:DEFENSE, 1, :SPEED, 1]
   end
 end
+
+class PokeBattle_Move_229 < PokeBattle_SleepMove
+
+  def pbCritialOverride(user,target)
+    return 1 if target.asleep?
+    return super
+  end
+  def pbEffectAfterAllHits(user, target)
+    return if user.pbOpposingSide.effects[PBEffects::StealthRock]
+    user.pbOpposingSide.effects[PBEffects::StealthRock] = true
+    @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
+                            user.pbOpposingTeam(true)))
+  end
+end

@@ -1145,6 +1145,11 @@ ItemHandlers::UseOnPokemon.add(:SHOCKORB, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
+  pbTutorMoveScreen(pkmn)
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ROTOM)
     level = pkmn.level

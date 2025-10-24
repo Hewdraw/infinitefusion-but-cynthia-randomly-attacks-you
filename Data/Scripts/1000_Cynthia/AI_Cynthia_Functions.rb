@@ -1326,7 +1326,7 @@ class PokeBattle_AI
       end
       score = 0 if @battle.pbCheckGlobalAbility(:AIRLOCK) || @battle.pbCheckGlobalAbility(:CLOUDNINE) || @battle.pbWeather == :Sandstorm
     #---------------------------------------------------------------------------
-    when "102", "179", "188ICE"
+    when "102", "179", "188ICE", "196"
       score *= 2 if user.hasActiveItem?(:ICYROCK)
       party = @battle.pbParty(user.index)
       party.each do |pkmn|
@@ -2072,12 +2072,13 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "188" #todo
     #---------------------------------------------------------------------------
-    when "193" #todo
+    when "193"
+      score = 0
+      score = -100 if !target.item
     #---------------------------------------------------------------------------
     when "194" #todo
       score = pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 1]], user, user)
       score /= 2.0 if !user.hasActiveItem?(:POWERHERB)
-    when "196" #todo
     #---------------------------------------------------------------------------
     when "197" #todo
       score = 200
