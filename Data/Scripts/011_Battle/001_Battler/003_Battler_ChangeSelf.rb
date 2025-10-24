@@ -166,8 +166,8 @@ class PokeBattle_Battler
       @status = splitfrom.status
       @raid = splitfrom.raid
       if splitfrom.shiny?
-        @pokemon.shiny = splitfrom.pokemon.shiny
-        @pokemon.natural_shiny = splitfrom.pokemon.natural_shiny
+        @pokemon.shiny = true
+        @pokemon.natural_shiny = true
       end
       party = []
       skipped = false

@@ -190,6 +190,7 @@ class PokemonIconSprite < SpriteWrapper
   def useRegularIcon(species)
     dexNum = getDexNumberForSpecies(species)
     return true if dexNum <= Settings::NB_POKEMON
+    return false if dexNum > 1000099
     return false if $game_variables == nil
     return true if $game_variables[VAR_FUSION_ICON_STYLE] != 0
     bitmapFileName = sprintf("Graphics/Icons/icon%03d", dexNum)
