@@ -183,6 +183,7 @@ class FusionTutorService
       compatibleMoves << :DOUBLEEDGE if hasType(:NORMAL)
       compatibleMoves << :SUBMISSION if hasType(:FIGHTING)
       compatibleMoves << :FLAREBLITZ if hasType(:FIRE)
+      compatibleMoves << :PSYCHICFANGS if hasType(:PSYCHIC)
 
     end
     if includeLegendaries

@@ -352,8 +352,8 @@ class PokeBattle_AI
     end
     if !switch && (rand(10) == 0 || choices.length == 0) && (user.isFusionOf(:TOGETIC) || user.species.to_s.include?("TOGETIC") || user.isFusionOf(:TOGEKISS) || user.species.to_s.include?("TOGEKISS"))
       choices = []
-      pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(:GREATERMETRONOME)),choices) if user.isFusionOf(:TOGETIC) || user.species.to_s.include?("TOGETIC")
-      pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(:GREATESTMETRONOME)),choices) if user.isFusionOf(:TOGEKISS) || user.species.to_s.include?("TOGEKISS")
+      pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATERMETRONOME)),choices) if user.isFusionOf(:TOGETIC) || user.species.to_s.include?("TOGETIC")
+      pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATESTMETRONOME)),choices) if user.isFusionOf(:TOGEKISS) || user.species.to_s.include?("TOGEKISS")
     end
     # Figure out useful information about the choices
     maxScore   = 0
