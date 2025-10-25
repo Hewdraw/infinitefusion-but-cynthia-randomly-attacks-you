@@ -196,7 +196,9 @@ class PokeBattle_Battle
           @field.effects[PBEffects::TrickRoom] = 10000
           pbDisplayPaused(_INTL("The battlefield turned twisted!"))
         end
-        if ["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(256) == 0
+        shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
+        shinychance *= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
+        if ["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(shinychance) == 0
           @scene.pbCommonAnimation("Shiny",trainer)
         end
         if ["Hatsune Miku", "Naomi"].include?(trainer.name)

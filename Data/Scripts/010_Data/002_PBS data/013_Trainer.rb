@@ -322,8 +322,11 @@ module GameData
         else
           offset = -3
         end
-        shininess = pkmn_data[:shininess] || rand(256) == 0
-        offset = [5, offset].max if shininess
+        shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
+        shinychance *= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
+        shininess = pkmn_data[:shininess] || rand(shinychance) == 0
+        offset += 2 if shininess
+        offset += 3 if shininess && !(GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM))
         highestlevel = 0
         for mon in $Trainer.party
           if mon.level > highestlevel
