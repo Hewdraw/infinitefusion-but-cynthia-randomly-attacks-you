@@ -794,23 +794,23 @@
 777,CHILLYRECEPTION,Chilly Reception,196,0,ICE,Status,0,10,0,NearOther,0,,"Nice Smeargle/Ditto, jackass." #todo
 778,FREEZINGGLARE,Freezing Glare,00D,90,PSYCHIC,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 779,WAVECRASH,Wave Crash,0FB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
-780,TOMBSTONER,TOMBSTONER,229,50,GHOST,Physical,100,15,30,NearOther,0,abef,"TOMBSTONER"
+780,TOMBSTONER,TOMBSTONER,229,60,GHOST,Physical,100,15,30,NearOther,0,abef,"TOMBSTONER"
 781,EXPANDINGFORCE,Expanding Force,200,80,PSYCHIC,Special,100,10,0,AllNearFoes,0,bef,"The user attacks all opposing Pokémon with its psychic power. When the ground is Psychic Terrain, this move's power is boosted."
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
-783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,""
-784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"" #TODO hazard clear
-785,STONEAXE,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,""
-786,REVIVALBLESSING,Revival Blessing,197,0,NORMAL,Status,0,1,0,User,0,,"" #partial todo
-787,SALTCURE,Salt Cure,198,40,ROCK,Physical,100,15,100,Other,0,bef,""
-788,DECORATE,Decorate,199,0,FAIRY,Status,0,15,0,NearAlly,0,,""
-789,ARMORCANNON,Armor Cannon,03C,120,FIRE,Special,100,5,100,Other,0,bef,""
-790,FIRESPIT,Fire Spit,201,100,FIRE,Physical,85,10,20,AllNearFoes,0,bef,""
-791,QUASICONNECTIVITY,Quasi Connectivity,202,90,PSYCHIC,Physical,100,10,100,AllNearFoes,0,bef,"" #todo
-792,REDSTONEDUSTER,Redstone Duster,105,65,ROCK,Physical,90,15,100,AllNearFoes,0,abef,"" #todo
-793,MIKUMIKUBEAM,Miku Miku Beam!!!,203,140,ELECTRIC,Special,100,20,30,AllNearFoes,0,bef,"" #todo
-794,TWINBEAMSLASH,Twin Beam Slash,204,70,FIRE,Physical,100,20,30,Other,0,bef,"" #todo
-795,POWERUP,Power Up!,205,0,ELECTRIC,Status,0,5,0,User,0,,"" #todo
-796,LEEK,Leek?!,206,0,GRASS,Status,0,40,0,Other,0,abef,"" #todo
+783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,"ur stinky"
+784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"ur stinky" #TODO hazard clear
+785,STONEAXE,Stone Axe,105,65,ROCK,Physical,90,15,100,Other,0,abef,"ur stinky"
+786,REVIVALBLESSING,Revival Blessing,197,0,NORMAL,Status,0,1,0,User,0,,"ur stinky" #partial todo
+787,SALTCURE,Salt Cure,198,40,ROCK,Physical,100,15,100,Other,0,bef,"ur stinky"
+788,DECORATE,Decorate,199,0,FAIRY,Status,0,15,0,NearAlly,0,,"ur stinky"
+789,ARMORCANNON,Armor Cannon,03C,120,FIRE,Special,100,5,100,Other,0,bef,"ur stinky"
+790,FIRESPIT,Fire Spit,201,100,FIRE,Physical,85,10,20,AllNearFoes,0,bef,"ur stinky"
+791,QUASICONNECTIVITY,Quasi Connectivity,202,90,PSYCHIC,Physical,100,10,100,AllNearFoes,0,bef,"ur stinky" #todo
+792,REDSTONEDUSTER,Redstone Duster,105,65,ROCK,Physical,90,15,100,AllNearFoes,0,abef,"ur stinky" #todo
+793,MIKUMIKUBEAM,Miku Miku Beam!!!,203,140,ELECTRIC,Special,100,20,30,AllNearFoes,0,bef,"ur stinky" #todo
+794,TWINBEAMSLASH,Twin Beam Slash,204,70,FIRE,Physical,100,20,30,Other,0,bef,"ur stinky" #todo
+795,POWERUP,Power Up!,205,0,ELECTRIC,Status,0,5,0,User,0,,"ur stinky" #todo
+796,LEEK,Leek?!,206,0,GRASS,Status,0,40,0,Other,0,abef,"ur stinky" #todo
 797,BREAKNECKBLITZ,Breakneck Blitz,207,100,NORMAL,Physical,0,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 798,ALLOUTPUMMELING,All-Out Pummeling,207,100,FIGHTING,Physical,0,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 799,SUPERSONICSKYSTRIKE,Supersonic Skystrike,207,100,FLYING,Physical,0,1,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
@@ -848,12 +848,12 @@
 831,GREATESTMETRONOME,Greatest Metronome,223,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... thrice!"
 832,BURNINGBULWARK,Burning Bulwark,0AA,0,FIRE,Status,0,10,0,User,4,,"todo"
 883,DRAGONCHEER,Dragon Cheer,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
-884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,100,15,0,NearOther,0,bef,"" #hardcoded
-885,THUNDERCLAP,Thunder Clap,116,70,ELECTRIC,Special,100,5,0,NearOther,1,bef,""
+884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,100,15,0,NearOther,0,bef,"ur stinky" #hardcoded
+885,THUNDERCLAP,Thunder Clap,116,70,ELECTRIC,Special,100,5,0,NearOther,1,bef,"ur stinky"
 886,MISTYEXPLOSION,Misty Explosion,000,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,"todo"
 887,STEELROLLER,Steel Roller,000,130,STEEL,Physical,100,5,0,NearOther,0,abef,"todo"
-888,STEELBEAM,Steel Beam,170,140,STEEL,Special,95,5,0,NearOther,0,bef,""
-889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,""
+888,STEELBEAM,Steel Beam,170,140,STEEL,Special,95,5,0,NearOther,0,bef,"ur stinky"
+889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,"ur stinky"
 890,ULTIMATEJUDGMENT,Judgement Ultima,226,200,QMARKS,Special,0,1,0,NearOther,0,ef,"todo"
 891,ELECTRODRIFT,Electro Drift,222,100,ELECTRIC,Special,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 
