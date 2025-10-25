@@ -794,7 +794,7 @@
 777,CHILLYRECEPTION,Chilly Reception,196,0,ICE,Status,0,10,0,NearOther,0,,"Nice Smeargle/Ditto, jackass." #todo
 778,FREEZINGGLARE,Freezing Glare,00D,90,PSYCHIC,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 779,WAVECRASH,Wave Crash,0FB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
-780,TOMBSTONER,TOMBSTONER,229,60,GHOST,Physical,100,15,30,NearOther,0,abef,"TOMBSTONER"
+780,TOMBSTONER,TOMBSTONER,229,60,GHOST,Physical,100,15,50,NearOther,0,abef,"TOMBSTONER"
 781,EXPANDINGFORCE,Expanding Force,200,80,PSYCHIC,Special,100,10,0,AllNearFoes,0,bef,"The user attacks all opposing Pokémon with its psychic power. When the ground is Psychic Terrain, this move's power is boosted."
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
 783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,"ur stinky"
