@@ -232,14 +232,14 @@ class PokeBattle_AI
       :specialDamage => 0,
       :statusCount => 0,
       :moves => {}
-    } if !user
+    } if !user || target.fainted
     newtable = {}
     if user != target
       threattable = pbCynthiaAssessThreat(user, target, tera)
     else
       maxthreat = 0
       user.eachOpposing do |opponent|
-        threat = pbCynthiaAssessThreat(opponent, user, tera)
+        threat = pbCynthiaAssessThreat(user, opponent, tera)
         if threat[:highestDamage] >= maxthreat
           threattable = threat
         end
@@ -257,6 +257,13 @@ class PokeBattle_AI
   end
 
   def pbCynthiaAssessThreat(user, target, tera = nil)
+    return {
+      :highestDamage => 0,
+      :physicalDamage => 0,
+      :specialDamage => 0,
+      :statusCount => 0,
+      :moves => {}
+    } if target.fainted
     @threattable[target] = {} if !@threattable[target]
     if !tera
       return @threattable[target][user] if @threattable[target][user]

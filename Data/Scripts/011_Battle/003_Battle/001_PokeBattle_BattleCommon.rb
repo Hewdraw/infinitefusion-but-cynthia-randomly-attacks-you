@@ -143,6 +143,7 @@ module PokeBattle_BattleCommon
       @scene.pbThrowAndDeflect(ball, 1)
       pbDisplay(_INTL("{1}'s Legendary Pressure deflects the ball", battler.name))
       pbHideAbilitySplash(battler)
+      return
     elsif trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?) && !battler.battle.legendaryBattle?
       @scene.pbThrowAndDeflect(ball, 1)
       pbDisplay(_INTL("The Trainer blocked your Poké Ball! Don't be a thief!"))

@@ -552,7 +552,7 @@ class PokeBattle_Battle
       if legendaryBattle?
         @battlers.each do |battler|
           next if !battler.raid
-          next if battler.pokemon.species == :CREEPER
+          next if [:CREEPER, :MEGACREEPER].include?(battler.pokemon.species)
           if battler.pokemon.species == :COOLERDINO
             battler.pokemon.species = :TYRANTRUM
             battler.pokemon.name = "Cool Dino"
