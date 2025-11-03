@@ -80,6 +80,8 @@ class PokemonGlobalMetadata
   attr_accessor :healiestimer
   attr_accessor :speedupdisabled
   attr_accessor :metronomelog
+  attr_accessor :cynthialosses
+  attr_accessor :hatsunemikulosses
 
   def initialize
     # Movement

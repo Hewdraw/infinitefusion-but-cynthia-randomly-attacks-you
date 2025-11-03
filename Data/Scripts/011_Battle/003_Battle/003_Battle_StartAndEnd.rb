@@ -540,7 +540,11 @@ class PokeBattle_Battle
         pbDisplayPaused(_INTL("You blacked out!")) if !@canLose
       elsif @decision==2
         if @opponent
-          @opponent.each_with_index do |_t,i|
+          @opponent.each_with_index do |trainer,i|
+            $PokemonGlobal.cynthialosses = 0 if $PokemonGlobal.cynthialosses.nil?
+            $PokemonGlobal.cynthialosses += 1 if trainer.name == "Cynthia"
+            $PokemonGlobal.hatsunemikulosses = 0 if $PokemonGlobal.hatsunemikulosses.nil?
+            $PokemonGlobal.hatsunemikulosses += 1 if trainer.name == "Hatsune Miku"
             @scene.pbShowOpponent(i)
             msg = (@endSpeechesWin[i] && @endSpeechesWin[i]!="") ? @endSpeechesWin[i] : "..."
             pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
