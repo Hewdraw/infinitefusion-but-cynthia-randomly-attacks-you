@@ -184,6 +184,7 @@ class FusionTutorService
       compatibleMoves << :SUBMISSION if hasType(:FIGHTING)
       compatibleMoves << :FLAREBLITZ if hasType(:FIRE)
       compatibleMoves << :PSYCHICFANGS if hasType(:PSYCHIC)
+      compatibleMoves << :AURORAVEIL if (canLearnMove(:HAIL) || canLearnMove(:SNOWSCAPE)) && canLearnMove(:REFLECT) && canLearnMove(:LIGHTSCREEN)
 
     end
     if includeLegendaries
