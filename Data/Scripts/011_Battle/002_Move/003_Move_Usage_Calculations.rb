@@ -133,7 +133,12 @@ class PokeBattle_Move
     evasion  = (evasion  * modifiers[:evasion_multiplier]).round
     evasion = 1 if evasion < 1
     # Calculation
-    return @battle.pbRandom(100) < modifiers[:base_accuracy] * accuracy / evasion
+    randnumber = @battle.pbRandom(100)
+    if target.pokemon.affection && randnumber >= (modifiers[:base_accuracy] - 10) * accuracy / evasion && randnumber < modifiers[:base_accuracy] * accuracy / evasion
+      target.damageState.affectionmiss = true
+      return false
+    end
+    return randnumber < modifiers[:base_accuracy] * accuracy / evasion
   end
 
   def pbCalcAccuracyModifiers(user,target,modifiers)
@@ -221,7 +226,12 @@ class PokeBattle_Move
     c += 1 if user.inHyperMode? && @type == :SHADOW
     c = ratios.length-1 if c>=ratios.length
     # Calculation
-    return @battle.pbRandom(ratios[c])==0
+    randnumber = @battle.pbRandom(ratios[c])
+    if user.pokemon.affection && randnumber == 1
+      target.damageState.affectioncritical = true
+      return true
+    end
+    return randnumber==0
   end
 
   #=============================================================================

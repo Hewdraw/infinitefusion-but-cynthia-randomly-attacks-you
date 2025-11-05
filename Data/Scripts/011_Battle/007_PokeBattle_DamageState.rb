@@ -19,6 +19,9 @@ class PokeBattle_DamageState
   attr_accessor :disguise        # Disguise ability used
   attr_accessor :endured         # Damage was endured
   attr_accessor :berryWeakened   # Whether a type-resisting berry was used
+  attr_accessor :affection
+  attr_accessor :affectionmiss
+  attr_accessor :affectioncritical
 
   def initialize; reset; end
 
@@ -46,5 +49,8 @@ class PokeBattle_DamageState
     @disguise      = false
     @endured       = false
     @berryWeakened = false
+    @affection = false
+    @affectionmiss = false
+    @affectioncritical = false
   end
 end

@@ -209,6 +209,9 @@ class PokeBattle_Move
         elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
           target.damageState.focusBand = true
           damage -= 1
+        elsif target.pokemon.affection && rand(100) < 20
+          target.damageState.affection = true
+          damage -= 1
         end
       end
     end
@@ -284,7 +287,9 @@ class PokeBattle_Move
       @battle.pbDisplay(_INTL("The substitute took damage for {1}!",target.pbThis(true)))
     end
     if target.damageState.critical
-      if numTargets>1
+      if target.damageState.affectioncritical
+        @battle.pbDisplay(_INTL("{1} landed a critical hit, wishing to be praised!",user.pbThis(true)))
+      elsif numTargets>1
         @battle.pbDisplay(_INTL("A critical hit on {1}!",target.pbThis(true)))
       else
         @battle.pbDisplay(_INTL("A critical hit!"))
@@ -332,6 +337,8 @@ class PokeBattle_Move
     elsif target.damageState.focusBand
       @battle.pbCommonAnimation("UseItem",target)
       @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!",target.pbThis))
+    elsif target.damageState.affection
+      @battle.pbDisplay(_INTL("{1} toughed it out so {2} wouldn't feel sad!",target.pbThis, target.pokemon.owner.name))
     end
   end
 

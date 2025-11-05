@@ -47,7 +47,7 @@ module Settings
   AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/rate_limit.log'  # Path to the log file
 
   #Spritepack
-  NEWEST_SPRITEPACK_MONTH = 9
+  NEWEST_SPRITEPACK_MONTH = 10
   NEWEST_SPRITEPACK_YEAR = 2025
 
 

@@ -21,6 +21,7 @@ module GameData
       "Tera" => [:tera, "s"],
       "Dynamax" => [:dynamax, "b"],
       "Gigantamax" => [:gigantamax, "b"],
+      "Affection" => [:affection, "b"],
       "Raid" => [:raid, "b"],
       "Hpbar" => [:hpbars, "s"],
       "Split" => [:split, "s"],
@@ -371,6 +372,7 @@ module GameData
         pkmn.split = (pkmn_data[:split]) ? pkmn_data[:split].to_i : nil
         pkmn.phasetwo = (pkmn_data[:phasetwo]) ? true : nil
         pkmn.ace = (pkmn_data[:ace]) ? true : nil
+        pkmn.affection = (pkmn_data[:affection]) ? true : nil
 
         trainer.party.push(pkmn)
         # Set Pokémon's properties if defined
