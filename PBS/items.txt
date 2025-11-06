@@ -810,6 +810,7 @@
 811,HEALIES,Healies,Healies,8,0,"todo",2,0,6
 812,TUTORMACHINE,Tutor Machine,Tutor Machines,8,0,"Pocket Move Tutor",1,0,6
 813,TM122,TM122,TM122s,4,10000,"TOMBSTONER",3,0,0,TOMBSTONER
+814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"todo",0,0,0
 
 
 #    attr_reader :id
