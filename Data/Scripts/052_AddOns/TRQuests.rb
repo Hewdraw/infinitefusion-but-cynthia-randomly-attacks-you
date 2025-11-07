@@ -299,62 +299,62 @@ def calculate_pokemon_value(pokemon)
   price.to_i # Convert to an integer value
 end
 
-def updatePinkanBerryDisplay()
-  return if !isOnPinkanIsland()
-  berry_image_width=25
+# def updatePinkanBerryDisplay()
+#   return if !isOnPinkanIsland()
+#   berry_image_width=25
 
-  clear_all_images()
-  pbSEPlay("GUI storage pick up", 80, 100)
-  nbPinkanBerries = $PokemonBag.pbQuantity(:PINKANBERRY)
-  for i in 1..nbPinkanBerries
-    x_pos=i*berry_image_width
-    y_pos=0
-    $game_screen.pictures[i].show("pinkanberryui",0,x_pos,y_pos)
-  end
-end
+#   clear_all_images()
+#   pbSEPlay("GUI storage pick up", 80, 100)
+#   nbPinkanBerries = $PokemonBag.pbQuantity(:PINKANBERRY)
+#   for i in 1..nbPinkanBerries
+#     x_pos=i*berry_image_width
+#     y_pos=0
+#     $game_screen.pictures[i].show("pinkanberryui",0,x_pos,y_pos)
+#   end
+# end
 
-PINKAN_ISLAND_MAP = 51
-PINKAN_ISLAND_START_ROCKET = [11,25]
-PINKAN_ISLAND_START_POLICE = [20,55]
-def pinkanIslandWarpToStart()
-  $game_temp.player_new_map_id    = PINKAN_ISLAND_MAP
-  if $game_switches[SWITCH_PINKAN_SIDE_ROCKET]
-    $game_temp.player_new_x         = PINKAN_ISLAND_START_ROCKET[0]
-    $game_temp.player_new_y         = PINKAN_ISLAND_START_ROCKET[1]
-  else
-    $game_temp.player_new_x         = PINKAN_ISLAND_START_POLICE[0]
-    $game_temp.player_new_y         = PINKAN_ISLAND_START_POLICE[1]
-  end
-  $scene.transfer_player if $scene.is_a?(Scene_Map)
-  $game_map.refresh
-  $game_switches[Settings::STARTING_OVER_SWITCH] = true
-  $scene.reset_map(true)
-end
+# PINKAN_ISLAND_MAP = 51
+# PINKAN_ISLAND_START_ROCKET = [11,25]
+# PINKAN_ISLAND_START_POLICE = [20,55]
+# def pinkanIslandWarpToStart()
+#   $game_temp.player_new_map_id    = PINKAN_ISLAND_MAP
+#   if $game_switches[SWITCH_PINKAN_SIDE_ROCKET]
+#     $game_temp.player_new_x         = PINKAN_ISLAND_START_ROCKET[0]
+#     $game_temp.player_new_y         = PINKAN_ISLAND_START_ROCKET[1]
+#   else
+#     $game_temp.player_new_x         = PINKAN_ISLAND_START_POLICE[0]
+#     $game_temp.player_new_y         = PINKAN_ISLAND_START_POLICE[1]
+#   end
+#   $scene.transfer_player if $scene.is_a?(Scene_Map)
+#   $game_map.refresh
+#   $game_switches[Settings::STARTING_OVER_SWITCH] = true
+#   $scene.reset_map(true)
+# end
 
-def isOnPinkanIsland()
-  return Settings::PINKAN_ISLAND_MAPS.include?($game_map.map_id)
-end
+# def isOnPinkanIsland()
+#   return Settings::PINKAN_ISLAND_MAPS.include?($game_map.map_id)
+# end
 
-def pinkanAddAllCaughtPinkanPokemon()
-  for pokemon in $Trainer.party
-    pbStorePokemon(pokemon)
-  end
-end
+# def pinkanAddAllCaughtPinkanPokemon()
+#   for pokemon in $Trainer.party
+#     pbStorePokemon(pokemon)
+#   end
+# end
 
-def resetPinkanIsland()
-  $game_switches[SWITCH_BLOCK_PINKAN_WHISTLE]=false
-  $game_switches[SWITCH_LEAVING_PINKAN_ISLAND]=false
-  $game_switches[SWITCH_PINKAN_SIDE_POLICE]=false
-  $game_switches[SWITCH_PINKAN_SIDE_ROCKET]=false
-  $game_switches[SWITCH_PINKAN_FINISHED]=false
+# def resetPinkanIsland()
+#   $game_switches[SWITCH_BLOCK_PINKAN_WHISTLE]=false
+#   $game_switches[SWITCH_LEAVING_PINKAN_ISLAND]=false
+#   $game_switches[SWITCH_PINKAN_SIDE_POLICE]=false
+#   $game_switches[SWITCH_PINKAN_SIDE_ROCKET]=false
+#   $game_switches[SWITCH_PINKAN_FINISHED]=false
 
-  for map_id in Settings::PINKAN_ISLAND_MAPS
-    map = $MapFactory.getMap(map_id,false)
-    for event in map.events.values
-      $game_self_switches[[map_id, event.id, "A"]] = false
-      $game_self_switches[[map_id, event.id, "B"]] = false
-      $game_self_switches[[map_id, event.id, "C"]] = false
-      $game_self_switches[[map_id, event.id, "D"]] = false
-    end
-  end
-end
+#   for map_id in Settings::PINKAN_ISLAND_MAPS
+#     map = $MapFactory.getMap(map_id,false)
+#     for event in map.events.values
+#       $game_self_switches[[map_id, event.id, "A"]] = false
+#       $game_self_switches[[map_id, event.id, "B"]] = false
+#       $game_self_switches[[map_id, event.id, "C"]] = false
+#       $game_self_switches[[map_id, event.id, "D"]] = false
+#     end
+#   end
+# end

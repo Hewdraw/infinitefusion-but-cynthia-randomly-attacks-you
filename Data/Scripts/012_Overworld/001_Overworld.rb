@@ -853,7 +853,6 @@ def pbItemBall(item, quantity = 1, item_name = "", canRandom = true)
                     itemname, pocket, PokemonBag.pocketNames()[pocket]))
 
     promptRegisterItem(item)
-    updatePinkanBerryDisplay()
     return true
   end
   # Can't add the item
@@ -918,7 +917,6 @@ def pbReceiveItem(item, quantity = 1, item_name = "", music = nil, canRandom = t
   if $PokemonBag.pbStoreItem(item, quantity) # If item can be added
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
                     itemname, pocket, PokemonBag.pocketNames()[pocket]))
-    updatePinkanBerryDisplay()
     return true
   end
   return false # Can't add the item

@@ -59,7 +59,7 @@ def pbHiddenMoveEvent
 end
 
 def pbCheckHiddenMoveBadge(badge = -1, showmsg = true)
-  return true if badge < 0 || isOnPinkanIsland() # No badge requirement
+  return true if badge < 0 # No badge requirement
   return true if $DEBUG
   if (Settings::FIELD_MOVES_COUNT_BADGES) ? $Trainer.badge_count >= badge : $Trainer.badges[badge]
     return true

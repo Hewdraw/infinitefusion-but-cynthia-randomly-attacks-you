@@ -95,15 +95,6 @@ def pbStartOver(gameover=false)
     return
   end
   $Trainer.heal_party
-  if isOnPinkanIsland()
-    if $game_switches[SWITCH_PINKAN_SIDE_POLICE]
-      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]Hey, are you okay over there? Let me take you back to the dock."))
-    else
-      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]Hey, are you okay over there? Let me take you back to the beach."))
-    end
-    pinkanIslandWarpToStart()
-    return
-  end
   if $PokemonGlobal.pokecenterMapId && $PokemonGlobal.pokecenterMapId>=0
     if gameover
       pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back to a Pokémon Center."))

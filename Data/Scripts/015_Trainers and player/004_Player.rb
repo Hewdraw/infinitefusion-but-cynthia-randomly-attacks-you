@@ -255,7 +255,6 @@ class Player < Trainer
   end
 
   def can_change_outfit()
-    return false if isOnPinkanIsland()
     return true
   end
 

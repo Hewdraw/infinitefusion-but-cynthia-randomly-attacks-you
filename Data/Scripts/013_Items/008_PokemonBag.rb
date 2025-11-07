@@ -177,7 +177,6 @@ class PokemonBag
     item = GameData::Item.get(item)
     pocket = item.pocket
     ret = ItemStorageHelper.pbDeleteItem(@pockets[pocket], item.id, qty)
-    updatePinkanBerryDisplay()
     return ret
   end
 

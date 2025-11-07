@@ -923,7 +923,6 @@ end
 def promptCaughtPokemonAction(pokemon)
   pickedOption = false
   return pbStorePokemon(pokemon) if !$Trainer.party_full?
-  return promptKeepOrRelease(pokemon) if isOnPinkanIsland() && !$game_switches[SWITCH_PINKAN_FINISHED]
   while !pickedOption
     command = pbMessage(_INTL("\\ts[]Your team is full!"),
                         [_INTL("Add to your party"), _INTL("Store to PC"),], 2)

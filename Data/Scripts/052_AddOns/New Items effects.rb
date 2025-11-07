@@ -429,23 +429,23 @@ ItemHandlers::UseInField.add(:ROCKETUNIFORM, proc { |item|
   next useRocketUniform()
 })
 
-ItemHandlers::UseInField.add(:EMERGENCYWHISTLE, proc { |item|
-  if isOnPinkanIsland()
-    pbCommonEvent(COMMON_EVENT_PINKAN_WHISTLE)
-    $scene.reset_map(true)
-    updatePinkanBerryDisplay()
-    next 1
-  end
-  next 0
-})
+# ItemHandlers::UseInField.add(:EMERGENCYWHISTLE, proc { |item|
+#   if isOnPinkanIsland()
+#     pbCommonEvent(COMMON_EVENT_PINKAN_WHISTLE)
+#     $scene.reset_map(true)
+#     updatePinkanBerryDisplay()
+#     next 1
+#   end
+#   next 0
+# })
 
-ItemHandlers::UseFromBag.add(:EMERGENCYWHISTLE, proc { |item|
-  if isOnPinkanIsland()
-    pbCommonEvent(COMMON_EVENT_PINKAN_WHISTLE)
-    next 1
-  end
-  next 0
-})
+# ItemHandlers::UseFromBag.add(:EMERGENCYWHISTLE, proc { |item|
+#   if isOnPinkanIsland()
+#     pbCommonEvent(COMMON_EVENT_PINKAN_WHISTLE)
+#     next 1
+#   end
+#   next 0
+# })
 
 ItemHandlers::UseFromBag.add(:ODDKEYSTONE, proc { |item|
   TOTAL_SPIRITS_NEEDED = 108
@@ -1771,10 +1771,8 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
       if $Trainer.party.length >= 6 && !pcPosition
 
         message = "Your party is full! Keep which Pokémon in party?"
-        message = "Your party is full! Keep which Pokémon in party? The other will be released." if isOnPinkanIsland()
         scene.pbDisplay(_INTL(message))
         selectPokemonMessage = "Select a Pokémon to keep in your party."
-        selectPokemonMessage = "Select a Pokémon to keep in your party. The other will be released" if isOnPinkanIsland()
         choice = Kernel.pbMessage(selectPokemonMessage, [_INTL("{1}", PBSpecies.getName(bodyPoke)), _INTL("{1}", PBSpecies.getName(headPoke)), "Cancel"], 2)
         if choice == 2
           return false
@@ -1858,12 +1856,8 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
 
       if $Trainer.party.length >= 6
         if (keepInParty == 0)
-          if isOnPinkanIsland()
-            scene.pbDisplay(_INTL("{1} was released.", poke2.name))
-          else
-            $PokemonStorage.pbStoreCaught(poke2)
-            scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
-          end
+          $PokemonStorage.pbStoreCaught(poke2)
+          scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
         else
           poke2 = Pokemon.new(bodyPoke, body_level)
           poke1 = Pokemon.new(headPoke, head_level)
@@ -1876,12 +1870,8 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
             $PokemonStorage.pbStoreCaught(poke2)
           else
           #Fusing from party
-            if isOnPinkanIsland()
-              scene.pbDisplay(_INTL("{1} was released.", poke2.name))
-            else
-              $PokemonStorage.pbStoreCaught(poke2)
-              scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
-            end
+            $PokemonStorage.pbStoreCaught(poke2)
+            scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
           end
         end
       else

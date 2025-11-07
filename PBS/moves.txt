@@ -856,6 +856,8 @@
 889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,"ur stinky"
 890,ULTIMATEJUDGMENT,Judgement Ultima,226,200,QMARKS,Special,0,1,0,NearOther,0,ef,"todo"
 891,ELECTRODRIFT,Electro Drift,222,100,ELECTRIC,Special,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+892,DRUMBEATING,Drum Beating,044,80,GRASS,Physical,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+893,IVYCUDGEL,Ivy Cudgel,044,80,GRASS,Physical,100,10,100,NearOther,0,bef,"todo"
 
 
 
