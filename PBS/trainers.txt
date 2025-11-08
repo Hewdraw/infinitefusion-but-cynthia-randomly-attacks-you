@@ -10724,6 +10724,7 @@ Pokemon = HATSUNEMECHU,5
 	EV = 126,126,126,126,126,126
 	Happiness = 255
 
+####################### Developer Teams
 [Non_Skeleton_Dev,Hewdraw,0]
 Pokemon = ANINETALES,75
 	Offset = 0
