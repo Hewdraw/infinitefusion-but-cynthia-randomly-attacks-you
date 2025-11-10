@@ -48,7 +48,7 @@ TYPE_EXPERT_TRAINERS = {
   :QMARK => ["name", "loseText"],
   :ELECTRIC => ["Ray", "What a shocking turn of events!"],
   :BUG => ["Bea", "I’m bugging out of here!"],
-  :FAIRY => ["Luna", "You outshined me!"],
+  :FAIRY => ["Hatsune Miku", "sorrgy accident.."],
   :DRAGON => ["Draco", "I shall scale back my plans."],
   :FIGHTING => ["Floyd", "I have to throw in the towel."],
   :GROUND => ["Pedro", "I’m buried under this loss."],
@@ -96,53 +96,33 @@ def type_expert_battle(type_id)
   pbCallBub(2, @event_id)
   pbMessage("I'm what you could call an expert on #{type.real_name}-Pokémon. I've grown with them for all of my life.")
   pbCallBub(2, @event_id)
-  pbMessage("I'll give you my \\C[5]special outfit\\C[0] if you can defeat my team using only #{type.real_name}-type Pokémon. ")
+  pbMessage("I'll give you my \\C[5]special outfit\\C[0] if you can defeat my team of #{type.real_name}-type Pokémon. ")
   pbCallBub(2, @event_id)
   if pbConfirmMessage("Do you think you can handle that?")
-    pbCallBub(2, @event_id)
-    pbMessage("Select your team! Remember, only #{type.real_name}-type Pokémon are allowed!")
-
-    gym_randomizer_index = GYM_TYPES_CLASSIC.index(type_id)
-    echoln gym_randomizer_index
-    pbSet(VAR_CURRENT_GYM_TYPE, gym_randomizer_index)
-    if PokemonSelection.choose(1, 4, true, true, proc { |poke| poke.hasType?(type_id) })
-      #Level is equal to the highest level in player's party
-      $game_switches[Settings::OVERRIDE_BATTLE_LEVEL_SWITCH]=true
-      $game_switches[SWITCH_DONT_RANDOMIZE]=true
-
-      pbSet(Settings::OVERRIDE_BATTLE_LEVEL_VALUE_VAR, $Trainer.highest_level_pokemon_in_party)
-      trainer_class = "TYPE_EXPERT_#{type_id.to_s}".to_sym
-      trainer_name = TYPE_EXPERT_TRAINERS[type_id][0]
-      lose_text = TYPE_EXPERT_TRAINERS[type_id][1]
-      if pbTrainerBattle(trainer_class, trainer_name, lose_text, false, 0, false)
-        pbSet(VAR_TYPE_EXPERTS_BEATEN,pbGet(VAR_TYPE_EXPERTS_BEATEN)+1)
-        pbCallBub(2, @event_id)
-        pbMessage("Woah! You beat me at my own specialty! ")
-        pbCallBub(2, @event_id)
-        pbMessage("It's a true testament to your mastery of Pokémon typings!")
-        pbCallBub(2, @event_id)
-        pbMessage("Well then, I'll keep my word. You can have this very special outfit!")
-        for clothes in TYPE_EXPERT_REWARDS[type_id]
-          obtainClothes(clothes)
-        end
-        pbCallBub(2, @event_id)
-        pbMessage("When you wear it, you can sometimes find #{type.real_name}-type related items after battles!")
-        show_nb_type_experts_defeated()
-        PokemonSelection.restore
-        $game_switches[Settings::OVERRIDE_BATTLE_LEVEL_SWITCH]=false
-        $game_switches[SWITCH_DONT_RANDOMIZE]=false
-        pbSet(VAR_CURRENT_GYM_TYPE, -1)
-        return true
-      end
-    else
+    trainer_class = "TYPE_EXPERT_#{type_id.to_s}".to_sym
+    trainer_name = TYPE_EXPERT_TRAINERS[type_id][0]
+    lose_text = TYPE_EXPERT_TRAINERS[type_id][1]
+    doublebattle = type_id == :FAIRY
+    if pbTrainerBattle(trainer_class, trainer_name, lose_text, doublebattle, 0, false)
+      pbSet(VAR_TYPE_EXPERTS_BEATEN,pbGet(VAR_TYPE_EXPERTS_BEATEN)+1)
       pbCallBub(2, @event_id)
-      pbMessage("Remember, you're only allowed to use #{type.real_name}-type Pokémon!")
+      pbMessage("Woah! You beat me! ")
+      pbCallBub(2, @event_id)
+      pbMessage("It's a true testament to your mastery of Pokémon typings!")
+      pbCallBub(2, @event_id)
+      pbMessage("Well then, I'll keep my word. You can have this very special outfit!")
+      for clothes in TYPE_EXPERT_REWARDS[type_id]
+        obtainClothes(clothes)
+      end
+      pbCallBub(2, @event_id)
+      pbMessage("When you wear it, you can sometimes find #{type.real_name}-type related items after battles!")
+      show_nb_type_experts_defeated()
+      if type_id == :FAIRY
+        $PokemonBag.pbStoreItem(:ENDGATEWAY)
+      end
+      return true
     end
   end
-  PokemonSelection.restore
-  $game_switches[Settings::OVERRIDE_BATTLE_LEVEL_SWITCH]=false
-  $game_switches[SWITCH_DONT_RANDOMIZE]=false
-  pbSet(VAR_CURRENT_GYM_TYPE, -1)
   return false
 end
 

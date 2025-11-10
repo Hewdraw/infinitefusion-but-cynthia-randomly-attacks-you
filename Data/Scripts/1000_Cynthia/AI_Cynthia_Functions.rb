@@ -2374,7 +2374,7 @@ class PokeBattle_AI
         end
         case user.ability_id
         when :ROUGHSKIN
-        when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXILTAG
+        when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE
           if type == :NORMAL
             multipliers[:base_damage_multiplier] *= 1.2
           end

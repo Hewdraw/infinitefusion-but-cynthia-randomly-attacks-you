@@ -220,7 +220,7 @@
 219,HYPERPOTION,Hyper Potion,Hyper Potions,2,1500,"A spray-type medicine for wounds. It restores the HP of one Pokémon by 200 points.",1,1,0,
 220,MAXPOTION,Max Potion,Max Potions,2,2500,"A spray-type medicine for wounds. It completely restores the HP of a single Pokémon.",1,1,0,
 221,FULLRESTORE,Full Restore,Full Restores,2,3000,"A medicine that fully restores the HP and heals any status problems of a single Pokémon.",1,1,0,
-222,SACREDASH,Sacred Ash,Sacred Ashes,2,50000,"It revives all fainted Pokémon. In doing so, it also fully restores their HP.",2,0,0,
+222,SACREDASH,Sacred Ash,Sacred Ashes,2,50000,"It revives all fainted Pokémon. In doing so, it also fully restores their HP.",2,5,0,
 223,AWAKENING,Awakening,Awakenings,2,100,"A spray-type medicine. It awakens a Pokémon from the clutches of sleep.",1,1,0,
 224,ANTIDOTE,Antidote,Antidotes,2,200,"A spray-type medicine. It lifts the effect of poison from one Pokémon.",1,1,0,
 225,BURNHEAL,Burn Heal,Burn Heals,2,300,"A spray-type medicine. It heals a single Pokémon that is suffering from a burn.",1,1,0,
@@ -811,6 +811,7 @@
 812,TUTORMACHINE,Tutor Machine,Tutor Machines,8,0,"Pocket Move Tutor",1,0,6
 813,TM122,TM122,TM122s,4,10000,"TOMBSTONER",3,0,0,TOMBSTONER
 814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"todo",0,0,0
+815,ENDGATEWAY,End Gateway,End Gateways,8,0,"todo",2,0,6
 
 
 #    attr_reader :id

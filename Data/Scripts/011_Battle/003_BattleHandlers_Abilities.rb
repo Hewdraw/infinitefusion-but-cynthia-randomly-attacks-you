@@ -800,7 +800,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:PIXILATE,
   }
 )
 
-BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXILTAG)
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
   proc { |ability,user,move,type|
@@ -934,7 +934,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE)
 
 BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -957,7 +957,7 @@ BattleHandlers::DamageCalcUserAbility.add(:BLAZE,
 BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if type == :ELECTRIC
-      mults[:attack_multiplier] *= 1.3
+      mults[:attack_multiplier] *= 1.5
     end
   }
 )
@@ -2319,7 +2319,7 @@ BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
   }
 )
 
-BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK, :PIXILTAG)
+BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK, :PIXELTAG)
 
 #===============================================================================
 # AbilityOnSwitchIn handlers
