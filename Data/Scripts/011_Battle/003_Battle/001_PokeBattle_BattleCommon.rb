@@ -158,6 +158,7 @@ module PokeBattle_BattleCommon
     @criticalCapture = false
     numShakes = pbCaptureCalc(pkmn, battler, catch_rate, ball)
     @criticalCapture = true if battler.battle.legendaryBattle?
+    @criticalCapture = true if battler.shiny?
     numShakes = 4 if battler.battle.legendaryBattle?
     PBDebug.log("[Threw Poké Ball] #{itemName}, #{numShakes} shakes (4=capture)")
     # Animation of Ball throw, absorb, shake and capture/burst out
@@ -220,6 +221,7 @@ module PokeBattle_BattleCommon
   #=============================================================================
   def pbCaptureCalc(pkmn, battler, catch_rate, ball)
     return 4 if $DEBUG && Input.press?(Input::CTRL)
+    return 4 if $Trainer.numbadges == 0 || $Trainer.numbadges >= 12
     # Get a catch rate if one wasn't provided
     catch_rate = pkmn.species_data.catch_rate if !catch_rate
     # Modify catch_rate depending on the Poké Ball's effect
