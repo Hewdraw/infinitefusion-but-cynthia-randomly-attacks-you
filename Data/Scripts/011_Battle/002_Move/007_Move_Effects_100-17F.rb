@@ -2676,7 +2676,7 @@ class PokeBattle_Move_184 < PokeBattle_Move
   def pbAdditionalEffect(user, target)
     return if target.effects[PBEffects::LeechSeed]>=0
     return if target.pbHasType?(:GRASS)
-
+    return if target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0
     target.effects[PBEffects::LeechSeed] = user.index
     @battle.pbDisplay(_INTL("{1} was seeded!",target.pbThis))
   end
