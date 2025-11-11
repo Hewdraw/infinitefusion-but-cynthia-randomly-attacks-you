@@ -278,7 +278,7 @@
 268,TROPKICK,Trop Kick,042,70,GRASS,Physical,100,15,100,NearOther,0,abef,"The user lands an intense tropical kick on the target. This also lowers the target's Attack stat."
 269,LEAFTORNADO,Leaf Tornado,047,65,GRASS,Special,90,10,50,NearOther,0,bef,"The user attacks its foe by encircling it in sharp leaves. This attack may also lower the foe's accuracy."
 270,MAGICALLEAF,Magical Leaf,0A5,60,GRASS,Special,0,20,0,NearOther,0,bef,"The user scatters curious leaves that chase the target. This attack will not miss."
-271,NEEDLEARM,Needle Arm,00F,60,GRASS,Physical,100,15,30,NearOther,0,abe,"The user attacks by wildly swinging its thorny arms. It may also make the target flinch."
+271,NEEDLEARM,Needle Arm,103,75,GRASS,Physical,100,15,100,NearOther,0,abe,"The user attacks by wildly swinging its thorny arms. It may also make the target flinch."
 272,RAZORLEAF,Razor Leaf,000,55,GRASS,Physical,95,25,0,AllNearFoes,0,befh,"Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily."
 273,VINEWHIP,Vine Whip,000,45,GRASS,Physical,100,25,0,NearOther,0,abef,"The target is struck with slender, whiplike vines to inflict damage."
 274,LEAFAGE,Leafage,000,40,GRASS,Physical,100,40,0,NearOther,0,bef,"The user attacks by pelting the target with leaves."

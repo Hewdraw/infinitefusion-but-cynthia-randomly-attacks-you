@@ -123,7 +123,7 @@ class FusionTutorService
       compatibleMoves << :SPIRITSHACKLE if is_fusion_of([:BANETTE, :SPIRITOMB, :DUSKNOIR, :SHEDINJA, :COFAGRIGUS])
       compatibleMoves << :TRICKORTREAT if (hasType(:GRASS) && hasType(:GHOST)) || is_fusion_of([:GASTLY, :HAUNTER, :GENGAR, :MIMIKYU, :ZORUA, :ZOROARK])
       compatibleMoves << :TROPKICK if is_fusion_of([:HITMONLEE, :HITMONTOP, :ROSERADE]) || (hasType(:GRASS) && hasType(:FIGHTING))
-      compatibleMoves << :NEEDLEARM if is_fusion_of([:FERROTHORN])
+      compatibleMoves << :NEEDLEARM if (hasType(:GRASS) && (hasType(:ROCK) || hasType(:DARK))) || (canLearnMove(:SPIKES) || canLearnMove(:STEALTHROCK) && (canLearnMove(:WOODHAMMER) || (hasType(:GRASS) && canLearnMove(:SANDSTORM))))
       compatibleMoves << :FORESTSCURSE if (hasType(:GRASS) && hasType(:GHOST))
       compatibleMoves << :SPIKYSHIELD if is_fusion_of([:FERROSEED, :FERROTHORN]) || (is_fusion_of([:SANDSLASH, :JOLTEON, :CLOYSTER]) && hasType(:GRASS))
       compatibleMoves << :STRENGTHSAP if is_fusion_of([:ODDISH, :GLOOM, :VILEPLUME, :BELLOSSOM, :HOPPIP, :SKIPLOOM, :JUMPLUFF, :BELLSPROUT, :WEEPINBELL, :VICTREEBEL, :PARAS, :PARASECT, :DRIFBLIM, :BRELOOM])

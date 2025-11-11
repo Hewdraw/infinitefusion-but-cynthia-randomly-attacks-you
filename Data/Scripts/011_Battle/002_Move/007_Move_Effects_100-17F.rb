@@ -33,7 +33,7 @@ end
 #===============================================================================
 class PokeBattle_Move_103 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3
+    if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3 && statusMove?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
