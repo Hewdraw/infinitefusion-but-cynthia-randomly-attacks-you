@@ -26,6 +26,7 @@ BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
       :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
       :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
       :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+      :DIANCIE, :MEGADIANCIE, :MAGEARNA,
     ]
     next unless paradoxlist.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(battler.getBodyID(battler.species)).species) || paradoxlist.include?(GameData::Species.get(battler.getHeadID(battler.species)).species)))
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
@@ -728,6 +729,7 @@ BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
       :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
       :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
       :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+      :DIANCIE, :MEGADIANCIE, :MAGEARNA,
     ]
     next unless paradoxlist.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(user.getBodyID(user.species)).species) || paradoxlist.include?(GameData::Species.get(user.getHeadID(user.species)).species)))
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
@@ -1024,6 +1026,7 @@ BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
       :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
       :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
       :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+      :DIANCIE, :MEGADIANCIE, :MAGEARNA,
     ]
     next unless paradoxlist.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(target.getBodyID(target.species)).species) || paradoxlist.include?(GameData::Species.get(target.getHeadID(target.species)).species)))
     stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]

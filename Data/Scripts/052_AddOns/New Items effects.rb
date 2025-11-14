@@ -1233,6 +1233,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:DEINO, :ZWEILOUS, :HYDREIGON] => :IRONJUGULIS,
     [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => :IRONTHORNS,
     [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => :IRONVALIANT,
+    [:DIANCIE, :MEGADIANCIE] => :MAGEARNA,
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
