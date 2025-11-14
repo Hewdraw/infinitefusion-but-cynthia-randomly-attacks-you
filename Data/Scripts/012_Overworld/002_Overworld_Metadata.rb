@@ -82,6 +82,7 @@ class PokemonGlobalMetadata
   attr_accessor :metronomelog
   attr_accessor :cynthialosses
   attr_accessor :hatsunemikulosses
+  attr_accessor :endgatewaylocation
 
   def initialize
     # Movement

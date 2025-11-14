@@ -2148,9 +2148,9 @@ class PokeBattle_AI
   def pbCynthiaCalcDamage(move,user,target,tera=nil)
     damagedictionary = {
       :minDamage => 0,
-      :averageDamage => 0,
+      #:averageDamage => 0,
       :maxDamage => 0,
-      :critDamage => 0,
+      #:critDamage => 0,
     }
     switchin = false
     if user.index == 69

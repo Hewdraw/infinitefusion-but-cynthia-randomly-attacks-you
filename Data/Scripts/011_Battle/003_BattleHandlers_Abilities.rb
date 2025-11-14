@@ -2333,6 +2333,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:DEATH,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
+  proc { |ability,battler,battle|
+    if battler.hasActiveAbility?(:STURDY) && $PokemonSystem.aicontrolplayer == 1
+      battler.hp = 0
+      battle.pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
+      battler.pbFaint(false)
+    end
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)

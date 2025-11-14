@@ -1234,6 +1234,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => :IRONTHORNS,
     [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => :IRONVALIANT,
   }
+  level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
     if unparadox.include?(pkmn.species)
       if pkmn.unparadox.nil?
@@ -1252,6 +1253,28 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
       break
     end
   end
+  pkmn.level = level
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
+  megalist = {
+    :DIANCIE => :MEGADIANCIE,
+    :METALGREYMON => :WARGREYMON,
+    :WEREGARURUMON => :METALGARURUMON,
+  }
+  level = pkmn.level
+  megalist.each do |unmega, mega|
+    if unmega == pkmn.species
+      pkmn.species = mega
+      break
+    end
+    if mega == pkmn.species
+      pkmn.species = unmega
+      break
+    end
+  end
+  pkmn.level = level
   next false
 })
 
@@ -2262,10 +2285,65 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each { |pkmn| pkmn.heal }
   pbMessage(_INTL("Your Pokémon were fully healed."))
   $PokemonGlobal.healies = true
+  next 1
 })
 
 ItemHandlers::UseInField.add(:HEALIES, proc { |item|
   $Trainer.party.each { |pkmn| pkmn.heal }
   pbMessage(_INTL("Your Pokémon were fully healed."))
   $PokemonGlobal.healies = true
+  next 1
 })
+
+ItemHandlers::UseFromBag.add(:ENDGATEWAY, proc { |item|
+  if useEndGateway()
+    next 1
+  else
+    next 0
+  end
+})
+
+ItemHandlers::UseInField.add(:ENDGATEWAY, proc { |item|
+  if useEndGateway()
+    next 1
+  else
+    next 0
+  end
+})
+
+def useEndGateway()
+  if [51, 46, 428, 531].include?($game_map.map_id) && $PokemonGlobal.endgatewaylocation
+    Kernel.pbMessage(_INTL("{1} used the End Gateway!", $Trainer.name))
+    pbFadeOutIn(99999) {
+      Kernel.pbCancelVehicles
+      $game_temp.player_new_map_id = $PokemonGlobal.endgatewaylocation[0]
+      $game_temp.player_new_x = $PokemonGlobal.endgatewaylocation[1]
+      $game_temp.player_new_y = $PokemonGlobal.endgatewaylocation[2]
+      $game_temp.player_new_direction = 2
+      $scene.transfer_player
+      $game_map.autoplay
+      $game_map.refresh
+    }
+    pbEraseEscapePoint
+    return true
+  end
+
+  if !HiddenMoveHandlers.triggerCanUseMove(:TELEPORT, 0, true)
+    return false
+  end
+
+  Kernel.pbMessage(_INTL("{1} used the End Gateway!", $Trainer.name))
+  $PokemonGlobal.endgatewaylocation = [$game_map.map_id, $game_player.x, $game_player.y]
+  pbFadeOutIn(99999) {
+    Kernel.pbCancelVehicles
+    $game_temp.player_new_map_id = 51
+    $game_temp.player_new_x = 39
+    $game_temp.player_new_y = 52
+    $game_temp.player_new_direction = 2
+    $scene.transfer_player
+    $game_map.autoplay
+    $game_map.refresh
+  }
+  pbEraseEscapePoint
+  return true
+end

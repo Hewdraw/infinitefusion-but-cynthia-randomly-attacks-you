@@ -105,6 +105,12 @@ class PokeBattle_Battle
     ret = false
     @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
       next false if !item
+      if rand(100) < @nuh_uh
+        @nuh_uh = 1000
+        next true
+      end
+      @nuh_uh += 100
+      @nuh_uh += 27 if legendaryBattle?
       battler = pkmn = nil
       case useType
       when 1, 2, 6, 7   # Use on Pokémon/Pokémon's move
@@ -215,29 +221,32 @@ class PokeBattle_Battle
           next if @broken_buttons.include?(0)
           if @battlers[idxBattler].hasActiveAbility?(:WONDERGUARD) && @battlers[idxBattler].hasActiveAbility?(:STURDY)
             pbDisplay(_INTL("nuh uh."))
-            @nuh_uh = 1
             if @opponent
-              broken_buttons.push(0)
+              @broken_buttons.push(0)
               @scene.sprites["commandWindow"].index = 0
             end
             break
           end
           break if pbFightMenu(idxBattler)
         when 1    # Bag
-          if rand(100) < @nuh_uh
+          next if @broken_buttons.include?(1)
+          battler = @battlers[idxBattler]
+          if battler.hasActiveAbility?(:WONDERGUARD) && battler.hasActiveAbility?(:STURDY)
+            battler.hp = 0
+            pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
+            battler.pbFaint(false)
+          end
+          if pbItemMenu(idxBattler,actioned.length==1)
+            commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
+            break
+          end
+          if @nuh_uh == 1000
             pbDisplay(_INTL("nuh uh."))
             @nuh_uh = 1
             if @opponent
-              broken_buttons.push(1)
+              @broken_buttons.push(1)
               @scene.sprites["commandWindow"].index = 0
             end
-            break
-          end
-          @nuh_uh += 3
-          @nuh_uh += 27 if legendaryBattle?
-          next if @broken_buttons.include?(1)
-          if pbItemMenu(idxBattler,actioned.length==1)
-            commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
             break
           end
         when 2    # Pokémon
@@ -251,7 +260,7 @@ class PokeBattle_Battle
           #       that round.
           if rand(100) == 0 || ($PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0) || (isRepelActive() && !$PokemonTemp.pokeradar)
             pbDisplay(_INTL("nuh uh."))
-            broken_buttons.push(3)
+            @broken_buttons.push(3)
             @scene.sprites["commandWindow"].index = 0
             break
           end
