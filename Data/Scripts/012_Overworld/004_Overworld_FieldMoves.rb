@@ -301,6 +301,7 @@ HiddenMoveHandlers::UseMove.add(:DIG, proc { |move, pokemon|
 
 def pbRockClimb
   return false if $game_player.pbFacingEvent
+  $PokemonGlobal.healies = true
   move = :ROCKCLIMB
   movefinder = $Trainer.get_pokemon_with_move(move)
   if !pbCheckHiddenMoveBadge(Settings::BADGE_FOR_ROCKCLIMB, false) || (!$DEBUG && !movefinder)
