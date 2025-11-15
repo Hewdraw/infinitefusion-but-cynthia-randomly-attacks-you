@@ -978,7 +978,7 @@ class Pokemon
 
   def pokemon_can_learn_move(species_data, move_data)
     return species_data.tutor_moves.include?(move_data.id) ||
-      species_data.moves.include?(move_data.id) ||
+      species_data.moves.flatten.include?(move_data.id) ||
       species_data.egg_moves.include?(move_data.id)
   end
 
