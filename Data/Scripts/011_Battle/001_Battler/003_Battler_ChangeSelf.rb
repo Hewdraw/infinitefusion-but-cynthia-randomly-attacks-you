@@ -179,7 +179,7 @@ class PokeBattle_Battler
     pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(pokemon.species)
     pbBGMPlay("VSParadoxBeasts") if [:GOUGINGFIRE, :WALKINGWAKE, :RAGINGBOLT].include?(pokemon.species)
     pbBGMPlay("CoolDino") if pokemon.species == :COOLERDINO
-    pbBGMPlay("VSMegaDiancie") if pokmon.species == :MEGADIANCIE
+    pbBGMPlay("VSMegaDiancie") if pokemon.species == :MEGADIANCIE
   end
 
   def updateSpirits()
