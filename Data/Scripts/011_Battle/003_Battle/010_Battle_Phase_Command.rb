@@ -105,7 +105,7 @@ class PokeBattle_Battle
     ret = false
     @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
       next false if !item
-      if rand(100) < @nuh_uh && (100 <= @nuh_uh && legendaryBattle?)
+      if rand(100) < @nuh_uh && (100 <= @nuh_uh || !legendaryBattle?)
         @nuh_uh = 1000
         next true
       end
