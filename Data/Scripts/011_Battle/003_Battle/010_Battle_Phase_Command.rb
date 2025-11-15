@@ -105,12 +105,12 @@ class PokeBattle_Battle
     ret = false
     @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
       next false if !item
-      if rand(100) < @nuh_uh
+      if rand(100) < @nuh_uh && (100 <= @nuh_uh && legendaryBattle?)
         @nuh_uh = 1000
         next true
       end
-      @nuh_uh += 100
-      @nuh_uh += 27 if legendaryBattle?
+      @nuh_uh += 1
+      @nuh_uh += 32 if legendaryBattle?
       battler = pkmn = nil
       case useType
       when 1, 2, 6, 7   # Use on Pokémon/Pokémon's move
