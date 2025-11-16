@@ -1266,10 +1266,10 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
   }
   level = pkmn.level
   megalist.each do |unmega, mega|
-    if unmega == pkmn.species
-      pkmn.species = mega
-      break
-    end
+    # if unmega == pkmn.species
+    #   pkmn.species = mega
+    #   break
+    # end
     if mega == pkmn.species
       pkmn.species = unmega
       break
