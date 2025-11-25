@@ -147,7 +147,7 @@ class FusionTutorService
       compatibleMoves << :CHILLYRECEPTION if hasType(:ICE) || is_fusion_of([:SLOWKING])
       compatibleMoves << :GREATESTMETRONOME if canLearnMove(:METRONOME)
       compatibleMoves << :SUPERCELLSLAM if hasType(:ELECTRIC)
-      compatibleMoves << :FLIPTURN if (hasType(:WATER) && (canLearnMove(:UTURN) || canLearnMove(:VOLTSWITCH))) || is_fusion_of([:MILOTIC, :GYARADOS, :CORSOLA])
+      compatibleMoves << :FLIPTURN if (hasType(:WATER) && (canLearnMove(:UTURN) || canLearnMove(:VOLTSWITCH))) || is_fusion_of([:MILOTIC, :GYARADOS, :CORSOLA, :STARMIE])
       compatibleMoves << :WAVECRASH if canLearnMove(:WATERFALL)
       # compatibleMoves << :DRAGONCHEER if hasType(:DRAGON)
       compatibleMoves << :ICESPINNER if hasType(:ICE) || canLearnMove(:RAPIDSPIN)
@@ -185,6 +185,9 @@ class FusionTutorService
       compatibleMoves << :FLAREBLITZ if hasType(:FIRE)
       compatibleMoves << :PSYCHICFANGS if hasType(:PSYCHIC)
       compatibleMoves << :AURORAVEIL if (canLearnMove(:HAIL) || canLearnMove(:SNOWSCAPE)) && canLearnMove(:REFLECT) && canLearnMove(:LIGHTSCREEN)
+      compatibleMoves << :AQUAJET if is_fusion_of([:STARMIE])
+      compatibleMoves << :ZENHEADBUTT if is_fusion_of([:STARMIE])
+      compatibleMoves << :LIQUIDATION if is_fusion_of([:STARMIE])
 
     end
     if includeLegendaries
