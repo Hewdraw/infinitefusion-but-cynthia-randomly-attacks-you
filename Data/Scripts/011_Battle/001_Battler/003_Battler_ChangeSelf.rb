@@ -220,7 +220,7 @@ class PokeBattle_Battler
   # Change type
   #=============================================================================
   def pbChangeTypes(newType)
-    if @unteraTypes != nil
+    if @pokemon.unteraTypes != nil
       return false
     end
     if newType.is_a?(PokeBattle_Battler)

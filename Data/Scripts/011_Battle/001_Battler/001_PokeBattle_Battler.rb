@@ -41,7 +41,6 @@ class PokeBattle_Battler
   attr_accessor :damageState
   attr_accessor :initialHP # Set at the start of each move's usage
   attr_accessor :tera
-  attr_accessor :unteraTypes
   attr_accessor :willtera
   attr_accessor :stellarmoves
   attr_accessor :dynamax
@@ -66,10 +65,6 @@ class PokeBattle_Battler
 
   def pokemon=(value)
     @pokemon = value
-  end
-
-  def unteraTypes=(value)
-    @unteraTypes = value
   end
 
   def stellarmoves=(value)
@@ -466,9 +461,11 @@ class PokeBattle_Battler
         end
       end
     end
-    if check_ability.include?($PokemonGlobal.ancestralgeneability) && @item_id == :ANCESTRALGENE && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
-      @tempability = GameData::Ability.get($PokemonGlobal.ancestralgeneability).real_name
-      return true
+    @pokemon.extraabilities.each do |ability|
+      if check_ability.include?(ability)
+        @tempability = GameData::Ability.get(ability).real_name
+        return true
+      end
     end
     return check_ability.include?(@ability_id)
   end
@@ -606,7 +603,7 @@ class PokeBattle_Battler
   end
 
   def canChangeType?
-    return false if @unteraTypes != nil
+    return false if @pokemon.unteraTypes != nil
     return ![:MULTITYPE, :RKSSYSTEM].include?(@ability_id)
   end
 

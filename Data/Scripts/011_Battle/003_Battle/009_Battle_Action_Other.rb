@@ -178,7 +178,7 @@ class PokeBattle_Battle
   def pbTerastallize(idxBattler)
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
-    return if battler.unteraTypes != nil
+    return if battler.pokemon.unteraTypes != nil
     trainerName = pbGetOwnerName(idxBattler)
     # Break Illusion
     if battler.hasActiveAbility?(:ILLUSION)
@@ -196,7 +196,7 @@ class PokeBattle_Battle
     battler.pokemon.species = tempspecies
     battler.species = tempspecies
     battler.level = level
-    battler.unteraTypes = types
+    battler.pokemon.unteraTypes = types
     battler.pbUpdate(true)
     battler.ability = ability
     battler.pokemon.ability = ability

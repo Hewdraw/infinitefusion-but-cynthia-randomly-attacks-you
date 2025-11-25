@@ -372,7 +372,7 @@ module GameData
     end
 
     def calculate_fused_stats(dominantStat, otherStat)
-      return ((2 * dominantStat) / 3) + (otherStat / 3).floor
+      return (((2 * dominantStat) / 3.0) + (otherStat / 3.0)).floor.to_i
     end
 
     def average_values(value1, value2)

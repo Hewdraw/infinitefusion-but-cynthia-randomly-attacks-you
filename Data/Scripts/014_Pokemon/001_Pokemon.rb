@@ -104,6 +104,7 @@ class Pokemon
 
   attr_accessor :hiddenPowerType
   attr_accessor :tera
+  attr_accessor :unteratypes
   attr_accessor :dynamax
   attr_accessor :gigantamax
   attr_accessor :ace
@@ -114,6 +115,8 @@ class Pokemon
   attr_accessor :unparadox
   attr_accessor :disguise
   attr_accessor :affection
+  attr_accessor :megaform
+  attr_accessor :extraabilities
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
   attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
@@ -547,6 +550,7 @@ class Pokemon
     if @ability == :MULTITYPE && species_data.type2 == :NORMAL
       return getHeldPlateType()
     end
+    return @type2 if @type2
     sp_data = species_data
     return sp_data.type2 || sp_data.type1
   end
@@ -1374,6 +1378,18 @@ class Pokemon
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
+    if hasItem?(:MEGASHARD)
+      headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
+      bstdata = getMegaShardForm
+      bstdata.each_with_index do |mega,i|
+        bstdata[i] = mega.base_stats
+      end
+      GameData::Stat.each_main { |s|
+        statindex = 0
+        statindex = 1 if headstats.include?(s.id)
+        ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+      }
+    end
     if hasItem?(:ANCESTRALGENE)
       ret[:ATTACK] = [ret[:ATTACK], 100].min
       ret[:SPECIAL_ATTACK] = [ret[:SPECIAL_ATTACK], 100].min
@@ -1469,6 +1485,20 @@ class Pokemon
     @spatk = stats[:SPECIAL_ATTACK]
     @spdef = stats[:SPECIAL_DEFENSE]
     @speed = stats[:SPEED]
+    @extraabilities = []
+    @type1 = nil
+    @type2 = nil
+    if hasItem?(:MEGASHARD)
+      getMegaShardForm.each_with_index do |mega, i|
+        next if mega.form == 0
+        @type2 = mega.type2 if i == 0
+        @type1 = mega.type1 if i == 1
+        @extraabilities.push(mega.abilities[0])
+      end
+    end
+    if hasItem?(:ANCESTRALGENE) && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
+      @extraabilities.push($PokemonGlobal.ancestralgeneability)
+    end
   end
 
   def calc_stats_increased_hp(hpbars=2)

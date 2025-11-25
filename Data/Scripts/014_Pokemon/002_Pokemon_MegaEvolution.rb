@@ -18,6 +18,37 @@ class Pokemon
     return ret   # form number, or 0 if no accessible Mega form
   end
 
+  def getMegaList
+    specieslist = [@species]
+    ret = []
+    if isFusion? && getDexNumberForSpecies(@species) < 1000000
+      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
+    end
+
+    GameData::Species.each do |data|
+      next unless specieslist.include?(data.species)
+      next if data.form == 0
+      ret.push(data)
+    end
+    return ret   # form number, or 0 if no accessible Mega form
+  end
+
+  def getMegaShardForm
+    ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+    specieslist = [@species, @species]
+    if isFusion? && getDexNumberForSpecies(@species) < 1000000
+      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
+    end
+    getMegaList.each do |mega|
+      specieslist.each_with_index do |species, i|
+        next unless species == mega.species
+        next unless @megaform[i] == mega.form
+        ret[i] = mega
+      end
+    end
+    return ret
+  end
+
   def getUnmegaForm
     return (mega?) ? species_data.unmega_form : -1
   end

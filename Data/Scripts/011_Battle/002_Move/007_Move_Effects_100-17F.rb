@@ -2531,8 +2531,8 @@ end
 
 class PokeBattle_Move_177 < PokeBattle_Move
   def pbCalcType(user)
-    if user.unteraTypes != nil
-      if user.unteraTypes.include?(:STELLAR)
+    if user.pokemon.unteraTypes != nil
+      if user.pokemon.unteraTypes.include?(:STELLAR)
         return :QMARKS
       else
         return user.type1
@@ -2542,8 +2542,8 @@ class PokeBattle_Move_177 < PokeBattle_Move
   end
 
   def pbBaseDamage(baseDmg,user,target)
-    if user.unteraTypes != nil
-      if user.unteraTypes.include?(:STELLAR)
+    if user.pokemon.unteraTypes != nil
+      if user.pokemon.unteraTypes.include?(:STELLAR)
         baseDmg = 100
       end
     end
@@ -2564,8 +2564,8 @@ class PokeBattle_Move_177 < PokeBattle_Move
   end
 
   def pbAdditionalEffect(user,target)
-    if user.unteraTypes != nil
-      if user.unteraTypes.include?(:STELLAR)
+    if user.pokemon.unteraTypes != nil
+      if user.pokemon.unteraTypes.include?(:STELLAR)
         user.pbLowerStatStage(:SPECIAL_ATTACK,1,user,true)
         user.pbLowerStatStage(:ATTACK,1,user,true)
       end

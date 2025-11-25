@@ -11,7 +11,7 @@ class PokeBattle_AI
     end
     @battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
     pbCynthiaChooseMoves(idxBattler)
-    if @battle.choices[idxBattler][0]==:UseMove && user.tera && user.unteraTypes == nil
+    if @battle.choices[idxBattler][0]==:UseMove && user.tera && user.pokemon.unteraTypes == nil
       user.willtera = pbCynthiaShouldTera(idxBattler)
     end
   end

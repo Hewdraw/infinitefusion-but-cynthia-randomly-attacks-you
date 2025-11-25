@@ -1233,6 +1233,7 @@ class PokemonPartyScreen
       pkmn = @party[pkmnid]
       commands = []
       cmdSummary = -1
+      cmdMegaForm = -1
       cmdNickname = -1
       cmdDebug = -1
       cmdMoves = [-1] * pkmn.numMoves
@@ -1243,6 +1244,7 @@ class PokemonPartyScreen
 
       # Build the commands
       commands[cmdSummary = commands.length] = _INTL("Summary")
+      commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
         # Check for hidden moves and add any that were found
@@ -1322,6 +1324,23 @@ class PokemonPartyScreen
         @scene.pbSummary(pkmnid) {
           @scene.pbSetHelpText((@party.length > 1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
         }
+      elsif cmdMegaForm >= 0 && command == cmdMegaForm
+        specieslist = [pkmn.species, pkmn.species]
+        if pkmn.isFusion? && getDexNumberForSpecies(pkmn.species) < 1000000
+          specieslist = [GameData::Species.get(getBodyID(pkmn.species)).species, GameData::Species.get(getHeadID(pkmn.species)).species]
+        end
+        specieslist.each_with_index do |species, i|
+          formlist = []
+          pkmn.getMegaList.each do |mega|
+            formlist.push(mega.form_name) if mega.species == species
+          end
+          next if formlist.length == 0
+          commandtext = _INTL("Select Mega Form for the body") if i == 0
+          commandtext = _INTL("Select Mega Form for the head") if i == 1
+          command = @scene.pbShowCommands(commandtext, formlist)
+          pkmn.megaform[i] = command + 1
+        end
+        pkmn.calc_stats
       elsif cmdHat >= 0 && command == cmdHat
         pbPokemonHat(pkmn)
       elsif cmdNickname >= 0 && command == cmdNickname
