@@ -235,6 +235,7 @@ class PokeBattle_Battle
             battler.hp = 0
             pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
             battler.pbFaint(false)
+            break
           end
           if pbItemMenu(idxBattler,actioned.length==1)
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
