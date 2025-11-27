@@ -445,7 +445,9 @@ class PokeBattle_Battler
   def abilityActive?(ignore_fainted = false)
     return false if fainted? && !ignore_fainted
     return true if unstoppableAbility? 
-    return false if @battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS)
+    @battle.battlers.each do |battler|
+      return false if battler.ability_id == :NEUTRALIZINGGAS
+    end
     return false if @effects[PBEffects::GastroAcid]
     return true
   end
@@ -464,10 +466,12 @@ class PokeBattle_Battler
         end
       end
     end
-    @pokemon.extraabilities.each do |ability|
-      if check_ability.include?(ability)
-        @tempability = GameData::Ability.get(ability).real_name
-        return true
+    if @pokemon.extraabilities
+      @pokemon.extraabilities.each do |ability|
+        if check_ability.include?(ability)
+          @tempability = GameData::Ability.get(ability).real_name
+          return true
+        end
       end
     end
     return check_ability.include?(@ability_id)

@@ -277,10 +277,12 @@ class AbilityHandlerHash < HandlerHash2
         retvalue = retvalue || ret
       end
     end
-    user.pokemon.extraabilities.each do |ability|
-      user.tempability = GameData::Ability.get(ability).real_name
-      ret = super(ability, *args)
-      retvalue = retvalue || ret
+    if user.pokemon.extraabilities
+      user.pokemon.extraabilities.each do |ability|
+        user.tempability = GameData::Ability.get(ability).real_name
+        ret = super(ability, *args)
+        retvalue = retvalue || ret
+      end
     end
     return retvalue
   end

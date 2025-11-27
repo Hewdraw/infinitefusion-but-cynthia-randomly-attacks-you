@@ -104,7 +104,7 @@ class Pokemon
 
   attr_accessor :hiddenPowerType
   attr_accessor :tera
-  attr_accessor :unteratypes
+  attr_accessor :unteraTypes
   attr_accessor :dynamax
   attr_accessor :gigantamax
   attr_accessor :ace
