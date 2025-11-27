@@ -143,13 +143,12 @@ class FusionTutorService
       compatibleMoves << :SPARKLINGARIA if (is_fusion_of([:JYNX, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL]) && hasType(:WATER)) || is_fusion_of([:LAPRAS])
       compatibleMoves << :WATERSHURIKEN if is_fusion_of([:NINJASK, :LUCARIO, :ZOROARK, :BISHARP]) && hasType(:WATER)
       compatibleMoves << :CHLOROBLAST if canLearnMove(:EXPLOSION) || canLearnMove(:SELFDESTRUCT)
-      # compatibleMoves << :STRANGESTEAM if is_fusion_of([:WEEZING]) || ((hasType(:FAIRY) && hasType(:POISON))
+      compatibleMoves << :STRANGESTEAM if is_fusion_of([:WEEZING]) || (hasType(:FAIRY) && hasType(:POISON))
       compatibleMoves << :CHILLYRECEPTION if hasType(:ICE) || is_fusion_of([:SLOWKING])
       compatibleMoves << :GREATESTMETRONOME if canLearnMove(:METRONOME)
       compatibleMoves << :SUPERCELLSLAM if hasType(:ELECTRIC)
       compatibleMoves << :FLIPTURN if (hasType(:WATER) && (canLearnMove(:UTURN) || canLearnMove(:VOLTSWITCH))) || is_fusion_of([:MILOTIC, :GYARADOS, :CORSOLA, :STARMIE])
       compatibleMoves << :WAVECRASH if canLearnMove(:WATERFALL)
-      # compatibleMoves << :DRAGONCHEER if hasType(:DRAGON)
       compatibleMoves << :ICESPINNER if hasType(:ICE) || canLearnMove(:RAPIDSPIN)
       compatibleMoves << :BLOODMOON if is_fusion_of([:URSARING])
       compatibleMoves << :STONEAXE if hasType(:ROCK) && canLearnMove(:STEALTHROCK)
@@ -188,6 +187,7 @@ class FusionTutorService
       compatibleMoves << :AQUAJET if is_fusion_of([:STARMIE])
       compatibleMoves << :ZENHEADBUTT if is_fusion_of([:STARMIE])
       compatibleMoves << :LIQUIDATION if is_fusion_of([:STARMIE])
+      compatibleMoves << :SHELLSMASH if is_fusion_of([:BLASTOISE, :TORTERRA])
 
     end
     if includeLegendaries
@@ -242,7 +242,7 @@ class FusionTutorService
       compatibleMoves << :ORIGINPULSE if hasType(:WATER) && (canLearnMove(:WATERSPOUT) || canLearnMove(:HYDROCANNON))
       compatibleMoves << :DARKVOID if hasType(:DARK) && canLearnMove(:HYPNOSIS)
       # compatibleMoves << :DYNAMAXCANNON if (hasType(:POISON) && canLearnMove(:DRAGONPULSE)) || (hasType(:DRAGON) && canLearnMove(:SLUDGEBOMB))
-      # compatibleMoves << :IVYCUDGEL if hasType(:GRASS)
+      compatibleMoves << :IVYCUDGEL if hasType(:GRASS)
       compatibleMoves << :COLLISIONCOURSE if hasType(:DRAGON) && hasType(:FIGHTING)
       compatibleMoves << :ELECTRODRIFT if hasType(:DRAGON) && hasType(:ELECTRIC)
       # compatibleMoves << :RUINATION if hasType(:DARK)

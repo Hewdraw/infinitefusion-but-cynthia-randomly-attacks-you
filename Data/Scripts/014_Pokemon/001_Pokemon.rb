@@ -1499,6 +1499,12 @@ class Pokemon
     if hasItem?(:ANCESTRALGENE) && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
       @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
+    if isFusionOf(:GENESECT)
+      @extraabilities.push(:FLASHFIRE) if hasItem?(:BURNDRIVE)
+      @extraabilities.push(:MOTORDRIVE) if hasItem?(:SHOCKDRIVE)
+      @extraabilities.push(:STORMDRAIN) if hasItem?(:DOUSEDRIVE)
+      @extraabilities.push(:ICEBODY) if hasItem?(:CHILLDRIVE)
+    end
   end
 
   def calc_stats_increased_hp(hpbars=2)

@@ -425,6 +425,7 @@ class PokeBattle_Battler
     return true if [:FIRE, :WATER, :GRASS].include?(type) && pbHasType?(:FIREWATERGRASS)
     return true if [:ICE, :FIRE, :ELECTRIC].include?(type) && pbHasType?(:ICEFIREELECTRIC)
     return true if [:FIRE, :PSYCHIC, :ELECTRIC].include?(type) && hasActiveAbility?(:WIRED)
+    return true if (type == :WATER && hasActiveItem?(:WELLSPRINGMASK)) || (type == :FIRE && hasActiveItem?(:HEARTHFLAMEMASK)) || (type == :ROCK && hasActiveItem?(:CORNDERSTONEMASK))
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end
@@ -443,6 +444,8 @@ class PokeBattle_Battler
   #       the item - the code existing is enough to cause the loop).
   def abilityActive?(ignore_fainted = false)
     return false if fainted? && !ignore_fainted
+    return true if unstoppableAbility? 
+    return false if @battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS)
     return false if @effects[PBEffects::GastroAcid]
     return true
   end
@@ -496,7 +499,8 @@ class PokeBattle_Battler
       :CHARGEDEXPLOSIVE,
       :LEGENDARYPRESSURE,
       :PROTOSYNTHESIS,
-      :QUARKDRIVE
+      :QUARKDRIVE,
+      :NEUTRALIZINGGAS
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -526,7 +530,8 @@ class PokeBattle_Battler
       :RKSSYSTEM,
       :LEGENDARYPRESSURE,
       :PROTOSYNTHESIS,
-      :QUARKDRIVE
+      :QUARKDRIVE,
+      :NEUTRALIZINGGAS
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -562,9 +567,9 @@ class PokeBattle_Battler
         return true if data.mega_stone == check_item
       end
     end
-    return true if check_item.name[-3..-1] == "ite" && check_item.name != "Eviolite"
+    return true if check_item.name[-3..-1] == "ite" && !["Eviolite", "Pyrite"].include?(check_item.name)
     return true if check_item.name[-5..-1] == "ium Z"
-    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere"].include?(check_item.name)
+    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end

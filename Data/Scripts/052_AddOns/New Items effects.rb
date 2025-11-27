@@ -1279,6 +1279,21 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
+  upgradelist = {
+    :GENESECT => [:TECHNOBLAST, :UTURN],
+  }
+  upgradelist.each do |pokemon, moves|
+    next unless pkmn.species == pokemon || pkmn.species == :GENESECT
+    pkmn.moves.each_with_index do |move, i|
+      next unless moves.include?(move.id)
+      pkmn.moves[i] = Pokemon::Move.new((move.id.to_s + "PLUS").to_sym)
+      scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
+    end
+  end
+  next false
+})
+
 
 #
 # #TRACKER (for roaming legendaries)

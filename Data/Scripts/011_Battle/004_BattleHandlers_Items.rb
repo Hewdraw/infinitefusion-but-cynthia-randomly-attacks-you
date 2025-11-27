@@ -890,6 +890,14 @@ BattleHandlers::DamageCalcUserItem.add(:WISEGLASSES,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:WELLSPRINGMASK,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if user.pbHasType?(:GRASS)
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.copy(:WELLSPRINGMASK,:HEARTHFLAMEMASK,:CORNERSTONEMASK)
+
 #===============================================================================
 # DamageCalcTargetItem handlers
 #===============================================================================

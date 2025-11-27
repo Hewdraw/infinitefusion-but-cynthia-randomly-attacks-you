@@ -2592,6 +2592,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
 
 BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SKULK)
 
+BattleHandlers::AbilityOnSwitchIn.add(:NEUTRALIZINGGAS,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbHideAbilitySplash(battler)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:MENACE,
   proc { |ability,battler,battle|

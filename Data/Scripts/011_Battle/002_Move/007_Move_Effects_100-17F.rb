@@ -357,7 +357,12 @@ end
 # Removes trapping moves, entry hazards and Leech Seed on user/user's side.
 # (Rapid Spin)
 #===============================================================================
-class PokeBattle_Move_110 < PokeBattle_Move
+class PokeBattle_Move_110 < PokeBattle_StatUpMove
+  def initialize(battle, move)
+    super
+    @statUp = [:SPEED, 1]
+  end
+
   def pbEffectAfterAllHits(user, target)
     return if user.fainted? || target.damageState.unaffected
     if user.effects[PBEffects::Trapping] > 0
@@ -3779,5 +3784,159 @@ class PokeBattle_Move_229 < PokeBattle_SleepMove
     user.pbOpposingSide.effects[PBEffects::StealthRock] = true
     @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
                             user.pbOpposingTeam(true)))
+  end
+end
+
+class PokeBattle_Move_230 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    baseDmg *= 2 if @battle.field.terrain != :None
+    return baseDmg
+  end
+
+  def pbBaseType(user)
+    ret = :NORMAL
+    case @battle.field.terrain
+    when :Electric
+      ret = :ELECTRIC if GameData::Type.exists?(:ELECTRIC)
+    when :Psychic
+      ret = :PSYCHIC if GameData::Type.exists?(:PSYCHIC)
+    when :Grassy
+      ret = :GRASS if GameData::Type.exists?(:GRASS)
+    when :Misty
+      ret = :FAIRY if GameData::Type.exists?(:FAIRY)
+    end
+    return ret
+  end
+end
+
+class PokeBattle_Move_231 < PokeBattle_Move
+  def pbBaseType(user)
+    ret = :GRASS
+    case user.item_id
+    when :WELLSPRINGMASK
+      ret = :WATER if GameData::Type.exists?(:WATER)
+    when :HEARTHFLAMEMASK
+      ret = :FIRE if GameData::Type.exists?(:FIRE)
+    when :CORNERSTONEMASK
+      ret = :ROCK if GameData::Type.exists?(:ROCK)
+    end
+    return ret
+  end
+end
+
+class PokeBattle_Move_232 < PokeBattle_Move
+  def pbEffectAfterAllHits(user, target)
+    if @battle.field.terrain != :None
+      case @battle.field.terrain
+      when :Electric
+        @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
+      when :Grassy
+        @battle.pbDisplay(_INTL("The grass disappeared from the battlefield."))
+      when :Misty
+        @battle.pbDisplay(_INTL("The mist disappeared from the battlefield."))
+      when :Psychic
+        @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
+      end
+      @battle.field.terrain = :None
+    end
+  end
+end
+
+class PokeBattle_Move_233 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if @battle.field.terrain == :None
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAfterAllHits(user, target)
+    if @battle.field.terrain != :None
+      case @battle.field.terrain
+      when :Electric
+        @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
+      when :Grassy
+        @battle.pbDisplay(_INTL("The grass disappeared from the battlefield."))
+      when :Misty
+        @battle.pbDisplay(_INTL("The mist disappeared from the battlefield."))
+      when :Psychic
+        @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
+      end
+      @battle.field.terrain = :None
+    end
+  end
+end
+
+class PokeBattle_Move_234 < PokeBattle_ProtectMove
+  def initialize(battle, move)
+    super
+    @effect = PBEffects::BurningBulwark
+  end
+end
+
+class PokeBattle_Move_235 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    case @battle.pbRandom(3)
+    when 0 then
+      target.pbBurn(user) if target.pbCanBurn?(user, false, self)
+    when 1 then
+      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+    when 2 then
+      target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    end
+  end
+
+  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    return if user.fainted? || numHits==0
+    targetSwitched = true
+    targets.each do |b|
+      targetSwitched = false if !switchedBattlers.include?(b.index)
+    end
+    return if targetSwitched
+    return if !@battle.pbCanChooseNonActive?(user.index)
+    @battle.pbDisplay(_INTL("{1} went back to {2}!",user.pbThis,
+       @battle.pbGetOwnerName(user.index)))
+    @battle.pbPursuit(user.index)
+    return if user.fainted?
+    newPkmn = @battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
+    return if newPkmn<0
+    @battle.pbRecallAndReplace(user.index,newPkmn)
+    @battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
+    @battle.moldBreaker = false
+    switchedBattlers.push(user.index)
+    user.pbEffectsOnSwitchIn(true)
+  end
+end
+
+class PokeBattle_Move_236 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if !target.movedThisRound?
+    return baseDmg
+  end
+end
+
+class PokeBattle_Move_237 < PokeBattle_Move_09F
+  def pbEffectAgainstTarget(user,target)
+    return if target.damageState.hpLost<=0
+    hpGain = (target.damageState.hpLost/2.0).round
+    user.pbRecoverHPFromDrain(hpGain,target)
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    case user.item_id
+    when :BURNDRIVE then
+      target.pbBurn(user) if target.pbCanBurn?(user, false, self)
+    when :CHILLDRIVE then
+      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+    when :SHOCKDRIVE then
+      target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    when :DOUSEDRIVE then
+      if !user.effects[PBEffects::AquaRing]
+        user.effects[PBEffects::AquaRing] = true
+        @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+      end
+    end
   end
 end

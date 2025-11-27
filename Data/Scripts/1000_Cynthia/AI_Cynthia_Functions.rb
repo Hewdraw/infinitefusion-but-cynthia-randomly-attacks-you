@@ -2589,7 +2589,7 @@ class PokeBattle_AI
       end
       case terrain
       when :Electric
-        multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
+        multipliers[:base_damage_multiplier] *= 1.5 if (type == :ELECTRIC || move.id == [:HYDROBURST].include?(@id)) && user.affectedByTerrain?
       when :Grassy
         multipliers[:base_damage_multiplier] *= 1.5 if type == :GRASS && user.affectedByTerrain?
       when :Psychic
@@ -2626,7 +2626,7 @@ class PokeBattle_AI
       end
       case weather
       when :Sun
-        if type == :FIRE || move.id == :HYDROSTEAM
+        if type == :FIRE || [:HYDROSTEAM, :HYDROBURST].include?(move.id)
           multipliers[:final_damage_multiplier] *= 1.5
         elsif type == :WATER
           multipliers[:final_damage_multiplier] /= 2

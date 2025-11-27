@@ -49,6 +49,10 @@ class PokeBattle_AI
     if !target.airborne?
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
     end
+    if user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
+      ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if defType == :GROUND &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
     return ret
   end
 
@@ -58,6 +62,11 @@ class PokeBattle_AI
        target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL) && @battle.field.effects[PBEffects::InverseRoom] == 0
     # Determine types
     tTypes = target.pbTypes(true)
+    tTypes.each_with_index do |type, i|
+      typeMods[i] = :WATER if defType == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
+      typeMods[i] = :FIRE if defType == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
+      typeMods[i] = :ROCK if defType == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
+    end
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     if moveType == :SHADOW

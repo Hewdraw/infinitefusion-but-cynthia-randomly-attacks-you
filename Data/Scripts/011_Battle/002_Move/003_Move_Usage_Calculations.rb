@@ -68,6 +68,11 @@ class PokeBattle_Move
     # Determine types
     tTypes = target.pbTypes(true)
     tTypes = [target.tera] if target == tera
+    tTypes.each_with_index do |type, i|
+      typeMods[i] = :WATER if type == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
+      typeMods[i] = :FIRE if type == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
+      typeMods[i] = :ROCK if type == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
+    end
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     if moveType == :SHADOW
@@ -76,6 +81,8 @@ class PokeBattle_Move
       else
         typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
       end
+    elsif moveType == :QMARKS && (target.hasActiveItem?(:WELLSPRINGMASK) || target.hasActiveItem?(:HEARTHFLAMEMASK) || target.hasActiveItem?(:CORNERSTONEMASK))
+      typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
     else
       if target == tera && target.tera == :FLYING
         target.effects[PBEffects::MagnetRise] += 1 #temporary airborne
@@ -382,7 +389,7 @@ class PokeBattle_Move
     # Terrain moves
     case @battle.field.terrain
     when :Electric
-      multipliers[:base_damage_multiplier] *= 1.5 if type == :ELECTRIC && user.affectedByTerrain?
+      multipliers[:base_damage_multiplier] *= 1.5 if (type == :ELECTRIC || @id == [:HYDROBURST].include?(@id)) && user.affectedByTerrain?
     when :Grassy
       multipliers[:base_damage_multiplier] *= 1.5 if type == :GRASS && user.affectedByTerrain?
     when :Psychic
@@ -414,7 +421,7 @@ class PokeBattle_Move
     # Weather
     case @battle.pbWeather
     when :Sun, :HarshSun
-      if type == :FIRE || @id == :HYDROSTEAM
+      if type == :FIRE || [:HYDROSTEAM, :HYDROBURST].include?(@id)
         multipliers[:final_damage_multiplier] *= 1.5
       elsif type == :WATER
         multipliers[:final_damage_multiplier] /= 2
@@ -534,14 +541,23 @@ class PokeBattle_Move
       if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187"].include?(@function)
         ret *= 2
       end
+      if @function == "237" && user.item_id == :CHILLDRIVE
+        ret *= 2
+      end
     end
     if @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
       if ["00A", "00B", "017", "0A4", "0C6", "0FE"].include?(@function)
         ret *= 2
       end
+      if @function == "237" && user.item_id == :BURNDRIVE
+        ret *= 2
+      end
     end
     if @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
       if ["007", "008", "009", "017", "0A4", "0C5", "0CC", "0FD"].include?(@function)
+        ret *= 2
+      end
+      if @function == "237" && user.item_id == :SHOCKDRIVE
         ret *= 2
       end
     end

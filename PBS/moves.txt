@@ -413,7 +413,7 @@
 401,FEINT,Feint,0AD,30,NORMAL,Physical,100,10,0,NearOther,2,ef,"An attack that hits a target using Protect or Detect. It also lifts the effects of those moves."
 402,TAILSLAP,Tail Slap,0C0,25,NORMAL,Physical,85,10,0,NearOther,0,abef,"The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row."
 403,RAGE,Rage,093,20,NORMAL,Physical,100,20,0,NearOther,0,abef,"As long as this move is in use, the user's Attack rises each time the user is hit in battle."
-404,RAPIDSPIN,Rapid Spin,110,20,NORMAL,Physical,100,40,0,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes."
+404,RAPIDSPIN,Rapid Spin,110,50,NORMAL,Physical,100,40,0,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes."
 405,SPIKECANNON,Spike Cannon,0C0,20,NORMAL,Physical,100,15,0,NearOther,0,bef,"Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row."
 406,COMETPUNCH,Comet Punch,0C0,18,NORMAL,Physical,85,15,0,NearOther,0,abefj,"The target is hit with a flurry of punches that strike two to five times in a row."
 407,FURYSWIPES,Fury Swipes,0C0,18,NORMAL,Physical,80,15,0,NearOther,0,abef,"The target is raked with sharp claws or scythes for two to five times in quick succession."
@@ -761,7 +761,7 @@
 744,AXEKICK,Axe Kick,221,120,FIGHTING,Physical,90,10,30,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 745,THUNDEROUSKICK,Thunderous Kick,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 746,CYNTHIAALLOUTPUMMELING,All-Out Pummeling,000,180,FIGHTING,Physical,100,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
-747,BITTERMALICE,Bitter Malice,224,60,GHOST,Special,100,15,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+747,BITTERMALICE,Bitter Malice,224,60,GHOST,Special,100,15,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 748,CYNTHIABREAKNECKBLITZ,Breakneck Blitz,000,180,NORMAL,Physical,100,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass."
 749,COLLISIONCOURSE,Collision Course,222,100,FIGHTING,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 750,COMEUPPANCE,Comeuppance,073,1,DARK,Physical,100,10,0,None,0,abef,"Nice Smeargle/Ditto, jackass."
@@ -772,8 +772,8 @@
 755,GMAXMELTDOWN,G-Max Meltdown,0B7,180,STEEL,Physical,100,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass." #todo
 756,GMAXSMITE,G-Max Smite,013,180,FAIRY,Physical,100,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass." #todo
 757,GMAXTERROR,G-Max Terror,0EF,180,GHOST,Physical,100,3,100,NearOther,0,f,"Nice Smeargle/Ditto, jackass." #todo
-758,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
-759,HARDPRESS,Hard Press,000,100,STEEL,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
+758,HEADLONGRUSH,Headlong Rush,03C,120,GROUND,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+759,HARDPRESS,Hard Press,08C,1,STEEL,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 760,JAWLOCK,Jaw Lock,000,80,DARK,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 761,MALICIOUSMOONSAULT,Malicious Moonsault,000,180,DARK,Physical,100,1,0,NearOther,0,f,"Nice Smeargle/Ditto, jackass." #todo
 762,MORTALSPIN,Mortal Spin,000,30,POISON,Physical,100,15,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass." #todo
@@ -839,26 +839,31 @@
 822,HYPERIMPALER,Hyper Impaler,213,30,NORMAL,Physical,100,5,0,NearOther,0,aefh,"Nice Smeargle/Ditto, jackass."
 823,DRAGONENERGY,Dragon Energy,08B,150,DRAGON,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass."
 824,GENESISSUPERNOVA,Genesis Supernova,214,185,PSYCHIC,Special,0,1,100,NearOther,0,f,"After obtaining Z-Power, the user, Mew, attacks the target with full force. The terrain will be charged with psychic energy."
-825,ICESPINNER,Ice Spinner,000,80,ICE,Physical,100,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
+825,ICESPINNER,Ice Spinner,232,80,ICE,Physical,100,15,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 826,TEMPERFLARE,Temper Flare,166,75,FIRE,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 827,BURNINGJEALOUSY,Burning Jealosy,000,70,FIRE,Special,100,5,0,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass." #todo
 828,SKITTERSMACK,Skitter Smack,045,70,BUG,Physical,90,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 829,GREATERMETRONOME,Greater Metronome,215,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... twice!"
 830,POPULATIONBOMB,Population Bomb,225,20,NORMAL,Physical,90,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass." #todo
 831,GREATESTMETRONOME,Greatest Metronome,223,0,NORMAL,Status,0,10,0,User,0,,"The user waggles a finger and stimulates its brain into randomly using nearly any move... thrice!"
-832,BURNINGBULWARK,Burning Bulwark,0AA,0,FIRE,Status,0,10,0,User,4,,"todo"
+832,BURNINGBULWARK,Burning Bulwark,234,0,FIRE,Status,0,10,0,User,4,,"Nice Smeargle/Ditto, jackass."
 883,DRAGONCHEER,Dragon Cheer,0AA,0,NORMAL,Status,0,10,0,User,4,,"todo"
 884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,100,15,0,NearOther,0,bef,"ur stinky" #hardcoded
 885,THUNDERCLAP,Thunder Clap,116,70,ELECTRIC,Special,100,5,0,NearOther,1,bef,"ur stinky"
 886,MISTYEXPLOSION,Misty Explosion,000,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,"todo"
-887,STEELROLLER,Steel Roller,000,130,STEEL,Physical,100,5,0,NearOther,0,abef,"todo"
+887,STEELROLLER,Steel Roller,233,130,STEEL,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 888,STEELBEAM,Steel Beam,170,140,STEEL,Special,95,5,0,NearOther,0,bef,"ur stinky"
 889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,"ur stinky"
 890,ULTIMATEJUDGMENT,Judgement Ultima,226,200,QMARKS,Special,0,1,0,NearOther,0,ef,"todo"
 891,ELECTRODRIFT,Electro Drift,222,100,ELECTRIC,Special,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 892,DRUMBEATING,Drum Beating,044,80,GRASS,Physical,100,10,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
-893,IVYCUDGEL,Ivy Cudgel,000,100,GRASS,Physical,100,10,0,NearOther,0,befh,"todo"
-894,TERRAINPULSE,Terrain Pulse,044,80,GRASS,Physical,100,10,100,NearOther,0,bef,"todo"
+893,IVYCUDGEL,Ivy Cudgel,000,100,GRASS,Physical,100,10,0,NearOther,0,befh,"Nice Smeargle/Ditto, jackass."
+894,TERRAINPULSE,Terrain Pulse,230,50,NORMAL,Special,100,10,0,NearOther,0,befm,"Nice Smeargle/Ditto, jackass."
+895,STRANGESTEAM,Strange Steam,013,90,FAIRY,Special,95,10,20,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+896,HYDROBURST,Hydro Burst,235,80,WATER,Physical,100,5,20,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+897,FISHIOUSREND,Fishious Rend,236,85,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+898,TECHNOBLASTPLUS,Techno Blast+,237,140,NORMAL,Special,100,5,20,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
+899,EXPLOSIONPLUS,Explosion+,0E0,500,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move."
 
 
 

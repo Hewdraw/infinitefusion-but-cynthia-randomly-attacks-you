@@ -813,7 +813,8 @@
 814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"",0,0,0
 815,ENDGATEWAY,End Gateway,End Gateways,8,0,"todo",2,0,6
 816,MEGASHARD,Mega Shard,Mega Shards,1,0,"todo",1,0,0,
-817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"is the some cheating i see?",1,0,0,
+817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",1,0,0,
+818,OMNIDRIVE,Omni Drive,Omni Drives,1,0,"todo",1,0,0,
 
 
 #    attr_reader :id
