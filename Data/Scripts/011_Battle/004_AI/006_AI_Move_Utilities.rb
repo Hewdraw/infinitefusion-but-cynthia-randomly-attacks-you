@@ -63,9 +63,9 @@ class PokeBattle_AI
     # Determine types
     tTypes = target.pbTypes(true)
     tTypes.each_with_index do |type, i|
-      typeMods[i] = :WATER if defType == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
-      typeMods[i] = :FIRE if defType == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
-      typeMods[i] = :ROCK if defType == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
+      typeMods[i] = :WATER if type == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
+      typeMods[i] = :FIRE if type == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
+      typeMods[i] = :ROCK if type == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
     end
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
