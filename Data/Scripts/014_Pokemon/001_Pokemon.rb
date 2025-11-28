@@ -1505,6 +1505,9 @@ class Pokemon
       @extraabilities.push(:STORMDRAIN) if hasItem?(:DOUSEDRIVE)
       @extraabilities.push(:ICEBODY) if hasItem?(:CHILLDRIVE)
     end
+    @extraabilities.push(:WATERABSORB) if hasItem?(:WELLSPRINGMASK)
+    @extraabilities.push(:MOLDBREAKER) if hasItem?(:HEARTHFLAMEMASK)
+    @extraabilities.push(:STURDY) if hasItem?(:CORNERSTONEMASK)
   end
 
   def calc_stats_increased_hp(hpbars=2)

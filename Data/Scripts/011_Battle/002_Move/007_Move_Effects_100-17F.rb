@@ -3932,11 +3932,13 @@ class PokeBattle_Move_237 < PokeBattle_Move_09F
       target.pbFreeze if target.pbCanFreeze?(user, false, self)
     when :SHOCKDRIVE then
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
-    when :DOUSEDRIVE then
-      if !user.effects[PBEffects::AquaRing]
-        user.effects[PBEffects::AquaRing] = true
-        @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
-      end
+    end
+  end
+
+  def pbEffectAfterAllHits(user, target)
+    if user.item_id == :DOUSEDRIVE && !user.effects[PBEffects::AquaRing]
+      user.effects[PBEffects::AquaRing] = true
+      @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
     end
   end
 end

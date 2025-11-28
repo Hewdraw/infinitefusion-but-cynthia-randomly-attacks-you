@@ -862,7 +862,7 @@
 895,STRANGESTEAM,Strange Steam,013,90,FAIRY,Special,95,10,20,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 896,HYDROBURST,Hydro Burst,235,80,WATER,Physical,100,5,20,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 897,FISHIOUSREND,Fishious Rend,236,85,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
-898,TECHNOBLASTPLUS,Techno Blast+,237,140,NORMAL,Special,100,5,30,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
+898,TECHNOBLASTPLUS,Techno Blast+,237,140,NORMAL,Special,100,5,50,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
 899,EXPLOSIONPLUS,Explosion+,0E0,500,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move."
 
 

@@ -898,6 +898,14 @@ BattleHandlers::DamageCalcUserItem.add(:WELLSPRINGMASK,
 
 BattleHandlers::DamageCalcUserItem.copy(:WELLSPRINGMASK,:HEARTHFLAMEMASK,:CORNERSTONEMASK)
 
+BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf(:GENESECT)
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.copy(:DOUSEDRIVE,:BURNDRIVE,:SHOCKDRIVE,:CHILLDRIVE)
+
 #===============================================================================
 # DamageCalcTargetItem handlers
 #===============================================================================
