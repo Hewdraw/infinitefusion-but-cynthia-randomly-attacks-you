@@ -398,7 +398,7 @@ Generation = 6
 [METAGROSS,1]
 FormName = Mega Metagross
 MegaStone = MEGASTONEITE
-BaseStats = 95,145,130,120,120,90
+BaseStats = 80,145,150,110,105,110
 Abilities = TOUGHCLAWS
 HiddenAbility = TOUGHCLAWS
 Height = 2.5
