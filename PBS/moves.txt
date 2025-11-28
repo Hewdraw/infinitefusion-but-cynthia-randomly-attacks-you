@@ -869,6 +869,10 @@
 902,METEORMASHPLUS,Meteor Mash+,01C,100,STEEL,Physical,90,15,100,NearOther,0,abefj,"The target is hit with a hard punch fired like a meteor. It may also raise the user's Attack."
 903,IRONHEADPLUS,Iron Head+,239,80,STEEL,Physical,100,15,100,NearOther,0,abe,"The foe slams the target with its steel-hard head. It may also make the target flinch."
 904,THUNDEROUSKICKPLUS,Thunderous Kick+,043,90,FIGHTING,Physical,100,10,100,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
+905,FIERYWRATHPLUS,Fiery Wrath+,00B,90,DARK,Special,100,10,20,AllNearFoes,0,beh,"Nice Smeargle/Ditto, jackass."
+906,MAXXSPEED,Maxx Speed,241,80,BUG,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move."
+907,SACREDFIREPLUS,Sacred Fire+,00A,110,FIRE,Physical,100,10,100,NearOther,0,befg,"The target is razed with a mystical fire of great intensity. It may also leave the target with a burn."
+908,LEAFBLADEPLUS,Leaf Blade+,242,90,GRASS,Physical,100,15,0,NearOther,0,abefh,"The user handles a sharp leaf like a sword and attacks by slashing. It has a high critical-hit ratio."
 
 
 

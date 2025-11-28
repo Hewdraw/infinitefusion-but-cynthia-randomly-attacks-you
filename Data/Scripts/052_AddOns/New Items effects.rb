@@ -1281,20 +1281,31 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
-    :GENESECT => [:TECHNOBLAST],
-    :MAROWAK => [:BONEMERANG],
-    :MAWILE => [:IRONHEAD],
-    :METAGROSS => [:METEORMASH],
-    :REGISTEEL => [:IRONHEAD],
-    :WALKINGWAKE => [:HYDROSTEAM],
+    [:GENESECT] => [:TECHNOBLAST],
+    [:GOLISOPOD, :VOLCARONA, :SLITHERWING, :IRONMOTH] => [:FIRSTIMPRESSION, :MAXXSPEED],
+    [:HOOH, :ENTEI, :GOUGINGFIRE] => [:SACREDFIRE],
+    [:REAPINGSHELL] => [:TECHNOBLAST, :HYDROBURST],
+    [:MAROWAK] => [:BONEMERANG],
+    [:MAWILE, :REGISTEEL] => [:IRONHEAD],
+    [:METAGROSS] => [:METEORMASH],
+    [:MOLTRES, :GMOLTRES] => [:FIERYWRATH],
+    [:SCEPTILE] => [:LEAFBLADE],
+    [:SUICUNE, :WALKINGWAKE] => [:HYDROSTEAM],
+    [:ZAPDOS, :GZAPDOS] => [:THUNDEROUSKICK],
   }
   allmoves = pkmn.isFusionOf(:GENESECT)
   upgradelist.each do |pokemon, moves|
-    next unless pkmn.isFusionOf(pokemon) || allmoves
-    pkmn.moves.each_with_index do |move, i|
-      next unless moves.include?(move.id)
-      pkmn.moves[i] = Pokemon::Move.new((move.id.to_s + "PLUS").to_sym)
-      scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
+    pokemon.each do |mon|
+      next unless pkmn.isFusionOf(pokemon) || allmoves
+      pkmn.moves.each_with_index do |move, i|
+        next unless moves[0] == move.id
+        if moves.length == 1
+          pkmn.moves[i] = Pokemon::Move.new((move.id.to_s + "PLUS").to_sym)
+        else
+          pkmn.moves[i] = Pokemon::Move.new(moves[1])
+        end
+        scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
+      end
     end
   end
   next false

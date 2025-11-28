@@ -4007,3 +4007,36 @@ class PokeBattler_Move_240 < PokeBattle_Move_043
     return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
   end
 end
+
+class PokeBattler_Move_241 < PokeBattle_Move_043
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+end
+
+class PokeBattler_Move_242 < PokeBattle_Move_043
+  def pbGetAttackStats(user, target)
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+
+  def pbAdditionalEffect(user,target)
+    if !target.unstoppableAbility?
+      @battle.pbShowAbilitySplash(target, true, false)
+      oldAbil = target.ability
+      target.ability = :GALVANIZE
+      @battle.pbReplaceAbilitySplash(target)
+      @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+      @battle.pbHideAbilitySplash(target)
+      target.pbOnAbilityChanged(oldAbil)
+    end
+  end
+end

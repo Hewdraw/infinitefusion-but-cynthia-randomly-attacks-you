@@ -169,10 +169,10 @@ class PokeBattle_Battle
     if battler.isSpecies?(:GENGAR) && battler.mega?
       battler.effects[PBEffects::Telekinesis] = 0
     end
-    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
     # Trigger ability
     battler.pbEffectsOnSwitchIn
     @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
+    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
   def pbTerastallize(idxBattler)
