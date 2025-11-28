@@ -446,7 +446,7 @@ class PokeBattle_Battler
     return false if fainted? && !ignore_fainted
     return true if unstoppableAbility? 
     @battle.battlers.each do |battler|
-      return false if battler.ability_id == :NEUTRALIZINGGAS
+      return false if @ability_id == :NEUTRALIZINGGAS
     end
     return false if @effects[PBEffects::GastroAcid]
     return true
