@@ -143,13 +143,15 @@ class PokeBattle_Battle
       trainer.each_with_index do |_t,idxTrainer|
         ret[side][idxTrainer] = []
         eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
-          pkmn.disguise = nil
           next if !pkmn.able?
           idxBattler = 2*battlerNumber+side
           pbCreateBattler(idxBattler,pkmn,idxPkmn)
           ret[side][idxTrainer].push(idxBattler)
           battlerNumber += 1
           break if ret[side][idxTrainer].length>=requireds[idxTrainer]
+        end
+        eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
+          pkmn.disguise = nil
         end
       end
     end
