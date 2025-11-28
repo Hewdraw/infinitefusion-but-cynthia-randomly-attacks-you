@@ -700,7 +700,7 @@
 692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6,
 693,EJECTPACK,Eject Pack,Eject Packs,1,0,"todo",0,0,0
 694,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
-695,LOADEDDICE,Loaded Dice,Loaded Die,1,0,"todo",0,0,0
+695,LOADEDDICE,Loaded Dice,Loaded Die,1,100,"todo",0,0,0
 696,GARCHOMPITE,Garchompite,Garchompites,1,0,"todo",0,0,0
 697,ALTARIANITE,Altarianite,Altarianites,1,0,"todo",0,0,0
 698,LUCARIONITE,Lucarionite,Lucarionites,1,0,"todo",0,0,0
@@ -762,7 +762,7 @@
 754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",1,0,0,
 755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",1,0,0,
 756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",1,0,0,
-757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,0,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",1,0,0,
+757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,100,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",1,0,0,
 758,HPMAX,HP Max,Hp Maxes,2,128,"Makes you healthier!",1,3,0,
 759,BEEZORITE,Beezorite,Beezorites,1,0,"todo",0,0,0
 760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"todo",0,0,0
