@@ -34,6 +34,7 @@ class Pokemon
   end
 
   def getMegaShardForm
+    @megaform = [1, 1] if !@megaform
     ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
     specieslist = [@species, @species]
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
