@@ -362,8 +362,6 @@ ItemHandlers::UseFromBag.add(:DEBUGGER, proc { |item|
     $game_player.cancelMoveRoute()
     Kernel.pbStartOver(false)
     pbCommonEvent(COMMON_EVENT_FIX_GAME)
-    Kernel.pbMessage(_INTL("Please report the glitch on the game's Discord, in the #bug-reports channel."))
-    openUrlInBrowser(Settings::DISCORD_URL)
     next 1
   else
     next 0
@@ -1290,8 +1288,9 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     :REGISTEEL => [:IRONHEAD],
     :WALKINGWAKE => [:HYDROSTEAM],
   }
+  allmoves = pkmn.isFusionOf(:GENESECT)
   upgradelist.each do |pokemon, moves|
-    next unless pkmn.species == pokemon || pkmn.species == :GENESECT
+    next unless pkmn.isFusionOf(pokemon) || allmoves
     pkmn.moves.each_with_index do |move, i|
       next unless moves.include?(move.id)
       pkmn.moves[i] = Pokemon::Move.new((move.id.to_s + "PLUS").to_sym)
