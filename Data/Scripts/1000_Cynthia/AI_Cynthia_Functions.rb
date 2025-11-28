@@ -2222,7 +2222,7 @@ class PokeBattle_AI
         baseDmg *= 2 if target.effects[PBEffects::Minimize]
       when "0A0"  # Frost Breath
         key = :critDamage
-      when "0BD", "0BE", "204"   #Double Kick, Twineedle
+      when "0BD", "0BE", "204", "238", "239"   #Double Kick, Twineedle
         baseDmg *= 2
       when "0BF"   # Triple Kick
         case originalkey
@@ -2626,7 +2626,7 @@ class PokeBattle_AI
       end
       case weather
       when :Sun
-        if type == :FIRE || [:HYDROSTEAM, :HYDROBURST].include?(move.id)
+        if type == :FIRE || [:HYDROSTEAM, :HYDROSTEAMPLUS, :HYDROBURST].include?(move.id)
           multipliers[:final_damage_multiplier] *= 1.5
         elsif type == :WATER
           multipliers[:final_damage_multiplier] /= 2

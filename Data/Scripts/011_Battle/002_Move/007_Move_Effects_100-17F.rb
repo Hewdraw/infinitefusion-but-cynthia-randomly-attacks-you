@@ -3919,6 +3919,7 @@ end
 class PokeBattle_Move_237 < PokeBattle_Move_09F
   def pbEffectAgainstTarget(user,target)
     return if target.damageState.hpLost<=0
+    return if !user.item_id == :DOUSEDRIVE
     hpGain = (target.damageState.hpLost/2.0).round
     user.pbRecoverHPFromDrain(hpGain,target)
   end
@@ -3939,6 +3940,50 @@ class PokeBattle_Move_237 < PokeBattle_Move_09F
     if user.item_id == :DOUSEDRIVE && !user.effects[PBEffects::AquaRing]
       user.effects[PBEffects::AquaRing] = true
       @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+    end
+  end
+end
+
+class PokeBattle_Move_238 < PokeBattle_Move_0BD
+  def hitsFlyingTargets?
+    return true;
+  end
+
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING
+    return super
+  end
+
+  def pbEffectAfterAllHits(user, target)
+    return if target.fainted?
+    return if target.damageState.unaffected || target.damageState.substitute
+    return if target.inTwoTurnAttack?("0CE") || target.effects[PBEffects::SkyDrop] >= 0 # Sky Drop
+    return if !target.airborne? && !target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce
+    target.effects[PBEffects::SmackDown] = true
+    if target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
+      target.effects[PBEffects::TwoTurnAttack] = nil
+      @battle.pbClearChoice(target.index) if !target.movedThisRound?
+    end
+    target.effects[PBEffects::MagnetRise] = 0
+    target.effects[PBEffects::Telekinesis] = 0
+    @battle.pbDisplay(_INTL("{1} fell straight down!", target.pbThis))
+  end
+end
+
+class PokeBattle_Move_239 < PokeBattle_Move
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 2;    end
+
+  def pbAdditionalEffect(user,target)
+    case rand(1)
+    when 0 then
+      if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+        user.pbRaiseStatStage(:DEFENSE,1,user)
+      end
+    when 1 then
+      if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+      end
     end
   end
 end

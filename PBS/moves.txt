@@ -864,6 +864,10 @@
 897,FISHIOUSREND,Fishious Rend,236,85,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 898,TECHNOBLASTPLUS,Techno Blast+,237,140,NORMAL,Special,100,5,50,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
 899,EXPLOSIONPLUS,Explosion+,0E0,500,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move."
+900,HYDROSTEAMPLUS,Hydro Steam+,00A,110,WATER,Special,100,15,50,NearOther,0,bef,"ur stinky" #hardcoded
+901,BONEMERANGPLUS,Bonemerang+,238,60,GROUND,Physical,100,5,0,NearOther,0,bef,"The user throws the bone it holds. The bone loops to hit the target twice, coming and going."
+902,METEORMASHPLUS,Meteor Mash+,01C,100,STEEL,Physical,90,15,100,NearOther,0,abefj,"The target is hit with a hard punch fired like a meteor. It may also raise the user's Attack."
+903,IRONHEADPLUS,Iron Head+,239,80,STEEL,Physical,100,15,100,NearOther,0,abe,"The foe slams the target with its steel-hard head. It may also make the target flinch."
 
 
 

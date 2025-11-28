@@ -1284,6 +1284,11 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
     :GENESECT => [:TECHNOBLAST],
+    :MAROWAK => [:BONEMERANG],
+    :MAWILE => [:IRONHEAD],
+    :METAGROSS => [:METEORMASH],
+    :REGISTEEL => [:IRONHEAD],
+    :WALKINGWAKE => [:HYDROSTEAM],
   }
   upgradelist.each do |pokemon, moves|
     next unless pkmn.species == pokemon || pkmn.species == :GENESECT
