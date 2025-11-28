@@ -698,7 +698,7 @@ class PokeBattle_Move_09F < PokeBattle_Move
          :DREADPLATE  => :DARK,
          :PIXIEPLATE  => :FAIRY
       }
-    elsif @id == :TECHNOBLAST
+    elsif @id == :TECHNOBLAST || @id == :TECHNOBLASTPLUS
       @itemTypes = {
          :SHOCKDRIVE => :ELECTRIC,
          :BURNDRIVE  => :FIRE,

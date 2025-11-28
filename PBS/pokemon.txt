@@ -21190,7 +21190,7 @@ Generation = 7
 #-------------------------------
 [1001021]
 Name = Reaping Shell
-InternalName = REAPINGHSELL
+InternalName = REAPINGSHELL
 Type1 = BUG
 Type2 = WATER
 BaseStats = 70,135,120,110,120,115
