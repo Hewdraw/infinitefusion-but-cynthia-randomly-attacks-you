@@ -1234,6 +1234,8 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => :IRONTHORNS,
     [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => :IRONVALIANT,
     [:DIANCIE, :MEGADIANCIE] => :MAGEARNA,
+    [:GENESECT] => :REAPINGSHELL,
+    [:KABUTO, :KABUTOPS] => :IRONHARVESTER,
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
@@ -1281,7 +1283,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
-    :GENESECT => [:TECHNOBLAST, :UTURN],
+    :GENESECT => [:TECHNOBLAST],
   }
   upgradelist.each do |pokemon, moves|
     next unless pkmn.species == pokemon || pkmn.species == :GENESECT
