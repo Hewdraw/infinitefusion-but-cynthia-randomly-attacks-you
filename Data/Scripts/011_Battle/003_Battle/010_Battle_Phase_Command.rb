@@ -124,6 +124,10 @@ class PokeBattle_Battle
         pkmn    = battler.pokemon if battler
         next false if !pbCanUseItemOnPokemon?(item,pkmn,battler,itemScene)
       when 4, 9   # Poké Balls
+        if legendaryBattle?
+          @nuh_uh = 1000
+          next true
+        end
         next false if idxPkmn<0
         battler = @battlers[idxPkmn]
         pkmn    = battler.pokemon if battler

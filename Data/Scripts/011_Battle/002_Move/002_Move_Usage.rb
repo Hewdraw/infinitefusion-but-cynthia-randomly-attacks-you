@@ -165,7 +165,7 @@ class PokeBattle_Move
     end
     # Disguise will take the damage
     if !@battle.moldBreaker &&
-       !target.pokemon.disguise && target.ability == :DISGUISE
+       !target.pokemon.disguise && target.hasActiveAbility?(:DISGUISE)
       target.damageState.disguise = true
       return
     end
