@@ -1285,7 +1285,17 @@ Pokemon = B95H43,17
 #------------------
 
 [YOUNGSTER,Joey]
-Pokemon = B19H19,17 
+Pokemon = B19H19,17
+	Offset = 0
+	Moves = RETURN,CRUNCH,QUICKATTACK,WORKUP
+	Ability = GUTS
+	Status = BURN
+	Gender = F
+	Nature = ADAMANT
+	IV = 31,31,31,31,31,31,
+	EV = 0,252,0,252,0,0
+	Happiness = 255
+	Shiny = TRUE
 #----------------
 
 [YOUNGSTER,Dan]
