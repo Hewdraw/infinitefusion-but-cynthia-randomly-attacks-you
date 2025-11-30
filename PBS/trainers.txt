@@ -1286,9 +1286,10 @@ Pokemon = B95H43,17
 
 [YOUNGSTER,Joey]
 Pokemon = B19H19,17
-	Offset = -3
+	Offset = -7
 	Moves = RETURN,CRUNCH,QUICKATTACK,WORKUP
 	Ability = GUTS
+	Item = EVIOLITE
 	Status = BURN
 	Gender = F
 	Nature = ADAMANT
