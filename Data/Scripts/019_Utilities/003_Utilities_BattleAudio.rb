@@ -135,6 +135,9 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     if trainer_type_data.id == :YOUNGSTER && trainer_type_data.name == "Joe"
       return pbStringToAudioFile("Volo")
     end
+    if trainer_type_data.id == :YOUNGSTER && trainer_type_data.name == "Joey"
+      return pbStringToAudioFile("TheRoaringRat")
+    end
     if trainer_type_data.id == :TEAMROCKET
       return pbStringToAudioFile("Dennis")
     end
