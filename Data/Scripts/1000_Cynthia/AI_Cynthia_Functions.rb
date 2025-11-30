@@ -936,12 +936,13 @@ class PokeBattle_AI
     when "0B3" #todo?
     #---------------------------------------------------------------------------
     when "0B4", "210" #todo
+      score = 0
       if user.asleep?
         score += 100   # Because it can only be used while asleep
       else
         score -= 90
       end
-      score += 10 if movefunction == "210"
+      score += 1 if movefunction == "210"
     #---------------------------------------------------------------------------
     when "0B5" #todo
     #---------------------------------------------------------------------------
