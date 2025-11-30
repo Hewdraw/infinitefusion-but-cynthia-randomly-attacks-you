@@ -2430,7 +2430,7 @@ class PokeBattle_AI
             multipliers[:final_damage_multiplier] /= 2 if move.contactMove? && !user.hasMoldBreaker?
           when :PRISMARMOR
             if Effectiveness.super_effective?(typeMod)
-              multipliers[:final_damage_multiplier] *= 0.75
+              multipliers[:final_damage_multiplier] *= 0.5
             end
           else
             BattleHandlers.triggerDamageCalcTargetAbility(target.ability,

@@ -177,6 +177,7 @@ class PokeBattle_Battler
     pbUpdate(true)
     @battle.scene.pbChangePokemon(self,@pokemon)
     @battle.scene.pbRefreshOne(@index)
+    @hpbars = 1
     @hpbars = pokemon.hpbars if pokemon.hpbars
     pbBGMPlay("GalarBirds") if [:GARTICUNO, :GMOLTRES, :GZAPDOS].include?(pokemon.species)
     pbBGMPlay("VSParadoxBeasts") if [:GOUGINGFIRE, :WALKINGWAKE, :RAGINGBOLT].include?(pokemon.species)

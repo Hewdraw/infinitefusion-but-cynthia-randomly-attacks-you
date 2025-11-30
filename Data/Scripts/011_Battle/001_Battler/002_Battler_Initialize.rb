@@ -305,10 +305,10 @@ class PokeBattle_Battler
   def pbUpdate(fullChange=false)
     return if !@pokemon
     if @pokemon.dynamax.is_a?(Integer)
-      @pokemon.calc_stats_increased_hp()
+      @pokemon.calc_stats(2)
       currenthp = @hp + ((@pokemon.totalhp - @totalhp)*2)
     elsif @hpbars
-      @pokemon.calc_stats_increased_hp(@hpbars)
+      @pokemon.calc_stats(@hpbars)
       currenthp = @hp + ((@pokemon.totalhp - @totalhp)*@hpbars)
     else
       @pokemon.calc_stats

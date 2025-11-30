@@ -1389,7 +1389,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
 BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:PRISMARMOR,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if Effectiveness.super_effective?(target.damageState.typeMod)
-      mults[:final_damage_multiplier] *= 0.75
+      mults[:final_damage_multiplier] *= 0.5
     end
   }
 )
