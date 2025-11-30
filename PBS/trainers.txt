@@ -1286,7 +1286,7 @@ Pokemon = B95H43,17
 
 [YOUNGSTER,Joey]
 Pokemon = B19H19,17
-	Offset = 0
+	Offset = -3
 	Moves = RETURN,CRUNCH,QUICKATTACK,WORKUP
 	Ability = GUTS
 	Status = BURN
