@@ -87,60 +87,26 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
   trainerarray.each do |t|
     trainer_type_data = GameData::TrainerType.get(t.trainer_type)
     music = trainer_type_data.battle_BGM if trainer_type_data.battle_BGM
-    if trainer_type_data.id == :GHOST_Cynthia
-      return pbStringToAudioFile("VSGhostCynthia")
-    end
-    if trainer_type_data.id == :CHAMPION_Sinnoh2
-      return pbStringToAudioFile("VSCynthia2")
-    end
-    if trainer_type_data.id == :WuhuIslandExecutioner
-      return pbStringToAudioFile("VSLiterallyCynthia")
-    end
+    return pbStringToAudioFile("VSGhostCynthia") if trainer_type_data.id == :GHOST_Cynthia
+    return pbStringToAudioFile("VSCynthia2") if trainer_type_data.id == :CHAMPION_Sinnoh2
+    return pbStringToAudioFile("VSLiterallyCynthia") if trainer_type_data.id == :WuhuIslandExecutioner
     if trainer_type_data.id == :CHAMPION_Sinnoh
-      if $Trainer.numbadges <= 2
-        return pbStringToAudioFile("CynthiaEncounter1")
-      end
-      if $Trainer.numbadges <= 5
-        return pbStringToAudioFile("CynthiaEncounter2")
-      end
-      if $Trainer.numbadges <= 7
-        return pbStringToAudioFile("CynthiaEncounter3")
-      end
-      if $Trainer.numbadges <= 9
-        return pbStringToAudioFile("CynthiaEncounter4")
-      end
-      if $Trainer.numbadges <= 12
-        return pbStringToAudioFile("CynthiaEncounter5")
-      end
-      if $Trainer.numbadges <= 14
-        return pbStringToAudioFile("CynthiaEncounter6")
-      end
+      return pbStringToAudioFile("CynthiaEncounter1") if $Trainer.numbadges <= 2
+      return pbStringToAudioFile("CynthiaEncounter2") if $Trainer.numbadges <= 5
+      return pbStringToAudioFile("CynthiaEncounter3") if $Trainer.numbadges <= 7
+      return pbStringToAudioFile("CynthiaEncounter4") if $Trainer.numbadges <= 9
+      return pbStringToAudioFile("CynthiaEncounter5") if $Trainer.numbadges <= 12
+      return pbStringToAudioFile("CynthiaEncounter6") if $Trainer.numbadges <= 14
       return pbStringToAudioFile("CynthiaEncounter7")
     end
-    if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
-      return pbStringToAudioFile("TheSkeletonAppears")
-    end
-    if [:Non_Skeleton_Dev, :Upside_Down_Dev].include?(trainer_type_data.id) && trainerarray.length() == 1
-      return pbStringToAudioFile("CtcUNOwen")
-    end
-    if trainer_type_data.id == :Skeleton_Dev
-      return pbStringToAudioFile("ShadHewDuel")
-    end
-    if trainer_type_data.id == :CREATOR_Minecraft || trainer_type_data.id == :CREATOR_Minecraft2 || trainer_type_data.id == :COOLTRAINER_MIKU
-      return pbStringToAudioFile("Miku")
-    end
-    if trainer_type_data.id == :TYPE_EXPERT_FAIRY
-      return pbStringToAudioFile("MikuFairy")
-    end
-    if trainer_type_data.id == :YOUNGSTER && trainer_type_data.name == "Joe"
-      return pbStringToAudioFile("Volo")
-    end
-    if trainer_type_data.id == :TEAMROCKET
-      return pbStringToAudioFile("Dennis")
-    end
-    if trainer_type_data.id == :LEADER_Giovanni
-      return pbStringToAudioFile("VSGiovanni")
-    end
+    return pbStringToAudioFile("TheSkeletonAppears") if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
+    return pbStringToAudioFile("CtcUNOwen") if [:Non_Skeleton_Dev, :Upside_Down_Dev].include?(trainer_type_data.id) && trainerarray.length() == 1
+    return pbStringToAudioFile("ShadHewDuel") if trainer_type_data.id == :Skeleton_Dev
+    return pbStringToAudioFile("Miku") if trainer_type_data.id == :CREATOR_Minecraft || trainer_type_data.id == :CREATOR_Minecraft2 || trainer_type_data.id == :COOLTRAINER_MIKU
+    return pbStringToAudioFile("MikuFairy") if trainer_type_data.id == :TYPE_EXPERT_FAIRY
+    return pbStringToAudioFile("Volo") if trainer_type_data.id == :YOUNGSTER && trainer_type_data.name == "Joe"
+    return pbStringToAudioFile("Dennis") if trainer_type_data.id == :TEAMROCKET
+    return pbStringToAudioFile("VSGiovanni") if trainer_type_data.id == :LEADER_Giovanni
   end
   ret = pbStringToAudioFile(music) if music && music!=""
   if !ret
