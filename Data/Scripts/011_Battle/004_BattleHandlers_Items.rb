@@ -1491,6 +1491,10 @@ BattleHandlers::EndOfMoveItem.add(:LEPPABERRY,
     battle.pbCommonAnimation("EatBerry",battler) if !forced
     choice = found[battle.pbRandom(found.length)]
     pkmnMove = battler.pokemon.moves[choice]
+    if pkmnMove.total_pp == 1
+      battle.pbDisplay("Nuh uh.")
+      next true
+    end
     pkmnMove.pp += 10
     pkmnMove.pp = pkmnMove.total_pp if pkmnMove.pp>pkmnMove.total_pp
     battler.moves[choice].pp = pkmnMove.pp

@@ -613,6 +613,7 @@ class PokeBattle_Battler
 
   def canChangeType?
     return false if @pokemon.unteraTypes != nil
+    return false if [:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK].include?(@item_id)
     return ![:MULTITYPE, :RKSSYSTEM].include?(@ability_id)
   end
 

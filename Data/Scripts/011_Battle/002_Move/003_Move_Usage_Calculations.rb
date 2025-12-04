@@ -352,7 +352,7 @@ class PokeBattle_Move
     end
     # Parental Bond's second attack
     if user.effects[PBEffects::ParentalBond]==1
-      multipliers[:base_damage_multiplier] /= 4
+      multipliers[:base_damage_multiplier] /= 4.0
     end
     # Other
     if user.effects[PBEffects::MeFirst]
@@ -362,28 +362,28 @@ class PokeBattle_Move
       multipliers[:base_damage_multiplier] *= 1.5
     end
     if user.effects[PBEffects::Charge]>0 && type == :ELECTRIC
-      multipliers[:base_damage_multiplier] *= 2
+      multipliers[:base_damage_multiplier] *= 2.0
     end
     # Mud Sport
     if type == :ELECTRIC
       @battle.eachBattler do |b|
         next if !b.effects[PBEffects::MudSport]
-        multipliers[:base_damage_multiplier] /= 3
+        multipliers[:base_damage_multiplier] /= 3.0
         break
       end
       if @battle.field.effects[PBEffects::MudSportField]>0
-        multipliers[:base_damage_multiplier] /= 3
+        multipliers[:base_damage_multiplier] /= 3.0
       end
     end
     # Water Sport
     if type == :FIRE
       @battle.eachBattler do |b|
         next if !b.effects[PBEffects::WaterSport]
-        multipliers[:base_damage_multiplier] /= 3
+        multipliers[:base_damage_multiplier] /= 3.0
         break
       end
       if @battle.field.effects[PBEffects::WaterSportField]>0
-        multipliers[:base_damage_multiplier] /= 3
+        multipliers[:base_damage_multiplier] /= 3.0
       end
     end
     # Terrain moves
@@ -486,11 +486,11 @@ class PokeBattle_Move
     # Burn
     if user.status == :BURN && physicalMove? && damageReducedByBurn? &&
        !user.hasActiveAbility?([:GUTS, :WILDFIRE])
-      multipliers[:final_damage_multiplier] /= 2
+      multipliers[:final_damage_multiplier] /= 2.0
     end
     # Frostbite
     if user.status == :FROZEN && specialMove? && !user.hasActiveAbility?(:ICEBODY)
-      multipliers[:final_damage_multiplier] /= 2
+      multipliers[:final_damage_multiplier] /= 2.0
     end
     # Drowsy
     if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE))
@@ -509,19 +509,22 @@ class PokeBattle_Move
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0
         else
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] /= 2.0
         end
       elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && specialMove?
         if @battle.pbSideBattlerCount(target) > 1
           multipliers[:final_damage_multiplier] *= 2 / 3.0
         else
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] /= 2.0
         end
       end
     end
     # Minimize
     if target.effects[PBEffects::Minimize] && tramplesMinimize?(2)
       multipliers[:final_damage_multiplier] *= 2
+    end
+    if move.protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock])
+      multipliers[:final_damage_multiplier] /= 4.0
     end
     # Move-specific base damage modifiers
     multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
@@ -535,8 +538,8 @@ class PokeBattle_Move
   def pbAdditionalEffectChance(user,target,effectChance=0)
     return 0 if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
     ret = (effectChance>0) ? effectChance : @addlEffect
-    ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
-                user.pbOwnSide.effects[PBEffects::Rainbow]>0
+    ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
+    ret *= 2 if user.pbOwnSide.effects[PBEffects::Rainbow]>0
     if @battle.pbWeather == :Snow || @battle.pbWeather == :Hail
       if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187"].include?(@function)
         ret *= 2

@@ -2371,7 +2371,7 @@ class PokeBattle_AI
       end
       if user.abilityActive?
         if switchin == user && user.ability_id == :SLOWSTART
-          multipliers[:attack_multiplier] /= 2 if move.physicalMove?
+          multipliers[:attack_multiplier] /= 2.0 if move.physicalMove?
         end
         case user.ability_id
         when :ROUGHSKIN
@@ -2389,7 +2389,7 @@ class PokeBattle_AI
           end
         when :DEFEATIST
           if user.hp <= user.adjustedTotalhp / 2 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 2)
-            multipliers[:attack_multiplier] /= 2
+            multipliers[:attack_multiplier] /= 2.0
           end
         when :OVERGROW
           if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :GRASS
@@ -2466,75 +2466,75 @@ class PokeBattle_AI
         case target.item_id
         when :BABIRIBERRY
           if move.calcType == :STEEL && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :CHARTIBERRY
           if move.calcType == :ROCK && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :CHILANBERRY
           if move.calcType == :NORMAL
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :CHOPLEBERRY
           if move.calcType == :FIGHTING && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :COBABERRY
           if move.calcType == :FLYING && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :COLBURBERRY
           if move.calcType == :DARK && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :HABANBERRY
           if move.calcType == :DRAGON && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :KASIBBERRY
           if move.calcType == :GHOST && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :KEBIABERRY
           if move.calcType == :POISON && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :OCCABERRY
           if move.calcType == :FIRE && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :PASSHOBERRY
           if move.calcType == :WATER && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :PAYAPABERRY
           if move.calcType == :PSYCHIC && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :RINDOBERRY
           if move.calcType == :GRASS && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :ROSELIBERRY
           if move.calcType == :FAIRY && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :SHUCABERRY
           if move.calcType == :GROUND && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :TANGABERRY
           if move.calcType == :BUG && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :WACANBERRY
           if move.calcType == :ELECTRIC && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         when :YACHEBERRY
           if move.calcType == :ICE && !Effectiveness.resistant?(typeMod)
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         else
           BattleHandlers.triggerDamageCalcTargetItem(target.item,
@@ -2543,7 +2543,7 @@ class PokeBattle_AI
       end
       # Parental Bond's second attack
       if user.hasActiveAbility?(:PARENTALBOND)
-        multipliers[:base_damage_multiplier] *= 5/4
+        multipliers[:base_damage_multiplier] *= 5 / 4.0
       end
       # todo do helping hand calcs in a different part of the code
       # if user.effects[PBEffects::HelpingHand] && !move.is_a?(PokeBattle_Confusion)
@@ -2556,22 +2556,22 @@ class PokeBattle_AI
       if type == :ELECTRIC
         @battle.eachBattler do |b|
           next if !b.effects[PBEffects::MudSport]
-          multipliers[:base_damage_multiplier] /= 3
+          multipliers[:base_damage_multiplier] /= 3.0
           break
         end
         if @battle.field.effects[PBEffects::MudSportField]>0
-          multipliers[:base_damage_multiplier] /= 3
+          multipliers[:base_damage_multiplier] /= 3.0
         end
       end
       # Water Sport
       if type == :FIRE
         @battle.eachBattler do |b|
           next if !b.effects[PBEffects::WaterSport]
-          multipliers[:base_damage_multiplier] /= 3
+          multipliers[:base_damage_multiplier] /= 3.0
           break
         end
         if @battle.field.effects[PBEffects::WaterSportField]>0
-          multipliers[:base_damage_multiplier] /= 3
+          multipliers[:base_damage_multiplier] /= 3.0
         end
       end
       # Terrain moves
@@ -2630,7 +2630,7 @@ class PokeBattle_AI
         if type == :FIRE || [:HYDROSTEAM, :HYDROSTEAMPLUS, :HYDROBURST].include?(move.id)
           multipliers[:final_damage_multiplier] *= 1.5
         elsif type == :WATER
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] /= 2.0
         end
       when :HarshSun
         if type == :FIRE
@@ -2640,7 +2640,7 @@ class PokeBattle_AI
         end
       when :Rain
         if type == :FIRE
-          multipliers[:final_damage_multiplier] /= 2
+          multipliers[:final_damage_multiplier] /= 2.0
         elsif type == :WATER
           multipliers[:final_damage_multiplier] *= 1.5
         end
@@ -2720,11 +2720,11 @@ class PokeBattle_AI
       # Burn
       if user.status == :BURN && move.physicalMove? && move.damageReducedByBurn? &&
          !user.hasActiveAbility?([:GUTS, :WILDFIRE])
-        multipliers[:final_damage_multiplier] /= 2
+        multipliers[:final_damage_multiplier] /= 2.0
       end
       # Frostbite
       if user.status == :FROZEN && move.specialMove? && !user.hasActiveAbility?(:ICEBODY)
-        multipliers[:final_damage_multiplier] /= 2
+        multipliers[:final_damage_multiplier] /= 2.0
       end
       # Drowsy
       if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE))
@@ -2737,25 +2737,28 @@ class PokeBattle_AI
           if @battle.pbSideBattlerCount(target)>1
             multipliers[:final_damage_multiplier] *= 2 / 3.0
           else
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         elsif target.pbOwnSide.effects[PBEffects::Reflect] > 0 && move.physicalMove?
           if @battle.pbSideBattlerCount(target)>1
             multipliers[:final_damage_multiplier] *= 2 / 3.0
           else
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         elsif target.pbOwnSide.effects[PBEffects::LightScreen] > 0 && move.specialMove?
           if @battle.pbSideBattlerCount(target) > 1
             multipliers[:final_damage_multiplier] *= 2 / 3.0
           else
-            multipliers[:final_damage_multiplier] /= 2
+            multipliers[:final_damage_multiplier] /= 2.0
           end
         end
       end
       # Minimize
       if target.effects[PBEffects::Minimize] && move.tramplesMinimize?(2)
         multipliers[:final_damage_multiplier] *= 2
+      end
+      if move.protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock])
+        multipliers[:final_damage_multiplier] /= 4.0
       end
       baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max
       atk     = [(atk     * multipliers[:attack_multiplier]).round, 1].max

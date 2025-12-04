@@ -136,6 +136,7 @@ class PokeBattle_Move
   def pulseMove?;         return @flags[/m/]; end
   def bombMove?;          return @flags[/n/]; end
   def danceMove?;         return @flags[/o/]; end
+  def protectPenalty?;    return @flags[/p/]; end
 
   # Causes perfect accuracy (param=1) and double damage (param=2).
   def tramplesMinimize?(_param=1); return false; end

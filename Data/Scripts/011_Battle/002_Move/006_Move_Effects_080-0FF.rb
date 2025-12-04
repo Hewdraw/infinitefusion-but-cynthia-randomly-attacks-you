@@ -1531,6 +1531,11 @@ class PokeBattle_Move_0B5 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     move = @assistMoves[@battle.pbRandom(@assistMoves.length)]
+    if move.function_code == "197"
+      @battle.pbDisplay(_INTL("{1} used {2}!", user.pbThis, move.name))
+      @battle.pbDisplay(_INTL("Nuh uh."))
+      return
+    end
     user.pbUseMoveSimple(move)
   end
 end

@@ -252,6 +252,11 @@ def pbRestorePP(pkmn, idxMove, pp)
 end
 
 def pbBattleRestorePP(pkmn, battler, idxMove, pp)
+  if pkmn.moves[idxMove].total_pp == 1
+    battle.pbDisplay("Nuh uh.")
+    battle.broken_buttons.push(1)
+    next return
+  end
   return if pbRestorePP(pkmn, idxMove, pp) == 0
   if battler && !battler.effects[PBEffects::Transform] &&
     battler.moves[idxMove] && battler.moves[idxMove].id == pkmn.moves[idxMove].id

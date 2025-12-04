@@ -600,6 +600,7 @@ class PokeBattle_WeatherMove < PokeBattle_Move
 
   def pbMoveFailed?(user,targets)
     return false if [:HarshSun, :HeavyRain, :StrongWinds].include?(@weatherType) && !(@weatherType == @battle.field.weather)
+    return false if damagingMove?
     case @battle.field.weather
     when :HarshSun
       @battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!"))
