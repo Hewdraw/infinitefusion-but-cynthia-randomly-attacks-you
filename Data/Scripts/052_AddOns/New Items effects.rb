@@ -1281,7 +1281,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
-    [GameData::Species.get(battler.getBodyID(battler.species)).species] => [:HIDDENPOWER, :TERABLAST],
+    [GameData::Species.get(getBodyID(pkmn.species)).species] => [:HIDDENPOWER, :TERABLAST],
     [:ARTICUNO, :GARTICUNO] => [:FREEZINGGLARE],
     [:BLASTOISE] => [:HYDROCANNON],
     [:BLAZIKEN] => [:BLAZEKICK],
