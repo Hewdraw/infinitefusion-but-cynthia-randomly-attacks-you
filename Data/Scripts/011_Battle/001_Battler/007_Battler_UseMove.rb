@@ -747,6 +747,7 @@ class PokeBattle_Battler
     end
     # Show move animation (for this hit)
     animationid = move.id
+    animationid.to_s.chomp("PLUS").to_sym if animationid.to_s[-4..-1] == "PLUS"
     if animationid == :THESKELETONAPPEARS
       pbSEPlay("SkeletonGuitar")
       animationid = :SCARYFACE

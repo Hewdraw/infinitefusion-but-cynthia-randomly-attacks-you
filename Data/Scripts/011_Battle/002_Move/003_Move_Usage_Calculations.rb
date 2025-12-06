@@ -523,7 +523,7 @@ class PokeBattle_Move
     if target.effects[PBEffects::Minimize] && tramplesMinimize?(2)
       multipliers[:final_damage_multiplier] *= 2
     end
-    if move.protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock])
+    if protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock])
       multipliers[:final_damage_multiplier] /= 4.0
     end
     # Move-specific base damage modifiers
