@@ -911,6 +911,30 @@
 945,STONEEDGEPLUS,Stone Edge+,178,100,ROCK,Physical,100,5,0,NearOther,0,befh,"The user stabs the foe with sharpened stones from below. It has a high critical-hit ratio."
 946,CONVERSION3,Conversion 3,265,0,NORMAL,Status,0,30,0,NearOther,0,,"The user changes its type to make itself resistant to the type of the attack the opponent used last."
 947,TERASTARSTORM,Tera Starstorm,177,120,NORMAL,Special,100,5,100,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass."
+948,SHARPCLAWS,Sharp Claws,000,50,100,NORMAL,Physical,100,35,NearOther,0,abef,"Attacks with claws."
+949,WILDWHIP,Wild Whip,00F,40,DRAGON,Physical,90,35,20,NearOther,0,abe,"Hits the enemy with an upward swing of both hands."
+950,PEPPERBREATH,Pepper Breath,266,60,FIRE,Special,100,10,50,NearOther,0,bef,"Spits flames at its foes."
+951,DYNAMITEKICK,Dynamite Kick,267,40,FIGHTING,PHYSICAL,95,20,100,NearOther,0,abef,"A flurry of kicks in midair."
+952,MACHJABCOMBO,Mach Jab Combo,268,20,FIGHTING,PHYSICAL,100,30,10,NearOther,1,abef,"Rapidly jabs or slashes the opponent with the claws of both hands. "
+953,SPLASHKICK,Splash Kick,047,80,WATER,Special,70,25,0,NearOther,0,abef,"Kicks the enemy whilst flipping forward."
+954,CROSSFIRE,Cross Fire,000,65,100,FIRE,Physical,100,10,NearOther,0,abefh,"Gathers power and then either bites foe or slashes them with claws."
+955,CLAWUPPERCUT,Claw Uppercut,11C,70,FIGHTING,Physical,100,15,0,NearOther,0,abef,"Uppercuts the enemy with its claws."
+956,WILDFIREUPPERCUT,Wildfire Uppercut,00A,70,FIRE,Physical,90,15,10,NearOther,0,abef,"A flaming uppercut with its claws."
+957,FINALCLAW,Final Claw,125,120,DRAGON,Physical,90,5,0,NearOther,0,abef,"Jumps and slashes a falling enemy with the claws of both hands."
+958,GREATHORNSATTACK,Great Horns Attack,01D,75,DRAGON,Physical,100,10,100,NearOther,0,abef,"The user stiffens all the muscles in its body to raise its Defense stat."
+959,FIREWALL,Fire Wall,0CF,40,FIRE,Special,100,15,0,NearOther,0,bef,"Spews out an encroaching wall of flames."
+960,BITFIRE,Bit Fire,03F,120,FIRE,Special,80,5,0,NearOther,0,bef,"Breathes out a small ball of fire."
+961,TAILCRASH,Tail Crash,0EC,70,DRAGON,Physical,100,5,0,NearOther,-6,abef,"Slams its tail into the opponent."
+962,FIREHORN,Fire Horn,00A,90,FIRE,Physical,100,10,20,NearOther,0,abef,"Attacks with a burning horn of fire."
+963,NOVABLAST,Nova Blast,194,100,FIRE,Special,100,10,0,NearOther,0,bef,"Spews ultra-high-temperature flames or a flame shot from its mouth to reduce everything to ashes."
+964,HORNSPIRAL,Horn Spiral,0A9,100,DRAGON,Physical,100,15,0,NearOther,0,abef,"Spins an enemy into a cyclone with horns."
+965,METALARM,Metal Arm,01C,100,STEEL,Physical,100,15,30,NearOther,0,abef,"Metal Arm"
+966,MEGACLAW,Mega Claw,269,90,DRAGON,Physical,100,15,0,NearOther,0,abef,"Launches its tethered Trident Arm to slash or wrap up enemies."
+967,METALSLASH,Metal Slash,03C,120,STEEL,Physical,100,15,0,NearOther,0,abefh,"Slashes with its claw."
+968,POWERFULFLAME,Powerful Flame,270,250,FIRE,Special,100,5,0,NearOther,0,bef,"todo"
+969,BODYBLOW,Body Blow,042,100,FIGHTING,Physical,100,10,100,NearOther,0,abef,"Body Blow"
+
+
 
 
 #  @id               = hash[:id]

@@ -4107,7 +4107,7 @@ end
 class PokeBattle_Move_249 < PokeBattle_MultiStatUpMove
   def initialize(battle, move)
     super
-    @statUp = [:ATTACK, 1, :DEFENSE, 1 :SPEED, 1]
+    @statUp = [:ATTACK, 1, :DEFENSE, 1, :SPEED, 1]
   end
 
   def pbEffectAfterAllHits(user, target)
@@ -4301,13 +4301,13 @@ end
 
 class PokeBattle_Move_256 < PokeBattle_BurnMove
   def pbGetAttackStats(user, target)
-    user.speed, user.stages[:SPEED] + 6
+    return user.speed, user.stages[:SPEED] + 6
   end
 end
 
 class PokeBattle_Move_257 < PokeBattle_Move_047
   def pbGetAttackStats(user, target)
-    user.attack, user.stages[:ATTACK] + 6
+    return user.attack, user.stages[:ATTACK] + 6
   end
 
   def pbEffectGeneral(user)
@@ -4436,5 +4436,37 @@ class PokeBattle_Move_265 < PokeBattle_Move_0D5
     @battle.pbDisplay(_INTL("{1} transformed into the {2}'s types!", user.pbThis, target.pbThis))
     target.pbChangeTypes(:FIRE)
     target.effects[PBEffects::BurnUp] = true
+  end
+end
+
+class PokeBattle_Move_266 < PokeBattle_BurnMove
+  def pbCritialOverride(user,target); return 1; end
+end
+
+class PokeBattle_Move_267 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1, :SPECIAL_DEFENSE, 1]
+  end
+end
+
+class PokeBattle_Move_268 < PokeBattle_BurnMove
+  def multiHitMove?
+    return true;
+  end
+
+  def pbNumHits(user, targets)
+    ; return 2;
+  end
+end
+
+class PokeBattle_Move_269 < PokeBattle_Move
+  def pbCritialOverride(user,target); return target.species.to_s.include?("MEGA") || target.hasActiveItem?(:MEGASHARD); end
+end
+
+class PokeBattle_Move_270 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    user.effects[PBEffects::HyperBeam] = 2
+    user.currentMove = @id
   end
 end

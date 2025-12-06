@@ -417,9 +417,13 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
     @damagingTurn = true
     # 0 at start of charging turn, move's ID at start of damaging turn
     if !user.effects[PBEffects::TwoTurnAttack]
-      @powerHerb = user.hasActiveItem?(:POWERHERB)
       @chargingTurn = true
-      @damagingTurn = @powerHerb
+      if @id == :NOVABLAST && [:Sun, :HarshSun].include?(@battle.pbWeather)
+        @damagingTurn = true
+      else
+        @powerHerb = user.hasActiveItem?(:POWERHERB)
+        @damagingTurn = @powerHerb
+      end
     end
     return !@damagingTurn   # Deliberately not "return @chargingTurn"
   end

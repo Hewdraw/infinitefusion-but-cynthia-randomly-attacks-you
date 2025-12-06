@@ -2317,6 +2317,9 @@ class PokeBattle_Move_0CF < PokeBattle_Move
       msg = _INTL("{1} clamped {2}!",user.pbThis,target.pbThis(true))
     when :FIRESPIN
       msg = _INTL("{1} was trapped in the fiery vortex!",target.pbThis)
+    when :FIREWALL
+      msg = _INTL("{1} was trapped in the fiery vortex!",target.pbThis)
+      target.effects[PBEffects::Trapping] = 1000
     when :INFESTATION
       msg = _INTL("{1} has been afflicted with an infestation by {2}!",target.pbThis,user.pbThis(true))
     when :MAGMASTORM

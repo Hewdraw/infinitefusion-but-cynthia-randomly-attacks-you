@@ -1281,7 +1281,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
-    [GameData::Species.get(battler.getBodyID(battler.species)).species)] => [:HIDDENPOWER, :TERABLAST]
+    [GameData::Species.get(battler.getBodyID(battler.species)).species] => [:HIDDENPOWER, :TERABLAST],
     [:ARTICUNO, :GARTICUNO] => [:FREEZINGGLARE],
     [:BLASTOISE] => [:HYDROCANNON],
     [:BLAZIKEN] => [:BLAZEKICK],
@@ -2373,7 +2373,22 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
 })
 
 ItemHandlers::UseInField.add(:HEALIES, proc { |item|
-  $Trainer.party.each { |pkmn| pkmn.heal }
+  $Trainer.party.each do |pkmn|
+    pkmn.heal
+    abilities = [pkmn.ability_id, pkmn.extraabilities].flatten
+    if abilities.include?(:POISONHEAL)
+      pkmn.status = :POISON
+    end
+    if abilities.include?([:GUTS, :FLAREBOOST])
+      pkmn.status = :BURN
+    end
+    if abilities.include?(:ICEBODY)
+      pkmn.status = :FROZEN
+    end
+    if abilities.include?(:QUICKFEET)
+      pkmn.status = :PARALYSIS
+    end
+  end
   pbMessage(_INTL("Your Pokémon were fully healed."))
   $PokemonGlobal.healies = true
   next 1

@@ -536,7 +536,7 @@ class PokeBattle_Battle
         case b.effects[PBEffects::TrappingMove]
         when :BIND        then pbCommonAnimation("Bind", b)
         when :CLAMP       then pbCommonAnimation("Clamp", b)
-        when :FIRESPIN    then pbCommonAnimation("FireSpin", b)
+        when :FIRESPIN,:FIREWALL    then pbCommonAnimation("FireSpin", b)
         when :MAGMASTORM  then pbCommonAnimation("MagmaStorm", b)
         when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
         when :WRAP        then pbCommonAnimation("Wrap", b)
