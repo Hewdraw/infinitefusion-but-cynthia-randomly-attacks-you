@@ -1234,6 +1234,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:DIANCIE, :MEGADIANCIE] => :MAGEARNA,
     [:GENESECT] => :REAPINGSHELL,
     [:KABUTO, :KABUTOPS] => :IRONHARVESTER,
+    [:RESHIRAM] => :ZEKROM,
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
@@ -2354,10 +2355,10 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
     abilities = [pkmn.ability_id, pkmn.extraabilities].flatten
-    if abilities.include?(:POISONHEAL)
+    if abilities.include?([:POISONHEAL. :MAGICGUARD])
       pkmn.status = :POISON
     end
-    if abilities.include?([:GUTS, :FLAREBOOST])
+    if abilities.include?([:GUTS, :FLAREBOOST, :WILDFIRE])
       pkmn.status = :BURN
     end
     if abilities.include?(:ICEBODY)

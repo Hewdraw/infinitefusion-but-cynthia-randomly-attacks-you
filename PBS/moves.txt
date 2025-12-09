@@ -933,6 +933,13 @@
 967,METALSLASH,Metal Slash,03C,120,STEEL,Physical,100,15,0,NearOther,0,abefh,"Slashes with its claw."
 968,POWERFULFLAME,Powerful Flame,270,250,FIRE,Special,100,5,0,NearOther,0,bef,"todo"
 969,BODYBLOW,Body Blow,042,100,FIGHTING,Physical,100,10,100,NearOther,0,abef,"Body Blow"
+970,GIGASTORM,Gigastorm,271,100,FIRE,Special,70,5,50,AllNearFoes,0,bef,"Sends out a high-temperature energy wave from the firing ports on its chest."
+971,TERRADESTROYER,Terra Destroyer,272,100,GROUND,Special,100,5,0,NearOther,0,bef,"Launches an enhanced version of its Giga Blaster attack."
+972,GIGABLASTER,Giga Blaster,273,100,FIRE,Special,100,5,0,NearOther,0,bef,"Fires organic missiles from the hatch on part of its chest."
+973,DRAGONKILLER,Dragon Killer,274,100,DRAGON,Physical,100,5,0,NearOther,0,abef,"Dragon Killer"
+974,WARDRIVER,War Driver,04C,90,FIGHTING,Physical,100,5,0,NearOther,100,bef,"Builds up energy in its claws and strikes the enemy down with them."
+975,BRAVESHIELD,Brave Shield,01D,40,FIGHTING,Physical,100,15,100,NearOther,1,bef,"Uses its Brave Shield to defend."
+976,GREYFIRE,Grey Fire,275,90,FIRE,Special,100,15,100,NearOther,0,bef,"Shoots a small fireball."
 
 
 

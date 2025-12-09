@@ -4470,3 +4470,38 @@ class PokeBattle_Move_270 < PokeBattle_Move
     user.currentMove = @id
   end
 end
+
+class PokeBattle_Move_271 < PokeBattle_BurnMove
+  def pbEffectGeneral(user)
+    @battle.pbStartWeather(user,:Sun,true,false)
+  end
+end
+
+class PokeBattle_Move_272 < PokeBattle_Move
+  def pbCritialOverride(user,target); return target.pokemon.unteraTypes != nil || target.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK]); end
+end
+
+class PokeBattle_Move_273 < PokeBattle_Move
+  def pbCritialOverride(user,target); return target.effects[PBEffects::Dynamax] > 0; end
+end
+
+class PokeBattle_Move_274 < PokeBattle_Move
+  def pbCritialOverride(user,target); return target.pbHasType?(:DRAGON); end
+
+  def pbEffectAfterAllHits(user, target)
+    return if !target.damageState.fainted
+    return if !target.pbHasType?(:DRAGON)
+    return if !user.pbCanRaiseStatStage?(:SPEED, user, self)
+    user.pbRaiseStatStage(:SPEED, 1, user)
+  end
+end
+
+class PokeBattle_Move_275 < PokeBattle_Move
+  def pbAdditionalEffect(user,target)
+    target.pbResetStatStages
+    @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", target.pbThis))
+    return if target.damageState.substitute
+    return unless rand(100) < pbAdditionalEffectChance(user, target, 20)
+    target.pbBurn if target.pbCanBurn?(user,false,self)
+  end
+end

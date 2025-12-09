@@ -116,7 +116,7 @@
 114,STORMDRAIN,Storm Drain,"Draws in all Water-type moves to up Sp. Attack."
 115,ICEBODY,Ice Body,"The Pokémon gradually regains HP in a hailstorm."
 116,SOLIDROCK,Solid Rock,"Reduces damage from super-effective attacks."
-117,SNOWWARNING,Snow Warning,"The Pokémon summons a hailstorm in battle."
+117,SNOWWARNING,Hail Warning,"The Pokémon summons a hailstorm in battle."
 118,HONEYGATHER,Honey Gather,"The Pokémon may gather Honey from somewhere."
 119,FRISK,Frisk,"The Pokémon can check a foe's held item."
 120,RECKLESS,Reckless,"Powers up moves that have recoil damage."

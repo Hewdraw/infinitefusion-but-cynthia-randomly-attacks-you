@@ -188,6 +188,7 @@ class FusionTutorService
       compatibleMoves << :ZENHEADBUTT if is_fusion_of([:STARMIE])
       compatibleMoves << :LIQUIDATION if is_fusion_of([:STARMIE])
       compatibleMoves << :SHELLSMASH if is_fusion_of([:BLASTOISE, :TORTERRA])
+      compatibleMoves << :LAVAPLUME if hasType(:FIRE)
 
     end
     if includeLegendaries
