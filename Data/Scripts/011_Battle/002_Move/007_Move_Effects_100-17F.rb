@@ -4505,3 +4505,33 @@ class PokeBattle_Move_275 < PokeBattle_Move
     target.pbBurn if target.pbCanBurn?(user,false,self)
   end
 end
+
+class PokeBattle_Move_275 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg += 50 if target.pokemon.unteraTypes != nil || target.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+    return baseDmg
+  end
+
+  def hitsFlyingTargets?
+    return true;
+  end
+
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING
+    return super
+  end
+end
+
+class PokeBattle_Move_275 < PokeBattle_Move
+  def pbBaseAccuracy(user, target)
+    return 0 if @battle.pbWeather != :None
+    return super
+  end
+
+  def pbAdditionalEffect(user,target)
+    user.pbOwnSide.effects[PBEffects::Tailwind] = 4
+    @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!", user.pbTeam(true)))
+  end
+end
+
+

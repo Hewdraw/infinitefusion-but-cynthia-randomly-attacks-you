@@ -940,6 +940,8 @@
 974,WARDRIVER,War Driver,04C,90,FIGHTING,Physical,100,5,0,NearOther,100,bef,"Builds up energy in its claws and strikes the enemy down with them."
 975,BRAVESHIELD,Brave Shield,01D,40,FIGHTING,Physical,100,15,100,NearOther,1,bef,"Uses its Brave Shield to defend."
 976,GREYFIRE,Grey Fire,275,90,FIRE,Special,100,15,100,NearOther,0,bef,"Shoots a small fireball."
+977,TERRAFORCE,Terra Force,276,90,GROUND,Physical,100,5,0,NearOther,0,befh,"Takes all of the energy within the atmosphere and concentrates it into one spot, then fires it as an extremely dense, high-temperature energy shot. "
+978,GREATTORNADO,Great Tornado,277,90,FLYING,Special,70,5,100,NearOther,0,bef,"Spins at tremendous speed like a tornado and launches itself at the enemy."
 
 
 
