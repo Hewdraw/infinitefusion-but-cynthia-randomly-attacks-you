@@ -87,18 +87,18 @@ class PokeBattle_AI
     end
     return @damageinfo[user] if @damageinfo[user][:info]
     @damageinfo[user][:info] = {}
-    @damageinfo[user][:info][:userMaxThreat] = 0
-    @damageinfo[user][:info][:userMaxPhysicalThreat] = 0
-    @damageinfo[user][:info][:userMaxSpecialThreat] = 0
-    @damageinfo[user][:info][:userThreat] = 0
-    @damageinfo[user][:info][:userPhysicalThreat] = 0
-    @damageinfo[user][:info][:userSpecialThreat] = 0
-    @damageinfo[user][:info][:opposingMaxThreat] = 0
-    @damageinfo[user][:info][:opposingMaxPhysicalThreat] = 0
-    @damageinfo[user][:info][:opposingMaxSpecialThreat] = 0
-    @damageinfo[user][:info][:opposingThreat] = 0
-    @damageinfo[user][:info][:opposingPhysicalThreat] = 0
-    @damageinfo[user][:info][:opposingSpecialThreat] = 0
+    @damageinfo[user][:info][:userMaxThreat] = 1
+    @damageinfo[user][:info][:userMaxPhysicalThreat] = 1
+    @damageinfo[user][:info][:userMaxSpecialThreat] = 1
+    @damageinfo[user][:info][:userThreat] = 1
+    @damageinfo[user][:info][:userPhysicalThreat] = 1
+    @damageinfo[user][:info][:userSpecialThreat] = 1
+    @damageinfo[user][:info][:opposingMaxThreat] = 1
+    @damageinfo[user][:info][:opposingMaxPhysicalThreat] = 1
+    @damageinfo[user][:info][:opposingMaxSpecialThreat] = 1
+    @damageinfo[user][:info][:opposingThreat] = 1
+    @damageinfo[user][:info][:opposingPhysicalThreat] = 1
+    @damageinfo[user][:info][:opposingSpecialThreat] = 1
     @damageinfo[user][:info][:outspeedsopponent] = true
     user.eachOpposing do |opponent|
       userMaxThreattable = pbCynthiaGetThreat(opponent, user)
