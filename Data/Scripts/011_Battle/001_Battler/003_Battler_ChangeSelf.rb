@@ -105,8 +105,8 @@ class PokeBattle_Battler
     mons = [self]
     @battle.pbCommonAnimation("UltraBurst2", self)
     if @pokemon.split
-      @pokemon.split.level = @level
       @pokemon.split.each_with_index do |mon,i|
+        mon.level = @level
         @battle.battlers.each do |ally|
           next if !ally
           next if ally.opposes?(@index)
