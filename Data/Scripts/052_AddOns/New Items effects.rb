@@ -1334,7 +1334,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   allmoves = pkmn.isFusionOf(:GENESECT) || pkmn.species == :DEOSECTWO
   upgradelist.each do |pokemon, moves|
     pokemon.each do |mon|
-      next unless pkmn.isFusionOf(mon) || allmoves || 
+      next unless pkmn.isFusionOf(mon) || allmoves
       pkmn.moves.each_with_index do |move, i|
         next unless moves[0] == move.id
         if moves.length == 1
