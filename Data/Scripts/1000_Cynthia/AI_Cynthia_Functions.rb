@@ -65,6 +65,8 @@ class PokeBattle_AI
         score += pbCynthiaCalculateStatScore([[:ATTACK, 2]],user,target,true) if target.hasActiveAbility?(:DEFIANT)
         score += pbCynthiaCalculateStatScore([[:SPECIAL_ATTACK, 2]],user,target,true) if target.hasActiveAbility?(:COMPETITIVE)
       end
+    elsif target.phasetwo
+      score *= 2
     end
     return score
   end

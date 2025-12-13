@@ -4534,4 +4534,10 @@ class PokeBattle_Move_275 < PokeBattle_Move
   end
 end
 
+class PokeBattle_Move_276 < PokeBattle_StatUpMove
+  def initialize(battle, move)
+    super
+    @statUp = [:ATTACK, 3]
+  end
+end
 

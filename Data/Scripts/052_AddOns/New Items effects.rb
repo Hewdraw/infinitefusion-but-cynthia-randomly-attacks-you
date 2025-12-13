@@ -1300,6 +1300,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:GENESECT] => [:TECHNOBLAST],
     [:GOLISOPOD, :VOLCARONA, :SLITHERWING, :IRONMOTH] => [:FIRSTIMPRESSION, :MAXXSPEED],
     [:GRENINJA] => [:WATERSHURIKEN],
+    [:GYARADOS] => [:SPLASH],
     [:HOOH, :ENTEI, :GOUGINGFIRE] => [:SACREDFIRE],
     [:HYDREIGON, :IRONJUGULIS] => [:DARKPULSE],
     [:HYDREIGON, :IRONJUGULIS] => [:DRACOMETEOR],
@@ -2355,7 +2356,7 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
     abilities = [pkmn.ability_id, pkmn.extraabilities].flatten
-    if abilities.include?([:POISONHEAL. :MAGICGUARD])
+    if abilities.include?([:POISONHEAL, :MAGICGUARD])
       pkmn.status = :POISON
     end
     if abilities.include?([:GUTS, :FLAREBOOST, :WILDFIRE])
