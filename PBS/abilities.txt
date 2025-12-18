@@ -271,3 +271,5 @@
 269,DEATH,Death,"die"
 270,PIXELBOUNCE,Pixel Bounce,"a"
 271,NEUTRALIZINGGAS,Neutralizing Gas,"a"
+272,MIRRORARMOR,Mirror Armor,"todo"
+273,DAUNTLESSSHIELD,Dauntless Shield,"todo"
