@@ -29,9 +29,9 @@ def resetTower()
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore
-    pbSetSelfSwitch(1, "A", false, 101)
-    pbSetSelfSwitch(2, "A", false, 101)
-    pbSetSelfSwitch(2, "A", false, 123)
+    pbMapInterpreter.pbSetSelfSwitch(1, "A", false, 101)
+    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 101)
+    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 123)
 end
 
 def getTowerPokemon(filter=nil)
@@ -123,7 +123,7 @@ end
 def towerIncreaseFloor(nextfloor)
     $PokemonGlobal.towervalues[:activeevent] = $PokemonGlobal.towervalues[nextfloor]
     $PokemonGlobal.towervalues[:floor] += 1
-    newlevel = 4 + [$PokemonGlobal.towervalues[:floor], 20].min + [(($PokemonGlobal.towervalues[:floor] - 20) * 76 / 180), 0].max
+    newlevel = 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max
     Kernel.pbMessage(_INTL("You reached floor {1}!", $PokemonGlobal.towervalues[:floor]))
     Kernel.pbMessage(_INTL("Your party grew to Lv. {1}!", newlevel))
     $Trainer.party.each do |pkmn|
