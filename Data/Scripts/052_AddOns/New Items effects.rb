@@ -1959,7 +1959,11 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
 
       if $Trainer.party.length >= 6
         if (keepInParty == 0)
-          $PokemonStorage.pbStoreCaught(poke2)
+          if $PokemonGlobal.towervalues.nil?
+            $PokemonStorage.pbStoreCaught(poke2)
+          else
+            $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
+          end
           scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
         else
           poke2 = Pokemon.new(bodyPoke, body_level)
@@ -1970,10 +1974,18 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
             box = pcPosition[0]
             index = pcPosition[1]
             #todo: store at next available position from current position
-            $PokemonStorage.pbStoreCaught(poke2)
+            if $PokemonGlobal.towervalues.nil?
+              $PokemonStorage.pbStoreCaught(poke2)
+            else
+              $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
+            end
           else
           #Fusing from party
-            $PokemonStorage.pbStoreCaught(poke2)
+            if $PokemonGlobal.towervalues.nil?
+              $PokemonStorage.pbStoreCaught(poke2)
+            else
+              $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
+            end
             scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
           end
         end
@@ -1982,7 +1994,11 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
           box = pcPosition[0]
           index = pcPosition[1]
           #todo: store at next available position from current position
-          $PokemonStorage.pbStoreCaught(poke2)
+          if $PokemonGlobal.towervalues.nil?
+            $PokemonStorage.pbStoreCaught(poke2)
+          else
+            $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
+          end
         else
           Kernel.pbAddPokemonSilent(poke2, poke2.level)
         end
@@ -2346,9 +2362,11 @@ ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
   if blacklisted_maps.include?($game_map.map_id)
     Kernel.pbMessage("There doesn't seem to be any network coverage here...")
   else
+    storage = $PokemonStorage
+    storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
     pbFadeOutIn {
       scene = PokemonStorageScene.new
-      screen = PokemonStorageScreen.new(scene, $PokemonStorage)
+      screen = PokemonStorageScreen.new(scene, storage)
       screen.pbStartScreen(0) #Boot PC in organize mode
     }
   end

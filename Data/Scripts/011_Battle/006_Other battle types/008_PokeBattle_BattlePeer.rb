@@ -29,7 +29,11 @@ class PokeBattle_RealBattlePeer
     end
     pkmn.heal
     oldCurBox = pbCurrentBox
-    storedBox = $PokemonStorage.pbStoreCaught(pkmn)
+    if $PokemonGlobal.towervalues.nil?
+      storedBox = $PokemonStorage.pbStoreCaught(pkmn)
+    else
+      storedBox = $PokemonGlobal.towervalues[:storage].pbStoreCaught(pkmn)
+    end
     if storedBox<0
       # NOTE: Poké Balls can't be used if storage is full, so you shouldn't ever
       #       see this message.
@@ -45,10 +49,12 @@ class PokeBattle_RealBattlePeer
   end
 
   def pbCurrentBox
+    return $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
     return $PokemonStorage.currentBox
   end
 
   def pbBoxName(box)
+    return (box<0) ? "" : $PokemonGlobal.towervalues[:storage][box].name if !$PokemonGlobal.towervalues.nil?
     return (box<0) ? "" : $PokemonStorage[box].name
   end
 

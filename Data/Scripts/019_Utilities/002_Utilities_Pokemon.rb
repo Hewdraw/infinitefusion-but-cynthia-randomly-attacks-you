@@ -21,10 +21,12 @@ def pbStorePokemon(pkmn)
   end
   pkmn.record_first_moves
   if $Trainer.party_full?
-    oldcurbox = $PokemonStorage.currentBox
-    storedbox = $PokemonStorage.pbStoreCaught(pkmn)
-    curboxname = $PokemonStorage[oldcurbox].name
-    boxname = $PokemonStorage[storedbox].name
+    storage = $PokemonStorage
+    storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
+    oldcurbox = storage.currentBox
+    storedbox = storage.pbStoreCaught(pkmn)
+    curboxname = storage[oldcurbox].name
+    boxname = storage[storedbox].name
     creator = nil
     creator = pbGetStorageCreator if $Trainer.seen_storage_creator
     if storedbox != oldcurbox
