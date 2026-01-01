@@ -2369,7 +2369,7 @@ ItemHandlers::UseInField.add(:DIGIVICE, proc { |item|
     storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
     pbFadeOutIn {
       scene = PokemonStorageScene.new
-      screen = PokemonStorageScreen.new(scene, $PokemonStorage)
+      screen = PokemonStorageScreen.new(scene, storage)
       screen.pbStartScreen(0) #Boot PC in organize mode
     }
   end
