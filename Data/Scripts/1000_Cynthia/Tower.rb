@@ -285,7 +285,7 @@ def getFloorGraphic(event)
     when "Heal"
         return "BWNurse"
     when "Tutor"
-        return "BW (55)"
+        return "Claire_Overworld"
     when "Legendary"
         case $PokemonGlobal.towervalues[:eventvariable]
         when "Articuno"
