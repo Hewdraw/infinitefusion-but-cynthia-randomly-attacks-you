@@ -2365,6 +2365,8 @@ ItemHandlers::UseInField.add(:DIGIVICE, proc { |item|
   if blacklisted_maps.include?($game_map.map_id)
     Kernel.pbMessage("There doesn't seem to be any network coverage here...")
   else
+    storage = $PokemonStorage
+    storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
     pbFadeOutIn {
       scene = PokemonStorageScene.new
       screen = PokemonStorageScreen.new(scene, $PokemonStorage)

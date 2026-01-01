@@ -344,9 +344,9 @@ def getNextFloorDescription(nextfloor)
     when "Legendary"
         message = "Fight a legendary battle."
     when "Gym"
-        message = "Earn a badge"
+        message = "Fight a Gym Trainer and earn a badge."
     when "Elitefour"
-        message = ""
+        message = "Fight a Pokemon League member."
     when nil
         return
     end
