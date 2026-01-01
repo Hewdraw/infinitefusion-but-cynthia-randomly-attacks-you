@@ -207,7 +207,7 @@ class PokeBattle_Battle
           mikubattle = true
         end
       end
-      if mikubattle && getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
+      if mikubattle && getDayOfTheWeek().to_s == "MONDAY" && !(pbCynthiaGetBadgeCount == 0)
         pbDisplayPaused(_INTL("It's Miku Monday! Miku makes every Monday better!"))
       end
     end
@@ -460,7 +460,7 @@ class PokeBattle_Battle
         coin = false
         @opponent.each_with_index do |trainer,i|
           @scene.pbShowOpponent(i)
-          if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia"
+          if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia" && $PokemonGlobal.towervalues.nil?
             $PokemonGlobal.cynthiahandschance = 1
             if rand(150) < $PokemonGlobal.cynthiahandschance
               $PokemonGlobal.cynthiahandschance = 1000
@@ -484,7 +484,7 @@ class PokeBattle_Battle
           msg = (@endSpeeches[i] && @endSpeeches[i]!="") ? @endSpeeches[i] : "..."
           pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
           if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
-            coin = $Trainer.numbadges+1
+            coin = pbCynthiaGetBadgeCount+1
           end
           if trainer.name == "Hatsune Mechu"
             coin = 30

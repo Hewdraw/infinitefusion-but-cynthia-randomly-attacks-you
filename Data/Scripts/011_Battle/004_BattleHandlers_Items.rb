@@ -1139,13 +1139,13 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    next c+2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:MIKUETTA) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
   }
 )
 
 BattleHandlers::CriticalCalcUserItem.add(:LEEK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    next c+2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:MIKUETTA) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
   }
 )
 

@@ -95,6 +95,21 @@ def pbStartOver(gameover=false)
     return
   end
   $Trainer.heal_party
+  if !$PokemonGlobal.towervalues.nil?
+    resetTower
+    pbFadeOutIn(99999) {
+      Kernel.pbCancelVehicles
+      $game_temp.player_new_map_id = 123
+      $game_temp.player_new_x = 10
+      $game_temp.player_new_y = 15
+      $game_temp.player_new_direction = 2
+      $scene.transfer_player
+      $game_map.autoplay
+      $game_map.refresh
+    }
+    pbEraseEscapePoint
+    return
+  end
   if $PokemonGlobal.pokecenterMapId && $PokemonGlobal.pokecenterMapId>=0
     if gameover
       pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back to a Pokémon Center."))

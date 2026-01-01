@@ -606,7 +606,7 @@ class Undertale_Scene
         if !item
           break
         end
-        if $Trainer.numbadges < $PokemonGlobal.shadrossstock[item]["badges"]
+        if pbCynthiaGetBadgeCount < $PokemonGlobal.shadrossstock[item]["badges"]
           text = "Weak ass."
         elsif pbQuantity(:SINNOHCOIN) < $PokemonGlobal.shadrossstock[item]["cost"]
           text = "Broke ass."
@@ -1101,8 +1101,8 @@ class UndertaleItemMenu
       itemtext.contents.font.size = 25
       itemtext.text = "#{itembadges} Badges" if item
       itemtext.text = "#{itembadges} Badge" if item && itembadges == 1
-      itemtext.text = "#{itemcost} Coins" if item && itembadges <= $Trainer.numbadges
-      itemtext.text = "1 Coin" if item && itembadges <= $Trainer.numbadges && itemcost == 1
+      itemtext.text = "#{itemcost} Coins" if item && itembadges <= pbCynthiaGetBadgeCount
+      itemtext.text = "1 Coin" if item && itembadges <= pbCynthiaGetBadgeCount && itemcost == 1
       itemtext.text = "" if !item
       addSprite("itemprice_#{i}",itemtext)
       next itemtext
@@ -1161,8 +1161,8 @@ class UndertaleItemMenu
       itembadges = $PokemonGlobal.shadrossstock[item]["badges"] if item
       itemtext = @shopprices[i]
       itemtext.text = "#{itembadges} Badges" if item
-      itemtext.text = "#{itemcost} Coins" if item && itembadges <= $Trainer.numbadges
-      itemtext.text = "1 Coin" if item && itembadges <= $Trainer.numbadges && itemcost == 1
+      itemtext.text = "#{itemcost} Coins" if item && itembadges <= pbCynthiaGetBadgeCount
+      itemtext.text = "1 Coin" if item && itembadges <= pbCynthiaGetBadgeCount && itemcost == 1
       itemtext.text = "" if !item
       itemtext.z = self.z + 4
     end

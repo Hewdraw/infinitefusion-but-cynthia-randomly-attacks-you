@@ -242,7 +242,7 @@ class PCItemStorage
   def initialize
     @items = []
     # Start storage with a Potion
-    pbStoreItem(:POTION) if GameData::Item.exists?(:POTION)
+    pbStoreItem(:SUPERREPEL) if GameData::Item.exists?(:SUPERREPEL)
   end
 
   def [](i)

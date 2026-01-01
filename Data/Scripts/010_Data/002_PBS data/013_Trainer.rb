@@ -302,7 +302,7 @@ module GameData
           species = reverseFusionSpecies(species)
         end
         level = pkmn_data[:level]
-        level = [level, 5+(5*$Trainer.numbadges)].max if level >= 5 && $Trainer.numbadges >= 3
+        level = [level, 5+(5*pbCynthiaGetBadgeCount)].max if level >= 5 && pbCynthiaGetBadgeCount >= 3
         offset = pkmn_data[:offset]
 
         if $game_switches[Settings::OVERRIDE_BATTLE_LEVEL_SWITCH]

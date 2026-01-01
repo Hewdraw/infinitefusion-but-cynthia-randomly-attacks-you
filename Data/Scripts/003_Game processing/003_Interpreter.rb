@@ -333,6 +333,12 @@ class Interpreter
     end
   end
 
+    def pbSetGraphic(eventid, value, mapid = -1)
+    mapid = @map_id if mapid < 0
+    $MapFactory.getMap(mapid, false).events[eventid].character_name = value
+    $MapFactory.getMap(mapid, false).need_refresh = true
+  end
+
   def tsOff?(c)
     return get_self.tsOff?(c)
   end

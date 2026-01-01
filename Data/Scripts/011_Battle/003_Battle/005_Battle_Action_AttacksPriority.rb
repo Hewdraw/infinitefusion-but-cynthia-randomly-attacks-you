@@ -165,6 +165,14 @@ class PokeBattle_Battle
             if move.name == "Grassy Glide" && self.field.terrain == :Grassy && b.affectedByTerrain?
               pri += 1
             end
+            if move.name == "Tate no Rocket"
+              b.eachOpposing do |opponent|
+                if opponent.pbHasType?(:DRAGON)
+                  pri += 1
+                  break
+                end
+              end
+            end
             bArray[3] = pri
             @choices[b.index][4] = pri
           end

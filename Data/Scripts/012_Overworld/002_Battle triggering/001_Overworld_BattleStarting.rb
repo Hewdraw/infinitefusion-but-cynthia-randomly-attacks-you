@@ -136,7 +136,7 @@ def pbPrepareBattle(battle)
   battle.moneyGain = battleRules["moneyGain"] if !battleRules["moneyGain"].nil?
   # Whether the player is able to switch when an opponent's Pokémon faints
   battle.switchStyle = ($PokemonSystem.battlestyle==0)
-  if (battle.opponent != nil && (battle.opponent[0].special_name? || $Trainer.numbadges >= 8)) || $PokemonSystem.aicontrolplayer == 1
+  if (battle.opponent != nil && (battle.opponent[0].special_name? || pbCynthiaGetBadgeCount >= 8)) || $PokemonSystem.aicontrolplayer == 1
     battle.switchStyle = false
   end
   battle.setBattleMode("2v1") if battle.opponent && (battle.opponent[0].trainer_type == :WuhuIslandExecutioner || battle.opponent[0].trainer_type == :MECH_Miku) && $Trainer.able_pokemon_count > 1
@@ -543,11 +543,11 @@ end
 # Start a trainer battle
 #===============================================================================
 def pbTrainerBattleCore(*args)
-  if args.length == 2
+  if args.length == 2 && $PokemonGlobal.towervalues.nil?
     if $PokemonGlobal.cynthiatripleschance == nil
       $PokemonGlobal.cynthiatripleschance = 0
     end
-    if $Trainer.numbadges > 2
+    if pbCynthiaGetBadgeCount > 2
       $PokemonGlobal.cynthiatripleschance += 1
     end
     if !$PokemonGlobal.partner && ((rand(20) == $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance > 0) || (rand(80) < $PokemonGlobal.cynthiatripleschance && $PokemonGlobal.cynthiadoubleschance == 0))
@@ -777,11 +777,13 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
     decision = pbTrainerBattleCore($PokemonTemp.waitingTrainer[0],
        [trainerID,trainerName,trainerPartyID,endSpeech]
     )
+  elsif $PokemonGlobal.towervalues.nil?
+    decision = pbTrainerBattleCore([trainerID,trainerName,trainerPartyID,endSpeech,name_override,trainer_type_overide])
   else
     if $PokemonGlobal.cynthiadoubleschance == nil
       $PokemonGlobal.cynthiadoubleschance = 0
     end
-    if $Trainer.numbadges > 2
+    if pbCynthiaGetBadgeCount > 2
       $PokemonGlobal.cynthiadoubleschance += 1
     end
     if !([:MECH_Miku, :WuhuIslandExecutioner].include?(trainerID) || !$PokemonTemp.battleRules["birdboss"].nil?) && rand(150) < $PokemonGlobal.cynthiadoubleschance

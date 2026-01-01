@@ -5,7 +5,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   if $PokemonGlobal.cynthiaupgradechance == nil
     $PokemonGlobal.cynthiaupgradechance = 0
   end
-  numbadges = $Trainer.numbadges
+  numbadges = pbCynthiaGetBadgeCount
   encounter_id = nil
   doublebattle = false
   losequote = nil
@@ -64,30 +64,31 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   return false if !encounter_type
 
   numbadges += badge_bonus
-
-  if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
-    $PokemonGlobal.cynthiaupgradechance += 18
-  end
-  for mon in $Trainer.party
-    if pokemonExceedsLevelCap(mon) || numbadges == 16
-      $PokemonGlobal.cynthiaupgradechance += 1
-      break
+  if $PokemonGlobal.towervalues.nil?
+    if getDayOfTheWeek().to_s == "MONDAY" && !(pbCynthiaGetBadgeCount == 0)
+      $PokemonGlobal.cynthiaupgradechance += 18
     end
-  end
-  badgeupgradechance = 32
-  if rand(25) < $PokemonGlobal.cynthiaupgradechance
-    numbadges += 1
-    $PokemonGlobal.cynthiaupgradechance = 0
-    badgeupgradechance / 2
-  end
-  if rand(30) == 0
-    numbadges += 1
-    badgeupgradechance / 4
-  end
-  while rand(badgeupgradechance) == 0 && numbadges > $Trainer.numbadges
-    numbadges += 1
-    if badgeupgradechance == 16
+    for mon in $Trainer.party
+      if pokemonExceedsLevelCap(mon) || numbadges == 16
+        $PokemonGlobal.cynthiaupgradechance += 1
+        break
+      end
+    end
+    badgeupgradechance = 32
+    if rand(25) < $PokemonGlobal.cynthiaupgradechance
+      numbadges += 1
+      $PokemonGlobal.cynthiaupgradechance = 0
       badgeupgradechance / 2
+    end
+    if rand(30) == 0
+      numbadges += 1
+      badgeupgradechance / 4
+    end
+    while rand(badgeupgradechance) == 0 && numbadges > pbCynthiaGetBadgeCount
+      numbadges += 1
+      if badgeupgradechance == 16
+        badgeupgradechance / 2
+      end
     end
   end
   if numbadges > 17
@@ -118,21 +119,31 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
     encounter_id = badges[numbadges]
   end
 
-  if !trainer_override
-    mikumaxchance = 70
-    if $PokemonGlobal.hatsunemikuchance == nil
-      $PokemonGlobal.hatsunemikuchance = 1
-    else
-      $PokemonGlobal.hatsunemikuchance += 1
-    end
-    if getDayOfTheWeek().to_s == "MONDAY" && !($Trainer.numbadges == 0)
-      $PokemonGlobal.hatsunemikuchance += 3
-      mikumaxchance = 30
-    end
+  if $PokemonGlobal.towervalues.nil?
+    if !trainer_override
+      mikumaxchance = 70
+      if $PokemonGlobal.hatsunemikuchance == nil
+        $PokemonGlobal.hatsunemikuchance = 1
+      else
+        $PokemonGlobal.hatsunemikuchance += 1
+      end
+      if getDayOfTheWeek().to_s == "MONDAY" && !(pbCynthiaGetBadgeCount == 0)
+        $PokemonGlobal.hatsunemikuchance += 3
+        mikumaxchance = 30
+      end
 
-    if rand(mikumaxchance) < $PokemonGlobal.hatsunemikuchance
+      if rand(mikumaxchance) < $PokemonGlobal.hatsunemikuchance
+        encounter_type = [:CREATOR_Minecraft, "Hatsune Miku"]
+        $PokemonGlobal.hatsunemikuchance = 0
+      end
+    end
+  else
+    if rand($PokemonGlobal.towervalues[:maxmikuchance]) < $PokemonGlobal.towervalues[:hatsunemikuchance]
+      $PokemonGlobal.towervalues[:hatsunemikuchance] = 1
       encounter_type = [:CREATOR_Minecraft, "Hatsune Miku"]
-      $PokemonGlobal.hatsunemikuchance = 0
+      numbadges += 1
+    else
+      $PokemonGlobal.towervalues[:hatsunemikuchance] += 1
     end
   end
 
@@ -152,11 +163,11 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
     losequote = "sorrgy accident.."
   end
   if encounter_type[1] == "Cynthia"
-    if numbadges >= $Trainer.numbadges + 2
+    if numbadges >= pbCynthiaGetBadgeCount + 2
       if !trainer_override
         trainer_override = [nil, :CHAMPION_Sinnoh2]
       end
-    elsif numbadges > $Trainer.numbadges && !trainer_override
+    elsif numbadges > pbCynthiaGetBadgeCount && !trainer_override
       trainer_override = ["Hatsune Miku", :CREATOR_Minecraft2]
       losequote = "sorrgy accident.."
     end
@@ -193,4 +204,9 @@ def pbCynthiaRollEncounter(badgelist)
     $PokemonGlobal.cynthiaprevious.delete_at(0)
   end
   return badgelist[cynthiaencounter]
+end
+
+def pbCynthiaGetBadgeCount()
+  return $PokemonGlobal.towervalues[:badges] if !$PokemonGlobal.towervalues.nil?
+  return $Trainer.badge_count
 end

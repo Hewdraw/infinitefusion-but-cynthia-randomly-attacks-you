@@ -59,7 +59,7 @@ class PokeBattle_Battle
       next unless b.fainted?
       next unless @opponent && @opponent[0].special_name?
       b.participants.each do |opponent|
-        if (rand(16) < $Trainer.badge_count && !opponent.fainted?) || opponent.pokemon.species.to_s[-11..-1] == "DUDUNSPARCE"
+        if (rand(16) < pbCynthiaGetBadgeCount && !opponent.fainted?) || opponent.pokemon.species.to_s[-11..-1] == "DUDUNSPARCE"
           gainedlevels = opponent.pokemon.isSelfFusion? ? 2 : 1
           gainedlevels += 1 if opponent.pokemon.affection
           for i in 1..gainedlevels do

@@ -2315,11 +2315,8 @@ class PokeBattle_Move_0CF < PokeBattle_Move
       msg = _INTL("{1} was squeezed by {2}!",target.pbThis,user.pbThis(true))
     when :CLAMP
       msg = _INTL("{1} clamped {2}!",user.pbThis,target.pbThis(true))
-    when :FIRESPIN
+    when :FIRESPIN,:BLUECYCLONE
       msg = _INTL("{1} was trapped in the fiery vortex!",target.pbThis)
-    when :FIREWALL
-      msg = _INTL("{1} was trapped in the fiery vortex!",target.pbThis)
-      target.effects[PBEffects::Trapping] = 1000
     when :INFESTATION
       msg = _INTL("{1} has been afflicted with an infestation by {2}!",target.pbThis,user.pbThis(true))
     when :MAGMASTORM
@@ -2330,6 +2327,12 @@ class PokeBattle_Move_0CF < PokeBattle_Move
       msg = _INTL("{1} became trapped in the vortex!",target.pbThis)
     when :WRAP
       msg = _INTL("{1} was wrapped by {2}!",target.pbThis,user.pbThis(true))
+    when :FIREWALL
+      msg = _INTL("{1} became trapped by Fire Wall!",target.pbThis)
+      target.effects[PBEffects::Trapping] = 1000
+    when :ICEWALL
+      msg = _INTL("{1} became trapped by Ice Wall!",target.pbThis)
+      target.effects[PBEffects::Trapping] = 1000
     end
     @battle.pbDisplay(msg)
   end

@@ -815,6 +815,7 @@
 816,MEGASHARD,Mega Shard,Mega Shards,1,0,"todo",1,0,0,
 817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",1,0,0,
 818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"todo",1,0,0,
+819,DIGIVICE,Digivice,Digivices,8,0,"A small, portable device that allows you to access the Pokémon storage system. There are some places where it won't work. ",2,0,6,
 
 
 #    attr_reader :id

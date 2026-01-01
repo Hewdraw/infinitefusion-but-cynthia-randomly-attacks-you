@@ -17,7 +17,7 @@ def mcChest(opponent, badge_bonus=0)
 end
 
 def enderChest()
-  $PokemonBag.pbDeleteItem(:SINNOHCOIN, 10)
+  $PokemonBag.pbDeleteItem(:SINNOHCOIN, 10) if $PokemonGlobal.towervalues.nil?
   itemlist = getEnderChestItems() 
   raritylist = getEnderChestWeights()
   totalrarities = raritylist.sum
@@ -46,7 +46,7 @@ def enderChest()
     end
   end
 
-  if rand(10) == 0
+  if rand(10) == 0 && $PokemonGlobal.towervalues.nil?
     $PokemonGlobal.enderchest = true
     eventlist = getEventList()
     randomevent = eventlist[rand(eventlist.length)]
@@ -88,6 +88,7 @@ def getEnderChestWeights()
 end
 
 def getEnderChestItems()
+  return getTowerItems() if !$PokemonGlobal.towervalues.nil?
   return [
     [ #common
       [:NUGGET, 5],

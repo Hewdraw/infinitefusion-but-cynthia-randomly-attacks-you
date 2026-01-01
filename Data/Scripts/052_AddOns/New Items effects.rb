@@ -1261,18 +1261,27 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
 
 ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
   megalist = {
-    :DIANCIE => :MEGADIANCIE,
     :METALGREYMON => :WARGREYMON,
     :WEREGARURUMON => :METALGARURUMON,
   }
   level = pkmn.level
   megalist.each do |unmega, mega|
-    # if unmega == pkmn.species
-    #   pkmn.species = mega
-    #   break
-    # end
+    if unmega == pkmn.species
+      pkmn.species = mega
+      movelist = @pkmn.getMoveList
+      for i in movelist
+        next if i[0]!=0
+        pbLearnMove(@pkmn,i[1],true) { pbUpdate }
+      end
+      break
+    end
     if mega == pkmn.species
       pkmn.species = unmega
+      movelist = @pkmn.getMoveList
+      for i in movelist
+        next if i[0]!=0
+        pbLearnMove(@pkmn,i[1],true) { pbUpdate }
+      end
       break
     end
   end
@@ -2328,6 +2337,25 @@ ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
 })
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
+  blacklisted_maps = [
+    315, 316, 317, 318, 328, 343, #Elite Four
+    776, 777, 778, 779, 780, 781, 782, 783, 784, #Mt. Silver
+    722, 723, 724, 720, #Dream sequence
+    304, 306, 307 #Victory road
+  ]
+  if blacklisted_maps.include?($game_map.map_id)
+    Kernel.pbMessage("There doesn't seem to be any network coverage here...")
+  else
+    pbFadeOutIn {
+      scene = PokemonStorageScene.new
+      screen = PokemonStorageScreen.new(scene, $PokemonStorage)
+      screen.pbStartScreen(0) #Boot PC in organize mode
+    }
+  end
+  next 1
+})
+
+ItemHandlers::UseInField.add(:DIGIVICE, proc { |item|
   blacklisted_maps = [
     315, 316, 317, 318, 328, 343, #Elite Four
     776, 777, 778, 779, 780, 781, 782, 783, 784, #Mt. Silver

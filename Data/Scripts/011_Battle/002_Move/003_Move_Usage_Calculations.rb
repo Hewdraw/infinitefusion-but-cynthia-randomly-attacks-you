@@ -542,31 +542,31 @@ class PokeBattle_Move
     ret *= 2 if user.pbOwnSide.effects[PBEffects::Rainbow]>0
     if @battle.pbWeather == :Snow || @battle.pbWeather == :Hail
       if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187"].include?(@function)
-        ret *= 2
+        ret *= 1.5
       end
       if @function == "237" && user.item_id == :CHILLDRIVE
-        ret *= 2
+        ret *= 1.5
       end
     end
     if @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
       if ["00A", "00B", "017", "0A4", "0C6", "0FE"].include?(@function)
-        ret *= 2
+        ret *= 1.5
       end
       if @function == "237" && user.item_id == :BURNDRIVE
-        ret *= 2
+        ret *= 1.5
       end
     end
     if @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
       if ["007", "008", "009", "017", "0A4", "0C5", "0CC", "0FD"].include?(@function)
-        ret *= 2
+        ret *= 1.5
       end
       if @function == "237" && user.item_id == :SHOCKDRIVE
-        ret *= 2
+        ret *= 1.5
       end
     end
     if @battle.pbWeather == :Sandstorm
       if ["005", "006", "0BE", "159"].include?(@function)
-        ret *= 2
+        ret *= 1.5
       end
     end
     ret = 100 if $DEBUG && Input.press?(Input::CTRL)

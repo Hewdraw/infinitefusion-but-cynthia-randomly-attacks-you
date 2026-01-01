@@ -189,7 +189,7 @@ end
 
 def pbBattleOnStepTaken(repel_active, guarantee=false)
   return if $Trainer.able_pokemon_count == 0
-  if $PokemonGlobal.cynthiachance != nil && $Trainer.numbadges >= 3
+  if $PokemonGlobal.cynthiachance != nil && pbCynthiaGetBadgeCount >= 3 && $PokemonGlobal.towervalues.nil?
     if $PokemonGlobal.cynthiafieldchance == nil
       $PokemonGlobal.cynthiafieldchance = 0
     end

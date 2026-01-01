@@ -36,7 +36,7 @@ def pbBattleAnimation(bgm=nil,battletype=0,foe=nil)
   pbMEStop
   # Play battle music
   override = nil
-  if foe[0].is_a?(Trainer) && foe[0].trainer_type == :COOLTRAINER_F && rand(25) == 0 && $Trainer.numbadges >= 8
+  if foe[0].is_a?(Trainer) && foe[0].trainer_type == :COOLTRAINER_F && rand(25) == 0 && pbCynthiaGetBadgeCount >= 8
     override = :COOLTRAINER_MIKU
     bgm = pbStringToAudioFile("Miku")
   end

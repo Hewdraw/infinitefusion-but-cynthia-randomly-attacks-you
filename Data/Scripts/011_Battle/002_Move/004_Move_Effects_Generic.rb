@@ -420,6 +420,8 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
       @chargingTurn = true
       if @id == :NOVABLAST && [:Sun, :HarshSun].include?(@battle.pbWeather)
         @damagingTurn = true
+      elsif @id == :GIGAMISSILE && [:Hail, :Snow].include?(@battle.pbWeather)
+        damagingTurn = true
       else
         @powerHerb = user.hasActiveItem?(:POWERHERB)
         @damagingTurn = @powerHerb

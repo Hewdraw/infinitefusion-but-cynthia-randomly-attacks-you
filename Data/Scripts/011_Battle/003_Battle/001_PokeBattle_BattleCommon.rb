@@ -221,7 +221,7 @@ module PokeBattle_BattleCommon
   #=============================================================================
   def pbCaptureCalc(pkmn, battler, catch_rate, ball)
     return 4 if $DEBUG && Input.press?(Input::CTRL)
-    return 4 if $Trainer.numbadges == 0 || $Trainer.numbadges >= 12
+    return 4 if pbCynthiaGetBadgeCount == 0 || pbCynthiaGetBadgeCount >= 12
     # Get a catch rate if one wasn't provided
     catch_rate = pkmn.species_data.catch_rate if !catch_rate
     # Modify catch_rate depending on the Poké Ball's effect

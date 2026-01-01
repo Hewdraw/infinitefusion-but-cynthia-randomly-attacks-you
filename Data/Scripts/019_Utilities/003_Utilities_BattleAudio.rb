@@ -73,7 +73,7 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
   if $PokemonGlobal.nextBattleBGM
     return $PokemonGlobal.nextBattleBGM.clone
   end
-  if rand(75) == 0
+  if rand(75) == 0 && $PokemonGlobal.towervalues.nil?
     $PokemonGlobal.cynthiachance += 1000
     if rand(10) == 0
       $PokemonGlobal.hatsunemikuchance += 1000
@@ -91,12 +91,12 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     return pbStringToAudioFile("VSCynthia2") if trainer_type_data.id == :CHAMPION_Sinnoh2
     return pbStringToAudioFile("VSLiterallyCynthia") if trainer_type_data.id == :WuhuIslandExecutioner
     if trainer_type_data.id == :CHAMPION_Sinnoh
-      return pbStringToAudioFile("CynthiaEncounter1") if $Trainer.numbadges <= 2
-      return pbStringToAudioFile("CynthiaEncounter2") if $Trainer.numbadges <= 5
-      return pbStringToAudioFile("CynthiaEncounter3") if $Trainer.numbadges <= 7
-      return pbStringToAudioFile("CynthiaEncounter4") if $Trainer.numbadges <= 9
-      return pbStringToAudioFile("CynthiaEncounter5") if $Trainer.numbadges <= 12
-      return pbStringToAudioFile("CynthiaEncounter6") if $Trainer.numbadges <= 14
+      return pbStringToAudioFile("CynthiaEncounter1") if pbCynthiaGetBadgeCount <= 2
+      return pbStringToAudioFile("CynthiaEncounter2") if pbCynthiaGetBadgeCount <= 5
+      return pbStringToAudioFile("CynthiaEncounter3") if pbCynthiaGetBadgeCount <= 7
+      return pbStringToAudioFile("CynthiaEncounter4") if pbCynthiaGetBadgeCount <= 9
+      return pbStringToAudioFile("CynthiaEncounter5") if pbCynthiaGetBadgeCount <= 12
+      return pbStringToAudioFile("CynthiaEncounter6") if pbCynthiaGetBadgeCount <= 14
       return pbStringToAudioFile("CynthiaEncounter7")
     end
     return pbStringToAudioFile("TheSkeletonAppears") if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
