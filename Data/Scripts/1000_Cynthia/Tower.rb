@@ -52,16 +52,16 @@ def getTowerPokemon(filter=nil)
 end
 
 def towerCynthiaEncounter()
-    # if $PokemonGlobal.towervalues[:floor] == 1
-    #     pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
-    #     return
-    # end
-    # if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
-    #     pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
-    #     $PokemonGlobal.towervalues[:cynthiachance] = 1
-    #     return
-    # end
-    # $PokemonGlobal.towervalues[:cynthiachance] += 1
+    if $PokemonGlobal.towervalues[:floor] == 1
+        pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
+        return
+    end
+    if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
+        pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
+        $PokemonGlobal.towervalues[:cynthiachance] = 1
+        return
+    end
+    $PokemonGlobal.towervalues[:cynthiachance] += 1
 end
 
 def generateNextFloor()
