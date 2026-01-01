@@ -29,6 +29,9 @@ def resetTower()
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore
+    pbSetSelfSwitch(1, "A", false, 101)
+    pbSetSelfSwitch(2, "A", false, 101)
+    pbSetSelfSwitch(2, "A", false, 123)
 end
 
 def getTowerPokemon(filter=nil)
@@ -340,6 +343,10 @@ def getNextFloorDescription(nextfloor)
         message = "Learn an obtainable move."
     when "Legendary"
         message = "Fight a legendary battle."
+    when "Gym"
+        message = "Earn a badge"
+    when "Elitefour"
+        message = ""
     when nil
         return
     end
