@@ -321,6 +321,7 @@ def getFloorGraphic(event)
             return "BW_Lance"
         when 90
             return "gary_oak_overworld_bw_completed_by_malice936-d5ruwuc"
+        end
     end
 end
 
@@ -370,18 +371,18 @@ class MoveRelearnerScreen
 
         @scene.pbStartScene(pkmn, moves)
         loop do
-          move = @scene.pbChooseMove
-          if move
-            if @scene.pbConfirm(_INTL("Teach {1}?", GameData::Move.get(move).name))
-              if pbLearnMove(pkmn, move)
+            move = @scene.pbChooseMove
+            if move
+                if @scene.pbConfirm(_INTL("Teach {1}?", GameData::Move.get(move).name))
+                    if pbLearnMove(pkmn, move)
+                        @scene.pbEndScene
+                        return true
+                    end
+                end
+            else
                 @scene.pbEndScene
-                return true
-              end
+                return false
             end
-          else
-            @scene.pbEndScene
-            return false
-          end
         end
     end
 end
