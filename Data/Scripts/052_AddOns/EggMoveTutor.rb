@@ -25,6 +25,7 @@ class MoveRelearnerScreen
       moves.push(pbGetSpeciesEggMoves(species))
     end
     moves = moves.flatten.uniq
+    return false if moves.length == 0
 
     @scene.pbStartScene(pkmn, moves)
     loop do
@@ -49,6 +50,7 @@ class MoveRelearnerScreen
       moves.push(GameData::Species.get_species_form(species, 0).tutor_moves)
     end
     moves = moves.flatten.uniq
+    return false if moves.length == 0
 
     @scene.pbStartScene(pkmn, moves)
     loop do
