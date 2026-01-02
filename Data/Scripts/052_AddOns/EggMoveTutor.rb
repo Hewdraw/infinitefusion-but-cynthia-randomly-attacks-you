@@ -76,7 +76,7 @@ class MoveRelearnerScreen
       array = pbCreatePreEvolutionTree(previousform)
     end
     array.push(species)
-    array.push(pbCreatePreEvolutionTree(:METALGARURUMON)) if species == :OMNIMON
+    array.push(*pbCreatePreEvolutionTree(:METALGARURUMON)) if species == :OMNIMON
     return array
   end
 end
