@@ -44,7 +44,7 @@ def getTowerPokemon(filter=nil)
         next if data.base_stats.values.sum > 350 + ($PokemonGlobal.towervalues[:floor]*5)
         case filter
         when "Starter"
-            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :EEVEE, :PICHU].flatten.include?(data.species)
+            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :EEVEE].flatten.include?(data.species)
         end
         list.push(data.species)
     end
@@ -53,6 +53,7 @@ def getTowerPokemon(filter=nil)
         list.push(value)
     end
     list.push(:AGUMON, :GABUMON, :PALMON)
+    list.push(:PIKACHU) if filter == "Starter"
     list.push(:GREATTUSK, :SCREAMTAIL, :FLUTTERMANE, :SLITHERWING, :SANDYSHOCKS, :ROARINGMOON, :IRONTREADS, :IRONBUNDLE, :IRONJUGULIS, :IRONMOTH, :IRONTHORNS, :IRONVALIANT) if $PokemonGlobal.towervalues[:floor] >= 100
     return list.sample
 end

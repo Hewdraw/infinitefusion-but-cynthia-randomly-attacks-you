@@ -914,6 +914,13 @@ class PokemonFusionScene
       pbChooseAbility(ability1,ability2) if newSpecies != :OMNIMON
 
       setFusionMoves(@pokemon1, @pokemon2, firstOptionSelected) if !noMoves
+      if newSpecies == :OMNIMON
+        movelist = pkmn.getMoveList
+        for i in movelist
+          next if i[0]!=0
+          pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
+        end
+      end
 
       # if superSplicer
       #   @pokemon1.nature = pbChooseNature(@pokemon1.nature, @pokemon2.nature)
