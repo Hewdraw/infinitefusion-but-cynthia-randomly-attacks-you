@@ -1235,6 +1235,15 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:GENESECT] => :REAPINGSHELL,
     [:KABUTO, :KABUTOPS] => :IRONHARVESTER,
     [:RESHIRAM] => :ZEKROM,
+    [:CHARMANDER] => :AGUMON,
+    [:CHARMELEON] => :GREYMON,
+    [:CHARIZARD] => :METALGREYMON,
+    [:TOTODILE] => :GABUMON,
+    [:CROCONAW] => :GARURUMON,
+    [:FERALIGATR] => :WEREGARURUMON,
+    [:BULBASAUR] => :PALMON,
+    [:IVYSAUR] => :TOGEMON,
+    [:VENUSAUR] => :LILLYMON,
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
@@ -1246,12 +1255,12 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
       break
     end
     if paradox == pkmn.species
-      if !pkmn.unparadox.nil?
+      if !pkmn.unparadox.nil? && unparadox.include?(pkmn.unparadox)
         pkmn.species = pkmn.unparadox
-        pkmn.unparadox = nil
       else
         pkmn.species = unparadox[0]
       end
+      pkmn.unparadox = nil
       break
     end
   end
