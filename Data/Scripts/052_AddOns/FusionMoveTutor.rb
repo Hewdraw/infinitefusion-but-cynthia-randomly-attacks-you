@@ -196,7 +196,7 @@ class FusionTutorService
       compatibleMoves << :COREENFORCER if is_fusion_of([:GIRATINA, :PALKIA, :DIALGA, :RAYQUAZA])
       compatibleMoves << :PLASMAFISTS if is_fusion_of([:ELECTABUZZ, :ELECTIVIRE, :ZEKROM]) || (is_fusion_of([:ROTOM]) && canLearnMove(:THUNDERPUNCH))
       compatibleMoves << :LIGHTOFRUIN if is_fusion_of([:ARCEUS, :MEW, :CELEBI, :JIRACHI])
-      compatibleMoves << :FLEURCANNON if is_fusion_of([:GARDEVOIR, :GALLADE, :IRONVALIANT, :SYLVEON, :WIGGLYTUFF, :SCREAMTAIL])
+      compatibleMoves << :FLEURCANNON if is_fusion_of([:GARDEVOIR, :GALLADE, :IRONVALIANT, :SYLVEON, :WIGGLYTUFF, :SCREAMTAIL, :DIANCIE, :MAGEARNA])
       compatibleMoves << :NATURESMADNESS if is_fusion_of([:CELEBI, :KYOGRE, :GROUDON, :ABSOL])
       compatibleMoves << :GEOMANCY if is_fusion_of([:CELEBI])
       compatibleMoves << :VCREATE if is_fusion_of([:ENTEI, :GOUGINGFIRE, :HOOH, :TYPHLOSION])
