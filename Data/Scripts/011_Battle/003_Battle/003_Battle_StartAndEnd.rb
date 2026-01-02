@@ -569,6 +569,9 @@ class PokeBattle_Battle
             battler.pokemon.species = :DIANCIE
             battler.pokemon.item = :MEGASHARD
           end
+          if battler.pokemon.species == :MEGAB378H379
+            battler.pokemon.species = :B378H379
+          end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
             battler.pokemon.ev[s.id] = 0
