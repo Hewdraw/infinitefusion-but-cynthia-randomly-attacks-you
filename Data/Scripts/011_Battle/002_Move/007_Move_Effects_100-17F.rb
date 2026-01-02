@@ -4930,7 +4930,7 @@ class PokeBattle_Move_297 < PokeBattle_Move
 
   def pbGetDefenseStats(user,target)
     ret1, ret2 = super
-    return ret1 / 2, ret 
+    return ret1 / 2, ret2
   end
 end
 
