@@ -2393,12 +2393,6 @@ ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
 })
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
-  blacklisted_maps = [
-    315, 316, 317, 318, 328, 343, #Elite Four
-    776, 777, 778, 779, 780, 781, 782, 783, 784, #Mt. Silver
-    722, 723, 724, 720, #Dream sequence
-    304, 306, 307 #Victory road
-  ]
   if blacklisted_maps.include?($game_map.map_id)
     Kernel.pbMessage("There doesn't seem to be any network coverage here...")
   else
@@ -2414,12 +2408,6 @@ ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
 })
 
 ItemHandlers::UseInField.add(:DIGIVICE, proc { |item|
-  blacklisted_maps = [
-    315, 316, 317, 318, 328, 343, #Elite Four
-    776, 777, 778, 779, 780, 781, 782, 783, 784, #Mt. Silver
-    722, 723, 724, 720, #Dream sequence
-    304, 306, 307 #Victory road
-  ]
   if blacklisted_maps.include?($game_map.map_id)
     Kernel.pbMessage("There doesn't seem to be any network coverage here...")
   else

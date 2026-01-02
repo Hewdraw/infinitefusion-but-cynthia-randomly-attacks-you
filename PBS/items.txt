@@ -668,7 +668,7 @@
 660,LINKINGCORD,Linking Cord,Linking Cords,1,6000,"A cable exuding a mysterious energy. It’s loved by certain Pokémon.",1,0,7,
 661,INVISIBALL,Invisiball,Invisiball,3,200,"A Pokéball that is completely invisble to the human eye. You shouldn't be able to obtain this item",0,4,4,
 662,DREAMMIRROR,Dream Mirror,Dream Mirrors,8,0,"A strange mirror that allows you to peak into the Dream World for a brief instant.",2,0,6,
-663,BOXLINK,Box Link,Box Link,8,0,"A small, portable device that allows you to access the Pokémon storage system. There are some places where it won't work. ",2,0,6,
+663,BOXLINK,Box Link,Box Link,8,0,"A small, portable device that allows you to access the Pokémon storage system.",2,0,6,
 664,JAWFOSSIL,Jaw Fossil,Jaw Fossils,1,7000,"A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.",0,0,8,
 665,ASSAULTVEST,Assault Vest,Assault Vests,1,1000,"An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.",0,0,0,
 666,SAFETYGOGGLES,Safety Goggles,Safety Goggles,1,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0,
@@ -815,7 +815,7 @@
 816,MEGASHARD,Mega Shard,Mega Shards,1,0,"todo",1,0,0,
 817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",1,0,0,
 818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"todo",1,0,0,
-819,DIGIVICE,Digivice,Digivices,8,0,"A small, portable device that allows you to access the Pokémon storage system. There are some places where it won't work. ",2,0,6,
+819,DIGIVICE,Digivice,Digivices,8,0,"A small, portable device that allows you to access the Pokémon storage system.",2,0,6,
 
 
 #    attr_reader :id
