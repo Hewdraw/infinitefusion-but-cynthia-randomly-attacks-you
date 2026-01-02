@@ -2393,32 +2393,24 @@ ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
 })
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
-  if blacklisted_maps.include?($game_map.map_id)
-    Kernel.pbMessage("There doesn't seem to be any network coverage here...")
-  else
-    storage = $PokemonStorage
-    storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
-    pbFadeOutIn {
-      scene = PokemonStorageScene.new
-      screen = PokemonStorageScreen.new(scene, storage)
-      screen.pbStartScreen(0) #Boot PC in organize mode
-    }
-  end
+  storage = $PokemonStorage
+  storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
+  pbFadeOutIn {
+    scene = PokemonStorageScene.new
+    screen = PokemonStorageScreen.new(scene, storage)
+    screen.pbStartScreen(0) #Boot PC in organize mode
+  }
   next 1
 })
 
 ItemHandlers::UseInField.add(:DIGIVICE, proc { |item|
-  if blacklisted_maps.include?($game_map.map_id)
-    Kernel.pbMessage("There doesn't seem to be any network coverage here...")
-  else
-    storage = $PokemonStorage
-    storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
-    pbFadeOutIn {
-      scene = PokemonStorageScene.new
-      screen = PokemonStorageScreen.new(scene, storage)
-      screen.pbStartScreen(0) #Boot PC in organize mode
-    }
-  end
+  storage = $PokemonStorage
+  storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
+  pbFadeOutIn {
+    scene = PokemonStorageScene.new
+    screen = PokemonStorageScreen.new(scene, storage)
+    screen.pbStartScreen(0) #Boot PC in organize mode
+  }
   next 1
 })
 
