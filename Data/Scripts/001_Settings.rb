@@ -421,7 +421,7 @@ module Settings
     [:ENTEI, 50, 350, 1, "Legendary Birds",ROAMING_AREAS,:Sunny],
     [:B245H243, 50, 341, 1, "Legendary Birds",ROAMING_AREAS,:Storm],
     #[:B379H378, 50, 602, 0, "Legendary Birds",SEVII_ROAMING,:StrongWinds],
-    [:B378H379, 50, 602, 0, "Legendary Birds",SEVII_ROAMING,:StrongWinds],
+    [:B378H379, 50, 602, 0, "VSLati",SEVII_ROAMING,:StrongWinds],
     [:FEEBAS, 15, 4, 3, "Pokemon HeartGold and SoulSilver - Wild Pokemon Battle (Kanto)",SEVII_ROAMING,:Rain]
   ]
 
