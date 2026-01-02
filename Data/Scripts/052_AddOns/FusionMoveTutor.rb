@@ -245,7 +245,7 @@ class FusionTutorService
       compatibleMoves << :IVYCUDGEL if hasType(:GRASS)
       compatibleMoves << :COLLISIONCOURSE if hasType(:DRAGON) && hasType(:FIGHTING)
       compatibleMoves << :ELECTRODRIFT if hasType(:DRAGON) && hasType(:ELECTRIC)
-      # compatibleMoves << :RUINATION if hasType(:DARK)
+      compatibleMoves << :RUINATION if hasType(:DARK)
       # compatibleMoves << :JUNGLEHEALING if hasType(:GRASS)
     end
     return compatibleMoves

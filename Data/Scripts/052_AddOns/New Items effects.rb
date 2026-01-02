@@ -1263,24 +1263,25 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
   megalist = {
     :METALGREYMON => :WARGREYMON,
     :WEREGARURUMON => :METALGARURUMON,
+    :LILLYMON => :ROSEMON
   }
   level = pkmn.level
   megalist.each do |unmega, mega|
     if unmega == pkmn.species
       pkmn.species = mega
-      movelist = @pkmn.getMoveList
+      movelist = pkmn.getMoveList
       for i in movelist
         next if i[0]!=0
-        pbLearnMove(@pkmn,i[1],true) { pbUpdate }
+        pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
       end
       break
     end
     if mega == pkmn.species
       pkmn.species = unmega
-      movelist = @pkmn.getMoveList
+      movelist = pkmn.getMoveList
       for i in movelist
         next if i[0]!=0
-        pbLearnMove(@pkmn,i[1],true) { pbUpdate }
+        pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
       end
       break
     end
@@ -1729,7 +1730,34 @@ def pbDNASplicing(pokemon, scene, item = :DNASPLICERS)
 
   playingBGM = $game_system.getPlayingBGM
   dexNumber = pokemon.species_data.id_number
-  if (pokemon.species_data.id_number <= NB_POKEMON)
+  if [:WARGREYMON, :METALGARURUMON].include?(pokemon.species_data.id)
+    chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
+    if chosen >= 0
+      poke2 = $Trainer.party[chosen]
+
+      if pokemon.hp == 0 || poke2.hp == 0
+        scene.pbDisplay(_INTL("A fainted Pokémon cannot be fused!"))
+        return false
+      end
+      if [:WARGREYMON, :METALGARURUMON].include?(poke2.species_data.id) && poke2.species_data.id != pokemon.species_data.id
+        if (Kernel.pbConfirmMessage(_INTL("Fuse {1} and {2}?", pokemon.name, poke2.name)))
+          fus = PokemonFusionScene.new
+          fus.pbStartScreen(pokemon, poke2, :OMNIMON, item)
+          returnItemsToBag(pokemon, poke2)
+          fus.pbFusionScreen(false, is_supersplicer)
+          $game_variables[VAR_FUSE_COUNTER] += 1 #fuse counter
+          fus.pbEndScreen
+          pbRemovePokemonAt(chosen)
+          scene.pbHardRefresh
+          pbBGMPlay(playingBGM)
+          return true
+        end
+      else
+        scene.pbDisplay(_INTL("{1} can't be fused with {2}.", poke2.name, pokemon.name))
+        return false
+      end
+    end
+  elsif (pokemon.species_data.id_number <= NB_POKEMON)
     if pokemon.fused != nil
       if $Trainer.party.length >= 6
         scene.pbDisplay(_INTL("Your party is full! You can't unfuse {1}.", pokemon.name))
@@ -1854,16 +1882,20 @@ end
 
 #Todo: refactor this, holy shit this is a mess
 def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
-  if pokemon.species_data.id_number > (NB_POKEMON * NB_POKEMON) + NB_POKEMON #triple fusion
+  if pokemon.species_data.id_number > (NB_POKEMON * NB_POKEMON) + NB_POKEMON && pokemon.species_data.id != :OMNIMON #triple fusion
     scene.pbDisplay(_INTL("{1} cannot be unfused.", pokemon.name))
     return false
   end
 
   pokemon.spriteform_body = nil
   pokemon.spriteform_head = nil
-
-  bodyPoke = getBasePokemonID(pokemon.species_data.id_number, true)
-  headPoke = getBasePokemonID(pokemon.species_data.id_number, false)
+  if pokemon.species_data.id != :OMNIMON 
+    bodyPoke = getBasePokemonID(pokemon.species_data.id_number, true)
+    headPoke = getBasePokemonID(pokemon.species_data.id_number, false)
+  else
+    bodyPoke = :WARGREYMON
+    headPoke = :METALGARURUMON
+  end
 
   if (pokemon.foreign?($Trainer)) # && !canunfuse
     scene.pbDisplay(_INTL("You can't unfuse a Pokémon obtained in a trade!"))

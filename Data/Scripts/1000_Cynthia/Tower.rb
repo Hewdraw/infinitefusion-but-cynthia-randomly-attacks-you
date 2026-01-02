@@ -6,10 +6,10 @@ def setupTower()
         :floor => 1,
         :badges => 0,
         :storage => PokemonStorage.new,
-        :cynthiachance => 1,
-        :maxcynthiachance => 20,
+        :cynthiachance => 0,
+        :maxcynthiachance => 10,
         :hatsunemikuchance => 0,
-        :maxmikuchance => 20,
+        :maxmikuchance => 10,
         :ladder1 => nil,
         :ladder2 => nil,
         :ladder3 => nil,
@@ -22,7 +22,6 @@ def setupTower()
     pbAddPokemon(getTowerPokemon(), 5)
     $PokemonBag.pbStoreItem(:DIGIVICE)
     $PokemonBag.pbStoreItem(:INFINITESPLICERS)
-    #$PokemonBag.pbStoreItem(:TUTORMACHINE)
 end
 
 def resetTower()
@@ -45,9 +44,13 @@ def getTowerPokemon(filter=nil)
         next if data.base_stats.values.sum > 350 + ($PokemonGlobal.towervalues[:floor]*5)
         case filter
         when "Starter"
-            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS].flatten.include?(data.species)
+            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :EEVEE, :PICHU].flatten.include?(data.species)
         end
         list.push(data.species)
+    end
+    [:TRIPLE_KANTO1, :TRIPLE_JOHTO1, :TRIPLE_HOENN1, :TRIPLE_SINNOH1, :TRIPLE_KALOS1].each do |value|
+        next if rand(3) != 0
+        list.push(value)
     end
     list.push(:AGUMON, :GABUMON, :PALMON)
     list.push(:GREATTUSK, :SCREAMTAIL, :FLUTTERMANE, :SLITHERWING, :SANDYSHOCKS, :ROARINGMOON, :IRONTREADS, :IRONBUNDLE, :IRONJUGULIS, :IRONMOTH, :IRONTHORNS, :IRONVALIANT) if $PokemonGlobal.towervalues[:floor] >= 100
@@ -59,6 +62,7 @@ def towerCynthiaEncounter()
         pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
         return
     end
+    return if ["Gym", "Elitefour", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
     if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
         $PokemonGlobal.towervalues[:cynthiachance] = 1
@@ -219,8 +223,13 @@ def towerEvent()
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
             pbAddPokemon(:GENESECT, 5)
             $PokemonBag.pbStoreItem(:OMNIDRIVE)
+            $PokemonBag.pbStoreItem(:BURNDRIVE)
+            $PokemonBag.pbStoreItem(:SHOCKDRIVE)
+            $PokemonBag.pbStoreItem(:DOUSEDRIVE)
+            $PokemonBag.pbStoreItem(:CHILLDRIVE)
+        else
+            return if !pbLegendaryBattle($PokemonGlobal.towervalues[:eventvariable])
         end
-        return if !pbLegendaryBattle($PokemonGlobal.towervalues[:eventvariable])
     when "Gym"
         case $PokemonGlobal.towervalues[:badges]
         when 0

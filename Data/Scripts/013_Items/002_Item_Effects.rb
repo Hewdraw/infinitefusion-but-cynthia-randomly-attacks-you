@@ -852,6 +852,34 @@ ItemHandlers::UseOnPokemon.add(:FRESHSTARTMOCHI, proc { |item, pkmn, scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.add(:RUSTYBOTTLECAP, proc { |item, pkmn, scene|
+  statnames = ["HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]
+  choice = Kernel.pbMessage("Choose a stat to lower.", statnames)
+  statarray = [:HP, :ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
+  if pkmn.iv[statarray[choice]] == 0
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  pkmn.iv[statarray[choice]] = 0
+  pkmn.calc_stats
+  scene.pbDisplay(_INTL("{1}'s {2} decreased.", pkmn.name, statnames[choice]))
+  next true
+})
+
+ItemHandlers::UseOnPokemon.add(:BOTTLECAP, proc { |item, pkmn, scene|
+  statnames = ["HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]
+  choice = Kernel.pbMessage("Choose a stat to raise.", statnames)
+  statarray = [:HP, :ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED]
+  if pkmn.iv[statarray[choice]] == 31
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  pkmn.iv[statarray[choice]] = 31
+  pkmn.calc_stats
+  scene.pbDisplay(_INTL("{1}'s {2} increased.", pkmn.name, statnames[choice]))
+  next true
+})
+
 ItemHandlers::UseOnPokemon.add(:GOLDENBOTTLECAP, proc { |item, pkmn, scene|
   didsomething = false
   GameData::Stat.each_main do |s|

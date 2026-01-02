@@ -2333,6 +2333,9 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     when :ICEWALL
       msg = _INTL("{1} became trapped by Ice Wall!",target.pbThis)
       target.effects[PBEffects::Trapping] = 1000
+    when :FLOWERWREATH
+      msg = _INTL("{1} was squeezed by {2}!",target.pbThis,user.pbThis(true))
+      target.effects[PBEffects::Trapping] = 1000
     end
     @battle.pbDisplay(msg)
   end

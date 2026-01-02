@@ -690,7 +690,7 @@ class PokemonFusionScene
 
 
     spriteLoader = BattleSpriteLoader.new
-    @fusion_pif_sprite = spriteLoader.obtain_fusion_pif_sprite(poke_head_number,poke_body_number)
+    @fusion_pif_sprite = spriteLoader.obtain_fusion_pif_sprite(poke_head_number,poke_body_number) if @newspecies != :OMNIMON
 
     #this will use the sprite that is set when we call obtain_fusion_pif_sprite, and apply the shiny effect
     @sprites["rsprite2"].setPokemonBitmapFromId(@newspecies, false, pokemon_head.shiny? || pokemon_body.shiny?, pokemon_head.shiny?, pokemon_body.shiny?)
@@ -865,7 +865,7 @@ class PokemonFusionScene
 
       sprite_bitmap = @sprites["rsprite2"].getBitmap
 
-      drawSpriteCredits(@fusion_pif_sprite, @viewport)
+      drawSpriteCredits(@fusion_pif_sprite, @viewport) if @newspecies != :OMNIMON
       pbBGMPlay(pbGetWildVictoryME)
       Kernel.pbMessageDisplay(@sprites["msgwindow"],
                               _INTL("\\se[]Congratulations! Your Pokémon were fused into {2}!\\wt[80]", @pokemon1.name, newspeciesname))
@@ -911,7 +911,7 @@ class PokemonFusionScene
       end
       #@pokemon1.ability = pbChooseAbility(@pokemon1, hiddenAbility1, hiddenAbility2)
       #
-      pbChooseAbility(ability1,ability2)
+      pbChooseAbility(ability1,ability2) if newSpecies != :OMNIMON
 
       setFusionMoves(@pokemon1, @pokemon2, firstOptionSelected) if !noMoves
 
@@ -1029,6 +1029,11 @@ def setFusionMoves(fusedPoke, poke2, selected2ndOption = false)
   # fusedPoke.moves=moves
   bodySpecies = getBodyID(fusedPoke)
   headSpecies = getHeadID(fusedPoke, bodySpecies)
+  if [:WARGREYMON, :METALGARURUMON].include?(poke2.species)
+    bodySpecies = :WARGREYMON if poke2.species = :METALGARURUMON
+    bodySpecies = :METALGARURUMON if poke2.species = :WARGREYMON
+    headSpecies = poke2.species
+  end
   bodySpeciesName = GameData::Species.get(bodySpecies).real_name
   headSpeciesName = GameData::Species.get(headSpecies).real_name
 

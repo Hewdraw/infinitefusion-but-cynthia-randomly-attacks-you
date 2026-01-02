@@ -4965,32 +4965,361 @@ class PokeBattle_Move_299 < PokeBattle_MultiStatUpMove
   end
 end
 
+class PokeBattle_Move_300 < PokeBattle_PoisonMove
+  def pbEffectAgainstTarget(user,target)
+    return if target.fainted? || target.damageState.substitute
+    return if target.effects[PBEffects::Trapping]>0
+    # Set trapping effect duration and info
+    if user.hasActiveItem?(:GRIPCLAW)
+      target.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
+    else
+      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2)
+    end
+    target.effects[PBEffects::TrappingMove] = @id
+    target.effects[PBEffects::TrappingUser] = user.index
+    # Message
+    msg = _INTL("{1} was squeezed by {2}!",target.pbThis,user.pbThis(true))
+    @battle.pbDisplay(msg)
+  end
+end
+
+class PokeBattle_Move_301 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    if target.effects[PBEffects::Dynamax] > 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    ret = 20
+    weight = target.pbWeight
+    if weight>=2000;    ret = 120
+    elsif weight>=1000; ret = 100
+    elsif weight>=500;  ret = 80
+    elsif weight>=250;  ret = 60
+    elsif weight>=100;  ret = 40
+    end
+    return ret
+  end
+
+  def ignoresReflect?
+    return true;
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0
+      user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::Reflect] > 0
+      user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+      user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
+    end
+  end
+
+  def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0 ||
+      user.pbOpposingSide.effects[PBEffects::Reflect] > 0 ||
+      user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+      hitNum = 1 # Wall-breaking anim
+    end
+    super
+  end
+end
+
+class PokeBattle_Move_302 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPEED, 1]
+  end
+
+  def pbFailsAgainstTarget?(user,target)
+    return (!target.pbCanSleep?(user,true,self)) && super
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    super
+    target.pbSleep
+  end
+end
+
+class PokeBattle_Move_303 < PokeBattle_PoisonMove
+  def initialize(battle, move)
+    super
+    @toxic = true
+  end
+
+  def flinchingMove?; return true; end
+
+  def pbAdditionalEffect(user,target)
+    super
+    return if target.damageState.substitute
+    chance = pbAdditionalEffectChance(user, target, 20)
+    return if chance == 0
+    target.pbFlinch(user) if @battle.pbRandom(100) < chance
+  end
+end
+
+class PokeBattle_Move_304 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPECIAL_DEFENSE, 1]
+  end
+
+  def multiHitMove?; return true; end
+
+  def pbNumHits(user,targets)
+    hitChances = [2,2,3,3,4,5]
+    hitChances = [4,5] if user.hasActiveItem?(:LOADEDDICE)
+    r = @battle.pbRandom(hitChances.length)
+    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    return hitChances[r]
+  end
+end
+
+class PokeBattle_Move_305 < PokeBattle_FixedDamageMove
+  def pbAddTarget(targets, user)
+    t = user.effects[PBEffects::CounterTarget]
+    t += user.effects[PBEffects::MirrorCoatTarget]
+    return if t < 0 || !user.opposes?(t)
+    user.pbAddTarget(targets, user, @battle.battlers[t], self, false)
+  end
+
+  def pbMoveFailed?(user, targets)
+    if targets.length == 0
+      @battle.pbDisplay(_INTL("But there was no target..."))
+      return true
+    end
+    return false
+  end
+
+  def pbFixedDamage(user, target)
+    dmg = user.effects[PBEffects::Counter] * 2
+    dmg += user.effects[PBEffects::MirrorCoat] * 2
+    dmg = 1 if dmg == 0
+    return dmg
+  end
+end
+
+class PokeBattle_Move_306 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 2, :SPECIAL_DEFENSE, 2]
+  end
+end
 
 
+class PokeBattle_Move_307 < PokeBattle_Move
+  def ignoresSubstitute?(user); return true; end
 
+  def pbFailsAgainstTarget?(user, target)
+    return false if damagingMove?
+    return true if !target.pbCanAttract?(user) && target.effects[PBEffects::Taunt]>0
+    return true if pbMoveFailedAromaVeil?(user, target)
+    return false
+  end
 
+  def pbEffectAgainstTarget(user, target)
+    return if damagingMove?
+    target.pbAttract(user)
+    return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
 
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    target.pbAttract(user) if target.pbCanAttract?(user, false)
+  end
+end
 
+class PokeBattle_Move_308 < PokeBattle_Move
+  def pbCritialOverride(user,target); return [:Sun, :HarshSun].include?(@battle.pbWeather); end
+end
 
+class PokeBattle_Move_309 < PokeBattle_Move_0C4
+  def pbAdditionalEffect(user)
+    @battle.pbStartTerrain(user, :Grassy)
+  end
+end
 
+class PokeBattle_Move_310 < PokeBattle_Move
+  def healingMove?
+    return true;
+  end
 
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.hpLost <= 0
+    hpGain = (target.damageState.hpLost * 0.3).round
+    hpGain = (target.damageState.hpLost * 0.6).round if [:Sun, :HarshSun].include?(@battle.pbWeather) || @battle.field.terrain == :Grassy
+    user.pbRecoverHPFromDrain(hpGain, target)
+  end
+end
 
+class PokeBattle_Move_311 < PokeBattle_StatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:ATTACK, 1, :DEFENSE, 1]
+  end
 
+  def pbMoveFailed?(user, targets)
+    if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3 && statusMove?
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
 
+  def pbEffectGeneral(user)
+    user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+    @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+                            user.pbOpposingTeam(true)))
+  end
+end
 
+class PokeBattle_Move_312 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3 && statusMove? && @battle.field.terrain == :Grassy
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
 
+  def pbEffectGeneral(user)
+    @battle.pbStartTerrain(user, :Grassy)
+    user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+    @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+                            user.pbOpposingTeam(true)))
+  end
+end
 
+class PokeBattle_Move_313 < PokeBattle_Move
+  def healingMove?
+    return true;
+  end
 
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.hpLost <= 0
+    hpGain = (target.damageState.hpLost * 0.5).round
+    user.pbRecoverHPFromDrain(hpGain, target)
+  end
 
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    target.pbAttract(user) if target.pbCanAttract?(user, false)
+  end
+end
 
+class PokeBattle_Move_314 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1, :SPECIAL_DEFENSE, 1]
+  end
 
+  def pbEffectAgainstTarget(user,target)
+    super
+    target.pbAttract(user) if target.pbCanAttract?(user, false)
+    return if target.fainted? || target.damageState.substitute
+    return if target.effects[PBEffects::Trapping]>0
+    # Set trapping effect duration and info
+    target.effects[PBEffects::Trapping] = 1000
+    target.effects[PBEffects::TrappingMove] = @id
+    target.effects[PBEffects::TrappingUser] = user.index
+    # Message
+    msg = _INTL("{1} was squeezed by {2}!",target.pbThis,user.pbThis(true))
+    @battle.pbDisplay(msg)
+  end
+end
 
+class PokeBattle_Move_315 < PokeBattle_Move
+  def ignoresReflect?
+    return true;
+  end
 
+  def pbEffectGeneral(user)
+    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0
+      user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::Reflect] > 0
+      user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+      user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
+    end
+  end
 
+  def pbAdditionalEffect(user, target)
+    return if target.effects[PBEffects::LeechSeed]>=0
+    return if target.pbHasType?(:GRASS)
+    return if target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0
+    target.effects[PBEffects::LeechSeed] = user.index
+    @battle.pbDisplay(_INTL("{1} was seeded!",target.pbThis))
+  end
+end
 
+class PokeBattle_Move_316 < PokeBattle_Move_06C
+  def pbEffectAgainstTarget(user, target)
+    target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user, true, self)
+    target.pbAttract(user) if target.pbCanAttract?(user)
+    return if target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker
+    target.effects[PBEffects::Taunt] = 4
+    @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    target.pbItemStatusCureCheck
+  end
+end
 
+class PokeBattle_Move_317 < PokeBattle_StatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPECIAL_DEFENSE, 2]
+  end
 
-class PokeBattle_Move_ < PokeBattle_StatUpMove
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    target.pbSleep if target.pbCanSleep?(user,false,self)
+  end
+end
+
+class PokeBattle_Move_318 < PokeBattle_Move_06C
+  def pbEffectAgainstTarget(user,target)
+    target.effects[PBEffects::PerishSong]     = 4
+    target.effects[PBEffects::PerishSongUser] = user.index
+  end
+
+  def pbEffectGeneral(user)
+    @battle.pbStartTerrain(user, :Misty)
+  end
+end
+
+class PokeBattle_Move_319 < PokeBattle_StatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPECIAL_ATTACK, 2]
+  end
+
+  def healingMove?
+    return true;
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.hpLost <= 0
+    hpGain = (target.damageState.hpLost * 0.5).round
+    user.pbRecoverHPFromDrain(hpGain, target)
+  end
+end
+
+class PokeBattle_Move_320 < PokeBattle_StatUpMove
   def initialize(battle, move)
     super
     @statUp = [:ATTACK, 3]
