@@ -19242,8 +19242,8 @@ HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
 [1000412]
-Name = Redstone Monstrocity
-InternalName = REDSTONEMONSTROCITY
+Name = Redstone Monstrosity
+InternalName = REDSTONEMONSTROSITY
 Type1 = ROCK
 Type2 = GROUND
 BaseStats = 155,145,200,20,20,140
