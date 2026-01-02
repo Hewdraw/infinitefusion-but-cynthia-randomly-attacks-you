@@ -1244,7 +1244,7 @@ class PokemonPartyScreen
 
       # Build the commands
       commands[cmdSummary = commands.length] = _INTL("Summary")
-      commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
+      commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if (pkmn.hasItem?(:MEGASHARD) || pkmn.hasAbility?(:EON)) && pkmn.getMegaList.length > 0
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
         # Check for hidden moves and add any that were found

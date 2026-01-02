@@ -1379,7 +1379,7 @@ class Pokemon
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
-    if hasItem?(:MEGASHARD)
+    if hasItem?(:MEGASHARD) || hasAbility?(:EON)
       headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
       bstdata = getMegaShardForm
       bstdata.each_with_index do |mega,i|
@@ -1489,7 +1489,7 @@ class Pokemon
     @extraabilities = []
     @type1 = nil
     @type2 = nil
-    if hasItem?(:MEGASHARD)
+    if hasItem?(:MEGASHARD) || hasAbility?(:EON)
       getMegaShardForm.each_with_index do |mega, i|
         next if mega.form == 0
         @type2 = mega.type2 if i == 0

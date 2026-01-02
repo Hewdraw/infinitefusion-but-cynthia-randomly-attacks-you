@@ -4466,7 +4466,7 @@ class PokeBattle_Move_268 < PokeBattle_BurnMove
 end
 
 class PokeBattle_Move_269 < PokeBattle_Move
-  def pbCritialOverride(user,target); return target.species.to_s.include?("MEGA") || target.hasActiveItem?(:MEGASHARD); end
+  def pbCritialOverride(user,target); return target.species.to_s.include?("MEGA") || target.hasActiveItem?(:MEGASHARD) || target.hasActiveAbility?(:EON); end
 end
 
 class PokeBattle_Move_270 < PokeBattle_Move
