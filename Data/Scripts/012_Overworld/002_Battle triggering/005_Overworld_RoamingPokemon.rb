@@ -236,11 +236,15 @@ def pbRoamingPokemonBattle(species, level)
   end
   # Set some battle rules
   setBattleRule("single")
-  setBattleRule("roamerFlees")
+  #setBattleRule("roamerFlees")
   # Perform the battle
-  decision = pbWildBattleCore($PokemonGlobal.roamPokemon[idxRoamer])
+  if species == :B378H379
+    decision = pbLegendaryBattle("Latias")
+  else
+    decision = pbWildBattleCore($PokemonGlobal.roamPokemon[idxRoamer])
+  end
   # Update Roaming Pokémon data based on result of battle
-  if decision==1 || decision==4   # Defeated or caught
+  if decision==1 || decision==4 || decision == true   # Defeated or caught
     $PokemonGlobal.roamPokemon[idxRoamer]       = true
     $PokemonGlobal.roamPokemonCaught[idxRoamer] = (decision==4)
   end

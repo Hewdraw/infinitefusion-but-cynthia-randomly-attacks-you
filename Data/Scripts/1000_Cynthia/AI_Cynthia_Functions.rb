@@ -1211,7 +1211,7 @@ class PokeBattle_AI
       score = 1 if target.hasActiveAbility?([:UNBURDEN])
       score = 0 if !target.item
       score = 0 if target.unlosableItem?(target.item)
-      score = 0 if target.hasActiveAbility?(:STICKYHOLD) && !user.hasMoldBreaker?
+      score = 0 if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !user.hasMoldBreaker?
     #---------------------------------------------------------------------------
     when "0F1" #todo
       if !user.item && target.item
@@ -1223,7 +1223,7 @@ class PokeBattle_AI
     when "0F2" #todo
       if !user.item && !target.item
         score -= 90
-      elsif target.hasActiveAbility?(:STICKYHOLD)
+      elsif target.hasActiveAbility?([:STICKYHOLD, :EONBOOST])
         score -= 90
       elsif user.hasActiveItem?([:FLAMEORB,:TOXICORB,:STICKYBARB,:IRONBALL,
                                  :CHOICEBAND,:CHOICESCARF,:CHOICESPECS])

@@ -1008,7 +1008,6 @@
 1042,IVYHUG,Ivy Hug,314,0,DARK,Status,100,15,0,NearOther,0,bef,"Entangles the opponent in vines."
 1043,BEAUTYSHOCK,Beauty Shock,007,90,ELECTRIC,Special,100,15,50,NearOther,0,bef,"Shocks its opponent with lightning from its left whip."
 1044,THORNSHOOT,Thorn Shoot,315,120,GRASS,Special,100,5,100,NearOther,0,bcfh,"Shoots a thorn."
-
 1045,FORBIDDENTEMPTATION,Forbidden Temptation,316,1,FAIRY,Special,0,1,0,NearOther,0,bef,"Beautifully destroys the opponent's data in a shower of innumerable rose petals.
 1046,ROSYCRADLE,Rosy Cradle,317,140,GRASS,Special,100,5,50,AllNearOthers,0,bef,"Summons a storm of sleep-inducing rose petals."
 1047,DANGERTHORN,Danger Thorn,000,300,GRASS,Special,70,1,0,AllNearOthers,0,bef,"Shoots thorns at all enemies."

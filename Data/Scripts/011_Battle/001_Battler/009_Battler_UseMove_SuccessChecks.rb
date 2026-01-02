@@ -425,7 +425,7 @@ class PokeBattle_Battler
     # Airborne-based immunity to Ground moves
     if move.damagingMove? && move.calcType == :GROUND &&
        target.airborne? && !move.hitsFlyingTargets?
-      if (target.hasActiveAbility?(:LEVITATE) || target.hasActiveAbility?(:ENDER)) && !@battle.moldBreaker
+      if target.hasActiveAbility?([:LEVITATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))

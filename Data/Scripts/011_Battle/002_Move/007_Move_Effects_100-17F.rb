@@ -2101,7 +2101,12 @@ end
 Events.onEndBattle += proc { |_sender,_e|
   $Trainer.party.each do |pokemon|
     pokemon.changeFormSpecies(:U_NECROZMA,:NECROZMA) if pokemon.isFusionOf(:U_NECROZMA)
-    pokemon.changeFormSpecies(:MEGADIANCIE, :DIANCIE) if pokemon.species == :MEGADIANCIE
+    if !pokemon.originalform.nil?
+      level = pokemon.level
+      pokemon.species = pokemon.originalform
+      pokemon.level = level
+      pokemon.calc_stats
+    end
   end
 }
 
@@ -3108,7 +3113,7 @@ class PokeBattle_Move_202 < PokeBattle_Move
     return if user.fainted?
     return if target.damageState.unaffected
     return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
     itemName = target.itemName
     target.pbRemoveItem(false)
     @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
@@ -3170,7 +3175,7 @@ class PokeBattle_Move_206 < PokeBattle_Move
     return if @battle.wildBattle? && user.opposes?   # Wild Pokémon can't knock off
     return if user.fainted?
     return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
     itemName = target.itemName
     target.pbRemoveItem(false)
     @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
@@ -3991,7 +3996,7 @@ class PokeBattle_Move_239 < PokeBattle_Move
   end
 end
 
-class PokeBattler_Move_240 < PokeBattle_Move_043
+class PokeBattle_Move_240 < PokeBattle_Move_043
   def pbCalcTypeModSingle(moveType, defType, user, target)
     return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :GROUND
     return super
@@ -4011,7 +4016,7 @@ class PokeBattler_Move_240 < PokeBattle_Move_043
   end
 end
 
-class PokeBattler_Move_241 < PokeBattle_Move
+class PokeBattle_Move_241 < PokeBattle_Move
   def pbGetAttackStats(user, target)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
@@ -4026,7 +4031,7 @@ class PokeBattler_Move_241 < PokeBattle_Move
   end
 end
 
-class PokeBattler_Move_242 < PokeBattle_Move
+class PokeBattle_Move_242 < PokeBattle_Move
   def pbGetAttackStats(user, target)
     return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
   end
@@ -4044,29 +4049,29 @@ class PokeBattler_Move_242 < PokeBattle_Move
   end
 end
 
-class PokeBattler_Move_243 < PokeBattle_Move_046
+class PokeBattle_Move_243 < PokeBattle_Move_046
   def pbEffectGeneral(user)
     @battle.pbStartTerrain(user, :Psychic)
   end
 end
 
-class PokeBattler_Move_244 < PokeBattle_Move_214
+class PokeBattle_Move_244 < PokeBattle_Move_214
   def pbCalcTypeModSingle(moveType, defType, user, target)
     return Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK
     return super
   end
 end
 
-class PokeBattler_Move_245 < PokeBattle_Move_136
+class PokeBattle_Move_245 < PokeBattle_Move_136
   def pbInitialEffect(user,targets,hitNum)
     if user.pokemon.species == :DIANCIE
-      @battle.pbDisplay(_INTL("{1} surrounded itself with Mega Power!",user.pbThis))
-      user.changeFormSpecies(:DIANCIE,:MEGADIANCIE,"UltraBurst2")
+      user.pokemon.originalform = user.pokemon.species
+      user.battle.pbMegaEvolve(user.index, true)
     end
   end
 end
 
-class PokeBattler_Move_246 < PokeBattle_ParalysisMove
+class PokeBattle_Move_246 < PokeBattle_ParalysisMove
   def pbFailsAgainstTarget?(user, target)
     if @battle.choices[target.index][0] != :UseMove
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -4083,7 +4088,7 @@ class PokeBattler_Move_246 < PokeBattle_ParalysisMove
   end
 end
 
-class PokeBattler_Move_247 < PokeBattle_Move_234
+class PokeBattle_Move_247 < PokeBattle_Move_234
   def healingMove?;       return true; end
 
   def pbEffectGeneral(user)
@@ -4098,7 +4103,7 @@ class PokeBattler_Move_247 < PokeBattle_Move_234
   end
 end
 
-class PokeBattler_Move_248 < PokeBattle_FreezeMove
+class PokeBattle_Move_248 < PokeBattle_FreezeMove
   def pbGetAttackStats(user, target)
     return user.spdef, user.stages[:SPECIAL_DEFENSE] + 6
   end
@@ -4351,7 +4356,7 @@ class PokeBattle_Move_260 < PokeBattle_Move_076
   end
 end
 
-class PokeBattler_Move_261 < PokeBattle_Move_14C
+class PokeBattle_Move_261 < PokeBattle_Move_14C
   def healingMove?;       return true; end
 
   def pbEffectGeneral(user)
@@ -4910,7 +4915,7 @@ class PokeBattle_Move_296 < PokeBattle_Move
     return if user.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
     return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
     itemName = target.itemName
     target.pbRemoveItem(false)
     @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))

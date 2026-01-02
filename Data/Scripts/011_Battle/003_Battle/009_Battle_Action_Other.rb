@@ -146,8 +146,8 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1}'s {2} is reacting to {3}'s {4}!",
            battler.pbThis,battler.itemName,trainerName,pbGetMegaRingName(idxBattler)))
       end
-      pbCommonAnimation("MegaEvolution",battler)
     end
+    pbCommonAnimation("MegaEvolution",battler)
     tempspecies = ("MEGA" + battler.pokemon.species.to_s).to_sym
     level = battler.level
     battler.pokemon.species = tempspecies
@@ -159,19 +159,17 @@ class PokeBattle_Battle
     battler.pbUpdate(true)
     pbCommonAnimation("MegaEvolution2",battler)
     megaName = battler.pokemon.megaName
-    if !force
-      megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
-      pbDisplay(_INTL("{1} has Mega Evolved into {2}!",battler.pbThis,megaName))
-    end
+    megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
+    pbDisplay(_INTL("{1} has Mega Evolved into {2}!",battler.pbThis,megaName))
     side  = battler.idxOwnSide
     owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
-    @megaEvolution[side][owner] = -2
-    if battler.isSpecies?(:GENGAR) && battler.mega?
+    @megaEvolution[side][owner] = -2 if !force
+    if battler.isSpecies?(:MEGAGENGAR) && battler.mega?
       battler.effects[PBEffects::Telekinesis] = 0
     end
     # Trigger ability
     battler.pbEffectsOnSwitchIn
-    @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
+    @battleAI.pbDefaultChooseEnemyCommand(idxBattler) if !battler.pbOwnedByPlayer?
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 

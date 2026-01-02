@@ -623,7 +623,7 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::SmackDown]
     return false if @battle.field.effects[PBEffects::Gravity] > 0
     return true if pbHasType?(:FLYING) && @battle.field.effects[PBEffects::InverseRoom] == 0
-    return true if hasActiveAbility?([:LEVITATE, :ENDER]) && !@battle.moldBreaker
+    return true if hasActiveAbility?([:LEVITATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
     return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS])
     return true if @effects[PBEffects::MagnetRise] > 0
     return true if @effects[PBEffects::Telekinesis] > 0

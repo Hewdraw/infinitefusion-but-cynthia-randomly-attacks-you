@@ -11215,6 +11215,42 @@ Pokemon = B500H196,5
 	Happiness = 255
 	Ball = PREMIERBALL
 
+[Non_Skeleton_Dev,Hewdraw,5]	
+Pokemon = PALMON,5	
+	Offset = 0
+	Moves = NIOIKOUGEKI,POISONIVY,LEECHSEED,SYNTHESIS
+	Ability = SUCTIONCUPS
+	Item = EVIOLITE
+	Gender = F
+	Nature = CALM
+	IV = 31,0,31,31,31,31
+	EV = 252,0,4,0,0,252
+	Happiness = 255
+	Ball = PREMIERBALL
+Pokemon = AGUMON,5	
+	Offset = 0
+	Moves = FINALCLAW,FLAMECHARGE
+	Ability = GUTS
+	Item = EVIOLITE
+	Status = BURN
+	Gender = F
+	Nature = ADAMANT
+	IV = 31,31,31,31,31,31
+	EV = 252,252,4,0,0,0
+	Happiness = 255
+	Ball = PREMIERBALL
+Pokemon = GABUMON,5	
+	Offset = 0
+	Moves = BLUEBLASTER,SKULLCRACKER,SCALD,ICEBEAM
+	Ability = FLUFFY
+	Item = EVIOLITE
+	Gender = F
+	Nature = BOLD
+	IV = 31,0,31,31,31,31
+	EV = 252,0,252,0,0,4
+	Happiness = 255
+	Ball = PREMIERBALL
+
 [Skeleton_Dev,Shadross,0]
 Pokemon = B346H449,75	#Regigigas / Registeel
 	Offset = 0
@@ -11636,6 +11672,19 @@ Pokemon = RESHIRAM,11
 	Ability = LEGENDARYPRESSURE
 	Hpbar = 1
 	Item = FLAMEORB
+	Nature = MODEST
+	Raid = TRUE
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,252,0
+
+[LEGENDARY_POKEMON,Latias,0]
+Pokemon = B378H379,11	
+	Offset = 5
+	Moves = LUSTERPURGE,MYSTICALFIRE,DRAGONPULSE,CALMMIND
+	Ability = LEGENDARYPRESSURE
+	Hpbar = 3
+	Phasetwo = TRUE
+	Item = SOULDEW
 	Nature = MODEST
 	Raid = TRUE
 	IV = 31,31,31,31,31,31

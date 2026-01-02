@@ -834,7 +834,7 @@ BattleHandlers::DamageCalcUserItem.copy(:SOFTSAND,:EARTHPLATE)
 
 BattleHandlers::DamageCalcUserItem.add(:SOULDEW,
   proc { |item,user,target,move,mults,baseDmg,type|
-    next if !user.isFusionOf(:LATIAS) && !user.isFusionOf(:LATIOS)
+    next if !user.isFusionOf(:LATIAS) && !user.isFusionOf(:LATIOS) && ![:MEGALATIAS, :MEGALATIOS, :MEGAB378H379, :MEGAB379H378].include?(user.species)
     if Settings::SOUL_DEW_POWERS_UP_TYPES
       mults[:final_damage_multiplier] *= 1.2 if type == :PSYCHIC || type == :DRAGON
     else
@@ -1094,7 +1094,7 @@ BattleHandlers::DamageCalcTargetItem.add(:SHUCABERRY,
 BattleHandlers::DamageCalcTargetItem.add(:SOULDEW,
   proc { |item,user,target,move,mults,baseDmg,type|
     next if Settings::SOUL_DEW_POWERS_UP_TYPES
-    next if !target.isFusionOf(:LATIAS) && !target.isFusionOf(:LATIOS)
+    next if !target.isFusionOf(:LATIAS) && !target.isFusionOf(:LATIOS) && ![:MEGALATIAS, :MEGALATIOS, :MEGAB378H379, :MEGAB379H378].include?(user.species)
     if move.specialMove? && !user.battle.rules["souldewclause"]
       mults[:defense_multiplier] *= 1.5
     end

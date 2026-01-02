@@ -188,10 +188,13 @@ class PokeBattle_Battler
     return increment
   end
 
-  def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false)
+  def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,mirrorarmor=false)
     # Contrary
     if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
       return pbRaiseStatStage(stat,increment,user,showAnim,true)
+    end
+    if !mirrorarmor && hasActiveAbility?(:MIRRORARMOR) && !@battle.moldBreaker
+      return user.pbLowerStatStage(stat,increment,self,showAnim,ignoreContrary,true)
     end
     obscured = false
     if stat == :EVASION && @effects[PBEffects::Obscured] > 0

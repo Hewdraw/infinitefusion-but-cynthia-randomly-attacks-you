@@ -113,7 +113,8 @@ class Pokemon
   attr_accessor :split
   attr_accessor :phasetwo
   attr_accessor :unparadox
-  attr_accessor :disguise
+  attr_accessor :onceperbattle
+  attr_accessor :originalform
   attr_accessor :affection
   attr_accessor :megaform
   attr_accessor :extraabilities
@@ -1611,6 +1612,8 @@ class Pokemon
     @hiddenPowerType = nil
     @glitter = nil
     @tera = nil
+    @onceperbattle = []
+    @originalform = nil
     GameData::Stat.each_main do |s|
       @iv[s.id] = rand(IV_STAT_LIMIT + 1)
       @ev[s.id] = 0

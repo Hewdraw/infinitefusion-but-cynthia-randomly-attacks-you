@@ -1292,67 +1292,66 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
-    [GameData::Species.get(getBodyID(pkmn.species)).species] => [:HIDDENPOWER, :TERABLAST],
-    [:ARTICUNO, :GARTICUNO] => [:FREEZINGGLARE],
-    [:BLASTOISE] => [:HYDROCANNON],
-    [:BLAZIKEN] => [:BLAZEKICK],
-    [:CHARIZARD] => [:BLASTBURN],
-    [:CHESNAUGHT, :CACTURNE] => [:SPIKYSHIELD],
-    [:DELIBIRD, :IRONBUNDLE, :LUGIA, :WROTOM] => [:HYDROPUMP],
-    [:DIANCIE, :MAGEARNA] => [:DIAMONDSTORM],
-    [:DIANCIE, :MAGEARNA] => [:FLEURCANNON],
-    [:DONPHAN, :GREATTUSK, :IRONTREADS] => [:RAPIDSPIN],
-    [:DRAGONITE] => [:EXTREMESPEED],
-    [:EMPOLEON] => [:FLASHCANNON],
-    [:ENTEI, :GOUGINGFIRE] => [:BURNINGBULWARK],
-    [:GARCHOMP] => [:DRAGONCLAW],
-    [:GARDEVOIR, :GALLADE, :IRONVALIANT] => [:PSYSHOCK],
-    [:GENESECT] => [:TECHNOBLAST],
-    [:GOLISOPOD, :VOLCARONA, :SLITHERWING, :IRONMOTH] => [:FIRSTIMPRESSION, :MAXXSPEED],
-    [:GRENINJA] => [:WATERSHURIKEN],
-    [:GYARADOS] => [:SPLASH],
-    [:HOOH, :ENTEI, :GOUGINGFIRE] => [:SACREDFIRE],
-    [:HYDREIGON, :IRONJUGULIS] => [:DARKPULSE],
-    [:HYDREIGON, :IRONJUGULIS] => [:DRACOMETEOR],
-    [:INFERNAPE] => [:CLOSECOMBAT],
-    [:JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL] => [:BOOMBURST],
-    [:KOMMOO] => [:CLANGINGSCALES],
-    [:MAGNEZONE, :SANDYSHOCKS, :PROBOPASS] => [:MAGNETBOMB],
-    [:MAROWAK] => [:BONEMERANG],
-    [:MAWILE] => [:PLAYROUGH],
-    [:METAGROSS] => [:METEORMASH],
-    [:MEW] => [:PSYCHIC],
-    [:MISMAGIUS, :FLUTTERMANE, :DELPHOX] => [:MYSTICALFIRE],
-    [:MOLTRES, :GMOLTRES] => [:FIERYWRATH],
-    [:RAIKOU, :RAGINGBOLT] => [:THUNDERCLAP],
-    [:REAPINGSHELL] => [:TECHNOBLAST, :HYDROBURST],
-    [:REGICE, :ARTICUNO, :GARTICUNO] => [:ICEBEAM],
-    [:REGIROCK] => [:STONEEDGE],
-    [:REGISTEEL, :MAWILE] => [:IRONHEAD],
-    [:SALAMENCE, :ROARINGMOON] => [:JAWLOCK],
-    [:SCEPTILE] => [:LEAFBLADE],
-    [:SWAMPERT] => [:MUDDYWATER],
-    [:TORTERRA] => [:EARTHQUAKE],
-    [:TYRANITAR, :IRONTHORNS] => [:CRUNCH],
-    [:TYRANITAR, :IRONTHORNS] => [:STONEEDGE],
-    [:SUICUNE, :WALKINGWAKE] => [:HYDROSTEAM],
-    [:UNOWN] => [:TERABLAST, :TERASTARSTORM],
-    [:VENUSAUR] => [:FRENZYPLANT],
-    [:VOLCARONA, :SLITHERWING, :IRONMOTH] => [:FIERYDANCE, :TORCHSONG],
-    [:ZAPDOS, :GZAPDOS] => [:THUNDEROUSKICK],
+    [pkmn.species] => [[:HIDDENPOWER, :TERABLAST]],
+    [:ARTICUNO, :GARTICUNO] => [[:FREEZINGGLARE]],
+    [:BLASTOISE] => [[:HYDROCANNON]],
+    [:BLAZIKEN] => [[:BLAZEKICK]],
+    [:CHARIZARD] => [[:BLASTBURN]],
+    [:CHESNAUGHT, :CACTURNE] => [[:SPIKYSHIELD]],
+    [:DELIBIRD, :IRONBUNDLE, :LUGIA, :WROTOM] => [[:HYDROPUMP]],
+    [:DIANCIE, :MAGEARNA] => [[:DIAMONDSTORM], [:FLEURCANNON]],
+    [:DONPHAN, :GREATTUSK, :IRONTREADS] => [[:RAPIDSPIN]],
+    [:DRAGONITE] => [[:EXTREMESPEED]],
+    [:EMPOLEON] => [[:FLASHCANNON]],
+    [:ENTEI, :GOUGINGFIRE] => [[:BURNINGBULWARK]],
+    [:GARCHOMP] => [[:DRAGONCLAW]],
+    [:GARDEVOIR, :GALLADE, :IRONVALIANT] => [[:PSYSHOCK]],
+    [:GENESECT] => [[:TECHNOBLAST]],
+    [:GOLISOPOD, :VOLCARONA, :SLITHERWING, :IRONMOTH] => [[:FIRSTIMPRESSION, :MAXXSPEED]],
+    [:GRENINJA] => [[:WATERSHURIKEN]],
+    [:GYARADOS] => [[:SPLASH]],
+    [:HOOH, :ENTEI, :GOUGINGFIRE] => [[:SACREDFIRE]],
+    [:HYDREIGON, :IRONJUGULIS] => [[:DARKPULSE], [:DRACOMETEOR]],
+    [:INFERNAPE] => [[:CLOSECOMBAT]],
+    [:JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL] => [[:BOOMBURST]],
+    [:KOMMOO] => [[:CLANGINGSCALES]],
+    [:MAGNEZONE, :SANDYSHOCKS, :PROBOPASS] => [[:MAGNETBOMB]],
+    [:MAROWAK] => [[:BONEMERANG]],
+    [:MAWILE] => [[:PLAYROUGH], [:IRONHEAD]],
+    [:METAGROSS] => [[:METEORMASH]],
+    [:MEW] => [[:PSYCHIC]],
+    [:MISMAGIUS, :FLUTTERMANE, :DELPHOX] => [[:MYSTICALFIRE]],
+    [:MOLTRES, :GMOLTRES] => [[:FIERYWRATH]],
+    [:RAIKOU, :RAGINGBOLT] => [[:THUNDERCLAP]],
+    [:REAPINGSHELL] => [[:TECHNOBLAST, :HYDROBURST]],
+    [:REGICE, :ARTICUNO, :GARTICUNO] => [[:ICEBEAM]],
+    [:REGIROCK] => [[:STONEEDGE]],
+    [:REGISTEEL] => [[:IRONHEAD]],
+    [:SALAMENCE, :ROARINGMOON] => [[:JAWLOCK]],
+    [:SCEPTILE] => [[:LEAFBLADE]],
+    [:SWAMPERT] => [[:MUDDYWATER]],
+    [:TORTERRA] => [[:EARTHQUAKE]],
+    [:TYRANITAR, :IRONTHORNS] => [[:CRUNCH], [:STONEEDGE]],
+    [:SUICUNE, :WALKINGWAKE] => [[:HYDROSTEAM]],
+    [:UNOWN] => [[:TERABLAST, :TERASTARSTORM]],
+    [:VENUSAUR] => [[:FRENZYPLANT]],
+    [:VOLCARONA, :SLITHERWING, :IRONMOTH] => [[:FIERYDANCE, :TORCHSONG]],
+    [:ZAPDOS, :GZAPDOS] => [[:THUNDEROUSKICK]],
   }
   allmoves = pkmn.isFusionOf(:GENESECT) || pkmn.species == :DEOSECTWO
-  upgradelist.each do |pokemon, moves|
+  upgradelist.each do |pokemon, movearray|
     pokemon.each do |mon|
       next unless pkmn.isFusionOf(mon) || allmoves
-      pkmn.moves.each_with_index do |move, i|
-        next unless moves[0] == move.id
-        if moves.length == 1
-          pkmn.moves[i] = Pokemon::Move.new((move.id.to_s + "PLUS").to_sym)
-        else
-          pkmn.moves[i] = Pokemon::Move.new(moves[1])
+      movearray.each do |moves|
+        pkmn.moves.each_with_index do |move, i|
+          next unless moves[0] == move.id
+          if moves.length == 1
+            pkmn.moves[i] = Pokemon::Move.new((move.id.to_s + "PLUS").to_sym)
+          else
+            pkmn.moves[i] = Pokemon::Move.new(moves[1])
+          end
+          scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
         end
-        scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
       end
     end
   end

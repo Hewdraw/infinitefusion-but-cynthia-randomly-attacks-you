@@ -1905,7 +1905,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
       next if !b.item
       next if b.unlosableItem?(b.item) || user.unlosableItem?(b.item)
       battle.pbShowAbilitySplash(user)
-      if b.hasActiveAbility?(:STICKYHOLD)
+      if b.hasActiveAbility?([:STICKYHOLD, :EONBOOST])
         battle.pbShowAbilitySplash(b) if user.opposes?(b)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",b.pbThis))
@@ -1983,7 +1983,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:PICKPOCKET,
     next if target.item || !user.item
     next if user.unlosableItem?(user.item) || target.unlosableItem?(user.item)
     battle.pbShowAbilitySplash(target)
-    if user.hasActiveAbility?(:STICKYHOLD)
+    if user.hasActiveAbility?([:STICKYHOLD, :EONBOOST])
       battle.pbShowAbilitySplash(user) if target.opposes?(user)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1}'s item cannot be stolen!",user.pbThis))
@@ -2218,6 +2218,8 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
   }
 )
 
+BattleHandlers::EOREffectAbility.copy(:SPEEDBOOST, :EONBOOST)
+
 BattleHandlers::EOREffectAbility.add(:WIRED,
   proc { |ability,battler,battle|
     # A Pokémon's turnCount is 0 if it became active after the beginning of a
@@ -2295,7 +2297,11 @@ BattleHandlers::EORGainItemAbility.add(:PICKUP,
 # CertainSwitchingUserAbility handlers
 #===============================================================================
 
-# There aren't any!
+BattleHandlers::CertainSwitchingUserAbility.add(:EONBOOST,
+  proc { |ability,battler,battle|
+    next true
+  }
+)
 
 #===============================================================================
 # TrappingTargetAbility handlers
@@ -2423,11 +2429,21 @@ BattleHandlers::AbilityOnSwitchIn.add(:DARKAURA,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
+  proc { |ability,battler,battle|
+    next if battler.pokemon.onceperbattle.include?("dauntlessshield")
+    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+    battler.pokemon.onceperbattle.push("dauntlessshield")
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:StrongWinds, battler, battle, true)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:DELTASTREAM, :EONBOOST)
 
 BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELAND,
   proc { |ability,battler,battle|
@@ -2465,6 +2481,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
     battle.pbShowAbilitySplash(battler)
     battle.pbStartTerrain(battler, :Electric, false)
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:EON,
+  proc { |ability,battler,battle|
+    if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(battler.pokemon.species)
+      battler.pokemon.originalform = battler.pokemon.species
+      battle.pbMegaEvolve(battler.index, true)
+    end
   }
 )
 
@@ -2843,6 +2868,12 @@ BattleHandlers::AbilityOnBattlerFainting.add(:SOULHEART,
 #===============================================================================
 
 BattleHandlers::RunFromBattleAbility.add(:RUNAWAY,
+  proc { |ability,battler|
+    next true
+  }
+)
+
+BattleHandlers::RunFromBattleAbility.add(:EONBOOST,
   proc { |ability,battler|
     next true
   }

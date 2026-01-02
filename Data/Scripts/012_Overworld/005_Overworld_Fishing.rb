@@ -45,7 +45,7 @@ def pbFishing(hasEncounter,rodType=1)
   pbBGMPlay(pbStringToAudioFile("shrimpmiku"))
   return false if pbEncounterCynthia("Shrimp Miku")
   autohook= Settings::FISHING_AUTO_HOOK || $game_switches[SWITCH_FISHING_AUTOHOOK]
-  speedup = ($Trainer.first_pokemon && [:STICKYHOLD, :SUCTIONCUPS].include?($Trainer.first_pokemon.ability_id))
+  speedup = ($Trainer.first_pokemon && [:STICKYHOLD, :EONBOOST, :SUCTIONCUPS].include?($Trainer.first_pokemon.ability_id))
   biteChance = 20+(25*rodType)   # 45, 70, 95
   biteChance *= 1.5 if speedup   # 67.5, 100, 100
   hookChance = 100

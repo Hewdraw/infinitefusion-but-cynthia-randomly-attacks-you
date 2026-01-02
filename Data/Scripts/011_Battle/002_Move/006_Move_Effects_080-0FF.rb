@@ -3236,7 +3236,7 @@ class PokeBattle_Move_0F0 < PokeBattle_Move
     return if user.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
     return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
     itemName = target.itemName
     target.pbRemoveItem(false)
     @battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
@@ -3264,7 +3264,7 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
     return if !target.item || user.item
     return if target.unlosableItem?(target.item)
     return if user.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
     itemName = target.itemName
     user.item = target.item
     # Permanently steal the item from wild Pokémon
@@ -3307,7 +3307,7 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("But it failed to affect {1}!",target.pbThis(true)))
@@ -3403,7 +3403,7 @@ class PokeBattle_Move_0F4 < PokeBattle_Move
     return if user.fainted? || target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
     return if !target.item || !target.item.is_berry?
-    return if target.hasActiveAbility?(:STICKYHOLD) && !@battle.moldBreaker
+    return if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
     item = target.item
     itemName = target.itemName
     target.pbRemoveItem

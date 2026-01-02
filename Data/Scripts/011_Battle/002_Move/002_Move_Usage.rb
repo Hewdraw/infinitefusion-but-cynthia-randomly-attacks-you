@@ -165,7 +165,7 @@ class PokeBattle_Move
     end
     # Disguise will take the damage
     if !@battle.moldBreaker &&
-       !target.pokemon.disguise && target.hasActiveAbility?(:DISGUISE)
+       !target.pokemon.onceperbattle.include?("disguise") && target.hasActiveAbility?(:DISGUISE)
       target.damageState.disguise = true
       return
     end
@@ -319,7 +319,7 @@ class PokeBattle_Move
       target.pbItemHPHealCheck
       target.pbFaint if target.fainted?
       @battle.pbHideAbilitySplash(target)
-      target.pokemon.disguise = true
+      target.pokemon.onceperbattle.push("disguise")
     elsif target.damageState.endured
       @battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
     elsif target.damageState.sturdy

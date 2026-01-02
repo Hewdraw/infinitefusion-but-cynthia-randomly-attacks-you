@@ -151,7 +151,8 @@ class PokeBattle_Battle
           break if ret[side][idxTrainer].length>=requireds[idxTrainer]
         end
         eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
-          pkmn.disguise = nil
+          pkmn.onceperbattle = []
+          pkmn.originalform = nil
         end
       end
     end

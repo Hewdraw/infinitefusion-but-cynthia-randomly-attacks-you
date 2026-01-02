@@ -15,7 +15,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :eventvariable => nil,
-        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
     }
     pbAddPokemon(getTowerPokemon("Starter"), 5)
     pbAddPokemon(getTowerPokemon(), 5)
@@ -308,6 +308,8 @@ def getFloorGraphic(event)
             return "244_0"
         when "Genesect"
             return "fossil_nerd"
+        when "Latias"
+            return "LATIAS"
         when nil, "Mew"
             return "151"
         when "Moltres"
