@@ -1325,6 +1325,8 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:INFERNAPE] => [[:CLOSECOMBAT]],
     [:JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL] => [[:BOOMBURST]],
     [:KOMMOO] => [[:CLANGINGSCALES]],
+    [:LATIAS] => [[:MISTBALL]],
+    [:LATIOS] => [[:LUSTERPURGE]],
     [:MAGNEZONE, :SANDYSHOCKS, :PROBOPASS] => [[:MAGNETBOMB]],
     [:MAROWAK] => [[:BONEMERANG]],
     [:MAWILE] => [[:PLAYROUGH], [:IRONHEAD]],

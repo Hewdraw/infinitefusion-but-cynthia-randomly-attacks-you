@@ -5330,3 +5330,91 @@ class PokeBattle_Move_320 < PokeBattle_StatUpMove
     @statUp = [:ATTACK, 3]
   end
 end
+
+class PokeBattle_Move_321 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1, :SPECIAL_DEFENSE, 1]
+  end
+
+  def pbInitialEffect(user,targets,hitNum)
+    if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(user.pokemon.species)
+      user.pokemon.originalform = user.pokemon.species
+      battle.pbMegaEvolve(user.index, true)
+    end
+  end
+end
+
+class PokeBattle_Move_322 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:ATTACK, 1, :SPECIAL_ATTACK, 1, :EVASION]
+  end
+
+  def pbInitialEffect(user,targets,hitNum)
+    if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(user.pokemon.species)
+      user.pokemon.originalform = user.pokemon.species
+      battle.pbMegaEvolve(user.index, true)
+    end
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
+      target.pbOwnSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::LightScreen] > 0
+      target.pbOwnSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::Reflect] > 0
+      target.pbOwnSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::Mist] > 0
+      target.pbOwnSide.effects[PBEffects::Mist] = 0
+      @battle.pbDisplay(_INTL("{1}'s Mist faded!", target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::Safeguard] > 0
+      target.pbOwnSide.effects[PBEffects::Safeguard] = 0
+      @battle.pbDisplay(_INTL("{1} is no longer protected by Safeguard!!", target.pbTeam))
+    end
+    if target.pbOwnSide.effects[PBEffects::StealthRock] ||
+        target.pbOpposingSide.effects[PBEffects::StealthRock]
+      target.pbOwnSide.effects[PBEffects::StealthRock] = false
+      target.pbOpposingSide.effects[PBEffects::StealthRock] = false
+      @battle.pbDisplay(_INTL("{1} blew away stealth rocks!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::Spikes] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::Spikes] > 0
+      target.pbOwnSide.effects[PBEffects::Spikes] = 0
+      target.pbOpposingSide.effects[PBEffects::Spikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0
+      target.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+      target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
+        target.pbOpposingSide.effects[PBEffects::StickyWeb]
+      target.pbOwnSide.effects[PBEffects::StickyWeb] = false
+      target.pbOpposingSide.effects[PBEffects::StickyWeb] = false
+      @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
+    end
+    if @battle.field.terrain != :None
+      case @battle.field.terrain
+      when :Electric
+        @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
+      when :Grassy
+        @battle.pbDisplay(_INTL("The grass disappeared from the battlefield."))
+      when :Misty
+        @battle.pbDisplay(_INTL("The mist disappeared from the battlefield."))
+      when :Psychic
+        @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
+      end
+      @battle.field.terrain = :None
+    end
+  end
+end
