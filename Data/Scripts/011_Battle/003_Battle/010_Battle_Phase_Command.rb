@@ -245,7 +245,7 @@ class PokeBattle_Battle
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
             break
           end
-          if @nuh_uh == 1000
+          if @nuh_uh == 1000 && !$PokemonGlobal.towervalues.nil?
             pbDisplay(_INTL("nuh uh."))
             @nuh_uh = 1
             if @opponent
