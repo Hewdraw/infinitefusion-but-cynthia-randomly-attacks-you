@@ -427,6 +427,11 @@ class PokeBattle_Battler
     return true if [:ICE, :FIRE, :ELECTRIC].include?(type) && pbHasType?(:ICEFIREELECTRIC)
     return true if [:FIRE, :PSYCHIC, :ELECTRIC].include?(type) && hasActiveAbility?(:WIRED)
     return true if (type == :WATER && hasActiveItem?(:WELLSPRINGMASK)) || (type == :FIRE && hasActiveItem?(:HEARTHFLAMEMASK)) || (type == :ROCK && hasActiveItem?(:CORNDERSTONEMASK))
+    return true if type == :ROCK && hasActiveItem?(:PROTECTOR)
+    return true if type == :FIRE && hasActiveItem?(:MAGMARIZER)
+    return true if type == :ELECTRIC && hasActiveItem?(:ELECTIRIZER)
+    return true if type == :NORMAL && hasActiveItem?(:UPGRADE)
+    return true if rand(10) < 3 && hasActiveItem?(:DUBIOUSDISC)
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end
