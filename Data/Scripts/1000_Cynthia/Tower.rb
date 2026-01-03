@@ -185,7 +185,7 @@ def getTowerEventsList()
     $Trainer.party.each do |pkmn|
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
     end
-    evenlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] % 10 == 8
+    eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] % 10 == 8
     return eventlist
 end
 
