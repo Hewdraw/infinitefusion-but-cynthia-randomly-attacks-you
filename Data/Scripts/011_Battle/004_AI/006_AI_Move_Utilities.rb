@@ -62,13 +62,13 @@ class PokeBattle_AI
        target.pbHasType?(:FLYING) && target.hasActiveItem?(:IRONBALL) && @battle.field.effects[PBEffects::InverseRoom] == 0
     # Determine types
     tTypes = target.pbTypes(true)
+    # Get effectivenesses
+    typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     tTypes.each_with_index do |type, i|
       typeMods[i] = :WATER if type == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
       typeMods[i] = :FIRE if type == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
       typeMods[i] = :ROCK if type == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
     end
-    # Get effectivenesses
-    typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
     if moveType == :SHADOW
       if target.shadowPokemon?
         typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
