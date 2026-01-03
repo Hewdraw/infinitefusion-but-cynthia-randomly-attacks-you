@@ -1509,6 +1509,7 @@ class Pokemon
     @extraabilities.push(:WATERABSORB) if hasItem?(:WELLSPRINGMASK)
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:HEARTHFLAMEMASK)
     @extraabilities.push(:STURDY) if hasItem?(:CORNERSTONEMASK)
+    @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
   end
 
   #=============================================================================

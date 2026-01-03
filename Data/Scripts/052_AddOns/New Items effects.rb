@@ -554,6 +554,7 @@ ItemHandlers::UseFromBag.add(:MAGICBOOTS, proc { |item|
 
 def pbForceEvo(pokemon)
   newspecies = getEvolvedSpecies(pokemon)
+  return false if newspecies == :OMNIMON
   return false if newspecies == -1
   if newspecies > 0
     evo = PokemonEvolutionScene.new
