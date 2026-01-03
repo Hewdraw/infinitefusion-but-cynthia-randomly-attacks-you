@@ -8,7 +8,7 @@ def setupTower()
         :storage => PokemonStorage.new,
         :cynthiachance => 0,
         :maxcynthiachance => 10,
-        :hatsunemikuchance => 0,
+        :hatsunemikuchance => -10000,
         :maxmikuchance => 10,
         :ladder1 => nil,
         :ladder2 => nil,
@@ -98,9 +98,9 @@ def generateNextFloor()
     end
 end
 
-def getTowerEvents(offset=0)
-    return [nil, "Elitefour", nil] if [82,84,86,88,90].include?($PokemonGlobal.towervalues[:floor] + offset)
-    return [nil, "Gym", nil] if ($PokemonGlobal.towervalues[:floor] + offset) % 10 == 9
+def getTowerEvents()
+    return [nil, "Elitefour", nil] if [82,84,86,88,90].include?($PokemonGlobal.towervalues[:floor])
+    return [nil, "Gym", nil] if $PokemonGlobal.towervalues[:floor] % 10 == 9
 
     nextfloorevents = []
     for _ in 1..3
@@ -185,7 +185,7 @@ def getTowerEventsList()
     $Trainer.party.each do |pkmn|
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
     end
-    evenlist["Heal"] += 50 if ["Gym", "Elitefour"].include?(getTowerEvents(1)[1])
+    evenlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] % 10 == 8
     return eventlist
 end
 
