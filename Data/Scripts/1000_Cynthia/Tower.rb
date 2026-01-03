@@ -66,7 +66,7 @@ def towerCynthiaEncounter()
     return if ["Gym", "Elitefour", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
     if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
-        $PokemonGlobal.towervalues[:cynthiachance] = 1
+        $PokemonGlobal.towervalues[:cynthiachance] = 0
         return
     end
     $PokemonGlobal.towervalues[:cynthiachance] += 1
@@ -299,6 +299,8 @@ def getFloorGraphic(event)
         return "BWNurse"
     when "Tutor"
         return "Claire_Overworld"
+    when "Elite"
+        return "BW126"
     when "Legendary"
         case $PokemonGlobal.towervalues[:eventvariable]
         when "Articuno"

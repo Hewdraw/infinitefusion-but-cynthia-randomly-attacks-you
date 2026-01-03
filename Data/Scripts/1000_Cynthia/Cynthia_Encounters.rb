@@ -139,7 +139,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
     end
   else
     if rand($PokemonGlobal.towervalues[:maxmikuchance]) < $PokemonGlobal.towervalues[:hatsunemikuchance]
-      $PokemonGlobal.towervalues[:hatsunemikuchance] = 1
+      $PokemonGlobal.towervalues[:hatsunemikuchance] = 0
       encounter_type = [:CREATOR_Minecraft, "Hatsune Miku"]
       numbadges += 1
     else
