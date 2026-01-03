@@ -66,7 +66,7 @@ def towerCynthiaEncounter()
     return if ["Gym", "Elitefour", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
     if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
-        $PokemonGlobal.towervalues[:cynthiachance] = 0
+        $PokemonGlobal.towervalues[:cynthiachance] = 0 if !$PokemonGlobal.towervalues.nil?
         return
     end
     $PokemonGlobal.towervalues[:cynthiachance] += 1
