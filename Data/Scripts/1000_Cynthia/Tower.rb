@@ -548,11 +548,10 @@ def getTowerItems()
       [:CORNERSTONEMASK, 1],
     ],
     [ #ultimate rare
-      [:BEEGPP, 1],
-      [:GOLDENBANANA, 1],
-      [:MECHUMETAL, 1],
-      [:MAXHP, 1],
       [:PYRITE, 1],
+      [:OMNIDRIVE],
+      [:MEGASHARD],
+      [:MODIFIEDBOOSTERENERGY],
     ],
   ]
 end
