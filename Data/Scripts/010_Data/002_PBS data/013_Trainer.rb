@@ -318,7 +318,7 @@ module GameData
           offset = -3
         end
         shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
-        shinychance *= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
+        shinychance /= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
         shininess = pkmn_data[:shininess] || rand(shinychance) == 0
         offset += 2 if shininess
         offset += 3 if shininess && !(GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM))

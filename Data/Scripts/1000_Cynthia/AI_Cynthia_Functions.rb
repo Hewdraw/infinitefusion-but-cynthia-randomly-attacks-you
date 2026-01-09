@@ -1565,6 +1565,7 @@ class PokeBattle_AI
     when "124" #todo
     #---------------------------------------------------------------------------
     when "125" #todo
+      score = -100
       hasThisMove = false; hasOtherMoves = false; hasUnusedMoves = false
       user.eachMove do |m|
         hasThisMove = true if m.id == @id
@@ -1572,7 +1573,7 @@ class PokeBattle_AI
         hasUnusedMoves = true if m.id != @id && !user.movesUsed.include?(m.id)
       end
       if !hasThisMove || !hasOtherMoves || hasUnusedMoves
-        score = -100
+        score = 0
       end
     #---------------------------------------------------------------------------
     when "126" #todo?
