@@ -153,6 +153,24 @@ class PokeBattle_Battle
         eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
           pkmn.onceperbattle = []
           pkmn.originalform = nil
+          if pkmn.hasItem?(:DARKSTONE)
+            pkmn.moves.each_with_index do |move, i|
+              next unless move.id == :FUSIONBOLT
+              pp = move.pp
+              newmove = Pokemon::Move.new(:ZEKROMKICK)
+              newmove.pp = pp
+              pkmn.moves[i] = newmove
+            end
+          end
+          if pkmn.hasItem?(:LIGHTSTONE)
+            pkmn.moves.each_with_index do |move, i|
+              next unless move.id == :FUSIONFLARE
+              pp = move.pp
+              newmove = Pokemon::Move.new(:RESHIRAMBEAM)
+              newmove.pp = pp
+              pkmn.moves[i] = newmove
+            end
+          end
         end
       end
     end

@@ -2107,6 +2107,20 @@ Events.onEndBattle += proc { |_sender,_e|
       pokemon.level = level
       pokemon.calc_stats
     end
+    pokemon.moves.each_with_index do |move, i|
+      if move.id == :ZEKROMKICK
+        pp = move.pp
+        newmove = Pokemon::Move.new(:FUSIONBOLT)
+        newmove.pp = pp
+        pokemon.moves[i] = newmove
+      end
+      if move.id == :RESHIRAMBEAM
+        pp = move.pp
+        newmove = Pokemon::Move.new(:FUSIONFLARE)
+        newmove.pp = pp
+        pokemon.moves[i] = newmove
+      end
+    end
   end
 }
 
@@ -5415,6 +5429,28 @@ class PokeBattle_Move_322 < PokeBattle_TargetMultiStatDownMove
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
       end
       @battle.field.terrain = :None
+    end
+  end
+end
+
+class PokeBattle_Move_323 < PokeBattle_Move
+  def pbInitialEffect(user,targets,hitNum)
+    targets.each do |target|
+      if pbCalcTypeMod(:ELECTRIC,user,target) > pbCalcTypeMod(@calcType,user,target)
+        @calcType = :ELECTRIC
+        break
+      end
+    end
+  end
+end
+
+class PokeBattle_Move_324 < PokeBattle_Move
+  def pbInitialEffect(user,targets,hitNum)
+    targets.each do |target|
+      if pbCalcTypeMod(:FIRE,user,target) > pbCalcTypeMod(@calcType,user,target)
+        @calcType = :FIRE
+        break
+      end
     end
   end
 end

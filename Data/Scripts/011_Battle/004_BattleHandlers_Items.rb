@@ -529,7 +529,7 @@ BattleHandlers::DamageCalcUserItem.add(:CHARCOAL,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:CHARCOAL,:FLAMEPLATE)
+BattleHandlers::DamageCalcUserItem.copy(:CHARCOAL,:FLAMEPLATE,:LIGHTSTONE)
 
 BattleHandlers::DamageCalcUserItem.add(:CHOICEBAND,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -563,7 +563,7 @@ BattleHandlers::DamageCalcUserItem.add(:DRAGONFANG,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:DRAGONFANG,:DRACOPLATE)
+BattleHandlers::DamageCalcUserItem.copy(:DRAGONFANG,:DRACOPLATE,:DARKSTONE,:LIGHSTONE)
 
 BattleHandlers::DamageCalcUserItem.add(:DRAGONGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -686,7 +686,7 @@ BattleHandlers::DamageCalcUserItem.add(:MAGNET,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:MAGNET,:ZAPPLATE)
+BattleHandlers::DamageCalcUserItem.copy(:MAGNET,:ZAPPLATE,:DARKSTONE)
 
 BattleHandlers::DamageCalcUserItem.add(:METALCOAT,
   proc { |item,user,target,move,mults,baseDmg,type|
