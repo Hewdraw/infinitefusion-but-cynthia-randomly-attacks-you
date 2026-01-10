@@ -12,7 +12,7 @@ PlayerC = POKEMONTRAINER_Red,trchar003,girl_bike,girl_surf_offset,girl_run,girl_
 PlayerD = POKEMONTRAINER_Red,trchar004,girl_bike,girl_surf_offset,girl_run,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
 PlayerE = POKEMONTRAINER_Red,trchar005,girl_bike,girl_surf_offset,girl_run,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
 PlayerF = POKEMONTRAINER_Red,trchar006,girl_bike,girl_surf_offset,girl_run,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
-PlayerG = POKEMONTRAINER_Red,trchar007,girl_bike,girl_surf_offset,	,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
+PlayerG = POKEMONTRAINER_Red,trchar007,girl_bike,girl_surf_offset,,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
 PlayerH = POKEMONTRAINER_Red,trchar008,girl_bike,girl_surf_offset,girl_run,girl_dive_offset,girl_fish_offset,girl_fishsurf_offset
 #-------------------------------
 [001]
@@ -25,7 +25,7 @@ MapPosition = 0,40,6
 BattleBack = Bridge
 #-------------------------------
 [002]
-# PokeMart
+# Route 101
 Outdoor = false
 ShowArea = true
 MapPosition = 0,40,6
@@ -48,7 +48,7 @@ ShowArea = false
 MapPosition = 0,40,6
 #-------------------------------
 [006]
-# Cerulean City
+# Team Rocket HQ
 MapPosition = 0,40,6
 #-------------------------------
 [007]
@@ -69,7 +69,7 @@ BattleBack =
 Environment = Grass
 #-------------------------------
 [009]
-# Route 25	
+# Route 25
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -122,7 +122,7 @@ Bicycle = true
 MapPosition = 0,39,10
 #-------------------------------
 [017]
-# S.S. Anne Restaurant
+# S.S. Anne
 Outdoor = false
 ShowArea = false
 Bicycle = false
@@ -147,7 +147,6 @@ DiveMap = 231
 MapPosition = 0,39,11
 #-------------------------------
 [021]
-# PokeMart
 Outdoor = false
 ShowArea = true
 MapPosition = 0,39,11
@@ -169,7 +168,7 @@ MapPosition = 0,39,11
 MapPosition = 0,39,11
 #-------------------------------
 [026]
-# Port
+# Harbour
 Outdoor = false
 MapPosition = 0,39,11
 #-------------------------------
@@ -192,7 +191,7 @@ Bicycle = false
 MapPosition = 0,39,11
 #-------------------------------
 [030]
-# Basement
+# S.S. Anne
 MapPosition = 0,39,11
 #-------------------------------
 [031]
@@ -203,7 +202,6 @@ MapPosition = 0,39,11
 MapSize = 2,1101
 #-------------------------------
 [032]
-# S.S. Anne
 Outdoor = false
 MapPosition = 0,39,11
 #-------------------------------
@@ -232,7 +230,6 @@ MapPosition = 0,39,11
 BattleBack = EliteA
 #-------------------------------
 [038]
-# Trainer House
 MapPosition = 0,39,11
 #-------------------------------
 [039]
@@ -263,21 +260,22 @@ HealingSpot = 42,12,10
 MapPosition = 0,31,13
 #-------------------------------
 [044]
-# Fuchisa City -old
 Outdoor = true
 ShowArea = true
 MapPosition = 0,36,15
 MapSize = 2,11
 #-------------------------------
 [045]
-# Rocket Hideout BF2
+# Team Rocket Hideout
 Outdoor = false
 MapPosition = 0,37,9
 #-------------------------------
 [046]
-# Jungle1
-Bicycle = true
-Environment = TallGrass
+# Pinkan Hollow
+ShowArea = true
+MapPosition = 0,31,10
+BattleBack = Cave
+Environment = Cave
 #-------------------------------
 [047]
 # Mt. Mortar
@@ -307,25 +305,10 @@ DarkMap = false
 BattleBack = City
 #-------------------------------
 [051]
-# Pinkan island
+# Pinkan Island
 Outdoor = true
 ShowArea = true
 MapPosition = 0,31,10
-#-------------------------------
-[531]
-# Pinkan forest
-Outdoor = true
-ShowArea = true
-BattleBack = Forest
-MapPosition = 0,31,10
-#-------------------------------
-[46]
-# Pinkan hollow
-ShowArea = true
-BattleBack = Forest
-MapPosition = 0,31,10
-Environment = Cave
-BattleBack = Cave
 #-------------------------------
 [052]
 # Seafoam Islands.old
@@ -386,7 +369,6 @@ BattleBack =
 Environment = MovingWater
 #-------------------------------
 [060]
-# PokeMart fuchsia
 MapPosition = 0,36,15
 #-------------------------------
 [061]
@@ -410,10 +392,9 @@ MapPosition = 0,37,9
 BattleBack = EliteC
 #-------------------------------
 [065]
-# Secluded Path
-Outdoor = true
-ShowArea = true
-Environment = Grass
+# Pokemon Center
+Outdoor = false
+ShowArea = false
 #-------------------------------
 [066]
 # Eastern Gate
@@ -462,9 +443,9 @@ MapPosition = 0,31,10
 [082]
 # Area 3
 Outdoor = false
+MapPosition = 0,36,17
 SafariMap = true
 Environment = Grass
-MapPosition = 0,36,17
 #-------------------------------
 [086]
 # Route 2
@@ -475,13 +456,12 @@ MapPosition = 0,31,8
 Environment = Grass
 #-------------------------------
 [088]
-# Gate (rt2)
+# Gate
 Bicycle = true
 MapPosition = 0,31,8
-
 #-------------------------------
 [089]
-# Gate (rt2)
+# Gate
 Bicycle = true
 MapPosition = 0,31,8
 #-------------------------------
@@ -523,14 +503,13 @@ MapPosition = 0,31,17
 MapSize = 1,1
 #-------------------------------
 [099]
-# Mt. Ember
+Outdoor = true
 ShowArea = true
+MapPosition = 0,6,12
 BattleBack = Volcano
-MapPosition = 2,33,25
-
 #-------------------------------
 [101]
-# Route 3
+# Littleroot Town
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -548,21 +527,20 @@ Environment = Cave
 [103]
 # Mt. Moon B1F
 Bicycle = true
-Environment = Cave
 MapPosition = 0,35,5
-
+Environment = Cave
 #-------------------------------
 [104]
 # Mt. Moon
 Bicycle = true
-Environment = Cave
 MapPosition = 0,35,5
+Environment = Cave
 #-------------------------------
 [105]
 # Mt. Moon B2F
 Bicycle = true
-Environment = Cave
 MapPosition = 0,35,5
+Environment = Cave
 #-------------------------------
 [106]
 # Route 4
@@ -575,8 +553,8 @@ Environment = Grass
 [107]
 # Area 4
 Outdoor = false
-SafariMap = true
 MapPosition = 0,36,17
+SafariMap = true
 #-------------------------------
 [108]
 # Saffron City
@@ -597,7 +575,6 @@ MapPosition = 0,39,9
 Outdoor = true
 #-------------------------------
 [119]
-# PokeMart (crimson)
 Outdoor = false
 ShowArea = false
 MapPosition = 0,42,1
@@ -608,7 +585,7 @@ ShowArea = true
 MapPosition = 0,39,9
 #-------------------------------
 [122]
-# Pokemon Center (saffron)
+# Pokemon Center
 MapPosition = 0,39,9
 #-------------------------------
 [125]
@@ -621,7 +598,7 @@ MapPosition = 0,31,17
 ShowArea = true
 #-------------------------------
 [130]
-# Pokemon Center (cinnabar)
+# Pokemon Center
 ShowArea = false
 HealingSpot = 98,40,32
 MapPosition = 0,31,17
@@ -631,7 +608,6 @@ MapPosition = 0,31,17
 ShowArea = true
 #-------------------------------
 [132]
-# B1
 Outdoor = true
 ShowArea = true
 #-------------------------------
@@ -687,7 +663,6 @@ MapPosition = 0,39,9
 # Pokémon Tower B1
 ShowArea = true
 MapPosition = 0,43,9
-
 #-------------------------------
 [143]
 # Route 23
@@ -735,7 +710,7 @@ Environment = Grass
 ShowArea = true
 #-------------------------------
 [151]
-# Saffron City Boutique
+# Saffron Boutique
 Outdoor = false
 ShowArea = true
 MapPosition = 0,39,9
@@ -772,7 +747,7 @@ Environment = Grass
 MapPosition = 0,39,9
 #-------------------------------
 [158]
-# Gate (rt 11)
+# Gate
 Bicycle = true
 MapPosition = 0,42,11
 #-------------------------------
@@ -790,7 +765,6 @@ Outdoor = true
 ShowArea = true
 #-------------------------------
 [161]
-# Lighthouse
 Outdoor = true
 ShowArea = true
 MapPosition = 0,39,11
@@ -803,11 +777,9 @@ MapPosition = 0,43,11
 Environment = Underwater
 #-------------------------------
 [163]
-# 8F
 MapPosition = 0,39,9
 #-------------------------------
 [164]
-# 8F
 Outdoor = false
 ShowArea = false
 MapPosition = 0,39,9
@@ -846,7 +818,6 @@ MapPosition = 0,29,10
 Environment = Grass
 #-------------------------------
 [172]
-# league check (unused)
 Outdoor = true
 ShowArea = true
 Weather = Rain,10
@@ -856,26 +827,26 @@ Weather = Rain,10
 Outdoor = false
 ShowArea = true
 Bicycle = false
-BattleBack = Volcano
 MapPosition = 0,31,17
+BattleBack = Volcano
 #-------------------------------
 [174]
 # Pokémon Mansion
 Outdoor = false
 ShowArea = false
-BattleBack = Volcano
 MapPosition = 0,31,17
+BattleBack = Volcano
 #-------------------------------
 [175]
-# TEMPLATE_EVENTS
+# COMMON
 Outdoor = true
 ShowArea = true
 #-------------------------------
 [176]
 # Crimson Hotel
 Outdoor = false
-MapPosition = 0,42,1
 ShowArea = false
+MapPosition = 0,42,1
 #-------------------------------
 [177]
 # Crimson Hotel
@@ -887,8 +858,8 @@ MapPosition = 0,42,1
 # Bill's garden
 Outdoor = true
 ShowArea = true
-Environment = Grass
 MapPosition = 0,43,3
+Environment = Grass
 #-------------------------------
 [181]
 # Pokémon Mansion
@@ -899,11 +870,10 @@ MapPosition = 0,31,17
 # Secret Garden
 Outdoor = true
 ShowArea = true
-Environment = Grass
 MapPosition = 0,32,12
+Environment = Grass
 #-------------------------------
 [188]
-# PokeMart (cinnabar)
 ShowArea = false
 MapPosition = 0,31,17
 #-------------------------------
@@ -920,26 +890,25 @@ MapPosition = 0,39,9
 [197]
 # Power Plant
 Outdoor = false
-BattleBack = PowerPlant
 MapPosition = 0,43,7
+BattleBack = PowerPlant
 #-------------------------------
 [198]
 # Power Plant
 Outdoor = false
-BattleBack = PowerPlant
 MapPosition = 0,43,7
+BattleBack = PowerPlant
 #-------------------------------
 [218]
-# Mt. Ember
-BattleBack = Volcano
 MapPosition = 2,33,25
+BattleBack = Volcano
 #-------------------------------
 [220]
-# Underwater (rt13) 
+# Underwater
 Environment = Underwater
 #-------------------------------
 [229]
-# Underwater (rt20)
+# Underwater
 Weather = Rain,100
 #-------------------------------
 [230]
@@ -950,7 +919,6 @@ Bicycle = true
 MapPosition = 1,14,10
 #-------------------------------
 [234]
-# Crossroad Cavern
 Outdoor = false
 ShowArea = true
 Bicycle = true
@@ -960,8 +928,8 @@ Environment = Cave
 [235]
 # Ruins of Alph
 Outdoor = false
-Environment = Cave
 MapPosition = 1,12,11
+Environment = Cave
 #-------------------------------
 [237]
 # Goldenrod City
@@ -971,12 +939,12 @@ Bicycle = true
 MapPosition = 1,9,13
 #-------------------------------
 [239]
-# Pokémon Center (goldenro)
+# Pokémon Center
 HealingSpot = 237,24,38
 MapPosition = 1,9,13
 #-------------------------------
 [248]
-# Train station (Goldenrod City)
+# Train Station
 MapPosition = 1,9,13
 #-------------------------------
 [254]
@@ -996,8 +964,8 @@ MapPosition = 1,10,10
 # Tohjo Falls
 Outdoor = false
 ShowArea = true
-Environment = Cave
 MapPosition = 0,22,14
+Environment = Cave
 #-------------------------------
 [261]
 # Route 31
@@ -1015,12 +983,12 @@ MapPosition = 1,16,12
 Environment = Grass
 #-------------------------------
 [263]
-# Gate#rt31
+# Gate
 Bicycle = true
 MapPosition = 1,16,12
 #-------------------------------
 [264]
-# Pokémon Center (violet)
+# Pokémon Center
 HealingSpot = 230,49,43
 MapPosition = 1,14,10
 #-------------------------------
@@ -1137,24 +1105,24 @@ Environment = Rock
 # Victory Road
 Outdoor = false
 ShowArea = true
+MapPosition = 0,27,9
 BattleBack = Cave
 Environment = Cave
-MapPosition = 0,27,9
 #-------------------------------
 [306]
 # Victory Road
 Outdoor = false
+MapPosition = 0,27,9
 BattleBack = Cave
 Environment = Cave
-MapPosition = 0,27,9
 #-------------------------------
 [307]
 # Victory Road
 Outdoor = false
 ShowArea = false
+MapPosition = 0,27,9
 BattleBack = Cave
 Environment = Cave
-MapPosition = 0,27,9
 #-------------------------------
 [310]
 # Cherrygrove City
@@ -1184,28 +1152,28 @@ Environment = Grass
 Outdoor = false
 ShowArea = true
 Bicycle = true
+MapPosition = 0,39,5
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,39,5
 #-------------------------------
 [323]
 # Cerulean Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,39,5
 DarkMap = true
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,39,5
 #-------------------------------
 [324]
 # Cerulean Cave
 Outdoor = false
 ShowArea = false
 Bicycle = true
+MapPosition = 0,39,5
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,39,5
 #-------------------------------
 [325]
 # Prof. Elm Lab.
@@ -1222,7 +1190,7 @@ MapPosition = 1,20,7
 BattleBack = Mountain
 #-------------------------------
 [330]
-# Pokémon Center #blackthorn
+# Pokémon Center
 Outdoor = false
 HealingSpot = 329,29,40
 MapPosition = 1,20,7
@@ -1232,9 +1200,9 @@ MapPosition = 1,20,7
 Outdoor = false
 ShowArea = true
 Bicycle = false
+MapPosition = 1,19,6
 BattleBack = Cave
 Environment = Cave
-MapPosition = 1,19,6
 #-------------------------------
 [342]
 # Ruins of Alph
@@ -1253,8 +1221,8 @@ MapPosition = 1,12,11
 [346]
 # Ruins of Alph
 Outdoor = false
-Environment = Cave
 MapPosition = 1,12,11
+Environment = Cave
 #-------------------------------
 [347]
 # Chamber B
@@ -1325,8 +1293,8 @@ MapPosition = 1,11,7
 #-------------------------------
 [360]
 # Pokémon School
-DarkMap = false
 MapPosition = 1,14,10
+DarkMap = false
 #-------------------------------
 [363]
 # Violet City Gym
@@ -1337,13 +1305,12 @@ MapPosition = 1,14,10
 # Dark Cave
 Outdoor = false
 ShowArea = true
+MapPosition = 1,16,10
 DarkMap = true
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 1,16,10
 #-------------------------------
 [365]
-# Cherrygrove City
 MapPosition = 1,16,14
 #-------------------------------
 [366]
@@ -1356,7 +1323,6 @@ HealingSpot = 310,41,9
 MapPosition = 1,16,14
 #-------------------------------
 [369]
-# Pewter Valley
 ShowArea = true
 BattleBack = Underwater
 Environment = Rock
@@ -1365,12 +1331,11 @@ Environment = Rock
 # Celadon Sewers
 Outdoor = false
 ShowArea = false
+MapPosition = 0,37,9
 DiveMap = 382
 BattleBack = Beach
-MapPosition = 0,37,9
 #-------------------------------
 [375]
-# Trainer House
 Outdoor = false
 BattleBack = IndoorC
 #-------------------------------
@@ -1397,7 +1362,7 @@ HealingSpot = 380,33,27
 MapPosition = 0,31,5
 #-------------------------------
 [383]
-# Gate (cerulean)
+# Gate
 Bicycle = true
 MapPosition = 0,40,6
 #-------------------------------
@@ -1421,8 +1386,8 @@ MapPosition = 0,39,7
 [398]
 # Diglett's Cave
 Bicycle = true
-Environment = Cave
 MapPosition = 0,41,11
+Environment = Cave
 #-------------------------------
 [399]
 # Diglett's Cave
@@ -1432,27 +1397,27 @@ MapPosition = 0,31,6
 [400]
 # Pokémon Tower
 ShowArea = true
+MapPosition = 0,43,9
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [401]
 # Pokemon Tower F2
+MapPosition = 0,43,9
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [402]
 # Pokemon Tower F3
+MapPosition = 0,43,9
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [403]
 # Pokemon Tower F4
+MapPosition = 0,43,9
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [409]
 # Route 8
@@ -1463,14 +1428,14 @@ MapPosition = 0,42,9
 Environment = Grass
 #-------------------------------
 [410]
-# Underground Gate (rt.8)
+# Underground Gate
 Bicycle = true
-MapPosition = 0,42,9 
+MapPosition = 0,42,9
 #-------------------------------
 [411]
 # Underground
 Bicycle = true
-MapPosition = 0,40,9 
+MapPosition = 0,40,9
 #-------------------------------
 [412]
 # Gate (East)
@@ -1491,7 +1456,7 @@ Bicycle = true
 MapPosition = 0,39,9
 #-------------------------------
 [417]
-# Gate (lavender)
+# Gate
 Bicycle = true
 MapPosition = 0,43,9
 #-------------------------------
@@ -1513,20 +1478,20 @@ ShowArea = true
 MapPosition = 1,20,7
 #-------------------------------
 [428]
-# Celadon University
+# Ranger Cabin
 Outdoor = true
 ShowArea = true
 #-------------------------------
 [431]
 # Celadon Sewers
-BattleBack = SecuredRoom
 MapPosition = 0,37,9
+BattleBack = SecuredRoom
 #-------------------------------
 [436]
 # Celadon Dpt. Store
 Outdoor = true
-BattleBack = Bridge
 MapPosition = 0,36,9
+BattleBack = Bridge
 #-------------------------------
 [437]
 # Route 13
@@ -1558,9 +1523,9 @@ Environment = Grass
 # Route 15
 Outdoor = true
 ShowArea = true
+MapPosition = 0,39,15
 BattleBack = Swamp
 Environment = Grass
-MapPosition = 0,39,15
 #-------------------------------
 [445]
 # Area 1
@@ -1573,27 +1538,27 @@ Environment = Grass
 #-------------------------------
 [446]
 # Celadon Sewers
-BattleBack = SecuredRoom
 MapPosition = 0,37,9
+BattleBack = SecuredRoom
 #-------------------------------
 [467]
 # Pokemon Tower F5
+MapPosition = 0,43,9
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [468]
 # Pokemon Tower F6
+MapPosition = 0,43,9
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [469]
 # Pokemon Tower F7
+MapPosition = 0,43,9
 Dungeon = false
 BattleBack = Tower
 Environment = Graveyard
-MapPosition = 0,43,9
 #-------------------------------
 [472]
 # Fuchsia City
@@ -1609,7 +1574,7 @@ MapSize = 1,1
 MapPosition = 0,36,17
 #-------------------------------
 [474]
-# Gate (fuchsia)
+# Gate
 Bicycle = true
 MapPosition = 0,36,15
 #-------------------------------
@@ -1689,7 +1654,7 @@ BattleBack = Forest
 Environment = Forest
 #-------------------------------
 [492]
-# Gate (fuchsia)
+# Gate
 Bicycle = true
 MapPosition = 0,36,15
 #-------------------------------
@@ -1698,8 +1663,8 @@ MapPosition = 0,36,15
 Outdoor = true
 ShowArea = true
 Bicycle = true
-Environment = Grass
 MapPosition = 0,35,5
+Environment = Grass
 #-------------------------------
 [495]
 # Route 9
@@ -1716,7 +1681,7 @@ Bicycle = true
 MapPosition = 0,35,5
 #-------------------------------
 [511]
-# Gate (rt2)
+# Gate
 Bicycle = true
 MapPosition = 0,31,7
 #-------------------------------
@@ -1734,7 +1699,7 @@ BattleBack = Field
 Environment = Grass
 #-------------------------------
 [518]
-# Gate (rt 18)
+# Gate
 Bicycle = true
 MapPosition = 0,35,15
 #-------------------------------
@@ -1748,9 +1713,9 @@ MapPosition = 1,11,16
 # Waterfall Cave
 Outdoor = false
 ShowArea = false
+MapPosition = 0,42,1
 BattleBack = Cave
 Environment = Cave
-MapPosition = 0,42,1
 #-------------------------------
 [526]
 # Knot Island
@@ -1774,12 +1739,19 @@ Environment = Sand
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,24,10
 BattleBack = Field
 Environment = Rock
-MapPosition = 0,24,10
+#-------------------------------
+[531]
+# Pinkan Forest
+Outdoor = true
+ShowArea = true
+MapPosition = 0,31,10
+BattleBack = Forest
 #-------------------------------
 [532]
-# Pokémon Center (mt silver)
+# Pokémon Center
 HealingSpot = 526,27,12
 MapPosition = 0,24,10
 #-------------------------------
@@ -1838,21 +1810,21 @@ MapPosition = 2,46,27
 Environment = MovingWater
 #-------------------------------
 [567]
-# Pokémon Center (kin)
+# Pokémon Center
 HealingSpot = 563,31,36
 MapPosition = 2,43,25
 #-------------------------------
 [568]
-# Pokémon Center (boon)
+# Pokémon Center
 HealingSpot = 562,26,46
 MapPosition = 2,37,25
 #-------------------------------
 [569]
 # Ruby Chamber
 ShowArea = true
+MapPosition = 2,33,25
 BattleBack = Lava
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [570]
 # Deep Sea
@@ -1862,12 +1834,11 @@ DiveMap = 560
 Environment = MovingWater
 #-------------------------------
 [573]
-# Newmoon Island
 ShowArea = true
 Environment = Graveyard
 #-------------------------------
 [577]
-# Pokémon Center (ecruteak)
+# Pokémon Center
 HealingSpot = 359,38,38
 MapPosition = 1,11,7
 #-------------------------------
@@ -1895,16 +1866,16 @@ Environment = Grass
 [588]
 # Sapphire Cave
 ShowArea = true
-Environment = Underwater
 MapPosition = 2,37,28
+Environment = Underwater
 #-------------------------------
 [589]
 # Sinjoh ruins
 Outdoor = false
 ShowArea = true
 Weather = Snow,100
-Environment = Snow
 MapPosition = 1,26,3
+Environment = Snow
 #-------------------------------
 [594]
 # Water Labyrinth
@@ -1920,19 +1891,19 @@ Environment = MovingWater
 Outdoor = false
 ShowArea = true
 Bicycle = true
-Environment = Cave
 MapPosition = 2,11,39
+Environment = Cave
 #-------------------------------
 [597]
 # Sky Pillar
 Outdoor = false
 ShowArea = false
 Bicycle = true
-Environment = Cave
 MapPosition = 2,11,39
+Environment = Cave
 #-------------------------------
 [600]
-# Bond bridge
+# Bond Bridge
 Outdoor = true
 ShowArea = true
 Bicycle = true
@@ -1940,7 +1911,6 @@ MapPosition = 2,41,22
 Environment = Grass
 #-------------------------------
 [601]
-# Sealed Chamber.old
 Outdoor = false
 ShowArea = true
 MapPosition = 2,44,29
@@ -1954,16 +1924,16 @@ Bicycle = true
 MapPosition = 2,48,30
 #-------------------------------
 [604]
-# Pokémon Center (chrono)
+# Pokémon Center
 Outdoor = false
-MapPosition = 2,48,30
 HealingSpot = 603,36,14
+MapPosition = 2,48,30
 #-------------------------------
 [606]
-# Underwater (temple)
+# Underwater
+MapPosition = 2,44,29
 BattleBack = Underwater
 Environment = Underwater
-MapPosition = 2,44,29
 #-------------------------------
 [608]
 # Ember Spa
@@ -1975,9 +1945,9 @@ MapPosition = 2,33,29
 # Berry Forest
 ShowArea = true
 Bicycle = true
+MapPosition = 2,40,22
 BattleBack = ForestEve
 Environment = Forest
-MapPosition = 2,40,22
 #-------------------------------
 [621]
 # P2 Laboratory
@@ -1993,7 +1963,7 @@ Bicycle = true
 MapPosition = 0,15,7
 #-------------------------------
 [632]
-# Pokémon Center (mahogany)
+# Pokémon Center
 HealingSpot = 631,29,26
 MapPosition = 0,15,7
 #-------------------------------
@@ -2001,16 +1971,16 @@ MapPosition = 0,15,7
 # Sky Pillar
 ShowArea = true
 Bicycle = true
+MapPosition = 2,11,39
 BattleBack = IndoorB
 Environment = Cave
-MapPosition = 2,11,39
 #-------------------------------
 [634]
 # Sky Pillar
 Bicycle = true
+MapPosition = 2,11,39
 BattleBack = IndoorB
 Environment = Cave
-MapPosition = 2,11,39
 #-------------------------------
 [635]
 # Route 43
@@ -2030,23 +2000,23 @@ Environment = StillWater
 [639]
 # Sky Pillar
 Bicycle = true
+MapPosition = 2,11,39
 BattleBack = IndoorB
 Environment = Cave
-MapPosition = 2,11,39
 #-------------------------------
 [640]
 # Sky Pillar
 Bicycle = true
+MapPosition = 2,11,39
 BattleBack = IndoorB
 Environment = Cave
-MapPosition = 2,11,39
 #-------------------------------
 [641]
 # Sky Pillar
 Bicycle = true
+MapPosition = 2,11,39
 BattleBack = IndoorB
 Environment = Cave
-MapPosition = 2,11,39
 #-------------------------------
 [645]
 # Lake of Rage
@@ -2065,9 +2035,9 @@ MapPosition = 1,15,4
 # Hidden Forest
 Outdoor = true
 ShowArea = true
+MapPosition = 1,33,9
 BattleBack = Forest
 Environment = Forest
-MapPosition = 1,33,9
 #-------------------------------
 [660]
 # 2F
@@ -2090,7 +2060,6 @@ ShowArea = true
 MapPosition = 0,39,9
 #-------------------------------
 [664]
-# 6F.old
 ShowArea = true
 MapPosition = 0,39,9
 #-------------------------------
@@ -2125,84 +2094,83 @@ BattleBack = Snow
 Environment = Snow
 #-------------------------------
 [678]
-# Underwater (deep)
 MapPosition = 2,37,28
 DarkMap = false
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [679]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = false
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [680]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = false
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [681]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = false
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [682]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [683]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [684]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [685]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [686]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [687]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [688]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
 Environment = Underwater
 #-------------------------------
 [689]
-# Underwater (deep)
+# Underwater
 MapPosition = 2,37,28
 DarkMap = true
 BattleBack = Underwater
@@ -2219,26 +2187,30 @@ Environment = Grass
 #-------------------------------
 [693]
 # Ice Cavern
-BattleBack = CaveIce
 MapPosition = 1,20,6
+BattleBack = CaveIce
 #-------------------------------
 [698]
 # Ice Cavern
-BattleBack = CaveIce
 MapPosition = 1,20,6
+BattleBack = CaveIce
 #-------------------------------
 [699]
-# Mt. Moon
 Bicycle = true
+MapPosition = 0,35,5
 BattleBack = Cave
 Environment = Cave
-MapPosition = 0,35,5
+#-------------------------------
+[709]
+# Cianwood City
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [714]
 # Creepy House
-MapPosition = 0,39,15
 Outdoor = false
 ShowArea = false
+MapPosition = 0,39,15
 DarkMap = true
 BattleBack = CaveDark
 Environment = Graveyard
@@ -2246,8 +2218,8 @@ Environment = Graveyard
 [717]
 # Area 5
 Outdoor = false
-SafariMap = true
 MapPosition = 0,36,17
+SafariMap = true
 #-------------------------------
 [730]
 # Route 38
@@ -2259,33 +2231,33 @@ MapPosition = 1,8,7
 [752]
 # Mt. Ember
 ShowArea = true
+MapPosition = 2,33,25
 BattleBack = Volcano
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [753]
 # Mt. Ember
+MapPosition = 2,33,25
 BattleBack = Volcano
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [754]
 # Mt. Ember
+MapPosition = 2,33,25
 BattleBack = Volcano
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [755]
 # Mt. Ember
+MapPosition = 2,33,25
 BattleBack = Volcano
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [756]
 # Mt. Ember
+MapPosition = 2,33,25
 BattleBack = Volcano
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [762]
 # Offshore Road
@@ -2310,77 +2282,77 @@ MapPosition = 1,6,11
 #-------------------------------
 [774]
 # Mt. Ember
+MapPosition = 2,33,25
 BattleBack = Volcano
 Environment = Volcano
-MapPosition = 2,33,25
 #-------------------------------
 [776]
 # Mt. Silver
 Outdoor = false
 ShowArea = true
+MapPosition = 0,24,10
 DarkMap = true
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,24,10
 #-------------------------------
 [777]
 # Mt. Silver
 Outdoor = true
 ShowArea = false
-BattleBack = Mountain
 MapPosition = 0,24,10
+BattleBack = Mountain
 #-------------------------------
 [778]
 # Mt Silver
 Outdoor = false
 ShowArea = false
+MapPosition = 0,24,10
 DarkMap = true
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,24,10
 #-------------------------------
 [779]
 # Mt Silver
 Outdoor = false
 ShowArea = false
+MapPosition = 0,24,10
 DarkMap = true
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,24,10
 #-------------------------------
 [780]
 # Mt. Silver
 Outdoor = false
 ShowArea = false
+MapPosition = 0,24,10
 DarkMap = true
 BattleBack = CaveDark
 Environment = Cave
-MapPosition = 0,24,10
 #-------------------------------
 [781]
 # Mt. Silver
 Outdoor = true
 ShowArea = false
 Weather = Snow,100
+MapPosition = 0,24,10
 BattleBack = Snow
 Environment = Snow
-MapPosition = 0,24,10
 #-------------------------------
 [782]
 # Mt. Silver
 Outdoor = false
 ShowArea = false
+MapPosition = 0,24,10
 DarkMap = false
 BattleBack = Cave
 Environment = Cave
-MapPosition = 0,24,10
 #-------------------------------
 [783]
 # Mt. Silver Summit
 Outdoor = true
 ShowArea = true
-BattleBack = Peak
 MapPosition = 0,24,10
+BattleBack = Peak
 #-------------------------------
 [800]
 # Rock Tunnel
@@ -2401,8 +2373,8 @@ Environment = Cave
 [810]
 # Sealed Chamber
 ShowArea = true
-Environment = Cave
 MapPosition = 2,44,29
+Environment = Cave
 #-------------------------------
 [811]
 # Submerged Temple
@@ -2420,8 +2392,8 @@ Environment = Cave
 [814]
 # Sealed Chamber
 ShowArea = true
-Environment = Cave
 MapPosition = 2,44,29
+Environment = Cave
 #-------------------------------
 [819]
 # Halfmoon Island
@@ -2445,14 +2417,14 @@ MapPosition = 2,30,35
 Outdoor = true
 ShowArea = true
 Bicycle = true
+MapPosition = 0,35,5
 BattleBack = Mountain
 Environment = Rock
-MapPosition = 0,35,5
 #-------------------------------
 [836]
 # Route 39
 Outdoor = true
 ShowArea = true
 Bicycle = true
-MapSize = 0,
 MapPosition = 1,7,7
+MapSize = 0,

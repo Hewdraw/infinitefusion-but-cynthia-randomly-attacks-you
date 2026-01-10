@@ -175,7 +175,8 @@
 168,BULKUP,Bulk Up,024,0,FIGHTING,Status,0,20,0,User,0,d,"The user tenses its muscles to bulk up its body, boosting both its Attack and Defense stats."
 169,DETECT,Detect,0AA,0,FIGHTING,Status,0,5,0,User,4,,"It enables the user to evade all attacks. Its chance of failing rises if it is used in succession."
 170,MATBLOCK,Mat Block,149,0,FIGHTING,Status,0,10,0,UserSide,0,d,"Using a pulled-up mat as a shield, the user protects itself and its allies from damaging moves."
-171,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,15,0,UserSide,3,d,"The user protects itself and its allies from priority moves. If may fail if used in succession."
+171,QUICKGUARD,Quick Guard,0AB,0,FIGHTING,Status,0,15,0,UserSide,3,d,"The user protects itself and its allies from priority moves. It may fail if used in succession."
+#-------------------------------
 172,VCREATE,V-create,03D,180,FIRE,Physical,95,5,0,NearOther,0,abef,"With a fiery forehead, the user hurls itself at the foe. It lowers the user's Defense, Sp. Def, and Speed."
 173,BLASTBURN,Blast Burn,0C2,150,FIRE,Special,90,5,0,NearOther,0,bef,"The target is razed by a fiery explosion. The user must rest on the next turn, however."
 174,ERUPTION,Eruption,08B,150,FIRE,Special,100,5,0,AllNearFoes,0,bef,"The user attacks in an explosive fury. The lower the user's HP, the less powerful this attack becomes."
@@ -691,9 +692,12 @@
 674,SOAK,Soak,061,0,WATER,Status,100,20,0,NearOther,0,bce,"The user shoots a torrent of water at the target and changes the target's type to Water."
 675,WATERSPORT,Water Sport,09E,0,WATER,Status,0,15,0,BothSides,0,,"The user soaks itself with water. The move weakens Fire-type moves while the user is in the battle."
 676,WITHDRAW,Withdraw,01D,0,WATER,Status,0,40,0,User,0,d,"The user withdraws its body into its hard shell, raising its Defense stat."
+#-------------------------------
 677,FAINTATTACK,Feint Attack,0A5,60,DARK,Physical,0,20,0,NearOther,0,abef,"The user draws up to the foe disarmingly, then throws a sucker punch. It hits without fail."
+#-------------------------------
 678,HIDDENPOWER2,Hidden Power,090,60,NORMAL,Special,100,15,0,NearOther,0,bef,"A unique attack that varies in type and intensity depending on the Pokémon using it."
 679,TRIATTACK2,Tri Attack,017,70,NORMAL,Special,100,10,20,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. May also paralyze, burn, or freeze the target."
+#-------------------------------
 680,FAKEMOVE,Counterfeit,001,0,QMARKS,Status,100,5,20,NearOther,0,bef,"A fake move developped by Team Rocket that is used to trick people into buying counterfeit TMs"
 681,CHILLINGWATER,Chilling Water,042,50,WATER,Special,100,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 682,SCALESHOT,Scale Shot,176,25,DRAGON,Physical,90,20,100,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."

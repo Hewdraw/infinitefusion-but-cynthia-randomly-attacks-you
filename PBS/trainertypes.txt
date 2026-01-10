@@ -125,7 +125,7 @@
 122,TYPE_EXPERT_ROCK,Type Expert,16,,,,Mixed,100,
 123,TYPE_EXPERT_BUG,Type Expert,16,,,,Mixed,100,
 124,TYPE_EXPERT_GHOST,Type Expert,16,,,,Mixed,100,
-125,TYPE_EXPERT_STEEL,Type Expert,16,,,,Mixed,100,	
+125,TYPE_EXPERT_STEEL,Type Expert,16,,,,Mixed,100,
 126,TYPE_EXPERT_FIRE,Type Expert,16,,,,Mixed,100,
 127,TYPE_EXPERT_WATER,Type Expert,16,,,,Mixed,100,
 128,TYPE_EXPERT_GRASS,Type Expert,16,,,,Mixed,100,
