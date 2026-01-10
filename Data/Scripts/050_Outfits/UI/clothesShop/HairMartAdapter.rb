@@ -10,6 +10,8 @@ class HairMartAdapter < OutfitsMartAdapter
     @version = getCurrentHairVersion().to_i
     @worn_hair = $Trainer.hair
     @worn_hat = $Trainer.hat
+    @worn_hat2 = $Trainer.hat2
+
     @hat_visible = false
     @removable = true
     @previous_item= find_first_item()
@@ -29,6 +31,10 @@ class HairMartAdapter < OutfitsMartAdapter
     newVersion = lastVersion if newVersion <= 0
     newVersion = 1 if newVersion > lastVersion
     @version = newVersion
+  end
+
+  def player_changed_clothes?()
+    $Trainer.hairstyle != @worn_hair
   end
 
   #player can't "own" hairstyles
@@ -85,11 +91,6 @@ class HairMartAdapter < OutfitsMartAdapter
     return item.id
   end
 
-  def getDisplayName(item)
-    return getName(item) if !item.name
-    return item.name
-  end
-
   def getDescription(item)
     return DEFAULT_DESCRIPTION if !item.description
     return item.description
@@ -97,7 +98,6 @@ class HairMartAdapter < OutfitsMartAdapter
 
   def getItemIcon(item)
     return Settings::BACK_ITEM_ICON_PATH if !item
-    itemId = getCurrentHairId(item.id)
     return getOverworldHatFilename(item.id)
   end
 
@@ -105,9 +105,16 @@ class HairMartAdapter < OutfitsMartAdapter
     item = @previous_item if !item
     item = @previous_item if item.is_a?(Symbol)
     @previous_item = find_first_item() if !item.is_a?(Symbol)
+
     displayed_hat = @hat_visible ? @worn_hat : nil
+    displayed_hat2 = @hat_visible ? @worn_hat2 : nil
+
     previewWindow.hat = displayed_hat
+    previewWindow.hat2 = displayed_hat2
+
     $Trainer.hat = displayed_hat
+    $Trainer.hat2 = displayed_hat2
+
     itemId = getCurrentHairId(item.id)
     previewWindow.hair = itemId
     $Trainer.hair = itemId
@@ -143,6 +150,8 @@ class HairMartAdapter < OutfitsMartAdapter
 
     $Trainer.hair = @worn_hair
     $Trainer.hat = @worn_hat
+    $Trainer.hat2 = @worn_hat2
+
   end
 
   def get_unlocked_items_list()
@@ -180,6 +189,12 @@ class HairMartAdapter < OutfitsMartAdapter
 
   def doSpecialItemAction(specialType)
     switchVersion(nil,1)
+  end
+
+  def currentVersionExists?(item)
+    hairId = getCurrentHairId(item.id)
+    filename = getOverworldHairFilename(hairId)
+    return pbResolveBitmap(filename)
   end
 
 end

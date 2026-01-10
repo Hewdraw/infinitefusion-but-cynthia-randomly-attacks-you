@@ -74,7 +74,7 @@ class PokeBattle_Scene
     # Opposing trainer(s) sprites
     if @battle.trainerBattle? && !@battle.legendaryBattle?
       @battle.opponent.each_with_index do |p, i|
-        pbCreateTrainerFrontSprite(i, p.trainer_type, @battle.opponent.length, p.sprite_override)
+        pbCreateTrainerFrontSprite(i, p.trainer_type, @battle.opponent.length, p.sprite_override, p.custom_appearance)
       end
     end
     # Data boxes and Pokémon sprites
@@ -129,7 +129,7 @@ class PokeBattle_Scene
     time = getBackdropTimeSuffix()
     base_path = getBackdropBasePath(backdrop_type)
     default_name = base_path + filename
-    time_adjusted_name = _INTL("{1}{2}_{3}",base_path,filename,time)
+    time_adjusted_name = "#{base_path}#{filename}_#{time}"
     if pbResolveBitmap(time_adjusted_name)
       return time_adjusted_name
     end
@@ -175,30 +175,59 @@ class PokeBattle_Scene
   end
 
   def pbCreateTrainerBackSprite(idxTrainer, trainerType, numTrainers = 1)
-    x = 100
-    y = 410
 
-    sprite = IconSprite.new(x,y,@viewport)
-
-    allowEasterEggPokeball = pbInSafari? #Never allow except in Safari Zone - add more conditions if needed
-    sprite.setBitmapDirectly(generate_front_trainer_sprite_bitmap(allowEasterEggPokeball))
-    sprite.zoom_x=2
-    sprite.zoom_y=2
-    sprite.z=100 + idxTrainer
-
-    sprite.mirror =true
-    @sprites["player_#{idxTrainer + 1}"] = sprite
-    return sprite
 
     #trainer = pbAddSprite("player_#{idxTrainer + 1}", spriteX, spriteY, trainerFile, @viewport)
     #
-    # if idxTrainer == 0 # Player's sprite
-    #   #trainerFile = GameData::TrainerType.player_back_sprite_filename(trainerType)
-    #   trainerFile = generate_front_trainer_sprite_bitmap()
-    # else
-    #   # Partner trainer's sprite
-    #   trainerFile = GameData::TrainerType.back_sprite_filename(trainerType)
-    # end
+    if idxTrainer == 0 # Player's sprite
+      x = 100
+      y = 410
+
+      sprite = IconSprite.new(x,y,@viewport)
+
+      allowEasterEggPokeball = pbInSafari? #Never allow except in Safari Zone - add more conditions if needed
+      sprite.setBitmapDirectly(generate_front_trainer_sprite_bitmap(allowEasterEggPokeball))
+      sprite.zoom_x=2
+      sprite.zoom_y=2
+      sprite.z=100 + idxTrainer
+
+      sprite.mirror =true
+       @sprites["player_#{idxTrainer + 1}"] = sprite
+    else
+      x = 200
+      y = 380
+      # Partner trainer's sprite
+      trainerFile = GameData::TrainerType.front_sprite_filename(trainerType)
+      echoln ""
+      echoln "-------"
+      echoln trainerFile
+
+      trainer_sprite = IconSprite.new(x,y,@viewport)
+      trainer_sprite.setBitmap(trainerFile)
+      trainer_sprite.zoom_x=2
+      trainer_sprite.zoom_y=2
+      trainer_sprite.z = 30 + idxTrainer
+      trainer_sprite.mirror =true
+      if trainer_sprite.bitmap.width > trainer_sprite.bitmap.height * 2
+        trainer_sprite.src_rect.x = 0
+        trainer_sprite.src_rect.width = trainer_sprite.bitmap.width / 5
+      end
+      trainer_sprite.ox = trainer_sprite.src_rect.width / 2
+      trainer_sprite.oy = trainer_sprite.bitmap.height
+
+      @sprites["player_#{idxTrainer + 1}"] = trainer_sprite
+
+      #
+      #
+      # trainer.z = 30 + idxTrainer
+      # if trainer.bitmap.width > trainer.bitmap.height * 2
+      #   trainer.src_rect.x = 0
+      #   trainer.src_rect.width = trainer.bitmap.width / 5
+      # end
+      # trainer.ox = trainer.src_rect.width / 2
+      # trainer.oy = trainer.bitmap.height
+
+    end
     # spriteX, spriteY = PokeBattle_SceneConstants.pbTrainerPosition(0, idxTrainer, numTrainers)
     # trainer = pbAddSprite("player_#{idxTrainer + 1}", spriteX, spriteY, trainerFile, @viewport)
     # return if !trainer.bitmap
@@ -212,7 +241,7 @@ class PokeBattle_Scene
     # trainer.oy = trainer.bitmap.height
   end
 
-  def pbCreateTrainerFrontSprite(idxTrainer, trainerType, numTrainers = 1, sprite_override = nil)
+  def pbCreateTrainerFrontSprite(idxTrainer, trainerType, numTrainers = 1, sprite_override = nil, custom_appearance=nil)
     trainerFile = GameData::TrainerType.front_sprite_filename(trainerType)
     trainerFile = sprite_override if sprite_override
 
@@ -220,7 +249,7 @@ class PokeBattle_Scene
     trainer = pbAddSprite("trainer_#{idxTrainer + 1}", spriteX, spriteY, trainerFile, @viewport)
     spriteOverrideBitmap = setTrainerSpriteOverrides(trainerType)
     trainer.bitmap = spriteOverrideBitmap if spriteOverrideBitmap
-
+    trainer.bitmap = generate_front_trainer_sprite_bitmap_from_appearance(custom_appearance,true).bitmap if custom_appearance
     return if !trainer.bitmap
     # Alter position of sprite
     trainer.z = 7 + idxTrainer
@@ -230,7 +259,7 @@ class PokeBattle_Scene
 
   def setTrainerSpriteOverrides(trainer_type)
     if TYPE_EXPERTS_APPEARANCES.keys.include?(trainer_type)
-      return generate_front_trainer_sprite_bitmap_from_appearance(TYPE_EXPERTS_APPEARANCES[trainer_type]).bitmap
+      return generate_front_trainer_sprite_bitmap_from_appearance(TYPE_EXPERTS_APPEARANCES[trainer_type],false).bitmap
     end
   end
 

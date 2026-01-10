@@ -1,14 +1,50 @@
 class OutfitsMartAdapter < PokemonMartAdapter
   attr_accessor :worn_clothes
+  attr_accessor :is_secondary_hat
+  attr_accessor :items
 
   WORN_ITEM_BASE_COLOR = MessageConfig::BLUE_TEXT_MAIN_COLOR
   WORN_ITEM_SHADOW_COLOR = MessageConfig::BLUE_TEXT_SHADOW_COLOR
 
-  def initialize(stock = [], isShop = true)
+
+  REGIONAL_SET_BASE_COLOR =   Color.new(76,72,104)
+  REGIONAL_SET_SHADOW_COLOR =   Color.new(173,165,189)
+
+  CITY_EXCLUSIVE_BASE_COLOR =   Color.new(61 , 125, 70) #Color.new(72 , 104, 83)
+  CITY_EXCLUSIVE_SHADOW_COLOR =   Color.new(165, 189, 178)
+
+  def initialize(stock = [], isShop = true, isSecondaryHat = false)
+    @is_secondary_hat = isSecondaryHat
     @items = stock
     @worn_clothes = get_current_clothes()
     @isShop = isShop
     @version = nil
+    $Trainer.dyed_hats = {} if !$Trainer.dyed_hats
+    $Trainer.dyed_clothes = {} if !$Trainer.dyed_clothes
+  end
+
+  def list_regional_set_items()
+    return []
+  end
+
+  def list_city_exclusive_items()
+    return []
+  end
+
+  def getDisplayName(item)
+    return getName(item) if !item.name
+    name = item.name
+    name = "* #{name}" if is_wearing_clothes(item.id)
+    return name
+  end
+
+  def is_wearing_clothes(outfit_id)
+    return outfit_id == @worn_clothes
+  end
+
+  def player_changed_clothes?()
+    return false
+    #implement in inheriting classes
   end
 
   def toggleText()
@@ -64,13 +100,23 @@ class OutfitsMartAdapter < PokemonMartAdapter
     super
   end
 
+  def isItemInRegionalSet(item)
+    return item.is_in_regional_set
+  end
+
+  def isItemCityExclusive(item)
+    return item.is_in_city_exclusive_set
+  end
+
   def getBaseColorOverride(item)
-    return WORN_ITEM_BASE_COLOR if isWornItem?(item)
-    return nil
+      return REGIONAL_SET_BASE_COLOR if isItemInRegionalSet(item)
+      return CITY_EXCLUSIVE_BASE_COLOR  if isItemCityExclusive(item)
+      return nil
   end
 
   def getShadowColorOverride(item)
-    return WORN_ITEM_SHADOW_COLOR if isWornItem?(item)
+    return REGIONAL_SET_SHADOW_COLOR if isItemInRegionalSet(item)
+    return CITY_EXCLUSIVE_SHADOW_COLOR  if isItemCityExclusive(item)
     return nil
   end
 
@@ -96,5 +142,13 @@ class OutfitsMartAdapter < PokemonMartAdapter
 
   def showQuantity?(item)
     super
+  end
+
+  def updateVersion(item)
+    @version = 1 if !currentVersionExists?(item)
+  end
+
+  def currentVersionExists?(item)
+    return true
   end
 end

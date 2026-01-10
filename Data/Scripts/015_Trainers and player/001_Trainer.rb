@@ -8,10 +8,14 @@ class Trainer
   attr_accessor :language
   attr_accessor :party
   attr_accessor :quests
+  attr_accessor :quests_repaired
   attr_accessor :sprite_override
+  attr_accessor :custom_appearance
   attr_accessor :lowest_difficulty
   attr_accessor :selected_difficulty
   attr_accessor :game_mode
+  attr_accessor :quest_points
+  attr_accessor :secretBase_uuid
 
   def inspect
     str = super.chop
@@ -21,7 +25,7 @@ class Trainer
   end
 
   def full_name
-    return _INTL("{1} {2}", trainer_type_name, @name)
+    return "#{trainer_type_name} #{@name}"
   end
 
   #=============================================================================
@@ -220,18 +224,20 @@ class Trainer
 
   #=============================================================================
 
-  def initialize(name, trainer_type, sprite_override=nil)
+  def initialize(name, trainer_type, sprite_override=nil, custom_appearance=nil)
     @trainer_type = GameData::TrainerType.get(trainer_type).id
     @name = name
     @id = rand(2 ** 16) | rand(2 ** 16) << 16
     @language = pbGetLanguage
     @party = []
     @sprite_override = sprite_override
+    @custom_appearance = custom_appearance
     @lowest_difficulty=1  #On hard by default, lowered whenever the player selects another difficulty
     @selected_difficulty=1  #On hard by default, lowered whenever the player selects another difficulty
     $PokemonSystem.battle_type = 0
     $PokemonSystem.level_caps = 1
     @game_mode =0  #classic
+    @quest_points = 0
   end
 end
 
@@ -241,10 +247,11 @@ end
 class NPCTrainer < Trainer
   attr_accessor :items
   attr_accessor :lose_text
-
-  def initialize(name, trainer_type, sprite_override=nil)
+  def initialize(name, trainer_type, sprite_override=nil,custom_appearance=nil)
     super
     @items = []
     @lose_text = nil
   end
+
+
 end

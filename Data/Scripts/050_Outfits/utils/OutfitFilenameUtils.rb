@@ -5,7 +5,7 @@ BASE_TRAINER_FOLDER = "trainer"
 
 def getBaseOverworldSpriteFilename(action = "walk", skinTone = "default")
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + BASE_FOLDER + "/" + BASE_OVERWORLD_FOLDER
-  dynamic_path = _INTL("/{1}/{2}_{1}", skinTone, action)
+  dynamic_path = "/#{skinTone}/#{action}_#{skinTone}"
   full_path = base_path + dynamic_path
   return full_path if pbResolveBitmap(full_path)
   return getBaseOverworldSpriteFilename(action) if skinTone != "default" #try again with default skintone
@@ -14,7 +14,7 @@ end
 
 def getBaseTrainerSpriteFilename(skinTone = "default")
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + BASE_FOLDER + "/" + BASE_TRAINER_FOLDER
-  dynamic_path = _INTL("/{1}_{2}", BASE_TRAINER_FOLDER, skinTone)
+  dynamic_path = "/#{BASE_TRAINER_FOLDER}_#{skinTone}"
   full_path = base_path + dynamic_path
   return full_path if pbResolveBitmap(full_path)
   return getBaseTrainerSpriteFilename() #default skintone
@@ -28,8 +28,8 @@ end
 
 def getOverworldOutfitFilename(outfit_id, action="walk")
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_CLOTHES_FOLDER
-  dynamic_path = _INTL("/{1}/", outfit_id)
-  filename = _INTL(Settings::PLAYER_CLOTHES_FOLDER + "_{1}_{2}", action, outfit_id)
+  dynamic_path = "/#{outfit_id}/"
+  filename = Settings::PLAYER_CLOTHES_FOLDER + "_#{action}_#{outfit_id}"
   full_path = base_path + dynamic_path + filename
   #echoln full_path
   return full_path
@@ -66,7 +66,7 @@ def getSplitHairFilenameAndVersionFromID(hairstyle_id)
 end
 
 def getFullHairId(hairstyle,version)
-  return _INTL("{1}_{2}",version,hairstyle)
+  return "#{version}_#{hairstyle}"
 
 end
 
@@ -76,8 +76,8 @@ def getOverworldHairFilename(hairstyle_id)
   version= hairstyle_split[-2]
 
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_HAIR_FOLDER
-  dynamic_path = _INTL("/{1}/", name)
-  filename = _INTL(Settings::PLAYER_HAIR_FOLDER + "_{1}_{2}",version, name)
+  dynamic_path = "/#{name}/" 
+  filename = Settings::PLAYER_HAIR_FOLDER + "_#{version}_#{name}"
   full_path = base_path + dynamic_path + filename
   return full_path
 end
@@ -91,8 +91,8 @@ def getTrainerSpriteHairFilename(hairstyle_id)
 
 
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_HAIR_FOLDER
-  dynamic_path = _INTL("/{1}/", name)
-  filename = _INTL(Settings::PLAYER_HAIR_FOLDER + "_trainer_{1}_{2}",version, name)
+  dynamic_path = "/#{name}/"
+  filename = Settings::PLAYER_HAIR_FOLDER + "_trainer_#{version}_#{name}"
   full_path = base_path + dynamic_path + filename
   return full_path
 end
@@ -105,16 +105,16 @@ end
 
 def getOverworldHatFilename(hat_id)
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_HAT_FOLDER
-  dynamic_path = _INTL("/{1}/", hat_id)
-  filename = _INTL(Settings::PLAYER_HAT_FOLDER + "_{1}", hat_id)
+  dynamic_path = "/#{hat_id}/"
+  filename = Settings::PLAYER_HAT_FOLDER + "_#{hat_id}"
   full_path = base_path + dynamic_path + filename
   return full_path
 end
 
 def getTrainerSpriteHatFilename(hat_id)
   base_path = Settings::PLAYER_GRAPHICS_FOLDER + Settings::PLAYER_HAT_FOLDER
-  dynamic_path = _INTL("/{1}/", hat_id)
-  filename = _INTL(Settings::PLAYER_HAT_FOLDER + "_trainer_{1}", hat_id)
+  dynamic_path = "/#{hat_id}/" 
+  filename = Settings::PLAYER_HAT_FOLDER + "_trainer_#{hat_id}"
   full_path = base_path + dynamic_path + filename
   return full_path
 end

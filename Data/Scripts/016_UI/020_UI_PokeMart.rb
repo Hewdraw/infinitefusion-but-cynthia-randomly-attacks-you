@@ -26,7 +26,7 @@ class PokemonMartAdapter
     item_name = getName(item)
     if GameData::Item.get(item).is_machine?
       machine = GameData::Item.get(item).move
-      item_name = _INTL("{1} {2}", item_name, GameData::Move.get(machine).name)
+      item_name = "#{item_name} #{GameData::Move.get(machine).name}"
     end
     return item_name
   end
@@ -97,7 +97,7 @@ class PokemonMartAdapter
     return nil
   end
 
-  def doSpecialItemAction(specialType)
+  def doSpecialItemAction(specialType,itemId=nil)
     return nil
   end
 

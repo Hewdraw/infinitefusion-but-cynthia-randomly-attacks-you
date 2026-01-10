@@ -116,7 +116,7 @@ class PokemonSummary_Scene
     @pokemon = @party[@partyindex]
     @inbattle = inbattle
     @page = 1
-    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+    @typebitmap = AnimatedBitmap.new("Graphics/Pictures/types")
     @markingbitmap = AnimatedBitmap.new("Graphics/Pictures/Summary/markings")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
@@ -187,7 +187,7 @@ class PokemonSummary_Scene
     @partyindex = partyindex
     @pokemon = @party[@partyindex]
     @page = 4
-    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+    @typebitmap = AnimatedBitmap.new("Graphics/Pictures/types")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
     @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -361,9 +361,9 @@ class PokemonSummary_Scene
     end
     # Write the gender symbol
     if @pokemon.male?
-      textpos.push([_INTL("♂"), 178, 56, 0, Color.new(24, 112, 216), Color.new(136, 168, 208)])
+      textpos.push(["♂", 178, 56, 0, Color.new(24, 112, 216), Color.new(136, 168, 208)])
     elsif @pokemon.female?
-      textpos.push([_INTL("♀"), 178, 56, 0, Color.new(248, 56, 32), Color.new(224, 152, 144)])
+      textpos.push(["♀", 178, 56, 0, Color.new(248, 56, 32), Color.new(224, 152, 144)])
     end
     # Draw all text
     pbDrawTextPositions(overlay, textpos)
@@ -418,12 +418,12 @@ class PokemonSummary_Scene
     end
     # Write various bits of text
     textpos = [
-      #[_INTL("Dex No."), 238, dex_no_y, 0, base, shadow],
+      #["Dex No.", 238, dex_no_y, 0, base, shadow],
       [_INTL("Species"), 238, species_y, 0, base, shadow],
       [@pokemon.speciesName, 435, species_y, 2, Color.new(64, 64, 64), Color.new(176, 176, 176)],
       [_INTL("Type"), 238, type_y, 0, base, shadow],
       [_INTL("OT"), 238, ot_y, 0, base, shadow],
-      # [_INTL("ID No."), 238, id_no_y, 0, base, shadow],
+      # ["ID No.", 238, id_no_y, 0, base, shadow],
     ]
     if @pokemon.isFusion?
       headName = getPokemon(@pokemon.species_data.get_head_species).name
@@ -483,13 +483,13 @@ class PokemonSummary_Scene
     end
     # Write Exp text OR heart gauge message (if a Shadow Pokémon)
     # if @pokemon.shadowPokemon?
-    #   textpos.push([_INTL("Heart Gauge"), 238, 234, 0, base, shadow])
-    #   heartmessage = [_INTL("The door to its heart is open! Undo the final lock!"),
-    #                   _INTL("The door to its heart is almost fully open."),
-    #                   _INTL("The door to its heart is nearly open."),
-    #                   _INTL("The door to its heart is opening wider."),
-    #                   _INTL("The door to its heart is opening up."),
-    #                   _INTL("The door to its heart is tightly shut.")][@pokemon.heartStage]
+    #   textpos.push(["Heart Gauge", 238, 234, 0, base, shadow])
+    #   heartmessage = ["The door to its heart is open! Undo the final lock!",
+    #                   "The door to its heart is almost fully open.",
+    #                   "The door to its heart is nearly open.",
+    #                   "The door to its heart is opening wider.",
+    #                   "The door to its heart is opening up.",
+    #                   "The door to its heart is tightly shut."][@pokemon.heartStage]
     #   memo = sprintf("<c3=404040,B0B0B0>%s\n", heartmessage)
     #   drawFormattedTextEx(overlay, 234, 304, 264, memo)
     # else
@@ -922,7 +922,7 @@ class PokemonSummary_Scene
   #   @sprites["downarrow"].visible = false
   #   # Write various bits of text
   #   textpos = [
-  #     [_INTL("No. of Ribbons:"), 234, 326, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)],
+  #     ["No. of Ribbons:", 234, 326, 0, Color.new(64, 64, 64), Color.new(176, 176, 176)],
   #     [@pokemon.numRibbons.to_s, 450, 326, 1, Color.new(64, 64, 64), Color.new(176, 176, 176)],
   #   ]
   #   # Draw all text
@@ -1496,7 +1496,7 @@ class PokemonSummaryScreen
       ret = @scene.pbChooseMoveToForget(move_to_learn)
       break if ret < 0 || !move_to_learn
       break if party[partyindex].moves[ret]
-      #pbMessage(_INTL("HM moves can't be forgotten now.")) { @scene.pbUpdate }
+      #pbMessage("HM moves can't be forgotten now.") { @scene.pbUpdate }
     end
     @scene.pbEndScene
     return ret

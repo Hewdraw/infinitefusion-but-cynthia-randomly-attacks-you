@@ -9,6 +9,15 @@ module GameData
     attr_reader :real_lose_text
     attr_reader :pokemon
 
+
+    attr_accessor :loseText_rematch
+    attr_accessor :preRematchText
+    attr_accessor :preRematchText_caught
+    attr_accessor :preRematchText_evolved
+    attr_accessor :preRematchText_fused
+    attr_accessor :preRematchText_unfused
+    attr_accessor :preRematchText_reversed
+
     DATA = {}
     DATA_FILENAME = "trainers.dat"
 
@@ -43,6 +52,16 @@ module GameData
       "Shiny" => [:shininess, "b"],
       "Shadow" => [:shadowness, "b"],
       "Ball" => [:poke_ball, "s"],
+
+      "LoseTextRematch" => [:loseText_rematch, "s"],
+      "PreRematchText" => [:preRematchText, "s"],
+      "PreRematchText_caught" => [:preRematchText_caught, "s"],
+      "PreRematchText_evolved" => [:preRematchText_evolved, "s"],
+      "PreRematchText_fused" => [:preRematchText_fused, "s"],
+      "PreRematchText_unfused" => [:preRematchText_unfused, "s"],
+      "PreRematchText_reversed" => [:preRematchText_reversed, "s"],
+
+
     }
 
     extend ClassMethods
@@ -105,6 +124,14 @@ module GameData
           pkmn[:ev][s.id] ||= 0 if pkmn[:ev]
         end
       end
+
+      @loseText_rematch = hash[:loseText_rematch] || @real_lose_text
+      @preRematchText  = hash[:preRematchText] || "Are you up for a rematch? Or maybe you want to trade..."
+      @preRematchText_caught = hash[:preRematchText_caught] || @preRematchText
+      @preRematchText_evolved = hash[:preRematchText_evolved] || @preRematchText
+      @preRematchText_fused = hash[:preRematchText_fused] || @preRematchText
+      @preRematchText_unfused = hash[:preRematchText_unfused] || @preRematchText
+      @preRematchText_reversed = hash[:preRematchText_reversed] || @preRematchText
     end
 
     # @return [String] the translated name of this trainer
@@ -115,6 +142,34 @@ module GameData
     # @return [String] the translated in-battle lose message of this trainer
     def lose_text
       return pbGetMessageFromHash(MessageTypes::TrainerLoseText, @real_lose_text)
+    end
+
+    def rematch_lose_text
+      return pbGetMessageFromHash(MessageTypes::TrainerLoseText, @loseText_rematch)
+    end
+
+    def preRematch_text_default
+      return pbGetMessageFromHash(MessageTypes::BeginSpeech, @preRematchText)
+    end
+
+    def preRematch_text_caught
+      return pbGetMessageFromHash(MessageTypes::BeginSpeech, @preRematchText_caught)
+    end
+
+    def preRematch_text_evolved
+      return pbGetMessageFromHash(MessageTypes::BeginSpeech, @preRematchText_evolved)
+    end
+
+    def preRematch_text_fused
+      return pbGetMessageFromHash(MessageTypes::BeginSpeech, @preRematchText_fused)
+    end
+
+    def preRematch_text_unfused
+      return pbGetMessageFromHash(MessageTypes::BeginSpeech, @preRematchText_unfused)
+    end
+
+    def preRematch_text_reversed
+      return pbGetMessageFromHash(MessageTypes::BeginSpeech, @preRematchText_reversed)
     end
 
     def replace_species_with_placeholder(species)
@@ -154,7 +209,8 @@ module GameData
       gym_type = GameData::Type.get(type_id)
       while true
         new_species = $game_switches[SWITCH_RANDOM_GYM_CUSTOMS] ? getSpecies(getNewCustomSpecies(old_species, customsList, bst_range)) : getSpecies(getNewSpecies(old_species, bst_range))
-        if new_species.hasType?(gym_type)
+        if new_species.hasType?(gym_type) || $game_switches[SWITCH_RANDOM_GYM_CUSTOMS] || $game_switches[SWITCH_LEGENDARY_MODE]
+          # Note: gym Type validation is handled in-house for legendary mode
           return new_species
         end
       end
@@ -175,6 +231,9 @@ module GameData
         end
       end
       new_species = generateRandomGymSpecies(species)
+      if !new_species
+        return species
+      end
       if $game_switches[SWITCH_RANDOM_GYM_PERSIST_TEAMS]
         add_generated_species_to_gym_array(new_species, trainerId)
       end
@@ -405,7 +464,7 @@ module GameData
           secondary_ability_index = pkmn.ability_index == 0 ? 1 : 0
           pkmn.ability2_index = secondary_ability_index
           pkmn.ability2 = pkmn.getAbilityList[secondary_ability_index][0]
-          #print _INTL("Primary: {1}, Secondary: {2}",pkmn.ability.id, pkmn.ability2.id)
+          #print "Primary: {1}, Secondary: {2}",pkmn.ability.id, pkmn.ability2.id
         end
 
         pkmn.gender = pkmn_data[:gender] || ((trainer.male?) ? 0 : 1)

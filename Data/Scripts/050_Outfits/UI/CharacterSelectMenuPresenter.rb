@@ -11,7 +11,6 @@ class CharacterSelectMenuPresenter
 
   MIN_AGE = 10
   MAX_AGE = 17
-  DEFAULT_NAMES = ["Green", "Red"]
 
   MIN_SKIN_COLOR = 1
   MAX_SKIN_COLOR = 6
@@ -86,7 +85,7 @@ class CharacterSelectMenuPresenter
       update_cursor(@current_index)
       @name = getDefaultName if @name == ""
       updateDisplayedName(getOptionIndex(OPTION_NAME))
-      cmd = pbMessage("Is this this information correct?", [_INTL("Yes"), _INTL("No")])
+      cmd = pbMessage(_INTL("Is this information correct?"), [_INTL("Yes"), _INTL("No")])
       if cmd == 0
         pbSEPlay("GUI naming confirm", 80, 100)
         #pbMessage("You will be able to customize your appearance further while playing")
@@ -103,7 +102,7 @@ class CharacterSelectMenuPresenter
   end
 
   def getDefaultName()
-    return DEFAULT_NAMES[@gender]
+    return getPlayerDefaultName(@gender)
   end
 
   def updateDisplayedName(current_index)
@@ -225,7 +224,7 @@ class CharacterSelectMenuPresenter
   def applyHairEasterEggs()
     @hairstyle = HAIR_RIVAL if @name == "Gary" && @gender == 1
     @hairstyle = HAIR_BROCK if @name == "Brock" && @gender == 1
-    @hairstyle = HAIR_MISTY if @name == "Misty" && @gender == 0
+    @hairstyle = HAIR_MISTY1 if @name == "Misty" && @gender == 0
 
   end
 
@@ -233,17 +232,19 @@ class CharacterSelectMenuPresenter
     # outfitId = gender + 1
     pbSet(VAR_TRAINER_GENDER, gender_index)
 
-    outfitId = get_outfit_id_from_index(gender_index)
-    @hairstyle = outfitId
+    outfitId = getDefaultClothes(gender_index)
+    hatID = getDefaultHat(gender_index)
+    @hairstyle = getDefaultHair(gender_index)
     applyHair()
     #$Trainer.hair = outfitId
     $Trainer.clothes = outfitId
-    $Trainer.hat = outfitId
+    $Trainer.hat = hatID
   end
 
   def get_outfit_id_from_index(gender_index)
+
     if gender_index == 1 #Male
-      return "red"
+      return getD
     else
       #Female
       return "leaf"

@@ -14,8 +14,8 @@ def handleReplaceExistingSprites()
   return if spritesToReplaceList.size==0
   commands = []
   #commands << "Pick which sprites to use as mains"
-  commands << "Do not import the new sprites"
-  commands << "Replace all the old sprites with the new ones"
+  commands << _INTL("Do not import the new sprites")
+  commands << _INTL("Replace all the old sprites with the new ones")
   #commands << "Import all the new sprites as alts"
 
   messageSingular = "While importing custom sprites, the game has detected that {1} new custom sprite already has a version that exist in the game."
@@ -25,12 +25,12 @@ def handleReplaceExistingSprites()
   message = _INTL(messageText,spritesToReplaceList.length.to_s)
   pbMessage(message)
 
-  command = pbMessage("What to do with the new sprites?",commands,commands.size-1)
+  command = pbMessage(_INTL("What to do with the new sprites?"),commands,commands.size-1)
   case command
   when 0 #Do not import
-    pbMessage("You can manually sort the new sprites in the /indexed folder to choose which ones you want to keep.")
-    pbMessage("You can also delete the ones you don't want to replace the main sprites and restart the game.")
-    pbMessage("Keep in mind that the game will take longer to load until these sprites are imported/removed.")
+    pbMessage(_INTL("You can manually sort the new sprites in the /indexed folder to choose which ones you want to keep."))
+    pbMessage(_INTL("You can also delete the ones you don't want to replace the main sprites and restart the game."))
+    pbMessage(_INTL("Keep in mind that the game will take longer to load until these sprites are imported/removed."))
 
     return
   when 1 #Replace olds
@@ -137,11 +137,17 @@ end
 
 
 def showLoadingScreen
-     intro_frames_path = "Graphics\\titles\\loading_screen"
-     picture = Sprite.new(@viewport)
-     picture.bitmap = pbBitmap(intro_frames_path)
+  loading_screen_folder = "Graphics/titles/loading_screens"
+  available_loading_screens = Dir.glob("#{loading_screen_folder}/*.png")
+  if available_loading_screens.length > 0
+    selected_loading_screen = available_loading_screens.sample
+  else
+    selected_loading_screen = "Graphics/titles/default_loading_screen"
+  end
+  picture = Sprite.new(@viewport)
+     picture.bitmap = pbBitmap(selected_loading_screen)
      picture.visible=true
-     pbWait(Graphics.frame_rate / 20)
+     Graphics.update
      picture.dispose
 end
 

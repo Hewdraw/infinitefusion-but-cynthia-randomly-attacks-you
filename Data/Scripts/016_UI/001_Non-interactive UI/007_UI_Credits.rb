@@ -78,6 +78,9 @@ Gameplay / Story :
 Chardub
 Kiwikelly
 
+Title screen and logo
+Doctor Miawoo
+
 Custom sprites collecting and handling
 Kiwikelly, Payapon, Thornsoflight
 
@@ -103,6 +106,14 @@ Other custom graphics:
 Kiwikelly<s>Knuckles
 UnworthyPie<s>Doctor Miawoo
 Chardub<s>TCGrunler#4583
+
+Elite 4 rematch teams
+duskrd<s>anaconja<s>taraline
+
+French translation
+anthonygourmand
+locpic_
+blood.wolf58 (Willi)
 
 The following free ressources were also used 
 with their respective authors' consent:

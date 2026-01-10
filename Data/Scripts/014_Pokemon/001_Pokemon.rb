@@ -25,6 +25,8 @@ class Pokemon
   attr_accessor :hat
   attr_accessor :hat_x
   attr_accessor :hat_y
+  attr_accessor :hat_mirrored_horizontal
+  attr_accessor :hat_mirrored_vertical
 
   # @return [Integer] the number of steps until this Pokémon hatches, 0 if this Pokémon is not an egg
   attr_accessor :steps_to_hatch
@@ -54,6 +56,10 @@ class Pokemon
 
   # @return [Array<Pokemon::Move>] the moves known by this Pokémon
   attr_accessor :moves
+
+  # @return [Array<Symbol>] All the move (ids) ever learned by this Pokémon
+  attr_reader :learned_moves
+
   # @return [Array<Integer>] the IDs of moves known by this Pokémon when it was obtained
   attr_accessor :first_moves
   # @return [Array<Symbol>] an array of ribbons owned by this Pokémon
@@ -356,7 +362,10 @@ class Pokemon
     #reverse the fusion if it's a meloA and meloP fusion
     # There's probably a smarter way to do this but laziness lol
     if is_already_old_form && is_already_new_form
-      if self.species_data.get_body_species() == oldForm
+      body_id = self.species_data.get_body_species()
+      body_species = GameData::Species.get(body_id)
+
+      if body_species == oldForm
         changeSpeciesSpecific(self, getFusedPokemonIdFromSymbols(newForm, oldForm))
       else
         changeSpeciesSpecific(self, getFusedPokemonIdFromSymbols(oldForm, newForm))
@@ -615,12 +624,12 @@ class Pokemon
 
   # Makes this Pokémon male.
   def makeMale
-    self.gender = 0;
+    @gender = 0
   end
 
   # Makes this Pokémon female.
   def makeFemale
-    self.gender = 1;
+    @gender = 1
   end
 
   # @return [Boolean] whether this Pokémon is male
@@ -886,9 +895,25 @@ class Pokemon
     first_move_index = knowable_moves.length - MAX_MOVES
     first_move_index = 0 if first_move_index < 0
     for i in first_move_index...knowable_moves.length
-      @moves.push(Pokemon::Move.new(knowable_moves[i]))
+      move = Pokemon::Move.new(knowable_moves[i])
+      @moves.push(move)
+      add_learned_move(move)
     end
   end
+
+  def add_learned_move(move)
+    @learned_moves = [] if !@learned_moves
+    if move.is_a?(Symbol)
+      @learned_moves << move unless @learned_moves.include?(move)
+    else
+      move_id = move.id
+      if move_id
+        @learned_moves << move_id unless @learned_moves.include?(move_id)
+      end
+    end
+  end
+
+
 
   # Silently learns the given move. Will erase the first known move if it has to.
   # @param move_id [Symbol, String, Integer] ID of the move to learn
@@ -902,10 +927,12 @@ class Pokemon
       @moves.delete_at(i)
       return
     end
+    move = Pokemon::Move.new(move_data.id)
     # Move is not already known; learn it
-    @moves.push(Pokemon::Move.new(move_data.id))
+    @moves.push(move)
     # Delete the first known move if self now knows more moves than it should
     @moves.shift if numMoves > MAX_MOVES
+    add_learned_move(move)
   end
 
   def learn_move_ignoremax(move_id)
@@ -927,17 +954,23 @@ class Pokemon
   def forget_move(move_id)
     move_data = GameData::Move.try_get(move_id)
     return if !move_data
+    add_learned_move(move_id)
     @moves.delete_if { |m| m.id == move_data.id }
   end
 
   # Deletes the move at the given index from the Pokémon.
   # @param index [Integer] index of the move to be deleted
   def forget_move_at_index(index)
+    move_id = @moves[index].id
+    add_learned_move(move_id)
     @moves.delete_at(index)
   end
 
   # Deletes all moves from the Pokémon.
   def forget_all_moves
+    for move in @moves
+      add_learned_move(move)
+    end
     @moves.clear
   end
 
@@ -982,8 +1015,10 @@ class Pokemon
   end
 
   def pokemon_can_learn_move(species_data, move_data)
+    moveset = species_data.moves.map { |pair| pair[1] }
     return species_data.tutor_moves.include?(move_data.id) ||
       species_data.moves.flatten.include?(move_data.id) ||
+      moveset.include?(move_data.id) ||
       species_data.egg_moves.include?(move_data.id)
   end
 
@@ -1247,7 +1282,7 @@ class Pokemon
     current_head = @species_data.head_pokemon
 
     choices = [
-      #_INTL("Evolve both!"),
+      # "Evolve both!",
       _INTL("Evolve head!"),
       _INTL("Evolve body!"),
       _INTL("Don't evolve")
@@ -1265,8 +1300,7 @@ class Pokemon
     return newspecies
   end
 
-  def check_evolution_on_level_up
-
+  def check_evolution_on_level_up(prompt_choice=true)
     if @species_data.is_a?(GameData::FusedSpecies)
       body = self.species_data.body_pokemon
       head = self.species_data.head_pokemon
@@ -1280,7 +1314,8 @@ class Pokemon
         next (success) ? new_species : nil
       }
       if body_evolution && head_evolution
-        return prompt_evolution_choice(body_evolution, head_evolution)
+        return prompt_evolution_choice(body_evolution, head_evolution) if prompt_choice
+        return [body_evolution,head_evolution].sample
       end
     end
 
@@ -1365,7 +1400,7 @@ class Pokemon
       when :LARGE
         return { :HP => 75, :ATTACK => 95, :DEFENSE => 122, :SPECIAL_ATTACK => 58, :SPECIAL_DEFENSE => 75, :SPEED => 69}
       when :SUPER
-        return { :HP => 85, :ATTACK => 10, :DEFENSE => 122, :SPECIAL_ATTACK => 58, :SPECIAL_DEFENSE => 75, :SPEED => 54}
+        return { :HP => 85, :ATTACK => 100, :DEFENSE => 122, :SPECIAL_ATTACK => 58, :SPECIAL_DEFENSE => 75, :SPEED => 54}
       end
     end
     return nil
@@ -1593,6 +1628,7 @@ class Pokemon
     @item = nil
     @mail = nil
     @moves = []
+    @learned_moves = []
     reset_moves if withMoves
     @first_moves = []
     @ribbons = []
@@ -1644,9 +1680,11 @@ class Pokemon
     @hat = nil
     @hat_x = 0
     @hat_y = 0
+    @hat_mirrored_horizontal = false
+    @hat_mirrored_vertical = false
+
     @size_category = determine_size_category()
     @sprite_scale=determine_scale()
-    echoln @sprite_scale
     calc_stats
     if @form == 0 && recheck_form
       f = MultipleForms.call("getFormOnCreation", self)

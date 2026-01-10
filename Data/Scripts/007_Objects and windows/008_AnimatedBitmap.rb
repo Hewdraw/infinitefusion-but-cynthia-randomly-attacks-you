@@ -129,21 +129,48 @@ class AnimatedBitmap
     @bitmap.bitmap = new_bitmap
   end
 
-  # def mirror
-  #   for x in 0..@bitmap.bitmap.width / 2
-  #     for y in 0..@bitmap.bitmap.height - 2
-  #       temp = @bitmap.bitmap.get_pixel(x, y)
-  #       newPix = @bitmap.bitmap.get_pixel((@bitmap.bitmap.width - x), y)
-  #
-  #       @bitmap.bitmap.set_pixel(x, y, newPix)
-  #       @bitmap.bitmap.set_pixel((@bitmap.bitmap.width - x), y, temp)
-  #     end
-  #   end
-  # end
-
   def mirror
-    @bitmap.bitmap
+    mirror_horizontally
   end
+
+  def mirror_horizontally
+    bmp = @bitmap.bitmap
+    half_width = bmp.width / 2
+    height = bmp.height
+
+    (0...half_width).each do |x|
+      (0...height).each do |y|
+        left_pixel  = bmp.get_pixel(x, y)
+        right_pixel = bmp.get_pixel(bmp.width - 1 - x, y)
+
+        bmp.set_pixel(x, y, right_pixel)
+        bmp.set_pixel(bmp.width - 1 - x, y, left_pixel)
+      end
+    end
+  end
+
+
+  def mirror_vertically
+    bmp = @bitmap.bitmap
+    width = bmp.width
+    half_height = bmp.height / 2
+
+    (0...half_height).each do |y|
+      (0...width).each do |x|
+        top_pixel    = bmp.get_pixel(x, y)
+        bottom_pixel = bmp.get_pixel(x, bmp.height - 1 - y)
+
+        bmp.set_pixel(x, y, bottom_pixel)
+        bmp.set_pixel(x, bmp.height - 1 - y, top_pixel)
+      end
+    end
+  end
+
+
+
+  # def mirror
+  #   @bitmap.bitmap
+  # end
 
 end
 

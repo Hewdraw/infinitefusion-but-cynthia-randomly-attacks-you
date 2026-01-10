@@ -130,7 +130,7 @@ DebugMenuCommands.register("togglewallpapers", {
         paperscmds.push(_INTL("Unlock all"))
         paperscmds.push(_INTL("Lock all"))
         for i in PokemonStorage::BASICWALLPAPERQTY...w.length
-          paperscmds.push(_INTL("{1} {2}", unlockarray[i] ? "[Y]" : "[  ]", w[i]))
+          paperscmds.push("#{unlockarray[i] ? '[Y]' : '[  ]'} #{w[i]}")
         end
         paperscmd = pbShowCommands(nil, paperscmds, -1, paperscmd)
         break if paperscmd < 0
@@ -782,7 +782,7 @@ DebugMenuCommands.register("dexlists", {
       for i in 0...dex_names.length
         name = (dex_names[i].is_a?(Array)) ? dex_names[i][0] : dex_names[i]
         unlocked = $Trainer.pokedex.unlocked?(i)
-        dexescmds.push(_INTL("{1} {2}", unlocked ? "[Y]" : "[  ]", name))
+        dexescmds.push("#{unlocked ? "[Y]" : '[  ]'} #{name}")
       end
       dexescmd = pbShowCommands(nil, dexescmds, -1, dexescmd)
       break if dexescmd < 0
@@ -822,15 +822,15 @@ DebugMenuCommands.register("setplayer", {
     #   break
     # end
     # if limit <= 1
-    #   pbMessage(_INTL("There is only one player defined."))
+    #   pbMessage("There is only one player defined.")
     # else
     #   params = ChooseNumberParams.new
     #   params.setRange(0, limit - 1)
     #   params.setDefaultValue($Trainer.character_ID)
-    #   newid = pbMessageChooseNumber(_INTL("Choose the new player character."), params)
+    #   newid = pbMessageChooseNumber("Choose the new player character."), params
     #   if newid != $Trainer.character_ID
     #     pbChangePlayer(newid)
-    #     pbMessage(_INTL("The player character was changed."))
+    #     pbMessage("The player character was changed.")
     #   end
     # end
   }
@@ -877,6 +877,7 @@ DebugMenuCommands.register("randomid", {
   "effect"      => proc {
     $Trainer.id = rand(2 ** 16) | rand(2 ** 16) << 16
     pbMessage(_INTL("The player's ID was changed to {1} (full ID: {2}).", $Trainer.public_ID, $Trainer.id))
+    $Trainer.secretBase_uuid = nil
   }
 })
 

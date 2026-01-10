@@ -24,7 +24,11 @@ class MoveRelearner_Scene
     @pokemon=pokemon
     @moves=moves
     moveCommands=[]
-    moves.each { |m| moveCommands.push(GameData::Move.get(m).name) }
+    echoln moves
+    moves.each do |m|
+      echoln m.name
+      moveCommands.push(GameData::Move.get(m).name)
+    end
     # Create sprite hash
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
@@ -46,7 +50,7 @@ class MoveRelearner_Scene
     @sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
     @sprites["msgwindow"].visible=false
     @sprites["msgwindow"].viewport=@viewport
-    @typebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+    @typebitmap=AnimatedBitmap.new("Graphics/Pictures/types")
     pbDrawMoveList
     pbDeactivateWindows(@sprites)
     # Fade in all sprites
@@ -169,6 +173,11 @@ class MoveRelearnerScreen
         moves.push(m[1]) if !moves.include?(m[1])
       end
     end
+    pkmn.learned_moves.each do |move|
+      move_id = move.is_a?(Symbol) ? move : move.id
+      next if pkmn.hasMove?(move_id)
+      moves.push(move_id) if !moves.include?(move_id)
+    end
     if pkmn.first_moves
       for i in pkmn.first_moves
         moves.push(i) if !pkmn.hasMove?(i) && !moves.include?(i)
@@ -191,7 +200,7 @@ class MoveRelearnerScreen
       end
       if move
         if @scene.pbConfirm(_INTL("Teach {1}?", GameData::Move.get(move).name))
-          if pbLearnMove(pkmn, move)
+          if pbLearnMove(pkmn, move, false, true)
             @scene.pbEndScene
             return true
           end

@@ -17,7 +17,7 @@ class TrainerWalkingCharSprite < SpriteWrapper
     @animbitmap.dispose if @animbitmap
     @animbitmap = nil
 
-    outfit_bitmap = _INTL("Graphics/Characters/players/outfits/{1}_{2}",value,$Trainer.outfit) if $Trainer && $Trainer.outfit
+    outfit_bitmap = "Graphics/Characters/players/outfits/#{value}_#{$Trainer.outfit}" if $Trainer && $Trainer.outfit
 
     @trainer = $Trainer if !@trainer
     if $Trainer

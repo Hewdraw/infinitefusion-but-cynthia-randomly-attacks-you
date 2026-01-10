@@ -47,8 +47,7 @@ def pbPhoneRegisterBattle(message,event,trainertype,trainername,maxbattles)
   return if contact && contact[0]              # Existing contact and is visible
   message = _INTL("Let me register you.") if !message
   return if !pbConfirmMessage(message)
-  displayname = _INTL("{1} {2}", GameData::TrainerType.get(trainertype).name,
-     pbGetMessageFromHash(MessageTypes::TrainerNames,trainername))
+  displayname = "#{GameData::TrainerType.get(trainertype).name} #{pbGetMessageFromHash(MessageTypes::TrainerNames,trainername)}"
   if contact                          # Previously registered, just make visible
     contact[0] = true
   else                                                         # Add new contact
@@ -286,7 +285,7 @@ end
 # The phone call itself
 #===============================================================================
 def pbPhoneCall(call,phonenum)
-  pbMessage(_INTL("......\\wt[5] ......\\1"))
+  pbMessage("......\\wt[5] ......\\1")
   encspecies     = pbEncounterSpecies(phonenum)
   trainerspecies = pbTrainerSpecies(phonenum)
   trainermap     = pbTrainerMapName(phonenum)
@@ -299,5 +298,5 @@ def pbPhoneCall(call,phonenum)
     messages[i] += "\\1" if i<messages.length-1
     pbMessage(messages[i])
   end
-  pbMessage(_INTL("Click!\\wt[10]\n......\\wt[5] ......\\1"))
+  pbMessage("Click!\\wt[10]\n......\\wt[5] ......\\1")
 end

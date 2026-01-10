@@ -124,3 +124,18 @@ def pbGetRandomTM()
   return newItem
 end
 
+def displayRandomizerErrorMessage()
+  echoln caller
+  Kernel.pbMessage(_INTL("The randomizer has encountered an error. You should try to re-randomize your game as soon as possible."))
+  Kernel.pbMessage(_INTL("You can do this on the top floor of Pokémon Centers."))
+end
+
+def ensureRandomHashInitialized()
+  if $PokemonGlobal.psuedoBSTHash == nil
+    psuedoHash = Hash.new
+    for i in 0..NB_POKEMON
+      psuedoHash[i] = i
+    end
+    $PokemonGlobal.psuedoBSTHash = psuedoHash
+  end
+end

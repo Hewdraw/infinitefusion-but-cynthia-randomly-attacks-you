@@ -47,7 +47,11 @@ class Spriteset_Map
   def initialize(map=nil)
     @map = (map) ? map : $game_map
     $scene.map_renderer.add_tileset(@map.tileset_name)
-    @map.autotile_names.each { |filename| $scene.map_renderer.add_autotile(filename) }
+    @map.autotile_names.each do |filename|
+      $scene.map_renderer.add_autotile(filename)
+      $scene.map_renderer.add_extra_autotiles(@map.tileset_id,@map.map_id)
+    end
+
     @panorama = AnimatedPlane.new(@@viewport0)
     @fog = AnimatedPlane.new(@@viewport1)
     @fog.z = 3000
@@ -77,7 +81,10 @@ class Spriteset_Map
   def dispose
     if $scene.is_a?(Scene_Map)
       $scene.map_renderer.remove_tileset(@map.tileset_name)
-      @map.autotile_names.each { |filename| $scene.map_renderer.remove_autotile(filename) }
+      @map.autotile_names.each do |filename|
+        $scene.map_renderer.remove_autotile(filename)
+        $scene.map_renderer.remove_extra_autotiles(@map.tileset_id)
+      end
     end
     @panorama.dispose
     @fog.dispose
@@ -146,9 +153,9 @@ class Spriteset_Map
       sprite.update
     end
     if self.map!=$game_map
-      @weather.fade_in(:None, 0, 20)
+      #@weather.fade_in(:None, 0, 20)
     else
-      @weather.fade_in($game_screen.weather_type, $game_screen.weather_max, $game_screen.weather_duration)
+      @weather.fade_in($game_screen.weather_type, $game_screen.weather_power, $game_screen.weather_duration)
     end
     @weather.ox   = tmox
     @weather.oy   = tmoy

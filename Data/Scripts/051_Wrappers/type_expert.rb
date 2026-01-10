@@ -1,21 +1,26 @@
 class TrainerAppearance
   attr_accessor :skin_color
   attr_accessor :hat
+  attr_accessor :hat2
   attr_accessor :clothes
   attr_accessor :hair
 
   attr_accessor :hair_color
   attr_accessor :clothes_color
   attr_accessor :hat_color
+  attr_accessor :hat2_color
 
-  def initialize(skin_color, hat, clothes, hair, hair_color = 0, clothes_color = 0, hat_color = 0)
+
+  def initialize(skin_color, hat, clothes, hair, hair_color = 0, clothes_color = 0, hat_color = 0, hat2=nil, hat2_color=0)
     @skin_color = skin_color
     @hat = hat
+    @hat2 = hat2
     @clothes = clothes
     @hair = hair
     @hair_color = hair_color
     @clothes_color = clothes_color
     @hat_color = hat_color
+    @hat2_color = hat2_color
   end
 end
 
@@ -24,46 +29,46 @@ def getTypeExpertAppearance(trainer_type)
 end
 
 TYPE_EXPERTS_APPEARANCES = {
-  :TYPE_EXPERT_NORMAL => TrainerAppearance.new(5, "snorlaxhat", "normal", "1_painter", 0, 0, 0), #todo TEAM
+  :TYPE_EXPERT_NORMAL => TrainerAppearance.new(5, "snorlaxhat", "normal", "1_painter", 0, 0, 0), #OK
   :TYPE_EXPERT_FIGHTING => TrainerAppearance.new(1, "karateHeadband", "fighting", "4_samurai", 0, 0, 0), #OK
-  # TYPE_EXPERT_FLYING	=>#TODO NEEDS OUTFIT, LOCATION, TEAM
-  :TYPE_EXPERT_POISON => TrainerAppearance.new(5, "parashroom", "deadlypoisondanger", "3_lowbraids", 270, 0, 0), #todo TEAM
-  :TYPE_EXPERT_GROUND => TrainerAppearance.new(5, "sandshrewbeanie", "groundcowboy", "3_shortspike", 0, 0, 0), #todo TEAM
+  :TYPE_EXPERT_FLYING	=>TrainerAppearance.new(6,"swablu","flying","1_lass",1260,0,0),
+  :TYPE_EXPERT_POISON => TrainerAppearance.new(5, "parashroom", "deadlypoisondanger", "3_lowbraids", 270, 0, 0), #OK
+  :TYPE_EXPERT_GROUND => TrainerAppearance.new(5, "sandshrewbeanie", "groundcowboy", "3_shortspike", 0, 0, 0), #OK
   # TYPE_EXPERT_ROCK	=>#TODO NEEDS OUTFIT, LOCATION, TEAM
   :TYPE_EXPERT_BUG => TrainerAppearance.new("0", "bugantenna", "bughakama", "3_hime", 60, 0,), #OK
-  #:TYPE_EXPERT_GHOST	=>	TrainerAppearance.new(6,"duskullmask","gothhoodie","4_hime",0,0,0), #NO CLOTHES - DISABLED #TODO NEEDS OUTFIT, TEAM
-  :TYPE_EXPERT_STEEL => TrainerAppearance.new(2, "veteranM", "steelworkerF", "4_highpony", 0, 0, 0), #todo TEAM
-  :TYPE_EXPERT_FIRE => TrainerAppearance.new(4, "firefigther", "fire", "2_bob", 330, 0, 0), #todo  TEAM
+  :TYPE_EXPERT_GHOST	=>	TrainerAppearance.new(6,"pumpkaboohelmet","ghostoutfit","4_punktails",0,0,960),# todo Needs location, TEAM
+  :TYPE_EXPERT_STEEL => TrainerAppearance.new(2, "veteranM", "steelworkerF", "4_highpony", 0, 0, 0), #OK
+  :TYPE_EXPERT_FIRE => TrainerAppearance.new(4, "firefigther", "fire", "2_bob", 330, 0, 0), #OK
   :TYPE_EXPERT_WATER => TrainerAppearance.new(5, "waterdress", "waterdress", "1_pixie", 180, 0, 0),
-  # TYPE_EXPERT_GRASS	=>	TrainerAppearance.new("0","aerodactylSkull","red","","","")	, #TODO NEEDS OUTFIT, LOCATION, TEAM
+  :TYPE_EXPERT_GRASS	=>	TrainerAppearance.new(4,"grassexpert","grassexpert","1_roseradeM",-300,0,0), #TODO NEEDS LOCATION, TEAM
   :TYPE_EXPERT_ELECTRIC => TrainerAppearance.new(3, "designerheadphones", "urbanelectric", "1_dancer", 10, 0, 0), #OK
   # TYPE_EXPERT_PSYCHIC	=># TODO NEEDS OUTFIT, LOCATION, TEAM
   :TYPE_EXPERT_ICE	=>	TrainerAppearance.new(6,"skierF","iceoutfit","1_wavy",0,0,210),
-  :TYPE_EXPERT_DRAGON => TrainerAppearance.new(5, "aerodactylSkull", "dragonconqueror", "2_SpecialLatias", 670, 0, 510), #todo NEEDS LOCATION, TEAM
-  # TYPE_EXPERT_DARK	=>  #TODO NEEDS OUTFIT, LOCATION, TEAM
+  :TYPE_EXPERT_DRAGON => TrainerAppearance.new(5, "aerodactylSkull", "dragonconqueror", "2_SpecialLatias", 670, 0, 510), #OK
+  :TYPE_EXPERT_DARK	=>  TrainerAppearance.new(4,"cynthiaaccessory","darkoutfit","3_emo",330,0,0),
   :TYPE_EXPERT_FAIRY => TrainerAppearance.new(6, "mikufairy", "mikufairyf", "5_mikufairy", 0, 0, 0) #OK
 }
 
 TYPE_EXPERT_TRAINERS = {
   :QMARK => ["name", "loseText"],
-  :ELECTRIC => ["Ray", "What a shocking turn of events!"],
-  :BUG => ["Bea", "I’m bugging out of here!"],
+  :ELECTRIC => ["Ray", _INTL("What a shocking turn of events!")],
+  :BUG => ["Bea", _INTL("I’m bugging out of here!")],
   :FAIRY => ["Hatsune Miku", "sorrgy accident.."],
-  :DRAGON => ["Draco", "I shall scale back my plans."],
-  :FIGHTING => ["Floyd", "I have to throw in the towel."],
-  :GROUND => ["Pedro", "I’m buried under this loss."],
-  :FIRE => ["Blaze", "I guess I got burned out."],
-  :GRASS => ["Ivy", "ou really cut me down to size!"],
-  :ICE => ["Crystal", "I’m skating on thin ice!"],
-  :ROCK => ["Slate", "Looks like I’ve hit rock bottom..."],
-  :WATER => ["Marina", "You really made a splash!"],
-  :FLYING => ["Gale", "I guess I’m grounded for now."],
-  :DARK => ["Raven", "I’ll slip back into the shadows"],
-  :STEEL => ["Silvia", "I guess I was a bit rusty..."],
-  :PSYCHIC => ["Carl", "I could not foresee this defeat."],
-  :GHOST => ["Evangeline", "I can feel myself disappearing into thin air!"],
-  :POISON => ["Marie", "I got a taste of my own medicine!"],
-  :NORMAL => ["Tim", "This was anything but normal!"],
+  :DRAGON => ["Draco", _INTL("I shall scale back my plans.")],
+  :FIGHTING => ["Floyd", _INTL("I have to throw in the towel.")],
+  :GROUND => ["Pedro", _INTL("I’m buried under this loss.")],
+  :FIRE => ["Blaze", _INTL("I guess I got burned out.")],
+  :GRASS => ["Ivy", _INTL("ou really cut me down to size!")],
+  :ICE => ["Crystal", _INTL("I’m skating on thin ice!")],
+  :ROCK => ["Slate", _INTL("Looks like I’ve hit rock bottom...")],
+  :WATER => ["Marina", _INTL("You really made a splash!")],
+  :FLYING => ["Gale", _INTL("I guess I’m grounded for now.")],
+  :DARK => ["Gerard", _INTL("I guess I'll slip back into the shadows...")],
+  :STEEL => ["Silvia", _INTL("I was a bit rusty...")],
+  :PSYCHIC => ["Carl", _INTL("I could not foresee this defeat.")],
+  :GHOST => ["Evangeline", _INTL("I can feel myself disappearing into thin air!")],
+  :POISON => ["Marie", _INTL("I got a taste of my own medicine!")],
+  :NORMAL => ["Tim", _INTL("This was anything but normal!")],
 }
 
 TYPE_EXPERT_REWARDS = {
@@ -88,13 +93,13 @@ TYPE_EXPERT_REWARDS = {
   :NORMAL => [CLOTHES_NORMAL],
 }
 
-TOTAL_NB_TYPE_EXPERTS = 12
+TOTAL_NB_TYPE_EXPERTS = 14
 def type_expert_battle(type_id)
   type = GameData::Type.get(type_id)
   pbCallBub(2, @event_id)
-  pbMessage("Ah! Can you feel the energy in here? This place is great for #{type.real_name}-Pokémon!")
+  pbMessage(_INTL("Ah! Can you feel the energy in here? This place is great for {1}-Pokémon!", type.real_name))
   pbCallBub(2, @event_id)
-  pbMessage("I'm what you could call an expert on #{type.real_name}-Pokémon. I've grown with them for all of my life.")
+  pbMessage(_INTL("I'm what you could call an expert on {1}-Pokémon. I've grown with them for all of my life.", type.real_name))
   pbCallBub(2, @event_id)
   pbMessage("I'll give you my \\C[5]special outfit\\C[0] if you can defeat my team of #{type.real_name}-type Pokémon. ")
   pbCallBub(2, @event_id)
@@ -115,7 +120,7 @@ def type_expert_battle(type_id)
         obtainClothes(clothes)
       end
       pbCallBub(2, @event_id)
-      pbMessage("When you wear it, you can sometimes find #{type.real_name}-type related items after battles!")
+      pbMessage(_INTL("When you wear it, you can sometimes find {1}-type related items after battles!", type.real_name))
       show_nb_type_experts_defeated()
       if type_id == :FAIRY
         $PokemonBag.pbStoreItem(:ENDGATEWAY)
@@ -129,5 +134,5 @@ end
 def show_nb_type_experts_defeated()
   pbMEPlay("Register phone")
   pbCallBub(3)
-  Kernel.pbMessage("Type experts defeated: #{pbGet(VAR_TYPE_EXPERTS_BEATEN)}/#{TOTAL_NB_TYPE_EXPERTS}")
+  Kernel.pbMessage(_INTL("Type experts defeated: {1}/{2}", pbGet(VAR_TYPE_EXPERTS_BEATEN), TOTAL_NB_TYPE_EXPERTS))
 end

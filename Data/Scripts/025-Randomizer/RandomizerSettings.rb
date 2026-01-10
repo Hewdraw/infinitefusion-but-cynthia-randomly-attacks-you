@@ -164,7 +164,7 @@ class RandomizerTrainerOptionsScene < PokemonOption_Scene
                               "Use only Pokémon that have custom sprites in trainer teams"
     )
 
-    # options << EnumOption.new(_INTL("Allow legendaries"), [_INTL("On"), _INTL("Off")],
+    # options << EnumOption.new("Allow legendaries", ["On", "Off"],
     #                           proc { $game_switches[SWITCH_RANDOM_TRAINER_LEGENDARIES] ? 0 : 1 },
     #                           proc { |value|
     #                             $game_switches[SWITCH_RANDOM_TRAINER_LEGENDARIES] = value == 0
@@ -361,7 +361,7 @@ class RandomizerGymOptionsScene < PokemonOption_Scene
                               }, "Shuffle the gym types"
     )
 
-    # options << EnumOption.new(_INTL("Allow legendaries"), [_INTL("On"), _INTL("Off")],
+    # options << EnumOption.new("Allow legendaries", ["On", "Off"],
     #                           proc { $game_switches[SWITCH_RANDOM_GYM_LEGENDARIES] ? 0 : 1 },
     #                           proc { |value|
     #                             $game_switches[SWITCH_RANDOM_GYM_LEGENDARIES] = value == 0

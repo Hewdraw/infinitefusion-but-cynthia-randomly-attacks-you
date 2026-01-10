@@ -207,7 +207,7 @@ def pbPositionFaceWindow(facewindow,msgwindow)
   end
 end
 
-def pbPositionNearMsgWindow(cmdwindow,msgwindow,side)
+def pbPositionNearMsgWindow(cmdwindow,msgwindow,side, x_offset=nil,y_offset=nil)
   return if !cmdwindow
   if msgwindow
     height=[cmdwindow.height,Graphics.height-msgwindow.height].min
@@ -234,6 +234,10 @@ def pbPositionNearMsgWindow(cmdwindow,msgwindow,side)
     cmdwindow.x=0
     cmdwindow.y=0
   end
+  cmdwindow.x+= x_offset if x_offset
+  cmdwindow.y+= y_offset if y_offset
+
+
 end
 
 # internal function
@@ -741,6 +745,7 @@ def addBackgroundPlane(sprites,planename,background,viewport=nil)
       end
     end
   end
+  return sprites[planename]
 end
 
 # Adds a background to the sprite hash.

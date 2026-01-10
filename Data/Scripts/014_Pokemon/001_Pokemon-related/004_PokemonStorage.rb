@@ -54,7 +54,8 @@ end
 
 
 class PokemonStorage
-  attr_reader   :boxes
+  attr_accessor   :boxes
+  attr_accessor   :transfer_box
   attr_accessor :currentBox
   attr_writer   :unlockedWallpapers
   BASICWALLPAPERQTY = 16
@@ -65,6 +66,7 @@ class PokemonStorage
       @boxes[i] = PokemonBox.new(_INTL("Box {1}",i+1),maxPokemon)
       @boxes[i].background = i % BASICWALLPAPERQTY
     end
+    @boxes
     @currentBox = 0
     @boxmode = -1
     @unlockedWallpapers = []
@@ -79,19 +81,33 @@ class PokemonStorage
   def allWallpapers
     return [
        # Basic wallpapers
-       _INTL("Forest"),_INTL("City"),_INTL("Desert"),_INTL("Savanna"),
-       _INTL("Crag"),_INTL("Volcano"),_INTL("Snow"),_INTL("Cave"),
-       _INTL("Beach"),_INTL("Seafloor"),_INTL("River"),_INTL("Sky"),
-       _INTL("Poké Center"),_INTL("Machine"),_INTL("Checks"),_INTL("Simple"),
+       _INTL("Forest"),_INTL("City"),_INTL("Desert"),_INTL("Savanna"),  #0-3
+       _INTL("Crag"),_INTL("Volcano"),_INTL("Snow"),_INTL("Cave"),      #4-7
+       _INTL("Beach"),_INTL("Seafloor"),_INTL("River"),_INTL("Sky"),    #8-11
+       _INTL("Poké Center"),_INTL("Machine"),_INTL("Checks"),_INTL("Simple"), #12-15
        # Special wallpapers
-       _INTL("Space"),_INTL("Backyard"),_INTL("Nostalgic 1"),_INTL("Torchic"),
-       _INTL("Trio 1"),_INTL("PikaPika 1"),_INTL("Legend 1"),_INTL("Team Galactic 1"),
-       _INTL("Distortion"),_INTL("Contest"),_INTL("Nostalgic 2"),_INTL("Croagunk"),
-       _INTL("Trio 2"),_INTL("PikaPika 2"),_INTL("Legend 2"),_INTL("Team Galactic 2"),
-       _INTL("Heart"),_INTL("Soul"),_INTL("Big Brother"),_INTL("Pokéathlon"),
-       _INTL("Trio 3"),_INTL("Spiky Pika"),_INTL("Kimono Girl"),_INTL("Revival")
+       _INTL("Space"),_INTL("Backyard"),_INTL("Nostalgic 1"),_INTL("Torchic"),    #16-19
+       _INTL("Trio 1"),_INTL("PikaPika 1"),_INTL("Legend 1"),_INTL("Team Galactic 1"),  #20-23
+       _INTL("Distortion"),_INTL("Contest"),_INTL("Nostalgic 2"),_INTL("Croagunk"), #24-27
+       _INTL("Trio 2"),_INTL("PikaPika 2"),_INTL("Legend 2"),_INTL("Team Galactic 2"),  #28-31
+       _INTL("Heart"),_INTL("Soul"),_INTL("Big Brother"),_INTL("Pokéathlon"), #32-35
+       _INTL("Trio 3"),_INTL("Spiky Pika"),_INTL("Kimono Girl"),_INTL("Rocket"), #36-39
+
+
+       _INTL("Noctowl"),_INTL("Pink Moon"),_INTL("Entree Forest"),_INTL("Poké Ball Mayhem"), #40-43
+       _INTL("Discord"),_INTL("HELLO"),_INTL("Sky 2"),_INTL("Ice Fishing"),  #44-47
+       _INTL("Rafflesia"),_INTL("Dancing Frog"),_INTL("Crab"),_INTL("Flannery"),  #48-51
+       _INTL("Norman"),_INTL("Roxanne"),_INTL("Tate & Liza"),_INTL("Wallace"),    #52-55
+       _INTL("Rotom Dex 1"),_INTL("Rotom Dex 2"),_INTL("Happy Hypno"),_INTL("Fossil Shark"),  #56-59
+       _INTL("Camping"),_INTL("Swimming"),_INTL("Nostalgic 3"),_INTL("Graffiti"), #60-63
+       _INTL("Ruins"),_INTL("Digital"),_INTL("Galactic"),_INTL("Sinnoh"), #64-67
+       _INTL("PC"),_INTL("Ancient Sea"),_INTL("Cat Playroom"),_INTL("Softboiled"), #68-71
+       _INTL("Electric Mouse"),_INTL("Sailing"),_INTL("Forest 2"),_INTL("Graveyard"), #72-75
+       _INTL("Eon"),_INTL("Quest"),_INTL("Pink Stars"),_INTL("Party Hard"), #76-79
+       _INTL("Espurr"),_INTL("Nostalgic 4"),_INTL("Dark Forest"), #80-82
     ]
   end
+
 
   def unlockedWallpapers
     @unlockedWallpapers = [] if !@unlockedWallpapers
@@ -133,7 +149,7 @@ class PokemonStorage
   end
 
   def maxPokemon(box)
-    return 0 if box >= self.maxBoxes
+    return 0 if box >= self.maxBoxes && !self[box].is_a?(StorageTransferBox)
     return (box < 0) ? Settings::MAX_PARTY_SIZE : self[box].length
   end
 
@@ -227,6 +243,11 @@ class PokemonStorage
   end
 
   def pbStoreCaught(pkmn)
+
+    if self[@currentBox].is_a?(StorageTransferBox)
+      @currentBox = 0
+    end
+
     if @currentBox>=0
       pkmn.time_form_set = nil
       #pkmn.form          = 0 if pkmn.isSpecies?(:SHAYMIN)

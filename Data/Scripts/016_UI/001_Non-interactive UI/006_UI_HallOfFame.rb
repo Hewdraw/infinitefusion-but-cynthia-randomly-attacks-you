@@ -48,8 +48,10 @@ class HallOfFame_Scene
     @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
     @viewport.z = 99999
     # Comment the below line to doesn't use a background
-    bgFile = @singlerow ? "hallfamebg" : "hallfamebg_multiline"
-    addBackgroundPlane(@sprites, "bg", bgFile, @viewport)
+    @sprites["bg"] = IconSprite.new(@viewport)
+    @sprites["bg"].setBitmap(getHallOfFameBackground)
+    @sprites["bg"].z = 0
+
     @sprites["hallbars"] = IconSprite.new(@viewport)
     @sprites["hallbars"].setBitmap("Graphics/Pictures/hallfamebars")
     @sprites["overlay"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -73,12 +75,25 @@ class HallOfFame_Scene
     pbFadeInAndShow(@sprites) { pbUpdate }
   end
 
+  def getHallOfFameBackground
+    if @singlerow #in the e4
+      rank = pbGet(VAR_LEAGUE_REMATCH_TIER)
+      background = "Graphics/Pictures/HallOfFame/hallfamebg"
+    else  #from PC
+      rank = $PokemonGlobal.hallOfFame[@hallIndex][:TIER]
+      background = "Graphics/Pictures/HallOfFame/hallfamebg_multiline"
+    end
+    if rank && rank.to_i > 0
+      background += "_#{rank}"
+    end
+    return background
+  end
+
   def pbStartScenePC
     @singlerow = false
-    pbStartScene
     @hallIndex = $PokemonGlobal.hallOfFame.size - 1
 
-    echoln $PokemonGlobal.hallOfFame[-1]
+    pbStartScene
     @hallEntry = $PokemonGlobal.hallOfFame[-1][:TEAM]
     createBattlers(false)
     pbFadeInAndShow(@sprites) { pbUpdate }
@@ -136,6 +151,7 @@ class HallOfFame_Scene
     entryData[:DIFFICULTY] = getDifficulty
     entryData[:MODE] = getCurrentGameMode()
     entryData[:DATE] = getCurrentDate()
+    entryData[:TIER] = getCurrentE4Tier()
 
     #Save trainer data (unused for now)
     entryData[:TRAINER_HAT] = $Trainer.hat
@@ -183,7 +199,7 @@ class HallOfFame_Scene
       y_position_base = 125
       height_increase = 20
       # Calculate the decrement based on the battlernumber:
-      # Each pair (1-2, 3-4, etc.) will decrease y by 20
+      # Each pair (1-2, 3-4, etc.) will decrease y by height_increase
       y_decrement = 40 - height_increase * (battlernumber / 2)
       ret = y_position_base + y_decrement
     end
@@ -381,7 +397,12 @@ class HallOfFame_Scene
   def writeWelcomePC
     overlay = @sprites["overlay"].bitmap
     overlay.clear
-    pbDrawTextPositions(overlay, [[_INTL("Entered the Hall of Fame!"),
+    text = _INTL("Entered the Hall of Fame!")
+    rank = $PokemonGlobal.hallOfFame[@hallIndex][:TIER]
+    if rank && rank.to_i > 0
+      text += _INTL(" (Rematch Tier {1})",rank.to_i)
+    end
+    pbDrawTextPositions(overlay, [[text,
                                    Graphics.width / 2, Graphics.height - 80, 2, BASECOLOR, SHADOWCOLOR]])
 
     date = $PokemonGlobal.hallOfFame[@hallIndex][:DATE]
@@ -397,10 +418,16 @@ class HallOfFame_Scene
     pbDrawTextPositions(overlay, [[_INTL("{1}", timeString), x, y, 2, BASECOLOR, SHADOWCOLOR]])
   end
 
+
   def getCurrentDate()
     currentTime = Time.new
     return currentTime.year.to_s + "-" + ("%02d" % currentTime.month) + "-" + ("%02d" % currentTime.day)
   end
+
+  def getCurrentE4Tier()
+    return pbGet(VAR_LEAGUE_REMATCH_TIER)
+  end
+
 
   def getCurrentGameMode()
     return "Cynthia mode"
@@ -423,11 +450,17 @@ class HallOfFame_Scene
     # if $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE]
     #   gameMode = "Randomized mode"
     # end
+
+    # if $game_switches[SWITCH_LEGENDARY_MODE]
+    #   gameMode = "Legendary mode"
+    # end
+
     # if $game_switches[ENABLED_DEBUG_MODE_AT_LEAST_ONCE] || $DEBUG
     #   gameMode = "Debug mode"
     # end
     # return gameMode
   end
+
 
   def writeGameMode(overlay, x, y, gameMode = nil, difficulty = nil)
     gameMode = getCurrentGameMode() if !gameMode
@@ -558,6 +591,7 @@ class HallOfFame_Scene
       @battlerIndex = @hallEntry.size - 1
       createBattlers(false)
     end
+    @sprites["bg"].setBitmap(getHallOfFameBackground)
     # Change the pokemon
     @hallEntry[@battlerIndex].play_cry
     setPokemonSpritesOpacity(@battlerIndex, OPACITY)

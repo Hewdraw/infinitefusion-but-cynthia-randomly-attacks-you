@@ -75,12 +75,18 @@ class Sprite_Character < RPG::Sprite
 
     @oldbushdepth = 0
     @spriteoffset = false
-    if !character || character == $game_player || (character.name[/reflection/i] rescue false)
-      @reflection = Sprite_Reflection.new(self, character, viewport)
+    if Settings::USE_REFLECTIONS && (!character || character == $game_player || (character.name[/reflection/i] rescue false))
+      @reflection = Sprite_Reflection.new(self, viewport)
     end
     @surfbase = Sprite_SurfBase.new(self, character, viewport) if character == $game_player
-    checkModifySpriteGraphics(@character) if @character
+    if @character && @character != $game_player
+      checkModifySpriteGraphics(@character) if @character.active?
+    end
     update
+  end
+
+  def event_is_active?(game_event)
+    return !game_event.event.page.nil?
   end
 
   def checkModifySpriteGraphics(character)
@@ -216,8 +222,8 @@ class Sprite_Character < RPG::Sprite
         @bushbitmap = nil
         #@spriteoffset = @character_name[/offset/i]
         @spriteoffset = @character_name[/fish/i] || @character_name[/dive/i] || @character_name[/surf/i]
-        @cw = @charbitmap.width / 4
-        @ch = @charbitmap.height / 4
+        @cw = @charbitmap.width / 4 if !@charbitmap.disposed?
+        @ch = @charbitmap.height / 4 if !@charbitmap.disposed?
         self.ox = @cw / 2
         @character.sprite_size = [@cw, @ch]
       end

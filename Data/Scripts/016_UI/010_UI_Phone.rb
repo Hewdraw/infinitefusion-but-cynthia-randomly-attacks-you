@@ -67,9 +67,7 @@ class PokemonPhoneScene
     @sprites["icon"].src_rect = Rect.new(0,0,charwidth/4,charheight/4)
     for trainer in @trainers
       if trainer.length==4
-        displayname = _INTL("{1} {2}", GameData::TrainerType.get(trainer[0]).name,
-           pbGetMessageFromHash(MessageTypes::TrainerNames,trainer[1])
-        )
+        displayname = "#{GameData::TrainerType.get(trainer[0]).name} #{pbGetMessageFromHash(MessageTypes::TrainerNames,trainer[1])}"
         commands.push(displayname) # trainer's display name
       else
         commands.push(trainer[1]) # NPC's display name

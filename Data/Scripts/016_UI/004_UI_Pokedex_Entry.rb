@@ -11,7 +11,7 @@ class PokemonPokedexInfo_Scene
     @region = region
     @page = 1
     @entry_page = 0
-    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @typebitmap = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_types")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
     @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -141,7 +141,7 @@ class PokemonPokedexInfo_Scene
     @index = 0
     @page = 1
     @brief = true
-    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @typebitmap = AnimatedBitmap.new("Graphics/Pictures/Pokedex/icon_types")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
     @sprites["infosprite"] = PokemonSprite.new(@viewport)
@@ -239,10 +239,10 @@ class PokemonPokedexInfo_Scene
   #   # ret.each do |entry|
   #   #   if !entry[0] || entry[0].empty?   # Necessarily applies only to form 0
   #   #     case entry[1]
-  #   #     when 0 then entry[0] = _INTL("Male")
-  #   #     when 1 then entry[0] = _INTL("Female")
+  #   #     when 0 then entry[0] = "Male"
+  #   #     when 1 then entry[0] = "Female"
   #   #     else
-  #   #       entry[0] = (multiple_forms) ? _INTL("One Form") : _INTL("Genderless")
+  #   #       entry[0] = multiple_forms ? "One Form" : "Genderless"
   #   #     end
   #   #   end
   #   #   entry[1] = 0 if entry[1] == 2   # Genderless entries are treated as male
@@ -278,15 +278,15 @@ class PokemonPokedexInfo_Scene
     end
   end
 
-  def drawPageInfo
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_info"))
+  def drawPageInfo(reloading=false)
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_info")
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
 
     imagepos = []
     if @brief
-      imagepos.push([_INTL("Graphics/Pictures/Pokedex/overlay_info"), 0, 0])
+      imagepos.push(["Graphics/Pictures/Pokedex/overlay_info", 0, 0])
     end
     species_data = GameData::Species.get_species_form(@species, @form)
     # Write various bits of text
@@ -298,7 +298,7 @@ class PokemonPokedexInfo_Scene
     indexText = sprintf("%03d", indexNumber)
     # end
     textpos = [
-      [_INTL("{1}{2} {3}", indexText, " ", species_data.name),
+      ["#{indexText}  #{species_data.name}",
        246, 36, 0, Color.new(248, 248, 248), Color.new(0, 0, 0)],
       [_INTL("Height"), 314, 152, 0, base, shadow],
       [_INTL("Weight"), 314, 184, 0, base, shadow]
@@ -324,7 +324,7 @@ class PokemonPokedexInfo_Scene
       #
       #
       #$PokemonSystem.use_generated_dex_entries=true if $PokemonSystem.use_generated_dex_entries ==nil
-      drawEntryText(overlay, species_data)
+      drawEntryText(overlay, species_data,reloading)
 
       # Draw the footprint
       footprintfile = GameData::Species.footprint_filename(@species, @form)
@@ -363,7 +363,7 @@ class PokemonPokedexInfo_Scene
   end
 
 
-  def   drawEntryText(overlay, species_data)
+  def   drawEntryText(overlay, species_data, reloading=false)
     baseColor = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
     shadowCustom = Color.new(160, 200, 150)
@@ -376,11 +376,11 @@ class PokemonPokedexInfo_Scene
         shadowColor = shadowCustom
       else
         if $PokemonSystem.use_generated_dex_entries && species_data.is_a?(GameData::FusedSpecies)
-          @randomEntryText = species_data.get_random_dex_entry if !@randomEntryText
+          @randomEntryText = species_data.get_random_dex_entry if !reloading
           entryText = @randomEntryText
           shadowColor = shadow
         else
-          entryText = "No custom Pokédex entry available for this Pokémon. Please consider submitting an entry for this Pokémon on the game's Discord."
+          entryText = _INTL("No custom Pokédex entry available for this Pokémon. Please consider submitting an entry for this Pokémon on the game's Discord. Auto-generated Pokédex entries can be enabled in the options menu.")
           shadowColor = shadow
         end
       end
@@ -425,7 +425,7 @@ class PokemonPokedexInfo_Scene
   def reloadDexEntry()
     overlay = @sprites["overlay"].bitmap
     overlay.clear
-    drawPageInfo
+    drawPageInfo(true)
   end
 
   def changeEntryPage()
@@ -464,6 +464,7 @@ class PokemonPokedexInfo_Scene
     end
   end
 
+  #unused
   def getAIDexEntry(pokemonID, name)
     begin
       head_number = get_head_number_from_symbol(pokemonID).to_s
@@ -521,7 +522,7 @@ class PokemonPokedexInfo_Scene
   end
 
   def drawPageArea
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_area"))
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_area")
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
@@ -597,7 +598,7 @@ class PokemonPokedexInfo_Scene
   end
 
   def drawPageForms
-    @sprites["background"].setBitmap(_INTL("Graphics/Pictures/Pokedex/bg_forms"))
+    @sprites["background"].setBitmap("Graphics/Pictures/Pokedex/bg_forms")
     overlay = @sprites["overlay"].bitmap
     base = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
@@ -687,7 +688,7 @@ class PokemonPokedexInfo_Scene
       pbUpdate
       dorefresh = false
       if Input.trigger?(Input::ACTION)
-        changeEntryPage()
+        #changeEntryPage()
       elsif Input.trigger?(Input::BACK)
         pbPlayCloseMenuSE
         break

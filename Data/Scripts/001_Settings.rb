@@ -5,9 +5,11 @@
 #==============================================================================#
 module Settings
   # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
-  GAME_VERSION = '6.4.6'
-  GAME_VERSION_NUMBER = "6.4.7"
-  LATEST_GAME_RELEASE = "6.4"
+  GAME_VERSION_NUMBER = "6.7.2"
+  LATEST_GAME_RELEASE = "6.6"
+
+  KANTO = GAME_ID == :IF_KANTO
+  HOENN = GAME_ID == :IF_HOENN
 
   POKERADAR_LIGHT_ANIMATION_RED_ID = 17
   POKERADAR_LIGHT_ANIMATION_GREEN_ID = 18
@@ -17,11 +19,14 @@ module Settings
   LEADER_VICTORY_MUSIC="Battle victory leader"
   TRAINER_VICTORY_MUSIC="trainer-victory"
   WILD_VICTORY_MUSIC="wild-victory"
+
   #getRandomCustomFusionForIntro
   FUSION_ICON_SPRITE_OFFSET = 10
 
+  ANIMATE_REFLECTIONS= false#GAME_ID == :IF_HOENN #true
+  USE_REFLECTIONS = false
   #Infinite fusion settings
-  NB_POKEMON = 501
+  NB_POKEMON = Settings::GAME_ID == :IF_HOENN ? 565 : 501
   CUSTOM_BASE_SPRITES_FOLDER = "Graphics/CustomBattlers/local_sprites/BaseSprites/"
   CUSTOM_BATTLERS_FOLDER = "Graphics/CustomBattlers/"
   CUSTOM_SPRITES_TO_IMPORT_FOLDER = "Graphics/CustomBattlers/Sprites to import/"
@@ -30,7 +35,7 @@ module Settings
   BATTLERS_FOLDER = "Graphics/Battlers/Autogens/"
   DOWNLOADED_SPRITES_FOLDER = "Graphics/temp/"
   DEFAULT_SPRITE_PATH = "Graphics/Battlers/Special/000.png"
-  CREDITS_FILE_PATH = "Data/sprites/Sprite Credits.csv"
+  CREDITS_FILE_PATH = "Data/sprites/Sprite_Credits.csv"
   VERSION_FILE_PATH = "Data/VERSION"
   CUSTOM_SPRITES_FILE_PATH = "Data/sprites/CUSTOM_SPRITES"
   BASE_SPRITES_FILE_PATH = "Data/sprites/BASE_SPRITES"
@@ -63,8 +68,12 @@ module Settings
   SPRITES_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/infinitefusion-e18/main/Data/sprites/CUSTOM_SPRITES"
   BASE_SPRITES_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/infinitefusion-e18/main/Data/sprites/BASE_SPRITES"
 
-  CREDITS_FILE_URL = "https://infinitefusion.net/Sprite Credits.csv"
+  CREDITS_FILE_URL = "https://infinitefusion.net/customsprites/Sprite_Credits.csv"
   CUSTOM_DEX_FILE_URL = "https://raw.githubusercontent.com/infinitefusion/pif-downloadables/refs/heads/master/dex.json"
+
+
+  SECRETBASE_UPLOAD_URL = "http://secretbases-upload.pkmninfinitefusion.workers.dev"
+  SECRETBASE_DOWNLOAD_URL = "https://secretbase-download.pkmninfinitefusion.workers.dev"
 
   STARTUP_MESSAGES = ""
 
@@ -79,7 +88,7 @@ module Settings
   EGGSPRITE_SCALE = 1
   BACKSPRITE_POSITION_OFFSET = 20
   FRONTSPRITE_POSITION = 200
-  SHINY_HUE_OFFSET = 75
+  SHINY_HUE_OFFSET = 75 #no longer used
   NO_LEVEL_MODE_LEVEL_INCR = 5.8
   NO_LEVEL_MODE_LEVEL_BASE = 6
 
@@ -107,8 +116,8 @@ module Settings
   BASE_POKEMON_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_base/"
   CUSTOM_FUSIONS_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_custom/"
 
-  BASE_POKEMON_SPRITESHEET_TRUE_SIZE_URL = "https://infinitefusion.net/spritesheets_truesize/spritesheets_base/"
-  CUSTOM_FUSIONS_SPRITESHEET_TRUE_SIZE_URL = "https://infinitefusion.net/spritesheets_truesize/spritesheets_custom/"
+  BASE_POKEMON_SPRITESHEET_TRUE_SIZE_URL = ""
+  CUSTOM_FUSIONS_SPRITESHEET_TRUE_SIZE_URL = ""
 
   RIVAL_STARTER_PLACEHOLDER_SPECIES = :STARTER #(MEW)
   VAR_1_PLACEHOLDER_SPECIES = :DIALGA
@@ -173,12 +182,18 @@ module Settings
   # always inherit egg moves from its father.
   BREEDING_CAN_INHERIT_EGG_MOVES_FROM_MOTHER = (MECHANICS_GENERATION >= 6)
 
+  DEFAULT_STARTERS = Settings::GAME_ID == :IF_KANTO ? KANTO_STARTERS : HOENN_STARTERS
   KANTO_STARTERS = [:BULBASAUR, :CHARMANDER, :TOTODILE]
   JOHTO_STARTERS = [:CHIKORITA, :CYNDAQUIL, :SQUIRTLE]
   HOENN_STARTERS = [:TREECKO, :TORCHIC, :PIPLUP]
   SINNOH_STARTERS = [:TURTWIG, :CHIMCHAR, :MUDKIP]
   KALOS_STARTERS = [:CHESPIN, :FENNEKIN, :FROAKIE]
 
+
+
+  GRASS_STARTERS = [:BULBASAUR,:CHIKORITA,:TREECKO,:TURTWIG,:CHESPIN]
+  FIRE_STARTERS = [:CHARMANDER,:CYNDAQUIL, :TORCHIC, :CHIMCHAR, :FENNEKIN]
+  WATER_STARTERS = [:SQUIRTLE, :TOTODILE, :MUDKIP, :PIPLUP, :FROAKIE]
 
   #=============================================================================
 
@@ -222,7 +237,7 @@ module Settings
   POISON_FAINT_IN_FIELD = false
   # Whether planted berries grow according to Gen 4 mechanics (true) or Gen 3
   # mechanics (false).
-  NEW_BERRY_PLANTS = (MECHANICS_GENERATION >= 4)
+  NEW_BERRY_PLANTS = true
   # Whether fishing automatically hooks the Pokémon (true), or whether there is
   # a reaction test first (false).
   FISHING_AUTO_HOOK = false
@@ -343,7 +358,7 @@ module Settings
   # Dex list, no matter which region the player is currently in.
   def self.pokedex_names
     return [
-      # [_INTL("Kanto Pokédex"), 0]
+      # ["Kanto Pokédex", 0]
     ]
   end
 
@@ -527,6 +542,9 @@ module Settings
   # ID of the animation played when a berry tree grows a stage while the player
   # is on the map (for new plant growth mechanics only).
   PLANT_SPARKLE_ANIMATION_ID = 7
+  SPARKLE_SHORT_ANIMATION_ID = 25
+  SPARKLE_SUBTLE_ANIMATION_ID = 29
+
   SLEEP_ANIMATION_ID = 26
 
   CUT_TREE_ANIMATION_ID = 19
@@ -538,11 +556,15 @@ module Settings
   # file in the Data folder. Edit only if you have 2 or more languages to choose
   # from.
   LANGUAGES = [
-    #  ["English", "english.dat"],
-    #  ["Deutsch", "deutsch.dat"]
+      ["English", "english.dat"],
+      ["Français", "french.dat"]
   ]
 
-
+  #Experimental
+  REMOTE_BATTLES_CONTROL = false
+  REMOTE_NPC_DIALOG = false
+  REMOTE_BATTLE_CONTROL_SERVER_URL = "http://127.0.0.1:5000/choose_move"
+  REMOTE_NPC_DIALOG_SERVER_URL = "http://127.0.0.1:5000"
   #Technical
   SPRITE_CACHE_MAX_NB=100
   NEWEST_SPRITEPACK_MONTH = 12
@@ -571,12 +593,13 @@ module Settings
     "speech hgss 18",
     "speech hgss 19",
     "speech hgss 20",
-    "speech pl 18"
+    "speech pl 18",
   ]
 
   # Available menu frames. These are graphic files in "Graphics/Windowskins/".
   MENU_WINDOWSKINS = [
-    "choice 1",
+    "default_transparent",
+    "default_opaque",
     "choice 2",
     "choice 3",
     "choice 4",

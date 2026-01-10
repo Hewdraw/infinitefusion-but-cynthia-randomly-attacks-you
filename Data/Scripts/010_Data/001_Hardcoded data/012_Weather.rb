@@ -22,6 +22,7 @@ module GameData
     attr_reader :tile_delta_x
     attr_reader :tile_delta_y
     attr_reader :tone_proc
+    attr_reader :fog_name
 
     DATA = {}
 
@@ -43,6 +44,8 @@ module GameData
       @tile_delta_y           = hash[:tile_delta_y]           || 0
       @graphics               = hash[:graphics]               || []
       @tone_proc              = hash[:tone_proc]
+      @fog_name              = hash[:fog_name]
+
     end
 
     def has_particles?
@@ -150,7 +153,7 @@ GameData::Weather.register({
   :id_number        => 7,
   :category         => :Sun,
   :tone_proc        => proc { |strength|
-    next Tone.new(64, 64, 32, 0)
+    next Tone.new(32, 32, 16, 0)
   }
 })
 
@@ -158,16 +161,34 @@ GameData::Weather.register({
   :id               => :Fog,
   :category         => :Fog,
   :id_number        => 8,
-  :tile_delta_x     => -32,
+  :tile_delta_x     => -2,
   :tile_delta_y     => 0,
-  :graphics         => [nil, ["fog_tile"]]
+  :fog_name         => "fog_tile"
+})
+
+GameData::Weather.register({
+ :id               => :Wind,
+ :category         => :StrongWinds,
+ :id_number        => 9,
+ :particle_delta_x     => -1000,
+ :particle_delta_y     => 0,
+ :graphics         => [["wind1","wind2","wind3","windleaf1","windleaf2"], nil]
 })
 
 GameData::Weather.register({
  :id               => :StrongWinds,
  :category         => :StrongWinds,
- :id_number        => 9,
- :tile_delta_x     => -1200,
- :tile_delta_y     => 0,
- :graphics         => [nil, ["strong_winds"]]
+ :id_number        => 10,
+ :particle_delta_x     => -1000,
+ :particle_delta_y     => 0,
+ :graphics         => [["wind1","wind2","wind3","windleaf1","windleaf2"], nil]
+})
+
+GameData::Weather.register({
+ :id               => :HarshSun,
+ :id_number        => 11,
+ :category         => :Sun,
+ :tone_proc        => proc { |strength|
+   next Tone.new(64, 64, 32, 0)
+ }
 })

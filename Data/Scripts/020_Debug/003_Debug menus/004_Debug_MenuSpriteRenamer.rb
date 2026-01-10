@@ -251,7 +251,7 @@ module SpriteRenamer
   end
 
   def convert_files
-    return if !pbConfirmMessage("Check for Pokémon/item/trainer files in their old folders that need renaming and moving?")
+    return if !pbConfirmMessage(_INTL("Check for Pokémon/item/trainer files in their old folders that need renaming and moving?"))
     any_changed = false
     # Rename and move Pokémon sprites/icons
     dest_dir = "Graphics/Pokemon/"
@@ -272,7 +272,7 @@ module SpriteRenamer
     # Rename trainer sprites
     convert_trainer_sprites("Graphics/Trainers/")
     pbSetWindowText(nil)
-    if pbConfirmMessage("Rename all trainer charsets? This will also edit map data to change events' charsets accordingly.")
+    if pbConfirmMessage(_INTL("Rename all trainer charsets? This will also edit map data to change events' charsets accordingly."))
       convert_trainer_sprites("Graphics/Characters/")
       convert_player_metadata_charsets
       pbSetWindowText(nil)

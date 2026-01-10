@@ -235,7 +235,7 @@ class PokeBattle_Battle
       dontAnimate = true
       # debugInfo = "Levels: #{curLevel}->#{newLevel} | Exp: #{pkmn.exp}->#{expFinal} | gain: #{expGained}"
       # raise RuntimeError.new(
-      #   echoln  _INTL("{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
+      #   echoln  "{1}'s new level is less than its\r\ncurrent level, which shouldn't happen.\r\n[Debug: {2}]",
       #         pkmn.name, debugInfo)
       pbDisplayPaused(_INTL("{1}'s growth rate has changed to '{2}''. Its level will be adjusted to reflect its current exp.", pkmn.name, pkmn.growth_rate.real_name))
     end
@@ -317,7 +317,9 @@ class PokeBattle_Battle
     return if pkmn.moves.any? { |m| m && m.id == newMove }
     # Pokémon has space for the new move; just learn it
     if pkmn.moves.length < Pokemon::MAX_MOVES
-      pkmn.moves.push(Pokemon::Move.new(newMove))
+      move = Pokemon::Move.new(newMove)
+      pkmn.moves.push(move)
+      pkmn.add_learned_move(move)
       pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }
       if battler
         battler.moves.push(PokeBattle_Move.from_pokemon_move(self, pkmn.moves.last))
@@ -335,7 +337,9 @@ class PokeBattle_Battle
         if forgetMove >= 0
           oldMoveName = pkmn.moves[forgetMove].name
           pkmn.moves[forgetMove] = Pokemon::Move.new(newMove) # Replaces current/total PP
+          pkmn.add_learned_move(newMove)
           battler.moves[forgetMove] = PokeBattle_Move.from_pokemon_move(self, pkmn.moves[forgetMove]) if battler
+
           pbDisplayPaused(_INTL("1, 2, and... ... ... Ta-da!"))
           pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...", pkmnName, oldMoveName))
           pbDisplay(_INTL("{1} learned {2}!", pkmnName, moveName)) { pbSEPlay("Pkmn move learnt") }

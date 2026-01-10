@@ -8,7 +8,7 @@ SaveData.register_conversion(:v19_define_versions) do
       save_data[:essentials_version] = Essentials::VERSION
     end
     unless save_data.has_key?(:game_version)
-      save_data[:game_version] = Settings::GAME_VERSION
+      save_data[:game_version] = Settings::GAME_VERSION_NUMBER
     end
   end
 end

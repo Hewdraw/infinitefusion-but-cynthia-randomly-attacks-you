@@ -53,7 +53,7 @@ ItemHandlers::CanUseInBattle.addIf(proc { |item| GameData::Item.get(item).is_pok
     #       than one unfainted opposing Pokémon. (Snag Balls can be thrown in
     #       this case, but only in trainer battles, and the trainer will deflect
     #       them if they are trying to catch a non-Shadow Pokémon.)
-    if battle.pbOpposingBattlerCount>1 && !(GameData::Item.get(item).is_snag_ball? && battle.trainerBattle?)
+    if battle.pbOpposingBattlerCount>1 && $game_switches[SWITCH_SILVERBOSS_BATTLE]# !(GameData::Item.get(item).is_snag_ball? && battle.trainerBattle?)
       if battle.pbOpposingBattlerCount==2
         if $game_switches[SWITCH_SILVERBOSS_BATTLE]
           scene.pbDisplay(_INTL("It's no good! It's still too agitated to aim!")) if showMessages

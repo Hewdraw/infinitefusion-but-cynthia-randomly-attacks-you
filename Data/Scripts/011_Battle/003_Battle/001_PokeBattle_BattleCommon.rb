@@ -70,7 +70,10 @@ module PokeBattle_BattleCommon
       # Record a Shadow Pokémon's species as having been caught
       pbPlayer.pokedex.set_shadow_pokemon_owned(pkmn.species) if pkmn.shadowPokemon?
       # Store caught Pokémon
-      promptCaughtPokemonAction(pkmn)
+
+      gave_away_pokemon = promptGiveToPartner(pkmn) if isPartneredWithAnyTrainer()
+
+      promptCaughtPokemonAction(pkmn) if !gave_away_pokemon
       if $game_switches[AUTOSAVE_CATCH_SWITCH]
         Kernel.tryAutosave()
       end
@@ -84,8 +87,8 @@ module PokeBattle_BattleCommon
   #   return pbStorePokemon(pokemon) if !$Trainer.party_full?
   #
   #   while !pickedOption
-  #     command = pbMessage(_INTL("\\ts[]Your team is full!"),
-  #                         [_INTL("Add to your party"), _INTL("Store to PC"),], 2)
+  #     command = pbMessage("\\ts[]Your team is full!"),
+  #                         ["Add to your party", "Store to PC",], 2)
   #     echoln ("command " + command.to_s)
   #     case command
   #     when 0 #SWAP

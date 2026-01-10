@@ -202,6 +202,7 @@ module Game
     $PokemonMap.updateMap
     $scene = Scene_Map.new
     onLoadExistingGame()
+
   end
 
   # Loads and validates the map. Called when loading a saved game.
@@ -234,7 +235,13 @@ module Game
     end
     $PokemonEncounters = PokemonEncounters.new
     $PokemonEncounters.setup($game_map.map_id)
+    self.load_secret_bases if Settings::HOENN
     pbUpdateVehicle
+  end
+
+  def self.load_secret_bases
+    loader = SecretBaseLoader.new
+    loader.load_visitor_bases
   end
 
   # Saves the game. Returns whether the operation was successful.

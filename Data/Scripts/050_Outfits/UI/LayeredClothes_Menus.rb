@@ -115,8 +115,8 @@ def selectHairColor
 
 end
 
-def selectHatColor
-  original_color = $Trainer.hat_color
+def selectHatColor(secondary_hat=false)
+  original_color = secondary_hat ? $Trainer.hat2_color : $Trainer.hat_color
   display_outfit_preview()
   commands = ["Shift up", "Shift down", "Reset", "Confirm", "Never Mind"]
   previous_input = 0
@@ -126,24 +126,26 @@ def selectHatColor
     case choice
     when 0 #NEXT
       pbSEPlay("GUI storage pick up", 80, 100)
-      shiftHatColor(10)
-      display_outfit_preview()
+      shiftHatColor(10,secondary_hat)
+      display_outfit_preview
       ret = true
     when 1 #PREVIOUS
       pbSEPlay("GUI storage pick up", 80, 100)
-      shiftHatColor(-10)
-      display_outfit_preview()
+      shiftHatColor(-10,secondary_hat)
+      display_outfit_preview
       ret = true
     when 2 #Reset
       pbSEPlay("GUI storage put down", 80, 100)
-      $Trainer.hat_color = 0
-      display_outfit_preview()
-      refreshPlayerOutfit()
+      $Trainer.hat_color = 0 if !secondary_hat
+      $Trainer.hat2_color = 0 if secondary_hat
+      display_outfit_preview
+      refreshPlayerOutfit
       ret = false
     when 3 #Confirm
       break
     else
-      $Trainer.hat_color = original_color
+      $Trainer.hat_color = original_color if !secondary_hat
+      $Trainer.hat2_color = original_color if secondary_hat
       ret = false
       break
     end

@@ -49,7 +49,9 @@ class PokeBattle_Move_003 < PokeBattle_SleepMove
     #reverse the fusion if it's a meloA and meloP fusion
     # There's probably a smarter way to do this but laziness lol
     if is_meloetta_A && is_meloetta_P
-      if user.pokemon.species_data.get_body_species() == :MELOETTA_A
+      body_id = user.pokemon.species_data.get_body_species()
+      body_species = GameData::Species.get(body_id)
+      if body_species == :MELOETTA_A
         changeSpeciesSpecific(user.pokemon,:B467H466)
       else
         changeSpeciesSpecific(user.pokemon,:B466H467)
@@ -400,12 +402,10 @@ class PokeBattle_Move_019 < PokeBattle_Move
       failed = false
       break
     end
-    if !failed
-      @battle.pbParty(user.index).each do |pkmn|
-        next if !pkmn || !pkmn.able? || pkmn.status == :NONE
-        failed = false
-        break
-      end
+    @battle.pbParty(user.index).each do |pkmn|
+      next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+      failed = false
+      break
     end
     if failed
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -2622,7 +2622,7 @@ end
 # class PokeBattle_Move_XXX < PokeBattle_Move
 #   def pbMoveFailed?(user,targets)
 #     if targets[0].effects[PBEffects::Transform]
-#       @battle.pbDisplay(_INTL("But it failed!"))
+#       @battle.pbDisplay("But it failed!")
 #       return true
 #     end
 #     return false
@@ -2632,7 +2632,7 @@ end
 #     if target.effects[PBEffects::Transform] ||
 #       target.effects[PBEffects::Illusion] ||
 #       !target.pokemon.isFusion?
-#       @battle.pbDisplay(_INTL("But it failed!"))
+#       @battle.pbDisplay("But it failed!")
 #       return true
 #     end
 #     return false

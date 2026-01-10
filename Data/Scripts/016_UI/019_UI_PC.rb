@@ -27,9 +27,9 @@ class StorageSystemPC
   def name
     return "Pokemon Storage"
     #if $Trainer.seen_storage_creator
-    #  return _INTL("{1}'s PC",pbGetStorageCreator)
+    #  return "{1}'s PC",pbGetStorageCreator
     #else
-    #  return _INTL("Someone's PC")
+    #  return "Someone's PC"
     #end
   end
 
@@ -260,6 +260,10 @@ def pbPokeCenterPC
     break if !PokemonPCList.callCommand(command)
   end
   pbSEPlay("PC close")
+  if $game_temp.transfer_box_autosave
+    Game.save()
+    $game_temp.transfer_box_autosave=false
+  end
 end
 
 def pbGetStorageCreator

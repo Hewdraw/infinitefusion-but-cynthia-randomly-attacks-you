@@ -81,10 +81,10 @@ def pbFishing(hasEncounter,rodType=1)
                   :WATERGEM
         ]
         hats = [
-          HAT_SLOWKING_SHELL,
+          HAT_SLOWKING_SHELL,HAT_TENTACRUEL
         ]
         hatChance = rand(5)
-        if true#hatChance == 0
+        if hatChance == 0
           hat = hats.sample
           if !hasHat?(hat)
             obtainHat(hat)

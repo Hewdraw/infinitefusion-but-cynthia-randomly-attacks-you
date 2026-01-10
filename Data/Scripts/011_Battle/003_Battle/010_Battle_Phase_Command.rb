@@ -256,7 +256,10 @@ class PokeBattle_Battle
           end
         when 2    # Pokémon
           next if @broken_buttons.include?(2)
-          break if pbPartyMenu(idxBattler)
+          if pbPartyMenu(idxBattler)
+            @scene.setLastCommandIndex(idxBattler,0)
+            break
+          end
         when 3    # Run
           next if @broken_buttons.include?(3)
           # NOTE: "Run" is only an available option for the first battler the

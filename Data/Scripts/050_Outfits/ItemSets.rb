@@ -5,7 +5,7 @@ CLOTHES_NORMAL   = "normal"
 
 CLOTHES_FIGHTING = "fighting"
 
-CLOTHES_FLYING   = "temp"
+CLOTHES_FLYING   = "flying"
 
 CLOTHES_POISON   = "deadlypoisondanger"
 
@@ -35,7 +35,7 @@ CLOTHES_ICE      = "iceoutfit"
 
 CLOTHES_DRAGON   = "dragonconqueror"
 
-CLOTHES_DARK     = "temp"
+CLOTHES_DARK     = "darkoutfit"
 
 CLOTHES_FAIRY_M    = "mikufairym"
 CLOTHES_FAIRY_F    = "mikufairyf"

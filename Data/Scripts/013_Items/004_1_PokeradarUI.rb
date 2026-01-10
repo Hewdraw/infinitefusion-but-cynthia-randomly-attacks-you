@@ -62,6 +62,7 @@ class PokeRadar_UI
 
   def addPokemonIcon(species, blackened = false, rare=false)
     pokemonId=dexNum(species)
+    return if !pokemonId
     iconId = _INTL("{1}", species)
 
     pokemonBitmap = pbCheckPokemonIconFiles(species)

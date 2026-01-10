@@ -126,6 +126,10 @@ class Game_Map
     return @map.data;
   end
 
+  def tileset_id;
+    return @map.tileset_id;
+  end
+
   def name
     ret = pbGetMessage(MessageTypes::MapNames, @map_id)
     ret.gsub!(/\\PN/, $Trainer.name) if $Trainer

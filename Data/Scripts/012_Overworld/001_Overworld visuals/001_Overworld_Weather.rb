@@ -46,6 +46,12 @@ module RPG
       @new_sprites          = []
       @new_sprite_lifetimes = []
       @fading               = false
+
+      @lightning_overlay = Sprite.new(@viewport)
+      @lightning_overlay.bitmap = RPG::Cache.load_bitmap("Graphics/Weather/", "lightning") if pbResolveBitmap("Graphics/Weather/lightning")
+      @lightning_overlay.opacity = 0
+      @lightning_overlay.z = 2000  # On top of everything
+
     end
 
     def dispose
@@ -58,13 +64,24 @@ module RPG
         weather[1].each { |bitmap| bitmap.dispose if bitmap }
         weather[2].each { |bitmap| bitmap.dispose if bitmap }
       end
+      @lightning_sprite.dispose if @lightning_sprite
     end
 
-    def fade_in(new_type, new_max, duration = 1)
+    def get_max_sprites(power, weather_type)
+      power= MAX_SPRITES if !power
+      if weather_type == :Wind
+        power /= 8
+      end
+      return (power + 1) * RPG::Weather::MAX_SPRITES / 10
+    end
+
+    def fade_in(new_type, weather_power, duration = 1)
       return if @fading
+      new_max = get_max_sprites(weather_power,new_type)
       new_type = GameData::Weather.get(new_type).id
       new_max = 0 if new_type == :None
       return if @type == new_type && @max == new_max
+      set_fog(new_type)
       if duration > 0
         @target_type = new_type
         @target_max = new_max
@@ -88,7 +105,7 @@ module RPG
         @new_sprites.each_with_index { |sprite, i| set_sprite_bitmap(sprite, i, @target_type) }
       else
         self.type = new_type
-        self.max = new_max
+        self.set_max(new_max,new_type)
       end
     end
 
@@ -100,6 +117,7 @@ module RPG
         @fading = false
       end
       @type = type
+      set_fog(type)
       prepare_bitmaps(@type)
       if GameData::Weather.get(@type).has_tiles?
         w = @weatherTypes[@type][2][0].width
@@ -115,9 +133,20 @@ module RPG
       @tiles.each_with_index { |sprite, i| set_tile_bitmap(sprite, i, @type) }
     end
 
-    def max=(value)
+    def set_fog(weather_type)
+      weather = GameData::Weather.get(weather_type)
+      return if weather.fog_name.nil?
+      $game_map.fog_name       = weather.fog_name
+      $game_map.fog_opacity    = 40* $game_screen.weather_power
+      $game_map.fog_sx         = weather.tile_delta_x
+      $game_map.fog_sy         = weather.tile_delta_y
+    end
+
+    def set_max(value,weather_type)
       return if @max == value
-      @max = value.clamp(0, MAX_SPRITES)
+      value = value.clamp(0, get_max_sprites(value,weather_type))
+      #echoln "[Weather] Setting max particles to #{value} for type #{@type}" if @max != value
+      @max = value
       ensureSprites
       for i in 0...MAX_SPRITES
         @sprites[i].visible = (i < @max) if @sprites[i]
@@ -265,7 +294,7 @@ module RPG
           lifetimes[index] = (distance_to_cover.to_f / y_speed).abs
         end
       end
-      sprite.opacity = 255
+      sprite.opacity = 100
     end
 
     def update_sprite_position(sprite, index, is_new_sprite = false)
@@ -294,6 +323,11 @@ module RPG
           sprite.x += [2, 1, 0, -1][rand(4)] * dist_x / 8   # Random movement
           sprite.y += [2, 1, 1, 0, 0, -1][index % 6] * dist_y / 10   # Variety
         end
+
+        if weather_type == :StrongWinds || weather_type == :Wind
+          sprite.opacity-=[20, 0, 10, -10][rand(4)]
+        end
+
         sprite.opacity += @weatherTypes[weather_type][0].particle_delta_opacity * delta_t
         x = sprite.x - @ox
         y = sprite.y - @oy
@@ -477,12 +511,28 @@ module RPG
           @time_until_flash -= Graphics.delta_s
           if @time_until_flash <= 0
             @viewport.flash(Color.new(255, 255, 255, 230), (2 + rand(3)) * 20)
+            if rand < 0.1
+              @lightning_overlay.opacity = 255
+              @lightning_overlay_duration = 20  # Lasts ~10 frames
+              @lightning_overlay.y = rand(-200..0)
+              @lightning_overlay.x = [-200,-150,150, 250].sample
+            end
           end
         end
         if @time_until_flash <= 0
           @time_until_flash = (1 + rand(12)) * 0.5   # 0.5-6 seconds
         end
       end
+      if @lightning_overlay_duration && @lightning_overlay_duration > 0
+        @lightning_overlay_duration -= 1
+        @lightning_overlay.opacity = (255 * (@lightning_overlay_duration / 10.0)).to_i
+      else
+        @lightning_overlay.opacity = 0 if @lightning_overlay
+        @lightning_overlay_duration = nil
+      end
+
+
+
       @viewport.update
       # Update weather particles (raindrops, snowflakes, etc.)
       if @weatherTypes[@type] && @weatherTypes[@type][1].length > 0

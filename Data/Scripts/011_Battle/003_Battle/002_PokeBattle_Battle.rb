@@ -104,7 +104,9 @@ class PokeBattle_Battle
     end
     @scene             = scene
     @peer              = PokeBattle_BattlePeer.create
-    @battleAI          = PokeBattle_AI.new(self)
+    @battleAI          =  Settings::REMOTE_BATTLES_CONTROL ? RemotePokeBattle_AI.new(self) : PokeBattle_AI.new(self)
+    #TODO
+
     @field             = PokeBattle_ActiveField.new    # Whole field (gravity/rooms)
     @sides             = [PokeBattle_ActiveSide.new,   # Player's side
                           PokeBattle_ActiveSide.new]   # Foe's side
