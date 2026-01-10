@@ -1019,6 +1019,8 @@
 1053,ICEPUNCHPLUS,Ice Punch+,00C,75,ICE,Physical,100,15,10,NearOther,0,abefj,"Ice Punch Dusknoir vs Lando-T: Guaranteed OHKO."
 1054,LUSTERPURGEPLUS,Luster Purge+,321,120,PSYCHIC,Special,100,5,100,NearOther,0,bef,"The user lets loose a damaging burst of light. It may also reduce the target's Sp. Def stat."
 1055,MISTBALLPLUS,Mist Ball+,322,70,PSYCHIC,Special,100,20,100,NearOther,0,befn,"A mistlike flurry of down envelops and damages the target. It may also lower the target's Sp. Atk."
+1056,BOLTSTRIKEPLUS,Bolt Strike+,007,160,ELECTRIC,Physical,0,1,100,NearOther,0,abef,"The user charges at its foe, surrounding itself with lightning. It may also leave the target paralyzed."
+1057,BLUEFLAREPLUS,Blue Flare+,00A,160,FIRE,Special,0,1,100,NearOther,0,bef,"The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It may also burn the foe."
 
 
 
