@@ -19709,7 +19709,7 @@ Pokedex = Its two sets of jaws thrash about violently as if they each had a will
 Generation = 6
 Shape = Bipedal
 #-------------------------------
-[1000706]
+[1000705]
 Name = Metagross
 InternalName = METAGROSSSHINY
 Type1 = STEEL
@@ -19742,6 +19742,17 @@ BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 5
 #-------------------------------
+[1000706]
+Name = Metagross
+InternalName = MEGAMETAGROSSSHINY
+Type1 = STEEL
+Type2 = PSYCHIC
+Weight = 1000000
+BaseStats = 80,145,150,110,105,110
+Abilities = TOUGHCLAWS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
 [1000707]
 Name = Ursaluna
 InternalName = BURSALUNA
@@ -19769,17 +19780,6 @@ Type1 = DARK
 Type2 = STEEL
 BaseStats = 100,135,120,50,60,85
 Abilities = SUPREMEOVERLORD
-Moves = 1,TACKLE
-Shape = Head
-#-------------------------------
-[1000710]
-Name = Metagross
-InternalName = MEGAMETAGROSSSHINY
-Type1 = STEEL
-Type2 = PSYCHIC
-Weight = 1000000
-BaseStats = 80,145,150,110,105,110
-Abilities = TOUGHCLAWS
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------

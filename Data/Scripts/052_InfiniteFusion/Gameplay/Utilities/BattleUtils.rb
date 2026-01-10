@@ -42,11 +42,12 @@ end
 
 def getCurrentLevelCap()
   current_max_level = Settings::LEVEL_CAPS[$Trainer.badge_count]
-  current_max_level *= Settings::HARD_MODE_LEVEL_MODIFIER if $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
+  current_max_level *= Settings::HARD_MODE_LEVEL_MODIFIER if pbCynthiaGetBadgeCount >= 8
   return current_max_level.floor
 end
 
 def pokemonExceedsLevelCap(pokemon)
+  return pokemon.level >= $PokemonGlobal.towervalues[:floor] + 4 if !$PokemonGlobal.towervalues.nil?
   return false if $Trainer.badge_count >= Settings::NB_BADGES
   current_max_level = getCurrentLevelCap()
   return pokemon.level >= current_max_level

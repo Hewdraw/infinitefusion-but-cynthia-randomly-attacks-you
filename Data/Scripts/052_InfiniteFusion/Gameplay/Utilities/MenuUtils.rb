@@ -52,7 +52,11 @@ def swapCaughtPokemon(caughtPokemon)
                   })
   index = pbGet(1)
   return false if index == -1
-  $PokemonStorage.pbStoreCaught($Trainer.party[index])
+  if $PokemonGlobal.towervalues.nil?
+    $PokemonStorage.pbStoreCaught($Trainer.party[index])
+  else
+    $PokemonGlobal.towervalues[:storage].pbStoreCaught($Trainer.party[index])
+  end
   pbRemovePokemonAt(index)
   pbStorePokemon(caughtPokemon)
 

@@ -1,16 +1,9 @@
 def setDifficulty(index)
-  $Trainer.selected_difficulty = index
-  case index
-  when 0 # EASY
-    $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = true
-    $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = false
-  when 1 # NORMAL
-    $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = false
-    $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = false
-  when 2 # HARD
-    $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = false
-    $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = true
-  end
+  $Trainer.selected_difficulty = 1
+  $game_switches[SWITCH_GAME_DIFFICULTY_EASY] = false
+  $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = false
+  $Trainer.selected_difficulty = 2 if pbCynthiaGetBadgeCount >= 8
+  $game_switches[SWITCH_GAME_DIFFICULTY_HARD] = true if pbCynthiaGetBadgeCount >= 8
 end
 
 # Old menu for changing difficulty - unused
@@ -64,11 +57,11 @@ end
 
 # Get difficulty for displaying in-game
 def getDisplayDifficulty
-  if $game_switches[SWITCH_GAME_DIFFICULTY_EASY] || $Trainer.lowest_difficulty <= 0
+  if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
     return getDisplayDifficultyFromIndex(0)
   elsif $Trainer.lowest_difficulty <= 1
     return getDisplayDifficultyFromIndex(1)
-  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD]
+  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || pbCynthiaGetBadgeCount >= 8
     return getDisplayDifficultyFromIndex(2)
   else
     return getDisplayDifficultyFromIndex(1)
