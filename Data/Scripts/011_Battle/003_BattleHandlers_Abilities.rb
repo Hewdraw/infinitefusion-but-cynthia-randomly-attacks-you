@@ -601,7 +601,7 @@ BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
   proc { |ability,target,user,move,type,battle|
-    next false if !move.bombMove?
+    next false if !(move.bombMove? || type == :GUN)
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
@@ -682,7 +682,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SAPSIPPER,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
   proc { |ability,target,user,move,type,battle|
-    next false if !move.soundMove?
+    next false if !(move.soundMove? || type == :SOUND)
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
