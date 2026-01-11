@@ -1191,40 +1191,11 @@ class PokemonPartyScreen
   end
 
   def pbRememberMoves(pokemon)
-    learnable_moves = pokemon.learned_moves
-    learnable_moves = [] if !learnable_moves
-    #exclude current moves
-    echoln "learned moves: #{learnable_moves}"
-    for current_move in pokemon.moves
-      if learnable_moves.include?(current_move.id)
-        learnable_moves.delete(current_move.id)
-      end
-    end
-    move_ids = []
-    for move in learnable_moves
-      if move.is_a?(Symbol)
-        move_ids << move if pokemon.compatible_with_move?(move)
-      end
-    end
-
-    # if move_ids.empty?
-    #   pbMessage(_INTL("{1} has no moves to remember!",pokemon.name))
-    #   return false
-    # end
-
-    echoln move_ids
-
     retval = true
     pbFadeOutIn {
       scene = MoveRelearner_Scene.new
       screen = MoveRelearnerScreen.new(scene)
-      move_ids.push(screen.pbGetRelearnableMoves(pokemon))
-      move_ids = move_ids.flatten.uniq
-      if !move_ids.empty?
-        retval = screen.pbStartScreen(pokemon, move_ids)
-      else
-        return false
-      end
+      retval = screen.pbStartScreen(pokemon)
     }
     return retval
   end
