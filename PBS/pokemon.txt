@@ -2732,7 +2732,7 @@ BattlerEnemyY = 14
 BattlerAltitude = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MAGNEZONE,Item,MAGNETSTONE
+Evolutions = MAGNEZONE,Item,MAGNETSTONE,MAGNEZONE,Item,THUNDERSTONE
 #-------------------------------
 [83]
 Name = Farfetch'd
@@ -10707,7 +10707,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = PROBOPASS,Item,MAGNETSTONE
+Evolutions = PROBOPASS,Item,MAGNETSTONE,PROBOPASS,Item,THUNDERSTONE
 #-------------------------------
 [326]
 Name = Probopass
