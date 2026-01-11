@@ -1090,6 +1090,13 @@ class PokeBattle_Move_043 < PokeBattle_TargetStatDownMove
     super
     @statDown = [:DEFENSE, 1]
   end
+
+  def pbAdditionalEffect(user, target)
+    if target.isFusionOf?(:GEODUDE) && move.id == :ROCKSMASH
+      target.hp = 0
+    end
+    super
+  end
 end
 
 #===============================================================================

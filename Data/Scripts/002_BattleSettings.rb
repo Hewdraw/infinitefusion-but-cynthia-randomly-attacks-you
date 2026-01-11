@@ -17,7 +17,7 @@ module Settings
   #   * Poison-type Pokémon can't miss when using Toxic
   MORE_TYPE_EFFECTS                           = (MECHANICS_GENERATION >= 5)
   # Whether weather caused by an ability lasts 5 rounds (true) or forever (false).
-  FIXED_DURATION_WEATHER_FROM_ABILITY         = (MECHANICS_GENERATION >= 6)
+  FIXED_DURATION_WEATHER_FROM_ABILITY         = true
 
   #=============================================================================
 
