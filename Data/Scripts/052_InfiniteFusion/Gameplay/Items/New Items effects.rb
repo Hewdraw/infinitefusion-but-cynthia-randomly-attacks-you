@@ -2551,7 +2551,7 @@ ItemHandlers::UseInField.add(:ENDGATEWAY, proc { |item|
 })
 
 def useEndGateway()
-  if [51, 46, 428, 531].include?($game_map.map_id) && $PokemonGlobal.endgatewaylocation
+  if [51, 46, 428, 531, 21, 32].include?($game_map.map_id) && $PokemonGlobal.endgatewaylocation
     Kernel.pbMessage(_INTL("{1} used the End Gateway!", $Trainer.name))
     pbFadeOutIn(99999) {
       Kernel.pbCancelVehicles
