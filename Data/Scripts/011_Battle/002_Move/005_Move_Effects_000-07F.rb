@@ -1091,11 +1091,19 @@ class PokeBattle_Move_043 < PokeBattle_TargetStatDownMove
     @statDown = [:DEFENSE, 1]
   end
 
-  def pbAdditionalEffect(user, target)
+  def pbEffectAgainstTarget(user, target)
+    super
     if target.isFusionOf?(:GEODUDE) && move.id == :ROCKSMASH
       target.hp = 0
+      target.pbFaint
     end
+  end
+
+  def pbHitEffectivenessMessages(user, target, numTargets = 1)
     super
+    if target.isFusionOf?(:GEODUDE) && move.id == :ROCKSMASH
+      @battle.pbDisplay(_INTL("Reduced to atoms."))
+    end
   end
 end
 
