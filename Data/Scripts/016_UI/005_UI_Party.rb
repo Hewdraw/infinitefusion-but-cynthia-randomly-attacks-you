@@ -1207,10 +1207,10 @@ class PokemonPartyScreen
       end
     end
 
-    if move_ids.empty?
-      pbMessage(_INTL("{1} has no moves to remember!",pokemon.name))
-      return false
-    end
+    # if move_ids.empty?
+    #   pbMessage(_INTL("{1} has no moves to remember!",pokemon.name))
+    #   return false
+    # end
 
     echoln move_ids
 
@@ -1220,7 +1220,7 @@ class PokemonPartyScreen
       screen = MoveRelearnerScreen.new(scene)
       move_ids.push(screen.pbGetRelearnableMoves(pokemon))
       move_ids = move_ids.flatten.uniq
-      if !learnable_moves.empty?
+      if !move_ids.empty?
         retval = screen.pbStartScreen(pokemon, move_ids)
       else
         return false
