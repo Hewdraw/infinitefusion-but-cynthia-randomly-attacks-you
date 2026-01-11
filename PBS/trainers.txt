@@ -10250,7 +10250,7 @@ Pokemon = B500H196,5
 
 [Non_Skeleton_Dev,Hewdraw,5]    
 Pokemon = PALMON,5  
-    Offset = -3
+    Offset = -4
     Moves = NIOIKOUGEKI,POISONIVY,LEECHSEED,SYNTHESIS
     Ability = SUCTIONCUPS
     Item = EVIOLITE
@@ -10261,7 +10261,7 @@ Pokemon = PALMON,5
     Happiness = 255
     Ball = PREMIERBALL
 Pokemon = AGUMON,5  
-    Offset = -3
+    Offset = -4
     Moves = FINALCLAW,FLAMECHARGE
     Ability = GUTS
     Item = EVIOLITE
@@ -10273,7 +10273,7 @@ Pokemon = AGUMON,5
     Happiness = 255
     Ball = PREMIERBALL
 Pokemon = GABUMON,5 
-    Offset = -3
+    Offset = -4
     Moves = BLUEBLASTER,SKULLCRACKER,SCALD,ICEBEAM
     Ability = FLUFFY
     Item = EVIOLITE
