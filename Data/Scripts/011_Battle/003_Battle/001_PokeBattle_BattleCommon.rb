@@ -162,12 +162,11 @@ module PokeBattle_BattleCommon
     numShakes = pbCaptureCalc(pkmn, battler, catch_rate, ball)
     @criticalCapture = true if battler.battle.legendaryBattle?
     @criticalCapture = true if battler.shiny?
-    numShakes = 4 if battler.battle.legendaryBattle?
+    numShakes = 4 if @criticalCapture
     PBDebug.log("[Threw Poké Ball] #{itemName}, #{numShakes} shakes (4=capture)")
     # Animation of Ball throw, absorb, shake and capture/burst out
     @scene.pbThrow(ball, numShakes, @criticalCapture, battler.index, showPlayer)
     # Outcome message
-    numShakes = 4 if @criticalCapture
     case numShakes
     when 0
       pbDisplay(_INTL("Oh no! The Pokémon broke free!"))
