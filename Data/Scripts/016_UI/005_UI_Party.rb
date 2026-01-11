@@ -1207,13 +1207,6 @@ class PokemonPartyScreen
       end
     end
 
-    pbCreatePreEvolutionTree(pokemon.species).each do |species|
-      GameData::Species.get_species_form(species, 0).moves.each do |m|
-        next if m[0] > pokemon.level || pokemon.hasMove?(m[1])
-        move_ids.push(m[1]) if !moves.include?(m[1])
-      end
-    end
-
     if move_ids.empty?
       pbMessage(_INTL("{1} has no moves to remember!",pokemon.name))
       return false
@@ -1225,6 +1218,8 @@ class PokemonPartyScreen
     pbFadeOutIn {
       scene = MoveRelearner_Scene.new
       screen = MoveRelearnerScreen.new(scene)
+      move_ids.push(screen.pbGetRelearnableMoves(pkmn))
+      move_ids = move_ids.flatten.uniq
       if !learnable_moves.empty?
         retval = screen.pbStartScreen(pokemon, move_ids)
       else
