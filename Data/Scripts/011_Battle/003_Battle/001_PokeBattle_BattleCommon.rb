@@ -223,6 +223,11 @@ module PokeBattle_BattleCommon
   #=============================================================================
   def pbCaptureCalc(pkmn, battler, catch_rate, ball)
     return 4 if $DEBUG && Input.press?(Input::CTRL)
+    # Critical capture check
+    if pbRandom(24) == 0 || pbPlayer.owned?(battler.species)
+      @criticalCapture = true
+      return 0
+    end
     return 4 if pbCynthiaGetBadgeCount == 0 || pbCynthiaGetBadgeCount >= 12
     # Get a catch rate if one wasn't provided
     catch_rate = pkmn.species_data.catch_rate if !catch_rate
@@ -255,11 +260,6 @@ module PokeBattle_BattleCommon
     # Second half of the shakes calculation
     y = (65536 / ((255.0 / x) ** 0.1875)).floor
 
-    # Critical capture check
-    if pbRandom(24) == 0 || pbPlayer.owned?(battler.species)
-      @criticalCapture = true
-      return 0
-    end
     # Calculate the number of shakes
     numShakes = 0
     for i in 0...4
