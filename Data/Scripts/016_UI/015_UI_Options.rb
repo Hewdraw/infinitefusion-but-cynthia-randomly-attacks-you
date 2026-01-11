@@ -50,7 +50,7 @@ class PokemonSystem
     @use_generated_dex_entries = true
     @aicontrolplayer = 0
     @hide_custom_eggs = true
-    @include_alt_sprites_in_random = false
+    @include_alt_sprites_in_random = true
   end
 end
 
