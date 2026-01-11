@@ -1218,7 +1218,7 @@ class PokemonPartyScreen
     pbFadeOutIn {
       scene = MoveRelearner_Scene.new
       screen = MoveRelearnerScreen.new(scene)
-      move_ids.push(screen.pbGetRelearnableMoves(pkmn))
+      move_ids.push(screen.pbGetRelearnableMoves(pokemon))
       move_ids = move_ids.flatten.uniq
       if !learnable_moves.empty?
         retval = screen.pbStartScreen(pokemon, move_ids)
