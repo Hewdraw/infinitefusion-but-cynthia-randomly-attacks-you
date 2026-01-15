@@ -173,18 +173,18 @@ class MoveRelearnerScreen
         moves.push(m[1]) if !moves.include?(m[1])
       end
     end
-    if pkmn.learned_moves && !pkmn.learned_moves.empty?
-      pkmn.learned_moves.each do |move|
-        move_id = move.is_a?(Symbol) ? move : move.id
-        next if pkmn.hasMove?(move_id)
-        moves.push(move_id) if !moves.include?(move_id)
-      end
-    end
-    if pkmn.first_moves && !pkmn.first_moves.empty?
-      for i in pkmn.first_moves
-        moves.push(i) if !pkmn.hasMove?(i) && !moves.include?(i)
-      end
-    end
+    # if pkmn.learned_moves && !pkmn.learned_moves.empty?
+    #   pkmn.learned_moves.each do |move|
+    #     move_id = move.is_a?(Symbol) ? move : move.id
+    #     next if pkmn.hasMove?(move_id)
+    #     moves.push(move_id) if !moves.include?(move_id)
+    #   end
+    # end
+    # if pkmn.first_moves && !pkmn.first_moves.empty?
+    #   for i in pkmn.first_moves
+    #     moves.push(i) if !pkmn.hasMove?(i) && !moves.include?(i)
+    #   end
+    # end
     moves = moves.flatten.uniq
     return moves
   end
