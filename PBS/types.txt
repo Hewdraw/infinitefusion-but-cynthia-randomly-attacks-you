@@ -15,15 +15,15 @@ Resistances = ROCK,BUG,DARK
 [2]
 Name = Flying
 InternalName = FLYING
-Weaknesses = ROCK,ELECTRIC,ICE
-Resistances = FIGHTING,BUG,GRASS,GUN
+Weaknesses = ROCK,ELECTRIC,ICE,GUN
+Resistances = FIGHTING,BUG,GRASS
 Immunities = GROUND
 #-------------------------------
 [3]
 Name = Poison
 InternalName = POISON
 Weaknesses = GROUND,PSYCHIC
-Resistances = FIGHTING,POISON,BUG,GRASS,FAIRY
+Resistances = FIGHTING,POISON,BUG,GRASS,FAIRY,GUN
 #-------------------------------
 [4]
 Name = Ground
@@ -48,21 +48,21 @@ Resistances = FIGHTING,GROUND,GRASS
 Name = Ghost
 InternalName = GHOST
 Weaknesses = GHOST,DARK
-Resistances = POISON,BUG,GUN
-Immunities = NORMAL,FIGHTING
+Resistances = POISON,BUG
+Immunities = NORMAL,FIGHTING,GUN
 #-------------------------------
 [8]
 Name = Steel
 InternalName = STEEL
 Weaknesses = FIGHTING,GROUND,FIRE
-Resistances = NORMAL,FLYING,ROCK,BUG,STEEL,GRASS,PSYCHIC,ICE,DRAGON,FAIRY
+Resistances = NORMAL,FLYING,ROCK,BUG,STEEL,GRASS,PSYCHIC,ICE,DRAGON,FAIRY,GUN
 Immunities = POISON
 #-------------------------------
 [9]
 Name = ???
 InternalName = QMARKS
 IsPseudoType = true
-Weaknesses = GUN
+Weaknesses = GUN,SOUND
 Resistances = NORMAL,FIGHTING,FLYING,POISON,GROUND,ROCK,BUG,GHOST,STEEL,FIRE,WATER,GRASS,ELECTRIC,PSYCHIC,ICE,DRAGON,DARK,FAIRY
 #-------------------------------
 [10]
@@ -70,7 +70,7 @@ Name = Fire
 InternalName = FIRE
 IsSpecialType = true
 Weaknesses = GROUND,ROCK,WATER
-Resistances = BUG,STEEL,FIRE,GRASS,ICE,FAIRY
+Resistances = BUG,STEEL,FIRE,GRASS,ICE,FAIRY,GUN
 #-------------------------------
 [11]
 Name = Water
@@ -97,14 +97,14 @@ Resistances = FLYING,STEEL,ELECTRIC
 Name = Psychic
 InternalName = PSYCHIC
 IsSpecialType = true
-Weaknesses = BUG,GHOST,DARK
+Weaknesses = BUG,GHOST,DARK,GUN
 Resistances = FIGHTING,PSYCHIC
 #-------------------------------
 [15]
 Name = Ice
 InternalName = ICE
 IsSpecialType = true
-Weaknesses = FIGHTING,ROCK,STEEL,FIRE
+Weaknesses = FIGHTING,ROCK,STEEL,FIRE,GUN
 Resistances = ICE
 #-------------------------------
 [16]
@@ -118,7 +118,7 @@ Resistances = FIRE,WATER,GRASS,ELECTRIC
 Name = Dark
 InternalName = DARK
 IsSpecialType = true
-Weaknesses = FIGHTING,BUG,FAIRY
+Weaknesses = FIGHTING,BUG,FAIRY,GUN
 Resistances = GHOST,DARK
 Immunities = PSYCHIC
 #-------------------------------
@@ -126,79 +126,178 @@ Immunities = PSYCHIC
 Name = Fairy
 InternalName = FAIRY
 IsSpecialType = true
-Weaknesses = POISON,STEEL
+Weaknesses = POISON,STEEL,GUN
 Resistances = FIGHTING,BUG,DARK
 Immunities = DRAGON
 #-------------------------------
 [19]
 Name = ???
 InternalName = QMARK
-IsSpecialType = true
+IsPseudoType = true
 Weaknesses = GUN
 Resistances = NORMAL,FIGHTING,FLYING,POISON,GROUND,ROCK,BUG,GHOST,STEEL,FIRE,WATER,GRASS,ELECTRIC,PSYCHIC,ICE,DRAGON,DARK,FAIRY
 #-------------------------------
 [20]
-Name = Ice/Fire/Electric
-InternalName = ICEFIREELECTRIC
-IsSpecialType = true
-Weaknesses = FIGHTING,GROUND,WATER
-Resistances = ICE,FLYING,STEEL,ELECTRIC,BUG,GRASS,FAIRY,FIRE
+Name = Sound
+InternalName = SOUND
+Weaknesses = GROUND,ELECTRIC
+Resistances = NORMAL,FIGHTING,POISON,GHOST,DRAGON,FAIRY,SOUND
 #-------------------------------
 [21]
-Name = Fire/Water/Electric
-InternalName = FIREWATERELECTRIC
-IsSpecialType = true
-Weaknesses = GROUND,ROCK
-Resistances = BUG,ICE,FAIRY,STEEL,FIRE,FLYING
+Name = Gun
+InternalName = GUN
+Weaknesses = NORMAL,ROCK,GUN
+Resistances = FIGHTING,GHOST,FIRE,FAIRY,SOUND
+Immunities = QMARKS
 #-------------------------------
 [22]
-Name = Water/Ground/Flying
-InternalName = WATERGROUNDFLYING
-IsSpecialType = true
-Weaknesses = GRASS,ICE
-Resistances = STEEL,FIRE,POISON,FIGHTING,BUG
-Immunities = ELECTRIC,GROUND
+Name = Ice/Fire/Electric/Flying
+InternalName = ICEFIREELECTRICFLYING
+IsPsuedoType = true
+Weaknesses = ROCK,GUN,WATER
+Resistances = STEEL,ICE,FAIRY,FLYING
+Immunities = GROUND,BUG,GRASS
 #-------------------------------
 [23]
-Name = Ghost/Steel/Water
-InternalName = GHOSTSTEELWATER
-IsSpecialType = true
-Weaknesses = ELECTRIC,GROUND
-Resistances = WATER,FLYING,ROCK,BUG,STEEL,PSYCHIC,ICE,DRAGON,FAIRY
-Immunities = NORMAL,FIGHTING,POISON
+Name = Fire/Water/Electric
+InternalName = FIREWATERELECTRIC
+IsPsuedoType = true
+Weaknesses = GROUND,ROCK
+Resistances = BUG,FAIRY,FLYING
+Immunities = STEEL,FIRE,ICE,GUN
 #-------------------------------
 [24]
-Name = Fire/Water/Grass
-InternalName = FIREWATERGRASS
-IsSpecialType = true
-Weaknesses = ROCK,FLYING,POISON
-Resistances = FIRE,ICE,FAIRY,STEEL,WATER,GRASS
+Name = Water/Ground/Flying/Dragon
+InternalName = WATERGROUNDFLYINGDRAGON
+IsPsuedoType = true
+Weaknesses = ICE,DRAGON,FAIRY,SOUND
+Resistances = STEEL,WATER,GUN,POISON,FIGHTING,BUG
+Immunities = ELECTRIC,FIRE,GROUND
 #-------------------------------
 [25]
-Name = Grass/Steel
-InternalName = GRASSSTEEL
-IsSpecialType = true
-Weaknesses = FIGHTING,FIRE
-Resistances = NORMAL,ROCK,GHOST,STEEL,GRASS,PSYCHIC,DRAGON,DARK,FAIRY,WATER,ELECTRIC
-Immunities = POISON
+Name = Ghost/Steel/Water/Dragon
+InternalName = GHOSTSTEELWATERDRAGON
+IsPsuedoType = true
+Weaknesses = GHOST,DARK,GROUND,SOUND
+Resistances = FIRE,FLYING,ROCK,GRASS,PSYCHIC,ICE
+Immunities = POISON,BUG,NORMAL,FIGHTING,GUN,STEEL,WATER
 #-------------------------------
 [26]
-Name = Bug/Steel/Psychic
-InternalName = BUGSTEELPSYCHIC
-IsSpecialType = true
-Weaknesses = FIRE
-Resistances = PSYCHIC,NORMAL,STEEL,GRASS,ICE,DRAGON,FAIRY,FIGHTING
-Immunities = POISON
+Name = Fire/Water/Grass
+InternalName = FIREWATERGRASS
+IsPsuedoType = true
+Weaknesses = ROCK,FLYING,POISON
+Resistances = WATER,FIRE,GRASS,ICE,FAIRY
+Immunities = STEEL,GUN
 #-------------------------------
 [27]
-Name = Ice/Rock/Steel
-InternalName = ICEROCKSTEEL
-Weaknesses = GROUND,FIRE,WATER,ROCK
-Resistances = PSYCHIC,NORMAL,GRASS,ICE,DRAGON,FAIRY
-Immunities = POISON
+Name = Grass/Steel/Psychic
+InternalName = GRASSSTEELPSYCHIC
+IsPsuedoType = true
+Weaknesses = BUG,FIRE,GHOST,DARK
+Resistances = WATER,ELECTRIC,NORMAL,ROCK,STEEL,DRAGON,FAIRY
+Immunities = POISON,GRASS,PSYCHIC
+#-------------------------------
 [28]
-Name=Gun
-InternalName=GUN
-Weaknesses=GROUND,ELECTRIC
-Resistances=POISON,GHOST,DRAGON,FAIRY
-Immunities=FLYING
+Name = Bug/Steel/Psychic
+InternalName = BUGSTEELPSYCHIC
+IsPsuedoType = true
+Weaknesses = FIRE,GHOST,DARK
+Resistances = FIGHTING,NORMAL,STEEL,ICE,DRAGON,FAIRY
+Immunities = GRASS,PSYCHIC,POISON
+#-------------------------------
+[29]
+Name = Ice/Rock/Steel/Electric/Dragon
+InternalName = ICEROCKSTEELELECTRICDRAGON
+IsPsuedoType = true
+Weaknesses = FIGHTING,GROUND,SOUND
+Resistances = GUN,ICE,GRASS,BUG,PSYCHIC
+Immunities = NORMAL,FLYING,POISON,ELECTRIC
+#-------------------------------
+[30]
+Name = Electric/Dragon
+InternalName = ELECTRICDRAGON
+IsPsuedoType = true
+Weaknesses = GROUND,ICE,DRAGON,FAIRY,SOUND
+Resistances = FLYING,STEEL,FIRE,WATER,GRASS
+Immunities = ELECTRIC
+#-------------------------------
+[31]
+Name = Ice/Fire/Electric/Dragon
+InternalName = ICEFIREELECTRICDRAGON
+IsPsuedoType = true
+Weaknesses = FIGHTING,ROCK,GROUND,DRAGON,SOUND
+Resistances = STEEL,FIRE,ICE,BUG,FLYING
+Immunities = GRASS,ELECTRIC
+#-------------------------------
+[32]
+Name = Psychic/Dark/Fighting/Flying
+InternalName = PSYCHICDARKFIGHTINGFLYING
+IsPsuedoType = true
+Weaknesses = GUN,FAIRY,FLYING,ELECTRIC,ICE
+Resistances = DARK,FIGHTING,GRASS
+Immunities = PSYCHIC,GROUND
+#-------------------------------
+[33]
+Name = Fire/Water/Electric/Dragon
+InternalName = FIREWATERELECTRICDRAGON
+IsPsuedoType = true
+Weaknesses = GROUND,ROCK,DRAGON,SOUND
+Resistances = WATER,BUG,GRASS,ICE,ELECTRIC,FLYING
+Immunities = STEEL,FIRE,GUN
+#-------------------------------
+[34]
+Name = Normal/Fighting/Flying/Poison/Ground/Rock/Bug/Ghost/Steel/Fire/Water/Grass/Electric/Psychic/Ice/Dragon/Dark/Fairy
+InternalName = NORMALFIGHTINGFLYINGPOISONGROUNDROCKBUGGHOSTSTEELFIREWATERGRASSELECTRICPSYCHICICEDRAGONDARKFAIRY
+IsPsuedoType = true
+Weaknesses = ROCK
+Resistances = DARK,STEEL
+Immunities = FIGHTING,GUN,GHOST,PSYCHIC,BUG,ELECTRIC,GRASS,GROUND,POISON,NORMAL,DRAGON
+#-------------------------------
+[35]
+Name = Flying/Ground/Fire/Water/Electric/Dragon/Fairy
+InternalName = FLYINGGROUNDFIREWATERELECTRICDRAGONFAIRY
+IsPsuedoType = true
+Weaknesses = ROCK,ICE
+Resistances = GUN,GRASS,FLYING,DARK
+Immunities = ELECTRIC,FIGHTING,BUG,GROUND,STEEL,FIRE,DRAGON
+#-------------------------------
+[36]
+Name = Flying/Dragon/Fairy
+InternalName = FLYINGDRAGONFAIRY
+IsPsuedoType = true
+Weaknesses = ROCK,ICE,GUN,FAIRY,POISON,STEEL
+Resistances = FIRE,WATER,DARK
+Immunities = FIGHTING,BUG,GRASS,GROUND,DRAGON
+#-------------------------------
+[37]
+Name = Fire/Water/Grass/Flying/Poison
+InternalName = FIREWATERGRASSFLYINGPOISON
+IsPsuedoType = true
+Weaknesses = ROCK,ELECTRIC,FLYING,PSYCHIC
+Resistances = WATER,FIRE
+Immunities = GROUND,BUG,STEEL,GRASS,FAIRY,GUN,FIGHTING
+#-------------------------------
+[38]
+Name = Fire/Water/Grass/Fighting/Ground
+InternalName = FIREWATERGRASSFIGHTINGGROUND
+IsPsuedoType = true
+Weaknesses = FLYING,PSYCHIC
+Resistances = ROCK,BUG,FIRE,DARK
+Immunities = STEEL,GUN,ELECTRIC
+#-------------------------------
+[39]
+Name = Fire/Water/Grass/Fighting/Ground/Steel
+InternalName = FIREWATERGRASSFIGHTINGGROUNDSTEEL
+IsPsuedoType = true
+Weaknesses = GROUND,FLYING,FIGHTING
+Resistances = GRASS,ICE,FAIRY,DARK,NORMAL,DRAGON
+Immunities = ROCK,BUG,STEEL,GUN,ELECTRIC,POISON
+#-------------------------------
+[40]
+Name = Fire/Water/Grass/Fighting/Psychic/Dark
+InternalName = FIREWATERGRASSFIGHTINGPSYCHICDARK
+IsPsuedoType = true
+Weaknesses = BUG,FAIRY,GUN,FLYING,POISON
+Resistances = WATER,FIRE,GRASS,ICE,DARK
+Immunities = STEEL,PSYCHIC
