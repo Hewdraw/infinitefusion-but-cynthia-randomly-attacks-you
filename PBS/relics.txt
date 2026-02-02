@@ -1,0 +1,216 @@
+relics:
+	apple
+		common
+		leftovers heal party every floor
+	bad apple
+		event uncommon
+		leftover damage opponents active mon
+	perfect apple
+		event rare
+		leftover heal active mon
+		leftovers heal party every floor
+	heart of the moon
+		common
+		reduce damage slightly if full hp
+	rotomdex
+		common
+		gain 1 sinnoh coin every time you obtain a pokemon
+	rusted sword
+		rare
+		?
+	rusted shield
+		rare
+		?
+	choice ribbon
+		common
+		Using the same move boosts the critical-hit rate.
+	geo pebble
+		common
+		fling can throw this relic once per battle
+	?
+		common
+		pokemon will hit an opponent when confused
+	capture styler
+		?
+	sync stone ultimate
+		rare
+		your pokemon gain affection benefits
+	shadow crystal
+		legendary
+		opposing drowsy pokemon take 1/8th damage at end of turn
+		can be used to teach dark void to dark pokemon
+	luminous crystal
+		event
+		convert shadow crystal
+		you are unaffected by the negative effects of drowsy
+	gigaremo unit
+		uncommon
+		applying drowsy now also confuses
+	?
+		rare
+		the ability of your active pokemon will be shared to the next one
+	absorption emera
+		uncommon
+		heal 25% hp on knocking out a pokemon
+	beacon
+		rare
+		?
+	mace
+		?
+	skulk shrieker
+		legendary
+		when a sound move is used use screech on a random foe and low their accuracy
+		?
+		when a sound move is used 3 times trigger a warden event
+	eye of ender
+		common
+		can now pay sinnoh coins to open chests multiple times
+	brewing stand
+		common
+		gain a random potion after every floor
+	comeback emera
+		common
+		missing a move now locks on to the target
+	water bucket
+		common
+		grants all your pokemon the damp ability
+	lucky charm
+		common
+		halves the effects of opposing secondary effects
+	redstone block
+		common
+		plus and minus are always active. magnetic flux and gear up work on everything
+	?
+		common
+		grants all your pokemon liquid ooze
+	milotic scale
+		uncommon
+		pokemon with a status take slightly less damage
+	arceus ring
+		legendary
+		grant the benefits of all types
+		can be used to teach judgment to normal pokemon
+	power stone
+		common
+		power herb effect
+	golden bell
+		common
+		shell bell
+	old cartridge
+		common
+		recharge moves dont recharge on ko
+	redstone heart
+		legendary
+		your substitutes become redstone cubes
+		can be used to teach redstone duster to electric pokemon
+	nether star
+		event legendary
+		?
+		?
+	withered nether star
+		event legendary
+		?
+		?
+	dragon egg
+		event legendary
+		?
+		?
+	eye of ender
+		legendary
+		?
+	wither skull
+		legendary
+		applying poison becomes badly poison
+	elder guardian eye
+		legendary
+		every other time a rock, ground, or steel mon takes super effective damage prevent it
+	potion of fire resistance
+		uncommon
+		prevent the first fire hit on a mon
+	potion of water breathing
+		uncommon
+		prevent the first fire hit on a mon
+	splash potion of poison
+		uncommon
+		poison the opponent at start of battle
+	potion of regeneration
+		common
+		the first time a mon gets hit below half give it aqua ring
+	potion of swiftness
+		common
+		double your speed the first turn
+	potion of night vision
+		common
+		gain accuracy if its lowered or an opponent gains evasion
+	splash potion of weakness
+		uncommon
+		intimidate enemy at start of battle
+	splash potion of slowness
+		uncommon
+		lower speed of enemy at start of battle
+	splash potion of harming
+		uncommon
+		deals a quarter damage to enemy at start of battle
+	splash potion of weaving
+		rare
+		defeating the first enemy before it switches out creates sticky web
+	potion of wind charging
+		uncommon
+		switches out the opponent the first time one of your mons faint
+	lingering potion of turtle master
+		rare
+		every mon loses 1 speed but gains 1 of each defense on switchin
+
+
+
+
+
+
+
+
+
+
+events:
+
+	wish stone
+		jirachi will grant a wish
+		money > sinnoh coins
+		items > items
+		friends > pokemon
+		power > ev items
+		a fight > jirachi battle
+	?
+		turn apple into bad apple
+		turn apple into perfect apple
+	purifying chamber
+		purifies a pokemon
+		purifies a shadow crystal
+		heals the party
+	obsidian monstrosity
+		destroy to gain a random relic
+		insert a redstone heart to fight the redstone monstosity
+	warden
+		triggered by skulk shrieker
+		fight the warden
+		using a sound move gives it an omniboost
+	stronghold
+		loot the library
+		use eye of ender to summon the dragon
+	brewing stand
+		gain random potion relic
+		enhance potion relic
+		take blaze rod
+
+
+
+
+
+increase status chance in weather?
+some benefit on heal events?
+tcg spirit link?
+pickup or other item gaining abilities?
+
+https://bulbapedia.bulbagarden.net/wiki/Exclusive_item
+https://bulbapedia.bulbagarden.net/wiki/Emera
+https://bulbapedia.bulbagarden.net/wiki/Looplet
+https://bulbapedia.bulbagarden.net/wiki/The_King_of_Almia_and_the_Three_Princes
