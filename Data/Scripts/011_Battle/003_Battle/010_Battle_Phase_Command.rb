@@ -188,12 +188,12 @@ class PokeBattle_Battle
       end
     end
     # Choose actions for the round (player first, then AI)
-    pbCommandPhaseLoop(true)    # Player chooses their actions
+    pbCommandPhaseLoop    # Player chooses their actions
     return if @decision!=0   # Battle ended, stop choosing actions
-    pbCommandPhaseLoop(false)   # AI chooses their actions
+    pbCynthiaCommandPhase   # AI chooses their actions
   end
 
-  def pbCommandPhaseLoop(isPlayer)
+  def pbCommandPhaseLoop()
     # NOTE: Doing some things (e.g. running, throwing a Poké Ball) takes up all
     #       your actions in a round.
     actioned = []
@@ -202,14 +202,12 @@ class PokeBattle_Battle
       break if @decision!=0   # Battle ended, stop choosing actions
       idxBattler += 1
       break if idxBattler>=@battlers.length
-      next if !@battlers[idxBattler] || pbOwnedByPlayer?(idxBattler)!=isPlayer
+      next if !@battlers[idxBattler]
       next if @choices[idxBattler][0]!=:None    # Action is forced, can't choose one
       next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
       # AI controls this battler
-      if ($PokemonSystem.aicontrolplayer == 1 && @opponent) || !pbOwnedByPlayer?(idxBattler)
-        @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
-        next
-      end
+      next if ($PokemonSystem.aicontrolplayer == 1 && @opponent)
+      next if !pbOwnedByPlayer?(idxBattler)
       # Player chooses an action
       actioned.push(idxBattler)
       commandsEnd = false   # Whether to cancel choosing all other actions this round
