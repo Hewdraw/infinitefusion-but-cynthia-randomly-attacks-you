@@ -224,9 +224,11 @@ def getEnderChestItems()
       [:CORNERSTONEMASK, 1],
     ],
     [ #ultimate rare
-      [:ULTRANECROZIUMZ, 1],
-      [:MAXMUSHROOM, 1],
-      [:MEGARING, 1],
+      [:EXODIATHEFORBIDDENONE, 1],
+      [:LEFTARMOFTHEFORBIDDENONE, 1],
+      [:RIGHTARMOFTHEFORBIDDENONE, 1],
+      [:LEFTLEGOFTHEFORBIDDENONE, 1],
+      [:RIGHTLEGOFTHEFORBIDDENONE, 1],
     ],
   ]
 end
