@@ -1253,6 +1253,7 @@ ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene|
+  next false if pkmn.species == :OMNIMON
   paradoxlist = {
     [:ENTEI] => :GOUGINGFIRE,
     [:SUICUNE] => :WALKINGWAKE,
@@ -1273,14 +1274,23 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:GENESECT] => :REAPINGSHELL,
     [:KABUTO, :KABUTOPS] => :IRONHARVESTER,
     [:RESHIRAM] => :ZEKROM,
+    [:AGUMON] => :CHARMANDER,
     [:CHARMANDER] => :AGUMON,
+    [:GREYMON] => :CHARMELEON,
     [:CHARMELEON] => :GREYMON,
+    [:METALGREYMON, :WARGREYMON] => :CHARIZARD,
     [:CHARIZARD] => :METALGREYMON,
+    [:GABUMON] => :TOTODILE,
     [:TOTODILE] => :GABUMON,
+    [:GARURUMON] => :CROCONAW,
     [:CROCONAW] => :GARURUMON,
+    [:WEREGARURUMON, :METALGARURUMON] => :FERALIGATR,
     [:FERALIGATR] => :WEREGARURUMON,
+    [:PALMON] => :BULBASAUR,
     [:BULBASAUR] => :PALMON,
+    [:TOGEMON] => :IVYSAUR,
     [:IVYSAUR] => :TOGEMON,
+    [:LILLYMON, :ROSEMON, :ROSEMONBM] => :VENUSAUR,
     [:VENUSAUR] => :LILLYMON,
     [:VOCALDRILL] => :VOCALCELL,
     [:VOCALLEEK] => :VOCALDRILL,
