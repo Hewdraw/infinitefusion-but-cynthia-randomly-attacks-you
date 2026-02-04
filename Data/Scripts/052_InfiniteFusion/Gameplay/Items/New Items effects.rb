@@ -1282,6 +1282,9 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:BULBASAUR] => :PALMON,
     [:IVYSAUR] => :TOGEMON,
     [:VENUSAUR] => :LILLYMON,
+    [:VOCALDRILL] => :VOCALCELL,
+    [:VOCALLEEK] => :VOCALDRILL,
+    [:MELOETTA_P, :MELOETTA_A] => :VOCALLEEK,
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
@@ -1385,6 +1388,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:SUICUNE, :WALKINGWAKE] => [[:HYDROSTEAM]],
     [:UNOWN] => [[:TERABLAST, :TERASTARSTORM]],
     [:VENUSAUR] => [[:FRENZYPLANT]],
+    [:VOCALLEEK, :VOCALDRILL] => [[:HYPNOSIS, :MESMERIZER]]
     [:VOLCARONA, :SLITHERWING, :IRONMOTH] => [[:FIERYDANCE, :TORCHSONG]],
     [:ZAPDOS, :GZAPDOS] => [[:THUNDEROUSKICK]],
     [:ZEKROM] => [[:BOLTSTIKRE]],

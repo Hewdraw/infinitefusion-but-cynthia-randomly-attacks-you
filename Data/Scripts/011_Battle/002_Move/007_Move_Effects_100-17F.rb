@@ -5454,3 +5454,81 @@ class PokeBattle_Move_324 < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_325 < PokeBattle_Move
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 3;    end
+
+  def pbInitialEffect(user,targets,hitNum)
+    case user.species
+    when :VOCALLEEK
+      hitNum = 1
+      user.species = :VOCALDRILL
+      user.playChangeFormAnimation("Shiny")
+    when :VOCALDRILL
+      hitNum = 2
+      user.species = :VOCALCELL
+      user.playChangeFormAnimation("Shiny")
+    when :VOCALCELL
+      hitNum = 3
+      user.species = :VOCALLEEK
+      user.playChangeFormAnimation("Shiny")
+    end
+    case hitNum
+    when 1
+      @calcType = :FAIRY
+      stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+      stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+      attackstage = user.stages[:ATTACK] + 6
+      attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+      spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+      spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+      if attack > spatk
+        @category = 0
+      else
+        @category = 1
+      end
+    when 2
+      @calcType = :STEEL
+      @category = 0
+    when 3
+      @calcType = :ELECTRIC
+      @category = 1
+    end
+  end
+end
+
+class PokeBattle_Move_326 < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    return !target.pbCanSleep?(user,true,self,true)
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    target.pbSleep
+    target.pbAttract(user) if rand(10) < 2 && target.pbCanAttract?(user, false)
+    target.pbConfuse if rand(10) < 2 && target.pbCanConfuse?(user,false,self)
+    if rand(10) < 2 && !(pbMoveFailedAromaVeil?(user,target) || (target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker)
+      target.effects[PBEffects::Taunt] = 4
+      @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
+    end
+    if rand(10) < 2
+      target.effects[PBEffects::Nightmare] = true
+      @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
+    end
+    if rand(10) < 2 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target)
+      target.effects[PBEffects::Torment] = true
+      @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
+    end
+    if rand(10) < 2
+      target.effects[PBEffects::Embargo] = 5
+      @battle.pbDisplay(_INTL("{1} can't use items anymore!",target.pbThis))
+    end
+    if rand(10) < 2 && !target.unstoppableAbility?
+      target.effects[PBEffects::GastroAcid] = true
+      target.effects[PBEffects::Truant] = false
+      @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", target.pbThis))
+      target.pbOnAbilityChanged(target.ability)
+    end
+    target.pbItemStatusCureCheck
+  end
+end

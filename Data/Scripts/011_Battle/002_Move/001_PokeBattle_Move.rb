@@ -131,10 +131,10 @@ class PokeBattle_Move
   def highCriticalRate?;  return @flags[/h/]; end
   def bitingMove?;        return @flags[/i/]; end
   def punchingMove?;      return @flags[/j/]; end
-  def soundMove?;         return @flags[/k/]; end
+  def soundMove?;         return @flags[/k/] || @type == :SOUND; end
   def powderMove?;        return @flags[/l/]; end
   def pulseMove?;         return @flags[/m/]; end
-  def bombMove?;          return @flags[/n/]; end
+  def bombMove?;          return @flags[/n/] || @type == :GUN; end
   def danceMove?;         return @flags[/o/]; end
   def protectPenalty?;    return @flags[/p/]; end
 
