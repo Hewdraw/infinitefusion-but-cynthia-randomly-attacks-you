@@ -5507,7 +5507,7 @@ class PokeBattle_Move_326 < PokeBattle_Move
     target.pbSleep
     target.pbAttract(user) if rand(10) < 2 && target.pbCanAttract?(user, false)
     target.pbConfuse if rand(10) < 2 && target.pbCanConfuse?(user,false,self)
-    if rand(10) < 2 && !(pbMoveFailedAromaVeil?(user,target) || (target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker)
+    if rand(10) < 2 && !(pbMoveFailedAromaVeil?(user,target) || (target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker))
       target.effects[PBEffects::Taunt] = 4
       @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
     end
@@ -5515,7 +5515,7 @@ class PokeBattle_Move_326 < PokeBattle_Move
       target.effects[PBEffects::Nightmare] = true
       @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
     end
-    if rand(10) < 2 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target)
+    if rand(10) < 2 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target))
       target.effects[PBEffects::Torment] = true
       @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
     end

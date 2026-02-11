@@ -142,7 +142,7 @@ module GameData
 
     def self.icon_filename_from_pokemon(pkmn)
       return pbResolveBitmap(sprintf("Graphics/Icons/iconEgg")) if pkmn.egg?
-      if pkmn.isFusion?
+      if pkmn.isFusion? || getDexNumberForSpecies(pkmn.species) > 1000099
         return  pbResolveBitmap(sprintf("Graphics/Icons/iconDNA"))
       end
       return self.icon_filename(pkmn.species, pkmn.spriteform_head, pkmn.gender, pkmn.shiny?, pkmn.shadowPokemon?, pkmn.egg?)

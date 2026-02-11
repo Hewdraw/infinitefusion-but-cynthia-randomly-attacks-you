@@ -190,7 +190,7 @@ class PokemonIconSprite < SpriteWrapper
   def useRegularIcon(species)
     dexNum = getDexNumberForSpecies(species)
     return true if dexNum <= Settings::NB_POKEMON
-    return false if dexNum > 1000099
+    return true if dexNum > 1000099
     return false if $game_variables == nil
     return true if $game_variables[VAR_FUSION_ICON_STYLE] != 0
     bitmapFileName = sprintf("Graphics/Icons/icon%03d", dexNum)
@@ -201,6 +201,7 @@ class PokemonIconSprite < SpriteWrapper
   SPRITE_OFFSET = 10
 
   def createFusionIcon()
+    return @pokemon.icon if !@pokemon.icon.nil?
     bodyPoke_number = getBodyID(pokemon.species)
     headPoke_number = getHeadID(pokemon.species, bodyPoke_number)
 
@@ -225,6 +226,7 @@ class PokemonIconSprite < SpriteWrapper
         result_icon.bitmap.set_pixel(i, j, temp)
       end
     end
+    @pokemon.icon = result_icon
     return result_icon
   end
 

@@ -3,6 +3,9 @@ module Settings
   LATEST_GAME_RELEASE = "6.7.2"
 
   SHINY_POKEMON_CHANCE = 16
+  SNOW_DAY = false
+
+  
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
   WIKI_URL = "https://infinitefusion.fandom.com/"
   STARTUP_MESSAGES = ""
@@ -47,8 +50,8 @@ module Settings
   AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/rate_limit.log'  # Path to the log file
 
   #Spritepack
-  NEWEST_SPRITEPACK_MONTH = 12
-  NEWEST_SPRITEPACK_YEAR = 2025
+  NEWEST_SPRITEPACK_MONTH = 1
+  NEWEST_SPRITEPACK_YEAR = 2026
 
 
 end

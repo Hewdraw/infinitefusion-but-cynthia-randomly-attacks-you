@@ -326,7 +326,9 @@ class Pokemon
 
 
   def isFusionOf(check_species)
-    return hasBodyOf?(check_species) || hasHeadOf?(check_species)
+    calc_stats if @materials.nil?
+    return @materials.include?(check_species)
+    #return hasBodyOf?(check_species) || hasHeadOf?(check_species)
   end
 
 
@@ -1545,6 +1547,9 @@ class Pokemon
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:HEARTHFLAMEMASK)
     @extraabilities.push(:STURDY) if hasItem?(:CORNERSTONEMASK)
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
+    @materials = [@species]
+    @materials = [GameData::Species.get(getBodyID(battler.species)).species, GameData::Species.get(getHeadID(battler.species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
+    @icon = nil
   end
 
   #=============================================================================

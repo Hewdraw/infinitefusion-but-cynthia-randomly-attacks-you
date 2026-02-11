@@ -28,6 +28,7 @@ class PokemonBoxIcon < IconSprite
   end
 
   def createFusionIcon(species, spriteform_head = nil, spriteform_body = nil)
+    return @pokemon.icon if !@pokemon.icon.nil?
     bodyPoke_number = getBodyID(species)
     headPoke_number = getHeadID(species, bodyPoke_number)
 
@@ -51,6 +52,7 @@ class PokemonBoxIcon < IconSprite
         result_icon.bitmap.set_pixel(i, j, temp)
       end
     end
+    @pokemon.icon = result_icon
     return result_icon
   end
 
