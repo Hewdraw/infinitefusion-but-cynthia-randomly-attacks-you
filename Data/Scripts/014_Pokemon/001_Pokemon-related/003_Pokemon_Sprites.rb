@@ -201,7 +201,6 @@ class PokemonIconSprite < SpriteWrapper
   SPRITE_OFFSET = 10
 
   def createFusionIcon()
-    return @pokemon.icon if !@pokemon.icon.nil?
     bodyPoke_number = getBodyID(pokemon.species)
     headPoke_number = getHeadID(pokemon.species, bodyPoke_number)
 
@@ -226,7 +225,6 @@ class PokemonIconSprite < SpriteWrapper
         result_icon.bitmap.set_pixel(i, j, temp)
       end
     end
-    @pokemon.icon = result_icon
     return result_icon
   end
 

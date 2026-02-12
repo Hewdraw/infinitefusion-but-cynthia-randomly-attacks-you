@@ -124,6 +124,7 @@ class Pokemon
   attr_accessor :affection
   attr_accessor :megaform
   attr_accessor :extraabilities
+  attr_accessor :boxicon
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
   attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
@@ -1549,7 +1550,7 @@ class Pokemon
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
     @materials = [@species]
     @materials = [GameData::Species.get(getBodyID(battler.species)).species, GameData::Species.get(getHeadID(battler.species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
-    @icon = nil
+    @boxicon = nil
   end
 
   #=============================================================================
