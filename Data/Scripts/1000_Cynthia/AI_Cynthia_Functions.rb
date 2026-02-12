@@ -2760,7 +2760,7 @@ class PokeBattle_AI
       if target.effects[PBEffects::Minimize] && move.tramplesMinimize?(2)
         multipliers[:final_damage_multiplier] *= 2
       end
-      if move.protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock])
+      if move.protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::Obstruct] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock])
         multipliers[:final_damage_multiplier] /= 4.0
       end
       baseDmg = [(baseDmg * multipliers[:base_damage_multiplier]).round, 1].max

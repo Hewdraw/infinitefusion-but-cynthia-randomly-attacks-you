@@ -125,6 +125,7 @@ begin
     RedstoneCube        = 119
     RageFist        = 120
     BurningBulwark        = 121
+    Obstruct        = 121
 
     #===========================================================================
     # These effects apply to a battler position

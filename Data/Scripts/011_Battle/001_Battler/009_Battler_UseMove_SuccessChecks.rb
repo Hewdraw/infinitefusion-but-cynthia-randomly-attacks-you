@@ -342,6 +342,19 @@ class PokeBattle_Battler
           end
           return false
         end
+        # Obstruct
+        if target.effects[PBEffects::Obstruct] && move.damagingMove?
+          @battle.pbCommonAnimation("KingsShield",target)
+          @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+          target.damageState.protected = true
+          @battle.successStates[user.index].protected = true
+          if move.pbContactMove?(user) && user.affectedByContactEffect?
+            if user.pbCanLowerStatStage?(:DEFENSE)
+              user.pbLowerStatStage(:DEFENSE,2,nil)
+            end
+          end
+          return false
+        end
         # Spiky Shield
         if target.effects[PBEffects::SpikyShield]
           @battle.pbCommonAnimation("SpikyShield",target)
@@ -367,7 +380,7 @@ class PokeBattle_Battler
           end
           return false
         end
-        # Baneful Bunker
+        # Burning Bulwark
         if target.effects[PBEffects::BurningBulwark]
           @battle.pbCommonAnimation("BanefulBunker",target)
           @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))

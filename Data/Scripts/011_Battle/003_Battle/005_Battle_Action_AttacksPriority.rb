@@ -165,6 +165,9 @@ class PokeBattle_Battle
             if move.name == "Grassy Glide" && self.field.terrain == :Grassy && b.affectedByTerrain?
               pri += 1
             end
+            if move.name == "Shoot" && b.pbHasType?(:GUN)
+              pri += 1
+            end
             if move.name == "Tate no Rocket"
               b.eachOpposing do |opponent|
                 if opponent.pbHasType?(:DRAGON)

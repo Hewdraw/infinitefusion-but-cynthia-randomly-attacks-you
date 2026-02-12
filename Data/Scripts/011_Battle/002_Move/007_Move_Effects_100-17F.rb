@@ -1190,6 +1190,7 @@ class PokeBattle_Move_13B < PokeBattle_StatDownMove
     target.pbOwnSide.effects[PBEffects::QuickGuard] = false
     target.pbOwnSide.effects[PBEffects::WideGuard] = false
     target.effects[PBEffects::BurningBulwark] = false
+    target.effects[PBEffects::Obstruct]          = false
   end
 end
 
@@ -1475,6 +1476,7 @@ class PokeBattle_Move_147 < PokeBattle_Move
     target.pbOwnSide.effects[PBEffects::QuickGuard] = false
     target.pbOwnSide.effects[PBEffects::WideGuard] = false
     target.effects[PBEffects::BurningBulwark] = false
+    target.effects[PBEffects::Obstruct]          = false
   end
 end
 
@@ -5530,5 +5532,26 @@ class PokeBattle_Move_326 < PokeBattle_Move
       target.pbOnAbilityChanged(target.ability)
     end
     target.pbItemStatusCureCheck
+  end
+end
+
+class PokeBattle_Move_327 < PokeBattle_ProtectMove
+  def initialize(battle, move)
+    super
+    @effect = PBEffects::Obstruct
+  end
+end
+
+class PokeBattle_Move_328 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    return true if !user.item || !user.item.is_berry?
+    return !user.pbCanRaiseStatStage?(:DEFENSE,user,self,true)
+  end
+
+  def pbEffectGeneral(user)
+    return if damagingMove?
+    user.pbHeldItemTriggerCheck(user.item,false)
+    user.pbRemoveItem
+    user.pbRaiseStatStage(:DEFENSE,2,user)
   end
 end
