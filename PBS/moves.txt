@@ -1028,6 +1028,18 @@
 1058,HARMONIZE,Harmonize,241,80,SOUND,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass."
 1059,TRIPLEBAKA,Triple Baka,325,39,QMARKS,Special,100,10,0,AllNearFoes,0,befk,"Baka baka baka."
 1060,MESMERIZER,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1061,APPLEACID,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1062,BRANCHPOKE,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1063,MAGICALTORQUE,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1064,METEORASSAULT,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1065,OBSTRUCT,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1066,SHOOT,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1067,SPRINGTIDESTORM,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1068,TWINBEAM,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1069,BITTERBLADE,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1070,FISHEOUSREND,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1071,MALIGNANTCHAIN,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
+1072,STUFFCHEEKS,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
 
 
 

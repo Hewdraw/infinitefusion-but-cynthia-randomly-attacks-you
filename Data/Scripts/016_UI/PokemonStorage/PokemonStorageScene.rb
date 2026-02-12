@@ -470,7 +470,7 @@ class PokemonStorageScene
     @sprites["box"].x -= diff
     @sprites["box"].dispose
     @sprites["box"] = newbox
-    newbox.refreshAllBoxSprites
+    #newbox.refreshAllBoxSprites
   end
 
   def pbSwitchBoxToLeft(newbox)
@@ -491,7 +491,7 @@ class PokemonStorageScene
     @sprites["box"].x -= diff
     @sprites["box"].dispose
     @sprites["box"] = newbox
-    newbox.refreshAllBoxSprites
+    #newbox.refreshAllBoxSprites
   end
 
   def pbJumpToBox(newbox)
