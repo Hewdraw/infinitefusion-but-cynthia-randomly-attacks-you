@@ -1,14 +1,17 @@
 class PokeBattle_AI
   def pbCynthiaCommandPhase
-    print(@battle.opponent)
-    print(@battle.player)
     #currentscore = pbCynthiaEvaluatePosition
+    @playerside = []
+    @aiside = []
     idxBattler = -1
     loop do
       break if @battle.decision!=0   # Battle ended, stop choosing actions
       idxBattler += 1
       break if idxBattler>=@battle.battlers.length
-      next if !@battle.battlers[idxBattler]
+      battler = @battle.battlers[idxBattler]
+      next if !battler
+      @playerside.push(battler) if battler.idxOwnSide == 0
+      @aiside.push(battler) if battler.idxOpposingSide == 0
       next if @battle.choices[idxBattler][0]!=:None    # Action is forced, can't choose one
       next if !@battle.pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
       # AI controls this battler

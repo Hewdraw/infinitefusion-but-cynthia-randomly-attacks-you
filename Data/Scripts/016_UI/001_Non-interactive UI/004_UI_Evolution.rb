@@ -622,7 +622,7 @@ class PokemonEvolutionScene
 
     # Modify Pokémon to make it evolved
     @pokemon.species = @newspecies
-    @pokemon.form    = 0 if @pokemon.isSpecies?(:MOTHIM)
+    #@pokemon.form    = 0 if @pokemon.isSpecies?(:MOTHIM)
     @pokemon.calc_stats
 
     return if !@pokemon.owner.is_a?(Player)

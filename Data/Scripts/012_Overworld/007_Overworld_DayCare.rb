@@ -192,19 +192,19 @@ def pbDayCareGenerateEgg
   pid |= (rand(65536)<<16)
   egg.personalID = pid
   # Inheriting form
-  if [:BURMY, :SHELLOS, :BASCULIN, :FLABEBE, :PUMPKABOO, :ORICORIO, :ROCKRUFF, :MINIOR].include?(babyspecies)
-    newForm = mother.form
-    newForm = 0 if mother.isSpecies?(:MOTHIM)
-    egg.form = newForm
-  end
+  # if [:BURMY, :SHELLOS, :BASCULIN, :FLABEBE, :PUMPKABOO, :ORICORIO, :ROCKRUFF, :MINIOR].include?(babyspecies)
+  #   newForm = mother.form
+  #   newForm = 0 if mother.isSpecies?(:MOTHIM)
+  #   egg.form = newForm
+  # end
   # Inheriting Alolan form
-  if [:RATTATA, :SANDSHREW, :VULPIX, :DIGLETT, :MEOWTH, :GEODUDE, :GRIMER].include?(babyspecies)
-    if mother.form==1
-      egg.form = 1 if mother.hasItem?(:EVERSTONE)
-    elsif father.species_data.get_baby_species(true, mother.item_id, father.item_id) == babyspecies
-      egg.form = 1 if father.form==1 && father.hasItem?(:EVERSTONE)
-    end
-  end
+  # if [:RATTATA, :SANDSHREW, :VULPIX, :DIGLETT, :MEOWTH, :GEODUDE, :GRIMER].include?(babyspecies)
+  #   if mother.form==1
+  #     egg.form = 1 if mother.hasItem?(:EVERSTONE)
+  #   elsif father.species_data.get_baby_species(true, mother.item_id, father.item_id) == babyspecies
+  #     egg.form = 1 if father.form==1 && father.hasItem?(:EVERSTONE)
+  #   end
+  # end
   # Inheriting Moves
   moves = []
   othermoves = []
