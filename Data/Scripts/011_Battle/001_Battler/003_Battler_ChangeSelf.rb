@@ -325,19 +325,19 @@ class PokeBattle_Battler
       end
     end
     # Cherrim - Flower Gift
-    if isSpecies?(:CHERRIM)
-      if hasActiveAbility?(:FLOWERGIFT)
-        newForm = 0
-        newForm = 1 if [:Sun, :HarshSun].include?(@battle.pbWeather)
-        if @form!=newForm
-          @battle.pbShowAbilitySplash(self,true)
-          @battle.pbHideAbilitySplash(self)
-          pbChangeForm(newForm,_INTL("{1} transformed!",pbThis))
-        end
-      else
-        pbChangeForm(0,_INTL("{1} transformed!",pbThis))
-      end
-    end
+    # if isSpecies?(:CHERRIM)
+    #   if hasActiveAbility?(:FLOWERGIFT)
+    #     newForm = 0
+    #     newForm = 1 if [:Sun, :HarshSun].include?(@battle.pbWeather)
+    #     if @form!=newForm
+    #       @battle.pbShowAbilitySplash(self,true)
+    #       @battle.pbHideAbilitySplash(self)
+    #       pbChangeForm(newForm,_INTL("{1} transformed!",pbThis))
+    #     end
+    #   else
+    #     pbChangeForm(0,_INTL("{1} transformed!",pbThis))
+    #   end
+    # end
   end
 
   # Checks the Pokémon's form and updates it if necessary. Used for when a
@@ -348,60 +348,60 @@ class PokeBattle_Battler
     # Form changes upon entering battle and when the weather changes
     pbCheckFormOnWeatherChange if !endOfRound
     # Darmanitan - Zen Mode
-    if isSpecies?(:DARMANITAN) && self.ability == :ZENMODE
-      if @hp<=adjustedTotalhp/2
-        if @form!=1
-          @battle.pbShowAbilitySplash(self,true)
-          @battle.pbHideAbilitySplash(self)
-          pbChangeForm(1,_INTL("{1} triggered!",abilityName))
-        end
-      elsif @form!=0
-        @battle.pbShowAbilitySplash(self,true)
-        @battle.pbHideAbilitySplash(self)
-        pbChangeForm(0,_INTL("{1} triggered!",abilityName))
-      end
-    end
+    # if isSpecies?(:DARMANITAN) && self.ability == :ZENMODE
+    #   if @hp<=adjustedTotalhp/2
+    #     if @form!=1
+    #       @battle.pbShowAbilitySplash(self,true)
+    #       @battle.pbHideAbilitySplash(self)
+    #       pbChangeForm(1,_INTL("{1} triggered!",abilityName))
+    #     end
+    #   elsif @form!=0
+    #     @battle.pbShowAbilitySplash(self,true)
+    #     @battle.pbHideAbilitySplash(self)
+    #     pbChangeForm(0,_INTL("{1} triggered!",abilityName))
+    #   end
+    # end
     # Minior - Shields Down
-    if isSpecies?(:MINIOR) && self.ability == :SHIELDSDOWN
-      if @hp>adjustedTotalhp/2   # Turn into Meteor form
-        newForm = (@form>=7) ? @form-7 : @form
-        if @form!=newForm
-          @battle.pbShowAbilitySplash(self,true)
-          @battle.pbHideAbilitySplash(self)
-          pbChangeForm(newForm,_INTL("{1} deactivated!",abilityName))
-        elsif !endOfRound
-          @battle.pbDisplay(_INTL("{1} deactivated!",abilityName))
-        end
-      elsif @form<7   # Turn into Core form
-        @battle.pbShowAbilitySplash(self,true)
-        @battle.pbHideAbilitySplash(self)
-        pbChangeForm(@form+7,_INTL("{1} activated!",abilityName))
-      end
-    end
+    # if isSpecies?(:MINIOR) && self.ability == :SHIELDSDOWN
+    #   if @hp>adjustedTotalhp/2   # Turn into Meteor form
+    #     newForm = (@form>=7) ? @form-7 : @form
+    #     if @form!=newForm
+    #       @battle.pbShowAbilitySplash(self,true)
+    #       @battle.pbHideAbilitySplash(self)
+    #       pbChangeForm(newForm,_INTL("{1} deactivated!",abilityName))
+    #     elsif !endOfRound
+    #       @battle.pbDisplay(_INTL("{1} deactivated!",abilityName))
+    #     end
+    #   elsif @form<7   # Turn into Core form
+    #     @battle.pbShowAbilitySplash(self,true)
+    #     @battle.pbHideAbilitySplash(self)
+    #     pbChangeForm(@form+7,_INTL("{1} activated!",abilityName))
+    #   end
+    # end
     # Wishiwashi - Schooling
-    if isSpecies?(:WISHIWASHI) && self.ability == :SCHOOLING
-      if @level>=20 && @hp>adjustedTotalhp/4
-        if @form!=1
-          @battle.pbShowAbilitySplash(self,true)
-          @battle.pbHideAbilitySplash(self)
-          pbChangeForm(1,_INTL("{1} formed a school!",pbThis))
-        end
-      elsif @form!=0
-        @battle.pbShowAbilitySplash(self,true)
-        @battle.pbHideAbilitySplash(self)
-        pbChangeForm(0,_INTL("{1} stopped schooling!",pbThis))
-      end
-    end
+    # if isSpecies?(:WISHIWASHI) && self.ability == :SCHOOLING
+    #   if @level>=20 && @hp>adjustedTotalhp/4
+    #     if @form!=1
+    #       @battle.pbShowAbilitySplash(self,true)
+    #       @battle.pbHideAbilitySplash(self)
+    #       pbChangeForm(1,_INTL("{1} formed a school!",pbThis))
+    #     end
+    #   elsif @form!=0
+    #     @battle.pbShowAbilitySplash(self,true)
+    #     @battle.pbHideAbilitySplash(self)
+    #     pbChangeForm(0,_INTL("{1} stopped schooling!",pbThis))
+    #   end
+    # end
     # Zygarde - Power Construct
-    if isSpecies?(:ZYGARDE) && self.ability == :POWERCONSTRUCT && endOfRound
-      if @hp<=adjustedTotalhp/2 && @form<2   # Turn into Complete Forme
-        newForm = @form+2
-        @battle.pbDisplay(_INTL("You sense the presence of many!"))
-        @battle.pbShowAbilitySplash(self,true)
-        @battle.pbHideAbilitySplash(self)
-        pbChangeForm(newForm,_INTL("{1} transformed into its Complete Forme!",pbThis))
-      end
-    end
+    # if isSpecies?(:ZYGARDE) && self.ability == :POWERCONSTRUCT && endOfRound
+    #   if @hp<=adjustedTotalhp/2 && @form<2   # Turn into Complete Forme
+    #     newForm = @form+2
+    #     @battle.pbDisplay(_INTL("You sense the presence of many!"))
+    #     @battle.pbShowAbilitySplash(self,true)
+    #     @battle.pbHideAbilitySplash(self)
+    #     pbChangeForm(newForm,_INTL("{1} transformed into its Complete Forme!",pbThis))
+    #   end
+    # end
   end
 
   def pbTransform(target)

@@ -430,6 +430,7 @@ end
 
 def get_triple_fusion_components(species_id)
   dex_num = GameData::Species.get(species_id).id_number
+  return [dex_num] if dex_num > 1000099
   case dex_num
   when Settings::ZAPMOLCUNO_NB
     return [144,145,146]

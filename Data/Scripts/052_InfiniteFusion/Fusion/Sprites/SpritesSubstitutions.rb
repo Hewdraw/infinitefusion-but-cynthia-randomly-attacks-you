@@ -21,6 +21,7 @@ def initialize_alt_sprite_substitutions()
 end
 
 def get_sprite_substitution_id_for_fusion(head_id, body_id)
+  return GameData::Species.get(head_id).id_number if GameData::Species.get(head_id).id_number > 1000099
   species_symbol = "B#{body_id}H#{head_id}".to_sym
   return get_sprite_substitution_id_from_dex_number(species_symbol)
 end

@@ -50,7 +50,7 @@ class BattleSpriteLoader
   end
 
   def load_from_dex_number(dex_number)
-    if dex_number > NB_POKEMON
+    if dex_number > NB_POKEMON && dex_number < 1000099
       if dex_number > ZAPMOLCUNO_NB #Triple Fusion
         return load_triple_fusion_sprite(dex_number)
       else

@@ -1417,7 +1417,7 @@ class Pokemon
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
-    if hasItem?(:MEGASHARD) || hasAbility?(:EON)
+    if hasItem?(:MEGASHARD) || @ability == :EON
       headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
       bstdata = getMegaShardForm
       bstdata.each_with_index do |mega,i|
@@ -1524,10 +1524,12 @@ class Pokemon
     @spatk = stats[:SPECIAL_ATTACK]
     @spdef = stats[:SPECIAL_DEFENSE]
     @speed = stats[:SPEED]
+    @materials = [@species]
+    @materials = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
     @extraabilities = []
     @type1 = nil
     @type2 = nil
-    if hasItem?(:MEGASHARD) || hasAbility?(:EON)
+    if hasItem?(:MEGASHARD) || @ability == :EON
       getMegaShardForm.each_with_index do |mega, i|
         next if mega.form == 0
         @type2 = mega.type2 if i == 0
@@ -1548,8 +1550,6 @@ class Pokemon
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:HEARTHFLAMEMASK)
     @extraabilities.push(:STURDY) if hasItem?(:CORNERSTONEMASK)
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
-    @materials = [@species]
-    @materials = [GameData::Species.get(getBodyID(battler.species)).species, GameData::Species.get(getHeadID(battler.species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
     @boxicon = nil
   end
 
