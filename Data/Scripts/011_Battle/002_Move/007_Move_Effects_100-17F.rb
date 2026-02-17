@@ -3358,6 +3358,7 @@ class PokeBattle_Move_213 < PokeBattle_Move
       end
       break
     end
+    hitamount = 4 if hitamount == 1
     return hitamount
   end
 
