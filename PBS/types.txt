@@ -111,7 +111,7 @@ Resistances = ICE
 Name = Dragon
 InternalName = DRAGON
 IsSpecialType = true
-Weaknesses = ICE,DRAGON,FAIRY
+Weaknesses = ICE,DRAGON,FAIRY,SOUND
 Resistances = FIRE,WATER,GRASS,ELECTRIC
 #-------------------------------
 [17]
@@ -127,7 +127,7 @@ Name = Fairy
 InternalName = FAIRY
 IsSpecialType = true
 Weaknesses = POISON,STEEL,GUN
-Resistances = FIGHTING,BUG,DARK
+Resistances = FIGHTING,BUG,DARK,SOUND
 Immunities = DRAGON
 #-------------------------------
 [19]
@@ -140,15 +140,15 @@ Resistances = NORMAL,FIGHTING,FLYING,POISON,GROUND,ROCK,BUG,GHOST,STEEL,FIRE,WAT
 [20]
 Name = Sound
 InternalName = SOUND
-Weaknesses = GROUND,ELECTRIC
-Resistances = NORMAL,FIGHTING,POISON,GHOST,DRAGON,FAIRY,SOUND
+Weaknesses = NORMAL,ROCK,GUN
+Resistances = FIGHTING,GHOST,FIRE,FAIRY,SOUND
+Immunities = QMARKS
 #-------------------------------
 [21]
 Name = Gun
 InternalName = GUN
-Weaknesses = NORMAL,ROCK,GUN
-Resistances = FIGHTING,GHOST,FIRE,FAIRY,SOUND
-Immunities = QMARKS
+Weaknesses = GROUND,ELECTRIC
+Resistances = NORMAL,FIGHTING,POISON,GHOST,DRAGON,FAIRY,SOUND
 #-------------------------------
 [22]
 Name = Ice/Fire/Electric/Flying

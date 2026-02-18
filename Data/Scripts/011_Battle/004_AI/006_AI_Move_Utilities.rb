@@ -509,7 +509,7 @@ class PokeBattle_AI
     end
     # Aurora Veil, Reflect, Light Screen
     if skill>=PBTrainerAI.highSkill
-      if !move.ignoresReflect? && !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || move.function == "201")
+      if !move.ignoresReflect? && !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || move.function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target) > 1
             multipliers[:final_damage_multiplier] *= 2 / 3.0

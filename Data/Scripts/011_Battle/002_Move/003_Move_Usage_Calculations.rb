@@ -249,6 +249,18 @@ class PokeBattle_Move
   def pbModifyDamage(damageMult,user,target);         return damageMult; end
 
   def pbGetAttackStats(user,target)
+    if user.hasActiveAbility?(:KEYCHANGE)
+      stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+      stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+      attackstage = user.stages[:ATTACK] + 6
+      attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+      spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+      spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+      if attack > spatk
+        return user.attack, user.stages[:ATTACK] + 6
+      end
+      return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+    end
     if specialMove?
       return user.spatk, user.stages[:SPECIAL_ATTACK]+6
     end
@@ -353,6 +365,9 @@ class PokeBattle_Move
     # Parental Bond's second attack
     if user.effects[PBEffects::ParentalBond]==1
       multipliers[:base_damage_multiplier] /= 4.0
+    end
+    if user.effects[PBEffects::ParentalBond]==11
+      multipliers[:base_damage_multiplier] /= 2.0
     end
     # Other
     if user.effects[PBEffects::MeFirst]
@@ -498,7 +513,7 @@ class PokeBattle_Move
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
-       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || @function == "201")
+       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || @function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
       if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0

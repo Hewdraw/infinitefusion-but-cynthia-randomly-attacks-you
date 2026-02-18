@@ -162,7 +162,7 @@ class PokeBattle_Battler
     end
     # Safeguard immunity
     if pbOwnSide.effects[PBEffects::Safeguard]>0 && !selfInflicted && move &&
-       !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE)))
+       !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))) && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
       @battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!",pbThis)) if showMessages
       return false
     end
@@ -204,7 +204,7 @@ class PokeBattle_Battler
     end
     # Safeguard immunity
     if pbOwnSide.effects[PBEffects::Safeguard]>0 &&
-       !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE)))
+       !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))) && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
       return false
     end
     return true
@@ -467,7 +467,7 @@ class PokeBattle_Battler
       end
     end
     if pbOwnSide.effects[PBEffects::Safeguard]>0 && !selfInflicted &&
-       !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE)))
+       !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))) && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
       @battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!",pbThis)) if showMessages
       return false
     end

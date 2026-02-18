@@ -674,6 +674,21 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
+  proc { |ability,target,user,move,type,battle|
+    next false if pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
+    next false if !move.soundMove?
+    battle.pbShowAbilitySplash(target)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} blocks {3}!",target.pbThis,target.abilityName,move.name))
+    end
+    battle.pbHideAbilitySplash(target)
+    next true
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:SAPSIPPER,
   proc { |ability,target,user,move,type,battle|
     next pbBattleMoveImmunityStatAbility(user,target,move,type,:GRASS,:ATTACK,1,battle)
@@ -810,6 +825,16 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
   }
 )
 
+BattleHandlers::MoveBaseTypeModifierAbility.add(:VOCALIZE,
+  proc { |ability,user,move,type|
+    next if type != :NORMAL || !GameData::Type.exists?(:SOUND)
+    move.powerBoost = true
+    next :SOUND
+  }
+)
+
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:VOCALIZE,:VOCALOID)
+
 #===============================================================================
 # AccuracyCalcUserAbility handlers
 #===============================================================================
@@ -934,7 +959,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID)
 
 BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1057,7 +1082,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MINUS,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:MINUS,:PLUS)
+BattleHandlers::DamageCalcUserAbility.copy(:MINUS,:PLUS,:VOCALOID)
 
 BattleHandlers::DamageCalcUserAbility.add(:NEUROFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1103,7 +1128,7 @@ BattleHandlers::DamageCalcUserAbility.add(:PUNKROCK,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :SKULK)
+BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :SKULK, :VOCALOID)
 
 BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1360,7 +1385,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK)
+BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK,:VOCALOID)
 
 BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -1419,6 +1444,8 @@ BattleHandlers::DamageCalcTargetAllyAbility.add(:FRIENDGUARD,
     mults[:final_damage_multiplier] *= 0.75
   }
 )
+
+BattleHandlers::DamageCalcTargetAllyAbility.copy(:FRIENDGUARD,:VOCALOID)
 
 #===============================================================================
 # CriticalCalcUserAbility handlers

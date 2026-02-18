@@ -673,6 +673,7 @@ class PokeBattle_Battler
     targets.each { |b| b.damageState.resetPerHit }
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond] > 0
+    user.effects[PBEffects::ParentalBond] = 0 if user.effects[PBEffects::ParentalBond] % 10 == 0
     # Accuracy check (accuracy/evasion calc)
     if hitNum == 0 || move.successCheckPerHit?
       targets.each do |b|

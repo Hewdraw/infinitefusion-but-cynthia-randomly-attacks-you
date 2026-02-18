@@ -138,7 +138,7 @@ class PokeBattle_Battler
         return false
       end
       if pbOwnSide.effects[PBEffects::Mist]>0 &&
-         !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE)))
+         !(user && (user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE))) && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
         @battle.pbDisplay(_INTL("{1} is protected by Mist!",pbThis)) if showFailMsg
         return false
       end

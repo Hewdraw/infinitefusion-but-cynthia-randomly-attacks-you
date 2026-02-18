@@ -1191,6 +1191,7 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
     level = pkmn.level
     pkmn.species = :WROTOM
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     pbLearnMove(pkmn, :HYDROPUMP)
     next true
   end
@@ -1198,6 +1199,7 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
     level = pkmn.level
     pkmn.species = :ROTOM
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next true
   end
   next false
@@ -1209,12 +1211,14 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
     level = pkmn.level
     pkmn.species = :GARTICUNO
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   if pkmn.isSpecies?(:GARTICUNO)
     level = pkmn.level
     pkmn.species = :ARTICUNO
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   next false
@@ -1225,12 +1229,14 @@ ItemHandlers::UseOnPokemon.add(:LIGHTNINGSPHERE, proc { |item, pkmn, scene|
     level = pkmn.level
     pkmn.species = :GZAPDOS
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   if pkmn.isSpecies?(:GZAPDOS)
     level = pkmn.level
     pkmn.species = :ZAPDOS
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   next false
@@ -1241,12 +1247,14 @@ ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
     level = pkmn.level
     pkmn.species = :GMOLTRES
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   if pkmn.isSpecies?(:GMOLTRES)
     level = pkmn.level
     pkmn.species = :MOLTRES
     pkmn.level = level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   next false
@@ -1303,6 +1311,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
         pkmn.unparadox = pkmn.species
       end
       pkmn.species = paradox
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
     if paradox == pkmn.species
@@ -1312,6 +1321,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
         pkmn.species = unparadox[0]
       end
       pkmn.unparadox = nil
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
   end
@@ -1334,6 +1344,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
         next if i[0]!=0
         pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
       end
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
     if mega == pkmn.species
@@ -1343,6 +1354,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
         next if i[0]!=0
         pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
       end
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
   end

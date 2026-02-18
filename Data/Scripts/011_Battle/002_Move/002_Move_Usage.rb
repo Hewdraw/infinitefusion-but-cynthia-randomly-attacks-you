@@ -41,6 +41,10 @@ class PokeBattle_Move
   # The maximum number of hits in a round this move will actually perform. This
   # can be 1 for Beat Up, and can be 2 for any moves affected by Parental Bond.
   def pbNumHits(user,targets)
+    if user.hasActiveAbility?(:KEYCHANGE) && @id == :RELICSONG
+      user.effects[PBEffects::ParentalBond] = 13
+      return 2
+    end
     if user.hasActiveAbility?(:PARENTALBOND) && pbDamagingMove? &&
        !chargingTurnMove? && targets.length==1
       # Record that Parental Bond applies, to weaken the second attack
@@ -59,7 +63,7 @@ class PokeBattle_Move
 
   def pbShowAnimation(id,user,targets,hitNum=0,showAnimation=true)
     return if !showAnimation
-    if user.effects[PBEffects::ParentalBond]==1
+    if user.effects[PBEffects::ParentalBond] % 10 == 1
       @battle.pbCommonAnimation("ParentalBond",user,targets)
     else
       @battle.pbAnimation(id,user,targets,hitNum)

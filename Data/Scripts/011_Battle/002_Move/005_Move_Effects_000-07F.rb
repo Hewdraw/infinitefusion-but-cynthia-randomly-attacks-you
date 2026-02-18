@@ -27,41 +27,6 @@ end
 # Puts the target to sleep.
 #===============================================================================
 class PokeBattle_Move_003 < PokeBattle_SleepMove
-  def pbMoveFailed?(user, targets)
-    if Settings::MECHANICS_GENERATION >= 7 && @id == :DARKVOID
-      if !user.isSpecies?(:DARKRAI) && user.effects[PBEffects::TransformSpecies] != :DARKRAI
-        @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis))
-        return true
-      end
-    end
-    return false
-  end
-
-  def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
-    return if numHits == 0
-    return if user.fainted? || user.effects[PBEffects::Transform]
-    return if @id != :RELICSONG
-    return if !(user.isFusionOf(:MELOETTA_A) || user.isFusionOf(:MELOETTA_P))
-    return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect > 0 && !(target.effects[PBEffects::Dynamax] > 0)
-
-    is_meloetta_A = user.isFusionOf(:MELOETTA_A)
-    is_meloetta_P = user.isFusionOf(:MELOETTA_P)
-    #reverse the fusion if it's a meloA and meloP fusion
-    # There's probably a smarter way to do this but laziness lol
-    if is_meloetta_A && is_meloetta_P
-      body_id = user.pokemon.species_data.get_body_species()
-      body_species = GameData::Species.get(body_id)
-      if body_species == :MELOETTA_A
-        changeSpeciesSpecific(user.pokemon,:B467H466)
-      else
-        changeSpeciesSpecific(user.pokemon,:B466H467)
-      end
-      user.playChangeFormAnimation("Shiny")
-    else
-      user.changeSpecies(user.pokemon, :MELOETTA_A, :MELOETTA_P, "Shiny") if is_meloetta_A
-      user.changeSpecies(user.pokemon, :MELOETTA_P, :MELOETTA_A, "Shiny") if is_meloetta_P
-    end
-  end
 end
 
 #===============================================================================

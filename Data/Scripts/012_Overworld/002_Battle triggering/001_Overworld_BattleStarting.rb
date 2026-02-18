@@ -499,7 +499,7 @@ def pbLegendaryBattle(species)
           mon.split.push(trainer.party[i+j+1])
           party.push(Pokemon.new(:STARTER,1,trainer))
         end
-        $PokemonTemp.recordBattleRule(skip_mon.to_s + "v" + skip_mon.to_s)
+        $PokemonTemp.recordBattleRule(2 + "v" + skip_mon.to_s)
       end
     end
     party.unshift(mon)

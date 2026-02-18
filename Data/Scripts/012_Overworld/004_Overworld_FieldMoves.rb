@@ -736,6 +736,29 @@ def changeMeloettaForm(pokemon)
   end
 end
 
+HiddenMoveHandlers::CanUseMove.add(:TRIPLEBAKA, proc { |move, pokemon, showmsg|
+  if  !(pokemon.isFusionOf(:VOCALLEEK) || pokemon.isFusionOf(:VOCALCELL) || pokemon.isFusionOf(:VOCALDRILL))
+    pbMessage(_INTL("It won't have any effect")) if showmsg
+    next false
+  end
+  next true
+})
+
+HiddenMoveHandlers::UseMove.add(:TRIPLEBAKA, proc { |move, pokemon|
+  if !pbHiddenMoveAnimation(pokemon)
+    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+  end
+  case user.species
+  when :VOCALLEEK
+    user.species = :VOCALDRILL
+  when :VOCALDRILL
+    user.species = :VOCALCELL
+  when :VOCALCELL
+    user.species = :VOCALLEEK
+  end
+  pbMessage(_INTL("{1} changed form!", pokemon.name))
+})
+
 #===============================================================================
 # Rock Smash
 #===============================================================================

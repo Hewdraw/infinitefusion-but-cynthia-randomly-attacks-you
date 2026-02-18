@@ -275,5 +275,6 @@
 273,DAUNTLESSSHIELD,Dauntless Shield,"a"
 274,EON,Eon,"a"
 275,EONBOOST,Eon Boost,"a"
-276,VOCALIZE,Eon Boost,"todo"
-277,VOCALOID,Eon Boost,"todo"
+276,VOCALIZE,Vocalize,"a"
+277,VOCALOID,Vocaloid,"todo"
+278,KEYCHANGE,Key Change,"a"

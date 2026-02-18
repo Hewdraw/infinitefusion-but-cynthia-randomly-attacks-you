@@ -5556,3 +5556,57 @@ class PokeBattle_Move_328 < PokeBattle_Move
     user.pbRaiseStatStage(:DEFENSE,2,user)
   end
 end
+
+class PokeBattle_Move_329 < PokeBattle_SleepMove
+  def pbGetAttackStats(user, target)
+    return super unless user.hasActiveAbility?([:VOCALIZE, :VOCALOID])
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+
+  def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
+    return if numHits == 0
+    return if user.fainted? || user.effects[PBEffects::Transform]
+    return if !(user.isFusionOf(:MELOETTA_A) || user.isFusionOf(:MELOETTA_P))
+    return if user.hasActiveAbility?([:SHEERFORCE, :VOCALIZE, :VOCALOID]) && @addlEffect > 0 && !(target.effects[PBEffects::Dynamax] > 0)
+
+    is_meloetta_A = user.isFusionOf(:MELOETTA_A)
+    is_meloetta_P = user.isFusionOf(:MELOETTA_P)
+    #reverse the fusion if it's a meloA and meloP fusion
+    # There's probably a smarter way to do this but laziness lol
+    if is_meloetta_A && is_meloetta_P
+      body_id = user.pokemon.species_data.get_body_species()
+      body_species = GameData::Species.get(body_id)
+      if body_species == :MELOETTA_A
+        changeSpeciesSpecific(user.pokemon,:B467H466)
+      else
+        changeSpeciesSpecific(user.pokemon,:B466H467)
+      end
+      if user.hasActiveAbility?(:KEYCHANGE)
+        user.pbRaiseStatStage(:ATTACK,1,user)
+        user.pbRaiseStatStage(:SPEED,1,user)
+        user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+      end
+      user.playChangeFormAnimation("Shiny")
+    else
+      user.changeSpecies(user.pokemon, :MELOETTA_A, :MELOETTA_P, "Shiny") if is_meloetta_A
+      user.changeSpecies(user.pokemon, :MELOETTA_P, :MELOETTA_A, "Shiny") if is_meloetta_P
+      if user.hasActiveAbility?(:KEYCHANGE)
+        user.pbRaiseStatStage(:ATTACK,1,user) if is_meloetta_P
+        user.pbRaiseStatStage(:SPEED,1,user) if is_meloetta_P
+        user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user) if is_meloetta_A
+        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user) if is_meloetta_A
+      end
+    end
+  end
+  def pbCritialOverride(user,target); return user.hasActiveAbility?([:VOCALIZE,:VOCALOID]); end
+end
