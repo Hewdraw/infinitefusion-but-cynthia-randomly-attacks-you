@@ -5643,3 +5643,17 @@ class PokeBattle_Move_332 < PokeBattle_StatDownMove
     @statDown = [:SPEED, 2]
   end
 end
+
+class PokeBattle_Move_333 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg = baseDmg * 3 / 2 if @battle.field.terrain == :Electric
+    return baseDmg
+  end
+end
+
+class PokeBattle_Move_334 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if target.effects[PBEffects::Dynamax] > 0
+    return baseDmg
+  end
+end

@@ -1042,7 +1042,14 @@
 1073,BARBBARRAGE,Barb Barrage,330,60,POISON,Physical,100,10,30,NearOther,0,bef,"a"
 1074,CEASELESSEDGE,Ceaseless Edge,103,65,DARK,Physical,90,15,100,NearOther,0,abef,"a"
 1075,FICKLEBEAM,Fickle Beam,331,80,DRAGON,Special,100,5,0,NearOther,0,bef,"a"
-1076,SPINOUT,Spint Out,332,100,STEEL,Physical,100,5,0,NearOther,0,abef,"a"
+1076,SPINOUT,Spin Out,332,100,STEEL,Physical,100,5,0,NearOther,0,abef,"a"
+1077,MIGHTYCLEAVE,Mighty Cleave,000,95,ROCK,Physical,100,5,0,NearOther,0,aef,"a"
+1078,PSYBLADE,Psyblade,333,80,PSYCHIC,Physical,100,15,0,NearOther,0,abef,"a"
+1079,BEHEMOTHBASH,Behemoth Bash,334,100,STEEL,Physical,100,5,0,NearOther,0,abef,"a"
+1080,BEHEMOTHBLADE,Behemoth Blade,334,100,STEEL,Physical,100,5,0,NearOther,0,abef,"a"
+1081,MYSTICALPOWER,Mystical Power,020,70,PSYCHIC,Special,90,10,100,NearOther,0,bef,"a"
+1082,DYNAMAXCANNON,Dynamax Cannon,334,100,DRAGON,Special,100,5,0,NearOther,0,bef,"a"
+1083,AQUASTEP,Aqua Step,01F,80,WATER,Physical,100,10,100,NearOther,0,abef,"a"
 
 
 
