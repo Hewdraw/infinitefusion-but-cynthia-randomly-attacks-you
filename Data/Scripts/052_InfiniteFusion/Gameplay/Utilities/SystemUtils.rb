@@ -28,13 +28,7 @@ def get_current_game_difficulty
 end
 
 def get_difficulty_text
-  if $game_switches[SWITCH_GAME_DIFFICULTY_EASY]
-    return _INTL("Easy")
-  elsif $game_switches[SWITCH_GAME_DIFFICULTY_HARD] || pbCynthiaGetBadgeCount >= 8
-    return _INTL("Hard")
-  else
-    return _INTL("Normal")
-  end
+  return _INTL("Cynthia")
 end
 
 def getLatestSpritepackDate()

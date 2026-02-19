@@ -69,8 +69,5 @@ def getDisplayDifficulty
 end
 
 def getDisplayDifficultyFromIndex(difficultyIndex)
-  return _INTL("Easy") if difficultyIndex == 0
-  return _INTL("Normal") if difficultyIndex == 1
-  return _INTL("Hard") if difficultyIndex == 2
-  return "???"
+  return "Cynthia"
 end
