@@ -3,7 +3,7 @@
 [0]
 Name = Normal
 InternalName = NORMAL
-Weaknesses = FIGHTING
+Weaknesses = FIGHTING,GUN
 Immunities = GHOST
 #-------------------------------
 [1]

@@ -513,7 +513,7 @@ class PokeBattle_Move
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
-       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || @function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
+       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || @function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && soundMove?)
       if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0

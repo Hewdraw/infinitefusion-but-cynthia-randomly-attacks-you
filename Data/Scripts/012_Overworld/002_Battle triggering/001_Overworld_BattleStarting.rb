@@ -475,7 +475,23 @@ def pbLegendaryBattle(species)
   return 0 if !trainer
   party = []
   skip_mon = 0
+  maxopponents = 1
   trainer.party.each_with_index do |mon,i|
+    if mon.split
+      arraylength = mon.split
+      if arraylength.is_a?(Array)
+        arraylength = arraylength.length
+      else
+        arraylength -= 1
+      end
+      maxopponents += arraylength
+      i = 0
+      while i < arraylength
+        party.push(Pokemon.new(:STARTER,1,trainer)) if i % 2 == 0
+        party.unshift(Pokemon.new(:STARTER,1,trainer)) if i % 2 == 1
+        i += 1
+      end
+    end
     if mon.hasItem?(:ANCESTRALGENE)
       $PokemonGlobal.ancestralgeneability = :SNOWWWARNING 
     end
@@ -489,21 +505,13 @@ def pbLegendaryBattle(species)
       mon.shiny = true
       mon.natural_shiny = true
     end
+    skip_mon = pbAssembleLegendary(mon, trainer.party, i)
     if mon.phasetwo
-      mon.phasetwo = trainer.party[i+1]
-      skip_mon = 1
-      if mon.split
-        skip_mon = mon.split
-        mon.split = []
-        for j in 1...skip_mon
-          mon.split.push(trainer.party[i+j+1])
-          party.push(Pokemon.new(:STARTER,1,trainer))
-        end
-        $PokemonTemp.recordBattleRule(2 + "v" + skip_mon.to_s)
-      end
     end
     party.unshift(mon)
   end
+  $PokemonTemp.recordBattleRule("2v" + maxopponents.to_s)
+  print(party)
   trainer.party = party
   # Calculate who the player trainer(s) and their party are
   playerTrainers    = [$Trainer]
@@ -537,6 +545,23 @@ def pbLegendaryBattle(species)
   #    3 - Player or wild Pokémon ran from battle, or player forfeited the match
   #    5 - Draw
   return decision==1 || decision==4
+end
+
+def pbAssembleLegendary(mon, party, partyindex)
+  skip_mon = 0
+  if mon.phasetwo
+    skip_mon = 1
+    mon.phasetwo = party[partyindex+1]
+    skip_mon += pbAssembleLegendary(party[partyindex+1], party, partyindex+1) 
+    if mon.split
+      skip_mon += mon.split - 1
+      mon.split = []
+      for j in 1...skip_mon
+        mon.split.push(party[partyindex+j+1])
+      end
+    end
+  end
+  return skip_mon
 end
 
 #===============================================================================

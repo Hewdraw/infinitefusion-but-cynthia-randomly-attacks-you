@@ -148,10 +148,10 @@ class PokeBattle_Battler
       @battle.pbCalculatePriority(false,[mon.index])
       # Trigger ability
       mon.pbEffectsOnSwitchIn
-      if user.hasActiveAbility?(:KEYCHANGE)
+      if mon.hasActiveAbility?(:KEYCHANGE)
         battle.pbShowAbilitySplash(mon)
-        user.pbRaiseStatStage(:ATTACK,1,user)
-        user.pbRaiseStatStage(:SPEED,1,user)
+        user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
         battle.pbHideAbilitySplash(mon)
       end
       @battle.battleAI.pbDefaultChooseEnemyCommand(mon.index)

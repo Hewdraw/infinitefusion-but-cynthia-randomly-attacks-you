@@ -83,6 +83,9 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     pkmn.item = :CHERISHBALL
     pkmn.moves = [Pokemon::Move.new(:SWALLOW), Pokemon::Move.new(:SPITUP), Pokemon::Move.new(:STOCKPILE), Pokemon::Move.new(:BULLETSEED)]
     pkmn.givePokerus
+  when :MELOETTA_A
+    pkmn.shiny = true
+    pkmn.natural_shiny = true
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName

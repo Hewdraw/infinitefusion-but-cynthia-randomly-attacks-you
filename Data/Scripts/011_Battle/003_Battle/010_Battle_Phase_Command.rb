@@ -105,12 +105,14 @@ class PokeBattle_Battle
     ret = false
     @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
       next false if !item
-      if rand(100) < @nuh_uh && (100 <= @nuh_uh || !legendaryBattle?)
-        @nuh_uh = 1000
-        next true
+      if $PokemonGlobal.towervalues.nil?
+        if rand(100) < @nuh_uh && (100 <= @nuh_uh || !legendaryBattle?)
+          @nuh_uh = 1000
+          next true
+        end
+        @nuh_uh += 1
+        @nuh_uh += 32 if legendaryBattle?
       end
-      @nuh_uh += 1
-      @nuh_uh += 32 if legendaryBattle?
       battler = pkmn = nil
       case useType
       when 1, 2, 6, 7   # Use on Pokémon/Pokémon's move
@@ -243,7 +245,7 @@ class PokeBattle_Battle
             commandsEnd = true if pbItemUsesAllActions?(@choices[idxBattler][1])
             break
           end
-          if @nuh_uh == 1000 && !$PokemonGlobal.towervalues.nil?
+          if @nuh_uh == 1000
             pbDisplay(_INTL("nuh uh."))
             @nuh_uh = 1
             if @opponent
