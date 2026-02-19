@@ -111,7 +111,8 @@ class PokeBattle_Battler
           next if !ally
           next if ally.opposes?(@index)
           next if ally.index == @index
-          next if !ally.ability_id == :DEATH
+          next unless ally.ability_id == :DEATH
+          next unless ally.species == :STARTER
           ally.pbPhaseShiftInner(mon, self)
           mons.push(ally)
           break
@@ -128,6 +129,7 @@ class PokeBattle_Battler
     @battle.party2 = party
     @battle.scene.pbRefresh
     time = 64
+    time /= @pokemon.split.length + 1 if @pokemon.split
     for i in 0..(time-1)
       mons.each do |mon|
         mon.hp = 0 if i == 0
@@ -150,8 +152,8 @@ class PokeBattle_Battler
       mon.pbEffectsOnSwitchIn
       if mon.hasActiveAbility?(:KEYCHANGE)
         battle.pbShowAbilitySplash(mon)
-        user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+        mon.pbRaiseStatStage(:SPECIAL_ATTACK,1,mon)
+        mon.pbRaiseStatStage(:SPECIAL_DEFENSE,1,mon)
         battle.pbHideAbilitySplash(mon)
       end
       @battle.battleAI.pbDefaultChooseEnemyCommand(mon.index)
@@ -159,6 +161,10 @@ class PokeBattle_Battler
   end
 
   def pbPhaseShiftInner(pokemon, splitfrom=nil)
+    if shiny?
+      pokemon.shiny = true
+      pokemon.natural_shiny = true
+    end
     @pokemon = pokemon
     @species = pokemon.species
     @level = pokemon.level
@@ -177,8 +183,7 @@ class PokeBattle_Battler
         @pokemon.shiny = true
         @pokemon.natural_shiny = true
       end
-      party = []
-      skipped = false
+      @fainted = false
     end
     pbUpdate(true)
     @battle.scene.pbChangePokemon(self,@pokemon)

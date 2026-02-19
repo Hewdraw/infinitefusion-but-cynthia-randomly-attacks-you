@@ -511,7 +511,6 @@ def pbLegendaryBattle(species)
     party.unshift(mon)
   end
   $PokemonTemp.recordBattleRule("2v" + maxopponents.to_s)
-  print(party)
   trainer.party = party
   # Calculate who the player trainer(s) and their party are
   playerTrainers    = [$Trainer]

@@ -510,7 +510,7 @@ class PokeBattle_Battler
       :LEGENDARYPRESSURE,
       :PROTOSYNTHESIS,
       :QUARKDRIVE,
-      :NEUTRALIZINGGAS
+      :NEUTRALIZINGGAS,
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -541,7 +541,7 @@ class PokeBattle_Battler
       :LEGENDARYPRESSURE,
       :PROTOSYNTHESIS,
       :QUARKDRIVE,
-      :NEUTRALIZINGGAS
+      :NEUTRALIZINGGAS,
     ]
     return ability_blacklist.include?(abil.id)
   end

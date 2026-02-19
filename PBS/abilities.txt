@@ -276,5 +276,5 @@
 274,EON,Eon,"a"
 275,EONBOOST,Eon Boost,"a"
 276,VOCALIZE,Vocalize,"a"
-277,VOCALOID,Vocaloid,"todo"
+277,VOCALOID,Vocaloid,"a"
 278,KEYCHANGE,Key Change,"a"

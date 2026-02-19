@@ -3465,6 +3465,7 @@ class PokeBattle_Move_215 < PokeBattle_Move
        "190",
        "194",
        "205",
+       "309"
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move
@@ -3669,6 +3670,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
        "190",
        "194",
        "205",
+       "309"
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move
@@ -5576,7 +5578,7 @@ class PokeBattle_Move_329 < PokeBattle_SleepMove
     return if numHits == 0
     return if user.fainted? || user.effects[PBEffects::Transform]
     return if !(user.isFusionOf(:MELOETTA_A) || user.isFusionOf(:MELOETTA_P))
-    return if user.hasActiveAbility?([:SHEERFORCE, :VOCALIZE, :VOCALOID]) && @addlEffect > 0 && !(target.effects[PBEffects::Dynamax] > 0)
+    return if user.hasActiveAbility?([:SHEERFORCE, :VOCALIZE, :VOCALOID])
 
     is_meloetta_A = user.isFusionOf(:MELOETTA_A)
     is_meloetta_P = user.isFusionOf(:MELOETTA_P)
@@ -5591,22 +5593,53 @@ class PokeBattle_Move_329 < PokeBattle_SleepMove
         changeSpeciesSpecific(user.pokemon,:B466H467)
       end
       if user.hasActiveAbility?(:KEYCHANGE)
+        battle.pbShowAbilitySplash(mon)
         user.pbRaiseStatStage(:ATTACK,1,user)
         user.pbRaiseStatStage(:SPEED,1,user)
         user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
         user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+        battle.pbHideAbilitySplash(mon)
       end
       user.playChangeFormAnimation("Shiny")
     else
       user.changeSpecies(user.pokemon, :MELOETTA_A, :MELOETTA_P, "Shiny") if is_meloetta_A
       user.changeSpecies(user.pokemon, :MELOETTA_P, :MELOETTA_A, "Shiny") if is_meloetta_P
       if user.hasActiveAbility?(:KEYCHANGE)
+        battle.pbShowAbilitySplash(mon)
         user.pbRaiseStatStage(:ATTACK,1,user) if is_meloetta_P
         user.pbRaiseStatStage(:SPEED,1,user) if is_meloetta_P
         user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user) if is_meloetta_A
         user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user) if is_meloetta_A
+        battle.pbHideAbilitySplash(mon)
       end
     end
   end
   def pbCritialOverride(user,target); return user.hasActiveAbility?([:VOCALIZE,:VOCALOID]); end
+end
+
+class PokeBattle_Move_330 < PokeBattle_PoisonMove
+  def pbBaseDamage(baseDmg, user, target)
+    if target.pbHasAnyStatus? &&
+      ((target.effects[PBEffects::Substitute] == 0 && target.effects[PBEffects::RedstoneCube] == 0) || ignoresSubstitute?(user))
+      baseDmg *= 2
+    end
+    return baseDmg
+  end
+end
+
+class PokeBattle_Move_331 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    if rand(10) < 3
+      @battle.pbDisplay(_INTL("{1} is going all out with this attack!", user.pbThis))
+      baseDmg *= 2
+    end
+    return baseDmg
+  end
+end
+
+class PokeBattle_Move_332 < PokeBattle_StatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPEED, 2]
+  end
 end

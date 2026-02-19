@@ -381,7 +381,7 @@
 368,STRENGTH,Strength,000,80,NORMAL,Physical,100,15,0,NearOther,0,abef,"The target is slugged with a punch thrown at maximum power. It can also be used to move heavy boulders."
 369,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,20,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. May also paralyze, burn, or freeze the target."
 370,CRUSHCLAW,Crush Claw,043,75,NORMAL,Physical,95,10,50,NearOther,0,abef,"The user slashes the target with hard and sharp claws. It may also lower the target's Defense."
-371,RELICSONG,Relic Song,003,75,NORMAL,Special,100,10,50,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. It may also induce sleep."
+371,RELICSONG,Relic Song,329,75,NORMAL,Special,100,10,50,AllNearFoes,0,befk,"An ancient song appeals to the hearts of those listening. It may also induce sleep."
 372,CHIPAWAY,Chip Away,0A9,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"Seeking an opening, the user strikes continually. The foe's stat changes don't affect the damage."
 373,DIZZYPUNCH,Dizzy Punch,013,70,NORMAL,Physical,100,10,20,NearOther,0,abefj,"The target is hit with rhythmically launched punches that may also leave it confused."
 374,FACADE,Facade,07E,70,NORMAL,Physical,100,20,0,NearOther,0,abef,"An attack move that doubles its power if the user is poisoned, burned, or has paralysis."
@@ -1039,6 +1039,11 @@
 1069,BITTERBLADE,Bitter Blade,0DD,90,FIRE,Physical,100,10,0,NearOther,0,abef,"a"
 1071,MALIGNANTCHAIN,Malignant Chain,006,100,POISON,Special,100,5,50,NearOther,0,bf,"a"
 1072,STUFFCHEEKS,Stuff Cheeks,328,0,NORMAL,Status,0,10,0,User,0,d,"a"
+1073,BARBBARRAGE,Barb Barrage,330,60,POISON,Physical,100,10,30,NearOther,0,bef,"a"
+1074,CEASELESSEDGE,Ceaseless Edge,103,65,DARK,Physical,90,15,100,NearOther,0,abef,"a"
+1075,FICKLEBEAM,Fickle Beam,331,80,DRAGON,Special,100,5,0,NearOther,0,bef,"a"
+1076,SPINOUT,Spint Out,332,100,STEEL,Physical,100,5,0,NearOther,0,abef,"a"
+
 
 
 

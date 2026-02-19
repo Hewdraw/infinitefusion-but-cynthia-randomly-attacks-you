@@ -582,6 +582,7 @@ BattleHandlers::AbilityOnFlinch.copy(:STEADFAST, :PSYCHOBREAK)
 
 BattleHandlers::MoveBlockingAbility.add(:DAZZLING,
   proc { |ability,bearer,user,targets,move,battle|
+    next false if !battle.choices[user.index][4]
     next false if battle.choices[user.index][4]<=0
     next false if !bearer.opposes?(user)
     ret = false
@@ -1075,7 +1076,7 @@ BattleHandlers::DamageCalcUserAbility.add(:MINUS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     next if !move.specialMove?
     user.eachAlly do |b|
-      next if !b.hasActiveAbility?([:MINUS, :PLUS])
+      next if !b.hasActiveAbility?([:MINUS, :PLUS,:VOCALOID])
       mults[:attack_multiplier] *= 1.5
       break
     end

@@ -576,6 +576,7 @@ class PokeBattle_Battle
     when 4
       if legendaryBattle?
         @battlers.each do |battler|
+          next if !battler
           next if !battler.raid
           next if [:CREEPER, :MEGACREEPER, :VOCALLEEK, :VOCALCELL, :VOCALDRILL].include?(battler.pokemon.species)
           if battler.pokemon.species == :COOLERDINO
