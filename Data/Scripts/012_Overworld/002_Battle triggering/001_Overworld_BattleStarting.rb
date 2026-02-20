@@ -295,9 +295,14 @@ def pbWildBattleCore(*args)
       sp = arg
     end
   end
-  foeParty.each do |pkmn|
-    if pkmn.species == :MEOWTH && special
-      pkmn.item = :EVIOLITE
+  if special
+    foeParty.each do |pkmn|
+      if pkmn.species == :MEOWTH
+        pkmn.item = :EVIOLITE
+      end
+      if pkmn.species == :BALTOY
+        pkmn.moves = [Pokemon::Move.new(:RAPIDSPIN)]
+      end
     end
   end
   raise _INTL("Expected a level after being given {1}, but one wasn't found.",sp) if sp
