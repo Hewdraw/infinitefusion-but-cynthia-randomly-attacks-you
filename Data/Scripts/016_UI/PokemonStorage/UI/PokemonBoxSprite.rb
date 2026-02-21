@@ -15,9 +15,9 @@ class PokemonBoxSprite < SpriteWrapper
     for i in 0...PokemonBox::BOX_SIZE
       @pokemonsprites[i] = nil
       pokemon = @storage[boxnumber, i]
-      pokemon.boxicon = PokemonBoxIcon.new(pokemon, viewport) if pokemon && pokemon.boxicon.nil?
-      boxicon = pokemon.boxicon if pokemon
-      boxicon = PokemonBoxIcon.new(pokemon, viewport) if pokemon.nil?
+      # pokemon.boxicon = PokemonBoxIcon.new(pokemon, viewport) if pokemon && pokemon.boxicon.nil?
+      # boxicon = pokemon.boxicon if pokemon
+      # boxicon = PokemonBoxIcon.new(pokemon, viewport) if pokemon.nil?
       @pokemonsprites[i] = PokemonBoxIcon.new(pokemon, viewport)
     end
     @contents = BitmapWrapper.new(324, 296)
