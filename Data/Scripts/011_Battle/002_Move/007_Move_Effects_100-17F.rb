@@ -5465,22 +5465,33 @@ class PokeBattle_Move_325 < PokeBattle_Move
   def pbNumHits(user,targets); return 3;    end
 
   def pbInitialEffect(user,targets,hitNum)
-    case user.species
-    when :VOCALLEEK
-      hitNum = 1
-      user.species = :VOCALDRILL
-      user.pokemon.species = :VOCALDRILL
-      user.playChangeFormAnimation("Shiny")
-    when :VOCALDRILL
-      hitNum = 2
-      user.species = :VOCALCELL
-      user.pokemon.species = :VOCALCELL
-      user.playChangeFormAnimation("Shiny")
-    when :VOCALCELL
-      hitNum = 3
-      user.species = :VOCALLEEK
-      user.pokemon.species = :VOCALLEEK
-      user.playChangeFormAnimation("Shiny")
+    if hitNum == 1
+      case user.species
+      when :VOCALLEEK
+        hitNum = 1
+      when :VOCALDRILL
+        hitNum = 2
+      when :VOCALCELL
+        hitNum = 3
+      end
+    else
+      case user.species
+      when :VOCALLEEK
+        hitNum = 2
+        user.species = :VOCALDRILL
+        user.pokemon.species = :VOCALDRILL
+        user.playChangeFormAnimation("Shiny")
+      when :VOCALDRILL
+        hitNum = 3
+        user.species = :VOCALCELL
+        user.pokemon.species = :VOCALCELL
+        user.playChangeFormAnimation("Shiny")
+      when :VOCALCELL
+        hitNum = 1
+        user.species = :VOCALLEEK
+        user.pokemon.species = :VOCALLEEK
+        user.playChangeFormAnimation("Shiny")
+      end
     end
     case hitNum
     when 1
