@@ -717,7 +717,7 @@
 696,BREAKINGSWIPE,Breaking Swipe,042,60,DRAGON,Physical,100,15,100,AllNearFoes,0,abef,"Nice Smeargle/Ditto, jackass."
 697,BURNINGJEALOSY,Burning Jealosy,218,70,FIRE,Special,100,5,100,AllNearFoes,0,bef,"Nice Smeargle/Ditto, jackass."
 698,RAGINGFURY,Raging Fury,0D2,120,FIRE,Physical,100,10,0,RandomNearFoe,0,bef,"Nice Smeargle/Ditto, jackass."
-699,THESKELETONAPPEARS,The Skeleton Appears,183,0,DARK,Status,100,1,0,User,6,bef,"Nice Smeargle/Ditto, jackass."
+699,THESKELETONAPPEARS,The Skeleton Appears,183,0,GUN,Status,100,1,0,User,6,bef,"Nice Smeargle/Ditto, jackass."
 700,TRIPLEARROWS,Triple Arrows,216,90,FIGHTING,Physical,100,10,100,NearOther,0,befh,"Nice Smeargle/Ditto, jackass."
 701,LASHOUT,Lash Out,219,75,DARK,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 702,RAGEFIST,Rage Fist,220,50,GHOST,Physical,100,10,0,NearOther,0,abefj,"Nice Smeargle/Ditto, jackass."
