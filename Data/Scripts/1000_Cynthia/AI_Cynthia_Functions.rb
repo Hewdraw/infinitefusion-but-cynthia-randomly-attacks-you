@@ -142,7 +142,7 @@ class PokeBattle_AI
     when "000", "001", "002", "017", "048", "06A", "06B", "06C", "06D", "06E", "06F", "075", "076", "077", "079", "07A", "07B", "07E", "07F", "080", "085", "086", "087", "088", "089", "08A", "08B", "08C", "08D", "08E", "08F", "090", "091", "094", "095", "096", "097", "098", "099", "09A", "09B", "09F", "0A0", "0A4", "0A5", "0A9", "0BD", "0BF", "0C0", "0C1", "0C3", "0EE", "106", "107", "108", "109", "122", "133", "134", "144", "157", "164", "166", "169", "177", "178", "185", "192" ,"195", "207"  # No extra effect
       score = 0
     #---------------------------------------------------------------------------
-    when "003", "004" #sleep
+    when "003", "004", "329" #sleep
       sleepturns = [damageinfo[:info][:damagethreshold], 4].min
       score = sleepturns * damageinfo[:info][:userThreat] / 3.0
       score += 100 * sleepturns / 3.0
@@ -2313,6 +2313,8 @@ class PokeBattle_AI
             baseDmg *= 10   # Hits do x1, x2, x3 baseDmg in turn, for x6 in total
           end
         end
+      when "329"
+        baseDmg *= 1.5 if user.hasActiveAbility?(:KEYCHANGE)
       end
       
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -2378,7 +2380,7 @@ class PokeBattle_AI
         end
         case user.ability_id
         when :ROUGHSKIN
-        when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE
+        when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID
           if type == :NORMAL
             multipliers[:base_damage_multiplier] *= 1.2
           end
