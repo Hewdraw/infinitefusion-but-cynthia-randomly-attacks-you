@@ -677,7 +677,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
 
 BattleHandlers::MoveImmunityTargetAbility.add(:VOCALOID,
   proc { |ability,target,user,move,type,battle|
-    next false if pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
+    next true if pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
     next false if !move.soundMove?
     battle.pbShowAbilitySplash(target)
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH

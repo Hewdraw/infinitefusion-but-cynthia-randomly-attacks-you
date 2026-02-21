@@ -5465,7 +5465,7 @@ class PokeBattle_Move_325 < PokeBattle_Move
   def pbNumHits(user,targets); return 3;    end
 
   def pbInitialEffect(user,targets,hitNum)
-    if hitNum == 1
+    if hitNum == 0
       case user.species
       when :VOCALLEEK
         hitNum = 1
