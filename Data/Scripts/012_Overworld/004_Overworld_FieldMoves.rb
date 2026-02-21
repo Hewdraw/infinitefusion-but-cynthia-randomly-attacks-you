@@ -748,13 +748,13 @@ HiddenMoveHandlers::UseMove.add(:TRIPLEBAKA, proc { |move, pokemon|
   if !pbHiddenMoveAnimation(pokemon)
     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
   end
-  case user.species
+  case pokemon.species
   when :VOCALLEEK
-    user.species = :VOCALDRILL
+    pokemon.species = :VOCALDRILL
   when :VOCALDRILL
-    user.species = :VOCALCELL
+    pokemon.species = :VOCALCELL
   when :VOCALCELL
-    user.species = :VOCALLEEK
+    pokemon.species = :VOCALLEEK
   end
   pbMessage(_INTL("{1} changed form!", pokemon.name))
 })
