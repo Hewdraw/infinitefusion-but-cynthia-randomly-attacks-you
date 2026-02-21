@@ -7363,7 +7363,8 @@ BattlerShadowSize = 2
 [223]
 Name = Remoraid
 InternalName = REMORAID
-Type1 = WATER
+Type1 = GUN
+Type2 = WATER
 BaseStats = 35,65,35,65,65,35
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -7397,7 +7398,8 @@ Evolutions = OCTILLERY,Level,25
 [224]
 Name = Octillery
 InternalName = OCTILLERY
-Type1 = WATER
+Type1 = GUN
+Type2 = WATER
 BaseStats = 75,105,75,45,105,75
 GenderRate = Female50Percent
 GrowthRate = Medium

@@ -679,7 +679,7 @@
 661,RAZORSHELL,Razor Shell,043,75,WATER,Physical,95,10,50,NearOther,0,abef,"The user cuts the foe with sharp shells. It may also lower the target's Defense stat."
 662,BRINE,Brine,080,65,WATER,Special,100,10,0,NearOther,0,bef,"If the target's HP is down to about half, this attack will hit with double the power."
 663,BUBBLEBEAM,Bubble Beam,044,65,WATER,Special,100,20,10,NearOther,0,bef,"A spray of bubbles is forcefully ejected at the target. It may also lower its Speed stat."
-664,OCTAZOOKA,Octazooka,047,65,WATER,Special,85,10,50,NearOther,0,befn,"The user attacks by spraying ink in the foe's face or eyes. It may also lower the target's accuracy."
+664,OCTAZOOKA,Octazooka,047,100,GUN,Special,100,10,50,NearOther,0,befn,"The user attacks by spraying ink in the foe's face or eyes. It may also lower the target's accuracy."
 665,WATERPULSE,Water Pulse,013,60,WATER,Special,100,20,20,Other,0,befm,"The user attacks the target with a pulsing blast of water. It may also confuse the target."
 666,AQUAJET,Aqua Jet,000,40,WATER,Physical,100,20,0,NearOther,1,abef,"The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first."
 667,BUBBLE,Bubble,044,40,WATER,Special,100,30,10,AllNearFoes,0,bef,"A spray of countless bubbles is jetted at the opposing team. It may also lower the targets' Speed stats."
