@@ -219,7 +219,7 @@ class PokeBattle_Battle
         end
         shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
         shinychance /= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
-        if ["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(shinychance) == 0
+        if (["Hatsune Miku", "Naomi"].include?(trainer.name) || rand(shinychance) == 0) && !legendaryBattle? && ![:WuhuIslandExecutioner, :MECH_Miku].include?(trainer.trainer_type)
           @scene.pbCommonAnimation("Shiny",trainer)
         end
         if ["Hatsune Miku", "Naomi"].include?(trainer.name)
