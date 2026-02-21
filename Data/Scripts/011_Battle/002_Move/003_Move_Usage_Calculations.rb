@@ -23,6 +23,9 @@ class PokeBattle_Move
         @powerBoost = false
       end
     end
+    if ret && soundMove? && user.hasActiveItem?(:MMICROPHONE)
+      ret = :SOUND
+    end
     return ret
   end
 

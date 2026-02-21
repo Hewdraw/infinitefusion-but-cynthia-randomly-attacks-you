@@ -906,6 +906,12 @@ BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
 
 BattleHandlers::DamageCalcUserItem.copy(:DOUSEDRIVE,:BURNDRIVE,:SHOCKDRIVE,:CHILLDRIVE)
 
+BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if move.soundMove?
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetItem handlers
 #===============================================================================

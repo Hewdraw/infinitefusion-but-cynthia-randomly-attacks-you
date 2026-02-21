@@ -894,6 +894,7 @@
 828,RIGHTARMOFTHEFORBIDDENONE,Right Arm of the Forbidden One,Right Arms of the Forbidden One,8,0,"A forbidden right arm sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
 829,LEFTLEGOFTHEFORBIDDENONE,Left Leg of the Forbidden One,Left Legs of the Forbidden One,8,0,"A forbidden left leg sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
 830,RIGHTLEGOFTHEFORBIDDENONE,Right Leg of the Forbidden One,Right Legs of the Forbidden One,8,0,"A forbidden right leg sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
+831,MMICROPHONE,M. Microphone,M. Microphpones,1,0,"Microphone",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

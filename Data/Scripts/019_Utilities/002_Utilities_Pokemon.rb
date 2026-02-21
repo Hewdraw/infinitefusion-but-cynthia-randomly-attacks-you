@@ -86,6 +86,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
   when :MELOETTA_A
     pkmn.shiny = true
     pkmn.natural_shiny = true
+    pkmn.item = :MMICROPHONE
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName
