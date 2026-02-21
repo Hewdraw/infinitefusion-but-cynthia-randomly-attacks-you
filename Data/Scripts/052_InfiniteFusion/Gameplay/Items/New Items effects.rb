@@ -1301,7 +1301,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
       if pkmn.unparadox.nil?
         pkmn.unparadox = pkmn.species
       end
-      pkmn.species = paradox
+      pkmn.species = paradox[0]
       break
     end
     if paradox.include?(pkmn.species)
