@@ -15324,7 +15324,7 @@ BattlerShadowSize = 1
 [467]
 Name = Meloetta
 InternalName = MELOETTA_P
-Type1 = SOUND
+Type1 = GUN
 Type2 = FIGHTING
 BaseStats = 100,128,90,128,77,77
 GenderRate = Genderless
