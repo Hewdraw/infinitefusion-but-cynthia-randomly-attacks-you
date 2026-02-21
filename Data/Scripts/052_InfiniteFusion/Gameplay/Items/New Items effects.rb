@@ -1188,18 +1188,18 @@ ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ROTOM)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :WROTOM
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     pbLearnMove(pkmn, :HYDROPUMP)
     next true
   end
   if pkmn.isSpecies?(:WROTOM)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :ROTOM
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next true
   end
   next false
@@ -1208,17 +1208,17 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ARTICUNO)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :GARTICUNO
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   if pkmn.isSpecies?(:GARTICUNO)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :ARTICUNO
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   next false
@@ -1226,17 +1226,17 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:LIGHTNINGSPHERE, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ZAPDOS)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :GZAPDOS
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   if pkmn.isSpecies?(:GZAPDOS)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :ZAPDOS
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   next false
@@ -1244,17 +1244,17 @@ ItemHandlers::UseOnPokemon.add(:LIGHTNINGSPHERE, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:MOLTRES)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :GMOLTRES
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   if pkmn.isSpecies?(:GMOLTRES)
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :MOLTRES
     pkmn.level = level
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
     next false
   end
   next false
@@ -1263,65 +1263,63 @@ ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene|
   next false if pkmn.species == :OMNIMON
   paradoxlist = {
-    [:ENTEI] => :GOUGINGFIRE,
-    [:SUICUNE] => :WALKINGWAKE,
-    [:RAIKOU] => :RAGINGBOLT,
-    [:IRONTREADS] => :GREATTUSK,
-    [:PHANPY, :DONPHAN] => :IRONTREADS,
-    [:IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF] => :SCREAMTAIL,
-    [:MISDREAVUS, :MISMAGIUS] => :FLUTTERMANE,
-    [:IRONMOTH] => :SLITHERWING,
-    [:LARVESTA, :VOLCARONA] => :IRONMOTH,
-    [:MAGNEMITE, :MAGNETON, :MAGNEZONE] => :SANDYSHOCKS,
-    [:BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE] => :ROARINGMOON,
-    [:DELIBIRD] => :IRONBUNDLE,
-    [:DEINO, :ZWEILOUS, :HYDREIGON] => :IRONJUGULIS,
-    [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => :IRONTHORNS,
-    [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => :IRONVALIANT,
-    [:DIANCIE, :MEGADIANCIE] => :MAGEARNA,
-    [:GENESECT] => :REAPINGSHELL,
-    [:KABUTO, :KABUTOPS] => :IRONHARVESTER,
-    [:RESHIRAM] => :ZEKROM,
-    [:AGUMON] => :CHARMANDER,
-    [:CHARMANDER] => :AGUMON,
-    [:GREYMON] => :CHARMELEON,
-    [:CHARMELEON] => :GREYMON,
-    [:METALGREYMON, :WARGREYMON] => :CHARIZARD,
-    [:CHARIZARD] => :METALGREYMON,
-    [:GABUMON] => :TOTODILE,
-    [:TOTODILE] => :GABUMON,
-    [:GARURUMON] => :CROCONAW,
-    [:CROCONAW] => :GARURUMON,
-    [:WEREGARURUMON, :METALGARURUMON] => :FERALIGATR,
-    [:FERALIGATR] => :WEREGARURUMON,
-    [:PALMON] => :BULBASAUR,
-    [:BULBASAUR] => :PALMON,
-    [:TOGEMON] => :IVYSAUR,
-    [:IVYSAUR] => :TOGEMON,
-    [:LILLYMON, :ROSEMON, :ROSEMONBM] => :VENUSAUR,
-    [:VENUSAUR] => :LILLYMON,
-    [:VOCALDRILL] => :VOCALCELL,
-    [:VOCALLEEK] => :VOCALDRILL,
-    [:MELOETTA_P, :MELOETTA_A] => :VOCALLEEK,
+    [:ENTEI] => [:GOUGINGFIRE],
+    [:SUICUNE] => [:WALKINGWAKE],
+    [:RAIKOU] => [:RAGINGBOLT],
+    [:IRONTREADS] => [:GREATTUSK, :IRONTREADS],
+    [:IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF] => [:SCREAMTAIL],
+    [:MISDREAVUS, :MISMAGIUS] => [:FLUTTERMANE],
+    [:LARVESTA, :VOLCARONA] => [:IRONMOTH, :SLITHERWING],
+    [:MAGNEMITE, :MAGNETON, :MAGNEZONE] => [:SANDYSHOCKS],
+    [:BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE] => [:ROARINGMOON],
+    [:DELIBIRD] => [:IRONBUNDLE],
+    [:DEINO, :ZWEILOUS, :HYDREIGON] => [:IRONJUGULIS],
+    [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => [:IRONTHORNS],
+    [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => [:IRONVALIANT],
+    [:DIANCIE, :MEGADIANCIE] => [:MAGEARNA],
+    [:GENESECT] => [:REAPINGSHELL],
+    [:KABUTO, :KABUTOPS] => [:IRONHARVESTER],
+    [:RESHIRAM] => [:ZEKROM],
+    [:WARGREYMON] => [:CHARIZARD],
+    [:CHARIZARD] => [:METALGREYMON],
+    [:CHARMELEON] => [:GREYMON],
+    [:CHARMANDER] => [:AGUMON],
+    [:METALGARURUMON] => [:FERALIGATR],
+    [:FERALIGATR] => [:WEREGARURUMON],
+    [:CROCONAW] => [:GARURUMON],
+    [:TOTODILE] => [:GABUMON],
+    [:ROSEMON, :ROSEMONBM] => [:VENUSAUR],
+    [:VENUSAUR] => [:LILLYMON],
+    [:IVYSAUR] => [:TOGEMON],
+    [:BULBASAUR] => [:PALMON],
+    [:MELOETTA_P, :MELOETTA_A] => [:VOCALLEEK, :VOCALDRILL, :VOCALCELL]
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|
     if unparadox.include?(pkmn.species)
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       if pkmn.unparadox.nil?
         pkmn.unparadox = pkmn.species
       end
       pkmn.species = paradox
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
-    if paradox == pkmn.species
-      if !pkmn.unparadox.nil? && unparadox.include?(pkmn.unparadox)
-        pkmn.species = pkmn.unparadox
-      else
-        pkmn.species = unparadox[0]
+    if paradox.include?(pkmn.species)
+      paradox.each_with_index do |para, i|
+        next if para != pkmn.species
+        pbMessage(_INTL("{1} changed form!", pkmn.name))
+        if i == paradox.length - 1
+          if !pkmn.unparadox.nil? && unparadox.include?(pkmn.unparadox)
+            pkmn.species = pkmn.unparadox
+          else
+            pkmn.species = unparadox[0]
+          end
+          pkmn.unparadox = nil
+        else
+          pkmn.species = paradox[i+1]
+        end
+        break
       end
-      pkmn.unparadox = nil
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
   end
@@ -1338,23 +1336,23 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
   level = pkmn.level
   megalist.each do |unmega, mega|
     if unmega == pkmn.species
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       pkmn.species = mega
       movelist = pkmn.getMoveList
       for i in movelist
         next if i[0]!=0
         pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
       end
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
     if mega == pkmn.species
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
       pkmn.species = unmega
       movelist = pkmn.getMoveList
       for i in movelist
         next if i[0]!=0
         pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
       end
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
       break
     end
   end
