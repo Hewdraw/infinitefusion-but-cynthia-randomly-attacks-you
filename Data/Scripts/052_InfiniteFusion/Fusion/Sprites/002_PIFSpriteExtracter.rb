@@ -14,7 +14,7 @@ class PIFSpriteExtracter
       loaded_from_spritesheet=false
 
       if !bitmap
-        download_new_spritesheet(pif_sprite) if should_update_spritesheet?(pif_sprite) && download_allowed
+        download_new_spritesheet(pif_sprite) if #should_update_spritesheet?(pif_sprite) && download_allowed
         if pbResolveBitmap(getSpritesheetPath(pif_sprite))
           bitmap = load_bitmap_from_spritesheet(pif_sprite)
           loaded_from_spritesheet=true

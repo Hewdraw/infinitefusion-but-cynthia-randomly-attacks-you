@@ -75,10 +75,7 @@ def check_for_spritepack_update()
   if new_spritepack_was_released()
     pbFadeOutIn() {
       return if !downloadAllowed?()
-      should_update = pbConfirmMessage(_INTL("A new spritepack was released. Would you like to let the game update your game's sprites automatically?"))
-      if should_update
-        update_spritepack_files
-      end
+      update_spritepack_files
     }
   end
 end
