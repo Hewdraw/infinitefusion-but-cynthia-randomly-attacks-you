@@ -15286,7 +15286,7 @@ BattlerShadowSize = 3
 [466]
 Name = Meloetta
 InternalName = MELOETTA_A
-Type1 = NORMAL
+Type1 = SOUND
 Type2 = PSYCHIC
 BaseStats = 100,77,77,90,128,128
 GenderRate = Genderless
@@ -15322,7 +15322,7 @@ BattlerShadowSize = 1
 [467]
 Name = Meloetta
 InternalName = MELOETTA_P
-Type1 = NORMAL
+Type1 = SOUND
 Type2 = FIGHTING
 BaseStats = 100,128,90,128,77,77
 GenderRate = Genderless
