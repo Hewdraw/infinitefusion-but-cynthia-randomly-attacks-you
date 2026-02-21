@@ -5469,14 +5469,17 @@ class PokeBattle_Move_325 < PokeBattle_Move
     when :VOCALLEEK
       hitNum = 1
       user.species = :VOCALDRILL
+      user.pokemon.species = :VOCALDRILL
       user.playChangeFormAnimation("Shiny")
     when :VOCALDRILL
       hitNum = 2
       user.species = :VOCALCELL
+      user.pokemon.species = :VOCALCELL
       user.playChangeFormAnimation("Shiny")
     when :VOCALCELL
       hitNum = 3
       user.species = :VOCALLEEK
+      user.pokemon.species = :VOCALLEEK
       user.playChangeFormAnimation("Shiny")
     end
     case hitNum
