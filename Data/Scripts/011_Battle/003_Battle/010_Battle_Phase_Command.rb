@@ -112,6 +112,7 @@ class PokeBattle_Battle
         end
         @nuh_uh += 1
         @nuh_uh += 32 if legendaryBattle?
+        @broken_buttons.push(1) if item == :SACREDASH
       end
       battler = pkmn = nil
       case useType

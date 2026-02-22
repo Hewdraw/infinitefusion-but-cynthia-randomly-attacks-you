@@ -73,6 +73,23 @@ ItemHandlers::CanUseInBattle.addIf(proc { |item| GameData::Item.get(item).is_pok
   }
 )
 
+ItemHandlers::CanUseInBattle.add(:SACREDASH,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
+  if battler
+    canrevive = false
+    party = battle.pbParty(battler.index)
+    party.each do |pkmn|
+      next if !pkmn || !pkmn.fainted?
+      canrevive = true
+      break
+    end
+    if canrevive
+      next true
+    end
+  end
+  scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+  next false
+})
+
 ItemHandlers::CanUseInBattle.add(:POTION,proc { |item,pokemon,battler,move,firstAction,battle,scene,showMessages|
   if !pokemon.able? || pokemon.hp==pokemon.totalhp
     scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
@@ -325,6 +342,17 @@ ItemHandlers::UseInBattle.addIf(proc { |item| GameData::Item.get(item).is_poke_b
     battle.pbThrowPokeBall(battler.index,item)
   }
 )
+
+ItemHandlers::UseInBattle.add(:SACREDASH,proc { |item,battler,battle|
+  party = battle.pbParty(battler.index)
+  party.each do |pkmn|
+    next if !pkmn || !pkmn.fainted?
+    pkmn.heal_HP
+    pkmn.heal_status
+    scene.pbRefresh
+    scene.pbDisplay(_INTL("{1}'s HP was restored.", pkmn.name))
+  end
+})
 
 #===============================================================================
 # BattleUseOnPokemon handlers
