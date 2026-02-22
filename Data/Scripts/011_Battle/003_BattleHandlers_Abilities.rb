@@ -2459,9 +2459,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:DARKAURA,
 
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
   proc { |ability,battler,battle|
-    next if battler.pokemon.onceperbattle.include?("dauntlessshield")
+    next if battler.pokemon.battlevariables["dauntlessshield"]
     battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
-    battler.pokemon.onceperbattle.push("dauntlessshield")
+    battler.pokemon.battlevariables["dauntlessshield"] = true
   }
 )
 

@@ -295,7 +295,6 @@ class PokeBattle_Battler
     @effects[PBEffects::Protosynthesis]                = 0
     @effects[PBEffects::QuarkDrive]                = 0
     @effects[PBEffects::SaltCure]                = 0
-    @effects[PBEffects::RageFist]                = 1 if @effects[PBEffects::RageFist] == nil
     @effects[PBEffects::BurningBulwark]       = false
     @effects[PBEffects::Obstruct]         = false
   end
