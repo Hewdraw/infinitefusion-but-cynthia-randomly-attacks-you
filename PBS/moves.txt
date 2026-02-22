@@ -1050,6 +1050,12 @@
 1081,MYSTICALPOWER,Mystical Power,020,70,PSYCHIC,Special,90,10,100,NearOther,0,bef,"a"
 1082,DYNAMAXCANNON,Dynamax Cannon,334,100,DRAGON,Special,100,5,0,NearOther,0,bef,"a"
 1083,AQUASTEP,Aqua Step,01F,80,WATER,Physical,100,10,100,NearOther,0,abef,"a"
+1084,DIRECLAW,Dire Claw,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
+1085,INFERNALPARADE,Infernal Parade,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
+1086,LUNARBLESSING,Lunar Blessing,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
+1087,PSYSHIELDBASH,Psyshield Bash,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
+1088,SHELTER,Shelter,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
+
 
 
 
