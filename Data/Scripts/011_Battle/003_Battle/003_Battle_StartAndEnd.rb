@@ -152,7 +152,7 @@ class PokeBattle_Battle
         end
         eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
           pkmn.battlevariables = {}
-          pkmn.battlevariables["ragefist"] = 1
+          pkmn.battlevariables[:ragefist] = 1
           pkmn.originalform = nil
           if pkmn.hasItem?(:DARKSTONE)
             pkmn.moves.each_with_index do |move, i|

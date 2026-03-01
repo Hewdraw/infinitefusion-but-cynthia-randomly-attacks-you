@@ -3557,7 +3557,8 @@ end
 
 class PokeBattle_Move_220 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    return baseDmg * user.pokemon.battlevariables["ragefist"]
+    return baseDmg * user.pokemon.battlevariables[:ragefist] if user.pokemon.battlevariables[:ragefist]
+    return baseDmg
   end
 end
 

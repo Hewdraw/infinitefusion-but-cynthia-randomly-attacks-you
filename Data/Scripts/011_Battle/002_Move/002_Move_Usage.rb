@@ -169,7 +169,7 @@ class PokeBattle_Move
     end
     # Disguise will take the damage
     if !@battle.moldBreaker &&
-       !target.pokemon.battlevariables["disguise"] && target.hasActiveAbility?(:DISGUISE)
+       !target.pokemon.battlevariables[:disguise] && target.hasActiveAbility?(:DISGUISE)
       target.damageState.disguise = true
       return
     end
@@ -193,7 +193,7 @@ class PokeBattle_Move
     end
     # Disguise takes the damage
     return if target.damageState.disguise
-    target.pokemon.battlevariables["ragefist"] = [target.pokemon.battlevariables["ragefist"] + 1, 7].min
+    target.pokemon.battlevariables[:ragefist] = [target.pokemon.battlevariables[:ragefist] + 1, 7].min
     # Target takes the damage
     if damage>=target.hp
       damage = target.hp
@@ -323,7 +323,7 @@ class PokeBattle_Move
       target.pbItemHPHealCheck
       target.pbFaint if target.fainted?
       @battle.pbHideAbilitySplash(target)
-      target.pokemon.battlevariables["disguise"] = true
+      target.pokemon.battlevariables[:disguise] = true
     elsif target.damageState.endured
       @battle.pbDisplay(_INTL("{1} endured the hit!",target.pbThis))
     elsif target.damageState.sturdy

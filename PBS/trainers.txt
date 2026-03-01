@@ -9541,6 +9541,7 @@ Pokemon = SHAYMINSKYMELOETTA,5
     Offset = 0
     Moves = RELICSONG,AIRSLASH,EARTHPOWER,SEEDFLARE
     Ability = SERENEGRACE
+    Shiny = TRUE
     Item = LIFEORB
     Gender = F
     Nature = TIMID
