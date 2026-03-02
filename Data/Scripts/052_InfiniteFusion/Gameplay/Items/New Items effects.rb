@@ -1364,6 +1364,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
     [pkmn.species] => [[:HIDDENPOWER, :TERABLAST]],
     [:ARTICUNO, :GARTICUNO] => [[:FREEZINGGLARE]],
+    [:BISHARP] => [[:KOWTOWCLEAVE]],
     [:BLASTOISE] => [[:HYDROCANNON]],
     [:BLAZIKEN] => [[:BLAZEKICK]],
     [:CHARIZARD] => [[:BLASTBURN]],

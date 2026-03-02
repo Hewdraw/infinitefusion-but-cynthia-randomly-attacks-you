@@ -1055,6 +1055,7 @@
 1086,LUNARBLESSING,Lunar Blessing,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
 1087,PSYSHIELDBASH,Psyshield Bash,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
 1088,SHELTER,Shelter,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
+1089,KOWTOWCLEAVEPLUS,Kowtow Cleave+,335,110,DARK,Physical,0,10,0,NearOther,0,abefh,"Nice Smeargle/Ditto, jackass."
 
 
 

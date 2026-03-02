@@ -4201,7 +4201,7 @@ class PokeBattle_Move_251 < PokeBattle_TargetStatDownMove
   end
 end
 
-class PokeBattle_Move_252 < PokeBattle_Move_0A5
+class PokeBattle_Move_252 < PokeBattle_Move
   def pbAccuracyCheck(user,target); return true; end
 
   def pbGetAttackStats(user, target)
@@ -5659,5 +5659,17 @@ class PokeBattle_Move_334 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
     baseDmg *= 2 if target.effects[PBEffects::Dynamax] > 0
     return baseDmg
+  end
+end
+
+class PokeBattle_Move_335 < PokeBattle_Move
+  def pbAccuracyCheck(user,target); return true; end
+
+  def pbGetAttackStats(user, target)
+    return user.attack, [user.stages[:ATTACK] + 6, 6].max
+  end
+
+  def pbGetDefenseStats(user, target)
+    return target.defense, [target.stages[:DEFENSE] + 6, 6].min
   end
 end

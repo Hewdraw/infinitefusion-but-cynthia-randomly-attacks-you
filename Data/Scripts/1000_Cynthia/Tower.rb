@@ -23,6 +23,7 @@ def setupTower()
     $PokemonBag.pbStoreItem(:DIGIVICE)
     $PokemonBag.pbStoreItem(:INFINITESPLICERS)
     $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
+    $PokemonBag.pbStoreItem(:SHINYCHARM)
 end
 
 def resetTower()
