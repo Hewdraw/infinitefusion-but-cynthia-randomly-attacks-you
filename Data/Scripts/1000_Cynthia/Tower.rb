@@ -254,50 +254,71 @@ def towerEvent()
     when "Gym"
         case $PokemonGlobal.towervalues[:badges]
         when 0
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Brock, "Brock")
         when 1
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Misty, "Misty")
         when 2
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Surge, "Lt. Surge")
         when 3
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Erika, "Erika")
         when 4
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Koga, "Koga")
         when 5
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Sabrina, "Sabrina")
         when 6
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Blaine, "Blaine")
         when 7
+            $PokemonGlobal.nextBattleBGM = "Giovanni"
             return if !pbTrainerBattle(:LEADER_Giovanni, "Giovanni")
         when 8
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Whitney, "Whitney")
         when 9
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Kurt, "Kurt")
         when 10
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Falkner, "Falkner")
         when 11
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Clair, "Clair")
         when 12
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Morty, "Morty")
         when 13
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Pryce, "Pryce")
         when 14
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Jasmine, "Jasmine")
         when 15
+            $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Chuck, "Chuck")
         end
         $PokemonGlobal.towervalues[:badges] += 1
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
         when 82
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Lorelei, "Lorelei")
         when 84
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Bruno, "Bruno")
         when 86
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Agatha, "Agatha")
         when 88
+            $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Lance, "Lance")
         when 90
+            $PokemonGlobal.nextBattleBGM = "champion_blue"
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
     when nil
