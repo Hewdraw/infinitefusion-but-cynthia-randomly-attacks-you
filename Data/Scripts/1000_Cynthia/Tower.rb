@@ -22,6 +22,7 @@ def setupTower()
     pbAddPokemon(getTowerPokemon(), 5)
     $PokemonBag.pbStoreItem(:DIGIVICE)
     $PokemonBag.pbStoreItem(:INFINITESPLICERS)
+    $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
 end
 
 def resetTower()
@@ -338,7 +339,7 @@ def getFloorGraphic(event)
         when "Moltres"
             return "146"
         when "Reshirom"
-            return "BW (13)"
+            return "BW (5)"
         when "Suikou"
             return "243_245"
         when "Zapdos"

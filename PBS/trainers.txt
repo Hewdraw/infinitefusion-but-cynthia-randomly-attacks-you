@@ -10717,7 +10717,6 @@ Pokemon = B378H379,11
     Moves = LUSTERPURGE,MYSTICALFIRE,DRAGONPULSE,CALMMIND
     Ability = LEGENDARYPRESSURE
     Hpbar = 3
-    Phasetwo = TRUE
     Item = SOULDEW
     Nature = MODEST
     Raid = TRUE
