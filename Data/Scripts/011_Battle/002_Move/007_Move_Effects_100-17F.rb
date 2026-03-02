@@ -41,6 +41,7 @@ class PokeBattle_Move_103 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
+    return if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3
     user.pbOpposingSide.effects[PBEffects::Spikes] += 1
     @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
                             user.pbOpposingTeam(true)))
