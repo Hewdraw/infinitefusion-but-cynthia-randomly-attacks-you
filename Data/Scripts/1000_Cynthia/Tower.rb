@@ -306,19 +306,19 @@ def towerEvent()
         $PokemonGlobal.towervalues[:badges] += 1
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
-        when 82
+        when 82, 83
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Lorelei, "Lorelei")
-        when 84
+        when 84, 85
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Bruno, "Bruno")
-        when 86
+        when 86, 87
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Agatha, "Agatha")
-        when 88
+        when 88, 89
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Lance, "Lance")
-        when 90
+        when 90, 91
             $PokemonGlobal.nextBattleBGM = "champion_blue"
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
@@ -372,15 +372,15 @@ def getFloorGraphic(event)
         return ["BW_brock", "BWLeaderMisty", "BW_surge", "BW_Erika", "BW_koga2", "BW_Sabrina", "BW_Blaine", "BW_giovanni", "BW_Whitney", "Kurt_overworld_by_Knuckles", "BW_Falkner", "BW_Clair", "BW_Morty", "BW_Pryce", "BW_Jasmine", "BW_Chuck"][$PokemonGlobal.towervalues[:badges]]
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
-        when 82
+        when 82, 83
             return "BW_Lorelei"
-        when 84
+        when 84, 85
             return "Bruno_OW"
-        when 86
+        when 86, 87
             return "Agatha_OW"
-        when 88
+        when 88, 89
             return "BW_Lance"
-        when 90
+        when 90, 91
             return "gary_oak_overworld_bw_completed_by_malice936-d5ruwuc"
         end
     end

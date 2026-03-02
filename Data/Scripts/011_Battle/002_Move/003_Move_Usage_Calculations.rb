@@ -73,11 +73,6 @@ class PokeBattle_Move
     tTypes = [target.tera] if target == tera
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
-    tTypes.each_with_index do |type, i|
-      typeMods[i] = :WATER if type == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
-      typeMods[i] = :FIRE if type == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
-      typeMods[i] = :ROCK if type == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
-    end
     if moveType == :SHADOW
       if target.shadowPokemon?
         typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
@@ -95,6 +90,9 @@ class PokeBattle_Move
         target.effects[PBEffects::MagnetRise] -= 1
       else
         tTypes.each_with_index do |type,i|
+          type = :WATER if type == :GRASS && target.hasActiveItem?(:WELLSPRINGMASK)
+          type = :FIRE if type == :GRASS && target.hasActiveItem?(:HEARTHFLAMEMASK)
+          type = :ROCK if type == :GRASS && target.hasActiveItem?(:CORNERSTONEMASK)
           typeMods[i] = pbCalcTypeModSingle(moveType,type,user,target)
         end
       end
