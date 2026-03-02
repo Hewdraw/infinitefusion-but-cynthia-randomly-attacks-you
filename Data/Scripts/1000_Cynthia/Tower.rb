@@ -248,6 +248,7 @@ def towerEvent()
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:eventvariable])
         end
+        $PokemonGlobal.towervalues[:eventvariable] = nil
     when "Gym"
         case $PokemonGlobal.towervalues[:badges]
         when 0

@@ -388,6 +388,7 @@ module GameData
           else
             offset -= 10
           end
+        end
         highestlevel = 0
         for mon in $Trainer.party
           if mon.level > highestlevel

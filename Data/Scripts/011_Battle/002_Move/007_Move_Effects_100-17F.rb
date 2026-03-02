@@ -3941,25 +3941,20 @@ end
 class PokeBattle_Move_237 < PokeBattle_Move_09F
   def pbEffectAgainstTarget(user,target)
     return if target.damageState.hpLost<=0
-    return if !user.item_id == :DOUSEDRIVE
+    return if !user.hasActiveItem?(:DOUSEDRIVE)
     hpGain = (target.damageState.hpLost/2.0).round
     user.pbRecoverHPFromDrain(hpGain,target)
   end
 
   def pbAdditionalEffect(user, target)
     return if target.damageState.substitute
-    case user.item_id
-    when :BURNDRIVE then
-      target.pbBurn(user) if target.pbCanBurn?(user, false, self)
-    when :CHILLDRIVE then
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
-    when :SHOCKDRIVE then
-      target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
-    end
+    target.pbBurn(user) if user.hasActiveItem?(:BURNDRIVE) && target.pbCanBurn?(user, false, self)
+    target.pbFreeze if user.hasActiveItem?(:CHILLDRIVE) && target.pbCanFreeze?(user, false, self)
+    target.pbParalyze(user) if user.hasActiveItem?(:SHOCKDRIVE) && target.pbCanParalyze?(user, false, self)
   end
 
   def pbEffectAfterAllHits(user, target)
-    if user.item_id == :DOUSEDRIVE && !user.effects[PBEffects::AquaRing]
+    if user.hasActiveItem?(:DOUSEDRIVE) && !user.effects[PBEffects::AquaRing]
       user.effects[PBEffects::AquaRing] = true
       @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
     end

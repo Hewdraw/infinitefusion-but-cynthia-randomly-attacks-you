@@ -510,7 +510,7 @@ def pbLegendaryBattle(species)
       mon.shiny = true
       mon.natural_shiny = true
     end
-    skip_mon = pbAssembleLegendary(mon, trainer.party, i)
+    skip_mon = pbAssembleLegendary(mon, trainer.party, i-1)
     if mon.phasetwo
     end
     party.unshift(mon)
