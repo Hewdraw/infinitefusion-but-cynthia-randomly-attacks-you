@@ -2,6 +2,13 @@ class PokemonGameOption_Scene < PokemonOption_Scene
   def pbGetOptions(inloadscreen = false)
     @current_game_mode = getTrainersDataMode
     options = []
+
+    options << EnumOption.new(_INTL("CPU Player"), [_INTL("Off"), _INTL("On")],
+                              proc { $PokemonSystem.aicontrolplayer },
+                              proc { |value| $PokemonSystem.aicontrolplayer = value },
+                              "Makes the CPU control the player in trainer battles."
+    )
+
     options << SliderOption.new(_INTL("Music Volume"), 0, 100, 5,
                                 proc { $PokemonSystem.bgmvolume },
                                 proc { |value|
@@ -177,12 +184,6 @@ class PokemonGameOption_Scene < PokemonOption_Scene
                               proc { |value| $PokemonSystem.battlestyle = value },
                               [_INTL("Prompts to switch Pokémon before the opponent sends out the next one"),
                                _INTL("No prompt to switch Pokémon before the opponent sends the next one")]
-    )
-
-    options << EnumOption.new(_INTL("CPU Player"), [_INTL("Off"), _INTL("On")],
-                              proc { $PokemonSystem.aicontrolplayer },
-                              proc { |value| $PokemonSystem.aicontrolplayer = value },
-                              "Makes the CPU control the player in trainer battles."
     )
 
     options << NumberOption.new(_INTL("Speech Frame"), 1, Settings::SPEECH_WINDOWSKINS.length,
