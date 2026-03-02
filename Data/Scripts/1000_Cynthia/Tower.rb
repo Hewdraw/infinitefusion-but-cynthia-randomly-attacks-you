@@ -548,9 +548,9 @@ def getTowerItems()
     ],
     [ #ultimate rare
       [:PYRITE, 1],
-      [:OMNIDRIVE],
-      [:MEGASHARD],
-      [:MODIFIEDBOOSTERENERGY],
+      [:OMNIDRIVE, 1],
+      [:MEGASHARD, 1],
+      [:MODIFIEDBOOSTERENERGY, 1],
     ],
   ]
 end
