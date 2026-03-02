@@ -1655,7 +1655,7 @@ class Pokemon
     @hiddenPowerType = nil
     @glitter = nil
     @tera = nil
-    @battlevariables = []
+    @battlevariables = {}
     @originalform = nil
     GameData::Stat.each_main do |s|
       @iv[s.id] = rand(IV_STAT_LIMIT + 1)

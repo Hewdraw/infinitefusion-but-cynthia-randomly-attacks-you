@@ -193,6 +193,7 @@ class PokeBattle_Move
     end
     # Disguise takes the damage
     return if target.damageState.disguise
+    target.pokemon.battlevariables[:ragefist] = 1 if !target.pokemon.battlevariables[:ragefist]
     target.pokemon.battlevariables[:ragefist] = [target.pokemon.battlevariables[:ragefist] + 1, 7].min
     # Target takes the damage
     if damage>=target.hp

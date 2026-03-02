@@ -99,7 +99,7 @@ def pbStartOver(gameover=false)
     resetTower
     pbFadeOutIn(99999) {
       Kernel.pbCancelVehicles
-      $game_temp.player_new_map_id = 123
+      $game_temp.player_new_map_id = 32
       $game_temp.player_new_x = 10
       $game_temp.player_new_y = 15
       $game_temp.player_new_direction = 2
