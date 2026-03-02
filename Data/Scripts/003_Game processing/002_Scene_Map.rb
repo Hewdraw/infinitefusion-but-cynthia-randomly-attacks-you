@@ -231,7 +231,9 @@ class Scene_Map
           $game_temp.menu_calling = true
           $game_temp.menu_beep = true
           dayOfWeek = getDayOfTheWeek().to_s
-          $scene.spriteset.addUserSprite(LocationWindow.new($game_map.name+ "\n"+ pbGetTimeNow.strftime(_INTL("%I:%M %p")) + "\n" + dayOfWeek))
+          mapname = $game_map.name
+          mapname += " Floor " + $PokemonGlobal.towervalues[:floor].to_s if mapname == "Tower" && !$PokemonGlobal.towervalues.nil?
+          $scene.spriteset.addUserSprite(LocationWindow.new(mapname + "\n"+ pbGetTimeNow.strftime(_INTL("%I:%M %p")) + "\n" + dayOfWeek))
         end
       elsif Input.trigger?(Input::SPECIAL)
         unless $game_system.menu_disabled || $game_player.moving?
