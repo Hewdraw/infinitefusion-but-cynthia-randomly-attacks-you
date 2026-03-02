@@ -28,9 +28,8 @@ def resetTower()
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore
-    pbMapInterpreter.pbSetSelfSwitch(1, "A", false, 101)
-    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 101)
-    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 123)
+    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 21)
+    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)
 end
 
 def getTowerPokemon(filter=nil)
