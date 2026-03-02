@@ -1394,6 +1394,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:MEW] => [[:PSYCHIC]],
     [:MISMAGIUS, :FLUTTERMANE, :DELPHOX] => [[:MYSTICALFIRE]],
     [:MOLTRES, :GMOLTRES] => [[:FIERYWRATH]],
+    [:PORYGON2, :PORYGONZ] => [[:CONVERSION3]]
     [:RAIKOU, :RAGINGBOLT] => [[:THUNDERCLAP]],
     [:REAPINGSHELL] => [[:TECHNOBLAST, :HYDROBURST]],
     [:REGICE, :ARTICUNO, :GARTICUNO] => [[:ICEBEAM]],
