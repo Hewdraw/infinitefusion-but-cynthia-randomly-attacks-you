@@ -349,8 +349,8 @@ ItemHandlers::UseInBattle.add(:SACREDASH,proc { |item,battler,battle|
     next if !pkmn || !pkmn.fainted?
     pkmn.heal_HP
     pkmn.heal_status
-    scene.pbRefresh
-    scene.pbDisplay(_INTL("{1}'s HP was restored.", pkmn.name))
+    battle.scene.pbRefresh
+    battle.pbDisplay(_INTL("{1}'s HP was restored.", pkmn.name))
   end
 })
 

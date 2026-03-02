@@ -141,6 +141,7 @@ def towerIncreaseFloor(nextfloor)
           next if i[0] > pkmn.level || i[0] <= oldlevel
           pbLearnMove(pkmn, i[1], true)
         end
+        pkmn.hp += 1 if pkmn.hp < pkmn.totalhp
         newspecies = pkmn.check_evolution_on_level_up
         if newspecies
           pbFadeOutInWithMusic {
