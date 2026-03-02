@@ -49,7 +49,7 @@ class PokeBattle_RealBattlePeer
   end
 
   def pbCurrentBox
-    return $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
+    return $PokemonGlobal.towervalues[:storage].currentBox if !$PokemonGlobal.towervalues.nil?
     return $PokemonStorage.currentBox
   end
 
