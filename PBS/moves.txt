@@ -923,7 +923,7 @@
 953,SPLASHKICK,Splash Kick,047,80,WATER,Special,70,25,0,NearOther,0,abef,"Kicks the enemy whilst flipping forward."
 954,CROSSFIRE,Cross Fire,000,65,FIRE,Physical,100,10,0,NearOther,0,abefh,"Gathers power and then either bites foe or slashes them with claws."
 955,CLAWUPPERCUT,Claw Uppercut,11C,70,FIGHTING,Physical,100,15,0,NearOther,0,abef,"Uppercuts the enemy with its claws."
-956,WILDFIREUPPERCUT,Wildfire Uppercut,00A,70,FIRE,Physical,90,15,10,NearOther,0,abef,"A flaming uppercut with its claws."
+956,WILDFIREUPPERCUT,Wildfire Uppercut,00A,70,DRAGON,Physical,90,15,10,NearOther,0,abef,"A flaming uppercut with its claws."
 957,FINALCLAW,Final Claw,125,120,DRAGON,Physical,90,5,0,NearOther,0,abef,"Jumps and slashes a falling enemy with the claws of both hands."
 958,GREATHORNSATTACK,Great Horns Attack,01D,75,DRAGON,Physical,100,10,100,NearOther,0,abef,"Impales the opponent on its horns."
 959,FIREWALL,Fire Wall,0CF,40,FIRE,Special,100,15,0,NearOther,0,bef,"Spews out an encroaching wall of flames."

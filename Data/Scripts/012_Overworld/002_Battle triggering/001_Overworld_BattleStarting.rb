@@ -807,7 +807,7 @@ def pbTrainerBattle(trainerID, trainerName, endSpeech=nil,
     decision = pbTrainerBattleCore($PokemonTemp.waitingTrainer[0],
        [trainerID,trainerName,trainerPartyID,endSpeech]
     )
-  elsif $PokemonGlobal.towervalues.nil?
+  elsif !$PokemonGlobal.towervalues.nil?
     decision = pbTrainerBattleCore([trainerID,trainerName,trainerPartyID,endSpeech,name_override,trainer_type_overide])
   else
     if $PokemonGlobal.cynthiadoubleschance == nil

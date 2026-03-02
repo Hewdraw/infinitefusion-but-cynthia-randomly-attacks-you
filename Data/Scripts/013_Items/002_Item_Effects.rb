@@ -931,9 +931,7 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.add(:LEGENDARYCANDY, proc { |item, pkmn, scene|
   $PokemonGlobal.cynthiachance += 1 if $PokemonGlobal.towervalues.nil?
   if !(can_use_rare_candy(pkmn))
-    levelcap = Settings::LEVEL_CAPS[$Trainer.badge_count]
-    levelcap *= Settings::HARD_MODE_LEVEL_MODIFIER if pbCynthiaGetBadgeCount >= 8
-    if pkmn.level > levelcap + 1
+    if pkmn.level > getCurrentLevelCap()
       pbChangeLevel(pkmn, pkmn.level - 1, scene)
       scene.pbHardRefresh
       next false

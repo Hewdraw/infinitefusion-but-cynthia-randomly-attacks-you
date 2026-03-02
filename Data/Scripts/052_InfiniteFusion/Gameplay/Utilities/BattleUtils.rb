@@ -47,7 +47,7 @@ def getCurrentLevelCap()
 end
 
 def pokemonExceedsLevelCap(pokemon)
-  return pokemon.level >= $PokemonGlobal.towervalues[:floor] + 4 if !$PokemonGlobal.towervalues.nil?
+  return pokemon.level >= 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max if !$PokemonGlobal.towervalues.nil?
   return false if $Trainer.badge_count >= Settings::NB_BADGES
   current_max_level = getCurrentLevelCap()
   return pokemon.level >= current_max_level
