@@ -193,6 +193,7 @@ class MoveRelearnerScreen
     if moves == nil
       moves = pbGetRelearnableMoves(pkmn)
     end
+    return false if moves == []
     @scene.pbStartScene(pkmn, moves)
     loop do
       move = @scene.pbChooseMove
