@@ -3839,16 +3839,10 @@ end
 
 class PokeBattle_Move_231 < PokeBattle_Move
   def pbBaseType(user)
-    ret = :GRASS
-    case user.item_id
-    when :WELLSPRINGMASK
-      ret = :WATER if GameData::Type.exists?(:WATER)
-    when :HEARTHFLAMEMASK
-      ret = :FIRE if GameData::Type.exists?(:FIRE)
-    when :CORNERSTONEMASK
-      ret = :ROCK if GameData::Type.exists?(:ROCK)
-    end
-    return ret
+    return :WATER if user.hasActiveItem?(:WELLSPRINGMASK)
+    return :FIRE if user.hasActiveItem?(:HEARTHFLAMEMASK)
+    return :ROCK if user.hasActiveItem?(:CORNERSTONEMASK)
+    return super
   end
 end
 

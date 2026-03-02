@@ -381,6 +381,7 @@ module GameData
         shininess = pkmn_data[:shininess] || rand(shinychance) == 0
         offset += 2 if shininess
         offset += 3 if shininess && !(GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM))
+        offset -= 10 if !$PokemonGlobal.towervalues.nil? && $PokemonGlobal.towervalues[:activeevent] == "Legendary"
         highestlevel = 0
         for mon in $Trainer.party
           if mon.level > highestlevel

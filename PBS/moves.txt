@@ -952,7 +952,7 @@
 982,CLAWATTACK,Claw Attack,043,50,NORMAL,Physical,100,35,20,NearOther,0,abef,"Attacks with its claws."
 983,LITTLEHORN,Little Horn,00F,40,DRAGON,Physical,100,20,20,NearOther,0,abe,"Attacks using a horn with the power of flames."
 984,BLUEBLASTER,Blue Blaster,044,50,ICE,Special,100,15,100,NearOther,0,abef,"Releases a stream of blue ice-like flames from its mouth. "
-985,HIDDENPUNCH,Hidden Punch,115,100,DRAGON,Physical,100,20,0,NearOther,0,abefh,"Rapidly punches at the enemy."
+985,HIDDENPUNCH,Hidden Punch,115,100,DRAGON,Physical,100,20,0,NearOther,-3,abefh,"Rapidly punches at the enemy."
 986,BEASTATTACK,Beast Attack,043,80,DRAGON,Physical,80,10,100,NearOther,0,abef,"Attacks with a swift blow of a powerful beast."
 987,PETITFIREHOOK,Petit Fire Hook,00C,60,FIRE,Physical,100,15,20,NearOther,0,abef,"Places a Petit Fire in its hand to punch the opponent with."
 988,BLUECYCLONE,Blue Cyclone,0CF,40,ICE,Special,100,15,0,NearOther,0,bef,"Spins around while spitting out blue fire from its mouth."

@@ -37,7 +37,7 @@ def getTowerPokemon(filter=nil)
     GameData::Species.each do |data|
         next if data.get_previous_species != data.species
         next if data.id_number > NB_POKEMON
-        next if [:MINIOR_C, :MELOETTA_P, :U_NECROZMA].include?(data.species)
+        next if [:MINIOR_C, :MELOETTA_P, :U_NECROZMA, :CASTFORM_SUNNY, :CASTFORM_RAINY, :CASTFORMSNOWY].include?(data.species)
         next if [:ORICORIO_1, :ORICORIO_2, :ORICORIO_3, :ORICORIO_4].include?(data.species) && rand(4) != 0 #randomly enable oricorio form, averages out
         next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :RECICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE].include?(data.species)
         next if data.base_stats.values.sum > 350 + ($PokemonGlobal.towervalues[:floor]*5)
@@ -185,6 +185,7 @@ def getTowerEventsList()
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
     end
     eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] % 10 == 8
+    eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] == 1
     return eventlist
 end
 
@@ -534,13 +535,12 @@ def getTowerItems()
     [ #secret rare
       [:SACREDASH, 1],
       [:BUNDLEOFBALLOONS, 1],
-      [:TOTEMOFUNDYING, 1],
-      [:ENDCRYSTAL, 1],
-      [:MINECRAFTBALL, 1],
+      #[:TOTEMOFUNDYING, 1],
+      #[:ENDCRYSTAL, 1],
       [:ELYTRA, 1],
-      [:ENDERPEARL, 1],
+      #[:ENDERPEARL, 1],
       [:DIAMONDCHESTPLATE, 1],
-      [:GOLDENAPPLE, 1],
+      #[:GOLDENAPPLE, 1],
       [:ENCHANTINGTABLE, 1],
       [:WELLSPRINGMASK, 1],
       [:HEARTHFLAMEMASK, 1],
