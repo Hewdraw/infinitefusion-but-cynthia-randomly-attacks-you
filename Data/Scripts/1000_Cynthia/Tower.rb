@@ -15,7 +15,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :eventvariable => nil,
-        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
     }
     pbAddPokemon(getTowerPokemon("Starter"), 5)
     pbAddPokemon(getTowerPokemon(), 5)
@@ -221,6 +221,22 @@ def towerEvent()
             end
         end
     when "Legendary"
+        case $PokemonGlobal.towervalues[:eventvariable]
+        when "Articuno", "Mew", "Moltres", "Zapdos"
+            $PokemonGlobal.nextBattleBGM = "Legendary Birds"
+        when "Diancie"
+            $PokemonGlobal.nextBattleBGM = "VSDiancie"
+        when "Entei", "Suikou"
+            $PokemonGlobal.nextBattleBGM = "VSBeasts"
+        when "Genesect"
+            $PokemonGlobal.nextBattleBGM = "VSMiguel"
+        when "Latias"
+            $PokemonGlobal.nextBattleBGM = "VSLati"
+        when "Meloetta"
+            $PokemonGlobal.nextBattleBGM = "VSMeloetta"
+        when "Reshirom"
+            $PokemonGlobal.nextBattleBGM = "VSReshiramZekrom"
+        end
         if $PokemonGlobal.towervalues[:eventvariable] == "Genesect"
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
             pbAddPokemon(:GENESECT, 5)
@@ -314,6 +330,8 @@ def getFloorGraphic(event)
             return "fossil_nerd"
         when "Latias"
             return "LATIAS"
+        when "Meloetta"
+            return "melostand"
         when nil, "Mew"
             return "151"
         when "Moltres"
