@@ -788,7 +788,7 @@
 713,BOTTLECAP,Bottle Cap,Bottle Caps,2,0,"Maximizes an IV for a Pokemon. Don't question how it does it.",1,0,0
 714,GOLDENBOTTLECAP,Golden Bottle Cap,Golden Bottle Caps,2,0,"Maximizes all IVs for a Pokemon. Don't question how it does it.",1,0,0
 715,FRESHSTARTMOCHI,Fresh-Start Mochi,Fresh-Start Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It causes a Pokémon to lose all its base points.",1,0,0
-716,ABILITYPATCH,Ability Patch,Ability Patches,2,0,"A patch that can be used to change the regular Ability of a Pokémon to a rarer Ability.",1,0,0
+716,ABILITYPATCH,Ability Patch,Ability Patches,1,0,"A patch that can be used to change the regular Ability of a Pokémon to a rarer Ability.",1,0,0
 717,HEALTHMOCHI,Health Mochi,Health Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's HP stat.",1,0,0
 718,MUSCLEMOCHI,Muscle Mochi,Muscle Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Attack stat.",1,0,0
 719,RESISTMOCHI,Resist Mochi,Resist Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Defense stat.",1,0,0

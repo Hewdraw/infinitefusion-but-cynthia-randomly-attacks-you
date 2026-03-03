@@ -2935,54 +2935,6 @@ class PokeBattle_Move_196 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_196 < PokeBattle_TwoTurnMove
-  def pbIsChargingTurn?(user)
-    # NOTE: Sky Drop doesn't benefit from Power Herb, probably because it works
-    #       differently (i.e. immobilises the target during use too).
-    @powerHerb = false
-    @chargingTurn = (user.effects[PBEffects::TwoTurnAttack].nil?)
-    @damagingTurn = (!user.effects[PBEffects::TwoTurnAttack].nil?)
-    return !@damagingTurn
-  end
-
-  def pbFailsAgainstTarget?(user,target)
-    if !target.opposes?(user)
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    if target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0 && !ignoresSubstitute?(user)
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    if target.semiInvulnerable? ||
-       (target.effects[PBEffects::SkyDrop]>=0 && @chargingTurn)
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    if target.effects[PBEffects::SkyDrop]!=user.index && @damagingTurn
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbChargingTurnMessage(user,targets)
-    @battle.pbDisplay(_INTL("{1} took {2} under the ground!",user.pbThis,targets[0].pbThis(true)))
-  end
-
-  def pbAttackingTurnMessage(user,targets)
-    @battle.pbDisplay(_INTL("{1} was freed from the TOMBSTONER!",targets[0].pbThis))
-  end
-
-  def pbChargingTurnEffect(user,target)
-    target.effects[PBEffects::SkyDrop] = user.index
-  end
-
-  def pbAttackingTurnEffect(user,target)
-    target.effects[PBEffects::SkyDrop] = -1
-  end
-end
-
 class PokeBattle_Move_197 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     faintedlist = []
@@ -3386,128 +3338,6 @@ class PokeBattle_Move_214 < PokeBattle_Move_207
 end
 
 class PokeBattle_Move_215 < PokeBattle_Move
-  def callsAnotherMove?; return true; end
-
-  def initialize(battle,move)
-    super
-    @moveBlacklist = [
-       "011",   # Snore
-       "11D",   # After You
-       "11E",   # Quash
-       "16C",   # Instruct
-       # Struggle, Chatter, Belch
-       "002",   # Struggle
-       "014",   # Chatter
-       "158",   # Belch
-       # Moves that affect the moveset
-       "05C",   # Mimic
-       "05D",   # Sketch
-       "069",   # Transform
-       # Counter moves
-       "071",   # Counter
-       "072",   # Mirror Coat
-       "073",   # Metal Burst                         # Not listed on Bulbapedia
-       # Helping Hand, Feint (always blacklisted together, don't know why)
-       "09C",   # Helping Hand
-       "0AD",   # Feint
-       # Protection moves
-       "0AA",   # Detect, Protect
-       "0AB",   # Quick Guard
-       "0AC",   # Wide Guard
-       "0E8",   # Endure
-       "149",   # Mat Block
-       "14A",   # Crafty Shield
-       "14B",   # King's Shield
-       "14C",   # Spiky Shield
-       "168",   # Baneful Bunker
-       # Moves that call other moves
-       "0AE",   # Mirror Move
-       "0AF",   # Copycat
-       "0B0",   # Me First
-       "0B3",   # Nature Power
-       "0B4",   # Sleep Talk
-       "0B5",   # Assist
-       # Move-redirecting and stealing moves
-       "0B1",   # Magic Coat                          # Not listed on Bulbapedia
-       "0B2",   # Snatch
-       "117",   # Follow Me, Rage Powder
-       "16A",   # Spotlight
-       # Set up effects that trigger upon KO
-       "0E6",   # Grudge                              # Not listed on Bulbapedia
-       "0E7",   # Destiny Bond
-       # Held item-moving moves
-       "0F1",   # Covet, Thief
-       "0F2",   # Switcheroo, Trick
-       "0F3",   # Bestow
-       # Moves that start focussing at the start of the round
-       "115",   # Focus Punch
-       "171",   # Shell Trap
-       "172",   # Beak Blast
-       # Event moves that do nothing
-       "133",   # Hold Hands
-       "134",    # Celebrate
-       "0C2",
-       "0C3",
-       "0C4",
-       "0C5",
-       "0C6",
-       "0C7",
-       "0C8",
-       "0C9",
-       "0CA",
-       "0CB",
-       "0CC",
-       "0CD",
-       "0CE",
-       "0D1",
-       "0D2",
-       "0D3",
-       "0D4",
-       "190",
-       "194",
-       "205",
-       "309"
-    ]
-    @moveBlacklistSignatures = [
-       :FAKEMOVE          #not a real move
-    ]
-  end
-
-  def pbMoveFailed?(user,targets)
-    @metronomeMove = nil
-    @metronomeMove2 = nil
-    move_keys = GameData::Move::DATA.keys
-    # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
-    #       a row. This is too unlikely to care about, though.
-    1000.times do
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
-      move_data = GameData::Move.get(move_id)
-      next if @moveBlacklist.include?(move_data.function_code)
-      next if @moveBlacklistSignatures.include?(move_data.id)
-      next if move_data.type == :SHADOW
-      if @metronomeMove
-        @metronomeMove2 = move_data.id
-        break
-      end
-      @metronomeMove = move_data.id
-    end
-    if !@metronomeMove
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
-      move_data = GameData::Move.get(move_id)
-      @metronomeMove = move_data.id
-    end
-    if !@metronomeMove2
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
-      move_data = GameData::Move.get(move_id)
-      @metronomeMove = move_data.id
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    user.pbUseMoveSimple(@metronomeMove)
-    user.pbUseMoveSimple(@metronomeMove2)
-  end
 end
 
 class PokeBattle_Move_216 < PokeBattle_Move
@@ -3672,6 +3502,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
        "190",
        "194",
        "205",
+       "270",
        "309"
     ]
     @moveBlacklistSignatures = [
@@ -3679,55 +3510,25 @@ class PokeBattle_Move_223 < PokeBattle_Move
     ]
   end
 
-  def pbMoveFailed?(user,targets)
-    @metronomeMove = nil
-    @metronomeMove2 = nil
-    @metronomeMove3 = nil
+  def pbEffectGeneral(user)
+    metronomeMoveList = []
+    metronomecount = 1
+    metronomecount = 2 if @id == :GREATERMETRONOME
+    metronomecount = 3 if @id == :GREATESTMETRONOME
     move_keys = GameData::Move::DATA.keys
     # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
     #       a row. This is too unlikely to care about, though.
-    1000.times do
+    10000.times do
       move_id = move_keys[@battle.pbRandom(move_keys.length)]
       move_data = GameData::Move.get(move_id)
       next if @moveBlacklist.include?(move_data.function_code)
       next if @moveBlacklistSignatures.include?(move_data.id)
-      next if move_data.type == :SHADOW
-      if @metronomeMove2
-        @metronomeMove3 = move_data.id
-        break
-      end
-      if @metronomeMove
-        @metronomeMove2 = move_data.id
-        break
-      end
-      @metronomeMove = move_data.id
+      metronomeMoveList.push(move_id)
+      break if metronomeMoveList.length >= metronomecount
     end
-    if !@metronomeMove
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
-      move_data = GameData::Move.get(move_id)
-      @metronomeMove = move_data.id
+    metronomeMoveList.each do |move|
+      user.pbUseMoveSimple(move)
     end
-    if !@metronomeMove2
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
-      move_data = GameData::Move.get(move_id)
-      @metronomeMove2 = move_data.id
-    end
-    if !@metronomeMove3
-      move_id = move_keys[@battle.pbRandom(move_keys.length)]
-      move_data = GameData::Move.get(move_id)
-      @metronomeMove3 = move_data.id
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
-    if !$PokemonGlobal.metronomelog
-      $PokemonGlobal.metronomelog = []
-    end
-    $PokemonGlobal.metronomelog << [@metronomeMove, @metronomeMove2, @metronomeMove3]
-    user.pbUseMoveSimple(@metronomeMove)
-    user.pbUseMoveSimple(@metronomeMove2)
-    user.pbUseMoveSimple(@metronomeMove3)
   end
 end
 
