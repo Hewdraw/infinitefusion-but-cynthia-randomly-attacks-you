@@ -2404,14 +2404,7 @@ class PokeBattle_AI
     when "11B"
     #---------------------------------------------------------------------------
     when "11C"
-      if skill>=PBTrainerAI.mediumSkill
-        score += 20 if target.effects[PBEffects::MagnetRise]>0
-        score += 20 if target.effects[PBEffects::Telekinesis]>0
-        score += 20 if target.inTwoTurnAttack?("0C9","0CC")   # Fly, Bounce
-        score += 20 if target.pbHasType?(:FLYING)
-        score += 20 if target.hasActiveAbility?(:LEVITATE)
-        score += 20 if target.hasActiveItem?(:AIRBALLOON)
-      end
+      score = 0
     #---------------------------------------------------------------------------
     when "11D"
     #---------------------------------------------------------------------------
