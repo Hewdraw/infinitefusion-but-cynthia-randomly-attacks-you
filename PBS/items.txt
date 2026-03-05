@@ -895,6 +895,16 @@
 829,LEFTLEGOFTHEFORBIDDENONE,Left Leg of the Forbidden One,Left Legs of the Forbidden One,8,0,"A forbidden left leg sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
 830,RIGHTLEGOFTHEFORBIDDENONE,Right Leg of the Forbidden One,Right Legs of the Forbidden One,8,0,"A forbidden right leg sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
 831,MMICROPHONE,M. Microphone,M. Microphpones,1,0,"Microphone",0,0,0
+832,UNLIMITEDLOOPLET,Unlimited Looplet,Unlimited Looplets,8,0,"Tower exclusive Looplet",0,0,0
+833,SILVERLOOPLET,Silver Looplet,Silver Looplets,8,0,"Silver Looplet",0,0,0
+834,GOLDLOOPLET,Gold Looplet,Gold Looplets,8,0,"Gold Looplet",0,0,0
+835,CRYSTALLOOPLET,Crystal Looplet,Crystal Looplets,8,0,"Crystal Looplet",0,0,0
+836,RUBYLOOPLET,Ruby Looplet,Ruby Looplets,8,0,"Ruby Looplet",0,0,0
+837,SAPHIRELOOPLET,Saphire Looplet,Saphire Looplets,8,0,"Saphire Looplet",0,0,0
+838,EMERALDLOOPLET,Emerald Looplet,Emerald Looplets,8,0,"Emerald Looplet",0,0,0
+839,DIAMONDLOOPLET,Diamond Looplet,Diamond Looplets,8,0,"Diamond Looplet",0,0,0
+840,PEARLLOOPLET,Pearl Looplet,Pearl Looplets,8,0,"Pearl Looplet",0,0,0
+841,PLATINUMLOOPLET,Platinum Looplet,Platinum Looplets,8,0,"Platinum Looplet",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

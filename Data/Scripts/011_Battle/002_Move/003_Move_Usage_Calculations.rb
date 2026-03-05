@@ -216,6 +216,7 @@ class PokeBattle_Move
     if c>=0 && user.itemActive?
       c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
     end
+    c += 1 if c >= 0 && user.hasActiveItem?(:REAPERCLOTH) && punchingMove?
     if c>=0 && target.itemActive?
       c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
     end

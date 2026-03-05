@@ -106,6 +106,7 @@ class PokemonPauseMenu
     cmdPokedex = -1
     cmdPokemon = -1
     cmdBag = -1
+    cmdLooplet = -1
     cmdTrainer = -1
     cmdSave = -1
     cmdOption = -1
@@ -118,6 +119,7 @@ class PokemonPauseMenu
     end
     commands[cmdPokemon = commands.length] = _INTL("Pokémon") if $Trainer.party_count > 0
     commands[cmdBag = commands.length] = _INTL("Bag") if !pbInBugContest?
+    commands[cmdLooplet = commands.length] = _INTL("Looplet") if getLooplet != nil
     commands[cmdPokegear = commands.length] = _INTL("Pokégear") if $Trainer.has_pokegear
     commands[cmdTrainer = commands.length] = $Trainer.name
     commands[cmdOutfit = commands.length] = _INTL("Outfit") if $Trainer.can_change_outfit
@@ -202,6 +204,14 @@ class PokemonPauseMenu
           pbUseKeyItemInField(item)
           return
         end
+      elsif cmdLooplet >= 0 && command == cmdLooplet
+        pbPlayDecisionSE
+        pbFadeOutIn {
+          scene = PokemonLooplet_Scene.new
+          screen = PokemonLoopletScreen.new(scene, PokemonLooplet.new)
+          screen.pbStartScreen
+          @scene.pbRefresh
+        }
       elsif cmdPokegear >= 0 && command == cmdPokegear
         pbPlayDecisionSE
         pbFadeOutIn {

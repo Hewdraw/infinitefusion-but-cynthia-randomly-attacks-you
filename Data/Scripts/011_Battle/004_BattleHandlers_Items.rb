@@ -492,6 +492,12 @@ BattleHandlers::DamageCalcUserItem.add(:ENCHANTINGTABLE,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:REAPERCLOTH,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.punchingMove? && (user.isFusionOf?(:DUSKULL) || user.isFusionOf?(:DUSCLOPS) || user.isFusionOf?(:DUSKNOIR))
+  }
+)
+
 BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
   proc { |item,user,target,move,mults,baseDmg,type|
     if user.isFusionOf(:DIALGA) && (type == :DRAGON || type == :STEEL)

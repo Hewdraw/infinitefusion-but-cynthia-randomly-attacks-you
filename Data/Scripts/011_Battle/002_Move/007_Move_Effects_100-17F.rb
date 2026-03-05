@@ -2689,13 +2689,17 @@ end
 
 class PokeBattle_Move_183 < PokeBattle_Move
   def pbEffectGeneral(user)
-    $PokemonGlobal.nextBattleBack = "Lava"
-    $PokemonGlobal.nextBattleBGM = nil
     if $PokemonGlobal.battledepth == nil
       $PokemonGlobal.battledepth = 0
     end
     $PokemonGlobal.battledepth += 1
-    pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+    $PokemonGlobal.nextBattleBack = "Lava"
+    $PokemonGlobal.nextBattleBGM = nil
+    if !user.pbOwnedByPlayer?
+      pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+    else
+      pbWildBattle(:SKELETON, user.level, 1, false)
+    end
     $PokemonGlobal.battlehplist.each do |b|
       b[0].hp = b[1]
     end

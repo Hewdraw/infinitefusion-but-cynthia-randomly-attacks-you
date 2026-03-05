@@ -6,6 +6,7 @@ def setupTower()
         :floor => 1,
         :badges => 0,
         :storage => PokemonStorage.new,
+        :looplet => PokemonLooplet.new,
         :cynthiachance => 0,
         :maxcynthiachance => 10,
         :hatsunemikuchance => -10000,
@@ -24,6 +25,8 @@ def setupTower()
     $PokemonBag.pbStoreItem(:INFINITESPLICERS)
     $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
     $PokemonBag.pbStoreItem(:SHINYCHARM)
+    $PokemonBag.pbStoreItem(:UNLIMITEDLOOPLET)
+    getLooplet.pbStoreEmera(:EMERA)
 end
 
 def resetTower()

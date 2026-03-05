@@ -97,6 +97,10 @@ BallHandlers::IsUnconditional.add(:MASTERBALL,proc { |ball,battle,battler|
   next true
 })
 
+BallHandlers::IsUnconditional.add(:SAFARIBALL,proc { |ball,battle,battler|
+  next true
+})
+
 #===============================================================================
 # ModifyCatchRate
 # NOTE: This code is not called if the battler is an Ultra Beast (except if the
@@ -109,10 +113,6 @@ BallHandlers::ModifyCatchRate.add(:GREATBALL,proc { |ball,catchRate,battle,battl
 
 BallHandlers::ModifyCatchRate.add(:ULTRABALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   next catchRate*2
-})
-
-BallHandlers::ModifyCatchRate.add(:SAFARIBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
-  next catchRate*1.5
 })
 
 BallHandlers::ModifyCatchRate.add(:NETBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
