@@ -103,8 +103,8 @@ def generateNextFloor()
 end
 
 def getTowerEvents()
-    return [nil, "Elitefour", nil] if [82,84,86,88,90].include?($PokemonGlobal.towervalues[:floor])
-    return [nil, "Gym", nil] if $PokemonGlobal.towervalues[:floor] % 10 == 9
+    return [nil, "Elitefour", nil] if [81,83,85,87,89].include?($PokemonGlobal.towervalues[:floor])
+    return [nil, "Gym", nil] if $PokemonGlobal.towervalues[:floor] % 10 == 9 && ![89].include?($PokemonGlobal.towervalues[:floor])
 
     nextfloorevents = []
     for _ in 1..3
@@ -310,19 +310,19 @@ def towerEvent()
         $PokemonGlobal.towervalues[:badges] += 1
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
-        when 82, 83
+        when 81, 82
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Lorelei, "Lorelei")
-        when 84, 85
+        when 83, 84
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Bruno, "Bruno")
-        when 86, 87
+        when 85, 86
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:ELITEFOUR_Agatha, "Agatha")
-        when 88, 89
+        when 87, 88
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
-            return if !pbTrainerBattle(:ELITEFOUR_Lance, "Lance")
-        when 90, 91
+            return if !pbTrainerBattle(:ELITEFOUR_Lance, "Lance", nil, false, 2)
+        when 89, 90
             $PokemonGlobal.nextBattleBGM = "champion_blue"
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
@@ -376,15 +376,15 @@ def getFloorGraphic(event)
         return ["BW_brock", "BWLeaderMisty", "BW_surge", "BW_Erika", "BW_koga2", "BW_Sabrina", "BW_Blaine", "BW_giovanni", "BW_Whitney", "Kurt_overworld_by_Knuckles", "BW_Falkner", "BW_Clair", "BW_Morty", "BW_Pryce", "BW_Jasmine", "BW_Chuck"][$PokemonGlobal.towervalues[:badges]]
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
-        when 82, 83
+        when 81, 82
             return "BW_Lorelei"
-        when 84, 85
+        when 83, 84
             return "Bruno_OW"
-        when 86, 87
+        when 85, 86
             return "Agatha_OW"
-        when 88, 89
+        when 87, 88
             return "BW_Lance"
-        when 90, 91
+        when 89, 90
             return "gary_oak_overworld_bw_completed_by_malice936-d5ruwuc"
         end
     end
