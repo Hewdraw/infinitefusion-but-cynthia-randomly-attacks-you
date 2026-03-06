@@ -205,6 +205,7 @@ def towerEvent()
         enderChest()
     when "Shop"
         Undertale()
+        return if $PokemonGlobal.towervalues.nil?
     when "Heal"
         $Trainer.party.each do |pkmn|
             pkmn.heal
