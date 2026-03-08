@@ -1056,6 +1056,7 @@
 1087,PSYSHIELDBASH,Psyshield Bash,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
 1088,SHELTER,Shelter,000,80,WATER,Physical,100,10,100,NearOther,0,abef,"todo"
 1089,KOWTOWCLEAVEPLUS,Kowtow Cleave+,335,110,DARK,Physical,0,10,0,NearOther,0,abefh,"Nice Smeargle/Ditto, jackass."
+1090,FOCUSBLASTPLUS,Focus Blast,046,110,FIGHTING,Special,100,5,10,NearOther,0,befn,"The user heightens its mental focus and unleashes its power. It may also lower the target's Sp. Def."
 
 
 

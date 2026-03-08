@@ -22981,6 +22981,206 @@ BaseStats = 83,110,96,91,86,85
 Abilities = LEVITATE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000867]
+Name = Poliampa
+InternalName = DRAMPAPOLITOED
+Type1 = WATER
+Type2 = DRAGON
+BaseStats = 86,65,81,47,105,97
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000868]
+Name = Lapdigon
+InternalName = DRUDDIGONLAPRAS
+Type1 = WATER
+Type2 = DRAGON
+BaseStats = 112,108,86,52,76,93
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000869]
+Name = Salaria
+InternalName = MEGAB443H336
+Type1 = DRAGON
+Type2 = FAIRY
+BaseStats = 88,121,116,93,116,95
+Abilities = PIXAERILATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000870]
+Name = Sablgiraf
+InternalName = FARIGIRAFSABLEYE
+Type1 = DARK
+Type2 = PSYCHIC
+BaseStats = 73,85,71,56,80,66
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000871]
+Name = Sablnette
+InternalName = MEGAB357H421
+Type1 = DARK
+Type2 = GHOST
+BaseStats = 54,138,91,56,87,104
+Abilities = PRANKINGMIRROR
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000872]
+Name = Duscmane
+InternalName = FLUTTERMANEDUSCLOPS
+Type1 = GHOST
+Type2 = FAIRY
+BaseStats = 45,60,80,98,85,131
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000873]
+Name = Ho-Tor
+InternalName = AEXEGGUTORHOOH
+Type1 = FIRE
+Type2 = DRAGON
+BaseStats = 102,113,86,60,115,127
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000874]
+Name = Marobull
+InternalName = GRANBULLAMAROWAK
+Type1 = FIRE
+Type2 = FAIRY
+BaseStats = 70,106,86,45,53,73
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000875]
+Name = Abomalass
+InternalName = FROSSLASSABOMASNOW
+Type1 = GRASS
+Type2 = GHOST
+BaseStats = 83,84,71,93,88,80
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000876]
+Name = Walsler
+InternalName = SNEASLERWALREIN
+Type1 = ICE
+Type2 = POISON
+BaseStats = 100,113,70,101,76,86
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000877]
+Name = Clodster
+InternalName = CLOYSTERCLODSIRE
+Type1 = POISON
+Type2 = ICE
+BaseStats = 103,88,140,53,58,81
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000878]
+Name = Weavtusk
+InternalName = WEAVILEGREATTUSK
+Type1 = DARK
+Type2 = FIGHTING
+BaseStats = 85,127,109,99,47,74
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000879]
+Name = Jyncruel
+InternalName = TOEDSCRUELJYNX
+Type1 = ICE
+Type2 = GRASS
+BaseStats = 70,63,55,98,103,103
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000880]
+Name = Artigiraf
+InternalName = FARIGIRAFARTICUNO
+Type1 = ICE
+Type2 = PSYCHIC
+BaseStats = 100,88,80,68,100,106
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000881]
+Name = Artigiraf
+InternalName = FARIGIRAFARTICUNOICE
+Type1 = ICE
+BaseStats = 100,88,80,68,100,106
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000882]
+Name = Mawlix
+InternalName = MEGAB208H300
+Type1 = STEEL
+Type2 = GROUND
+BaseStats = 58,118,195,36,55,95
+Abilities = POWERFULSANDS
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000883]
+Name = Celestedash
+InternalName = GRAPIDASHCELESTEELA
+Type1 = STEEL
+Type2 = FAIRY
+BaseStats = 86,100,81,90,98,94
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000884]
+Name = Cortress
+InternalName = FORRETRESSGCORSOLA
+Type1 = GHOST
+Type2 = STEEL
+BaseStats = 65,78,126,36,63,86
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000885]
+Name = Rapicadrill
+InternalName = EXCADRILLRAPIDASH
+Type1 = FIRE
+Type2 = STEEL
+BaseStats = 80,123,63,93,70,75
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000886]
+Name = Magnebro
+InternalName = GSLOWBROMAGNEZONE
+Type1 = STEEL
+Type2 = PSYCHIC
+BaseStats = 78,90,101,40,120,83
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+
 
 #Legendary Raids
 #-------------------------------

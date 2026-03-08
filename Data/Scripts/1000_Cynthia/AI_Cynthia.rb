@@ -462,12 +462,12 @@ class PokeBattle_AI
     end
     score *= [pbRoughAccuracy(move,user,target,100), 100].min / 100.0 if !user.hasActiveAbility?(:NOGUARD) && !target.hasActiveAbility?(:NOGUARD)
     if move.statusMove?
-      return 0 if user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK) && user.opposes?(target)
+      return 0 if user.hasActiveAbility?([:PRANKSTER, :PRANKINGMIRROR]) && target.pbHasType?(:DARK) && user.opposes?(target)
       user.eachOpposing do |opponent| #todo
-        return 1 if user.hasActiveAbility?(:PRANKSTER) && opponent.pbHasType?(:DARK) && [:METRONOME, :GREATERMETRONOME, :GREATESTMETRONOME].include?(move.id)
+        return 1 if user.hasActiveAbility?([:PRANKSTER, :PRANKINGMIRROR]) && opponent.pbHasType?(:DARK) && [:METRONOME, :GREATERMETRONOME, :GREATESTMETRONOME].include?(move.id)
       end
     end
-    return 0 if target.hasActiveAbility?(:MAGICBOUNCE) && user.opposes?(target) && move.canMagicCoat? && !user.hasMoldBreaker?
+    return 0 if target.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE, :PRANKINGMIRROR]) && user.opposes?(target) && move.canMagicCoat? && !user.hasMoldBreaker?
     return 0 if move.powderMove? && (target.pbHasType?(:GRASS) || target.hasActiveAbility?(:OVERCOAT) || target.hasActiveItem?(:SAFETYGOGGLES)) && target != user
     if move.chargingTurnMove? || move.function=="0C2"   # Hyper Beam
       if !user.hasActiveItem?(:POWERHERB)

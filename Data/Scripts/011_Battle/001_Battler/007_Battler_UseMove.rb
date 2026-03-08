@@ -421,7 +421,7 @@ class PokeBattle_Battler
             magicCoater = b.index
             b.effects[PBEffects::MagicCoat] = false
             break
-          elsif b.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE]) && !@battle.moldBreaker &&
+          elsif b.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE, :PRANKINGMIRROR]) && !@battle.moldBreaker &&
             !b.effects[PBEffects::MagicBounce]
             magicBouncer = b.index
             b.effects[PBEffects::MagicBounce] = true
@@ -669,6 +669,14 @@ class PokeBattle_Battler
     return false if user.fainted?
     # For two-turn attacks being used in a single turn
     move.pbInitialEffect(user, targets, hitNum)
+    if user.hasActiveAbility?(:PIXAERILATE) && move.calcType == :FAIRY
+      targets.each do |target|
+        if pbCalcTypeMod(:FLYING,user,target) > pbCalcTypeMod(:FAIRY,user,target)
+          move.calcType = :FLYING
+          break
+        end
+      end
+    end
     numTargets = 0 # Number of targets that are affected by this hit
     targets.each { |b| b.damageState.resetPerHit }
     # Count a hit for Parental Bond (if it applies)

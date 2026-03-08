@@ -26,7 +26,6 @@ def setupTower()
     $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
     $PokemonBag.pbStoreItem(:SHINYCHARM)
     $PokemonBag.pbStoreItem(:UNLIMITEDLOOPLET)
-    #grantRandomEmera
 end
 
 def resetTower()

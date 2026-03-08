@@ -131,7 +131,7 @@ class PokeBattle_AI
                      target.hasActiveAbility?(:WONDERGUARD)
       return true if move.damagingMove? && user.index!=target.index && !target.opposes?(user) &&
                      target.hasActiveAbility?(:TELEPATHY)
-      return true if move.canMagicCoat? && target.hasActiveAbility?(:MAGICBOUNCE) &&
+      return true if move.canMagicCoat? && target.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE, :PRANKINGMIRROR]) &&
                      target.opposes?(user)
       return true if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
       return true if move.bombMove? && target.hasActiveAbility?([:BULLETPROOF,:ENDER])
@@ -142,7 +142,7 @@ class PokeBattle_AI
       end
       return true if (target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0) && move.statusMove? &&
                      !move.ignoresSubstitute?(user) && user.index!=target.index
-      return true if user.hasActiveAbility?(:PRANKSTER) &&
+      return true if user.hasActiveAbility?([:PRANKSTER, :PRANKINGMIRROR]) &&
                      target.pbHasType?(:DARK) && target.opposes?(user)
       return true if move.priority>0 && @battle.field.terrain == :Psychic &&
                      target.affectedByTerrain? && target.opposes?(user)

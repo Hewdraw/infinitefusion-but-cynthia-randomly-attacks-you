@@ -905,6 +905,9 @@
 839,DIAMONDLOOPLET,Diamond Looplet,Diamond Looplets,8,0,"Diamond Looplet",0,0,0
 840,PEARLLOOPLET,Pearl Looplet,Pearl Looplets,8,0,"Pearl Looplet",0,0,0
 841,PLATINUMLOOPLET,Platinum Looplet,Platinum Looplets,8,0,"Platinum Looplet",0,0,0
+842,SALARIANITE,Salarianite,Salarianites,1,0,"todo",0,0,0
+843,SABLNETTITE,Sablnettite,Sablnettites,1,0,"todo",0,0,0
+844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"todo",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

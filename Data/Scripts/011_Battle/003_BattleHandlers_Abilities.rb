@@ -542,6 +542,8 @@ BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
   }
 )
 
+BattleHandlers::PriorityChangeAbility.copy(:PRANKSTER, :PRANKINGMIRROR)
+
 BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
   proc { |ability,battler,move,pri|
     next pri+3 if move.healingMove?
@@ -594,7 +596,7 @@ BattleHandlers::MoveBlockingAbility.add(:DAZZLING,
   }
 )
 
-BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY)
+BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY, :ARMORTAIL)
 
 #===============================================================================
 # MoveImmunityTargetAbility handlers
@@ -816,7 +818,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:PIXILATE,
   }
 )
 
-BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE)
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:PIXILATE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:PIXAERILATE)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:REFRIGERATE,
   proc { |ability,user,move,type|
@@ -962,6 +964,12 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
 
 BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID)
 
+BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.4 if move.powerBoost
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if (target.battle.choices[target.index][0]!=:UseMove &&
@@ -1052,7 +1060,7 @@ BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS, :POWERBOUNCE)
+BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS, :POWERBOUNCE, :POWERFULSANDS)
 
 BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1151,6 +1159,8 @@ BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:SANDFORCE, :POWERFULSANDS)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXELATEDSANDS,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -2742,7 +2752,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SANDSTREAM,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS, :POWEREDSANDS)
+BattleHandlers::AbilityOnSwitchIn.copy(:SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS, :POWEREDSANDS, :POWERFULSANDS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|

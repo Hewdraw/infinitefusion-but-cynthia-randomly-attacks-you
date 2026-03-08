@@ -1362,7 +1362,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
-    [pkmn.species] => [[:HIDDENPOWER, :TERABLAST]],
+    [pkmn.species] => [[:HIDDENPOWER, :TERABLAST], [:FOCUSBLAST]],
     [:ARTICUNO, :GARTICUNO] => [[:FREEZINGGLARE]],
     [:BISHARP] => [[:KOWTOWCLEAVE]],
     [:BLASTOISE] => [[:HYDROCANNON]],

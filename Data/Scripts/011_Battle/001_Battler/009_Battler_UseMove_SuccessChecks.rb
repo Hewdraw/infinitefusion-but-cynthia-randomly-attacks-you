@@ -408,7 +408,7 @@ class PokeBattle_Battler
         target.effects[PBEffects::MagicCoat] = false
         return false
       end
-      if target.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE]) && !@battle.moldBreaker &&
+      if target.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE, :PRANKINGMIRROR]) && !@battle.moldBreaker &&
          !target.effects[PBEffects::MagicBounce]
         target.damageState.magicBounce = true
         target.effects[PBEffects::MagicBounce] = true

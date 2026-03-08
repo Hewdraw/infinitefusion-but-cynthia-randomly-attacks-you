@@ -278,3 +278,7 @@
 276,VOCALIZE,Vocalize,"a"
 277,VOCALOID,Vocaloid,"a"
 278,KEYCHANGE,Key Change,"a"
+279,PIXAERILATE,Pixaerilate,"a"
+280,PRANKINGMIRROR,Pranking Mirror,"a"
+281,POWERFULSANDS,Powerful Sands,"a"
+282,ARMORTAIL,Armor Tail,"a"
