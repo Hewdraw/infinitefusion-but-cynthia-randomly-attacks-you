@@ -208,7 +208,7 @@ class PokemonPauseMenu
         pbPlayDecisionSE
         pbFadeOutIn {
           scene = PokemonLooplet_Scene.new
-          screen = PokemonLoopletScreen.new(scene, PokemonLooplet.new)
+          screen = PokemonLoopletScreen.new(scene, getLooplet)
           screen.pbStartScreen
           @scene.pbRefresh
         }

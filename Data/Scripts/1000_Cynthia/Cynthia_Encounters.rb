@@ -99,25 +99,26 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   end
 
   if encounter_type[1] == "Cynthia"
-    badges = []
-    badges.append((2..6).to_a) #0
-    badges.append((7..12).to_a) #1
-    badges.append((13..18).to_a) #2
-    badges.append((19..23).to_a) #3
-    badges.append((24..28).to_a) #4
-    badges.append((29..33).to_a) #5
-    badges.append((34..38).to_a) #6
-    badges.append((39..43).to_a) #7
-    badges.append((44..48).to_a) #8
-    badges.append((49..53).to_a) #9
-    badges.append((54..58).to_a) #10
-    badges.append((59..63).to_a) #11
-    badges.append((64..68).to_a) #12
-    badges.append((69..73).to_a) #13
-    badges.append((74..78).to_a) #14
-    badges.append((79..83).to_a) #15
-    badges.append((84..88).to_a) #16
-    badges.append((89..93).to_a) #17
+    badges = [
+      (2..6).to_a, #0
+      (7..12).to_a, #1
+      (13..18).to_a, #2
+      (19..23).to_a, #3
+      (24..28).to_a, #4
+      (29..33).to_a, #5
+      (34..38).to_a, #6
+      (39..43).to_a, #7
+      (44..48).to_a, #8
+      (49..53).to_a, #9
+      (54..58).to_a, #10
+      (59..63).to_a, #11
+      (64..68).to_a, #12
+      (69..73).to_a, #13
+      (74..78).to_a, #14
+      (79..83).to_a, #15
+      (84..88).to_a, #16
+      (89..93).to_a, #17
+    ]
 
     encounter_id = badges[numbadges]
   end

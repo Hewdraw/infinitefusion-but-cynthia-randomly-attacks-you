@@ -426,7 +426,7 @@ class PokeBattle_Battler
     return true if [:FIRE, :WATER, :GRASS].include?(type) && pbHasType?(:FIREWATERGRASS)
     #return true if [:ICE, :FIRE, :ELECTRIC].include?(type) && pbHasType?(:ICEFIREELECTRIC)
     return true if [:FIRE, :PSYCHIC, :ELECTRIC].include?(type) && hasActiveAbility?(:WIRED)
-    return true if (type == :WATER && hasActiveItem?(:WELLSPRINGMASK)) || (type == :FIRE && hasActiveItem?(:HEARTHFLAMEMASK)) || (type == :ROCK && hasActiveItem?(:CORNDERSTONEMASK))
+    return true if type == :GRASS && (hasActiveItem?(:WELLSPRINGMASK) || hasActiveItem?(:HEARTHFLAMEMASK) || hasActiveItem?(:CORNDERSTONEMASK))
     return true if type == :ROCK && hasActiveItem?(:PROTECTOR)
     return true if type == :FIRE && hasActiveItem?(:MAGMARIZER)
     return true if type == :ELECTRIC && hasActiveItem?(:ELECTIRIZER)

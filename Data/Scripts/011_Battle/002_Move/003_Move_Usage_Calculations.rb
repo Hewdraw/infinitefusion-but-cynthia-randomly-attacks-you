@@ -558,7 +558,7 @@ class PokeBattle_Move
     ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
     ret *= 2 if user.pbOwnSide.effects[PBEffects::Rainbow]>0
     if @battle.pbWeather == :Snow || @battle.pbWeather == :Hail
-      if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187"].include?(@function)
+      if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187", "235", "284", "291", "293"].include?(@function)
         ret *= 1.5
       end
       if @function == "237" && user.item_id == :CHILLDRIVE
@@ -566,7 +566,7 @@ class PokeBattle_Move
       end
     end
     if @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
-      if ["00A", "00B", "017", "0A4", "0C6", "0FE"].include?(@function)
+      if ["00A", "00B", "017", "0A4", "0C6", "0FE", "235"].include?(@function)
         ret *= 1.5
       end
       if @function == "237" && user.item_id == :BURNDRIVE
@@ -574,7 +574,7 @@ class PokeBattle_Move
       end
     end
     if @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
-      if ["007", "008", "009", "017", "0A4", "0C5", "0CC", "0FD"].include?(@function)
+      if ["007", "008", "009", "017", "0A4", "0C5", "0CC", "0FD", "235", "291"].include?(@function)
         ret *= 1.5
       end
       if @function == "237" && user.item_id == :SHOCKDRIVE

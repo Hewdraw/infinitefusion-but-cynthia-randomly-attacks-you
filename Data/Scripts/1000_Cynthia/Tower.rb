@@ -26,7 +26,7 @@ def setupTower()
     $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
     $PokemonBag.pbStoreItem(:SHINYCHARM)
     $PokemonBag.pbStoreItem(:UNLIMITEDLOOPLET)
-    getLooplet.pbStoreEmera(:EMERA)
+    #grantRandomEmera
 end
 
 def resetTower()
@@ -144,7 +144,9 @@ def towerIncreaseFloor(nextfloor)
           next if i[0] > pkmn.level || i[0] <= oldlevel
           pbLearnMove(pkmn, i[1], true)
         end
-        pkmn.hp += 1 if pkmn.hp < pkmn.totalhp
+        gainedhp = 1
+        gainedhp += pkmn.totalhp / 16 if hasActiveEmera?(:APPLE)
+        pkmn.hp = [pkmn.hp + gainedhp, pkmn.totalhp].min
         newspecies = pkmn.check_evolution_on_level_up
         if newspecies
           pbFadeOutInWithMusic {
@@ -307,6 +309,7 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Chuck, "Chuck")
         end
+        grantRandomEmera
         $PokemonGlobal.towervalues[:badges] += 1
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
@@ -326,6 +329,7 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "champion_blue"
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
+        grantRandomEmera
     when nil
         return
     end

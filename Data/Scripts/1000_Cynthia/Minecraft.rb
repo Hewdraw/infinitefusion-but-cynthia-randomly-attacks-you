@@ -76,7 +76,7 @@ def getEnderChestRarityColors()
     2, #red
   ]
 end
-    
+
 def getEnderChestWeights()
   return [
     70, #common

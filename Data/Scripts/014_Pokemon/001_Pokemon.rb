@@ -1546,9 +1546,21 @@ class Pokemon
       @extraabilities.push(:STORMDRAIN) if hasItem?(:DOUSEDRIVE)
       @extraabilities.push(:ICEBODY) if hasItem?(:CHILLDRIVE)
     end
-    @extraabilities.push(:WATERABSORB) if hasItem?(:WELLSPRINGMASK)
-    @extraabilities.push(:MOLDBREAKER) if hasItem?(:HEARTHFLAMEMASK)
-    @extraabilities.push(:STURDY) if hasItem?(:CORNERSTONEMASK)
+    if hasItem?(:WELLSPRINGMASK)
+      @extraabilities.push(:WATERABSORB)
+      @type1 = :WATER if @type1 == :GRASS
+      @type2 = :WATER if @type2 == :GRASS
+    end
+    if hasItem?(:HEARTHFLAMEMASK)
+      @extraabilities.push(:MOLDBREAKER)
+      @type1 = :FIRE if @type1 == :GRASS
+      @type2 = :FIRE if @type2 == :GRASS
+    end
+    if hasItem?(:CORNERSTONEMASK)
+      @extraabilities.push(:STURDY)
+      @type1 = :ROCK if @type1 == :GRASS
+      @type2 = :ROCK if @type2 == :GRASS
+    end
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
     @boxicon = nil
   end

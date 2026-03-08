@@ -67,12 +67,9 @@ class Window_PokemonLooplet < Window_DrawableCommand
         shadowColor = Color.new(248,144,144)
       end
       textpos.push(
-         [item[:name],rect.x,rect.y-2,false,baseColor,shadowColor]
+         [EMERADICT[item][:name],rect.x,rect.y-2,false,baseColor,shadowColor]
       )
-      qty = thispocket[index][1]
-      qtytext = _ISPRINTF("x{1: 3d}",qty)
-      xQty    = rect.x+rect.width-self.contents.text_size(qtytext).width-16
-      textpos.push([qtytext,xQty,rect.y-2,false,baseColor,shadowColor])
+      #textpos.push([1,1,rect.y-2,false,baseColor,shadowColor])
     end
     pbDrawTextPositions(self.contents,textpos)
   end
@@ -263,7 +260,7 @@ class PokemonLooplet_Scene
     @sprites["itemicon"].item = itemlist.item #todo
     # Set the selected item's description
     @sprites["itemtext"].text =
-       (itemlist.item) ? itemlist.item[:description] : _INTL("Close Looplet.")
+       (itemlist.item) ? EMERADICT[itemlist.item][:description] : _INTL("Close Looplet.")
   end
 
   # def pbRefreshFilter
@@ -358,7 +355,6 @@ class PokemonLoopletScreen
     loop do
       item = @scene.pbChooseItem
       break if !item
-      #itm = GameData::Item.get(item)
       cmdUse      = -1
       cmdSort     = -1
       commands = []
@@ -373,7 +369,7 @@ class PokemonLoopletScreen
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
       commands[commands.length]                 = _INTL("Cancel")
       # Show commands generated above
-      #itemname = itm.name
+      itemname = EMERADICT[item][:name]
       command = @scene.pbShowCommands(_INTL("{1} is selected.",itemname),commands)
       if cmdUse>=0 && command==cmdUse   # Use item
         ret = pbUseItem(@bag,item,@scene)
@@ -382,7 +378,7 @@ class PokemonLoopletScreen
         @scene.pbRefresh
         next
       elsif cmdSort >=0 && command == cmdSort # Sort bag
-        @bag.sort_pocket_alphabetically()
+        @bag.sort_emera_alphabetically()
         @scene.pbRefresh
       end
     end
@@ -413,7 +409,7 @@ class PokemonLooplet
 
   def sort_emera_alphabetically
     sorted = @emeras.sort_by do |item|
-      item[:name]
+      EMERADICT[item][:name]
     end
     sorted.reverse! if @descending_sort
 
