@@ -5479,3 +5479,31 @@ class PokeBattle_Move_335 < PokeBattle_Move
     return target.defense, [target.stages[:DEFENSE] + 6, 6].min
   end
 end
+
+class PokeBattle_Move_336 < PokeBattle_Move
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 3;    end
+
+  def pbMoveFailed?(user,targets)
+    @typelist = [:FIRE, :ELECTRIC, :ICE]
+    return super
+  end
+
+  def pbInitialEffect(user,targets,hitNum)
+    randomtype = @typelist.sample
+    @typelist.delete(randomtype)
+    @calcType = randomtype
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    case @calcType
+    when :FIRE then
+      target.pbBurn(user) if target.pbCanBurn?(user, false, self)
+    when :ICE then
+      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+    when :ELECTRIC then
+      target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    end
+  end
+end

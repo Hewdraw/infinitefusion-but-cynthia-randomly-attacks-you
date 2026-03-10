@@ -405,6 +405,7 @@ class PokemonLooplet
     @choice    = 0
     @emeras = []
     @activeemeras = []
+    @emeravariables = {}
   end
 
   def sort_emera_alphabetically

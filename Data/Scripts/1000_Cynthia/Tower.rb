@@ -26,6 +26,7 @@ def setupTower()
     $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
     $PokemonBag.pbStoreItem(:SHINYCHARM)
     $PokemonBag.pbStoreItem(:UNLIMITEDLOOPLET)
+    grantRandomEmera
 end
 
 def resetTower()
@@ -156,6 +157,11 @@ def towerIncreaseFloor(nextfloor)
           }
         end
     end
+    if hasActiveEmera?(:BREWINGSTAND)
+        itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
+        item = itemlist.sample
+        $PokemonBag.pbStoreItem(item)
+    end
     pbSetSelfSwitch(2, "A", false)
     case $PokemonGlobal.towervalues[:activeevent]
     when "Legendary"
@@ -200,7 +206,12 @@ def towerEvent()
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
         options = [getTowerPokemon(), getTowerPokemon(), getTowerPokemon()]
-        choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2]))])
+        if hasActiveEmera?(:CAPTURESTYLER)
+            option.push(getTowerPokemon())
+            choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2])), _INTL("{1}", PBSpecies.getName(options[3]))])
+        else
+            choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2]))])
+        end
         pbAddPokemon(options[choice], 5)
     when "Chest"
         enderChest()
@@ -255,6 +266,7 @@ def towerEvent()
             $PokemonBag.pbStoreItem(:CHILLDRIVE)
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:eventvariable])
+            pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:eventvariable] == "Meloetta"
         end
         $PokemonGlobal.towervalues[:eventvariable] = nil
     when "Gym"

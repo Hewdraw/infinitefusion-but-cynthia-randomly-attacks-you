@@ -457,7 +457,7 @@ BattleHandlers::StatLossImmunityAbility.add(:KEENEYE,
   }
 )
 
-BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
+BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE, :ILLUMINATE, :CHARGEDEXPLOSIVE)
 
 #===============================================================================
 # StatLossImmunityAbilityNonIgnorable handlers
@@ -862,7 +862,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
   }
 )
 
-BattleHandlers::AccuracyCalcUserAbility.copy(:KEENEYE,:CHARGEDEXPLOSIVE)
+BattleHandlers::AccuracyCalcUserAbility.copy(:KEENEYE, :ILLUMINATE, :CHARGEDEXPLOSIVE)
 
 BattleHandlers::AccuracyCalcUserAbility.add(:NOGUARD,
   proc { |ability,user,mods,target,move,type|
