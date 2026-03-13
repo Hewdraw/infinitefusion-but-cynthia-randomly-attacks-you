@@ -153,3 +153,4 @@
 150,MECH_Miku,Oh Shit!,70,,,,Female,100,
 151,GHOST_Cynthia,Piano Phantom,50,,,,Female,100,
 152,Upside_Down_Dev,Upside Down Dev,200,,,,Male,100,
+153,Sound_of_Future,First Sound of the Future,70,,,,Female,100,

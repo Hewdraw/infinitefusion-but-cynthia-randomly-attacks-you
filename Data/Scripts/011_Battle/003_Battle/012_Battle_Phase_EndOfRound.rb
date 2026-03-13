@@ -342,7 +342,7 @@ class PokeBattle_Battle
       BattleHandlers.triggerEORHealingAbility(b.ability,b,self) if b.abilityActive?
       # Black Sludge, Leftovers
       BattleHandlers.triggerEORHealingItem(b.item,b,self) if b.itemActive?
-      if b.pokemon.affection && rand(100) < 20 && b.status != :NONE
+      if (b.pokemon.affection || b.hasActiveEmera?(:SYNCSTONEULTIMATE)) && rand(100) < 20 && b.status != :NONE
         oldStatus = b.status
         b.pbCureStatus(false)
         case oldStatus

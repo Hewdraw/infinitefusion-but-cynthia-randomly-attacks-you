@@ -62,6 +62,7 @@ class Window_PokemonLooplet < Window_DrawableCommand
       item = thispocket[index]
       baseColor   = self.baseColor
       shadowColor = self.shadowColor
+      baseColor = shadowColor if !@bag.activeemeras.include?(item)
       if @sorting && index==self.index
         baseColor   = Color.new(224,0,0)
         shadowColor = Color.new(248,144,144)
@@ -69,7 +70,6 @@ class Window_PokemonLooplet < Window_DrawableCommand
       textpos.push(
          [EMERADICT[item][:name],rect.x,rect.y-2,false,baseColor,shadowColor]
       )
-      #textpos.push([1,1,rect.y-2,false,baseColor,shadowColor])
     end
     pbDrawTextPositions(self.contents,textpos)
   end
@@ -356,27 +356,72 @@ class PokemonLoopletScreen
       item = @scene.pbChooseItem
       break if !item
       cmdUse      = -1
+      cmdToggle = -1
       cmdSort     = -1
       commands = []
       # Generate command list
-      # if ItemHandlers.hasOutHandler(item) || (itm.is_machine? && $Trainer.party.length>0)
-      #   if ItemHandlers.hasUseText(item)
-      #     commands[cmdUse = commands.length]    = ItemHandlers.getUseText(item)
-      #   else
-      #     commands[cmdUse = commands.length]    = _INTL("Use")
-      #   end
-      # end
+
+      commands[cmdUse = commands.length]    = _INTL("Tutor Move") if EMERADICT[item][:tutormove]
+      commands[cmdUse = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item)
+      commands[cmdUse = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item)
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
       commands[commands.length]                 = _INTL("Cancel")
       # Show commands generated above
       itemname = EMERADICT[item][:name]
       command = @scene.pbShowCommands(_INTL("{1} is selected.",itemname),commands)
       if cmdUse>=0 && command==cmdUse   # Use item
-        ret = pbUseItem(@bag,item,@scene)
-        # ret: 0=Item wasn't used; 1=Item used; 2=Close Bag to use in field
-        break if ret==2   # End screen
+        move = EMERADICT[item][:tutormove]
+        movename = move.name
+        if pbConfirmMessage(_INTL("Do you want to teach {1} to a Pokémon?", movename))
+          pbFadeOutIn {
+            annot = []
+            $Trainer.party.each_with_index do |pkmn, i|
+              if pkmn.egg?
+                annot[i] = _INTL("NOT ABLE")
+              elsif pkmn.hasMove?(move)
+                annot[i] = _INTL("LEARNED")
+              else
+                species = pkmn.species
+                if EMERADICT[item][:tutorcondition].call(pkmn)
+                  annot[i] = _INTL("ABLE")
+                else
+                  annot[i] = _INTL("NOT ABLE")
+                end
+              end
+            end
+            scene = PokemonParty_Scene.new
+            screen = PokemonPartyScreen.new(scene,$Trainer.party)
+            screen.pbStartScene(_INTL("Teach which Pokémon?"),false,annot)
+            loop do
+              chosen = screen.pbChoosePokemon
+              break if chosen<0
+              pokemon = $Trainer.party[chosen]
+              if selectedPokemonVariable != nil
+                pbSet(selectedPokemonVariable,pokemon)
+              end
+              if pokemon.egg?
+                pbMessage(_INTL("Eggs can't be taught any moves.")) { screen.pbUpdate }
+              elsif pokemon.shadowPokemon?
+                pbMessage(_INTL("Shadow Pokémon can't be taught any moves.")) { screen.pbUpdate }
+              elsif !EMERADICT[item][:tutorcondition].call(pokemon)
+                pbMessage(_INTL("{1} can't learn {2}.",pokemon.name,movename)) { screen.pbUpdate }
+              else
+                if pbLearnMove(pokemon,move,false,true) { screen.pbUpdate }
+                  break
+                end
+              end
+            end
+            screen.pbEndScene
+          }
+        end
         @scene.pbRefresh
         next
+      elsif cmdToggle >= 0 && command == cmdToggle
+        if @bag.activeemeras.include?(item)
+          @bag.activeemeras.delete(item)
+        else
+          @bag.activeemeras.push(item)
+        end
       elsif cmdSort >=0 && command == cmdSort # Sort bag
         @bag.sort_emera_alphabetically()
         @scene.pbRefresh
@@ -432,13 +477,8 @@ class PokemonLooplet
     @choice = value if value <= @emeras.length
   end
 
-  def pbQuantity(item)
-    return 1 if @emeras.include?(item)
-    return 0
-  end
-
   def pbHasEmera?(item)
-    return pbQuantity(item) > 0
+    return @activeemeras.include?(item)
   end
 
   def pbStoreEmera(item)

@@ -166,11 +166,11 @@ EMERADICT = {
     #     :rarity => :COMMON,
     # },
 
-    # :ABSORPTIONEMERA => {
-    #     :name => "Absorption Emera",
-    #     :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
-    #     :rarity => :UNCOMMON,
-    # },
+    :ABSORPTIONEMERA => {
+        :name => "Absorption Emera",
+        :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
+        :rarity => :UNCOMMON,
+    },
     # :EXTRADICE => {
     #     :name => "Extra Dice",
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
@@ -252,11 +252,11 @@ EMERADICT = {
     #     :description => "Switching out will grant its ability to the next Pokemon.",
     #     :rarity => :RARE,
     # },
-    # :SYNCSTONEULTIMATE => {
-    #     :name => "Sync Stone Ultimate",
-    #     :description => "Your Pokemon gain Affection.",
-    #     :rarity => :RARE,
-    # },
+    :SYNCSTONEULTIMATE => {
+        :name => "Sync Stone Ultimate",
+        :description => "Your Pokemon gain Affection.",
+        :rarity => :RARE,
+    },
 
     # : => {
     #     :name => "",
@@ -435,6 +435,13 @@ EMERADICT = {
     #     :tutormove => :ELECTRODRIFT,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:ELECTRIC)},
     # },
+    :WISHINGSTAR => {
+        :name => "Wishing Star",
+        :description => "Gain an extra Emera when beating Hatsune Miku.",
+        :rarity => :LEGENDARY,
+        :tutormove => :DYNAMAXCANNON,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DRAGON)},
+    },
     # :WITHERSKULL => {
     #     :name => "Wither Skull",
     #     :description => "When you apply Poison it becomes Badly Poison.",
@@ -445,6 +452,7 @@ EMERADICT = {
 }
 
 def grantRandomEmera()
+    return if !getLooplet
     itemlist = getEmeras() 
     raritylist = getEnderChestWeights()
     itemlist.each_with_index do |item, i|
@@ -454,6 +462,10 @@ def grantRandomEmera()
     end
     raritylist[4] = 0
     totalrarities = raritylist.sum
+    if totalrarities == 0  
+      pbMessage("No Emeras left to obtain.")
+      return
+  end
     randomrarity = rand(totalrarities)
     raritylist.each_with_index do |rarity, i|
       if randomrarity < rarity
@@ -471,7 +483,7 @@ def grantRandomEmera()
     end
 end
 
-def hasActiveEmera?(emera)
+def hasEmera?(emera)
     return getLooplet.pbHasEmera?(emera)
 end
 

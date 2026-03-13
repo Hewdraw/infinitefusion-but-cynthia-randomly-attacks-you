@@ -142,7 +142,7 @@ class PokeBattle_Move
     evasion = 1 if evasion < 1
     # Calculation
     randnumber = @battle.pbRandom(100)
-    if target.pokemon.affection && randnumber >= (modifiers[:base_accuracy] - 10) * accuracy / evasion && randnumber < modifiers[:base_accuracy] * accuracy / evasion
+    if (target.pokemon.affection || target.hasActiveEmera?(:SYNCSTONEULTIMATE)) && randnumber >= (modifiers[:base_accuracy] - 10) * accuracy / evasion && randnumber < modifiers[:base_accuracy] * accuracy / evasion
       target.damageState.affectionmiss = true
       return false
     end
@@ -236,7 +236,7 @@ class PokeBattle_Move
     c = ratios.length-1 if c>=ratios.length
     # Calculation
     randnumber = @battle.pbRandom(ratios[c])
-    if user.pokemon.affection && randnumber == 1
+    if (user.pokemon.affection || user.hasActiveEmera?(:SYNCSTONEULTIMATE)) && randnumber == 1
       target.damageState.affectioncritical = true
       return true
     end

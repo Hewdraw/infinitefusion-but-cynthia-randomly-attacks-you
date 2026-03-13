@@ -584,6 +584,10 @@ class PokeBattle_Battler
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end
 
+  def hasActiveEmera?(emera)
+    return true if hasEmera?(emera) && pbOwnedByPlayer?
+  end
+
   def eachMove
     @moves.each { |m| yield m }
   end

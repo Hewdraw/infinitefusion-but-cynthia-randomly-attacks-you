@@ -116,6 +116,15 @@ class PokeBattle_Battler
         end
       end
     end
+
+    # Greninja - Battle Bond
+    if !user.fainted? && user.hasActiveEmera?(:ABSORPTIONEMERA)
+      targets.each do |b|
+        next if !b.damageState.fainted
+        user.pbRecoverHP(user.totalhp / 4)
+        @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+      end
+    end
     # Consume user's Gem
     if user.effects[PBEffects::GemConsumed]
       # NOTE: The consume animation and message for Gems are shown immediately

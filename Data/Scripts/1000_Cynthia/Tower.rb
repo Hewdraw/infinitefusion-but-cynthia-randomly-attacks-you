@@ -26,7 +26,6 @@ def setupTower()
     $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
     $PokemonBag.pbStoreItem(:SHINYCHARM)
     $PokemonBag.pbStoreItem(:UNLIMITEDLOOPLET)
-    grantRandomEmera
 end
 
 def resetTower()
@@ -187,6 +186,7 @@ def getTowerEventsList()
     eventlist =  {
         "Pokemon" => 50,
         "Chest" => 25,
+        "Miku" => 10,
         "Shop" => 10,
         "Heal" => 10,
         "Tutor" => 25,
@@ -215,6 +215,11 @@ def towerEvent()
         pbAddPokemon(options[choice], 5)
     when "Chest"
         enderChest()
+    when "Miku"
+        pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Voice_of_Future])
+        return if $PokemonGlobal.towervalues.nil?
+        grantRandomEmera if hasActiveEmera?(:WISHINGSTAR)
+        grantRandomEmera
     when "Shop"
         Undertale()
         return if $PokemonGlobal.towervalues.nil?
@@ -354,6 +359,8 @@ def getFloorGraphic(event)
         return "BW164"
     when "Chest"
         return "ChestSprite"
+    when "Miku"
+        return "HatsuneMiku"
     when "Shop"
         return "TheSketon"
     when "Heal"
@@ -412,6 +419,8 @@ def getNextFloorDescription(nextfloor)
         message = "Pick one of three pokemon."
     when "Chest"
         message = "Gain some items."
+    when "Miku"
+        message = "Fight Hatsune Miku for an Emera."
     when "Shop"
         message = "Spend Sinnoh Coins at the skeleton shop."
     when "Heal"
