@@ -213,6 +213,7 @@ def towerEvent()
             choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2]))])
         end
         pbAddPokemon(options[choice], 5)
+        $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     when "Chest"
         enderChest()
     when "Miku"

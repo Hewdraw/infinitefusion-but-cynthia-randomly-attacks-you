@@ -84,6 +84,7 @@ class PokemonGlobalMetadata
   attr_accessor :hatsunemikulosses
   attr_accessor :endgatewaylocation
   attr_accessor :towervalues
+  attr_accessor :porygonchance
 
   def initialize
     # Movement

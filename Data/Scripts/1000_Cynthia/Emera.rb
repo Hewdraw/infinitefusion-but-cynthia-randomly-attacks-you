@@ -20,11 +20,6 @@ EMERADICT = {
         :description => "Gain an extra option when obtaining a Pokemon.",
         :rarity => :COMMON,
     },
-    # :CHAINLEASH => {
-    #     :name => "Chain Leash",
-    #     :description => "The turn your Pokemon have taken damage their Submission deals double damage, has no recoil, and always hits.",
-    #     :rarity => :COMMON,
-    # },
     # :CHOICERIBBON => {
     #     :name => "Choice Ribbon",
     #     :description => "Boosts Crit rate by 1 if using the same move in a row.",
@@ -53,11 +48,6 @@ EMERADICT = {
     # :GEOPEBBLE => {
     #     :name => "Geo Pebble",
     #     :description => "Can be Flinged once per battle for 150 Power.",
-    #     :rarity => :COMMON,
-    # },
-    # :GOLDENBELL => {
-    #     :name => "Golden Bell",
-    #     :description => "Your Pokemon heal 1/8th of the damage they deal.",
     #     :rarity => :COMMON,
     # },
     # :GUNPOWDER => {
@@ -135,11 +125,11 @@ EMERADICT = {
     #     :description => "Activates Plus and Minus, Your Pokemon are treated as having plus and minus for the effects of moves.",
     #     :rarity => :COMMON,
     # },
-    # :ROTOMDEX => {
-    #     :name => "Rotom Dex",
-    #     :description => "Gain 1 Sinnoh Coin when you obtain a Pokemon.",
-    #     :rarity => :COMMON,
-    # },
+    :ROTOMDEX => {
+        :name => "Rotom Dex",
+        :description => "Gain 1 Sinnoh Coin when you obtain a Pokemon from a Pokeball floor.",
+        :rarity => :COMMON,
+    },
     # :TERRAINSCANNER => {
     #     :name => "Terrain Scanner",
     #     :description => "Your Pokemons Terrain Pulse starts a random Terrain if there is no Terrain active.",
@@ -181,11 +171,16 @@ EMERADICT = {
     #     :description => "Applying Drowsy also Confuses.",
     #     :rarity => :UNCOMMON,
     # },
-    # :MILOTICSCALE => {
-    #     :name => "Milotic Scale",
-    #     :description => "Your Pokemon take 0.9x damage while they have a Status Condition.",
-    #     :rarity => :UNCOMMON,
-    # },
+    :GOLDENBELL => {
+        :name => "Golden Bell",
+        :description => "Your Pokemon heal 1/8th of the damage they deal.",
+        :rarity => :UNCOMMON,
+    },
+    :MILOTICSCALE => {
+        :name => "Milotic Scale",
+        :description => "Your Pokemons Defense and Special Defense increase by 1.1x while they have a Status Condition.",
+        :rarity => :UNCOMMON,
+    },
     # :POTIONOFFIRERESISTANCE => {
     #     :name => "Potion of Fire Resistance",
     #     :description => "Your Pokemon are unaffected by the first fire move in a battle.",
@@ -237,11 +232,11 @@ EMERADICT = {
     #     :description => "Your Pokemons Punching moves will hit an addtional time for reduced damage.",
     #     :rarity => :RARE,
     # },
-    # :SPINNINGLEEK => {
-    #     :name => "Spinning Leek",
-    #     :description => "Your Pokemon gain 1 Crit stage.",
-    #     :rarity => :RARE,
-    # },
+    :SPINNINGLEEK => {
+        :name => "Spinning Leek",
+        :description => "Your Pokemon gain 1 Crit stage.",
+        :rarity => :RARE,
+    },
     # :SPLASHPOTIONOFWEAVING => {
     #     :name => "Splash Potion of Weaving",
     #     :description => "Knocking out the first Opposing Pokemon before it switches out puts down Sticky Web.",
@@ -267,14 +262,14 @@ EMERADICT = {
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:)},
     # },
 
-    # :ARCEUSRING => {
-    #     :name => "Arceus Ring",
-    #     :description => "Your Pokemon gain the benefits of all types.",
-    #     :rarity => :LEGENDARY,
-    #     :legendary => [:ARCEUS],
-    #     :tutormove => :JUDGMENT,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:NORMAL)},
-    # },
+    :ARCEUSRING => {
+        :name => "Arceus Ring",
+        :description => "Your Pokemon gain the benefits of all types.",
+        :rarity => :LEGENDARY,
+        #:legendary => [:ARCEUS],
+        :tutormove => :JUDGMENT,
+        :tutorcondition => -> (pokemon) {return true},
+    },
     # :AURORADROP => {
     #     :name => "Aurora Drop",
     #     :description => "Your Pokemons lowest attacking stat is raised to 0.9x the highest attacking stat.",
@@ -427,11 +422,24 @@ EMERADICT = {
     #     :tutormove => :SUNSTEELSTRIKE,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:STEEL)},
     # },
+    # :TEALMASK => {
+    #     :name => "Teal Mask",
+    #     :description => "Your Pokemon holding an Ogrepon Mask will gain the corresponding Embody Aspect on Switch in.",
+    #     :rarity => :LEGENDARY,
+    #     :tutormove => :IVYCUDGEL,
+    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:)},
+    # },
+    # :TERACRYSTAL => {
+    #     :name => "Tera Crystal",
+    #     :description => "Your Pokemon gain their Hidden Power type as a third type. Can be used to change Hidden Power type.",
+    #     :rarity => :LEGENDARY,
+    #     :tutormove => :TERASTARSTORM,
+    #     :tutorcondition => -> (pokemon) {return true},
+    # },
     # :VIOLETBOOK => {
     #     :name => "Violet Book",
     #     :description => "Your Pokemon are unaffected by negative effects of terrains. Your Pokemon always count as grounded for terrains.",
     #     :rarity => :LEGENDARY,
-    #     :legendary => [],
     #     :tutormove => :ELECTRODRIFT,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:ELECTRIC)},
     # },

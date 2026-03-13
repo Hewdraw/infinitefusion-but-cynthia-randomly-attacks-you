@@ -236,8 +236,8 @@ def pbTrainerPC
 end
 
 def checkPorygonEncounter
-  porygon_chance = 200
-  if $PokemonGlobal.stepcount % porygon_chance == 0
+  if $PokemonGlobal.porygonchance.nil? || $PokemonGlobal.stepcount % $PokemonGlobal.porygonchance == 0
+    $PokemonGlobal.porygonchance = 200
     pbSEPlay("Paralyze3")
     pbWait(12)
     pbMessage(_INTL("Huh? The PC glitched for a second while it booted."))
@@ -246,7 +246,6 @@ def checkPorygonEncounter
     pbAddPokemonSilent(:PORYGON,1)
     $PokemonGlobal.stepcount += 1
   end
-    # code here
 end
 
 def pbPokeCenterPC

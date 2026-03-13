@@ -100,6 +100,7 @@ class PokeBattle_Battler
       BattleHandlers.triggerUserAbilityEndOfMove(user.ability,user,targets,move,@battle)
       BattleHandlers.triggerUserAbilityEndOfMove(user.ability2,user,targets,move,@battle) if user.ability2
     end
+    BattleHandlers.triggerUserAbilityEndOfMove(:EMERA,user,targets,move,@battle)
     # Greninja - Battle Bond
     if !user.fainted? && !user.effects[PBEffects::Transform] &&
        user.isSpecies?(:GRENINJA) && user.ability == :BATTLEBOND
@@ -114,15 +115,6 @@ class PokeBattle_Battler
           @battle.pbHideAbilitySplash(user)
           user.pbChangeForm(2,_INTL("{1} became Ash-Greninja!",user.pbThis))
         end
-      end
-    end
-
-    # Greninja - Battle Bond
-    if !user.fainted? && user.hasActiveEmera?(:ABSORPTIONEMERA)
-      targets.each do |b|
-        next if !b.damageState.fainted
-        user.pbRecoverHP(user.totalhp / 4)
-        @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
       end
     end
     # Consume user's Gem
@@ -169,6 +161,7 @@ class PokeBattle_Battler
     # User's held item (Life Orb, Shell Bell)
     if !switchedBattlers.include?(user.index) && user.itemActive?
       BattleHandlers.triggerUserItemAfterMoveUse(user.item,user,targets,move,numHits,@battle)
+      BattleHandlers.triggerUserItemAfterMoveUse(:EMERA,user,targets,move,numHits,@battle)
     end
     # Target's ability (Berserk, Color Change, Emergency Exit, Pickpocket, Wimp Out)
     switchWimpOut = []
