@@ -144,7 +144,7 @@ def towerIncreaseFloor(nextfloor)
           pbLearnMove(pkmn, i[1], true)
         end
         gainedhp = 1
-        gainedhp += pkmn.totalhp / 16 if hasActiveEmera?(:APPLE)
+        gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
         pkmn.hp = [pkmn.hp + gainedhp, pkmn.totalhp].min
         newspecies = pkmn.check_evolution_on_level_up
         if newspecies
@@ -156,7 +156,7 @@ def towerIncreaseFloor(nextfloor)
           }
         end
     end
-    if hasActiveEmera?(:BREWINGSTAND)
+    if hasEmera?(:BREWINGSTAND)
         itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
         item = itemlist.sample
         $PokemonBag.pbStoreItem(item)
@@ -206,7 +206,7 @@ def towerEvent()
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
         options = [getTowerPokemon(), getTowerPokemon(), getTowerPokemon()]
-        if hasActiveEmera?(:CAPTURESTYLER)
+        if hasEmera?(:CAPTURESTYLER)
             option.push(getTowerPokemon())
             choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2])), _INTL("{1}", PBSpecies.getName(options[3]))])
         else
@@ -219,7 +219,7 @@ def towerEvent()
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Voice_of_Future])
         return if $PokemonGlobal.towervalues.nil?
-        grantRandomEmera if hasActiveEmera?(:WISHINGSTAR)
+        grantRandomEmera if hasEmera?(:WISHINGSTAR)
         grantRandomEmera
     when "Shop"
         Undertale()
