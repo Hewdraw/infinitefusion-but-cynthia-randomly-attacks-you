@@ -266,7 +266,7 @@ class SpeciesHandlerHash < HandlerHash2
 end
 
 class AbilityHandlerHash < HandlerHash2
-    return super(entry, *args)
+  def trigger(entry, *args)
     user = args[0]
     user.tempability = nil
     retvalue = super(entry, *args)
