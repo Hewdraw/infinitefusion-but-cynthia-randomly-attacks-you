@@ -1582,6 +1582,10 @@ class Pokemon
     list = list.uniq
     return list
   end
+  
+  def hasActiveEmera?(emera)
+    return true if hasEmera?(emera) && owner.is_a?(Player)
+  end
 
   #=============================================================================
   # Pokémon creation
