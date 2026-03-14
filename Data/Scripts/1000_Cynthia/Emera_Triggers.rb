@@ -23,7 +23,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
         user.tempability = EMERADICT[:ABSORPTIONEMERA][:name]
         battle.pbShowAbilitySplash(user)
         user.pbRecoverHP(user.totalhp / 4)
-        @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+        battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
         battle.pbHideAbilitySplash(user)
       end
     end
@@ -35,7 +35,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
       user.tempability = EMERADICT[:GOLDENBELL][:name]
       battle.pbShowAbilitySplash(user)
       user.pbRecoverHP(totalDamage/8)
-      @battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
       battle.pbHideAbilitySplash(user)
     end
   }
