@@ -1566,7 +1566,7 @@ class Pokemon
   end
 
   def getAllAbilities
-    list = [@ability_id]
+    list = [@ability]
     list += @extraabilities if @extraabilities
     if list.include?(:LEGENDARYPRESSURE)
       @getAbilityList.each do |ability|
@@ -1582,7 +1582,7 @@ class Pokemon
     list = list.uniq
     return list
   end
-  
+
   def hasActiveEmera?(emera)
     return true if hasEmera?(emera) && owner.is_a?(Player)
   end

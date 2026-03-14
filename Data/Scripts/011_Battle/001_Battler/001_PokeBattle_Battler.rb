@@ -468,6 +468,7 @@ class PokeBattle_Battler
       @tempability = GameData::Ability.get(ability[0]).real_name if ability != @ability_id
       return true
     end
+    return false
   end
 
   alias hasWorkingAbility hasActiveAbility?

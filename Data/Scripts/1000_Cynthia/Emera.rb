@@ -492,6 +492,7 @@ def grantRandomEmera()
 end
 
 def hasEmera?(emera)
+    return false if !getLooplet
     return getLooplet.pbHasEmera?(emera)
 end
 
