@@ -68,7 +68,7 @@ EMERADICT = {
     :LINGERINGPOTIONOFOOZING => {
         :name => "Lingering Potion of Oozing",
         :description => "Your Pokemon gain the Liquid Ooze Ability",
-        :rarity => :,
+        :rarity => :COMMON,
     },
     # :LUCKYCHARM => {
     #     :name => "Lucky Charm",
