@@ -2600,27 +2600,27 @@ class PokeBattle_AI
           when :MISTYSURGE
             terrain = :Misty
           end
-        end
-        if @battle.field.weather == weather
-          case ability
-          when :AIRLOCK, :CLOUDNINE
-            weather = :None
-          when :DELTASTREAM
-            weather = :StrongWinds
-          when :DROUGHT
-            weather = :Sun unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-          when :DESOLATELAND
-            weather = :HarshSun
-          when :DRIZZLE
-            weather = :Rain unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-          when :PRIMORDIALSEA
-            weather = :HeavyRain
-          when :SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS
-            weather = :Sandstorm unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-          when :SNOWWARNING
-            weather = :Hail unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-          when :SNOWWWARNING
-            weather = :Snow unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+          if @battle.field.weather == weather
+            case ability
+            when :AIRLOCK, :CLOUDNINE
+              weather = :None
+            when :DELTASTREAM
+              weather = :StrongWinds
+            when :DROUGHT
+              weather = :Sun unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+            when :DESOLATELAND
+              weather = :HarshSun
+            when :DRIZZLE
+              weather = :Rain unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+            when :PRIMORDIALSEA
+              weather = :HeavyRain
+            when :SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS
+              weather = :Sandstorm unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+            when :SNOWWARNING
+              weather = :Hail unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+            when :SNOWWWARNING
+              weather = :Snow unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+            end
           end
         end
       end
