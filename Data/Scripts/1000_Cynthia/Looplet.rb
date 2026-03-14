@@ -362,8 +362,8 @@ class PokemonLoopletScreen
       # Generate command list
 
       commands[cmdUse = commands.length]    = _INTL("Tutor Move") if EMERADICT[item][:tutormove]
-      commands[cmdUse = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item)
-      commands[cmdUse = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item)
+      commands[cmdToggle = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item)
+      commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item)
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
       commands[commands.length]                 = _INTL("Cancel")
       # Show commands generated above
