@@ -1982,6 +1982,21 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.add(:BATTLEBOND,
+  proc { |ability,user,targets,move,battle|
+    next if battler.pokemon.battlevariables[:battlebond]
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0
+    user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
+    user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,user,GameData::Ability.get(ability).real_name)
+    user.pbRaiseStatStageByAbility(:SPEED,1,user,GameData::Ability.get(ability).real_name)
+    battler.pokemon.battlevariables[:dauntlessshield] = true
+  }
+)
+
+
 #===============================================================================
 # TargetAbilityAfterMoveUse handlers
 #===============================================================================
