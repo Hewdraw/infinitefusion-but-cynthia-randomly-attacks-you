@@ -464,9 +464,9 @@ def grantRandomEmera()
     itemlist = getEmeras() 
     raritylist = getEnderChestWeights()
     itemlist.each_with_index do |item, i|
+        raritylist[i] *= 2 if i == 0
         next if item.length > 0
         raritylist[i] = 0
-        raritylist[i] *= 2 if i == 0
     end
     raritylist[4] = 0
     totalrarities = raritylist.sum
