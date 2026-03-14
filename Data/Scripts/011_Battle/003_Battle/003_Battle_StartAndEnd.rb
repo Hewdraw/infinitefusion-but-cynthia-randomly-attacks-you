@@ -556,7 +556,7 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("You gave your shoes to the winner..."))
           $Trainer.has_running_shoes = false
         else
-          pbLoseMoney
+          pbLoseMoney if $PokemonGlobal.towervalues.nil?
         end
         pbDisplayPaused(_INTL("You blacked out!")) if !@canLose
       elsif @decision==2

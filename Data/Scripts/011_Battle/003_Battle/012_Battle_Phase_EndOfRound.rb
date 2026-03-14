@@ -347,15 +347,15 @@ class PokeBattle_Battle
         b.pbCureStatus(false)
         case oldStatus
         when :SLEEP
-          battle.pbDisplay(_INTL("{1} shook itself awake so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
+          pbDisplay(_INTL("{1} shook itself awake so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
         when :POISON
-          battle.pbDisplay(_INTL("{1} managed to expel the poison so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
+          pbDisplay(_INTL("{1} managed to expel the poison so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
         when :BURN
-          battle.pbDisplay(_INTL("{1} healed its burn with its sheer determination so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
+          pbDisplay(_INTL("{1} healed its burn with its sheer determination so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
         when :PARALYSIS
-          battle.pbDisplay(_INTL("{1} gathered all its energy to break through its paralysis so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
+          pbDisplay(_INTL("{1} gathered all its energy to break through its paralysis so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
         when :FROZEN
-          battle.pbDisplay(_INTL("{1} melted the ice with its fiery determination so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
+          pbDisplay(_INTL("{1} melted the ice with its fiery determination so {2} wouldn't worry!",b.pbThis,b.pokemon.owner.name))
         end
       end
     end
