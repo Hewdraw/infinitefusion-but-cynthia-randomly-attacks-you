@@ -218,7 +218,7 @@ def towerEvent()
     when "Chest"
         enderChest()
     when "Miku"
-        pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Voice_of_Future])
+        pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])
         return if $PokemonGlobal.towervalues.nil?
         grantRandomEmera if hasEmera?(:WISHINGSTAR)
         grantRandomEmera
