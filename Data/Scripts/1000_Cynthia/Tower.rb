@@ -208,7 +208,7 @@ def towerEvent()
     when "Pokemon"
         options = [getTowerPokemon(), getTowerPokemon(), getTowerPokemon()]
         if hasEmera?(:CAPTURESTYLER)
-            option.push(getTowerPokemon())
+            options.push(getTowerPokemon())
             choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2])), _INTL("{1}", PBSpecies.getName(options[3]))])
         else
             choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2]))])
