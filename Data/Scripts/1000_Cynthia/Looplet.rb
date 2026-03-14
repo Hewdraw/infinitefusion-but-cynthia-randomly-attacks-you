@@ -396,9 +396,6 @@ class PokemonLoopletScreen
               chosen = screen.pbChoosePokemon
               break if chosen<0
               pokemon = $Trainer.party[chosen]
-              if selectedPokemonVariable != nil
-                pbSet(selectedPokemonVariable,pokemon)
-              end
               if pokemon.egg?
                 pbMessage(_INTL("Eggs can't be taught any moves.")) { screen.pbUpdate }
               elsif pokemon.shadowPokemon?
