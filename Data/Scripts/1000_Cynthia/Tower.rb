@@ -192,7 +192,8 @@ def getTowerEventsList()
         "Tutor" => 25,
         "Legendary" => [$PokemonGlobal.towervalues[:floor] - 46, 0].max / 3,
     }
-    eventlist["Pokemon"] *= 2 if $PokemonGlobal.towervalues[:floor] < 10
+    eventlist["Pokemon"] *= 2 if $PokemonGlobal.towervalues[:floor] <= 10
+    eventlist["Miku"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
     eventlist["Legendary"] = 0 if $PokemonGlobal.towervalues[:legendarylist].length == 0
     $Trainer.party.each do |pkmn|
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10

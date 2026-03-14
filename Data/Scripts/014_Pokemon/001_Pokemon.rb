@@ -1565,6 +1565,24 @@ class Pokemon
     @boxicon = nil
   end
 
+  def getAllAbilities
+    list = [@ability_id]
+    list += @extraabilities if @extraabilities
+    if list.include?(:LEGENDARYPRESSURE)
+      @getAbilityList.each do |ability|
+        list.push(ability[0])
+      end
+    end
+    list.push(:ILLUMINATE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
+    list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
+    list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
+    list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
+    list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
+    list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
+    list = list.uniq
+    return list
+  end
+
   #=============================================================================
   # Pokémon creation
   #=============================================================================

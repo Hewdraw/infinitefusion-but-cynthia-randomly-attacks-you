@@ -448,9 +448,10 @@ class PokeBattle_Battler
   #       active, and the code for the two combined would cause an infinite loop
   #       (regardless of whether any Pokémon actualy has either the ability or
   #       the item - the code existing is enough to cause the loop).
-  def abilityActive?(ignore_fainted = false)
+  def abilityActive?(ignore_fainted = false, ability = nil)
+    ability = @ability_id if !ability
     return false if fainted? && !ignore_fainted
-    return true if unstoppableAbility? 
+    return true if unstoppableAbility?(ability)
     @battle.battlers.each do |battler|
       return false if battler && battler.ability_id == :NEUTRALIZINGGAS
     end
@@ -459,31 +460,21 @@ class PokeBattle_Battler
   end
 
   def hasActiveAbility?(check_ability, ignore_fainted = false)
+    check_ability = [check_ability] if !check_ability.is_a?(Array)
     @tempability = nil
-    return false if !abilityActive?(ignore_fainted)
-    if !check_ability.is_a?(Array)  
-      check_ability = [check_ability]
+    getAllAbilities.each do |ability|
+      next if !abilityActive?(ignore_fainted, ability)
+      next if !check_ability.include?(ability)
+      @tempability = GameData::Ability.get(ability[0]).real_name if ability != @ability_id
+      return true
     end
-    if !check_ability.include?(:LEGENDARYPRESSURE) && hasActiveAbility?(:LEGENDARYPRESSURE)
-      for ability in @pokemon.getAbilityList
-        if check_ability.include?(ability[0])
-          @tempability = GameData::Ability.get(ability[0]).real_name
-          return true
-        end
-      end
-    end
-    if @pokemon.extraabilities
-      @pokemon.extraabilities.each do |ability|
-        if check_ability.include?(ability)
-          @tempability = GameData::Ability.get(ability).real_name
-          return true
-        end
-      end
-    end
-    return check_ability.include?(@ability_id)
   end
 
   alias hasWorkingAbility hasActiveAbility?
+
+  def getAllAbilities
+    return @pokemon.getAllAbilities
+  end
 
   # Applies to both losing self's ability (i.e. being replaced by another) and
   # having self's ability be negated.

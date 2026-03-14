@@ -60,11 +60,16 @@ EMERADICT = {
     #     :description => "Your Pokemon take half damage from Entry Hazards.",
     #     :rarity => :COMMON,
     # },
-    # :LINGERINGPOTIONOFOOZING => {
-    #     :name => "Lingering Potion of Oozing",
-    #     :description => "Your Pokemon gain the Liquid Ooze Ability",
-    #     :rarity => :,
-    # },
+    :LINGERINGPOTIONOFNIGHTVISION => {
+        :name => "Lingering Potion of Night Vision",
+        :description => "Your Pokemon gain the Illuminate Ability.",
+        :rarity => :COMMON,
+    },
+    :LINGERINGPOTIONOFOOZING => {
+        :name => "Lingering Potion of Oozing",
+        :description => "Your Pokemon gain the Liquid Ooze Ability",
+        :rarity => :,
+    },
     # :LUCKYCHARM => {
     #     :name => "Lucky Charm",
     #     :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",
@@ -83,11 +88,6 @@ EMERADICT = {
     # :OLDCARTRIDGE => {
     #     :name => "Old Cartridge",
     #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon",
-    #     :rarity => :COMMON,
-    # },
-    # :POTIONOFNIGHTVISION => {
-    #     :name => "Potion of Night Vision",
-    #     :description => "Your Pokemon gain the Illuminate Ability.",
     #     :rarity => :COMMON,
     # },
     # :POTIONOFREGENERATION => {
@@ -135,11 +135,11 @@ EMERADICT = {
     #     :description => "Your Pokemons Terrain Pulse starts a random Terrain if there is no Terrain active.",
     #     :rarity => :COMMON,
     # },
-    # :WATERBUCKET => {
-    #     :name => "Water Bucket",
-    #     :description => "Your Pokemon gain the Damp Ability.",
-    #     :rarity => :COMMON,
-    # },
+    :WATERBUCKET => {
+        :name => "Water Bucket",
+        :description => "Your Pokemon gain the Damp Ability.",
+        :rarity => :COMMON,
+    },
     # :WEATHERBALLOON => {
     #     :name => "Weather Balloon",
     #     :description => "Your Pokemons Weather Ball starts a random Weather if there is no Weather active.",
@@ -278,14 +278,14 @@ EMERADICT = {
     #     :tutormove => :PSYCHOBOOST,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
     # },
-    # :BERSERKERARMOR => {
-    #     :name => "Berserker Armor",
-    #     :description => "Your Pokemon gain the Battle Armor and Berserk Abilities",
-    #     :rarity => :LEGENDARY,
-    #     :legendary => [:MEWTWO],
-    #     :tutormove => :PSYSTRIKE,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
-    # },
+    :BERSERKERARMOR => {
+        :name => "Berserker Armor",
+        :description => "Your Pokemon gain the Battle Armor and Berserk Abilities",
+        :rarity => :LEGENDARY,
+        #:legendary => [:MEWTWO],
+        :tutormove => :PSYSTRIKE,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
+    },
     # :BRAINPRISM => {
     #     :name => "Brain Prism",
     #     :description => "Opposing Pokemon take 1.5x supereffective damage.",
@@ -294,14 +294,14 @@ EMERADICT = {
     #     :tutormove => :PHOTONGEYSER,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
     # },
-    # :DISCOVERYSLATE => {
-    #     :name => "Discovery Slate",
-    #     :description => "Your Pokemon gain the Solid Rock ability.",
-    #     :rarity => :LEGENDARY,
-    #     :legendary => [:REGISTEEL, :REGICE, :REGIROCK, :REGIGIGAS], #todo
-    #     :tutormove => :EXPLOSIONPLUS,
-    #     :tutorcondition => -> (pokemon) {return true},
-    # },
+    :DISCOVERYSLATE => {
+        :name => "Discovery Slate",
+        :description => "Your Pokemon gain the Solid Rock ability.",
+        :rarity => :LEGENDARY,
+        #:legendary => [:REGISTEEL, :REGICE, :REGIROCK, :REGIGIGAS],
+        :tutormove => :EXPLOSIONPLUS,
+        :tutorcondition => -> (pokemon) {return true},
+    },
     # :ELDERGUARDIANEYE => {
     #     :name => "Elder Guardian Eye",
     #     :description => "Opposing pokemon have to recharge when hitting a Rock, Ground, or Steel type with a supereffective attack.",

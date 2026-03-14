@@ -445,6 +445,8 @@ end
 #===============================================================================
 class PokemonLooplet
   attr_accessor :emeras
+  attr_accessor :activeemeras
+
   def initialize
     @descending_sort=false
     @choice    = 0

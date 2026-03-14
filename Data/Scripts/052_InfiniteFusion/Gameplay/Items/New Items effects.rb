@@ -2520,18 +2520,22 @@ ItemHandlers::UseOnPokemon.add(:ANCESTRALGENE, proc { |item, pkmn, scene|
 ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
-    abilities = [pkmn.ability_id, pkmn.extraabilities].flatten
+    abilities = pkmn.getAllAbilities
     if abilities.include?([:POISONHEAL, :MAGICGUARD])
       pkmn.status = :POISON
+      next
     end
     if abilities.include?([:GUTS, :FLAREBOOST, :WILDFIRE])
       pkmn.status = :BURN
+      next
     end
     if abilities.include?(:ICEBODY)
       pkmn.status = :FROZEN
+      next
     end
     if abilities.include?(:QUICKFEET)
       pkmn.status = :PARALYSIS
+      next
     end
   end
   pbMessage(_INTL("Your Pokémon were fully healed."))
@@ -2542,18 +2546,22 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
 ItemHandlers::UseInField.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
-    abilities = [pkmn.ability_id, pkmn.extraabilities].flatten
+    abilities = pkmn.getAllAbilities
     if abilities.include?(:POISONHEAL)
       pkmn.status = :POISON
+      next
     end
     if abilities.include?([:GUTS, :FLAREBOOST])
       pkmn.status = :BURN
+      next
     end
     if abilities.include?(:ICEBODY)
       pkmn.status = :FROZEN
+      next
     end
     if abilities.include?(:QUICKFEET)
       pkmn.status = :PARALYSIS
+      next
     end
   end
   pbMessage(_INTL("Your Pokémon were fully healed."))

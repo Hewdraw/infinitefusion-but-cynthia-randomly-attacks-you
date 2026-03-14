@@ -9156,7 +9156,7 @@ Pokemon = FUECOCO,5
 [CREATOR_Minecraft,Hatsune Miku,2]
 Pokemon = JIGGLYPUFF,5
     Offset = -2
-    Moves = THUNDERWAVE,CHILLINGWATER,SWIFT
+    Moves = THUNDERWAVE,CHILLINGWATER,DRAININGKISS
     Ability = FRIENDGUARD
     Item = LEFTOVERS
     Gender = F
@@ -9283,7 +9283,7 @@ Pokemon = PLUSLE,5
 [CREATOR_Minecraft,Hatsune Miku,4]
 Pokemon = JIGGLYPUFF,5
     Offset = 1
-    Moves = UPROAR,STEALTHROCK,HELPINGHAND
+    Moves = HARMONIZE,STEALTHROCK,DAZZLINGGLEAM
     Ability = FRIENDGUARD
     Item = EVIOLITE
     Gender = F
@@ -9407,7 +9407,7 @@ Pokemon = MISMAGIUS,5
 [CREATOR_Minecraft,Hatsune Miku,6]  
 Pokemon = B295H39,5 
     Offset = 0
-    Moves = KNOCKOFF,DOUBLEEDGE,SPIRITSHACKLE
+    Moves = KNOCKOFF,HARMONIZE,SPIRITSHACKLE
     Ability = FRIENDGUARD
     Item = EVIOLITE
     Gender = F

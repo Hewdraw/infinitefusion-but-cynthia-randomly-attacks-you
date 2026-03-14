@@ -1,4 +1,11 @@
 
+BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
+  proc { |ability,user,target,c|
+    c += 1 if user.hasActiveEmera?(:SPINNINGLEEK)
+    next c
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if target.hasActiveEmera?(:MILOTICSCALE) && target.pbHasAnyStatus?

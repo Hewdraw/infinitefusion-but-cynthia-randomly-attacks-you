@@ -161,7 +161,6 @@ class PokeBattle_Battler
     # User's held item (Life Orb, Shell Bell)
     if !switchedBattlers.include?(user.index) && user.itemActive?
       BattleHandlers.triggerUserItemAfterMoveUse(user.item,user,targets,move,numHits,@battle)
-      BattleHandlers.triggerUserItemAfterMoveUse(:EMERA,user,targets,move,numHits,@battle)
     end
     # Target's ability (Berserk, Color Change, Emergency Exit, Pickpocket, Wimp Out)
     switchWimpOut = []

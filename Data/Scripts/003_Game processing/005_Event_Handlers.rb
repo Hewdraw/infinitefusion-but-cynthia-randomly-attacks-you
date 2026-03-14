@@ -272,22 +272,12 @@ class AbilityHandlerHash < HandlerHash2
     retvalue = super(entry, *args)
     user.tempability = nil
     return if entry == :EMERA
-    if user.hasActiveAbility?(:LEGENDARYPRESSURE)
-      for ability in user.pokemon.getAbilityList
-        user.tempability = GameData::Ability.get(ability[0]).real_name
-        ret = super(ability[0], *args)
-        retvalue = retvalue || ret
-      end
+    user.getAllAbilities.each do |ability|
+      next if entry == ability
+      ret = super(ability, *args)
+      retvalue = retvalue || ret
+      user.tempability = nil
     end
-    user.tempability = nil
-    if user.pokemon.extraabilities
-      user.pokemon.extraabilities.each do |ability|
-        user.tempability = GameData::Ability.get(ability).real_name
-        ret = super(ability, *args)
-        retvalue = retvalue || ret
-      end
-    end
-    user.tempability = nil
     return retvalue
   end
 end

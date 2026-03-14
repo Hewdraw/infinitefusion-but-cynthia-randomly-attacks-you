@@ -2374,81 +2374,88 @@ class PokeBattle_AI
         else
         end
       end
-      if user.abilityActive?
-        if switchin == user && user.ability_id == :SLOWSTART
-          multipliers[:attack_multiplier] /= 2.0 if move.physicalMove?
-        end
-        case user.ability_id
-        when :ROUGHSKIN
-        when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID
-          if type == :NORMAL
-            multipliers[:base_damage_multiplier] *= 1.2
+      user.getAllAbilities.each do |ability|
+        if user.abilityActive?(false, ability)
+          if switchin == user && ability == :SLOWSTART
+            multipliers[:attack_multiplier] /= 2.0 if move.physicalMove?
           end
-        when :ANALYTIC
-          if user.pbSpeed < target.pbSpeed
-            multipliers[:base_damage_multiplier] *= 1.3
+          case ability
+          when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID
+            if type == :NORMAL
+              multipliers[:base_damage_multiplier] *= 1.2
+            end
+          when :ANALYTIC
+            if user.pbSpeed < target.pbSpeed
+              multipliers[:base_damage_multiplier] *= 1.3
+            end
+          when :BLAZE
+            if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :FIRE
+              multipliers[:attack_multiplier] *= 1.5
+            end
+          when :DEFEATIST
+            if user.hp <= user.adjustedTotalhp / 2 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 2)
+              multipliers[:attack_multiplier] /= 2.0
+            end
+          when :OVERGROW
+            if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :GRASS
+              multipliers[:attack_multiplier] *= 1.5
+            end
+          when :SWARM
+            if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :BUG
+              multipliers[:attack_multiplier] *= 1.5
+            end
+          when :TORRENT
+            if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :WATER
+              multipliers[:attack_multiplier] *= 1.5
+            end
+          when :SNIPER, :SUPERSNIPER
+            if key == :critDamage
+              multipliers[:base_damage_multiplier] *= 1.5
+            end
+          when :TINTEDLENS
+            multipliers[:final_damage_multiplier] *= 2 if Effectiveness.resistant?(typeMod)
+          else
+            BattleHandlers.triggerDamageCalcUserAbility(ability,
+             user,target,move,multipliers,baseDmg,type)
           end
-        when :BLAZE
-          if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :FIRE
-            multipliers[:attack_multiplier] *= 1.5
-          end
-        when :DEFEATIST
-          if user.hp <= user.adjustedTotalhp / 2 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 2)
-            multipliers[:attack_multiplier] /= 2.0
-          end
-        when :OVERGROW
-          if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :GRASS
-            multipliers[:attack_multiplier] *= 1.5
-          end
-        when :SWARM
-          if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :BUG
-            multipliers[:attack_multiplier] *= 1.5
-          end
-        when :TORRENT
-          if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :WATER
-            multipliers[:attack_multiplier] *= 1.5
-          end
-        when :SNIPER, :SUPERSNIPER
-          if key == :critDamage
-            multipliers[:base_damage_multiplier] *= 1.5
-          end
-        when :TINTEDLENS
-          multipliers[:final_damage_multiplier] *= 2 if Effectiveness.resistant?(typeMod)
-        else
-          BattleHandlers.triggerDamageCalcUserAbility(user.ability,
-           user,target,move,multipliers,baseDmg,type)
         end
       end
       if !user.hasMoldBreaker?
         user.eachAlly do |b|
-          next if !b.abilityActive?
-          BattleHandlers.triggerDamageCalcUserAllyAbility(b.ability,
-             b,user,target,move,multipliers,baseDmg,type)
-        end
-        if target.abilityActive?
-          case user.ability_id
-          when :FILTER,:SOLIDROCK
-            if Effectiveness.super_effective?(typeMod)
-              multipliers[:final_damage_multiplier] *= 0.75 if !user.hasMoldBreaker?
-            end
-          when :FLUFFY
-            multipliers[:final_damage_multiplier] *= 2 if move.pbCalcType(user) == :FIRE && !user.hasMoldBreaker?
-            multipliers[:final_damage_multiplier] /= 2 if move.contactMove? && !user.hasMoldBreaker?
-          when :PRISMARMOR
-            if Effectiveness.super_effective?(typeMod)
-              multipliers[:final_damage_multiplier] *= 0.5
-            end
-          else
-            BattleHandlers.triggerDamageCalcTargetAbility(target.ability,
-               target,user,move,multipliers,baseDmg,type) if !user.hasMoldBreaker?
-            BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(target.ability,
-               target,user,move,multipliers,baseDmg,type)
+          b.getAllAbilities.each do |ability|
+            next if !b.abilityActive?(false, ability)
+            BattleHandlers.triggerDamageCalcUserAllyAbility(ability,
+               b,user,target,move,multipliers,baseDmg,type)
           end
         end
-        target.eachAlly do |b|
-          next if !b.abilityActive?
-          BattleHandlers.triggerDamageCalcTargetAllyAbility(b.ability,
-             b,user,target,move,multipliers,baseDmg,type)
+        target.getAllAbilities.each do |ability|
+          if target.abilityActive?(false, ability)
+            case ability
+            when :FILTER,:SOLIDROCK
+              if Effectiveness.super_effective?(typeMod)
+                multipliers[:final_damage_multiplier] *= 0.75
+              end
+            when :FLUFFY
+              multipliers[:final_damage_multiplier] *= 2 if move.pbCalcType(user) == :FIRE
+              multipliers[:final_damage_multiplier] /= 2 if move.contactMove?
+            when :PRISMARMOR
+              if Effectiveness.super_effective?(typeMod)
+                multipliers[:final_damage_multiplier] *= 0.5
+              end
+            else
+              BattleHandlers.triggerDamageCalcTargetAbility(ability,
+                 target,user,move,multipliers,baseDmg,type) if !user.hasMoldBreaker?
+              BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(ability,
+                 target,user,move,multipliers,baseDmg,type)
+            end
+          end
+          target.eachAlly do |b|
+            b.getAllAbilities.each do |ability|
+              next if !b.abilityActive?(false, ability)
+              BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,
+                 b,user,target,move,multipliers,baseDmg,type)
+            end
+          end
         end
       end
       # Item effects that alter damage
@@ -2579,20 +2586,45 @@ class PokeBattle_AI
           multipliers[:base_damage_multiplier] /= 3.0
         end
       end
-      # Terrain moves
       terrain = @battle.field.terrain
+      weather = @battle.pbWeather
       if switchin
-        case switchin.ability_id
-        when :ELECTRICSURGE, :HADRONENGINE
-          terrain = :Electric
-        when :GRASSYSURGE
-          terrain = :Grassy
-        when :PSYCHICSURGE
-          terrain = :Psychic
-        when :MISTYSURGE
-          terrain = :Misty
+        switchin.getAllAbilities.each do |ability|
+          case ability
+          when :ELECTRICSURGE, :HADRONENGINE
+            terrain = :Electric
+          when :GRASSYSURGE
+            terrain = :Grassy
+          when :PSYCHICSURGE
+            terrain = :Psychic
+          when :MISTYSURGE
+            terrain = :Misty
+          end
+        end
+        if @battle.field.weather == weather
+          case ability
+          when :AIRLOCK, :CLOUDNINE
+            weather = :None
+          when :DELTASTREAM
+            weather = :StrongWinds
+          when :DROUGHT
+            weather = :Sun unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+          when :DESOLATELAND
+            weather = :HarshSun
+          when :DRIZZLE
+            weather = :Rain unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+          when :PRIMORDIALSEA
+            weather = :HeavyRain
+          when :SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS
+            weather = :Sandstorm unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+          when :SNOWWARNING
+            weather = :Hail unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+          when :SNOWWWARNING
+            weather = :Snow unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
+          end
         end
       end
+      # Terrain moves
       case terrain
       when :Electric
         multipliers[:base_damage_multiplier] *= 1.5 if (type == :ELECTRIC || move.id == [:HYDROBURST].include?(@id)) && user.affectedByTerrain?
@@ -2603,33 +2635,7 @@ class PokeBattle_AI
       when :Misty
         multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
       end
-      if pbTargetsMultiple?(move,user)
-        multipliers[:final_damage_multiplier] *= 0.75
-      end
       # Weather
-      weather = @battle.pbWeather
-      if switchin && @battle.field.weather == weather
-        case switchin.ability_id
-        when :AIRLOCK, :CLOUDNINE
-          weather = :None
-        when :DELTASTREAM
-          weather = :StrongWinds
-        when :DROUGHT
-          weather = :Sun unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-        when :DESOLATELAND
-          weather = :HarshSun
-        when :DRIZZLE
-          weather = :Rain unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-        when :PRIMORDIALSEA
-          weather = :HeavyRain
-        when :SANDSTREAM, :ADAPTINGSANDS, :PIXELATEDSANDS
-          weather = :Sandstorm unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-        when :SNOWWARNING
-          weather = :Hail unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-        when :SNOWWWARNING
-          weather = :Snow unless [:StrongWinds, :HarshSun, :HeavyRain].include?(weather)
-        end
-      end
       case weather
       when :Sun
         if type == :FIRE || [:HYDROSTEAM, :HYDROSTEAMPLUS, :HYDROBURST].include?(move.id)
@@ -2664,6 +2670,11 @@ class PokeBattle_AI
           multipliers[:defense_multiplier] *= 1.5
         end
       end
+
+      if pbTargetsMultiple?(move,user)
+        multipliers[:final_damage_multiplier] *= 0.75
+      end
+
       if key == :critDamage
         if Settings::NEW_CRITICAL_HIT_RATE_MECHANICS
           multipliers[:final_damage_multiplier] *= 1.5
