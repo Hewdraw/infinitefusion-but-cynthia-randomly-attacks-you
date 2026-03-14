@@ -1565,8 +1565,9 @@ class Pokemon
     @boxicon = nil
   end
 
-  def getAllAbilities
-    list = [@ability]
+  def getAllAbilities(include_ability=true)
+    list = []
+    list.push(@ability) if include_ability
     list += @extraabilities if @extraabilities
     if list.include?(:LEGENDARYPRESSURE)
       @getAbilityList.each do |ability|

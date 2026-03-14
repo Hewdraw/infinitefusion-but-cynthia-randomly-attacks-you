@@ -474,8 +474,9 @@ class PokeBattle_Battler
   alias hasWorkingAbility hasActiveAbility?
 
   def getAllAbilities
-    return @pokemon.getAllAbilities if @pokemon
-    return [@ability_id]
+    list = [@ability_id]
+    list += @pokemon.getAllAbilities(false) if @pokemon
+    return list
   end
 
   # Applies to both losing self's ability (i.e. being replaced by another) and
