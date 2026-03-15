@@ -124,6 +124,7 @@ class Pokemon
   attr_accessor :affection
   attr_accessor :megaform
   attr_accessor :extraabilities
+  attr_accessor :abilityarray
   attr_accessor :boxicon
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
@@ -1562,12 +1563,20 @@ class Pokemon
       @type2 = :ROCK if @type2 == :GRASS
     end
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
+    @abilityarray = createAbilityArray
     @boxicon = nil
   end
 
   def getAllAbilities(include_ability=true)
     list = []
     list.push(@ability) if include_ability
+    @abilityarray = createAbilityArray if !@abilityarray
+    list += @abilityarray
+    return list
+  end
+
+  def createAbilityArray
+    list = []
     list += @extraabilities if @extraabilities
     if list.include?(:LEGENDARYPRESSURE)
       @getAbilityList.each do |ability|

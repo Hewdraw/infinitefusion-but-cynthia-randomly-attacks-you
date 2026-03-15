@@ -240,16 +240,6 @@ ItemHandlers::UseOnPokemon.add(:INCUBATOR, proc { |item, pokemon, scene|
   end
 })
 
-ItemHandlers::UseOnPokemon.add(:MISTSTONE, proc { |item, pokemon, scene|
-  next false if pokemon.egg?
-  if pbForceEvo(pokemon)
-    next true
-  else
-    scene.pbDisplay(_INTL("It won't have any effect."))
-    next false
-  end
-})
-
 ItemHandlers::UseFromBag.add(:DEBUGGER, proc { |item|
   Kernel.pbMessage(_INTL("[{1}]The debugger should ONLY be used if you are stuck somewhere because of a glitch.", Settings::GAME_VERSION_NUMBER))
   if Kernel.pbConfirmMessageSerious(_INTL("Innapropriate use of this item can lead to unwanted effects and make the game unplayable. Do you want to continue?"))
@@ -575,50 +565,6 @@ ItemHandlers::UseFromBag.add(:MAGICBOOTS, proc { |item|
   end
   next 1
 })
-
-def pbForceEvo(pokemon)
-  newspecies = getEvolvedSpecies(pokemon)
-  return false if newspecies == :OMNIMON
-  return false if newspecies == -1
-  if newspecies > 0
-    evo = PokemonEvolutionScene.new
-    evo.pbStartScreen(pokemon, newspecies)
-    evo.pbEvolution
-    evo.pbEndScreen
-  end
-  return true
-end
-
-def getEvolvedSpecies(pokemon)
-  return pbCheckEvolutionEx(pokemon) { |pokemon, evonib, level, poke|
-    next pbMiniCheckEvolution(pokemon, evonib, level, poke, true)
-  }
-end
-
-#(copie de fixEvolutionOverflow dans FusionScene)
-def getCorrectEvolvedSpecies(pokemon)
-  if pokemon.species >= NB_POKEMON
-    body = getBasePokemonID(pokemon.species)
-    head = getBasePokemonID(pokemon.species, false)
-    ret1 = -1; ret2 = -1
-    for form in pbGetEvolvedFormData(body)
-      retB = yield pokemon, form[0], form[1], form[2]
-      break if retB > 0
-    end
-    for form in pbGetEvolvedFormData(head)
-      retH = yield pokemon, form[0], form[1], form[2]
-      break if retH > 0
-    end
-    return ret if ret == retB && ret == retH
-    return fixEvolutionOverflow(retB, retH, pokemon.species)
-  else
-    for form in pbGetEvolvedFormData(pokemon.species)
-      newspecies = form[2]
-    end
-    return newspecies;
-  end
-
-end
 
 #########################
 ##  DNA SPLICERS  #######
@@ -1747,6 +1693,7 @@ def pbForceEvo(pokemon)
   #(format of returned value is [[speciesNum, level]])
   newspecies = evolutions[rand(evolutions.length - 1)][0]
   return false if newspecies == nil
+  return false if newspecies == :OMNIMON
   evo = PokemonEvolutionScene.new
   evo.pbStartScreen(pokemon, newspecies)
   evo.pbEvolution
@@ -1757,31 +1704,6 @@ end
 # format of returned value is [[speciesNum, evolutionMethod],[speciesNum, evolutionMethod],etc.]
 def getEvolvedSpecies(pokemon)
   return GameData::Species.get(pokemon.species).get_evolutions(true)
-end
-
-#(copie de fixEvolutionOverflow dans FusionScene)
-def getCorrectEvolvedSpecies(pokemon)
-  if pokemon.species >= NB_POKEMON
-    body = getBasePokemonID(pokemon.species)
-    head = getBasePokemonID(pokemon.species, false)
-    ret1 = -1; ret2 = -1
-    for form in pbGetEvolvedFormData(body)
-      retB = yield pokemon, form[0], form[1], form[2]
-      break if retB > 0
-    end
-    for form in pbGetEvolvedFormData(head)
-      retH = yield pokemon, form[0], form[1], form[2]
-      break if retH > 0
-    end
-    return ret if ret == retB && ret == retH
-    return fixEvolutionOverflow(retB, retH, pokemon.species)
-  else
-    for form in pbGetEvolvedFormData(pokemon.species)
-      newspecies = form[2]
-    end
-    return newspecies;
-  end
-
 end
 
 #########################

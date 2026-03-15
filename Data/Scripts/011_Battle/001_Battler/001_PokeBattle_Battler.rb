@@ -415,23 +415,48 @@ class PokeBattle_Battler
     return ret
   end
 
-  def pbHasType?(type)
+  def pbHasType?(type, recursive=false)
     return false if !type
-    return true if type == :PSYCHIC && isFusionOf(:ARTICUNO) && hasActiveItem?(:ICESPHERE)
-    return true if type == :ICE && isSpecies?(:GARTICUNO) && hasActiveItem?(:ICESPHERE)
-    return true if type == :FIGHTING && isFusionOf(:ZAPDOS) && hasActiveItem?(:LIGHTNINGSPHERE)
-    return true if type == :ELECTRIC && isSpecies?(:GZAPDOS) && hasActiveItem?(:LIGHTNINGSPHERE)
-    return true if type == :DARK && isFusionOf(:MOLTRES) && hasActiveItem?(:FIRESPHERE)
-    return true if type == :FIRE && isSpecies?(:GMOLTRES) && hasActiveItem?(:FIRESPHERE)
-    return true if [:FIRE, :WATER, :GRASS].include?(type) && pbHasType?(:FIREWATERGRASS)
-    #return true if [:ICE, :FIRE, :ELECTRIC].include?(type) && pbHasType?(:ICEFIREELECTRIC)
-    return true if [:FIRE, :PSYCHIC, :ELECTRIC].include?(type) && hasActiveAbility?(:WIRED)
-    return true if type == :GRASS && (hasActiveItem?(:WELLSPRINGMASK) || hasActiveItem?(:HEARTHFLAMEMASK) || hasActiveItem?(:CORNDERSTONEMASK))
-    return true if type == :ROCK && hasActiveItem?(:PROTECTOR)
-    return true if type == :FIRE && hasActiveItem?(:MAGMARIZER)
-    return true if type == :ELECTRIC && hasActiveItem?(:ELECTIRIZER)
-    return true if type == :NORMAL && hasActiveItem?(:UPGRADE)
-    return true if rand(10) < 3 && hasActiveItem?(:DUBIOUSDISC)
+    return true if hasActiveEmera?(:ARCEUSRING)
+    case type
+    when :NORMAL
+      return true if hasActiveItem?(:UPGRADE)
+    when :FIGHTING
+      return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:ZAPDOS)
+    when :FLYING
+    when :POISON
+    when :GROUND
+    when :ROCK
+      return true if hasActiveItem?(:PROTECTOR)
+    when :BUG
+    when :GHOST
+    when :STEEL
+    when :FIRE
+      return true if hasActiveAbility?(:WIRED)
+      return true if hasActiveItem?(:MAGMARIZER)
+      return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:GMOLTRES)
+      return true if pbHasType?(:FIREWATERGRASS, true)
+    when :WATER
+      return true if pbHasType?(:FIREWATERGRASS, true)
+    when :GRASS
+      return true if hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+      return true if pbHasType?(:FIREWATERGRASS, true)
+    when :ELECTRIC
+      return true if hasActiveAbility?(:WIRED)
+      return true if hasActiveItem?(:ELECTIRIZER)
+      return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:GZAPDOS)
+    when :PSYCHIC
+      return true if hasActiveAbility?(:WIRED)
+      return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:ARTICUNO)
+    when :ICE
+      return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:GARTICUNO)
+    when :DRAGON
+    when :DARK
+      return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:MOLTRES)
+    when :FAIRY
+      return true if hasActiveEmera?(:FAIRYWREATH)
+    end
+    return true if !recursive && hasActiveItem?(:DUBIOUSDISC) && rand(10) < 3
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end

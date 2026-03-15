@@ -40,11 +40,11 @@ EMERADICT = {
     #     :description => "Your Pokemons with Illuminate will lower the Accuracy of all opposing Pokemon when it switches in or uses Flash.",
     #     :rarity => :,
     # },
-    # :FLOWERWREATH => {
-    #     :name => "Flower Wreath",
-    #     :description => "Your Fairy Pokemon gain Grass type benefits.",
-    #     :rarity => :,
-    # },
+    :FLOWERWREATH => {
+        :name => "Flower Wreath",
+        :description => "Your Fairy Pokemon gain Grass type benefits.",
+        :rarity => :,
+    },
     # :GEOPEBBLE => {
     #     :name => "Geo Pebble",
     #     :description => "Can be Flinged once per battle for 150 Power.",
