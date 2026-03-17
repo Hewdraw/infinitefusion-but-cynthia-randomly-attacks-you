@@ -11,6 +11,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
     if target.hasActiveEmera?(:MILOTICSCALE) && target.pbHasAnyStatus?
       mults[:defense_multiplier] *= 1.1
     end
+    if target.hasActiveEmera?(:MOONHEART) && target.hp == target.adjustedTotalhp
+      mults[:final_damage_multiplier] /= 2
+    end
   }
 )
 

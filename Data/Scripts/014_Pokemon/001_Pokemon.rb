@@ -1563,6 +1563,8 @@ class Pokemon
       @type2 = :ROCK if @type2 == :GRASS
     end
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
+    @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
+    @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end

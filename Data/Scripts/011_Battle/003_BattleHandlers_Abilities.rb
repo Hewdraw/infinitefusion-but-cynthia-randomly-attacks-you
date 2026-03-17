@@ -794,6 +794,14 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:GALVANIZE,
   }
 )
 
+BattleHandlers::MoveBaseTypeModifierAbility.add(:IMMOLATE,
+  proc { |ability,user,move,type|
+    next if type != :NORMAL || !GameData::Type.exists?(:FIRE)
+    move.powerBoost = true
+    next :FIRE
+  }
+)
+
 BattleHandlers::MoveBaseTypeModifierAbility.copy(:GALVANIZE,:CHARGEDEXPLOSIVE)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:LIQUIDVOICE,
@@ -962,7 +970,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID, :IMMOLATE)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
   proc { |ability,user,target,move,mults,baseDmg,type|

@@ -99,6 +99,16 @@ def UndertaleShopSetup()
       "cost" => 2,
       "amount" => 2,
     },
+    :DEEPSEASCALE => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
+    :DEEPSEATOOTH => {
+      "badges" => 0,
+      "cost" => 2,
+      "amount" => 2,
+    },
     :QUICKPOWDER => {
       "badges" => 0,
       "cost" => 3,

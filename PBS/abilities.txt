@@ -283,3 +283,4 @@
 281,POWERFULSANDS,Powerful Sands,"a"
 282,ARMORTAIL,Armor Tail,"a"
 283,WINDRIDER,Wind Rider,"todo"
+284,IMMOLATE,Immolate,"a"

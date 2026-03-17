@@ -38,12 +38,12 @@ EMERADICT = {
     # :FLASHLIGHT => {
     #     :name => "Flashlight",
     #     :description => "Your Pokemons with Illuminate will lower the Accuracy of all opposing Pokemon when it switches in or uses Flash.",
-    #     :rarity => :,
+    #     :rarity => :COMMON,
     # },
     :FLOWERWREATH => {
         :name => "Flower Wreath",
         :description => "Your Fairy Pokemon gain Grass type benefits.",
-        :rarity => :,
+        :rarity => :COMMON,
     },
     # :GEOPEBBLE => {
     #     :name => "Geo Pebble",
@@ -156,11 +156,6 @@ EMERADICT = {
     #     :rarity => :COMMON,
     # },
 
-    :ABSORPTIONEMERA => {
-        :name => "Absorption Emera",
-        :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
-        :rarity => :UNCOMMON,
-    },
     # :EXTRADICE => {
     #     :name => "Extra Dice",
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
@@ -199,7 +194,7 @@ EMERADICT = {
     # :SPLASPOTIONOFHARMING => {
     #     :name => "Splash Potion of Harming",
     #     :description => "Opposing Pokemon take 1/4th HP damage at the start of the battle.",
-    #     :rarity => :,
+    #     :rarity => :UNCOMMON,
     # },
     # :SPLASHPOTIONOFPOISON => {
     #     :name => "Splash Potion of Poison",
@@ -217,6 +212,11 @@ EMERADICT = {
     #     :rarity => :UNCOMMON,
     # },
 
+    :ABSORPTIONEMERA => {
+        :name => "Absorption Emera",
+        :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
+        :rarity => :RARE,
+    },
     # :LINGERINGPOTIONOFTURTLEMASTER => {
     #     :name => "Lingering Potion of Turtle Master",
     #     :description => "All Pokemon lose 1 Speed stage and gain 1 Defense and Special Defense stage on switchin.",
@@ -349,13 +349,13 @@ EMERADICT = {
     #     :tutormove => :GENESISSUPERNOVA,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:NORMAL)},
     # },
-    # :MOONHEART => {
-    #     :name => "Moon Heart",
-    #     :description => "Your Pokemon take 0.8x damage while their HP is full.",
-    #     :rarity => :LEGENDARY,
-    #     :tutormove => :MOONGEISTBEAM,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:GHOST)},
-    # },
+    :MOONHEART => {
+        :name => "Moon Heart",
+        :description => "Your Pokemon take 0.8x damage while their HP is full.",
+        :rarity => :LEGENDARY,
+        :tutormove => :MOONGEISTBEAM,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:GHOST)},
+    },
     # :PRISMATICBELL => {
     #     :name => "Prismatic Bell",
     #     :description => "Your Pokemons Healing moves will now also heal their Status Condition.",
