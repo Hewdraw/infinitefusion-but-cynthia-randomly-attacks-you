@@ -713,7 +713,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF, :LIGHTMETAL)
+BattleHandlers::MoveImmunityTargetAbility.copy(:SOUNDPROOF, :LIGHTMETAL)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
   proc { |ability,target,user,move,type,battle|
