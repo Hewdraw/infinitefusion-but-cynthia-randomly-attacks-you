@@ -191,6 +191,11 @@ EMERADICT = {
     #     :description => "Opposing Pokemon get switched out when they knock out Your Pokemon once per battle.",
     #     :rarity => :UNCOMMON,
     # },
+    # :SLOWPOKETAIL => {
+    #     :name => "Slowpoke Tail",
+    #     :description => "Your Pokemon will heal 1/3rd hp when switching out below half hp once per battle.",
+    #     :rarity => :UNCOMMON,
+    # },
     # :SPLASPOTIONOFHARMING => {
     #     :name => "Splash Potion of Harming",
     #     :description => "Opposing Pokemon take 1/4th HP damage at the start of the battle.",
