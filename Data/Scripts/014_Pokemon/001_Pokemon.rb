@@ -1565,6 +1565,7 @@ class Pokemon
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
     @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
     @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)
+    @extraabilities.push(:BATTLEARMOR) if hasItem?(:PROTECTOR)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end

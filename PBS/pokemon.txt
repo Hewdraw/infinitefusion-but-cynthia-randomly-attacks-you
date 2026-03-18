@@ -21631,7 +21631,7 @@ Shape = Head
 [1000600]
 Name = Jigglyoptile
 InternalName = HELIOPTILEJIGGLYPUFF
-Type1 = NORMAL
+Type1 = SOUND
 Type2 = ELECTRIC
 BaseStats = 91,40,28,53,50,30
 GenderRate = Female50Percent
