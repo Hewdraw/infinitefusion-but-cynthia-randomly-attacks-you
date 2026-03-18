@@ -176,7 +176,7 @@ class PokeBattle_Battle
                 end
               end
             end
-            if move.name == "Ice Punch" && b.isFusionOf?(:DUSKNOIR)
+            if move.name == "Ice Punch" && b.isFusionOf(:DUSKNOIR)
               b.eachOpposing do |opponent|
                 if opponent.pbHasType?(:GROUND) && opponent.pbHasType?(:FLYING)
                   pri += 1
