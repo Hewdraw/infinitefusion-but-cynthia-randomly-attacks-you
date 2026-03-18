@@ -455,6 +455,8 @@ class PokeBattle_Battler
       return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:MOLTRES)
     when :FAIRY
       return true if hasActiveEmera?(:FAIRYWREATH)
+    when :GUN
+      return true if hasActiveAbility?(:SNIPER)
     end
     return true if !recursive && hasActiveItem?(:DUBIOUSDISC) && rand(10) < 3
     activeTypes = pbTypes(true)

@@ -617,7 +617,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:BULLETPROOF,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:BULLETPROOF,:ENDER)
+BattleHandlers::MoveImmunityTargetAbility.copy(:BULLETPROOF,:ENDER, :HEAVYMETAL)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:EARTHEATER,
   proc { |ability,target,user,move,type,battle|
@@ -712,6 +712,8 @@ BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF,
 
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.add(:SOUNDPROOF, :LIGHTMETAL)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
   proc { |ability,target,user,move,type,battle|
@@ -1404,6 +1406,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:MAGMAARMOR,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] /= 2 if move.bombMove?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:MAGMAARMOR, :BATTLEARMOR)
+
 BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK,:VOCALOID)
 
 BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
@@ -1435,6 +1445,7 @@ BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:PRISMARMOR,
     if Effectiveness.super_effective?(target.damageState.typeMod)
       mults[:final_damage_multiplier] *= 0.5
     end
+    mults[:final_damage_multiplier] /= 2 if move.bombMove?
   }
 )
 
