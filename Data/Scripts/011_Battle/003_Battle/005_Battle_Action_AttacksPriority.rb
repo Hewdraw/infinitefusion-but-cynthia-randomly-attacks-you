@@ -176,6 +176,14 @@ class PokeBattle_Battle
                 end
               end
             end
+            if move.name == "Ice Punch" && b.isFusionOf?(:DUSKNOIR)
+              b.eachOpposing do |opponent|
+                if opponent.pbHasType?(:GROUND) && opponent.pbHasType?(:FLYING)
+                  pri += 1
+                  break
+                end
+              end
+            end
             bArray[3] = pri
             @choices[b.index][4] = pri
           end
