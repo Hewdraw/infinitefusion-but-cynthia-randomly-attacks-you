@@ -10302,7 +10302,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 4
-Evolutions = DUSKNOIR,Level,50,DUSKNOIR,Item,REAPERCLOTH
+Evolutions = DUSKNOIR,Level,50,DUSKNOIR,Item,REAPERCLOTH,DUSKNOIR,Item,DUSKSTONE
 #-------------------------------
 [313]
 Name = Dusknoir
