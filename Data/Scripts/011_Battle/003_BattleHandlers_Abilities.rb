@@ -1406,15 +1406,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK,:VOCALOID)
+
 BattleHandlers::DamageCalcTargetAbility.add(:MAGMAARMOR,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if move.bombMove?
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:MAGMAARMOR, :BATTLEARMOR)
-
-BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK,:VOCALOID)
+BattleHandlers::DamageCalcTargetAbility.copy(:MAGMAARMOR, :BATTLEARMOR)
 
 BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
   proc { |ability,target,user,move,mults,baseDmg,type|
