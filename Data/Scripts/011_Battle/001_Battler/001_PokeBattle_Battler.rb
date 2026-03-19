@@ -438,13 +438,13 @@ class PokeBattle_Battler
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?(:MAGMARIZER)
       return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:GMOLTRES)
-      return true if pbHasType?(:FIREWATERGRASS, true)
+      return true if pbHasType?(:FIREWATERGRASS)
     when :WATER
       return true if hasActiveItem?([:PRISMSCALE, :DEEPSEATOOTH, :DEEPSEASCALE])
-      return true if pbHasType?(:FIREWATERGRASS, true)
+      return true if pbHasType?(:FIREWATERGRASS)
     when :GRASS
       return true if hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :STICK])
-      return true if pbHasType?(:FIREWATERGRASS, true)
+      return true if pbHasType?(:FIREWATERGRASS)
     when :ELECTRIC
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?(:ELECTIRIZER)
