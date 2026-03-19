@@ -1387,7 +1387,7 @@ BattlerEnemyY = 4
 BattlerAltitude = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CROBAT,Level,40
+Evolutions = CROBAT,Level,40,CROBAT,Item,DUSKSTONE
 #-------------------------------
 [43]
 Name = Oddish
@@ -2025,7 +2025,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = POLIWRATH,Item,WATERSTONE,POLITOED,Level,37,POLITOED,Item,KINGSROCK
+Evolutions = POLIWRATH,Item,WATERSTONE,POLITOED,Level,37,POLITOED,Item,KINGSROCK,POLITOED,Item,DAWNSTONE
 #-------------------------------
 [62]
 Name = Poliwrath
@@ -2092,7 +2092,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 22
 BattlerShadowX = 2
 BattlerShadowSize = 2
-Evolutions = KADABRA,Level,16
+Evolutions = KADABRA,Level,16,KADABRA,Item,SHINYSTONE
 #-------------------------------
 [64]
 Name = Kadabra
@@ -2125,7 +2125,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = ALAKAZAM,Level,40,ALAKAZAM,Item,LINKINGCORD
+Evolutions = ALAKAZAM,Level,40,ALAKAZAM,Item,LINKINGCORD,ALAKAZAM,Item,DAWNSTONE
 #-------------------------------
 [65]
 Name = Alakazam
@@ -2222,7 +2222,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = MACHAMP,Level,40,MACHAMP,Item,LINKINGCORD
+Evolutions = MACHAMP,Level,40,MACHAMP,Item,LINKINGCORD,MACHAMP,Item,DUSKSTONE
 #-------------------------------
 [68]
 Name = Machamp
@@ -2495,7 +2495,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = GOLEM,Level,40,GOLEM,Item,LINKINGCORD
+Evolutions = GOLEM,Level,40,GOLEM,Item,LINKINGCORD,GOLEM,Item,DAWNSTONE
 #-------------------------------
 [76]
 Name = Golem
@@ -2629,7 +2629,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = SLOWBRO,Level,37,SLOWKING,Item,WATERSTONE,SLOWKING,Item,KINGSROCK
+Evolutions = SLOWBRO,Level,37,SLOWKING,Item,WATERSTONE,SLOWKING,Item,KINGSROCK,SLOWKING,Item,DAWNSTONE
 #-------------------------------
 [80]
 Name = Slowbro
@@ -3103,7 +3103,7 @@ BattlerEnemyY = 12
 BattlerAltitude = 14
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = GENGAR,Level,40,GENGAR,Item,LINKINGCORD
+Evolutions = GENGAR,Level,40,GENGAR,Item,LINKINGCORD,GENGAR,Item,DUSKSTONE
 #-------------------------------
 [94]
 Name = Gengar
@@ -3169,7 +3169,7 @@ BattlerEnemyX = -3
 BattlerEnemyY = 4
 BattlerShadowX = 3
 BattlerShadowSize = 3
-Evolutions = STEELIX,Level,40,STEELIX,Item,METALCOAT
+Evolutions = STEELIX,Level,40,STEELIX,Item,METALCOAT,STEELIX,Item,SHINYSTONE
 #-------------------------------
 [96]
 Name = Drowzee
@@ -3588,7 +3588,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = LICKILICKY,HasMove,ROLLOUT
+Evolutions = LICKILICKY,HasMove,ROLLOUT,LICKILICKY,Item,SUNSTONE,LICKILICKY,Item,MOONSTONE
 #-------------------------------
 [109]
 Name = Koffing
@@ -3723,7 +3723,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 4
-Evolutions = RHYPERIOR,Level,55,RHYPERIOR,Item,PROTECTOR
+Evolutions = RHYPERIOR,Level,55,RHYPERIOR,Item,PROTECTOR,RHYPERIOR,Item,SHINYSTONE
 #-------------------------------
 [113]
 Name = Chansey
@@ -3758,7 +3758,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = BLISSEY,Level,42
+Evolutions = BLISSEY,Level,42,BLISSEY,Item,SHINYSTONE
 #-------------------------------
 [114]
 Name = Tangela
@@ -3791,7 +3791,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TANGROWTH,HasMove,ANCIENTPOWER
+Evolutions = TANGROWTH,HasMove,ANCIENTPOWER,TANGROWTH,Item,LEAFSTONE
 #-------------------------------
 [115]
 Name = Kangaskhan
@@ -3858,7 +3858,7 @@ BattlerEnemyY = 24
 BattlerAltitude = 13
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SEADRA,Level,32
+Evolutions = SEADRA,Level,32,KINGDRA,Item,WATERSTONE
 #-------------------------------
 [117]
 Name = Seadra
@@ -4096,7 +4096,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SCIZOR,Level,40,SCIZOR,Item,METALCOAT
+Evolutions = SCIZOR,Level,40,SCIZOR,Item,METALCOAT,SCIZOR,Item,SHINYSTONE
 #-------------------------------
 [124]
 Name = Jynx
@@ -4164,7 +4164,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = ELECTIVIRE,Level,50,ELECTIVIRE,Item,ELECTIRIZER
+Evolutions = ELECTIVIRE,Level,50,ELECTIVIRE,Item,ELECTIRIZER,ELECTIVIRE,Item,THUNDERSTONE
 #-------------------------------
 [126]
 Name = Magmar
@@ -4197,7 +4197,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = MAGMORTAR,Level,50,MAGMORTAR,Item,MAGMARIZER
+Evolutions = MAGMORTAR,Level,50,MAGMORTAR,Item,MAGMARIZER,MAGMORTAR,Item,FIRESTONE
 #-------------------------------
 [127]
 Name = Pinsir
@@ -4293,7 +4293,7 @@ BattlerEnemyY = 12
 BattlerAltitude = 10
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = GYARADOS,Level,20
+Evolutions = GYARADOS,Level,20,GYARADOS,Item,WATERSTONE
 #-------------------------------
 [130]
 Name = Gyarados
@@ -4424,7 +4424,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 20
 BattlerShadowX = -2
 BattlerShadowSize = 1
-Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,ESPEON,Item,SUNSTONE,UMBREON,Item,MOONSTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,SHINYSTONE
+Evolutions = VAPOREON,Item,WATERSTONE,JOLTEON,Item,THUNDERSTONE,FLAREON,Item,FIRESTONE,ESPEON,Item,SUNSTONE,ESPEON,Item,DAWNSTONE,UMBREON,Item,MOONSTONE,UMBREAON,Item,DUSKSTONE,LEAFEON,Item,LEAFSTONE,GLACEON,Item,ICESTONE,SYLVEON,Item,SHINYSTONE
 #-------------------------------
 [134]
 Name = Vaporeon
@@ -4550,7 +4550,7 @@ BattlerEnemyY = 20
 BattlerAltitude = 8
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = PORYGON2,Item,UPGRADE
+Evolutions = PORYGON2,Item,UPGRADE,PORYGON2,Item,SHINYSTONE,PORYGON2,Item,DAWNSTONE,PORYGON2,Item,ICESTONE
 #-------------------------------
 [138]
 Name = Omanyte
@@ -5704,7 +5704,7 @@ BattlerEnemyX = 4
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = PIKACHU,Level,15
+Evolutions = PIKACHU,Level,15,PIKACHU,Item,SHINYSTONE
 #-------------------------------
 [173]
 Name = Cleffa
@@ -5740,7 +5740,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = CLEFAIRY,Level,15
+Evolutions = CLEFAIRY,Level,15,CLEFAIRY,Item,SHINYSTONE
 #-------------------------------
 [174]
 Name = Igglybuff
@@ -5774,7 +5774,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 22
 BattlerShadowX = 2
 BattlerShadowSize = 1
-Evolutions = JIGGLYPUFF,Level,15
+Evolutions = JIGGLYPUFF,Level,15,JIGGLYPUFF,Item,SHINYSTONE
 #-------------------------------
 [175]
 Name = Togepi
@@ -5807,7 +5807,7 @@ BattlerEnemyX = 4
 BattlerEnemyY = 26
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = TOGETIC,Level,15
+Evolutions = TOGETIC,Level,15,TOGETIC,Item,SHINYSTONE,TOGETIC,Item,DAWNSTONE
 #-------------------------------
 [176]
 Name = Togetic
@@ -6298,7 +6298,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AMBIPOM,HasMove,DOUBLEHIT
+Evolutions = AMBIPOM,HasMove,DOUBLEHIT,AMBIPOM,Item,SUNSTONE,AMBIPOM,Item,DAWNSTONE
 #-------------------------------
 [191]
 Name = Sunkern
@@ -6399,7 +6399,7 @@ BattlerEnemyY = 13
 BattlerAltitude = 15
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = YANMEGA,HasMove,ANCIENTPOWER
+Evolutions = YANMEGA,HasMove,ANCIENTPOWER,YANMEGA,Item,SUNSTONE,YANMEGA,Item,DAWNSTONE
 #-------------------------------
 [194]
 Name = Wooper
@@ -6860,7 +6860,7 @@ BattlerEnemyY = 9
 BattlerAltitude = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GLISCOR,Item,DUSKSTONE
+Evolutions = GLISCOR,Item,DUSKSTONE,GLISCOR,Item,MOONSTONE
 #-------------------------------
 [208]
 Name = Steelix
@@ -7325,7 +7325,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = MAMOSWINE,HasMove,ANCIENTPOWER
+Evolutions = MAMOSWINE,HasMove,ANCIENTPOWER,MAMOSWINE,Item,ICESTONE
 #-------------------------------
 [222]
 Name = Corsola
@@ -7725,7 +7725,7 @@ BattlerEnemyY = 19
 BattlerAltitude = 11
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = PORYGONZ,Item,DUBIOUSDISC
+Evolutions = PORYGONZ,Item,DUBIOUSDISC,PORYGONZ,Item,DUSKSTONE,PORYGONZ,Item,ICESTONE
 #-------------------------------
 [234]
 Name = Stantler
@@ -7820,7 +7820,7 @@ BattlerEnemyX = -3
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = HITMONLEE,AttackGreater,20,HITMONCHAN,DefenseGreater,20,HITMONTOP,AtkDefEqual,20
+Evolutions = HITMONLEE,AttackGreater,20,HITMONCHAN,DefenseGreater,20,HITMONTOP,AtkDefEqual,20,HITMONTOP,Item,SHINYSTONE,HITMONCHAN,Item,DAWNSTONE,HITMONLEE,Item,DUSKSTONE
 #-------------------------------
 [237]
 Name = Hitmontop
@@ -7888,7 +7888,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 22
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = JYNX,Level,21
+Evolutions = JYNX,Level,21,JYNX,Item,ICESTONE
 #-------------------------------
 [239]
 Name = Elekid
@@ -7922,7 +7922,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = ELECTABUZZ,Level,21
+Evolutions = ELECTABUZZ,Level,21,ELECTABUZZ,Item,THUNDERSTONE
 #-------------------------------
 [240]
 Name = Magby
@@ -7956,7 +7956,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MAGMAR,Level,21
+Evolutions = MAGMAR,Level,21,MAGMAR,Item,FIRESTONE
 #-------------------------------
 [241]
 Name = Miltank
@@ -8356,7 +8356,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MARILL,Level,15
+Evolutions = MARILL,Level,15,MARILL,Item,WATERSTONE
 #-------------------------------
 [253]
 Name = Wynaut
@@ -8513,7 +8513,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SUDOWOODO,HasMove,MIMIC
+Evolutions = SUDOWOODO,HasMove,MIMIC,SUDOWOODO,Item,LEAFSTONE
 #-------------------------------
 [258]
 Name = Mime Jr.
@@ -8547,7 +8547,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MRMIME,HasMove,MIMIC
+Evolutions = MRMIME,HasMove,MIMIC,MRMIME,Item,ICESTONE
 #-------------------------------
 [259]
 Name = Happiny
@@ -8581,7 +8581,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = CHANSEY,DayHoldItem,OVALSTONE
+Evolutions = CHANSEY,DayHoldItem,OVALSTONE,CHANSEY,Item,SHINYSTONE
 #-------------------------------
 [260]
 Name = Munchlax
@@ -8615,7 +8615,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SNORLAX,Level,30
+Evolutions = SNORLAX,Level,30,SNORLAX,Item,SHINYSTONE
 #-------------------------------
 [261]
 Name = Mantyke
@@ -8649,7 +8649,7 @@ BattlerEnemyY = 16
 BattlerAltitude = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MANTINE,Level,20
+Evolutions = MANTINE,Level,20,MANTINE,Item,WATERSTONE
 #-------------------------------
 [262]
 Name = Weavile
@@ -10302,7 +10302,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 8
 BattlerShadowX = 0
 BattlerShadowSize = 4
-Evolutions = DUSKNOIR,Level,50,DUSKNOIR,Item,REAPERCLOTH,DUSKNOIR,Item,DUSKSTONE
+Evolutions = DUSKNOIR,Level,50,DUSKNOIR,Item,REAPERCLOTH,DUSKNOIR,Item,DUSKSTONE,DUSKNOIR,Item,ICESTONE
 #-------------------------------
 [313]
 Name = Dusknoir
@@ -12597,7 +12597,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = LUCARIO,Level,20
+Evolutions = LUCARIO,Level,20,LUCARIO,Item,DAWNSTONE
 #-------------------------------
 [385]
 Name = Slakoth
@@ -12928,7 +12928,7 @@ BattlerEnemyY = 17
 BattlerAltitude = 12
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MILOTIC,Level,35,MILOTIC,Item,PRISMSCALE
+Evolutions = MILOTIC,Level,35,MILOTIC,Item,PRISMSCALE,MILOTIC,Item,SHINYSTONE
 #-------------------------------
 [395]
 Name = Bagon
@@ -13125,7 +13125,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = ROSELIA,Level,15
+Evolutions = ROSELIA,Level,15,ROSELIA,Item,SUNSTONE,ROSELIA,Item,LEAFSTONE
 #-------------------------------
 [401]
 Name = Roselia
@@ -13160,7 +13160,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 15
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = ROSERADE,Item,SHINYSTONE
+Evolutions = ROSERADE,Item,SHINYSTONE,ROSERADE,Item,SUNSTONE,ROSERADE,Item,LEAFSTONE
 #-------------------------------
 [402]
 Name = Drifloon
@@ -13227,7 +13227,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 11
 BattlerShadowX = 3
 BattlerShadowSize = 1
-Evolutions = LOPUNNY,Level,22
+Evolutions = LOPUNNY,Level,22,LOPUNNY,Item,SHINYSTONE
 #-------------------------------
 [404]
 Name = Shroomish
@@ -13494,7 +13494,7 @@ BattlerEnemyY = 21
 BattlerAltitude = 14
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = COFAGRIGUS,Level,34
+Evolutions = COFAGRIGUS,Level,34,COFAGRIGUS,Item,DUSKSTONE
 #-------------------------------
 [412]
 Name = Joltik
@@ -13960,7 +13960,7 @@ BattlerEnemyX = -7
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = TYRANTRUM,LevelDay,39
+Evolutions = TYRANTRUM,LevelDay,39,TYRANTRUM,Item,SUNSTONE
 #-------------------------------
 [426]
 Name = Tyrantrum
@@ -14026,7 +14026,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 20
 BattlerShadowX = 1
 BattlerShadowSize = 1
-Evolutions = GLALIE,Level,42,FROSLASS,Item,DAWNSTONE
+Evolutions = GLALIE,Level,42,FROSLASS,Item,DAWNSTONE,FROSLASS,Item,ICESTONE
 #-------------------------------
 [428]
 Name = Glalie
@@ -14397,7 +14397,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 4
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = TREVENANT,Level,40,TREVENANT,Item,LINKINGCORD
+Evolutions = TREVENANT,Level,40,TREVENANT,Item,LINKINGCORD,TREVENANT,Item,LEAFSTONE
 #-------------------------------
 [439]
 Name = Trevenant
@@ -14630,7 +14630,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 10
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GOODRA,Level,50
+Evolutions = GOODRA,Level,50,GOODRA,Item,WATERSTONE
 #-------------------------------
 [446]
 Name = Goodra
@@ -15157,7 +15157,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AURORUS,LevelNight,39
+Evolutions = AURORUS,LevelNight,39,AURORUS,Item,MOONSTONE
 #-------------------------------
 [462]
 Name = Aurorus
@@ -15222,7 +15222,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LYCANROC_N,LevelNight,25,LYCANROC_D,LevelDay,25
+Evolutions = LYCANROC_N,LevelNight,25,LYCANROC_N,Item,MOONSTONE,LYCANROC_D,LevelDay,25,LYCANROC_D,Item,SUNSTONE
 #-------------------------------
 [464]
 Name = Lycanroc
@@ -15650,7 +15650,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = LURANTIS,LevelDay,34
+Evolutions = LURANTIS,LevelDay,34,LURANTIS,Item,SUNSTONE,LURANTIS,Item,LEAFSTONE
 #-------------------------------
 [477]
 Name = Lurantis
@@ -16073,7 +16073,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = GOURGEIST,Level,40,GOURGEIST,Item,LINKINGCORD
+Evolutions = GOURGEIST,Level,40,GOURGEIST,Item,LINKINGCORD,GOURGEIST,Item,LEAFSTONE
 #-------------------------------
 [490]
 Name = Gourgeist
@@ -16137,7 +16137,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SLURPUFF,Level,35
+Evolutions = SLURPUFF,Level,35,SLURPUFF,Item,SHINYSTONE
 #-------------------------------
 [492]
 Name = Slurpuff
@@ -16641,7 +16641,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = SILCOON,Silcoon,7,CASCOON,Cascoon,7
+Evolutions = SILCOON,Silcoon,7,CASCOON,Cascoon,7,SILCOON,Item,DAWNSTONE,CASCOON,Item,DUSKSTONE
 #-------------------------------
 [507]
 Name = Silcoon
@@ -18374,7 +18374,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 6
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = CHIMECHO,Level,15
+Evolutions = CHIMECHO,Level,15,CHIMECHO,Item,SHINYSTONE
 Incense = PUREINCENSE
 #-------------------------------
 [558]
@@ -18546,7 +18546,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 23
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = HUNTAIL,TradeItem,DEEPSEATOOTH,GOREBYSS,TradeItem,DEEPSEASCALE
+Evolutions = HUNTAIL,Item,DEEPSEATOOTH,GOREBYSS,Item,DEEPSEASCALE,GOREBYSS,Item,DAWNSTONE,HUNTAIL,Item,DUSKSTONE
 #-------------------------------
 [563]
 Name = Huntail

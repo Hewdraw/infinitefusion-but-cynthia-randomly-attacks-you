@@ -16,6 +16,11 @@ class PokeBattle_Battler
       BattleHandlers.triggerUserAbilityOnHit(user.ability,user,target,move,@battle)
       user.pbItemHPHealCheck
     end
+    if user.hasActiveItem?(:ELECTIRIZER) && move.contactMove? && battle.pbRandom(100)>=30 && (user.isFusionOf(:ELEKID) || user.isFusionOf(:ELECTABUZZ) || user.isFusionOf(:ELECTIVIRE))
+      if target.pbCanParalyze?(user,false)
+        target.pbParalyze?(user)
+      end
+    end
   end
 
   def pbEffectsOnMakingHit(move,user,target)

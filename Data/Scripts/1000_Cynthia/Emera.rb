@@ -7,7 +7,7 @@ EMERADICT = {
 
     :APPLE => {
         :name => "Apple",
-        :description => "Heals your Pokemon for 1/16th when going up a floor.",
+        :description => "Your Pokemon heal for 1/16th when going up a floor.",
         :rarity => :COMMON,
     },
     :BREWINGSTAND => {
@@ -17,7 +17,7 @@ EMERADICT = {
     },
     :CAPTURESTYLER => {
         :name => "Capture Styler",
-        :description => "Gain an extra option when obtaining a Pokemon.",
+        :description => "Gain an extra option when obtaining a Pokemon from a Pokeball floor.",
         :rarity => :COMMON,
     },
     # :CHOICERIBBON => {
@@ -193,7 +193,7 @@ EMERADICT = {
     # },
     # :SLOWPOKETAIL => {
     #     :name => "Slowpoke Tail",
-    #     :description => "Your Pokemon will heal 1/3rd hp when switching out below half hp once per battle.",
+    #     :description => "Your Pokemon will heal 1/3rd hp when switching out below half hp once per battle per pokemon.",
     #     :rarity => :UNCOMMON,
     # },
     # :SPLASPOTIONOFHARMING => {

@@ -264,6 +264,9 @@ class PokeBattle_Move
       end
       return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
     end
+    if user.hasActiveItem?(:LUCKYPUNCH) && (user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY))
+      return target.spatk, target.stages[:SPECIAL_ATTACK] + 6
+    end
     if specialMove?
       return user.spatk, user.stages[:SPECIAL_ATTACK]+6
     end
@@ -272,6 +275,7 @@ class PokeBattle_Move
 
   def pbGetDefenseStats(user,target)
     if specialMove?
+      return target.defense, target.stages[:DEFENSE]+6 if user.hasActiveItem?(:DEEPSEATOOTH)
       return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
     end
     return target.defense, target.stages[:DEFENSE]+6
@@ -588,6 +592,7 @@ class PokeBattle_Move
         ret *= 1.5
       end
     end
+    ret += 10 if user.hasActiveItem?(:UPGRADE) if ret > 0
     ret = 100 if $DEBUG && Input.press?(Input::CTRL)
     return ret
   end

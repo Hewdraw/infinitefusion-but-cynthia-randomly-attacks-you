@@ -190,11 +190,11 @@
 188,METALPOWDER,Metal Powder,Metal Powders,1,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.",0,0,0
 189,QUICKPOWDER,Quick Powder,Quick Powders,1,1000,"An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.",0,0,0
 190,THICKCLUB,Thick Club,Thick Clubs,1,1000,"An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat.",0,0,0
-191,STICK,Stick,Sticks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0
+191,STICK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0
 192,SOULDEW,Soul Dew,Soul Dews,1,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
 193,DEEPSEATOOTH,Deep Sea Tooth,Deep Sea Teeth,1,2000,"An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.",0,0,0
-194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,1,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",0,0,0
-195,ADAMANTORB,Adamant Orb,Adamant Orbs,1,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
+194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,1,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",1,0,7
+195,ADAMANTORB,Adamant Orb,Adamant Orbs,1,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",1,0,7
 196,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,1,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
 197,GRISEOUSORB,Griseous Orb,Griseous Orbs,1,10000,"A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",0,0,0
 198,DOUSEDRIVE,Douse Drive,Douse Drives,1,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",0,0,0

@@ -222,7 +222,7 @@ class PokeBattle_Battle
     return if expGained <= 0
     # "Exp gained" message
     if showMessages
-      if isOutsider
+      if isOutsider || hasEmera?(:SYNCSTONEULTIMATE)
         pbDisplayPaused(_INTL("{1} got a boosted {2} Exp. Points!", pkmn.name, expGained))
       else
         pbDisplayPaused(_INTL("{1} got {2} Exp. Points!", pkmn.name, expGained))

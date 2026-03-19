@@ -412,20 +412,23 @@ class PokeBattle_Battler
       ret.push(@effects[PBEffects::Type3]) if !ret.include?(@effects[PBEffects::Type3])
     end
     ret.push(:FLYING) if !ret.include?(:FLYING) && hasActiveItem?(:ELYTRA)
+    ret.push(:FAIRY) if !ret.include?(:FAIRY) && hasActiveItem?(:WHIPPEDDREAM)
     return ret
   end
 
-  def pbHasType?(type, recursive=false)
+  def pbHasType?(type)
     return false if !type
     return true if hasActiveEmera?(:ARCEUSRING)
     case type
     when :NORMAL
-      return true if hasActiveItem?(:UPGRADE)
+      return true if hasActiveItem?([:UPGRADE, :OVALSTONE])
     when :FIGHTING
+      return true if hasActiveItem?([:LUCKYPUNCH])
       return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:ZAPDOS)
     when :FLYING
     when :POISON
     when :GROUND
+      return true if hasActiveItem?(:THICKCLUB)
     when :ROCK
       return true if hasActiveItem?(:PROTECTOR)
     when :BUG
@@ -437,9 +440,10 @@ class PokeBattle_Battler
       return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:GMOLTRES)
       return true if pbHasType?(:FIREWATERGRASS, true)
     when :WATER
+      return true if hasActiveItem?([:PRISMSCALE, :DEEPSEATOOTH, :DEEPSEASCALE])
       return true if pbHasType?(:FIREWATERGRASS, true)
     when :GRASS
-      return true if hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+      return true if hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :STICK])
       return true if pbHasType?(:FIREWATERGRASS, true)
     when :ELECTRIC
       return true if hasActiveAbility?(:WIRED)
@@ -449,14 +453,16 @@ class PokeBattle_Battler
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:ARTICUNO)
     when :ICE
+      return true if hasActiveItem?(:REAPERCLOTH)
       return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:GARTICUNO)
     when :DRAGON
+      return true if hasActiveItem?(:DRAGONSCALE)
     when :DARK
       return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:MOLTRES)
     when :FAIRY
       return true if hasActiveEmera?(:FAIRYWREATH)
     when :GUN
-      return true if hasActiveAbility?(:SNIPER)
+      return true if hasActiveAbility?([:SNIPER, :FULLMETALBODY])
     end
     return true if !recursive && hasActiveItem?(:DUBIOUSDISC) && rand(10) < 3
     activeTypes = pbTypes(true)
@@ -600,7 +606,7 @@ class PokeBattle_Battler
     end
     return true if check_item.name[-3..-1] == "ite" && !["Eviolite", "Pyrite"].include?(check_item.name)
     return true if check_item.name[-5..-1] == "ium Z"
-    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra"].include?(check_item.name)
+    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end

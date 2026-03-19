@@ -2011,7 +2011,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:BATTLEBOND,
     user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
     user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,user,GameData::Ability.get(ability).real_name)
     user.pbRaiseStatStageByAbility(:SPEED,1,user,GameData::Ability.get(ability).real_name)
-    battler.pokemon.battlevariables[:dauntlessshield] = true
+    battler.pokemon.battlevariables[:battlebond] = true
   }
 )
 

@@ -189,6 +189,7 @@ class FusionTutorService
       compatibleMoves << :LIQUIDATION if is_fusion_of([:STARMIE])
       compatibleMoves << :SHELLSMASH if is_fusion_of([:BLASTOISE, :TORTERRA])
       compatibleMoves << :LAVAPLUME if hasType(:FIRE)
+      compatibleMoves << :SCALESHOT if hasType(:DRAGON) || canLearnMove(:FURYATTACK) #todo add more multihits
 
     end
     if includeLegendaries

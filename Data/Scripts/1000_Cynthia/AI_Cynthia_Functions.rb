@@ -2165,7 +2165,7 @@ class PokeBattle_AI
     end
     damagedictionary.each do |key,damage|
       originalkey = key
-      key = :critDamage if user.hasActiveItem?(:LEEK) || user.hasActiveItem?(:STICK)
+      key = :critDamage if user.hasActiveItem?(:STICK)
       baseDmg = move.baseDamage
       case move.function
       when "010"   # Stomp

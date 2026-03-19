@@ -454,6 +454,8 @@ BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
   }
 )
 
+BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
+
 BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
   proc { |item,mods,user,target,move,type|
     if (target.battle.choices[target.index][0]!=:UseMove &&
@@ -549,6 +551,13 @@ BattleHandlers::DamageCalcUserItem.add(:CHOICESPECS,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:WHIPPEDDREAM,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:SLURPUFF) || user.isFusionOf(:SWIRLIX)
+  }
+)
+
+
 BattleHandlers::DamageCalcUserItem.add(:DARKGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleGem(user,:DARK,move,mults,type)
@@ -557,7 +566,7 @@ BattleHandlers::DamageCalcUserItem.add(:DARKGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:DEEPSEATOOTH,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if user.isSpecies?(:CLAMPERL) && move.specialMove?
+    if (user.isFusionOf(:CLAMPERL) || user.isFusionOf(:HUNTAIL)) && move.specialMove?
       mults[:attack_multiplier] *= 2
     end
   }
@@ -590,6 +599,15 @@ BattleHandlers::DamageCalcUserItem.add(:EXPERTBELT,
     end
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:MAGMARIZER,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if Effectiveness.super_effective?(target.damageState.typeMod) && (user.isFusionOf(:MAGBY) || user.isFusionOf(:MAGMAR) || user.isFusionOf(:MAGMORTAR))
+      mults[:final_damage_multiplier] *= 1.2
+    end
+  }
+)
+
 
 BattleHandlers::DamageCalcUserItem.add(:FAIRYGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -667,6 +685,12 @@ BattleHandlers::DamageCalcUserItem.add(:LIFEORB,
     if !move.is_a?(PokeBattle_Confusion)
       mults[:final_damage_multiplier] *= 1.3
     end
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:STICK,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 1.2
   }
 )
 
@@ -760,7 +784,7 @@ BattleHandlers::DamageCalcUserItem.add(:MYSTICWATER,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:MYSTICWATER,:SPLASHPLATE,:SEAINCENSE,:WAVEINCENSE)
+BattleHandlers::DamageCalcUserItem.copy(:MYSTICWATER,:SPLASHPLATE,:SEAINCENSE,:WAVEINCENSE, :DEEPSEATOOTH)
 
 BattleHandlers::DamageCalcUserItem.add(:NEVERMELTICE,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -937,6 +961,14 @@ BattleHandlers::DamageCalcTargetItem.add(:DIAMONDCHESTPLATE,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:PRISMSCALE,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    if target.pbHasAnyStatus? && move.specialMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.add(:BABIRIBERRY,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:STEEL,type,target,mults)
@@ -975,7 +1007,7 @@ BattleHandlers::DamageCalcTargetItem.add(:COLBURBERRY,
 
 BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if target.isSpecies?(:CLAMPERL) && move.specialMove?
+    if (target.isFusionOf(:CLAMPERL) || target.isFusionOf(:GOREBYSS)) && move.specialMove?
       mults[:defense_multiplier] *= 2
     end
   }
@@ -993,7 +1025,39 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if physicalMove? && target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:PRIMEAPE) || target.isFusionOf(:MRMIME) || target.isFusionOf(:GIRAFARIG) || target.isFusionOf(:DUNSPARCE) || target.isFusionOf(:QWILFISH) || target.isFusionOf(:URSARING) || target.isFusionOf(:CORSOLA) || target.isFusionOf(:STANTLER) || target.isFusionOf(:LINOONE) || target.isFusionOf(:BISHARP) || target.isFusionOf(:RAICHU)
+      mults[:defense_multiplier] *= 2
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
+
+BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if target.isFusionOf(:PORYGON) || target.isFusionOf(:PORYGON2) || target.isFusionOf(:PORYGONZ)
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if (target.isFusionOf(:HAPPINY) || target.isFusionOf(:CHANSEY)) && specialMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:PROTECTOR,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if (target.isFusionOf(:RHYHORN) || target.isFusionOf(:RHYDON) || target.isFusionOf(:RHYPERIOR)) && physicalMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
 
 BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1137,7 +1201,9 @@ BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
 
 BattleHandlers::CriticalCalcUserItem.add(:LUCKYPUNCH,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:CHANSEY)
+    c += 1 if user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY)
+    c += 1
+    next c
   }
 )
 
@@ -1151,13 +1217,15 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:MIKUETTA) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    c += 1 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:MIKUETTA) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    c += 1
+    next c
   }
 )
 
-BattleHandlers::CriticalCalcUserItem.add(:LEEK,
+BattleHandlers::CriticalCalcUserItem.add(:DRAGONSCALE,
   proc { |item,user,target,c|
-    next c+2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:MIKUETTA) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    next c + 1 if user.isFusionOf(:KINGDRA)
   }
 )
 
@@ -1484,6 +1552,33 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
   }
 )
 
+BattleHandlers::UserItemAfterMoveUse.add(:MAGMARIZER,
+  proc { |item,user,targets,move,numHits,battle|
+    next if !user.canHeal?
+    next unless user.isFusionOf(:MAGBY) || user.isFusionOf(:MAGMAR) || user.isFusionOf(:MAGMORTAR)
+    totalDamage = 0
+    targets.each { |b| totalDamage += b.damageState.totalHPLost }
+    next if totalDamage<=0
+    user.pbRecoverHP(totalDamage/8)
+    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
+       user.pbThis,user.itemName))
+  }
+)
+
+BattleHandlers::UserItemAfterMoveUse.add(:ELECTIRIZER,
+  proc { |item,user,targets,move,numHits,battle|
+    next if !user.canHeal?
+    next unless user.isFusionOf(:ELEKID) || user.isFusionOf(:ELECTABUZZ) || user.isFusionOf(:ELECTIVIRE)
+    next unless move.punchingMove?
+    totalDamage = 0
+    targets.each { |b| totalDamage += b.damageState.totalHPLost }
+    next if totalDamage<=0
+    user.pbRecoverHP(totalDamage/2)
+    battle.pbDisplay(_INTL("{1} restored HP using its {2}!",
+       user.pbThis,user.itemName))
+  }
+)
+
 #===============================================================================
 # EndOfMoveItem handlers
 #===============================================================================
@@ -1543,6 +1638,31 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEHERB,
          battler.pbThis,itemName))
     end
     next true
+  }
+)
+
+BattleHandlers::EndOfMoveStatRestoreItem.add(:DRAGONSCALE,
+  proc { |item,battler,battle,forced|
+    reducedStats = false
+    GameData::Stat.each_battle do |s|
+      next if battler.stages[s.id] >= 0
+      battler.stages[s.id] = 0
+      reducedStats = true
+    end
+    next false if !reducedStats
+    next false unless user.isFusionOf(:HORSEA) || user.isFusionOf(:SEADRA) || user.isFusionOf(:KINGDRA)
+    next false if battler.pokemon.battlevariables[:dragonscale]
+    itemName = GameData::Item.get(item).name
+    PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
+    battle.pbCommonAnimation("UseItem",battler) if !forced
+    if forced
+      battle.pbDisplay(_INTL("{1}'s status returned to normal!",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} returned its status to normal using its {2}!",
+         battler.pbThis,itemName))
+    end
+    battler.pokemon.battlevariables[:dragonscale] = true
+    next false
   }
 )
 
@@ -1611,6 +1731,8 @@ BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
     next 8 if weather == :Rain || weather == :HeavyRain
   }
 )
+
+BattleHandlers::WeatherExtenderItem.copy(:DAMPROCK,:DRAGONSCALE)
 
 BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   proc { |item,weather,duration,battler,battle|
@@ -1711,6 +1833,17 @@ BattleHandlers::EORHealingItem.add(:BLACKSLUDGE,
 BattleHandlers::EORHealingItem.add(:LEFTOVERS,
   proc { |item,battler,battle|
     next if !battler.canHeal?
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
+BattleHandlers::EORHealingItem.add(:PROTECTOR,
+  proc { |item,battler,battle|
+    next if !battler.canHeal?
+    next unless battler.isFusionOf(:RHYHORN) || battler.isFusionOf(:RHYDON) || battler.isFusionOf(:RHYPERIOR)
     battle.pbCommonAnimation("UseItem",battler)
     battler.pbRecoverHP(battler.totalhp/16)
     battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
@@ -1848,6 +1981,21 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
       battle.pbDisplay(_INTL("{1} used its Booster Energy to activate Protosynthesis!",battler.pbThis))
       battle.pbHideAbilitySplash(battler)
     end
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:DEEPSEASCALE,
+  proc { |item,battler,battle|
+    battler.effects[PBEffects::AquaRing] = true
+    battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",battle.pbThis))
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:WHIPPEDDREAM,
+  proc { |item,user,target,move,battle|
+    next unless user.isFusionOf(:SLURPUFF) || user.isFusionOf(:SWIRLIX)
+    battle.pbStartTerrain(user, :Misty)
+    user.pbUseMove(:MISTYEXPLOSIO)
   }
 )
 
