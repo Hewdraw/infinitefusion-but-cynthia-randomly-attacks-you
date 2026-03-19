@@ -142,7 +142,7 @@ def towerIncreaseFloor(nextfloor)
         moves = []
         for i in movelist
           next if i[0] > pkmn.level || i[0] <= oldlevel
-          moves.push(GameData::Move.get(newMove).name)
+          moves.push(GameData::Move.get(i[0]).name)
         end
         if moves.length == 1
             Kernel.pbMessage(_INTL("{1} can learn new moves!", pkmn.name))
