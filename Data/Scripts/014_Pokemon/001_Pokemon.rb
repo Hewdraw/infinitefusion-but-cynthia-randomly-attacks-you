@@ -1564,18 +1564,18 @@ class Pokemon
     end
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
     @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
-    @extraabilities.push(:IRONFIST) if hasItem?(:ELECTIRIZER) && (user.isFusionOf(:ELEKID) || user.isFusionOf(:ELECTABUZZ) || user.isFusionOf(:ELECTIVIRE))
+    @extraabilities.push(:IRONFIST) if hasItem?(:ELECTIRIZER) && (isFusionOf(:ELEKID) || isFusionOf(:ELECTABUZZ) || isFusionOf(:ELECTIVIRE))
     @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)
-    @extraabilities.push(:SHEERFORCE) if hasItem?(:MAGMARIZER) && (user.isFusionOf(:MAGBY) || user.isFusionOf(:MAGMAR) || user.isFusionOf(:MAGMORTAR))
-    @extraabilities.push(:ANALYTIC) if hasItem?(:MAGMARIZER) && (user.isFusionOf(:MAGBY) || user.isFusionOf(:MAGMAR) || user.isFusionOf(:MAGMORTAR))
+    @extraabilities.push(:SHEERFORCE) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
+    @extraabilities.push(:ANALYTIC) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
     @extraabilities.push(:BATTLEARMOR) if hasItem?(:PROTECTOR)
-    @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && (user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY))
+    @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && (isFusionOf(:CHANSEY) || isFusionOf(:BLISSEY))
     @extraabilities.push(:SNIPER) if hasItem?(:STICK)
     @extraabilities.push(:NATURALCURE) if hasItem?(:OVALSTONE)
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:THICKCLUB)
-    @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && user.isFusionOf(:MILOTIC)
-    @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (user.isFusionOf(:HORSEA) || user.isFusionOf(:SEADRA) || user.isFusionOf(:KINGDRA))
-    @extraabilities.push(:MENACE) if hasItem?(:DRAGONSCALE) && (user.isFusionOf(:HORSEA) || user.isFusionOf(:SEADRA) || user.isFusionOf(:KINGDRA))
+    @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && isFusionOf(:MILOTIC)
+    @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
+    @extraabilities.push(:MENACE) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
     @abilityarray = createAbilityArray
     @boxicon = nil
   end
