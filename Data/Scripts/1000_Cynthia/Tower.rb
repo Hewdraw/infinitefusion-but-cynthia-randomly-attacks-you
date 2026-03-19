@@ -141,13 +141,8 @@ def towerIncreaseFloor(nextfloor)
         movelist = pkmn.getMoveList
         moves = []
         for i in movelist
-          next if i[0] > pkmn.level || i[0] <= oldlevel
-          moves.push(GameData::Move.get(i[0]).name)
-        end
-        if moves.length == 1
-            Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, moves[0]))
-        elsif moves.length > 1
-            Kernel.pbMessage(_INTL("{1} can learn new moves!", pkmn.name))
+            next if i[0] > pkmn.level || i[0] <= oldlevel
+            Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[0]).name))
         end
         gainedhp = 1
         gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
