@@ -146,7 +146,7 @@ def towerIncreaseFloor(nextfloor)
         end
         if moves.length == 1
             Kernel.pbMessage(_INTL("{1} can learn new moves!", pkmn.name))
-        else
+        elsif moves.length > 1
             Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, moves[0]))
         end
         gainedhp = 1
