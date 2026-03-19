@@ -1569,13 +1569,13 @@ class Pokemon
     @extraabilities.push(:SHEERFORCE) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
     @extraabilities.push(:ANALYTIC) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
     @extraabilities.push(:BATTLEARMOR) if hasItem?(:PROTECTOR)
-    @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && (isFusionOf(:CHANSEY) || isFusionOf(:BLISSEY))
+    @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && (isFusionOf(:HAPPINY) || isFusionOf(:CHANSEY) || isFusionOf(:BLISSEY))
     @extraabilities.push(:SNIPER) if hasItem?(:STICK)
     @extraabilities.push(:NATURALCURE) if hasItem?(:OVALSTONE)
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:THICKCLUB)
     @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && isFusionOf(:MILOTIC)
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
-    @extraabilities.push(:MENACE) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
+    @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end

@@ -264,10 +264,10 @@ class PokeBattle_Move
       end
       return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
     end
-    if user.hasActiveItem?(:LUCKYPUNCH) && (user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY))
-      return target.spatk, target.stages[:SPECIAL_ATTACK] + 6
-    end
     if specialMove?
+      if user.hasActiveItem?(:LUCKYPUNCH) && (user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY)) && specialMove
+        return target.spatk, target.stages[:SPECIAL_ATTACK] + 6
+      end
       return user.spatk, user.stages[:SPECIAL_ATTACK]+6
     end
     return user.attack, user.stages[:ATTACK]+6

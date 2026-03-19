@@ -690,7 +690,7 @@ BattleHandlers::DamageCalcUserItem.add(:LIFEORB,
 
 BattleHandlers::DamageCalcUserItem.add(:STICK,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 1.2
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:VOCALLEEK)
   }
 )
 
@@ -1059,6 +1059,14 @@ BattleHandlers::DamageCalcTargetItem.add(:PROTECTOR,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:DRAGONSCALE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if (target.isFusionOf(:HORSEA) || target.isFusionOf(:SEADRA) || target.isFusionOf(:KINGDRA))
+      mults[:defense_multiplier] *= 1.2
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
     if target.isFusionOf(:TYRANTRUM)
@@ -1201,7 +1209,7 @@ BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
 
 BattleHandlers::CriticalCalcUserItem.add(:LUCKYPUNCH,
   proc { |item,user,target,c|
-    c += 1 if user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY)
+    c += 1 if user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY)
     c += 1
     next c
   }
@@ -1217,9 +1225,7 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    c += 1 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:MIKUETTA) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
-    c += 1
-    next c
+    next c + 2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:VOCALLEEK) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
   }
 )
 
