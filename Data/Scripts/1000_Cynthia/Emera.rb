@@ -222,6 +222,11 @@ EMERADICT = {
         :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
         :rarity => :RARE,
     },
+    :GOLDENLEPPABERRY => {
+        :name => "Golden Leppa Berry",
+        :description => "Your Pokemon do not use PP half the time.",
+        :rarity => :RARE,
+    },
     # :LINGERINGPOTIONOFTURTLEMASTER => {
     #     :name => "Lingering Potion of Turtle Master",
     #     :description => "All Pokemon lose 1 Speed stage and gain 1 Defense and Special Defense stage on switchin.",

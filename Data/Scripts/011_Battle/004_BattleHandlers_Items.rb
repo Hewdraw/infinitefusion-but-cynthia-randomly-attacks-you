@@ -922,11 +922,20 @@ BattleHandlers::DamageCalcUserItem.add(:WISEGLASSES,
 
 BattleHandlers::DamageCalcUserItem.add(:WELLSPRINGMASK,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if user.pbHasType?(:GRASS)
+    mults[:base_damage_multiplier] *= 1.2 if user.pbHasType?(:WATER)
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:WELLSPRINGMASK,:HEARTHFLAMEMASK,:CORNERSTONEMASK)
+BattleHandlers::DamageCalcUserItem.add(:HEARTHFLAMEMASK,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if user.pbHasType?(:FIRE)
+  }
+)
+BattleHandlers::DamageCalcUserItem.add(:CORNERSTONEMASK,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if user.pbHasType?(:ROCK)
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
   proc { |item,user,target,move,mults,baseDmg,type|
