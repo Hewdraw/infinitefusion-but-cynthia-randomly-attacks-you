@@ -190,6 +190,7 @@ class FusionTutorService
       compatibleMoves << :SHELLSMASH if is_fusion_of([:BLASTOISE, :TORTERRA])
       compatibleMoves << :LAVAPLUME if hasType(:FIRE)
       compatibleMoves << :SCALESHOT if hasType(:DRAGON) || canLearnMove(:FURYATTACK) #todo add more multihits
+      compatibleMoves << :POWERGEM if hasType(:ROCK)
 
     end
     if includeLegendaries
