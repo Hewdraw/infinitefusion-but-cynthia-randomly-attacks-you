@@ -1027,7 +1027,7 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
 
 BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if physicalMove? && target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:PRIMEAPE) || target.isFusionOf(:MRMIME) || target.isFusionOf(:GIRAFARIG) || target.isFusionOf(:DUNSPARCE) || target.isFusionOf(:QWILFISH) || target.isFusionOf(:URSARING) || target.isFusionOf(:CORSOLA) || target.isFusionOf(:STANTLER) || target.isFusionOf(:LINOONE) || target.isFusionOf(:BISHARP) || target.isFusionOf(:RAICHU)
+    if move.physicalMove? && target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:PRIMEAPE) || target.isFusionOf(:MRMIME) || target.isFusionOf(:GIRAFARIG) || target.isFusionOf(:DUNSPARCE) || target.isFusionOf(:QWILFISH) || target.isFusionOf(:URSARING) || target.isFusionOf(:CORSOLA) || target.isFusionOf(:STANTLER) || target.isFusionOf(:LINOONE) || target.isFusionOf(:BISHARP) || target.isFusionOf(:RAICHU)
       mults[:defense_multiplier] *= 2
     end
   }
@@ -1045,7 +1045,7 @@ BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
 
 BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:HAPPINY) || target.isFusionOf(:CHANSEY)) && specialMove?
+    if (target.isFusionOf(:HAPPINY) || target.isFusionOf(:CHANSEY)) && move.specialMove?
       mults[:defense_multiplier] *= 1.5
     end
   }
@@ -1053,7 +1053,7 @@ BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
 
 BattleHandlers::DamageCalcTargetItem.add(:PROTECTOR,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:RHYHORN) || target.isFusionOf(:RHYDON) || target.isFusionOf(:RHYPERIOR)) && physicalMove?
+    if (target.isFusionOf(:RHYHORN) || target.isFusionOf(:RHYDON) || target.isFusionOf(:RHYPERIOR)) && move.physicalMove?
       mults[:defense_multiplier] *= 1.5
     end
   }

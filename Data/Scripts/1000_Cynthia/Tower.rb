@@ -142,7 +142,11 @@ def towerIncreaseFloor(nextfloor)
         moves = []
         for i in movelist
             next if i[0] > pkmn.level || i[0] <= oldlevel
-            Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[0]).name))
+            if pbCynthiaGetBadgeCount <= 3
+                pbLearnMove(pkmn, i[1], true)
+            else
+                Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[1]).name))
+            end
         end
         gainedhp = 1
         gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
@@ -167,6 +171,8 @@ def towerIncreaseFloor(nextfloor)
     when "Legendary"
         $PokemonGlobal.towervalues[:eventvariable] = $PokemonGlobal.towervalues[:legendarylist].sample
         $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:eventvariable]}
+    when "Unknown"
+        $PokemonGlobal.towervalues[:eventvariable] = ["Cynthia", "Hot Spring"].sample #todo
     end
     pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]))
     pbSetGraphic(4, "")
@@ -187,6 +193,7 @@ def getTowerEventsList()
     eventlist =  {
         "Pokemon" => 50,
         "Chest" => 25,
+        "Unknown" => 0, #todo
         "Miku" => 10,
         "Shop" => 10,
         "Heal" => 10,
@@ -202,7 +209,7 @@ def getTowerEventsList()
     $Trainer.party.each do |pkmn|
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
     end
-    eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] % 10 == 8
+    eventlist["Heal"] += 100 if $PokemonGlobal.towervalues[:floor] % 10 == 8
     eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] == 1
     return eventlist
 end
@@ -221,6 +228,35 @@ def towerEvent()
         $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     when "Chest"
         enderChest()
+    when "Unknown"
+        case $PokemonGlobal.towervalues[:eventvariable]
+        when "Cynthia"
+            return if !pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
+        when "Hot Spring"
+            choice = Kernel.pbMessage("You encounter a Torkoal heating up a spring." ["Soak in the water.", "Fight.", "Gather herbs nearby."])
+            case choice
+            when 0
+                Kernel.pbMessage("Your Pokemon heal from the rest.")
+            when 1
+                return if !pbEventBattle("Torkoal")
+            when 2
+                pbItemBall(:REVIVALHERB, 3)
+                pbItemBall(:ENERGYROOT, 5)
+                Kernel.pbMessage("The Torkoal left while you gathered herbs.")
+            end
+        when "Berry Tree"
+            choice = Kernel.pbMessage("You spot a large berry tree next to the road." ["Gather some Berries.", "Shake the tree.", "Water the tree."])
+            case choice
+            when 0
+                Kernel.pbMessage("Your Pokemon heal from the rest.")
+            when 1
+                return if !pbEventBattle("Heracross")
+            when 2
+                pbItemBall(:REVIVALHERB, 3)
+                pbItemBall(:ENERGYROOT, 5)
+                Kernel.pbMessage("The Torkoal left while you gathered herbs.")
+            end
+        end
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])
         return if $PokemonGlobal.towervalues.nil?
@@ -365,6 +401,15 @@ def getFloorGraphic(event)
         return "BW164"
     when "Chest"
         return "ChestSprite"
+    when "Unknown"
+        case $PokemonGlobal.towervalues[:eventvariable]
+        when "Cynthia"
+            return "BW126"
+        when "Hot Spring"
+            return "TORKOAL"
+        when nil
+            return "201_27"
+        end
     when "Miku"
         return "HatsuneMiku"
     when "Shop"
@@ -373,8 +418,6 @@ def getFloorGraphic(event)
         return "BWNurse"
     when "Tutor"
         return "Claire_Overworld"
-    when "Elite"
-        return "BW126"
     when "Legendary"
         case $PokemonGlobal.towervalues[:eventvariable]
         when "Articuno"
@@ -425,6 +468,8 @@ def getNextFloorDescription(nextfloor)
         message = "Pick one of three pokemon."
     when "Chest"
         message = "Gain some items."
+    when "Unknown"
+        message = "?"
     when "Miku"
         message = "Fight Hatsune Miku for an Emera."
     when "Shop"
@@ -553,14 +598,36 @@ def getTowerItems()
             [:SHINYSTONE, 1],
             [:SUNSTONE, 1],
             [:THUNDERSTONE, 1],
-            [:UPGRADE, 1],
             [:WATERSTONE, 1],
             [:METALCOAT, 1],
-            [:OVALSTONE, 1],
             [:DAWNSTONE, 1],
             [:ICESTONE, 1],
             [:WHIPPEDDREAM, 1],
-            [:LUCKYPUNCH, 1],
+            [:EJECTPACK, 5],
+            [:BLUNDERPOLICY, 5],
+            [:THROATSPRAY, 5],
+            [:SILKSCARF, 1],
+            [:BLACKBELT, 1],
+            [:BLACKGLASSES, 1],
+            [:CHARCOAL, 1],
+            [:DRAGONFANG, 1],
+            [:HARDSTONE, 1],
+            [:MAGNET, 1],
+            [:MIRACLESEED, 1],
+            [:MYSTICWATER, 1],
+            [:NEVERMELTICE, 1],
+            [:POISONBARB, 1],
+            [:SHARPBEAK, 1],
+            [:SILVERPOWDER, 1],
+            [:SOFTSAND, 1],
+            [:SPELLTAG, 1],
+            [:TWISTEDSPOON, 1],
+            [:HEATROCK, 1],
+            [:DAMPROCK, 1],
+            [:SMOOTHROCK, 1],
+            [:ICYROCK, 1],
+            [:LOADEDDICE, 1],
+            [:REPEL, 1],
         ],
         [ #rare
             [:EVIOLITE, 1],
@@ -569,10 +636,6 @@ def getTowerItems()
             [:ELECTIRIZER, 1],
             [:PROTECTOR, 1],
             [:DUBIOUSDISC, 1],
-            [:HEATROCK, 1],
-            [:DAMPROCK, 1],
-            [:SMOOTHROCK, 1],
-            [:ICYROCK, 1],
             [:LIGHTCLAY, 1],
             [:BLACKSLUDGE, 1],
             [:EXPERTBELT, 1],
@@ -589,14 +652,32 @@ def getTowerItems()
             [:MAXREVIVE, 1],
             [:REVIVALHERB, 1],
             [:PPMAX, 1],
-            [:EJECTPACK, 5],
-            [:BLUNDERPOLICY, 5],
-            [:THROATSPRAY, 5],
-            [:MISTSTONE, 1],
             [:PRISMSCALE, 1],
             [:DRAGONSCALE, 1],
             [:DEEPSEASCALE, 1],
             [:DEEPSEATOOTH, 1],
+            [:UPGRADE, 1],
+            [:OVALSTONE, 1],
+            [:LUCKYPUNCH, 1],
+            [:FISTPLATE, 1],
+            [:DREADPLATE, 1],
+            [:FLAMEPLATE, 1],
+            [:DRACOPLATE, 1],
+            [:STONEPLATE, 1],
+            [:ZAPPLATE, 1],
+            [:IRONPLATE, 1],
+            [:MEADOWPLATE, 1],
+            [:SPLASHPLATE, 1],
+            [:ICICLEPLATE, 1],
+            [:PIXIEPLATE, 1],
+            [:TOXICPLATE, 1],
+            [:SKYPLATE, 1],
+            [:INSECTPLATE, 1],
+            [:EARTHPLATE, 1],
+            [:SPOOKYPLATE, 1],
+            [:MINDPLATE, 1],
+            [:METALPOWDER, 1],
+            [:QUICKPOWDER, 1],
         ],
         [ #super rare
             [:CHOICEBAND, 1],
@@ -605,8 +686,10 @@ def getTowerItems()
             [:LEFTOVERS, 1],
             [:LIFEORB, 1],
             [:ASSAULTVEST, 1],
-            [:LOADEDDICE, 1],
+            [:DIAMONDCHESTPLATE, 1],
             [:HEAVYDUTYBOOTS, 1],
+            [:MISTSTONE, 1],
+            [:ENCHANTINGTABLE, 1],
         ],
         [ #secret rare
             [:SACREDASH, 1],
@@ -615,9 +698,7 @@ def getTowerItems()
             #[:ENDCRYSTAL, 1],
             [:ELYTRA, 1],
             #[:ENDERPEARL, 1],
-            [:DIAMONDCHESTPLATE, 1],
             #[:GOLDENAPPLE, 1],
-            [:ENCHANTINGTABLE, 1],
             [:WELLSPRINGMASK, 1],
             [:HEARTHFLAMEMASK, 1],
             [:CORNERSTONEMASK, 1],

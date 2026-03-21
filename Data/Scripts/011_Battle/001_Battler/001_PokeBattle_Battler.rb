@@ -498,7 +498,7 @@ class PokeBattle_Battler
     getAllAbilities.each do |ability|
       next if !abilityActive?(ignore_fainted, ability)
       next if !check_ability.include?(ability)
-      @tempability = GameData::Ability.get(ability[0]).real_name if ability != @ability_id
+      @tempability = GameData::Ability.get(ability).real_name if ability != @ability_id
       return true
     end
     return false

@@ -57,7 +57,7 @@ module GameData
         if self == GameData::Item
           return nil
         else
-          #print(caller, " ", other)
+          print(other, " ", caller) if self != GameData::Species
           return self::get(:PIKACHU)
         end
       end

@@ -364,7 +364,7 @@ class PokeBattle_Battle
         eff = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
         oldHP = battler.hp
         reducedhp = battler.totalhp * eff / 8
-        reducedhp = reducedhp * 2 / 3 if user.hasActiveItem?(:PROTECTOR)
+        reducedhp = reducedhp * 2 / 3 if battler.hasActiveItem?(:PROTECTOR)
         battler.pbReduceHP(reducedhp, false)
         pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis))
         battler.pbItemHPHealCheck
@@ -379,7 +379,7 @@ class PokeBattle_Battle
       spikesDiv = [8, 6, 4][battler.pbOwnSide.effects[PBEffects::Spikes] - 1]
       oldHP = battler.hp
       reducedhp = battler.totalhp / spikesDiv
-      reducedhp = reducedhp * 2 / 3 if user.hasActiveItem?(:PROTECTOR)
+      reducedhp = reducedhp * 2 / 3 if battler.hasActiveItem?(:PROTECTOR)
       battler.pbReduceHP(reducedhp, false)
       pbDisplay(_INTL("{1} is hurt by the spikes!", battler.pbThis))
       battler.pbItemHPHealCheck
@@ -394,7 +394,7 @@ class PokeBattle_Battle
         battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
       elsif battler.pbCanPoison?(nil, false)
-        if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] == 2 && !user.hasActiveItem?(:PROTECTOR)
+        if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] == 2 && !battler.hasActiveItem?(:PROTECTOR)
           battler.pbPoison(nil, _INTL("{1} was badly poisoned by the poison spikes!", battler.pbThis), true)
         else
           battler.pbPoison(nil, _INTL("{1} was poisoned by the poison spikes!", battler.pbThis))
