@@ -110,6 +110,11 @@ EMERADICT = {
     #     :description => "Your Pokemons Foul Play will use the highest attacking stat on the field.",
     #     :rarity => :COMMON,
     # },
+    # :STUNSEED => {
+    #     :name => "Stun Seed",
+    #     :description => "Opposing Pokemon that knock out your Slugmo, Gulpin, Swellow or Rhydon will be Paralyzed.",
+    #     :rarity => :COMMON,
+    # },
     # :TECTONICPLATE => {
     #     :name => "Tectonic Plate",
     #     :description => "Your Pokemons Magnitude can reach 15.",
@@ -319,8 +324,8 @@ EMERADICT = {
     #     :tutormove => :PRISMATICLASER,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:WATER)},
     # },
-    # :ELEMENTALSPHERE => {
-    #     :name => "Elemental Sphere",
+    # :Vortex Stone => {
+    #     :name => "Vortex Stone",
     #     :description => "Your Pokemon are 1.5x more likely to apply additional Status Conditions.",
     #     :rarity => :LEGENDARY,
     #     :legendary => ["Articuno", "Zapdos", "Moltres"],
@@ -456,6 +461,13 @@ EMERADICT = {
     :WISHINGSTAR => {
         :name => "Wishing Star",
         :description => "Gain an extra Emera when beating Hatsune Miku.",
+        :rarity => :LEGENDARY,
+        :tutormove => :ETERNABEAM,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DRAGON)},
+    },
+    :WISHINGPIECE => {
+        :name => "Wishing Piece",
+        :description => "Your Pokemon will activate a Raid pulse every 10th turn.",
         :rarity => :LEGENDARY,
         :tutormove => :DYNAMAXCANNON,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DRAGON)},

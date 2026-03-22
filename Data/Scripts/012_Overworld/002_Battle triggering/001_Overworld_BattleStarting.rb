@@ -476,7 +476,11 @@ def pbLegendaryBattle(species)
   # comparing levels for an evolution check)
   Events.onStartBattle.trigger(nil)
   # Generate trainers and their parties based on the arguments given
-  trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species)
+  if $PokemonGlobal.towervalues.nil? || $PokemonGlobal.towervalues[:activeevent] == "Legendary"
+    trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species) 
+  else
+    trainer = pbLoadTrainer(:ALPHA_POKEMON, species)
+  end
   return 0 if !trainer
   party = []
   skip_mon = 0

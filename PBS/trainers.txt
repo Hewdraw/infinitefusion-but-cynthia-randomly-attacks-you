@@ -10965,4 +10965,17 @@ Pokemon = CREEPER,5
     EV = 252,252,0,252,0,0
     Happiness = 255
 
+####################### Alpha Pokemon
+[ALPHA_POKEMON,Torkoal,0]
+Pokemon = TORKOAL,11   
+    Offset = 0
+    Moves = MYSTICALFIREPLUS,SOLARBEAM,BODYPRESS,IRONDEFENSE
+    Ability = DROUGHTPLUS
+    Hpbar = 2
+    Item = ASSAULTVEST
+    Nature = BOLD
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,252,0
+
 #eof

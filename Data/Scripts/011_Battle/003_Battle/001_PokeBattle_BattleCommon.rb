@@ -144,7 +144,11 @@ module PokeBattle_BattleCommon
     if battler.battle.legendaryBattle? && !battler.fainted?
       pbShowAbilitySplash(battler)
       @scene.pbThrowAndDeflect(ball, 1)
-      pbDisplay(_INTL("{1}'s Legendary Pressure deflects the ball", battler.name))
+      if battler.hasActiveAbility?(:LEGENDARYPRESSURE)
+        pbDisplay(_INTL("{1}'s Legendary Pressure deflects the ball", battler.name))
+      else
+        pbDisplay(_INTL("{1}'s Wild Might deflects the ball", battler.name))
+      end
       pbHideAbilitySplash(battler)
       return
     elsif trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?) && !battler.battle.legendaryBattle?

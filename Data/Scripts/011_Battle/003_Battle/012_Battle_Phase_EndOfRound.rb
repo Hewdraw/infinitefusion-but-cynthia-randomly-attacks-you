@@ -210,19 +210,25 @@ class PokeBattle_Battle
     # Weather
     pbEORWeather(priority)
     priority.each do |b|
-      next if !b.raid
       next if b.fainted?
-      raidcooldown = 6
-      if !b.raid.is_a?(Integer)
-        b.raid = raidcooldown
-      end
-      b.raid -= 1
-      next if b.raid > 1
-      pbShowAbilitySplash(b,false,true,"Legendary Pressure")
-      if b.raid == 1
-        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
-        pbHideAbilitySplash(b)
-        next
+      if !b.hasActiveEmera?(:WISHINGPIECE)
+        next if !b.raid
+        next if !b.hasActiveAbility?(:LEGENDARYPRESSURE)
+        raidcooldown = 6
+        if !b.raid.is_a?(Integer)
+          b.raid = raidcooldown
+        end
+        b.raid -= 1
+        next if b.raid > 1
+        pbShowAbilitySplash(b,false,true,"Legendary Pressure")
+        if b.raid == 1
+          pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
+          pbHideAbilitySplash(b)
+          next
+        end
+      else
+        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turncount % 10 == 9
+        next unless @turncount % 10 == 0
       end
       pbCommonAnimation("UltraBurst2", b)
       b.pbEffectsOnSwitchIn
@@ -250,7 +256,7 @@ class PokeBattle_Battle
       end
       pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
       pbHideAbilitySplash(b)
-      b.raid = raidcooldown
+      b.raid = raidcooldown if b.raid
     end
     # Future Sight/Doom Desire
     @positions.each_with_index do |pos,idxPos|
