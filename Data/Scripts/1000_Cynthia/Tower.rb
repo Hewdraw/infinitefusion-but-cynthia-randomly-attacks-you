@@ -350,7 +350,7 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Blaine, "Blaine")
         when 7
-            $PokemonGlobal.nextBattleBGM = "Giovanni"
+            $PokemonGlobal.nextBattleBGM = "VSGiovanni"
             return if !pbTrainerBattle(:LEADER_Giovanni, "Giovanni")
         when 8
             $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
