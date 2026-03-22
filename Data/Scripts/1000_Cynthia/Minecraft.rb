@@ -38,9 +38,14 @@ def enderChest()
         randomrarity -= rarity
       end
     end
-    randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
-    itemname = (randomitem[1] > 1) ? GameData::Item.get(randomitem[0]).name_plural : GameData::Item.get(randomitem[0]).name
     itemcolor = getEnderChestRarityColors()[randomrarity]
+    randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
+    if randomitem == :EMERA
+      pbMessage("You got an \\C[#{itemcolor}]#{Emera}\\C[0]!")
+      grantRandomEmera
+      next
+    end
+    itemname = (randomitem[1] > 1) ? GameData::Item.get(randomitem[0]).name_plural : GameData::Item.get(randomitem[0]).name
     if $PokemonBag.pbStoreItem(*randomitem) 
       pbMessage("You got #{randomitem[1]} \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end

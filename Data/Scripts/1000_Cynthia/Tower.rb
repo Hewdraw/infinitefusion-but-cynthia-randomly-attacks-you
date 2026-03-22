@@ -19,7 +19,6 @@ def setupTower()
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
         :eventlist => ["Cynthia", "Hot Spring", "Berry Tree", "Future Berry Tree"],
         :eventvariables => {},
-
     }
     pbAddPokemon(getTowerPokemon("Starter"), 5)
     pbAddPokemon(getTowerPokemon(), 5)
@@ -713,6 +712,7 @@ def getTowerItems()
             [:WELLSPRINGMASK, 1],
             [:HEARTHFLAMEMASK, 1],
             [:CORNERSTONEMASK, 1],
+            [:EMERA, 1],
         ],
         [ #ultimate rare
             [:PYRITE, 1],

@@ -23917,13 +23917,6 @@ Color = Red
 Shape = Head
 Kind = Plasma
 Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
-BattlerPlayerX = 0
-BattlerPlayerY = -9
-BattlerEnemyX = 0
-BattlerEnemyY = 27
-BattlerAltitude = 25
-BattlerShadowX = 0
-BattlerShadowSize = 1
 #-------------------------------
 [1001101]
 Name = Palmon
