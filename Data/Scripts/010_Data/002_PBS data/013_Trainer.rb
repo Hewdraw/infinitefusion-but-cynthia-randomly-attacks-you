@@ -382,11 +382,11 @@ module GameData
         offset += 2 if shininess
         offset += 3 if shininess && !(GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM))
         if !$PokemonGlobal.towervalues.nil? && $PokemonGlobal.towervalues[:activeevent] == "Legendary"
-          case $PokemonGlobal.towervalues[:eventvariable]
+          case $PokemonGlobal.towervalues[:activevariable]
           when "Genesect"
             offset -= 5
           else
-            offset -= 10
+            offset -= 8
           end
         end
         highestlevel = 0
