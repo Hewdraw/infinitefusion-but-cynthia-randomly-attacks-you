@@ -15,8 +15,10 @@ def setupTower()
         :ladder2 => nil,
         :ladder3 => nil,
         :activeevent => "Pokemon",
-        :eventvariable => nil,
+        :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :eventvariables => {}
+
     }
     pbAddPokemon(getTowerPokemon("Starter"), 5)
     pbAddPokemon(getTowerPokemon(), 5)
@@ -169,10 +171,10 @@ def towerIncreaseFloor(nextfloor)
     pbSetSelfSwitch(2, "A", false)
     case $PokemonGlobal.towervalues[:activeevent]
     when "Legendary"
-        $PokemonGlobal.towervalues[:eventvariable] = $PokemonGlobal.towervalues[:legendarylist].sample
-        $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:eventvariable]}
+        $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:legendarylist].sample
+        $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
     when "Unknown"
-        $PokemonGlobal.towervalues[:eventvariable] = ["Cynthia", "Hot Spring"].sample #todo
+        $PokemonGlobal.towervalues[:activevariable] = ["Cynthia", "Hot Spring"].sample #todo
     end
     pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]))
     pbSetGraphic(4, "")
@@ -229,13 +231,16 @@ def towerEvent()
     when "Chest"
         enderChest()
     when "Unknown"
-        case $PokemonGlobal.towervalues[:eventvariable]
+        case $PokemonGlobal.towervalues[:activevariable]
         when "Cynthia"
             return if !pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
         when "Hot Spring"
             choice = Kernel.pbMessage("You encounter a Torkoal heating up a spring.", ["Soak in the water.", "Fight.", "Gather herbs nearby."])
             case choice
             when 0
+                $Trainer.party.each do |pkmn|
+                    pkmn.heal
+                end
                 Kernel.pbMessage("Your Pokemon heal from the rest.")
             when 1
                 return if !pbLegendaryBattle("Torkoal")
@@ -245,16 +250,23 @@ def towerEvent()
                 Kernel.pbMessage("The Torkoal left while you gathered herbs.")
             end
         when "Berry Tree"
-            choice = Kernel.pbMessage("You spot a large berry tree next to the road." ["Gather some Berries.", "Shake the tree.", "Water the tree."])
+            choice = Kernel.pbMessage("You spot a berry tree next to the road." ["Gather some Berries.", "Shake the tree.", "Water the tree."])
             case choice
             when 0
+                berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY]
+                berryamount = rand(10) + 6
+                for i in 1..berryamount
+                    pbItemBall(berrylist.sample)
+                end
             when 1
                 Kernel.pbMessage("An angry Heracross flies out of the tree.")
                 return if !pbLegendaryBattle("Heracross")
             when 2
+                Kernel.pbMessage("The tree looks happy.")
+                $PokemonGlobal.towervalues.eventvariables[:wateredtree] = true
             end
         end
-        $PokemonGlobal.towervalues[:eventvariable] = nil
+        $PokemonGlobal.towervalues[:activevariable] = nil
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])
         return if $PokemonGlobal.towervalues.nil?
@@ -285,7 +297,7 @@ def towerEvent()
             end
         end
     when "Legendary"
-        case $PokemonGlobal.towervalues[:eventvariable]
+        case $PokemonGlobal.towervalues[:activevariable]
         when "Articuno", "Mew", "Moltres", "Zapdos"
             $PokemonGlobal.nextBattleBGM = "Legendary Birds"
         when "Diancie"
@@ -301,7 +313,7 @@ def towerEvent()
         when "Reshirom"
             $PokemonGlobal.nextBattleBGM = "VSReshiramZekrom"
         end
-        if $PokemonGlobal.towervalues[:eventvariable] == "Genesect"
+        if $PokemonGlobal.towervalues[:activevariable] == "Genesect"
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
             pbAddPokemon(:GENESECT, 5)
             $PokemonBag.pbStoreItem(:OMNIDRIVE)
@@ -310,10 +322,10 @@ def towerEvent()
             $PokemonBag.pbStoreItem(:DOUSEDRIVE)
             $PokemonBag.pbStoreItem(:CHILLDRIVE)
         else
-            return if !pbLegendaryBattle($PokemonGlobal.towervalues[:eventvariable])
-            pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:eventvariable] == "Meloetta"
+            return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
+            pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
         end
-        $PokemonGlobal.towervalues[:eventvariable] = nil
+        $PokemonGlobal.towervalues[:activevariable] = nil
     when "Gym"
         case $PokemonGlobal.towervalues[:badges]
         when 0
@@ -400,7 +412,7 @@ def getFloorGraphic(event)
     when "Chest"
         return "ChestSprite"
     when "Unknown"
-        case $PokemonGlobal.towervalues[:eventvariable]
+        case $PokemonGlobal.towervalues[:activevariable]
         when "Cynthia"
             return "BW126"
         when "Hot Spring"
@@ -417,7 +429,7 @@ def getFloorGraphic(event)
     when "Tutor"
         return "Claire_Overworld"
     when "Legendary"
-        case $PokemonGlobal.towervalues[:eventvariable]
+        case $PokemonGlobal.towervalues[:activevariable]
         when "Articuno"
             return "144"
         when "Diancie"
@@ -714,6 +726,8 @@ def getTowerItems()
     items[3].push([:MECHUMETAL, 1]) if !$PokemonBag.pbHasItem?(:MECHUMETAL)
 
     items[4].push([:OMNIDRIVE, 1]) if !$PokemonBag.pbHasItem?(:OMNIDRIVE)
+    items[4].push([:TUTORMACHINE, 1]) if !$PokemonBag.pbHasItem?(:TUTORMACHINE)
+    items[4].push([:HEALIES, 1]) if !$PokemonBag.pbHasItem?(:HEALIES)
 
     return items
 end
