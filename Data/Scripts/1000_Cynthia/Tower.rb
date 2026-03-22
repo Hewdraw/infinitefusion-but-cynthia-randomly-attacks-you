@@ -238,7 +238,7 @@ def towerEvent()
             when 0
                 Kernel.pbMessage("Your Pokemon heal from the rest.")
             when 1
-                return if !pbEventBattle("Torkoal")
+                return if !pbLegendaryBattle("Torkoal")
             when 2
                 pbItemBall(:REVIVALHERB, 3)
                 pbItemBall(:ENERGYROOT, 5)
@@ -248,13 +248,10 @@ def towerEvent()
             choice = Kernel.pbMessage("You spot a large berry tree next to the road." ["Gather some Berries.", "Shake the tree.", "Water the tree."])
             case choice
             when 0
-                Kernel.pbMessage("Your Pokemon heal from the rest.")
             when 1
-                return if !pbEventBattle("Heracross")
+                Kernel.pbMessage("An angry Heracross flies out of the tree.")
+                return if !pbLegendaryBattle("Heracross")
             when 2
-                pbItemBall(:REVIVALHERB, 3)
-                pbItemBall(:ENERGYROOT, 5)
-                Kernel.pbMessage("The Torkoal left while you gathered herbs.")
             end
         end
     when "Miku"
