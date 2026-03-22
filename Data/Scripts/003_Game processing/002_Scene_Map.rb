@@ -232,7 +232,7 @@ class Scene_Map
           $game_temp.menu_beep = true
           dayOfWeek = getDayOfTheWeek().to_s
           mapname = $game_map.name
-          mapname += " Floor " + $PokemonGlobal.towervalues[:floor].to_s if mapname == "Tower" && !$PokemonGlobal.towervalues.nil?
+          mapname += " " + $PokemonGlobal.towervalues[:floor].to_s + "F" if mapname == "Temporal Tower" && !$PokemonGlobal.towervalues.nil?
           $scene.spriteset.addUserSprite(LocationWindow.new(mapname + "\n"+ pbGetTimeNow.strftime(_INTL("%I:%M %p")) + "\n" + dayOfWeek))
         end
       elsif Input.trigger?(Input::SPECIAL)
