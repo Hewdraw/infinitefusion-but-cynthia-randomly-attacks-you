@@ -1591,8 +1591,8 @@ class Pokemon
   def createAbilityArray
     list = []
     list += @extraabilities if @extraabilities
-    if list.include?(:LEGENDARYPRESSURE) || @ability_id == :LEGENDARYPRESSURE
-      @getAbilityList.each do |ability|
+    if list.include?(:LEGENDARYPRESSURE) || ability_id == :LEGENDARYPRESSURE
+      getAbilityList.each do |ability|
         list.push(ability[0])
       end
     end
