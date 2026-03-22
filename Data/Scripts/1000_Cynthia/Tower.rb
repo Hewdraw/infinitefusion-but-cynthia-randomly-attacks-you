@@ -172,7 +172,7 @@ def towerIncreaseFloor(nextfloor)
         $PokemonGlobal.towervalues[:eventvariable] = $PokemonGlobal.towervalues[:legendarylist].sample
         $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:eventvariable]}
     when "Unknown"
-        $PokemonGlobal.towervalues[:eventvariable] = ["Cynthia", "Hot Spring"].sample #todo
+        $PokemonGlobal.towervalues[:eventvariable] = "Hot Spring"#["Cynthia", "Hot Spring"].sample #todo
     end
     pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]))
     pbSetGraphic(4, "")
@@ -233,7 +233,7 @@ def towerEvent()
         when "Cynthia"
             return if !pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
         when "Hot Spring"
-            choice = Kernel.pbMessage("You encounter a Torkoal heating up a spring." ["Soak in the water.", "Fight.", "Gather herbs nearby."])
+            choice = Kernel.pbMessage("You encounter a Torkoal heating up a spring.", ["Soak in the water.", "Fight.", "Gather herbs nearby."])
             case choice
             when 0
                 Kernel.pbMessage("Your Pokemon heal from the rest.")
@@ -254,6 +254,7 @@ def towerEvent()
             when 2
             end
         end
+        $PokemonGlobal.towervalues[:eventvariable] = nil
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])
         return if $PokemonGlobal.towervalues.nil?
