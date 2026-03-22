@@ -1025,7 +1025,7 @@
 1055,MISTBALLPLUS,Mist Ball+,322,70,PSYCHIC,Special,100,20,100,NearOther,0,befn,"A mistlike flurry of down envelops and damages the target. It may also lower the target's Sp. Atk."
 1056,BOLTSTRIKEPLUS,Bolt Strike+,007,160,ELECTRIC,Physical,0,1,100,NearOther,0,abef,"The user charges at its foe, surrounding itself with lightning. It may also leave the target paralyzed."
 1057,BLUEFLAREPLUS,Blue Flare+,00A,160,FIRE,Special,0,1,100,NearOther,0,bef,"The user attacks by engulfing the foe in a beautiful, yet intense, blue flame. It may also burn the foe."
-1058,HARMONIZE,Harmonize,241,80,SOUND,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass."
+1058,HARMONIZE,Harmonize,241,80,SOUND,Special,100,10,100,AllNearFoes,0,befk,"Nice Smeargle/Ditto, jackass."
 1059,TRIPLEBAKA,Triple Baka,325,39,QMARKS,Special,100,10,0,AllNearFoes,0,befk,"Baka baka baka."
 1060,MESMERIZER,Mesmerizer,326,0,PSYCHIC,Status,0,20,0,NearOther,0,bcek,"Hypnotizes Every Live Person."
 1061,APPLEACID,Apple Acid,04f,80,GRASS,Special,100,10,100,NearOther,0,bef,"a"
