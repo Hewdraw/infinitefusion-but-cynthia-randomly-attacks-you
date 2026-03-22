@@ -480,6 +480,7 @@ def pbLegendaryBattle(species)
     trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species) 
   else
     trainer = pbLoadTrainer(:ALPHA_POKEMON, species)
+    $PokemonGlobal.nextBattleBGM = "VSAlpha"
   end
   return 0 if !trainer
   party = []

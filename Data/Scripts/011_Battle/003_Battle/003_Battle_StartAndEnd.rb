@@ -593,6 +593,9 @@ class PokeBattle_Battle
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
+            if s.id == :HP && battler.ability_id != :LEGENDARYPRESSURE
+              battler.pokemon.ev[s.id] = 252
+            end
             battler.pokemon.ev[s.id] = 0
           end
           if battler.pokemon.moves.length > 4
