@@ -41,7 +41,7 @@ def enderChest()
     itemcolor = getEnderChestRarityColors()[randomrarity]
     randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
     if randomitem == :EMERA
-      pbMessage("You got an \\C[#{itemcolor}]#{Emera}\\C[0]!")
+      pbMessage("You got an \\C[#{itemcolor}]Emera\\C[0]!")
       grantRandomEmera
       next
     end
