@@ -284,3 +284,4 @@
 282,ARMORTAIL,Armor Tail,"a"
 283,WINDRIDER,Wind Rider,"todo"
 284,IMMOLATE,Immolate,"a"
+285,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."

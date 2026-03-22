@@ -2547,6 +2547,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:DROUGHTPLUS,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:Sun, battler, battle, false, false)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
   proc { |ability,battler,battle|
     next if battle.field.terrain == :Electric

@@ -193,7 +193,7 @@ def getTowerEventsList()
     eventlist =  {
         "Pokemon" => 50,
         "Chest" => 25,
-        "Unknown" => 0, #todo
+        "Unknown" => 25, #todo
         "Miku" => 10,
         "Shop" => 10,
         "Heal" => 10,

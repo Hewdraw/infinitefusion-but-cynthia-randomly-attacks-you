@@ -586,16 +586,14 @@ def pbBattleTypeWeakingBerry(type,moveType,target,mults)
   target.battle.pbCommonAnimation("EatBerry",target)
 end
 
-def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false)
+def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false,fixedDuration=true)
   return if !ignorePrimal && [:HarshSun, :HeavyRain, :StrongWinds].include?(battle.field.weather)
   return if battle.field.weather==weather
   battle.pbShowAbilitySplash(battler)
   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     battle.pbDisplay(_INTL("{1}'s {2} activated!",battler.pbThis,battler.abilityName))
   end
-  fixedDuration = false
-  fixedDuration = true if Settings::FIXED_DURATION_WEATHER_FROM_ABILITY &&
-                          ![:HarshSun, :HeavyRain, :StrongWinds].include?(weather)
+  fixedDuration = false if [:HarshSun, :HeavyRain, :StrongWinds].include?(weather)
   battle.pbStartWeather(battler,weather,fixedDuration)
   # NOTE: The ability splash is hidden again in def pbStartWeather.
 end
