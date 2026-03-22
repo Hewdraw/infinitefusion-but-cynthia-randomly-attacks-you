@@ -194,6 +194,7 @@ class PokeBattle_Battler
     pbBGMPlay("VSParadoxBeasts") if [:GOUGINGFIRE, :WALKINGWAKE, :RAGINGBOLT].include?(pokemon.species)
     pbBGMPlay("CoolDino") if pokemon.species == :COOLERDINO
     pbBGMPlay("VSMegaDiancie") if pokemon.species == :MEGADIANCIE
+    pbBGMPlay("VSMeloetta2") if pokemon.species == :MELOETTA_A
     pbBGMPlay("VSTripleBaka") if pokemon.species == :VOCALLEEK
   end
 
