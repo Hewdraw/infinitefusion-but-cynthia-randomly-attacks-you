@@ -17,6 +17,7 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :eventlist => ["Cynthia", "Hot Spring", "Berry Tree", "Future Berry Tree"]
         :eventvariables => {}
 
     }
