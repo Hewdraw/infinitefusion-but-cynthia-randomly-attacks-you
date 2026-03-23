@@ -1599,6 +1599,7 @@ class Pokemon
     list.push(:ILLUMINATE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
     list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
+    list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
     list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)

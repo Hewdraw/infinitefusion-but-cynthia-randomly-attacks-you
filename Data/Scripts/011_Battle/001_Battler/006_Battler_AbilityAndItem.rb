@@ -25,6 +25,7 @@ class PokeBattle_Battler
     if (!fainted? && unstoppableAbility?) || abilityActive?
       BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
     end
+    BattleHandlers.triggerAbilityOnSwitchIn(:EMERA,self,@battle) if !fainted?
     @battle.pbMegaEvolve(@index) if !fainted? && self.species == :CREEPER
     if self.species == :CREEPER && @battle.field.terrain == :Electric
       @battle.pbDisplay(_INTL("{1} got charged by the terrain!",self.pbThis(true).capitalize))

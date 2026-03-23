@@ -230,6 +230,12 @@ def towerEvent()
         $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     when "Chest"
         enderChest()
+        if hasEmera?(:ENDERCHEST)
+            while $PokemonBag.pbQuantity(:SINNOHCOIN) >= 10 && Kernel.pbMessage("Open again for 5 Sinnoh Coins?", ["Yes", "No"]) == 0
+                $PokemonBag.pbDeleteItem(:SINNOHCOIN, 10)
+                enderChest()
+            end
+        end
     when "Unknown"
         case $PokemonGlobal.towervalues[:activevariable]
         when "Cynthia"

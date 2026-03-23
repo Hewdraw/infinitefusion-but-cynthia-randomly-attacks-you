@@ -560,6 +560,12 @@ BattleHandlers::PriorityBracketChangeAbility.add(:STALL,
   }
 )
 
+BattleHandlers::PriorityBracketChangeAbility.add(:QUICKDRAW,
+  proc { |item,battler,subPri,battle|
+    next 1 if subPri<1 && battle.pbRandom(100)<30
+  }
+)
+
 #===============================================================================
 # PriorityBracketUseAbility handlers
 #===============================================================================

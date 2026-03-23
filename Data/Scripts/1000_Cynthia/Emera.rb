@@ -30,19 +30,24 @@ EMERADICT = {
     #     :description => "Your Pokemon Locks-On to an enemy after missing them with a move.",
     #     :rarity => :COMMON,
     # },
-    # :ENDERCHEST => {
-    #     :name => "Ender Chest",
-    #     :description => "You can pay Sinnoh Coins to open chests again.",
-    #     :rarity => :COMMON,
-    # },
-    # :FLASHLIGHT => {
-    #     :name => "Flashlight",
-    #     :description => "Your Pokemons with Illuminate will lower the Accuracy of all opposing Pokemon when it switches in or uses Flash.",
-    #     :rarity => :COMMON,
-    # },
+    :ENDERCHEST => {
+        :name => "Ender Chest",
+        :description => "You can pay Sinnoh Coins to open chests again.",
+        :rarity => :COMMON,
+    },
+    :FLASHLIGHT => {
+        :name => "Flashlight",
+        :description => "Your Pokemons with Illuminate will lower the Accuracy of all opposing Pokemon when it switches in or uses Flash.",
+        :rarity => :COMMON,
+    },
     :FLOWERWREATH => {
         :name => "Flower Wreath",
         :description => "Your Fairy Pokemon gain Grass type benefits.",
+        :rarity => :COMMON,
+    },
+    :FROZENROCK => {
+        :name => "Frozen Rock",
+        :description => "Hail is activated at the start of the battle.",
         :rarity => :COMMON,
     },
     # :GEOPEBBLE => {
@@ -55,11 +60,16 @@ EMERADICT = {
     #     :description => "Your Pokemons Powder moves apply the Powder effect.",
     #     :rarity => :COMMON,
     # },
-    # :LIGHTDUTYBOOTS => {
-    #     :name => "Light-Duty Boots",
-    #     :description => "Your Pokemon take half damage from Entry Hazards.",
+    # :LEPPAJUICE => {
+    #     :name => "Leppa Juice",
+    #     :description => "Your Pokemon regain 20% of a moves PP (rounded down) when knocking out a Pokemon with it.",
     #     :rarity => :COMMON,
     # },
+    :LIGHTDUTYBOOTS => {
+        :name => "Light-Duty Boots",
+        :description => "Your Pokemon take half damage from Entry Hazards.",
+        :rarity => :COMMON,
+    },
     :LINGERINGPOTIONOFNIGHTVISION => {
         :name => "Lingering Potion of Night Vision",
         :description => "Your Pokemon gain the Illuminate Ability.",
@@ -80,21 +90,26 @@ EMERADICT = {
     #     :description => "Your Pokemon take half damage the turn they use Focus Punch or Meditate. Your Pokemons Focus Punch hit through everything.",
     #     :rarity => :COMMON,
     # },
-    # :NOTEBLOCK => {
-    #     :name => "Noteblock",
-    #     :description => "Your Pokemons Metronome moves will use an addtional move.",
-    #     :rarity => :COMMON,
-    # },
+    :MOSSYROCK => {
+        :name => "Mossy Rock",
+        :description => "Grassy Terrain is actived at the start of the battle.",
+        :rarity => :COMMON,
+    },
+    :NOTEBLOCK => {
+        :name => "Noteblock",
+        :description => "Your Pokemons Metronome moves will use an addtional move.",
+        :rarity => :COMMON,
+    },
     # :OLDCARTRIDGE => {
     #     :name => "Old Cartridge",
     #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon",
     #     :rarity => :COMMON,
     # },
-    # :POTIONOFREGENERATION => {
-    #     :name => "Potion of Regeneration",
-    #     :description => "Your Pokemon gain Aqua Ring when it takes a hit that causes its HP to become half or less once per battle.",
-    #     :rarity => :COMMON,
-    # },
+    :POTIONOFREGENERATION => {
+        :name => "Potion of Regeneration",
+        :description => "Your Pokemon gain Aqua Ring at the start of the battle.",
+        :rarity => :COMMON,
+    },
     # :POTIONOFSWIFTNESS => {
     #     :name => "Potion of Swiftness",
     #     :description => "Your Pokemons Speed is doubled on the first turn of the battle.",
@@ -166,6 +181,11 @@ EMERADICT = {
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
     #     :rarity => :UNCOMMON,
     # },
+    :GALARICATWIG => {
+        :name => "Galarica Twig",
+        :description => "Your Pokemon gain the Quick Draw Ability.",
+        :rarity => :UNCOMMON,
+    },
     # :GIGAREMOUNIT => {
     #     :name => "Gigaremo Unit",
     #     :description => "Applying Drowsy also Confuses.",
@@ -201,26 +221,26 @@ EMERADICT = {
     #     :description => "Your Pokemon will heal 1/3rd hp when switching out below half hp once per battle per pokemon.",
     #     :rarity => :UNCOMMON,
     # },
-    # :SPLASPOTIONOFHARMING => {
-    #     :name => "Splash Potion of Harming",
-    #     :description => "Opposing Pokemon take 1/4th HP damage at the start of the battle.",
-    #     :rarity => :UNCOMMON,
-    # },
-    # :SPLASHPOTIONOFPOISON => {
-    #     :name => "Splash Potion of Poison",
-    #     :description => "Opposing Pokemon get poisoned at the start of the battle.",
-    #     :rarity => :UNCOMMON,
-    # },
-    # :SPLASHPOTIONOFSLOWNESS => {
-    #     :name => "Splash Potion of Slowness",
-    #     :description => "Opposing Pokemons Speed is lowered by 1 stage at the start of the battle.",
-    #     :rarity => :UNCOMMON,
-    # },
-    # :SPLASHPOTIONOFWEAKNESS => {
-    #     :name => "Splash Potion of Weakness",
-    #     :description => "Opposing Pokemons Attack is lowered by 1 stage at the start of the battle.",
-    #     :rarity => :UNCOMMON,
-    # },
+    :SPLASPOTIONOFHARMING => {
+        :name => "Splash Potion of Harming",
+        :description => "Opposing Pokemon take 1/4th HP damage at the start of the battle.",
+        :rarity => :UNCOMMON,
+    },
+    :SPLASHPOTIONOFPOISON => {
+        :name => "Splash Potion of Poison",
+        :description => "Opposing Pokemon get poisoned at the start of the battle.",
+        :rarity => :UNCOMMON,
+    },
+    :SPLASHPOTIONOFSLOWNESS => {
+        :name => "Splash Potion of Slowness",
+        :description => "Opposing Pokemons Speed is lowered by 1 stage at the start of the battle.",
+        :rarity => :UNCOMMON,
+    },
+    :SPLASHPOTIONOFWEAKNESS => {
+        :name => "Splash Potion of Weakness",
+        :description => "Opposing Pokemons Attack is lowered by 1 stage at the start of the battle.",
+        :rarity => :UNCOMMON,
+    },
 
     :ABSORPTIONEMERA => {
         :name => "Absorption Emera",
@@ -311,7 +331,7 @@ EMERADICT = {
     # },
     :DISCOVERYSLATE => {
         :name => "Discovery Slate",
-        :description => "Your Pokemon gain the Solid Rock ability.",
+        :description => "Your Pokemon gain the Solid Rock Ability.",
         :rarity => :LEGENDARY,
         #:legendary => [:REGISTEEL, :REGICE, :REGIROCK, :REGIGIGAS],
         :tutormove => :EXPLOSIONPLUS,
@@ -493,23 +513,23 @@ def grantRandomEmera()
     raritylist[4] = 0
     totalrarities = raritylist.sum
     if totalrarities == 0  
-      pbMessage("No Emeras left to obtain.")
-      return
-  end
+        pbMessage("No Emeras left to obtain.")
+        return
+    end
     randomrarity = rand(totalrarities)
     raritylist.each_with_index do |rarity, i|
-      if randomrarity < rarity
-        randomrarity = i
-        break
-      else
-        randomrarity -= rarity
-      end
+        if randomrarity < rarity
+            randomrarity = i
+            break
+        else
+            randomrarity -= rarity
+        end
     end
     randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
     itemname = EMERADICT[randomitem][:name]
     itemcolor = getEnderChestRarityColors()[randomrarity]
     if getLooplet.pbStoreEmera(randomitem)
-      pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
+        pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
 end
 

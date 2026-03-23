@@ -329,6 +329,10 @@ class PokeBattle_Battle
     # Show trainers on both sides sending out Pokémon
     pbStartBattleSendOut(sendOuts)
     # Weather announcement
+    if hasEmera?(:FROZENROCK)
+      @field.weather = :Hail
+      @field.weatherDuration = 5
+    end
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     echoln "Current weather: #{@field.weather}"
 
@@ -345,6 +349,10 @@ class PokeBattle_Battle
     when :ShadowSky   then pbDisplay(_INTL("The sky is shadowy."))
     end
     # Terrain announcement
+    if hasEmera?(:MOSSYROCK)
+      field.terrain = :Grassy
+      field.terrainDuration = 5
+    end
     terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
     pbCommonAnimation(terrain_data.animation) if terrain_data
     case @field.terrain
@@ -357,6 +365,7 @@ class PokeBattle_Battle
     when :Psychic
       pbDisplay(_INTL("The battlefield is weird!"))
     end
+    pbStartEmeras
     # Abilities upon entering battle
     pbOnActiveAll
     # Main battle loop
