@@ -232,7 +232,7 @@ class PokeBattle_AI
       if user.hasActiveAbility?(:SKILLLINK)
         baseDmg *= 5
       else
-        if user.hasActiveItem?(:LOADEDDICE)
+        if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
           baseDmg *= 4.5
         else
           baseDmg = (baseDmg*19/6).floor   # Average damage dealt

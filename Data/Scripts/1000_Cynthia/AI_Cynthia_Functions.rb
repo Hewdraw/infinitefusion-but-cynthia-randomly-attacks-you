@@ -2241,7 +2241,7 @@ class PokeBattle_AI
         if user.hasActiveAbility?(:SKILLLINK)
           baseDmg *= 5
         else
-          if user.hasActiveItem?(:LOADEDDICE)
+          if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
             case originalkey
             when :minDamage
               baseDmg *= 4

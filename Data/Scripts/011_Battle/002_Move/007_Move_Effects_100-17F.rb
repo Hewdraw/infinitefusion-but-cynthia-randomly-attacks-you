@@ -2539,7 +2539,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
 
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
-    hitChances = [4,5] if user.hasActiveItem?(:LOADEDDICE)
+    hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
     r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
     return hitChances[r]
@@ -3550,7 +3550,7 @@ end
 class PokeBattle_Move_225 < PokeBattle_Move
   def multiHitMove?;           return true; end
   def pbNumHits(user,targets)
-    return 4 + rand(7) if user.hasActiveItem?(:LOADEDDICE)
+    return 4 + rand(7) if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     return 10
   end
 
@@ -3559,7 +3559,7 @@ class PokeBattle_Move_225 < PokeBattle_Move
   end
 
   def pbOnStartUse(user,targets)
-    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?(:LOADEDDICE)
+    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
   end
 end
 
@@ -4411,7 +4411,7 @@ class PokeBattle_Move_281 < PokeBattle_TargetStatDownMove
 
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
-    hitChances = [4,5] if user.hasActiveItem?(:LOADEDDICE)
+    hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
     r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
     return hitChances[r]
@@ -4897,7 +4897,7 @@ class PokeBattle_Move_304 < PokeBattle_TargetStatDownMove
 
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
-    hitChances = [4,5] if user.hasActiveItem?(:LOADEDDICE)
+    hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
     r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
     return hitChances[r]
