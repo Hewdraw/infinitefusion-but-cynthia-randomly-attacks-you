@@ -1665,7 +1665,7 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:DRAGONSCALE,
       reducedStats = true
     end
     next false if !reducedStats
-    next false unless user.isFusionOf(:HORSEA) || user.isFusionOf(:SEADRA) || user.isFusionOf(:KINGDRA)
+    next false unless battler.isFusionOf(:HORSEA) || battler.isFusionOf(:SEADRA) || battler.isFusionOf(:KINGDRA)
     next false if battler.pokemon.battlevariables[:dragonscale]
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
