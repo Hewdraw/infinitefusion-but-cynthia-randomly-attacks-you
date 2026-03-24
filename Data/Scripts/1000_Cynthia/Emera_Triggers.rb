@@ -105,7 +105,7 @@ class PokeBattle_Battle
     idxBattler = -1
     loop do
       idxBattler += 1
-      break if idxBattler>=@battle.battlers.length
+      break if idxBattler>=@battlers.length
       battler = @battle.battlers[idxBattler]
       next if !battler
       playerside.push(battler) if battler.idxOwnSide == 0
