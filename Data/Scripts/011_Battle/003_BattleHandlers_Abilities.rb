@@ -457,7 +457,7 @@ BattleHandlers::StatLossImmunityAbility.add(:KEENEYE,
   }
 )
 
-BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE, :ILLUMINATE, :CHARGEDEXPLOSIVE)
+BattleHandlers::StatLossImmunityAbility.copy(:KEENEYE, :ILLUMINATE, :MINDSEYE, :CHARGEDEXPLOSIVE)
 
 #===============================================================================
 # StatLossImmunityAbilityNonIgnorable handlers
@@ -1062,6 +1062,12 @@ BattleHandlers::DamageCalcUserAbility.add(:FLOWERGIFT,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:GORILLATACTICS,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:GUTS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.pbHasAnyStatus? && move.physicalMove?
@@ -1236,6 +1242,13 @@ BattleHandlers::DamageCalcUserAbility.add(:STRONGJAW,
     mults[:base_damage_multiplier] *= 1.5 if move.bitingMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:SUPREMEOVERLORD,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 1 + (0.1 * user.effects[PBEffects::SupremeOverlord])
+  }
+)
+
 
 BattleHandlers::DamageCalcUserAbility.add(:SWARM,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -2823,6 +2836,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:SNOWWARNING,
 BattleHandlers::AbilityOnSwitchIn.add(:SNOWWWARNING,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:Snow, battler, battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SUPREMEOVERLORD,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbParty.each do |mon|
+      battler.effects[PBEffects::SupremeOverlord] += 1 if mon.fainted?
+    end
+    battle.pbHideAbilitySplash(battler)
   }
 )
 

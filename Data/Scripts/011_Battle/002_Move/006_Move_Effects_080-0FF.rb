@@ -3326,10 +3326,10 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     oldUserItem = user.item;     oldUserItemName = user.itemName
     oldTargetItem = target.item; oldTargetItemName = target.itemName
     user.item                             = oldTargetItem
-    user.effects[PBEffects::ChoiceBand]   = nil
+    user.effects[PBEffects::ChoiceBand]   = nil if !user.hasActiveAbility?(:GORILLATACTICS)
     user.effects[PBEffects::Unburden]     = (!user.item && oldUserItem)
     target.item                           = oldUserItem
-    target.effects[PBEffects::ChoiceBand] = nil
+    target.effects[PBEffects::ChoiceBand] = nil if !target.hasActiveAbility?(:GORILLATACTICS)
     target.effects[PBEffects::Unburden]   = (!target.item && oldTargetItem)
     # Permanently steal the item from wild Pokémon
     if @battle.wildBattle? && target.opposes? &&

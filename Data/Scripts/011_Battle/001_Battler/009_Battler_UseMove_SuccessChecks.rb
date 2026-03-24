@@ -51,11 +51,13 @@ class PokeBattle_Battler
     end
     # Choice Band
     if @effects[PBEffects::ChoiceBand]
-      if hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) &&
+      if (hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) || hasActiveAbility?(:GORILLATACTICS)) &&
          pbHasMove?(@effects[PBEffects::ChoiceBand]) && !(@effects[PBEffects::Dynamax] > 0)
         if move.id!=@effects[PBEffects::ChoiceBand] && pbHasMove?(move.id)
           if showMessages
-            msg = _INTL("{1} allows the use of only {2}!",itemName,
+            choicename = itemName
+            choicename = @ability.name if hasActiveAbility?(:GORILLATACTICS)
+            msg = _INTL("{1} allows the use of only {2}!",choicename,
                GameData::Move.get(@effects[PBEffects::ChoiceBand]).name)
             (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
           end

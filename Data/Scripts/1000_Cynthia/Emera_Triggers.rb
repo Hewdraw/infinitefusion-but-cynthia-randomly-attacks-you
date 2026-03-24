@@ -10,6 +10,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:EMERA,
       end
       battle.pbHideAbilitySplash(battler)
     end
+    if hasEmera?(:LINGERINGPOTIONOFTURTLEMASTER)
+      battler.tempability = EMERADICT[:LINGERINGPOTIONOFTURTLEMASTER][:name]
+      battle.pbShowAbilitySplash(battler)
+      battler.pbLowerStatStage(:SPEED,1,battler) if battler.pbCanLowerStatStage?(:SPEED)
+      battler.pbRaiseStatStage(:DEFENSE,1,battler) if battler.pbCanRaiseStatStage?(:DEFENSE)
+      battler.pbRaiseStatStage(:SPECIAL_DEFENSE,1,battler) if battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE)
+      battle.pbHideAbilitySplash(battler)
+    end
   }
 )
 
@@ -22,11 +30,43 @@ BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
 
 BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
   proc { |ability,target,user,move,mults,baseDmg,type|
+    if target.hasActiveEmera?(:COSMICFLUTE)
+      mults[:defense_multiplier] *= 1.1
+    end
     if target.hasActiveEmera?(:MILOTICSCALE) && target.pbHasAnyStatus?
       mults[:defense_multiplier] *= 1.1
     end
     if target.hasActiveEmera?(:MOONHEART) && target.hp == target.adjustedTotalhp
-      mults[:final_damage_multiplier] /= 2
+      mults[:final_damage_multiplier] *= 0.8
+    end
+    if target.hasActiveEmera?(:RUSTEDSHIELD) && move.physicalMove?
+      mults[:defense_multiplier] *= 1.2
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:EMERA,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.hasActiveEmera?(:BRAINPRISM) && Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 1.5
+    end
+    if user.hasActiveEmera?(:RUSTEDSWORD) && move.physicalMove?
+      mults[:final_damage_multiplier] *= 1.2
+    end
+    if user.hasActiveEmera?(:SUNHEART) && target.hp == target.adjustedTotalhp
+      mults[:final_damage_multiplier] *= 1.2
+    end
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:EMERA,
+  proc { |ability,target,user,move,battle|
+    if target.hasActiveEmera?(:ENIGMASTONE) && Effectiveness.super_effective?(target.damageState.typeMod) && !target.fainted? && target.canHeal?
+      target.tempability = EMERADICT[:ENIGMASTONE][:name]
+      battle.pbShowAbilitySplash(target)
+      target.pbRecoverHP(target.totalhp / 4)
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+      battle.pbHideAbilitySplash(target)
     end
   }
 )
@@ -34,7 +74,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
 BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
   proc { |ability,user,targets,move,battle|
     next if user.fainted?
-    if user.hasActiveEmera?(:ABSORPTIONEMERA)
+    if user.hasActiveEmera?(:ABSORPTIONEMERA) && user.canHeal?
       targets.each do |b|
         next if !b.damageState.fainted
         user.tempability = EMERADICT[:ABSORPTIONEMERA][:name]
@@ -44,8 +84,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
         battle.pbHideAbilitySplash(user)
       end
     end
-    if user.hasActiveEmera?(:GOLDENBELL)
-      next if !user.canHeal?
+    if user.hasActiveEmera?(:GOLDENBELL) && user.canHeal?
       totalDamage = 0
       targets.each { |b| totalDamage += b.damageState.totalHPLost }
       next if totalDamage<=0

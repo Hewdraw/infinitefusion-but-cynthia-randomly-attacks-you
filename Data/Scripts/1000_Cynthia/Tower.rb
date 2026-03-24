@@ -166,12 +166,21 @@ def towerIncreaseFloor(nextfloor)
     if hasEmera?(:BREWINGSTAND)
         itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
         item = itemlist.sample
-        $PokemonBag.pbStoreItem(item)
+        pbItemBall(item)
     end
     pbSetSelfSwitch(2, "A", false)
     case $PokemonGlobal.towervalues[:activeevent]
     when "Legendary"
         $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:legendarylist].sample
+        emeralegendaries = []
+        getLooplet.emeras.each do |emera|
+            next if !EMERADICT[emera][:Legendary]
+            EMERADICT[emera][:Legendary].each do |legendary|
+                next if !$PokemonGlobal.towervalues[:legendarylist].include?(legendary)
+                emeralegendaries.push(legendary)
+            end
+        end
+        $PokemonGlobal.towervalues[:activevariable] = emeralist.sample if emeralist.length > 0
         $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
     when "Unknown"
         $PokemonGlobal.towervalues[:activevariable] = ["Cynthia", "Hot Spring"].sample #todo

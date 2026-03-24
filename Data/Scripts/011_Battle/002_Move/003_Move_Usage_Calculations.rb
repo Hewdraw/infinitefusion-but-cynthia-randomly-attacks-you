@@ -39,7 +39,7 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
     # Foresight
-    if user.hasActiveAbility?(:SCRAPPY) || target.effects[PBEffects::Foresight]
+    if user.hasActiveAbility?([:SCRAPPY, :MINDSEYE]) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
@@ -252,13 +252,13 @@ class PokeBattle_Move
   def pbModifyDamage(damageMult,user,target);         return damageMult; end
 
   def pbGetAttackStats(user,target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
     if user.hasActiveAbility?(:KEYCHANGE)
-      stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
-      stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-      attackstage = user.stages[:ATTACK] + 6
-      attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
-      spatkstage = user.stages[:SPECIAL_ATTACK] + 6
-      spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
       if attack > spatk
         return user.attack, user.stages[:ATTACK] + 6
       end
@@ -268,8 +268,10 @@ class PokeBattle_Move
       if user.hasActiveItem?(:LUCKYPUNCH) && (user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY)) && specialMove
         return target.spatk, target.stages[:SPECIAL_ATTACK] + 6
       end
+      return user.attack * 0.9, user.stages[:ATTACK] + 6 if user.hasActiveEmera(:AURORDROP) && attack * 0.9 > spatk
       return user.spatk, user.stages[:SPECIAL_ATTACK]+6
     end
+    return user.spatk * 0.9, user.stages[:SPECIAL_ATTACK] + 6 if user.hasActiveEmera(:AURORDROP) && spatk * 0.9 > attack
     return user.attack, user.stages[:ATTACK]+6
   end
 
@@ -339,6 +341,8 @@ class PokeBattle_Move
       BattleHandlers.triggerDamageCalcUserAbility(user.ability,
          user,target,self,multipliers,baseDmg,type)
     end
+    BattleHandlers.triggerDamageCalcUserAbility(:EMERA,
+       user,target,self,multipliers,baseDmg,type)
     if !@battle.moldBreaker
       # NOTE: It's odd that the user's Mold Breaker prevents its partner's
       #       beneficial abilities (i.e. Flower Gift boosting Atk), but that's

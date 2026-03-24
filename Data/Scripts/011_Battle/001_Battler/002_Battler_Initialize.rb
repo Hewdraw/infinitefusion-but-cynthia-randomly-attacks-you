@@ -297,6 +297,7 @@ class PokeBattle_Battler
     @effects[PBEffects::SaltCure]                = 0
     @effects[PBEffects::BurningBulwark]       = false
     @effects[PBEffects::Obstruct]         = false
+    @effects[PBEffects::SupremeOverlord]         = 0
   end
 
   #=============================================================================
