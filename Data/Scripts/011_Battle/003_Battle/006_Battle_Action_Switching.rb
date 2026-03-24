@@ -315,7 +315,6 @@ class PokeBattle_Battle
   #=============================================================================
   # Called at the start of battle only.
   def pbOnActiveAll
-    print(@opponents)
     # Weather-inducing abilities, Trace, Imposter, etc.
     pbCalculatePriority(true)
     pbPriority(true).each { |b| b.pbEffectsOnSwitchIn(true) }
