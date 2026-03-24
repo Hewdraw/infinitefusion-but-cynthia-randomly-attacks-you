@@ -366,7 +366,7 @@ class PokeBattle_Battle
           oldHP = battler.hp
           reducedhp = battler.totalhp * eff / 8
           reducedhp = reducedhp * 2 / 3 if battler.hasActiveItem?(:PROTECTOR)
-          reducedhp /= 2 if battler.hasActiveEmera(:LIGHTDUTYBOOTS)
+          reducedhp /= 2 if battler.hasActiveEmera?(:LIGHTDUTYBOOTS)
           battler.pbReduceHP(reducedhp, false)
           pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis))
           battler.pbItemHPHealCheck
@@ -382,7 +382,7 @@ class PokeBattle_Battle
         oldHP = battler.hp
         reducedhp = battler.totalhp / spikesDiv
         reducedhp = reducedhp * 2 / 3 if battler.hasActiveItem?(:PROTECTOR)
-        reducedhp /= 2 if battler.hasActiveEmera(:LIGHTDUTYBOOTS)
+        reducedhp /= 2 if battler.hasActiveEmera?(:LIGHTDUTYBOOTS)
         battler.pbReduceHP(reducedhp, false)
         pbDisplay(_INTL("{1} is hurt by the spikes!", battler.pbThis))
         battler.pbItemHPHealCheck
