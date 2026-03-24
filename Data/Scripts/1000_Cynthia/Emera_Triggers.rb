@@ -134,7 +134,7 @@ class PokeBattle_Battle
       pbShowAbilitySplash(playerside[0])
       pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFPOISON][:name]))
       opponentside.each do |battler|
-        battler.pbPoison if battler.pbCanPoison?
+        battler.pbPoison if battler.pbCanPoison?(battler)
       end
       pbHideAbilitySplash(playerside[0])
     end
