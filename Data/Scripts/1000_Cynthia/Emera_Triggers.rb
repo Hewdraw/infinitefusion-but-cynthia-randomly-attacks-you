@@ -113,48 +113,48 @@ class PokeBattle_Battle
     end
     if hasEmera?(:POTIONOFREGENERATION)
       playerside[0].tempability = EMERADICT[:POTIONOFREGENERATION][:name]
-      battle.pbShowAbilitySplash(playerside[0])
-      battle.pbDisplay(_INTL("Your Pokemon are surrounded by a veil of water!"))
+      pbShowAbilitySplash(playerside[0])
+      pbDisplay(_INTL("Your Pokemon are surrounded by a veil of water!"))
       playerside.each do |battler|
         battler.effects[PBEffects::AquaRing] == true
       end
-      battle.pbHideAbilitySplash(playerside[0])
+      pbHideAbilitySplash(playerside[0])
     end
     if hasEmera?(:SPLASPOTIONOFHARMING)
       playerside[0].tempability = EMERADICT[:SPLASPOTIONOFHARMING][:name]
-      battle.pbShowAbilitySplash(playerside[0])
-      battle.pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASPOTIONOFHARMING][:name]))
+      pbShowAbilitySplash(playerside[0])
+      pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASPOTIONOFHARMING][:name]))
       opponentside.each do |battler|
         battler.pbReduceHP(battler.totalhp / 4,false)
       end
-      battle.pbHideAbilitySplash(playerside[0])
+      pbHideAbilitySplash(playerside[0])
     end
     if hasEmera?(:SPLASHPOTIONOFPOISON)
       playerside[0].tempability = EMERADICT[:SPLASHPOTIONOFPOISON][:name]
-      battle.pbShowAbilitySplash(playerside[0])
-      battle.pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFPOISON][:name]))
+      pbShowAbilitySplash(playerside[0])
+      pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFPOISON][:name]))
       opponentside.each do |battler|
         battler.pbPoison if battler.pbCanPoison
       end
-      battle.pbHideAbilitySplash(playerside[0])
+      pbHideAbilitySplash(playerside[0])
     end
     if hasEmera?(:SPLASHPOTIONOFSLOWNESS)
       playerside[0].tempability = EMERADICT[:SPLASHPOTIONOFSLOWNESS][:name]
-      battle.pbShowAbilitySplash(playerside[0])
-      battle.pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFSLOWNESS][:name]))
+      pbShowAbilitySplash(playerside[0])
+      pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFSLOWNESS][:name]))
       opponentside.each do |battler|
         battler.pbLowerStatStage(:SPEED,1,battler) if battler.pbCanLowerStatStage?(:SPEED)
       end
-      battle.pbHideAbilitySplash(playerside[0])
+      pbHideAbilitySplash(playerside[0])
     end
     if hasEmera?(:SPLASHPOTIONOFWEAKNESS)
       playerside[0].tempability = EMERADICT[:SPLASHPOTIONOFWEAKNESS][:name]
-      battle.pbShowAbilitySplash(playerside[0])
-      battle.pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFSLOWNESS][:name]))
+      pbShowAbilitySplash(playerside[0])
+      pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFSLOWNESS][:name]))
       opponentside.each do |battler|
         battler.pbLowerStatStage(:ATTACK,1,battler) if battler.pbCanLowerStatStage?(:ATTACK)
       end
-      battle.pbHideAbilitySplash(playerside[0])
+      pbHideAbilitySplash(playerside[0])
     end
   end
 end
