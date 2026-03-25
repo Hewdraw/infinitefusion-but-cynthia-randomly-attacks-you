@@ -32,7 +32,7 @@ EMERADICT = {
     # },
     # :COMEBACKEMERA => {
     #     :name => "Comeback Emera",
-    #     :description => "Your Pokemon Locks-On to an enemy after missing them with a move.",
+    #     :description => "Your Pokemon gain 1 Accuracy to an enemy after missing them with a move.",
     #     :rarity => :COMMON,
     # },
     :ENDERCHEST => {
@@ -42,7 +42,7 @@ EMERADICT = {
     },
     :FLASHLIGHT => {
         :name => "Flashlight",
-        :description => "Your Pokemons with Illuminate will lower the Accuracy of all opposing Pokemon when it switches in or uses Flash.",
+        :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
         :rarity => :COMMON,
     },
     :FLOWERWREATH => {
@@ -85,14 +85,9 @@ EMERADICT = {
         :description => "Your Pokemon gain the Liquid Ooze Ability",
         :rarity => :COMMON,
     },
-    # :LUCKYCHARM => {
-    #     :name => "Lucky Charm",
-    #     :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",
-    #     :rarity => :COMMON,
-    # },
     # :MEDITATIONMAT => {
     #     :name => "Meditation Mat",
-    #     :description => "Your Pokemon take half damage the turn they use Focus Punch or Meditate. Your Pokemons Focus Punch hit through everything.",
+    #     :description => "Your Pokemon take half damage the turn they use Focus Punch or Meditate.",
     #     :rarity => :COMMON,
     # },
     :MOSSYROCK => {
@@ -130,11 +125,11 @@ EMERADICT = {
     #     :description => "Your Pokemons Foul Play will use the highest attacking stat on the field.",
     #     :rarity => :COMMON,
     # },
-    # :STUNSEED => {
-    #     :name => "Stun Seed",
-    #     :description => "Opposing Pokemon that knock out your Slugmo, Gulpin, Swellow or Rhydon will be Paralyzed.",
-    #     :rarity => :COMMON,
-    # },
+    :STUNSEED => {
+        :name => "Stun Seed",
+        :description => "Opposing Pokemon that knock out your Slugma, Gulpin, Swellow or Rhydon will be Paralyzed.",
+        :rarity => :COMMON,
+    },
     # :TECTONICPLATE => {
     #     :name => "Tectonic Plate",
     #     :description => "Your Pokemons Magnitude can reach 15.",
@@ -199,6 +194,11 @@ EMERADICT = {
     :GOLDENBELL => {
         :name => "Golden Bell",
         :description => "Your Pokemon heal 1/8th of the damage they deal.",
+        :rarity => :UNCOMMON,
+    },
+    :LUCKYCHARM => {
+        :name => "Lucky Charm",
+        :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",
         :rarity => :UNCOMMON,
     },
     :MILOTICSCALE => {
@@ -374,7 +374,7 @@ EMERADICT = {
     },
     # :GOLDSILVERBALL => {
     #     :name => "Gold & Silver Ball",
-    #     :description => "Your Pokemons charging moves skip the charging turn. Your Pokemon take 1 less turn to use Future Sight, Doom Desire, or Perish Song.",
+    #     :description => "Your Pokemons charging moves skip the charging turn. Your Pokemon delayed moves activate 1 turn earlier.",
     #     :rarity => :LEGENDARY,
     #     :legendary => [:CELEBI],
     #     :tutormove => :DOOMDESIRE,
@@ -420,7 +420,7 @@ EMERADICT = {
     # },
     # :RGBORB => {
     #     :name => "RGB Orb",
-    #     :description => "Your Shiny Pokemon gain 1.1x Attack, Defense, Special Attack, and Special Defense. Shiny Pokemon are more likely to be encountered.",
+    #     :description => "Your Shiny Pokemon gain 1.1x Attack, Defense, Special Attack, and Special Defense. Shiny Pokemon are more common.",
     #     :rarity => :LEGENDARY,
     #     :legendary => [:GROUDON, :KYOGRE, :RAYQUAZA],
     #     :tutormove => :VCREATE,

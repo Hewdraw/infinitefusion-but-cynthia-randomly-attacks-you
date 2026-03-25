@@ -2842,7 +2842,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SNOWWWARNING,
 BattleHandlers::AbilityOnSwitchIn.add(:SUPREMEOVERLORD,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.pbParty.each do |mon|
+    battle.pbParty(battler).each do |mon|
       battler.effects[PBEffects::SupremeOverlord] += 1 if mon.fainted?
     end
     battle.pbHideAbilitySplash(battler)

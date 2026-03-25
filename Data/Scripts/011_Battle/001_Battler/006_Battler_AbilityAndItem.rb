@@ -72,6 +72,7 @@ class PokeBattle_Battler
       next if !b || !b.abilityActive?
       BattleHandlers.triggerAbilityOnBattlerFainting(b.ability,b,self,@battle)
     end
+    BattleHandlers.triggerAbilityOnBattlerFainting(:EMERA,self,self,@battle)
   end
 
   # Used for Emergency Exit/Wimp Out.

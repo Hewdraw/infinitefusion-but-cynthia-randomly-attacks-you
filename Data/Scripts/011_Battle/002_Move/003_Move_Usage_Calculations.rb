@@ -596,6 +596,7 @@ class PokeBattle_Move
         ret *= 1.5
       end
     end
+    ret /= 2 if target.hasActiveEmera?(:LUCKYCHARM)
     ret += 10 if user.hasActiveItem?(:UPGRADE) if ret > 0
     ret = 100 if $DEBUG && Input.press?(Input::CTRL)
     return ret
@@ -614,6 +615,7 @@ class PokeBattle_Move
     end
     ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) ||
                 user.pbOwnSide.effects[PBEffects::Rainbow]>0
+    ret /= 2 if target.hasActiveEmera?(:LUCKYCHARM)
     return ret
   end
 end

@@ -1,3 +1,17 @@
+BattleHandlers::AbilityOnBattlerFainting.add(:EMERA,
+  proc { |ability,battler,fainted,battle|
+    if fainted.hasActiveEmera?(:STUNSEED) && (fainted.isFusionOf?(:SLUGMA) || fainted.isFusionOf?(:GULPIN) || fainted.isFusionOf?(:SWELLOW) || fainted.isFusionOf?(:RHYDON))
+      fainted.tempability = EMERADICT[:STUNSEED][:name]
+      battle.pbShowAbilitySplash(fainted)
+      Kernel.pbMessage("Deez Nuts")
+      fainted.eachOpposing do |opponent|
+        opponent.pbParalyze if opponent.pbCanParalyze?(fainted, true)
+      end
+      battle.pbHideAbilitySplash(fainted)
+    end
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:EMERA,
   proc { |ability,battler,battle|
     if battler.hasActiveEmera?(:FLASHLIGHT)
