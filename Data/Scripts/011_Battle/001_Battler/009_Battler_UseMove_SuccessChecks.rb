@@ -34,7 +34,7 @@ class PokeBattle_Battler
       return false
     end
     # Gravity
-    if @battle.field.effects[PBEffects::Gravity]>0 && move.unusableInGravity?
+    if (@battle.field.effects[PBEffects::Gravity]>0 || hasActiveEmera?(:HEAVYCORE)) && move.unusableInGravity?
       if showMessages
         msg = _INTL("{1} can't use {2} because of gravity!",pbThis,move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)

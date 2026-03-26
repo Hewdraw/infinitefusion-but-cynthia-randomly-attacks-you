@@ -333,7 +333,7 @@ class PokeBattle_Battler
   end
 
   def pbPoison(user = nil, msg = nil, toxic = false)
-    if @battle.pbWeather == :Sandstorm
+    if @battle.pbWeather == :Sandstorm || user.hasActiveEmera?(:WITHERSKULL)
       toxic = true
     end
     pbInflictStatus(:POISON, (toxic) ? 1 : 0, msg, user)

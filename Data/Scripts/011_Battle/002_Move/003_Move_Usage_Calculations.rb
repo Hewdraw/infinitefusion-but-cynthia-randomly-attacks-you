@@ -179,7 +179,7 @@ class PokeBattle_Move
     end
     # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to
     # specific values
-    if @battle.field.effects[PBEffects::Gravity] > 0
+    if @battle.field.effects[PBEffects::Gravity] > 0 || target.hasActiveEmera?(:HEAVYCORE)
       modifiers[:accuracy_multiplier] *= 5 / 3.0
     end
     if user.effects[PBEffects::MicleBerry]

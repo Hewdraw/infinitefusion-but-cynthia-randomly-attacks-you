@@ -675,17 +675,17 @@ ItemHandlers::UseOnPokemon.add(:PPMAX, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:BEEGPP, proc { |item, pkmn, scene|
-  move = scene.pbChooseMove(pkmn, _INTL("Boost PP of which move?"))
-  if move >= 0
-    if pkmn.moves[move].total_pp <= 1 || pkmn.moves[move].ppup >= 3
-      scene.pbDisplay(_INTL("It won't have any effect."))
-      next false
-    end
-    pkmn.moves[move].ppup = 3
-    movename = pkmn.moves[move].name
-    scene.pbDisplay(_INTL("{1}'s PP increased.", movename))
+  didsomething = false
+  pkmn.moves.each do |move|
+    next if move.total_pp <= 1 || move.ppup >= 3
+    move.ppup = 3
+    didsomething = true
+  end
+  if !didsomething
+    scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
+  scene.pbDisplay(_INTL("{1}'s PP increased.", pkmn.name))
   next false
 })
 

@@ -24,12 +24,11 @@ BattleHandlers::AbilityOnSwitchIn.add(:EMERA,
       end
       battle.pbHideAbilitySplash(battler)
     end
-    if hasEmera?(:LINGERINGPOTIONOFTURTLEMASTER)
+    if battler.hasActiveEmera?(:LINGERINGPOTIONOFTURTLEMASTER)
       battler.tempability = EMERADICT[:LINGERINGPOTIONOFTURTLEMASTER][:name]
       battle.pbShowAbilitySplash(battler)
-      battler.pbLowerStatStage(:SPEED,1,battler) if battler.pbCanLowerStatStage?(:SPEED)
-      battler.pbRaiseStatStage(:DEFENSE,1,battler) if battler.pbCanRaiseStatStage?(:DEFENSE)
-      battler.pbRaiseStatStage(:SPECIAL_DEFENSE,1,battler) if battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE)
+      battler.pbRaiseStatStage(:DEFENSE,2,battler) if battler.pbCanRaiseStatStage?(:DEFENSE)
+      battler.pbRaiseStatStage(:SPECIAL_DEFENSE,2,battler) if battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE)
       battle.pbHideAbilitySplash(battler)
     end
   }
@@ -56,6 +55,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
     if target.hasActiveEmera?(:RUSTEDSHIELD) && move.physicalMove?
       mults[:defense_multiplier] *= 1.2
     end
+    if target.hasActiveEmera?(:HEAVYCORE)
+      mults[:defense_multiplier] *= 1.1
   }
 )
 
@@ -70,6 +71,21 @@ BattleHandlers::DamageCalcUserAbility.add(:EMERA,
     if user.hasActiveEmera?(:SUNHEART) && target.hp == target.adjustedTotalhp
       mults[:final_damage_multiplier] *= 1.2
     end
+    if user.hasActiveEmera?(:HEAVYCORE)
+      mults[:final_damage_multiplier] *= 1.2
+    end
+  }
+)
+
+BattleHandlers::SpeedCalcAbility.add(:EMERA,
+  proc { |ability,battler,mult|
+    if user.hasActiveEmera?(:POTIONOFSWIFTNESS) && battler.battle.turnCount == 0
+      mult *= 2
+    end
+    if user.hasActiveEmera?(:HEAVYCORE)
+      mult *= 0.5
+    end
+    next mult
   }
 )
 

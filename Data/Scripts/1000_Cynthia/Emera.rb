@@ -32,7 +32,7 @@ EMERADICT = {
     # },
     # :COMEBACKEMERA => {
     #     :name => "Comeback Emera",
-    #     :description => "Your Pokemon gain 1 Accuracy to an enemy after missing them with a move.",
+    #     :description => "Your Pokemon gain 1 Accuracy after missing a move.",
     #     :rarity => :COMMON,
     # },
     :ENDERCHEST => {
@@ -110,11 +110,11 @@ EMERADICT = {
         :description => "Your Pokemon gain Aqua Ring at the start of the battle.",
         :rarity => :COMMON,
     },
-    # :POTIONOFSWIFTNESS => {
-    #     :name => "Potion of Swiftness",
-    #     :description => "Your Pokemons Speed is doubled on the first turn of the battle.",
-    #     :rarity => :COMMON,
-    # },
+    :POTIONOFSWIFTNESS => {
+        :name => "Potion of Swiftness",
+        :description => "Your Pokemons Speed is doubled on the first turn of the battle.",
+        :rarity => :COMMON,
+    },
     # :RAINBOWEGG => {
     #     :name => "Rainbow Egg",
     #     :description => "Your Pokemons Egg Bomb becomes a random type and makes that Pokemon become that type every time its used.",
@@ -259,7 +259,12 @@ EMERADICT = {
     },
     :LINGERINGPOTIONOFTURTLEMASTER => {
         :name => "Lingering Potion of Turtle Master",
-        :description => "All Pokemon lose 1 Speed stage and gain 1 Defense and Special Defense stage on switchin.",
+        :description => "Your Pokemon gain the Truant Ability and 2 Defense and Special Defense stages on switchin.",
+        :rarity => :RARE,
+    },
+    :HEAVYCORE => {
+        :name => "Heavy Core",
+        :description => "Your Pokemon are under the effect of Gravity, their Speed is halved and they gain 1.1x in all other stats.",
         :rarity => :RARE,
     },
     # :MACE => {
@@ -504,13 +509,13 @@ EMERADICT = {
         :tutormove => :DYNAMAXCANNON,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DRAGON)},
     },
-    # :WITHERSKULL => {
-    #     :name => "Wither Skull",
-    #     :description => "When you apply Poison it becomes Badly Poison.",
-    #     :rarity => :LEGENDARY,
-    #     :tutormove => :MALIGNANTCHAIN,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},
-    # },
+    :WITHERSKULL => {
+        :name => "Wither Skull",
+        :description => "When you apply Poison it becomes Badly Poison.",
+        :rarity => :LEGENDARY,
+        :tutormove => :MALIGNANTCHAIN,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},
+    },
 }
 
 def grantRandomEmera()

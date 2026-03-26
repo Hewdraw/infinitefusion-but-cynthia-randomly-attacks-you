@@ -639,7 +639,7 @@ end
 #===============================================================================
 class PokeBattle_Move_118 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
-    if @battle.field.effects[PBEffects::Gravity] > 0
+    if @battle.field.effects[PBEffects::Gravity] > 0 || user.hasActiveEmera?(:HEAVYCORE)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

@@ -316,6 +316,7 @@ class PokeBattle_Battler
   #=============================================================================
   def pbSpeed
     return 1 if fainted?
+    return 1 if @battle.field.effects[PBEffects::TrickRoom]>0 && self.species == :REGIELEKI
     stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
     stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
     stage = @stages[:SPEED] + 6
@@ -329,6 +330,7 @@ class PokeBattle_Battler
     if itemActive?
       speedMult = BattleHandlers.triggerSpeedCalcItem(self.item, self, speedMult)
     end
+    speedMult = BattleHandlers.triggerSpeedCalcItem(:EMERA, self, speedMult)
     # Other effects
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind] > 0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp] > 0
@@ -342,7 +344,6 @@ class PokeBattle_Battler
       speedMult *= 1.1
     end
     # Calculation
-    return 1 if @battle.field.effects[PBEffects::TrickRoom]>0 && self.species == :REGIELEKI
     return [(speed * speedMult).round, 1].max
   end
 
@@ -659,6 +660,7 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::Ingrain]
     return false if @effects[PBEffects::SmackDown]
     return false if @battle.field.effects[PBEffects::Gravity] > 0
+    return false if hasActiveEmera?(:HEAVYCORE)
     return true if pbHasType?(:FLYING) && @battle.field.effects[PBEffects::InverseRoom] == 0
     return true if hasActiveAbility?([:LEVITATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
     return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS])
