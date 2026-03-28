@@ -3593,13 +3593,6 @@ class PokeBattle_Move_226 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_227 < PokeBattle_ProtectMove
-  def initialize(battle, move)
-    super
-    @effect = PBEffects::BurningBulwark
-  end
-end
-
 class PokeBattle_Move_228 < PokeBattle_TargetMultiStatDownMove
   def initialize(battle, move)
     super

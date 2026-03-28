@@ -540,12 +540,19 @@ class PokeBattle_Battler
   end
 
   def pbAttract(user,msg=nil)
+    agender = user.gender
+    ogender = gender
+    if user.isFusionOf?(:FERROTHORN) || target.isFusionOf?(:FERROTHORN)
+      if agender==2 || ogender==2 || agender==ogender
+        @battle.pbDisplay("But it failed.")
+        @battle.pbDisplay("Bad for them.")
+        return false
+      end
+    end
     @effects[PBEffects::Attract] = user.index
     @battle.pbCommonAnimation("Attract",self)
     msg = _INTL("{1} fell in love!",pbThis) if nil_or_empty?(msg)
     @battle.pbDisplay(msg)
-    agender = user.gender
-    ogender = gender
     if agender==2 || ogender==2 || agender==ogender
       @battle.pbDisplay(_INTL("Good for them."))
     end
