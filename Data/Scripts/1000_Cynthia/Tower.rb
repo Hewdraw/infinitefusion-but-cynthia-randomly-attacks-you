@@ -229,12 +229,15 @@ def towerEvent()
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
         options = [getTowerPokemon(), getTowerPokemon(), getTowerPokemon()]
-        if hasEmera?(:CAPTURESTYLER)
-            options.push(getTowerPokemon())
-            choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2])), _INTL("{1}", PBSpecies.getName(options[3]))])
-        else
-            choice = Kernel.pbMessage("Pick one", [_INTL("{1}", PBSpecies.getName(options[0])), _INTL("{1}", PBSpecies.getName(options[1])), _INTL("{1}", PBSpecies.getName(options[2]))])
+        options.push(getTowerPokemon()) if hasEmera?(:CAPTURESTYLER)
+        namearray = []
+        options.each do |pokemon|
+            monname = PBSpecies.getName(pokemon)
+            monname += " F" if pokemon == :NIDORANfE
+            monname += " M" if pokemon == :NIDORANmA
+            namearray.push(monname)
         end
+        choice = Kernel.pbMessage("Pick one", [namearray])
         pbAddPokemon(options[choice], 5)
         $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     when "Chest"
