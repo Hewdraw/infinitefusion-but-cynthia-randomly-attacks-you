@@ -57,6 +57,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
     end
     if target.hasActiveEmera?(:HEAVYCORE)
       mults[:defense_multiplier] *= 1.1
+    end
   }
 )
 
