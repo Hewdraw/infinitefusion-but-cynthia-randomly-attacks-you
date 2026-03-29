@@ -181,7 +181,7 @@ class PokeBattle_Battle
     if hasEmera?(:SPLASHPOTIONOFWEAKNESS)
       playerside[0].tempability = EMERADICT[:SPLASHPOTIONOFWEAKNESS][:name]
       pbShowAbilitySplash(playerside[0])
-      pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFSLOWNESS][:name]))
+      pbDisplay(_INTL("A {1} hits the opposing Pokemon!", EMERADICT[:SPLASHPOTIONOFWEAKNESS][:name]))
       opponentside.each do |battler|
         battler.pbLowerStatStage(:ATTACK,1,battler) if battler.pbCanLowerStatStage?(:ATTACK)
       end
