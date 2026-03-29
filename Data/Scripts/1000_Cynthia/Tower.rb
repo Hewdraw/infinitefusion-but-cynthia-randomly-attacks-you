@@ -241,7 +241,7 @@ def towerEvent()
             monname += " Sensu" if pokemon == :ORICORIO_3
             namearray.push(monname)
         end
-        choice = Kernel.pbMessage("Pick one", [namearray])
+        choice = Kernel.pbMessage("Pick one", namearray)
         pbAddPokemon(options[choice], 5)
         $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     when "Chest"
