@@ -2442,7 +2442,7 @@ ItemHandlers::UseOnPokemon.add(:ANCESTRALGENE, proc { |item, pkmn, scene|
 ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
-    abilities = pkmn.getAllAbilities
+    abilities = pkmn.getAllAbilities(true)
     if abilities.include?([:POISONHEAL, :MAGICGUARD])
       pkmn.status = :POISON
       next
@@ -2468,12 +2468,12 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
 ItemHandlers::UseInField.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
-    abilities = pkmn.getAllAbilities
-    if abilities.include?(:POISONHEAL)
+    abilities = pkmn.getAllAbilities(true)
+    if abilities.include?(:POISONHEAL, :MAGICGUARD)
       pkmn.status = :POISON
       next
     end
-    if abilities.include?([:GUTS, :FLAREBOOST])
+    if abilities.include?([:GUTS, :FLAREBOOST, :WILDFIRE])
       pkmn.status = :BURN
       next
     end
