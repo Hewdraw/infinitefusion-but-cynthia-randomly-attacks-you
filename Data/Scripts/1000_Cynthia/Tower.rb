@@ -235,6 +235,10 @@ def towerEvent()
             monname = PBSpecies.getName(pokemon)
             monname += " F" if pokemon == :NIDORANfE
             monname += " M" if pokemon == :NIDORANmA
+            monname += " Baile" if pokemon == :ORICORIO_1
+            monname += " Pom-Pom" if pokemon == :ORICORIO_2
+            monname += " Pa'u" if pokemon == :ORICORIO_3
+            monname += " Sensu" if pokemon == :ORICORIO_3
             namearray.push(monname)
         end
         choice = Kernel.pbMessage("Pick one", [namearray])
