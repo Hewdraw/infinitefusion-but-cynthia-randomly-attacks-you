@@ -17,7 +17,7 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :eventlist => ["Cynthia", "Hot Spring", "Berry Tree", "Future Berry Tree"],
+        :unknownlist => ["Cynthia", "Hot Spring", "Berry Tree"],
         :eventvariables => {},
     }
     pbAddPokemon(getTowerPokemon("Starter"), 5)
