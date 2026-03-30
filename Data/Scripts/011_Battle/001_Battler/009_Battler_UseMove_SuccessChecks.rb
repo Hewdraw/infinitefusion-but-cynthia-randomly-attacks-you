@@ -572,5 +572,11 @@ class PokeBattle_Battler
         user.pbRaiseStatStage(:SPEED,2,user)
       end
     end
+    if user.hasActiveEmera?(:COMEBACKEMERA)
+      user.tempability = EMERADICT[:COMEBACKEMERA][:name]
+      @battle.pbShowAbilitySplash(battler)
+      user.pbRaiseStatStage(:ACCURACY,1,battler) if user.pbCanRaiseStatStage?(:ACCURACY)
+      @battle.pbHideAbilitySplash(battler)
+    end
   end
 end

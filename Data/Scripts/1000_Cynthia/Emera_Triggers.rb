@@ -118,12 +118,42 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
     if user.hasActiveEmera?(:GOLDENBELL) && user.canHeal?
       totalDamage = 0
       targets.each { |b| totalDamage += b.damageState.totalHPLost }
-      next if totalDamage<=0
-      user.tempability = EMERADICT[:GOLDENBELL][:name]
-      battle.pbShowAbilitySplash(user)
-      user.pbRecoverHP(totalDamage/8)
-      battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
-      battle.pbHideAbilitySplash(user)
+      if totalDamage > 0
+        user.tempability = EMERADICT[:GOLDENBELL][:name]
+        battle.pbShowAbilitySplash(user)
+        user.pbRecoverHP(totalDamage/8)
+        battle.pbDisplay(_INTL("{1}'s HP was restored.",user.pbThis))
+        battle.pbHideAbilitySplash(user)
+      end
+    end
+
+    if user.hasActiveEmera?(:SCULKSHRIEKER) && move.soundMove?
+      opposingmon = []
+      user.eachOpposing.each do |mon|
+        next if mon.hasActiveAbility?([:SOUNDPROOF, :VOCALOID])
+        opposingmon.push(mon)
+      end
+      if opposingmon.length > 0
+        opposingmon = opposingmon.sample
+        user.tempability = EMERADICT[:SCULKSHRIEKER][:name]
+        pbShowAbilitySplash(user)
+        battle.pbDisplay(_INTL("The {1} Shrieks.", EMERADICT[:SCULKSHRIEKER][:name]))
+        opposingmon.pbLowerStatStage(:DEFENSE,2,user) if opposingmon.pbCanLowerStatStage?(:DEFENSE, user)
+        opposingmon.pbLowerStatStage(:ACCURACY,1,user) if opposingmon.pbCanLowerStatStage?(:ACCURACY, user)
+        if !$PokemonGlobal.towervalues.nil?
+          $PokemonGlobal.towervalues.eventvariables[:sculkshrieker] = 0 if $PokemonGlobal.towervalues.eventvariables[:sculkshrieker].nil?
+          $PokemonGlobal.towervalues.eventvariables[:sculkshrieker] += 1
+          case $PokemonGlobal.towervalues.eventvariables[:sculkshrieker]
+          when 1
+            battle.pbDisplay("Warden approaches.")
+          when 2
+            battle.pbDisplay("Warden advances.")
+          else
+            battle.pbDisplay("Warden draws close.")
+          end
+        end
+        pbHideAbilitySplash(user)
+      end
     end
   }
 )

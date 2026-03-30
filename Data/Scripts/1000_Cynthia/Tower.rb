@@ -38,6 +38,22 @@ def resetTower()
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)
 end
 
+def leaveTower()
+    return true if $PokemonGlobal.towerlocation.nil?
+    pbFadeOutIn(99999) {
+      Kernel.pbCancelVehicles
+      $game_temp.player_new_map_id = $PokemonGlobal.towerlocation[0]
+      $game_temp.player_new_x = $PokemonGlobal.towerlocation[1]
+      $game_temp.player_new_y = $PokemonGlobal.towerlocation[2]
+      $game_temp.player_new_direction = 2
+      $scene.transfer_player
+      $game_map.autoplay
+      $game_map.refresh
+    }
+    $PokemonGlobal.towerlocation = nil
+    return false
+end
+
 def getTowerPokemon(filter=nil)
     list = []
     GameData::Species.each do |data|
@@ -49,7 +65,7 @@ def getTowerPokemon(filter=nil)
         next if data.base_stats.values.sum > 350 + ($PokemonGlobal.towervalues[:floor]*5)
         case filter
         when "Starter"
-            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :EEVEE].flatten.include?(data.species)
+            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS].flatten.include?(data.species)
         end
         list.push(data.species)
     end
@@ -58,8 +74,8 @@ def getTowerPokemon(filter=nil)
         list.push(value)
     end
     list.push(:AGUMON, :GABUMON, :PALMON)
-    list.push(:PIKACHU) if filter == "Starter"
-    list.push(:GREATTUSK, :SCREAMTAIL, :FLUTTERMANE, :SLITHERWING, :SANDYSHOCKS, :ROARINGMOON, :IRONTREADS, :IRONBUNDLE, :IRONJUGULIS, :IRONMOTH, :IRONTHORNS, :IRONVALIANT) if $PokemonGlobal.towervalues[:floor] >= 100
+    list.push(:PIKACHU, :EEVEE) if filter == "Starter"
+    list.push(:GREATTUSK, :SCREAMTAIL, :FLUTTERMANE, :SLITHERWING, :SANDYSHOCKS, :ROARINGMOON, :IRONTREADS, :IRONBUNDLE, :IRONJUGULIS, :IRONMOTH, :IRONTHORNS, :IRONVALIANT, :IRONHARVESTER) if $PokemonGlobal.towervalues[:floor] >= 100
     return list.sample
 end
 
@@ -180,7 +196,7 @@ def towerIncreaseFloor(nextfloor)
                 emeralegendaries.push(legendary)
             end
         end
-        $PokemonGlobal.towervalues[:activevariable] = emeralist.sample if emeralist.length > 0
+        $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
         $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
     when "Unknown"
         $PokemonGlobal.towervalues[:activevariable] = ["Cynthia", "Hot Spring"].sample #todo

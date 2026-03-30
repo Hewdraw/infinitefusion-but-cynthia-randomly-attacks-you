@@ -357,11 +357,13 @@ class PokemonLoopletScreen
       break if !item
       cmdUse      = -1
       cmdToggle = -1
+      cmdMisc = -1
       cmdSort     = -1
       commands = []
       # Generate command list
 
       commands[cmdUse = commands.length]    = _INTL("Tutor Move") if EMERADICT[item][:tutormove]
+      commands[cmdMisc = commands.length]     = _INTL("Change Type") if item == :TERACRYSTAL
       commands[cmdToggle = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item)
       commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item)
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
@@ -413,6 +415,25 @@ class PokemonLoopletScreen
         end
         @scene.pbRefresh
         next
+      elsif cmdMisc >= 0 && command == cmdMisc
+        scene = PokemonParty_Scene.new
+        screen = PokemonPartyScreen.new(scene,$Trainer.party)
+        screen.pbStartScene(_INTL("Which Pokémon?"),false)
+        loop do
+          chosen = screen.pbChoosePokemon
+          break if chosen<0
+          pokemon = $Trainer.party[chosen]
+          types = []
+          GameData::Type.each { |t| types.push(t.id) if !t.pseudo_type && ![:NORMAL, :SHADOW].include?(t.id)}
+          types.sort! { |a, b| GameData::Type.get(a).id_number <=> GameData::Type.get(b).id_number }
+          typenames = []
+          types.each do |type|
+            typenames.push(GameData::Type.get(type).name)
+          end
+          type = types[Kernel.pbMessage("Select a Type", typesnames)]
+          pokemon.hiddenPowerType = type
+        end
+        screen.pbEndScene
       elsif cmdToggle >= 0 && command == cmdToggle
         if @bag.activeemeras.include?(item)
           @bag.activeemeras.delete(item)

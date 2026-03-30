@@ -286,4 +286,5 @@
 284,IMMOLATE,Immolate,"a"
 285,QUICKDRAW,Quick Draw,"a"
 286,SHARPNESS,Sharpness,"a"
-287,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."
+287,EMBODYASPECT,Embody Aspect,"a"
+288,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."

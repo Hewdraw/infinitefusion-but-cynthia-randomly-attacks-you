@@ -83,6 +83,7 @@ class PokemonGlobalMetadata
   attr_accessor :cynthialosses
   attr_accessor :hatsunemikulosses
   attr_accessor :endgatewaylocation
+  attr_accessor :towerlocation
   attr_accessor :towervalues
   attr_accessor :porygonchance
 

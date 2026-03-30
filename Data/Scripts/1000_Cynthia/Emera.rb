@@ -30,11 +30,11 @@ EMERADICT = {
     #     :description => "Boosts Crit rate by 1 if using the same move in a row.",
     #     :rarity => :COMMON,
     # },
-    # :COMEBACKEMERA => {
-    #     :name => "Comeback Emera",
-    #     :description => "Your Pokemon gain 1 Accuracy after missing a move.",
-    #     :rarity => :COMMON,
-    # },
+    :COMEBACKEMERA => {
+        :name => "Comeback Emera",
+        :description => "Your Pokemon gain 1 Accuracy after missing a move.",
+        :rarity => :COMMON,
+    },
     :ENDERCHEST => {
         :name => "Ender Chest",
         :description => "You can pay Sinnoh Coins to open chests again.",
@@ -460,13 +460,13 @@ EMERADICT = {
     #     :tutormove => :DARKVOID,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},
     # },
-    # :SKULKSHRIEKER => {
-    #     :name => "Skulk Shrieker",
-    #     :description => "When a Sound move is used a random opposing Pokemons Defense is lowered by 2 staged and Accuracy is lowered by 1.",
-    #     :rarity => :LEGENDARY,
-    #     :tutormove => :BOOMBURST,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},
-    # },
+    :SCULKSHRIEKER => {
+        :name => "Sculk Shrieker",
+        :description => "When Your Pokemon uses a Sound move a random opposing Pokemons Defense is lowered by 2 staged and Accuracy is lowered by 1.",
+        :rarity => :LEGENDARY,
+        :tutormove => :BOOMBURST,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},
+    },
     :SUNHEART => {
         :name => "Sun Heart",
         :description => "Opposing Pokemon take 1.2x damage while their HP is full.",
@@ -474,20 +474,20 @@ EMERADICT = {
         :tutormove => :SUNSTEELSTRIKE,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:STEEL)},
     },
-    # :TEALMASK => {
-    #     :name => "Teal Mask",
-    #     :description => "Your Pokemon holding an Ogrepon Mask will gain the corresponding Embody Aspect on Switch in.",
-    #     :rarity => :LEGENDARY,
-    #     :tutormove => :IVYCUDGEL,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:GRASS) || pokemon.hasType?(:WATER) || pokemon.hasType?(:FIRE) || pokemon.hasType?(:ROCK)},
-    # },
-    # :TERACRYSTAL => {
-    #     :name => "Tera Crystal",
-    #     :description => "Your Pokemon gain their Hidden Power type as a third type. Can be used to change Hidden Power type.",
-    #     :rarity => :LEGENDARY,
-    #     :tutormove => :TERASTARSTORM,
-    #     :tutorcondition => -> (pokemon) {return true},
-    # },
+    :TEALMASK => {
+        :name => "Teal Mask",
+        :description => "Your Pokemon holding an Ogrepon Mask will gain the corresponding Embody Aspect on Switch in.",
+        :rarity => :LEGENDARY,
+        :tutormove => :IVYCUDGEL,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:GRASS) || pokemon.hasType?(:WATER) || pokemon.hasType?(:FIRE) || pokemon.hasType?(:ROCK)},
+    },
+    :TERACRYSTAL => {
+        :name => "Tera Crystal",
+        :description => "Your Pokemon gain their Hidden Power type as a third type. Can be used to change Hidden Power type.",
+        :rarity => :LEGENDARY,
+        :tutormove => :TERASTARSTORM,
+        :tutorcondition => -> (pokemon) {return true},
+    },
     # :VIOLETBOOK => {
     #     :name => "Violet Book",
     #     :description => "Your Pokemon are unaffected by negative effects of terrains. Your Pokemon always count as grounded for terrains.",

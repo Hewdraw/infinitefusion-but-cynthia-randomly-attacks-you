@@ -2596,6 +2596,21 @@ BattleHandlers::AbilityOnSwitchIn.add(:EON,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:EMBODYASPECT,
+  proc { |ability,battler,battle|
+    next if !battler.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+    if battler.hasActiveItem?(:WELLSPRINGMASK)
+      battler.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+    end
+    if battler.hasActiveItem?(:HEARTHFLAMEMASK)
+      battler.pbRaiseStatStageByAbility(:ATTACK,1,battler,GameData::Ability.get(ability).real_name)
+    end
+    if battler.hasActiveItem?(:CORNERSTONEMASK)
+      battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+    end
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:FAIRYAURA,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
