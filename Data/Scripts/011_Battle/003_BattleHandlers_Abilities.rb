@@ -1908,6 +1908,27 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   }
 )
 
+BattleHandlers::UserAbilityOnHit.add(:TOXICCHAIN,
+  proc { |ability,user,target,move,battle|
+    next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanPoison?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} poisoned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbPoison(user,msg,true)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
 BattleHandlers::UserAbilityOnHit.add(:STUN,
   proc { |ability,user,target,move,battle|
     next if target.movedThisRound?

@@ -287,4 +287,5 @@
 285,QUICKDRAW,Quick Draw,"a"
 286,SHARPNESS,Sharpness,"a"
 287,EMBODYASPECT,Embody Aspect,"a"
-288,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."
+288,TOXICCHAIN,Toxic Chain,"a"
+289,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."
