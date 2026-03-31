@@ -44,7 +44,7 @@ EMERADICT = {
         :name => "Fake Badges",
         :description => "You can buy items from the shop as if you had 16 badges.",
         :rarity => :COMMON,
-    }
+    },
     :FLASHLIGHT => {
         :name => "Flashlight",
         :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
