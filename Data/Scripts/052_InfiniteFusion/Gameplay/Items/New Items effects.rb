@@ -1451,16 +1451,22 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, choices, scene|
-  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
+  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >0
+    scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pkmn.name))
+    pkmn.changeHappiness("vitamin")
     next true
   end
+  scene.pbDisplay(_INTL("It won't have any effect."))
   next false
 })
 
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
+  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >0
+    scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pkmn.name))
+    pkmn.changeHappiness("vitamin")
     next true
   end
+  scene.pbDisplay(_INTL("It won't have any effect."))
   next false
 })
 
@@ -2387,28 +2393,6 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
   Kernel.pbMessage(_INTL("The Exp All was turned on."))
   $game_switches[920] = true
   next 1 # Continue
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, choices, scene|
-  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
-    next true
-  end
-  next false
-})
-ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
-  if pbRaiseEffortValues(pokemon, :ATTACK, 4) >=0
-    next true
-  end
-  next false
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, battler, choices, scene|
-  pbRaiseEffortValues(pokemon, :ATTACK, 252)
-  next false
-})
-ItemHandlers::UseOnPokemon.add(:GOLDENBANANA, proc { |item, pokemon, scene|
-  pbRaiseEffortValues(pokemon, :ATTACK, 252)
-  next false
 })
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|

@@ -95,12 +95,12 @@ def give_date_specific_hats()
 end
 
 def qmarkMaskCheck()
-  if $Trainer.seen_qmarks_sprite
-    unless hasHat?(HAT_QMARKS)
-      obtainHat(HAT_QMARKS)
-      obtainClothes(CLOTHES_GLITCH)
-    end
-  end
+  # if $Trainer.seen_qmarks_sprite
+  #   unless hasHat?(HAT_QMARKS)
+  #     obtainHat(HAT_QMARKS)
+  #     obtainClothes(CLOTHES_GLITCH)
+  #   end
+  # end
 end
 
 def purchaseDyeKitMenu(hats_kit_price = 0, clothes_kit_price = 0)
