@@ -9,13 +9,12 @@ class PokeBattle_Battler
   #=============================================================================
   def pbCanChooseMove?(move,commandPhase,showMessages=true,specialUsage=false)
     if ["203", "180"].include?(move.function)
-      if @lastRegularMoveUsed == move.id || specialUsage
+      if @lastRegularMoveUsed == move.id && !specialUsage
         if showMessages
           @battle.pbDisplay(_INTL("But it failed!"))
         end
         return false
       end
-      return true
     end
     # Disable
     if @effects[PBEffects::DisableMove]==move.id && !specialUsage

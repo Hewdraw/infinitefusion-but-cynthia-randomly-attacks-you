@@ -271,7 +271,7 @@ def towerEvent()
     when "Unknown"
         case $PokemonGlobal.towervalues[:activevariable]
         when "Cynthia"
-            return if !pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
+            pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
         when "Hot Spring"
             choice = Kernel.pbMessage("You encounter a Torkoal heating up a spring.", ["Soak in the water.", "Fight.", "Gather herbs nearby."])
             case choice
@@ -304,6 +304,7 @@ def towerEvent()
                 $PokemonGlobal.towervalues.eventvariables[:wateredtree] = true
             end
         end
+        return if $PokemonGlobal.towervalues.nil?
         $PokemonGlobal.towervalues[:activevariable] = nil
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])

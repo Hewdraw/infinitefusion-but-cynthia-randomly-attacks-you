@@ -37,6 +37,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:EMERA,
 BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
   proc { |ability,user,target,c|
     c += 1 if user.hasActiveEmera?(:SPINNINGLEEK)
+    if user.hasActiveEmera?(:CHOICERIBBON) && user.effects[PBEffects::ChoiceRibbon] == true
+      c += 1
+    end
     next c
   }
 )

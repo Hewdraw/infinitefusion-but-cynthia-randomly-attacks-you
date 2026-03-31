@@ -25,11 +25,11 @@ EMERADICT = {
         :description => "Gain an extra option when obtaining a Pokemon from a Pokeball floor.",
         :rarity => :COMMON,
     },
-    # :CHOICERIBBON => {
-    #     :name => "Choice Ribbon",
-    #     :description => "Boosts Crit rate by 1 if using the same move in a row.",
-    #     :rarity => :COMMON,
-    # },
+    :CHOICERIBBON => {
+        :name => "Choice Ribbon",
+        :description => "Your Pokemon gain 1 Crit stage when using the same move repeatedly.",
+        :rarity => :COMMON,
+    },
     :COMEBACKEMERA => {
         :name => "Comeback Emera",
         :description => "Your Pokemon gain 1 Accuracy after missing a move.",
@@ -40,6 +40,11 @@ EMERADICT = {
         :description => "You can pay Sinnoh Coins to open chests again.",
         :rarity => :COMMON,
     },
+    :FAKEBADGES => {
+        :name => "Fake Badges",
+        :description => "You can buy items from the shop as if you had 16 badges.",
+        :rarity => :COMMON,
+    }
     :FLASHLIGHT => {
         :name => "Flashlight",
         :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",

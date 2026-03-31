@@ -616,7 +616,7 @@ class Undertale_Scene
         if !item
           break
         end
-        if pbCynthiaGetBadgeCount < $PokemonGlobal.shadrossstock[item]["badges"]
+        if pbCynthiaGetBadgeCount < $PokemonGlobal.shadrossstock[item]["badges"] && !hasEmera?(:FAKEBADGES)
           text = "Weak ass."
         elsif pbQuantity(:SINNOHCOIN) < $PokemonGlobal.shadrossstock[item]["cost"]
           text = "Broke ass."
@@ -1102,6 +1102,7 @@ class UndertaleItemMenu
       item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
       itemcost = $PokemonGlobal.shadrossstock[item]["cost"] if item
       itembadges = $PokemonGlobal.shadrossstock[item]["badges"] if item
+      itembadges = 0 if hasEmera?(:FAKEBADGES)
       itemtext = Window_UnformattedTextPokemon.newWithSize("",
          @shopbox.x + Graphics.width / 10 + Graphics.width / 20 + Graphics.width * 1 / 2, @shopbox.y + (i*30), @shopbox.width - Graphics.width / 10 - Graphics.width / 20 - Graphics.width * 1 / 2, @shopbox.height, viewport)
       itemtext.baseColor   = Color.new(255, 255, 255)
@@ -1110,7 +1111,7 @@ class UndertaleItemMenu
       itemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
       itemtext.contents.font.size = 25
       itemtext.text = "#{itembadges} Badges" if item
-      itemtext.text = "#{itembadges} Badge" if item && itembadges == 1
+      itemtext.text = "1 Badge" if item && itembadges == 1
       itemtext.text = "#{itemcost} Coins" if item && itembadges <= pbCynthiaGetBadgeCount
       itemtext.text = "1 Coin" if item && itembadges <= pbCynthiaGetBadgeCount && itemcost == 1
       itemtext.text = "" if !item
@@ -1169,6 +1170,7 @@ class UndertaleItemMenu
       item = $PokemonGlobal.shadrossstock.keys[@itemindex+i]
       itemcost = $PokemonGlobal.shadrossstock[item]["cost"] if item
       itembadges = $PokemonGlobal.shadrossstock[item]["badges"] if item
+      itembadges = 0 if hasEmera?(:FAKEBADGES)
       itemtext = @shopprices[i]
       itemtext.text = "#{itembadges} Badges" if item
       itemtext.text = "#{itemcost} Coins" if item && itembadges <= pbCynthiaGetBadgeCount

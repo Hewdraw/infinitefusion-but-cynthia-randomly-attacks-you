@@ -127,6 +127,7 @@ begin
     BurningBulwark        = 121
     Obstruct        = 122
     SupremeOverlord        = 123
+    ChoiceRibbon        = 124
 
     #===========================================================================
     # These effects apply to a battler position

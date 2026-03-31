@@ -298,6 +298,7 @@ class PokeBattle_Battler
     @effects[PBEffects::BurningBulwark]       = false
     @effects[PBEffects::Obstruct]         = false
     @effects[PBEffects::SupremeOverlord]         = 0
+    @effects[PBEffects::ChoiceRibbon] = false
   end
 
   #=============================================================================
