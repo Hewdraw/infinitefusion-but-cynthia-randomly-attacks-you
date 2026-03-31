@@ -100,6 +100,11 @@ EMERADICT = {
         :description => "Grassy Terrain is actived at the start of the battle.",
         :rarity => :COMMON,
     },
+    # :NEWSHOES => {
+    #     :name => "New Shoes",
+    #     :description => "Your Pokemons with Run Away can no longer be trapped and their moves that switch them out gain 1 priority",
+    #     :rarity => :COMMON,
+    # },
     :NOTEBLOCK => {
         :name => "Noteblock",
         :description => "Your Pokemons Metronome moves will use an addtional move.",
