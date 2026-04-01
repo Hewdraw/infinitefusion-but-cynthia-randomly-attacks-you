@@ -273,6 +273,7 @@ class AbilityHandlerHash < HandlerHash2
       entry = [entry] 
       entry += user.getAllAbilities if !entry.include?(:EMERA)
       entry = entry.uniq
+    end
     retvalue = nil
     entry.each do |ability|
       user.tempability = GameData::Ability.get(ability).real_name if ability != @ability_id && ability != :EMERA
