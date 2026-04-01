@@ -97,7 +97,7 @@ class PokemonStorageScreen
       commands[cmdMove = commands.length] = _INTL("Move")
     end
     commands[cmdSummary = commands.length] = _INTL("Summary")
-    if pokemon != nil && !isTransferBox && (dexNum(pokemon.species) < ZAPMOLCUNO_NB && ![:OMNIMON,:WARGREYMON,:METALGARURUMON].include?(pokemon.species_data.id))
+    if pokemon != nil && !isTransferBox && (dexNum(pokemon.species) < Settings::ZAPMOLCUNO_NB && ![:OMNIMON,:WARGREYMON,:METALGARURUMON].include?(pokemon.species_data.id))
       if dexNum(pokemon.species) > NB_POKEMON && ![:WARGREYMON,:METALGARURUMON].include?(pokemon.species_data.id)
         commands[cmdUnfuse = commands.length] = _INTL("Unfuse")
         commands[cmdReverse = commands.length] = _INTL("Reverse") if $PokemonBag.pbQuantity(:DNAREVERSER) > 0 || $PokemonBag.pbQuantity(:INFINITEREVERSERS) > 0
