@@ -11,6 +11,7 @@ class PokeBattle_Battler
       BattleHandlers.triggerTargetAbilityOnHit(target.ability,target,user,move,@battle)
       user.pbItemHPHealCheck if user.hp<oldHP
     end
+    BattleHandlers.triggerTargetAbilityOnHit(:EMERA,target,user,move,@battle)
     # User's ability
     if user.abilityActive?(true)
       BattleHandlers.triggerUserAbilityOnHit(user.ability,user,target,move,@battle)

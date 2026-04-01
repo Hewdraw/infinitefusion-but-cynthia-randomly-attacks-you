@@ -270,8 +270,8 @@ class AbilityHandlerHash < HandlerHash2
     user = args[0]
     user.tempability = nil
     if !entry.is_a?(Array)
-      entry = [entry] 
-      entry += user.getAllAbilities if !entry.include?(:EMERA)
+      entry = [entry] if entry.include?(:EMERA)
+      entry = user.getAllAbilities if !entry.include?(:EMERA)
       entry = entry.uniq
     end
     retvalue = nil
