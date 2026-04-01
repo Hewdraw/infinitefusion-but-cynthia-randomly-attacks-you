@@ -263,8 +263,8 @@ def towerEvent()
     when "Chest"
         enderChest()
         if hasEmera?(:ENDERCHEST)
-            while $PokemonBag.pbQuantity(:SINNOHCOIN) >= 10 && Kernel.pbMessage("Open again for 5 Sinnoh Coins?", ["Yes", "No"]) == 0
-                $PokemonBag.pbDeleteItem(:SINNOHCOIN, 10)
+            while $PokemonBag.pbQuantity(:SINNOHCOIN) >= 5 && Kernel.pbMessage("Open again for 5 Sinnoh Coins?", ["Yes", "No"]) == 0
+                $PokemonBag.pbDeleteItem(:SINNOHCOIN, 5)
                 enderChest()
             end
         end
