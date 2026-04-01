@@ -269,8 +269,10 @@ class AbilityHandlerHash < HandlerHash2
   def trigger(entry, *args)
     user = args[0]
     user.tempability = nil
-    entry = [entry] if !entry.is_a?(Array)
-    entry += user.getAllAbilities.uniq if !entry.include?(:EMERA)
+    if !entry.is_a?(Array)
+      entry = [entry] 
+      entry += user.getAllAbilities.uniq if !entry.include?(:EMERA)
+    end
     retvalue = nil
     entry.each do |ability|
       user.tempability = GameData::Ability.get(ability).real_name if ability != @ability_id && ability != :EMERA
