@@ -2415,7 +2415,7 @@ class PokeBattle_AI
           when :TINTEDLENS
             multipliers[:final_damage_multiplier] *= 2 if Effectiveness.resistant?(typeMod)
           else
-            BattleHandlers.triggerDamageCalcUserAbility(ability,
+            BattleHandlers.triggerDamageCalcUserAbility([ability],
              user,target,move,multipliers,baseDmg,type)
           end
         end
@@ -2424,7 +2424,7 @@ class PokeBattle_AI
         user.eachAlly do |b|
           b.getAllAbilities.each do |ability|
             next if !b.abilityActive?(false, ability)
-            BattleHandlers.triggerDamageCalcUserAllyAbility(ability,
+            BattleHandlers.triggerDamageCalcUserAllyAbility([ability],
                b,user,target,move,multipliers,baseDmg,type)
           end
         end
@@ -2443,16 +2443,16 @@ class PokeBattle_AI
                 multipliers[:final_damage_multiplier] *= 0.5
               end
             else
-              BattleHandlers.triggerDamageCalcTargetAbility(ability,
+              BattleHandlers.triggerDamageCalcTargetAbility([ability],
                  target,user,move,multipliers,baseDmg,type) if !user.hasMoldBreaker?
-              BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable(ability,
+              BattleHandlers.triggerDamageCalcTargetAbilityNonIgnorable([ability],
                  target,user,move,multipliers,baseDmg,type)
             end
           end
           target.eachAlly do |b|
             b.getAllAbilities.each do |ability|
               next if !b.abilityActive?(false, ability)
-              BattleHandlers.triggerDamageCalcTargetAllyAbility(ability,
+              BattleHandlers.triggerDamageCalcTargetAllyAbility([ability],
                  b,user,target,move,multipliers,baseDmg,type)
             end
           end
