@@ -1058,6 +1058,7 @@
 1089,KOWTOWCLEAVEPLUS,Kowtow Cleave+,335,110,DARK,Physical,0,10,0,NearOther,0,abefh,"Nice Smeargle/Ditto, jackass."
 1090,FOCUSBLASTPLUS,Focus Blast,046,110,FIGHTING,Special,100,5,10,NearOther,0,befn,"The user heightens its mental focus and unleashes its power. It may also lower the target's Sp. Def."
 1091,TRIATTACKPLUS,Tri Attack+,336,45,QMARKS,Special,100,5,35,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. May also paralyze, burn, or freeze the target."
+1092,RAPIDFIRE,Rapid Fire,225,20,GUN,Physical,90,10,0,NearOther,0,befn,"Nice Smeargle/Ditto, jackass." #todo
 
 
 
