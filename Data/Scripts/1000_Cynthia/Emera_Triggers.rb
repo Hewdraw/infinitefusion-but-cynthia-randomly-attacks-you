@@ -180,7 +180,7 @@ class PokeBattle_Battle
       pbShowAbilitySplash(playerside[0])
       pbDisplay(_INTL("Your Pokemon are surrounded by a veil of water!"))
       playerside.each do |battler|
-        battler.effects[PBEffects::AquaRing] == true
+        battler.effects[PBEffects::AquaRing] = true
       end
       pbHideAbilitySplash(playerside[0])
     end
