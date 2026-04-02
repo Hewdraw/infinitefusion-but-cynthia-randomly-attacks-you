@@ -43,7 +43,7 @@ def UndertaleCommand(scene)
 end
 
 def UndertaleShopSetup()
-  if $PokemonGlobal.cynthiabadgetier && $Trainer.numbadges > $PokemonGlobal.cynthiabadgetier
+  if $PokemonGlobal.cynthiabadgetier && $Trainer.numbadges > $PokemonGlobal.cynthiabadgetier && $PokemonGlobal.towervalues.nil?
     $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
     if !$PokemonGlobal.pcItemStorage
       $PokemonGlobal.pcItemStorage = PCItemStorage.new
