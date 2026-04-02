@@ -62,7 +62,7 @@ def getTowerPokemon(filter=nil)
         next if [:MINIOR_C, :MELOETTA_P, :U_NECROZMA, :CASTFORM_SUNNY, :CASTFORM_RAINY, :CASTFORMSNOWY].include?(data.species)
         next if [:ORICORIO_1, :ORICORIO_2, :ORICORIO_3, :ORICORIO_4].include?(data.species) && rand(4) != 0 #randomly enable oricorio form, averages out
         next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :RECICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE].include?(data.species)
-        next if data.base_stats.values.sum > 350 + ($PokemonGlobal.towervalues[:floor]*5)
+        #next if data.base_stats.values.sum > 350 + ($PokemonGlobal.towervalues[:floor]*5)
         case filter
         when "Starter"
             next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS].flatten.include?(data.species)
@@ -334,6 +334,23 @@ def towerEvent()
                 break if Kernel.pbMessage("Skip tutoring a move?", ["No", "Yes"]) == 1
             else
                 break if pbTowerMoveScreen($Trainer.party[chosen])
+            end
+        end
+        if hasEmera?(:BOOKANDQUILL)
+            while true
+                chosen = 0
+                pbFadeOutIn {
+                    scene = PokemonParty_Scene.new
+                    screen = PokemonPartyScreen.new(scene, $Trainer.party)
+                    screen.pbStartScene(_INTL("Choose a Pokémon."), false)
+                    chosen = screen.pbChoosePokemon
+                    screen.pbEndScene
+                }
+                if chosen < 0
+                    break if Kernel.pbMessage("Skip tutoring a move?", ["No", "Yes"]) == 1
+                else
+                    break if pbTowerMoveScreen($Trainer.party[chosen])
+                end
             end
         end
     when "Legendary"

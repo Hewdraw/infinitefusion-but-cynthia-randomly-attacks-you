@@ -15,6 +15,11 @@ EMERADICT = {
         :description => "Obtain a random Berry when going up a floor.",
         :rarity => :COMMON,
     },
+    :BOOKANDQUILL => {
+        :name => "Book & Quill",
+        :description => "You can Tutor an extra move in a Tutor floor.",
+        :rarity => :COMMON,
+    },
     :BREWINGSTAND => {
         :name => "Brewing Stand",
         :description => "Obtain a random Potion Item when going up a floor.",
