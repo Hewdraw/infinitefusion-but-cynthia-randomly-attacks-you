@@ -612,9 +612,11 @@ class PokeBattle_Battle
           end
           battler.pokemon.raid = nil
           battler.pokemon.hpbars = nil
-          ability = battler.pokemon.getAbilityList[-1][0] if battler.ability_id == :LEGENDARYPRESSURE
-          battler.pokemon.ability_index = 2
-          battler.pokemon.ability = GameData::Ability.get(ability).id
+          if battler.ability_id == :LEGENDARYPRESSURE
+            ability = battler.pokemon.getAbilityList[-1][0]
+            battler.pokemon.ability_index = 2
+            battler.pokemon.ability = GameData::Ability.get(ability).id
+          end
           pbThrowPokeBall(battler.index, :POKEBALL, catch_rate = 255, showPlayer = true)
         end
       end
