@@ -14,7 +14,7 @@ BattleHandlers::AbilityOnBattlerFainting.add(:EMERA,
 
 BattleHandlers::AbilityOnSwitchIn.add(:EMERA,
   proc { |ability,battler,battle|
-    if battler.hasActiveEmera?(:FLASHLIGHT)
+    if battler.hasActiveEmera?(:FLASHLIGHT) && battler.hasActiveAbility?(:ILLUMINATE)
       battler.tempability = EMERADICT[:FLASHLIGHT][:name]
       battle.pbShowAbilitySplash(battler)
       battle.eachOtherSideBattler(battler.index) do |b|
