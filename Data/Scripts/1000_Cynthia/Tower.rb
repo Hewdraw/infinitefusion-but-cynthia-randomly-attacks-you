@@ -156,6 +156,7 @@ def towerIncreaseFloor(nextfloor)
         oldlevel = pkmn.level
         pkmn.level = newlevel
         pkmn.calc_stats
+        pkmn.status = :NONE if hasEmera?(:MILKBUCKET)
         movelist = pkmn.getMoveList
         moves = []
         for i in movelist
@@ -284,7 +285,7 @@ def towerEvent()
                 return if !pbLegendaryBattle("Torkoal")
             when 2
                 pbItemBall(:REVIVALHERB, 3)
-                pbItemBall(:ENERGYROOT, 5)
+                pbItemBall(:ENERGYROOT, 3)
                 Kernel.pbMessage("The Torkoal left while you gathered herbs.")
             end
         when "Berry Tree"

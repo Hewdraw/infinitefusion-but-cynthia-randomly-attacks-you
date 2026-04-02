@@ -25,6 +25,11 @@ EMERADICT = {
         :description => "Gain an extra option when obtaining a Pokemon from a Pokeball floor.",
         :rarity => :COMMON,
     },
+    # :CHOICEDUMPLING => {
+    #     :name => "Choice Dumpling",
+    #     :description => "Your Pokemon that use a move that locks them into it become fixated on it, increasing the damage they take and deal with that move.",
+    #     :rarity => :COMMON,
+    # },
     :CHOICERIBBON => {
         :name => "Choice Ribbon",
         :description => "Your Pokemon gain 1 Crit stage when using the same move repeatedly.",
@@ -95,6 +100,11 @@ EMERADICT = {
     #     :description => "Your Pokemon take half damage the turn they use Focus Punch or Meditate.",
     #     :rarity => :COMMON,
     # },
+    :MILKBUCKET => {
+        :name => "Milk Bucket",
+        :description => "Your Pokemons Status Condition is healed when going up a floor.",
+        :rarity => :COMMON,
+    },
     :MOSSYROCK => {
         :name => "Mossy Rock",
         :description => "Grassy Terrain is actived at the start of the battle.",
@@ -125,9 +135,14 @@ EMERADICT = {
         :description => "Your Pokemons Speed is doubled on the first turn of the battle.",
         :rarity => :COMMON,
     },
-    # :RAINBOWEGG => {
-    #     :name => "Rainbow Egg",
-    #     :description => "Your Pokemons Egg Bomb becomes a random type and makes that Pokemon become that type every time its used.",
+    # :BADEGG => {
+    #     :name => "Bad Egg",
+    #     :description => "Your Pokemons Egg Bomb applies Toxic to the target.",
+    #     :rarity => :COMMON,
+    # },
+    # :SELFCONTROLEMERA => {
+    #     :name => "Self Control Emera",
+    #     :description => "Your Pokemon will hit a random opponeing in confusion instead of themselves.",
     #     :rarity => :COMMON,
     # },
     # :SHIV => {
@@ -186,6 +201,11 @@ EMERADICT = {
     #     :rarity => :COMMON,
     # },
 
+    :ALARMCLOCK => {
+        :name => "Alarm Clock",
+        :description => "Your Pokemon gain the Early Bird Ability.",
+        :rarity => :UNCOMMON,
+    },
     # :EXTRADICE => {
     #     :name => "Extra Dice",
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
@@ -305,6 +325,11 @@ EMERADICT = {
     :SYNCSTONEULTIMATE => {
         :name => "Sync Stone Ultimate",
         :description => "Your Pokemon gain Affection.",
+        :rarity => :RARE,
+    },
+    :TOTEMSTICKER => {
+        :name => "Totem Sticker",
+        :description => "Your Pokemons lowest stat is raised by 1 stage at the start of the battle.",
         :rarity => :RARE,
     },
 

@@ -294,11 +294,12 @@ class PokeBattle_Battler
     @effects[PBEffects::Obscured]                = 0
     @effects[PBEffects::Protosynthesis]                = 0
     @effects[PBEffects::QuarkDrive]                = 0
-    @effects[PBEffects::SaltCure]                = 0
+    @effects[PBEffects::SaltCure]                = false
     @effects[PBEffects::BurningBulwark]       = false
     @effects[PBEffects::Obstruct]         = false
     @effects[PBEffects::SupremeOverlord]         = 0
     @effects[PBEffects::ChoiceRibbon] = false
+    @effects[PBEffects::GlaiveRush]                = false
   end
 
   #=============================================================================

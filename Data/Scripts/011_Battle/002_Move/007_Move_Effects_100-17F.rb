@@ -2980,16 +2980,16 @@ end
 
 class PokeBattle_Move_198 < PokeBattle_Move
   def pbAdditionalEffect(user, target)
-    return if target.effects[PBEffects::SaltCure]>0
+    return if target.effects[PBEffects::SaltCure]
     return if target.fainted? || target.damageState.substitute
-    target.effects[PBEffects::SaltCure] == 1
+    target.effects[PBEffects::SaltCure] = true
     @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
   end
   
   def pbEffectAgainstTarget(user,target)
     return if target.effects[PBEffects::SaltCure]>0
     return if target.fainted? || target.damageState.substitute
-    target.effects[PBEffects::SaltCure] == 1
+    target.effects[PBEffects::SaltCure] = true
     @battle.pbDisplay(_INTL("{1} was salt cured!",target.pbThis))
   end
 end
@@ -5499,5 +5499,136 @@ class PokeBattle_Move_336 < PokeBattle_Move
     when :ELECTRIC then
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end
+  end
+end
+
+class PokeBattle_Move_337 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    case @battle.pbRandom(3)
+    when 0 then
+      target.pbBurn(user) if target.pbCanBurn?(user, false, self)
+    when 1 then
+      target.pbSleep if target.pbCanSleep?(user, false, self)
+    when 2 then
+      target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
+    end
+  end
+end
+
+class PokeBattle_Move_338 < PokeBattle_BurnMove
+  def pbBaseDamage(baseDmg, user, target)
+    if target.pbHasAnyStatus? &&
+      ((target.effects[PBEffects::Substitute] == 0 && target.effects[PBEffects::RedstoneCube] == 0) || ignoresSubstitute?(user))
+      baseDmg *= 2
+    end
+    return baseDmg
+  end
+end
+
+class PokeBattle_Move_339 < PokeBattle_Move
+  def healingMove?;       return true; end
+  def ignoresSubstitute?(user)
+    ; return true;
+  end
+
+  def pbMoveFailed?(user, targets)
+    @validTargets = []
+    @battle.eachSameSideBattler(user) do |b|
+      next if b.status == :NONE && b.hp == b.adjustedTotalhp
+      @validTargets.push(b)
+    end
+    if @validTargets.length == 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbFailsAgainstTarget?(user, target)
+    return false if @validTargets.any? { |b| b.index == target.index }
+    return true if target.status == :NONE && target.hp == target.adjustedTotalhp
+    @battle.pbDisplay(_INTL("{1}' HP is full!", target.pbThis))
+    return true
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    target.status = :NONE
+    target.pbRecoverHP(target.totalhp / 4)
+    @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+  end
+
+  def pbEffectGeneral(user)
+    return if pbTarget(user) != :UserSide
+    @validTargets.each { |b| pbEffectAgainstTarget(user, b) }
+  end
+end
+
+class PokeBattle_Move_340 < PokeBattle_Move
+  def pbEffectAfterAllHits(user, target)
+    user.effects[PBEffects::GlaiveRush] = true
+  end
+end
+
+class PokeBattle_Move_341 < PokeBattle_PoisonMove
+  def pbEffectAfterAllHits(user, target)
+    return if user.fainted? || target.damageState.unaffected
+    if user.effects[PBEffects::Trapping] > 0
+      trapMove = GameData::Move.get(user.effects[PBEffects::TrappingMove]).name
+      trapUser = @battle.battlers[user.effects[PBEffects::TrappingUser]]
+      @battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!", user.pbThis, trapUser.pbThis(true), trapMove))
+      user.effects[PBEffects::Trapping] = 0
+      user.effects[PBEffects::TrappingMove] = nil
+      user.effects[PBEffects::TrappingUser] = -1
+    end
+    if user.effects[PBEffects::LeechSeed] >= 0
+      user.effects[PBEffects::LeechSeed] = -1
+      @battle.pbDisplay(_INTL("{1} shed Leech Seed!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::StealthRock]
+      user.pbOwnSide.effects[PBEffects::StealthRock] = false
+      @battle.pbDisplay(_INTL("{1} blew away stealth rocks!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::Spikes] > 0
+      user.pbOwnSide.effects[PBEffects::Spikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::StickyWeb]
+      user.pbOwnSide.effects[PBEffects::StickyWeb] = false
+      @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
+    end
+  end
+end
+
+class PokeBattle_Move_342 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    if user.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self)
+      user.pbLowerStatStage(:SPECIAL_ATTACK,1,user,true)
+    end
+    if user.pbOwnedByPlayer?
+      @battle.field.effects[PBEffects::PayDay] += 5 * user.level
+    end
+    @battle.pbDisplay(_INTL("Coins were scattered everywhere!"))
+  end
+end
+
+class PokeBattle_Move_343 < PokeBattle_Move
+  def pbAccuracyCheck(user,target); return true; end
+  def pbCritialOverride(user,target); return 1; end
+end
+
+class PokeBattle_Move_344 < PokeBattle_BurnMove
+  def healingMove?
+    return true;
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.hpLost <= 0
+    hpGain = (target.damageState.hpLost * 0.5).round
+    user.pbRecoverHPFromDrain(hpGain, target)
   end
 end

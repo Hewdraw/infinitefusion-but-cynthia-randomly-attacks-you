@@ -220,5 +220,42 @@ class PokeBattle_Battle
       end
       pbHideAbilitySplash(playerside[0])
     end
+    if hasEmera?(:TOTEMSTICKER)
+      pbDisplay("Your Pokemons Totem aura flared to life!")
+      playerside[0].tempability = EMERADICT[:TOTEMSTICKER][:name]
+      pbShowAbilitySplash(playerside[0])
+      playerside.each do |battler|
+        userStats = battler.plainStats
+        lowestStatValue = 0
+        userStats.each_value { |value| lowestStatValue = value if lowestStatValue < value }
+        GameData::Stat.each_main_battle do |s|
+          next if userStats[s.id] > lowestStatValue
+          if battler.pbCanRaiseStatStage?(s.id, battler)
+            battler.pbRaiseStatStage(s.id, 1, battler)
+          end
+          break
+        end
+      end
+      pbHideAbilitySplash(playerside[0])
+    end
+
+    if $PokemonGlobal.towervalues[:activeevent] == "Legendary" && legendaryBattle?
+      getLooplet.emeras.each do |emera|
+        next if !EMERADICT[emera][:Legendary]
+        next if !EMERADICT[emera][:Legendary].include?($PokemonGlobal.towervalues[:activevariable])
+        playerside[0].tempability = EMERADICT[emera][:name]
+        pbShowAbilitySplash(playerside[0])
+        pbDisplay(_INTL("Your {1} shines brightly", EMERADICT[emera][:name]))
+        playerside.each do |battler|
+          GameData::Stat.each_main_battle do |s|
+            if battler.pbCanRaiseStatStage?(s.id, battler)
+              battler.pbRaiseStatStage(s.id, 1, battler)
+            end
+          end
+        end
+        pbHideAbilitySplash(playerside[0])
+        break
+      end
+    end
   end
 end

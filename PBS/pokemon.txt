@@ -10876,7 +10876,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = BISHARP,Level,52
+Evolutions = BISHARP,Level,52,BISHARP,Item,DUSKSTONE
 #-------------------------------
 [331]
 Name = Bisharp
@@ -11978,7 +11978,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 22
 BattlerShadowX = 2
 BattlerShadowSize = 1
-Evolutions = LAMPENT,Level,41
+Evolutions = LAMPENT,Level,41,LAMPENT,Item,FIRESTONE,LAMPENT,Item,DUSKSTONE
 #-------------------------------
 [366]
 Name = Lampent
@@ -12010,7 +12010,7 @@ BattlerEnemyX = 3
 BattlerEnemyY = 2
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = CHANDELURE,Item,DUSKSTONE
+Evolutions = CHANDELURE,Item,DUSKSTONE,CHANDELURE,Item,FIRESTONE
 #-------------------------------
 [367]
 Name = Chandelure
@@ -12303,7 +12303,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 19
 BattlerShadowX = 1
 BattlerShadowSize = 2
-Evolutions = ZWEILOUS,Level,50
+Evolutions = ZWEILOUS,Level,50,ZWEILOUS,Item,DUSKSTONE
 #-------------------------------
 [376]
 Name = Zweilous
@@ -12335,7 +12335,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = HYDREIGON,Level,64
+Evolutions = HYDREIGON,Level,64,HYDREIGON,Item,DUSKSTONE
 #-------------------------------
 [377]
 Name = Hydreigon
@@ -13029,7 +13029,7 @@ BattlerEnemyY = 18
 BattlerAltitude = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = KLANG,Level,38
+Evolutions = KLANG,Level,38,KLANG,Item,MAGNETSTONE,KLANG,Item,THUNDERSTONE
 #-------------------------------
 [398]
 Name = Klang
@@ -13061,7 +13061,7 @@ BattlerEnemyY = 17
 BattlerAltitude = 11
 BattlerShadowX = 3
 BattlerShadowSize = 3
-Evolutions = KLINKLANG,Level,49
+Evolutions = KLINKLANG,Level,49,KLINKLANG,Item,MAGNETSTONE,KLINKLANG,Item,THUNDERSTONE
 #-------------------------------
 [399]
 Name = Zorua
@@ -13093,7 +13093,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = ZOROARK,Level,30
+Evolutions = ZOROARK,Level,30,ZOROARK,Item,DUSKSTONE
 #-------------------------------
 [400]
 Name = Budew
@@ -13564,7 +13564,7 @@ BattlerEnemyY = 29
 BattlerAltitude = 10
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = FERROTHORN,Level,40
+Evolutions = FERROTHORN,Level,40,FERROTHORN,Item,LEAFSTONE
 #-------------------------------
 [414]
 Name = Axew
@@ -13596,7 +13596,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 19
 BattlerShadowX = 1
 BattlerShadowSize = 1
-Evolutions = FRAXURE,Level,38
+Evolutions = FRAXURE,Level,38,FRAXURE,Item,DAWNSTONE
 #-------------------------------
 [415]
 Name = Fraxure
@@ -13627,7 +13627,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = HAXORUS,Level,48
+Evolutions = HAXORUS,Level,48,HAXORUS,Item,DAWNSTONE
 #-------------------------------
 [416]
 Name = Golett
@@ -13660,7 +13660,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 11
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = GOLURK,Level,43
+Evolutions = GOLURK,Level,43,GOLURK,Item,DUSKSTONE
 #-------------------------------
 [417]
 Name = Fletchling
@@ -13758,7 +13758,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = VOLCARONA,Level,59
+Evolutions = VOLCARONA,Level,59,VOLCARONA,Item,SUNSTONE
 #-------------------------------
 [420]
 Name = Stunfisk
@@ -13962,7 +13962,7 @@ BattlerEnemyX = -7
 BattlerEnemyY = 18
 BattlerShadowX = 0
 BattlerShadowSize = 3
-Evolutions = TYRANTRUM,LevelDay,39,TYRANTRUM,Item,SUNSTONE
+Evolutions = TYRANTRUM,LevelDay,39,TYRANTRUM,Item,SUNSTONE,TYRANTRUM,Item,FIRESTONE,TYRANTRUM,Item,MOONSTONE
 #-------------------------------
 [426]
 Name = Tyrantrum
@@ -14465,7 +14465,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 0
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = NOIVERN,Level,48
+Evolutions = NOIVERN,Level,48,NOIVERN,Item,MOONSTONE,NOIVERN,Item,DUSKSTONE
 #-------------------------------
 [441]
 Name = Noivern
@@ -15159,7 +15159,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AURORUS,LevelNight,39,AURORUS,Item,MOONSTONE
+Evolutions = AURORUS,LevelNight,39,AURORUS,Item,MOONSTONE,AURORUS,Item,ICESTONE,AURORUS,Item,DUSKSTONE
 #-------------------------------
 [462]
 Name = Aurorus

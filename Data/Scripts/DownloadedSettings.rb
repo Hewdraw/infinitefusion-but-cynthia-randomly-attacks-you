@@ -5,10 +5,14 @@ module Settings
   SHINY_POKEMON_CHANCE = 16
   SNOW_DAY = false
 
+  STARTUP_MESSAGES = ""
+  MAIN_MENU_LINKS = {
+    "Discord" => "https://discord.com/invite/infinitefusion",
+    "Wiki" => "https://infinitefusion.fandom.com/",
+  }
   
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
   WIKI_URL = "https://infinitefusion.fandom.com/"
-  STARTUP_MESSAGES = ""
   
   CREDITS_FILE_URL = "https://infinitefusion.net/customsprites/Sprite_Credits.csv"
 

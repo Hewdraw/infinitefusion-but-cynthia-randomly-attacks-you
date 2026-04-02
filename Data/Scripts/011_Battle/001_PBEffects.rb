@@ -128,6 +128,7 @@ begin
     Obstruct        = 122
     SupremeOverlord        = 123
     ChoiceRibbon        = 124
+    GlaiveRush        = 125
 
     #===========================================================================
     # These effects apply to a battler position

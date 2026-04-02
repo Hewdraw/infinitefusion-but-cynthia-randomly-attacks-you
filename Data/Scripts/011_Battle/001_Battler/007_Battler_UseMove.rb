@@ -84,6 +84,7 @@ class PokeBattle_Battler
     if effects[PBEffects::Dynamax] > 0
       @effects[PBEffects::Encore] = 0
     end
+    @effects[PBEffects::GlaiveRush] = false
   end
 
   # Called when the usage of various multi-turn moves is disrupted due to

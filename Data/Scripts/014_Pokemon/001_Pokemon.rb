@@ -1600,6 +1600,7 @@ class Pokemon
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
     list.push(:TRUANT) if hasActiveEmera?(:LINGERINGPOTIONOFTURTLEMASTER)
     list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
+    list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
     list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
     list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
