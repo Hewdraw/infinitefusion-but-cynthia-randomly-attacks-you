@@ -1,6 +1,6 @@
 BattleHandlers::AbilityOnBattlerFainting.add(:EMERA,
   proc { |ability,battler,fainted,battle|
-    if fainted.hasActiveEmera?(:STUNSEED) && (fainted.isFusionOf?(:SLUGMA) || fainted.isFusionOf?(:GULPIN) || fainted.isFusionOf?(:SWELLOW) || fainted.isFusionOf?(:RHYDON))
+    if fainted.hasActiveEmera?(:STUNSEED) && (fainted.isFusionOf(:SLUGMA) || fainted.isFusionOf(:GULPIN) || fainted.isFusionOf(:SWELLOW) || fainted.isFusionOf(:RHYDON))
       fainted.tempability = EMERADICT[:STUNSEED][:name]
       battle.pbShowAbilitySplash(fainted)
       Kernel.pbMessage("Deez Nuts")
