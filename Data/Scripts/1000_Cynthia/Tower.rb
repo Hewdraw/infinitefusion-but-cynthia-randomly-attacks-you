@@ -26,7 +26,7 @@ def setupTower()
         starters.push(mon) if !starters.include?(mon)
     end
     starters.each do |pokemon|
-        pbAddPokemon(pokemon)
+        pbAddPokemon(pokemon, 5)
     end
     starteritems = [:DIGIVICE, :INFINITESPLICERS, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
     starteritems.each do |item|
