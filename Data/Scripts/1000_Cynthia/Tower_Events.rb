@@ -53,9 +53,10 @@ def resolveUnknownEvent(recursion = false)
         Kernel.pbMessage("You find yourself in a familiar place near a massive berry tree next to the road.")
         Kernel.pbMessage("A Heracross jumps out of the tree looking happy to see you.")
         Kernel.pbMessage("It Guides you to a pile of Berries and seems to want to join you.")
+        Kernel.pbMessage("You gained 5 of every berry.")
         berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY]
         berrylist.each do |berry|
-            pbItemBall(berry, 5)
+            $PokemonBag.pbStoreItem(berry, 5)
         end
         pbObtainAlpha("Heracross")
     end
