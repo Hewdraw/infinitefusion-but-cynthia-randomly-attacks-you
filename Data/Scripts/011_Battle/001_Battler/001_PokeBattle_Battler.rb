@@ -326,11 +326,11 @@ class PokeBattle_Battler
     if abilityActive?
       speedMult = BattleHandlers.triggerSpeedCalcAbility(self.ability, self, speedMult)
     end
+    speedMult = BattleHandlers.triggerSpeedCalcAbility(:EMERA, self, speedMult)
     # Item effects that alter calculated Speed
     if itemActive?
       speedMult = BattleHandlers.triggerSpeedCalcItem(self.item, self, speedMult)
     end
-    speedMult = BattleHandlers.triggerSpeedCalcItem(:EMERA, self, speedMult)
     # Other effects
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind] > 0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp] > 0
