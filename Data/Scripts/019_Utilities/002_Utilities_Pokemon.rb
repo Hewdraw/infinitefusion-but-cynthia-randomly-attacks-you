@@ -88,6 +88,11 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     pkmn.shiny = true
     pkmn.natural_shiny = true
     pkmn.item = :MMICROPHONE
+  when :MAWILE
+    if !$PokemonGlobal.towervalues.nil?
+      pkmn.shiny = true
+      pkmn.natural_shiny = true
+    end
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName
