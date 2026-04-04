@@ -242,7 +242,62 @@ def UndertaleShopSetup()
     :SERIOUSMINT => {
       "badges" => 0,
       "cost" => 2,
-      "amount" => 2,
+      "amount" => 1,
+    },
+    :FIRESTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :THUNDERSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :WATERSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :LEAFSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :MOONSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :SUNSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :DUSKSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :DAWNSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :SHINYSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :ICESTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
+    },
+    :MAGNETSTONE => {
+      "badges" => 1,
+      "cost" => 2,
+      "amount" => 1,
     },
     :LUXURYBALL => {
       "badges" => 1,
@@ -403,6 +458,11 @@ def UndertaleShopSetup()
       "badges" => 5,
       "cost" => 5,
       "amount" => 52,
+    },
+    :MISTSTONE => {
+      "badges" => 6,
+      "cost" => 12,
+      "amount" => 1,
     },
     :EVIOLITE => {
       "badges" => 6,
