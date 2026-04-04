@@ -18,7 +18,7 @@ def resolveUnknownEvent(recursion = false)
             end
             Kernel.pbMessage("Your Pokemon heal from the rest.")
         when 1
-            Kernel.pbMessage("")
+            Kernel.pbMessage("Torkoal attacks")
             return if !pbLegendaryBattle("Torkoal")
         when 2
             pbItemBall(:REVIVALHERB, rand(3) + 2)

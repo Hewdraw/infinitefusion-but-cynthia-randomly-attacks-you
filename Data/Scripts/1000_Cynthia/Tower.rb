@@ -204,7 +204,7 @@ def towerIncreaseFloor(nextfloor)
         $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
         $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
     when "Unknown"
-        $PokemonGlobal.towervalues[:activevariable] = ["Cynthia", "Hot Spring"].sample #todo
+        $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent
     end
     pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]))
     pbSetGraphic(4, "")
