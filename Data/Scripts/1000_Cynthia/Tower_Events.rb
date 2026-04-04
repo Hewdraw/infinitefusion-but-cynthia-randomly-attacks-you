@@ -1,5 +1,5 @@
 def getUnknownEvent()
-    list = $PokemonGlobal.towervalues.unknownlist + ["Cynthia"]
+    list = $PokemonGlobal.towervalues[:unknownlist] + ["Cynthia"]
     return list.sample
 end
 
@@ -47,7 +47,7 @@ def resolveUnknownEvent(recursion = false)
             end
             $PokemonBag.pbDeleteItem(:MYSTICWATER, 1)
             Kernel.pbMessage("The tree looks happy.")
-            $PokemonGlobal.towervalues.unknownlist.push("Big Tree")
+            $PokemonGlobal.towervalues[:unknownlist].push("Big Tree")
         end
     when "Big Tree"
         Kernel.pbMessage("You find yourself in a familiar place near a massive berry tree next to the road.")
