@@ -83,10 +83,10 @@ BattleHandlers::DamageCalcUserAbility.add(:EMERA,
 
 BattleHandlers::SpeedCalcAbility.add(:EMERA,
   proc { |ability,battler,mult|
-    if user.hasActiveEmera?(:POTIONOFSWIFTNESS) && battler.battle.turnCount == 0
+    if battler.hasActiveEmera?(:POTIONOFSWIFTNESS) && battler.battle.turnCount == 0
       mult *= 2
     end
-    if user.hasActiveEmera?(:HEAVYCORE)
+    if battler.hasActiveEmera?(:HEAVYCORE)
       mult *= 0.5
     end
     next mult
