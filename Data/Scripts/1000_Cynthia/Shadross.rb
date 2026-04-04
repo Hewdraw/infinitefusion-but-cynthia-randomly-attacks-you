@@ -301,8 +301,8 @@ def UndertaleShopSetup()
     },
     :LUXURYBALL => {
       "badges" => 1,
-      "cost" => 16,
-      "amount" => 25,
+      "cost" => 7,
+      "amount" => 42,
     },
     :FOCUSSASH => {
       "badges" => 1,

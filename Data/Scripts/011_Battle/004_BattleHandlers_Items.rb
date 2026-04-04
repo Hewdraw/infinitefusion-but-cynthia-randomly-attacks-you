@@ -496,7 +496,11 @@ BattleHandlers::DamageCalcUserItem.add(:ENCHANTINGTABLE,
 
 BattleHandlers::DamageCalcUserItem.add(:REAPERCLOTH,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.5 if move.punchingMove? && (user.isFusionOf(:DUSKULL) || user.isFusionOf(:DUSCLOPS) || user.isFusionOf(:DUSKNOIR))
+    if move.punchingMove?
+      mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:DUSKULL)
+      mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:DUSCLOPS)
+      mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:DUSKNOIR)
+    end
   }
 )
 
@@ -553,7 +557,8 @@ BattleHandlers::DamageCalcUserItem.add(:CHOICESPECS,
 
 BattleHandlers::DamageCalcUserItem.add(:WHIPPEDDREAM,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:SLURPUFF) || user.isFusionOf(:SWIRLIX)
+    mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:SLURPUFF)
+    mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:SWIRLIX)
   }
 )
 
@@ -566,8 +571,9 @@ BattleHandlers::DamageCalcUserItem.add(:DARKGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:DEEPSEATOOTH,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (user.isFusionOf(:CLAMPERL) || user.isFusionOf(:HUNTAIL)) && move.specialMove?
-      mults[:attack_multiplier] *= 2
+    if move.specialMove?
+      mults[:attack_multiplier] *= 2 if user.isFusionOf(:CLAMPERL)
+      mults[:attack_multiplier] *= 2 if user.isFusionOf(:HUNTAIL)
     end
   }
 )
@@ -602,8 +608,10 @@ BattleHandlers::DamageCalcUserItem.add(:EXPERTBELT,
 
 BattleHandlers::DamageCalcUserItem.add(:MAGMARIZER,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if Effectiveness.super_effective?(target.damageState.typeMod) && (user.isFusionOf(:MAGBY) || user.isFusionOf(:MAGMAR) || user.isFusionOf(:MAGMORTAR))
-      mults[:final_damage_multiplier] *= 1.2
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:MAGBY)
+      mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:MAGMAR)
+      mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:MAGMORTAR)
     end
   }
 )
@@ -696,9 +704,10 @@ BattleHandlers::DamageCalcUserItem.add(:STICK,
 
 BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if user.isFusionOf(:PIKACHU) || user.isFusionOf(:PICHU) || user.isFusionOf(:PLUSLE) || user.isFusionOf(:MINUN)
-      mults[:attack_multiplier] *= 2
-    end
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:PIKACHU)
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:PICHU)
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:PLUSLE)
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:MINUN)
   }
 )
 
@@ -893,11 +902,12 @@ BattleHandlers::DamageCalcUserItem.add(:STEELGEM,
 
 
 BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
-     proc { |item,user,target,move,mults,baseDmg,type|
-       if (user.isFusionOf(:CUBONE) || user.isFusionOf(:MAROWAK) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)) && move.physicalMove?
-         mults[:attack_multiplier] *= 2
-       end
-     }
+    proc { |item,user,target,move,mults,baseDmg,type|
+      if move.physicalMove?
+        mults[:attack_multiplier] *= 2 if (user.isFusionOf(:CUBONE)
+        mults[:attack_multiplier] *= 2 if user.isFusionOf(:MAROWAK)
+        mults[:attack_multiplier] *= 2 (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?))
+    }
 )
 
 BattleHandlers::DamageCalcUserItem.add(:TWISTEDSPOON,
@@ -1016,8 +1026,9 @@ BattleHandlers::DamageCalcTargetItem.add(:COLBURBERRY,
 
 BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:CLAMPERL) || target.isFusionOf(:GOREBYSS)) && move.specialMove?
-      mults[:defense_multiplier] *= 2
+    if move.specialMove?
+      mults[:defense_multiplier] *= 2 if target.isFusionOf(:CLAMPERL)
+      mults[:defense_multiplier] *= 2 if target.isFusionOf(:GOREBYSS)
     end
   }
 )
@@ -1046,33 +1057,36 @@ BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
 
 BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if target.isFusionOf(:PORYGON) || target.isFusionOf(:PORYGON2) || target.isFusionOf(:PORYGONZ)
-      mults[:defense_multiplier] *= 1.5
-    end
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON)
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON2)
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGONZ)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:HAPPINY) || target.isFusionOf(:CHANSEY)) && move.specialMove?
-      mults[:defense_multiplier] *= 1.5
+    if move.specialMove?
+      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:HAPPINY)
+      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:CHANSEY))
     end
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:PROTECTOR,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:RHYHORN) || target.isFusionOf(:RHYDON) || target.isFusionOf(:RHYPERIOR)) && move.physicalMove?
-      mults[:defense_multiplier] *= 1.5
+    if move.physicalMove?
+      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:RHYHORN)
+      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:RHYDON)
+      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:RHYPERIOR)
     end
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:DRAGONSCALE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if (target.isFusionOf(:HORSEA) || target.isFusionOf(:SEADRA) || target.isFusionOf(:KINGDRA))
-      mults[:defense_multiplier] *= 1.2
-    end
+    mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:HORSEA)
+    mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:SEADRA)
+    mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:KINGDRA)
   }
 )
 
@@ -1218,7 +1232,9 @@ BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
 
 BattleHandlers::CriticalCalcUserItem.add(:LUCKYPUNCH,
   proc { |item,user,target,c|
-    c += 1 if user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY)
+    c += 1 if user.isFusionOf(:HAPPINY)
+    c += 1 if user.isFusionOf(:CHANSEY)
+    c += 1 if user.isFusionOf(:BLISSEY)
     c += 1
     next c
   }
@@ -1240,7 +1256,10 @@ BattleHandlers::CriticalCalcUserItem.add(:STICK,
 
 BattleHandlers::CriticalCalcUserItem.add(:DRAGONSCALE,
   proc { |item,user,target,c|
-    next c + 1 if user.isFusionOf(:KINGDRA)
+    c += 1 if target.isFusionOf(:HORSEA)
+    c += 1 if target.isFusionOf(:SEADRA)
+    c += 1 if user.isFusionOf(:KINGDRA)
+    next c
   }
 )
 
