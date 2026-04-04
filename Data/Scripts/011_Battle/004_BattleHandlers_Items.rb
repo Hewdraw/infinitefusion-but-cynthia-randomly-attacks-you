@@ -696,7 +696,7 @@ BattleHandlers::DamageCalcUserItem.add(:STICK,
 
 BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if user.isFusionOf(:PIKACHU)
+    if user.isFusionOf(:PIKACHU) || user.isFusionOf(:PICHU) || user.isFusionOf(:PLUSLE) || user.isFusionOf(:MINUN)
       mults[:attack_multiplier] *= 2
     end
   }
