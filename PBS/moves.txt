@@ -962,7 +962,7 @@
 992,HOWLINGBLASTER,Howling Blaster,283,50,DRAGON,Special,100,10,70,NearOther,0,befk,"Spews blue, high-temperature flames from its mouth"
 993,ICEWALL,Ice Wall,0CF,40,ICE,Special,100,15,0,NearOther,0,bef,"An impregnable defensive wall created with its freezing surges."
 994,SUBZEROICEFANG,Subzero Ice Fang,284,85,ICE,Physical,100,10,100,NearOther,0,abei,"Bites with sharp icy cold fangs."
-995,ICECANNON,Ice Cannon,00C,120,ICE,Special,70,5,100,NearOther,0,abef,"Fires a ball of ice."
+995,ICECANNON,Ice Cannon,00C,120,ICE,Special,70,5,100,NearOther,0,bef,"Fires a ball of ice."
 996,WOLFCRY,Wolf Cry,285,0,DRAGON,Status,0,5,0,NearOther,0,cek,"Howls, creating a powerful shockwave."
 997,SLAMMINGATTACK,Slamming Attack,00C,85,DRAGON,Special,100,15,20,NearOther,0,abef,"Forces the enemy to the ground and begins to maul them."
 998,ICESTATUE,Ice Statue,286,60,ICE,Physical,100,5,0,NearOther,0,bef,"Shoots an ice statue out of its mouth."
