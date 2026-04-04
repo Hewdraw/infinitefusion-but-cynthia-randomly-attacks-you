@@ -440,7 +440,7 @@ end
 def getFloorGraphic(event)
     case event
     when "Pokemon"
-        return "BW164"
+        return "PREMIER"
     when "Chest"
         return "ChestSprite"
     when "Unknown"

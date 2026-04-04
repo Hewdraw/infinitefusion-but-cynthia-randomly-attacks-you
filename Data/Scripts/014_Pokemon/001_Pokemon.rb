@@ -1722,7 +1722,9 @@ class Pokemon
       @iv[s.id] = rand(IV_STAT_LIMIT + 1)
       @ev[s.id] = 0
     end
-    if owner.is_a?(Owner)
+    if !$PokemonGlobal.towervalues.nil?
+      owner = Owner.new(0, "Hewdraw", 0, 2)
+    elsif owner.is_a?(Owner)
       @owner = owner
     elsif owner.is_a?(Player) || owner.is_a?(NPCTrainer)
       @owner = Owner.new_from_trainer(owner)
