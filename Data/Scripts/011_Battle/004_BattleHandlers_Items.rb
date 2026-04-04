@@ -1068,7 +1068,7 @@ BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
   proc { |item,user,target,move,mults,baseDmg,type|
     if move.specialMove?
       mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:HAPPINY)
-      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:CHANSEY))
+      mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:CHANSEY)
     end
   }
 )
