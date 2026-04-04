@@ -17,17 +17,21 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Cynthia", "Hot Spring", "Berry Tree"],
+        :unknownlist => ["Hot Spring", "Berry Tree"],
         :eventvariables => {},
     }
-    pbAddPokemon(getTowerPokemon("Starter"), 5)
-    pbAddPokemon(getTowerPokemon(), 5)
-    pbAddPokemon(getTowerPokemon(), 5)
-    $PokemonBag.pbStoreItem(:DIGIVICE)
-    $PokemonBag.pbStoreItem(:INFINITESPLICERS)
-    $PokemonBag.pbStoreItem(:LEGENDARYCANDY)
-    $PokemonBag.pbStoreItem(:SHINYCHARM)
-    $PokemonBag.pbStoreItem(:UNLIMITEDLOOPLET)
+    starters = [getTowerPokemon("Starter")]
+    while starters.length < 3
+        mon = getTowerPokemon()
+        starters.push(mon) if !starters.include?(mon)
+    end
+    starters.each do |pokemon|
+        pbAddPokemon(pokemon)
+    end
+    starteritems = [:DIGIVICE, :INFINITESPLICERS, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
+    starteritems.each do |item|
+        $PokemonBag.pbStoreItem(item)
+    end
 end
 
 def resetTower()
@@ -245,8 +249,13 @@ end
 def towerEvent()
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
-        options = [getTowerPokemon(), getTowerPokemon(), getTowerPokemon()]
-        options.push(getTowerPokemon()) if hasEmera?(:CAPTURESTYLER)
+        optioncount = 3
+        optioncount += 1 if hasEmera?(:CAPTURESTYLER)
+        options = []
+        while options.length < optioncount
+            mon = getTowerPokemon()
+            options.push(mon) if !options.include?(mon)
+        end
         namearray = []
         options.each do |pokemon|
             monname = PBSpecies.getName(pokemon)
@@ -270,41 +279,7 @@ def towerEvent()
             end
         end
     when "Unknown"
-        case $PokemonGlobal.towervalues[:activevariable]
-        when "Cynthia"
-            pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
-        when "Hot Spring"
-            choice = Kernel.pbMessage("You encounter a Torkoal heating up a spring.", ["Soak in the water.", "Fight.", "Gather herbs nearby."])
-            case choice
-            when 0
-                $Trainer.party.each do |pkmn|
-                    pkmn.heal
-                end
-                Kernel.pbMessage("Your Pokemon heal from the rest.")
-            when 1
-                return if !pbLegendaryBattle("Torkoal")
-            when 2
-                pbItemBall(:REVIVALHERB, 3)
-                pbItemBall(:ENERGYROOT, 3)
-                Kernel.pbMessage("The Torkoal left while you gathered herbs.")
-            end
-        when "Berry Tree"
-            choice = Kernel.pbMessage("You spot a berry tree next to the road." ["Gather some Berries.", "Shake the tree.", "Water the tree."])
-            case choice
-            when 0
-                berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY]
-                berryamount = rand(10) + 6
-                for i in 1..berryamount
-                    pbItemBall(berrylist.sample)
-                end
-            when 1
-                Kernel.pbMessage("An angry Heracross flies out of the tree.")
-                return if !pbLegendaryBattle("Heracross")
-            when 2
-                Kernel.pbMessage("The tree looks happy.")
-                $PokemonGlobal.towervalues.eventvariables[:wateredtree] = true
-            end
-        end
+        resolveUnknownEvent
         return if $PokemonGlobal.towervalues.nil?
         $PokemonGlobal.towervalues[:activevariable] = nil
     when "Miku"
@@ -474,6 +449,8 @@ def getFloorGraphic(event)
             return "BW126"
         when "Hot Spring"
             return "TORKOAL"
+        when "Berry Tree", "Big Tree"
+            return "BW155"
         when nil
             return "201_27"
         end

@@ -5632,3 +5632,18 @@ class PokeBattle_Move_344 < PokeBattle_BurnMove
     user.pbRecoverHPFromDrain(hpGain, target)
   end
 end
+
+class PokeBattle_Move_345 < PokeBattle_PoisonMove
+  def initialize(battle, move)
+    super
+    @toxic = true
+  end
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 2;    end
+
+  def pbEffectAfterAllHits(user, target)
+    return if !target.damageState.fainted
+    return if !user.pbCanRaiseStatStage?(:ATTACK, user, self)
+    user.pbRaiseStatStage(:ATTACK, 2, user)
+  end
+end

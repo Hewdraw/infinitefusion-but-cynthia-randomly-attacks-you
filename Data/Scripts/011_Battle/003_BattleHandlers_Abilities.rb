@@ -1886,6 +1886,14 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 # UserAbilityOnHit handlers
 #===============================================================================
 
+BattleHandlers::UserAbilityOnHit.add(:MOXIEPLUS,
+  proc { |ability,user,targets,move,battle|
+    next if battle.pbRandom(100)>=20
+    next if !user.pbCanRaiseStatStage?(:ATTACK,user)
+    user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
+  }
+)
+
 BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
@@ -2046,6 +2054,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
     user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user,GameData::Ability.get(ability).real_name)
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.copy(:MOXIE, :MOXIEPLUS)
 
 BattleHandlers::UserAbilityEndOfMove.add(:BATTLEBOND,
   proc { |ability,user,targets,move,battle|

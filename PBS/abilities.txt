@@ -289,3 +289,4 @@
 287,EMBODYASPECT,Embody Aspect,"a"
 288,TOXICCHAIN,Toxic Chain,"a"
 289,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."
+290,MOXIEPLUS,Moxie+,"Boosts Attack after knocking out any Pokémon." #todo

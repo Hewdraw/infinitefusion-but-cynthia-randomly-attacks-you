@@ -10966,6 +10966,18 @@ Pokemon = CREEPER,5
     Happiness = 255
 
 ####################### Alpha Pokemon
+[ALPHA_POKEMON,Heracross,0]
+Pokemon = HERACROSS,11   
+    Offset = 0
+    Moves = TWINEEDLEPLUS,SCALESHOT,TRIPLEAXEL,ARMTHRUST
+    Ability = MOXIEPLUS
+    Hpbar = 2
+    Item = LOADEDDICE
+    Nature = JOLLY
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,252,0,0
+
 [ALPHA_POKEMON,Torkoal,0]
 Pokemon = TORKOAL,11   
     Offset = 0

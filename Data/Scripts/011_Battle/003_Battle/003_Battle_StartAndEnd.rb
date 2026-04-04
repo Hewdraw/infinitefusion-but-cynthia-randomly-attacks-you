@@ -617,7 +617,9 @@ class PokeBattle_Battle
             battler.pokemon.ability_index = 2
             battler.pokemon.ability = GameData::Ability.get(ability).id
           end
-          pbThrowPokeBall(battler.index, :POKEBALL, catch_rate = 255, showPlayer = true)
+          ball = :POKEBALL
+          ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil?
+          pbThrowPokeBall(battler.index, ball, catch_rate = 255, showPlayer = true)
         end
       end
       @scene.pbWildBattleSuccess if !Settings::GAIN_EXP_FOR_CAPTURE

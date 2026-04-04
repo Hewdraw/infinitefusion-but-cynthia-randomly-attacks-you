@@ -75,6 +75,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
   end
   pkmn = pkmnspecies
   pkmn = Pokemon.new(pkmnspecies, level) if !pkmnspecies.is_a?(Pokemon)
+  pkmn.poke_ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil?
   case pkmnspecies
   when :BONSLY
     pkmn.ability = :STURDY
