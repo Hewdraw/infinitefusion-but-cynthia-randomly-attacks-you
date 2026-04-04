@@ -608,7 +608,7 @@ class PokeBattle_Battle
             battler.pokemon.ev[s.id] = 0
           end
           if battler.pokemon.moves.length > 4
-            battler.pokemon.moves = @pokemon.moves[0..3]
+            battler.pokemon.moves = battler.pokemon.moves[0..3]
           end
           battler.pokemon.raid = nil
           battler.pokemon.hpbars = nil
