@@ -1723,7 +1723,7 @@ class Pokemon
       @ev[s.id] = 0
     end
     if !$PokemonGlobal.towervalues.nil?
-      owner = Owner.new(0, "Hewdraw", 0, 2)
+      @owner = Owner.new(0, "Hewdraw", 0, 2)
     elsif owner.is_a?(Owner)
       @owner = owner
     elsif owner.is_a?(Player) || owner.is_a?(NPCTrainer)
