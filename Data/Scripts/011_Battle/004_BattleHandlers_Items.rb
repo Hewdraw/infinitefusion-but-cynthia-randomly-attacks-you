@@ -904,9 +904,10 @@ BattleHandlers::DamageCalcUserItem.add(:STEELGEM,
 BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
     proc { |item,user,target,move,mults,baseDmg,type|
       if move.physicalMove?
-        mults[:attack_multiplier] *= 2 if (user.isFusionOf(:CUBONE)
+        mults[:attack_multiplier] *= 2 if user.isFusionOf(:CUBONE)
         mults[:attack_multiplier] *= 2 if user.isFusionOf(:MAROWAK)
-        mults[:attack_multiplier] *= 2 (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?))
+        mults[:attack_multiplier] *= 2 if target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?
+      end
     }
 )
 
@@ -1256,8 +1257,8 @@ BattleHandlers::CriticalCalcUserItem.add(:STICK,
 
 BattleHandlers::CriticalCalcUserItem.add(:DRAGONSCALE,
   proc { |item,user,target,c|
-    c += 1 if target.isFusionOf(:HORSEA)
-    c += 1 if target.isFusionOf(:SEADRA)
+    c += 1 if user.isFusionOf(:HORSEA)
+    c += 1 if user.isFusionOf(:SEADRA)
     c += 1 if user.isFusionOf(:KINGDRA)
     next c
   }
