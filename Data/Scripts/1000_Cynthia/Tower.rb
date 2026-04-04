@@ -345,7 +345,8 @@ def towerEvent()
         when "Reshirom"
             $PokemonGlobal.nextBattleBGM = "VSReshiramZekrom"
         end
-        if $PokemonGlobal.towervalues[:activevariable] == "Genesect"
+        case $PokemonGlobal.towervalues[:activevariable]
+        when "Genesect"
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
             pbAddPokemon(:GENESECT, 5)
             $PokemonBag.pbStoreItem(:OMNIDRIVE)
@@ -353,6 +354,10 @@ def towerEvent()
             $PokemonBag.pbStoreItem(:SHOCKDRIVE)
             $PokemonBag.pbStoreItem(:DOUSEDRIVE)
             $PokemonBag.pbStoreItem(:CHILLDRIVE)
+        when "Reshirom"
+            return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
+            $PokemonBag.pbStoreItem(:LIGHTSTONE)
+            $PokemonBag.pbStoreItem(:DARKSTONE)
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
             pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
