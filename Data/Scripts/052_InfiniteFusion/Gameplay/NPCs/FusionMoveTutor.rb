@@ -251,6 +251,7 @@ class FusionTutorService
       compatibleMoves << :ELECTRODRIFT if hasType(:DRAGON) && hasType(:ELECTRIC)
       compatibleMoves << :RUINATION if hasType(:DARK)
       compatibleMoves << :JUNGLEHEALING if hasType(:GRASS)
+      compatibleMoves << :SPACIALREND if hasType(:WATER) && hasType(:DRAGON)
     end
     return compatibleMoves
   end
