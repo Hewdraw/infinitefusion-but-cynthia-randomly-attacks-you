@@ -60,7 +60,9 @@ def resolveUnknownEvent(recursion = false)
         end
         pbObtainAlpha("Heracross")
     when "Mining"
+        pbBGMPlay("Mining")
         pbMiningGame
+        pbBGMPlay("TemporalTower")
     when "Wandering Trader"
         Kernel.pbMessage("A Wandering Trader spawns next to you.")
         commonemera = getLooplet.pbRandomEmera(:COMMON)

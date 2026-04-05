@@ -530,7 +530,7 @@ def getNextFloorDescription(nextfloor)
     when "Chest"
         message = "Gain some items."
     when "Unknown"
-        message = "!‽?"
+        message = "?"
     when "Miku"
         message = "Fight Hatsune Miku for an Emera."
     when "Shop"
