@@ -441,7 +441,20 @@ class PokemonLoopletScreen
           @bag.activeemeras.push(item)
         end
       elsif cmdSort >=0 && command == cmdSort # Sort bag
-        @bag.sort_emera_alphabetically()
+        command = @scene.pbShowCommands(_INTL("How to sort?",itemname),[
+          _INTL("Alphabetically"),
+          _INTL("Rarity"),
+          _INTL("Cancel")
+        ],0)
+        case command
+          ### Cancel ###
+        when -1, 3
+          next
+        when 0
+          @bag.sort_emera_alphabetically()
+        when 1
+          @bag.sort_emera_rarity()
+        end
         @scene.pbRefresh
       end
     end
@@ -484,6 +497,16 @@ class PokemonLooplet
     @emeras = sorted
   end
 
+  def sort_emera_rarity
+    sorted = @emeras.sort_by do |item|
+      EMERADICT[item][:rarity]
+    end
+    sorted.reverse! if @descending_sort
+
+    @descending_sort = !@descending_sort
+    @emeras = sorted
+  end
+
   def getMaxActiveEmeras
     return -1
   end
@@ -505,6 +528,20 @@ class PokemonLooplet
   def pbStoreEmera(item)
     @emeras.push(item)
     @activeemeras.push(item) #todo
+  end
+
+  def pbRandomEmera(rarity=nil)
+    list = []
+    @emeras.each do |emera|
+      next if rarity && EMERADICT[item][:rarity] != rarity
+      list.push(emera)
+    end
+    return list.sample
+  end
+
+  def pbRemoveEmera(item)
+    @emeras.delete(item)
+    @activeemeras.delete(item)
   end
 end
 

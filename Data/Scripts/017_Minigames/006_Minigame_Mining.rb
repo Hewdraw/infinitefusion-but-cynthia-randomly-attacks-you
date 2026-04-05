@@ -161,25 +161,25 @@ class MiningGameScene
      [:MOONSTONE,10, 27,16, 2,4,[1,0,1,1,1,1,0,1]],
      [:SUNSTONE,20, 21,17, 3,3,[0,1,0,1,1,1,1,1,1]],
      [:OVALSTONE,150, 24,17, 3,3,[1,1,1,1,1,1,1,1,1]],
-     [:EVERSTONE,150, 21,20, 4,2,[1,1,1,1,1,1,1,1]],
-     [:STARPIECE,100, 0,17, 3,3,[0,1,0,1,1,1,0,1,0]],
+     # [:EVERSTONE,150, 21,20, 4,2,[1,1,1,1,1,1,1,1]],
+     # [:STARPIECE,100, 0,17, 3,3,[0,1,0,1,1,1,0,1,0]],
      [:REVIVE,100, 0,20, 3,3,[0,1,0,1,1,1,0,1,0]],
      [:MAXREVIVE,50, 0,23, 3,3,[1,1,1,1,1,1,1,1,1]],
-     [:RAREBONE,50, 3,17, 6,3,[1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1]],
-     [:RAREBONE,50, 3,20, 3,6,[1,1,1,0,1,0,0,1,0,0,1,0,0,1,0,1,1,1]],
+     # [:RAREBONE,50, 3,17, 6,3,[1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1]],
+     # [:RAREBONE,50, 3,20, 3,6,[1,1,1,0,1,0,0,1,0,0,1,0,0,1,0,1,1,1]],
      [:LIGHTCLAY,100, 6,20, 4,4,[1,0,1,0,1,1,1,0,1,1,1,1,0,1,0,1]],
      [:HARDSTONE,200, 6,24, 2,2,[1,1,1,1]],
-     [:HEARTSCALE,200, 8,24, 2,2,[1,0,1,1]],
+     # [:HEARTSCALE,200, 8,24, 2,2,[1,0,1,1]],
      [:IRONBALL,100, 9,17, 3,3,[1,1,1,1,1,1,1,1,1]],
      [:ODDKEYSTONE,100, 10,20, 4,4,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
      [:HEATROCK,50, 12,17, 4,3,[1,0,1,0,1,1,1,1,1,1,1,1]],
      [:DAMPROCK,50, 14,20, 3,3,[1,1,1,1,1,1,1,0,1]],
      [:SMOOTHROCK,50, 17,18, 4,4,[0,0,1,0,1,1,1,0,0,1,1,1,0,1,0,0]],
      [:ICYROCK,50, 17,22, 4,4,[0,1,1,0,1,1,1,1,1,1,1,1,1,0,0,1]],
-     [:REDSHARD,100, 21,22, 3,3,[1,1,1,1,1,0,1,1,1]],
-     [:GREENSHARD,100, 25,20, 4,3,[1,1,1,1,1,1,1,1,1,1,0,1]],
-     [:YELLOWSHARD,100, 25,23, 4,3,[1,0,1,0,1,1,1,0,1,1,1,1]],
-     [:BLUESHARD,100, 26,26, 3,3,[1,1,1,1,1,1,1,1,0]],
+     # [:REDSHARD,100, 21,22, 3,3,[1,1,1,1,1,0,1,1,1]],
+     # [:GREENSHARD,100, 25,20, 4,3,[1,1,1,1,1,1,1,1,1,1,0,1]],
+     # [:YELLOWSHARD,100, 25,23, 4,3,[1,0,1,0,1,1,1,0,1,1,1,1]],
+     # [:BLUESHARD,100, 26,26, 3,3,[1,1,1,1,1,1,1,1,0]],
      [:INSECTPLATE,10, 0,26, 4,3,[1,1,1,1,1,1,1,1,1,1,1,1]],
      [:DREADPLATE,10, 4,26, 4,3,[1,1,1,1,1,1,1,1,1,1,1,1]],
      [:DRACOPLATE,10, 8,26, 4,3,[1,1,1,1,1,1,1,1,1,1,1,1]],
@@ -250,7 +250,7 @@ class MiningGameScene
     for i in ITEMS
       ptotal+=i[1]
     end
-    numitems=2+rand(3)
+    numitems = 4 #2+rand(3)
     tries = 0
     while numitems>0
       rnd=rand(ptotal)
@@ -579,7 +579,29 @@ class MiningGameScene
   def pbGiveItems
     if @itemswon.length>0
       for i in @itemswon
-        if $PokemonBag.pbStoreItem(i)
+        if [:DOMEFOSSIL,:HELIXFOSSIL,:OLDAMBER,:ROOTFOSSIL,:SKULLFOSSIL,:ARMORFOSSIL,:CLAWFOSSIL,:JAWFOSSIL].include?(i)
+          pbMessage(_INTL("One {1} was obtained.\\se[Mining item get]\\wtnp[30]",
+             GameData::Item.get(i).name))
+          pbMessage(_INTL("The {1} shines with a bright light!", GameData::Item.get(i).name))
+          case i
+          when :DOMEFOSSIL
+            pbAddPokemon(:KABUTO)
+          when :HELIXFOSSIL
+            pbAddPokemon(:OMANYTE)
+          when :OLDAMBER
+            pbAddPokemon(:AERODACTYL)
+          when :ROOTFOSSIL
+            pbAddPokemon(:LILEEP)
+          when :CLAWFOSSIL
+            pbAddPokemon(:ANORITH)
+          when :SKULLFOSSIL
+            pbAddPokemon(:CRANIDOS)
+          when :ARMORFOSSIL
+            pbAddPokemon(:SHIELDON)
+          when :JAWFOSSIL
+            pbAddPokemon(:TYRUNT)
+          end
+        elsif $PokemonBag.pbStoreItem(i)
           pbMessage(_INTL("One {1} was obtained.\\se[Mining item get]\\wtnp[30]",
              GameData::Item.get(i).name))
         else

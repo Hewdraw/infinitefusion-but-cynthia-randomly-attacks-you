@@ -134,6 +134,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
       opposingmon = []
       user.eachOpposing.each do |mon|
         next if mon.hasActiveAbility?([:SOUNDPROOF, :VOCALOID])
+        next if mon.fainted?
         opposingmon.push(mon)
       end
       if opposingmon.length > 0
@@ -153,6 +154,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
             battle.pbDisplay("Warden advances.")
           else
             battle.pbDisplay("Warden draws close.")
+            #$PokemonGlobal.towervalues[:unknownlist].push("Warden")
           end
         end
         pbHideAbilitySplash(user)

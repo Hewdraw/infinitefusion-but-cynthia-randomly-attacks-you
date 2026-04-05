@@ -17,9 +17,11 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Hot Spring", "Berry Tree"],
+        :unknownlist => ["Hot Spring", "Berry Tree", "Wandering Trader", "Mining"],
         :eventvariables => {},
+        :money => $Trainer.money
     }
+    $Trainer.money = 0
     starters = [getTowerPokemon("Starter")]
     while starters.length < 3
         mon = getTowerPokemon()
@@ -35,6 +37,7 @@ def setupTower()
 end
 
 def resetTower()
+    $Trainer.money = $PokemonGlobal.towervalues[:money] if $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore
@@ -228,6 +231,7 @@ def getTowerEventsList()
         "Unknown" => 25, #todo
         "Miku" => 10,
         "Shop" => 10,
+        "Pokemart" => 10,
         "Heal" => 10,
         "Tutor" => 25,
         "Legendary" => [$PokemonGlobal.towervalues[:floor] - 46, 0].max / 3,
@@ -237,6 +241,8 @@ def getTowerEventsList()
     eventlist["Miku"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
     eventlist["Shop"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
     eventlist["Shop"] /= 2 if $PokemonGlobal.towervalues[:floor] <= 20
+    eventlist["Pokemart"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
+    eventlist["Pokemart"] /= 2 if $PokemonGlobal.towervalues[:floor] <= 20
     eventlist["Legendary"] = 0 if $PokemonGlobal.towervalues[:legendarylist].length == 0
     $Trainer.party.each do |pkmn|
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
@@ -290,6 +296,8 @@ def towerEvent()
     when "Shop"
         Undertale()
         return if $PokemonGlobal.towervalues.nil?
+    when "Pokemart"
+        pbPokemonMart([:POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION, :FULLRESTORE, :REVIVE, :MAXREVIVE, :ANTIDOTE, :PARLYZHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL, :FULLHEAL, :ETHER, :MAXETHER, :ELIXIR, :MAXELIXIR, :REPEL, :SACREDASH])
     when "Heal"
         $Trainer.party.each do |pkmn|
             pkmn.heal
@@ -456,13 +464,17 @@ def getFloorGraphic(event)
             return "TORKOAL"
         when "Berry Tree", "Big Tree"
             return "BW155"
-        when nil
+        when "Mining"
+            return "BW_rocksmash"
+        else
             return "201_27"
         end
     when "Miku"
         return "HatsuneMiku"
     when "Shop"
         return "TheSketon"
+    when "Pokemart"
+        return "BW (85)"
     when "Heal"
         return "BWNurse"
     when "Tutor"
@@ -518,11 +530,13 @@ def getNextFloorDescription(nextfloor)
     when "Chest"
         message = "Gain some items."
     when "Unknown"
-        message = "?"
+        message = "!‽?"
     when "Miku"
         message = "Fight Hatsune Miku for an Emera."
     when "Shop"
         message = "Spend Sinnoh Coins at the skeleton shop."
+    when "Pokemart"
+        message = "Spend money at a Pokemart."
     when "Heal"
         message = "Heal up, you'll need it."
     when "Tutor"
@@ -533,7 +547,7 @@ def getNextFloorDescription(nextfloor)
         message = "Fight a Gym Trainer and earn a badge."
     when "Elitefour"
         message = "Fight a Pokemon League member."
-    when nil
+    else
         return
     end
     Kernel.pbMessage(message)

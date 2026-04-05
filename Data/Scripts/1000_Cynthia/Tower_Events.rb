@@ -59,6 +59,63 @@ def resolveUnknownEvent(recursion = false)
             $PokemonBag.pbStoreItem(berry, 5)
         end
         pbObtainAlpha("Heracross")
+    when "Mining"
+        pbMiningGame
+    when "Wandering Trader"
+        Kernel.pbMessage("A Wandering Trader spawns next to you.")
+        commonemera = getLooplet.pbRandomEmera(:COMMON)
+        traderuncommonemera = getEmeras[1].sample
+        uncommonemera = getLooplet.pbRandomEmera(:UNCOMMON)
+        traderrareemera = getEmeras[2].sample
+        rareemera = getLooplet.pbRandomEmera(:RARE)
+        traderlegendaryemera = getEmeras[3].sample
+        commandtext = []
+        helptext = []
+        trades = []
+        if commonemera
+            commandtext.push("Trade")
+            helptext.push("Your \\C[7]{1}\\C[0] for a \\C[3]{2}\\C[0].", EMERADICT[commonemera][:name], EMERADICT[traderuncommonemera][:name])
+            trades.push([:UNCOMMON])
+        end
+        if uncommonemera
+            commandtext.push("Trade")
+            helptext.push("Your \\C[3]{1}\\C[0] for a \\C[1]{2}\\C[0].", EMERADICT[uncommonemera][:name], EMERADICT[traderrareemera][:name])
+            trades.push([:RARE])
+        end
+        if rareemera
+            commandtext.push("Trade")
+            helptext.push("Your \\C[1]{1}\\C[0] for a \\C[6]{2}\\C[0].", EMERADICT[rareemera][:name], EMERADICT[traderlegendaryemera][:name])
+            trades.push([:LEGENDARY])
+        end
+        Kernel.pbMessage("Unfortunately you have nothing to trade him.") if commandtext.length == 0
+        commandtext.push("Kill Him")
+        helptext.push("I think he trampled one of your crops.")
+        trades.push(:COMMON)
+        choice = pbUnknownCommands(commandtext, helptext)
+        itemcolor = getEnderChestRarityColors()[trades[choice]]
+        case trades[choice]
+        when :UNCOMMON
+            getLooplet.pbRemoveEmera(commonemera)
+            getLooplet.pbStoreEmera(traderuncommonemera)
+            itemname = EMERADICT[traderuncommonemera][:name]
+        when :RARE
+            getLooplet.pbRemoveEmera(uncommonemera)
+            getLooplet.pbStoreEmera(traderrareemera)
+            itemname = EMERADICT[traderrareemera][:name]
+        when :LEGENDARY
+            getLooplet.pbRemoveEmera(rareemera)
+            getLooplet.pbStoreEmera(traderlegendaryemera)
+            itemname = EMERADICT[traderlegendaryemera][:name]
+        when :COMMON
+            Kernel.pbMessage("He dropped an Emera!")
+            tradercommonemera = getEmeras[0].sample
+            getLooplet.pbStoreEmera(tradercommonemera)
+            itemname = EMERADICT[tradercommonemera][:name]
+        end
+        pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
+    when "Warden"
+        Kernel.pbMessage("A Warden crawls out of the ground.")
+        return if !pbLegendaryBattle("Warden")
     end
     $PokemonGlobal.towervalues[:unknownlist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
 end
