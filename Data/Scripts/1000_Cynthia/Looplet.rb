@@ -533,7 +533,7 @@ class PokemonLooplet
   def pbRandomEmera(rarity=nil)
     list = []
     @emeras.each do |emera|
-      next if rarity && EMERADICT[item][:rarity] != rarity
+      next if rarity && EMERADICT[emera][:rarity] != rarity
       list.push(emera)
     end
     return list.sample
