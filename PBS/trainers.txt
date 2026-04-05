@@ -10966,6 +10966,18 @@ Pokemon = CREEPER,5
     Happiness = 255
 
 ####################### Alpha Pokemon
+[DESTROYEROFWORLDS,Wandering Trader,0]
+Pokemon = WANDERINGTRADER,100   
+    Offset = 50
+    Moves = GEOMANCY
+    Ability = ASONE
+    Hpbar = 10
+    Item = POWERHERB
+    Nature = SERIOUS
+    Raid = TRUE
+    IV = 0,0,0,0,0,0
+    EV = 0,0,0,0,0,0
+
 [ALPHA_POKEMON,Heracross,0]
 Pokemon = HERACROSS,11   
     Offset = 0

@@ -540,6 +540,7 @@ class PokeBattle_Battler
       :PROTOSYNTHESIS,
       :QUARKDRIVE,
       :NEUTRALIZINGGAS,
+      :ASONE,
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -571,6 +572,7 @@ class PokeBattle_Battler
       :PROTOSYNTHESIS,
       :QUARKDRIVE,
       :NEUTRALIZINGGAS,
+      :ASONE,
     ]
     return ability_blacklist.include?(abil.id)
   end

@@ -94,27 +94,25 @@ class PokemonDataBox < SpriteWrapper
   def initializeOtherGraphics(viewport)
     # Create other bitmaps
     @numbersBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/icon_numbers")
-    @hpBarBitmap   = AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp")
-    @hpBar1Bitmap   = AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp")
-    @hpBar2Bitmap   = AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp")
+    hpBarAmount = 1
+    if @battler.pokemon
+      hpBarAmount = 2 if @battler.pokemon.dynamax
+      hpBarAmount = @battler.hpbars if @battler.hpbars
+    end
+    @hpBarBitmaps = []
+    @hpBars = []
+    for i in 0...hpBarAmount do
+      @hpBarBitmaps.push(AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp"))
+      @hpBars.push(SpriteWrapper.new(viewport))
+      @hpBars[i].bitmap = @hpBarBitmaps[i].bitmap
+      @hpBars[i].src_rect.height = @hpBarBitmaps[i].height / 3
+      @sprites["hpBar#{i}"] = @hpBars[i]
+    end
     @expBarBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_exp")
     # Create sprite to draw HP numbers on
     @hpNumbers = BitmapSprite.new(124,16,viewport)
     pbSetSmallFont(@hpNumbers.bitmap)
     @sprites["hpNumbers"] = @hpNumbers
-    # Create sprite wrapper that displays HP bar
-    @hpBar = SpriteWrapper.new(viewport)
-    @hpBar.bitmap = @hpBarBitmap.bitmap
-    @hpBar.src_rect.height = @hpBarBitmap.height/3
-    @sprites["hpBar"] = @hpBar
-    @hpBar1 = SpriteWrapper.new(viewport)
-    @hpBar1.bitmap = @hpBar1Bitmap.bitmap
-    @hpBar1.src_rect.height = @hpBar1Bitmap.height/3
-    @sprites["hpBar1"] = @hpBar1
-    @hpBar2 = SpriteWrapper.new(viewport)
-    @hpBar2.bitmap = @hpBar2Bitmap.bitmap
-    @hpBar2.src_rect.height = @hpBar2Bitmap.height/3
-    @sprites["hpBar2"] = @hpBar2
     # Create sprite wrapper that displays Exp bar
     @expBar = SpriteWrapper.new(viewport)
     @expBar.bitmap = @expBarBitmap.bitmap
@@ -131,12 +129,8 @@ class PokemonDataBox < SpriteWrapper
     pbDisposeSpriteHash(@sprites)
     @databoxBitmap.dispose
     @numbersBitmap.dispose
-    @hpBarBitmap.dispose
-    if @hpBar1 != nil
-      @hpBar1Bitmap.dispose
-    end
-    if @hpBar2 != nil
-      @hpBar2Bitmap.dispose
+    @hpBarBitmaps.each do |hpbar|
+      hpbar.dispose
     end
     @expBarBitmap.dispose
     @contents.dispose
@@ -145,12 +139,8 @@ class PokemonDataBox < SpriteWrapper
 
   def x=(value)
     super
-    @hpBar.x     = value+@spriteBaseX+12#102
-    if @hpBar1 != nil
-      @hpBar1.x     = value+@spriteBaseX+12#102
-    end
-    if @hpBar2 != nil
-      @hpBar2.x     = value+@spriteBaseX+12#102
+    @hpBars.each do |hpbar|
+      hpbar.x = value+@spriteBaseX+12#102
     end
     @expBar.x    = value+@spriteBaseX+24
     @hpNumbers.x = value+@spriteBaseX+80
@@ -158,19 +148,10 @@ class PokemonDataBox < SpriteWrapper
 
   def y=(value)
     super
-    @hpBar.y     = value+40
-    if @hpBar1 != nil
-      if self.hp > @battler.totalhp
-        @hpBar1.y     = value+60
-      else
-        @hpBar1.y     = value-1000
-      end
-    end
-    if @hpBar2 != nil
-      if self.hp > @battler.totalhp * 2
-        @hpBar2.y     = value+80
-      else
-        @hpBar2.y     = value-1000
+    @hpBars.each_with_index do |hpbar,i|
+      hpbar.y = value + 40 + 20*i
+      if i > 0
+        hpbar.y = value - 1000 if self.hp <= @battler.totalhp * i
       end
     end
     @expBar.y    = value+64
@@ -179,12 +160,8 @@ class PokemonDataBox < SpriteWrapper
 
   def z=(value)
     super
-    @hpBar.z     = value+1
-    if @hpBar1 != nil
-      @hpBar1.z     = value
-    end
-    if @hpBar2 != nil
-      @hpBar2.z     = value
+    @hpBars.each do |hpbar|
+      hpbar.z = value+1
     end
     @expBar.z    = value+1
     @hpNumbers.z = value+2
@@ -234,7 +211,7 @@ class PokemonDataBox < SpriteWrapper
     @hpIncPerFrame = (newHP-oldHP).abs/(HP_BAR_CHANGE_TIME*Graphics.frame_rate)
     # minInc is the smallest amount that HP is allowed to change per frame.
     # This avoids a tiny change in HP still taking HP_BAR_CHANGE_TIME seconds.
-    minInc = (rangeHP*4)/(@hpBarBitmap.width*HP_BAR_CHANGE_TIME*Graphics.frame_rate)
+    minInc = (rangeHP*4)/(@hpBarBitmaps[0].width*HP_BAR_CHANGE_TIME*Graphics.frame_rate)
     @hpIncPerFrame = minInc if @hpIncPerFrame<minInc
     @animatingHP   = true
   end
@@ -372,43 +349,24 @@ class PokemonDataBox < SpriteWrapper
       pbDrawNumber(@battler.totalhp,@hpNumbers.bitmap,70,2)
     end
     # Resize HP bar
-    w = 0
-    if self.hp>0
-      w = @hpBarBitmap.width.to_f*self.hp/@battler.totalhp
-      w = 1 if w<1
-      # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-      #       fit in with the rest of the graphics which are doubled in size.
-      w = ((w/2.0).round)*2
-    end
-    if @battler.pokemon && (@battler.pokemon.dynamax != nil || @battler.hpbars != nil)
-      if self.hp > @battler.totalhp
-        @hpBar1.visible = true
-        @hpBar1.y = 60
-        width = @hpBar1Bitmap.width.to_f*(self.hp-@battler.totalhp)/@battler.totalhp
-        # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-        #       fit in with the rest of the graphics which are doubled in size.
-        width = ((width/2.0).round)*2
-        @hpBar1.src_rect.width = width
-      else
-        @hpBar1.visible = false
-      end
-      if self.hp > @battler.totalhp*2
-        @hpBar2.visible = true
-        @hpBar2.y = 80
-        width = @hpBar2Bitmap.width.to_f*(self.hp-@battler.totalhp*2)/@battler.totalhp
-        # NOTE: The line below snaps the bar's width to the nearest 2 pixels, to
-        #       fit in with the rest of the graphics which are doubled in size.
-        width = ((width/2.0).round)*2
-        @hpBar2.src_rect.width = width
-      else
-        @hpBar2.visible = false
+    @hpBars.each_with_index do |hpbar,i|
+      w = 0
+      if self.hp > @battler.totalhp * i
+        hpbar.visible = true if i > 0
+        hpbar.y = 40 + 20 * i
+        w = @hpBarBitmaps[i].width.to_f*(self.hp-(@battler.totalhp * i))/@battler.totalhp
+        #print((self.hp-(@battler.totalhp * i)), " ", i)
+        w = 1 if w < 1
+        w = ((w/2.0).round)*2
+        hpbar.src_rect.width = w
+        hpColor = 0                                  # Green bar
+        hpColor = 1 if self.hp<=@battler.adjustedTotalhp/2   # Yellow bar
+        hpColor = 2 if self.hp<=@battler.adjustedTotalhp/4   # Red bar
+        hpbar.src_rect.y = hpColor*@hpBarBitmaps[i].height/3
+      elsif i > 0
+        hpbar.visible = false
       end
     end
-    @hpBar.src_rect.width = w
-    hpColor = 0                                  # Green bar
-    hpColor = 1 if self.hp<=@battler.totalhp/2   # Yellow bar
-    hpColor = 2 if self.hp<=@battler.totalhp/4   # Red bar
-    @hpBar.src_rect.y = hpColor*@hpBarBitmap.height/3
   end
 
   def refreshExp

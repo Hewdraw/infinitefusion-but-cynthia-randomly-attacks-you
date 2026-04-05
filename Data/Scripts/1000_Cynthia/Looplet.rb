@@ -62,7 +62,24 @@ class Window_PokemonLooplet < Window_DrawableCommand
       item = thispocket[index]
       baseColor   = self.baseColor
       shadowColor = self.shadowColor
-      baseColor = shadowColor if !@bag.activeemeras.include?(item)
+      if @bag.activeemeras.include?(item)
+        case EMERADICT[item][:rarity]
+        # when :COMMON
+        #   baseColor = Color.new(160,160,168)
+        #   shadowColor = Color.new(208,208,216)
+        when :UNCOMMON
+          baseColor = Color.new(96,176,72)
+          shadowColor = Color.new(176,208,144)
+        when :RARE
+          baseColor = Color.new(0,112,248)
+          shadowColor = Color.new(120,184,232)
+        when :LEGENDARY
+          baseColor = Color.new(232,208,32)
+          shadowColor = Color.new(248,232,136)
+        end
+      else
+        baseColor = shadowColor
+      end
       if @sorting && index==self.index
         baseColor   = Color.new(224,0,0)
         shadowColor = Color.new(248,144,144)
@@ -440,6 +457,10 @@ class PokemonLoopletScreen
         else
           @bag.activeemeras.push(item)
         end
+        $Trainer.party.each do |mon|
+          mon.calc_stats
+        end
+        @scene.pbRefresh
       elsif cmdSort >=0 && command == cmdSort # Sort bag
         command = @scene.pbShowCommands(_INTL("How to sort?",itemname),[
           _INTL("Alphabetically"),

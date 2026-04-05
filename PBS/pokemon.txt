@@ -23185,6 +23185,15 @@ BaseStats = 78,90,101,40,120,83
 Abilities = LEVITATE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000887]
+Name = Wandering Trader
+InternalName = WANDERINGTRADER
+Type1 = NORMAL
+BaseStats = 1,1,1,1,1,1
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Legendary Raids

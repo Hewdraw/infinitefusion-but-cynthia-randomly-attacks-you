@@ -155,3 +155,4 @@
 152,Upside_Down_Dev,Upside Down Dev,200,,,,Male,100,
 153,Sound_of_Future,First Sound of the Future,70,,,,Female,100,
 154,ALPHA_POKEMON,Alpha Pokémon,0,,,,Mixed,100,
+155,DESTROYEROFWORLDS,Destroyer of Worlds,0,,,,Male,100,

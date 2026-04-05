@@ -2766,6 +2766,30 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
 
 BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SKULK)
 
+BattleHandlers::AbilityOnSwitchIn.add(:ASONE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} has two abilities!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+    battler.tempability = "Intimidate"
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbHideAbilitySplash(battler)
+    battler.tempability = "Menace"
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:NEUTRALIZINGGAS,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)

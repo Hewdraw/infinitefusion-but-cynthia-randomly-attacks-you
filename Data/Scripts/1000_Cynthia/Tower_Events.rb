@@ -76,17 +76,17 @@ def resolveUnknownEvent(recursion = false)
         trades = []
         if commonemera
             commandtext.push("Trade")
-            helptext.push("Your \\C[7]{1}\\C[0] for a \\C[3]{2}\\C[0].", EMERADICT[commonemera][:name], EMERADICT[traderuncommonemera][:name])
+            helptext.push(_INTL("Your \\C[7]{1}\\C[0] for a \\C[3]{2}\\C[0].", EMERADICT[commonemera][:name], EMERADICT[traderuncommonemera][:name]))
             trades.push([:UNCOMMON])
         end
         if uncommonemera
             commandtext.push("Trade")
-            helptext.push("Your \\C[3]{1}\\C[0] for a \\C[1]{2}\\C[0].", EMERADICT[uncommonemera][:name], EMERADICT[traderrareemera][:name])
+            helptext.push(_INTL("Your \\C[3]{1}\\C[0] for a \\C[1]{2}\\C[0].", EMERADICT[uncommonemera][:name], EMERADICT[traderrareemera][:name]))
             trades.push([:RARE])
         end
         if rareemera
             commandtext.push("Trade")
-            helptext.push("Your \\C[1]{1}\\C[0] for a \\C[6]{2}\\C[0].", EMERADICT[rareemera][:name], EMERADICT[traderlegendaryemera][:name])
+            helptext.push(_INTL("Your \\C[1]{1}\\C[0] for a \\C[6]{2}\\C[0].", EMERADICT[rareemera][:name], EMERADICT[traderlegendaryemera][:name]))
             trades.push([:LEGENDARY])
         end
         Kernel.pbMessage("Unfortunately you have nothing to trade him.") if commandtext.length == 0
@@ -94,7 +94,7 @@ def resolveUnknownEvent(recursion = false)
         helptext.push("I think he trampled one of your crops.")
         trades.push(:COMMON)
         choice = pbUnknownCommands(commandtext, helptext)
-        itemcolor = getEnderChestRarityColors()[trades[choice]]
+        itemcolor = getEnderChestRarityColors()[choice]
         case trades[choice]
         when :UNCOMMON
             getLooplet.pbRemoveEmera(commonemera)
@@ -109,10 +109,12 @@ def resolveUnknownEvent(recursion = false)
             getLooplet.pbStoreEmera(traderlegendaryemera)
             itemname = EMERADICT[traderlegendaryemera][:name]
         when :COMMON
+            return if !pbLegendaryBattle("Wandering Trader")
             Kernel.pbMessage("He dropped an Emera!")
             tradercommonemera = getEmeras[0].sample
             getLooplet.pbStoreEmera(tradercommonemera)
             itemname = EMERADICT[tradercommonemera][:name]
+            itemcolor = getEnderChestRarityColors()[0]
         end
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     when "Warden"
