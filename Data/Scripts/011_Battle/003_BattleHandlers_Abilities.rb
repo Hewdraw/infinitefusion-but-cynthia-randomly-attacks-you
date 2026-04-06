@@ -1465,6 +1465,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
 # DamageCalcTargetAbilityNonIgnorable handlers
 #===============================================================================
 
+BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:ASONE,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 100.0
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbilityNonIgnorable.add(:PRISMARMOR,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if Effectiveness.super_effective?(target.damageState.typeMod)

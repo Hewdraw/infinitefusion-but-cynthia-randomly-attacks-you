@@ -255,27 +255,31 @@ end
 def towerEvent()
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
-        optioncount = 3
-        optioncount += 1 if hasEmera?(:CAPTURESTYLER)
-        options = []
-        while options.length < optioncount
-            mon = getTowerPokemon()
-            options.push(mon) if !options.include?(mon)
+        amount = 1
+        amount += 1 if hasEmera?(:POKEDEX)
+        for _ in 0...amount do
+            optioncount = 3
+            optioncount += 1 if hasEmera?(:CAPTURESTYLER)
+            options = []
+            while options.length < optioncount
+                mon = getTowerPokemon()
+                options.push(mon) if !options.include?(mon)
+            end
+            namearray = []
+            options.each do |pokemon|
+                monname = PBSpecies.getName(pokemon)
+                monname += " F" if pokemon == :NIDORANfE
+                monname += " M" if pokemon == :NIDORANmA
+                monname += " Baile" if pokemon == :ORICORIO_1
+                monname += " Pom-Pom" if pokemon == :ORICORIO_2
+                monname += " Pa'u" if pokemon == :ORICORIO_3
+                monname += " Sensu" if pokemon == :ORICORIO_3
+                namearray.push(monname)
+            end
+            choice = Kernel.pbMessage("Pick one", namearray)
+            pbAddPokemon(options[choice], 5)
+            $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
         end
-        namearray = []
-        options.each do |pokemon|
-            monname = PBSpecies.getName(pokemon)
-            monname += " F" if pokemon == :NIDORANfE
-            monname += " M" if pokemon == :NIDORANmA
-            monname += " Baile" if pokemon == :ORICORIO_1
-            monname += " Pom-Pom" if pokemon == :ORICORIO_2
-            monname += " Pa'u" if pokemon == :ORICORIO_3
-            monname += " Sensu" if pokemon == :ORICORIO_3
-            namearray.push(monname)
-        end
-        choice = Kernel.pbMessage("Pick one", namearray)
-        pbAddPokemon(options[choice], 5)
-        $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     when "Chest"
         enderChest()
         if hasEmera?(:ENDERCHEST)
@@ -304,22 +308,9 @@ def towerEvent()
         end
         Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
     when "Tutor"
-        while true
-            chosen = 0
-            pbFadeOutIn {
-                scene = PokemonParty_Scene.new
-                screen = PokemonPartyScreen.new(scene, $Trainer.party)
-                screen.pbStartScene(_INTL("Choose a Pokémon."), false)
-                chosen = screen.pbChoosePokemon
-                screen.pbEndScene
-            }
-            if chosen < 0
-                break if Kernel.pbMessage("Skip tutoring a move?", ["No", "Yes"]) == 1
-            else
-                break if pbTowerMoveScreen($Trainer.party[chosen])
-            end
-        end
-        if hasEmera?(:BOOKANDQUILL)
+        amount = 1
+        amount += 1 if hasEmera?(:BOOKANDQUILL)
+        for _ in 0...amount do
             while true
                 chosen = 0
                 pbFadeOutIn {

@@ -1451,7 +1451,6 @@ class Pokemon
 
   # @return [Integer] the maximum HP of this Pokémon
   def calcHP(base, level, iv, ev)
-    return 10 if @species == :WANDERINGTRADER
     return 1 if base == 1 # For Shedinja
     return ((base * 2 + iv + (ev / 4)) * level / 100).floor + level + 10
   end

@@ -272,11 +272,11 @@ module BattleHandlers
   end
 
   def self.triggerDamageCalcTargetAbility(ability,target,user,move,mults,baseDmg,type)
-    DamageCalcTargetAbility.trigger(ability,user,target,move,mults,baseDmg,type)
+    DamageCalcTargetAbility.trigger(ability,target,user,move,mults,baseDmg,type)
   end
 
   def self.triggerDamageCalcTargetAbilityNonIgnorable(ability,target,user,move,mults,baseDmg,type)
-    DamageCalcTargetAbilityNonIgnorable.trigger(ability,user,target,move,mults,baseDmg,type)
+    DamageCalcTargetAbilityNonIgnorable.trigger(ability,target,user,move,mults,baseDmg,type)
   end
 
   def self.triggerDamageCalcTargetAllyAbility(ability,bearer,user,target,move,mults,baseDmg,type)

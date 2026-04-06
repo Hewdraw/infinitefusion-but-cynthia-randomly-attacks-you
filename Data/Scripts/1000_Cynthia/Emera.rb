@@ -130,6 +130,11 @@ EMERADICT = {
     #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon",
     #     :rarity => :COMMON,
     # },
+    :POKEDEX => {
+        :name => "Pokedex",
+        :description => "You can obtain an extra Pokemon in a Pokeball floor.",
+        :rarity => :COMMON,
+    },
     :POTIONOFREGENERATION => {
         :name => "Potion of Regeneration",
         :description => "Your Pokemon gain Aqua Ring at the start of the battle.",

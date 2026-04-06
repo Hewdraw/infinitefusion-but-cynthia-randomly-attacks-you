@@ -145,7 +145,7 @@ class PokeBattle_Scene
       if @battle.battlers[b[0]].hpbars
         oldhp = @battle.battlers[b[0]].hp.to_f
         endhp = @battle.battlers[b[0]].hp * @battle.battlers[b[0]].hpbars
-        time = 64
+        time = 64 * (@battle.battlers[b[0]].hpbars - 1)
         for i in 0..(time-1)
           if oldhp+((endhp-oldhp) * i/time).round >= @battle.battlers[b[0]].hp + 1
             @battle.battlers[b[0]].hp = oldhp+((endhp-oldhp) * i/time).round
