@@ -1127,7 +1127,7 @@ BattleHandlers::DamageCalcTargetItem.add(:KEBIABERRY,
 BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
   proc { |item,user,target,move,mults,baseDmg,type|
     if target.isFusionOf(:DITTO)
-      mults[:defense_multiplier] *= 1.3
+      mults[:defense_multiplier] *= 1.5
     end
   }
 )

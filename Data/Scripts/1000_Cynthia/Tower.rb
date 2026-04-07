@@ -3,6 +3,7 @@ def setupTower()
     $PokemonBag.saveBagAndClear()
     $Trainer.party=[]
     $PokemonGlobal.towervalues = {
+        :seed => Random.new_seed,
         :floor => 1,
         :badges => 0,
         :storage => PokemonStorage.new,
@@ -17,7 +18,7 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Hot Spring", "Berry Tree", "Wandering Trader", "Mining"],
+        :unknownlist => ["Hot Spring", "Berry Tree", "Mining"],
         :eventvariables => {},
         :money => $Trainer.money
     }
@@ -43,6 +44,7 @@ def resetTower()
     PokemonSelection.restore
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 21)
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)
+    srand
 end
 
 def leaveTower()
@@ -92,6 +94,7 @@ def towerCynthiaEncounter()
         return
     end
     return if ["Gym", "Elitefour", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
+    srand( $PokemonGlobal.towervalues[:seed]+$PokemonGlobal.towervalues[:floor])
     if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
         $PokemonGlobal.towervalues[:cynthiachance] = 0 if !$PokemonGlobal.towervalues.nil?
@@ -129,6 +132,8 @@ end
 def getTowerEvents()
     return [nil, "Elitefour", nil] if [81,83,85,87,89].include?($PokemonGlobal.towervalues[:floor])
     return [nil, "Gym", nil] if $PokemonGlobal.towervalues[:floor] % 10 == 9 && ![89].include?($PokemonGlobal.towervalues[:floor])
+
+    srand(($PokemonGlobal.towervalues[:seed]*2)+$PokemonGlobal.towervalues[:floor])
 
     nextfloorevents = []
     for _ in 1..3
@@ -187,6 +192,7 @@ def towerIncreaseFloor(nextfloor)
           }
         end
     end
+    srand(($PokemonGlobal.towervalues[:seed]*3)+$PokemonGlobal.towervalues[:floor])
     if hasEmera?(:BREWINGSTAND)
         itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
         item = itemlist.sample
@@ -253,6 +259,7 @@ def getTowerEventsList()
 end
 
 def towerEvent()
+    srand(($PokemonGlobal.towervalues[:seed]*4)+$PokemonGlobal.towervalues[:floor])
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
         amount = 1
@@ -367,6 +374,7 @@ def towerEvent()
         when 0
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Brock, "Brock")
+            $PokemonGlobal.towervalues[:unknownlist].push("Wandering Trader")
         when 1
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Misty, "Misty")

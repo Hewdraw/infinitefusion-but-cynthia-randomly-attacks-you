@@ -76,7 +76,7 @@ BattleHandlers::DamageCalcUserAbility.add(:EMERA,
       mults[:final_damage_multiplier] *= 1.2
     end
     if user.hasActiveEmera?(:HEAVYCORE)
-      mults[:final_damage_multiplier] *= 1.2
+      mults[:final_damage_multiplier] *= 1.1
     end
   }
 )

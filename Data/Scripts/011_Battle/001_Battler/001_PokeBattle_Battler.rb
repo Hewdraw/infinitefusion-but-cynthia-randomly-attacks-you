@@ -423,7 +423,7 @@ class PokeBattle_Battler
     return true if hasActiveEmera?(:ARCEUSRING)
     case type
     when :NORMAL
-      return true if hasActiveItem?([:UPGRADE, :OVALSTONE])
+      return true if hasActiveItem?([:UPGRADE, :OVALSTONE, :QUICKPOWDER, :METALPOWDER])
     when :FIGHTING
       return true if hasActiveItem?([:LUCKYPUNCH])
       return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:ZAPDOS)
@@ -452,6 +452,7 @@ class PokeBattle_Battler
       return true if hasActiveItem?(:ELECTIRIZER)
       return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:GZAPDOS)
     when :PSYCHIC
+      return true if hasActiveItem?(:QUICKPOWDER, :METALPOWDER)
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:ARTICUNO)
     when :ICE
@@ -610,7 +611,7 @@ class PokeBattle_Battler
     end
     return true if check_item.name[-3..-1] == "ite" && !["Eviolite", "Pyrite"].include?(check_item.name)
     return true if check_item.name[-5..-1] == "ium Z"
-    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek"].include?(check_item.name)
+    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek", "Quick Powder", "Metal Powder"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end

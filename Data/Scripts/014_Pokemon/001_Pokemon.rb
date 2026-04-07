@@ -1566,8 +1566,7 @@ class Pokemon
     @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
     @extraabilities.push(:IRONFIST) if hasItem?(:ELECTIRIZER) && (isFusionOf(:ELEKID) || isFusionOf(:ELECTABUZZ) || isFusionOf(:ELECTIVIRE))
     @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)
-    @extraabilities.push(:SHEERFORCE) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
-    @extraabilities.push(:ANALYTIC) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
+    @extraabilities.push(:SHEERFORCE, :ANALYTIC) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))
     @extraabilities.push(:BATTLEARMOR) if hasItem?(:PROTECTOR)
     @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && (isFusionOf(:HAPPINY) || isFusionOf(:CHANSEY) || isFusionOf(:BLISSEY))
     @extraabilities.push(:SNIPER) if hasItem?(:STICK)
@@ -1575,6 +1574,7 @@ class Pokemon
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:THICKCLUB)
     @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && isFusionOf(:MILOTIC)
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
+    @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?(:QUICKPOWDER) || hasItem?(:METALPOWDER)
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
     @abilityarray = createAbilityArray
     @boxicon = nil
