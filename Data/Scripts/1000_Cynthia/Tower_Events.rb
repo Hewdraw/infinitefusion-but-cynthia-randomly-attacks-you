@@ -77,17 +77,17 @@ def resolveUnknownEvent(recursion = false)
         if commonemera
             commandtext.push("Trade")
             helptext.push(_INTL("Your \\C[7]{1}\\C[0] for a \\C[3]{2}\\C[0].", EMERADICT[commonemera][:name], EMERADICT[traderuncommonemera][:name]))
-            trades.push([:UNCOMMON])
+            trades.push(:UNCOMMON)
         end
         if uncommonemera
             commandtext.push("Trade")
             helptext.push(_INTL("Your \\C[3]{1}\\C[0] for a \\C[1]{2}\\C[0].", EMERADICT[uncommonemera][:name], EMERADICT[traderrareemera][:name]))
-            trades.push([:RARE])
+            trades.push(:RARE)
         end
         if rareemera
             commandtext.push("Trade")
             helptext.push(_INTL("Your \\C[1]{1}\\C[0] for a \\C[6]{2}\\C[0].", EMERADICT[rareemera][:name], EMERADICT[traderlegendaryemera][:name]))
-            trades.push([:LEGENDARY])
+            trades.push(:LEGENDARY)
         end
         Kernel.pbMessage("Unfortunately you have nothing to trade him.") if commandtext.length == 0
         commandtext.push("Kill Him")

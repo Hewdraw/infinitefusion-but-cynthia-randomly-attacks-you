@@ -100,13 +100,13 @@ class PokemonDataBox < SpriteWrapper
       hpBarAmount = @battler.hpbars if @battler.hpbars
     end
     @hpBarBitmaps = []
-    @hpBars = []
+    @hpBarSprites = []
     for i in 0...hpBarAmount do
       @hpBarBitmaps.push(AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp"))
-      @hpBars.push(SpriteWrapper.new(viewport))
-      @hpBars[i].bitmap = @hpBarBitmaps[i].bitmap
-      @hpBars[i].src_rect.height = @hpBarBitmaps[i].height / 3
-      @sprites["hpBar#{i}"] = @hpBars[i]
+      @hpBarSprites.push(SpriteWrapper.new(viewport))
+      @hpBarSprites[i].bitmap = @hpBarBitmaps[i].bitmap
+      @hpBarSprites[i].src_rect.height = @hpBarBitmaps[i].height / 3
+      @sprites["hpBar#{i}"] = @hpBarSprites[i]
     end
     @expBarBitmap  = AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_exp")
     # Create sprite to draw HP numbers on
@@ -139,7 +139,7 @@ class PokemonDataBox < SpriteWrapper
 
   def x=(value)
     super
-    @hpBars.each do |hpbar|
+    @hpBarSprites.each do |hpbar|
       hpbar.x = value+@spriteBaseX+12#102
     end
     @expBar.x    = value+@spriteBaseX+24
@@ -148,7 +148,7 @@ class PokemonDataBox < SpriteWrapper
 
   def y=(value)
     super
-    @hpBars.each_with_index do |hpbar,i|
+    @hpBarSprites.each_with_index do |hpbar,i|
       hpbar.y = value + 40 + 20*i
       if i > 0
         hpbar.y = value - 1000 if self.hp <= @battler.totalhp * i
@@ -160,7 +160,7 @@ class PokemonDataBox < SpriteWrapper
 
   def z=(value)
     super
-    @hpBars.each do |hpbar|
+    @hpBarSprites.each do |hpbar|
       hpbar.z = value+1
     end
     @expBar.z    = value+1
@@ -349,14 +349,14 @@ class PokemonDataBox < SpriteWrapper
       pbDrawNumber(@battler.totalhp,@hpNumbers.bitmap,70,2)
     end
     # Resize HP bar
-    @hpBars.each_with_index do |hpbar,i|
+    @hpBarSprites.each_with_index do |hpbar,i|
       w = 0
-      if self.hp > @battler.totalhp * i
+      if self.hp > @battler.totalhp * i || i == 0
         hpbar.visible = true if i > 0
         hpbar.y = 40 + 20 * i
         w = @hpBarBitmaps[i].width.to_f*(self.hp-(@battler.totalhp * i))/@battler.totalhp
         #print((self.hp-(@battler.totalhp * i)), " ", i)
-        w = 1 if w < 1
+        w = 1 if w < 1 && self.hp > 0
         w = ((w/2.0).round)*2
         hpbar.src_rect.width = w
         hpColor = 0                                  # Green bar

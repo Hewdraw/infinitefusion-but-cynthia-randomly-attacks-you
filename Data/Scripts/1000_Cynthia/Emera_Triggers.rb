@@ -241,7 +241,7 @@ class PokeBattle_Battle
       pbHideAbilitySplash(playerside[0])
     end
 
-    if $PokemonGlobal.towervalues[:activeevent] == "Legendary" && legendaryBattle?
+    if $PokemonGlobal.towervalues && $PokemonGlobal.towervalues[:activeevent] == "Legendary" && legendaryBattle?
       getLooplet.emeras.each do |emera|
         next if !EMERADICT[emera][:Legendary]
         next if !EMERADICT[emera][:Legendary].include?($PokemonGlobal.towervalues[:activevariable])
