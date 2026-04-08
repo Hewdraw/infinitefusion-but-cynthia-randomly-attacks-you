@@ -5812,6 +5812,7 @@ Pokemon = TOGEPI,5
     Offset = -1
     Moves = THUNDERWAVE,WATERPULSE
     Ability = SERENEGRACE
+    Item = KINGSROCK
     Gender = F
     Nature = MODEST
     IV = 0,0,0,0,0,0

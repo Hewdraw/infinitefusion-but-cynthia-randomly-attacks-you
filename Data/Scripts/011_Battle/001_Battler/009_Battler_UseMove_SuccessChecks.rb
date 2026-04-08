@@ -246,8 +246,7 @@ class PokeBattle_Battler
       else
         @battle.pbCommonAnimation("Confusion",self)
         @battle.pbDisplay(_INTL("{1} is confused!",pbThis))
-        threshold = (Settings::MECHANICS_GENERATION >= 7) ? 33 : 50   # % chance
-        if @battle.pbRandom(100)<threshold
+        if @battle.pbRandom(100)<33
           pbConfusionDamage(_INTL("It hurt itself in its confusion!"))
           @lastMoveFailed = true
           return false
@@ -256,7 +255,7 @@ class PokeBattle_Battler
     end
     # Paralysis
     if @status == :PARALYSIS
-      if @battle.pbRandom(100)<25 && !hasActiveAbility?(:QUICKFEET)
+      if @battle.pbRandom(8)==0 && !hasActiveAbility?(:QUICKFEET)
         pbContinueStatus
         @lastMoveFailed = true
         return false

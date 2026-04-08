@@ -336,7 +336,7 @@ class PokeBattle_Battler
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp] > 0
     # Paralysis
     if status == :PARALYSIS && !hasActiveAbility?(:QUICKFEET)
-      speedMult /= (Settings::MECHANICS_GENERATION >= 7) ? 2 : 4
+      speedMult /= 2
     end
     # Badge multiplier
     if @battle.internalBattle && pbOwnedByPlayer? &&

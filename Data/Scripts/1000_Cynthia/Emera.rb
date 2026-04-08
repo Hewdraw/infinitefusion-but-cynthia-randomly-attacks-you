@@ -461,6 +461,13 @@ EMERADICT = {
     #     :tutormove => :REVIVALBLESSING,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:FLYING)},
     # },
+    :REDCHAIN => {
+        :name => "Red Chain",
+        :description => "Your last Pokemon gains the Legendary Pressure Ability.",
+        :rarity => :LEGENDARY,
+        :tutormove => :REDSTONEDUSTER,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:ELECTRIC)},
+    },
     # :REDSTONEHEART => {
     #     :name => "Redstone Heart",
     #     :description => "Your Pokemons Substitutes become Redstone Cubes.",

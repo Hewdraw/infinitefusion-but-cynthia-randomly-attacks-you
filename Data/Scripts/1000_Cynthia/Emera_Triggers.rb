@@ -241,6 +241,20 @@ class PokeBattle_Battle
       pbHideAbilitySplash(playerside[0])
     end
 
+    if hasEmera?(:REDCHAIN) && legendaryBattle?
+      playerside[0].tempability = EMERADICT[:REDCHAIN][:name]
+      pbShowAbilitySplash(playerside[0])
+      opponentside.each do |battler|
+        next if !battler.hasActiveAbility?(:LEGENDARYPRESSURE)
+        pbDisplay(_INTL("The {1} binds {2}", EMERADICT[:REDCHAIN][:name], battler.pbThis))
+        GameData::Stat.each_main_battle do |s|
+          if battler.pbCanLowerStatStage?(s.id, battler)
+            battler.pbLowerStatStage(s.id, 1, battler)
+          end
+        end
+      end
+      pbHideAbilitySplash(playerside[0])
+    end
     if $PokemonGlobal.towervalues && $PokemonGlobal.towervalues[:activeevent] == "Legendary" && legendaryBattle?
       getLooplet.emeras.each do |emera|
         next if !EMERADICT[emera][:Legendary]

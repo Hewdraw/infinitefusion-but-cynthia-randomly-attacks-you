@@ -1453,8 +1453,8 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 
 ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, choices, scene|
   if pbRaiseEffortValues(pokemon, :ATTACK, 4) >0
-    scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pkmn.name))
-    pkmn.changeHappiness("vitamin")
+    scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pokemon.name))
+    pokemon.changeHappiness("vitamin")
     next true
   end
   scene.pbDisplay(_INTL("It won't have any effect."))
@@ -1463,8 +1463,8 @@ ItemHandlers::BattleUseOnPokemon.add(:BANANA, proc { |item, pokemon, battler, ch
 
 ItemHandlers::UseOnPokemon.add(:BANANA, proc { |item, pokemon, scene|
   if pbRaiseEffortValues(pokemon, :ATTACK, 4) >0
-    scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pkmn.name))
-    pkmn.changeHappiness("vitamin")
+    scene.pbDisplay(_INTL("{1}'s ATTACK increased.", pokemon.name))
+    pokemon.changeHappiness("vitamin")
     next true
   end
   scene.pbDisplay(_INTL("It won't have any effect."))
