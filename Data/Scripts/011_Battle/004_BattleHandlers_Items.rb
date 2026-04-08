@@ -2030,7 +2030,7 @@ BattleHandlers::ItemOnSwitchIn.add(:WHIPPEDDREAM,
   proc { |item,user,target,move,battle|
     next unless user.isFusionOf(:SLURPUFF) || user.isFusionOf(:SWIRLIX)
     battle.pbStartTerrain(user, :Misty)
-    user.pbUseMove(:MISTYEXPLOSIO)
+    user.pbUseMove(:MISTYEXPLOSION)
   }
 )
 

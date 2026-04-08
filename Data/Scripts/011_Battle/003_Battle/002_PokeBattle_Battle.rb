@@ -89,6 +89,8 @@ class PokeBattle_Battle
   attr_accessor :legendary
   attr_accessor :party2
 
+  attr_accessor :tempweather
+
   include PokeBattle_BattleCommon
 
   def pbRandom(x); return rand(x); end
@@ -673,6 +675,7 @@ class PokeBattle_Battle
 
   # Returns the effective weather (note that weather effects can be negated)
   def pbWeather
+    return @tempweather if @tempweather
     eachBattler { |b| return :None if b.hasActiveAbility?([:CLOUDNINE, :AIRLOCK]) }
     return @field.weather
   end

@@ -85,6 +85,7 @@ class PokeBattle_Battler
       @effects[PBEffects::Encore] = 0
     end
     @effects[PBEffects::GlaiveRush] = false
+    @battle.tempweather = :HarshSun if hasActiveAbility?(:MEGASOL)
   end
 
   # Called when the usage of various multi-turn moves is disrupted due to
@@ -124,6 +125,7 @@ class PokeBattle_Battler
     @effects[PBEffects::GemConsumed] = nil
     @effects[PBEffects::ShellTrap] = false
     @battle.eachBattler { |b| b.pbContinualAbilityChecks } # Trace, end primordial weathers
+    @battle.tempweather = nil
   end
 
   def pbConfusionDamage(msg)

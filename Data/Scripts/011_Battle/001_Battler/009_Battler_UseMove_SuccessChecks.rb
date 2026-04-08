@@ -293,7 +293,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
       return false
     end
-    if !(user.effects[PBEffects::Dynamax] > 0)
+    if !(user.effects[PBEffects::Dynamax] > 0 || user.hasActiveAbility?(:UNSEENFIST))
       # Crafty Shield
       if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index &&
          move.statusMove? && !move.pbTarget(user).targets_all && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)

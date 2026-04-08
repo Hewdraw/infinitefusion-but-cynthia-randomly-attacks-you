@@ -854,6 +854,14 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:VOCALIZE,
 
 BattleHandlers::MoveBaseTypeModifierAbility.copy(:VOCALIZE,:VOCALOID)
 
+BattleHandlers::MoveBaseTypeModifierAbility.add(:DRAGONIZE,
+  proc { |ability,user,move,type|
+    next if type != :NORMAL || !GameData::Type.exists?(:DRAGON)
+    move.powerBoost = true
+    next :DRAGON
+  }
+)
+
 #===============================================================================
 # AccuracyCalcUserAbility handlers
 #===============================================================================
@@ -978,7 +986,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID, :IMMOLATE)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID, :IMMOLATE, :DRAGONIZE)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
   proc { |ability,user,target,move,mults,baseDmg,type|

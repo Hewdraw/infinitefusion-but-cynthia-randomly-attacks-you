@@ -91,7 +91,7 @@ class PokeBattle_Battler
   def pbChangeTargets(move,user,targets)
     target_data = move.pbTarget(user)
     return targets if @battle.switching   # For Pursuit interrupting a switch
-    return targets if move.cannotRedirect?
+    return targets if move.cannotRedirect? || user.hasActiveAbility?(:STALWART)
     return targets if !target_data.can_target_one_foe? || targets.length != 1
     priority = @battle.pbPriority(true)
     nearOnly = !target_data.can_choose_distant_target?
