@@ -3792,7 +3792,7 @@ class PokeBattle_Move_239 < PokeBattle_Move
   def pbNumHits(user,targets); return 2;    end
 
   def pbAdditionalEffect(user,target)
-    case rand(1)
+    case rand(2)
     when 0 then
       if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
         user.pbRaiseStatStage(:DEFENSE,1,user)
@@ -4992,6 +4992,7 @@ class PokeBattle_Move_311 < PokeBattle_StatDownMove
   end
 
   def pbEffectGeneral(user)
+    return if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3
     user.pbOpposingSide.effects[PBEffects::Spikes] += 1
     @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
                             user.pbOpposingTeam(true)))

@@ -132,6 +132,8 @@ class Pokemon
 
   attr_accessor :force_disobey
 
+  attr_accessor :materials
+
   # Max total IVs
   IV_STAT_LIMIT = 31
   # Max total EVs

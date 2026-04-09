@@ -1645,7 +1645,8 @@ Cave,5
 #-------------------------------
 [306] # Victory Road
 Cave,5
-    20,DELIBIRD,44,44
+    10,DELIBIRD,44,44
+    10,MAKUHITA,44,44
     10,MISDREAVUS,44,44
     10,MAGNEZONE,44,44
     10,LARVESTA,44,44

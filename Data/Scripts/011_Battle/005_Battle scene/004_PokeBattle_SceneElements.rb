@@ -353,9 +353,7 @@ class PokemonDataBox < SpriteWrapper
       w = 0
       if self.hp > @battler.totalhp * i || i == 0
         hpbar.visible = true if i > 0
-        hpbar.y = 40 + 20 * i
         w = @hpBarBitmaps[i].width.to_f*(self.hp-(@battler.totalhp * i))/@battler.totalhp
-        #print((self.hp-(@battler.totalhp * i)), " ", i)
         w = 1 if w < 1 && self.hp > 0
         w = ((w/2.0).round)*2
         hpbar.src_rect.width = w

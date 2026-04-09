@@ -1207,62 +1207,70 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, pkmn, scene|
-  abils = pkmn.getAbilityList
-  abil1 = nil; abil2 = nil
-  for i in abils
-    abil1 = i[0] if i[1] == 0
-    abil2 = i[0] if i[1] == 1
+  pkmn.calc_stats if pkmn.materials.nil?
+  abilitylist = []
+  pkmn.materials.each do |material|
+    GameData::Species.get(material).abilities.each do |ability|
+      next if pkmn.ability_id == ability
+      abilitylist.push(ability)
+    end
   end
-  if abil1.nil? || abil2.nil? || pkmn.hasHiddenAbility? || pkmn.isSpecies?(:ZYGARDE)
+  if abilitylist.length == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
-  newabil = (pkmn.ability_index + 1) % 2
-  newabilname = GameData::Ability.get((newabil == 0) ? abil1 : abil2).name
-  if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?",
-                           pkmn.name, newabilname))
-    pkmn.ability_index = newabil
-    pkmn.ability = GameData::Ability.get((newabil == 0) ? abil1 : abil2).id
-
-    #pkmn.ability = GameData::Ability.get((newabil == 0) ? abil1 : abil2).id
-	  scene.pbHardRefresh
-    scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, newabilname))
-    next true
+  namelist = []
+  abilitylist.each do |ability|
+    namelist.push(GameData::Ability.get(ability).name)
   end
-  next false
+  choice = Kernel.pbMessage(_INTL("What would you like to change {1}'s Ability to?", pkmn.name), namelist + ["Cancel"], namelist.length+1)
+  if choice >= namelist.length
+    next false
+  end
+  newabil = (pkmn.ability_index + 1) % 2
+  pkmn.ability_index = newabil
+  pkmn.ability = abilitylist[choice]
+  scene.pbHardRefresh
+  scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, namelist[choice]))
+  next true
 })
 
 
 ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
-  if pkmn.isFusion?
-    scene.pbDisplay(_INTL("{1} does not work on fusions.", item.name))
-    next false
+  pkmn.calc_stats if pkmn.materials.nil?
+  abilitylist = []
+  pkmn.materials.each do |material|
+    if pkmn.hasHiddenAbility?
+      GameData::Species.get(material).abilities.each do |ability|
+        next if pkmn.ability_id == ability
+        abilitylist.push(ability)
+      end
+    else
+      GameData::Species.get(material).hidden_abilities.each do |ability|
+        next if pkmn.ability_id == ability
+        abilitylist.push(ability)
+      end
+    end
   end
-  abils = pkmn.getAbilityList
-  hiddenability = nil
-  abil1 = nil
-  for i in abils
-    abil1 = i[0] if i[1] == 0
-    hiddenability = i[0] if i[1] == 2
-  end
-  if hiddenability.nil? || (pkmn.hasHiddenAbility? && abil1.nil?)
+  if abilitylist.length == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
   newabil = 2
   newabil = 0 if pkmn.hasHiddenAbility?
-  newabilname = GameData::Ability.get((newabil == 2) ? hiddenability : abil1).name
-  if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?",
-                           pkmn.name, newabilname))
-    pkmn.ability_index = newabil
-    pkmn.ability = GameData::Ability.get((newabil == 2) ? hiddenability : abil1).id
-
-    #pkmn.ability = GameData::Ability.get((newabil == 0) ? abil1 : abil2).id
-    scene.pbHardRefresh
-    scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, newabilname))
-    next true
+  namelist = []
+  abilitylist.each do |ability|
+    namelist.push(GameData::Ability.get(ability).name)
   end
-  next false
+  choice = Kernel.pbMessage(_INTL("What would you like to change {1}'s Ability to?", pkmn.name), namelist + ["Cancel"], namelist.length+1)
+  if choice >= namelist.length
+    next false
+  end
+  pkmn.ability = abilitylist[choice]
+  pkmn.ability_index = newabil
+  scene.pbHardRefresh
+  scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, namelist[choice]))
+  next true
 })
 
 

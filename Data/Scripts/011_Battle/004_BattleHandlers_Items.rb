@@ -2022,7 +2022,7 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
 BattleHandlers::ItemOnSwitchIn.add(:DEEPSEASCALE,
   proc { |item,battler,battle|
     battler.effects[PBEffects::AquaRing] = true
-    battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",battle.pbThis))
+    battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",battler.pbThis))
   }
 )
 

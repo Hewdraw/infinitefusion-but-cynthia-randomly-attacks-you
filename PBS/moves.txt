@@ -906,7 +906,7 @@
 936,MUDDYWATERPLUS,Muddy Water+,257,90,WATER,Special,100,10,100,AllNearFoes,0,bef,"The user attacks by shooting muddy water at the opposing team. It may also lower the target's accuracy."
 937,CLOSECOMBATPLUS,Close Combat+,258,140,FIGHTING,Physical,100,5,50,NearOther,0,abef,"The user fights the foe up close without guarding itself. It also cuts the user's Defense and Sp. Def."
 938,FLASHCANNONPLUS,Flash Cannon+,259,110,STEEL,Special,100,10,100,NearOther,0,bef,"The user gathers all its light energy and releases it at once. It may also lower the target's Sp. Def stat."
-939,EARTHQUAKEPLUS,Earthquake+,260,110,GROUND,Physical,100,10,0,AllNearOthers,0,bef,"The user sets off an earthquake that strikes every Pokémon around it."
+939,EARTHQUAKEPLUS,Earthquake+,260,110,GROUND,Physical,100,10,100,AllNearOthers,0,bef,"The user sets off an earthquake that strikes every Pokémon around it."
 940,SPIKYSHIELDPLUS,Spiky Shield+,261,0,GRASS,Status,0,10,0,User,4,,"Protects the user from attacks. Also damages attackers that make contact with the user."
 941,WATERSHURIKENPLUS,Water Shuriken+,262,20,WATER,Special,100,20,0,NearOther,1,bef,"The user hits the target with throwing stars 2-5 times in a row. This move always goes first."
 942,OUTRAGEPLUS,Outrage+,263,130,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for two to three turns. It then becomes confused, however."
