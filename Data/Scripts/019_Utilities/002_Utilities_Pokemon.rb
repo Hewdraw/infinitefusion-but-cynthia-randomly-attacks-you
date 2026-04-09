@@ -105,6 +105,12 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       pkmn.shiny = true
       pkmn.natural_shiny = true
     end
+  when :HAWLUCHA
+    if !$PokemonGlobal.towervalues.nil?
+      pkmn.poke_ball = :GENDERBALL
+      pkmn.shiny = true
+      pkmn.natural_shiny = true
+    end
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName
