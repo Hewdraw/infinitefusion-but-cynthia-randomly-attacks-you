@@ -2,6 +2,7 @@ def beeMovie
 	BEEMOVIESCRIPT.each do |line|
 		Kernel.pbMessage(line)
 	end
+	pbAddPokemon(:BEEDRILL, 10)
 end
 
 BEEMOVIESCRIPT = ["NARRATOR: ",
