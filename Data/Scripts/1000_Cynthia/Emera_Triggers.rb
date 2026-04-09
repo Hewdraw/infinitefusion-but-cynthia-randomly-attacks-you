@@ -228,8 +228,8 @@ class PokeBattle_Battle
       pbShowAbilitySplash(playerside[0])
       playerside.each do |battler|
         userStats = battler.plainStats
-        lowestStatValue = 0
-        userStats.each_value { |value| lowestStatValue = value if lowestStatValue < value }
+        lowestStatValue = 10000
+        userStats.each_value { |value| lowestStatValue = value if lowestStatValue > value }
         GameData::Stat.each_main_battle do |s|
           next if userStats[s.id] > lowestStatValue
           if battler.pbCanRaiseStatStage?(s.id, battler)

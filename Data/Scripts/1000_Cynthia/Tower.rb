@@ -289,8 +289,8 @@ def towerEvent()
     when "Chest"
         enderChest()
         if hasEmera?(:ENDERCHEST)
-            while $PokemonBag.pbQuantity(:SINNOHCOIN) >= 5 && Kernel.pbMessage("Open again for 5 Sinnoh Coins?", ["Yes", "No"]) == 0
-                $PokemonBag.pbDeleteItem(:SINNOHCOIN, 5)
+            while $PokemonBag.pbQuantity(:SINNOHCOIN) >= pbCynthiaGetBadgeCount + 1 && Kernel.pbMessage(_INTL("Open again for {1} Sinnoh Coins?", pbCynthiaGetBadgeCount + 1), ["Yes", "No"]) == 0
+                $PokemonBag.pbDeleteItem(:SINNOHCOIN, pbCynthiaGetBadgeCount + 1)
                 enderChest()
             end
         end
@@ -691,6 +691,27 @@ def getTowerItems()
             [:ICYROCK, 1],
             [:LOADEDDICE, 1],
             [:REPEL, 1],
+            [:LONELYMINT, 1],
+            [:ADAMANTMINT, 1],
+            [:NAUGHTYMINT, 1],
+            [:BRAVEMINT, 1],
+            [:BOLDMINT, 1],
+            [:IMPISHMINT, 1],
+            [:LAXMINT, 1],
+            [:RELAXEDMINT, 1],
+            [:MODESTMINT, 1],
+            [:MILDMINT, 1],
+            [:RASHMINT, 1],
+            [:QUIETMINT, 1],
+            [:CALMMINT, 1],
+            [:GENTLEMINT, 1],
+            [:CAREFULMINT, 1],
+            [:SASSYMINT, 1],
+            [:TIMIDMINT, 1],
+            [:HASTYMINT, 1],
+            [:JOLLYMINT, 1],
+            [:NAIVEMINT, 1],
+            [:SERIOUSMINT, 1],
         ],
         [ #rare
             [:EVIOLITE, 1],

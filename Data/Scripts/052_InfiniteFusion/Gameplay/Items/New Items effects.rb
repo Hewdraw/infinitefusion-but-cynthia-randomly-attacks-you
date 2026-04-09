@@ -1361,7 +1361,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:VOCALLEEK, :VOCALDRILL] => [[:HYPNOSIS, :MESMERIZER]],
     [:LARVESTA, :VOLCARONA, :SLITHERWING, :IRONMOTH] => [[:FIERYDANCE, :TORCHSONG]],
     [:ZAPDOS, :GZAPDOS] => [[:THUNDEROUSKICK]],
-    [:ZEKROM] => [[:BOLTSTIKRE]],
+    [:ZEKROM] => [[:BOLTSTRIKE]],
   }
   allmoves = pkmn.isFusionOf(:GENESECT) || pkmn.species == :DEOSECTWO
   upgradelist.each do |pokemon, movearray|

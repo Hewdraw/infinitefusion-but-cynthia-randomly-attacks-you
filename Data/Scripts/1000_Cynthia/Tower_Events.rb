@@ -74,17 +74,17 @@ def resolveUnknownEvent(recursion = false)
         commandtext = []
         helptext = []
         trades = []
-        if commonemera
+        if commonemera && traderuncommonemera
             commandtext.push("Trade")
             helptext.push(_INTL("Your \\C[7]{1}\\C[0] for a \\C[3]{2}\\C[0].", EMERADICT[commonemera][:name], EMERADICT[traderuncommonemera][:name]))
             trades.push(:UNCOMMON)
         end
-        if uncommonemera
+        if uncommonemera && traderrareemera
             commandtext.push("Trade")
             helptext.push(_INTL("Your \\C[3]{1}\\C[0] for a \\C[1]{2}\\C[0].", EMERADICT[uncommonemera][:name], EMERADICT[traderrareemera][:name]))
             trades.push(:RARE)
         end
-        if rareemera
+        if rareemera && traderlegendaryemera
             commandtext.push("Trade")
             helptext.push(_INTL("Your \\C[1]{1}\\C[0] for a \\C[6]{2}\\C[0].", EMERADICT[rareemera][:name], EMERADICT[traderlegendaryemera][:name]))
             trades.push(:LEGENDARY)

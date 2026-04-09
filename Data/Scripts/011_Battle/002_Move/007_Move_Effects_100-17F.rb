@@ -1808,7 +1808,7 @@ class PokeBattle_Move_159 < PokeBattle_Move
   def pbEffectAgainstTarget(user, target)
     target.pbPoison(user) if target.pbCanPoison?(user, false, self)
     if target.pbCanLowerStatStage?(:SPEED, user, self)
-      target.pbLowerStatStage(:SPEED, 1, user)
+      target.pbLowerStatStage(:SPEED, 2, user)
     end
   end
 end

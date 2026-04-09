@@ -542,6 +542,7 @@ class PokeBattle_Battler
       :QUARKDRIVE,
       :NEUTRALIZINGGAS,
       :ASONE,
+      :EON,
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -574,6 +575,7 @@ class PokeBattle_Battler
       :QUARKDRIVE,
       :NEUTRALIZINGGAS,
       :ASONE,
+      :EON,
     ]
     return ability_blacklist.include?(abil.id)
   end

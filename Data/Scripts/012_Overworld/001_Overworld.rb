@@ -666,7 +666,7 @@ def pbSlideOnIce
     timer -= 1
     break if timer <= 0
   end
-  if timer <= 0 && $PokemonGlobal.healies
+  if timer <= 0 && $PokemonGlobal.healies && $PokemonGlobal.towervalues.nil?
     pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"], nil, false, 2, 2)
   end
   $PokemonGlobal.healiestimer = nil if $PokemonGlobal.healies

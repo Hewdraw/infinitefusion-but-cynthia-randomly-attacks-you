@@ -687,8 +687,8 @@
 632,GOLDENBANANA,Golden Banana,Golden Bananas,2,128,"Makes you stronger, but...",1,3,0
 #-------------------------------
 633,DEMHARDMODE,Dem's Badge,Dem's Badges,8,0,"A mysterious badge. Wear it for the ultimate challenge...",2,0,6
-634,LIGHTSTONE,Light Stone,Light Stones,8,0,"A mysterious stone imbued with the power of truth. It is said to be waiting for the emergence of a hero. ",2,0,6
-635,DARKSTONE,Dark Stone,Dark Stones,8,0,"A mysterious stone imbued with the power of deception. It is said to be waiting for the emergence of a hero. \"",2,0,6
+634,LIGHTSTONE,Light Stone,Light Stones,8,0,"A mysterious stone imbued with the power of truth. It is said to be waiting for the emergence of a hero.",1,0,0
+635,DARKSTONE,Dark Stone,Dark Stones,8,0,"A mysterious stone imbued with the power of deception. It is said to be waiting for the emergence of a hero.",1,0,0
 636,BRONZEEMBLEM,Bronze emblem,Bronze emblems,8,0,"An emblem that shows the mark of an exceptional Pokémon trainer.",2,0,6
 637,SILVEREMBLEM,Silver emblem,Silver emblems,8,0,"An emblem that shows the mark of an excellent Pokémon trainer.",2,0,6
 638,GOLDEMBLEM,Gold emblem,Gold emblems,8,0,"An emblem that shows the mark of the greatest Pokémon trainer of all times.",2,0,6

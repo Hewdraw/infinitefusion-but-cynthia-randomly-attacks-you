@@ -441,13 +441,13 @@ class PokemonLoopletScreen
           break if chosen<0
           pokemon = $Trainer.party[chosen]
           types = []
-          GameData::Type.each { |t| types.push(t.id) if !t.pseudo_type && ![:NORMAL, :SHADOW].include?(t.id)}
+          GameData::Type.each { |t| types.push(t.id) if !t.pseudo_type && ![:SHADOW].include?(t.id)}
           types.sort! { |a, b| GameData::Type.get(a).id_number <=> GameData::Type.get(b).id_number }
           typenames = []
           types.each do |type|
             typenames.push(GameData::Type.get(type).name)
           end
-          type = types[Kernel.pbMessage("Select a Type", typesnames)]
+          type = types[Kernel.pbMessage("Select a Type", typenames)]
           pokemon.hiddenPowerType = type
         end
         screen.pbEndScene

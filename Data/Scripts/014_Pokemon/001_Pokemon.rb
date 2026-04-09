@@ -1607,7 +1607,7 @@ class Pokemon
     list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
-    list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && hasItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+    list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && (hasItem?(:WELLSPRINGMASK) || hasItem?(:HEARTHFLAMEMASK) || hasItem?(:CORNERSTONEMASK))
     list = list.uniq
     return list
   end

@@ -227,8 +227,8 @@ class PokeBattle_Battle
           next
         end
       else
-        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turncount % 10 == 9
-        next unless @turncount % 10 == 0
+        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turnCount % 10 == 9
+        next unless @turnCount % 10 == 0
       end
       pbCommonAnimation("UltraBurst2", b)
       b.pbEffectsOnSwitchIn

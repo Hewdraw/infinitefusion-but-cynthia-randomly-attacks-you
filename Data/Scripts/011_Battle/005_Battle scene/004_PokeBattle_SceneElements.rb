@@ -150,9 +150,6 @@ class PokemonDataBox < SpriteWrapper
     super
     @hpBarSprites.each_with_index do |hpbar,i|
       hpbar.y = value + 40 + 20*i
-      if i > 0
-        hpbar.y = value - 1000 if self.hp <= @battler.totalhp * i
-      end
     end
     @expBar.y    = value+64
     @hpNumbers.y = value+52
@@ -351,19 +348,16 @@ class PokemonDataBox < SpriteWrapper
     # Resize HP bar
     @hpBarSprites.each_with_index do |hpbar,i|
       w = 0
-      if self.hp > @battler.totalhp * i || i == 0
-        hpbar.visible = true if i > 0
-        w = @hpBarBitmaps[i].width.to_f*(self.hp-(@battler.totalhp * i))/@battler.totalhp
-        w = 1 if w < 1 && self.hp > 0
-        w = ((w/2.0).round)*2
-        hpbar.src_rect.width = w
-        hpColor = 0                                  # Green bar
-        hpColor = 1 if self.hp<=@battler.adjustedTotalhp/2   # Yellow bar
-        hpColor = 2 if self.hp<=@battler.adjustedTotalhp/4   # Red bar
-        hpbar.src_rect.y = hpColor*@hpBarBitmaps[i].height/3
-      elsif i > 0
-        hpbar.visible = false
-      end
+      #if self.hp > @battler.totalhp * i || i == 0
+      w = @hpBarBitmaps[i].width.to_f*(self.hp-(@battler.totalhp * i))/@battler.totalhp
+      w = 1 if w < 1 && self.hp > 0 && i == 0
+      w = ((w/2.0).round)*2
+      hpbar.src_rect.width = w
+      hpColor = 0                                  # Green bar
+      hpColor = 1 if self.hp<=@battler.adjustedTotalhp/2   # Yellow bar
+      hpColor = 2 if self.hp<=@battler.adjustedTotalhp/4   # Red bar
+      hpbar.src_rect.y = hpColor*@hpBarBitmaps[i].height/3
+      #end
     end
   end
 

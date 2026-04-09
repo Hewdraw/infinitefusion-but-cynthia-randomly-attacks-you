@@ -463,7 +463,7 @@ EMERADICT = {
     # },
     :REDCHAIN => {
         :name => "Red Chain",
-        :description => "Your last Pokemon gains the Legendary Pressure Ability.",
+        :description => "Opposing Pokemon with Legendary Pressure lose 1 stage in all stats at the start of the battle.",
         :rarity => :LEGENDARY,
         :tutormove => :REDSTONEDUSTER,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:ELECTRIC)},
@@ -622,7 +622,7 @@ def getEmeras
     EMERADICT.each do |emera, values|
         rarity = values[:rarity]
         next if !raritylist.include?(rarity)
-        next if getLooplet.pbHasEmera?(emera)
+        next if getLooplet.emeras.include?(emera)
         emeralist[raritylist.index(rarity)].push(emera)
     end
     return emeralist

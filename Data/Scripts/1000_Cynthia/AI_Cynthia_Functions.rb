@@ -2092,7 +2092,6 @@ class PokeBattle_AI
         next if !pkmn || !pkmn.fainted?
         faintedlist.append(pkmn)
       end
-      #print(faintedlist)
       score = 0 if faintedlist.length == 0
     #---------------------------------------------------------------------------
     when "198" #todo

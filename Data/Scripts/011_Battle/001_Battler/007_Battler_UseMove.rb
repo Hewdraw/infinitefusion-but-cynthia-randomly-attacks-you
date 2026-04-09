@@ -681,7 +681,7 @@ class PokeBattle_Battler
     move.pbInitialEffect(user, targets, hitNum)
     if user.hasActiveAbility?(:PIXAERILATE) && move.calcType == :FAIRY
       targets.each do |target|
-        if pbCalcTypeMod(:FLYING,user,target) > pbCalcTypeMod(:FAIRY,user,target)
+        if move.pbCalcTypeMod(:FLYING,user,target) > move.pbCalcTypeMod(:FAIRY,user,target)
           move.calcType = :FLYING
           break
         end
