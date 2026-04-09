@@ -74,8 +74,10 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     return $PokemonGlobal.nextBattleBGM.clone
   end
   if rand(75) == 0 && $PokemonGlobal.towervalues.nil?
+    $PokemonGlobal.cynthiachance = 0 if $PokemonGlobal.cynthiachance.nil?
     $PokemonGlobal.cynthiachance += 1000
     if rand(10) == 0
+      $PokemonGlobal.hatsunemikuchance = 0 if $PokemonGlobal.hatsunemikuchance.nil?
       $PokemonGlobal.hatsunemikuchance += 1000
       return pbStringToAudioFile("Miku")
     end
