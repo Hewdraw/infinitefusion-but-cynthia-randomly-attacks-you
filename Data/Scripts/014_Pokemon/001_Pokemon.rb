@@ -1598,7 +1598,7 @@ class Pokemon
         list.push(ability[0])
       end
     end
-    list.push(:ILLUMINATE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
+    list.push(:KEENEYE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
     list.push(:TRUANT) if hasActiveEmera?(:LINGERINGPOTIONOFTURTLEMASTER)
     list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
@@ -1725,7 +1725,14 @@ class Pokemon
       @ev[s.id] = 0
     end
     if !$PokemonGlobal.towervalues.nil?
-      @owner = Owner.new(0, "Hewdraw", 0, 2)
+      case @species
+      when :BELDUM
+        @owner = Owner.new(0, "Shadross", 0, 2)
+      when :ZORUA
+        @owner = Owner.new(0, "Kieru", 0, 2)
+      else
+        @owner = Owner.new(0, "Hewdraw", 0, 2)
+      end
     elsif owner.is_a?(Owner)
       @owner = owner
     elsif owner.is_a?(Player) || owner.is_a?(NPCTrainer)

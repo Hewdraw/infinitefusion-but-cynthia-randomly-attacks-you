@@ -35,11 +35,6 @@ EMERADICT = {
     #     :description => "Your Pokemon that use a move that locks them into it become fixated on it, increasing the damage they take and deal with that move.",
     #     :rarity => :COMMON,
     # },
-    :CHOICERIBBON => {
-        :name => "Choice Ribbon",
-        :description => "Your Pokemon gain 1 Crit stage when using the same move repeatedly.",
-        :rarity => :COMMON,
-    },
     :COMEBACKEMERA => {
         :name => "Comeback Emera",
         :description => "Your Pokemon gain 1 Accuracy after missing a move.",
@@ -92,7 +87,7 @@ EMERADICT = {
     },
     :LINGERINGPOTIONOFNIGHTVISION => {
         :name => "Lingering Potion of Night Vision",
-        :description => "Your Pokemon gain the Illuminate Ability.",
+        :description => "Your Pokemon gain the Keen Eye Ability.",
         :rarity => :COMMON,
     },
     :LINGERINGPOTIONOFOOZING => {
@@ -110,11 +105,6 @@ EMERADICT = {
         :description => "Your Pokemons Status Condition is healed when going up a floor.",
         :rarity => :COMMON,
     },
-    :MOSSYROCK => {
-        :name => "Mossy Rock",
-        :description => "Grassy Terrain is actived at the start of the battle.",
-        :rarity => :COMMON,
-    },
     # :NEWSHOES => {
     #     :name => "New Shoes",
     #     :description => "Your Pokemons with Run Away can no longer be trapped and their moves that switch them out gain 1 priority",
@@ -130,11 +120,6 @@ EMERADICT = {
     #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon",
     #     :rarity => :COMMON,
     # },
-    :POKEDEX => {
-        :name => "Pokedex",
-        :description => "You can obtain an extra Pokemon in a Pokeball floor.",
-        :rarity => :COMMON,
-    },
     :POTIONOFREGENERATION => {
         :name => "Potion of Regeneration",
         :description => "Your Pokemon gain Aqua Ring at the start of the battle.",
@@ -216,6 +201,11 @@ EMERADICT = {
         :description => "Your Pokemon gain the Early Bird Ability.",
         :rarity => :UNCOMMON,
     },
+    :CHOICERIBBON => {
+        :name => "Choice Ribbon",
+        :description => "Your Pokemon gain 1 Crit stage when using the same move repeatedly.",
+        :rarity => :UNCOMMON,
+    },
     # :EXTRADICE => {
     #     :name => "Extra Dice",
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
@@ -244,6 +234,16 @@ EMERADICT = {
     :MILOTICSCALE => {
         :name => "Milotic Scale",
         :description => "Your Pokemons Defense and Special Defense increase by 1.1x while they have a Status Condition.",
+        :rarity => :UNCOMMON,
+    },
+    :MOSSYROCK => {
+        :name => "Mossy Rock",
+        :description => "Grassy Terrain is actived at the start of the battle.",
+        :rarity => :UNCOMMON,
+    },
+    :POKEDEX => {
+        :name => "Pokedex",
+        :description => "You can obtain an extra Pokemon in a Pokeball floor.",
         :rarity => :UNCOMMON,
     },
     # :POTIONOFFIRERESISTANCE => {

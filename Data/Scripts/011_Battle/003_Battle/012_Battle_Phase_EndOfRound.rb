@@ -415,7 +415,7 @@ class PokeBattle_Battle
       next if !b.effects[PBEffects::SaltCure]
       next if !b.takesIndirectDamage?
       oldHP = b.hp
-      dmg = (b.pbHasType?(:STEEL) || b.pbHasType?(:WATER)) ? b.totalhp/4 : b.totalhp/8
+      dmg = (b.pbHasType?(:STEEL) || b.pbHasType?(:WATER)) ? b.totalhp/8 : b.totalhp/16
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?
