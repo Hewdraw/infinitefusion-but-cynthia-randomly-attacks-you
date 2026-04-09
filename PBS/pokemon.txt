@@ -23153,6 +23153,7 @@ Name = Celestedash
 InternalName = GRAPIDASHCELESTEELA
 Type1 = STEEL
 Type2 = FAIRY
+Weight = 1000000
 BaseStats = 86,100,81,90,98,94
 Abilities = LEVITATE
 Moves = 1,TACKLE

@@ -243,7 +243,7 @@ def checkPorygonEncounter
     pbMessage(_INTL("Huh? The PC glitched for a second while it booted."))
     pbMessage(_INTL("Did something make its way into the PC?"))
     pbWait(8)
-    pbAddPokemonSilent(:PORYGON,1)
+    pbAddPokemonSilent(:PORYGON,5)
     $PokemonGlobal.stepcount += 1
   end
 end
