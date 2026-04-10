@@ -2,7 +2,10 @@ def beeMovie
 	BEEMOVIESCRIPT.each do |line|
 		Kernel.pbMessage(line)
 	end
-	pbAddPokemon(:BEEDRILL, 10)
+	beedrill = Pokemon.new(:BEEDRILL, 10)
+	beedrill.shiny = true
+	beedrill.natural_shiny = true
+	pbAddPokemon(beedrill)
 end
 
 BEEMOVIESCRIPT = ["NARRATOR: ",
