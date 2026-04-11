@@ -1,3 +1,26 @@
+PARADOXLIST = [
+  :ENTEI, :GOUGINGFIRE,
+  :SUICUNE, :WALKINGWAKE,
+  :ENTEI, :RAGINGBOLT,
+  :PHANPY, :DONPHAN, :IRONTREADS,
+  :IRONTREADS, :GREATTUSK,
+  :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
+  :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
+  :LARVESTA, :VOLCARONA, :IRONMOTH,
+  :IRONMOTH, :SLITHERWING,
+  :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
+  :BAGON, :SHELGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
+  :DELIBIRD, :IRONBUNDLE,
+  :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
+  :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
+  :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
+  :DIANCIE, :MEGADIANCIE, :MAGEARNA,
+  :BULBASAUR, :IVYSAUR, :VENUSAUR, :PALMON, :TOGEMON, :LILLYMON, :ROSEMON, :ROSEMONBM,
+  :CHARMANDER, :CHARMELEON, :CHARIZARD, :AGUMON, :GREYMON, :METALGREYMON, :WARGREYMON,
+  :TOTODILE, :CROCONAW, :FERALIGATR, :GABUMON, :GARURUMON, :WEREGARURUMON, :METALGARURUMON,
+]
+
+
 #===============================================================================
 # SpeedCalcItem handlers
 #===============================================================================
@@ -10,25 +33,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,mult|
-    paradoxlist = [
-      :ENTEI, :GOUGINGFIRE,
-      :SUICUNE, :WALKINGWAKE,
-      :ENTEI, :RAGINGBOLT,
-      :PHANPY, :DONPHAN, :IRONTREADS,
-      :IRONTREADS, :GREATTUSK,
-      :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
-      :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
-      :LARVESTA, :VOLCARONA, :IRONMOTH,
-      :IRONMOTH, :SLITHERWING,
-      :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
-      :BAGON, :SHELGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
-      :DELIBIRD, :IRONBUNDLE,
-      :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
-      :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
-      :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
-      :DIANCIE, :MEGADIANCIE, :MAGEARNA,
-    ]
-    next unless paradoxlist.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(getBodyID(battler.species)).species) || paradoxlist.include?(GameData::Species.get(getHeadID(battler.species)).species)))
+    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyID(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadID(battler.species)).species)))
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -752,25 +757,7 @@ BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    paradoxlist = [
-      :ENTEI, :GOUGINGFIRE,
-      :SUICUNE, :WALKINGWAKE,
-      :ENTEI, :RAGINGBOLT,
-      :PHANPY, :DONPHAN, :IRONTREADS,
-      :IRONTREADS, :GREATTUSK,
-      :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
-      :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
-      :LARVESTA, :VOLCARONA, :IRONMOTH,
-      :IRONMOTH, :SLITHERWING,
-      :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
-      :BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
-      :DELIBIRD, :IRONBUNDLE,
-      :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
-      :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
-      :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
-      :DIANCIE, :MEGADIANCIE, :MAGEARNA,
-    ]
-    next unless paradoxlist.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(getBodyID(user.species)).species) || paradoxlist.include?(GameData::Species.get(getHeadID(user.species)).species)))
+    next unless PARADOXLIST.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyID(user.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadID(user.species)).species)))
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -1134,25 +1121,7 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
 
 BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    paradoxlist = [
-      :ENTEI, :GOUGINGFIRE,
-      :SUICUNE, :WALKINGWAKE,
-      :ENTEI, :RAGINGBOLT,
-      :PHANPY, :DONPHAN, :IRONTREADS,
-      :IRONTREADS, :GREATTUSK,
-      :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
-      :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
-      :LARVESTA, :VOLCARONA, :IRONMOTH,
-      :IRONMOTH, :SLITHERWING,
-      :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
-      :BAGON, :SHELLGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
-      :DELIBIRD, :IRONBUNDLE,
-      :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
-      :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
-      :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
-      :DIANCIE, :MEGADIANCIE, :MAGEARNA,
-    ]
-    next unless paradoxlist.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (paradoxlist.include?(GameData::Species.get(getBodyID(target.species)).species) || paradoxlist.include?(GameData::Species.get(getHeadID(target.species)).species)))
+    next unless PARADOXLIST.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyID(target.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadID(target.species)).species)))
     stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -2018,6 +1987,13 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
     end
   }
 )
+
+BattleHandlers::ItemOnSwitchIn.add(:MODIFIEDBOOSTERENERGY,
+  proc { |item,battler,battle|
+    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyID(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadID(battler.species)).species)))
+    battle.pbDisplay(_INTL("{1} activates its Modified Booster Energy!",battler.pbThis))
+  end
+end
 
 BattleHandlers::ItemOnSwitchIn.add(:DEEPSEASCALE,
   proc { |item,battler,battle|
