@@ -37,6 +37,8 @@ Generation = 6
 [BLASTOISE,1]
 FormName = Mega Blastoise
 MegaStone = MEGASTONEITE
+Type1 = WATER
+Type2 = GUN
 BaseStats = 79,103,120,78,135,115
 Abilities = MEGALAUNCHER
 HiddenAbility = MEGALAUNCHER
@@ -625,7 +627,7 @@ Generation = 9
 [CHIMECHO,1]
 FormName = Mega Chimecho
 MegaStone = MEGASTONEITE
-Type1 = PSYCHIC
+Type1 = SOUND
 Type2 = STEEL
 BaseStats = 75,50,110,65,135,120
 Abilities = LEVITATE

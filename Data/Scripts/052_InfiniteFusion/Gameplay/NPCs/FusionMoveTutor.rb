@@ -233,7 +233,7 @@ class FusionTutorService
       compatibleMoves << :HYDROSTEAM if (hasType(:WATER) && canLearnMove(:SUNNYDAY)) || canLearnMove(:SCALD)
       compatibleMoves << :THUNDERCLAP if hasType(:ELECTRIC) && canLearnMove(:SUCKERPUNCH)
       compatibleMoves << :BURNINGBULWARK if hasType(:FIRE) && canLearnMove(:PROTECT)
-      compatibleMoves << :AEROBLAST if (hasType(:WATER) || hasType(:PSYCHIC)) && canLearnMove(:HURRICANE)
+      compatibleMoves << :AEROBLAST if ((hasType(:WATER) || hasType(:PSYCHIC)) && canLearnMove(:HURRICANE)) || is_fusion_of([:ZAPDOS, :ARTICUNO, :MOLTRES, :GZAPDOS, :GARTICUNO, :GMOLTRES])
       compatibleMoves << :MIGHTYCLEAVE if hasType(:ROCK)
       compatibleMoves << :PSYBLADE if hasType(:PSYCHIC) || hasType(:ELECTRIC)
       compatibleMoves << :TACHYONCUTTER if hasType(:STEEL)
@@ -252,6 +252,11 @@ class FusionTutorService
       compatibleMoves << :RUINATION if hasType(:DARK)
       compatibleMoves << :JUNGLEHEALING if hasType(:GRASS)
       compatibleMoves << :SPACIALREND if hasType(:WATER) && hasType(:DRAGON)
+      compatibleMoves << :SACREDFIRE if is_fusion_of([:ENTEI, :SUICUNE, :RAIKOU, :GOUGINGFIRE, :WALKINGWAKE, :RAGINGBOLT])
+      # compatibleMoves << :WINDBOLTSTORM if hasType(:ELECTRIC)
+      # compatibleMoves << :BLEAKWINDSTORM if hasType(:FLYING)
+      # compatibleMoves << :SANDSEARSTORM if hasType(:GROUND)
+      compatibleMoves << :SPRINGTIDESTORM if hasType(:FAIRY)
     end
     return compatibleMoves
   end

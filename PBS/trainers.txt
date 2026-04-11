@@ -4180,9 +4180,9 @@ Pokemon = B101H131,86
     Item = AIRBALLOON
 #-------------------------------
 [LEADER_Jasmine,Jasmine,0]
-Pokemon = FORRETRESSGCORSOLA,5
+Pokemon = FORRETRESSGCORSOLA,5  
     Offset = 2
-    Moves = POISONJAB,SPIKES,RAPIDSPIN,STEALTHROCK
+    Moves = TOXICSPIKES,SPIKES,RAPIDSPIN,STEALTHROCK
     Ability = CURSEDBODY
     Item = EVIOLITE
     Gender = F
@@ -4230,15 +4230,15 @@ Pokemon = EXCADRILLRAPIDASH,5
     IV = 31,31,31,31,31,31
     EV = 4,252,0,252,0,0
     Happiness = 255
-Pokemon = GSLOWBROMAGNEZONE,5
+Pokemon = GSLOWBROMAGNEZONE,5   
     Offset = 1
     Moves = STEELBEAM,SLUDGEBOMB,PSYCHIC,SHOOT
-    Ability = KEENEYE
-    Item = PIDGEOTITE
+    Ability = REGENERATOR
+    Item = ASSAULTVEST
     Gender = F
-    Nature = TIMID
+    Nature = MODEST
     IV = 31,31,31,31,31,31
-    EV = 4,0,0,252,252,0
+    EV = 252,0,252,4,0,0
     Happiness = 255
 #-------------------------------
 [LEADER_Jasmine,Jasmine,1]
