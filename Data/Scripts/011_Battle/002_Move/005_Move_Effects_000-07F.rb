@@ -2244,6 +2244,10 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
   # end
 
   def pbMoveFailed?(user, targets)
+    if @battle.rules["ohkoclause"]
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
     target = targets[0]
     if target.level > user.level || target.raid
       @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
@@ -2285,6 +2289,16 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
     super
     if target.fainted?
       @battle.pbDisplay(_INTL("It's a one-hit KO!"))
+      @battle.opponent.each_with_index do |trainer,i|
+        if trainer.name == "Hewdraw"
+          @scene.pbShowOpponent(i)
+          pbDisplayPaused("nah were not doing that im turning on ohko clause")
+          battle.rules["ohkoclause"] = true
+          oldTrainer = addSprite(battle.scene.sprites["trainer_#{i}"],PictureOrigin::Bottom)
+          oldTrainer.moveDelta(0,8,Graphics.width/4,0)
+          oldTrainer.setVisible(8,false)
+        end
+      end
     end
   end
 end

@@ -192,6 +192,7 @@ class FusionTutorService
       compatibleMoves << :SCALESHOT if hasType(:DRAGON) || canLearnMove(:ARMTHRUST) || canLearnMove(:BARRAGE) || canLearnMove(:BONERUSH) || canLearnMove(:BULLETSEED) || canLearnMove(:COMETPUNCH) || canLearnMove(:DOUBLESLAP) || canLearnMove(:FURYATTACK) || canLearnMove(:FURYSWIPES) || canLearnMove(:ICICLESPEAR) || canLearnMove(:PINMISSILE) || canLearnMove(:ROCKBLAST) || canLearnMove(:SPIKECANNON) || canLearnMove(:TAILSLAP) || canLearnMove(:WATERSHURIKEN) || canLearnMove(:MACHINEGUNJAB) || canLearnMove(:GIGADESTRUCTION) || canLearnMove(:THORNTHROW) || canLearnMove(:NEEDLESPRAY) || canLearnMove(:LIGHTSPEEDJABBING) || canLearnMove(:JEWELOFHEART)
       compatibleMoves << :POWERGEM if hasType(:ROCK)
       compatibleMoves << :RAPIDSPIN if is_fusion_of([:DUSKNOIR])
+      compatibleMoves << :HYPERFANG if is_fusion_of([:FERALIGATR])
 
     end
     if includeLegendaries

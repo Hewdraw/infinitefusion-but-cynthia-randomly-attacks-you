@@ -640,13 +640,6 @@ BattleHandlers::DamageCalcUserItem.add(:FIREGEM,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.add(:FIRESPHERE,
-  proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 1.5 if user.isSpecies?(:GMOLTRES) && move.specialMove?
-    mults[:final_damage_multiplier] *= 1.3 if user.isFusionOf(:MOLTRES) && move.specialMove?
-  }
-)
-
 BattleHandlers::DamageCalcUserItem.add(:FLYINGGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleGem(user,:FLYING,move,mults,type)
@@ -1080,7 +1073,7 @@ BattleHandlers::DamageCalcTargetItem.add(:DRAGONSCALE,
 
 BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
-    if target.isFusionOf(:TYRANTRUM)
+    if target.isFusionOf(:TYRANTRUM) || target.isFusionOf(:HOTDINO)
       mults[:defense_multiplier] *= 1.5
     end
   }
@@ -1992,8 +1985,8 @@ BattleHandlers::ItemOnSwitchIn.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,battle|
     next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyID(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadID(battler.species)).species)))
     battle.pbDisplay(_INTL("{1} activates its Modified Booster Energy!",battler.pbThis))
-  end
-end
+  }
+)
 
 BattleHandlers::ItemOnSwitchIn.add(:DEEPSEASCALE,
   proc { |item,battler,battle|
