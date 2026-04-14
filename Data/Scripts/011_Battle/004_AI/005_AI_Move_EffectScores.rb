@@ -2428,6 +2428,16 @@ class PokeBattle_AI
     when "124"
     #---------------------------------------------------------------------------
     when "125"
+      score = 0
+      hasThisMove = false; hasOtherMoves = false; hasUnusedMoves = false
+      user.eachMove do |m|
+        hasThisMove = true if m.id == move.id
+        hasOtherMoves = true if m.id != move.id
+        hasUnusedMoves = true if m.id != move.id && !user.movesUsed.include?(m.id)
+      end
+      if !hasThisMove || !hasOtherMoves || hasUnusedMoves
+        score = -100
+      end
     #---------------------------------------------------------------------------
     when "126"
       score += 20   # Shadow moves are more preferable

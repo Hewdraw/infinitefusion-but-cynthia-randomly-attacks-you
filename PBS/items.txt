@@ -908,6 +908,7 @@
 842,SALARIANITE,Salarianite,Salarianites,1,0,"todo",0,0,0
 843,SABLNETTITE,Sablnettite,Sablnettites,1,0,"todo",0,0,0
 844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"todo",0,0,0
+845,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"todo",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

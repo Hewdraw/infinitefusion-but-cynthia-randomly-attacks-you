@@ -3,8 +3,10 @@ def beeMovie
 		Kernel.pbMessage(line)
 	end
 	beedrill = Pokemon.new(:BEEDRILL, 10)
+	beedrill.moves = [Pokemon::Move.new(:FLY), Pokemon::Move.new(:ATTACKORDER), Pokemon::Move.new(:DEFENDORDER), Pokemon::Move.new(:HEALORDER)]
 	beedrill.shiny = true
 	beedrill.natural_shiny = true
+	beedrill.item = :BEEDRILLITE
 	pbAddPokemon(beedrill)
 end
 

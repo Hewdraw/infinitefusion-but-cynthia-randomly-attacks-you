@@ -193,6 +193,7 @@ class FusionTutorService
       compatibleMoves << :POWERGEM if hasType(:ROCK)
       compatibleMoves << :RAPIDSPIN if is_fusion_of([:DUSKNOIR])
       compatibleMoves << :HYPERFANG if is_fusion_of([:FERALIGATR])
+      compatibleMoves << :AURASPHERE if canLearnMove(:FOCUSBLAST)
 
     end
     if includeLegendaries

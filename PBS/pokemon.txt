@@ -22187,6 +22187,37 @@ BaseStats = 101,109,124,79,57,104
 Abilities = DROUGHT
 Moves = 1,TACKLE
 Shape = Quadruped
+#-------------------------------
+[1000725]
+Name = Dialga
+InternalName = PRIMALDIALGA
+Type1 = STEEL
+Type2 = DRAGON
+BaseStats = 100,120,150,90,180,140
+GenderRate = Genderless
+GrowthRate = Slow
+BaseEXP = 306
+EffortPoints = 0,0,0,0,3,0
+Rareness = 30
+Happiness = 0
+Abilities = TEMPORALFLUX
+HiddenAbility = TEMPORALFLUX
+Moves = 1,DRAGONBREATH,1,SCARYFACE,6,METALCLAW,10,ANCIENTPOWER,15,SLASH,19,POWERGEM,24,METALBURST,28,DRAGONCLAW,33,EARTHPOWER,37,AURASPHERE,42,IRONTAIL,46,ROAROFTIME,50,FLASHCANNON
+TutorMoves = AERIALACE,BLIZZARD,BRICKBREAK,BULKUP,BULLDOZE,CONFIDE,CUT,DOUBLETEAM,DRACOMETEOR,DRAGONCLAW,DRAGONPULSE,DRAGONTAIL,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,FACADE,FIREBLAST,FLAMETHROWER,FLASHCANNON,FRUSTRATION,GIGAIMPACT,GRAVITY,HIDDENPOWER,HYPERBEAM,HYPERVOICE,ICEBEAM,IRONDEFENSE,IRONHEAD,IRONTAIL,MAGNETRISE,OUTRAGE,OVERHEAT,PROTECT,PSYCHUP,RAINDANCE,REST,RETURN,ROAR,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SAFEGUARD,SANDSTORM,SHADOWCLAW,SHOCKWAVE,SLEEPTALK,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,THUNDER,THUNDERBOLT,THUNDERWAVE,TOXIC,TRICKROOM,HONECLAWS,INCINERATE,FLASH,ANCIENTPOWER,FURYCUTTER,MUDSLAP,SWIFT,TWISTER,SECRETPOWER
+Compatibility = Undiscovered
+StepsToHatch = 30855
+Height = 5.4
+Weight = 683.0
+Color = White
+Shape = Quadruped
+Kind = Temporal
+Pokedex = It has the power to control time. It appears in Sinnoh-region myths as an ancient deity.
+BattlerPlayerX = 0
+BattlerPlayerY = -4
+BattlerEnemyX = 7
+BattlerEnemyY = 0
+BattlerShadowX = 0
+BattlerShadowSize = 5
 
 #Misc
 #-------------------------------
@@ -23206,6 +23237,35 @@ Shape = Head
 
 #Legendary Raids
 #-------------------------------
+[1000999]
+Name = Cool Dino
+InternalName = COOLERDINO
+Type1 = QMARKS
+BaseStats = 500,1,500,1,1,500
+GenderRate = Genderless
+GrowthRate = Slow
+BaseEXP = 1
+EffortPoints = 3,0,0,0,0,0
+Rareness = 3
+Happiness = 0
+Abilities = INTIMIDATE,MENACE
+HiddenAbility = SCRAPPY
+Moves = 1,HAPPYHOUR,1,RECYCLE
+Compatibility = Undiscovered
+StepsToHatch = 30855
+Height = 4.5
+Weight = 750.0
+Color = Black
+Shape = Head
+Kind = Cardboard
+Pokedex = Property of the Goldenrod Dept. Store.
+BattlerPlayerX = 0
+BattlerPlayerY = 32
+BattlerEnemyX = 0
+BattlerEnemyY = 3
+BattlerShadowX = 0
+BattlerShadowSize = 2
+#-------------------------------
 [1001000]
 Name = Articuno
 InternalName = GARTICUNO
@@ -23261,35 +23321,6 @@ Color = Red
 Category = Malevolent
 Pokedex = This Pokémon's sinister, flame-like aura will consume the spirit of any creature it hits. Victims become burned-out shadows of themselves.
 Generation = 8
-#-------------------------------
-[1001003]
-Name = Cool Dino
-InternalName = COOLERDINO
-Type1 = QMARKS
-BaseStats = 500,1,500,1,1,500
-GenderRate = Genderless
-GrowthRate = Slow
-BaseEXP = 1
-EffortPoints = 3,0,0,0,0,0
-Rareness = 3
-Happiness = 0
-Abilities = INTIMIDATE,MENACE
-HiddenAbility = SCRAPPY
-Moves = 1,HAPPYHOUR,1,RECYCLE
-Compatibility = Undiscovered
-StepsToHatch = 30855
-Height = 4.5
-Weight = 750.0
-Color = Black
-Shape = Head
-Kind = Cardboard
-Pokedex = Property of the Goldenrod Dept. Store.
-BattlerPlayerX = 0
-BattlerPlayerY = 32
-BattlerEnemyX = 0
-BattlerEnemyY = 3
-BattlerShadowX = 0
-BattlerShadowSize = 2
 #-------------------------------
 [1001004]
 Name = Gouging Fire

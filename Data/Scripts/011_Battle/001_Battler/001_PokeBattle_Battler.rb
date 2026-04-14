@@ -425,8 +425,7 @@ class PokeBattle_Battler
     when :NORMAL
       return true if hasActiveItem?([:UPGRADE, :OVALSTONE, :QUICKPOWDER, :METALPOWDER])
     when :FIGHTING
-      return true if hasActiveItem?([:LUCKYPUNCH])
-      return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:ZAPDOS)
+      return true if hasActiveItem?([:LUCKYPUNCH, :LIGHTNINGSPHERE])
     when :FLYING
     when :POISON
     when :GROUND
@@ -438,8 +437,7 @@ class PokeBattle_Battler
     when :STEEL
     when :FIRE
       return true if hasActiveAbility?(:WIRED)
-      return true if hasActiveItem?(:MAGMARIZER)
-      return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:GMOLTRES)
+      return true if hasActiveItem?([:MAGMARIZER, :FIRESPHERE])
       return true if pbHasType?(:FIREWATERGRASS)
     when :WATER
       return true if hasActiveItem?([:PRISMSCALE, :DEEPSEATOOTH, :DEEPSEASCALE])
@@ -449,19 +447,16 @@ class PokeBattle_Battler
       return true if pbHasType?(:FIREWATERGRASS)
     when :ELECTRIC
       return true if hasActiveAbility?(:WIRED)
-      return true if hasActiveItem?(:ELECTIRIZER)
-      return true if hasActiveItem?(:LIGHTNINGSPHERE) && isFusionOf(:GZAPDOS)
+      return true if hasActiveItem?(:ELECTIRIZER, :LIGHTNINGSPHERE)
     when :PSYCHIC
-      return true if hasActiveItem?(:QUICKPOWDER, :METALPOWDER)
+      return true if hasActiveItem?(:QUICKPOWDER, :METALPOWDER, :ICESPHERE)
       return true if hasActiveAbility?(:WIRED)
-      return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:ARTICUNO)
     when :ICE
-      return true if hasActiveItem?(:REAPERCLOTH)
-      return true if hasActiveItem?(:ICESPHERE) && isFusionOf(:GARTICUNO)
+      return true if hasActiveItem?([:REAPERCLOTH, :ICESPHERE])
     when :DRAGON
       return true if hasActiveItem?(:DRAGONSCALE)
     when :DARK
-      return true if hasActiveItem?(:FIRESPHERE) && isFusionOf(:MOLTRES)
+      return true if hasActiveItem?(:FIRESPHERE)
     when :FAIRY
       return true if hasActiveEmera?(:FAIRYWREATH)
     when :GUN

@@ -1114,11 +1114,7 @@ def calculateFusedPokemonLevel(lv1, lv2, superSplicers)
       return lv2
     end
   else
-    if (lv1 >= lv2) then
-      return (2 * lv1 + lv2) / 3
-    else
-      return (2 * lv2 + lv1) / 3
-    end
+    return (lv2 + lv1) / 2
   end
   return lv1
 end

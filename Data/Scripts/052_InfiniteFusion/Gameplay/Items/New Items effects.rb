@@ -1153,58 +1153,88 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
 
 
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
-  if pkmn.isSpecies?(:ARTICUNO)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :GARTICUNO
-    pkmn.level = level
-    next false
+  regionallist = {
+    :RATTATA => [:ARATTATA],
+    :RATICATE => [:ARATICATE],
+    :RAICHU => [:ARAICHU],
+    :SANDSHREW => [:ASANDSHREW],
+    :SANDSLASH => [:ASANDSLASH],
+    :VULPIX => [:AVULPIX],
+    :NINETALES => [:ANINETALES],
+    :DIGLETT => [:ADIGLETT],
+    :DUGTRIO => [:ADUGTRIO],
+    :MEOWTH => [:AMEOWTH, :GMEOWTH],
+    :PERSIAN => [:APERSIAN, :GPERSIAN],
+    :PERRSERKER => [:APERRSERKER, :GPERRSERKER],
+    :GROWLITHE => [:HGROWLITHE],
+    :ARCANINE => [:HARCANINE],
+    :GEODUDE => [:AGEODUDE],
+    :GRAVELER => [:AGRAVELER],
+    :GOLEM => [:AGOLEM],
+    :PONYTA => [:GPONYTA],
+    :RAPIDASH => [:GRAPIDASH],
+    :SLOWPOKE => [:GSLOWPOKE],
+    :SLOWBRO => [:GSLOWBRO],
+    :FARFETCHD => [:GFARFETCHD],
+    :SIRFETCHD => [:GSIRFETCHD],
+    :GRIMER => [:AGRIMER],
+    :MUK => [:AMUK],
+    :VOLTORB => [:HVOLTORB],
+    :ELECTRODE => [:HELECTRODE],
+    :EXEGGUTOR => [:AEXEGGUTOR],
+    :MAROWAK => [:AMAROWAK],
+    :WEEZING => [:GWEEZING],
+    :MRMIME => [:GMRMIME],
+    :MRRIME => [:GMRRIME],
+    :TAUROS => [:PTAUROS, :PTAUROSFIRE, :PTAUROSWATER],
+    :ARTICUNO => [:GARTICUNO],
+    :ZAPDOS => [:GZAPDOS],
+    :MOLTRES => [:GMOLTRES],
+    :TYPHLOSION => [:HTYPHLOSION],
+    :WOOPER => [:PWOOPER],
+    :QUAGSIRE => [:PQUAGSIRE],
+    :CLODSIRE => [:PCLODSIRE],
+    :SLOWKING => [:GSLOWKING],
+    :QWILFISH => [:HQWILFISH],
+    :OVERQWIL => [:HOVERQWIL],
+    :SNEASEL => [:HSNEASEL],
+    :SNEASLER => [:HSNEASLER],
+    :CORSOLA => [:GCORSOLA],
+    :CURSOLA => [:GCURSOLA],
+    :ZIGZAGOON => [:GZIGZAGOON],
+    :LINOONE => [:GLINOONE],
+    :OBSTAGOON => [:GOBSTAGOON],
+    :YAMASK => [:GYAMASK],
+    :ZORUA => [:HZORUA],
+    :ZOROARK => [:HZOROARK],
+    :STUNFISK => [:GSTUNFISK],
+    :SLIGGOO => [:HSLIGGOO],
+    :GOODRA => [:HGOODRA],
+  }
+  level = pkmn.level
+  regionallist.each do |kanto, regional|
+    if kanto == pkmn.species
+      pbMessage(_INTL("{1} changed form!", pkmn.name))
+      pkmn.species = regional[0]
+      break
+    end
+    if regional.include?(pkmn.species)
+      regional.each_with_index do |region, i|
+        next if region != pkmn.species
+        pbMessage(_INTL("{1} changed form!", pkmn.name))
+        if i == regional.length - 1
+          pkmn.species = kanto
+        else
+          pkmn.species = regional[i+1]
+        end
+      end
+    end
   end
-  if pkmn.isSpecies?(:GARTICUNO)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :ARTICUNO
-    pkmn.level = level
-    next false
-  end
+  pkmn.level = level
   next false
 })
 
-ItemHandlers::UseOnPokemon.add(:LIGHTNINGSPHERE, proc { |item, pkmn, scene|
-  if pkmn.isSpecies?(:ZAPDOS)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :GZAPDOS
-    pkmn.level = level
-    next false
-  end
-  if pkmn.isSpecies?(:GZAPDOS)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :ZAPDOS
-    pkmn.level = level
-    next false
-  end
-  next false
-})
-
-ItemHandlers::UseOnPokemon.add(:FIRESPHERE, proc { |item, pkmn, scene|
-  if pkmn.isSpecies?(:MOLTRES)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :GMOLTRES
-    pkmn.level = level
-    next false
-  end
-  if pkmn.isSpecies?(:GMOLTRES)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :MOLTRES
-    pkmn.level = level
-    next false
-  end
-  next false
-})
+ItemHandlers::UseOnPokemon.copy(:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE)
 
 ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene|
   next false if pkmn.species == :OMNIMON
@@ -1938,23 +1968,10 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
       scene.pbDisplay(_INTL(" ... "))
       scene.pbDisplay(_INTL(" ... "))
 
-      if pokemon.exp_when_fused_head == nil || pokemon.exp_when_fused_body == nil
-        new_level = calculateUnfuseLevelOldMethod(pokemon, supersplicers)
-        body_level = new_level
-        head_level = new_level
-        poke1 = Pokemon.new(bodyPoke, body_level)
-        poke2 = Pokemon.new(headPoke, head_level)
-      else
-        exp_body = pokemon.exp_when_fused_body + pokemon.exp_gained_since_fused
-        exp_head = pokemon.exp_when_fused_head + pokemon.exp_gained_since_fused
-
-        poke1 = Pokemon.new(bodyPoke, pokemon.level)
-        poke2 = Pokemon.new(headPoke, pokemon.level)
-        poke1.exp = exp_body
-        poke2.exp = exp_head
-      end
-      body_level = poke1.level
-      head_level = poke2.level
+      body_level = pokemon.level
+      head_level = pokemon.level
+      poke1 = Pokemon.new(bodyPoke, body_level)
+      poke2 = Pokemon.new(headPoke, head_level)
 
       pokemon.exp_gained_since_fused = 0
       pokemon.exp_when_fused_head = nil

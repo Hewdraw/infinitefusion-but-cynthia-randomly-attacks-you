@@ -921,55 +921,55 @@ BattleHandlers::AccuracyCalcUserAllyAbility.add(:VICTORYSTAR,
 #===============================================================================
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:LIGHTNINGROD,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:base_accuracy] = 0 if type == :ELECTRIC
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:HEATSINK,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:base_accuracy] = 0 if type == :FIRE
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:POLAR,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:base_accuracy] = 0 if type == :ICE
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:NOGUARD,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:base_accuracy] = 0
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:SANDVEIL,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:evasion_multiplier] *= 1.25 if target.battle.pbWeather == :Sandstorm
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:STORMDRAIN,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:base_accuracy] = 0 if type == :WATER
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:TANGLEDFEET,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:accuracy_multiplier] /= 2 if target.effects[PBEffects::Confusion] > 0
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:UNAWARE,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     mods[:accuracy_stage] = 0 if move.damagingMove?
   }
 )
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:WONDERSKIN,
-  proc { |ability,user,mods,target,move,type|
+  proc { |ability,target,mods,user,move,type|
     if move.statusMove? && user.opposes?(target)
       mods[:base_accuracy] = 50 if mods[:base_accuracy] > 50
     end

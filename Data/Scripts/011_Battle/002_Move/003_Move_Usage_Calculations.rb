@@ -164,7 +164,7 @@ class PokeBattle_Move
     end
     if target.abilityActive? && !@battle.moldBreaker
       BattleHandlers.triggerAccuracyCalcTargetAbility(target.ability,
-         user,modifiers,target,self,@calcType)
+         target,modifiers,user,self,@calcType)
       @battle.pbShowAbilitySplash(target) if target.hasActiveAbility?(:NOGUARD)
       @battle.pbHideAbilitySplash(target) if target.hasActiveAbility?(:NOGUARD)
     end
