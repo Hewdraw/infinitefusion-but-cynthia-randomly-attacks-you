@@ -1221,6 +1221,7 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
       next if region != pkmn.species
       pbMessage(_INTL("{1} changed form!", pkmn.name))
       pkmn.species = regional[(i+1) % regional.length]
+      break
     end
   end
   pkmn.level = level
