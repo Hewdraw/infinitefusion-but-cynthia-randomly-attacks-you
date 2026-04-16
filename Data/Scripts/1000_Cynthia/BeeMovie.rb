@@ -1,4 +1,5 @@
 def beeMovie
+	return if Kernel.pbMessage("Are you sure?", ["Yes", "No"]) == 1
 	BEEMOVIESCRIPT.each do |line|
 		Kernel.pbMessage(line)
 	end
@@ -8,6 +9,7 @@ def beeMovie
 	beedrill.natural_shiny = true
 	beedrill.item = :BEEDRILLITE
 	pbAddPokemon(beedrill)
+	Kernel.pbMessage("Damn you really went through all that?")
 end
 
 BEEMOVIESCRIPT = ["NARRATOR: ",

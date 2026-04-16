@@ -1065,6 +1065,10 @@
 1096,FLOWERTRICK,Flower Trick,343,70,GRASS,Physical,0,10,0,NearOther,0,bef,"a"
 1097,MATCHAGOTCHA,Matcha Gotcha,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a"
 1098,TWINEEDLEPLUS,Twineedle+,345,60,BUG,Physical,100,20,30,NearOther,0,bef,"The foe is stabbed twice by a pair of stingers. It may also poison the target." #todo
+1099,SHELLSIDEARM,Shellside Arm,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
+1100,EERIESPELL,Eerie Spell,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
+1101,CORROSIVEGAS,Corrosive Gas,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
+1102,SNAPTRAP,Snap Trap,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
 
 
 

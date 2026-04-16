@@ -2077,7 +2077,7 @@ class PokeBattle_Move_0C5 < PokeBattle_TwoTurnMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if rand(1) == 0
+    if rand(2) == 0
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     else
       target.pbFreeze if target.pbCanFreeze?(user,false,self)
@@ -2098,7 +2098,7 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    if rand(1) == 0
+    if rand(2) == 0
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     else
       target.pbFreeze if target.pbCanFreeze?(user,false,self)

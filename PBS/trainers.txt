@@ -1820,7 +1820,7 @@ Pokemon = GUZZLORD,44
     Ball = MASTERBALL
 #-------------------------------
 [LEADER_Brock,Brock,0]
-Pokemon = AGEODUDE,5
+Pokemon = ALOLAGEODUDE,5
     Offset = 1
     Moves = EXPLOSION,SANDSTORM
     Ability = GALVANIZE
@@ -1914,7 +1914,7 @@ Pokemon = B130H299,71
     Item = MYSTICWATER
 #-------------------------------
 [LEADER_Surge,Lt. Surge,0]
-Pokemon = HELECTRODE,5
+Pokemon = HISUIELECTRODE,5
     Offset = 4
     Moves = CHLOROBLAST,ELECTRICTERRAIN,VOLTSWITCH
     Ability = STATIC
@@ -1934,7 +1934,7 @@ Pokemon = LANTURN,5
     IV = 16,16,16,16,16,16
     EV = 96,0,0,0,0,0
     Happiness = 255
-Pokemon = ARAICHU,5
+Pokemon = ALOLARAICHU,5
     Offset = 1
     Moves = RISINGVOLTAGE,PSYSHOCK,SURF
     Ability = SURGESURFER
@@ -1981,7 +1981,7 @@ Pokemon = JUMPLUFF,5
     IV = 16,16,16,16,16,16
     EV = 128,0,0,0,0,0
     Happiness = 255
-Pokemon = AEXEGGUTOR,5
+Pokemon = ALOLAEXEGGUTOR,5
     Offset = 2
     Moves = SUNNYDAY,DRAGONPULSE,FLAMETHROWER
     Ability = HARVEST
@@ -2090,7 +2090,7 @@ Pokemon = CROBAT,5
     IV = 24,24,24,24,24,24
     EV = 160,0,0,0,0,0
     Happiness = 255
-Pokemon = AMUK,5
+Pokemon = ALOLAMUK,5
     Offset = 3
     Moves = DRAINPUNCH,POISONJAB,KNOCKOFF
     Ability = POISONTOUCH

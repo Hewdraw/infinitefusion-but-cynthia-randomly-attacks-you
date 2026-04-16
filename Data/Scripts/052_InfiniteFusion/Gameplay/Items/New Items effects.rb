@@ -1151,83 +1151,76 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   next false
 })
 
-
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
-  regionallist = {
-    :RATTATA => [:ARATTATA],
-    :RATICATE => [:ARATICATE],
-    :RAICHU => [:ARAICHU],
-    :SANDSHREW => [:ASANDSHREW],
-    :SANDSLASH => [:ASANDSLASH],
-    :VULPIX => [:AVULPIX],
-    :NINETALES => [:ANINETALES],
-    :DIGLETT => [:ADIGLETT],
-    :DUGTRIO => [:ADUGTRIO],
-    :MEOWTH => [:AMEOWTH, :GMEOWTH],
-    :PERSIAN => [:APERSIAN, :GPERSIAN],
-    :PERRSERKER => [:APERRSERKER, :GPERRSERKER],
-    :GROWLITHE => [:HGROWLITHE],
-    :ARCANINE => [:HARCANINE],
-    :GEODUDE => [:AGEODUDE],
-    :GRAVELER => [:AGRAVELER],
-    :GOLEM => [:AGOLEM],
-    :PONYTA => [:GPONYTA],
-    :RAPIDASH => [:GRAPIDASH],
-    :SLOWPOKE => [:GSLOWPOKE],
-    :SLOWBRO => [:GSLOWBRO],
-    :FARFETCHD => [:GFARFETCHD],
-    :SIRFETCHD => [:GSIRFETCHD],
-    :GRIMER => [:AGRIMER],
-    :MUK => [:AMUK],
-    :VOLTORB => [:HVOLTORB],
-    :ELECTRODE => [:HELECTRODE],
-    :EXEGGUTOR => [:AEXEGGUTOR],
-    :MAROWAK => [:AMAROWAK],
-    :WEEZING => [:GWEEZING],
-    :MRMIME => [:GMRMIME],
-    :MRRIME => [:GMRRIME],
-    :TAUROS => [:PTAUROS, :PTAUROSFIRE, :PTAUROSWATER],
-    :ARTICUNO => [:GARTICUNO],
-    :ZAPDOS => [:GZAPDOS],
-    :MOLTRES => [:GMOLTRES],
-    :TYPHLOSION => [:HTYPHLOSION],
-    :WOOPER => [:PWOOPER],
-    :QUAGSIRE => [:PQUAGSIRE],
-    :CLODSIRE => [:PCLODSIRE],
-    :SLOWKING => [:GSLOWKING],
-    :QWILFISH => [:HQWILFISH],
-    :OVERQWIL => [:HOVERQWIL],
-    :SNEASEL => [:HSNEASEL],
-    :SNEASLER => [:HSNEASLER],
-    :CORSOLA => [:GCORSOLA],
-    :CURSOLA => [:GCURSOLA],
-    :ZIGZAGOON => [:GZIGZAGOON],
-    :LINOONE => [:GLINOONE],
-    :OBSTAGOON => [:GOBSTAGOON],
-    :YAMASK => [:GYAMASK],
-    :ZORUA => [:HZORUA],
-    :ZOROARK => [:HZOROARK],
-    :STUNFISK => [:GSTUNFISK],
-    :SLIGGOO => [:HSLIGGOO],
-    :GOODRA => [:HGOODRA],
-  }
+  regionallist = [
+    [:RATTATA, :ALOLARATTATA],
+    [:RATICATE, :ALOLARATICATE],
+    [:RAICHU, :ALOLARAICHU],
+    [:SANDSHREW, :ALOLASANDSHREW],
+    [:SANDSLASH, :ALOLASANDSLASH],
+    [:VULPIX, :ALOLAVULPIX],
+    [:NINETALES, :ALOLANINETALES],
+    [:DIGLETT, :ALOLADIGLETT],
+    [:DUGTRIO, :ALOLADUGTRIO],
+    [:MEOWTH, :ALOLAMEOWTH, :GALARMEOWTH],
+    [:PERSIAN, :ALOLAPERSIAN, :GALARPERSIAN],
+    [:PERRSERKER, :ALOLAPERRSERKER, :KANTOPERRSERKER],
+    [:GROWLITHE, :HISUIGROWLITHE],
+    [:ARCANINE, :HISUIARCANINE],
+    [:GEODUDE, :ALOLAGEODUDE],
+    [:GRAVELER, :ALOLAGRAVELER],
+    [:GOLEM, :ALOLAGOLEM],
+    [:PONYTA, :GALARPONYTA],
+    [:RAPIDASH, :GALARRAPIDASH],
+    [:SLOWPOKE, :GALARSLOWPOKE],
+    [:SLOWBRO, :GALARSLOWBRO],
+    [:SLOWKING, :GALARSLOWKING],
+    [:FARFETCHD, :GALARFARFETCHD],
+    [:SIRFETCHD, :KANTOSIRFETCHD],
+    [:GRIMER, :ALOLAGRIMER],
+    [:MUK, :ALOLAMUK],
+    [:VOLTORB, :HISUIVOLTORB],
+    [:ELECTRODE, :HISUIELECTRODE],
+    [:EXEGGUTOR, :ALOLAEXEGGUTOR],
+    [:MAROWAK, :ALOLAMAROWAK],
+    [:WEEZING, :GALARWEEZING],
+    [:MRMIME, :GALARMRMIME],
+    [:MRRIME, :KANTOMRRIME],
+    [:TAUROS, :PALDEATAUROS, :PALDEATAUROSFIRE, :PALDEATAUROSWATER],
+    [:ARTICUNO, :GALARARTICUNO],
+    [:ZAPDOS, :GALARZAPDOS],
+    [:MOLTRES, :GALARMOLTRES],
+    [:TYPHLOSION, :HISUITYPHLOSION],
+    [:WOOPER, :PALDEAWOOPER],
+    [:QUAGSIRE, :PALDEAQUAGSIRE],
+    [:CLODSIRE, :JOHTOCLODSIRE],
+    [:QWILFISH, :HISUIQWILFISH],
+    [:OVERQWIL, :JOHTOOVERQWIL],
+    [:SNEASEL, :HISUISNEASEL],
+    [:WEAVILE, :HISUIWEAVILE],
+    [:SNEASLER, :JOHTOSNEASLER],
+    [:CORSOLA, :GALARCORSOLA],
+    [:CURSOLA, :HOENNCURSOLA],
+    [:ZIGZAGOON, :GALARZIGZAGOON],
+    [:LINOONE, :GALARLINOONE],
+    [:OBSTAGOON, :HOENNOBSTAGOON],
+    [:YAMASK, :GALARYAMASK],
+    [:COFAGRIGUS, :GALARCOFAGRIGUS],
+    [:RUNERIGUS, :UNOVARUNERIGUS],
+    [:ZORUA, :HISUIZORUA],
+    [:ZOROARK, :HISUIZOROARK],
+    [:STUNFISK, :GALARSTUNFISK],
+    [:SLIGGOO, :HISUISLIGGOO],
+    [:GOODRA, :HISUIGOODRA],
+    [:URSALUNA, :BLOODMOONURSALUNA],
+  ]
   level = pkmn.level
-  regionallist.each do |kanto, regional|
-    if kanto == pkmn.species
+  regionallist.each do |regional|
+    next if !regional.include?(pkmn.species)
+    regional.each_with_index do |region, i|
+      next if region != pkmn.species
       pbMessage(_INTL("{1} changed form!", pkmn.name))
-      pkmn.species = regional[0]
-      break
-    end
-    if regional.include?(pkmn.species)
-      regional.each_with_index do |region, i|
-        next if region != pkmn.species
-        pbMessage(_INTL("{1} changed form!", pkmn.name))
-        if i == regional.length - 1
-          pkmn.species = kanto
-        else
-          pkmn.species = regional[i+1]
-        end
-      end
+      pkmn.species = regional[(i+1) % regional.length]
     end
   end
   pkmn.level = level
