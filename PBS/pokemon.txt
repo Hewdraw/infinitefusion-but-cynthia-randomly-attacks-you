@@ -19655,57 +19655,6 @@ Shape = BipedalTail
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
 Generation = 6
 #-------------------------------
-[1000100]
-Name = Growlithe
-InternalName = HGROWLITHE
-Type1 = FIRE
-Type2 = ROCK
-BaseStats = 55,70,45,60,70,50
-GenderRate = Female25Percent
-GrowthRate = Slow
-BaseEXP = 70
-EffortPoints = 0,0,0,0,0,0
-Rareness = 190
-Happiness = 50
-Abilities = INTIMIDATE,FLASHFIRE
-HiddenAbility = JUSTIFIED
-Moves = 1,TACKLE
-Compatibility = Field
-StepsToHatch = 5120
-Height = 0.7
-Weight = 19.0
-Color = Brown
-Shape = Quadruped
-Habitat = Grassland
-Pokedex = Its superb sense of smell ensures that this Pokémon won't forget any scent, no matter what. It uses its sense of smell to detect the emotions of others.
-Generation = 1
-Evolutions = ARCANINE,Item,FIRESTONE
-#-------------------------------
-[1000101]
-Name = Arcanine
-InternalName = HARCANINE
-Type1 = FIRE
-Type2 = ROCK
-BaseStats = 90,110,80,95,100,80
-GenderRate = Female25Percent
-GrowthRate = Slow
-BaseEXP = 194
-EffortPoints = 0,0,0,0,0,0
-Rareness = 75
-Happiness = 50
-Abilities = INTIMIDATE,FLASHFIRE
-HiddenAbility = JUSTIFIED
-Moves = 1,TACKLE
-Compatibility = Field
-StepsToHatch = 5120
-Height = 1.9
-Weight = 155.0
-Color = Brown
-Shape = Quadruped
-Habitat = Grassland
-Pokedex = This fleet-footed Pokémon is said to run over 6,200 miles in a single day and night. The fire that blazes wildly within its body is its source of power.
-Generation = 1
-#-------------------------------
 [1000102]
 Name = Shellos
 InternalName = SHELLOS
@@ -25727,6 +25676,32 @@ Pokedex = It gets picked on because it's meek. But then, whoever teased it gets 
 Generation = 6
 #-------------------------------
 [1001184]
+Name = Typhlosion
+InternalName = HISUITYPHLOSION
+Type1 = FIRE
+Type2 = GHOST
+BaseStats = 73,84,78,95,119,85
+GenderRate = FemaleOneEighth
+GrowthRate = Parabolic
+BaseEXP = 240
+EffortPoints = 0,0,0,0,3,0
+Rareness = 45
+Happiness = 70
+Abilities = BLAZE
+HiddenAbility = FRISK
+Moves = 0,INFERNALPARADE,1,GYROBALL,1,ERUPTION,1,SMOKESCREEN,1,TACKLE,1,EMBER,1,LEER,1,DOUBLEEDGE,13,QUICKATTACK,20,FLAMEWHEEL,24,DEFENSECURL,31,SWIFT,35,FLAMECHARGE,43,LAVAPLUME,48,FLAMETHROWER,56,INFERNO,61,ROLLOUT,74,OVERHEAT
+TutorMoves = AERIALACE,BLASTBURN,BODYSLAM,BRICKBREAK,BULLDOZE,BURNINGJEALOUSY,CALMMIND,CONFUSERAY,CURSE,DIG,DOUBLEEDGE,EARTHQUAKE,ENDEAVOR,ENDURE,FACADE,FIREBLAST,FIREFANG,FIREPLEDGE,FIREPUNCH,FIRESPIN,FLAMECHARGE,FLAMETHROWER,FLAREBLITZ,FOCUSBLAST,FOCUSPUNCH,GIGAIMPACT,GYROBALL,HEATWAVE,HEX,HYPERBEAM,IRONHEAD,LOWKICK,NIGHTSHADE,OVERHEAT,PLAYROUGH,POLTERGEIST,PROTECT,REST,REVERSAL,ROAR,ROCKSLIDE,SHADOWBALL,SHADOWCLAW,SLEEPTALK,SOLARBEAM,SPITE,STOMPINGTANTRUM,SUBSTITUTE,SUNNYDAY,SWIFT,TAKEDOWN,TEMPERFLARE,THUNDERPUNCH,WILDCHARGE,WILLOWISP,ZENHEADBUTT
+Compatibility = Field
+StepsToHatch = 5355
+Height = 1.7
+Weight = 79.5
+Color = Yellow
+Shape = Quadruped
+Habitat = Grassland
+Kind = Volcano
+Pokedex = It can hide behind a shimmering heat haze that it creates using its intense flames. Typhlosion create blazing explosive blasts that burn everything to cinders.
+#-------------------------------
+[1001185]
 Name = Annihilape
 InternalName = ANNIHILAPE
 Type1 = FIGHTING
@@ -25752,7 +25727,7 @@ Kind = Rage Monkey
 Pokedex = When its anger rose beyond a critical point, this Pokémon gained power that is unfettered by the limits of its physical body.
 Generation = 9
 #-------------------------------
-[1001185]
+[1001186]
 Name = Kleavor
 InternalName = KLEAVOR
 Type1 = BUG
@@ -25778,7 +25753,7 @@ Kind = Axe
 Pokedex = A violent creature that fells towering trees with its crude axes and shields itself with hard stone. If one should chance upon this Pokémon in the wilds, one's only recourse is to flee.
 Generation = 8
 #-------------------------------
-[1001186]
+[1001187]
 Name = Farigiraf
 InternalName = FARIGIRAF
 Type1 = NORMAL
@@ -25804,7 +25779,7 @@ Kind = Long Neck
 Pokedex = Now that the brain waves from the head and tail are synced up, the psychic power of this Pokémon is 10 times stronger than Girafarig’s.
 Generation = 9
 #-------------------------------
-[1001187]
+[1001188]
 Name = Dudunsparce
 InternalName = DUDUNSPARCE
 Type1 = NORMAL
@@ -25830,7 +25805,7 @@ Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 Evolutions = DUDUDUNSPARCE,Item,MISTSTONE
 #-------------------------------
-[1001188]
+[1001189]
 Name = Dududunsparce
 InternalName = DUDUDUNSPARCE
 Type1 = NORMAL
@@ -25856,7 +25831,7 @@ Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 Evolutions = DUDUDUDUNSPARCE,Item,MISTSTONE
 #-------------------------------
-[1001189]
+[1001190]
 Name = Dudududunsparce
 InternalName = DUDUDUDUNSPARCE
 Type1 = NORMAL
@@ -25882,7 +25857,7 @@ Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 Evolutions = DUDUDUDUDUNSPARCE,Item,MISTSTONE
 #-------------------------------
-[1001190]
+[1001191]
 Name = Dududududunsparce
 InternalName = DUDUDUDUDUNSPARCE
 Type1 = NORMAL
@@ -25908,7 +25883,7 @@ Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 Evolutions = DUDUDUDUDUDUNSPARCE,Item,MISTSTONE
 #-------------------------------
-[1001191]
+[1001192]
 Name = Dudududududunsparce
 InternalName = DUDUDUDUDUDUNSPARCE
 Type1 = NORMAL
@@ -25934,7 +25909,7 @@ Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 Evolutions = DUDUDUDUDUDUDUNSPARCE,Item,MISTSTONE
 #-------------------------------
-[1001192]
+[1001193]
 Name = Dududududududunsparce
 InternalName = DUDUDUDUDUDUDUNSPARCE
 Type1 = NORMAL
@@ -25960,7 +25935,7 @@ Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 Evolutions = DUDUDUDUDUDUDUDUNSPARCE,Item,MISTSTONE
 #-------------------------------
-[1001193]
+[1001194]
 Name = Dudududududududunsparce
 InternalName = DUDUDUDUDUDUDUDUNSPARCE
 Type1 = NORMAL
@@ -25985,7 +25960,7 @@ Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
 #-------------------------------
-[1001194]
+[1001195]
 Name = Ursaluna
 InternalName = URSALUNA
 Type1 = GROUND
@@ -26011,7 +25986,7 @@ Kind = Peat
 Pokedex = It is believed that the swampy terrain of its ancient home region that gave Ursaluna its burly physique and newfound capacity to manipulate peat at will.
 Generation = 8
 #-------------------------------
-[1001195]
+[1001196]
 Name = Ursaluna
 InternalName = BLOODMOONURSALUNA
 Type1 = GROUND
@@ -26036,7 +26011,7 @@ Kind = Peat
 Pokedex = It is believed that the swampy terrain of its ancient home region that gave Ursaluna its burly physique and newfound capacity to manipulate peat at will.
 Generation = 8
 #-------------------------------
-[1001196]
+[1001197]
 Name = Wyrdeer
 InternalName = WYRDEER
 Type1 = NORMAL
@@ -26062,7 +26037,7 @@ Kind = Big Horn
 Pokedex = The black orbs shine with an uncanny light when the Pokémon is erecting invisible barriers. The fur shed from its beard retains heat well and is a highly useful material for winter clothing
 Generation = 8
 #-------------------------------
-[1001197]
+[1001198]
 Name = Kingambit
 InternalName = KINGAMBIT
 Type1 = DARK
