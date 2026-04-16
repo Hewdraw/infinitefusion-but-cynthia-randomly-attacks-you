@@ -447,9 +447,9 @@ class PokeBattle_Battler
       return true if pbHasType?(:FIREWATERGRASS)
     when :ELECTRIC
       return true if hasActiveAbility?(:WIRED)
-      return true if hasActiveItem?(:ELECTIRIZER, :LIGHTNINGSPHERE)
+      return true if hasActiveItem?([:ELECTIRIZER, :LIGHTNINGSPHERE])
     when :PSYCHIC
-      return true if hasActiveItem?(:QUICKPOWDER, :METALPOWDER, :ICESPHERE)
+      return true if hasActiveItem?([:QUICKPOWDER, :METALPOWDER, :ICESPHERE])
       return true if hasActiveAbility?(:WIRED)
     when :ICE
       return true if hasActiveItem?([:REAPERCLOTH, :ICESPHERE])
