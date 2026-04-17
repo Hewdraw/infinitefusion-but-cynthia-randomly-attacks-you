@@ -226,11 +226,6 @@ EMERADICT = {
         :description => "Your Pokemon heal 1/8th of the damage they deal.",
         :rarity => :UNCOMMON,
     },
-    :KNIFE => {
-        :name => "Knife",
-        :description => "Your Pokemon gain the Pickpocket Ability",
-        :rarity => :UNCOMMON,
-    },
     :LUCKYCHARM => {
         :name => "Lucky Charm",
         :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",
@@ -310,6 +305,11 @@ EMERADICT = {
     :HEAVYCORE => {
         :name => "Heavy Core",
         :description => "Your Pokemon are under the effect of Gravity, their Speed is halved and they gain 1.1x in all other stats.",
+        :rarity => :RARE,
+    },
+    :KNIFE => {
+        :name => "Knife",
+        :description => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it.",
         :rarity => :RARE,
     },
     # :MACE => {

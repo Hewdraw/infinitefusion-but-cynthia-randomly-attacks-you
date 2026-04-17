@@ -232,7 +232,7 @@ end
 def getTowerEventsList()
     eventlist =  {
         "Pokemon" => 50,
-        "Chest" => 25,
+        "Chest" => 10,
         "Unknown" => 25, #todo
         "Miku" => 10,
         "Shop" => 10,

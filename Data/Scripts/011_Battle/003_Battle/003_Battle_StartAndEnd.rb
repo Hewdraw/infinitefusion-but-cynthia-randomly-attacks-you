@@ -214,8 +214,12 @@ class PokeBattle_Battle
         if trainer.trainer_type == :Skeleton_Dev && trainer.first_pokemon.poke_ball == :PREMIERBALL
           @field.effects[PBEffects::InverseRoom] = 10000
           pbDisplayPaused(_INTL("The battlefield turned inverted!"))
-          @field.effects[PBEffects::TrickRoom] = 10000
-          pbDisplayPaused(_INTL("The battlefield turned twisted!"))
+          if hasEmera?(:KNIFE)
+            pbDisplayPaused("You swing the Knife and prevent the Skeletons Trick Room.")
+          else
+            @field.effects[PBEffects::TrickRoom] = 10000
+            pbDisplayPaused(_INTL("The battlefield turned twisted!"))
+          end
         end
         shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
         shinychance /= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
