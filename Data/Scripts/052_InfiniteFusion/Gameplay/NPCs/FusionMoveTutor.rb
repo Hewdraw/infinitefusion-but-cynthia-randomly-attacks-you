@@ -151,13 +151,13 @@ class FusionTutorService
       compatibleMoves << :WAVECRASH if canLearnMove(:WATERFALL)
       compatibleMoves << :ICESPINNER if hasType(:ICE) || canLearnMove(:RAPIDSPIN)
       compatibleMoves << :BLOODMOON if is_fusion_of([:URSARING])
-      compatibleMoves << :STONEAXE if (hasType(:ROCK) && canLearnMove(:STEALTHROCK)) || is_fusion_of(:HAXORUS)
+      compatibleMoves << :STONEAXE if (hasType(:ROCK) && canLearnMove(:STEALTHROCK)) || is_fusion_of([:HAXORUS])
       compatibleMoves << :DRAGONHAMMER if hasType(:DRAGON)
       compatibleMoves << :ARMORCANNON if (hasType(:PSYCHIC) && canLearnMove(:OVERHEAT)) || (hasType(:FIRE) && (hasType(:ROCK) || hasType(:STEEL)))
       compatibleMoves << :BITTERBLADE if (hasType(:GHOST) && (hasType(:FIGHTING)) || hasType(:FIRE)) || canLearnMove(:LEECHLIFE) || is_fusion_of([:HONEDGE, :DOUBLADE, :AEGISLASH])
       compatibleMoves << :ROCKWRECKER if hasType(:ROCK)
       compatibleMoves << :BARBBARRAGE if hasType(:POISON) && canLearnMove(:TOXIC)
-      compatibleMoves << :CEASELESSEDGE if (hasType(:DARK) && (hasType(:ROCK) || hasType(:WATER))) || is_fusion_of(:HAXORUS)
+      compatibleMoves << :CEASELESSEDGE if (hasType(:DARK) && (hasType(:ROCK) || hasType(:WATER))) || is_fusion_of([:HAXORUS])
       compatibleMoves << :ESPERWING if hasType(:PSYCHIC) && canLearnMove(:WINGATTACK)
       compatibleMoves << :VICTORYDANCE if canLearnMove(:QUIVERDANCE) || is_fusion_of([:MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALCELL, :VOCALDRILL])
       compatibleMoves << :QUIVERDANCE if is_fusion_of([:MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALCELL, :VOCALDRILL])
@@ -265,18 +265,19 @@ class FusionTutorService
 
   def is_fusion_of(pokemonList)
     return true if @show_full_list
-    is_species = false
     for fusionPokemon in pokemonList
       if @pokemon.isFusionOf(fusionPokemon)
-        is_species = true
+        return true
       end
     end
-    return is_species
   end
 
   def hasType(type)
     return true if @show_full_list
-    return @pokemon.hasType?(type)
+    return true if @pokemon.hasType?(type)
+    @pokemon.materials.each do |material|
+      return true if GameData::Species.get(material).hasType?(type)
+    end
   end
 
   def canLearnMove(move)
