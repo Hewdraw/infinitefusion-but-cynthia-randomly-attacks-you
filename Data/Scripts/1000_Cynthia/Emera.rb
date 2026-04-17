@@ -226,6 +226,11 @@ EMERADICT = {
         :description => "Your Pokemon heal 1/8th of the damage they deal.",
         :rarity => :UNCOMMON,
     },
+    :KNIFE => {
+        :name => "Knife",
+        :description => "Your Pokemon gain the Pickpocket Ability",
+        :rarity => :UNCOMMON,
+    },
     :LUCKYCHARM => {
         :name => "Lucky Charm",
         :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",

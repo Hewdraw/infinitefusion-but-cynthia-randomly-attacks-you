@@ -1604,6 +1604,7 @@ class Pokemon
     list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
     list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
     list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
+    list.push(:PICKPOCKET) if hasActiveEmera?(:KNIFE)
     list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
