@@ -1605,9 +1605,11 @@ class Pokemon
     list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
     list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
     list.push(:PICKPOCKET) if hasActiveEmera?(:KNIFE)
+    list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
     list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
+    list.push(:TOXICCHAIN) if hasActiveEmera?(:TOXICCHAIN)
     list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && (hasItem?(:WELLSPRINGMASK) || hasItem?(:HEARTHFLAMEMASK) || hasItem?(:CORNERSTONEMASK))
     list = list.uniq
     return list

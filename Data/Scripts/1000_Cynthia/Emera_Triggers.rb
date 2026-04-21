@@ -34,6 +34,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:EMERA,
   }
 )
 
+BattleHandlers::AccuracyCalcUserAbility.add(:EMERA,
+  proc { |ability,user,mods,target,move,type|
+    mods[:accuracy_multiplier] *= 1.1 if user.hasActiveEmera?(:LONGLENS)
+  }
+)
+
+BattleHandlers::CertainSwitchingUserAbility.add(:EMERA,
+  proc { |ability,battler,battle|
+    next true if battler.hasActiveAbility?(:RUNAWAY) && battler.hasActiveEmera?(:NEWSHOES)
+  }
+)
+
 BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
   proc { |ability,user,target,c|
     c += 1 if user.hasActiveEmera?(:SPINNINGLEEK)
@@ -81,6 +93,14 @@ BattleHandlers::DamageCalcUserAbility.add(:EMERA,
   }
 )
 
+BattleHandlers::PriorityChangeAbility.add(:EMERA,
+  proc { |ability,battler,move,pri|
+    if battler.hasActiveAbility?(:RUNAWAY) && battler.hasActiveEmera?(:NEWSHOES)
+      next pri+1
+    end
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:EMERA,
   proc { |ability,battler,mult|
     if battler.hasActiveEmera?(:POTIONOFSWIFTNESS) && battler.battle.turnCount == 0
@@ -108,6 +128,17 @@ BattleHandlers::TargetAbilityOnHit.add(:EMERA,
 BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
   proc { |ability,user,targets,move,battle|
     next if user.fainted?
+    if user.hasActiveEmera?(:LEPPAJUICE)
+      targets.each do |b|
+        next if !b.damageState.fainted
+        if pbRestorePP(pkmn, move, move.total_pp / 5)
+          user.tempability = EMERADICT[:LEPPAJUICE][:name]
+          battle.pbShowAbilitySplash(user)
+          battle.pbDisplay(_INTL("{1}'s PP was restored.",user.pbThis))
+          battle.pbHideAbilitySplash(user)
+        end
+      end
+    end
     if user.hasActiveEmera?(:ABSORPTIONEMERA) && user.canHeal?
       targets.each do |b|
         next if !b.damageState.fainted
@@ -274,4 +305,82 @@ class PokeBattle_Battle
       end
     end
   end
+end
+
+def pbFloorEmeras
+  if hasEmera?(:BREWINGSTAND)
+    itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
+    item = itemlist.sample
+    $PokemonBag.pbStoreItem(item, 1)
+  end
+  if hasEmera?(:MINTPLANT)
+    itemlist = [:LONELYMINT, :ADAMANTMINT, :NAUGHTYMINT, :BRAVEMINT, :BOLDMINT, :IMPISHMINT, :LAXMINT, :RELAXEDMINT, :MODESTMINT, :MILDMINT, :RASHMINT, :QUIETMINT, :CALMMINT, :GENTLEMINT, :CAREFULMINT, :SASSYMINT, :TIMIDMINT, :HASTYMINT, :JOLLYMINT, :NAIVEMINT, :SERIOUSMINT]
+    item = itemlist.sample
+    $PokemonBag.pbStoreItem(item, 1)
+  end
+  if hasEmera?(:OGREBALLOON)
+    amount = rand(5) + 1
+    for i in 0...amount do
+      itemlist = [:FRESHSTARTMOCHI, :HEALTHMOCHI, :MUSCLEMOCHI, :RESISTMOCHI, :GENIUSMOCHI, :CLEVERMOCHI, :SWIFTMOCHI]
+      item = itemlist.sample
+      $PokemonBag.pbStoreItem(item, 1)
+    end
+  end
+  if hasEmera?(:TRASHBAGS)
+    pickupList = pbDynamicItemList(
+       :POTION,
+       :ANTIDOTE,
+       :SUPERPOTION,
+       :GREATBALL,
+       :REPEL,
+       :ESCAPEROPE,
+       :FULLHEAL,
+       :HYPERPOTION,
+       :ULTRABALL,
+       :REVIVE,
+       :RARECANDY,
+       :SUNSTONE,
+       :MOONSTONE,
+       :HEARTSCALE,
+       :FULLRESTORE,
+       :MAXREVIVE,
+       :PPUP,
+       :MAXELIXIR
+    )
+    pickupListRare = pbDynamicItemList(
+       :HYPERPOTION,
+       :NUGGET,
+       :KINGSROCK,
+       :FULLRESTORE,
+       :ETHER,
+       :IRONBALL,
+       :DESTINYKNOT,
+       :ELIXIR,
+       :DESTINYKNOT,
+       :LEFTOVERS,
+       :DESTINYKNOT
+    )
+    items = []
+    level = 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max
+    itemStartIndex = (level-1)/10
+    itemStartIndex = 0 if itemStartIndex<0
+    for i in 0...9
+      items.push(pickupList[itemStartIndex+i])
+    end
+    for i in 0...2
+      items.push(pickupListRare[itemStartIndex+i])
+    end
+    # Probabilities of choosing each item in turn from the pool
+    chances = [30,10,10,10,10,10,10,4,4,1,1]   # Needs to be 11 numbers
+    chanceSum = 0
+    chances.each { |c| chanceSum += c }
+    # Randomly choose an item from the pool to give to the Pokémon
+    rnd = rand(chanceSum)
+    cumul = 0
+    chances.each_with_index do |c,i|
+      cumul += c
+      next if rnd>=cumul
+      $PokemonBag.pbStoreItem(item, 1)
+      break
+    end
 end

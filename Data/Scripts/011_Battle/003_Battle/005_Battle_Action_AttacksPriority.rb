@@ -162,6 +162,7 @@ class PokeBattle_Battle
             if b.abilityActive?
               pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri)
             end
+            pri = BattleHandlers.triggerPriorityChangeAbility(:EMERA,b,move,pri)
             if move.name == "Grassy Glide" && self.field.terrain == :Grassy && b.affectedByTerrain?
               pri += 1
             end

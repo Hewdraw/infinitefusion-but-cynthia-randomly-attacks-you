@@ -115,6 +115,7 @@ class PokeBattle_Battle
   end
 
   def pbSetUpSides
+    getLooplet.emeravariables = {} if getLooplet
     ret = [[],[]]
     for side in 0...2
       # Set up wild Pokémon
@@ -151,6 +152,7 @@ class PokeBattle_Battle
           break if ret[side][idxTrainer].length>=requireds[idxTrainer]
         end
         eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
+          pkmn.calc_stats
           pkmn.battlevariables = {}
           pkmn.originalform = nil
           if pkmn.hasItem?(:DARKSTONE)
@@ -489,7 +491,7 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
              @opponent[1].full_name,@opponent[2].full_name))
         end
-        coin = false
+        coin = 0
         @opponent.each_with_index do |trainer,i|
           @scene.pbShowOpponent(i)
           if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia" && $PokemonGlobal.towervalues.nil?
@@ -516,13 +518,14 @@ class PokeBattle_Battle
           msg = (@endSpeeches[i] && @endSpeeches[i] !="") ? @endSpeeches[i] : "..."
           pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
           if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
-            coin = pbCynthiaGetBadgeCount+1
+            coin += pbCynthiaGetBadgeCount+1
           end
           if trainer.name == "Hatsune Mechu"
-            coin = 30
+            coin += 30
           end
         end
-        if coin && $PokemonBag.pbStoreItem(:SINNOHCOIN, coin)
+        coin *= 2 if hasEmera?(:GIMMIGHOULCOIN)
+        if coin > 0 && $PokemonBag.pbStoreItem(:SINNOHCOIN, coin)
           if coin == 1
             pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
           else

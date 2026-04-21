@@ -540,6 +540,11 @@ def UndertaleShopSetup()
       "amount" => 1,
     },
   }
+  if hasEmera?(:VIPCARD)
+    $PokemonGlobal.shadrossstock.each do |key, value|
+      value["cost"] = (value["cost"] + 1) / 2
+    end
+  end
 end
 
 class Undertale_Scene

@@ -64,6 +64,9 @@ class PokeBattle_Battle
         return true
       end
     end
+    if BattleHandlers.triggerCertainSwitchingUserAbility(:EMERA, battler, self)
+      return true
+    end
     # Other certain switching effects
     return true if Settings::MORE_TYPE_EFFECTS && battler.pbHasType?(:GHOST)
     # Other certain trapping effects

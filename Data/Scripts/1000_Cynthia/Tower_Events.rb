@@ -63,6 +63,34 @@ def resolveUnknownEvent(recursion = false)
         pbBGMPlay("Mining")
         pbMiningGame
         pbBGMPlay("TemporalTower")
+    when "Shadross"
+        Kernel.pbMessage("You come across a purple skeleton.")
+        Kernel.pbMessage("What will you try to get from him?")
+        helptext = ["Perhaps you can get a discount. Costs 10 Sinnoh Coins.", "Teach something Shadow Bone+.", "Gives a lot of Special Attack.", "Theyre kinda sick, you might have to fight him for it."]
+        helptext[0] = "Perhaps you can get a discount. \\C[2]Costs 10 Sinnoh Coins." if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
+        helptext[3] = "Your Knife flashes from the looplet." if hasEmera?(:KNIFE)
+        choice = pbUnknownCommands(["Shop Membership", "A Bone", "Calcium", "His Shades"], helptext)
+        case choice
+        when 0
+            if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
+                Kernel.pbMessage("You don't have enough Sinnoh Coins.")
+                return resolveUnknownEvent(true)
+            end
+            $PokemonBag.pbDeleteItem(:SINNOHCOIN, 10)
+            getLooplet.pbStoreEmera(:VIPCARD)
+            Kernel.pbMessage("You got VIP Card.")
+        when 1
+            Kernel.pbMessage("not coded in yet, try something else")
+            return resolveUnknownEvent(true)
+        when 2
+            Kernel.pbMessage("not coded in yet, try something else")
+            return resolveUnknownEvent(true)
+        when 3
+            if hasEmera?(:KNIFE)
+                return
+            end
+            Kernel.pbMessage("not coded in yet, try something else")
+            return resolveUnknownEvent(true)
     when "Wandering Trader"
         Kernel.pbMessage("A Wandering Trader spawns next to you.")
         commonemera = getLooplet.pbRandomEmera(:COMMON)

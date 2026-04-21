@@ -157,6 +157,8 @@ class PokeBattle_Move
       @battle.pbShowAbilitySplash(user) if user.hasActiveAbility?(:NOGUARD)
       @battle.pbHideAbilitySplash(user) if user.hasActiveAbility?(:NOGUARD)
     end
+    BattleHandlers.triggerAccuracyCalcUserAbility(:EMERA,
+       user,modifiers,target,self,@calcType)
     user.eachAlly do |b|
       next if !b.abilityActive?
       BattleHandlers.triggerAccuracyCalcUserAllyAbility(b.ability,

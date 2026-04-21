@@ -1,9 +1,16 @@
 EMERADICT = {
     # : => {
     #     :name => "",
-    #     :description => "",
+    #     :description => ".",
     #     :rarity => :,
     # },
+
+    :VIPCARD => {
+        :name => "VIP Card",
+        :description => "50% cheaper at the Shadross Shop.",
+        :rarity => :EVENT,
+        :cost => 0
+    },
 
     :APPLE => {
         :name => "Apple",
@@ -27,7 +34,7 @@ EMERADICT = {
     },
     :CAPTURESTYLER => {
         :name => "Capture Styler",
-        :description => "Gain an extra option when obtaining a Pokemon from a Pokeball floor.",
+        :description => "Obtain all Pokemon on Premier Ball floors.",
         :rarity => :COMMON,
     },
     # :CHOICEDUMPLING => {
@@ -65,21 +72,26 @@ EMERADICT = {
         :description => "Hail is activated at the start of the battle.",
         :rarity => :COMMON,
     },
-    # :GEOPEBBLE => {
-    #     :name => "Geo Pebble",
-    #     :description => "Can be Flinged once per battle for 150 Power.",
-    #     :rarity => :COMMON,
-    # },
+    :GEOPEBBLE => {
+        :name => "Geo Pebble",
+        :description => "Can be Flinged once per battle for 150 Power.",
+        :rarity => :COMMON,
+    },
+    :GIMMIGHOULCOIN => {
+        :name => "Gimmighoul Coin",
+        :description => "Gain twice as much Sinnoh Coins from winning a battle.",
+        :rarity => :COMMON,
+    },
     # :GUNPOWDER => {
     #     :name => "Gunpowder",
     #     :description => "Your Pokemons Powder moves apply the Powder effect.",
     #     :rarity => :COMMON,
     # },
-    # :LEPPAJUICE => {
-    #     :name => "Leppa Juice",
-    #     :description => "Your Pokemon regain 20% of a moves PP (rounded down) when knocking out a Pokemon with it.",
-    #     :rarity => :COMMON,
-    # },
+    :LEPPAJUICE => {
+        :name => "Leppa Juice",
+        :description => "Your Pokemon regain 20% of a moves PP (rounded down) when knocking out a Pokemon with it.",
+        :rarity => :COMMON,
+    },
     :LIGHTDUTYBOOTS => {
         :name => "Light-Duty Boots",
         :description => "Your Pokemon take half damage from Entry Hazards.",
@@ -92,7 +104,7 @@ EMERADICT = {
     },
     :LINGERINGPOTIONOFOOZING => {
         :name => "Lingering Potion of Oozing",
-        :description => "Your Pokemon gain the Liquid Ooze Ability",
+        :description => "Your Pokemon gain the Liquid Ooze Ability.",
         :rarity => :COMMON,
     },
     # :MEDITATIONMAT => {
@@ -105,11 +117,16 @@ EMERADICT = {
         :description => "Your Pokemons Status Condition is healed when going up a floor.",
         :rarity => :COMMON,
     },
-    # :NEWSHOES => {
-    #     :name => "New Shoes",
-    #     :description => "Your Pokemons with Run Away can no longer be trapped and their moves that switch them out gain 1 priority",
-    #     :rarity => :COMMON,
-    # },
+    :MINTPLANT => {
+        :name => "Mint Plant",
+        :description => "Obtain a random Mint when going up a floor.",
+        :rarity => :COMMON,
+    },
+    :NEWSHOES => {
+        :name => "New Shoes",
+        :description => "Your Pokemons with Run Away can no longer be trapped and their moves that switch them out gain 1 priority.",
+        :rarity => :COMMON,
+    },
     :NOTEBLOCK => {
         :name => "Noteblock",
         :description => "Your Pokemons Metronome moves will use an addtional move.",
@@ -117,9 +134,14 @@ EMERADICT = {
     },
     # :OLDCARTRIDGE => {
     #     :name => "Old Cartridge",
-    #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon",
+    #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon.",
     #     :rarity => :COMMON,
     # },
+    :OGREBALLOON => {
+        :name => "Ogre Balloon",
+        :description => "Obtain some Mochis when going up a floor.",
+        :rarity => :COMMON,
+    },
     :POTIONOFREGENERATION => {
         :name => "Potion of Regeneration",
         :description => "Your Pokemon gain Aqua Ring at the start of the battle.",
@@ -130,14 +152,19 @@ EMERADICT = {
         :description => "Your Pokemons Speed is doubled on the first turn of the battle.",
         :rarity => :COMMON,
     },
-    # :BADEGG => {
-    #     :name => "Bad Egg",
-    #     :description => "Your Pokemons Egg Bomb applies Toxic to the target.",
+    # :REDSTONEBLOCK => {
+    #     :name => "Redstone Block",
+    #     :description => "Activates Plus and Minus, Your Pokemon are treated as having plus and minus for the effects of moves.",
     #     :rarity => :COMMON,
     # },
+    :ROTOMDEX => {
+        :name => "Rotom Dex",
+        :description => "Gain 1 Sinnoh Coin when you obtain a Pokemon from a Premier Ball floor.",
+        :rarity => :COMMON,
+    },
     # :SELFCONTROLEMERA => {
     #     :name => "Self Control Emera",
-    #     :description => "Your Pokemon will hit a random opponeing in confusion instead of themselves.",
+    #     :description => "Your Pokemon will hit a random opponenent in confusion instead of themselves.",
     #     :rarity => :COMMON,
     # },
     # :SHIV => {
@@ -155,26 +182,21 @@ EMERADICT = {
     #     :description => "Your Pokemons Magnitude can reach 15.",
     #     :rarity => :COMMON,
     # },
-    # :TNT => {
-    #     :name => "TNT",
-    #     :description => "Your Pokemons Explosion moves clear all field effects.",
-    #     :rarity => :COMMON,
-    # },
-    # :REDSTONEBLOCK => {
-    #     :name => "Redstone Block",
-    #     :description => "Activates Plus and Minus, Your Pokemon are treated as having plus and minus for the effects of moves.",
-    #     :rarity => :COMMON,
-    # },
-    :ROTOMDEX => {
-        :name => "Rotom Dex",
-        :description => "Gain 1 Sinnoh Coin when you obtain a Pokemon from a Pokeball floor.",
-        :rarity => :COMMON,
-    },
     # :TERRAINSCANNER => {
     #     :name => "Terrain Scanner",
     #     :description => "Your Pokemons Terrain Pulse starts a random Terrain if there is no Terrain active.",
     #     :rarity => :COMMON,
     # },
+    # :TNT => {
+    #     :name => "TNT",
+    #     :description => "Your Pokemons Explosion moves clear all field effects.",
+    #     :rarity => :COMMON,
+    # },
+    :TRASHBAGS => {
+        :name => "Trash Bags",
+        :description => "Your Pokemon gain the Pickup Ability. You gain a random Pickup item when going up a floor",
+        :rarity => :COMMON,
+    },
     :WATERBUCKET => {
         :name => "Water Bucket",
         :description => "Your Pokemon gain the Damp Ability.",
@@ -226,11 +248,31 @@ EMERADICT = {
         :description => "Your Pokemon heal 1/8th of the damage they deal.",
         :rarity => :UNCOMMON,
     },
+    # :HEAVYCLAY => {
+    #     :name => "Heavy Clay",
+    #     :description => "Activating Light Screen or Reflect now activates the other one as well.",
+    #     :rarity => :UNCOMMON,
+    # },
+    :LIGHTNINGROD => {
+        :name => "Lightning Rod",
+        :description => "Electric Terrain is activated when you activate Rain.",
+        :rarity => :UNCOMMON,
+    },
+    :LONGLENS => {
+        :name => "Long Lens",
+        :description => "You Pokemon gain 1.1x Accuracy.",
+        :rarity => :UNCOMMON,
+    },
     :LUCKYCHARM => {
         :name => "Lucky Charm",
         :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",
         :rarity => :UNCOMMON,
     },
+    # :TOPHAT => {
+    #     :name => "Top Hat",
+    #     :description => "Activates Magic Room at the start of the battle.",
+    #     :rarity => :UNCOMMON,
+    # },
     :MILOTICSCALE => {
         :name => "Milotic Scale",
         :description => "Your Pokemons Defense and Special Defense increase by 1.1x while they have a Status Condition.",
@@ -238,22 +280,32 @@ EMERADICT = {
     },
     :MOSSYROCK => {
         :name => "Mossy Rock",
-        :description => "Grassy Terrain is actived at the start of the battle.",
+        :description => "Grassy Terrain is activated at the start of the battle.",
         :rarity => :UNCOMMON,
     },
+    # :PHANTOMMEMBRAME => {
+    #     :name => "Phantom Membrame",
+    #     :description => "Opposing Pokemon lose 1 Crit stage.",
+    #     :rarity => :UNCOMMON,
+    # },
+    # :POCKETMETEOR => {
+    #     :name => "Pocket Meteor",
+    #     :description => "Your Pokemon gain Focus Energy when they lower their own Attack or Special Attack once per battle.",
+    #     :rarity => :UNCOMMON,
+    # },
     :POKEDEX => {
         :name => "Pokedex",
-        :description => "You can obtain an extra Pokemon in a Pokeball floor.",
+        :description => "You can obtain a Pokemon twice in a Premier Ball floor.",
         :rarity => :UNCOMMON,
     },
     # :POTIONOFFIRERESISTANCE => {
     #     :name => "Potion of Fire Resistance",
-    #     :description => "Your Pokemon are unaffected by the first fire move in a battle.",
+    #     :description => "Your Pokemon take half damage from the first fire move in a battle.",
     #     :rarity => :UNCOMMON,
     # },
     # :POTIONOFWATERBREATHING => {
     #     :name => "Potion of Water Breathing",
-    #     :description => "Your Pokemon are unaffected by the first water move in a battle.",
+    #     :description => "Your Pokemon are half damage from by the first water move in a battle.",
     #     :rarity => :UNCOMMON,
     # },
     # :POTIONOFWINDCHARGING => {
@@ -286,12 +338,27 @@ EMERADICT = {
         :description => "Opposing Pokemons Attack is lowered by 1 stage at the start of the battle.",
         :rarity => :UNCOMMON,
     },
+    # :WINDCHARGE => {
+    #     :name => "Wind Charge",
+    #     :description => "Opposing Pokemon get switched out at the start of the battle.",
+    #     :rarity => :UNCOMMON,
+    # },
 
     :ABSORPTIONEMERA => {
         :name => "Absorption Emera",
         :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
         :rarity => :RARE,
     },
+    # :BAGOFTRICKS => {
+    #     :name => "Bag of Tricks",
+    #     :description => "Trick Room activates at the start of the battle.",
+    #     :rarity => :RARE,
+    # },
+    # :FERMENTEDSPIDEREYE => {
+    #     :name => "Fermented Spider Eye",
+    #     :description => "Inverse Room activates at the start of the battle.",
+    #     :rarity => :RARE,
+    # },
     :GOLDENLEPPABERRY => {
         :name => "Golden Leppa Berry",
         :description => "Your Pokemon do not use PP half the time.",
@@ -309,7 +376,7 @@ EMERADICT = {
     },
     :KNIFE => {
         :name => "Knife",
-        :description => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it.",
+        :description => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it.", #todo make the skeleton appears fail
         :rarity => :RARE,
     },
     # :MACE => {
@@ -350,7 +417,7 @@ EMERADICT = {
 
     # : => {
     #     :name => "",
-    #     :description => "",
+    #     :description => ".",
     #     :rarity => :LEGENDARY,
     #     :legendary => [],
     #     :tutormove => :,
@@ -375,11 +442,18 @@ EMERADICT = {
     },
     :BERSERKERARMOR => {
         :name => "Berserker Armor",
-        :description => "Your Pokemon gain the Battle Armor and Berserk Abilities",
+        :description => "Your Pokemon gain the Battle Armor and Berserk Abilities.",
         :rarity => :LEGENDARY,
         #:legendary => [:MEWTWO],
         :tutormove => :PSYSTRIKE,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
+    },
+    :BINDINGMOCHI => {
+        :name => "Binding Mochi",
+        :description => "Your Pokemon gain the Toxic Boost Ability.",
+        :rarity => :LEGENDARY,
+        :tutormove => :MALIGNANTCHAIN,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:POISON)},
     },
     :BRAINPRISM => {
         :name => "Brain Prism",
@@ -445,7 +519,7 @@ EMERADICT = {
     # },
     # :MIRAGEGENE => {
     #     :name => "Mirage Gene",
-    #     :description => "Opposing Pokemon take not very effective damage for moves they are immune or double resistant to.",
+    #     :description => "Opposing Pokemon take not very effective damage for moves they are immune to or take mostly ineffective damage from.",
     #     :rarity => :LEGENDARY,
     #     :legendary => ["Mew"],
     #     :tutormove => :GENESISSUPERNOVA,
@@ -504,7 +578,7 @@ EMERADICT = {
     },
     # :SCARLETBOOK => {
     #     :name => "Scarlet Book",
-    #     :description => "Your Pokemon are unaffected by negative effects of weathers",
+    #     :description => "Your Pokemon are unaffected by negative effects of weathers.",
     #     :rarity => :LEGENDARY,
     #     :tutormove => :COLLISIONCOURSE,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:FIGHTING)},
@@ -545,6 +619,13 @@ EMERADICT = {
         :tutormove => :TERASTARSTORM,
         :tutorcondition => -> (pokemon) {return true},
     },
+    :TOXICCHAIN => {
+        :name => "Toxic Chain",
+        :description => "Your Pokemon gain the Toxic Chain Ability.",
+        :rarity => :LEGENDARY,
+        :tutormove => :VENOSHOCK,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:POISON)},
+    },
     # :VIOLETBOOK => {
     #     :name => "Violet Book",
     #     :description => "Your Pokemon are unaffected by negative effects of terrains. Your Pokemon always count as grounded for terrains.",
@@ -578,8 +659,7 @@ EMERADICT = {
 def grantRandomEmera()
     return if !getLooplet
     itemlist = getEmeras() 
-    raritylist = getEnderChestWeights()
-    raritylist[0] *= 2
+    raritylist = getEmeraWeights()
     itemlist.each_with_index do |item, i|
         next if item.length > 0
         raritylist[i] = 0
@@ -605,6 +685,15 @@ def grantRandomEmera()
     if getLooplet.pbStoreEmera(randomitem)
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
+end
+
+def getEmeraWeights()
+  return [
+    8, #common
+    5, #rare
+    2, #super rare
+    1, #secret rare
+  ]
 end
 
 def hasEmera?(emera)

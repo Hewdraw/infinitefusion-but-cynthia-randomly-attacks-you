@@ -3589,6 +3589,10 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   end
 
   def pbCheckFlingSuccess(user)
+    if user.hasActiveEmera?(:GEOPEBBLE) && !getLooplet.emeravariables[:GEOPEBBLE]
+      @willFail = false
+      return
+    end
     @willFail = false
     @willFail = true if !user.item || !user.itemActive? || user.unlosableItem?(user.item)
     return if @willFail
@@ -3616,6 +3620,10 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     super
     pbCheckFlingSuccess(user)
     if !@willFail
+      if user.hasActiveEmera?(:GEOPEBBLE) && !getLooplet.emeravariables[:GEOPEBBLE]
+        @battle.pbDisplay(_INTL("{1} flung the Geo Pebble", user.pbThis))
+        return
+      end
       @battle.pbDisplay(_INTL("{1} flung its {2}!",user.pbThis,user.itemName))
     end
   end
@@ -3623,6 +3631,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   def pbNumHits(user,targets); return 1; end
 
   def pbBaseDamage(baseDmg,user,target)
+    return 150 if user.hasActiveEmera?(:GEOPEBBLE) && !getLooplet.emeravariables[:GEOPEBBLE]
     return 10 if user.item && user.item.is_berry?
     return 80 if user.item && user.item.is_mega_stone?
     @flingPowers.each do |power,items|
@@ -3632,6 +3641,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user,target)
+    return if user.hasActiveEmera?(:GEOPEBBLE) && !getLooplet.emeravariables[:GEOPEBBLE]
     return if target.damageState.substitute
     return if target.hasActiveAbility?(:SHIELDDUST) && !@battle.moldBreaker
     case user.item_id
@@ -3653,6 +3663,10 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   end
 
   def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    if user.hasActiveEmera?(:GEOPEBBLE) && !getLooplet.emeravariables[:GEOPEBBLE]
+      getLooplet.emeravariables[:GEOPEBBLE] = true
+      return
+    end
     # NOTE: The item is consumed even if this move was Protected against or it
     #       missed. The item is not consumed if the target was switched out by
     #       an effect like a target's Red Card.

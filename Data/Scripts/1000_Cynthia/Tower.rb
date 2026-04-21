@@ -197,6 +197,11 @@ def towerIncreaseFloor(nextfloor)
         item = itemlist.sample
         pbItemBall(item)
     end
+    if hasEmera?(:MINTPLANT)
+        itemlist = [:LONELYMINT, :ADAMANTMINT, :NAUGHTYMINT, :BRAVEMINT, :BOLDMINT, :IMPISHMINT, :LAXMINT, :RELAXEDMINT, :MODESTMINT, :MILDMINT, :RASHMINT, :QUIETMINT, :CALMMINT, :GENTLEMINT, :CAREFULMINT, :SASSYMINT, :TIMIDMINT, :HASTYMINT, :JOLLYMINT, :NAIVEMINT, :SERIOUSMINT]
+        item = itemlist.sample
+        pbItemBall(item)
+    end
     pbSetSelfSwitch(2, "A", false)
     case $PokemonGlobal.towervalues[:activeevent]
     when "Legendary"
@@ -265,11 +270,17 @@ def towerEvent()
         amount += 1 if hasEmera?(:POKEDEX)
         for _ in 0...amount do
             optioncount = 3
-            optioncount += 1 if hasEmera?(:CAPTURESTYLER)
             options = []
             while options.length < optioncount
                 mon = getTowerPokemon()
                 options.push(mon) if !options.include?(mon)
+            end
+            if hasEmera?(:CAPTURESTYLER)
+                options.each do |mon|
+                    pbAddPokemon(mon, 5)
+                    $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
+                end
+                next
             end
             namearray = []
             options.each do |pokemon|
