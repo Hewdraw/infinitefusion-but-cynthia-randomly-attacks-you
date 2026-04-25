@@ -91,6 +91,7 @@ def resolveUnknownEvent(recursion = false)
             end
             Kernel.pbMessage("not coded in yet, try something else")
             return resolveUnknownEvent(true)
+        end
     when "Wandering Trader"
         Kernel.pbMessage("A Wandering Trader spawns next to you.")
         commonemera = getLooplet.pbRandomEmera(:COMMON)

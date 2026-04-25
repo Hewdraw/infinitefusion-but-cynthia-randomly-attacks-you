@@ -383,4 +383,5 @@ def pbFloorEmeras
       $PokemonBag.pbStoreItem(item, 1)
       break
     end
+  end
 end
