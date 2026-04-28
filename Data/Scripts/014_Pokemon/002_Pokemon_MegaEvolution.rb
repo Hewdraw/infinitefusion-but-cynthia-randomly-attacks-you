@@ -28,12 +28,15 @@ class Pokemon
     GameData::Species.each do |data|
       next unless specieslist.include?(data.species)
       next if data.form == 0
+      print(data.mega_stone)
+      next if !data.mega_stone
       ret.push(data)
     end
+    print(ret)
     return ret   # form number, or 0 if no accessible Mega form
   end
 
-  def getMegaShardForm
+  def getMegaShardForm(megasource=nil)
     @megaform = [1, 1] if !@megaform
     ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
     specieslist = [@species, @species]
@@ -42,6 +45,7 @@ class Pokemon
     end
     getMegaList.each do |mega|
       specieslist.each_with_index do |species, i|
+        next if megasource == :EON && ![:LATIAS, :LATIOS].include?(species)
         next unless species == mega.species
         next unless @megaform[i] == mega.form
         ret[i] = mega

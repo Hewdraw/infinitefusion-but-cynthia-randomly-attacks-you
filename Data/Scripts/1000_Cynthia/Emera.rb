@@ -509,8 +509,8 @@ EMERADICT = {
     #     :tutormove => :DOOMDESIRE,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
     # },
-    # :MILLENNIUMCOMETSHARD => {
-    #     :name => "Millennium Comet Shard",
+    # :POKEMONCOLOSSEUMBONUSDISC => {
+    #     :name => "Pokemon Colosseum Bonus Disc",
     #     :description => "Your Pokemons Wish also heals at the end of the turn. May occasionally grant a wish when going up a floor.",
     #     :rarity => :LEGENDARY,
     #     :legendary => [:JIRACHI],

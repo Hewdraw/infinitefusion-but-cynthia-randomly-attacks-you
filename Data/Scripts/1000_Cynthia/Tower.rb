@@ -472,6 +472,8 @@ def getFloorGraphic(event)
         when "Hot Spring"
             return "TORKOAL"
         when "Berry Tree", "Big Tree"
+            return "berrytreeLIECHIBERRY"
+        when "Torterra", "Torterra2"
             return "BW155"
         when "Mining"
             return "BW_rocksmash"

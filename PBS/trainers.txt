@@ -11045,7 +11045,7 @@ Pokemon = WANDERINGTRADER,100
     EV = 0,0,0,0,0,0
 
 [ALPHA_POKEMON,Heracross,0]
-Pokemon = HERACROSS,11
+Pokemon = HERACROSS,5
     Offset = 0
     Moves = TWINEEDLEPLUS,SCALESHOT,TRIPLEAXEL,ARMTHRUST
     Ability = MOXIEPLUS
@@ -11057,13 +11057,25 @@ Pokemon = HERACROSS,11
     EV = 252,252,0,252,0,0
 
 [ALPHA_POKEMON,Torkoal,0]
-Pokemon = TORKOAL,11
+Pokemon = TORKOAL,5
     Offset = 0
     Moves = MYSTICALFIREPLUS,SOLARBEAM,HYDROSTEAM,RECOVER
     Ability = DROUGHTPLUS
     Hpbar = 2
     Item = CHARCOAL
     Nature = BOLD
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,252,0
+
+[ALPHA_POKEMON,Torterra,0]
+Pokemon = TORKOAL,5
+    Offset = 0
+    Moves = QUIVERDANCE,SEEDFLAREPLUS,OBLIVIONWING,EARTHPOWER
+    Ability = SHELLARMORPLUS
+    Hpbar = 2
+    Item = LEFTOVERS
+    Nature = MODEST
     Raid = TRUE
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,252,0
