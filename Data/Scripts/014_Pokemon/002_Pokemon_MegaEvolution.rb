@@ -28,11 +28,9 @@ class Pokemon
     GameData::Species.each do |data|
       next unless specieslist.include?(data.species)
       next if data.form == 0
-      print(data.mega_stone)
       next if !data.mega_stone
       ret.push(data)
     end
-    print(ret)
     return ret   # form number, or 0 if no accessible Mega form
   end
 
