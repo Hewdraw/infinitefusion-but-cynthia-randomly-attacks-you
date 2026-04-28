@@ -270,6 +270,7 @@ class FusionTutorService
         return true
       end
     end
+    return false
   end
 
   def hasType(type)
@@ -278,6 +279,7 @@ class FusionTutorService
     @pokemon.materials.each do |material|
       return true if GameData::Species.get(material).hasType?(type)
     end
+    return false
   end
 
   def canLearnMove(move)
