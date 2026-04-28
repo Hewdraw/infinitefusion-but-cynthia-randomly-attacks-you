@@ -1,5 +1,6 @@
 def getUnknownEvent()
-    list = $PokemonGlobal.towervalues[:unknownlist] + ["Cynthia"]
+    list = $PokemonGlobal.towervalues[:unknownlist]
+    list = ["Cynthia"] if list.length == 0
     return list.sample
 end
 
