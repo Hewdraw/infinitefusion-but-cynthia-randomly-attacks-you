@@ -211,7 +211,7 @@ class FusionTutorService
       compatibleMoves << :OBLIVIONWING if is_fusion_of([:MURKROW, :HONCHKROW]) || (hasType(:DARK) && hasType(:FLYING))
       compatibleMoves << :MOONGEISTBEAM if (is_fusion_of([:CLEFFA, :CLEFAIRY, :CLEFABLE]) && hasType(:DARK)) || is_fusion_of([:DARKRAI, :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE])
       compatibleMoves << :SPECTRALTHIEF if is_fusion_of([:HAUNTER, :GENGAR, :BANETTE, :GIRATINA, :HONEDGE, :DOUBLADE, :AEGISLASH])
-      compatibleMoves << :SEEDFLARE if is_fusion_of([:JUMPLUFF, :SUNFLORA])
+      compatibleMoves << :SEEDFLARE if is_fusion_of([:JUMPLUFF, :SUNFLORA, :TURTWIG, :GROTLE, :TORTERRA])
       compatibleMoves << :LANDSWRATH if is_fusion_of([:GROUDON])
       compatibleMoves << :THOUSANDARROWS if is_fusion_of([:SANDSLASH, :JOLTEON, :FERROTHORN]) && hasType(:GROUND)
       compatibleMoves << :THOUSANDWAVES if is_fusion_of([:STUNFISK, :QUAGSIRE, :SWAMPERT])
