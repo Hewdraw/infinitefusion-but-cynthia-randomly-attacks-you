@@ -2591,7 +2591,7 @@ class PokeBattle_Move_0D9 < PokeBattle_HealingMove
   end
 
   def pbEffectGeneral(user)
-    user.pbSleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),3)
+    user.pbSleepSelf(_INTL("{1} slept and became healthy!",user.pbThis),4)
     super
   end
 end
