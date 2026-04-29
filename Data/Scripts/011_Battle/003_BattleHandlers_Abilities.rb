@@ -2970,7 +2970,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRACE,
     battle.pbShowAbilitySplash(battler)
     targets.each do |target|
       battler.extraabilities.push(target.ability)
-      battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",pbThis,target.pbThis(true),target.abilityName))
+      battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",battler.pbThis,target.pbThis(true),target.abilityName))
       BattleHandlers.triggerAbilityOnSwitchIn([target.ability],battler,battle)
     end
     battle.pbHideAbilitySplash(battler)
