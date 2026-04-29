@@ -1584,6 +1584,7 @@ class Pokemon
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
     @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?(:QUICKPOWDER) || hasItem?(:METALPOWDER)
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
+    @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end
@@ -1593,7 +1594,7 @@ class Pokemon
     list.push(@ability) if include_ability
     @abilityarray = createAbilityArray if !@abilityarray
     list += @abilityarray
-    return list
+    return list.uniq
   end
 
   def createAbilityArray
@@ -1617,7 +1618,6 @@ class Pokemon
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
     list.push(:TOXICCHAIN) if hasActiveEmera?(:TOXICCHAIN)
     list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && (hasItem?(:WELLSPRINGMASK) || hasItem?(:HEARTHFLAMEMASK) || hasItem?(:CORNERSTONEMASK))
-    list = list.uniq
     return list
   end
 

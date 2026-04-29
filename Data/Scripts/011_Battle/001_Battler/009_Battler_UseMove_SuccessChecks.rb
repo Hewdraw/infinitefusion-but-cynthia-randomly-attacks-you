@@ -206,7 +206,7 @@ class PokeBattle_Battler
     # Skip checking all applied effects that could make self fail doing something
     return true if skipAccuracyCheck
     # Check status problems and continue their effects/cure them
-    if @status == :SLEEP
+    if @status == :SLEEP && !hasActiveAbility?(:TRUEEYE)
       if @battle.pbRandom(100) < ((@battle.pbWeather == :Snow || @battle.pbWeather == :Hail) ? 66 : 33)
         pbContinueStatus
         if !move.usableWhenAsleep?   # Snore/Sleep Talk
@@ -555,7 +555,11 @@ class PokeBattle_Battler
   #=============================================================================
   def pbMissMessage(move,user,target)
     if target.damageState.affectionmiss
-      @battle.pbDisplay(_INTL("{1} avoided the move in time with {2}'s' shout!",target.pbThis, target.pokemon.owner.name))
+      if target.pbOwnedByPlayer?
+        @battle.pbDisplay(_INTL("{1} avoided the move in time with your shout!",target.pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1} avoided the move in time with {2}'s shout!",target.pbThis, target.pokemon.owner.name))
+      end
     elsif move.pbTarget(user).num_targets > 1
       @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
     elsif target.effects[PBEffects::TwoTurnAttack]

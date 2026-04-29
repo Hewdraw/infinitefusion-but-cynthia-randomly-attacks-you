@@ -205,19 +205,19 @@ class PokeBattle_Move
         target.damageState.endured = true
         damage -= 1
       elsif damage==target.adjustedTotalhp
-        if target.hasActiveAbility?(:STURDY) && !@battle.moldBreaker
+        if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS]) && !@battle.moldBreaker
           target.damageState.sturdy = true
           damage -= 1
-        elsif target.hasActiveItem?(:FOCUSSASH) && target.hp==target.adjustedTotalhp
+        elsif target.hasActiveItem?(:FOCUSSASH)
           target.damageState.focusSash = true
           damage -= 1
-        elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
-          target.damageState.focusBand = true
-          damage -= 1
-        elsif (target.pokemon.affection || target.hasActiveEmera?(:SYNCSTONEULTIMATE)) && rand(100) < 20
-          target.damageState.affection = true
-          damage -= 1
         end
+      elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
+        target.damageState.focusBand = true
+        damage -= 1
+      elsif (target.pokemon.affection || target.hasActiveEmera?(:SYNCSTONEULTIMATE)) && rand(100) < 20
+        target.damageState.affection = true
+        damage -= 1
       end
     end
     damage = 0 if damage<0
@@ -343,7 +343,11 @@ class PokeBattle_Move
       @battle.pbCommonAnimation("UseItem",target)
       @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!",target.pbThis))
     elsif target.damageState.affection
-      @battle.pbDisplay(_INTL("{1} toughed it out so {2} wouldn't feel sad!",target.pbThis, target.pokemon.owner.name))
+      if target.pbOwnedByPlayer?
+        @battle.pbDisplay(_INTL("{1} toughed it out so you wouldn't feel sad!",target.pbThis))
+      else
+        @battle.pbDisplay(_INTL("{1} toughed it out so {2} wouldn't feel sad!",target.pbThis, target.pokemon.owner.name))
+      end
     end
   end
 

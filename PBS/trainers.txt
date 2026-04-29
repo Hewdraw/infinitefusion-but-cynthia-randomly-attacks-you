@@ -11003,6 +11003,18 @@ Pokemon = VOCALDRILL,11
     IV = 31,31,31,31,31,31
     EV = 252,252,252,0,0,0
 
+[LEGENDARY_POKEMON,Jirachi,0]
+Pokemon = JIRACHI,11    
+    Offset = 4
+    Moves = DOOMDESIRE,AURASPHERE,COSMICPOWER,STOREDPOWER
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 3
+    Item = MILLENNIUMCOMETSHARD
+    Nature = MODEST
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+
 
 [LEGENDARY_POKEMON,Creeper,0]
 Pokemon = CREEPER,5

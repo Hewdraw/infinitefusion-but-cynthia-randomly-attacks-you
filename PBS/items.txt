@@ -909,6 +909,7 @@
 843,SABLNETTITE,Sablnettite,Sablnettites,1,0,"todo",0,0,0
 844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"todo",0,0,0
 845,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"todo",0,0,0
+846,MILLENNIUMCOMETSHARD,Millennium Comet Shard,Millennium Comet Shards,1,0,"can you believe that this fucker sleeps for a whole thousand years?",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

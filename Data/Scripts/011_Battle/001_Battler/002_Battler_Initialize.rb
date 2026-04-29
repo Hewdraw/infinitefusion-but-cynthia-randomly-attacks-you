@@ -300,6 +300,7 @@ class PokeBattle_Battler
     @effects[PBEffects::SupremeOverlord]         = 0
     @effects[PBEffects::ChoiceRibbon] = false
     @effects[PBEffects::GlaiveRush]                = false
+    @extraabilities = []
   end
 
   #=============================================================================

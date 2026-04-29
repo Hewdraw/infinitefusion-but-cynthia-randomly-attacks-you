@@ -90,28 +90,28 @@ class PokeBattle_Battler
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
     # Trace
-    if hasActiveAbility?(:TRACE)
-      # NOTE: In Gen 5 only, Trace only triggers upon the Trace bearer switching
-      #       in and not at any later times, even if a traceable ability turns
-      #       up later. Essentials ignores this, and allows Trace to trigger
-      #       whenever it can even in the old battle mechanics.
-      choices = []
-      @battle.eachOtherSideBattler(@index) do |b|
-        next if b.ungainableAbility? ||
-                [:POWEROFALCHEMY, :RECEIVER, :TRACE].include?(b.ability_id)
-        choices.push(b)
-      end
-      if choices.length>0
-        choice = choices[@battle.pbRandom(choices.length)]
-        @battle.pbShowAbilitySplash(self)
-        self.ability = choice.ability
-        @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",pbThis,choice.pbThis(true),choice.abilityName))
-        @battle.pbHideAbilitySplash(self)
-        if !onSwitchIn && (unstoppableAbility? || abilityActive?)
-          BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
-        end
-      end
-    end
+    # if hasActiveAbility?(:TRACE)
+    #   # NOTE: In Gen 5 only, Trace only triggers upon the Trace bearer switching
+    #   #       in and not at any later times, even if a traceable ability turns
+    #   #       up later. Essentials ignores this, and allows Trace to trigger
+    #   #       whenever it can even in the old battle mechanics.
+    #   choices = []
+    #   @battle.eachOtherSideBattler(@index) do |b|
+    #     next if b.ungainableAbility? ||
+    #             [:POWEROFALCHEMY, :RECEIVER, :TRACE].include?(b.ability_id)
+    #     choices.push(b)
+    #   end
+    #   if choices.length>0
+    #     choice = choices[@battle.pbRandom(choices.length)]
+    #     @battle.pbShowAbilitySplash(self)
+    #     self.ability = choice.ability
+    #     @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",pbThis,choice.pbThis(true),choice.abilityName))
+    #     @battle.pbHideAbilitySplash(self)
+    #     if !onSwitchIn && (unstoppableAbility? || abilityActive?)
+    #       BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
+    #     end
+    #   end
+    # end
   end
 
   #=============================================================================

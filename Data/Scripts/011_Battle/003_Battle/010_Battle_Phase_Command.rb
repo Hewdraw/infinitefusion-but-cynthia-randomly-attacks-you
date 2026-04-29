@@ -208,6 +208,7 @@ class PokeBattle_Battle
       next if !@battlers[idxBattler]
       next if @choices[idxBattler][0]!=:None    # Action is forced, can't choose one
       next if !pbCanShowCommands?(idxBattler)   # Action is forced, can't choose one
+      next if @broken_buttons.length == 4
       # AI controls this battler
       next if ($PokemonSystem.aicontrolplayer == 1 && @opponent)
       next if !pbOwnedByPlayer?(idxBattler)
@@ -224,7 +225,7 @@ class PokeBattle_Battle
         case cmd
         when 0    # Fight
           next if @broken_buttons.include?(0)
-          if @battlers[idxBattler].hasActiveAbility?(:WONDERGUARD) && @battlers[idxBattler].hasActiveAbility?(:STURDY)
+          if @battlers[idxBattler].hasActiveAbility?(:WONDERGUARD) && @battlers[idxBattler].hasActiveAbility?([:STURDY, :SHELLARMORPLUS])
             pbDisplay(_INTL("nuh uh."))
             if @opponent
               @broken_buttons.push(0)
@@ -236,7 +237,7 @@ class PokeBattle_Battle
         when 1    # Bag
           next if @broken_buttons.include?(1)
           battler = @battlers[idxBattler]
-          if battler.hasActiveAbility?(:WONDERGUARD) && battler.hasActiveAbility?(:STURDY)
+          if battler.hasActiveAbility?(:WONDERGUARD) && battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS])
             battler.hp = 0
             pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
             battler.pbFaint(false)

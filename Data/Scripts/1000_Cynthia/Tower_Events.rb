@@ -64,11 +64,11 @@ def resolveUnknownEvent(recursion = false)
         pbBGMPlay("Mining")
         pbMiningGame
         pbBGMPlay("TemporalTower")
-    when "Shadross"
+    when "Shadross" #todo
         Kernel.pbMessage("You come across a purple skeleton.")
         Kernel.pbMessage("What will you try to get from him?")
-        helptext = ["Perhaps you can get a discount. Costs 10 Sinnoh Coins.", "Teach something Shadow Bone+.", "Gives a lot of Special Attack.", "Theyre kinda sick, you might have to fight him for it."]
-        helptext[0] = "Perhaps you can get a discount. \\C[2]Costs 10 Sinnoh Coins." if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
+        helptext = ["Perhaps you can get a discount later. Costs 10 Sinnoh Coins.", "Teach something Shadow Bone+.", "Gives a lot of Special Attack.", "Theyre kinda sick, you might have to fight him for it."]
+        helptext[0] = "Perhaps you can get a discount later. \\C[2]Costs 10 Sinnoh Coins." if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
         helptext[3] = "Your Knife flashes from the looplet." if hasEmera?(:KNIFE)
         choice = pbUnknownCommands(["Shop Membership", "A Bone", "Calcium", "His Shades"], helptext)
         case choice
@@ -84,8 +84,7 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("not coded in yet, try something else")
             return resolveUnknownEvent(true)
         when 2
-            Kernel.pbMessage("not coded in yet, try something else")
-            return resolveUnknownEvent(true)
+            pbItemBall(:GOLDENCALCIUM)
         when 3
             if hasEmera?(:KNIFE)
                 return
@@ -93,6 +92,31 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("not coded in yet, try something else")
             return resolveUnknownEvent(true)
         end
+    when "Torterra"
+        Kernel.pbMessage("A dying tree is blocking your path on the mountains.") if !recursion
+        helptext = ["Surely nothing will care about it", "It might be quite the trek.", "Help out the wildlife in the area. Requires a Miracle Seed."]
+        helptext[2] = "Help out the wildlife in the area. \\C[2]Requires a Miracle Seed." if $PokemonBag.pbQuantity(:MIRACLESEED) == 0
+        choice = pbUnknownCommands(["Cut it down.", "Find a different Path.", "Plant a new tree next to it."])
+        case choice
+        when 0
+            Kernel.pbMessage("As you move to cut it down the tree rises from the ground to reveal a torterra below you.")
+            return if !pbLegendaryBattle("Torterra")
+        when 1
+            Kernel.pbMessage()
+        when 2
+            if $PokemonBag.pbQuantity(:MIRACLESEED) == 0
+                Kernel.pbMessage("You don't have a Miracle Seed.")
+                return resolveUnknownEvent(true)
+            end
+            $PokemonBag.pbDeleteItem(:MIRACLESEED, 1)
+            Kernel.pbMessage("The dying tree disappears as a new one sprouts. How preculiar.")
+            $PokemonGlobal.towervalues[:unknownlist].push("Torterra2")
+        end
+    when "Torterra2"
+        Kernel.pbMessage("You find yourself in a familiar place with a grown up tree blocking your path on the mountains.")
+        Kernel.pbMessage("Suddenly a Torterra rises from the ground below you looking happy to see you.")
+        pbObtainAlpha("Torterra")
+        Kernel.pbMessage("")
     when "Wandering Trader"
         Kernel.pbMessage("A Wandering Trader spawns next to you.")
         commonemera = getLooplet.pbRandomEmera(:COMMON)

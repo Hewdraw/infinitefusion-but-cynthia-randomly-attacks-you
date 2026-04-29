@@ -231,7 +231,6 @@ class PokeBattle_Battle
         next unless @turnCount % 10 == 0 && @turnCount > 0
       end
       pbCommonAnimation("UltraBurst2", b)
-      b.pbEffectsOnSwitchIn
       resetstat = false
       GameData::Stat.each_battle do |s|
         resetstat = true if b.stages[s.id] < 0
@@ -255,6 +254,7 @@ class PokeBattle_Battle
         target.effects[PBEffects::GastroAcid] = true
       end
       pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
+      BattleHandlers.triggerAbilityOnSwitchIn(battler.ability,battler,self)
       pbHideAbilitySplash(b)
       b.raid = raidcooldown if b.raid
     end

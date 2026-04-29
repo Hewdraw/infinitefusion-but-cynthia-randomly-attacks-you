@@ -51,6 +51,7 @@ class PokeBattle_Battler
   attr_accessor :phasetwo
   attr_accessor :zmove
   attr_accessor :tempability
+  attr_accessor :extraabilities
 
 
   #=============================================================================
@@ -506,8 +507,9 @@ class PokeBattle_Battler
 
   def getAllAbilities
     list = [@ability_id]
+    list += @extraabilities
     list += @pokemon.getAllAbilities(false) if @pokemon
-    return list
+    return list.uniq
   end
 
   # Applies to both losing self's ability (i.e. being replaced by another) and

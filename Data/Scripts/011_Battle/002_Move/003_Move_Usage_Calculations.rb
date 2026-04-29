@@ -522,7 +522,7 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] /= 2.0
     end
     # Drowsy
-    if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE))
+    if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE) || target.hasActiveAbility?(:TRUEEYE))
       multipliers[:final_damage_multiplier] *= 4.0/3.0
     end
     # Aurora Veil, Reflect, Light Screen

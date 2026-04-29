@@ -1344,11 +1344,13 @@ BattleHandlers::DamageCalcUserAllyAbility.add(:FLOWERGIFT,
   }
 )
 
-BattleHandlers::DamageCalcUserAllyAbility.add(:WIRED,
+BattleHandlers::DamageCalcUserAllyAbility.add(:POWERSPOT,
   proc { |ability,bearer,user,target,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 1.3
   }
 )
+
+BattleHandlers::DamageCalcUserAllyAbility.copy(:POWERSPOT,:WIRED)
 
 #===============================================================================
 # DamageCalcTargetAbility handlers
@@ -1469,6 +1471,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:SHELLARMORPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 0.75 if !move.contactMove?
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetAbilityNonIgnorable handlers
 #===============================================================================
@@ -1544,7 +1552,7 @@ BattleHandlers::CriticalCalcTargetAbility.add(:BATTLEARMOR,
   }
 )
 
-BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR)
+BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR,:SHELLARMORPLUS)
 
 #===============================================================================
 # TargetAbilityOnHit handlers
@@ -2483,7 +2491,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DEATH,
 
 BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
   proc { |ability,battler,battle|
-    if battler.hasActiveAbility?(:STURDY) && $PokemonSystem.aicontrolplayer == 1
+    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS]) && $PokemonSystem.aicontrolplayer == 1
       battler.hp = 0
       battle.pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
       battler.pbFaint(false)
@@ -2945,6 +2953,36 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERAVOLT,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} is radiating a bursting aura!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TRACE,
+  proc { |ability,battler,battle|
+    targets = []
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if b.ungainableAbility? ||
+              [:POWEROFALCHEMY, :RECEIVER, :TRACE].include?(b.ability_id)
+      next if battler.getAllAbilities.include?(b.ability_id)
+      targets.push(b)
+    end
+    next if targets.length == 0
+    battle.pbShowAbilitySplash(battler)
+    targets.each do |target|
+      battler.extraabilities += target.ability
+      battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",pbThis,target.pbThis(true),target.abilityName))
+      BattleHandlers.triggerAbilityOnSwitchIn([target.ability],battler,battle)
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TRUEEYE,
+  proc { |ability,battler,battle|
+    next if battler.status != :NONE
+    battle.pbShowAbilitySplash(battler)
+    battler.status = :SLEEP
+    battler.pbUseMoveSimple(:WISH, -1, -1, true)
     battle.pbHideAbilitySplash(battler)
   }
 )

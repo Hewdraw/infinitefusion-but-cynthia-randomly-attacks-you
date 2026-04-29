@@ -158,7 +158,6 @@ class PokeBattle_Battler
       choice[2] = @moves[idxMove]
     else
       choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(moveID))
-      choice[2].pp = -1 if @raid.nil?
     end
     choice[3] = target # Target (-1 means no target yet)
     PBDebug.log("[Move usage] #{pbThis} started using the called/simple move #{choice[2].name}")
