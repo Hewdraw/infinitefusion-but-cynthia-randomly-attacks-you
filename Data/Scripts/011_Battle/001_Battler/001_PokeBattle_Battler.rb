@@ -507,7 +507,7 @@ class PokeBattle_Battler
 
   def getAllAbilities
     list = [@ability_id]
-    list += @extraabilities
+    list += @extraabilities if @extraabilities
     list += @pokemon.getAllAbilities(false) if @pokemon
     return list.uniq
   end
