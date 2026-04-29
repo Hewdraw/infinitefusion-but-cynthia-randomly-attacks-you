@@ -1446,12 +1446,9 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "111" #todo
-      score = -16
+      score = 0
       if @battle.positions[target.index].effects[PBEffects::FutureSightCounter]>0
         score -= 100
-      elsif @battle.pbAbleNonActiveCount(user.idxOwnSide)==0
-        # Future Sight tends to be wasteful if down to last Pokemon
-        score -= 70
       end
     #---------------------------------------------------------------------------
     when "112"

@@ -2981,7 +2981,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRUEEYE,
   proc { |ability,battler,battle|
     next if battler.status != :NONE
     battle.pbShowAbilitySplash(battler)
-    battler.status = :SLEEP
+    battler.pbInflictStatus(:SLEEP)
     battler.pbUseMoveSimple(:WISH, -1, -1, true)
     battle.pbHideAbilitySplash(battler)
   }
