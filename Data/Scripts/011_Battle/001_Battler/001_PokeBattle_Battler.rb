@@ -436,6 +436,7 @@ class PokeBattle_Battler
     when :BUG
     when :GHOST
     when :STEEL
+      return true if hasActiveItem?(:MILLENNIUMCOMETSHARD)
     when :FIRE
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?([:MAGMARIZER, :FIRESPHERE])
@@ -450,7 +451,7 @@ class PokeBattle_Battler
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?([:ELECTIRIZER, :LIGHTNINGSPHERE])
     when :PSYCHIC
-      return true if hasActiveItem?([:QUICKPOWDER, :METALPOWDER, :ICESPHERE])
+      return true if hasActiveItem?([:QUICKPOWDER, :METALPOWDER, :ICESPHERE, :MILLENNIUMCOMETSHARD])
       return true if hasActiveAbility?(:WIRED)
     when :ICE
       return true if hasActiveItem?([:REAPERCLOTH, :ICESPHERE])
