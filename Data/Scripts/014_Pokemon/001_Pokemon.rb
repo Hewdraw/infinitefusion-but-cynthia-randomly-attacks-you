@@ -1584,7 +1584,7 @@ class Pokemon
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
     @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?(:QUICKPOWDER) || hasItem?(:METALPOWDER)
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
-    @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD)
+    @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf(:JIRACHI)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end
