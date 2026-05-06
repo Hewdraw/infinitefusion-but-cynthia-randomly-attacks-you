@@ -162,7 +162,7 @@ class FusionTutorService
       compatibleMoves << :VICTORYDANCE if canLearnMove(:QUIVERDANCE) || is_fusion_of([:MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALCELL, :VOCALDRILL])
       compatibleMoves << :QUIVERDANCE if is_fusion_of([:MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALCELL, :VOCALDRILL])
       compatibleMoves << :TERRAINPULSE if canLearnMove(:WEATHERBALL)
-      compatibleMoves << :FICKLEBEAM if is_fusion_of([:HYDREIGON, :IRONJUGULIS])
+      compatibleMoves << :FICKLEBEAM if is_fusion_of([:HYDREIGON, :IRONJUGULIS, :DODRIO, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS, :EXEGGUTOR, :DUGTRIO, :PROBOPASS, :MOLTRES])
       compatibleMoves << :SPINOUT if hasType(:STEEL) && canLearnMove(:RAPIDSPIN)
       compatibleMoves << :JETPUNCH if hasType(:WATER) && canLearnMove(:EXTREMESPEED)
       compatibleMoves << :GLAIVERUSH if (hasType(:DRAGON) && canLearnMove(:CLOSECOMBAT)) || canLearnMove(:OUTRAGE)

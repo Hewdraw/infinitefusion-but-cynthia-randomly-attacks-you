@@ -1039,7 +1039,7 @@
 1069,BITTERBLADE,Bitter Blade,0DD,90,FIRE,Physical,100,10,0,NearOther,0,abefq,"a"
 1071,MALIGNANTCHAIN,Malignant Chain,006,100,POISON,Special,100,5,50,NearOther,0,bf,"a"
 1072,STUFFCHEEKS,Stuff Cheeks,328,0,NORMAL,Status,0,10,0,User,0,d,"a"
-1073,BARBBARRAGE,Barb Barrage,330,60,POISON,Physical,100,10,30,NearOther,0,bef,"a"
+1073,BARBBARRAGE,Barb Barrage,330,60,POISON,Physical,100,10,50,NearOther,0,bef,"a"
 1074,CEASELESSEDGE,Ceaseless Edge,103,65,DARK,Physical,90,15,100,NearOther,0,abefq,"a"
 1075,FICKLEBEAM,Fickle Beam,331,80,DRAGON,Special,100,5,0,NearOther,0,bef,"a"
 1076,SPINOUT,Spin Out,332,100,STEEL,Physical,100,5,0,NearOther,0,abef,"a"
