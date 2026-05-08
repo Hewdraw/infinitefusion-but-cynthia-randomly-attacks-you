@@ -2982,7 +2982,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRUEEYE,
     next if battler.status != :NONE
     battle.pbShowAbilitySplash(battler)
     battler.pbSleep
+    oldLastRoundMoved = battler.lastRoundMoved
     battler.pbUseMoveSimple(:WISH, -1, -1, true)
+    battler.lastRoundMoved = oldLastRoundMoved
     battle.pbHideAbilitySplash(battler)
   }
 )

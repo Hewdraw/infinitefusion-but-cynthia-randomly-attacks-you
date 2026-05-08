@@ -235,7 +235,7 @@ class FusionTutorService
       compatibleMoves << :HYDROSTEAM if (hasType(:WATER) && canLearnMove(:SUNNYDAY)) || canLearnMove(:SCALD)
       compatibleMoves << :THUNDERCLAP if hasType(:ELECTRIC) && canLearnMove(:SUCKERPUNCH)
       compatibleMoves << :BURNINGBULWARK if hasType(:FIRE) && canLearnMove(:PROTECT)
-      compatibleMoves << :AEROBLAST if ((hasType(:WATER) || hasType(:PSYCHIC)) && canLearnMove(:HURRICANE)) || is_fusion_of([:ZAPDOS, :ARTICUNO, :MOLTRES, :GZAPDOS, :GARTICUNO, :GMOLTRES])
+      compatibleMoves << :AEROBLAST if ((hasType(:WATER) || hasType(:PSYCHIC)) && canLearnMove(:HURRICANE)) || is_fusion_of([:ZAPDOS, :ARTICUNO, :MOLTRES, :GALARZAPDOS, :GALARARTICUNO, :GALARMOLTRES])
       compatibleMoves << :MIGHTYCLEAVE if hasType(:ROCK)
       compatibleMoves << :PSYBLADE if hasType(:PSYCHIC) || hasType(:ELECTRIC)
       compatibleMoves << :TACHYONCUTTER if hasType(:STEEL)

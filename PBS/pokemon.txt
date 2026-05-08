@@ -22775,7 +22775,7 @@ Generation = 8
 #-------------------------------
 [1001001]
 Name = Zapdos
-InternalName = GZAPDOS
+InternalName = GALARZAPDOS
 Type1 = FIGHTING
 Type2 = FLYING
 GenderRate = Genderless
@@ -22793,7 +22793,7 @@ Generation = 8
 #-------------------------------
 [1001002]
 Name = Moltres
-InternalName = GMOLTRES
+InternalName = GALARMOLTRES
 Type1 = DARK
 Type2 = FLYING
 GenderRate = Genderless
@@ -23516,7 +23516,7 @@ Shape = Quadruped
 Habitat = Grassland
 Kind = Seed
 Pokedex = A Pixie Digimon born from beautiful flower petals. At first glance, Lillymon looks like a small child, but it's in fact an Ultimate Digimon with immeasurable power. Possessed of a mercurial and tomboyish personality, it's said to open its heart to human girls of the same disposition. Lillymon can also be a crybaby, and becomes inconsolable once it starts sobbing, making this one of the harder Digimon to tame. But Lillymon will also offer a helping hand to the small and the weak. Able to fly using the four leaf-like wings on its back, a gentle breeze is said to follow in Lillymon's wake.
-Evolutions = ROSEMON,Item,MISTSTONE
+Evolutions = ROSEMON,Item,MEGASHARD
 #-------------------------------
 [1001104]
 Name = Rosemon
@@ -23644,7 +23644,7 @@ Shape = BipedalTail
 Habitat = Mountain
 Kind = Flame
 Pokedex = An Android Digimon with more than half of its body mechanized. The MetalGreymon of File Island was able to dramatically prolong its vital functioning through self-modification, but its biological parts couldn't withstand the strain and turned blue. By contrast, this Ultimate-level MetalGreymon is a successful Digivolution from a Greymon, and is an extremely powerful Android Digimon. MetalGreymon's attack power is said to be as powerful as a nuclear warhead, capable of completely obliterating lower-level Digimon.
-Evolutions = WARGREYMON,Item,MISTSTONE
+Evolutions = WARGREYMON,Item,MEGASHARD
 #-------------------------------
 [1001109]
 Name = WarGreymon
@@ -23748,7 +23748,7 @@ Shape = BipedalTail
 Habitat = WatersEdge
 Kind = Big Jaw
 Pokedex = A Beast Man Digimon that Digivolved from Garurumon, and can now walk on two legs. Becoming bipedal reduced WereGarurumon's speed, but turned it into a Commando-type Digimon with enhanced offensive and defensive power, as well as a knack for tactics. Retaining the leg strength of Garurumon, its kicks are extremely powerful, and it has one of the best jumps in the world of Digimon. WereGarurumon is also extremely loyal and will do anything if ordered by its master, making it highly reliable.
-Evolutions = METALGARURUMON,Item,MISTSTONE
+Evolutions = METALGARURUMON,Item,MEGASHARD
 #-------------------------------
 [1001113]
 Name = MetalGarurumon
@@ -23983,7 +23983,7 @@ EffortPoints = 0,0,0,1,0,1
 Rareness = 75
 Happiness = 70
 Abilities = SNOWCLOAK
-HiddenAbility = SNOWWARNING
+HiddenAbility = SNOWWWARNING
 Moves = 0,DAZZLINGGLEAM,1,IMPRISON,1,NASTYPLOT,1,ICEBEAM,1,ICESHARD,1,CONFUSERAY,1,SAFEGUARD
 TutorMoves = AGILITY,AQUATAIL,ATTRACT,AURORAVEIL,AVALANCHE,BLIZZARD,BODYSLAM,CALMMIND,CAPTIVATE,CHARM,CONFIDE,COVET,DARKPULSE,DAZZLINGGLEAM,DIG,DOUBLEEDGE,DOUBLETEAM,DRAININGKISS,DREAMEATER,ENCORE,ENDURE,FACADE,FAKETEARS,FOULPLAY,FROSTBREATH,FRUSTRATION,GIGAIMPACT,HAIL,HEADBUTT,HEALBELL,HEX,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IMPRISON,IRONTAIL,LASERFOCUS,MIMIC,MISTYTERRAIN,NASTYPLOT,NATURALGIFT,PAINSPLIT,PAYBACK,POWERSWAP,PROTECT,PSYCHUP,PSYSHOCK,RAINDANCE,REST,RETURN,ROAR,ROLEPLAY,ROUND,SAFEGUARD,SECRETPOWER,SLEEPTALK,SNORE,SOLARBEAM,SPITE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAILSLAP,TRIPLEAXEL,WEATHERBALL,WONDERROOM,ZENHEADBUTT
 Compatibility = Field

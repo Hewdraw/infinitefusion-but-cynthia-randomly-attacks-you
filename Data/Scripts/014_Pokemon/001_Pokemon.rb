@@ -1419,12 +1419,29 @@ class Pokemon
     base_stats_exception = getBaseStatsFormException()
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
+    headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
+    if hasItem?(:ICESPHERE) || hasItem?(:FIRESPHERE) || hasItem?(:LIGHTNINGSPHERE) || hasAbility?(:FORCEDEVOLUTION)
+      specieslist = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+      bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
+      bsttemp = [{}, {}]
+      specieslist.each_with_index do |species,i|
+        next unless REGIONALLIST.flatten.include?(species.species)
+        GameData::Stat.each_main { |s|
+          bsttemp[i][s.id] = bstdata[i][s.id] + (180-bstdata[i][s.id]) / 3
+        }
+      end
+      GameData::Stat.each_main { |s|
+        statindex = 0
+        statindex = 1 if headstats.include?(s.id)
+        ret[s.id] = (((2 * bsttemp[statindex][s.id]) / 3.0) + (bsttemp[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+      }
+      print("ret ", ret)
+    end
     megasource = nil
-    megasource = :EON if hasItem?(:EON)
+    megasource = :EON if hasAbility?(:EON)
     megasource = :MEGASHARD if hasItem?(:MEGASHARD)
-    if hasItem?(:MEGASHARD) || @ability == :EON
-      headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
+    if megasource
       bstdata = getMegaShardForm(megasource)
       bstdata.each_with_index do |mega,i|
         bstdata[i] = mega.base_stats
@@ -1603,6 +1620,15 @@ class Pokemon
     if list.include?(:LEGENDARYPRESSURE) || ability_id == :LEGENDARYPRESSURE
       getAbilityList.each do |ability|
         list.push(ability[0])
+      end
+    end
+    if list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION || hasItem?(:ICESPHERE) || hasItem?(:FIRESPHERE) || hasItem?(:LIGHTNINGSPHERE)
+      if isFusionOf(:MEW)
+        list += [:PRESSURE, :UNNERVE, :STEADFAST, :INSOMNIA, :IMMUNITY]
+      else
+        getAbilityList.each do |ability|
+          list.push(ability[0])
+        end
       end
     end
     list.push(:KEENEYE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)

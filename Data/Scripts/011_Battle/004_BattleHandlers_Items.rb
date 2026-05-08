@@ -45,13 +45,6 @@ BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
   }
 )
 
-BattleHandlers::SpeedCalcItem.add(:LIGHTNINGSPHERE,
-  proc { |item,battler,mult|
-    next mult*1.5 if battler.isSpecies?(:GZAPDOS)
-    next mult*1.3 if battler.isFusionOf(:ZAPDOS)
-  }
-)
-
 BattleHandlers::SpeedCalcItem.add(:MACHOBRACE,
   proc { |item,battler,mult|
     next mult/2
@@ -1082,13 +1075,6 @@ BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
 BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:DRAGON,type,target,mults)
-  }
-)
-
-BattleHandlers::DamageCalcTargetItem.add(:ICESPHERE,
-  proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:defense_multiplier] *= 1.5 if target.isSpecies?(:GARTICUNO) && move.specialMove?
-    mults[:defense_multiplier] *= 1.3 if target.isFusionOf(:ARTICUNO) && move.specialMove?
   }
 )
 
