@@ -464,7 +464,6 @@ class PokeBattle_Battler
     when :GUN
       return true if hasActiveAbility?([:SNIPER, :FULLMETALBODY])
     end
-    return true if hasActiveItem?(:DUBIOUSDISC) && rand(10) < 3
     activeTypes = pbTypes(true)
     return activeTypes.include?(GameData::Type.get(type).id)
   end

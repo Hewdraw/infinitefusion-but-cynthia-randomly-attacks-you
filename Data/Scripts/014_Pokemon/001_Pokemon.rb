@@ -126,6 +126,7 @@ class Pokemon
   attr_accessor :extraabilities
   attr_accessor :abilityarray
   attr_accessor :boxicon
+  attr_accessor :miststone
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
   attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
@@ -835,9 +836,10 @@ class Pokemon
   # @return [Boolean] whether the Pokémon is holding the specified item or
   #   an item at all
   def hasItem?(check_item = nil)
+    check_item = [check_item] if !check_item.is_a?(Array)
     return !@item.nil? if check_item.nil?
     held_item = self.item
-    return held_item && held_item == check_item
+    return held_item && check_item.include?(held_item)
   end
 
   # @return [Array<Symbol>] the items this species can be found holding in the wild
@@ -1419,24 +1421,11 @@ class Pokemon
     base_stats_exception = getBaseStatsFormException()
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
-    headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
-    if hasItem?(:ICESPHERE) || hasItem?(:FIRESPHERE) || hasItem?(:LIGHTNINGSPHERE) || hasAbility?(:FORCEDEVOLUTION)
-      specieslist = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
-      bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
-      bsttemp = [{}, {}]
-      specieslist.each_with_index do |species,i|
-        next unless REGIONALLIST.flatten.include?(species.species)
-        GameData::Stat.each_main { |s|
-          bsttemp[i][s.id] = bstdata[i][s.id] + (180-bstdata[i][s.id]) / 3
-        }
-      end
-      GameData::Stat.each_main { |s|
-        statindex = 0
-        statindex = 1 if headstats.include?(s.id)
-        ret[s.id] = (((2 * bsttemp[statindex][s.id]) / 3.0) + (bsttemp[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
-      }
-      print("ret ", ret)
+    specieslist = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+    bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
+    if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
+
     end
     megasource = nil
     megasource = :EON if hasAbility?(:EON)
@@ -1446,6 +1435,22 @@ class Pokemon
       bstdata.each_with_index do |mega,i|
         bstdata[i] = mega.base_stats
       end
+    end
+    headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
+    GameData::Stat.each_main { |s|
+      statindex = 0
+      statindex = 1 if headstats.include?(s.id)
+      ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+    }
+    if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE]) || hasAbility?(:FORCEDEVOLUTION)
+      bsttemp = [{}, {}]
+      specieslist.each_with_index do |species,i|
+        next unless REGIONALLIST.flatten.include?(species.species)
+        GameData::Stat.each_main { |s|
+          bsttemp[i][s.id] = bstdata[i][s.id] + (180-bstdata[i][s.id]) / 3
+        }
+      end
+      bstdata = bsttemp
       GameData::Stat.each_main { |s|
         statindex = 0
         statindex = 1 if headstats.include?(s.id)
@@ -1552,10 +1557,10 @@ class Pokemon
     @extraabilities = []
     @type1 = nil
     @type2 = nil
-    if hasItem?(:MEGASHARD) || @ability == :EON
-      megasource = nil
-      megasource = :EON if hasItem?(:EON)
-      megasource = :MEGASHARD if hasItem?(:MEGASHARD)
+    megasource = nil
+    megasource = :EON if hasItem?(:EON)
+    megasource = :MEGASHARD if hasItem?(:MEGASHARD)
+    if megasource
       getMegaShardForm(megasource).each_with_index do |mega, i|
         next if mega.form == 0
         @type2 = mega.type2 if i == 0
@@ -1599,7 +1604,7 @@ class Pokemon
     @extraabilities.push(:MOLDBREAKER) if hasItem?(:THICKCLUB)
     @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && isFusionOf(:MILOTIC)
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && (isFusionOf(:HORSEA) || isFusionOf(:SEADRA) || isFusionOf(:KINGDRA))
-    @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?(:QUICKPOWDER) || hasItem?(:METALPOWDER)
+    @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?([:QUICKPOWDER, :METALPOWDER])
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
     @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf(:JIRACHI)
     @abilityarray = createAbilityArray
@@ -1622,7 +1627,7 @@ class Pokemon
         list.push(ability[0])
       end
     end
-    if list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION || hasItem?(:ICESPHERE) || hasItem?(:FIRESPHERE) || hasItem?(:LIGHTNINGSPHERE)
+    if list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION || hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
       if isFusionOf(:MEW)
         list += [:PRESSURE, :UNNERVE, :STEADFAST, :INSOMNIA, :IMMUNITY]
       else
@@ -1643,7 +1648,7 @@ class Pokemon
     list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
     list.push(:TOXICCHAIN) if hasActiveEmera?(:TOXICCHAIN)
-    list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && (hasItem?(:WELLSPRINGMASK) || hasItem?(:HEARTHFLAMEMASK) || hasItem?(:CORNERSTONEMASK))
+    list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && hasItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
     return list
   end
 

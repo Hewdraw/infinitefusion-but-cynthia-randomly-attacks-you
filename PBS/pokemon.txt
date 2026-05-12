@@ -24553,7 +24553,6 @@ Evolutions = SIRFETCHD,Level,35,SIRFETCHD,Item,DAWNSTONE,SIRFETCHD,Item,LEAFSTON
 Name = Sirfetch'd
 InternalName = SIRFETCHD
 Type1 = FIGHTING
-Type2 = 
 BaseStats = 62,135,95,65,68,82
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -24607,7 +24606,7 @@ WildItemUncommon = LEEK
 Name = Grimer
 InternalName = ALOLAGRIMER
 Type1 = POISON
-Type1 = DARK
+Type2 = DARK
 BaseStats = 80,80,50,25,40,50
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -25803,7 +25802,7 @@ Shape = Serpentine
 Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
-Evolutions = DUDUDUNSPARCE,Item,MISTSTONE
+Evolutions = DUDUDUNSPARCE,Level,101
 #-------------------------------
 [1001189]
 Name = Dududunsparce
@@ -25829,7 +25828,7 @@ Shape = Serpentine
 Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
-Evolutions = DUDUDUDUNSPARCE,Item,MISTSTONE
+Evolutions = DUDUDUDUNSPARCE,Level,101
 #-------------------------------
 [1001190]
 Name = Dudududunsparce
@@ -25855,7 +25854,7 @@ Shape = Serpentine
 Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
-Evolutions = DUDUDUDUDUNSPARCE,Item,MISTSTONE
+Evolutions = DUDUDUDUDUNSPARCE,Level,101
 #-------------------------------
 [1001191]
 Name = Dududududunsparce
@@ -25881,7 +25880,7 @@ Shape = Serpentine
 Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
-Evolutions = DUDUDUDUDUDUNSPARCE,Item,MISTSTONE
+Evolutions = DUDUDUDUDUDUNSPARCE,Level,101
 #-------------------------------
 [1001192]
 Name = Dudududududunsparce
@@ -25907,7 +25906,7 @@ Shape = Serpentine
 Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
-Evolutions = DUDUDUDUDUDUDUNSPARCE,Item,MISTSTONE
+Evolutions = DUDUDUDUDUDUDUNSPARCE,Level,101
 #-------------------------------
 [1001193]
 Name = Dududududududunsparce
@@ -25933,7 +25932,7 @@ Shape = Serpentine
 Habitat = Cave
 Kind = Land Snake
 Pokedex = Its drill-tipped tail is used to burrow into the ground backwards. This Pokémon is known to make its nest in complex shapes deep under the ground.
-Evolutions = DUDUDUDUDUDUDUDUNSPARCE,Item,MISTSTONE
+Evolutions = DUDUDUDUDUDUDUDUNSPARCE,Level,101
 #-------------------------------
 [1001194]
 Name = Dudududududududunsparce

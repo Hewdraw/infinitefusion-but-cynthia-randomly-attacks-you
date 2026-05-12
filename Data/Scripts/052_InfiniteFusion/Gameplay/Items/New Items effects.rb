@@ -1222,6 +1222,17 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
       next if region != pkmn.species
       pbMessage(_INTL("{1} changed form!", pkmn.name))
       pkmn.species = regional[(i+1) % regional.length]
+      if pkmn.miststone
+        preevo = GameData::Species.get(pokemon.species).get_previous_species
+        evolutions = GameData::Species.get(preevo).get_evolutions(true)
+        evolutions.each do |evolution|
+          next unless evolution[2] == :MISTSTONE
+          pokemon.ability = :FORCEDEVOLUTION
+          pokemon.calc_stats
+          pokemon.miststone = true
+          break
+        end
+      end
       break
     end
   end
@@ -1720,14 +1731,23 @@ ItemHandlers::UseOnPokemon.add(:MISTSTONE, proc { |item, pokemon, scene|
 
 def pbForceEvo(pokemon)
   evolutions = getEvolvedSpecies(pokemon)
-  return false if evolutions.empty?
-  # if multiple evolutions, pick a random one
-  #(format of returned value is [[speciesNum, level]])
   forcedevolutions = []
-  evolutions.each do |evolution|
-    forcedevolutions.push(evolution) if evolution[2] == :MISTSTONE
+  if evolutions.empty?
+    return false if pokemon.miststone
+    preevo = GameData::Species.get(pokemon.species).get_previous_species
+    evolutions = GameData::Species.get(preevo).get_evolutions(true)
+    evolutions.each do |evolution|
+      forcedevolutions.push(evolution) if evolution[2] == :MISTSTONE
+    end
+    return false if forcedevolutions.empty?
+  else
+    evolutions.each do |evolution|
+      forcedevolutions.push(evolution) if evolution[2] == :MISTSTONE
+    end
   end
   evolutions = forcedevolutions if !forcedevolutions.empty?
+  # if multiple evolutions, pick a random one
+  #(format of returned value is [[speciesNum, level]])
   newspecies = evolutions[rand(evolutions.length - 1)][0]
   return false if newspecies == nil
   return false if newspecies == :OMNIMON
@@ -1738,6 +1758,7 @@ def pbForceEvo(pokemon)
   if !forcedevolutions.empty?
     pokemon.ability = :FORCEDEVOLUTION
     pokemon.calc_stats
+    pokemon.miststone = true
   end
   return true
 end
