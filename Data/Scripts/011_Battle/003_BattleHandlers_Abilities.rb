@@ -852,7 +852,7 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:VOCALIZE,
   }
 )
 
-BattleHandlers::MoveBaseTypeModifierAbility.copy(:VOCALIZE,:VOCALOID)
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:VOCALIZE,:VOCALOID, :SCULK)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:DRAGONIZE,
   proc { |ability,user,move,type|
@@ -986,7 +986,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID, :IMMOLATE, :DRAGONIZE)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE, :VOCALOID, :SCULK, :IMMOLATE, :DRAGONIZE)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1167,7 +1167,7 @@ BattleHandlers::DamageCalcUserAbility.add(:PUNKROCK,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :SKULK, :VOCALOID)
+BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :VOCALOID)
 
 BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1441,7 +1441,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:PUNKROCK,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK, :SKULK,:VOCALOID)
+BattleHandlers::DamageCalcTargetAbility.copy(:PUNKROCK,:VOCALOID)
 
 BattleHandlers::DamageCalcTargetAbility.add(:MAGMAARMOR,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -2475,7 +2475,7 @@ BattleHandlers::TrappingTargetAbility.add(:SHADOWTAG,
   }
 )
 
-BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SKULK, :PIXELTAG)
+BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SCULK, :PIXELTAG)
 
 #===============================================================================
 # AbilityOnSwitchIn handlers
@@ -2788,7 +2788,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SKULK)
+BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK)
 
 BattleHandlers::AbilityOnSwitchIn.add(:ASONE,
   proc { |ability,battler,battle|

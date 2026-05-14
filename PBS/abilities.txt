@@ -242,7 +242,7 @@
 240,EXPLOSIVE,Explosive,"a"
 241,SUPERSNIPER,Super Sniper,"a"
 242,WILDFIRE,Wildfire,"a"
-243,SKULK,Skulk,"a"
+243,SCULK,Sculk,"a"
 244,ENDER,Ender,"a"
 245,QUARKDRIVE,Quark Drive,"a"
 246,PUNKROCK,Punk Rock,"a"

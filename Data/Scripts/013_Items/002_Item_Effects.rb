@@ -783,7 +783,7 @@ ItemHandlers::UseOnPokemon.add(:CARBOS, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.copy(:CARBOS, :SWIFTMOCHI)
 
 ItemHandlers::UseOnPokemon.add(:HEALTHWING, proc { |item, pkmn, scene|
-  if pbRaiseEffortValues(pkmn, :HP, 1, false) == 0
+  if pbRaiseEffortValues(pkmn, :HP, 4, false) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -794,7 +794,7 @@ ItemHandlers::UseOnPokemon.add(:HEALTHWING, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:MUSCLEWING, proc { |item, pkmn, scene|
-  if pbRaiseEffortValues(pkmn, :ATTACK, 1, false) == 0
+  if pbRaiseEffortValues(pkmn, :ATTACK, 4, false) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -804,7 +804,7 @@ ItemHandlers::UseOnPokemon.add(:MUSCLEWING, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:RESISTWING, proc { |item, pkmn, scene|
-  if pbRaiseEffortValues(pkmn, :DEFENSE, 1, false) == 0
+  if pbRaiseEffortValues(pkmn, :DEFENSE, 4, false) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -814,7 +814,7 @@ ItemHandlers::UseOnPokemon.add(:RESISTWING, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:GENIUSWING, proc { |item, pkmn, scene|
-  if pbRaiseEffortValues(pkmn, :SPECIAL_ATTACK, 1, false) == 0
+  if pbRaiseEffortValues(pkmn, :SPECIAL_ATTACK, 4, false) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -824,7 +824,7 @@ ItemHandlers::UseOnPokemon.add(:GENIUSWING, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:CLEVERWING, proc { |item, pkmn, scene|
-  if pbRaiseEffortValues(pkmn, :SPECIAL_DEFENSE, 1, false) == 0
+  if pbRaiseEffortValues(pkmn, :SPECIAL_DEFENSE, 4, false) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -834,7 +834,7 @@ ItemHandlers::UseOnPokemon.add(:CLEVERWING, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:SWIFTWING, proc { |item, pkmn, scene|
-  if pbRaiseEffortValues(pkmn, :SPEED, 1, false) == 0
+  if pbRaiseEffortValues(pkmn, :SPEED, 4, false) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end

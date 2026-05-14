@@ -138,7 +138,7 @@ class Pokemon
   # Max total IVs
   IV_STAT_LIMIT = 31
   # Max total EVs
-  EV_LIMIT = 510
+  EV_LIMIT = 512
   # Max EVs that a single stat can have
   EV_STAT_LIMIT = 252
   # Maximum length a Pokémon's nickname can be

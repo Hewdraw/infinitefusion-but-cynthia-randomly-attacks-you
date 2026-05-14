@@ -194,6 +194,8 @@ class FusionTutorService
       compatibleMoves << :RAPIDSPIN if is_fusion_of([:DUSKNOIR])
       compatibleMoves << :HYPERFANG if is_fusion_of([:FERALIGATR])
       compatibleMoves << :AURASPHERE if canLearnMove(:FOCUSBLAST)
+      compatibleMoves << :APPLEACID if is_fusion_of([:EXEGGUTOR, :ALOLAEXEGGUTOR])
+      #compatibleMoves << :GRAVAPPLE if is_fusion_of([:EXEGGUTOR, :ALOLAEXEGGUTOR])
 
     end
     if includeLegendaries
