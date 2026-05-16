@@ -837,7 +837,7 @@ class Pokemon
   #   an item at all
   def hasItem?(check_item = nil)
     check_item = [check_item] if !check_item.is_a?(Array)
-    return !@item.nil? if check_item.nil?
+    return !@item.nil? if check_item[0].nil?
     held_item = self.item
     return held_item && check_item.include?(held_item)
   end

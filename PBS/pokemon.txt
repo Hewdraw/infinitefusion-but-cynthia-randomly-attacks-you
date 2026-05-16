@@ -20084,7 +20084,7 @@ Shape = Head
 #-------------------------------
 [1000250]
 Name = Arcanine
-InternalName = HARCANINEROCK
+InternalName = HISUIARCANINEROCK
 Type1 = ROCK
 BaseStats = 90,110,80,95,100,80
 GenderRate = Female25Percent
