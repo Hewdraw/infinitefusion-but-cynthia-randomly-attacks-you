@@ -1848,6 +1848,16 @@ BattleHandlers::EORHealingItem.add(:BUNDLEOFBALLOONS,
 # EOREffectItem handlers
 #===============================================================================
 
+BattleHandlers::EOREffectItem.add(:BADAPPLE,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.eachOpposing do |opponent|
+      opponent.pbReduceHP(opponent.totalhp/16,false)
+      battle.pbDisplay(_INTL("{1} is hurt by the {2}!",opponent.pbThis,battler.itemName))
+    end
+  }
+)
+
 BattleHandlers::EOREffectItem.add(:FLAMEORB,
   proc { |item,battler,battle|
     next if !battler.pbCanBurn?(nil,false)
