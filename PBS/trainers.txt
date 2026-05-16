@@ -1227,7 +1227,7 @@ Pokemon = B43H48,18
 [GAMBLER,Dirk]
 Pokemon = ARCEUS,5
     Offset = 10
-    Moves = METRONOME
+    Moves = GREATESTMETRONOME
     Gender = F
     Nature = BRAVE
     IV = 31,31,31,31,31,31
