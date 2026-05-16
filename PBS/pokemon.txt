@@ -6641,7 +6641,7 @@ Evolutions = MISMAGIUS,Item,DUSKSTONE
 [201]
 Name = Unown
 InternalName = UNOWN
-Type1 = PSYCHIC
+Type1 = QMARKS
 BaseStats = 48,72,48,48,72,48
 GenderRate = Genderless
 GrowthRate = Medium
@@ -21872,6 +21872,17 @@ Color = White
 Shape = Quadruped
 Kind = Temporal
 Pokedex = It has the power to control time. It appears in Sinnoh-region myths as an ancient deity.
+#-------------------------------
+[1000726]
+Name = Bad Apple
+InternalName = HYDRAPPLEALOLAEXEGGUTOR
+Type1 = GRASS
+Type2 = DRAGON
+BaseStats = 98,88,101,44,123,76
+Abilities = DROUGHT
+Moves = 1,TACKLE
+Shape = Quadruped
+
 #Misc
 #-------------------------------
 [1000800]

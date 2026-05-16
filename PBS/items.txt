@@ -409,7 +409,7 @@
 403,IAPAPABERRY,Iapapa Berry,Iapapa Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
 404,RAZZBERRY,Razz Berry,Razz Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 405,BLUKBERRY,Bluk Berry,Bluk Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-406,NANABBERRY,Nanab Berry,Nanab Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
+406,NANABBERRY,Power Nut Berry,Power Nut Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 407,WEPEARBERRY,Wepear Berry,Wepear Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 408,PINAPBERRY,Pinap Berry,Pinap Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
 409,POMEGBERRY,Pomeg Berry,Pomeg Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base HP.",1,0,5
@@ -910,6 +910,9 @@
 844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"todo",0,0,0
 845,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"todo",0,0,0
 846,MILLENNIUMCOMETSHARD,Millennium Comet Shard,Millennium Comet Shards,1,0,"can you believe that this fucker sleeps for a whole thousand years?",0,0,0
+847,LUNARDIAL,Lunar Dial,Lunar Dials,1,0,"todo",0,0,0
+848,SABLWILITE,Sablwilite,Sablwilites,1,0,"todo",0,0,0
+849,BADAPPLE,Bad Apple,Bad Apples,1,0,"todo",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number
