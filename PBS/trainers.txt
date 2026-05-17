@@ -1232,6 +1232,20 @@ Pokemon = ARCEUS,5
     Nature = BRAVE
     IV = 31,31,31,31,31,31
     Happiness = 255
+Pokemon = ARCEUS,5
+    Offset = 10
+    Moves = GREATESTMETRONOME
+    Gender = F
+    Nature = BRAVE
+    IV = 31,31,31,31,31,31
+    Happiness = 255
+Pokemon = ARCEUS,5
+    Offset = 10
+    Moves = GREATESTMETRONOME
+    Gender = F
+    Nature = BRAVE
+    IV = 31,31,31,31,31,31
+    Happiness = 255
 #-------------------------------
 [BEAUTY,Tamia]
 Pokemon = B10H69,31
