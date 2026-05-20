@@ -2470,7 +2470,7 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
     abilities = pkmn.getAllAbilities(true)
-    if abilities.include?(:POISONHEAL) || abilities.include?(:MAGICGUARD)
+    if abilities.include?(:POISONHEAL) || abilities.include?(:MAGICGUARD) || abilities.include?(:TOXICBOOST)
       pkmn.status = :POISON
       next
     end
@@ -2496,7 +2496,7 @@ ItemHandlers::UseInField.add(:HEALIES, proc { |item|
   $Trainer.party.each do |pkmn|
     pkmn.heal
     abilities = pkmn.getAllAbilities(true)
-    if abilities.include?(:POISONHEAL) || abilities.include?(:MAGICGUARD)
+    if abilities.include?(:POISONHEAL) || abilities.include?(:MAGICGUARD) || abilities.include?(:TOXICBOOST)
       pkmn.status = :POISON
       next
     end
