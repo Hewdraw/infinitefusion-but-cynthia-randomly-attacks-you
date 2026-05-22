@@ -196,6 +196,7 @@ class FusionTutorService
       compatibleMoves << :AURASPHERE if canLearnMove(:FOCUSBLAST)
       compatibleMoves << :APPLEACID if is_fusion_of([:EXEGGUTOR, :ALOLAEXEGGUTOR])
       #compatibleMoves << :GRAVAPPLE if is_fusion_of([:EXEGGUTOR, :ALOLAEXEGGUTOR])
+      compatibleMoves << :DECORATE if hasType(:FAIRY)
 
     end
     if includeLegendaries

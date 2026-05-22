@@ -366,27 +366,12 @@ class PokemonPokedexInfo_Scene
   def   drawEntryText(overlay, species_data, reloading=false)
     baseColor = Color.new(88, 88, 80)
     shadow = Color.new(168, 184, 184)
-    shadowCustom = Color.new(160, 200, 150)
-    shadowAI = Color.new(168, 184, 220)
+    shadowColor = Color.new(160, 200, 150)
 
-    if species_data.is_fusion
-      customEntry = getCustomEntryText(species_data)
-      if customEntry
-        entryText = customEntry
-        shadowColor = shadowCustom
-      else
-        if $PokemonSystem.use_generated_dex_entries && species_data.is_a?(GameData::FusedSpecies)
-          @randomEntryText = species_data.get_random_dex_entry if !reloading
-          entryText = @randomEntryText
-          shadowColor = shadow
-        else
-          entryText = _INTL("No custom Pokédex entry available for this Pokémon. Please consider submitting an entry for this Pokémon on the game's Discord. Auto-generated Pokédex entries can be enabled in the options menu.")
-          shadowColor = shadow
-        end
-      end
+    if GameData::Species.get(getBodyID(species_data.id_number)) == :MAWILE || GameData::Species.get(getHeadID(species_data.id_number)) == :MAWILE
+      entryText = "Nice, a Mawile."
     else
-      entryText = species_data.pokedex_entry
-      shadowColor = shadow
+      entryText = "Unfortunately not a Mawile."
     end
 
     max_chars_per_page = 150
@@ -438,79 +423,79 @@ class PokemonPokedexInfo_Scene
     return !sprite_path.include?(Settings::CUSTOM_BATTLERS_FOLDER)
   end
 
-  def getCustomEntryText(species_data)
-    spriteLoader = BattleSpriteLoader.new
-    pif_sprite=spriteLoader.get_pif_sprite_from_species(species_data)
-    return nil if pif_sprite.type != :CUSTOM
-    possibleCustomEntries = getCustomDexEntry(pif_sprite)
-    if possibleCustomEntries && possibleCustomEntries.length > 0
-      customEntry = possibleCustomEntries.sample
-      customEntry = customEntry.gsub(Settings::CUSTOM_ENTRIES_NAME_PLACEHOLDER, species_data.name)
-    end
-    return customEntry
-  end
+  # def getCustomEntryText(species_data)
+  #   spriteLoader = BattleSpriteLoader.new
+  #   pif_sprite=spriteLoader.get_pif_sprite_from_species(species_data)
+  #   return nil if pif_sprite.type != :CUSTOM
+  #   possibleCustomEntries = getCustomDexEntry(pif_sprite)
+  #   if possibleCustomEntries && possibleCustomEntries.length > 0
+  #     customEntry = possibleCustomEntries.sample
+  #     customEntry = customEntry.gsub(Settings::CUSTOM_ENTRIES_NAME_PLACEHOLDER, species_data.name)
+  #   end
+  #   return customEntry
+  # end
 
-  def getCustomDexEntry(pif_sprite)
-    sprite = pif_sprite.to_filename()
-    json_data = File.read(Settings::CUSTOM_DEX_ENTRIES_PATH)
-    parsed_data = HTTPLite::JSON.parse(json_data)
+  # def getCustomDexEntry(pif_sprite)
+  #   sprite = pif_sprite.to_filename()
+  #   json_data = File.read(Settings::CUSTOM_DEX_ENTRIES_PATH)
+  #   parsed_data = HTTPLite::JSON.parse(json_data)
 
-    entries = parsed_data.select { |entry| entry["sprite"] == sprite }
-    if entries.any?
-      return entries.map { |entry| entry["entry"] }
-    else
-      echoln "No custom entry found for sprite " + sprite.to_s
-      return nil
-    end
-  end
+  #   entries = parsed_data.select { |entry| entry["sprite"] == sprite }
+  #   if entries.any?
+  #     return entries.map { |entry| entry["entry"] }
+  #   else
+  #     echoln "No custom entry found for sprite " + sprite.to_s
+  #     return nil
+  #   end
+  # end
 
   #unused
-  def getAIDexEntry(pokemonID, name)
-    begin
-      head_number = get_head_number_from_symbol(pokemonID).to_s
-      body_number = get_body_number_from_symbol(pokemonID).to_s
+  # def getAIDexEntry(pokemonID, name)
+  #   begin
+  #     head_number = get_head_number_from_symbol(pokemonID).to_s
+  #     body_number = get_body_number_from_symbol(pokemonID).to_s
 
-      # Ensure the file exists, if not, create it
-      unless File.exist?(Settings::AI_DEX_ENTRIES_PATH)
-        File.write(Settings::AI_DEX_ENTRIES_PATH, '{}')
-      end
+  #     # Ensure the file exists, if not, create it
+  #     unless File.exist?(Settings::AI_DEX_ENTRIES_PATH)
+  #       File.write(Settings::AI_DEX_ENTRIES_PATH, '{}')
+  #     end
 
-      json_data = File.read(Settings::AI_DEX_ENTRIES_PATH)
-      data = HTTPLite::JSON.parse(json_data)
+  #     json_data = File.read(Settings::AI_DEX_ENTRIES_PATH)
+  #     data = HTTPLite::JSON.parse(json_data)
 
-      # Check if the entry exists
-      unless data[head_number] && data[head_number][body_number]
-        # If not, fetch it from the API
-        url = Settings::AI_ENTRIES_URL + "?head=#{head_number}&body=#{body_number}"
-        if !requestRateExceeded?(Settings::AI_ENTRIES_RATE_LOG_FILE, Settings::AI_ENTRIES_RATE_TIME_WINDOW, Settings::AI_ENTRIES_RATE_MAX_NB_REQUESTS)
-          fetched_entry = clean_json_string(pbDownloadToString(url))
-        else
-          echoln "API rate exceeded for AI entries"
-        end
-        return nil if !fetched_entry || fetched_entry.empty?
-        # If the fetched entry is valid, update the JSON and save it
-        unless fetched_entry.empty?
-          data[head_number] ||= {}
-          data[head_number][body_number] = fetched_entry
-          serialized_data = serialize_json(data)
-          File.write(Settings::AI_DEX_ENTRIES_PATH, serialized_data)
-        else
-          echoln "No AI entry found for Pokemon " + pokemonID.to_s
-          return nil
-        end
-      end
+  #     # Check if the entry exists
+  #     unless data[head_number] && data[head_number][body_number]
+  #       # If not, fetch it from the API
+  #       url = Settings::AI_ENTRIES_URL + "?head=#{head_number}&body=#{body_number}"
+  #       if !requestRateExceeded?(Settings::AI_ENTRIES_RATE_LOG_FILE, Settings::AI_ENTRIES_RATE_TIME_WINDOW, Settings::AI_ENTRIES_RATE_MAX_NB_REQUESTS)
+  #         fetched_entry = clean_json_string(pbDownloadToString(url))
+  #       else
+  #         echoln "API rate exceeded for AI entries"
+  #       end
+  #       return nil if !fetched_entry || fetched_entry.empty?
+  #       # If the fetched entry is valid, update the JSON and save it
+  #       unless fetched_entry.empty?
+  #         data[head_number] ||= {}
+  #         data[head_number][body_number] = fetched_entry
+  #         serialized_data = serialize_json(data)
+  #         File.write(Settings::AI_DEX_ENTRIES_PATH, serialized_data)
+  #       else
+  #         echoln "No AI entry found for Pokemon " + pokemonID.to_s
+  #         return nil
+  #       end
+  #     end
 
-      entry = data[head_number][body_number]
-      entry = entry.gsub(Settings::CUSTOM_ENTRIES_NAME_PLACEHOLDER, name)
-      entry = entry.gsub("\n", "")
+  #     entry = data[head_number][body_number]
+  #     entry = entry.gsub(Settings::CUSTOM_ENTRIES_NAME_PLACEHOLDER, name)
+  #     entry = entry.gsub("\n", "")
 
-      # Unescape any escaped quotes before returning the entry
-      entry = entry.gsub('\\"', '"')
-      return clean_json_string(entry)
-    rescue MKXPError
-      return nil
-    end
-  end
+  #     # Unescape any escaped quotes before returning the entry
+  #     entry = entry.gsub('\\"', '"')
+  #     return clean_json_string(entry)
+  #   rescue MKXPError
+  #     return nil
+  #   end
+  # end
 
   def pbFindEncounter(enc_types, species)
     return false if !enc_types
