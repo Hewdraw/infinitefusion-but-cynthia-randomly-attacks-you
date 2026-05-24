@@ -370,6 +370,8 @@ class PokemonPokedexInfo_Scene
 
     if GameData::Species.get(getBodyID(species_data.id_number)) == :MAWILE || GameData::Species.get(getHeadID(species_data.id_number)) == :MAWILE
       entryText = "Nice, a Mawile."
+    elsif GameData::Species.get(getBodyID(species_data.id_number)) == :METAGROSS || GameData::Species.get(getHeadID(species_data.id_number)) == :METAGROSS
+      entryText = "Metagross."
     else
       entryText = "Unfortunately not a Mawile."
     end
