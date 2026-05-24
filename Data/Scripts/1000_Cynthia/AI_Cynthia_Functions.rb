@@ -1569,7 +1569,7 @@ class PokeBattle_AI
         hasOtherMoves = true if m.id != @id
         hasUnusedMoves = true if m.id != @id && !user.movesUsed.include?(m.id)
       end
-      if !hasThisMove || !hasOtherMoves || !hasUnusedMoves
+      if !(!hasThisMove || !hasOtherMoves || hasUnusedMoves)
         score = 0
       end
     #---------------------------------------------------------------------------
