@@ -1565,9 +1565,9 @@ class PokeBattle_AI
       score = -100
       hasThisMove = false; hasOtherMoves = false; hasUnusedMoves = false
       user.eachMove do |m|
-        hasThisMove = true if m.id == @id
-        hasOtherMoves = true if m.id != @id
-        hasUnusedMoves = true if m.id != @id && !user.movesUsed.include?(m.id)
+        hasThisMove = true if m.id == move.id
+        hasOtherMoves = true if m.id != move.id
+        hasUnusedMoves = true if m.id != move.id && !user.movesUsed.include?(m.id)
       end
       if !(!hasThisMove || !hasOtherMoves || hasUnusedMoves)
         score = 0
