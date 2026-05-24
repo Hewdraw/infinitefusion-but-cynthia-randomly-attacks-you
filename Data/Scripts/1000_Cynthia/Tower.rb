@@ -28,7 +28,7 @@ def setupTower()
 
     starters = [getTowerPokemon("Starter")]
     starteramount = 3
-    starteramount += 3 if $getLooplet.pbHasEmera?(:CATCHINGNET)
+    starteramount += 3 if hasEmera?(:CATCHINGNET)
     while starters.length < starteramount
         mon = getTowerPokemon()
         starters.push(mon) if !starters.include?(mon)
