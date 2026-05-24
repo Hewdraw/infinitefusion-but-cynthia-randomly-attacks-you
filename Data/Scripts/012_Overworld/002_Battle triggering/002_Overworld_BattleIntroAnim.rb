@@ -23,25 +23,27 @@ def pbBattleAnimation(bgm=nil,battletype=0,foe=nil)
   viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
   viewport.z = 99999
   # Set up audio
-  playingBGS = nil
-  playingBGM = nil
-  if $game_system && $game_system.is_a?(Game_System)
-    playingBGS = $game_system.getPlayingBGS
-    playingBGM = $game_system.getPlayingBGM
-    $game_system.bgm_pause
-    $game_system.bgs_pause
+  if bgm != "Continue"
+    playingBGS = nil
+    playingBGM = nil
+    if $game_system && $game_system.is_a?(Game_System)
+      playingBGS = $game_system.getPlayingBGS
+      playingBGM = $game_system.getPlayingBGM
+      $game_system.bgm_pause
+      $game_system.bgs_pause
+    end
+    pbMEFade(0.25)
+    #pbWait(Graphics.frame_rate/4)
+    pbMEStop
+    # Play battle music
+    override = nil
+    if foe[0].is_a?(Trainer) && foe[0].trainer_type == :COOLTRAINER_F && rand(25) == 0 && pbCynthiaGetBadgeCount >= 8
+      override = :COOLTRAINER_MIKU
+      bgm = pbStringToAudioFile("Miku")
+    end
+    bgm = pbGetWildBattleBGM([]) if !bgm
+    pbBGMPlay(bgm)
   end
-  pbMEFade(0.25)
-  #pbWait(Graphics.frame_rate/4)
-  pbMEStop
-  # Play battle music
-  override = nil
-  if foe[0].is_a?(Trainer) && foe[0].trainer_type == :COOLTRAINER_F && rand(25) == 0 && pbCynthiaGetBadgeCount >= 8
-    override = :COOLTRAINER_MIKU
-    bgm = pbStringToAudioFile("Miku")
-  end
-  bgm = pbGetWildBattleBGM([]) if !bgm
-  pbBGMPlay(bgm)
   # Take screenshot of game, for use in some animations
   $game_temp.background_bitmap.dispose if $game_temp.background_bitmap
   $game_temp.background_bitmap = Graphics.snap_to_bitmap

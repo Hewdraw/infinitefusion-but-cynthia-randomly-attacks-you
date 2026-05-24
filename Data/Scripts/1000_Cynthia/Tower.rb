@@ -17,8 +17,8 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :activevariable => nil,
-        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Hot Spring", "Berry Tree", "Mining"],
+        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Jirachi", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :unknownlist => ["Berry Tree", "Hot Spring", "Mining", "Wishing Stone"],
         :eventvariables => {},
         :money => $Trainer.money
     }
@@ -266,37 +266,7 @@ def towerEvent()
     srand(($PokemonGlobal.towervalues[:seed]*4)+$PokemonGlobal.towervalues[:floor])
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
-        amount = 1
-        amount += 1 if hasEmera?(:POKEDEX)
-        for _ in 0...amount do
-            optioncount = 3
-            options = []
-            while options.length < optioncount
-                mon = getTowerPokemon()
-                options.push(mon) if !options.include?(mon)
-            end
-            if hasEmera?(:CAPTURESTYLER)
-                options.each do |mon|
-                    pbAddPokemon(mon, 5)
-                    $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
-                end
-                next
-            end
-            namearray = []
-            options.each do |pokemon|
-                monname = PBSpecies.getName(pokemon)
-                monname += " F" if pokemon == :NIDORANfE
-                monname += " M" if pokemon == :NIDORANmA
-                monname += " Baile" if pokemon == :ORICORIO_1
-                monname += " Pom-Pom" if pokemon == :ORICORIO_2
-                monname += " Pa'u" if pokemon == :ORICORIO_3
-                monname += " Sensu" if pokemon == :ORICORIO_3
-                namearray.push(monname)
-            end
-            choice = Kernel.pbMessage("Pick one", namearray)
-            pbAddPokemon(options[choice], 5)
-            $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
-        end
+        towerPokemon()
     when "Chest"
         enderChest()
         if hasEmera?(:ENDERCHEST)
@@ -312,8 +282,8 @@ def towerEvent()
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])
         return if $PokemonGlobal.towervalues.nil?
-        grantRandomEmera if hasEmera?(:WISHINGSTAR)
-        grantRandomEmera
+        grantRandomEmera() if hasEmera?(:WISHINGSTAR)
+        grantRandomEmera()
     when "Shop"
         Undertale()
         return if $PokemonGlobal.towervalues.nil?

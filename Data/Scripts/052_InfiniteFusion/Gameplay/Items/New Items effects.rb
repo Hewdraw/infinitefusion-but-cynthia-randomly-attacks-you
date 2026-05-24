@@ -1385,7 +1385,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:REGICE, :ARTICUNO, :GARTICUNO] => [[:ICEBEAM]],
     [:REGIROCK] => [[:STONEEDGE]],
     [:REGISTEEL] => [[:IRONHEAD]],
-    [:RESHIRAM] => [[:BLUEFLARE]],
+    [:RESHIRAM, :ZEKROM] => [[:BLUEFLARE], [:BOLTSTRIKE]],
     [:BAGON, :SHELGON, :SALAMENCE, :ROARINGMOON] => [[:JAWLOCK]],
     [:TREEKO, :GROVYLE, :SCEPTILE] => [[:LEAFBLADE]],
     [:MUDKIP, :MARSHTOMP ,:SWAMPERT] => [[:MUDDYWATER]],
@@ -1397,7 +1397,6 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:VOCALLEEK, :VOCALDRILL, :VOCALCELL] => [[:HYPNOSIS, :MESMERIZER]],
     [:LARVESTA, :VOLCARONA, :SLITHERWING, :IRONMOTH] => [[:FIERYDANCE, :TORCHSONG]],
     [:ZAPDOS, :GALARZAPDOS] => [[:THUNDEROUSKICK]],
-    [:ZEKROM] => [[:BOLTSTRIKE]],
   }
   allmoves = pkmn.isFusionOf(:GENESECT) || pkmn.species == :DEOSECTWO
   upgradelist.each do |pokemon, movearray|

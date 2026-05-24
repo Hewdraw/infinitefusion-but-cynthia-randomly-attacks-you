@@ -1933,8 +1933,7 @@ class PokeBattle_Move_065 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.ungainableAbility? ||
-      [:POWEROFALCHEMY, :RECEIVER, :TRACE, :WONDERGUARD].include?(target.ability_id)
+    if target.ungainableAbility?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2012,7 +2011,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if user.ungainableAbility? || user.ability == :WONDERGUARD
+    if user.ungainableAbility?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2033,7 +2032,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
-    if target.ungainableAbility? || target.ability == :WONDERGUARD
+    if target.ungainableAbility?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

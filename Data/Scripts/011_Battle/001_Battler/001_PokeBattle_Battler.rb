@@ -576,6 +576,11 @@ class PokeBattle_Battler
       :ASONE,
       :EON,
       :FORCEDEVOLUTION,
+      :POWEROFALCHEMY,
+      :RECIEVER,
+      :TRACE,
+      :WONDERGUARD,
+      :WONDERTRADEGUARD
     ]
     return ability_blacklist.include?(abil.id)
   end

@@ -309,6 +309,7 @@
 307,TRUEEYE,True Eye,"a"
 308,FORCEDEVOLUTION,Forced Evolution,"a"
 309,TEMPORALTERROR,Temporal Terror,"a"
+310,WONDERTRADEGUARD,Wonder Trade Guard,"a"
 400,DROUGHTPLUS,Drought+,"Turns the sunlight harsh if it is in battle."
 401,MOXIEPLUS,Moxie+,"Boosts Attack after knocking out any Pokémon."
 402,SHELLARMORPLUS,Shell Armor+,"The Pokémon is protected against critical hits."

@@ -1070,6 +1070,7 @@
 1101,CORROSIVEGAS,Corrosive Gas,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
 1102,SNAPTRAP,Snap Trap,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
 1103,SEEDFLAREPLUS,Seed Flare+,04F,130,GRASS,Special,100,5,50,NearOther,0,bef,"The user generates a shock wave from within its body. It may harshly lower the target's Sp. Def."
+1104,LIGHTTHATBURNSTHESKY,Light That Burns the Sky,000,200,PSYCHIC,Special,0,1,0,NearOther,0,f,"a" #todo
 
 
 

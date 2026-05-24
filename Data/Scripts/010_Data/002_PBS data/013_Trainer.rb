@@ -455,7 +455,7 @@ module GameData
         pkmn.learn_move_ignoremax(:METRONOME) if pkmn.isFusionOf(:TOGEPI) || pkmn.species.to_s.include?("TOGEPI")
         if trainer.special_name?
           for mon in $Trainer.party
-            if mon.ability == :WONDERGUARD
+            if mon.getAllAbilities().include?(:WONDERGUARD)
               pkmn.learn_move_ignoremax(:FIREFANG)
             end
           end

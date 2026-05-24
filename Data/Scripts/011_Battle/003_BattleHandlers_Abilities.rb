@@ -775,12 +775,14 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
     if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
     else
-      battle.pbDisplay(_INTL("{1} avoided damage with {2}!",target.pbThis,target.abilityName))
+      battle.pbDisplay(_INTL("{1} avoided damage with Wonder Guard!",target.pbThis))
     end
     battle.pbHideAbilitySplash(target)
     next true
   }
 )
+
+BattleHandlers::MoveImmunityTargetAbility.copy(:WONDERGUARD,:WONDERTRADEGUARD)
 
 #===============================================================================
 # MoveBaseTypeModifierAbility handlers
@@ -2499,6 +2501,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:WONDERTRADEGUARD,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} traded its ability for Wonder Guard!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS]) && $PokemonSystem.aicontrolplayer == 1
+      battler.hp = 0
+      battle.pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
+      battler.pbFaint(false)
+    end
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -3080,8 +3095,7 @@ BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
 BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
   proc { |ability,battler,fainted,battle|
     next if battler.opposes?(fainted)
-    next if fainted.ungainableAbility? ||
-       [:POWEROFALCHEMY, :RECEIVER, :TRACE, :WONDERGUARD].include?(fainted.ability_id)
+    next if fainted.ungainableAbility?
     battle.pbShowAbilitySplash(battler,true)
     battler.ability = fainted.ability
     battle.pbReplaceAbilitySplash(battler)

@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [LASS,Mimi]
 Pokemon = PIDGEY,4
@@ -9064,6 +9064,20 @@ Pokemon = CYNTHIA,5
     EV = 252,252,0,0,0,4
     Happiness = 0
 
+[GHOST_Cynthia,Cynthia,0]   
+Pokemon = SPIRITOMB,5   
+    Offset = 5
+    Name = WWW.HACKMON.REAL
+    Moves = SPACIALREND,HYPERSPACEFURY,LIGHTTHATBURNSTHESKY,SHADOWFORCE
+    Ability = WONDERTRADEGUARD
+    Shiny = TRUE
+    Item = PYRITE
+    Nature = NAUGHTY
+    IV = 31,31,31,31,31,31
+    EV = 252,252,252,252,252,252
+    Happiness = 0
+    Ball = VIRUSBALL
+
 ####################### Miku Teams
 [CREATOR_Minecraft,Hatsune Miku,0]
 Pokemon = IGGLYBUFF,5
@@ -10030,6 +10044,17 @@ Pokemon = B300H421,5
     Nature = ADAMANT
     IV = 31,31,31,31,31,31
     EV = 252,252,0,0,0,4
+    Happiness = 255
+    Ball = PREMIERBALL
+Pokemon = B131H295,5
+    Offset = 0
+    Moves = PERISHSONG,SPIRITSHACKLE,SCALD,REST
+    Ability = SHELLARMOR
+    Item = LEFTOVERS
+    Gender = F
+    Nature = RELAXED
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,0
     Happiness = 255
     Ball = PREMIERBALL
 Pokemon = CELEBI,5

@@ -1,3 +1,37 @@
+def towerPokemon()
+    amount = 1
+    amount += 1 if hasEmera?(:POKEDEX)
+    for _ in 0...amount do
+        optioncount = 3
+        options = []
+        while options.length < optioncount
+            mon = getTowerPokemon()
+            options.push(mon) if !options.include?(mon)
+        end
+        if hasEmera?(:CAPTURESTYLER)
+            options.each do |mon|
+                pbAddPokemon(mon, 5)
+                $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
+            end
+            next
+        end
+        namearray = []
+        options.each do |pokemon|
+            monname = PBSpecies.getName(pokemon)
+            monname += " F" if pokemon == :NIDORANfE
+            monname += " M" if pokemon == :NIDORANmA
+            monname += " Baile" if pokemon == :ORICORIO_1
+            monname += " Pom-Pom" if pokemon == :ORICORIO_2
+            monname += " Pa'u" if pokemon == :ORICORIO_3
+            monname += " Sensu" if pokemon == :ORICORIO_3
+            namearray.push(monname)
+        end
+        choice = Kernel.pbMessage("Pick one", namearray)
+        pbAddPokemon(options[choice], 5)
+        $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
+    end
+end
+
 def getUnknownEvent()
     list = $PokemonGlobal.towervalues[:unknownlist]
     list = ["Cynthia"] if list.length == 0
@@ -102,7 +136,7 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("As you move to cut it down the tree rises from the ground to reveal a torterra below you.")
             return if !pbLegendaryBattle("Torterra")
         when 1
-            Kernel.pbMessage()
+            Kernel.pbMessage() #todo
         when 2
             if $PokemonBag.pbQuantity(:MIRACLESEED) == 0
                 Kernel.pbMessage("You don't have a Miracle Seed.")
@@ -174,6 +208,45 @@ def resolveUnknownEvent(recursion = false)
     when "Warden"
         Kernel.pbMessage("A Warden crawls out of the ground.")
         return if !pbLegendaryBattle("Warden")
+    when "Wishing Stone"
+        Kernel.pbMessage("A Wishing Stone appears before you.")
+        if !$PokemonGlobal.towervalues[:legendarylist].include?("Jirachi")
+            Kernel.pbMessage("Your Jirachi wakes up from its slumber.")
+            towerPokemon()
+            grantRandomEmera()
+            pbItemBall(:SINNOHCOIN, 5 + rand(20))
+            enderChest()
+        else
+            choice = Kernel.pbMessage("What do you wish for?", ["Money", "Items", "Friends", "Power", "Fight"])
+            case choice
+            when 0
+                pbItemBall(:SINNOHCOIN, 10 + rand(40))
+            when 1
+                enderChest()
+                enderChest()
+                enderChest()
+            when 2
+                towerPokemon()
+                towerPokemon()
+                towerPokemon()
+            when 3
+                list = [:BEEGPP, :HPMAX, :GOLDENBANANA, :MECHUMETAL]
+                unobtainedlist = []
+                list.each do |item|
+                    next if $PokemonBag.pbHasItem?(item)
+                    unobtainedlist.push(item)
+                end
+                if unobtainedlist.length == 0
+                    grantRandomEmera()
+                else
+                    pbItemBall(unobtainedlist.sample)
+                end
+            when 4
+                if $PokemonGlobal.towervalues[:legendarylist].include?("Jirachi")
+                    pbLegendaryBattle("Jirachi")
+                end
+            end
+        end
     end
     $PokemonGlobal.towervalues[:unknownlist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
 end
