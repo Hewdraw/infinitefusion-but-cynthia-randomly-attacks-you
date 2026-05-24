@@ -362,7 +362,7 @@
 349,DOUBLEEDGE,Double-Edge,0FB,120,NORMAL,Physical,100,15,0,NearOther,0,abef,"A reckless, life-risking tackle. It also damages the user by a fairly large amount, however."
 350,HEADCHARGE,Head Charge,0FA,120,NORMAL,Physical,100,15,0,NearOther,0,abef,"The user charges its head into the foe, using its powerful guard hair. The user also takes damage."
 351,MEGAKICK,Mega Kick,000,120,NORMAL,Physical,75,5,0,NearOther,0,abef,"The target is attacked by a kick launched with muscle-packed power."
-352,TECHNOBLAST,Techno Blast,09F,120,NORMAL,Special,100,5,0,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
+352,TECHNOBLAST,Techno Blast,09F,120,GUN,Special,100,5,0,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
 353,THRASH,Thrash,0D2,120,NORMAL,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for two to three turns. It then becomes confused, however."
 354,EGGBOMB,Egg Bomb,000,100,NORMAL,Physical,75,10,0,NearOther,0,befn,"A large egg is hurled at the target with maximum force to inflict damage."
 355,JUDGMENT,Judgment,09F,100,NORMAL,Special,100,10,0,NearOther,0,bef,"The user releases countless shots of light. Its type varies with the kind of Plate the user is holding."
@@ -866,7 +866,7 @@
 895,STRANGESTEAM,Strange Steam,013,90,FAIRY,Special,95,10,20,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 896,HYDROBURST,Hydro Burst,235,60,WATER,Physical,100,5,20,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 897,FISHIOUSREND,Fishious Rend,236,80,WATER,Physical,100,10,0,NearOther,0,abefi,"Nice Smeargle/Ditto, jackass."
-898,TECHNOBLASTPLUS,Techno Blast+,237,140,NORMAL,Special,100,5,50,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
+898,TECHNOBLASTPLUS,Techno Blast+,237,140,GUN,Special,100,5,50,NearOther,0,bef,"The user fires a beam of light at its target. The type changes depending on the Drive the user holds."
 899,EXPLOSIONPLUS,Explosion+,0E0,500,NORMAL,Physical,100,5,0,AllNearOthers,0,bef,"The user explodes to inflict damage on those around it. The user faints upon using this move."
 900,HYDROSTEAMPLUS,Hydro Steam+,00A,110,WATER,Special,100,15,50,NearOther,0,bef,"ur extra stinky" #hardcoded
 901,BONEMERANGPLUS,Bonemerang+,238,60,GROUND,Physical,100,5,0,NearOther,0,bef,"The user throws the bone it holds. The bone loops to hit the target twice, coming and going."
