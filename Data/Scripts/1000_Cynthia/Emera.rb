@@ -5,6 +5,17 @@ EMERADICT = {
     #     :rarity => :,
     # },
 
+    :TRAININGGEAR => {
+        :name => "Training Gear",
+        :description => "Your Pokemon evolve 10 levels earlier.",
+        :rarity => :STARTER,
+    },
+    :CATCHINGNET => {
+        :name => "Catching Net",
+        :description => "Gain 3 extra Pokemon at the start.",
+        :rarity => :STARTER,
+    },
+
     :VIPCARD => {
         :name => "VIP Card",
         :description => "50% cheaper at the Shadross Shop.",

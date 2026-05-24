@@ -23,8 +23,13 @@ def setupTower()
         :money => $Trainer.money
     }
     $Trainer.money = 0
+
+    selectTrainerClass()
+
     starters = [getTowerPokemon("Starter")]
-    while starters.length < 3
+    starteramount = 3
+    starteramount += 3 if $getLooplet.pbHasEmera?(:CATCHINGNET)
+    while starters.length < starteramount
         mon = getTowerPokemon()
         starters.push(mon) if !starters.include?(mon)
     end
