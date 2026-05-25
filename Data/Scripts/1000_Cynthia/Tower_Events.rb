@@ -199,10 +199,7 @@ def resolveUnknownEvent(recursion = false)
         when :COMMON
             return if !pbLegendaryBattle("Wandering Trader")
             Kernel.pbMessage("He dropped an Emera!")
-            tradercommonemera = getEmeras[0].sample
-            getLooplet.pbStoreEmera(tradercommonemera)
-            itemname = EMERADICT[tradercommonemera][:name]
-            itemcolor = getEnderChestRarityColors()[0]
+            grantRandomEmera([1,0,0,0])
         end
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     when "Warden"
@@ -214,13 +211,13 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("Your Jirachi wakes up from its slumber.")
             towerPokemon()
             grantRandomEmera()
-            pbItemBall(:SINNOHCOIN, 5 + rand(20))
+            pbItemBall(:SINNOHCOIN, 11)
             enderChest()
         else
             choice = Kernel.pbMessage("What do you wish for?", ["Money", "Items", "Friends", "Power", "Fight"])
             case choice
             when 0
-                pbItemBall(:SINNOHCOIN, 10 + rand(40))
+                pbItemBall(:SINNOHCOIN, 33)
             when 1
                 enderChest()
                 enderChest()
@@ -230,17 +227,7 @@ def resolveUnknownEvent(recursion = false)
                 towerPokemon()
                 towerPokemon()
             when 3
-                list = [:BEEGPP, :HPMAX, :GOLDENBANANA, :MECHUMETAL]
-                unobtainedlist = []
-                list.each do |item|
-                    next if $PokemonBag.pbHasItem?(item)
-                    unobtainedlist.push(item)
-                end
-                if unobtainedlist.length == 0
-                    grantRandomEmera()
-                else
-                    pbItemBall(unobtainedlist.sample)
-                end
+                grantRandomEmera([0,5,2,1])
             when 4
                 $PokemonGlobal.nextBattleBGM = "VSJirachi"
                 return if !pbLegendaryBattle("Jirachi")

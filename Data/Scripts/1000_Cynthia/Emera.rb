@@ -667,10 +667,14 @@ EMERADICT = {
     },
 }
 
-def grantRandomEmera()
+def grantRandomEmera(customweight = nil)
     return if !getLooplet
     itemlist = getEmeras() 
-    raritylist = getEmeraWeights()
+    if customweight
+        raritylist = customweight
+    else 
+        raritylist = getEmeraWeights()
+    end
     itemlist.each_with_index do |item, i|
         next if item.length > 0
         raritylist[i] = 0
