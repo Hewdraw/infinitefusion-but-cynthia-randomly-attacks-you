@@ -454,6 +454,8 @@ def getFloorGraphic(event)
             return "BW_rocksmash"
         when "Wandering Trader"
             return "Dipshit"
+        when "Wishing Stone"
+            return "Wishing Stone"
         else
             return "201_27"
         end
