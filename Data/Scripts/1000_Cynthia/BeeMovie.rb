@@ -9,6 +9,7 @@ def beeMovie
 	beedrill.natural_shiny = true
 	beedrill.item = :BEEDRILLITE
 	pbAddPokemon(beedrill)
+	pbReceiveItem(:HM02)
 	Kernel.pbMessage("Damn you really went through all that?")
 end
 

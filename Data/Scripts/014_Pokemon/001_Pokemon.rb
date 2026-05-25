@@ -838,8 +838,16 @@ class Pokemon
   def hasItem?(check_item = nil)
     check_item = [check_item] if !check_item.is_a?(Array)
     return !@item.nil? if check_item[0].nil?
-    held_item = self.item
-    return held_item && check_item.include?(held_item)
+    check_item_list = []
+    check_item.each do |item|
+      if item.is_a?(Symbol)
+        check_item_list.push(item)
+      else
+        check_item_list.push(item.id)
+      end
+    end
+    held_item = self.item_id
+    return held_item && check_item_list.include?(held_item)
   end
 
   # @return [Array<Symbol>] the items this species can be found holding in the wild
