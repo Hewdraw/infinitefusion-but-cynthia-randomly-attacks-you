@@ -242,9 +242,8 @@ def resolveUnknownEvent(recursion = false)
                     pbItemBall(unobtainedlist.sample)
                 end
             when 4
-                if $PokemonGlobal.towervalues[:legendarylist].include?("Jirachi")
-                    pbLegendaryBattle("Jirachi")
-                end
+                $PokemonGlobal.nextBattleBGM = "VSJirachi"
+                pbLegendaryBattle("Jirachi")
             end
         end
     end
