@@ -40,7 +40,6 @@ def setupTower()
     starteritems.each do |item|
         $PokemonBag.pbStoreItem(item)
     end
-    pbLegendaryBattle("Jirachi")
 end
 
 def resetTower()
