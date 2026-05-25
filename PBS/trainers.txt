@@ -5811,15 +5811,14 @@ Pokemon = B258H260,30
 
 ####################### Cynthia Teams
 [CHAMPION_Sinnoh,Cynthia,1]
-Pokemon = B500H300,5
-    Offset = -2
-    Moves = DIAMONDSTORM,IRONHEAD,PLAYROUGH,KNOCKOFF
-    Ability = INTIMIDATE
-    Item = MAWANCITE
+Pokemon = GIBLE,5
+    Offset = -1
+    Moves = TWISTER,MUDSLAP
+    Ability = ROUGHSKIN
     Gender = F
-    Nature = ADAMANT
-    IV = 31,31,31,31,31,31
-    EV = 252,132,0,0,0,0
+    Nature = MODEST
+    IV = 0,0,0,0,0,0
+    EV = 0,0,0,0,0,0
     Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,2]

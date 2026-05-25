@@ -458,7 +458,7 @@ end
 #===============================================================================
 # Start a legendary battle
 #===============================================================================
-def pbLegendaryBattle(species)
+def pbLegendaryBattle(species, alpha=false)
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
   if $Trainer.able_pokemon_count == 0 || ($DEBUG && Input.press?(Input::CTRL))
     pbMessage(_INTL("SKIPPING BATTLE...")) if $DEBUG
@@ -476,14 +476,14 @@ def pbLegendaryBattle(species)
   # comparing levels for an evolution check)
   Events.onStartBattle.trigger(nil)
   # Generate trainers and their parties based on the arguments given
-  if $PokemonGlobal.towervalues.nil? || $PokemonGlobal.towervalues[:activeevent] == "Legendary"
-    trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species) 
+  if alpha
+    trainer = pbLoadTrainer(:ALPHA_POKEMON, species)
+    $PokemonGlobal.nextBattleBGM = "VSAlpha"
   elsif species == "Wandering Trader"
     trainer = pbLoadTrainer(:DESTROYEROFWORLDS, species)
     $PokemonGlobal.nextBattleBGM = "VSDeath"
   else
-    trainer = pbLoadTrainer(:ALPHA_POKEMON, species)
-    $PokemonGlobal.nextBattleBGM = "VSAlpha"
+    trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species)
   end
   return 0 if !trainer
   party = []

@@ -54,7 +54,7 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("Your Pokemon heal from the rest.")
         when 1
             Kernel.pbMessage("Torkoal attacks")
-            return if !pbLegendaryBattle("Torkoal")
+            return if !pbLegendaryBattle("Torkoal", true)
         when 2
             pbItemBall(:REVIVALHERB, rand(3) + 2)
             pbItemBall(:ENERGYROOT, rand(3) + 2)
@@ -74,7 +74,7 @@ def resolveUnknownEvent(recursion = false)
             end
         when 1
             Kernel.pbMessage("An angry Heracross flies out of the tree.")
-            return if !pbLegendaryBattle("Heracross")
+            return if !pbLegendaryBattle("Heracross", true)
         when 2
             if $PokemonBag.pbQuantity(:MYSTICWATER) == 0
                 Kernel.pbMessage("You don't have a Mystic Water.")
@@ -134,7 +134,7 @@ def resolveUnknownEvent(recursion = false)
         case choice
         when 0
             Kernel.pbMessage("As you move to cut it down the tree rises from the ground to reveal a torterra below you.")
-            return if !pbLegendaryBattle("Torterra")
+            return if !pbLegendaryBattle("Torterra", true)
         when 1
             Kernel.pbMessage() #todo
         when 2
