@@ -243,7 +243,8 @@ def resolveUnknownEvent(recursion = false)
                 end
             when 4
                 $PokemonGlobal.nextBattleBGM = "VSJirachi"
-                pbLegendaryBattle("Jirachi")
+                return if !pbLegendaryBattle("Jirachi")
+                $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == "Jirachi"}
             end
         end
     end
