@@ -1638,7 +1638,7 @@ class Pokemon
         list.push(ability[0])
       end
     end
-    if list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION || hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
+    if ((list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION) && hasItem?(:MISTSTONE))
       if isFusionOf(:MEW)
         list += [:PRESSURE, :UNNERVE, :STEADFAST, :INSOMNIA, :IMMUNITY]
       else
@@ -1647,6 +1647,7 @@ class Pokemon
         end
       end
     end
+    #if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
     list.push(:KEENEYE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
     list.push(:TRUANT) if hasActiveEmera?(:LINGERINGPOTIONOFTURTLEMASTER)

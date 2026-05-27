@@ -1232,6 +1232,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, pkmn, scene|
   pkmn.ability = abilitylist[choice]
   scene.pbHardRefresh
   scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, namelist[choice]))
+  pkmn.calc_stats
   next true
 })
 
@@ -1270,6 +1271,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
   pkmn.ability_index = newabil
   scene.pbHardRefresh
   scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, namelist[choice]))
+  pkmn.calc_stats
   next true
 })
 

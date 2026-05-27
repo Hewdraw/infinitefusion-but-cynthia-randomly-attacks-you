@@ -18,7 +18,7 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Jirachi", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Berry Tree", "Hot Spring", "Mining", "Wishing Stone"],
+        :unknownlist => ["Wishing Stone", "Mystery Dungeon"],
         :eventvariables => {},
         :money => $Trainer.money
     }
@@ -224,19 +224,30 @@ def towerIncreaseFloor(nextfloor)
     when "Unknown"
         $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent
     end
-    pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]))
-    pbSetGraphic(4, "")
-    pbSetSelfSwitch(5, "A", false)
-    pbSetSelfSwitch(13, "A", false)
-    pbSetGraphic(6, "")
-    pbSetGraphic(7, "")
-    pbSetSelfSwitch(8, "A", false)
-    pbSetSelfSwitch(14, "A", false)
-    pbSetGraphic(9, "")
-    pbSetGraphic(10, "")
-    pbSetSelfSwitch(11, "A", false)
-    pbSetSelfSwitch(15, "A", false)
-    pbSetGraphic(12, "")
+    if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
+        generateMysteryDungeon()
+    else
+        pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
+        pbSetGraphic(4, "", 21)
+        pbSetSelfSwitch(5, "A", false, 21)
+        pbSetSelfSwitch(13, "A", false, 21)
+        pbSetGraphic(6, "", 21)
+        pbSetGraphic(7, "", 21)
+        pbSetSelfSwitch(8, "A", false, 21)
+        pbSetSelfSwitch(14, "A", false, 21)
+        pbSetGraphic(9, "", 21)
+        pbSetGraphic(10, "", 21)
+        pbSetSelfSwitch(11, "A", false, 21)
+        pbSetSelfSwitch(15, "A", false, 21)
+        pbSetGraphic(12, "", 21)
+        $game_temp.player_new_map_id = 21
+        $game_temp.player_new_x = 10
+        $game_temp.player_new_y = 15
+        $game_temp.player_new_direction = 2
+        $scene.transfer_player
+        $game_map.autoplay
+        $game_map.refresh
+    end
 end
 
 def getTowerEventsList()

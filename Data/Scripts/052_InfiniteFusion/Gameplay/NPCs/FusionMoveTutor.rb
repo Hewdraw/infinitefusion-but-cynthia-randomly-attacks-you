@@ -197,6 +197,8 @@ class FusionTutorService
       compatibleMoves << :APPLEACID if is_fusion_of([:EXEGGUTOR, :ALOLAEXEGGUTOR])
       #compatibleMoves << :GRAVAPPLE if is_fusion_of([:EXEGGUTOR, :ALOLAEXEGGUTOR])
       compatibleMoves << :DECORATE if hasType(:FAIRY)
+      compatibleMoves << :GRASSYGLIDE if is_fusion_of([:CELEBI])
+      compatibleMoves << :SWORDSDANCE if is_fusion_of([:DIANCIE, :MAGEARNA])
 
     end
     if includeLegendaries
@@ -214,7 +216,7 @@ class FusionTutorService
       compatibleMoves << :OBLIVIONWING if is_fusion_of([:MURKROW, :HONCHKROW]) || (hasType(:DARK) && hasType(:FLYING))
       compatibleMoves << :MOONGEISTBEAM if (is_fusion_of([:CLEFFA, :CLEFAIRY, :CLEFABLE]) && hasType(:DARK)) || is_fusion_of([:DARKRAI, :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE])
       compatibleMoves << :SPECTRALTHIEF if is_fusion_of([:HAUNTER, :GENGAR, :BANETTE, :GIRATINA, :HONEDGE, :DOUBLADE, :AEGISLASH])
-      compatibleMoves << :SEEDFLARE if is_fusion_of([:JUMPLUFF, :SUNFLORA, :TURTWIG, :GROTLE, :TORTERRA])
+      compatibleMoves << :SEEDFLARE if is_fusion_of([:JUMPLUFF, :SUNFLORA, :TURTWIG, :GROTLE, :TORTERRA, :CELEBI])
       compatibleMoves << :LANDSWRATH if is_fusion_of([:GROUDON])
       compatibleMoves << :THOUSANDARROWS if is_fusion_of([:SANDSLASH, :JOLTEON, :FERROTHORN]) && hasType(:GROUND)
       compatibleMoves << :THOUSANDWAVES if is_fusion_of([:STUNFISK, :QUAGSIRE, :SWAMPERT])
@@ -230,7 +232,7 @@ class FusionTutorService
       compatibleMoves << :SUNSTEELSTRIKE if is_fusion_of([:CHARIZARD, :VOLCARONA, :IRONMOTH, :SLITHERWING, :FLAREON, :NINETALES, :ENTEI, :GOUGINGFIRE, :HOOH, :RAPIDASH]) && hasType(:STEEL)
       compatibleMoves << :DOUBLEIRONBASH if canLearnMove(:DOUBLESLAP) && hasType(:STEEL)
       compatibleMoves << :STEAMERUPTION if canLearnMove(:ERUPTION) && hasType(:WATER)
-      compatibleMoves << :SECRETSWORD if is_fusion_of([:HONEDGE, :DOUBLADE, :AEGISLASH, :GARDEVOIR, :GALLADE, :IRONVALIANT, :FARFETCHD, :ABSOL, :BISHARP])
+      compatibleMoves << :SECRETSWORD if is_fusion_of([:HONEDGE, :DOUBLADE, :AEGISLASH, :GARDEVOIR, :GALLADE, :IRONVALIANT, :FARFETCHD, :ABSOL, :BISHARP, :DIANCIE, :MAGEARNA])
       compatibleMoves << :SHADOWFORCE if canLearnMove(:PHANTOMFORCE)
       compatibleMoves << :THUNDEROUSKICK if hasType(:ELECTRIC) && hasType(:FIGHTING)
       compatibleMoves << :FREEZINGGLARE if hasType(:ICE) && hasType(:PSYCHIC)
@@ -243,7 +245,7 @@ class FusionTutorService
       compatibleMoves << :PSYBLADE if hasType(:PSYCHIC) || hasType(:ELECTRIC)
       compatibleMoves << :TACHYONCUTTER if hasType(:STEEL)
       compatibleMoves << :BEHEMOTHBASH if canLearnMove(:IRONHEAD) && canLearnMove(:IRONDEFENSE)
-      compatibleMoves << :BEHEMOTHBLADE if canLearnMove(:IRONHEAD) && canLearnMove(:SWORDSDANCE)
+      compatibleMoves << :BEHEMOTHBLADE if (canLearnMove(:IRONHEAD) && canLearnMove(:SWORDSDANCE)) || is_fusion_of([:DIANCIE, :MAGEARNA])
       compatibleMoves << :MYSTICALPOWER if hasType(:PSYCHIC) && canLearnMove(:CHARGEBEAM)
       compatibleMoves << :PSYCHOBOOST if hasType(:PSYCHIC) && canLearnMove(:PSYCHIC)
       compatibleMoves << :DRAGONASCENT if (hasType(:FLYING) && canLearnMove(:OUTRAGE)) || (hasType(:DRAGON) && canLearnMove(:CLOSECOMBAT))
@@ -262,6 +264,7 @@ class FusionTutorService
       # compatibleMoves << :BLEAKWINDSTORM if hasType(:FLYING)
       # compatibleMoves << :SANDSEARSTORM if hasType(:GROUND)
       compatibleMoves << :SPRINGTIDESTORM if hasType(:FAIRY)
+      compatibleMoves << :SACREDSWORD if is_fusion_of([:DIANCIE, :MAGEARNA])
     end
     return compatibleMoves
   end
