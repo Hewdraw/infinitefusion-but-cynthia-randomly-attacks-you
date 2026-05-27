@@ -241,7 +241,11 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
       encounter2 = EncounterModifier.trigger(encounter2)
       pbDoubleWildBattle(encounter[0], encounter[1], encounter2[0], encounter2[1])
     else
-      pbWildBattle(encounter[0], encounter[1])
+      if [:UNOWN, :B201H201].include?(encounter[0])
+        pbLegendaryBattle("Unown")
+      else
+        pbWildBattle(encounter[0], encounter[1])
+      end
     end
     $PokemonTemp.encounterType = nil
     $PokemonTemp.encounterTriggered = true

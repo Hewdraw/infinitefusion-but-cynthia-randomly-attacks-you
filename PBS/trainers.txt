@@ -11114,6 +11114,17 @@ Pokemon = JIRACHI,11
     EV = 252,0,252,0,0,252
 
 
+[LEGENDARY_POKEMON,Unown,0]
+Pokemon = UNOWN,11
+    Offset = 0
+    Moves = HIDDENPOWER
+    Ability = LEGENDARYPRESSURE
+    Item = CHOICESPECS
+    Nature = MODEST
+    Raid = TRUE
+    EV = 252,0,0,252,252,0
+
+
 [LEGENDARY_POKEMON,Creeper,0]
 Pokemon = CREEPER,5
     Offset = 10
@@ -11126,7 +11137,6 @@ Pokemon = CREEPER,5
     IV = 31,31,31,31,31,31
     EV = 252,252,0,252,0,0
     Happiness = 255
-
 
 [LEGENDARY_POKEMON,Charged Creeper,0]
 Pokemon = CREEPER,5

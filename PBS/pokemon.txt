@@ -6649,8 +6649,8 @@ BaseEXP = 118
 EffortPoints = 0,1,0,0,1,0
 Rareness = 225
 Happiness = 70
-Abilities = LEVITATE
-HiddenAbility = MUMMY
+Abilities = LEVITATE,PRESSURE
+HiddenAbility = QUARKDRIVE
 Moves = 1,HIDDENPOWER
 Compatibility = Undiscovered
 StepsToHatch = 10455
@@ -26074,6 +26074,31 @@ Habitat = RoughTerrain
 Kind = Big Blade
 Pokedex = Only a Bisharp that stands above all others in its vast army can evolve into Kingambit.
 Generation = 9
+#-------------------------------
+[1001199]
+Name = Machinedramon
+InternalName = MACHINEDRAMON
+Type1 = GUN
+Type2 = DRAGON
+BaseStats = 130,115,100,85,70,130
+GenderRate = FemaleOneEighth
+GrowthRate = Parabolic
+BaseEXP = 239
+EffortPoints = 0,0,0,0,0,3
+Rareness = 45
+Happiness = 70
+Abilities = MEGALAUNCHER,FULLMETALBODY
+HiddenAbility = SKILLLINK
+Moves = 0,DRAGONFIRE,0,GIGACANNON,0,INFINITEHAND,0,GIGADESTROYER,0,CATASTROPHEDAY
+Compatibility = Monster,Water1
+StepsToHatch = 5355
+Height = 1.6
+Weight = 85.5
+Color = Blue
+Shape = BipedalTail
+Habitat = WatersEdge
+Kind = Shellfish
+Pokedex = The strongest Digimon in the Digital World, with a one-hundred percent metal body. Since Machinedramon consists of a combination of parts from countless cyborg Digimon, all of the cyborg Digimon produced so far are thought to have been merely prototypes for the completion of Machinedramon. Machinedramon is strong enough to overwhelm other Digimon, and boasts incredible processing power, but as a pure Machine Digimon it lacks a will of its own. Instead, someone has implanted a program loaded with malicious intentions into its DigiCore. This malevolent DigiCore provides Machinedramon with unlimited power.
 #-------------------------------
 
 #eof

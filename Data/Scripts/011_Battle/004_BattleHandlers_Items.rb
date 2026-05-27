@@ -18,6 +18,8 @@ PARADOXLIST = [
   :BULBASAUR, :IVYSAUR, :VENUSAUR, :PALMON, :TOGEMON, :LILLYMON, :ROSEMON, :ROSEMONBM,
   :CHARMANDER, :CHARMELEON, :CHARIZARD, :AGUMON, :GREYMON, :METALGREYMON, :WARGREYMON,
   :TOTODILE, :CROCONAW, :FERALIGATR, :GABUMON, :GARURUMON, :WEREGARURUMON, :METALGARURUMON,
+  :BLASTOISE, :MACHINEDRAMON,
+  :MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALDRILL, :VOCALCELL,
 ]
 
 
@@ -1930,13 +1932,14 @@ BattleHandlers::ItemOnSwitchIn.add(:AIRBALLOON,
   }
 )
 
-BattleHandlers::ItemOnSwitchIn.add(:BUNDLEOFBALLOONS,
+BattleHandlers::ItemOnSwitchIn.copy(:AIRBALLOON, :BUNDLEOFBALLOONS)
+
+BattleHandlers::ItemOnSwitchIn.add(:PYRITE,
   proc { |item,battler,battle|
-    battle.pbDisplay(_INTL("{1} floats in the air with its {2}!",
+    battle.pbDisplay(_INTL("{1} gained a mysterious aura from its {2}!",
        battler.pbThis,battler.itemName))
   }
 )
-
 
 BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   proc { |item,battler,battle|

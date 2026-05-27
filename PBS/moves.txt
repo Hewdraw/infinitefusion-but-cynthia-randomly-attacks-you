@@ -1071,6 +1071,11 @@
 1102,SNAPTRAP,Snap Trap,344,80,GRASS,Special,90,15,20,AllNearFoes,0,befg,"a" #todo
 1103,SEEDFLAREPLUS,Seed Flare+,04F,130,GRASS,Special,100,5,50,NearOther,0,bef,"The user generates a shock wave from within its body. It may harshly lower the target's Sp. Def."
 1104,LIGHTTHATBURNSTHESKY,Light That Burns the Sky,000,200,PSYCHIC,Special,0,1,0,NearOther,0,f,"a" #todo
+1105,DRAGONFIRE,Dragon Fire,000,95,DRAGON,Physical,100,10,100,NearOther,0,abefn,"Drills its right arm into the opponent." #todo
+1106,GIGACANNON,Giga Cannon,000,35,GUN,Physical,100,5,50,NearOther,0,befn,"Fires superdreadnought-class energy waves from its two cannons." #todo
+1107,INFINITEHAND,Infinite Hand,000,20,ELECTRIC,Special,90,5,0,NearOther,0,befn,"Launches a blast of energy from its hand." #todo
+1108,GIGADESTROYER,Giga Destroyer,03F,160,GUN,Special,90,5,0,AllNearFoes,0,befn,"Fires organic missiles from the hatch on part of its chest."
+1109,CATASTROPHEDAY,Catastrophe Day,000,600,GUN,Physical,100,5,20,NearOther,0,befn,"Detonates itself in a large explosion." #todo
 
 
 

@@ -1,4 +1,371 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
+# Regionals
+#-------------------------------
+[RATTATA,1]
+FormName = Alolan
+Type1 = DARK
+Type2 = NORMAL
+Abilities = GLUTTONY,HUSTLE
+HiddenAbilities = THICKFAT
+#-------------------------------
+[RATICATE,1]
+FormName = Alolan
+Type1 = DARK
+Type2 = NORMAL
+BaseStats = 75,71,70,77,40,80
+Abilities = GLUTTONY,HUSTLE
+HiddenAbilities = THICKFAT
+#-------------------------------
+[RAICHU,1]
+FormName = Alolan
+Type1 = ELECTRIC
+Type2 = PSYCHIC
+BaseStats = 60,85,50,110,95,85
+Abilities = SURGESURFER
+HiddenAbilities = SURGESURFER
+#-------------------------------
+[SANDSHREW,1]
+FormName = Alolan
+Type1 = ICE
+Type2 = STEEL
+BaseStats = 50,75,90,40,10,35
+Abilities = SNOWCLOAK
+HiddenAbilities = SLUSHRUSH
+#-------------------------------
+[SANDSLASH,1]
+FormName = Alolan
+Type1 = ICE
+Type2 = STEEL
+BaseStats = 75,100,120,65,25,65
+Abilities = SNOWCLOAK
+HiddenAbilities = SLUSHRUSH
+#-------------------------------
+[VULPIX,1]
+FormName = Alolan
+Type1 = ICE
+Type2 = ICE
+Abilities = SNOWCLOAK
+HiddenAbilities = SNOWWARNING
+#-------------------------------
+[NINETALES,1]
+FormName = Alolan
+Type1 = ICE
+Type2 = FAIRY
+BaseStats = 73,67,75,109,81,100
+EVs = SPEED,2
+Abilities = SNOWCLOAK
+HiddenAbilities = SNOWWARNING
+#-------------------------------
+[DIGLETT,1]
+FormName = Alolan
+Type1 = GROUND
+Type2 = STEEL
+BaseStats = 10,55,30,90,35,45
+Abilities = SANDVEIL,TANGLINGHAIR
+#-------------------------------
+[DUGTRIO,1]
+FormName = Alolan
+Type1 = GROUND
+Type2 = STEEL
+BaseStats = 35,100,60,110,50,70
+EVs = ATTACK,2
+Abilities = SANDVEIL,TANGLINGHAIR
+#-------------------------------
+[MEOWTH,1]
+FormName = Alolan
+Type1 = DARK
+Type2 = DARK
+BaseStats = 40,35,35,90,50,40
+HiddenAbilities = RATTLED
+#-------------------------------
+[MEOWTH,2]
+FormName = Galarian
+Type1 = STEEL
+Type2 = STEEL
+BaseStats = 50,65,55,40,40,40
+Abilities = PICKUP,TOUGHCLAWS
+#-------------------------------
+[PERSIAN,1]
+FormName = Alolan
+Type1 = DARK
+Type2 = DARK
+BaseStats = 65,60,60,115,75,65
+Abilities = FURCOAT,TECHNICIAN
+HiddenAbilities = RATTLED
+#-------------------------------
+[GEODUDE,1]
+FormName = Alolan
+Type1 = ROCK
+Type2 = ELECTRIC
+Abilities = MAGNETPULL,STURDY
+HiddenAbilities = GALVANIZE
+#-------------------------------
+[GRAVELER,1]
+FormName = Alolan
+Type1 = ROCK
+Type2 = ELECTRIC
+Abilities = MAGNETPULL,STURDY
+HiddenAbilities = GALVANIZE
+#-------------------------------
+[GOLEM,1]
+FormName = Alolan
+Type1 = ROCK
+Type2 = ELECTRIC
+Abilities = MAGNETPULL,STURDY
+HiddenAbilities = GALVANIZE
+#-------------------------------
+[PONYTA,1]
+FormName = Galarian
+Type1 = PSYCHIC
+Type2 = PSYCHIC
+Abilities = RUNAWAY,PASTELVEIL
+HiddenAbilities = ANTICIPATION
+#-------------------------------
+[RAPIDASH,1]
+FormName = Galarian
+Type1 = PSYCHIC
+Type2 = FAIRY
+Abilities = RUNAWAY,PASTELVEIL
+HiddenAbilities = ANTICIPATION
+#-------------------------------
+[SLOWPOKE,1]
+FormName = Galarian
+Type1 = PSYCHIC
+Type2 = PSYCHIC
+Abilities = GLUTTONY,OWNTEMPO
+#-------------------------------
+[SLOWBRO,1]
+FormName = Galarian
+Type1 = POISON
+Type2 = PSYCHIC
+BaseStats = 95,100,95,30,100,70
+Abilities = QUICKDRAW,OWNTEMPO
+#-------------------------------
+[FARFETCHD,1]
+FormName = Galarian
+Type1 = FIGHTING
+Type2 = FIGHTING
+BaseStats = 52,95,55,55,58,62
+Abilities = STEADFAST
+HiddenAbilities = SCRAPPY
+#-------------------------------
+[GRIMER,1]
+FormName = Alolan
+Type1 = POISON
+Type2 = DARK
+Abilities = POISONTOUCH,GLUTTONY
+HiddenAbilities = POWEROFALCHEMY
+#-------------------------------
+[MUK,1]
+FormName = Alolan
+Type1 = POISON
+Type2 = DARK
+Abilities = POISONTOUCH,GLUTTONY
+HiddenAbilities = POWEROFALCHEMY
+#-------------------------------
+[EXEGGUTOR,1]
+FormName = Alolan
+Type1 = GRASS
+Type2 = DRAGON
+BaseStats = 95,105,85,45,125,75
+Abilities = FRISK
+#-------------------------------
+[MAROWAK,1]
+FormName = Alolan
+Type1 = FIRE
+Type2 = GHOST
+Abilities = CURSEDBODY,LIGHTNINGROD
+HiddenAbilities = ROCKHEAD
+#-------------------------------
+[WEEZING,1]
+FormName = Galarian
+Type1 = POISON
+Type2 = FAIRY
+HiddenAbilities = MISTYSURGE
+#-------------------------------
+[MRMIME,1]
+FormName = Galarian
+Type1 = ICE
+Type2 = PSYCHIC
+BaseStats = 50,65,65,100,90,90
+EVs = SPEED,2
+Abilities = VITALSPIRIT,SCREENCLEANER
+HiddenAbilities = ICEBODY
+#-------------------------------
+[ARTICUNO,1]
+FormName = Galarian
+Type1 = PSYCHIC
+Type2 = FLYING
+BaseStats = 90,85,85,95,125,100
+EVs = SPECIAL_ATTACK,3
+Abilities = COMPETITIVE
+HiddenAbilities = COMPETITIVE
+#-------------------------------
+[ZAPDOS,1]
+FormName = Galarian
+Type1 = FIGHTING
+Type2 = FLYING
+BaseStats = 90,125,90,100,85,90
+EVs = ATTACK,3
+Abilities = DEFIANT
+HiddenAbilities = DEFIANT
+#-------------------------------
+[MOLTRES,1]
+FormName = Galarian
+Type1 = DARK
+Type2 = FLYING
+BaseStats = 90,85,90,90,100,125
+EVs = SPECIAL_DEFENSE,3
+Abilities = BERSERK
+HiddenAbilities = BERSERK
+#-------------------------------
+[SLOWKING,1]
+FormName = Galarian
+Type1 = POISON
+Type2 = PSYCHIC
+BaseStats = 95,65,80,30,110,110
+Abilities = CURIOUSMEDICINE,OWNTEMPO
+#-------------------------------
+[CORSOLA,1]
+FormName = Galarian
+Type1 = GHOST
+Type2 = GHOST
+BaseStats = 60,55,100,30,65,100
+Abilities = WEAKARMOR
+HiddenAbilities = CURSEDBODY
+#-------------------------------
+[ZIGZAGOON,1]
+FormName = Galarian
+Type1 = DARK
+Type2 = NORMAL
+#-------------------------------
+[LINOONE,1]
+FormName = Galarian
+Type1 = DARK
+Type2 = NORMAL
+#-------------------------------
+[YAMASK,1]
+FormName = Galarian
+Type1 = GROUND
+Type2 = GHOST
+BaseStats = 38,55,85,30,30,65
+Abilities = WANDERINGSPIRIT
+#-------------------------------
+[STUNFISK,1]
+FormName = Galarian
+Type1 = GROUND
+Type2 = STEEL
+BaseStats = 109,81,99,32,66,84
+Abilities = MIMICRY
+HiddenAbilities = MIMICRY
+#-------------------------------
+[GROWLITHE,1]
+FormName = Hisuian
+Type1 = FIRE
+Type2 = ROCK
+BaseStats = 60,75,45,55,65,50
+HiddenAbilities = ROCKHEAD
+#-------------------------------
+[ARCANINE,1]
+FormName = Hisuian
+Type1 = FIRE
+Type2 = ROCK
+BaseStats = 95,115,80,90,95,80
+HiddenAbilities = ROCKHEAD
+#-------------------------------
+[VOLTORB,1]
+FormName = Hisuian
+Type1 = ELECTRIC
+Type2 = GRASS
+Habitat = Grassland
+#-------------------------------
+[ELECTRODE,1]
+FormName = Hisuian
+Type1 = ELECTRIC
+Type2 = GRASS
+Habitat = Grassland
+#-------------------------------
+[TAUROS,1]
+FormName = Paldean (Combat Breed)
+Type1 = FIGHTING
+Type2 = FIGHTING
+BaseStats = 75,110,105,100,30,70
+EVs = ATTACK,2
+HiddenAbilities = CUDCHEW
+#-------------------------------
+[TAUROS,2]
+FormName = Paldean (Blaze Breed)
+Type1 = FIGHTING
+Type2 = FIRE
+BaseStats = 75,110,105,100,30,70
+EVs = ATTACK,2
+HiddenAbilities = CUDCHEW
+#-------------------------------
+[TAUROS,3]
+FormName = Paldean (Aqua Breed)
+Type1 = FIGHTING
+Type2 = WATER
+BaseStats = 75,110,105,100,30,70
+EVs = ATTACK,2
+HiddenAbilities = CUDCHEW
+#-------------------------------
+[TYPHLOSION,1]
+FormName = Hisuian
+Type1 = FIRE
+Type2 = GHOST
+BaseStats = 73,84,78,95,119,85
+HiddenAbilities = FRISK
+#-------------------------------
+[WOOPER,1]
+FormName = Paldean
+Type1 = POISON
+Type2 = GROUND
+Abilities = POISONPOINT,WATERABSORB
+#-------------------------------
+[QWILFISH,1]
+FormName = Hisuian
+Type1 = DARK
+Type2 = POISON
+#-------------------------------
+[SNEASEL,1]
+FormName = Hisuian
+Type1 = FIGHTING
+Type2 = POISON
+Habitat = Mountain
+#-------------------------------
+[ZORUA,1]
+FormName = Hisuian
+Type1 = NORMAL
+Type2 = GHOST
+BaseStats = 35,60,40,70,85,40
+#-------------------------------
+[ZOROARK,1]
+FormName = Hisuian
+Type1 = NORMAL
+Type2 = GHOST
+BaseStats = 55,100,60,110,125,60
+#-------------------------------
+[SLIGGOO,1]
+FormName = Hisuian
+Type1 = STEEL
+Type2 = DRAGON
+BaseStats = 58,75,83,40,83,113
+Abilities = SAPSIPPER,SHELLARMOR
+#-------------------------------
+[GOODRA,1]
+FormName = Hisuian
+Type1 = STEEL
+Type2 = DRAGON
+BaseStats = 80,100,100,60,110,150
+Abilities = SAPSIPPER,SHELLARMOR
+#-------------------------------
+[URSALUNA,1]
+FormName = Bloodmoon Ursaluna
+Type1 = GROUND
+Type2 = NORMAL
+BaseStats = 113,70,120,52,135,65
+Abilities = MINDSEYE
+# Megas
 #-------------------------------
 [VENUSAUR,1]
 FormName = Mega Venusaur
@@ -6,10 +373,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,100,123,80,122,120
 Abilities = THICKFAT
 HiddenAbility = THICKFAT
-Height = 2.4
-Weight = 155.5
-Pokedex = In order to support its flower, which has grown larger due to Mega Evolution, its back and legs have become stronger.
-Generation = 6
 #-------------------------------
 [CHARIZARD,1]
 FormName = Mega Charizard X
@@ -19,10 +382,6 @@ Type2 = DRAGON
 BaseStats = 78,130,111,100,130,85
 Abilities = TOUGHCLAWS
 HiddenAbility = TOUGHCLAWS
-Weight = 110.5
-Color = Black
-Pokedex = The overwhelming power that fills its entire body causes it to turn black and create intense blue flames.
-Generation = 6
 #-------------------------------
 [CHARIZARD,2]
 FormName = Mega Charizard Y
@@ -30,9 +389,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 78,104,78,100,159,115
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
-Weight = 100.5
-Pokedex = Its bond with its Trainer is the source of its power. It boasts speed and maneuverability greater than that of a jet fighter.
-Generation = 6
 #-------------------------------
 [BLASTOISE,1]
 FormName = Mega Blastoise
@@ -42,9 +398,6 @@ Type2 = GUN
 BaseStats = 79,103,120,78,135,115
 Abilities = MEGALAUNCHER
 HiddenAbility = MEGALAUNCHER
-Weight = 101.1
-Pokedex = The cannon on its back is as powerful as a tank gun. Its tough legs and back enable it to withstand the recoil from firing the cannon.
-Generation = 6
 #-------------------------------
 [BEEDRILL,1]
 FormName = Mega Beedrill
@@ -52,10 +405,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 65,150,40,145,15,80
 Abilities = ADAPTABILITY
 HiddenAbility = ADAPTABILITY
-Height = 1.4
-Weight = 40.5
-Pokedex = Its legs have become poison stingers. It stabs its prey repeatedly with the stingers on its limbs, dealing the final blow with the stinger on its rear.
-Generation = 6
 #-------------------------------
 [PIDGEOT,1]
 FormName = Mega Pidgeot
@@ -63,10 +412,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 83,80,80,121,135,80
 Abilities = NOGUARD
 HiddenAbility = NOGUARD
-Height = 2.2
-Weight = 50.5
-Pokedex = With its muscular strength now greatly increased, it can fly continuously for two weeks without resting.
-Generation = 6
 #-------------------------------
 [ALAKAZAM,1]
 FormName = Mega Alakazam
@@ -74,21 +419,14 @@ MegaStone = MEGASTONEITE
 BaseStats = 55,50,65,150,175,105
 Abilities = TRACE
 HiddenAbility = TRACE
-Height = 1.2
-Pokedex = Having traded away its muscles, Alakazam's true power has been unleashed. With its psychic powers, it can foresee all things.
-Generation = 6
 #-------------------------------
-[SLOWBRO,1]
+[SLOWBRO,3]
 FormName = Mega Slowbro
 MegaStone = MEGASTONEITE
 BaseStats = 95,75,180,30,130,80
 Abilities = SHELLARMOR
 HiddenAbility = SHELLARMOR
-Height = 2.0
-Weight = 120.0
 Shape = HeadArms
-Pokedex = Having been swallowed whole by Shellder, Slowbro now has an iron defense. It's pretty comfortable in there, too.
-Generation = 6
 #-------------------------------
 [GENGAR,1]
 FormName = Mega Gengar
@@ -96,9 +434,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 60,65,80,130,170,95
 Abilities = SHADOWTAG
 HiddenAbility = SHADOWTAG
-Height = 1.4
-Pokedex = The energy of Mega Evolution awakened it. It sinks into another dimension, where it keeps a patient watch for its chance to attack.
-Generation = 6
 #-------------------------------
 [KANGASKHAN,1]
 FormName = Mega Kangaskhan
@@ -106,9 +441,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 105,125,100,100,60,100
 Abilities = PARENTALBOND
 HiddenAbility = PARENTALBOND
-Weight = 100.0
-Pokedex = The explosive energy the child is bathed in causes temporary growth. The mother is beside herself with worry about it.
-Generation = 6
 #-------------------------------
 [PINSIR,1]
 FormName = Mega Pinsir
@@ -118,11 +450,7 @@ Type2 = FLYING
 BaseStats = 65,155,120,105,65,90
 Abilities = AERILATE
 HiddenAbility = AERILATE
-Height = 1.7
-Weight = 59.0
 Shape = MultiWinged
-Pokedex = It zips around at blistering speeds, looking for an opening to skewer its opponent on its giant pincers.
-Generation = 6
 #-------------------------------
 [GYARADOS,1]
 FormName = Mega Gyarados
@@ -132,9 +460,6 @@ Type2 = DARK
 BaseStats = 95,155,109,81,70,130
 Abilities = MOLDBREAKER
 HiddenAbility = MOLDBREAKER
-Weight = 305.0
-Pokedex = It zooms out of the water at Mach speeds. Even large ships caught in its path are split cleanly in two!
-Generation = 6
 #-------------------------------
 [AERODACTYL,1]
 FormName = Mega Aerodactyl
@@ -142,10 +467,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,135,85,150,70,95
 Abilities = TOUGHCLAWS
 HiddenAbility = TOUGHCLAWS
-Height = 2.1
-Weight = 79.0
-Pokedex = When it Mega Evolves, it becomes more vicious than ever before. Some say that's because its excess of power is causing it pain.
-Generation = 6
 #-------------------------------
 [MEWTWO,1]
 FormName = Mega Mewtwo X
@@ -155,10 +476,6 @@ Type2 = FIGHTING
 BaseStats = 106,190,100,130,154,100
 Abilities = STEADFAST
 HiddenAbility = STEADFAST
-Height = 2.3
-Weight = 127.0
-Pokedex = Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
-Generation = 6
 #-------------------------------
 [MEWTWO,2]
 FormName = Mega Mewtwo Y
@@ -166,10 +483,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 106,150,70,140,194,120
 Abilities = INSOMNIA
 HiddenAbility = INSOMNIA
-Height = 1.5
-Weight = 33.0
-Pokedex = Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
-Generation = 6
 #-------------------------------
 [AMPHAROS,1]
 FormName = Mega Ampharos
@@ -179,8 +492,6 @@ Type2 = DRAGON
 BaseStats = 90,95,105,45,165,110
 Abilities = MOLDBREAKER
 HiddenAbility = MOLDBREAKER
-Pokedex = Massive amounts of energy intensely stimulated Ampharos's cells, apparently awakening its long-sleeping dragon's blood.
-Generation = 6
 #-------------------------------
 [STEELIX,1]
 FormName = Mega Steelix
@@ -188,9 +499,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 75,125,230,30,55,95
 Abilities = SANDFORCE
 HiddenAbility = SANDFORCE
-Height = 10.5
-Weight = 740.0
-Generation = 6
 #-------------------------------
 [SCIZOR,1]
 FormName = Mega Scizor
@@ -198,10 +506,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 70,150,140,65,100,75
 Abilities = TECHNICIAN
 HiddenAbility = TECHNICIAN
-Height = 2.0
-Weight = 125.0
-Pokedex = It's better at beating things than grasping them. When it battles for a long time, the weight of its pincers becomes too much to bear.
-Generation = 6
 #-------------------------------
 [HERACROSS,1]
 FormName = Mega Heracross
@@ -209,10 +513,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,185,115,75,40,105
 Abilities = SKILLLINK
 HiddenAbility = SKILLLINK
-Height = 1.7
-Weight = 62.5
-Pokedex = A tremendous influx of energy builds it up, but when Mega Evolution ends, Heracross is bothered by terrible soreness in its muscles.
-Generation = 6
 #-------------------------------
 [HOUNDOOM,1]
 FormName = Mega Houndoom
@@ -220,10 +520,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 75,90,90,115,140,90
 Abilities = SOLARPOWER
 HiddenAbility = SOLARPOWER
-Height = 1.9
-Weight = 49.5
-Pokedex = Its red claws and the tips of its tail are melting from high internal temperatures that are painful to Houndoom itself.
-Generation = 6
 #-------------------------------
 [TYRANITAR,1]
 FormName = Mega Tyranitar
@@ -231,10 +527,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 100,164,150,71,95,120
 Abilities = SANDSTREAM
 HiddenAbility = SANDSTREAM
-Height = 2.5
-Weight = 255.0
-Pokedex = Due to the colossal power poured into it, this Pokémon's back split right open. Its destructive instincts are the only thing keeping it moving.
-Generation = 6
 #-------------------------------
 [SCEPTILE,1]
 FormName = Mega Sceptile
@@ -244,16 +536,12 @@ Type2 = DRAGON
 BaseStats = 70,110,75,145,145,85
 Abilities = LIGHTNINGROD
 HiddenAbility = LIGHTNINGROD
-Height = 1.9
-Weight = 55.2
-Generation = 6
 #-------------------------------
 [BLAZIKEN,1]
 FormName = Mega Blaziken
 MegaStone = MEGASTONEITE
 BaseStats = 80,160,80,100,130,80
 Abilities = SPEEDBOOST
-Generation = 6
 #-------------------------------
 [SWAMPERT,1]
 FormName = Mega Swampert
@@ -261,9 +549,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 100,150,110,70,95,110
 Abilities = SWIFTSWIM
 HiddenAbility = SWIFTSWIM
-Height = 1.9
-Weight = 102.0
-Generation = 6
 #-------------------------------
 [GARDEVOIR,1]
 FormName = Mega Gardevoir
@@ -271,7 +556,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 68,85,65,100,165,135
 Abilities = PIXILATE
 HiddenAbility = PIXILATE
-Generation = 6
 #-------------------------------
 [SABLEYE,1]
 FormName = Mega Sableye
@@ -279,9 +563,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 50,85,125,20,85,115
 Abilities = MAGICBOUNCE
 HiddenAbility = MAGICBOUNCE
-Weight = 161.0
-Pokedex = Supporting a giant heavy jewel, it can't change direction very nimbly and is vulnerable to attack from behind.
-Generation = 6
 #-------------------------------
 [MAWILE,1]
 FormName = Mega Mawile
@@ -289,21 +570,15 @@ MegaStone = MAWILITE
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [AGGRON,1]
 FormName = Mega Aggron
 MegaStone = MEGASTONEITE
 Type1 = STEEL
+Type2 = STEEL
 BaseStats = 70,140,230,50,60,80
 Abilities = FILTER
 HiddenAbility = FILTER
-Height = 2.2
-Weight = 395.0
-Generation = 6
 #-------------------------------
 [MEDICHAM,1]
 FormName = Mega Medicham
@@ -311,7 +586,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 60,100,85,100,80,85
 Abilities = PUREPOWER
 HiddenAbility = PUREPOWER
-Generation = 6
 #-------------------------------
 [MANECTRIC,1]
 FormName = Mega Manectric
@@ -319,10 +593,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 70,75,80,135,135,80
 Abilities = INTIMIDATE
 HiddenAbility = INTIMIDATE
-Height = 1.8
-Weight = 44.0
-Pokedex = Too much electricity has built up in its body, irritating Manectric. Its explosive speed is equal to that of a lightning bolt.
-Generation = 6
 #-------------------------------
 [SHARPEDO,1]
 FormName = Mega Sharpedo
@@ -330,10 +600,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 70,140,70,105,110,65
 Abilities = STRONGJAW
 HiddenAbility = STRONGJAW
-Height = 2.5
-Weight = 130.3
-Pokedex = The yellow patterns it bears are old scars. The energy from Mega Evolution runs through them, causing it sharp pain and suffering.
-Generation = 6
 #-------------------------------
 [CAMERUPT,1]
 FormName = Mega Camerupt
@@ -341,9 +607,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 70,120,100,20,145,105
 Abilities = SHEERFORCE
 HiddenAbility = SHEERFORCE
-Height = 2.5
-Weight = 320.5
-Generation = 6
 #-------------------------------
 [ALTARIA,1]
 FormName = Mega Altaria
@@ -353,8 +616,6 @@ Type2 = FAIRY
 BaseStats = 75,110,110,80,110,105
 Abilities = PIXILATE
 HiddenAbility = PIXILATE
-Height = 1.5
-Generation = 6
 #-------------------------------
 [BANETTE,1]
 FormName = Mega Banette
@@ -362,10 +623,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 64,165,75,75,93,83
 Abilities = PRANKSTER
 HiddenAbility = PRANKSTER
-Height = 1.2
-Weight = 13.0
-Pokedex = Extraordinary energy amplifies its cursing power to such an extent that it can't help but curse its own Trainer.
-Generation = 6
 #-------------------------------
 [ABSOL,1]
 FormName = Mega Absol
@@ -373,9 +630,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 65,150,60,115,115,60
 Abilities = MAGICBOUNCE
 HiddenAbility = MAGICBOUNCE
-Weight = 49.0
-Pokedex = When this Pokémon whips the winglike fur on its back as though beating its wings, it sends an intimidating aura flying at its opponents.
-Generation = 6
 #-------------------------------
 [GLALIE,1]
 FormName = Mega Glalie
@@ -383,10 +637,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,120,80,100,120,80
 Abilities = REFRIGERATE
 HiddenAbility = REFRIGERATE
-Height = 2.1
-Weight = 350.2
-Pokedex = It envelops prey in its mouth, freezing them instantly. But its jaw is dislocated, so it's unable to eat them.
-Generation = 6
 #-------------------------------
 [SALAMENCE,1]
 FormName = Mega Salamence
@@ -394,10 +644,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 95,145,130,120,120,90
 Abilities = AERILATE
 HiddenAbility = AERILATE
-Height = 1.8
-Weight = 112.6
-Pokedex = It puts its forelegs inside its shell to streamline itself for flight. Salamence flies at high speeds over all kinds of topographical features.
-Generation = 6
 #-------------------------------
 [METAGROSS,1]
 FormName = Mega Metagross
@@ -405,10 +651,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,145,150,110,105,110
 Abilities = TOUGHCLAWS
 HiddenAbility = TOUGHCLAWS
-Height = 2.5
-Weight = 942.9
-Pokedex = Its intellect surpasses its previous level, resulting in battles so cruel, they'll make you want to cover your eyes.
-Generation = 6
 #-------------------------------
 [LATIAS,1]
 FormName = Mega Latias
@@ -416,10 +658,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,100,120,110,140,150
 Abilities = LEVITATE
 HiddenAbility = LEVITATE
-Height = 1.8
-Weight = 52.0
-Color = Purple
-Generation = 6
 #-------------------------------
 [LATIOS,1]
 FormName = Mega Latios
@@ -427,10 +665,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 80,130,100,110,160,120
 Abilities = LEVITATE
 HiddenAbility = LEVITATE
-Height = 2.3
-Weight = 70.0
-Color = Purple
-Generation = 6
 #-------------------------------
 [RAYQUAZA,1]
 FormName = Mega Rayquaza
@@ -439,9 +673,6 @@ MegaMessage = 1
 BaseStats = 105,180,100,115,180,100
 Abilities = DELTASTREAM
 HiddenAbility = DELTASTREAM
-Height = 10.8
-Weight = 392.0
-Generation = 6
 #-------------------------------
 [LOPUNNY,1]
 FormName = Mega Lopunny
@@ -451,10 +682,6 @@ Type2 = FIGHTING
 BaseStats = 65,136,94,135,54,96
 Abilities = SCRAPPY
 HiddenAbility = SCRAPPY
-Height = 1.3
-Weight = 28.3
-Pokedex = It swings its ears like whips and strikes its enemies with them. It has an intensely combative disposition.
-Generation = 6
 #-------------------------------
 [GARCHOMP,1]
 FormName = Mega Garchomp
@@ -462,8 +689,6 @@ MegaStone = GARCHOMPITE
 BaseStats = 108,170,115,92,120,95
 Abilities = SANDFORCE
 HiddenAbility = SANDFORCE
-Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
-Generation = 6
 #-------------------------------
 [LUCARIO,1]
 FormName = Mega Lucario
@@ -471,10 +696,6 @@ MegaStone = LUCARIONITE
 BaseStats = 70,145,88,112,140,70
 Abilities = ADAPTABILITY
 HiddenAbility = ADAPTABILITY
-Height = 1.3
-Weight = 57.5
-Pokedex = It readies itself to face its enemies by focusing its mental energies. Its fighting style can be summed up in a single word: heartless.
-Generation = 6
 #-------------------------------
 [ABOMASNOW,1]
 FormName = Mega Abomasnow
@@ -482,9 +703,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 90,132,105,30,132,105
 Abilities = SNOWWWARNING
 HiddenAbility = SNOWWWARNING
-Height = 2.7
-Weight = 185.0
-Generation = 6
 #-------------------------------
 [GALLADE,1]
 FormName = Mega Gallade
@@ -492,8 +710,6 @@ MegaStone = MEGASTONEITE
 BaseStats = 68,165,95,110,65,115
 Abilities = INNERFOCUS
 HiddenAbility = INNERFOCUS
-Weight = 56.4
-Generation = 6
 #-------------------------------
 [AUDINO,1]
 FormName = Mega Audino
@@ -503,10 +719,6 @@ Type2 = FAIRY
 BaseStats = 103,60,126,50,80,126
 Abilities = HEALER
 HiddenAbility = HEALER
-Height = 1.5
-Weight = 32.0
-Color = White
-Generation = 6
 #-------------------------------
 [DIANCIE,1]
 FormName = Mega Diancie
@@ -514,28 +726,18 @@ MegaStone = MEGASTONEITE
 BaseStats = 50,160,110,110,160,110
 Abilities = MAGICBOUNCE
 HiddenAbility = MAGICBOUNCE
-Height = 1.1
-Weight = 27.8
 #-------------------------------
-[RAICHU,1]
+[RAICHU,3]
 FormName = Mega Raichu X
 MegaStone = MEGASTONEITE
 BaseStats = 60,135,95,110,90,95
 BaseExp = 293
-Height = 1.2
-Weight = 38.0
-Pokedex = It resembles an X as it flies through the air with 50 million volts of electricity sparking from its ears and forked tail.
-Generation = 9
 #-------------------------------
-[RAICHU,2]
+[RAICHU,4]
 FormName = Mega Raichu Y
 MegaStone = MEGASTONEITE
 BaseStats = 60,100,55,130,160,80
 BaseExp = 293
-Height = 1.0
-Weight = 26.0
-Pokedex = It fires bolts of electricity from the tip of its tail and from the spiky tufts of fur growing out of its temples. This electricity forms the letter Y.
-Generation = 9
 #-------------------------------
 [CLEFABLE,1]
 FormName = Mega Clefable
@@ -546,10 +748,6 @@ BaseStats = 95,80,93,70,135,110
 Abilities = MAGICBOUNCE
 HiddenAbility = MAGICBOUNCE
 BaseExp = 292
-Height = 1.7
-Weight = 42.3
-Pokedex = It flies by using the power of moonlight to control gravity within a radius of over 32 feet around it.
-Generation = 9
 #-------------------------------
 [VICTREEBEL,1]
 FormName = Mega Victreebel
@@ -558,10 +756,6 @@ BaseStats = 80,125,85,70,135,95
 Abilities = INNARDSOUT
 HiddenAbility = INNARDSOUT
 BaseExp = 295
-Height = 4.5
-Weight = 125.5
-Pokedex = The volume of this Pokémon's acid has increased due to Mega Evolution, filling its mouth. If it's not careful, the acid will overflow and spill out.
-Generation = 9
 #-------------------------------
 [STARMIE,1]
 FormName = Mega Starmie
@@ -570,9 +764,6 @@ BaseStats = 60,140,105,120,130,105
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
 BaseExp = 232
-Height = 2.3
-Pokedex = Its movements have become more humanlike. Whether it's simply trying to communicate or wants to supplant humanity is unclear.
-Generation = 9
 #-------------------------------
 [DRAGONITE,1]
 FormName = Mega Dragonite
@@ -581,9 +772,6 @@ BaseStats = 91,124,115,100,145,125
 Abilities = MULTISCALE
 HiddenAbility = MULTISCALE
 BaseExp = 350
-Weight = 290.0
-Pokedex = Mega Evolution has excessively powered up this Pokémon's feelings of kindness. It finishes off its opponents with mercy in its heart.
-Generation = 9
 #-------------------------------
 [MEGANIUM,1]
 FormName = Mega Meganium
@@ -594,10 +782,6 @@ BaseStats = 80,92,115,80,143,115
 Abilities = MEGASOL
 HiddenAbility = MEGASOL
 BaseExp = 313
-Height = 2.4
-Weight = 201.0
-Pokedex = This Pokémon can fire a tremendously powerful Solar Beam from its four flowers. Another name for this is Mega Sol Cannon.
-Generation = 9
 #-------------------------------
 [FERALIGATR,1]
 FormName = Mega Feraligatr
@@ -608,10 +792,6 @@ BaseStats = 85,160,125,78,89,93
 Abilities = DRAGONIZE
 HiddenAbility = DRAGONIZE
 BaseExp = 315
-Weight = 108.8
-Category = Double Jaw
-Pokedex = With its arms and hoodlike fin, this Pokémon forms a gigantic set of jaws with a bite 10 times as powerful as Mega Feraligatr's actual jaws.
-Generation = 9
 #-------------------------------
 [SKARMORY,1]
 FormName = Mega Skarmory
@@ -620,9 +800,6 @@ BaseStats = 65,140,110,110,40,100
 Abilities = STALWART
 HiddenAbility = STALWART
 BaseExp = 213
-Weight = 40.4
-Pokedex = It flies faster than the speed of sound. After whipping up shock waves to send enemies flying, it finishes them off with its talons.
-Generation = 9
 #-------------------------------
 [CHIMECHO,1]
 FormName = Mega Chimecho
@@ -633,10 +810,6 @@ BaseStats = 75,50,110,65,135,120
 Abilities = LEVITATE
 HiddenAbility = LEVITATE
 BaseExp = 209
-Height = 1.2
-Weight = 8.0
-Pokedex = It vibrates its entire body to attack in all directions using sound waves. Any who hear the vibrations get so confused, they forget who they are.
-Generation = 9
 #-------------------------------
 [ABSOL,2]
 FormName = Mega Absol Z
@@ -645,9 +818,6 @@ Type1 = DARK
 Type2 = GHOST
 BaseStats = 65,154,60,151,75,60
 BaseExp = 198
-Weight = 49.0
-Pokedex = Using fur that it has made into sharp, clawlike shapes, it cuts down foes with a single blow. This is an act of kindness to keep them from suffering.
-Generation = 9
 #-------------------------------
 [GARCHOMP,2]
 FormName = Mega Garchomp Z
@@ -656,19 +826,12 @@ Type1 = DRAGON
 Type2 = DRAGON
 BaseStats = 108,130,85,151,141,85
 BaseExp = 350
-Weight = 99.0
-Pokedex = Garchomp has gained a new Mega-Evolved form. It flies around foes at Mach speed and cuts them to shreds with its sinister wing claws.
-Generation = 9
 #-------------------------------
 [LUCARIO,2]
 FormName = Mega Lucario Z
 MegaStone = MEGASTONEITE
 BaseStats = 70,100,70,151,164,70
 BaseExp = 219
-Height = 1.3
-Weight = 49.4
-Pokedex = By completely cloaking itself in its aura, Mega Lucario Z can parry all manner of attacks, battling as if it were gracefully dancing.
-Generation = 9
 #-------------------------------
 [FROSLASS,1]
 FormName = Mega Froslass
@@ -677,40 +840,24 @@ BaseStats = 70,80,70,120,140,100
 Abilities = SNOWWWARNING
 HiddenAbility = SNOWWWARNING
 BaseExp = 218
-Height = 2.6
-Weight = 29.6
-Pokedex = This Pokémon can use eerie cold air imbued with ghost energy to freeze even insubstantial things, such as flames or the wind.
-Generation = 9
 #-------------------------------
 [DARKRAI,1]
 FormName = Mega Darkrai
 MegaStone = MEGASTONEITE
 BaseStats = 70,120,130,85,165,130
 BaseExp = 350
-Height = 3.0
-Weight = 240.0
-Category = Bad Dreams
-Pokedex = Its dark power blocks out the sun, plunging the surrounding area into darkness. There is no escaping its evil eye.
-Generation = 9
 #-------------------------------
 [SCOLIPEDE,1]
 FormName = Mega Scolipede
 MegaStone = MEGASTONEITE
 BaseStats = 60,140,149,62,75,99
 BaseExp = 293
-Height = 3.2
-Weight = 230.5
-Pokedex = Its deadly venom gives off a faint glow. The venom affects Scolipede's mind, honing its viciousness.
-Generation = 9
 #-------------------------------
 [SCRAFTY,1]
 FormName = Mega Scrafty
 MegaStone = MEGASTONEITE
 BaseStats = 65,130,135,68,55,135
 BaseExp = 221
-Weight = 31.0
-Pokedex = Mega Evolution has caused Scrafty's shed skin to turn white, growing tough and supple. Of course, this Pokémon is still as feisty as ever.
-Generation = 9
 #-------------------------------
 [CHANDELURE,1]
 FormName = Mega Chandelure
@@ -719,10 +866,6 @@ BaseStats = 60,75,110,90,175,110
 Abilities = INFILTRATOR
 HiddenAbility = INFILTRATOR
 BaseExp = 310
-Height = 2.5
-Weight = 69.6
-Pokedex = One of its eyes is a window linking our world with the afterlife. This Pokémon draws in hatred and converts it into power.
-Generation = 9
 #-------------------------------
 [GOLURK,1]
 FormName = Mega Golurk
@@ -731,9 +874,6 @@ BaseStats = 89,159,105,55,70,105
 Abilities = UNSEENFIST
 HiddenAbility = UNSEENFIST
 BaseExp = 219
-Height = 4.0
-Pokedex = The energy within Golurk has been stimulated by Mega Evolution. The Pokémon could explode at any moment.
-Generation = 9
 #-------------------------------
 [CHESNAUGHT,1]
 FormName = Mega Chesnaught
@@ -742,8 +882,6 @@ BaseStats = 88,137,172,44,74,115
 Abilities = BULLETPROOF
 HiddenAbility = BULLETPROOF
 BaseExp = 315
-Pokedex = It has fortified armor and a will to defend at all costs. Both are absurdly strong.
-Generation = 9
 #-------------------------------
 [DELPHOX,1]
 FormName = Mega Delphox
@@ -752,8 +890,6 @@ BaseStats = 75,69,72,134,159,125
 Abilities = LEVITATE
 HiddenAbility = LEVITATE
 BaseExp = 317
-Pokedex = It wields flaming branches to dazzle its opponents before incinerating them with a huge fireball.
-Generation = 9
 #-------------------------------
 [GRENINJA,1]
 FormName = Mega Greninja
@@ -762,8 +898,6 @@ BaseStats = 72,125,77,142,133,81
 Abilities = PROTEAN
 HiddenAbility = PROTEAN
 BaseExp = 315
-Pokedex = This Pokémon spins a giant shuriken at high speed to make it float, then clings to it upside down to catch opponents unawares.
-Generation = 9
 #-------------------------------
 [HAWLUCHA,1]
 FormName = Mega Hawlucha
@@ -772,10 +906,6 @@ BaseStats = 78,137,100,118,74,93
 Abilities = NOGUARD
 HiddenAbility = NOGUARD
 BaseExp = 225
-Height = 1.0
-Weight = 25.0
-Pokedex = Mega Evolution has pumped up all its muscles. Hawlucha flexes to show off its strength.
-Generation = 9
 #-------------------------------
 [GOLISOPOD,1]
 FormName = Mega Golisopod
@@ -784,20 +914,12 @@ Type1 = BUG
 Type2 = STEEL
 BaseStats = 75,150,175,40,70,120
 BaseExp = 236
-Height = 2.3
-Weight = 148.0
-Pokedex = It uses four of its arms to fiercely assail its foes. Once they've been pushed to the brink of defeat, it finishes them off with the arms it kept hidden.
-Generation = 9
 #-------------------------------
 [MAGEARNA,1]
 FormName = Mega Magearna
 MegaStone = MEGASTONEITE
 BaseStats = 80,125,115,95,170,115
 BaseExp = 350
-Height = 1.3
-Weight = 248.1
-Pokedex = This is Magearna once a previously hidden mode activates. The emotions Magearna had begun to feel now hide away as it fells foe after foe.
-Generation = 9
 #-------------------------------
 [MAWILESHINY,1]
 FormName = Mega Mawile
@@ -806,10 +928,6 @@ UnMegaForm = MAWILESHINY
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [METAGROSSSHINY,1]
 FormName = Mega Metagross
@@ -818,10 +936,6 @@ UnMegaForm = METAGROSSSHINY
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B296H299,1]
 FormName = Mega Garcario
@@ -830,10 +944,6 @@ UnMegaForm = B296H299
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [ALTARIAHARCANINE,1]
 FormName = Mega Arcaria
@@ -842,10 +952,6 @@ UnMegaForm = ALTARIAHARCANINE
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B443H296,1]
 FormName = Mega Lucaria
@@ -854,10 +960,6 @@ UnMegaForm = B443H296
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B299H443,1]
 FormName = Mega Altachomp
@@ -866,10 +968,6 @@ UnMegaForm = B299H443
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [CREEPER,1]
 FormName = Mega Creeper
@@ -878,10 +976,6 @@ UnMegaForm = CREEPER
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [MEWTWOMEWTWO,1]
 FormName = Mega Mewtwo
@@ -890,10 +984,6 @@ UnMegaForm = MEWTWO
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B80H131,1]
 FormName = Mega Lapbro
@@ -902,10 +992,6 @@ UnMegaForm = B80H131
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B214H9,1]
 FormName = Mega Blastcross
@@ -914,10 +1000,6 @@ UnMegaForm = B214H9
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [GENGARGENGAR,1]
 FormName = Mega Gengar
@@ -926,10 +1008,6 @@ UnMegaForm = GENGARGENGAR
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B130H149,1]
 FormName = Mega Dragodos
@@ -938,10 +1016,6 @@ UnMegaForm = B130H149
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [ANINETALESPIDGEOT,1]
 FormName = Mega Pidtales
@@ -950,10 +1024,6 @@ UnMegaForm = ANINETALESPIDGEOT
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B212H15,1]
 FormName = Mega Beezor
@@ -962,10 +1032,6 @@ UnMegaForm = B212H15
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [AERODACTYLSTARAPTOR,1]
 FormName = Mega Starapdactyl
@@ -974,10 +1040,6 @@ UnMegaForm = AERODACTYLSTARAPTOR
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [GRANBULLMEDICHAM,1]
 FormName = Mega Medibull
@@ -986,10 +1048,6 @@ UnMegaForm = GRANBULLMEDICHAM
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B300H248,1]
 FormName = Mega Tyranwile
@@ -998,10 +1056,6 @@ UnMegaForm = B300H248
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B287H94,1]
 FormName = Mega Genvoir
@@ -1010,10 +1064,6 @@ UnMegaForm = B287H94
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B181H287,1]
 FormName = Mega Garderos
@@ -1022,10 +1072,6 @@ UnMegaForm = B181H287
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [ALTARIATORNADUSTHERION,1]
 FormName = Mega Tornadria
@@ -1034,10 +1080,6 @@ UnMegaForm = ALTARIATORNADUSTHERION
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [GARCHOMPGIGALITH,1]
 FormName = Mega Gigachomp
@@ -1046,10 +1088,6 @@ UnMegaForm = GARCHOMPGIGALITH
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [HARCANINELUCARIO,1]
 FormName = Mega Lucanine
@@ -1058,10 +1096,6 @@ UnMegaForm = HARCANINELUCARIO
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B500H300,1]
 FormName = Mega Mawancie
@@ -1070,10 +1104,6 @@ UnMegaForm = B500H300
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B500H287,1]
 FormName = Mega Gardeancie
@@ -1082,10 +1112,6 @@ UnMegaForm = B500H287
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B443H336,1]
 FormName = Mega Salaria
@@ -1094,10 +1120,6 @@ UnMegaForm = B443H336
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B357H421,1]
 FormName = Mega Sablnette
@@ -1106,10 +1128,6 @@ UnMegaForm = B357H421
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
 #-------------------------------
 [B208H300,1]
 FormName = Mega Mawlix
@@ -1118,7 +1136,3 @@ UnMegaForm = B208H300
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
-Height = 1.0
-Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
-Generation = 6
