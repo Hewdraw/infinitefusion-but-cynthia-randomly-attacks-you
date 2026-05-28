@@ -1582,7 +1582,7 @@ class Pokemon
         next if regional.form == 0
         @type2 = regional.type2 if i == 0
         @type1 = regional.type1 if i == 1
-        @extraabilities.push(regional.abilities[0])
+        @extraabilities += @regionalability
       end
     end
     megasource = nil
