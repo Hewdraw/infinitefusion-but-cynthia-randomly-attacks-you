@@ -7,12 +7,12 @@ EMERADICT = {
 
     :TRAININGGEAR => {
         :name => "Training Gear",
-        :description => "Your Pokemon evolve 10 levels earlier.",
+        :description => "Your Pokemon evolve 10 levels earlier. Gain 3 Evolution Stones at the start.",
         :rarity => :STARTER,
     },
     :CATCHINGNET => {
         :name => "Catching Net",
-        :description => "Gain 3 extra Pokemon at the start.",
+        :description => "Gain 2 extra Bug Pokemon at the start.",
         :rarity => :STARTER,
     },
 

@@ -8559,7 +8559,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 7
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = MRMIME,HasMove,MIMIC,MRMIME,Item,ICESTONE
+Evolutions = MRMIME,HasMove,MIMIC,MRMIME,Item,ICESTONE,GALARMRMIME,Item,MISTSTONE
 #-------------------------------
 [259]
 Name = Happiny

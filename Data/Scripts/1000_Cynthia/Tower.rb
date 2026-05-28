@@ -18,7 +18,7 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Jirachi", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Wishing Stone", "Mystery Dungeon"],
+        :unknownlist => ["Berry Tree", "Hot Spring", "Mining", "Wishing Stone"],
         :eventvariables => {},
         :money => $Trainer.money
     }
@@ -27,11 +27,15 @@ def setupTower()
     selectTrainerClass()
 
     starters = [getTowerPokemon("Starter")]
-    starteramount = 3
-    starteramount += 3 if hasEmera?(:CATCHINGNET)
-    while starters.length < starteramount
+    while starters.length < 3
         mon = getTowerPokemon()
         starters.push(mon) if !starters.include?(mon)
+    end
+    if hasEmera?(:CATCHINGNET)
+        while starters.length < 5
+            mon = getTowerPokemon("Bug")
+            starters.push(mon) if !starters.include?(mon)
+        end
     end
     starters.each do |pokemon|
         pbAddPokemon(pokemon, 5)
@@ -70,25 +74,29 @@ end
 
 def getTowerPokemon(filter=nil)
     list = []
+    legallist = []
+    legallist.push(:AGUMON, :GABUMON, :PALMON)
+    legallist.push(:ALOLARATTATA, :ALOLASANDSHREW, :ALOLAVULPIX, :ALOLADIGLETT, :ALOLAMEOWTH, :GALARMEOWTH, :HISUIGROWLITHE, :GALARPONYTA, :GALARSLOWPOKE, :GALARFARFETCHD, :ALOLAGRIMER, :HISUIVOLTORB, :PALDEAWOOPER, :HISUIQWILFISH, :HISUISNEASEL, :GALARCORSOLA, :GALARZIGZAGOON, :GALARYAMASK, :HISUIZORUA, :GALARSTUNFISK)
+    legallist.push(:GREATTUSK, :SCREAMTAIL, :FLUTTERMANE, :SLITHERWING, :SANDYSHOCKS, :ROARINGMOON, :IRONTREADS, :IRONBUNDLE, :IRONJUGULIS, :IRONMOTH, :IRONTHORNS, :IRONVALIANT, :IRONHARVESTER) if $PokemonGlobal.towervalues[:floor] >= 100
+    [:TRIPLE_KANTO1, :TRIPLE_JOHTO1, :TRIPLE_HOENN1, :TRIPLE_SINNOH1, :TRIPLE_KALOS1, :PALDEATAUROS, :PALDEATAUROSFIRE, :PALDEATAUROSWATER].each do |value|
+        next if rand(3) != 0
+        legallist.push(value)
+    end
     GameData::Species.each do |data|
         next if data.get_previous_species != data.species
-        next if data.id_number > NB_POKEMON
         next if [:MINIOR_C, :MELOETTA_P, :U_NECROZMA, :CASTFORM_SUNNY, :CASTFORM_RAINY, :CASTFORMSNOWY].include?(data.species)
         next if [:ORICORIO_1, :ORICORIO_2, :ORICORIO_3, :ORICORIO_4].include?(data.species) && rand(4) != 0 #randomly enable oricorio form, averages out
         next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :RECICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE].include?(data.species)
+        next if data.id_number > NB_POKEMON && !legallist.include?(data.species)
         case filter
         when "Starter"
-            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS].flatten.include?(data.species)
+            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :AGUMON, :GABUMON, :PALMON, :TRIPLE_KANTO1, :TRIPLE_JOHTO1, :TRIPLE_HOENN1, :TRIPLE_SINNOH1, :TRIPLE_KALOS1].flatten.include?(data.species)
+        when "Bug"
+            next unless data.hasType?(:BUG)
         end
         list.push(data.species)
     end
-    [:TRIPLE_KANTO1, :TRIPLE_JOHTO1, :TRIPLE_HOENN1, :TRIPLE_SINNOH1, :TRIPLE_KALOS1].each do |value|
-        next if rand(3) != 0
-        list.push(value)
-    end
-    list.push(:AGUMON, :GABUMON, :PALMON)
     list.push(:PIKACHU, :EEVEE) if filter == "Starter"
-    list.push(:GREATTUSK, :SCREAMTAIL, :FLUTTERMANE, :SLITHERWING, :SANDYSHOCKS, :ROARINGMOON, :IRONTREADS, :IRONBUNDLE, :IRONJUGULIS, :IRONMOTH, :IRONTHORNS, :IRONVALIANT, :IRONHARVESTER) if $PokemonGlobal.towervalues[:floor] >= 100
     return list.sample
 end
 
