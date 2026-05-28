@@ -522,7 +522,7 @@
 513,SOOTSACK,Soot Sack,Soot Sacks,8,0,"A sack used to gather and hold volcanic ash.",0,0,6
 514,SILPHSCOPE,Silph Scope,Silph Scopes,8,0,"A scope that makes unseeable Pokémon visible. It is made by Silph Co.",0,0,6
 515,DEVONSCOPE,Quest Journal,Quest Journals,8,0,"A journal that logs all of the quests that you have in progress",2,0,6
-516,SQUIRTBOTTLE,Squirtbottle,Squirtbottles,8,0,"A bottle used for watering plants.",0,0,6
+516,SQUIRTBOTTLE,Totodilebottle,Totodilebottles,8,0,"A bottle used for watering plants.",0,0,6
 517,SPRAYDUCK,Mareanie Doll,Mareanie Dolls,8,0,"A doll shaped like the Alolan Pokémon Mareanie. It can be used to scare away Corsola.",0,0,6
 518,WAILMERPAIL,Golbat Boots,Golbat Boots,8,0,"Boots mounted with a spring. They can be used to jump over small gaps.",0,0,6
 519,GRACIDEA,Spaceship Part,Spaceship Parts,8,0,"Debris from a mysterious alien spaceship.",5,0,6
