@@ -1413,7 +1413,6 @@ class PokemonPartyScreen
           command = @scene.pbShowCommands(commandtext, abilitynamelist)
           pkmn.regionalability[i] = abilitylist[command]
         end
-        print(pkmn.regionalform, " ", pkmn.regionalability)
         pkmn.calc_stats
       elsif cmdHat >= 0 && command == cmdHat
         pbPokemonHat(pkmn)
