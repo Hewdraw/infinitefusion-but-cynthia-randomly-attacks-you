@@ -57,7 +57,7 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
-    getMegaList.each do |mega|
+    getRegionalList.each do |mega|
       specieslist.each_with_index do |species, i|
         next unless species == mega.species
         next unless @regionalform[i] == mega.form
