@@ -293,7 +293,7 @@
 291,DRAGONIZE,Dragonize,"a"
 292,STALWART,Stalwart,"a"
 293,UNSEENFIST,Unseen Fist,"a"
-294,THEWORLD,Illusion World "The World" ,"todo"
+294,THEWORLD,Illusion World "The World","todo"
 295,STEELYSPIRIT,Steely Spirit,"todo"
 296,GOODASGOLD,Good as Gold,"todo"
 297,PASTELVEIL,Pastel Veil,"todo"

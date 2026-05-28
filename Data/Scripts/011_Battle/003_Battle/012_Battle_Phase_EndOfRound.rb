@@ -200,7 +200,7 @@ class PokeBattle_Battle
   #=============================================================================
   # End Of Round phase
   #=============================================================================
-  def pbEndOfRoundPhase
+  def pbEndOfRoundPhase(timestop=false)
     PBDebug.log("")
     PBDebug.log("[End of round]")
     @endOfRound = true
@@ -211,6 +211,7 @@ class PokeBattle_Battle
     pbEORWeather(priority)
     priority.each do |b|
       next if b.fainted?
+      next if timestop
       if !b.hasActiveEmera?(:WISHINGPIECE)
         next if !b.raid
         next if !b.hasActiveAbility?(:LEGENDARYPRESSURE)

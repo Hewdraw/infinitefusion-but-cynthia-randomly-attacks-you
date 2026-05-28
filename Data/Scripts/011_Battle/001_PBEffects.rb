@@ -186,6 +186,7 @@ begin
     WaterSportField = 11
     WonderRoom      = 12
     InverseRoom      = 13
+    TheWorld        = 14
   end
 
 rescue Exception

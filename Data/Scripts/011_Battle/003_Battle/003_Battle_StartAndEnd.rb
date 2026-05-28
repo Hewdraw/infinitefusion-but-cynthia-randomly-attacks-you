@@ -402,6 +402,17 @@ class PokeBattle_Battle
       break if @decision>0
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
+      if @field.effects[PBEffects::TheWorld] != 0
+        battle.pbDisplay(_INTL("A Pocketwatch clicks and time stops!"))
+        battle.pbDisplay(_INTL("Time resumes and a knife launches out!"))
+        battler = @battlers[@field.effects[PBEffects::TheWorld]]
+        if !battler.fainted?
+          oldLastRoundMoved = battler.lastRoundMoved
+          battler.pbUseMoveSimple(:CUT)
+          battler.lastRoundMoved = oldLastRoundMoved
+        end
+        PBDebug.logonerr { pbEndOfRoundPhase }
+      end
       break if @decision>0
       @turnCount += 1
       if @turnCount >= 75 && rand(20) == 0

@@ -465,21 +465,29 @@ class PokeBattle_Battle
   def pbPrimalReversion(idxBattler)
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
-    return if !battler.hasPrimal? || battler.primal?
+    return if !battler.hasPrimal?
     if battler.isSpecies?(:KYOGRE)
       pbCommonAnimation("PrimalKyogre",battler)
     elsif battler.isSpecies?(:GROUDON)
       pbCommonAnimation("PrimalGroudon",battler)
+    else
+      pbCommonAnimation("MegaEvolution",battler)
     end
-    battler.pokemon.makePrimal
-    battler.form = battler.pokemon.form
+    tempspecies = ("PRIMAL" + battler.pokemon.species.to_s).to_sym
+    level = battler.level
+    battler.pokemon.species = tempspecies
+    battler.species = tempspecies
+    battler.level = level
     battler.pbUpdate(true)
     @scene.pbChangePokemon(battler,battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
+    battler.pbUpdate(true)
     if battler.isSpecies?(:KYOGRE)
       pbCommonAnimation("PrimalKyogre2",battler)
     elsif battler.isSpecies?(:GROUDON)
       pbCommonAnimation("PrimalGroudon2",battler)
+    else
+      pbCommonAnimation("MegaEvolution2",battler)
     end
     pbDisplay(_INTL("{1}'s Primal Reversion!\nIt reverted to its primal form!",battler.pbThis))
   end

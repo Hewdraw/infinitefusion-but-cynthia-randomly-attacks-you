@@ -169,6 +169,13 @@ MultipleForms.register(:KYOGRE,{
   }
 })
 
+MultipleForms.register(:DIALGA,{
+  "getPrimalForm" => proc { |pkmn|
+    next 1 if pkmn.hasItem?(:LUNARDIAL)
+    next
+  }
+})
+
 MultipleForms.register(:BURMY,{
   "getFormOnCreation" => proc { |pkmn|
     case pbGetEnvironment

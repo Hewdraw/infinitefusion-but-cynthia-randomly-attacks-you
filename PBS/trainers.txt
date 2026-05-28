@@ -10011,7 +10011,7 @@ Pokemon = HATSUNEMECHU,5
     Happiness = 255
 
 ####################### Developer Teams
-[Non_Skeleton_Dev,Hewdraw,5]
+[TIME_STOPPER,Hewdraw,0]
 Pokemon = DIALGA,5
     Offset = 0
     Moves = ROAROFTIME,DOOMDESIRE,TOXIC,FLAMETHROWER

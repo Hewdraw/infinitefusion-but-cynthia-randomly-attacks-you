@@ -121,7 +121,7 @@ BattleHandlers::AbilityOnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
   }
 )
 
-BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT,:WIMPOUT)
+BattleHandlers::AbilityOnHPDroppedBelowHalf.copy(:EMERGENCYEXIT,:WIMPOUT,:VOICEOFTHEFOREST)
 
 #===============================================================================
 # StatusCheckAbilityNonIgnorable handlers
@@ -2998,7 +2998,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRUEEYE,
     battle.pbShowAbilitySplash(battler)
     battler.pbSleep
     oldLastRoundMoved = battler.lastRoundMoved
-    battler.pbUseMoveSimple(:WISH, -1, -1, true)
+    battler.pbUseMoveSimple(:WISH)
+    battler.lastRoundMoved = oldLastRoundMoved
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:VOICEOFTHEFOREST,
+  proc { |ability,battler,battle|
+    next if battler.status != :NONE
+    battle.pbShowAbilitySplash(battler)
+    oldLastRoundMoved = battler.lastRoundMoved
+    battler.pbUseMoveSimple(:FUTURESIGHT)
     battler.lastRoundMoved = oldLastRoundMoved
     battle.pbHideAbilitySplash(battler)
   }
@@ -3065,6 +3076,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:QUARKDRIVE,
       battle.pbDisplay(_INTL("The electric terrain activated {1}'s Quark Drive!", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
     end
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
+  proc { |ability,battler,battle|
+    next if @battle.field.effects[PBEffects::TheWorld] != 0
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("A Pocketwatch clicks and time stops!"))
+    @battle.field.effects[PBEffects::TheWorld] = battler.index
+    battle.pbDisplay(_INTL("Time resumes and a knife launches out!"))
+    oldLastRoundMoved = battler.lastRoundMoved
+    battler.pbUseMoveSimple(:CUT)
+    battler.lastRoundMoved = oldLastRoundMoved
+    battle.pbHideAbilitySplash(battler)
   }
 )
 

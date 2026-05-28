@@ -105,7 +105,7 @@ def towerCynthiaEncounter()
         pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
         return
     end
-    return if ["Gym", "Elitefour", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
+    return if ["Gym", "Elitefour", "Sakuya", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
     srand( $PokemonGlobal.towervalues[:seed]+$PokemonGlobal.towervalues[:floor])
     if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
@@ -142,6 +142,7 @@ def generateNextFloor()
 end
 
 def getTowerEvents()
+    return [nil, "Sakuya", nil] if [99, 199].include?($PokemonGlobal.towervalues[:floor])
     return [nil, "Elitefour", nil] if [81,83,85,87,89].include?($PokemonGlobal.towervalues[:floor])
     return [nil, "Gym", nil] if $PokemonGlobal.towervalues[:floor] % 10 == 9 && ![89].include?($PokemonGlobal.towervalues[:floor])
 
@@ -446,6 +447,33 @@ def towerEvent()
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
         grantRandomEmera
+    when "Sakuya"
+        case $PokemonGlobal.towervalues[:floor]
+        when 100
+            pbCallBub(2, 1, true)
+            Kernel.pbMessage("you're halfway there")
+            pbCallBub(2, 1, true)
+            Kernel.pbMessage("alas the rest of the tower isn't done yet")
+            pbCallBub(2, 1, true)
+            Kernel.pbMessage("so consider this your final challenge for now")
+            pbCallBub(2, 1, true)
+            choice = Kernel.pbMessage("are you ready?", ["Yes", "No"])
+            case choice
+            when 0                
+                pbCallBub(2, 1, true)
+                Kernel.pbMessage("here we go then")
+            when 1
+                pbCallBub(2, 1, true)
+                Kernel.pbMessage("how unfortunate for you")
+            end
+        when 200
+            #todo
+        end
+        $PokemonGlobal.nextBattleBGM = "NightOfNights"
+        return if !pbTrainerBattle(:TIME_STOPPER, "Hewdraw")
+        pbCallBub(2, 1, true)
+        Kernel.pbMessage("congrats, you win")
+        return resetTower()
     when nil
         return
     end
@@ -528,6 +556,8 @@ def getFloorGraphic(event)
         when 89, 90
             return "gary_oak_overworld_bw_completed_by_malice936-d5ruwuc"
         end
+    when "Sakuya"
+        return "TheNonSketon"
     end
 end
 
@@ -556,6 +586,8 @@ def getNextFloorDescription(nextfloor)
         message = "Fight a Gym Trainer and earn a badge."
     when "Elitefour"
         message = "Fight a Pokemon League member."
+    when "Sakuya"
+        message = "Good Luck."
     else
         return
     end
