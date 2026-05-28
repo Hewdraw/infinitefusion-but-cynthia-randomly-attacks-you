@@ -123,6 +123,8 @@ class Pokemon
   attr_accessor :originalform
   attr_accessor :affection
   attr_accessor :megaform
+  attr_accessor :regionalform
+  attr_accessor :regionalability
   attr_accessor :extraabilities
   attr_accessor :abilityarray
   attr_accessor :boxicon
@@ -1436,7 +1438,10 @@ class Pokemon
     specieslist = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
     bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
     if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
-
+      bstdata = getRegionalForm()
+      bstdata.each_with_index do |regional,i|
+        bstdata[i] = regional.base_stats
+      end
     end
     megasource = nil
     megasource = :EON if hasAbility?(:EON)
@@ -1460,6 +1465,9 @@ class Pokemon
         GameData::Stat.each_main { |s|
           bsttemp[i][s.id] = bstdata[i][s.id] + (180-bstdata[i][s.id]) / 3
         }
+      end
+      bsttemp.each_with_index do |bst, i|
+        bsttemp[i] = bstdata[i] if bst == {}
       end
       bstdata = bsttemp
       GameData::Stat.each_main { |s|
@@ -1568,6 +1576,15 @@ class Pokemon
     @extraabilities = []
     @type1 = nil
     @type2 = nil
+    setDefaultForms()
+    if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
+      getRegionalForm().each_with_index do |regional, i|
+        next if regional.form == 0
+        @type2 = regional.type2 if i == 0
+        @type1 = regional.type1 if i == 1
+        @extraabilities.push(regional.abilities[0])
+      end
+    end
     megasource = nil
     megasource = :EON if hasItem?(:EON)
     megasource = :MEGASHARD if hasItem?(:MEGASHARD)
@@ -1647,7 +1664,6 @@ class Pokemon
         end
       end
     end
-    #if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
     list.push(:KEENEYE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
     list.push(:TRUANT) if hasActiveEmera?(:LINGERINGPOTIONOFTURTLEMASTER)

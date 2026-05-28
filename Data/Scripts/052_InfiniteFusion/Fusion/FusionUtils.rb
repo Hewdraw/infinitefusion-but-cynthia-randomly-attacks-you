@@ -90,7 +90,7 @@ def getBodyID(species, nb_pokemon = NB_POKEMON)
   else
     dexNum = getDexNumberForSpecies(species)
   end
-  #return dexNum if dexNum >= 1000000 || dexNum <= nb_pokemon
+  return dexNum if dexNum <= nb_pokemon #|| dexNum >= 1000000
   if dexNum % nb_pokemon == 0
     return (dexNum / nb_pokemon) - 1
   end
@@ -103,7 +103,7 @@ def getHeadID(species, bodyId = nil, nb_pokemon = NB_POKEMON)
   else
     fused_dexNum = getDexNumberForSpecies(species)
   end
-  #return fused_dexNum if fused_dexNum >= 1000000 || fused_dexNum <= nb_pokemon
+  return fused_dexNum if fused_dexNum <= nb_pokemon #|| fused_dexNum >= 1000000
 
   if bodyId == nil
     bodyId = getBodyID(species)

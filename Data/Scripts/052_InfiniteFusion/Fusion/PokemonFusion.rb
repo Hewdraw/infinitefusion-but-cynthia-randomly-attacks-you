@@ -979,6 +979,9 @@ class PokemonFusionScene
         @pokemon2.add_learned_move(move)
       end
 
+      @pokemon1.setDefaultForms(true)
+      @pokemon2.setDefaultForms(true)
+
       pbBGMStop
       pbBGMPlay($PokemonTemp.cueBGM)
     end

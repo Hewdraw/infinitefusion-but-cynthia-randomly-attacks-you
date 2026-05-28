@@ -1262,6 +1262,7 @@ class PokemonPartyScreen
       commands = []
       cmdSummary = -1
       cmdMegaForm = -1
+      cmdRegionalForm = -1
       cmdNickname = -1
       cmdDebug = -1
       cmdMoves = [-1] * pkmn.numMoves
@@ -1277,6 +1278,7 @@ class PokemonPartyScreen
       # Build the commands
       commands[cmdSummary = commands.length] = _INTL("Summary")
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
+      commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
         # Check for hidden moves and add any that were found
@@ -1383,6 +1385,35 @@ class PokemonPartyScreen
           command = @scene.pbShowCommands(commandtext, formlist)
           pkmn.megaform[i] = command + 1
         end
+        pkmn.calc_stats
+      elsif cmdRegionalForm >= 0 && command == cmdRegionalForm
+        specieslist = [pkmn.species, pkmn.species]
+        if pkmn.isFusion? && getDexNumberForSpecies(pkmn.species) < 1000000
+          specieslist = [GameData::Species.get(getBodyID(pkmn.species)).species, GameData::Species.get(getHeadID(pkmn.species)).species]
+        end
+        specieslist.each_with_index do |species, i|
+          formlist = []
+          namelist = []
+          pkmn.getRegionalList.each do |regional|
+            formlist.push(regional) if regional.species == species
+            namelist.push(regional.form_name) if regional.species == species
+          end
+          next if namelist.length == 0
+          commandtext = _INTL("Select Regional Form for the body") if i == 0
+          commandtext = _INTL("Select Regional Form for the head") if i == 1
+          command = @scene.pbShowCommands(commandtext, namelist)
+          pkmn.regionalform[i] = command + 1
+          commandtext = _INTL("Select Regional Ability for the body") if i == 0
+          commandtext = _INTL("Select Regional Ability for the head") if i == 1
+          abilitynamelist = []
+          abilitylist = formlist[command].abilities + formlist[command].hidden_abilities
+          abilitylist.uniq.each do |ability|
+            abilitynamelist.push(GameData::Ability.get(ability).name)
+          end
+          command = @scene.pbShowCommands(commandtext, abilitynamelist)
+          pkmn.regionalability[i] = abilitylist[command]
+        end
+        print(pkmn.regionalform, " ", pkmn.regionalability)
         pkmn.calc_stats
       elsif cmdHat >= 0 && command == cmdHat
         pbPokemonHat(pkmn)

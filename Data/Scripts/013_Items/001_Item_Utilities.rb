@@ -693,7 +693,6 @@ def pbGiveItemToPokemon(item, pkmn, scene, pkmnid = 0)
         else
           pkmn.item = item
           scene.pbDisplay(_INTL("Took the {1} from {2} and gave it the {3}.", olditemname, pkmn.name, newitemname))
-          pkmn.megaform = [1, 1]
           pkmn.calc_stats
           return true
         end
@@ -704,7 +703,6 @@ def pbGiveItemToPokemon(item, pkmn, scene, pkmnid = 0)
       $PokemonBag.pbDeleteItem(item)
       pkmn.item = item
       scene.pbDisplay(_INTL("{1} is now holding the {2}.", pkmn.name, newitemname))
-      pkmn.megaform = [1, 1]
       pkmn.calc_stats
       return true
     end
@@ -738,7 +736,6 @@ def pbTakeItemFromPokemon(pkmn, scene)
     $PokemonBag.pbStoreItem(pkmn.item)
     scene.pbDisplay(_INTL("Received the {1} from {2}.", pkmn.item.name, pkmn.name))
     pkmn.item = nil
-    pkmn.megaform = [1, 1]
     pkmn.calc_stats
     ret = true
   end

@@ -50,8 +50,70 @@ class Pokemon
     return ret   # form number, or 0 if no accessible Mega form
   end
 
+  def getRegionalForm()
+    setDefaultForms() if !@regionalform
+    ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+    specieslist = [@species, @species]
+    if isFusion? && getDexNumberForSpecies(@species) < 1000000
+      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
+    end
+    getMegaList.each do |mega|
+      specieslist.each_with_index do |species, i|
+        next unless species == mega.species
+        next unless @regionalform[i] == mega.form
+        ret[i] = mega
+      end
+    end
+    return ret
+  end
+
+  def setDefaultForms(override = false)
+    specieslist = [@species]
+    ret = []
+    if isFusion? && getDexNumberForSpecies(@species) < 1000000
+      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
+    end
+    megalist = [[], []]
+    regionallist = [[], []]
+    GameData::Species.each do |data|
+      specieslist.each_with_index do |species, i|
+        next unless species == data.species
+        next if data.form == 0
+        if data.mega_stone
+          megalist[i].push(data.form)
+        else
+          regionallist[i].push(data.form)
+        end
+      end
+    end
+    if !@megaform || override
+      @megaform = [0, 0]
+      megalist.each_with_index do |mega, i|
+        if mega.length == 0
+          @megaform[i] = 0
+          next
+        end
+        @megaform[i] = mega
+        next
+      end
+    end
+    if !@regionalform || override
+      @regionalform = [0, 0]
+      @regionalability = [nil, nil]
+      regionallist.each_with_index do |regional, i|
+        if regional.length == 0
+          @regionalform[i] = 0
+          next
+        end
+        @regionalform[i] = regional
+        abilitylist = getRegionalList[i].abilities + getRegionalList[i].hidden_abilities
+        @regionalability[i] = abilitylist[abilitylist.length]
+      end
+    end
+  end
+
   def getMegaShardForm(megasource=nil)
-    @megaform = [1, 1] if !@megaform
+    setDefaultForms() if !@megaform
     ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
     specieslist = [@species, @species]
     if isFusion? && getDexNumberForSpecies(@species) < 1000000

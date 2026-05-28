@@ -607,6 +607,7 @@ class PokemonEvolutionScene
       pbMessageDisplay(@sprites["msgwindow"],
                        _INTL("\\se[]{1} has been turned into {2}!\\wt[80]",
                              @pokemon.name,newspeciesname)) { pbUpdate }
+      @pokemon.setDefaultForms(true)
     end
 
 
