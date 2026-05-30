@@ -7,10 +7,10 @@ TRAINERCLASSDICT = {
         :name => "Bug Catcher",
         :emera => :CATCHINGNET,
     },
-    # :GAMBLER => {
-    #     :name => "Gambler",
-    #     :emera => :,
-    # },
+    :GAMBLER => {
+        :name => "Gambler",
+        :emera => :STICKYKEY,
+    },
 }
 
 def selectTrainerClass()
@@ -44,5 +44,9 @@ def selectTrainerClass()
         gainedlist.each do |item|
             pbReceiveItem(item)
         end
+    end
+    if hasEmera?(:STICKYKEY)
+        pbReceiveItem(:METRONOME)
+        getLooplet.pbStoreEmera(:NOTEBLOCK)
     end
 end

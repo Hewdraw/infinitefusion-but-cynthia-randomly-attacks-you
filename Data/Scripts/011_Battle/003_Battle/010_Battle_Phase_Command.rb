@@ -58,6 +58,13 @@ class PokeBattle_Battle
   #=============================================================================
   # Returns true if a choice was made, false if cancelled.
   def pbFightMenu(idxBattler)
+    if @battlers[idxBattler].hasActiveEmera?(:STICKYKEY)
+      @choices[idxBattler][0] = :UseMove    # "Use move"
+      @choices[idxBattler][1] = -1          # Index of move to be used
+      @choices[idxBattler][2] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(:GREATESTMETRONOME))   # Struggle PokeBattle_Move object
+      @choices[idxBattler][3] = -1          # No target chosen yet
+      return true
+    end
     # Auto-use Encored move or no moves choosable, so auto-use Struggle
     return pbAutoChooseMove(idxBattler) if !pbCanShowFightMenu?(idxBattler)
     # Battle Palace only

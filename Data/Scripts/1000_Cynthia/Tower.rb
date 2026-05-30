@@ -182,14 +182,16 @@ def towerIncreaseFloor(nextfloor)
         pkmn.level = newlevel
         pkmn.calc_stats
         pkmn.status = :NONE if hasEmera?(:MILKBUCKET)
-        movelist = pkmn.getMoveList
-        moves = []
-        for i in movelist
-            next if i[0] > pkmn.level || i[0] <= oldlevel
-            if pbCynthiaGetBadgeCount <= 3
-                pbLearnMove(pkmn, i[1], true)
-            else
-                Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[1]).name))
+        if !hasEmera?(:STICKYKEY)
+            movelist = pkmn.getMoveList
+            moves = []
+            for i in movelist
+                next if i[0] > pkmn.level || i[0] <= oldlevel
+                if pbCynthiaGetBadgeCount <= 3
+                    pbLearnMove(pkmn, i[1], true)
+                else
+                    Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[1]).name))
+                end
             end
         end
         gainedhp = 1
