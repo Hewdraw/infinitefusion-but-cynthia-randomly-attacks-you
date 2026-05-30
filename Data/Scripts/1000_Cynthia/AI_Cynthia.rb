@@ -362,6 +362,10 @@ class PokeBattle_AI
       pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATERMETRONOME)),choices) if user.isFusionOf(:TOGETIC) || user.species.to_s.include?("TOGETIC")
       pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATESTMETRONOME)),choices) if user.isFusionOf(:TOGEKISS) || user.species.to_s.include?("TOGEKISS")
     end
+    if user.hasActiveEmera?(:STICKYKEY)
+      choices = []
+      pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATESTMETRONOME)),choices)
+    end
     # Figure out useful information about the choices
     maxScore   = 0
     choices.each do |c|
