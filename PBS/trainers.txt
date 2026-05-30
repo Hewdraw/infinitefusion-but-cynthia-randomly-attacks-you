@@ -5407,8 +5407,8 @@ Items = POTION
 Pokemon = RATTATA,71
 #-------------------------------
 [COOLTRAINER_F,Alyssa]
-Pokemon = B321H324,56
-Pokemon = B324H318,56
+Pokemon = B321H284,56
+Pokemon = B284H318,56
 Pokemon = B318H321,56
 #-------------------------------
 [FISHERMAN,Chris]

@@ -7,6 +7,10 @@ TRAINERCLASSDICT = {
         :name => "Bug Catcher",
         :emera => :CATCHINGNET,
     },
+    # :GAMBLER => {
+    #     :name => "Gambler",
+    #     :emera => :,
+    # },
 }
 
 def selectTrainerClass()

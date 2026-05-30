@@ -15,6 +15,11 @@ EMERADICT = {
         :description => "Gain 2 extra Bug Pokemon at the start.",
         :rarity => :STARTER,
     },
+    # :GAMERCHAIR => {
+    #     :name => "Gamer Chair",
+    #     :description => "Use Greatest Metronome instead of Fighting. Start with Note Block Emera and a Metronome.",
+    #     :rarity => :STARTER,
+    # },
 
     :VIPCARD => {
         :name => "VIP Card",
