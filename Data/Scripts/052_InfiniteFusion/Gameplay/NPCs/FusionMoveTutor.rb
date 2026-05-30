@@ -199,6 +199,7 @@ class FusionTutorService
       compatibleMoves << :DECORATE if hasType(:FAIRY)
       compatibleMoves << :GRASSYGLIDE if is_fusion_of([:CELEBI])
       compatibleMoves << :SWORDSDANCE if is_fusion_of([:DIANCIE, :MAGEARNA])
+      compatibleMoves << :FISHIOUSREND if is_fusion_of([:SHARPEDO])
 
     end
     if includeLegendaries
