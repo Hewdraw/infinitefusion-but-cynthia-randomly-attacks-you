@@ -249,14 +249,14 @@
 246,MAXETHER,Max Ether,Max Ethers,2,2000,"It fully restores the PP of a single selected move that has been learned by the target Pokémon.",1,2,0
 247,ELIXIR,Elixir,Elixirs,2,3000,"It restores the PP of all the moves learned by the targeted Pokémon by 10 points each.",1,1,0
 248,MAXELIXIR,Max Elixir,Max Elixirs,2,4500,"It fully restores the PP of all the moves learned by the targeted Pokémon.",1,1,0
-249,PPUP,PP Up,PP Ups,2,10000,"It slightly raises the maximum PP of a selected move that has been learned by the target Pokémon.",1,0,0
-250,PPMAX,PP Max,PP Maxes,2,10000,"It maximally raises the top PP of a selected move that has been learned by the target Pokémon.",1,0,0
-251,HPUP,HP Up,HP Ups,2,10000,"A nutritious drink for Pokémon. It raises the base HP of a single Pokémon.",1,0,0
-252,PROTEIN,Protein,Proteins,2,10000,"A nutritious drink for Pokémon. It raises the base Attack stat of a single Pokémon.",1,0,0
-253,IRON,Iron,Irons,2,10000,"A nutritious drink for Pokémon. It raises the base Defense stat of a single Pokémon.",1,0,0
-254,CALCIUM,Calcium,Calciums,2,10000,"A nutritious drink for Pokémon. It raises the base Sp. Atk (Special Attack) stat of a single Pokémon.",1,0,0
-255,ZINC,Zinc,Zincs,2,10000,"A nutritious drink for Pokémon. It raises the base Sp. Def (Special Defense) stat of a single Pokémon.",1,0,0
-256,CARBOS,Carbos,Carbos,2,10000,"A nutritious drink for Pokémon. It raises the base Speed stat of a single Pokémon.",1,0,0
+249,PPUP,PP Up,PP Ups,2,500,"It slightly raises the maximum PP of a selected move that has been learned by the target Pokémon.",1,0,0
+250,PPMAX,PP Max,PP Maxes,2,1000,"It maximally raises the top PP of a selected move that has been learned by the target Pokémon.",1,0,0
+251,HPUP,HP Up,HP Ups,2,1000,"A nutritious drink for Pokémon. It raises the base HP of a single Pokémon.",1,0,0
+252,PROTEIN,Protein,Proteins,2,1000,"A nutritious drink for Pokémon. It raises the base Attack stat of a single Pokémon.",1,0,0
+253,IRON,Iron,Irons,2,1000,"A nutritious drink for Pokémon. It raises the base Defense stat of a single Pokémon.",1,0,0
+254,CALCIUM,Calcium,Calciums,2,500,"A nutritious drink for Pokémon. It raises the base Sp. Atk (Special Attack) stat of a single Pokémon.",1,0,0
+255,ZINC,Zinc,Zincs,2,1000,"A nutritious drink for Pokémon. It raises the base Sp. Def (Special Defense) stat of a single Pokémon.",1,0,0
+256,CARBOS,Carbos,Carbos,2,1000,"A nutritious drink for Pokémon. It raises the base Speed stat of a single Pokémon.",1,0,0
 257,HEALTHWING,Health Wing,Health Wings,2,300,"An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.",1,0,0
 258,MUSCLEWING,Muscle Wing,Muscle Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon.",1,0,0
 259,RESISTWING,Resist Wing,Resist Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Defense stat of a single Pokémon.",1,0,0
@@ -789,12 +789,12 @@
 714,GOLDENBOTTLECAP,Golden Bottle Cap,Golden Bottle Caps,2,0,"Maximizes all IVs for a Pokemon. Don't question how it does it.",1,0,0
 715,FRESHSTARTMOCHI,Fresh-Start Mochi,Fresh-Start Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It causes a Pokémon to lose all its base points.",1,0,0
 716,ABILITYPATCH,Ability Patch,Ability Patches,2,0,"A patch that can be used to change the regular Ability of a Pokémon to a rarer Ability.",1,0,0
-717,HEALTHMOCHI,Health Mochi,Health Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's HP stat.",1,0,0
-718,MUSCLEMOCHI,Muscle Mochi,Muscle Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Attack stat.",1,0,0
-719,RESISTMOCHI,Resist Mochi,Resist Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Defense stat.",1,0,0
-720,GENIUSMOCHI,Genius Mochi,Genius Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Atk stat.",1,0,0
-721,CLEVERMOCHI,Clever Mochi,Clever Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Def stat.",1,0,0
-722,SWIFTMOCHI,Swift Mochi,Swift Mochis,2,0,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Speed stat.",1,0,0
+717,HEALTHMOCHI,Health Mochi,Health Mochis,2,1000,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's HP stat.",1,0,0
+718,MUSCLEMOCHI,Muscle Mochi,Muscle Mochis,2,1000,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Attack stat.",1,0,0
+719,RESISTMOCHI,Resist Mochi,Resist Mochis,2,1000,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Defense stat.",1,0,0
+720,GENIUSMOCHI,Genius Mochi,Genius Mochis,2,1000,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Atk stat.",1,0,0
+721,CLEVERMOCHI,Clever Mochi,Clever Mochis,2,1000,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Sp. Def stat.",1,0,0
+722,SWIFTMOCHI,Swift Mochi,Swift Mochis,2,1000,"A mochi cake with Berries kneaded into its dough. It increases base points for a Pokémon's Speed stat.",1,0,0
 723,WELLSPRINGMASK,Wellspring Mask,Wellspring Masks,1,0,"Not a Choice Band.",0,0,0,
 724,HEARTHFLAMEMASK,Hearthflame Mask,Hearthflame Masks,1,0,"Not a Choice Band.",0,0,0,
 725,CORNERSTONEMASK,Cornerstone Mask,Cornerstone Masks,1,0,"Not a Choice Band.",0,0,0,

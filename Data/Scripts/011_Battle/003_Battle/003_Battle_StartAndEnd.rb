@@ -403,8 +403,8 @@ class PokeBattle_Battle
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
       if @field.effects[PBEffects::TheWorld] != 0
-        battle.pbDisplay(_INTL("A Pocketwatch clicks and time stops!"))
-        battle.pbDisplay(_INTL("Time resumes and a knife launches out!"))
+        pbDisplay(_INTL("A Pocketwatch clicks and time stops!"))
+        pbDisplay(_INTL("Time resumes and a knife launches out!"))
         battler = @battlers[@field.effects[PBEffects::TheWorld]]
         if !battler.fainted?
           oldLastRoundMoved = battler.lastRoundMoved

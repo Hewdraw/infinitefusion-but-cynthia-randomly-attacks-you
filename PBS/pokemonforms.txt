@@ -1709,3 +1709,11 @@ UnMegaForm = B208H300
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
+#-------------------------------
+[B300H421,1]
+FormName = Mega Sablewile
+MegaStone = SABLWILITE
+UnMegaForm = B300H421
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER

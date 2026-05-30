@@ -5661,12 +5661,12 @@ Pokemon = B130H149,79
     Item = LUSTROUSORB
 #-------------------------------
 [COOLTRAINER_F,lounge_member]
-Pokemon = DIALGA,25
-Pokemon = PALKIA,25
-Pokemon = GIRATINA,25
+Pokemon = PLACEHOLDER1,25
+Pokemon = PLACEHOLDER2,25
+Pokemon = PLACEHOLDER3,25
 #-------------------------------
 [COOLTRAINER_F,lounge_member_single]
-Pokemon = DIALGA,25
+Pokemon = PLACEHOLDER1,25
 #-------------------------------
 [RIVAL1,Blue,24]
 Pokemon = B248H59,69
