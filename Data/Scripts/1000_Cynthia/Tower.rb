@@ -17,7 +17,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :activevariable => nil,
-        :legendarylist => ["Articuno", "Diancie", "Entei", "Genesect", "Jirachi", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Jirachi", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
         :unknownlist => ["Berry Tree", "Hot Spring", "Mining", "Wishing Stone"],
         :eventvariables => {},
         :money => $Trainer.money
@@ -343,6 +343,8 @@ def towerEvent()
         case $PokemonGlobal.towervalues[:activevariable]
         when "Articuno", "Mew", "Moltres", "Zapdos"
             $PokemonGlobal.nextBattleBGM = "Legendary Birds"
+        when "Celebi"
+            $PokemonGlobal.nextBattleBGM = "VSCelebi"
         when "Diancie"
             $PokemonGlobal.nextBattleBGM = "VSDiancie"
         when "Entei", "Suikou"
@@ -520,6 +522,8 @@ def getFloorGraphic(event)
         case $PokemonGlobal.towervalues[:activevariable]
         when "Articuno"
             return "144"
+        when "Celebi"
+            return "251_0"
         when "Diancie"
             return "DIANCIE"
         when "Entei"

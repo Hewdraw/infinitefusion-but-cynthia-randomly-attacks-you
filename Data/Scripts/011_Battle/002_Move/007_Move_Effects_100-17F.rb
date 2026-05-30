@@ -5642,7 +5642,6 @@ class PokeBattle_Move_345 < PokeBattle_PoisonMove
   end
 end
 
-
 class PokeBattle_Move_346 < PokeBattle_Move
   def pbDisplayChargeMessage(user)
     user.eachOpposing do |opponent|
@@ -5656,13 +5655,8 @@ class PokeBattle_Move_346 < PokeBattle_Move
       $PokemonGlobal.battledepth = 0
     end
     $PokemonGlobal.battledepth += 1
-    $PokemonGlobal.nextBattleBack = "Lava"
-    $PokemonGlobal.nextBattleBGM = nil
-    if !user.pbOwnedByPlayer?
-      pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
-    else
-      pbWildBattle(:SKELETON, user.level, 1, false)
-    end
+    $PokemonGlobal.nextBattleBGM = "VSCelebi"
+    pbLegendaryBattle("Celebi", false, 1)
     $PokemonGlobal.battlehplist.each do |b|
       b[0].hp = b[1]
     end
