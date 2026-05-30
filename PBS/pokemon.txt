@@ -22734,7 +22734,7 @@ InternalName = MEGAB300H421
 Type1 = DARK
 Type2 = FAIRY
 BaseStats = 58,98,125,40,75,108
-Abilities = POWERFULSANDS
+Abilities = POWERBOUNCE
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
