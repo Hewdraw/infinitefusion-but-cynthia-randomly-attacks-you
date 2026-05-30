@@ -5655,7 +5655,7 @@ class PokeBattle_Move_346 < PokeBattle_Move
       $PokemonGlobal.battledepth = 0
     end
     $PokemonGlobal.battledepth += 1
-    $PokemonGlobal.nextBattleBGM = "VSCelebi"
+    $PokemonGlobal.nextBattleBGM = "VSCelebi2"
     pbLegendaryBattle("Celebi", false, 1)
     $PokemonGlobal.battlehplist.each do |b|
       b[0].hp = b[1]
