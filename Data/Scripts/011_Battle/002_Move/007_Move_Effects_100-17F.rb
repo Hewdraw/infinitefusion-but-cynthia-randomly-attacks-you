@@ -5641,3 +5641,30 @@ class PokeBattle_Move_345 < PokeBattle_PoisonMove
     user.pbRaiseStatStage(:ATTACK, 2, user)
   end
 end
+
+
+class PokeBattle_Move_346 < PokeBattle_Move
+  def pbDisplayChargeMessage(user)
+    user.eachOpposing do |opponent|
+      opponent.effects[PBEffects::Taunt] = 1
+      @battle.pbDisplay(_INTL("{1} fell for the taunt!",opponent.pbThis))
+    end
+  end
+
+  def pbEffectGeneral(user)
+    if $PokemonGlobal.battledepth == nil
+      $PokemonGlobal.battledepth = 0
+    end
+    $PokemonGlobal.battledepth += 1
+    $PokemonGlobal.nextBattleBack = "Lava"
+    $PokemonGlobal.nextBattleBGM = nil
+    if !user.pbOwnedByPlayer?
+      pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+    else
+      pbWildBattle(:SKELETON, user.level, 1, false)
+    end
+    $PokemonGlobal.battlehplist.each do |b|
+      b[0].hp = b[1]
+    end
+  end
+end

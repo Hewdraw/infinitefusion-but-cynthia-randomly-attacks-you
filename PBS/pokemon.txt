@@ -3862,7 +3862,7 @@ BattlerEnemyY = 24
 BattlerAltitude = 13
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SEADRA,Level,32,KINGDRA,Item,WATERSTONE
+Evolutions = SEADRA,Level,32
 #-------------------------------
 [117]
 Name = Seadra
@@ -3896,7 +3896,7 @@ BattlerEnemyY = 9
 BattlerAltitude = 11
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = KINGDRA,Level,50,KINGDRA,Item,DRAGONSCALE
+Evolutions = KINGDRA,Level,50,KINGDRA,Item,DRAGONSCALE,KINGDRA,Item,WATERSTONE
 #-------------------------------
 [118]
 Name = Goldeen

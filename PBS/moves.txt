@@ -1076,6 +1076,7 @@
 1107,INFINITEHAND,Infinite Hand,000,20,ELECTRIC,Special,90,5,0,NearOther,0,befn,"Launches a blast of energy from its hand." #todo
 1108,GIGADESTROYER,Giga Destroyer,03F,160,GUN,Special,90,5,0,AllNearFoes,0,befn,"Fires organic missiles from the hatch on part of its chest."
 1109,CATASTROPHEDAY,Catastrophe Day,000,600,GUN,Physical,100,5,20,NearOther,0,befn,"Detonates itself in a large explosion." #todo
+1110,ATIMELESSENCOUNTER,A Timeless Encounter,346,0,PSYCHIC,Status,0,1,0,User,-7,d,"a"
 
 
 

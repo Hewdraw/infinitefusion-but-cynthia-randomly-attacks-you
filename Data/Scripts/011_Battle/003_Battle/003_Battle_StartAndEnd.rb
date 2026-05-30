@@ -411,7 +411,7 @@ class PokeBattle_Battle
           battler.pbUseMoveSimple(:CUT)
           battler.lastRoundMoved = oldLastRoundMoved
         end
-        PBDebug.logonerr { pbEndOfRoundPhase }
+        PBDebug.logonerr { pbEndOfRoundPhase(true) }
       end
       break if @decision>0
       @turnCount += 1
@@ -605,6 +605,7 @@ class PokeBattle_Battle
         @battlers.each do |battler|
           next if !battler
           next if !battler.raid
+          next if $PokemonGlobal.battledepth && $PokemonGlobal.battledepth > 0
           next if [:CREEPER, :MEGACREEPER, :VOCALLEEK, :VOCALCELL, :VOCALDRILL, :WANDERINGTRADER].include?(battler.pokemon.species)
           if battler.pokemon.species == :COOLERDINO
             battler.pokemon.species = :TYRANTRUM

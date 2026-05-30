@@ -11113,6 +11113,30 @@ Pokemon = JIRACHI,11
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,0,252
 
+[LEGENDARY_POKEMON,Celebi,0]
+Pokemon = CELEBI,11 
+    Offset = 12
+    Moves = ATIMELESSENCOUNTER
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 3
+    Item = LEFTOVERS
+    Nature = MODEST
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+
+[LEGENDARY_POKEMON,Celebi,1]
+Pokemon = CELEBI,11 
+    Offset = 4
+    Moves = AURASPHERE,SEEDFLARE,SHADOWBALL,PSYCHIC
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 1
+    Item = LIFEORB
+    Nature = TIMID
+    Raid = TRUE
+    IV = 31,0,31,31,31,31
+    EV = 252,0,0,252,252,0
+
 
 [LEGENDARY_POKEMON,Unown,0]
 Pokemon = UNOWN,11
