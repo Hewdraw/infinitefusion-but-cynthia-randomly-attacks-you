@@ -913,6 +913,7 @@
 847,LUNARDIAL,Lunar Dial,Lunar Dials,1,0,"todo",0,0,0
 848,SABLWILITE,Sablwilite,Sablwilites,1,0,"todo",0,0,0
 849,BADAPPLE,Bad Apple,Bad Apples,1,0,"todo",0,0,0
+850,TIMEFLUTE,Time Flute,Time Flutes,1,0,"travel back to a time when you werent stinky",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

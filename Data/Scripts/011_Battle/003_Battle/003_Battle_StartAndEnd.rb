@@ -607,16 +607,18 @@ class PokeBattle_Battle
           next if !battler.raid
           next if $PokemonGlobal.battledepth && $PokemonGlobal.battledepth > 0
           next if [:CREEPER, :MEGACREEPER, :VOCALLEEK, :VOCALCELL, :VOCALDRILL, :WANDERINGTRADER].include?(battler.pokemon.species)
-          if battler.pokemon.species == :COOLERDINO
+          case battler.pokemon.species
+          when :CELEBI
+            battler.pokemon.moves = [Pokemon::Move.new(:SEEDFLARE), Pokemon::Move.new(:PSYCHIC), Pokemon::Move.new(:AURASPHERE), Pokemon::Move.new(:SHADOWBALL)]
+            battler.pokemon.item = :TIMEFLUTE
+          when :COOLERDINO
             battler.pokemon.species = :TYRANTRUM
             battler.pokemon.name = "Cool Dino"
             battler.pokemon.item = :PYRITE
-          end
-          if battler.pokemon.species == :MEGADIANCIE
+          when :MEGADIANCIE
             battler.pokemon.species = :DIANCIE
             battler.pokemon.item = :MEGASHARD
-          end
-          if battler.pokemon.species == :MEGAB378H379
+          when :MEGAB378H379
             battler.pokemon.species = :B378H379
           end
           battler.pokemon.ev = {}
