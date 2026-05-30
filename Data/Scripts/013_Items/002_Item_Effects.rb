@@ -1241,16 +1241,9 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
   pkmn.calc_stats if pkmn.materials.nil?
   abilitylist = []
   pkmn.materials.each do |material|
-    if pkmn.hasHiddenAbility?
-      GameData::Species.get(material).abilities.each do |ability|
-        next if pkmn.ability_id == ability
-        abilitylist.push(ability)
-      end
-    else
-      GameData::Species.get(material).hidden_abilities.each do |ability|
-        next if pkmn.ability_id == ability
-        abilitylist.push(ability)
-      end
+    GameData::Species.get(material).hidden_abilities.each do |ability|
+      next if pkmn.ability_id == ability
+      abilitylist.push(ability)
     end
   end
   if abilitylist.length == 0

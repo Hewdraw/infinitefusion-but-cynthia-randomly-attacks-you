@@ -182,7 +182,7 @@ def resolveUnknownEvent(recursion = false)
         helptext.push("I think he trampled one of your crops.")
         trades.push(:COMMON)
         choice = pbUnknownCommands(commandtext, helptext)
-        itemcolor = getEnderChestRarityColors()[choice]
+        itemcolor = getEnderChestRarityColors()[(choice+1) % 4]
         case trades[choice]
         when :UNCOMMON
             getLooplet.pbRemoveEmera(commonemera)
