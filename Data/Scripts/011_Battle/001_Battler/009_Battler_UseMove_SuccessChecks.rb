@@ -218,7 +218,7 @@ class PokeBattle_Battler
     # Obedience check
     return false if !pbObedienceCheck?(choice)
     # Truant
-    if hasActiveAbility?(:TRUANT)
+    if hasActiveAbility?([:TRUANT. :TRUANTPLUS)
       @effects[PBEffects::Truant] = !@effects[PBEffects::Truant]
       if !@effects[PBEffects::Truant]   # True means loafing, but was just inverted
         @battle.pbShowAbilitySplash(self)
