@@ -5672,12 +5672,15 @@ class PokeBattle_Move_347 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     case rand(2)
     when 0 then
-      if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
-        user.pbRaiseStatStage(:DEFENSE,1,user)
+      if target.pbCanLowerStatStage?(:DEFENSE,user,self)
+        target.pbLowerStatStage(:DEFENSE,1,user)
+      end
+      if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+        target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
       end
     when 1 then
-      if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
-        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+      if target.pbCanLowerStatStage?(:SPEED,user,self)
+        target.pbLowerStatStage(:SPEED,1,user)
       end
     end
   end
