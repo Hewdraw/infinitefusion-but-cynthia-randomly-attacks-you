@@ -115,19 +115,19 @@ end
 # randomizer shuffle
 # ##############
 def Kernel.pbShuffleDex(range = 50, type = 0)
-  $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE] = true
+  # $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE] = true
 
-  #type 0: BST
-  #type 1: full random
-  range = 1 if range == 0
-  should_include_fusions = $game_switches[SWITCH_RANDOM_WILD_TO_FUSION]
-  only_customs = $game_switches[SWITCH_RANDOM_WILD_ONLY_CUSTOMS] && should_include_fusions
-  # create hash
-  pokemon_list = only_customs ? getCustomSpeciesList(true) : get_pokemon_list(should_include_fusions)
-  if !pokemon_list #when not enough custom sprites
-    pokemon_list = get_pokemon_list(should_include_fusions)
-  end
-  $PokemonGlobal.psuedoBSTHash = get_randomized_bst_hash(pokemon_list, range, should_include_fusions)
+  # #type 0: BST
+  # #type 1: full random
+  # range = 1 if range == 0
+  # should_include_fusions = $game_switches[SWITCH_RANDOM_WILD_TO_FUSION]
+  # only_customs = $game_switches[SWITCH_RANDOM_WILD_ONLY_CUSTOMS] && should_include_fusions
+  # # create hash
+  # pokemon_list = only_customs ? getCustomSpeciesList(true) : get_pokemon_list(should_include_fusions)
+  # if !pokemon_list #when not enough custom sprites
+  #   pokemon_list = get_pokemon_list(should_include_fusions)
+  # end
+  # $PokemonGlobal.psuedoBSTHash = get_randomized_bst_hash(pokemon_list, range, should_include_fusions)
 end
 
 def itemCanBeRandomized(item)

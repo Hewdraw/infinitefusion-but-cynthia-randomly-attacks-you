@@ -64,36 +64,36 @@ def setRivalStarter(starterIndex1, starterIndex2)
 end
 
 def setStarterEasterEgg
-  should_apply_easter_egg = true
-  case $Trainer.name.downcase
-  when "ash"
-    starter = :PIKACHU
-    rival_starter_body = :EEVEE
-    rival_starter_head = :EEVEE
-  when "gary"
-    starter = :EEVEE
-    rival_starter_body = :PIKACHU
-    rival_starter_head = :PIKACHU
-  when "god"
-    starter = :BIDOOF
-    rival_starter_body = :ARCEUS
-    rival_starter_head = :OMANYTE
-  when "?"
-    starter = getSpecies(rand(NB_POKEMON))
-    rival_starter_body = getSpecies(rand(NB_POKEMON))
-    rival_starter_head = getSpecies(rand(NB_POKEMON))
-  when "schrroms", "frogman", "frogzilla", "chardub"
-        starter = fusionOf(:POLIWAG,:MACHAMP)
-        rival_starter_body = :POLIWAG
-        rival_starter_head = :MACHAMP
-  else
-    should_apply_easter_egg = false
-  end
+  # should_apply_easter_egg = true
+  # case $Trainer.name.downcase
+  # when "ash"
+  #   starter = :PIKACHU
+  #   rival_starter_body = :EEVEE
+  #   rival_starter_head = :EEVEE
+  # when "gary"
+  #   starter = :EEVEE
+  #   rival_starter_body = :PIKACHU
+  #   rival_starter_head = :PIKACHU
+  # when "god"
+  #   starter = :BIDOOF
+  #   rival_starter_body = :ARCEUS
+  #   rival_starter_head = :OMANYTE
+  # when "?"
+  #   starter = getSpecies(rand(NB_POKEMON))
+  #   rival_starter_body = getSpecies(rand(NB_POKEMON))
+  #   rival_starter_head = getSpecies(rand(NB_POKEMON))
+  # when "schrroms", "frogman", "frogzilla", "chardub"
+  #       starter = fusionOf(:POLIWAG,:MACHAMP)
+  #       rival_starter_body = :POLIWAG
+  #       rival_starter_head = :MACHAMP
+  # else
+  #   should_apply_easter_egg = false
+  # end
 
-  if should_apply_easter_egg
-    pbSet(VAR_PLAYER_STARTER_CHOICE,getDexNumberForSpecies(starter))
-    pbSet(VAR_RIVAL_STARTER_HEAD_CHOICE,getDexNumberForSpecies(rival_starter_head))
-    pbSet(VAR_RIVAL_STARTER_BODY_CHOICE,getDexNumberForSpecies(rival_starter_body))
-    $game_switches[SWITCH_CUSTOM_STARTERS] = true
-  end
+  # if should_apply_easter_egg
+  #   pbSet(VAR_PLAYER_STARTER_CHOICE,getDexNumberForSpecies(starter))
+  #   pbSet(VAR_RIVAL_STARTER_HEAD_CHOICE,getDexNumberForSpecies(rival_starter_head))
+  #   pbSet(VAR_RIVAL_STARTER_BODY_CHOICE,getDexNumberForSpecies(rival_starter_body))
+  #   $game_switches[SWITCH_CUSTOM_STARTERS] = true
+  # end
 end
