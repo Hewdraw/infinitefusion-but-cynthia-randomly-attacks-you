@@ -17,7 +17,7 @@ EMERADICT = {
     },
     :STICKYKEY => {
         :name => "Sticky Key",
-        :description => "Use Greatest Metronome instead of Fighting. Start with Note Block Emera and a Metronome.",
+        :description => "Use Greatest Metronome instead of Fighting. Start with a Metronome.",
         :rarity => :STARTER,
     },
 

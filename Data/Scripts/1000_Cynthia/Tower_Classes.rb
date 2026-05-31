@@ -47,6 +47,5 @@ def selectTrainerClass()
     end
     if hasEmera?(:STICKYKEY)
         pbReceiveItem(:METRONOME)
-        getLooplet.pbStoreEmera(:NOTEBLOCK)
     end
 end
