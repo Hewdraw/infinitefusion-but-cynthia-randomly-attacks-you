@@ -470,11 +470,11 @@ class PokemonLoadScreen
       end
 
       commands[cmd_new_game = commands.length] = _INTL('New Game')
-      if new_game_plus
-        commands[cmd_new_game_plus = commands.length] = _INTL('New Game +')
-      end
+      # if new_game_plus
+      #   commands[cmd_new_game_plus = commands.length] = _INTL('New Game +')
+      # end
       commands[cmd_options = commands.length] = _INTL('Options')
-      commands[cmd_language = commands.length] = _INTL('Language') if Settings::LANGUAGES.length >= 2
+      #commands[cmd_language = commands.length] = _INTL('Language') if Settings::LANGUAGES.length >= 2
       commands[cmd_discord = commands.length] = _INTL('Discord')
       commands[cmd_wiki = commands.length] = _INTL('Wiki')
       commands[cmd_debug = commands.length] = _INTL('Debug') if $DEBUG
@@ -516,16 +516,16 @@ class PokemonLoadScreen
           initialize_alt_sprite_substitutions()
           @save_data[:player].new_game_plus_unlocked=new_game_plus if @save_data[:player]
           return
-        when cmd_new_game_plus
-          @scene.pbEndScene
-          Game.start_new(true,@save_data[:bag], @save_data[:storage_system], @save_data[:player])
-          initialize_alt_sprite_substitutions()
-          @save_data[:player].new_game_plus_unlocked = true
-          return
+        # when cmd_new_game_plus
+        #   @scene.pbEndScene
+        #   Game.start_new(true,@save_data[:bag], @save_data[:storage_system], @save_data[:player])
+        #   initialize_alt_sprite_substitutions()
+        #   @save_data[:player].new_game_plus_unlocked = true
+        #   return
         when cmd_discord
-          openUrlInBrowser(Settings::DISCORD_URL)
+          openUrlInBrowser("https://discord.gg/YH26jkbDMS")
         when cmd_wiki
-          openUrlInBrowser(Settings::WIKI_URL)
+          openUrlInBrowser("https://clairespokemonacademy.neocities.org/")
         when cmd_mystery_gift
           pbFadeOutIn { pbDownloadMysteryGift(@save_data[:player]) }
         when cmd_options
@@ -534,16 +534,16 @@ class PokemonLoadScreen
             screen = PokemonOptionScreen.new(scene)
             screen.pbStartScreen(true)
           end
-        when cmd_language
-          @scene.pbEndScene
-          $PokemonSystem.language = pbChooseLanguage
-          pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
-          if show_continue
-            @save_data[:pokemon_system] = $PokemonSystem
-            File.open(SaveData.get_full_path(@selected_file), 'wb') { |file| Marshal.dump(@save_data, file) }
-          end
-          $scene = pbCallTitle
-          return
+        # when cmd_language
+        #   @scene.pbEndScene
+        #   $PokemonSystem.language = pbChooseLanguage
+        #   pbLoadMessages('Data/' + Settings::LANGUAGES[$PokemonSystem.language][1])
+        #   if show_continue
+        #     @save_data[:pokemon_system] = $PokemonSystem
+        #     File.open(SaveData.get_full_path(@selected_file), 'wb') { |file| Marshal.dump(@save_data, file) }
+        #   end
+        #   $scene = pbCallTitle
+        #   return
         when cmd_debug
           pbFadeOutIn { pbDebugMenu(false) }
         when cmd_quit
