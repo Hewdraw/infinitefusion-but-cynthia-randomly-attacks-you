@@ -2248,6 +2248,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       return true
     end
     target = targets[0]
+    return true if !target
     if target.level > user.level || target.raid
       @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
       return true
