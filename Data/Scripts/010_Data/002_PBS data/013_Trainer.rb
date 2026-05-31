@@ -384,9 +384,9 @@ module GameData
         if !$PokemonGlobal.towervalues.nil? && $PokemonGlobal.towervalues[:activeevent] == "Legendary"
           case $PokemonGlobal.towervalues[:activevariable]
           when "Genesect"
-            offset -= 5
+            offset -= 2
           else
-            offset -= 8
+            offset -= 4
           end
         end
         highestlevel = 0
