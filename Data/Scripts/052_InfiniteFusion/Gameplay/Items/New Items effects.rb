@@ -2489,7 +2489,7 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
     end
   end
   pbMessage(_INTL("Your Pokémon were fully healed."))
-  $PokemonGlobal.healies = true
+  $PokemonGlobal.healies = true if $PokemonGlobal.towervalues.nil?
   next 1
 })
 
@@ -2515,7 +2515,7 @@ ItemHandlers::UseInField.add(:HEALIES, proc { |item|
     end
   end
   pbMessage(_INTL("Your Pokémon were fully healed."))
-  $PokemonGlobal.healies = true
+  $PokemonGlobal.healies = true if $PokemonGlobal.towervalues.nil?
   next 1
 })
 

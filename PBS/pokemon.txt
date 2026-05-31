@@ -25455,7 +25455,7 @@ Pokedex = Rubbing its nose against the ground, it always wanders about back and 
 Generation = 3
 WildItemCommon = POTION
 WildItemUncommon = REVIVE
-Evolutions = LINOONE,Level,20
+Evolutions = GALARLINOONE,Level,20
 #-------------------------------
 [1001172]
 Name = Linoone
