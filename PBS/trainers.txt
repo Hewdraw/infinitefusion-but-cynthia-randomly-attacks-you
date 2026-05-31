@@ -11224,4 +11224,16 @@ Pokemon = TORKOAL,5
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,252,0
 
+[ALPHA_POKEMON,Slaking,0]   
+Pokemon = SLAKING,5 
+    Offset = 0
+    Moves = CRUSHGRIPPLUS,EARTHQUAKE,DRAINPUNCH,ICICLECRASH
+    Ability = TRUANTPLUS
+    Item = ASSAULTVEST
+    Nature = JOLLY
+    Raid = TRUE
+    Hpbar = 2
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,252,0,0
+
 #eof

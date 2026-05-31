@@ -45,7 +45,7 @@ class PokeBattle_Move
       user.effects[PBEffects::ParentalBond] = 13
       return 2
     end
-    if user.hasActiveAbility?(:PARENTALBOND) && pbDamagingMove? &&
+    if user.hasActiveAbility?([:PARENTALBOND, :TRUANTPLUS]) && pbDamagingMove? &&
        !chargingTurnMove? && targets.length==1
       # Record that Parental Bond applies, to weaken the second attack
       user.effects[PBEffects::ParentalBond] = 3

@@ -5662,3 +5662,23 @@ class PokeBattle_Move_346 < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_347 < PokeBattle_Move
+  def pbCritialOverride(user,target)
+    return 1 if target.hp >= target.adjustedTotalhp / 2
+    return super
+  end
+
+  def pbAdditionalEffect(user,target)
+    case rand(2)
+    when 0 then
+      if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+        user.pbRaiseStatStage(:DEFENSE,1,user)
+      end
+    when 1 then
+      if user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,user,self)
+        user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+      end
+    end
+  end
+end

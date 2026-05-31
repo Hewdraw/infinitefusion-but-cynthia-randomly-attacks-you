@@ -223,7 +223,11 @@ class PokeBattle_Battler
       if !@effects[PBEffects::Truant]   # True means loafing, but was just inverted
         @battle.pbShowAbilitySplash(self)
         @battle.pbDisplay(_INTL("{1} is loafing around!",pbThis))
-        @lastMoveFailed = true
+        if user.hasActiveAbility?(:TRUANTPLUS)
+          battler.pbUseMoveSimple(:SLACKOFF)
+        else
+          @lastMoveFailed = true
+        end
         @battle.pbHideAbilitySplash(self)
         return false
       end
@@ -292,7 +296,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
       return false
     end
-    if !(user.effects[PBEffects::Dynamax] > 0 || user.hasActiveAbility?(:UNSEENFIST))
+    if !(user.effects[PBEffects::Dynamax] > 0 || user.hasActiveAbility?([:UNSEENFIST, :TRUANTPLUS]))
       # Crafty Shield
       if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index &&
          move.statusMove? && !move.pbTarget(user).targets_all && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)

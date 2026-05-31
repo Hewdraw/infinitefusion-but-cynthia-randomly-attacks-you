@@ -1078,6 +1078,7 @@
 1109,CATASTROPHEDAY,Catastrophe Day,000,600,GUN,Physical,100,5,20,NearOther,0,befn,"Detonates itself in a large explosion." #todo
 1110,ATIMELESSENCOUNTER,A Timeless Encounter,346,0,PSYCHIC,Status,0,1,0,User,-7,d,"a"
 1111,FUTURESIGHTPLUS,Future Sight+,111,130,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target." #TODO
+1112,CRUSHGRIPPLUS,Crush Grip+,347,100,NORMAL,Physical,100,5,50,NearOther,0,abef,"The target is crushed with great force."
 
 
 

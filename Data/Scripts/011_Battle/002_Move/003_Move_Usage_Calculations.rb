@@ -39,7 +39,7 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
     # Foresight
-    if user.hasActiveAbility?([:SCRAPPY, :MINDSEYE]) || target.effects[PBEffects::Foresight]
+    if user.hasActiveAbility?([:SCRAPPY, :MINDSEYE, :TRUANTPLUS]) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
@@ -527,7 +527,7 @@ class PokeBattle_Move
     end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
-       !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || @function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && soundMove?)
+       !(user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS]) || @function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && soundMove?)
       if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
         if @battle.pbSideBattlerCount(target)>1
           multipliers[:final_damage_multiplier] *= 2 / 3.0

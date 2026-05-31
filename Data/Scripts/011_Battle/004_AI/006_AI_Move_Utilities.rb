@@ -31,7 +31,7 @@ class PokeBattle_AI
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
     end
     # Foresight
-    if user.hasActiveAbility?([:SCRAPPY, :MINDSEYE]) || target.effects[PBEffects::Foresight]
+    if user.hasActiveAbility?([:SCRAPPY, :MINDSEYE, :TRUANTPLUS]) || target.effects[PBEffects::Foresight]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
@@ -387,7 +387,7 @@ class PokeBattle_AI
       end
     end
     # Parental Bond
-    if skill>=PBTrainerAI.mediumSkill && user.hasActiveAbility?(:PARENTALBOND)
+    if skill>=PBTrainerAI.mediumSkill && user.hasActiveAbility?([:PARENTALBOND, :TRUANTPLUS])
       multipliers[:base_damage_multiplier] *= 1.25
     end
     # Me First
@@ -509,7 +509,7 @@ class PokeBattle_AI
     end
     # Aurora Veil, Reflect, Light Screen
     if skill>=PBTrainerAI.highSkill
-      if !move.ignoresReflect? && !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || move.function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
+      if !move.ignoresReflect? && !(user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS]) || move.function == "201") && !(user && user.hasActiveAbility?(:VOCALOID) && move.soundMove?)
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target) > 1
             multipliers[:final_damage_multiplier] *= 2 / 3.0

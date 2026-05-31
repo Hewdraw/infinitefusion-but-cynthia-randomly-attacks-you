@@ -1400,7 +1400,7 @@ class PokeBattle_AI
     when "10C" #todo
       score = 100 if damageinfo[:info][:opposingMaxThreat] < 25
       user.eachOpposing do |b|
-        score = 0 if b.hasActiveAbility?(:INFILTRATOR)
+        score = 0 if b.user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS])
       end
       score = 0 if user.hp <= user.totalhp/4
       score = 0 if damageinfo[:info][:opposingMaxThreat] >= 25 || user.effects[PBEffects::Substitute]>0
@@ -2550,7 +2550,7 @@ class PokeBattle_AI
         end
       end
       # Parental Bond's second attack
-      if user.hasActiveAbility?(:PARENTALBOND)
+      if user.hasActiveAbility?([:PARENTALBOND, :TRUANTPLUS])
         multipliers[:base_damage_multiplier] *= 5 / 4.0
       end
       # todo do helping hand calcs in a different part of the code
@@ -2744,7 +2744,7 @@ class PokeBattle_AI
       end
       # Aurora Veil, Reflect, Light Screen
       if !move.ignoresReflect? && !(key == :critDamage)
-         !(user.hasActiveAbility?(:INFILTRATOR) || user.hasActiveAbility?(:CHARGEDEXPLOSIVE) || ["201", "213"].include?(move.function))
+         !(user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS]) || ["201", "213"].include?(move.function))
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target)>1
             multipliers[:final_damage_multiplier] *= 2 / 3.0
