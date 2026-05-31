@@ -1400,7 +1400,7 @@ class PokeBattle_AI
     when "10C" #todo
       score = 100 if damageinfo[:info][:opposingMaxThreat] < 25
       user.eachOpposing do |b|
-        score = 0 if b.user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS])
+        score = 0 if b.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS])
       end
       score = 0 if user.hp <= user.totalhp/4
       score = 0 if damageinfo[:info][:opposingMaxThreat] >= 25 || user.effects[PBEffects::Substitute]>0
