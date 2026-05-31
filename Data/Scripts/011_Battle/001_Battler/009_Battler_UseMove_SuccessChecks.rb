@@ -114,6 +114,7 @@ class PokeBattle_Battler
   # Return true if Pokémon continues attacking (although it may have chosen to
   # use a different move in disobedience), or false if attack stops.
   def pbObedienceCheck?(choice)
+    return true
     return true if usingMultiTurnAttack?
     return true if choice[0]!=:UseMove
     return true if !@battle.internalBattle
