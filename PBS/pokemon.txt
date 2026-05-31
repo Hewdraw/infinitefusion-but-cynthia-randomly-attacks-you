@@ -2770,7 +2770,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 15
 BattlerShadowX = -1
 BattlerShadowSize = 2
-Evolutions = SIRFETCHD,Item,MISTSTONE
+Evolutions = KANTOSIRFETCHD,Item,MISTSTONE
 #-------------------------------
 [84]
 Name = Doduo
