@@ -223,7 +223,7 @@ class PokeBattle_Battler
       if !@effects[PBEffects::Truant]   # True means loafing, but was just inverted
         @battle.pbShowAbilitySplash(self)
         @battle.pbDisplay(_INTL("{1} is loafing around!",pbThis))
-        if user.hasActiveAbility?(:TRUANTPLUS)
+        if battler.hasActiveAbility?(:TRUANTPLUS)
           battler.pbUseMoveSimple(:SLACKOFF)
         else
           @lastMoveFailed = true
