@@ -542,7 +542,7 @@ def UndertaleShopSetup()
   }
   if hasEmera?(:VIPCARD)
     $PokemonGlobal.shadrossstock.each do |key, value|
-      value["cost"] = (value["cost"] + 1) / 2
+      value["cost"] = ((value["cost"] + 1) / 2.0).ceil
     end
   end
 end

@@ -90,8 +90,10 @@ EMERADICT = {
     },
     :GEOPEBBLE => {
         :name => "Geo Pebble",
-        :description => "Can be Flinged once per battle for 150 Power.",
+        :description => "Can be Flinged once per battle for 150 Power. Can teach Fling.",
         :rarity => :COMMON,
+        :tutormove => :FLING,
+        :tutorcondition => -> (pokemon) {return true},
     },
     :GIMMIGHOULCOIN => {
         :name => "Gimmighoul Coin",

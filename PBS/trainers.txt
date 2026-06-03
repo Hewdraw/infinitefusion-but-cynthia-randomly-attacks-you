@@ -5340,6 +5340,7 @@ Pokemon = B19H19,1
     Moves = CRUNCH,QUICKATTACK,RETURN,ROCKSMASH
     Ability = GUTS
     Item = EVIOLITE
+    Ace = TRUE
     Nature = ADAMANT
     Gender = F
     IV = 31,31,31,31,31,31
