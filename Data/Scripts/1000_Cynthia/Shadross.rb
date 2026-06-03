@@ -1,3 +1,524 @@
+SHADROSS_STOCK = {
+  :ULTRANECROZIUMZ => {
+    "badges" => 0,
+    "cost" => 48,
+    "amount" => 1,
+  },
+  :BERRYJUICE => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :RAGECANDYBAR => {
+    "badges" => 0,
+    "cost" => 1,
+    "amount" => 30,
+  },
+  :RUSTYBOTTLECAP => {
+    "badges" => 0,
+    "cost" => 1,
+    "amount" => 6,
+  },
+  :BOTTLECAP => {
+    "badges" => 0,
+    "cost" => 3,
+    "amount" => 6,
+  },
+  :GOLDENBOTTLECAP => {
+    "badges" => 0,
+    "cost" => 3,
+    "amount" => 1,
+  },
+  :FRESHSTARTMOCHI => {
+    "badges" => 0,
+    "cost" => 1,
+    "amount" => 50,
+  },
+  :ABILITYCAPSULE => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :OVALSTONE => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :DEEPSEASCALE => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :DEEPSEATOOTH => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :QUICKPOWDER => {
+    "badges" => 0,
+    "cost" => 3,
+    "amount" => 2,
+  },
+  :METALPOWDER => {
+    "badges" => 0,
+    "cost" => 3,
+    "amount" => 1,
+  },
+  :RARECANDY => {
+    "badges" => 0,
+    "cost" => 3,
+    "amount" => 5,
+  },
+  :AMULETCOIN => {
+    "badges" => 0,
+    "cost" => 3,
+    "amount" => 1,
+  },
+  :SMOKEBALL => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :WIDELENS => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :LONELYMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :ADAMANTMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :NAUGHTYMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :BRAVEMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :BOLDMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :IMPISHMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :LAXMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :RELAXEDMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :MODESTMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :MILDMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :RASHMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :QUIETMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :CALMMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :GENTLEMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :CAREFULMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :SASSYMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :TIMIDMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :HASTYMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :JOLLYMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :NAIVEMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 2,
+  },
+  :SERIOUSMINT => {
+    "badges" => 0,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :FIRESTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :THUNDERSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :WATERSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :LEAFSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :MOONSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :SUNSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :DUSKSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :DAWNSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :SHINYSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :ICESTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :MAGNETSTONE => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
+  :LUXURYBALL => {
+    "badges" => 1,
+    "cost" => 7,
+    "amount" => 42,
+  },
+  :FOCUSSASH => {
+    "badges" => 1,
+    "cost" => 6,
+    "amount" => 3,
+  },
+  :AIRBALLOON => {
+    "badges" => 1,
+    "cost" => 4,
+    "amount" => 2,
+  },
+  :BLUNDERPOLICY => {
+    "badges" => 1,
+    "cost" => 4,
+    "amount" => 2,
+  },
+  :ROCKYHELMET => {
+    "badges" => 1,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :QUICKCLAW => {
+    "badges" => 1,
+    "cost" => 4,
+    "amount" => 1,
+  },
+  :FOCUSBAND => {
+    "badges" => 1,
+    "cost" => 4,
+    "amount" => 1,
+  },
+  :WEAKNESSPOLICY => {
+    "badges" => 1,
+    "cost" => 4,
+    "amount" => 1,
+  },
+  :TERRAINEXTENDER => {
+    "badges" => 1,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :PPMAX => {
+    "badges" => 2,
+    "cost" => 6,
+    "amount" => 4,
+  },
+  :EXPERTBELT => {
+    "badges" => 2,
+    "cost" => 4,
+    "amount" => 1,
+  },
+  :SHELLBELL => {
+    "badges" => 2,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :FLAMEORB => {
+    "badges" => 2,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :TOXICORB => {
+    "badges" => 2,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :FROSTORB => {
+    "badges" => 2,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :SHOCKORB => {
+    "badges" => 2,
+    "cost" => 6,
+    "amount" => 1,
+  },
+  :MUSCLEBAND => {
+    "badges" => 2,
+    "cost" => 4,
+    "amount" => 1,
+  },
+  :WISEGLASSES => {
+    "badges" => 2,
+    "cost" => 4,
+    "amount" => 1,
+  },
+  :ABILITYPATCH => {
+    "badges" => 3,
+    "cost" => 7,
+    "amount" => 1,
+  },
+  :BLACKSLUDGE => {
+    "badges" => 3,
+    "cost" => 9,
+    "amount" => 1,
+  },
+  :LUCKYPUNCH => {
+    "badges" => 3,
+    "cost" => 9,
+    "amount" => 1,
+  },
+  :STICK => {
+    "badges" => 3,
+    "cost" => 9,
+    "amount" => 1,
+  },
+  :THICKCLUB => {
+    "badges" => 3,
+    "cost" => 9,
+    "amount" => 1,
+  },
+  :LIGHTBALL => {
+    "badges" => 3,
+    "cost" => 9,
+    "amount" => 1,
+  },
+  :CHOICESCARF => {
+    "badges" => 4,
+    "cost" => 12,
+    "amount" => 1,
+  },
+  :LOADEDDICE => {
+    "badges" => 4,
+    "cost" => 12,
+    "amount" => 1,
+  },
+  :HEALTHMOCHI => {
+    "badges" => 5,
+    "cost" => 5,
+    "amount" => 52,
+  },
+  :MUSCLEMOCHI => {
+    "badges" => 5,
+    "cost" => 5,
+    "amount" => 52,
+  },
+  :RESISTMOCHI => {
+    "badges" => 5,
+    "cost" => 5,
+    "amount" => 52,
+  },
+  :GENIUSMOCHI => {
+    "badges" => 5,
+    "cost" => 5,
+    "amount" => 52,
+  },
+  :CLEVERMOCHI => {
+    "badges" => 5,
+    "cost" => 5,
+    "amount" => 52,
+  },
+  :SWIFTMOCHI => {
+    "badges" => 5,
+    "cost" => 5,
+    "amount" => 52,
+  },
+  :MISTSTONE => {
+    "badges" => 6,
+    "cost" => 12,
+    "amount" => 1,
+  },
+  :EVIOLITE => {
+    "badges" => 6,
+    "cost" => 12,
+    "amount" => 1,
+  },
+  :ASSAULTVEST => {
+    "badges" => 6,
+    "cost" => 12,
+    "amount" => 1,
+  },
+  :LIFEORB => {
+    "badges" => 7,
+    "cost" => 14,
+    "amount" => 1,
+  },
+  :LEFTOVERS => {
+    "badges" => 7,
+    "cost" => 14,
+    "amount" => 1,
+  },
+  :CHOICEBAND => {
+    "badges" => 8,
+    "cost" => 16,
+    "amount" => 1,
+  },
+  :CHOICESPECS => {
+    "badges" => 8,
+    "cost" => 16,
+    "amount" => 1,
+  },
+  :THROATSPRAY => {
+    "badges" => 8,
+    "cost" => 16,
+    "amount" => 3,
+  },
+  :HPUP => {
+    "badges" => 9,
+    "cost" => 2,
+    "amount" => 30,
+  },
+  :PROTEIN => {
+    "badges" => 9,
+    "cost" => 2,
+    "amount" => 30,
+  },
+  :IRON => {
+    "badges" => 9,
+    "cost" => 2,
+    "amount" => 30,
+  },
+  :CALCIUM => {
+    "badges" => 9,
+    "cost" => 1,
+    "amount" => 30,
+  },
+  :ZINC => {
+    "badges" => 9,
+    "cost" => 2,
+    "amount" => 30,
+  },
+  :CARBOS => {
+    "badges" => 9,
+    "cost" => 2,
+    "amount" => 30,
+  },
+  :BERSERKGENE => {
+    "badges" => 10,
+    "cost" => 30,
+    "amount" => 5,
+  },
+  :ENCHANTINGTABLE => {
+    "badges" => 12,
+    "cost" => 20,
+    "amount" => 1,
+  },
+}
+
+SHADROSS_HINTS = {
+  :HINT1 => {
+    "badges" => 0,
+    "cost" => 1,
+    "name" => "Hint 1",
+    "hint" => "Dont be stinky",
+  },
+  :HINT2 => {
+    "badges" => 1,
+    "cost" => 10,
+    "name" => "Hint 2",
+    "hint" => "take a shower",
+  },
+  :HINT3 => {
+    "badges" => 2,
+    "cost" => 100,
+    "name" => "Hint 3",
+    "hint" => "touch grass",
+  },
+  :HINT4 => {
+    "badges" => 8,
+    "cost" => 100000,
+    "name" => "Hint 4",
+    "hint" => "dont waste your money",
+  },
+  :HINT5 => {
+    "badges" => 17,
+    "cost" => 100000,
+    "name" => "Hint 5",
+    "hint" => "dont cheat",
+  },
+}
+
 def Undertale()
   UndertaleShopSetup()
   scene = Undertale_Scene.new
@@ -53,493 +574,7 @@ def UndertaleShopSetup()
     $PokemonGlobal.cynthiabadgetier = $Trainer.numbadges
     $PokemonGlobal.cynthiachance = 1000
   end
-  $PokemonGlobal.shadrossstock = {
-    :ULTRANECROZIUMZ => {
-      "badges" => 0,
-      "cost" => 48,
-      "amount" => 1,
-    },
-    :BERRYJUICE => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :RAGECANDYBAR => {
-      "badges" => 0,
-      "cost" => 1,
-      "amount" => 30,
-    },
-    :RUSTYBOTTLECAP => {
-      "badges" => 0,
-      "cost" => 1,
-      "amount" => 6,
-    },
-    :BOTTLECAP => {
-      "badges" => 0,
-      "cost" => 3,
-      "amount" => 6,
-    },
-    :GOLDENBOTTLECAP => {
-      "badges" => 0,
-      "cost" => 3,
-      "amount" => 1,
-    },
-    :FRESHSTARTMOCHI => {
-      "badges" => 0,
-      "cost" => 1,
-      "amount" => 50,
-    },
-    :ABILITYCAPSULE => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :OVALSTONE => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :DEEPSEASCALE => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :DEEPSEATOOTH => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :QUICKPOWDER => {
-      "badges" => 0,
-      "cost" => 3,
-      "amount" => 2,
-    },
-    :METALPOWDER => {
-      "badges" => 0,
-      "cost" => 3,
-      "amount" => 1,
-    },
-    :RARECANDY => {
-      "badges" => 0,
-      "cost" => 3,
-      "amount" => 5,
-    },
-    :AMULETCOIN => {
-      "badges" => 0,
-      "cost" => 3,
-      "amount" => 1,
-    },
-    :SMOKEBALL => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :WIDELENS => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :LONELYMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :ADAMANTMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :NAUGHTYMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :BRAVEMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :BOLDMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :IMPISHMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :LAXMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :RELAXEDMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :MODESTMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :MILDMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :RASHMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :QUIETMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :CALMMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :GENTLEMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :CAREFULMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :SASSYMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :TIMIDMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :HASTYMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :JOLLYMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :NAIVEMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 2,
-    },
-    :SERIOUSMINT => {
-      "badges" => 0,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :FIRESTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :THUNDERSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :WATERSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :LEAFSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :MOONSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :SUNSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :DUSKSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :DAWNSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :SHINYSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :ICESTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :MAGNETSTONE => {
-      "badges" => 1,
-      "cost" => 2,
-      "amount" => 1,
-    },
-    :LUXURYBALL => {
-      "badges" => 1,
-      "cost" => 7,
-      "amount" => 42,
-    },
-    :FOCUSSASH => {
-      "badges" => 1,
-      "cost" => 6,
-      "amount" => 3,
-    },
-    :AIRBALLOON => {
-      "badges" => 1,
-      "cost" => 4,
-      "amount" => 2,
-    },
-    :BLUNDERPOLICY => {
-      "badges" => 1,
-      "cost" => 4,
-      "amount" => 2,
-    },
-    :ROCKYHELMET => {
-      "badges" => 1,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :QUICKCLAW => {
-      "badges" => 1,
-      "cost" => 4,
-      "amount" => 1,
-    },
-    :FOCUSBAND => {
-      "badges" => 1,
-      "cost" => 4,
-      "amount" => 1,
-    },
-    :WEAKNESSPOLICY => {
-      "badges" => 1,
-      "cost" => 4,
-      "amount" => 1,
-    },
-    :TERRAINEXTENDER => {
-      "badges" => 1,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :PPMAX => {
-      "badges" => 2,
-      "cost" => 6,
-      "amount" => 4,
-    },
-    :EXPERTBELT => {
-      "badges" => 2,
-      "cost" => 4,
-      "amount" => 1,
-    },
-    :SHELLBELL => {
-      "badges" => 2,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :FLAMEORB => {
-      "badges" => 2,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :TOXICORB => {
-      "badges" => 2,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :FROSTORB => {
-      "badges" => 2,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :SHOCKORB => {
-      "badges" => 2,
-      "cost" => 6,
-      "amount" => 1,
-    },
-    :MUSCLEBAND => {
-      "badges" => 2,
-      "cost" => 4,
-      "amount" => 1,
-    },
-    :WISEGLASSES => {
-      "badges" => 2,
-      "cost" => 4,
-      "amount" => 1,
-    },
-    :ABILITYPATCH => {
-      "badges" => 3,
-      "cost" => 7,
-      "amount" => 1,
-    },
-    :BLACKSLUDGE => {
-      "badges" => 3,
-      "cost" => 9,
-      "amount" => 1,
-    },
-    :LUCKYPUNCH => {
-      "badges" => 3,
-      "cost" => 9,
-      "amount" => 1,
-    },
-    :STICK => {
-      "badges" => 3,
-      "cost" => 9,
-      "amount" => 1,
-    },
-    :THICKCLUB => {
-      "badges" => 3,
-      "cost" => 9,
-      "amount" => 1,
-    },
-    :LIGHTBALL => {
-      "badges" => 3,
-      "cost" => 9,
-      "amount" => 1,
-    },
-    :CHOICESCARF => {
-      "badges" => 4,
-      "cost" => 12,
-      "amount" => 1,
-    },
-    :LOADEDDICE => {
-      "badges" => 4,
-      "cost" => 12,
-      "amount" => 1,
-    },
-    :HEALTHMOCHI => {
-      "badges" => 5,
-      "cost" => 5,
-      "amount" => 52,
-    },
-    :MUSCLEMOCHI => {
-      "badges" => 5,
-      "cost" => 5,
-      "amount" => 52,
-    },
-    :RESISTMOCHI => {
-      "badges" => 5,
-      "cost" => 5,
-      "amount" => 52,
-    },
-    :GENIUSMOCHI => {
-      "badges" => 5,
-      "cost" => 5,
-      "amount" => 52,
-    },
-    :CLEVERMOCHI => {
-      "badges" => 5,
-      "cost" => 5,
-      "amount" => 52,
-    },
-    :SWIFTMOCHI => {
-      "badges" => 5,
-      "cost" => 5,
-      "amount" => 52,
-    },
-    :MISTSTONE => {
-      "badges" => 6,
-      "cost" => 12,
-      "amount" => 1,
-    },
-    :EVIOLITE => {
-      "badges" => 6,
-      "cost" => 12,
-      "amount" => 1,
-    },
-    :ASSAULTVEST => {
-      "badges" => 6,
-      "cost" => 12,
-      "amount" => 1,
-    },
-    :LIFEORB => {
-      "badges" => 7,
-      "cost" => 14,
-      "amount" => 1,
-    },
-    :LEFTOVERS => {
-      "badges" => 7,
-      "cost" => 14,
-      "amount" => 1,
-    },
-    :CHOICEBAND => {
-      "badges" => 8,
-      "cost" => 16,
-      "amount" => 1,
-    },
-    :CHOICESPECS => {
-      "badges" => 8,
-      "cost" => 16,
-      "amount" => 1,
-    },
-    :THROATSPRAY => {
-      "badges" => 8,
-      "cost" => 16,
-      "amount" => 3,
-    },
-    :HPUP => {
-      "badges" => 9,
-      "cost" => 2,
-      "amount" => 30,
-    },
-    :PROTEIN => {
-      "badges" => 9,
-      "cost" => 2,
-      "amount" => 30,
-    },
-    :IRON => {
-      "badges" => 9,
-      "cost" => 2,
-      "amount" => 30,
-    },
-    :CALCIUM => {
-      "badges" => 9,
-      "cost" => 1,
-      "amount" => 30,
-    },
-    :ZINC => {
-      "badges" => 9,
-      "cost" => 2,
-      "amount" => 30,
-    },
-    :CARBOS => {
-      "badges" => 9,
-      "cost" => 2,
-      "amount" => 30,
-    },
-    :BERSERKGENE => {
-      "badges" => 10,
-      "cost" => 30,
-      "amount" => 5,
-    },
-    :ENCHANTINGTABLE => {
-      "badges" => 12,
-      "cost" => 20,
-      "amount" => 1,
-    },
-  }
+  $PokemonGlobal.shadrossstock = SHADROSS_STOCK
   if hasEmera?(:VIPCARD)
     $PokemonGlobal.shadrossstock.each do |key, value|
       value["cost"] = ((value["cost"] + 1) / 2.0).ceil
@@ -636,12 +671,76 @@ class Undertale_Scene
 
   def UndertaleActMenu()
     cw = @sprites["actWindow"]
+    msgBox = @sprites["commandWindow"].sprites["msgBox"]
+    msgBox.text = ""
+    cw.visible = true
+    cw.visible = false
     cw.visible = true
     ret = -1
     loop do
-      break
+      oldIndex = cw.index
+      oldhintitemindex = cw.hintitemindex
+      pbUpdate(cw)
+      # Update selected command
+      if Input.trigger?(Input::UP)
+        cw.index = cw.index - 1
+      elsif Input.trigger?(Input::DOWN)
+        cw.index = cw.index + 1
+      elsif Input.trigger?(Input::RIGHT) 
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+        cw.index = cw.index + 1
+      elsif Input.trigger?(Input::LEFT)
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+        cw.index = cw.index - 1
+      end
+      pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.hintitemindex != oldhintitemindex
+      # Actions
+      if Input.trigger?(Input::USE)                 # Confirm choice
+        hintitem = SHADROSS_HINTS.keys[cw.hintitemindex + cw.index]
+        if !hintitem
+          break
+        end
+        if pbCynthiaGetBadgeCount < SHADROSS_HINTS[hintitem]["badges"]
+          text = "Weak ass."
+        elsif $Trainer.money < SHADROSS_HINTS[hintitem]["cost"]
+          text = "Broke ass."
+        else
+          text = "#{SHADROSS_HINTS[hintitem]["hint"]}."
+          $Trainer.money -= SHADROSS_HINTS[hintitem]["cost"]
+          $PokemonGlobal.shadrossboughthints = [] if !$PokemonGlobal.shadrossboughthints
+          $PokemonGlobal.shadrossboughthints.push(hintitem)
+          cw.refresh
+        end
+        cw.visible = false
+        msgBox.text = ""
+        pbWait(1)
+        for i in 0..text.length()
+          msgBox.text = text[0..i]
+          pbSEPlay("BattleText")
+          pbWait(1)
+        end
+        pbWait(40)
+        cw.visible = true
+      end
+      if Input.trigger?(Input::BACK)
+        break
+      end
     end
-    return ret
+    cw.visible = false
+    pbWait(1)
+    text = "You feel like you're going to have a bad time."
+    for i in 0..text.length()
+      msgBox.text = text[0..i]
+      pbSEPlay("BattleText")
+      pbWait(1)
+    end
+    return
   end
 
   def UndertaleItemMenu()
@@ -947,6 +1046,7 @@ class UndertaleActMenu
   attr_reader   :visible
   attr_reader   :color
   attr_reader   :index
+  attr_reader   :hintitemindex
   attr_reader   :mode
 
   def disposed?; return @disposed; end
@@ -966,9 +1066,21 @@ class UndertaleActMenu
   end
 
   def index=(value)
-    oldValue = @index
-    @index = value
-    refresh if @index!=oldValue
+    if value < 0
+      value = 0
+    end
+    if value > 4
+      value = 4
+    end
+    if !((@hintitemindex==0 && value <= 2) || (@hintitemindex==(SHADROSS_HINTS.length-4) && value >= 2))
+      @hintitemindex += value - @index
+      @index = 2
+      refresh
+    else
+      oldValue = @index
+      @index = value
+      refresh if @index!=oldValue
+    end
   end
 
   def mode=(value)
@@ -998,16 +1110,74 @@ class UndertaleActMenu
   # Lists of which button graphics to use in different situations/types of battle.
 
   def initialize(viewport,z)
+    $PokemonGlobal.shadrossboughthints = [] if !$PokemonGlobal.shadrossboughthints
     @x          = 0
     @y          = 0
     @z          = 0
     @visible    = false
     @color      = Color.new(0,0,0,0)
     @index      = 0
+    @hintitemindex  = 0
     @mode       = 0
     @disposed   = false
     @sprites    = {}
     @visibility = {}
+    hintboxborder = Graphics.width / 100
+    @hintbox = Sprite.new(viewport)
+    @hintbox.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+    @hintbox.src_rect.height = Graphics.height / 2
+    @hintbox.y = Graphics.height / 2
+    @hintbox.tone = Tone.new(255, 255, 255)
+    addSprite("hintbox", @hintbox)
+    @hintboxinner = Sprite.new(viewport)
+    @hintboxinner.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+    @hintboxinner.src_rect.height = @hintbox.src_rect.height - (hintboxborder * 2)
+    @hintboxinner.src_rect.width = Graphics.width - (hintboxborder * 2)
+    @hintboxinner.y = @hintbox.y + hintboxborder
+    @hintboxinner.x = hintboxborder
+    addSprite("hintboxinner", @hintboxinner)
+    @hintlistings = Array.new(5) do |i|
+      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
+      hintitem = SHADROSS_HINTS[hintitem]["name"] if hintitem
+      hintitemtext = Window_UnformattedTextPokemon.newWithSize("",
+         @hintbox.x + Graphics.width / 10 + Graphics.width / 20, @hintbox.y + (i*30), @hintbox.width - Graphics.width / 10 - Graphics.width / 20, @hintbox.height, viewport)
+      hintitemtext.baseColor   = Color.new(255, 255, 255)
+      hintitemtext.shadowColor = nil
+      hintitemtext.windowskin  = nil
+      hintitemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+      hintitemtext.contents.font.size = 25
+      hintitemtext.text = hintitem if hintitem
+      hintitemtext.text = "Exit" if !hintitem
+      addSprite("hintitemtext_#{i}",hintitemtext)
+      next hintitemtext
+    end
+    @hintprices = Array.new(5) do |i|
+      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
+      hintitemcost = SHADROSS_HINTS[hintitem]["cost"] if hintitem
+      hintitembadges = SHADROSS_HINTS[hintitem]["badges"] if hintitem
+      #hintitembadges = 0 if hasEmera?(:FAKEBADGES)
+      hintitemtext = Window_UnformattedTextPokemon.newWithSize("",
+         @hintbox.x + Graphics.width / 10 + Graphics.width / 20 + Graphics.width * 1 / 2, @hintbox.y + (i*30), @hintbox.width - Graphics.width / 10 - Graphics.width / 20 - Graphics.width * 1 / 2, @hintbox.height, viewport)
+      hintitemtext.baseColor   = Color.new(255, 255, 255)
+      hintitemtext.shadowColor = nil
+      hintitemtext.windowskin  = nil
+      hintitemtext.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
+      hintitemtext.contents.font.size = 25
+      hintitemtext.text = "#{hintitembadges} Badges" if hintitem
+      hintitemtext.text = "1 Badge" if hintitem && hintitembadges == 1
+      hintitemtext.text = "#{hintitemcost} Poke" if hintitem && hintitembadges <= pbCynthiaGetBadgeCount
+      hintitemtext.text = "" if !hintitem
+      hintitemtext.text = "" if $PokemonGlobal.shadrossboughthints.include?(hintitem)
+      addSprite("hintitemprice_#{i}",hintitemtext)
+      next hintitemtext
+    end
+    @heartsprite = Sprite.new(viewport)
+    @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
+    @heartsprite.tone = Tone.new(0, -255, -255)
+    @heartsprite.angle -= 90
+    @heartsprite.x = @hintboxinner.x + @heartsprite.width * 1.5
+    @heartsprite.y = @hintlistings[@index].y + Graphics.width / 20 + 1
+    addSprite("heartsprite",@heartsprite)
     self.z = z
     refresh
   end
@@ -1028,6 +1198,31 @@ class UndertaleActMenu
   end
 
   def refreshButtons
+    @hintbox.z = self.z + 1
+    @hintboxinner.z = self.z + 2
+    for i in 0...@hintlistings.length
+      hintitemtext = @hintlistings[i]
+      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
+      hintitem = SHADROSS_HINTS[hintitem]["name"] if hintitem
+      hintitemtext.text = hintitem if hintitem
+      hintitemtext.text = "Exit" if !hintitem
+      hintitemtext.z = self.z + 3
+      if i==@index
+        @heartsprite.y = hintitemtext.y + Graphics.width / 20 + 1
+        @heartsprite.z = self.z+5
+      end
+    end
+    for i in 0...@hintprices.length
+      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
+      hintitemcost = SHADROSS_HINTS[hintitem]["cost"] if hintitem
+      hintitembadges = SHADROSS_HINTS[hintitem]["badges"] if hintitem
+      hintitemtext = @hintprices[i]
+      hintitemtext.text = "#{hintitembadges} Badges" if hintitem
+      hintitemtext.text = "#{hintitemcost} Poke" if hintitem && hintitembadges <= pbCynthiaGetBadgeCount
+      hintitemtext.text = "" if !hintitem
+      hintitemtext.text = "" if $PokemonGlobal.shadrossboughthints.include?(hintitem)
+      hintitemtext.z = self.z + 4
+    end
   end
 
   def refresh

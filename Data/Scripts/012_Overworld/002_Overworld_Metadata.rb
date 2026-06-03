@@ -72,6 +72,7 @@ class PokemonGlobalMetadata
   attr_accessor :cynthiaprevious
   attr_accessor :hewdrawsbeaten
   attr_accessor :shadrossstock
+  attr_accessor :shadrossboughthints
   attr_accessor :shadrossmoney
   attr_accessor :ancestralgeneability
   attr_accessor :cactusheight
