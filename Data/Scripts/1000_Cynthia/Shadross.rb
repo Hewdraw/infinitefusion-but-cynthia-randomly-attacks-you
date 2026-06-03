@@ -487,35 +487,11 @@ SHADROSS_STOCK = {
 }
 
 SHADROSS_HINTS = {
-  :HINT1 => {
-    "badges" => 0,
-    "cost" => 1,
-    "name" => "Hint 1",
-    "hint" => "Dont be stinky",
-  },
-  :HINT2 => {
-    "badges" => 1,
-    "cost" => 10,
-    "name" => "Hint 2",
-    "hint" => "take a shower",
-  },
-  :HINT3 => {
-    "badges" => 2,
-    "cost" => 100,
-    "name" => "Hint 3",
-    "hint" => "touch grass",
-  },
-  :HINT4 => {
-    "badges" => 8,
-    "cost" => 100000,
-    "name" => "Hint 4",
-    "hint" => "dont waste your money",
-  },
-  :HINT5 => {
-    "badges" => 17,
-    "cost" => 100000,
-    "name" => "Hint 5",
-    "hint" => "dont cheat",
+  :REAPERCLOTH => {
+    "badges" => 3,
+    "cost" => 2584,
+    "name" => "Nuh uh",
+    "hint" => "Some unique items have been buffed for not-Roguelike reasons. Like hey, did you know Reaper Cloth is basically Eviolite? It does other stuff too, but another time.",
   },
 }
 
