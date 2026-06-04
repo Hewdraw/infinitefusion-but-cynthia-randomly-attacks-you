@@ -1463,7 +1463,7 @@ class Pokemon
       specieslist.each_with_index do |species,i|
         next unless REGIONALLIST.flatten.include?(species.species) || hasAbility?(:FORCEDEVOLUTION)
         GameData::Stat.each_main { |s|
-          bsttemp[i][s.id] = bstdata[i][s.id] + (180-bstdata[i][s.id]) / 3
+          bsttemp[i][s.id] = bstdata[i][s.id] + [(180-bstdata[i][s.id]) / 3, 0].max
         }
       end
       bsttemp.each_with_index do |bst, i|

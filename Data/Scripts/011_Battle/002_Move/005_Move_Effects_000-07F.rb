@@ -1058,7 +1058,7 @@ class PokeBattle_Move_043 < PokeBattle_TargetStatDownMove
 
   def pbEffectAgainstTarget(user, target)
     super
-    if target.isFusionOf(:GEODUDE) && @id == :ROCKSMASH
+    if (target.isFusionOf(:GEODUDE) || target.isFusionOf(:ALOLAGEODUDE)) && @id == :ROCKSMASH
       target.hp = 0
       target.pbFaint
     end
@@ -1066,7 +1066,7 @@ class PokeBattle_Move_043 < PokeBattle_TargetStatDownMove
 
   def pbHitEffectivenessMessages(user, target, numTargets = 1)
     super
-    if target.isFusionOf(:GEODUDE) && @id == :ROCKSMASH
+    if (target.isFusionOf(:GEODUDE) || target.isFusionOf(:ALOLAGEODUDE)) && @id == :ROCKSMASH
       @battle.pbDisplay(_INTL("Reduced to atoms."))
     end
   end
