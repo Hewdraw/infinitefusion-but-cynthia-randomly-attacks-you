@@ -175,7 +175,7 @@ class FusionTutorService
       compatibleMoves << :MATCHAGOTCHA if hasType(:GRASS) && canLearnMove(:SCALD)
       compatibleMoves << :DRACOMETEOR if hasType(:DRAGON)
       compatibleMoves << :HEADSMASH if hasType(:ROCK)
-      compatibleMoves << :VOLTTACKLE if hasType(:ELECTRIC) || is_fusion_of(:SWELLOW)
+      compatibleMoves << :VOLTTACKLE if hasType(:ELECTRIC) || is_fusion_of([:SWELLOW])
       compatibleMoves << :BRAVEBIRD if hasType(:FLYING)
       compatibleMoves << :DRILLPECK if canLearnMove(:PECK)
       compatibleMoves << :WOODHAMMER if hasType(:GRASS)
@@ -271,6 +271,7 @@ class FusionTutorService
   end
 
   def is_fusion_of(pokemonList)
+    pokemonList = [pokemonList] if !pokemonList.is_a?(Array)
     return true if @show_full_list
     for fusionPokemon in pokemonList
       if @pokemon.isFusionOf(fusionPokemon)

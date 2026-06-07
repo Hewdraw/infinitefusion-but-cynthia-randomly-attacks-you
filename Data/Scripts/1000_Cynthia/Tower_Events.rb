@@ -18,12 +18,19 @@ def towerPokemon()
         namearray = []
         options.each do |pokemon|
             monname = PBSpecies.getName(pokemon)
+            monname = "Alolan " + monname if pokemon.to_s[0...5] == "ALOLA"
+            monname = "Galarian " + monname if pokemon.to_s[0...5] == "GALAR"
+            monname = "Hisuian " + monname if pokemon.to_s[0...5] == "HISUI"
+            monname = "Paldean " + monname if pokemon.to_s[0...5] == "PALDEA"
             monname += " F" if pokemon == :NIDORANfE
             monname += " M" if pokemon == :NIDORANmA
             monname += " Baile" if pokemon == :ORICORIO_1
             monname += " Pom-Pom" if pokemon == :ORICORIO_2
             monname += " Pa'u" if pokemon == :ORICORIO_3
             monname += " Sensu" if pokemon == :ORICORIO_3
+            monname += " Combat Breed" if pokemon == :PALDEATAUROS
+            monname += " Blaze Breed" if pokemon == :PALDEATAUROSFIRE
+            monname += " Aqua Breed" if pokemon == :PALDEATAUROSWATER
             namearray.push(monname)
         end
         choice = Kernel.pbMessage("Pick one", namearray)
