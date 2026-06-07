@@ -914,6 +914,7 @@
 848,SABLWILITE,Sablwilite,Sablwilites,1,0,"todo",0,0,0
 849,BADAPPLE,Bad Apple,Bad Apples,1,0,"todo",0,0,0
 850,TIMEFLUTE,Time Flute,Time Flutes,8,0,"travel back to a time when you werent stinky",0,0,0
+851,GODORB,God Orb,God Orb,1,0,"a",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

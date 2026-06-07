@@ -337,7 +337,7 @@
 325,ICEPUNCH,Ice Punch,00C,75,ICE,Physical,100,15,10,NearOther,0,abefj,"The target is punched with an icy fist. It may also leave the target frozen."
 326,FREEZEDRY,Freeze-Dry,135,70,ICE,Special,100,20,20,NearOther,0,bef,"The user rapidly cools the target. This may freeze the target. Is super-effective on Water types."
 327,AURORABEAM,Aurora Beam,042,65,ICE,Special,100,20,10,NearOther,0,bef,"The target is hit with a rainbow-colored beam. This may also lower the target's Attack stat."
-328,GLACIATE,Glaciate,044,65,ICE,Special,95,10,100,AllNearFoes,0,bef,"The user attacks by blowing freezing cold air at the foe. This attack reduces the targets' Speed stat."
+328,GLACIATE,Glaciate,348,65,ICE,Special,95,10,100,AllNearFoes,0,bef,"The user attacks by blowing freezing cold air at the foe. This attack reduces the targets' Speed stat."
 329,ICEFANG,Ice Fang,00E,65,ICE,Physical,95,15,100,NearOther,0,abei,"The user bites with cold-infused fangs. It may also make the target flinch or leave it frozen."
 330,AVALANCHE,Avalanche,081,60,ICE,Physical,100,10,0,NearOther,-4,abef,"An attack move that inflicts double the damage if the user has been hurt by the foe in the same turn."
 331,FROSTBREATH,Frost Breath,0A0,60,ICE,Special,90,10,0,NearOther,0,bef,"The user blows a cold breath on the target. This attack always results in a critical hit."

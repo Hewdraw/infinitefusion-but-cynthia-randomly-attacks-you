@@ -619,7 +619,7 @@ class PokeBattle_Battler
     end
     return true if check_item.name[-3..-1] == "ite" && !["Eviolite", "Pyrite"].include?(check_item.name)
     return true if check_item.name[-5..-1] == "ium Z"
-    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek", "Quick Powder", "Metal Powder"].include?(check_item.name)
+    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek", "Quick Powder", "Metal Powder", "God Orb"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end
@@ -658,7 +658,7 @@ class PokeBattle_Battler
   end
 
   def hasMoldBreaker?
-    return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :CHARGEDEXPLOSIVE])
+    return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :TOTALFREEZE, :CHARGEDEXPLOSIVE])
   end
 
   def canChangeType?

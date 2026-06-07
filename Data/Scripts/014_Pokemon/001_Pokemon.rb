@@ -738,10 +738,12 @@ class Pokemon
   # @return [Boolean] whether this Pokémon has a particular ability or
   #   an ability at all
   def hasAbility?(check_ability = nil)
-    current_ability = self.ability
-    return !current_ability.nil? if check_ability.nil?
-    return check_ability.include?(current_ability) if check_ability.is_a?(Array)
-    return current_ability == check_ability
+    return !self.ability.nil? if check_ability.nil?
+    check_ability = [check_ability] if !check_ability.is_a?(Array)
+    check_ability.each do |ability|
+      return true if getAllAbilities.include?(ability)
+    end
+    return false
   end
 
   # @return [Boolean] whether this Pokémon has a hidden ability
@@ -1456,7 +1458,11 @@ class Pokemon
     GameData::Stat.each_main { |s|
       statindex = 0
       statindex = 1 if headstats.include?(s.id)
-      ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+      if hasAbility?(:TOTALFREEZE) || hasItem?(:GODORB)
+        ret[s.id] = ((bstdata[statindex][s.id] * 0.6) + (bstdata[(statindex + 1) % 2][s.id] * 0.6)).floor.to_i
+      else
+        ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+      end
     }
     if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE]) || hasAbility?(:FORCEDEVOLUTION)
       bsttemp = [{}, {}]
@@ -1473,7 +1479,11 @@ class Pokemon
       GameData::Stat.each_main { |s|
         statindex = 0
         statindex = 1 if headstats.include?(s.id)
-        ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+        if hasAbility?(:TOTALFREEZE) || hasItem?(:GODORB)
+          ret[s.id] = ((bstdata[statindex][s.id] * 0.6) + (bstdata[(statindex + 1) % 2][s.id] * 0.6)).floor.to_i
+        else
+          ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
+        end
       }
     end
     if hasItem?(:ANCESTRALGENE)
@@ -1635,6 +1645,7 @@ class Pokemon
     @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?([:QUICKPOWDER, :METALPOWDER])
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
     @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf(:JIRACHI)
+    @extraabilities.push(:TOTALFREEZE) if hasItem?(:GODORB)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end

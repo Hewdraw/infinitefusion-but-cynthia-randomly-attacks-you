@@ -173,9 +173,9 @@ end
 
 def towerIncreaseFloor(nextfloor = nil)
     floordisplay = FloorDisplay.new()
+    pbWait(10)
     $PokemonGlobal.towervalues[:floor] += 1
     newlevel = 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max
-    Kernel.pbMessage(_INTL("You reached floor {1}!", $PokemonGlobal.towervalues[:floor]))
     if $PokemonGlobal.towervalues[:floor] != 1
         Kernel.pbMessage(_INTL("Your party grew to Lv. {1}!", newlevel))
         $Trainer.party.each do |pkmn|

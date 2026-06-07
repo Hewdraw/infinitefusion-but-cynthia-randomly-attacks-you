@@ -1022,6 +1022,14 @@ BattleHandlers::DamageCalcUserAbility.add(:TRANSISTOR,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:TOTALFREEZE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if [:GLACIATE, :GLACIATEPLUS].include?(move.id)
+      mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:DRAGONSMAW,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if type == :DRAGON
@@ -3011,6 +3019,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:VOICEOFTHEFOREST,
     oldLastRoundMoved = battler.lastRoundMoved
     battler.pbUseMoveSimple(:FUTURESIGHT)
     battler.lastRoundMoved = oldLastRoundMoved
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TOTALFREEZE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is radiating a freezing aura!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
