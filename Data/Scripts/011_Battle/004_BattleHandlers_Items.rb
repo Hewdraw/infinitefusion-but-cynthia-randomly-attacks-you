@@ -881,7 +881,7 @@ BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
       if move.physicalMove?
         mults[:attack_multiplier] *= 2 if user.isFusionOf(:CUBONE)
         mults[:attack_multiplier] *= 2 if user.isFusionOf(:MAROWAK)
-        mults[:attack_multiplier] *= 2 if target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?
+        mults[:attack_multiplier] *= 2 if user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?
       end
     }
 )
