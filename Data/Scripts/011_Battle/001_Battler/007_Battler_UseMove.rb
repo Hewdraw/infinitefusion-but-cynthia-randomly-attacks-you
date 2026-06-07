@@ -405,6 +405,7 @@ class PokeBattle_Battler
       user.pokemon.originalform = :KYUREM
       tempspecies = :KYUREMWHITE
       tempspecies = :KYUREMBLACK if move.physicalMove?
+      tempspecies = :KYUREMBLACK if [:GLACIATE, :GLACIEATEPLUS, :TERABLAST].include?(move.id) && targets.lenght > 0 && targets[0].defense < targets[0].spdef
       if tempspecies != user.species
         @battle.pbCommonAnimation("MegaEvolution",user)
         level = user.level
