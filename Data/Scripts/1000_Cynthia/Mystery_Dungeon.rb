@@ -59,7 +59,6 @@ class FloorDisplay
 
     def endScreen()
         # Fade out all sprites
-        pbBGMFade(1.0)
         pbFadeOutAndHide(@sprites)
         pbDisposeSpriteHash(@sprites)
     end
