@@ -1638,6 +1638,7 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
        "0D2",
        "0D3",
        "0D4",
+       "14E",
        "190",
        "194",
        "205",
