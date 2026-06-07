@@ -412,7 +412,7 @@ class PokeBattle_Battler
       user.level = level
       user.pbUpdate(true)
       @battle.scene.pbChangePokemon(user,user.pokemon)
-      @battle.scene.pbRefreshOne(idxBattler)
+      @battle.scene.pbRefreshOne(user.index)
       user.pbUpdate(true)
       @battle.pbCommonAnimation("MegaEvolution2",user)
     end
