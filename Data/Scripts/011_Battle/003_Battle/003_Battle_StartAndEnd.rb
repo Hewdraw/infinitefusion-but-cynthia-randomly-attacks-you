@@ -620,6 +620,8 @@ class PokeBattle_Battle
             battler.pokemon.item = :MEGASHARD
           when :MEGAB378H379
             battler.pokemon.species = :B378H379
+          when :KYUREMWHITE, :KYUREMWHITE
+            battler.pokemon.species = :KYUREM
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
