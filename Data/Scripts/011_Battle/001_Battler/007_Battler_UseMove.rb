@@ -403,18 +403,20 @@ class PokeBattle_Battler
     end
     if user.hasActiveItem?(:GODORB) && [:KYUREM, :KYUREMBLACK, :KYUREMWHITE].include?(user.species) && !move.statusMove?
       user.pokemon.originalform = :KYUREM
-      @battle.pbCommonAnimation("MegaEvolution",user)
       tempspecies = :KYUREMWHITE
       tempspecies = :KYUREMBLACK if move.physicalMove?
-      level = user.level
-      user.pokemon.species = tempspecies
-      user.species = tempspecies
-      user.level = level
-      user.pbUpdate(true)
-      @battle.scene.pbChangePokemon(user,user.pokemon)
-      @battle.scene.pbRefreshOne(user.index)
-      user.pbUpdate(true)
-      @battle.pbCommonAnimation("MegaEvolution2",user)
+      if tempspecies != user.species
+        @battle.pbCommonAnimation("MegaEvolution",user)
+        level = user.level
+        user.pokemon.species = tempspecies
+        user.species = tempspecies
+        user.level = level
+        user.pbUpdate(true)
+        @battle.scene.pbChangePokemon(user,user.pokemon)
+        @battle.scene.pbRefreshOne(user.index)
+        user.pbUpdate(true)
+        @battle.pbCommonAnimation("MegaEvolution2",user)
+      end
     end
     #---------------------------------------------------------------------------
     magicCoater = -1
