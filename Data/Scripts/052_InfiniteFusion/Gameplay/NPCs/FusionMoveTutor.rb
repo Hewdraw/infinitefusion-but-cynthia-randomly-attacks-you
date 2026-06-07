@@ -175,7 +175,7 @@ class FusionTutorService
       compatibleMoves << :MATCHAGOTCHA if hasType(:GRASS) && canLearnMove(:SCALD)
       compatibleMoves << :DRACOMETEOR if hasType(:DRAGON)
       compatibleMoves << :HEADSMASH if hasType(:ROCK)
-      compatibleMoves << :VOLTTACKLE if hasType(:ELECTRIC)
+      compatibleMoves << :VOLTTACKLE if hasType(:ELECTRIC) || is_fusion_of(:SWELLOW)
       compatibleMoves << :BRAVEBIRD if hasType(:FLYING)
       compatibleMoves << :DRILLPECK if canLearnMove(:PECK)
       compatibleMoves << :WOODHAMMER if hasType(:GRASS)

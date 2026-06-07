@@ -805,7 +805,6 @@ class UndertaleMenu
   attr_reader   :index
   attr_reader   :mode
   attr_reader   :sprites
-  TEST = 10
 
   def disposed?; return @disposed; end
 
@@ -847,8 +846,6 @@ class UndertaleMenu
     @mode  = mode
     refresh if @index!=oldIndex || @mode!=oldMode
   end
-
-  def refresh; end
 
   def update
     pbUpdateSpriteHash(@sprites)
@@ -1078,8 +1075,6 @@ class UndertaleActMenu
     refresh if @index!=oldIndex || @mode!=oldMode
   end
 
-  def refresh; end
-
   def update
     pbUpdateSpriteHash(@sprites)
   end
@@ -1271,8 +1266,6 @@ class UndertaleItemMenu
     @mode  = mode
     refresh if @index!=oldIndex || @mode!=oldMode
   end
-
-  def refresh; end
 
   def update
     pbUpdateSpriteHash(@sprites)

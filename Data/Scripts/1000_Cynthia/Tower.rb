@@ -4,7 +4,7 @@ def setupTower()
     $Trainer.party=[]
     $PokemonGlobal.towervalues = {
         :seed => Random.new_seed,
-        :floor => 1,
+        :floor => 0,
         :badges => 0,
         :storage => PokemonStorage.new,
         :looplet => PokemonLooplet.new,
@@ -171,40 +171,42 @@ def getTowerEvents()
     return nextfloorevents
 end
 
-def towerIncreaseFloor(nextfloor)
-    $PokemonGlobal.towervalues[:activeevent] = $PokemonGlobal.towervalues[nextfloor]
+def towerIncreaseFloor(nextfloor = nil)
+    floordisplay = FloorDisplay.new()
     $PokemonGlobal.towervalues[:floor] += 1
     newlevel = 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max
     Kernel.pbMessage(_INTL("You reached floor {1}!", $PokemonGlobal.towervalues[:floor]))
-    Kernel.pbMessage(_INTL("Your party grew to Lv. {1}!", newlevel))
-    $Trainer.party.each do |pkmn|
-        oldlevel = pkmn.level
-        pkmn.level = newlevel
-        pkmn.calc_stats
-        pkmn.status = :NONE if hasEmera?(:MILKBUCKET)
-        if !hasEmera?(:STICKYKEY)
-            movelist = pkmn.getMoveList
-            moves = []
-            for i in movelist
-                next if i[0] > pkmn.level || i[0] <= oldlevel
-                if pbCynthiaGetBadgeCount <= 3
-                    pbLearnMove(pkmn, i[1], true)
-                else
-                    Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[1]).name))
+    if $PokemonGlobal.towervalues[:floor] != 1
+        Kernel.pbMessage(_INTL("Your party grew to Lv. {1}!", newlevel))
+        $Trainer.party.each do |pkmn|
+            oldlevel = pkmn.level
+            pkmn.level = newlevel
+            pkmn.calc_stats
+            pkmn.status = :NONE if hasEmera?(:MILKBUCKET)
+            if !hasEmera?(:STICKYKEY)
+                movelist = pkmn.getMoveList
+                moves = []
+                for i in movelist
+                    next if i[0] > pkmn.level || i[0] <= oldlevel
+                    if pbCynthiaGetBadgeCount <= 3
+                        pbLearnMove(pkmn, i[1], true)
+                    else
+                        Kernel.pbMessage(_INTL("{1} can learn {2}!", pkmn.name, GameData::Move.get(i[1]).name))
+                    end
                 end
             end
-        end
-        gainedhp = 1
-        gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
-        pkmn.hp = [pkmn.hp + gainedhp, pkmn.totalhp].min
-        newspecies = pkmn.check_evolution_on_level_up
-        if newspecies
-          pbFadeOutInWithMusic {
-            evo = PokemonEvolutionScene.new
-            evo.pbStartScreen(pkmn, newspecies)
-            evo.pbEvolution
-            evo.pbEndScreen
-          }
+            gainedhp = 1
+            gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
+            pkmn.hp = [pkmn.hp + gainedhp, pkmn.totalhp].min
+            newspecies = pkmn.check_evolution_on_level_up
+            if newspecies
+              pbFadeOutInWithMusic {
+                evo = PokemonEvolutionScene.new
+                evo.pbStartScreen(pkmn, newspecies)
+                evo.pbEvolution
+                evo.pbEndScreen
+              }
+            end
         end
     end
     srand(($PokemonGlobal.towervalues[:seed]*3)+$PokemonGlobal.towervalues[:floor])
@@ -218,22 +220,25 @@ def towerIncreaseFloor(nextfloor)
         item = itemlist.sample
         pbItemBall(item)
     end
-    pbSetSelfSwitch(2, "A", false)
-    case $PokemonGlobal.towervalues[:activeevent]
-    when "Legendary"
-        $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:legendarylist].sample
-        emeralegendaries = []
-        getLooplet.emeras.each do |emera|
-            next if !EMERADICT[emera][:Legendary]
-            EMERADICT[emera][:Legendary].each do |legendary|
-                next if !$PokemonGlobal.towervalues[:legendarylist].include?(legendary)
-                emeralegendaries.push(legendary)
+    pbSetSelfSwitch(2, "A", false, 21)
+    if nextfloor
+        $PokemonGlobal.towervalues[:activeevent] = $PokemonGlobal.towervalues[nextfloor]
+        case $PokemonGlobal.towervalues[:activeevent]
+        when "Legendary"
+            $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:legendarylist].sample
+            emeralegendaries = []
+            getLooplet.emeras.each do |emera|
+                next if !EMERADICT[emera][:Legendary]
+                EMERADICT[emera][:Legendary].each do |legendary|
+                    next if !$PokemonGlobal.towervalues[:legendarylist].include?(legendary)
+                    emeralegendaries.push(legendary)
+                end
             end
+            $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
+            $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
+        when "Unknown"
+            $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent
         end
-        $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
-        $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
-    when "Unknown"
-        $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent
     end
     if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
         generateMysteryDungeon()
@@ -259,6 +264,7 @@ def towerIncreaseFloor(nextfloor)
         $game_map.autoplay
         $game_map.refresh
     end
+    floordisplay.endScreen()
 end
 
 def getTowerEventsList()
