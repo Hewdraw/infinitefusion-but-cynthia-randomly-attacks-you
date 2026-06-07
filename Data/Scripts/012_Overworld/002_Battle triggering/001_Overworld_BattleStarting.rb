@@ -139,7 +139,7 @@ def pbPrepareBattle(battle)
   if (battle.opponent != nil && (battle.opponent[0].special_name? || pbCynthiaGetBadgeCount >= 8)) || $PokemonSystem.aicontrolplayer == 1
     battle.switchStyle = false
   end
-  battle.setBattleMode("2v1") if battle.opponent && (battle.opponent[0].trainer_type == :WuhuIslandExecutioner || battle.opponent[0].trainer_type == :MECH_Miku) && $Trainer.able_pokemon_count > 1
+  battle.setBattleMode("2v1") if battle.opponent && ((battle.opponent[0].trainer_type == :WuhuIslandExecutioner && pbCynthiaGetBadgeCount <= 8) || battle.opponent[0].trainer_type == :MECH_Miku) && $Trainer.able_pokemon_count > 1
   battle.switchStyle = battleRules["switchStyle"] if !battleRules["switchStyle"].nil?
   # Whether battle animations are shown
   battle.showAnims = ($PokemonSystem.battlescene==0)
