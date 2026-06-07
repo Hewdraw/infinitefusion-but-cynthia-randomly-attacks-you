@@ -98,7 +98,7 @@ class PokeBattle_Battle
               else
                 opponent.pokemon.moves.each_with_index do |move,i|
                   if move.name == "Hyper Drill"
-                    battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,newmove)
+                    opponent.moves[i] = PokeBattle_Move.from_pokemon_move(self,newmove)
                     pbDisplay(_INTL("{1} learned {2}!", opponent.name, "Hyper Impaler")) { pbSEPlay("Pkmn move learnt") }
                   end
                 end
