@@ -1437,7 +1437,7 @@ class Pokemon
     this_base_stats = base_stats_exception if base_stats_exception
     ret = {}
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
-    specieslist = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+    specieslist = [GameData::Species.get(getBodyIDNormalized(@species)), GameData::Species.get(getHeadIDNormalized(@species))]
     bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
     if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
       bstdata = getRegionalForm()
@@ -1582,7 +1582,7 @@ class Pokemon
     @spdef = stats[:SPECIAL_DEFENSE]
     @speed = stats[:SPEED]
     @materials = [@species]
-    @materials = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
+    @materials = [GameData::Species.get(getBodyIDNormalized(@species)).species, GameData::Species.get(getHeadIDNormalized(@species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
     @extraabilities = []
     @type1 = nil
     @type2 = nil

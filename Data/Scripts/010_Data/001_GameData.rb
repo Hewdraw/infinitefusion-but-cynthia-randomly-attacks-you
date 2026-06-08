@@ -45,7 +45,7 @@ module GameData
       end
 
       if other.is_a?(Integer) && self == GameData::Species
-        if other > NB_POKEMON && other < 1000099
+        if other > NB_POKEMON && other < 1000000
           body_id = getBodyID(other)
           head_id = getHeadID(other, body_id)
           pokemon_id = getFusedPokemonIdFromDexNum(body_id, head_id)

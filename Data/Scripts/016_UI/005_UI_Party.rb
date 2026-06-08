@@ -1372,7 +1372,7 @@ class PokemonPartyScreen
       elsif cmdMegaForm >= 0 && command == cmdMegaForm
         specieslist = [pkmn.species, pkmn.species]
         if pkmn.isFusion? && getDexNumberForSpecies(pkmn.species) < 1000000
-          specieslist = [GameData::Species.get(getBodyID(pkmn.species)).species, GameData::Species.get(getHeadID(pkmn.species)).species]
+          specieslist = [GameData::Species.get(getBodyIDNormalized(pkmn.species)).species, GameData::Species.get(getHeadIDNormalized(pkmn.species)).species]
         end
         specieslist.each_with_index do |species, i|
           formlist = []
@@ -1389,7 +1389,7 @@ class PokemonPartyScreen
       elsif cmdRegionalForm >= 0 && command == cmdRegionalForm
         specieslist = [pkmn.species, pkmn.species]
         if pkmn.isFusion? && getDexNumberForSpecies(pkmn.species) < 1000000
-          specieslist = [GameData::Species.get(getBodyID(pkmn.species)).species, GameData::Species.get(getHeadID(pkmn.species)).species]
+          specieslist = [GameData::Species.get(getBodyIDNormalized(pkmn.species)).species, GameData::Species.get(getHeadIDNormalized(pkmn.species)).species]
         end
         specieslist.each_with_index do |species, i|
           formlist = []

@@ -52,7 +52,7 @@ class Pokemon
 
   def getRegionalForm()
     setDefaultForms() if !@regionalform
-    ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+    ret = [GameData::Species.get(getBodyIDNormalized(@species)), GameData::Species.get(getHeadIDNormalized(@species))]
     specieslist = [@species, @species]
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
@@ -114,7 +114,7 @@ class Pokemon
 
   def getMegaShardForm(megasource=nil)
     setDefaultForms() if !@megaform
-    ret = [GameData::Species.get(getBodyID(@species)), GameData::Species.get(getHeadID(@species))]
+    ret = [GameData::Species.get(getBodyIDNormalized(@species)), GameData::Species.get(getHeadIDNormalized(@species))]
     specieslist = [@species, @species]
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]

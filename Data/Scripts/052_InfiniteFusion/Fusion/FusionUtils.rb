@@ -84,6 +84,36 @@ def get_dex_number(species_id)
   return GameData::Species.get(species_id).id_number
 end
 
+def getBodyIDNormalized(species)
+  if species.is_a?(Integer)
+    dexNum = species
+  else
+    dexNum = getDexNumberForSpecies(species)
+  end
+  return dexNum if dexNum <= NB_POKEMON || dexNum >= 1000000
+  if dexNum % NB_POKEMON == 0
+    return (dexNum / NB_POKEMON) - 1
+  end
+  return (dexNum / NB_POKEMON).round
+end
+
+def getHeadIDNormalized(species, bodyId = nil)
+  if species.is_a?(Integer)
+    fused_dexNum = species
+  else
+    fused_dexNum = getDexNumberForSpecies(species)
+  end
+  return fused_dexNum if fused_dexNum <= NB_POKEMON || fused_dexNum >= 1000000
+
+  if bodyId == nil
+    bodyId = getBodyID(species)
+  end
+  body_dexNum = getDexNumberForSpecies(bodyId)
+
+  calculated_number = (fused_dexNum - (body_dexNum * NB_POKEMON)).round
+  return calculated_number == 0 ? NB_POKEMON : calculated_number
+end
+
 def getBodyID(species, nb_pokemon = NB_POKEMON)
   if species.is_a?(Integer)
     dexNum = species
