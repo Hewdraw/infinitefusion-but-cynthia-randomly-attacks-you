@@ -142,15 +142,6 @@ class PokeBattle_Battle
       # send out, and initialize them
       battlerNumber = 0
       trainer.each_with_index do |_t,idxTrainer|
-        ret[side][idxTrainer] = []
-        eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
-          next if !pkmn.able?
-          idxBattler = 2*battlerNumber+side
-          pbCreateBattler(idxBattler,pkmn,idxPkmn)
-          ret[side][idxTrainer].push(idxBattler)
-          battlerNumber += 1
-          break if ret[side][idxTrainer].length>=requireds[idxTrainer]
-        end
         eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
           pkmn.calc_stats
           pkmn.battlevariables = {}
@@ -173,6 +164,15 @@ class PokeBattle_Battle
               pkmn.moves[i] = newmove
             end
           end
+        end
+        ret[side][idxTrainer] = []
+        eachInTeam(side,idxTrainer) do |pkmn,idxPkmn|
+          next if !pkmn.able?
+          idxBattler = 2*battlerNumber+side
+          pbCreateBattler(idxBattler,pkmn,idxPkmn)
+          ret[side][idxTrainer].push(idxBattler)
+          battlerNumber += 1
+          break if ret[side][idxTrainer].length>=requireds[idxTrainer]
         end
       end
     end

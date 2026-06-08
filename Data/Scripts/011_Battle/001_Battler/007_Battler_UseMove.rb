@@ -695,6 +695,7 @@ class PokeBattle_Battler
   def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck)
     return false if user.fainted?
     # For two-turn attacks being used in a single turn
+    oldtype = move.calcType
     move.pbInitialEffect(user, targets, hitNum)
     if user.hasActiveAbility?(:PIXAERILATE) && move.calcType == :FAIRY
       targets.each do |target|
@@ -702,6 +703,11 @@ class PokeBattle_Battler
           move.calcType = :FLYING
           break
         end
+      end
+    end
+    if oldtype != move.calcType
+      targets.each do |target|
+        target.damageState.typeMod = move.pbCalcTypeMod(move.calcType,user,target)
       end
     end
     numTargets = 0 # Number of targets that are affected by this hit
