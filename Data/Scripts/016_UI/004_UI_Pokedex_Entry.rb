@@ -372,6 +372,8 @@ class PokemonPokedexInfo_Scene
       entryText = "Nice, a Mawile."
     elsif GameData::Species.get(getBodyIDNormalized(species_data.id_number)) == :METAGROSS || GameData::Species.get(getHeadIDNormalized(species_data.id_number)) == :METAGROSS
       entryText = "Metagross."
+    elsif GameData::Species.get(getBodyIDNormalized(species_data.id_number)) == :SUICUNE || GameData::Species.get(getHeadIDNormalized(species_data.id_number)) == :SUICUNE
+      entryText = "Unfortunately not a Walking Wake."
     else
       entryText = "Unfortunately not a Mawile."
     end

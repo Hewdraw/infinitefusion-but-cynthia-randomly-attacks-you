@@ -1326,12 +1326,12 @@ class Pokemon
       head = self.species_data.head_pokemon
 
       body_evolution = check_evolution_internal(@species_data.body_pokemon) { |pkmn, new_species, method, parameter|
-        parameter -= 10 if parameter.is_a?(Integer) && hasEmera?(:TRAININGGEAR)
+        parameter -= 5 if parameter.is_a?(Integer) && hasEmera?(:TRAININGGEAR)
         success = GameData::Evolution.get(method).call_level_up(pkmn, parameter)
         next (success) ? new_species : nil
       }
       head_evolution = check_evolution_internal(@species_data.head_pokemon) { |pkmn, new_species, method, parameter|
-        parameter -= 10 if parameter.is_a?(Integer) && hasEmera?(:TRAININGGEAR)
+        parameter -= 5 if parameter.is_a?(Integer) && hasEmera?(:TRAININGGEAR)
         success = GameData::Evolution.get(method).call_level_up(pkmn, parameter)
         next (success) ? new_species : nil
       }
@@ -1342,7 +1342,7 @@ class Pokemon
     end
 
     return check_evolution_internal { |pkmn, new_species, method, parameter|
-      parameter -= 10 if parameter.is_a?(Integer) && hasEmera?(:TRAININGGEAR)
+      parameter -= 5 if parameter.is_a?(Integer) && hasEmera?(:TRAININGGEAR)
       success = GameData::Evolution.get(method).call_level_up(pkmn, parameter)
       next (success) ? new_species : nil
     }

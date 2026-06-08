@@ -877,7 +877,7 @@ class PokemonStorageScreen
       isSuperSplicer = isSuperSplicer?(item)
       if pbUnfuse(pokemon, @scene, isSuperSplicer, selected)
         if canDeleteItem(item)
-          $PokemonBag.pbDeleteItem(item)
+          $PokemonBag.pbDeleteItem(item) unless item == :INFINITESPLICERS || item == :INFINITESPLICER2
         end
       end
       @scene.pbHardRefresh

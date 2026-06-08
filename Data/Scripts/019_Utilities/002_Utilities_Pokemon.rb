@@ -99,7 +99,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       pkmn.shiny = true
       pkmn.natural_shiny = true
     end
-  when :ZORUA
+  when :ZORUA, :HISUIZORUA
     if !$PokemonGlobal.towervalues.nil?
       pkmn.poke_ball = :POKEBALL
       pkmn.shiny = true

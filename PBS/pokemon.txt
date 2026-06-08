@@ -21917,7 +21917,7 @@ Type1 = DARK
 Type2 = GROUND
 BaseStats = 75,120,55,115,60,75
 Abilities = SUPERSNIPER
-Moves = 1,TACKLE
+Moves = 1,THESKELETONAPPEARS
 Shape = Head
 #-------------------------------
 [1000803]
