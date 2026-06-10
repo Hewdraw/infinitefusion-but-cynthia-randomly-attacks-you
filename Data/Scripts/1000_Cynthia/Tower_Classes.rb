@@ -11,6 +11,10 @@ TRAINERCLASSDICT = {
         :name => "Gambler",
         :emera => :STICKYKEY,
     },
+    :SUPERNERD => {
+        :name => "Super Nerd",
+        :emera => :DIAMONDPICKAXE,
+    },
 }
 
 def selectTrainerClass()

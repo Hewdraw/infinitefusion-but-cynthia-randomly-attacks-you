@@ -135,6 +135,7 @@ class MiningGameScene
   BOARDWIDTH  = 13
   BOARDHEIGHT = 10
   ITEMS = [   # Item, probability, graphic x, graphic y, width, height, pattern
+     [:EMERA, 100, 0,0,3,3,[1,1,1,1,1,1,1,1,1]],
      [:DOMEFOSSIL,20, 0,3, 5,4,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0]],
      [:HELIXFOSSIL,5, 5,3, 4,4,[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]],
      [:HELIXFOSSIL,5, 9,3, 4,4,[1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1]],
@@ -218,6 +219,11 @@ class MiningGameScene
   end
 
   def pbStartScene
+    temp = 0
+    ITEMS.each do |item|
+      temp += item[1]
+    end
+    print(temp)
     @sprites={}
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
@@ -280,6 +286,18 @@ class MiningGameScene
     # Draw items on item layer
     layer=@sprites["itemlayer"].bitmap
     for i in @items
+      if i[0] == 0
+        ox=2
+        oy=0
+        rectx=2
+        recty=2
+        layer.blt(32*i[1],96+32*i[2],@itembitmap.bitmap,Rect.new(32*ox,32*oy,32*rectx,32*recty))
+        ox=4
+        layer.blt(32+32*i[1],96+32*i[2],@itembitmap.bitmap,Rect.new(32*ox,32*oy,32*rectx,32*recty))
+        ox=0
+        layer.blt(16+32*i[1],64+32*i[2],@itembitmap.bitmap,Rect.new(32*ox,32*oy,32*rectx,32*recty))
+        next
+      end
       ox=ITEMS[i[0]][2]
       oy=ITEMS[i[0]][3]
       rectx=ITEMS[i[0]][4]
@@ -386,7 +404,7 @@ class MiningGameScene
     end
     if @sprites["tile#{position}"].layer<=pattern[4] && pbIsIronThere?(position)
       @sprites["tile#{position}"].layer-=pattern[4]
-      pbSEPlay("Mining iron")
+      pbSEPlay("MiningIron")
       hittype=2
     else
       for i in 0..2
@@ -399,9 +417,9 @@ class MiningGameScene
         end
       end
       if @sprites["cursor"].mode==1   # Hammer
-        pbSEPlay("Mining hammer")
+        pbSEPlay("MiningHammer")
       else
-        pbSEPlay("Mining pick")
+        pbSEPlay("MiningPick")
       end
     end
     update
@@ -411,10 +429,10 @@ class MiningGameScene
     @sprites["cursor"].animate(hittype)
     revealed=pbCheckRevealed
     if revealed.length>0
-      pbSEPlay("Mining reveal full")
+      pbSEPlay("MiningFullyRevealItem")
       pbFlashItems(revealed)
     elsif hititem
-      pbSEPlay("Mining reveal")
+      pbSEPlay("MiningRevealItem")
     end
   end
 
@@ -482,10 +500,22 @@ class MiningGameScene
     for i in 1..halfFlashTime*2
       for index in revealed
         burieditem=@items[index]
-        revealeditems.bitmap.blt(32*burieditem[1],64+32*burieditem[2],
-           @itembitmap.bitmap,
-           Rect.new(32*ITEMS[burieditem[0]][2],32*ITEMS[burieditem[0]][3],
-           32*ITEMS[burieditem[0]][4],32*ITEMS[burieditem[0]][5]))
+        if burieditem[0] == 0 #emera
+          ox=2
+          oy=0
+          rectx=2
+          recty=2
+          revealeditems.bitmap.blt(32*burieditem[1],96+32*burieditem[2],@itembitmap.bitmap,Rect.new(32*ox,32*oy,32*rectx,32*recty))
+          ox=4
+          revealeditems.bitmap.blt(32+32*burieditem[1],96+32*burieditem[2],@itembitmap.bitmap,Rect.new(32*ox,32*oy,32*rectx,32*recty))
+          ox=0
+          revealeditems.bitmap.blt(16+32*burieditem[1],64+32*burieditem[2],@itembitmap.bitmap,Rect.new(32*ox,32*oy,32*rectx,32*recty))
+        else
+          revealeditems.bitmap.blt(32*burieditem[1],64+32*burieditem[2],
+             @itembitmap.bitmap,
+             Rect.new(32*ITEMS[burieditem[0]][2],32*ITEMS[burieditem[0]][3],
+             32*ITEMS[burieditem[0]][4],32*ITEMS[burieditem[0]][5]))
+        end
         if i>halfFlashTime
           revealeditems.color = Color.new(255,255,255,(halfFlashTime*2-i)*alphaDiff)
         else
@@ -504,7 +534,7 @@ class MiningGameScene
   end
 
   def pbMain
-    pbSEPlay("Mining ping")
+    pbSEPlay("MiningPing")
     pbMessage(_INTL("Something pinged in the wall!\n{1} confirmed!",@items.length))
     loop do
       update
@@ -514,7 +544,7 @@ class MiningGameScene
       # Check end conditions
       if @sprites["crack"].hits>=49
         @sprites["cursor"].visible=false
-        pbSEPlay("Mining collapse")
+        pbSEPlay("MiningCollapse")
         collapseviewport=Viewport.new(0,0,Graphics.width,Graphics.height)
         collapseviewport.z=99999
         @sprites["collapse"]=BitmapSprite.new(Graphics.width,Graphics.height,collapseviewport)
@@ -536,7 +566,7 @@ class MiningGameScene
       if foundall
         @sprites["cursor"].visible=false
         pbWait(Graphics.frame_rate*3/4)
-        pbSEPlay("Mining found all")
+        pbSEPlay("MiningAllFound")
         pbMessage(_INTL("Everything was dug up!"))
         break
       end
@@ -601,6 +631,9 @@ class MiningGameScene
           when :JAWFOSSIL
             pbAddPokemon(:TYRUNT)
           end
+          unlockClass(:SUPERNERD)
+        elsif i == :EMERA
+          grantRandomEmera()
         elsif $PokemonBag.pbStoreItem(i)
           pbMessage(_INTL("One {1} was obtained.\\se[Mining item get]\\wtnp[30]",
              GameData::Item.get(i).name))

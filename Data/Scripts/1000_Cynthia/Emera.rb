@@ -20,6 +20,11 @@ EMERADICT = {
         :description => "Use Greatest Metronome instead of Fighting. Start with a Metronome.",
         :rarity => :STARTER,
     },
+    :DIAMONDPICKAXE => {
+        :name => "Diamond Pickaxe",
+        :description => "Start mining every 5th floor.",
+        :rarity => :STARTER,
+    },
 
     :VIPCARD => {
         :name => "VIP Card",

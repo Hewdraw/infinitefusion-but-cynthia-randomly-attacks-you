@@ -240,6 +240,11 @@ def towerIncreaseFloor(nextfloor = nil)
         item = itemlist.sample
         pbItemBall(item)
     end
+    if hasEmera?(:DIAMONDPICKAXE)
+        pbBGMPlay("Mining")
+        pbMiningGame
+        pbBGMPlay("TemporalTower")
+    end
     if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
         generateMysteryDungeon()
     else
