@@ -18,7 +18,7 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => ["Berry Tree", "Hot Spring", "Mining", "Wishing Stone"],
+        :unknownlist => getUnknownEventList(),
         :eventvariables => {},
         :money => $Trainer.money
     }
@@ -172,6 +172,27 @@ def getTowerEvents()
 end
 
 def towerIncreaseFloor(nextfloor = nil)
+    srand(($PokemonGlobal.towervalues[:seed]*3)+$PokemonGlobal.towervalues[:floor])
+    pbSetSelfSwitch(2, "A", false, 21)
+    if nextfloor
+        $PokemonGlobal.towervalues[:activeevent] = $PokemonGlobal.towervalues[nextfloor]
+        case $PokemonGlobal.towervalues[:activeevent]
+        when "Legendary"
+            $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:legendarylist].sample
+            emeralegendaries = []
+            getLooplet.emeras.each do |emera|
+                next if !EMERADICT[emera][:Legendary]
+                EMERADICT[emera][:Legendary].each do |legendary|
+                    next if !$PokemonGlobal.towervalues[:legendarylist].include?(legendary)
+                    emeralegendaries.push(legendary)
+                end
+            end
+            $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
+            $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
+        when "Unknown"
+            $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent
+        end
+    end
     floordisplay = FloorDisplay.new()
     pbWait(10)
     $PokemonGlobal.towervalues[:floor] += 1
@@ -209,7 +230,6 @@ def towerIncreaseFloor(nextfloor = nil)
             end
         end
     end
-    srand(($PokemonGlobal.towervalues[:seed]*3)+$PokemonGlobal.towervalues[:floor])
     if hasEmera?(:BREWINGSTAND)
         itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
         item = itemlist.sample
@@ -219,26 +239,6 @@ def towerIncreaseFloor(nextfloor = nil)
         itemlist = [:LONELYMINT, :ADAMANTMINT, :NAUGHTYMINT, :BRAVEMINT, :BOLDMINT, :IMPISHMINT, :LAXMINT, :RELAXEDMINT, :MODESTMINT, :MILDMINT, :RASHMINT, :QUIETMINT, :CALMMINT, :GENTLEMINT, :CAREFULMINT, :SASSYMINT, :TIMIDMINT, :HASTYMINT, :JOLLYMINT, :NAIVEMINT, :SERIOUSMINT]
         item = itemlist.sample
         pbItemBall(item)
-    end
-    pbSetSelfSwitch(2, "A", false, 21)
-    if nextfloor
-        $PokemonGlobal.towervalues[:activeevent] = $PokemonGlobal.towervalues[nextfloor]
-        case $PokemonGlobal.towervalues[:activeevent]
-        when "Legendary"
-            $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:legendarylist].sample
-            emeralegendaries = []
-            getLooplet.emeras.each do |emera|
-                next if !EMERADICT[emera][:Legendary]
-                EMERADICT[emera][:Legendary].each do |legendary|
-                    next if !$PokemonGlobal.towervalues[:legendarylist].include?(legendary)
-                    emeralegendaries.push(legendary)
-                end
-            end
-            $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
-            $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
-        when "Unknown"
-            $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent
-        end
     end
     if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
         generateMysteryDungeon()
@@ -287,6 +287,7 @@ def getTowerEventsList()
     eventlist["Pokemart"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
     eventlist["Pokemart"] /= 2 if $PokemonGlobal.towervalues[:floor] <= 20
     eventlist["Legendary"] = 0 if $PokemonGlobal.towervalues[:legendarylist].length == 0
+    eventlist["Unknown"] = 0 if $PokemonGlobal.towervalues[:unknownlist].length == 0
     $Trainer.party.each do |pkmn|
         eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
     end
@@ -508,24 +509,8 @@ def getFloorGraphic(event)
     when "Chest"
         return "ChestSprite"
     when "Unknown"
-        case $PokemonGlobal.towervalues[:activevariable]
-        when "Cynthia"
-            return "BW126"
-        when "Hot Spring"
-            return "TORKOAL"
-        when "Berry Tree", "Big Tree"
-            return "berrytreeLIECHIBERRY"
-        when "Torterra", "Torterra2"
-            return "BW155"
-        when "Mining"
-            return "BW_rocksmash"
-        when "Wandering Trader"
-            return "Dipshit"
-        when "Wishing Stone"
-            return "WishingStone"
-        else
-            return "201_27"
-        end
+        return TOWER_EVENTS[$PokemonGlobal.towervalues[:activevariable]][:image] if TOWER_EVENTS[$PokemonGlobal.towervalues[:activevariable]]
+        return "201_27"
     when "Miku"
         return "HatsuneMiku"
     when "Shop"

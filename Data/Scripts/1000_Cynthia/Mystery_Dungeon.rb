@@ -11,7 +11,7 @@ class FloorDisplay
         @visibility[key] = true
     end
 
-    def initialize
+    def initialize(event=nil)
         @sprites    = {}
         @visibility = {}
         @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
@@ -20,16 +20,22 @@ class FloorDisplay
         backgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
         addSprite("background", backgroundsprite)
         textbitmap = Bitmap.new("Graphics/Transitions/MysteryDungeonTitlecard")
-        bitmapoffset = [[""]*10, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                        [""]*3, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
-                        "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
-                        "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"].flatten
+        bitmapoffset = [[" ", 10], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["", 0], ["0", 13], ["1", 6], ["2", 11], ["3", 12], ["4", 13], ["5", 12], ["6", 13], ["7", 11], ["8", 13], ["9", 12],
+                        ["", 0], ["", 0], ["", 0],  ["A", 13], ["B", 12], ["C", 11], ["D", 11], ["E", 11], ["F", 10], ["G", 14], ["H", 11], ["I", 4], ["J", 10], ["K", 11], ["L", 9], ["M", 14], ["N", 11], ["O", 12], ["P", 11], ["Q", 12],
+                        ["R", 12], ["S", 12], ["T", 11], ["U", 10], ["V", 11], ["W", 15], ["X", 10], ["Y", 13], ["Z", 12], ["a", 10], ["b", 9], ["c", 9], ["d", 10], ["e", 9], ["f", 9], ["g", 9], ["h", 9], ["i", 3], ["j", 6], ["k", 8],
+                        ["l", 3], ["m", 14], ["n", 9], ["o", 10], ["p", 9], ["q", 12], ["r", 8], ["s", 10], ["t", 10], ["u", 9], ["v", 9], ["w", 12], ["x", 9], ["y", 10], ["z", 9]]
         bitmapxcount = 20
         textlayer = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
         dungeontext1 = "Temporal"
         dungeontext2 = "Tower"
+        if TOWER_EVENTS[$PokemonGlobal.towervalues[:activevariable]]
+            dungeontext1 = TOWER_EVENTS[$PokemonGlobal.towervalues[:activevariable]][:location]
+            dungeontext2 = ""
+            dungeontext2 = TOWER_EVENTS[$PokemonGlobal.towervalues[:activevariable]][:location2] if TOWER_EVENTS[$PokemonGlobal.towervalues[:activevariable]][:location2]
+        end
         floortext = ($PokemonGlobal.towervalues[:floor] + 1).to_s + "F"
         textarray = [dungeontext1, dungeontext2, "", floortext]
+        displayarray = [[], [], [], []]
         textyoffset = (Graphics.height / 2) - 50
         textarray.each_with_index do |text,j|
             textxoffset = (Graphics.width / 2) - (text.length * 10 / 2)
@@ -37,14 +43,23 @@ class FloorDisplay
                 xoffset = 0
                 yoffset = 0
                 bitmapoffset.each_with_index do |bitmapchar, i|
-                    next if char != bitmapchar
-                    xoffset = (i % bitmapxcount) * 25
-                    yoffset = (i / bitmapxcount) * 25
+                    next if char != bitmapchar[0]
+                    displayarray[j].push([bitmapchar, i].flatten)
                     break
                 end
+            end
+        end
+        displayarray.each do |text|
+            textlenght = 0
+            text.each do |array|
+                textlenght += array[1]
+            end
+            textxoffset = (Graphics.width / 2) - (textlenght / 2)
+            text.each do |array|
+                xoffset = (array[2] % bitmapxcount) * 25
+                yoffset = (array[2] / bitmapxcount) * 25
                 textlayer.bitmap.blt(textxoffset, textyoffset, textbitmap, Rect.new(xoffset, yoffset, 25, 25))
-                textxoffset += 10
-                textxoffset += 5 if ["M", "m", "W", "w"].include?(char)
+                textxoffset += array[1]
             end
             textyoffset += 25
             textyoffset -= 15 if text == ""

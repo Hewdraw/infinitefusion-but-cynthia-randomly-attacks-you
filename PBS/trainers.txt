@@ -11275,6 +11275,18 @@ Pokemon = KYUREM,11
     Happiness = 0
     Ball = MASTERBALL
 
+#placeholder
+[LEGENDARY_POKEMON,Regirock,0]
+Pokemon = REGIROCK,11 
+    Offset = 5
+    Moves = BODYPRESS,MIGHTYCLEAVE,EARTHQUAKE,CURSE
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 4
+    Item = LEFTOVERS
+    Nature = CAREFUL
+    Raid = TRUE
+    IV = 31,0,31,31,31,31
+    EV = 252,252,0,0,0,252
 
 [LEGENDARY_POKEMON,Unown,0]
 Pokemon = UNOWN,11

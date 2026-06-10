@@ -1,3 +1,63 @@
+TOWER_EVENTS = {
+    :HOTSPRING => {
+        :location => "Hot Spring",
+        :image => "TORKOAL",
+        :default => true,
+    },
+    :LUMINOUSSPRING => {
+        :location => "Luminous",
+        :location2 => "Sprint",
+        :image => "",
+        :default => false, #todo
+    },
+    :ROUTE33 => {
+        :location => "Route 33",
+        :image => "berrytreeLIECHIBERRY",
+        :default => true,
+    },
+    :ROUTE332 => {
+        :location => "Route 33",
+        :image => "berrytreeLIECHIBERRY",
+        :default => false,
+    },
+    :SINNOHUNDERGROUND => {
+        :location => "Underground",
+        :location2 => "Path",
+        :image => "BW_rocksmash",
+        :default => true,
+    },
+    :VIENFOREST => {
+        :location => "Vien Forest",
+        :image => "BW155",
+        :default => false, #todo
+    },
+    :VIENFOREST2 => {
+        :location => "Vien Forest",
+        :image => "BW155",
+        :default => false,
+    },
+    :WANDERINGTRADER => {
+        :location => "Plains",
+        :location2 => "Biome",
+        :image => "Dipshit",
+        :default => false,
+    },
+    :WISHCAVE => {
+        :location => "Wish Cave",
+        :image => "WishingStone",
+        :default => false,
+    },
+}
+
+def getUnknownEventList()
+    list = []
+    TOWER_EVENTS.each do |key, value|
+        next unless value[:default]
+        list.push(key)
+    end
+    return list
+end
+
 def towerPokemon()
     amount = 1
     amount += 1 if hasEmera?(:POKEDEX)
@@ -41,16 +101,12 @@ end
 
 def getUnknownEvent()
     list = $PokemonGlobal.towervalues[:unknownlist]
-    list = ["Cynthia"] if list.length == 0
     return list.sample
 end
 
 def resolveUnknownEvent(recursion = false)
     case $PokemonGlobal.towervalues[:activevariable]
-    when "Cynthia"
-        pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
-        return
-    when "Hot Spring"
+    when :HOTSPRING
         Kernel.pbMessage("You encounter a Torkoal heating up a spring.")
         choice = pbUnknownCommands(["Soak in the water.", "Splash the Torkoal with water.", "Gather herbs nearby."], ["You could probably rest up.", "Are you sure you want to anger it?", "You think you spot some Revival Herbs and Energy Roots."])
         case choice
@@ -67,7 +123,7 @@ def resolveUnknownEvent(recursion = false)
             pbItemBall(:ENERGYROOT, rand(3) + 2)
             Kernel.pbMessage("The Torkoal left while you gathered herbs.")
         end
-    when "Berry Tree"
+    when :ROUTE33
         Kernel.pbMessage("You spot a berry tree next to the road.") if !recursion
         helptext = ["A large variety of berries can be seen haning on the tree.", "You think you see something moving in the foliage.", "It will surely grow bigger. Requires a Mystic Water."]
         helptext[2] = "It will surely grow bigger. \\C[2]Requires a Mystic Water." if $PokemonBag.pbQuantity(:MYSTICWATER) == 0
@@ -91,7 +147,7 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("The tree looks happy.")
             $PokemonGlobal.towervalues[:unknownlist].push("Big Tree")
         end
-    when "Big Tree"
+    when :ROUTE332
         Kernel.pbMessage("You find yourself in a familiar place near a massive berry tree next to the road.")
         Kernel.pbMessage("A Heracross jumps out of the tree looking happy to see you.")
         Kernel.pbMessage("It Guides you to a pile of Berries and seems to want to join you.")
@@ -101,11 +157,11 @@ def resolveUnknownEvent(recursion = false)
             $PokemonBag.pbStoreItem(berry, 5)
         end
         pbObtainAlpha("Heracross")
-    when "Mining"
+    when :SINNOHUNDERGROUND
         pbBGMPlay("Mining")
         pbMiningGame
         pbBGMPlay("TemporalTower")
-    when "Shadross" #todo
+    when :SHADROSS #todo
         Kernel.pbMessage("You come across a purple skeleton.")
         Kernel.pbMessage("What will you try to get from him?")
         helptext = ["Perhaps you can get a discount later. Costs 10 Sinnoh Coins.", "Teach something Shadow Bone+.", "Gives a lot of Special Attack.", "Theyre kinda sick, you might have to fight him for it."]
@@ -133,17 +189,36 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("not coded in yet, try something else")
             return resolveUnknownEvent(true)
         end
-    when "Torterra"
+    when :VIENFOREST
         Kernel.pbMessage("A dying tree is blocking your path on the mountains.") if !recursion
-        helptext = ["Surely nothing will care about it", "It might be quite the trek.", "Help out the wildlife in the area. Requires a Miracle Seed."]
+        helptext = ["Surely nothing will care about it.", "It might be quite the trek.", "Help out the wildlife in the area. Requires a Miracle Seed."]
         helptext[2] = "Help out the wildlife in the area. \\C[2]Requires a Miracle Seed." if $PokemonBag.pbQuantity(:MIRACLESEED) == 0
-        choice = pbUnknownCommands(["Cut it down.", "Find a different Path.", "Plant a new tree next to it."])
+        choice = pbUnknownCommands(["Cut it down.", "Find a different Path.", "Plant a new tree next to it."], helptext)
         case choice
         when 0
             Kernel.pbMessage("As you move to cut it down the tree rises from the ground to reveal a torterra below you.")
             return if !pbLegendaryBattle("Torterra", true)
         when 1
-            Kernel.pbMessage() #todo
+            Kernel.pbMessage("You come across a Rock Statue emanating a strange power inside a cave.")
+            #todo something when player has regirock
+            hasgarchomp = false
+            $Trainer.party.each do |pokemon|
+                next unless pokemon.isFusionOf(:GARCHOMP)
+                hasgarchomp = pokemon
+            end
+            if hasgarchomp
+                Kernel.pbMessage("Your #{pokemon.name} jumps out and breaks the statue.")
+                Kernel.pbMessage("Regirock awakens.")
+                Kernel.pbMessage("I should warn you this is a placeholder battle.")
+                return if !pbLegendaryBattle("Regirock")
+            else
+                Kernel.pbMessage("You try to break it but seem unable to.")
+                Kernel.pbMessage("You gather some of the rocks laying around before leaving the cave.")
+                itemlist = [:HARDSTONE, :SMOOTHROCK, :ROCKGEM, :OVALSTONE]
+                itemlist.each do |item|
+                    pbItemBall(item)
+                end
+            end
         when 2
             if $PokemonBag.pbQuantity(:MIRACLESEED) == 0
                 Kernel.pbMessage("You don't have a Miracle Seed.")
@@ -153,12 +228,13 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("The dying tree disappears as a new one sprouts. How preculiar.")
             $PokemonGlobal.towervalues[:unknownlist].push("Torterra2")
         end
-    when "Torterra2"
+    when :VIENFOREST2
         Kernel.pbMessage("You find yourself in a familiar place with a grown up tree blocking your path on the mountains.")
         Kernel.pbMessage("Suddenly a Torterra rises from the ground below you looking happy to see you.")
         pbObtainAlpha("Torterra")
-        Kernel.pbMessage("")
-    when "Wandering Trader"
+        Kernel.pbMessage("It presents you with a cool rock it picked up.")
+        #pbReceiveItem(:ROCKIUMZ) todo make this work
+    when :WANDERINGTRADER
         Kernel.pbMessage("A Wandering Trader spawns next to you.")
         commonemera = getLooplet.pbRandomEmera(:COMMON)
         traderuncommonemera = getEmeras[1].sample
@@ -209,10 +285,10 @@ def resolveUnknownEvent(recursion = false)
             grantRandomEmera([1,0,0,0])
         end
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
-    when "Warden"
+    when :WARDEN
         Kernel.pbMessage("A Warden crawls out of the ground.")
         return if !pbLegendaryBattle("Warden")
-    when "Wishing Stone"
+    when :WISHCAVE
         Kernel.pbMessage("A Wishing Stone appears before you.")
         if !$PokemonGlobal.towervalues[:legendarylist].include?("Jirachi")
             Kernel.pbMessage("Your Jirachi wakes up from its slumber.")
@@ -243,6 +319,7 @@ def resolveUnknownEvent(recursion = false)
         end
     end
     $PokemonGlobal.towervalues[:unknownlist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
+    $PokemonGlobal.towervalues[:unknownlist] = getUnknownEventList() if $PokemonGlobal.towervalues[:unknownlist].length == 0
 end
 
 def pbObtainAlpha(species)
