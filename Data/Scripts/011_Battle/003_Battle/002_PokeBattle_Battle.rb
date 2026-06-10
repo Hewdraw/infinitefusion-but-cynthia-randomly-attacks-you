@@ -87,6 +87,7 @@ class PokeBattle_Battle
   attr_accessor :broken_buttons
   attr_accessor :nuh_uh
   attr_accessor :legendary
+  attr_accessor :classvariables
   attr_accessor :party2
 
   attr_accessor :tempweather
@@ -185,6 +186,9 @@ class PokeBattle_Battle
     @broken_buttons.push(3) if $PokemonGlobal.enderchest
     @nuh_uh = 1
     @legendary = false
+    @classvariables = {
+      :metronome => true
+    }
   end
 
   #=============================================================================

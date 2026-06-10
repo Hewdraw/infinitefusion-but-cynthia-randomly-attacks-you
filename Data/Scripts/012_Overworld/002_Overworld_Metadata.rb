@@ -86,6 +86,7 @@ class PokemonGlobalMetadata
   attr_accessor :endgatewaylocation
   attr_accessor :towerlocation
   attr_accessor :towervalues
+  attr_accessor :towerclasses
   attr_accessor :porygonchance
 
   def initialize
