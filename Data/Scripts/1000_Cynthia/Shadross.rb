@@ -708,13 +708,7 @@ class Undertale_Scene
       end
     end
     cw.visible = false
-    pbWait(1)
-    text = "You feel like you're going to have a bad time."
-    for i in 0..text.length()
-      msgBox.text = text[0..i]
-      pbSEPlay("BattleText")
-      pbWait(1)
-    end
+    @sprites["commandWindow"].displayText("You feel like you're going to have a bad time.")
     return
   end
 
@@ -780,13 +774,7 @@ class Undertale_Scene
       end
     end
     cw.visible = false
-    pbWait(1)
-    text = "You feel like you're going to have a bad time."
-    for i in 0..text.length()
-      msgBox.text = text[0..i]
-      pbSEPlay("BattleText")
-      pbWait(1)
-    end
+    @sprites["commandWindow"].displayText("You feel like you're going to have a bad time.")
     return
   end
 end
@@ -847,11 +835,17 @@ class UndertaleMenu
   end
 
   def update
+    if @textframe < @displaytext.length
+      @textframe += 1
+      @msgBox.text = @displaytext[0..@textframe]
+      pbSEPlay("BattleText")
+    end
     pbUpdateSpriteHash(@sprites)
   end
   # Lists of which button graphics to use in different situations/types of battle.
 
   def initialize(viewport,z)
+    @test = 0
     @x          = 0
     @y          = 0
     @z          = 0
@@ -958,16 +952,16 @@ class UndertaleMenu
     @msgBox.windowskin  = nil
     @msgBox.contents.font.name = MessageConfig.pbTryFonts("Determination Mono")
     @msgBox.contents.font.size = 25
-    text = "You feel like you're going to have a bad time."
-    for i in 0..text.length()
-      @msgBox.text = text[0..i]
-      pbSEPlay("BattleText")
-      pbWait(1)
-    end
+    displayText("You feel like you're going to have a bad time.")
     addSprite("msgBox",@msgBox)
 
     self.z = z
     refresh
+  end
+
+  def displayText(text)
+    @displaytext = text
+    @textframe = 0
   end
 
   def dispose

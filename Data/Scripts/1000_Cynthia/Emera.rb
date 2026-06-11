@@ -20,6 +20,11 @@ EMERADICT = {
         :description => "Use Greatest Metronome instead of Fighting. Start with a Metronome.",
         :rarity => :STARTER,
     },
+    :EJECTBALLS => {
+        :name => "Eject Balls",
+        :description => "Using a move switches your Pokemon out to a random other Pokemon.",
+        :rarity => :STARTER,
+    },
     :DIAMONDPICKAXE => {
         :name => "Diamond Pickaxe",
         :description => "Start mining every 5th floor.",
