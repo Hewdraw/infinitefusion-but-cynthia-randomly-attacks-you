@@ -293,7 +293,7 @@ class PokeBattle_StatDownMove < PokeBattle_Move
   def pbEffectWhenDealingDamage(user,target)
     return if @battle.pbAllFainted?(target.idxOwnSide)
     showAnim = true
-    classunlock = !$PokemonGlobal.towervalues.nil? && userpbOwnedByPlayer? && user.hasActiveItem?(:EJECTPACK) && @user.battle.pbCanSwitch?(user.index,-1,false) && @user.battle.pbAbleCount(user.index) > 1
+    classunlock = !$PokemonGlobal.towervalues.nil? && user.pbOwnedByPlayer? && user.hasActiveItem?(:EJECTPACK) && user.battle.pbCanSwitch?(user.index,-1,false) && user.battle.pbAbleCount(user.index) > 1
     for i in 0...@statDown.length/2
       next if !user.pbCanLowerStatStage?(@statDown[i*2],user,self)
       if user.pbLowerStatStage(@statDown[i*2],@statDown[i*2+1],user,showAnim)
