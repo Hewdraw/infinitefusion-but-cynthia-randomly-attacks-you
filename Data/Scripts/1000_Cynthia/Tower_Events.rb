@@ -106,7 +106,6 @@ def getUnknownEvent()
 end
 
 def resolveUnknownEvent(recursion = false)
-    print($PokemonGlobal.towervalues[:activevariable])
     case $PokemonGlobal.towervalues[:activevariable]
     when :HOTSPRING
         Kernel.pbMessage("You encounter a Torkoal heating up a spring.")
