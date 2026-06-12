@@ -2,57 +2,58 @@ TOWER_EVENTS = {
     :HOTSPRING => {
         :location => "Hot Spring",
         :image => "TORKOAL",
-        :default => true,
+        :floorrequirement => 0,
     },
     :LUMINOUSSPRING => {
         :location => "Luminous",
-        :location2 => "Sprint",
+        :location2 => "Spring",
         :image => "",
-        :default => false, #todo
+        :floorrequirement => false, #todo
     },
     :ROUTE33 => {
         :location => "Route 33",
         :image => "berrytreeLIECHIBERRY",
-        :default => true,
+        :floorrequirement => 0,
     },
     :ROUTE332 => {
         :location => "Route 33",
         :image => "berrytreeLIECHIBERRY",
-        :default => false,
+        :floorrequirement => false,
     },
     :SINNOHUNDERGROUND => {
         :location => "Underground",
         :location2 => "Path",
         :image => "BW_rocksmash",
-        :default => true,
+        :floorrequirement => 0,
     },
     :VIENFOREST => {
         :location => "Vien Forest",
         :image => "BW155",
-        :default => false, #todo
+        :floorrequirement => false, #todo
     },
     :VIENFOREST2 => {
         :location => "Vien Forest",
         :image => "BW155",
-        :default => false,
+        :floorrequirement => false,
     },
     :WANDERINGTRADER => {
         :location => "Plains",
         :location2 => "Biome",
         :image => "Dipshit",
-        :default => false,
+        :floorrequirement => 10,
     },
     :WISHCAVE => {
         :location => "Wish Cave",
         :image => "WishingStone",
-        :default => false,
+        :floorrequirement => false,
     },
 }
 
 def getUnknownEventList()
     list = []
     TOWER_EVENTS.each do |key, value|
-        next unless value[:default]
+        next if value[:floorrequirement] == false
+        next unless value[:floorrequirement] <= $PokemonGlobal.towervalues[:floor]
         list.push(key)
     end
     return list
@@ -105,6 +106,7 @@ def getUnknownEvent()
 end
 
 def resolveUnknownEvent(recursion = false)
+    print($PokemonGlobal.towervalues[:activevariable])
     case $PokemonGlobal.towervalues[:activevariable]
     when :HOTSPRING
         Kernel.pbMessage("You encounter a Torkoal heating up a spring.")

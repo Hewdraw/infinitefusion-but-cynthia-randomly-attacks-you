@@ -621,7 +621,7 @@ EMERADICT = {
     # },
     :SCULKSHRIEKER => {
         :name => "Sculk Shrieker",
-        :description => "When Your Pokemon uses a Sound move a random opposing Pokemons Defense is lowered by 2 staged and Accuracy is lowered by 1.",
+        :description => "When Your Pokemon uses a Sound move a random opposing Pokemons Defense is lowered by 2 and Accuracy by 1.",
         :rarity => :LEGENDARY,
         :tutormove => :BOOMBURST,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},

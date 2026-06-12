@@ -145,6 +145,22 @@ class PokeBattle_Battler
     if numHits>0
       @battle.eachBattler { |b| b.pbItemEndOfMoveCheck }
     end
+    if user.hasActiveEmera?(:EJEECTBALLS)
+      return if user.fainted? || numHits==0
+      return if switchedBattlers.include?(user.index)
+      return if user.effects[PBEffects::Ingrain]
+      roarSwitched = []
+      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
+      return if newPkmn<0
+      @battle.pbRecallAndReplace(b.index, newPkmn, true)
+      switchedBattlers.push(b.index)
+      roarSwitched.push(b.index)
+      if roarSwitched.length>0
+        @battle.pbPriority(true).each do |b|
+          b.pbEffectsOnSwitchIn(true) if roarSwitched.include?(b.index)
+        end
+      end
+    end
   end
 
   # Everything in this method is negated by Sheer Force.

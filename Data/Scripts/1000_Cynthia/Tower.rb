@@ -230,21 +230,14 @@ def towerIncreaseFloor(nextfloor = nil)
             end
         end
     end
-    if hasEmera?(:BREWINGSTAND)
-        itemlist = [:FULLHEAL, :FULLRESTORE, :HYPERPOTION, :MAXELIXIR, :MAXPOTION, :POTION, :SUPERPOTION, :ANTIDOTE, :AWAKENING, :BURNHEAL, :ICEHEAL, :PARALYZEHEAL, :ELIXIR, :ETHER, :MAXETHER]
-        item = itemlist.sample
-        pbItemBall(item)
+
+    pbFloorEmeras
+
+    TOWER_EVENTS.each do |key, value|
+        next unless value[:floorrequirement] == $PokemonGlobal.towervalues[:floor]
+        $PokemonGlobal.towervalues[:unknownlist].push(key)
     end
-    if hasEmera?(:MINTPLANT)
-        itemlist = [:LONELYMINT, :ADAMANTMINT, :NAUGHTYMINT, :BRAVEMINT, :BOLDMINT, :IMPISHMINT, :LAXMINT, :RELAXEDMINT, :MODESTMINT, :MILDMINT, :RASHMINT, :QUIETMINT, :CALMMINT, :GENTLEMINT, :CAREFULMINT, :SASSYMINT, :TIMIDMINT, :HASTYMINT, :JOLLYMINT, :NAIVEMINT, :SERIOUSMINT]
-        item = itemlist.sample
-        pbItemBall(item)
-    end
-    if hasEmera?(:DIAMONDPICKAXE)
-        pbBGMPlay("Mining")
-        pbMiningGame
-        pbBGMPlay("TemporalTower")
-    end
+
     if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
         generateMysteryDungeon()
     else
@@ -395,7 +388,6 @@ def towerEvent()
         when 0
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Brock, "Brock")
-            $PokemonGlobal.towervalues[:unknownlist].push("Wandering Trader")
         when 1
             $PokemonGlobal.nextBattleBGM = "kanto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Misty, "Misty")

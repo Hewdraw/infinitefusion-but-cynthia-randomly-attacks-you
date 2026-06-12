@@ -171,7 +171,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
       if opposingmon.length > 0
         opposingmon = opposingmon.sample
         user.tempability = EMERADICT[:SCULKSHRIEKER][:name]
-        pbShowAbilitySplash(user)
+        battle.pbShowAbilitySplash(user)
         battle.pbDisplay(_INTL("The {1} Shrieks.", EMERADICT[:SCULKSHRIEKER][:name]))
         opposingmon.pbLowerStatStage(:DEFENSE,2,user) if opposingmon.pbCanLowerStatStage?(:DEFENSE, user)
         opposingmon.pbLowerStatStage(:ACCURACY,1,user) if opposingmon.pbCanLowerStatStage?(:ACCURACY, user)
@@ -383,5 +383,10 @@ def pbFloorEmeras
       $PokemonBag.pbStoreItem(item, 1)
       break
     end
+  end
+  if hasEmera?(:DIAMONDPICKAXE) && $PokemonGlobal.towervalues[:floor] % 5 == 0 && $PokemonGlobal.towervalues[:floor] > 1
+      pbBGMPlay("Mining")
+      pbMiningGame
+      pbBGMPlay("TemporalTower")
   end
 end

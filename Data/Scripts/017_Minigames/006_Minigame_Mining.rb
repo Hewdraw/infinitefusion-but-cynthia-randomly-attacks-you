@@ -219,11 +219,6 @@ class MiningGameScene
   end
 
   def pbStartScene
-    temp = 0
-    ITEMS.each do |item|
-      temp += item[1]
-    end
-    print(temp)
     @sprites={}
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
