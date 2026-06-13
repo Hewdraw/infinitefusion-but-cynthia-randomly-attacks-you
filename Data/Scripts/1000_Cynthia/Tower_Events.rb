@@ -222,7 +222,10 @@ def resolveUnknownEvent(recursion = false)
                     didsomething = true
                 end
             end
-            return resolveUnknownEvent(true) if !didsomething
+            if !didsomething
+                Kernel.pbMessage("There is nothing to clean.")
+                return resolveUnknownEvent(true)
+            end
         end
     when :SINNOHUNDERGROUND
         pbBGMPlay("Mining")
