@@ -6868,7 +6868,7 @@ BattlerEnemyY = 9
 BattlerAltitude = 8
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = GLISCOR,Item,DUSKSTONE,GLISCOR,Item,MOONSTONE,GLISCOR,Item,SUNSTONE
+Evolutions = GLISCOR,Item,DUSKSTONE,GLISCOR,Item,MOONSTONE,GLISCOR,Item,SUNSTONE,GLISCOR,Item,RAZORFANG
 #-------------------------------
 [208]
 Name = Steelix
@@ -7138,7 +7138,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 16
 BattlerShadowX = -2
 BattlerShadowSize = 2
-Evolutions = JOHTOSNEASLER,Item,MISTSTONE,WEAVILE,Item,ICESTONE
+Evolutions = JOHTOSNEASLER,Item,MISTSTONE,WEAVILE,Item,ICESTONE,WEAVILE,Item,RAZORCLAW
 #-------------------------------
 [216]
 Name = Teddiursa
@@ -8593,7 +8593,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = CHANSEY,DayHoldItem,OVALSTONE,CHANSEY,Item,SHINYSTONE
+Evolutions = CHANSEY,DayHoldItem,OVALSTONE,CHANSEY,Item,OVALSTONE,CHANSEY,Item,SHINYSTONE
 #-------------------------------
 [260]
 Name = Munchlax
@@ -16151,7 +16151,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = SLURPUFF,Level,35,SLURPUFF,Item,SHINYSTONE
+Evolutions = SLURPUFF,Level,35,SLURPUFF,Item,SHINYSTONE,SLURPUFF,Item,WHIPPEDDREAM
 #-------------------------------
 [492]
 Name = Slurpuff

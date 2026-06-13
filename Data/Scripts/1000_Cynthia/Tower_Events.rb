@@ -88,7 +88,7 @@ def towerPokemon()
             monname = "Alolan " + monname if pokemon.to_s[0...5] == "ALOLA"
             monname = "Galarian " + monname if pokemon.to_s[0...5] == "GALAR"
             monname = "Hisuian " + monname if pokemon.to_s[0...5] == "HISUI"
-            monname = "Paldean " + monname if pokemon.to_s[0...5] == "PALDEA"
+            monname = "Paldean " + monname if pokemon.to_s[0...6] == "PALDEA"
             monname += " F" if pokemon == :NIDORANfE
             monname += " M" if pokemon == :NIDORANmA
             monname += " Baile" if pokemon == :ORICORIO_1
