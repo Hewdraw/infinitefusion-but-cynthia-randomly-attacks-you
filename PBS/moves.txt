@@ -1080,7 +1080,7 @@
 1111,FUTURESIGHTPLUS,Future Sight+,111,130,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target." #TODO
 1112,CRUSHGRIPPLUS,Crush Grip+,347,100,NORMAL,Physical,100,5,50,NearOther,0,abef,"The target is crushed with great force."
 1113,WEB,Web,153,0,BUG,Status,0,20,0,FoeSide,1,c,"i havent thought of something funny this can do yet, have priority sticky web for now"
-1114,MEGAHORNPLUS,Megahorn+,000,20,BUG,Physical,85,10,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup."
+1114,MEGAHORNPLUS,Megahorn+,349,20,BUG,Physical,100,5,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup."
 
 
 
