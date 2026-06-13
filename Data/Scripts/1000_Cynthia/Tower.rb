@@ -103,11 +103,12 @@ def getTowerPokemon(filter=nil)
 end
 
 def towerCynthiaEncounter()
+    $PokemonGlobal.towervalues[:escapeorb] = false
     if $PokemonGlobal.towervalues[:floor] == 1
         pbTrainerBattle(:CHAMPION_Sinnoh, "Cynthia", nil, false, 1)
         return
     end
-    return if ["Gym", "Elitefour", "Sakuya", "Legendary"].include?($PokemonGlobal.towervalues[:activeevent])
+    return if $PokemonGlobal.towervalues[:floor] % 10 == 9
     srand( $PokemonGlobal.towervalues[:seed]+$PokemonGlobal.towervalues[:floor])
     if rand($PokemonGlobal.towervalues[:maxcynthiachance]) < $PokemonGlobal.towervalues[:cynthiachance]
         pbEncounterCynthia([:CHAMPION_Sinnoh, "Cynthia"])
@@ -174,7 +175,6 @@ def getTowerEvents()
 end
 
 def towerIncreaseFloor(nextfloor = nil)
-    $PokemonGlobal.towervalues[:escapeorb] = false
     srand(($PokemonGlobal.towervalues[:seed]*3)+$PokemonGlobal.towervalues[:floor])
     pbSetSelfSwitch(2, "A", false, 21)
     if nextfloor
@@ -265,7 +265,7 @@ def towerIncreaseFloor(nextfloor = nil)
         pbSetGraphic(12, "", 21)
         $game_temp.player_new_map_id = 21
         $game_temp.player_new_x = 10
-        $game_temp.player_new_y = 15
+        $game_temp.player_new_y = 19
         $game_temp.player_new_direction = 2
         $scene.transfer_player
         $game_map.autoplay
@@ -282,7 +282,7 @@ def getTowerEventsList()
         "Miku" => 10,
         "Shop" => 10,
         "Pokemart" => 10,
-        "Heal" => 10,
+        "Heal" => 25,
         "Tutor" => 25,
         "Legendary" => [$PokemonGlobal.towervalues[:floor] - 46, 0].max / 3,
     }
@@ -295,15 +295,13 @@ def getTowerEventsList()
     eventlist["Pokemart"] /= 2 if $PokemonGlobal.towervalues[:floor] <= 20
     eventlist["Legendary"] = 0 if $PokemonGlobal.towervalues[:legendarylist].length == 0
     eventlist["Unknown"] = 0 if $PokemonGlobal.towervalues[:unknownlist].length == 0
-    $Trainer.party.each do |pkmn|
-        eventlist["Heal"] += 10 if pkmn.hp <= pkmn.totalhp / 10
-    end
     eventlist["Heal"] += 100 if $PokemonGlobal.towervalues[:floor] % 10 == 8
     eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] == 1
     return eventlist
 end
 
 def towerEvent()
+    $PokemonGlobal.towervalues[:escapeorb] = false
     srand(($PokemonGlobal.towervalues[:seed]*4)+$PokemonGlobal.towervalues[:floor])
     case $PokemonGlobal.towervalues[:activeevent]
     when "Pokemon"
