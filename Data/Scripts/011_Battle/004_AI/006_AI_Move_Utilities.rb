@@ -127,7 +127,7 @@ class PokeBattle_AI
       when :ICE
         return true if target.hasActiveAbility?(:POLAR)
       end
-      return true if Effectiveness.not_very_effective?(typeMod) &&
+      return true if typeMod < 4 &&
                      target.hasActiveAbility?(:WONDERGUARD)
       return true if move.damagingMove? && user.index!=target.index && !target.opposes?(user) &&
                      target.hasActiveAbility?(:TELEPATHY)
