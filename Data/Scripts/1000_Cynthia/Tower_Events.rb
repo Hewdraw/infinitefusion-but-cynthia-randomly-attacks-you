@@ -131,12 +131,45 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("The Torkoal left while you gathered herbs.")
         end
     when :LUMINOUSSPRING
-        Kernel.pbMessage("You encounter a spring radiating a bright light.")
-        Kernel.pbMessage("An Ursaring is standing at the edge staring at the spring.")
+        Kernel.pbMessage("You encounter a spring radiating a bright light.") if !recursion
+        Kernel.pbMessage("An Ursaring is standing at the edge staring at the spring.") if !recursion
         choice = pbUnknownCommands(["Have a Pokemon enter the spring.", "Attack the Ursaring.", "Look around nearby."], ["A powerful energy comes from the spring", "It doesn't appear to be paying attention to you.", "Something glimmers in the bushes."])
         case choice
         when 0
-
+            scene = PokemonParty_Scene.new
+            screen = PokemonPartyScreen.new(scene,$Trainer.party)
+            screen.pbStartScene(_INTL("Teach which Pokémon?"),false,annot)
+            evolved = false
+            loop do
+                chosen = screen.pbChoosePokemon
+                break if chosen<0
+                pokemon = $Trainer.party[chosen]
+                evolutions = getEvolvedSpecies(pokemon)
+                forcedevolutions = []
+                if evolutions.empty?
+                    forcedevolutions = [[pokemon.species, nil, :MISTSTONE]]
+                else
+                    evolutions.each do |evolution|
+                        forcedevolutions.push(evolution) if evolution[2] == :MISTSTONE
+                    end
+                end
+                evolutions = forcedevolutions if !forcedevolutions.empty?
+                newspecies = evolutions[rand(evolutions.length - 1)][0]
+                next false if newspecies == nil
+                next false if newspecies == :OMNIMON && pokemon.species != :OMNIMON
+                evo = PokemonEvolutionScene.new
+                evo.pbStartScreen(pokemon, newspecies)
+                evo.pbEvolution
+                evo.pbEndScreen
+                if !forcedevolutions.empty?
+                    pokemon.ability = :FORCEDEVOLUTION
+                    pokemon.calc_stats
+                    pokemon.miststone = true
+                end
+                return true
+            end
+            screen.pbEndScene
+            return resolveUnknownEvent(true) if !evolved
         when 1
             Kernel.pbMessage("The Ursaring is caught by surprise and falls into the spring.")
             Kernel.pbMessage("After a moment an angry Ursaluna jumps out at you.")
