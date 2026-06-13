@@ -935,7 +935,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     when 1  then id = :THUNDERSHOCK if GameData::Move.exists?(:THUNDERSHOCK)
     when 2  then id = :VINEWHIP if GameData::Move.exists?(:VINEWHIP)
     when 3  then id = :FAIRYWIND if GameData::Move.exists?(:FAIRYWIND)
-    when 4  then id = :CONFUSIO if GameData::Move.exists?(:CONFUSION)
+    when 4  then id = :CONFUSION if GameData::Move.exists?(:CONFUSION)
     when 5  then id = :WATERPULSE if GameData::Move.exists?(:WATERPULSE)
     when 6  then id = :MUDSHOT if GameData::Move.exists?(:MUDSHOT)
     when 7  then id = :ROCKTHROW if GameData::Move.exists?(:ROCKTHROW)
