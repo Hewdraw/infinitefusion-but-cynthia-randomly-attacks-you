@@ -232,6 +232,7 @@ def towerIncreaseFloor(nextfloor = nil)
                   }
                 end
                 check_evolution = false if oldspecies == pkmn.species
+                oldspecies = pkmn.species
             end
         end
     end
