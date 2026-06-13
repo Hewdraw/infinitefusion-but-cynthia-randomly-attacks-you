@@ -133,7 +133,7 @@ def resolveUnknownEvent(recursion = false)
     when :LUMINOUSSPRING
         Kernel.pbMessage("You encounter a spring radiating a bright light.") if !recursion
         Kernel.pbMessage("An Ursaring is standing at the edge staring at the spring.") if !recursion
-        choice = pbUnknownCommands(["Have a Pokemon enter the spring.", "Attack the Ursaring.", "Look around nearby."], ["A powerful energy comes from the spring", "It doesn't appear to be paying attention to you.", "Something glimmers in the bushes."])
+        choice = pbUnknownCommands(["Have a Pokemon enter the spring.", "Attack the Ursaring."], ["A powerful energy comes from the spring", "It doesn't appear to be paying attention to you."])
         case choice
         when 0
             scene = PokemonParty_Scene.new
@@ -174,10 +174,6 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("The Ursaring is caught by surprise and falls into the spring.")
             Kernel.pbMessage("After a moment an angry Ursaluna jumps out at you.")
             return if !pbLegendaryBattle("Ursaluna", true)
-        when 2
-            pbItemBall(:REVIVALHERB, rand(3) + 2)
-            pbItemBall(:ENERGYROOT, rand(3) + 2)
-            Kernel.pbMessage("The Torkoal left while you gathered herbs.")
         end
     when :ROUTE33
         Kernel.pbMessage("You spot a berry tree next to the road.") if !recursion
