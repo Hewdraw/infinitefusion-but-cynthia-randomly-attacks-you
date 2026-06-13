@@ -551,7 +551,7 @@ class PokeBattle_Battle
           if @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
             pbDisplayPaused(_INTL("You got Healies for winning!"))
           end
-          unlockClass(:GAMBLER) if @classvariables[:metronome]
+          unlockClass(:GAMBLER) if @classvariables[:metronome] && !$PokemonGlobal.towervalues.nil?
         end
       end
       # Gain money from winning a trainer battle, and from Pay Day

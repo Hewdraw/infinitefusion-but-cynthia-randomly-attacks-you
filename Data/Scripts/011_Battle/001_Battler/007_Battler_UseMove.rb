@@ -54,7 +54,7 @@ class PokeBattle_Battler
       @battle.pbJudge
       return false
     end
-    if !$PokemonGlobal.towervalues.nil? && pbOwnedByPlayer? && ![:METRONOME, :GREATERMETRONOME, :GREATESTMETRONOME].include?(choice[2].id)
+    if pbOwnedByPlayer? && ![:METRONOME, :GREATERMETRONOME, :GREATESTMETRONOME].include?(choice[2].id)
       @battle.classvariables[:metronome] = false
     end
     # Use the move
