@@ -219,14 +219,19 @@ def towerIncreaseFloor(nextfloor = nil)
             gainedhp = 1
             gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
             pkmn.hp = [pkmn.hp + gainedhp, pkmn.totalhp].min
-            newspecies = pkmn.check_evolution_on_level_up
-            if newspecies
-              pbFadeOutInWithMusic {
-                evo = PokemonEvolutionScene.new
-                evo.pbStartScreen(pkmn, newspecies)
-                evo.pbEvolution
-                evo.pbEndScreen
-              }
+            oldspecies = pkmn.species
+            check_evolution = true
+            while check_evolution
+                newspecies = pkmn.check_evolution_on_level_up
+                if newspecies
+                  pbFadeOutInWithMusic {
+                    evo = PokemonEvolutionScene.new
+                    evo.pbStartScreen(pkmn, newspecies)
+                    evo.pbEvolution
+                    evo.pbEndScreen
+                  }
+                end
+                check_evolution = false if oldspecies == pkmn.species
             end
         end
     end
