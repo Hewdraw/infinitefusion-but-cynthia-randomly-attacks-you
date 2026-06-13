@@ -45,7 +45,7 @@ TOWER_EVENTS = {
     :WISHCAVE => {
         :location => "Wish Cave",
         :image => "WishingStone",
-        :floorrequirement => false,
+        :floorrequirement => 0,
     },
 }
 

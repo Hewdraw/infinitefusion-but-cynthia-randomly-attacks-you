@@ -18,10 +18,11 @@ def setupTower()
         :activeevent => "Pokemon",
         :activevariable => nil,
         :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
-        :unknownlist => getUnknownEventList(),
+        :unknownlist => [],
         :eventvariables => {},
         :money => $Trainer.money
     }
+    $PokemonGlobal.towervalues[:unknownlist] = getUnknownEventList()
     $Trainer.money = 0
 
     selectTrainerClass()
