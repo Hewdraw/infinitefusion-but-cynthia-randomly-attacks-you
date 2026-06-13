@@ -19,7 +19,7 @@ class PokeBattle_Battle
       return false if b.abilityActive? &&
                       BattleHandlers.triggerTrappingTargetAbility(b.ability,b,battler,self)
       return false if b.itemActive? &&
-                      BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
+                      BattleHandlers.triggerTrappingTargetItem(b.item,b,battler,self)
     end
     return true
   end
@@ -141,7 +141,7 @@ class PokeBattle_Battle
       end
       eachOtherSideBattler(idxBattler) do |b|
         next if !b.itemActive?
-        if BattleHandlers.triggerTrappingTargetItem(b.item,battler,b,self)
+        if BattleHandlers.triggerTrappingTargetItem(b.item,b,battler,self)
           pbDisplayPaused(_INTL("{1} prevents escape with {2}!",b.pbThis,b.itemName))
           return 0
         end

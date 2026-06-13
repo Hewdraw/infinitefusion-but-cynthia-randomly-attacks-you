@@ -20,7 +20,8 @@ def setupTower()
         :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
         :unknownlist => [],
         :eventvariables => {},
-        :money => $Trainer.money
+        :money => $Trainer.money,
+        :escapeorb => false,
     }
     $PokemonGlobal.towervalues[:unknownlist] = getUnknownEventList()
     $Trainer.money = 0
@@ -173,6 +174,7 @@ def getTowerEvents()
 end
 
 def towerIncreaseFloor(nextfloor = nil)
+    $PokemonGlobal.towervalues[:escapeorb] = false
     srand(($PokemonGlobal.towervalues[:seed]*3)+$PokemonGlobal.towervalues[:floor])
     pbSetSelfSwitch(2, "A", false, 21)
     if nextfloor
@@ -375,19 +377,25 @@ def towerEvent()
         case $PokemonGlobal.towervalues[:activevariable]
         when "Genesect"
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
-            pbAddPokemon(:GENESECT, 5)
-            $PokemonBag.pbStoreItem(:OMNIDRIVE)
-            $PokemonBag.pbStoreItem(:BURNDRIVE)
-            $PokemonBag.pbStoreItem(:SHOCKDRIVE)
-            $PokemonBag.pbStoreItem(:DOUSEDRIVE)
-            $PokemonBag.pbStoreItem(:CHILLDRIVE)
+            if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+                pbAddPokemon(:GENESECT, 5)
+                $PokemonBag.pbStoreItem(:OMNIDRIVE)
+                $PokemonBag.pbStoreItem(:BURNDRIVE)
+                $PokemonBag.pbStoreItem(:SHOCKDRIVE)
+                $PokemonBag.pbStoreItem(:DOUSEDRIVE)
+                $PokemonBag.pbStoreItem(:CHILLDRIVE)
+            end
         when "Reshirom"
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
-            $PokemonBag.pbStoreItem(:LIGHTSTONE)
-            $PokemonBag.pbStoreItem(:DARKSTONE)
+            if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+                $PokemonBag.pbStoreItem(:LIGHTSTONE)
+                $PokemonBag.pbStoreItem(:DARKSTONE)
+            end
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
-            pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
+            if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+                pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
+            end
         end
         $PokemonGlobal.towervalues[:activevariable] = nil
     when "Gym"
@@ -441,7 +449,9 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Chuck, "Chuck")
         end
-        grantRandomEmera
+        if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+            grantRandomEmera
+        end
         $PokemonGlobal.towervalues[:badges] += 1
     when "Elitefour"
         case $PokemonGlobal.towervalues[:floor]
@@ -461,7 +471,9 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "champion_blue"
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
-        grantRandomEmera
+        if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+            grantRandomEmera
+        end
     when "Sakuya"
         case $PokemonGlobal.towervalues[:floor]
         when 100
@@ -538,7 +550,7 @@ def getFloorGraphic(event)
         when "Genesect"
             return "fossil_nerd"
         when "Latias"
-            return "LATIAS"
+            return "378"
         when "Meloetta"
             return "melostand"
         when nil, "Mew"
@@ -764,6 +776,7 @@ def getTowerItems()
             [:JOLLYMINT, 1],
             [:NAIVEMINT, 1],
             [:SERIOUSMINT, 1],
+            [:STICKYBARB, 1],
         ],
         [ #rare
             [:EVIOLITE, 1],

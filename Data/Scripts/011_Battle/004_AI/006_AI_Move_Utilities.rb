@@ -372,7 +372,7 @@ class PokeBattle_AI
       #       of the round.
       if target.item && !target.item.is_berry?
         BattleHandlers.triggerDamageCalcTargetItem(target.item,
-           user,target,move,multipliers,baseDmg,type)
+           target,user,move,multipliers,baseDmg,type)
       end
     end
     # Global abilities
@@ -566,7 +566,7 @@ class PokeBattle_AI
       end
       if skill>=PBTrainerAI.bestSkill
         if c>=0 && target.itemActive?
-          c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+          c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,target,user,c)
         end
       end
       # Other efffects
@@ -650,13 +650,13 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill
       if user.itemActive?
         BattleHandlers.triggerAccuracyCalcUserItem(user.item,
-           modifiers,user,target,move,type)
+           user,modifiers,target,move,type)
       end
     end
     if skill>=PBTrainerAI.bestSkill
       if target.itemActive?
         BattleHandlers.triggerAccuracyCalcTargetItem(target.item,
-           modifiers,user,target,move,type)
+           target,modifiers,user,move,type)
       end
     end
     # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to specific values

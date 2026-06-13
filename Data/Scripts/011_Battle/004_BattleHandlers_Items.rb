@@ -449,7 +449,7 @@ BattleHandlers::PriorityBracketUseItem.add(:QUICKCLAW,
 #===============================================================================
 
 BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
-  proc { |item,mods,user,target,move,type|
+  proc { |item,user,mods,target,move,type|
     mods[:accuracy_multiplier] *= 1.1
   }
 )
@@ -457,7 +457,7 @@ BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
 BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
 
 BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
-  proc { |item,mods,user,target,move,type|
+  proc { |item,user,mods,target,move,type|
     if (target.battle.choices[target.index][0]!=:UseMove &&
        target.battle.choices[target.index][0]!=:Shift) ||
        target.movedThisRound?
@@ -470,14 +470,14 @@ BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
 # AccuracyCalcTargetItem handlers
 #===============================================================================
 
-BattleHandlers::AccuracyCalcUserItem.add(:BUNDLEOFBALLOONS,
-  proc { |item,mods,user,target,move,type|
+BattleHandlers::AccuracyCalcTargetItem.add(:BUNDLEOFBALLOONS,
+  proc { |item,target,mods,user,move,type|
     mods[:accuracy_multiplier] *= 1.2
   }
 )
 
 BattleHandlers::AccuracyCalcTargetItem.add(:BRIGHTPOWDER,
-  proc { |item,mods,user,target,move,type|
+  proc { |item,target,mods,user,move,type|
     mods[:accuracy_multiplier] *= 0.9
   }
 )
@@ -945,13 +945,13 @@ BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
 #       are Metal/Quick Powder, which don't work if the holder is transformed.
 
 BattleHandlers::DamageCalcTargetItem.add(:ASSAULTVEST,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.5 if move.specialMove?
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:DIAMONDCHESTPLATE,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.5 if move.physicalMove?
   }
 )
@@ -965,43 +965,43 @@ BattleHandlers::DamageCalcTargetAbility.add(:PRISMSCALE,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:BABIRIBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:STEEL,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:CHARTIBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:ROCK,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:CHILANBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:NORMAL,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:CHOPLEBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:FIGHTING,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:COBABERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:FLYING,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:COLBURBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:DARK,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     if move.specialMove?
       mults[:defense_multiplier] *= 2 if target.isFusionOf(:CLAMPERL)
       mults[:defense_multiplier] *= 2 if target.isFusionOf(:GOREBYSS)
@@ -1010,7 +1010,7 @@ BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
     #       means it also cares about the Pokémon's form. Some forms cannot
     #       evolve even if the species generally can, and such forms are not
@@ -1024,7 +1024,7 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
 BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
 
 BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     if move.physicalMove? && target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
       mults[:defense_multiplier] *= 2
     end
@@ -1032,7 +1032,7 @@ BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON)
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON2)
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGONZ)
@@ -1040,7 +1040,7 @@ BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     if move.specialMove?
       mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:HAPPINY)
       mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:CHANSEY)
@@ -1049,7 +1049,7 @@ BattleHandlers::DamageCalcTargetItem.add(:LUCKYPUNCH,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:PROTECTOR,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     if move.physicalMove?
       mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:RHYHORN)
       mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:RHYDON)
@@ -1059,7 +1059,7 @@ BattleHandlers::DamageCalcTargetItem.add(:PROTECTOR,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:DRAGONSCALE,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:HORSEA)
     mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:SEADRA)
     mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:KINGDRA)
@@ -1067,7 +1067,7 @@ BattleHandlers::DamageCalcTargetItem.add(:DRAGONSCALE,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     if target.isFusionOf(:TYRANTRUM) || target.isFusionOf(:HOTDINO)
       mults[:defense_multiplier] *= 1.5
     end
@@ -1075,25 +1075,25 @@ BattleHandlers::DamageCalcTargetItem.add(:BLACKGLASSES,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:HABANBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:DRAGON,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:KASIBBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:GHOST,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:KEBIABERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:POISON,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     if target.isFusionOf(:DITTO)
       mults[:defense_multiplier] *= 1.5
     end
@@ -1101,7 +1101,7 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     next unless PARADOXLIST.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(target.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(target.species)).species)))
     stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]
     stats.each_with_index do |stat,i|
@@ -1114,43 +1114,43 @@ BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:OCCABERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:FIRE,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:PASSHOBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:WATER,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:PAYAPABERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:PSYCHIC,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:RINDOBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:GRASS,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:ROSELIBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:FAIRY,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:SHUCABERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:GROUND,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:SOULDEW,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     next if Settings::SOUL_DEW_POWERS_UP_TYPES
     next if !target.isFusionOf(:LATIAS) && !target.isFusionOf(:LATIOS) && ![:MEGALATIAS, :MEGALATIOS, :MEGAB378H379, :MEGAB379H378].include?(user.species)
     if move.specialMove? && !user.battle.rules["souldewclause"]
@@ -1160,19 +1160,19 @@ BattleHandlers::DamageCalcTargetItem.add(:SOULDEW,
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:TANGABERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:BUG,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:WACANBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:ELECTRIC,type,target,mults)
   }
 )
 
 BattleHandlers::DamageCalcTargetItem.add(:YACHEBERRY,
-  proc { |item,user,target,move,mults,baseDmg,type|
+  proc { |item,target,user,move,mults,baseDmg,type|
     pbBattleTypeWeakingBerry(:ICE,type,target,mults)
   }
 )
@@ -1225,7 +1225,7 @@ BattleHandlers::CriticalCalcUserItem.add(:DRAGONSCALE,
 #===============================================================================
 
 BattleHandlers::TargetItemOnHit.add(:ABSORBBULB,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if move.calcType != :WATER
     next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
     battle.pbCommonAnimation("UseItem",target)
@@ -1235,7 +1235,7 @@ BattleHandlers::TargetItemOnHit.add(:ABSORBBULB,
 )
 
 BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     battle.pbDisplay(_INTL("{1}'s {2} popped!",target.pbThis,target.itemName))
     target.pbConsumeItem(false,true)
     target.pbSymbiosis
@@ -1243,7 +1243,7 @@ BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
 )
 
 BattleHandlers::TargetItemOnHit.add(:BUNDLEOFBALLOONS,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     if move.type == :FIRE && (!battle.pbCheckGlobalAbility(:DAMP) || battle.moldBreaker)
       battle.pbDisplay(_INTL("{1}'s balloons exploded!",target.pbThis))
       if target.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -1262,7 +1262,7 @@ BattleHandlers::TargetItemOnHit.add(:BUNDLEOFBALLOONS,
 )
 
 BattleHandlers::TargetItemOnHit.add(:CELLBATTERY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if move.calcType != :ELECTRIC
     next if !target.pbCanRaiseStatStage?(:ATTACK,target)
     battle.pbCommonAnimation("UseItem",target)
@@ -1272,7 +1272,7 @@ BattleHandlers::TargetItemOnHit.add(:CELLBATTERY,
 )
 
 BattleHandlers::TargetItemOnHit.add(:ENIGMABERRY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if target.damageState.substitute || target.damageState.disguise
     next if !Effectiveness.super_effective?(target.damageState.typeMod)
     if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item,target,battle,false)
@@ -1282,7 +1282,7 @@ BattleHandlers::TargetItemOnHit.add(:ENIGMABERRY,
 )
 
 BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if !target.canConsumeBerry?
     next if !move.physicalMove?
     next if !user.takesIndirectDamage?
@@ -1301,7 +1301,7 @@ BattleHandlers::TargetItemOnHit.add(:JABOCABERRY,
 #       stoppage is either a false report that no one ever corrected, or an
 #       effect that later changed and wasn't noticed.
 BattleHandlers::TargetItemOnHit.add(:KEEBERRY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if !move.physicalMove?
     if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item,target,battle,false)
       target.pbHeldItemTriggered(item)
@@ -1310,7 +1310,7 @@ BattleHandlers::TargetItemOnHit.add(:KEEBERRY,
 )
 
 BattleHandlers::TargetItemOnHit.add(:LUMINOUSMOSS,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if move.calcType != :WATER
     next if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE,target)
     battle.pbCommonAnimation("UseItem",target)
@@ -1325,7 +1325,7 @@ BattleHandlers::TargetItemOnHit.add(:LUMINOUSMOSS,
 #       stoppage is either a false report that no one ever corrected, or an
 #       effect that later changed and wasn't noticed.
 BattleHandlers::TargetItemOnHit.add(:MARANGABERRY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if !move.specialMove?
     if BattleHandlers.triggerTargetItemOnHitPositiveBerry(item,target,battle,false)
       target.pbHeldItemTriggered(item)
@@ -1334,7 +1334,7 @@ BattleHandlers::TargetItemOnHit.add(:MARANGABERRY,
 )
 
 BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
     next if !user.takesIndirectDamage?
     battle.scene.pbDamageAnimation(user)
@@ -1343,8 +1343,17 @@ BattleHandlers::TargetItemOnHit.add(:ROCKYHELMET,
   }
 )
 
+BattleHandlers::TargetItemOnHit.add(:BARB,
+  proc { |item,target,user,move,battle|
+    next if !user.takesIndirectDamage?
+    battle.scene.pbDamageAnimation(user)
+    user.pbReduceHP(user.totalhp/6,false)
+    battle.pbDisplay(_INTL("{1} was hurt by the {2}!",user.pbThis,target.itemName))
+  }
+)
+
 BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if !target.canConsumeBerry?
     next if !move.specialMove?
     next if !user.takesIndirectDamage?
@@ -1358,7 +1367,7 @@ BattleHandlers::TargetItemOnHit.add(:ROWAPBERRY,
 )
 
 BattleHandlers::TargetItemOnHit.add(:SNOWBALL,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if move.calcType != :ICE
     next if !target.pbCanRaiseStatStage?(:ATTACK,target)
     battle.pbCommonAnimation("UseItem",target)
@@ -1368,7 +1377,7 @@ BattleHandlers::TargetItemOnHit.add(:SNOWBALL,
 )
 
 BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if !move.pbContactMove?(user) || !user.affectedByContactEffect?
     next if user.fainted? || user.item
     user.item = target.item
@@ -1386,7 +1395,7 @@ BattleHandlers::TargetItemOnHit.add(:STICKYBARB,
 )
 
 BattleHandlers::TargetItemOnHit.add(:WEAKNESSPOLICY,
-  proc { |item,user,target,move,battle|
+  proc { |item,target,user,move,battle|
     next if target.damageState.disguise
     next if !Effectiveness.super_effective?(target.damageState.typeMod)
     next if !target.pbCanRaiseStatStage?(:ATTACK,target) &&
@@ -1712,7 +1721,7 @@ BattleHandlers::EVGainModifierItem.add(:POWERWEIGHT,
 #===============================================================================
 
 BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
-  proc { |item,weather,duration,battler,battle|
+  proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Rain || weather == :HeavyRain
   }
 )
@@ -1720,19 +1729,19 @@ BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
 BattleHandlers::WeatherExtenderItem.copy(:DAMPROCK,:DRAGONSCALE)
 
 BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
-  proc { |item,weather,duration,battler,battle|
+  proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Sun || weather == :HarshSun
   }
 )
 
 BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
-  proc { |item,weather,duration,battler,battle|
+  proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Hail || weather == :Snow
   }
 )
 
 BattleHandlers::WeatherExtenderItem.add(:SMOOTHROCK,
-  proc { |item,weather,duration,battler,battle|
+  proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Sandstorm
   }
 )
@@ -1742,7 +1751,7 @@ BattleHandlers::WeatherExtenderItem.add(:SMOOTHROCK,
 #===============================================================================
 
 BattleHandlers::TerrainExtenderItem.add(:TERRAINEXTENDER,
-  proc { |item,terrain,duration,battler,battle|
+  proc { |item,battler,terrain,duration,battle|
     next 8
   }
 )

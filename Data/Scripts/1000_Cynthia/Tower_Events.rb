@@ -20,6 +20,12 @@ TOWER_EVENTS = {
         :image => "berrytreeLIECHIBERRY",
         :floorrequirement => false,
     },
+    :SECRETBAZAAR => {
+        :location => "Secret",
+        :location2 => "Bazaar",
+        :image => "KIRLIA",
+        :floorrequirement => 0,
+    },
     :SINNOHUNDERGROUND => {
         :location => "Underground",
         :location2 => "Path",
@@ -158,6 +164,48 @@ def resolveUnknownEvent(recursion = false)
             $PokemonBag.pbStoreItem(berry, 5)
         end
         pbObtainAlpha("Heracross")
+    when :SECRETBAZAAR
+        Kernel.pbMessage("You find a hidden staircase into a secret bazaar.")
+        Kernel.pbMessage("4 Pokemon are offering you their service before you leave.")
+        choice = pbUnknownCommands(["Mime Jr.", "Swalot", "Shedinja", "Lickilicky"], ["Heal your party.", "Gain random items.", "Obtain an Escape Orb.", "Clean anything Sticky that you have."])
+        case choice
+        when 0
+            Kernel.pbMessage("Mime Jr. uses Heal Pulse.")
+            $Trainer.party.each do |pkmn|
+                pkmn.heal
+            end
+            Kernel.pbMessage("Your Pokemon are fully healed.")
+        when 1
+            enderChest()
+        when 2
+            pbReceiveItem(:ESCAPEORB)
+        when 3
+            didsomething = false
+            if hasEmera?(:STICKYKEY)
+                getLooplet.pbRemoveEmera(:STICKYKEY)
+                getLooplet.pbStoreEmera(:KEY)
+                Kernel.pbMessage("Your Sticky Key is now clean.")
+                didsomething = true
+            end
+            stickybarbs = $PokemonBag.pbQuantity(:STICKYBARB)
+            if $PokemonBag.pbDeleteItem(:SINNOHCOIN, stickybarbs)
+                $PokemonBag.pbStoreItem(:BARB, stickybarbs)
+                Kernel.pbMessage("Your Sticky Barbs are now clean.")
+                didsomething = true
+            end
+            $Trainer.party.each do |pkmn|
+                if pkmn.hasAbility?(:STICKYHOLD)
+                    pkmn.ability = :HOLD
+                    Kernel.pbMessage("Your #{pkmn.name}'s Sticky Hold is now clean.")
+                    didsomething = true
+                end
+                pkmn.moves.each_with_index do |move, i|
+                    next unless move.id == :STICKYWEB
+                    pkmn.moves[i] = Pokemon::Move.new(:WEB)
+                    Kernel.pbMessage("Your #{pkmn.name}'s Sticky Web is now clean.")
+                end
+            end
+        end
     when :SINNOHUNDERGROUND
         pbBGMPlay("Mining")
         pbMiningGame

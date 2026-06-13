@@ -428,7 +428,8 @@ class PokeBattle_Battle
   def pbGainMoney
     return if $game_switches[SWITCH_IS_REMATCH] #is rematch
     return if !@internalBattle || !@moneyGain
-    return if @opponent && @opponent[0].trainer_type == :WuhuIslandExecutioner 
+    return if @opponent && @opponent[0].trainer_type == :WuhuIslandExecutioner
+    return unless $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
     # Money rewarded from opposing trainers
     if trainerBattle? && !legendaryBattle?
       tMoney = 0
@@ -502,54 +503,56 @@ class PokeBattle_Battle
           pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!",@opponent[0].full_name,
              @opponent[1].full_name,@opponent[2].full_name))
         end
-        coin = 0
-        @opponent.each_with_index do |trainer,i|
-          @scene.pbShowOpponent(i)
-          if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia" && $PokemonGlobal.towervalues.nil?
-            $PokemonGlobal.cynthiahandschance = 1
-            if rand(150) < $PokemonGlobal.cynthiahandschance
-              $PokemonGlobal.cynthiahandschance = 1000
-            end
-            if $PokemonGlobal.battledepth == nil
-              $PokemonGlobal.battledepth = 0
-            end
-            $PokemonGlobal.battledepth += 1
-            if !pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
+        if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+          coin = 0
+          @opponent.each_with_index do |trainer,i|
+            @scene.pbShowOpponent(i)
+            if $PokemonGlobal.cynthiahandschance && $PokemonGlobal.cynthiahandschance >= 1000 && trainer.name == "Cynthia" && $PokemonGlobal.towervalues.nil?
+              $PokemonGlobal.cynthiahandschance = 1
+              if rand(150) < $PokemonGlobal.cynthiahandschance
+                $PokemonGlobal.cynthiahandschance = 1000
+              end
+              if $PokemonGlobal.battledepth == nil
+                $PokemonGlobal.battledepth = 0
+              end
+              $PokemonGlobal.battledepth += 1
+              if !pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
+                $PokemonGlobal.battlehplist.each do |b|
+                  b[0].hp = b[1]
+                end
+                @decision = 2
+                pbEndOfBattle
+                return
+              end
               $PokemonGlobal.battlehplist.each do |b|
                 b[0].hp = b[1]
               end
-              @decision = 2
-              pbEndOfBattle
-              return
             end
-            $PokemonGlobal.battlehplist.each do |b|
-              b[0].hp = b[1]
+            msg = (@endSpeeches[i] && @endSpeeches[i] !="") ? @endSpeeches[i] : "..."
+            pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
+            if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
+              coin += pbCynthiaGetBadgeCount+1
+            end
+            if trainer.name == "Hatsune Mechu"
+              coin += 30
             end
           end
-          msg = (@endSpeeches[i] && @endSpeeches[i] !="") ? @endSpeeches[i] : "..."
-          pbDisplayPaused(msg.gsub(/\\[Pp][Nn]/,pbPlayer.name))
-          if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
-            coin += pbCynthiaGetBadgeCount+1
+          coin *= 2 if hasEmera?(:GIMMIGHOULCOIN)
+          if coin > 0 && $PokemonBag.pbStoreItem(:SINNOHCOIN, coin)
+            if coin == 1
+              pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
+            else
+              pbDisplayPaused(_INTL("You got #{coin} Sinnoh Coins for winning!"))
+            end
           end
-          if trainer.name == "Hatsune Mechu"
-            coin += 30
+          if @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:HEAVYDUTYBOOTS)
+            pbDisplayPaused(_INTL("You got boots!? for winning!"))
           end
-        end
-        coin *= 2 if hasEmera?(:GIMMIGHOULCOIN)
-        if coin > 0 && $PokemonBag.pbStoreItem(:SINNOHCOIN, coin)
-          if coin == 1
-            pbDisplayPaused(_INTL("You got a Sinnoh Coin for winning!"))
-          else
-            pbDisplayPaused(_INTL("You got #{coin} Sinnoh Coins for winning!"))
+          if @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
+            pbDisplayPaused(_INTL("You got Healies for winning!"))
           end
+          unlockClass(:GAMBLER) if @classvariables[:metronome]
         end
-        if @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:HEAVYDUTYBOOTS)
-          pbDisplayPaused(_INTL("You got boots!? for winning!"))
-        end
-        if @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
-          pbDisplayPaused(_INTL("You got Healies for winning!"))
-        end
-        unlockClass(:GAMBLER) if @classvariables[:metronome]
       end
       # Gain money from winning a trainer battle, and from Pay Day
       pbGainMoney if @decision!=4
@@ -607,6 +610,7 @@ class PokeBattle_Battle
           next if !battler.raid
           next if $PokemonGlobal.battledepth && $PokemonGlobal.battledepth > 0
           next if [:CREEPER, :MEGACREEPER, :VOCALLEEK, :VOCALCELL, :VOCALDRILL, :WANDERINGTRADER].include?(battler.pokemon.species)
+          next unless $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
           case battler.pokemon.species
           when :CELEBI
             battler.pokemon.moves = [Pokemon::Move.new(:SEEDFLARE), Pokemon::Move.new(:PSYCHIC), Pokemon::Move.new(:AURASPHERE), Pokemon::Move.new(:SHADOWBALL)]

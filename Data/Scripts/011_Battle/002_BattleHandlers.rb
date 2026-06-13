@@ -253,12 +253,12 @@ module BattleHandlers
     AccuracyCalcTargetAbility.trigger(ability,target,mods,user,move,type)
   end
 
-  def self.triggerAccuracyCalcUserItem(item,mods,user,target,move,type)
-    AccuracyCalcUserItem.trigger(item,mods,user,target,move,type)
+  def self.triggerAccuracyCalcUserItem(item,user,mods,target,move,type)
+    AccuracyCalcUserItem.trigger(item,user,mods,target,move,type)
   end
 
-  def self.triggerAccuracyCalcTargetItem(item,mods,user,target,move,type)
-    AccuracyCalcTargetItem.trigger(item,mods,user,target,move,type)
+  def self.triggerAccuracyCalcTargetItem(item,target,mods,user,move,type)
+    AccuracyCalcTargetItem.trigger(item,target,mods,user,move,type)
   end
 
   #=============================================================================
@@ -287,8 +287,8 @@ module BattleHandlers
     DamageCalcUserItem.trigger(item,user,target,move,mults,baseDmg,type)
   end
 
-  def self.triggerDamageCalcTargetItem(item,user,target,move,mults,baseDmg,type)
-    DamageCalcTargetItem.trigger(item,user,target,move,mults,baseDmg,type)
+  def self.triggerDamageCalcTargetItem(item,target,user,move,mults,baseDmg,type)
+    DamageCalcTargetItem.trigger(item,target,user,move,mults,baseDmg,type)
   end
 
   #=============================================================================
@@ -308,8 +308,8 @@ module BattleHandlers
     return (ret!=nil) ? ret : c
   end
 
-  def self.triggerCriticalCalcTargetItem(item,user,target,c)
-    ret = CriticalCalcTargetItem.trigger(item,user,target,c)
+  def self.triggerCriticalCalcTargetItem(item,target,user,c)
+    ret = CriticalCalcTargetItem.trigger(item,target,user,c)
     return (ret!=nil) ? ret : c
   end
 
@@ -323,8 +323,8 @@ module BattleHandlers
     UserAbilityOnHit.trigger(ability,user,target,move,battle)
   end
 
-  def self.triggerTargetItemOnHit(item,user,target,move,battle)
-    TargetItemOnHit.trigger(item,user,target,move,battle)
+  def self.triggerTargetItemOnHit(item,target,user,move,battle)
+    TargetItemOnHit.trigger(item,target,user,move,battle)
   end
 
   def self.triggerTargetItemOnHitPositiveBerry(item,battler,battle,forced)
@@ -375,13 +375,13 @@ module BattleHandlers
 
   #=============================================================================
 
-  def self.triggerWeatherExtenderItem(item,weather,duration,battler,battle)
-    ret = WeatherExtenderItem.trigger(item,weather,duration,battler,battle)
+  def self.triggerWeatherExtenderItem(item,battler,weather,duration,battle)
+    ret = WeatherExtenderItem.trigger(item,battler,weather,duration,battle)
     return (ret!=nil) ? ret : duration
   end
 
-  def self.triggerTerrainExtenderItem(item,terrain,duration,battler,battle)
-    ret = TerrainExtenderItem.trigger(item,terrain,duration,battler,battle)
+  def self.triggerTerrainExtenderItem(item,battler,terrain,duration,battle)
+    ret = TerrainExtenderItem.trigger(item,battler,terrain,duration,battle)
     return (ret!=nil) ? ret : duration
   end
 
@@ -433,8 +433,8 @@ module BattleHandlers
     return (ret!=nil) ? ret : false
   end
 
-  def self.triggerTrappingTargetItem(item,switcher,bearer,battle)
-    ret = TrappingTargetItem.trigger(item,switcher,bearer,battle)
+  def self.triggerTrappingTargetItem(item,bearer,switcher,battle)
+    ret = TrappingTargetItem.trigger(item,bearer,switcher,battle)
     return (ret!=nil) ? ret : false
   end
 

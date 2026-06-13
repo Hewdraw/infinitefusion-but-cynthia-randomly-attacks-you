@@ -390,7 +390,7 @@ class PokemonLoopletScreen
       command = @scene.pbShowCommands(_INTL("{1} is selected.",itemname),commands)
       if cmdUse>=0 && command==cmdUse   # Use item
         move = EMERADICT[item][:tutormove]
-        movename = move.name
+        movename = GameData::Move.get(move).name
         if pbConfirmMessage(_INTL("Do you want to teach {1} to a Pokémon?", movename))
           pbFadeOutIn {
             annot = []

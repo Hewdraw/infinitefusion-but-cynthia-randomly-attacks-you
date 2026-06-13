@@ -173,11 +173,11 @@ class PokeBattle_Move
     # Item effects that alter accuracy calculation
     if user.itemActive?
       BattleHandlers.triggerAccuracyCalcUserItem(user.item,
-         modifiers,user,target,self,@calcType)
+         user,modifiers,target,self,@calcType)
     end
     if target.itemActive?
       BattleHandlers.triggerAccuracyCalcTargetItem(target.item,
-         modifiers,user,target,self,@calcType)
+         target,modifiers,user,self,@calcType)
     end
     # Other effects, inc. ones that set accuracy_multiplier or evasion_stage to
     # specific values
@@ -221,7 +221,7 @@ class PokeBattle_Move
     end
     c += 1 if c >= 0 && user.hasActiveItem?(:REAPERCLOTH) && punchingMove?
     if c>=0 && target.itemActive?
-      c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,user,target,c)
+      c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,target,user,c)
     end
     return false if c<0
     # Move-specific "always/never a critical hit" effects
@@ -374,7 +374,7 @@ class PokeBattle_Move
     end
     if target.itemActive?
       BattleHandlers.triggerDamageCalcTargetItem(target.item,
-         user,target,self,multipliers,baseDmg,type)
+         target,user,self,multipliers,baseDmg,type)
     end
     # Parental Bond's second attack
     if user.effects[PBEffects::ParentalBond]==1

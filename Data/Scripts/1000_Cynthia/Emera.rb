@@ -35,7 +35,13 @@ EMERADICT = {
         :name => "VIP Card",
         :description => "50% cheaper at the Shadross Shop.",
         :rarity => :EVENT,
-        :cost => 0
+    },
+    :KEY => {
+        :name => "Key",
+        :description => "Can teach Greatest Metronome. Can open locked doors.",
+        :rarity => :EVENT,
+        :tutormove => :GREATESTMETRONOME,
+        :tutorcondition => -> (pokemon) {return true},
     },
 
     :APPLE => {

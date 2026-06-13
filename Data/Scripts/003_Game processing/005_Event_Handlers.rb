@@ -263,6 +263,10 @@ end
 #
 #===============================================================================
 class SpeciesHandlerHash < HandlerHash2
+  def trigger(entry, *args)
+    super(entry, *args) if args[0].hasActiveAbility?(:HOLD)
+    return super(entry, *args)
+  end
 end
 
 class AbilityHandlerHash < HandlerHash2

@@ -30,7 +30,7 @@ class PokeBattle_Battler
       # Target's item
       if target.itemActive?(true)
         oldHP = user.hp
-        BattleHandlers.triggerTargetItemOnHit(target.item,user,target,move,@battle)
+        BattleHandlers.triggerTargetItemOnHit(target.item,target,user,move,@battle)
         user.pbItemHPHealCheck if user.hp<oldHP
       end
     end

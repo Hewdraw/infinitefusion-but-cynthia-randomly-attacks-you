@@ -2546,7 +2546,7 @@ class PokeBattle_AI
           end
         else
           BattleHandlers.triggerDamageCalcTargetItem(target.item,
-             user,target,move,multipliers,baseDmg,type)
+             target,user,move,multipliers,baseDmg,type)
         end
       end
       # Parental Bond's second attack

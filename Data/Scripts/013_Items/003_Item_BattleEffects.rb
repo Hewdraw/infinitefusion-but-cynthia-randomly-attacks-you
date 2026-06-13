@@ -329,6 +329,12 @@ ItemHandlers::UseInBattle.add(:POKEDOLL,proc { |item,battler,battle|
 
 ItemHandlers::UseInBattle.copy(:POKEDOLL,:FLUFFYTAIL,:POKETOY)
 
+ItemHandlers::UseInBattle.add(:ESCAPEORB,proc { |item,battler,battle|
+  battle.decision = 1
+  $PokemonGlobal.towervalues[:escapeorb] = true if $PokemonGlobal.towervalues
+  battle.pbDisplayPaused(_INTL("You got away safely!"))
+})
+
 ItemHandlers::UseInBattle.add(:POKEFLUTE,proc { |item,battler,battle|
   battle.eachBattler do |b|
     next if b.status != :SLEEP || b.hasActiveAbility?(:SOUNDPROOF)
