@@ -260,6 +260,7 @@ class MiningGameScene
         rnd-=ITEMS[i][1]
         if rnd<0
           if pbNoDuplicateItems(ITEMS[i][0])
+            tries2 = 0
             while !added
               provx=rand(BOARDWIDTH-ITEMS[i][4]+1)
               provy=rand(BOARDHEIGHT-ITEMS[i][5]+1)
@@ -268,6 +269,8 @@ class MiningGameScene
                 numitems-=1
                 added=true
               end
+              tries2 += 1
+              break if tries2 >= 500
             end
           else
             break
