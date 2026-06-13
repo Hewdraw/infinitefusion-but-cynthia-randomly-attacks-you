@@ -58,7 +58,7 @@ class PokeBattle_Battle
   #=============================================================================
   # Returns true if a choice was made, false if cancelled.
   def pbFightMenu(idxBattler)
-    if @battlers[idxBattler].hasActiveEmera?(:STICKYKEY)
+    if @battlers[idxBattler].hasActiveEmera?(:STICKYKEY) || @battlers[idxBattler].hasActiveEmera?(:KEY)
       @choices[idxBattler][0] = :UseMove    # "Use move"
       @choices[idxBattler][1] = -1          # Index of move to be used
       @choices[idxBattler][2] = PokeBattle_Move.from_pokemon_move(self,Pokemon::Move.new(:GREATESTMETRONOME))   # Struggle PokeBattle_Move object

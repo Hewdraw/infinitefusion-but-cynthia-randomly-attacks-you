@@ -38,7 +38,7 @@ EMERADICT = {
     },
     :KEY => {
         :name => "Key",
-        :description => "Can teach Greatest Metronome. Can open locked doors.",
+        :description => "Use Greatest Metronome instead of Fighting. Can teach Greatest Metronome. Can open locked doors.",
         :rarity => :EVENT,
         :tutormove => :GREATESTMETRONOME,
         :tutorcondition => -> (pokemon) {return true},

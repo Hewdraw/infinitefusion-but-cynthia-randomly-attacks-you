@@ -1094,6 +1094,8 @@ BattleHandlers::DamageCalcUserAbility.add(:GUTS,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.copy(:GUTS, :GUTSPLUS)
+
 BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 2 if move.physicalMove?

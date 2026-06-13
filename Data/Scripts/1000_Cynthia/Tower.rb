@@ -207,7 +207,7 @@ def towerIncreaseFloor(nextfloor = nil)
             pkmn.level = newlevel
             pkmn.calc_stats
             pkmn.status = :NONE if hasEmera?(:MILKBUCKET)
-            if !hasEmera?(:STICKYKEY)
+            if !(hasEmera?(:STICKYKEY) || hasEmera?(:KEY))
                 movelist = pkmn.getMoveList
                 moves = []
                 for i in movelist

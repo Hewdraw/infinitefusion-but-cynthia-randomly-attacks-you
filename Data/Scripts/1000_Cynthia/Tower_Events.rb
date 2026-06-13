@@ -7,8 +7,8 @@ TOWER_EVENTS = {
     :LUMINOUSSPRING => {
         :location => "Luminous",
         :location2 => "Spring",
-        :image => "",
-        :floorrequirement => false, #todo
+        :image => "217_0",
+        :floorrequirement => 0,
     },
     :ROUTE33 => {
         :location => "Route 33",
@@ -123,8 +123,24 @@ def resolveUnknownEvent(recursion = false)
             end
             Kernel.pbMessage("Your Pokemon heal from the rest.")
         when 1
-            Kernel.pbMessage("Torkoal attacks")
+            Kernel.pbMessage("Torkoal attacks.")
             return if !pbLegendaryBattle("Torkoal", true)
+        when 2
+            pbItemBall(:REVIVALHERB, rand(3) + 2)
+            pbItemBall(:ENERGYROOT, rand(3) + 2)
+            Kernel.pbMessage("The Torkoal left while you gathered herbs.")
+        end
+    when :LUMINOUSSPRING
+        Kernel.pbMessage("You encounter a spring radiating a bright light.")
+        Kernel.pbMessage("An Ursaring is standing at the edge staring at the spring.")
+        choice = pbUnknownCommands(["Have a Pokemon enter the spring.", "Attack the Ursaring.", "Look around nearby."], ["A powerful energy comes from the spring", "It doesn't appear to be paying attention to you.", "Something glimmers in the bushes."])
+        case choice
+        when 0
+
+        when 1
+            Kernel.pbMessage("The Ursaring is caught by surprise and falls into the spring.")
+            Kernel.pbMessage("After a moment an angry Ursaluna jumps out at you.")
+            return if !pbLegendaryBattle("Ursaluna", true)
         when 2
             pbItemBall(:REVIVALHERB, rand(3) + 2)
             pbItemBall(:ENERGYROOT, rand(3) + 2)

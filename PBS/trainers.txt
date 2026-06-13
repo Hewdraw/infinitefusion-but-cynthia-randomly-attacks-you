@@ -11377,6 +11377,18 @@ Pokemon = TORKOAL,5
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,252,0
 
+[ALPHA_POKEMON,Ursaluna,0]
+Pokemon = URSALUNA,5
+    Offset = 0
+    Moves = FACADE,MEGAHORNPLUS,SWORDSDANCE,THOUSANDARROWS
+    Ability = GUTSPLUS
+    Hpbar = 2
+    Item = FLAMEORB
+    Nature = ADAMANT
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,0,0,252
+
 [ALPHA_POKEMON,Slaking,0]   
 Pokemon = SLAKING,5 
     Offset = 0

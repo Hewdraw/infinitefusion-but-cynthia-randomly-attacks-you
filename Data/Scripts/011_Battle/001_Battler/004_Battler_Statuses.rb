@@ -84,12 +84,12 @@ class PokeBattle_Battler
     when :SLEEP
       # No type is immune to sleep
     when :POISON
-      if !(user && user.hasActiveAbility?(:CORROSION)) && !hasActiveAbility?(:POISONHEAL)
+      if !hasActiveAbility?([:CORROSION, :POISONHEAL])
         hasImmuneType |= pbHasType?(:POISON)
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when :BURN
-      hasImmuneType |= pbHasType?(:FIRE) && !hasActiveAbility?(:WILDFIRE) && !hasActiveAbility?(:GUTS) && !hasActiveAbility?(:FLAREBOOST)
+      hasImmuneType |= pbHasType?(:FIRE) && !hasActiveAbility?([:WILDFIRE, :GUTS, :GUTSPLUS, :FLAREBOOST])
     when :PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS && !hasActiveAbility?(:QUICKFEET)
     when :FROZEN

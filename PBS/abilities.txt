@@ -317,3 +317,4 @@
 401,MOXIEPLUS,Moxie+,"Boosts Attack after knocking out any Pokémon."
 402,SHELLARMORPLUS,Shell Armor+,"The Pokémon is protected against critical hits."
 403,TRUANTPLUS,Truant+,"Pokémon can't attack on consecutive turns."
+404,GUTSPLUS,Guts+,"Boosts Attack if there is a status problem."

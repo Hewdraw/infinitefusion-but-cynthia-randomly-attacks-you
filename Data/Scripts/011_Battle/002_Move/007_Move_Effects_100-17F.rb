@@ -5704,3 +5704,24 @@ class PokeBattle_Move_348 < PokeBattle_TargetStatDownMove
     @statDown = [:SPEED, 1]
   end
 end
+
+class PokeBattle_Move_349 < PokeBattle_Move
+  def multiHitMove?; return true; end
+
+  def pbNumHits(user,targets)
+    hitChances = [2,2,3,3,4,5]
+    hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    r = @battle.pbRandom(hitChances.length)
+    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    return hitChances[r]
+  end
+  
+  def damageReducedByBurn?
+    return false;
+  end
+
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if user.status != :NONE
+    return baseDmg
+  end
+end
