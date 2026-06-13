@@ -181,8 +181,8 @@ def resolveUnknownEvent(recursion = false)
         end
         pbObtainAlpha("Heracross")
     when :SECRETBAZAAR
-        Kernel.pbMessage("You find a hidden staircase into a secret bazaar.")
-        Kernel.pbMessage("4 Pokemon are offering you their service before you leave.")
+        Kernel.pbMessage("You find a hidden staircase into a secret bazaar.") if !recursion
+        Kernel.pbMessage("4 Pokemon are offering you their service before you leave.") if !recursion
         choice = pbUnknownCommands(["Mime Jr.", "Swalot", "Shedinja", "Lickilicky"], ["Heal your party.", "Gain random items.", "Obtain an Escape Orb.", "Clean anything Sticky that you have."])
         case choice
         when 0
@@ -219,8 +219,10 @@ def resolveUnknownEvent(recursion = false)
                     next unless move.id == :STICKYWEB
                     pkmn.moves[i] = Pokemon::Move.new(:WEB)
                     Kernel.pbMessage("Your #{pkmn.name}'s Sticky Web is now clean.")
+                    didsomething = true
                 end
             end
+            return resolveUnknownEvent(true) if !didsomething
         end
     when :SINNOHUNDERGROUND
         pbBGMPlay("Mining")
