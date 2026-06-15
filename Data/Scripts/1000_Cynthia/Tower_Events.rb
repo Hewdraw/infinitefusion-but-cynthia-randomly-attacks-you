@@ -172,7 +172,7 @@ def resolveUnknownEvent(recursion = false)
                     pokemon.calc_stats
                     pokemon.miststone = true
                 end
-                return true
+                break
             end
             screen.pbEndScene
             return resolveUnknownEvent(true) if !evolved
