@@ -1464,10 +1464,10 @@ class Pokemon
         ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
       end
     }
-    if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE]) || hasAbility?(:FORCEDEVOLUTION)
+    if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE]) || hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
       bsttemp = [{}, {}]
       specieslist.each_with_index do |species,i|
-        next unless REGIONALLIST.flatten.include?(species.species) || hasAbility?(:FORCEDEVOLUTION)
+        next unless REGIONALLIST.flatten.include?(species.species) || hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
         GameData::Stat.each_main { |s|
           bsttemp[i][s.id] = bstdata[i][s.id] + [(180-bstdata[i][s.id]) / 3, 0].max
         }
@@ -1666,7 +1666,7 @@ class Pokemon
         list.push(ability[0])
       end
     end
-    if ((list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION) && hasItem?(:MISTSTONE))
+    if ((list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION) && hasItem?(:MISTSTONE)) || list.include?(:FORCEDEVOLUTIONPLUS) || ability_id == :FORCEDEVOLUTIONPLUS
       if isFusionOf(:MEW)
         list += [:PRESSURE, :UNNERVE, :STEADFAST, :INSOMNIA, :IMMUNITY]
       else

@@ -207,7 +207,7 @@ class PokeBattle_Battler
     # Skip checking all applied effects that could make self fail doing something
     return true if skipAccuracyCheck
     # Check status problems and continue their effects/cure them
-    if @status == :SLEEP && !hasActiveAbility?(:TRUEEYE)
+    if @status == :SLEEP && !hasActiveAbility?([:TRUEEYE, :GUTSPLUS])
       if @battle.pbRandom(100) < ((@battle.pbWeather == :Snow || @battle.pbWeather == :Hail) ? 66 : 33)
         pbContinueStatus
         if !move.usableWhenAsleep?   # Snore/Sleep Talk
@@ -260,7 +260,7 @@ class PokeBattle_Battler
     end
     # Paralysis
     if @status == :PARALYSIS
-      if @battle.pbRandom(8)==0 && !hasActiveAbility?(:QUICKFEET)
+      if @battle.pbRandom(8)==0 && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
         pbContinueStatus
         @lastMoveFailed = true
         return false

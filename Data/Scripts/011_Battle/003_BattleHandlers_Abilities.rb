@@ -1249,7 +1249,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:SNIPER, :SUPERSNIPER)
+BattleHandlers::DamageCalcUserAbility.copy(:SNIPER, :SUPERSNIPER, :GUTSPLUS)
 
 BattleHandlers::DamageCalcUserAbility.add(:STAKEOUT,
   proc { |ability,user,target,move,mults,baseDmg,type|

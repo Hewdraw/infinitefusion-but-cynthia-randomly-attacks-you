@@ -393,20 +393,22 @@ def resolveUnknownEvent(recursion = false)
             getLooplet.pbRemoveEmera(commonemera)
             getLooplet.pbStoreEmera(traderuncommonemera)
             itemname = EMERADICT[traderuncommonemera][:name]
+            pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
         when :RARE
             getLooplet.pbRemoveEmera(uncommonemera)
             getLooplet.pbStoreEmera(traderrareemera)
             itemname = EMERADICT[traderrareemera][:name]
+            pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
         when :LEGENDARY
             getLooplet.pbRemoveEmera(rareemera)
             getLooplet.pbStoreEmera(traderlegendaryemera)
             itemname = EMERADICT[traderlegendaryemera][:name]
+            pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
         when :COMMON
             return if !pbLegendaryBattle("Wandering Trader")
             Kernel.pbMessage("He dropped an Emera!")
             grantRandomEmera([1,0,0,0])
         end
-        pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     when :WARDEN
         Kernel.pbMessage("A Warden crawls out of the ground.")
         return if !pbLegendaryBattle("Warden")

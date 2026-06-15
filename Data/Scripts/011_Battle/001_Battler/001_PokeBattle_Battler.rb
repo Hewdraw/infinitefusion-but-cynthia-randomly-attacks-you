@@ -337,7 +337,7 @@ class PokeBattle_Battler
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind] > 0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp] > 0
     # Paralysis
-    if status == :PARALYSIS && !hasActiveAbility?(:QUICKFEET)
+    if status == :PARALYSIS && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
       speedMult /= 2
     end
     # Badge multiplier

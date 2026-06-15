@@ -526,7 +526,7 @@ class PokeBattle_RecoilMove < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     return if target.damageState.unaffected
     return if !user.takesIndirectDamage?
-    return if user.hasActiveAbility?(:ROCKHEAD)
+    return if user.hasActiveAbility?([:ROCKHEAD, :GUTSPLUS])
     amt = pbRecoilDamage(user,target)
     amt = 1 if amt<1
     user.pbReduceHP(amt,false)

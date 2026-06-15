@@ -468,6 +468,7 @@ class PokeBattle_Battle
           pbHideAbilitySplash(b)
         end
       elsif b.takesIndirectDamage?
+        next if b.hasActiveAbility?(:GUTSPLUS)
         oldHP = b.hp
         dmg = b.totalhp/16
         dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
@@ -494,6 +495,7 @@ class PokeBattle_Battle
           pbHideAbilitySplash(b)
         end
       else
+        next if b.hasActiveAbility?(:GUTSPLUS)
         if b.takesIndirectDamage?
           oldHP = b.hp
           dmg = b.totalhp/16
