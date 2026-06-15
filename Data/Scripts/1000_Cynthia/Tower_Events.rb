@@ -10,6 +10,12 @@ TOWER_EVENTS = {
         :image => "217_0",
         :floorrequirement => 0,
     },
+    :MURKYFOREST => {
+        :location => "Murky",
+        :location2 => "Forest",
+        :image => "ARMALDO",
+        :floorrequirement => false, #todo
+    },
     :ROUTE33 => {
         :location => "Route 33",
         :image => "berrytreeLIECHIBERRY",
@@ -209,6 +215,22 @@ def resolveUnknownEvent(recursion = false)
             $PokemonBag.pbStoreItem(berry, 5)
         end
         pbObtainAlpha("Heracross")
+    when :MURKYFOREST
+        Kernel.pbMessage("Once you venture deep inside the forest an Armaldo comes out of a cave and poses aggresively at you") if !recursion
+        choice = pbUnknownCommands(["Fight.", "Talk.", "Flee."], ["Defend yourself.", "Perhaps you can talk your way out of this.", "Run away to live another day."])
+        case choice
+        when 0
+            return if !pbLegendaryBattle("Armaldo")
+        when 1
+            Kernel.pbMessage("You eventually manage to calm him down and he brings you inside the cave.")
+            Kernel.pbMessage("He shows you a treasure map to Eastern Cave that he's planning to explore and invites you to come along.")
+            Kernel.pbMessage("You agree to meet him later at the entrance to Eastern Cave.")
+        when 2
+            Kernel.pbMessage("You manage to run back to a nearby town.")
+            Kernel.pbMessage("Walking around for a bit you spot a wanted poster with an Armaldo on it.")
+            Kernel.pbMessage("After supplying information on Armaldo's Location you've been given a small reward.")
+            #todo
+        end
     when :SECRETBAZAAR
         Kernel.pbMessage("You find a hidden staircase into a secret bazaar.") if !recursion
         Kernel.pbMessage("4 Pokemon are offering you their service before you leave.") if !recursion
