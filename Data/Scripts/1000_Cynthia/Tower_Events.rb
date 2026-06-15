@@ -144,7 +144,7 @@ def resolveUnknownEvent(recursion = false)
         when 0
             scene = PokemonParty_Scene.new
             screen = PokemonPartyScreen.new(scene,$Trainer.party)
-            screen.pbStartScene(_INTL("Teach which Pokémon?"),false,annot)
+            screen.pbStartScene(_INTL("Teach which Pokémon?"),false)
             evolved = false
             loop do
                 chosen = screen.pbChoosePokemon
