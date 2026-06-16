@@ -379,7 +379,7 @@ def pbFloorEmeras
     chances.each_with_index do |c,i|
       cumul += c
       next if rnd>=cumul
-      $PokemonBag.pbStoreItem(item, 1)
+      $PokemonBag.pbStoreItem(items[i])
       break
     end
   end
