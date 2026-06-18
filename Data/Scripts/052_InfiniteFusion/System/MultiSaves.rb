@@ -425,13 +425,13 @@ class PokemonLoadScreen
     updateHttpSettingsFile
     updateCustomDexFile
     newer_version = find_newer_available_version
-    if newer_version
-      pbMessage(_INTL("Version {1} is now available! Please use the game's installer to download the newest version. Check the Discord for more information.", newer_version))
-    end
+    # if newer_version
+    #   pbMessage(_INTL("Version {1} is now available! Please use the game's installer to download the newest version. Check the Discord for more information.", newer_version))
+    # end
 
-    if Settings::STARTUP_MESSAGES != ""
-      pbMessage(_INTL(Settings::STARTUP_MESSAGES))
-    end
+    # if Settings::STARTUP_MESSAGES != ""
+    #   pbMessage(_INTL(Settings::STARTUP_MESSAGES))
+    # end
     if ($game_temp.unimportedSprites && $game_temp.unimportedSprites.size > 0)
       handleReplaceExistingSprites()
     end
