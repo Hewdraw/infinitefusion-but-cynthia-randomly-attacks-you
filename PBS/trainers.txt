@@ -10151,7 +10151,7 @@ Pokemon = DARKRAI,5
     Ball = PREMIERBALL
 
 [Non_Skeleton_Dev,Hewdraw,0]
-Pokemon = ANINETALES,75
+Pokemon = ALOLANINETALES,75
     Offset = 0
     Moves = AURORAVEIL,MOONBLAST,BLIZZARD,FREEZEDRY
     Ability = SNOWWWARNING
@@ -10220,7 +10220,7 @@ Pokemon = MAWILESHINY,75
     Ball = PREMIERBALL
 
 [Non_Skeleton_Dev,Hewdraw,1]
-Pokemon = AVULPIX,5
+Pokemon = ALOLAVULPIX,5
     Offset = 0
     Moves = AURORAVEIL,MOONBLAST,BLIZZARD,FREEZEDRY
     Ability = SNOWWWARNING
@@ -10290,7 +10290,7 @@ Pokemon = MAWILESHINY,5
     Ball = PREMIERBALL
 
 [Non_Skeleton_Dev,Hewdraw,2]
-Pokemon = ANINETALES,5
+Pokemon = ALOLANINETALES,5
     Offset = 0
     Shiny = TRUE
     Moves = AURORAVEIL,MOONBLAST,BLIZZARD,FREEZEDRY

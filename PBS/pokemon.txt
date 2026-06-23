@@ -21591,18 +21591,6 @@ Shape = Head
 
 #Developer Pokemon
 #-------------------------------
-[1000700]
-Name = Ninetales
-InternalName = ANINETALES
-Type1 = ICE
-Type2 = FAIRY
-BaseStats = 73,67,75,109,81,100
-EffortPoints = 0,0,0,2,0,0
-Abilities = SNOWCLOAK
-HiddenAbility = SNOWWARNING
-Moves = 1,TACKLE
-Shape = Quadruped
-#-------------------------------
 [1000701]
 Name = Regieleki
 InternalName = REGIELEKI
@@ -21741,17 +21729,6 @@ BaseStats = 90,72,100,98,122,108
 Abilities = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
-#-------------------------------
-[1000714]
-Name = Vulpix
-InternalName = AVULPIX
-Type1 = ICE
-BaseStats = 38,41,40,65,50,65
-EffortPoints = 0,0,0,2,0,0
-Abilities = SNOWCLOAK
-HiddenAbility = SNOWWARNING
-Moves = 1,TACKLE
-Shape = Quadruped
 #-------------------------------
 [1000715]
 Name = Clodreon
