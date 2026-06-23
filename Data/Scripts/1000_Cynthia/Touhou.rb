@@ -256,3 +256,5 @@ class BulletPattern
     end
 
     def initialize(scene)
+    end
+end
