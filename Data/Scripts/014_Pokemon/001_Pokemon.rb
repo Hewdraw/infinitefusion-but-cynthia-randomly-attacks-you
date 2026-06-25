@@ -1675,19 +1675,21 @@ class Pokemon
         end
       end
     end
+    list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
+    list.push() if hasActiveEmera?(:BERSERKERARMOR)
+    list+= [:BATTLEARMOR, :BERSERK] if hasActiveEmera?(:BERSERKERARMOR)
+    list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
+    list.push(:STATIC) if hasActiveEmera?(:CRT)
+    list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
+    list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
+    list.push(:PICKPOCKET) if hasActiveEmera?(:KNIFE)
     list.push(:KEENEYE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)
     list.push(:TRUANT) if hasActiveEmera?(:LINGERINGPOTIONOFTURTLEMASTER)
-    list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
-    list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
-    list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
-    list.push(:PICKPOCKET) if hasActiveEmera?(:KNIFE)
-    list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
-    list.push(:BATTLEARMOR) if hasActiveEmera?(:BERSERKERARMOR)
-    list.push(:BERSERK) if hasActiveEmera?(:BERSERKERARMOR)
-    list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
-    list.push(:TOXICCHAIN) if hasActiveEmera?(:TOXICCHAIN)
     list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && hasItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+    list.push(:TOXICCHAIN) if hasActiveEmera?(:TOXICCHAIN)
+    list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
+    list += [:CUDCHEW, :CHEEKPOUCH, :GLUTTONY] if hasActiveEmera?(:YINYANGORB)
     return list
   end
 

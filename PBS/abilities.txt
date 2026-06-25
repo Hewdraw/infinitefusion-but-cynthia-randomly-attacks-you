@@ -309,7 +309,7 @@
 307,TRUEEYE,True Eye,"a"
 308,FORCEDEVOLUTION,Forced Evolution,"a"
 309,TEMPORALTERROR,Temporal Terror,"a"
-310,WONDERTRADEGUARD,Wonder Trade Guard,"a"
+310,WONDERTRADE,Wonder Trade,"a"
 311,VOICEOFTHEFOREST,Voice of the Forest,"a"
 312,TOTALFREEZE,Total Freeze,"a"
 313,HOLD,Hold,"Held Items are twice as effective."

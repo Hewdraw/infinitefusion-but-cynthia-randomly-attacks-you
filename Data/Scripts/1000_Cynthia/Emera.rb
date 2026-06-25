@@ -388,6 +388,11 @@ EMERADICT = {
     #     :description => "Trick Room activates at the start of the battle.",
     #     :rarity => :RARE,
     # },
+    :CRT => {
+        :name => "CRT",
+        :description => "Your Pokemon gain the Static Ability.",
+        :rarity => :RARE,
+    },
     # :FERMENTEDSPIDEREYE => {
     #     :name => "Fermented Spider Eye",
     #     :description => "Inverse Room activates at the start of the battle.",
@@ -446,6 +451,11 @@ EMERADICT = {
     :TOTEMSTICKER => {
         :name => "Totem Sticker",
         :description => "Your Pokemons lowest stat is raised by 1 stage at the start of the battle.",
+        :rarity => :RARE,
+    },
+    :YINYANGORB => {
+        :name => "Yin Yang Orb",
+        :description => "Your Pokemon gain the Glutton, Cud Chew, Cheek Pouch abilities.",
         :rarity => :RARE,
     },
 

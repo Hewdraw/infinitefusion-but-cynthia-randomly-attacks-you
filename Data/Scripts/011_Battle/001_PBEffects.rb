@@ -129,6 +129,8 @@ begin
     SupremeOverlord        = 123
     ChoiceRibbon        = 124
     GlaiveRush        = 125
+    CudChewTurn        = 126
+    CudChewBerry        = 127
 
     #===========================================================================
     # These effects apply to a battler position

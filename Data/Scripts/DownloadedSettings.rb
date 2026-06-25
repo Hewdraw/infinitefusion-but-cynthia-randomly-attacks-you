@@ -11,7 +11,9 @@ module Settings
   
   MAIN_MENU_LINKS = {
     "Discord" => "https://discord.com/invite/infinitefusion",
+    "FAQ" => "https://hackmd.io/@PIF-Staff/PIF-Hoenn-FAQ/",
     "Wiki" => "https://infinitefusion.fandom.com/",
+    
   }
   
   FEEDBACK_FORM_URL = "https://forms.gle/1svTMSUMf7ebHdZq7"
@@ -61,6 +63,9 @@ module Settings
   #Spritepack
   NEWEST_SPRITEPACK_MONTH = 5
   NEWEST_SPRITEPACK_YEAR = 2026
+end
 
-
+module MysteryGift
+  URL = "https://download.infinitefusion.net/mystery_gift/MysteryGiftPublic.json"
+  PRIVATE_URL = "https://download.infinitefusion.net/mystery_gift/MysteryGiftsPrivate/"
 end

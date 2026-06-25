@@ -366,6 +366,15 @@ class PokeBattle_Battle
         end
       end
     end
+    priority.each do |b|
+      next if b.fainted?
+      next unless b.effects[PBEffects::CudChewTurn] == @turnCount
+      tempitem = b.item
+      b.item = GameData::Item.get(b.effects[PBEffects::CudChewBerry])
+      b.pbHeldItemTriggerCheck(b.item)
+      @effects[PBEffects::CudChewTurn] = -1
+      @effects[PBEffects::CudChewBerry] = nil
+    end
     # Aqua Ring
     priority.each do |b|
       next if !b.effects[PBEffects::AquaRing]

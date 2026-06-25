@@ -227,6 +227,10 @@ class PokeBattle_Battler
       end
       @battle.pbHideAbilitySplash(self)
     end
+    if hasActiveAbility?(:CUDCHEW) && GameData::Item.get(item_to_use).is_berry?
+      @effects[PBEffects::CudChewTurn] = @battle.turnCount + 1
+      @effects[PBEffects::CudChewBerry] = item_to_use
+    end
     pbConsumeItem if own_item
     pbSymbiosis if !own_item && !fling   # Bug Bite/Pluck users trigger Symbiosis
   end

@@ -300,6 +300,8 @@ class PokeBattle_Battler
     @effects[PBEffects::SupremeOverlord]         = 0
     @effects[PBEffects::ChoiceRibbon] = false
     @effects[PBEffects::GlaiveRush]                = false
+    @effects[PBEffects::CudChewTurn]                = -1
+    @effects[PBEffects::CudChewBerry]                = nil
     @extraabilities = []
   end
 

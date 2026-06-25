@@ -782,7 +782,7 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:WONDERGUARD,:WONDERTRADEGUARD)
+BattleHandlers::MoveImmunityTargetAbility.copy(:WONDERGUARD)
 
 #===============================================================================
 # MoveBaseTypeModifierAbility handlers
@@ -2511,16 +2511,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:WONDERTRADEGUARD,
+BattleHandlers::AbilityOnSwitchIn.add(:WONDERTRADE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} traded its ability for Wonder Guard!",battler.pbThis))
+    battler.extraabilities.push(target.ability_id)
     battle.pbHideAbilitySplash(battler)
-    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS]) && $PokemonSystem.aicontrolplayer == 1
-      battler.hp = 0
-      battle.pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
-      battler.pbFaint(false)
-    end
   }
 )
 
