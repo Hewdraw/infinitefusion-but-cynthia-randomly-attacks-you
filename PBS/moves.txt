@@ -968,7 +968,7 @@
 998,ICESTATUE,Ice Statue,286,60,ICE,Physical,100,5,0,NearOther,0,bef,"Shoots an ice statue out of its mouth."
 999,WOLFCLAW,Wolf Claw,287,100,DRAGON,Physical,100,20,30,NearOther,0,abefq,"Cuts the opponent to pieces with the sharp claws on both of its hands."
 1000,WOLFKICK,Wolf Kick,288,80,FIGHTING,Physical,100,20,100,NearOther,0,abefh,"Strikes with a powerful kick."
-1001,STRONGGALE,Strong Gale,289,110,ICE,Special,100,15,20,NearOther,0,befj,"Punches the enemy with its spiked brass knuckles."
+1001,STRONGGALE,Strong Gale,289,110,ICE,Special,100,15,20,NearOther,-1,befj,"Punches the enemy with its spiked brass knuckles."
 1002,FOXFIRE,Fox Fire,290,120,ICE,Special,70,5,50,AllNearFoes,0,bef,"Breathes out an intense blue flame."
 1003,COCYTUSBREATH,Cocytus Breath,291,90,ICE,Special,100,15,30,NearOther,0,bef,"Spews cold air at absolute zero that completely freezes everything, and instantly brings the victim's vital functions to a halt."
 1004,METALFANG,Metal Fang,00F,100,STEEL,Physical,100,15,10,NearOther,0,abehi,"A stronger version of Freeze Fang."
