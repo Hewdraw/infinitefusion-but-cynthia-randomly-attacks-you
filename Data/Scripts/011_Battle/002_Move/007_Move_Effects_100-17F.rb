@@ -2107,6 +2107,7 @@ Events.onEndBattle += proc { |_sender,_e|
     if !pokemon.originalform.nil?
       level = pokemon.level
       pokemon.species = pokemon.originalform
+      pokemon.ability = pokemon.originalability
       pokemon.level = level
       pokemon.calc_stats
     end

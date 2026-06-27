@@ -121,6 +121,7 @@ class Pokemon
   attr_accessor :unparadox
   attr_accessor :battlevariables
   attr_accessor :originalform
+  attr_accessor :originalability
   attr_accessor :affection
   attr_accessor :megaform
   attr_accessor :regionalform
@@ -1801,6 +1802,7 @@ class Pokemon
     @tera = nil
     @battlevariables = {}
     @originalform = nil
+    @originalability = nil
     GameData::Stat.each_main do |s|
       @iv[s.id] = rand(IV_STAT_LIMIT + 1)
       @ev[s.id] = 0

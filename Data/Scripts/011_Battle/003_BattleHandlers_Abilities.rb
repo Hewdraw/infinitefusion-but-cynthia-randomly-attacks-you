@@ -2675,6 +2675,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
 BattleHandlers::AbilityOnSwitchIn.add(:EON,
   proc { |ability,battler,battle|
     if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(battler.pokemon.species)
+      battler.pokemon.originalability = battler.pokemon.ability
       battler.pokemon.originalform = battler.pokemon.species
       battle.pbMegaEvolve(battler.index, true)
     end

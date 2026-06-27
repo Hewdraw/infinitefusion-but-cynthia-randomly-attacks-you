@@ -146,6 +146,7 @@ class PokeBattle_Battle
           pkmn.calc_stats
           pkmn.battlevariables = {}
           pkmn.originalform = nil
+          pkmn.originalability = nil
           if pkmn.hasItem?(:DARKSTONE)
             pkmn.moves.each_with_index do |move, i|
               next unless move.id == :FUSIONBOLT

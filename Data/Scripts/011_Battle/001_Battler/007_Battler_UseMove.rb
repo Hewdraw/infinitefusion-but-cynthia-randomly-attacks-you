@@ -405,6 +405,7 @@ class PokeBattle_Battler
       end
     end
     if user.hasActiveItem?(:GODORB) && [:KYUREM, :KYUREMBLACK, :KYUREMWHITE].include?(user.species) && !move.statusMove?
+      user.pokemon.originalability = user.pokemon.ability
       user.pokemon.originalform = :KYUREM
       tempspecies = :KYUREMWHITE
       tempspecies = :KYUREMBLACK if move.physicalMove?

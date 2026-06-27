@@ -158,7 +158,7 @@ EMERADICT = {
     },
     :NEWSHOES => {
         :name => "New Shoes",
-        :description => "Your Pokemons with Run Away can no longer be trapped and their moves that switch them out gain 1 priority.",
+        :description => "Your Pokemon with Run Away can no longer be trapped and their moves that switch them out gain 1 priority.",
         :rarity => :COMMON,
     },
     :NOTEBLOCK => {
