@@ -5733,6 +5733,6 @@ class PokeBattle_Move_350 < PokeBattle_Move
     chance2 = pbAdditionalEffectChance(user, target, 30)
     return if chance == 0 && chance2 == 0
     target.pbLowerStatStage(:ACCURACY,1,user) if target.pbCanLowerStatStage?(:ACCURACY,user,self) && @battle.pbRandom(100) < chance
-    user.pbRaiseStatStage(:EVASION,1,user) if user.pbCanRaiseStatStage?(:EVASION,user,self) && @battpe.pbRandom(100) < chance2
+    user.pbRaiseStatStage(:EVASION,1,user) if user.pbCanRaiseStatStage?(:EVASION,user,self) && @battle.pbRandom(100) < chance2
   end
 end
