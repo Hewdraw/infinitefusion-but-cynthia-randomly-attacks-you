@@ -2995,7 +2995,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TRACE,
     targets = []
     battle.eachOtherSideBattler(battler.index) do |b|
       next if b.ungainableAbility? ||
-              [:POWEROFALCHEMY, :RECEIVER, :TRACE].include?(b.ability_id)
+              [:POWEROFALCHEMY, :RECEIVER, :TRACE, :DEATH].include?(b.ability_id)
       next if battler.getAllAbilities.include?(b.ability_id)
       targets.push(b)
     end
