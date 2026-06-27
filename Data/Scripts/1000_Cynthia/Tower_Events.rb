@@ -255,7 +255,7 @@ def resolveUnknownEvent(recursion = false)
                 Kernel.pbMessage("Your Sticky Key is now clean.")
                 didsomething = true
             end
-            stickybarbs = $PokemonBag.pbQuantity(:STICKYBARB) > 0
+            stickybarbs = $PokemonBag.pbQuantity(:STICKYBARB)
             if $PokemonBag.pbDeleteItem(:SINNOHCOIN, stickybarbs)
                 $PokemonBag.pbStoreItem(:BARB, stickybarbs)
                 Kernel.pbMessage("Your Sticky Barbs are now clean.")
