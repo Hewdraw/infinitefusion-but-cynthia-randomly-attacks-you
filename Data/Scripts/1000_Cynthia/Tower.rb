@@ -327,7 +327,7 @@ def towerEvent()
         Undertale()
         return if $PokemonGlobal.towervalues.nil?
     when "Pokemart"
-        pbPokemonMart([:POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION, :FULLRESTORE, :REVIVE, :MAXREVIVE, :ANTIDOTE, :PARLYZHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL, :FULLHEAL, :ETHER, :MAXETHER, :ELIXIR, :MAXELIXIR, :REPEL, :SACREDASH])
+        pbPokemonMart([:POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION, :FULLRESTORE, :REVIVE, :MAXREVIVE, :ANTIDOTE, :PARLYZHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL, :FULLHEAL, :ETHER, :MAXETHER, :ELIXIR, :MAXELIXIR, :REPEL, :SACREDASH], nil, true)
     when "Heal"
         $Trainer.party.each do |pkmn|
             pkmn.heal
@@ -547,6 +547,10 @@ def getFloorGraphic(event)
             return "244_0"
         when "Genesect"
             return "fossil_nerd"
+        when "Jirachi"
+            return "385"
+        when "Kyurem"
+            return "BW (120)"
         when "Latias"
             return "378"
         when "Meloetta"
