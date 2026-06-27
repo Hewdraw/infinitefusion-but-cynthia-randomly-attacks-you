@@ -5725,3 +5725,14 @@ class PokeBattle_Move_349 < PokeBattle_Move
     return baseDmg
   end
 end
+
+class PokeBattle_Move_350 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if target.damageState.substitute
+    chance = pbAdditionalEffectChance(user, target, 30)
+    chance2 = pbAdditionalEffectChance(user, target, 30)
+    return if chance == 0 && chance2 == 0
+    target.pbLowerStatStage(:ACCURACY,1,user) if target.pbCanLowerStatStage?(:ACCURACY,user,self) && @battle.pbRandom(100) < chance
+    user.pbRaiseStatStage(:EVASION,1,user) if user.pbCanRaiseStatStage?(:EVASION,user,self) && @battpe.pbRandom(100) < chance2
+  end
+end
