@@ -2514,8 +2514,19 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
 BattleHandlers::AbilityOnSwitchIn.add(:WONDERTRADE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} traded its ability for Wonder Guard!",battler.pbThis))
-    battler.extraabilities.push(target.ability_id)
+    gainedability = :WONDERGUARD
+    if battler.pbOwnedByPlayer? || battler.getAllAbilities.include?(gainedability)
+      ability_keys = GameData::Ability::DATA.keys
+      10000.times do
+        ability_id = ability_keys[battle.pbRandom(ability_keys.length)]
+        next if battler.ungainableAbility?(ability_id)
+        next if battler.getAllAbilities.include?(ability_id)
+        gainedability = ability_id
+        break
+      end
+    end
+    battle.pbDisplay(_INTL("{1} traded its ability for {2}!",battler.pbThis, GameData::Ability.get(gainedability).name))
+    battler.extraabilities.push(gainedability)
     battle.pbHideAbilitySplash(battler)
   }
 )

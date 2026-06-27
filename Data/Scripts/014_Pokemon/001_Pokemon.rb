@@ -1676,12 +1676,12 @@ class Pokemon
       end
     end
     list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
-    list.push() if hasActiveEmera?(:BERSERKERARMOR)
-    list+= [:BATTLEARMOR, :BERSERK] if hasActiveEmera?(:BERSERKERARMOR)
+    list += [:BATTLEARMOR, :BERSERK] if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
     list.push(:STATIC) if hasActiveEmera?(:CRT)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
     list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)
+    list.push(:WONDERTRADE) if hasActiveEmera?(:GOLDENTICKET)
     list.push(:PICKPOCKET) if hasActiveEmera?(:KNIFE)
     list.push(:KEENEYE) if hasActiveEmera?(:LINGERINGPOTIONOFNIGHTVISION)
     list.push(:LIQUIDOOZE) if hasActiveEmera?(:LINGERINGPOTIONOFOOZING)

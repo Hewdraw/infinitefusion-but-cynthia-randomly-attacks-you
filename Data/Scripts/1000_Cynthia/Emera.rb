@@ -282,6 +282,11 @@ EMERADICT = {
         :description => "Your Pokemon heal 1/8th of the damage they deal.",
         :rarity => :UNCOMMON,
     },
+    :GOLDENTICKET => {
+        :name => "Golden Ticket",
+        :description => "Your Pokemon gain the Wonder Trade Ability.",
+        :rarity => :UNCOMMON,
+    },
     # :HEAVYCLAY => {
     #     :name => "Heavy Clay",
     #     :description => "Activating Light Screen or Reflect now activates the other one as well.",
