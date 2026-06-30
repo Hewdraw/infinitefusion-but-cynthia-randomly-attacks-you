@@ -556,8 +556,7 @@ module Settings
   # file in the Data folder. Edit only if you have 2 or more languages to choose
   # from.
   LANGUAGES = [
-      ["English", "english.dat"],
-      ["Français", "french.dat"]
+      ["English", "english.dat"]
   ]
 
   #Experimental
