@@ -1647,6 +1647,7 @@ class Pokemon
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
     @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf(:JIRACHI)
     @extraabilities.push(:TOTALFREEZE) if hasItem?(:GODORB)
+    @extraabilities.push(:GOODASGOLD) if hasItem?(:SINNOHCOIN) && isFusionOf(:WROTOM)
     @abilityarray = createAbilityArray
     @boxicon = nil
   end

@@ -4,6 +4,7 @@ module Settings
 
   SHINY_POKEMON_CHANCE = 16
   SNOW_DAY = false
+  MEW_OW_ENCOUNTER_CHANCE = 0
 
   STARTUP_MESSAGES = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!" #Legacy starting PIF1 6.8
   STARTUP_MESSAGES_KANTO = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!"

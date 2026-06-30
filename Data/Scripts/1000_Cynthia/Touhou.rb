@@ -7,39 +7,76 @@ def touhou()
         $game_system.bgm_pause
         $game_system.bgs_pause
     end
+    $PokemonGlobal.speedupdisabled = true
     scene = TouhouScene.new()
     pbBGMPlay("Megalovania")
     loop do
         break if scene.result
         scene.update
     end
+    $PokemonGlobal.speedupdisabled = false
     if $game_system && $game_system.is_a?(Game_System)
         $game_system.bgm_resume(playingBGM)
         $game_system.bgs_resume(playingBGS)
     end
 end
 
-def touhouCreateUnown(scene, info)
-    #type = rand(18)
-    type = 0
+def touhouCreateUnown(scene, info={})
+    type = rand(5)
     patterninfo = {}
     case type
     when 0 #normal
         patterninfo["patterntype"] = "single"
-        patterninfo["delay"] = Graphics.frame_rate / 3
+        patterninfo["cooldown"] = Graphics.frame_rate / 3
         patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
         patterninfo["bulletinfo"] = {
             "bitmap" => @bitmap1,
-            "size" => 0.5
+            "size" => 0.5,
+            "color" => Tone.new(0, 0, 0, 0),
         }
     when 1 #fighting
-
+        patterninfo["patterntype"] = "single"
+        patterninfo["cooldown"] = Graphics.frame_rate
+        patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        patterninfo["bulletinfo"] = {
+            "bitmap" => @bitmap1,
+            "size" => 0.5,
+            "speed" => 4,
+            "color" => Tone.new(255, 0, 0),
+        }
     when 2 #flying
-
+        patterninfo["patterntype"] = "fan"
+        patterninfo["spread"] = 5
+        patterninfo["count"] = 5
+        patterninfo["cooldown"] = Graphics.frame_rate
+        patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        patterninfo["bulletinfo"] = {
+            "bitmap" => @bitmap1,
+            "size" => 0.3,
+            "speed" => 2,
+            "color" => Tone.new(0, 0, 0, 255),
+        }
     when 3 #poison
-
+        patterninfo["patterntype"] = "single"
+        patterninfo["cooldown"] = Graphics.frame_rate * 5
+        patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        patterninfo["bulletinfo"] = {
+            "bitmap" => @bitmap1,
+            "size" => 2,
+            "speed" => 0.2,
+            "color" => Tone.new(255, 0, 255),
+        }
     when 4 #ground
-
+        patterninfo["patterntype"] = "circle"
+        patterninfo["spread"] = 8
+        patterninfo["cooldown"] = Graphics.frame_rate * 10
+        patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        patterninfo["bulletinfo"] = {
+            "bitmap" => @bitmap1,
+            "size" => 0.5,
+            "speed" => 1,
+            "color" => Tone.new(0, 255, 0),
+        }
     when 5 #rock
 
     when 6 #bug
@@ -67,62 +104,85 @@ def touhouCreateUnown(scene, info)
     when 17 #fairy
 
     end
-    sprite = "201_" + rand(28).to_str
+    sprite = "201_#{rand(28)}"
     shiny = false
     if rand(64) == 0
-        sprite = "201s_" + rand(28.to_str)
+        sprite = "201s_#{rand(28)}"
         shiny = true
     end
+    bitmap = Bitmap.new("Graphics/Characters/#{sprite}")
     enemyinfo = {
         "enemy" => "Unown",
-        "sprite" => sprite,
+        "sprite" => bitmap,
         "shiny" => shiny,
-
     }
+    enemyinfo = enemyinfo.merge(info)
     unown = TouhouEnemy.new(scene, enemyinfo)
-    bulletpattern = TouhouBulletPattern.new(scene, patterninfo)
+    unown.createPattern(patterninfo)
+    return unown
 end
 
 class TouhouScene
     attr_accessor :viewport
     attr_accessor :result
     attr_accessor :player
+    attr_accessor :opponents
     attr_accessor :bulletsprites
     attr_accessor :bulletcache
+    attr_accessor :playerbulletsprites
+    attr_accessor :playerbulletcache
+    attr_accessor :frameCounter
+    attr_accessor :bitmap1
     def update
-        if @frameCounter < 1000
+        @frameCounter += 1
+        if @frameCounter <= 1000
             @bulletcache.push(TouhouBullet.new(self))
             addSprite("bullet_#{@frameCounter}", @bulletcache[@bulletcache.length - 1].sprite)
         end
-        if @frameCounter < 100
+        if @frameCounter <= 100
             @playerbulletcache.push(TouhouBullet.new(self))
             addSprite("playerbullet_#{@frameCounter}", @playerbulletcache[@playerbulletcache.length - 1].sprite)
         end
         @player.update()
-        if Input.press?(Input::BACK)
-            endScreen
+        if @frameCounter % 50 == 0
+            @opponents.push(touhouCreateUnown(self, {
+                "y" => 64,
+                "x" => 50 + rand(Graphics.width - 100),
+                "size" => 0.5,
+            }))
         end
-        print(3)
-        # spawnBullet({
-        #     "bitmap" => @bitmap1,
-        #     "x" => Graphics.width / 2,
-        #     "y" => 64,
-        #     # "angle" => @attackoffset,
-        #     "size" => 0.5,
-        #     "speed" => 1
-        # })
-        # @attackoffset += 7
-        # if @frameCounter % 100 == 0 && @frameCounter > 1
-        #     angle = 0
-        #     while angle < 360
-        #         spawnBullet({
-        #             "bitmap" => @bitmap2,
-        #             "x" => Graphics.width / 2,
-        #             "y" => 64,
-        #             "angle" => angle,
-        #             "speed" => 2
-        #         })
-        #         angle += 6
+        opponentindex = @opponents.length
+        @opponents.reverse_each do |opponent|
+            opponentindex -= 1
+            if opponent.x <= -100 && opponent.y <= -100
+                @opponents.delete_at(opponentindex)
+                next
+            end
+            opponent.update
+        end
+        # if @player.requirerespawn < @frameCounter
+        #     spawnBullet({
+        #         "bitmap" => @bitmap1,
+        #         "x" => Graphics.width / 2,
+        #         "y" => 64,
+        #         "angle" => @attackoffset,
+        #         "size" => 0.5,
+        #         "speed" => 1
+        #     })
+        #     @attackoffset += 7
+        #     if @frameCounter % 100 == 0 && @frameCounter > 1
+        #         angle = 0
+        #         while angle < 360
+        #             spawnBullet({
+        #                 "bitmap" => @bitmap2,
+        #                 "x" => Graphics.width / 2,
+        #                 "y" => 64,
+        #                 "angle" => angle,
+        #                 "size" => 0.5,
+        #                 "speed" => 2
+        #             })
+        #             angle += 6
+        #         end
         #     end
         # end
 
@@ -130,7 +190,7 @@ class TouhouScene
         @bulletsprites.reverse_each do |bullet|
             bulletcount -= 1
             if !bullet.update()
-                break if @requirerespawn > @frameCounter
+                break if @player.requirerespawn > @frameCounter
                 bullet.cacheBullet()
                 @bulletcache.push(bullet)
                 @bulletsprites.delete_at(bulletcount)
@@ -140,17 +200,17 @@ class TouhouScene
         @playerbulletsprites.reverse_each do |bullet|
             bulletcount -= 1
             if !bullet.update()
-                break if @requirerespawn > @frameCounter
+                break if @player.requirerespawn > @frameCounter
                 bullet.cacheBullet()
                 @playerbulletcache.push(bullet)
                 @playerbulletsprites.delete_at(bulletcount)
             end
         end
-        print(4)
+        if Input.press?(Input::BACK)
+            endScreen
+        end
         Graphics.update
         Input.update
-        @frameCounter += 1
-        print(5)
     end
 
     def initialize
@@ -168,10 +228,11 @@ class TouhouScene
         @playerbulletsprites = []
         @playerbulletcache = []
         backgroundsprite = Sprite.new(@viewport)
-        backgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+        backgroundsprite.bitmap = Bitmap.new("Graphics/Pictures/HallOfFame/hallfamebg_multiline")
         addSprite("background",backgroundsprite)
         @player = TouhouPlayer.new(self)
         addSprite("player", @player.sprite)
+        @opponents = []
         # @arceussprite = Sprite.new(@viewport)
         # @arceussprite.bitmap = Bitmap.new("Graphics/Characters/493_0")
         # @arceussprite.src_rect.height = 128
@@ -190,6 +251,9 @@ class TouhouScene
     def endScreen()
         # Fade out all sprites
         pbBGMFade(1.0)
+        @opponents.each do |opponent|
+            opponent.sprite.dispose
+        end
         pbFadeOutAndHide(@sprites)
         pbDisposeSpriteHash(@sprites)
         @result = true
@@ -222,20 +286,18 @@ end
 
 class TouhouEntity
     attr_accessor :sprite
-    def x=(value)
-        @sprite.x = value - width()
+    attr_reader :x
+    attr_reader :y
+    def set_x(value)
+        @x = value
+        @sprite.x = @x.round()
+        @sprite.ox = @sprite.width / 2
     end
 
-    def y=(value)
-        @sprite.y = value-height()
-    end
-
-    def x
-        return @sprite.x + width()
-    end
-
-    def y
-        return @sprite.y - height()
+    def set_y(value)
+        @y = value
+        @sprite.y = @y.round()
+        @sprite.oy = @sprite.height / 2
     end
 
     def width
@@ -247,41 +309,54 @@ class TouhouEntity
     end
 
     def collision_width
-        return width * 0.25
+        return width * 0.20
     end
 
     def collision_height
-        return height * 0.25
+        return height * 0.20
     end
 
     def initialize(scene, info={})
         @scene = scene
         @sprite = Sprite.new(@scene.viewport)
         @size = info["size"] || 1
+        set_x(info["x"] || -100)
+        set_y(info["y"] || -100)
     end
 end
 
 class TouhouPlayer < TouhouEntity
+    attr_accessor :requirerespawn
     def update
+        if @requirerespawn == @scene.frameCounter
+            @sprite.visible = true
+            set_x(Graphics.width / 2)
+            set_y(Graphics.height / 2)
+        end
+        if Input.press?(Input::ACTION)
+            @speed = 1
+        else
+            @speed = 2
+        end
         for i in 0..@speed
             if Input.press?(Input::UP)
-                if @sprite.y - @sprite.height > 1
-                    @sprite.y -= 1
+                if @y - (height / 2) > 1
+                    set_y(@y-1)
                 end
             end
             if Input.press?(Input::DOWN)
-                if @sprite.y < Graphics.height - 1
-                    @sprite.y += 1
-                end
-            end
-            if Input.press?(Input::RIGHT)
-                if @sprite.x + @sprite.width < Graphics.width - 1
-                    @sprite.x += 1
+                if @y + (height / 2) < Graphics.height - 1
+                    set_y(@y+1)
                 end
             end
             if Input.press?(Input::LEFT)
-                if @sprite.x > 1
-                    @sprite.x -= 1
+                if @x - (width / 2) > 1
+                    set_x(@x-1)
+                end
+            end
+            if Input.press?(Input::RIGHT)
+                if @x + (width / 2) < Graphics.width - 1
+                    set_x(@x + 1)
                 end
             end
         end
@@ -293,25 +368,30 @@ class TouhouPlayer < TouhouEntity
     def fireBullet()
         return if @firecooldown >= @scene.frameCounter
         return if @requirerespawn >= @scene.frameCounter
-        return if @scene.playerbulletcache.length == 0
-        @scene.playerbulletcache[0].spawnBullet({
+        return if @scene.playerbulletcache.length < 3
+        angle = 270
+        bulletinfo = {
             "bitmap" => @scene.bitmap1,
-            "x" => x,
-            "y" => y,
-            "angle" => 270,
+            "x" => @x,
+            "y" => @y,
+            "angle" => angle,
             "size" => 0.5,
             "speed" => 10,
             "playerbullet" => true,
-        })
-        @scene.playerbulletsprites.push(@playerbulletcache[0])
-        @scene.playerbulletcache.delete_at(0)
+        }
+        for i in 0...3
+            bulletinfo["angle"] = 5 + angle - (5*i)
+            @scene.playerbulletcache[0].spawnBullet(bulletinfo)
+            @scene.playerbulletsprites.push(@scene.playerbulletcache[0])
+            @scene.playerbulletcache.delete_at(0)
+        end
         @firecooldown = @scene.frameCounter + (Graphics.frame_rate / 10)
     end
 
-    def killPlayer()
+    def damage()
         @scene.cacheAllBullets()
         @sprite.visible = false
-        @requirerespawn = @frameCounter + (3*Graphics.frame_rate)
+        @requirerespawn = @scene.frameCounter + (3*Graphics.frame_rate)
     end
 
     def initialize(scene)
@@ -320,8 +400,10 @@ class TouhouPlayer < TouhouEntity
         @sprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
         @sprite.tone = Tone.new(0, 0, -255)
         @sprite.angle += 90
-        x = Graphics.width / 2
-        y = Graphics.height / 2
+        @sprite.z = 100000
+        @sprite.visible = true
+        set_x(Graphics.width / 2)
+        set_y(Graphics.height / 2)
         @firecooldown = 0
         @requirerespawn = 0
         @speed = 2
@@ -330,73 +412,144 @@ end
 
 class TouhouEnemy < TouhouEntity
     def update
-        @currentpattern.each do |pattern|
-            pattern.update
+        if @bulletpatterns.length > 0
+            @currentpattern = @bulletpatterns[0]
+            @currentpattern.each do |pattern|
+                pattern.update
+            end
         end
     end
 
     def initialize(scene, info)
         super
         @bulletpatterns = info["bulletpatterns"] || []
-        @currentpattern = @bulletpatterns[0]
-        @sprite.bitmap = info["sprites"]
+        @currentpattern = []
+        @sprite.bitmap = info["sprite"]
+        @sprite.src_rect.height /= 4
+        @sprite.src_rect.width /= 4
+        @sprite.z = 99999
+        set_x(info["x"] || Graphics.width / 2)
+        set_y(info["y"] || 64)
+
+    end
+
+    def damage()
+        set_x(-100)
+        set_y(-100)
+    end
+
+    def createPattern(info)
+        extrainfo = {
+            "enemy" => self,
+        }
+        @bulletpatterns.push([TouhouBulletPattern.new(@scene, extrainfo.merge(info))])
     end
 end
 
 class TouhouBulletPattern
     def update
-        return if @scene.requirerespawn >= @scene.frameCounter
+        return if @scene.player.requirerespawn >= @scene.frameCounter
         return if @delay >= @scene.frameCounter
-        case patterntype
+        case @patterntype
         when "single"
-
+            extrainfo = {
+                "x" => @enemy.x,
+                "y" => @enemy.y,
+            }
+            spawnBullet(extrainfo.merge(@bulletinfo))
         when "circle"
-
+            playerangle = Math.atan2(@scene.player.y - @enemy.y, @scene.player.x - @enemy.x) * 180 / 3.14
+            @count = (360 / @spread)
+            for i in 0...@count
+                angle = playerangle + (@spread * i)
+                extrainfo = {
+                    "x" => @enemy.x,
+                    "y" => @enemy.y,
+                    "angle" => angle,
+                }
+                spawnBullet(extrainfo.merge(@bulletinfo))
+            end
         when "fan"
+            playerangle = Math.atan2(@scene.player.y - @enemy.y, @scene.player.x - @enemy.x) * 180 / 3.14
+            for i in 0...@count
+                angle = ((@count - 1) * @spread / 2) + playerangle - (@spread * i)
+                extrainfo = {
+                    "x" => @enemy.x,
+                    "y" => @enemy.y,
+                    "angle" => angle,
+                }
+                spawnBullet(extrainfo.merge(@bulletinfo))
+            end
 
         when "rain"
 
         end
-        @delay = @scene.frameCounter + @cooldown
+        if @activeburst < @burst
+            @activeburst += 1
+            @delay = @scene.frameCounter + @burstdelay
+        else
+            @activeburst = 1
+            @delay = @scene.frameCounter + @cooldown
+        end
+    end
+
+    def spawnBullet(info)
+        if @activeburst > 1
+            for key in info.keys()
+                next unless @burstchanges[key]
+                info[key] = info[key] + @burstchanges[key] * (@activeburst - 1)
+            end
+        end
+        @scene.spawnBullet(info)
     end
 
     def initialize(scene, info)
         @scene = scene
         @patterntype = info["patterntype"]
-        @cooldown = info["cooldown"]
+        @cooldown = info["cooldown"] || Graphice.frame_rate
         @delay = @scene.frameCounter + (info["delay"] || 0)
         @bulletinfo = info["bulletinfo"]
         @enemy = info["enemy"]
+        @spread = info["spread"] || 6
+        @count = info["count"] || 1
+        @burst = info["burst"] || 1
+        @activeburst = 1
+        @burstdelay = info["burstdelay"] || 0
+        @burstchanges = info["burstchanges"] || {}
     end
 end
 
 class TouhouBullet < TouhouEntity
     def update
-        x += @anglevector[0]
-        x += @anglevector[1]
-        if x - (width * 0.5) <= 0 || x+ (width * 0.5) >= Graphics.width
+        set_x(@x + @anglevector[0])
+        set_y(@y + @anglevector[1])
+        if @x - (width * 0.5) <= 0 || @x + (width * 0.5) >= Graphics.width
             if @bounces > 0
                 @anglevector[0] *= -1
                 @bounces -= 1
             end
         end
-        if y - (height * 0.5) <= 0
+        if @y - (height * 0.5) <= 0
             if @bounces > 0
                 @anglevector[1] *= -1
                 @bounces -= 1
             end
         end
-        if @opponent && 
-          x - collision_width  < @scene.player.x + @scene.player.collision_width && x + collision_width  > @scene.player.x - @scene.player.collision_width &&
-          y - collision_height  < @scene.player.y + @scene.player.collision_height && y + collision_height  > @scene.player.y - @scene.player.collision_height
-            @scene.player.killPlayer()
+        collision_check = [@scene.player]
+        collision_check = @scene.opponents if @player
+        for target in collision_check
+            next unless @x - collision_width() < target.x + target.collision_width()
+            next unless @x + collision_width() > target.x - target.collision_width()
+            next unless @y - collision_height() < target.y + target.collision_height()
+            next unless @y + collision_height() > target.y - target.collision_height()
+            target.damage()
             return false
         end
-        if x + width < 0 || x - width > Graphics.width
+        if @x + (width*2) < 0 || @x - width > Graphics.width
             cacheBullet()
             return false
         end
-        if y + height < 0 || y - width > Graphics.height
+        if @y + (height*2) < 0 || @y - (height*2) > Graphics.height
             cacheBullet()
             return false
         end
@@ -412,20 +565,19 @@ class TouhouBullet < TouhouEntity
         @info = info
         @bounces = info["bounces"] || 0
         @sprite.bitmap = info["bitmap"]
-        #@sprite.tone = Tone.new(rand(510) - 255,rand(510) - 255,rand(510) - 255)
+        @sprite.tone = info["color"] if info["color"]
         @size = info["size"] || 1
         @sprite.zoom_x *= @size
         @sprite.zoom_y *= @size
-        @positionvector = [info["x"] - width / 2, info["y"] - height / 2]
-        @sprite.x = @positionvector[0].round
-        @sprite.y = @positionvector[1].round
+        set_x(info["x"])
+        set_y(info["y"])
         @sprite.z = 10000 - width - height
-        @opponent = !info["playerbullet"]
+        @player = info["playerbullet"]
         @speed = info["speed"] || 1
         if info["angle"]
             @angle = info["angle"] * 3.14 / 180
         else
-            @angle = Math.atan2(@scene.playerposition[1] - @sprite.y - (height / 2), @scene.playerposition[0] - @sprite.x - (width / 2))
+            @angle = Math.atan2(@scene.player.y - @y, @scene.player.x - @x)
         end
         @anglevector = [Math.cos(@angle)*@speed, Math.sin(@angle)*@speed]
     end
@@ -437,6 +589,7 @@ class TouhouBullet < TouhouEntity
         @sprite.zoom_x = 1
         @sprite.zoom_y = 1
         @anglevector = [0, 0]
-        @positionvector = [@sprite.x, @sprite.y]
+        set_x(-100)
+        set_y(-100)
     end
 end
