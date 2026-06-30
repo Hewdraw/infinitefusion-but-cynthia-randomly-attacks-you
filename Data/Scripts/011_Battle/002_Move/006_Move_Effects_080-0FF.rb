@@ -3538,7 +3538,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :LUCKYEGG,:LUMINOUSMOSS,:MAGNET,:METALCOAT,:METRONOME,
               :MIRACLESEED,:MYSTICWATER,:NEVERMELTICE,:PASSORB,:POKEDOLL,
               :POKETOY,:PRISMSCALE,:PROTECTIVEPADS,:RAZORFANG,:SACREDASH,
-              :SCOPELENS,:SHELLBELL,:SHOALSALT,:SHOALSHELL,:SMOKEBALL,:SNOWBALL,
+              :SCOPELENS,:SHELLBELL,:SHOALSALT,:SHOALSHELL,:SHOCKORB,:SMOKEBALL,:SNOWBALL,
               :SOULDEW,:SPELLTAG,:TOXICORB,:FROSTORB,:TWISTEDSPOON,:UPGRADE,
               # Healing items
               :ANTIDOTE,:AWAKENING,:BERRYJUICE,:BIGMALASADA,:BLUEFLUTE,
@@ -3667,7 +3667,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
       target.pbFreeze(nil) if target.pbCanFreeze?(user,false,self)
     when :FLAMEORB
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
-    when :LIGHTBALL
+    when :LIGHTBALL, :SHOCKORB
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     when :KINGSROCK, :RAZORFANG
       target.pbFlinch(user)

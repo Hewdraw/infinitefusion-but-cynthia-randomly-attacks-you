@@ -23,6 +23,7 @@ end
 
 def touhouCreateUnown(scene, info={})
     type = rand(5)
+    type = 14
     patterninfo = {}
     case type
     when 0 #normal
@@ -96,6 +97,16 @@ def touhouCreateUnown(scene, info={})
     when 13 #psychic
 
     when 14 #ice
+        patterninfo["patterntype"] = "single"
+        patterninfo["cooldown"] = Graphics.frame_rate
+        patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        patterninfo["burst"] = 10
+        patterninfo["burstchanges"] = {"speed" => 0.1}
+        patterninfo["bulletinfo"] = {
+            "bitmap" => @bitmap1,
+            "size" => 0.5,
+            "color" => Tone.new(255, 255, 255, 0),
+        }
 
     when 15 #dragon
 
@@ -449,7 +460,7 @@ end
 class TouhouBulletPattern
     def update
         return if @scene.player.requirerespawn >= @scene.frameCounter
-        return if @delay >= @scene.frameCounter
+        return if @delay > @scene.frameCounter
         case @patterntype
         when "single"
             extrainfo = {
@@ -487,6 +498,7 @@ class TouhouBulletPattern
         if @activeburst < @burst
             @activeburst += 1
             @delay = @scene.frameCounter + @burstdelay
+            self.update if @burstdelay == 0
         else
             @activeburst = 1
             @delay = @scene.frameCounter + @cooldown
