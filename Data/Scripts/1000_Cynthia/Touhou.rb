@@ -23,7 +23,7 @@ end
 
 def touhouCreateUnown(scene, info={})
     type = rand(5)
-    type = 14
+    type = 11
     patterninfo = {}
     case type
     when 0 #normal
@@ -91,7 +91,20 @@ def touhouCreateUnown(scene, info={})
     when 10 #water
 
     when 11 #grass
-
+        direction = (rand(2) + 1) * 2 - 3
+        patterninfo["patterntype"] = "single"
+        patterninfo["cooldown"] = Graphics.frame_rate
+        patterninfo["angleoffset"] = -20 * direction
+        patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        patterninfo["burst"] = 10
+        patterninfo["burstchanges"] = {"speed" => 0.1, "angle" => 4 * direction}
+        patterninfo["burstdelay"] = 10
+        patterninfo["bulletinfo"] = {
+            "bitmap" => @bitmap1,
+            "size" => 0.5,
+            "speed" => 1,
+            "color" => Tone.new(0, 255, 0, 0),
+        }
     when 12 #electric
 
     when 13 #psychic
@@ -101,10 +114,12 @@ def touhouCreateUnown(scene, info={})
         patterninfo["cooldown"] = Graphics.frame_rate
         patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
         patterninfo["burst"] = 10
-        patterninfo["burstchanges"] = {"speed" => 0.1}
+        patterninfo["burstchanges"] = {"speed" => 0.2}
+        patterninfo["burstdelay"] = 2
         patterninfo["bulletinfo"] = {
             "bitmap" => @bitmap1,
             "size" => 0.5,
+            "speed" => 1,
             "color" => Tone.new(255, 255, 255, 0),
         }
 
@@ -225,6 +240,7 @@ class TouhouScene
     end
 
     def initialize
+        @spriteLoader = BattleSpriteLoader.new
         @attackoffset = 0
         @activeenemies = []
         @frameCounter = 0
@@ -411,7 +427,7 @@ class TouhouPlayer < TouhouEntity
         @sprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
         @sprite.tone = Tone.new(0, 0, -255)
         @sprite.angle += 90
-        @sprite.z = 100000
+        @sprite.z = 1000001
         @sprite.visible = true
         set_x(Graphics.width / 2)
         set_y(Graphics.height / 2)
@@ -438,10 +454,9 @@ class TouhouEnemy < TouhouEntity
         @sprite.bitmap = info["sprite"]
         @sprite.src_rect.height /= 4
         @sprite.src_rect.width /= 4
-        @sprite.z = 99999
+        @sprite.z = 1000000
         set_x(info["x"] || Graphics.width / 2)
         set_y(info["y"] || 64)
-
     end
 
     def damage()
@@ -461,18 +476,24 @@ class TouhouBulletPattern
     def update
         return if @scene.player.requirerespawn >= @scene.frameCounter
         return if @delay > @scene.frameCounter
+        if !@currentangle
+            @currentangle = @bulletinfo["angle"]
+            @currentangle = Math.atan2(@scene.player.y - @enemy.y, @scene.player.x - @enemy.x) * 180 / 3.14 if !@currentangle
+            @currentangle += @angleoffset if @angleoffset
+        end
+
         case @patterntype
         when "single"
             extrainfo = {
                 "x" => @enemy.x,
                 "y" => @enemy.y,
+                "angle" => @currentangle,
             }
             spawnBullet(extrainfo.merge(@bulletinfo))
         when "circle"
-            playerangle = Math.atan2(@scene.player.y - @enemy.y, @scene.player.x - @enemy.x) * 180 / 3.14
             @count = (360 / @spread)
             for i in 0...@count
-                angle = playerangle + (@spread * i)
+                angle = @currentangle + (@spread * i)
                 extrainfo = {
                     "x" => @enemy.x,
                     "y" => @enemy.y,
@@ -481,9 +502,8 @@ class TouhouBulletPattern
                 spawnBullet(extrainfo.merge(@bulletinfo))
             end
         when "fan"
-            playerangle = Math.atan2(@scene.player.y - @enemy.y, @scene.player.x - @enemy.x) * 180 / 3.14
             for i in 0...@count
-                angle = ((@count - 1) * @spread / 2) + playerangle - (@spread * i)
+                angle = ((@count - 1) * @spread / 2) + @currentangle - (@spread * i)
                 extrainfo = {
                     "x" => @enemy.x,
                     "y" => @enemy.y,
@@ -491,7 +511,6 @@ class TouhouBulletPattern
                 }
                 spawnBullet(extrainfo.merge(@bulletinfo))
             end
-
         when "rain"
 
         end
@@ -500,6 +519,7 @@ class TouhouBulletPattern
             @delay = @scene.frameCounter + @burstdelay
             self.update if @burstdelay == 0
         else
+            @currentangle = nil
             @activeburst = 1
             @delay = @scene.frameCounter + @cooldown
         end
@@ -528,11 +548,14 @@ class TouhouBulletPattern
         @activeburst = 1
         @burstdelay = info["burstdelay"] || 0
         @burstchanges = info["burstchanges"] || {}
+        @currentangle = nil
+        @angleoffset = info["angleoffset"]
     end
 end
 
 class TouhouBullet < TouhouEntity
     def update
+        @sprite.z -= 1
         set_x(@x + @anglevector[0])
         set_y(@y + @anglevector[1])
         if @x - (width * 0.5) <= 0 || @x + (width * 0.5) >= Graphics.width
@@ -583,7 +606,7 @@ class TouhouBullet < TouhouEntity
         @sprite.zoom_y *= @size
         set_x(info["x"])
         set_y(info["y"])
-        @sprite.z = 10000 - width - height
+        @sprite.z = 1000000 - (width * 1000) - (height * 1000)
         @player = info["playerbullet"]
         @speed = info["speed"] || 1
         if info["angle"]
@@ -591,6 +614,7 @@ class TouhouBullet < TouhouEntity
         else
             @angle = Math.atan2(@scene.player.y - @y, @scene.player.x - @x)
         end
+        @sprite.angle = @angle
         @anglevector = [Math.cos(@angle)*@speed, Math.sin(@angle)*@speed]
     end
 

@@ -48,7 +48,7 @@ class CustomSpriteExtracter < PIFSpriteExtracter
   def should_update_spritesheet?(pif_sprite)
     return false if !$updated_spritesheets
     return false if !downloadAllowed?()
-    return false if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS,false)
+    return false if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_REQUESTS,false)
     spritesheet_file = getSpritesheetPath(pif_sprite)
     return true if !pbResolveBitmap(spritesheet_file)
     return !$updated_spritesheets.include?(spritesheet_file)

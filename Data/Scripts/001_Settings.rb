@@ -97,13 +97,13 @@ module Settings
   DISCORD_URL = "https://discord.com/invite/infinitefusion"
   WIKI_URL = "https://infinitefusion.fandom.com/"
 
-  AI_ENTRIES_URL = "https://ai-entries.pkmninfinitefusion.workers.dev/"
-  AI_ENTRIES_RATE_MAX_NB_REQUESTS = 10  #Nb. requests allowed in each time window
-  AI_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
-  AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/dex_rate_limit.log'  # Path to the log file
+  # AI_ENTRIES_URL = "https://ai-entries.pkmninfinitefusion.workers.dev/"
+  # AI_ENTRIES_RATE_MAX_NB_REQUESTS = 10  #Nb. requests allowed in each time window
+  # AI_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
+  # AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/dex_rate_limit.log'  # Path to the log file
 
-  CUSTOMSPRITES_RATE_MAX_NB_REQUESTS = 15  #Nb. requests allowed in each time window
-  CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW = 120    # In seconds
+  CUSTOMSPRITES_RATE_MAX_REQUESTS = 31  #Nb. requests allowed in each time window
+  CUSTOMSPRITES_ENTRIES_RATE_WINDOW = 60    # In seconds
   CUSTOMSPRITES_RATE_LOG_FILE = 'Data/sprites/sprites_rate_limit.log'  # Path to the log file
   MAX_NB_SPRITES_TO_DOWNLOAD_AT_ONCE=5
 
@@ -119,7 +119,7 @@ module Settings
   BASE_POKEMON_SPRITESHEET_TRUE_SIZE_URL = ""
   CUSTOM_FUSIONS_SPRITESHEET_TRUE_SIZE_URL = ""
 
-  RIVAL_STARTER_PLACEHOLDER_SPECIES = :STARTER #(MEW)
+  RIVAL_STARTER_PLACEHOLDER_SPECIES = :STARTER
   VAR_1_PLACEHOLDER_SPECIES = :PLACEHOLDER1
   VAR_2_PLACEHOLDER_SPECIES = :PLACEHOLDER2
   VAR_3_PLACEHOLDER_SPECIES = :PLACEHOLDER3
@@ -388,8 +388,8 @@ module Settings
     #[0, 52, 20, 14, "mapHiddenFaraday", false]
   ]
 
-  TRIPLE_TYPES = [:QMARKS,:ICEFIREELECTRIC,:FIREWATERELECTRIC,:WATERGROUNDFLYING,:GHOSTSTEELWATER,
-                  :FIREWATERGRASS,:GRASSSTEEL,:BUGSTEELPSYCHIC,:ICEROCKSTEEL]
+  # TRIPLE_TYPES = [:QMARKS,:ICEFIREELECTRIC,:FIREWATERELECTRIC,:WATERGROUNDFLYING,:GHOSTSTEELWATER,
+  #                 :FIREWATERGRASS,:GRASSSTEEL,:BUGSTEELPSYCHIC,:ICEROCKSTEEL]
 
   #=============================================================================
 

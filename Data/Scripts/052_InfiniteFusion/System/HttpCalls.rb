@@ -85,7 +85,7 @@ def fetch_sprite_from_web(url, destinationPath)
 end
 
 def download_spritesheet(pif_sprite, dest)
-  return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS)
+  return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_REQUESTS)
   case pif_sprite.type
   when :AUTOGEN
     return
@@ -113,7 +113,7 @@ end
 
 #Returns: The local path of the downloaded sprite
 # def download_sprite(base_path, head_id, body_id, saveLocation = "Graphics/temp", alt_letter = "")
-#   return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS)
+#   return nil if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_REQUESTS)
 #   filename = "#{head_id}.#{body_id}#{alt_letter}.png"
 #   filename = "#{head_id}#{alt_letter}.png" if !body_id #unfused
 #
@@ -301,7 +301,7 @@ end
 #       downloaded_new_sprite= fetch_sprite_from_web(url,destPath)
 #       if downloaded_new_sprite
 #         nb_sprites_downloaded += 1
-#         break if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_NB_REQUESTS)
+#         break if requestRateExceeded?(Settings::CUSTOMSPRITES_RATE_LOG_FILE,Settings::CUSTOMSPRITES_ENTRIES_RATE_WINDOW,Settings::CUSTOMSPRITES_RATE_MAX_REQUESTS)
 #       end
 #
 #     end

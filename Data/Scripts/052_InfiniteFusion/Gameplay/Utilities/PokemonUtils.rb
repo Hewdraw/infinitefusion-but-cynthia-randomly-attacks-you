@@ -372,9 +372,9 @@ def getHiddenPowerName(pokemon)
   hiddenPowerType = hiddenpower[0]
 
   echoln hiddenPowerType
-  if Settings::TRIPLE_TYPES.include?(hiddenPowerType)
-    return _INTL("Neutral")
-  end
+  # if Settings::TRIPLE_TYPES.include?(hiddenPowerType)
+  #   return _INTL("Neutral")
+  # end
   return PBTypes.getName(hiddenPowerType)
 end
 
