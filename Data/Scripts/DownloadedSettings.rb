@@ -50,8 +50,8 @@ module Settings
   
   TRANSFER_BOX_DISCLAIMER_MESSAGE = "\\C[2]The Transfer Box is not yet available in Infinite Fusion 1, it is planned for a future update. It can still be used to transfer Pokémon between Hoenn savefiles in the meantime."
 
-  CUSTOMSPRITES_RATE_MAX_REQUESTS = 15  #Nb. requests allowed in each time window
-  CUSTOMSPRITES_ENTRIES_RATE_WINDOW = 60    # In seconds
+  CUSTOMSPRITES_RATE_MAX_NB_REQUESTS = 15  #Nb. requests allowed in each time window
+  CUSTOMSPRITES_ENTRIES_RATE_TIME_WINDOW = 60    # In seconds
   MAX_NB_SPRITES_TO_DOWNLOAD_AT_ONCE =5
 
   #POKEDEX ENTRIES
