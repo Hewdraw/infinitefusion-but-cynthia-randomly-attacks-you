@@ -23,7 +23,7 @@ end
 
 def touhouCreateUnown(scene, info={})
     type = rand(5)
-    type = 11
+    type = 9
     patterninfo = {}
     case type
     when 0 #normal
@@ -87,7 +87,18 @@ def touhouCreateUnown(scene, info={})
     when 8 #steel
 
     when 9 #fire
-
+        # patterninfo["patterntype"] = "circle"
+        # patterninfo["spread"] = 72
+        # patterninfo["cooldown"] = Graphics.frame_rate * 5
+        # patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
+        # patterninfo["burst"] = 5
+        # patterninfo["burstdelay"] = 10
+        # patterninfo["bulletinfo"] = {
+        #     "bitmap" => @bitmap1,
+        #     "size" => 2,
+        #     "speed" => 2,
+        #     "color" => Tone.new(255, 0, 0),
+        # }
     when 10 #water
 
     when 11 #grass
@@ -106,10 +117,6 @@ def touhouCreateUnown(scene, info={})
             "color" => Tone.new(0, 255, 0, 0),
         }
     when 12 #electric
-
-    when 13 #psychic
-
-    when 14 #ice
         patterninfo["patterntype"] = "single"
         patterninfo["cooldown"] = Graphics.frame_rate
         patterninfo["bitmap"] = Bitmap.new("Graphics/Animations/eb191_3")
@@ -120,8 +127,12 @@ def touhouCreateUnown(scene, info={})
             "bitmap" => @bitmap1,
             "size" => 0.5,
             "speed" => 1,
-            "color" => Tone.new(255, 255, 255, 0),
+            "color" => Tone.new(255, 255, 0, 0),
         }
+
+    when 13 #psychic
+
+    when 14 #ice
 
     when 15 #dragon
 

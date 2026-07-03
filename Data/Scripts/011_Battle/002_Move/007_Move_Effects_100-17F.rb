@@ -2559,7 +2559,7 @@ end
 
 class PokeBattle_Move_177 < PokeBattle_Move
   def pbCalcType(user)
-    if [:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK].include?(user.item_id)
+    if user.isTerastallized?
       return pbHiddenPower(user,user.pokemon.hiddenPowerType)
     end
     if user.pokemon.unteraTypes != nil
@@ -4285,7 +4285,7 @@ class PokeBattle_Move_271 < PokeBattle_BurnMove
 end
 
 class PokeBattle_Move_272 < PokeBattle_Move
-  def pbCritialOverride(user,target); return target.pokemon.unteraTypes != nil || target.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK]); end
+  def pbCritialOverride(user,target); return target.isTerastallized?; end
 end
 
 class PokeBattle_Move_273 < PokeBattle_Move
@@ -4315,7 +4315,7 @@ end
 
 class PokeBattle_Move_276 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    baseDmg += 50 if target.pokemon.unteraTypes != nil || target.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+    baseDmg += 50 if target.isTerastallized?
     return baseDmg
   end
 

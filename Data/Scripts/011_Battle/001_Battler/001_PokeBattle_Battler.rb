@@ -662,10 +662,14 @@ class PokeBattle_Battler
   end
 
   def canChangeType?
-    return false if @pokemon.unteraTypes != nil
-    return false if [:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK].include?(@item_id)
+    return false if isTerastallized?
     return ![:MULTITYPE, :RKSSYSTEM].include?(@ability_id)
   end
+
+  def isTerastallized?
+    return true if @pokemon.unteraTypes != nil
+    return true if [:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :PYRITE].include?(@item_id)
+    return false
 
   def airborne?
     return false if hasActiveItem?(:IRONBALL)

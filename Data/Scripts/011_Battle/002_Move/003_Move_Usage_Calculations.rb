@@ -79,7 +79,7 @@ class PokeBattle_Move
       else
         typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
       end
-    elsif moveType == :QMARKS && (target.hasActiveItem?(:WELLSPRINGMASK) || target.hasActiveItem?(:HEARTHFLAMEMASK) || target.hasActiveItem?(:CORNERSTONEMASK))
+    elsif moveType == :QMARKS && target.isTerastallized?
       typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
     else
       if target == tera && target.tera == :FLYING
