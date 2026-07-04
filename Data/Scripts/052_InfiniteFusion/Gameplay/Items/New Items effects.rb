@@ -1136,12 +1136,12 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ROTOM)
     pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
-    pkmn.species = :WROTOM
+    pkmn.species = :WASHROTOM
     pkmn.level = level
     pbLearnMove(pkmn, :HYDROPUMP)
     next true
   end
-  if pkmn.isSpecies?(:WROTOM)
+  if pkmn.isSpecies?(:WASHROTOM)
     pbMessage(_INTL("{1} changed form!", pkmn.name))
     level = pkmn.level
     pkmn.species = :ROTOM
@@ -1370,7 +1370,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [pkmn.species] => [[:HIDDENPOWER, :TERABLAST], [:FOCUSBLAST]],
     [:CELEBI] => [[:FUTURESIGHT], [:SEEDFLARE]],
     [:SQUIRTLE, :WARTORTLE, :BLASTOISE, :MACHINEDRAMON, :TRIPLE_KANTO1, :TRIPLE_KANTO2, :VENUSTOIZARD] => [[:HYDROCANNON]],
-    [:DELIBIRD, :IRONBUNDLE, :LUGIA, :ROTOM, :WROTOM] => [[:HYDROPUMP]],
+    [:DELIBIRD, :IRONBUNDLE, :LUGIA, :ROTOM, :WASHROTOM] => [[:HYDROPUMP]],
     [:SUICUNE, :WALKINGWAKE] => [[:HYDROSTEAM]],
     [:MELOETTA_A, :MELOETTA_P, :VOCALLEEK, :VOCALDRILL, :VOCALCELL] => [[:HYPNOSIS, :MESMERIZER]],
     [:REGICE, :ARTICUNO, :GALARARTICUNO] => [[:ICEBEAM]],

@@ -2039,6 +2039,8 @@ BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
   }
 )
 
+BattleHandlers::UserAbilityEndOfMove.copy(:BEASTBOOST, :EELEVATE)
+
 BattleHandlers::UserAbilityEndOfMove.add(:MAGICIAN,
   proc { |ability,user,targets,move,battle|
     next if battle.futureSight

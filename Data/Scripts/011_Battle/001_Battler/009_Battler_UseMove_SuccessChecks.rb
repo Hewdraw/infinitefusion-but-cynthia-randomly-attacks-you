@@ -297,7 +297,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
       return false
     end
-    if !(user.effects[PBEffects::Dynamax] > 0 || user.hasActiveAbility?([:UNSEENFIST, :TRUANTPLUS]))
+    if !(user.effects[PBEffects::Dynamax] > 0 || user.hasActiveAbility?([:UNSEENFIST, :PIERCINGDRILL, :TRUANTPLUS]))
       # Crafty Shield
       if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index &&
          move.statusMove? && !move.pbTarget(user).targets_all && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
@@ -443,7 +443,7 @@ class PokeBattle_Battler
     # Airborne-based immunity to Ground moves
     if move.damagingMove? && move.calcType == :GROUND &&
        target.airborne? && !move.hitsFlyingTargets?
-      if target.hasActiveAbility?([:LEVITATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
+      if target.hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
