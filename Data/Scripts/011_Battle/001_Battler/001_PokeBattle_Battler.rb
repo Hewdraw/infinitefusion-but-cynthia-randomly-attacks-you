@@ -670,6 +670,7 @@ class PokeBattle_Battler
     return true if @pokemon.unteraTypes != nil
     return true if [:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :PYRITE].include?(@item_id)
     return false
+  end
 
   def airborne?
     return false if hasActiveItem?(:IRONBALL)
