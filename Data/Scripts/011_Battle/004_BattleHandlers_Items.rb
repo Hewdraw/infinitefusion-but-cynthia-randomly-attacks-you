@@ -1015,9 +1015,10 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
     #       means it also cares about the Pokémon's form. Some forms cannot
     #       evolve even if the species generally can, and such forms are not
     #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)  || target.isFusionOf(:RAICHU)
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
       mults[:defense_multiplier] *= 1.5
     end
+    mults[:defense_multiplier] *= 1.2 if target.isFusionOf(:DUSKNOIR)
   }
 )
 
