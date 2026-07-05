@@ -141,11 +141,6 @@ EMERADICT = {
         :description => "Your Pokemon gain the Liquid Ooze Ability.",
         :rarity => :COMMON,
     },
-    # :MEDITATIONMAT => {
-    #     :name => "Meditation Mat",
-    #     :description => "Your Pokemon take half damage the turn they use Focus Punch or Meditate.",
-    #     :rarity => :COMMON,
-    # },
     :MILKBUCKET => {
         :name => "Milk Bucket",
         :description => "Your Pokemons Status Condition is healed when going up a floor.",

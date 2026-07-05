@@ -659,7 +659,7 @@ def pbGiveItemToPokemon(item, pkmn, scene, pkmnid = 0)
     scene.pbDisplay(_INTL("{1}'s mail must be removed before giving it an item.", pkmn.name))
     return false if !pbTakeItemFromPokemon(pkmn, scene)
   end
-  if item == :SINNOHCOIN
+  if item == :SINNOHCOIN && !pkmn.isFusionOf(:WASHROTOM)
     scene.pbDisplay(_INTL("nuh uh."))
     return
   end
