@@ -1274,6 +1274,8 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:ROSEMON, :ROSEMONBM] => [:VENUSAUR],
     [:IVYSAUR] => [:TOGEMON],
     [:BULBASAUR] => [:PALMON],
+    [:BLASTOISE] => [:MACHINEDRAMON],
+    [:WARTORTLE] => [:MACHINEDRAMON],
     [:SQUIRTLE] => [:MACHINEDRAMON],
     [:MELOETTA_P, :MELOETTA_A] => [:VOCALLEEK, :VOCALDRILL, :VOCALCELL]
   }
