@@ -5737,3 +5737,26 @@ class PokeBattle_Move_350 < PokeBattle_Move
     user.pbRaiseStatStage(:EVASION,1,user) if user.pbCanRaiseStatStage?(:EVASION,user,self) && @battle.pbRandom(100) < chance2
   end
 end
+
+class PokeBattle_Move_351 < PokeBattle_TwoTurnMove
+  def pbChargingTurnMessage(user,targets)
+    @battle.pbDisplay(_INTL("{1} is overflowing with rock polish!",user.pbThis))
+  end
+
+  def pbChargingTurnEffect(user,target)
+    if user.pbCanRaiseStatStage?(:SPEED,user,self)
+      user.pbRaiseStatStage(:SPEED,2,user)
+    end
+  end
+
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    return Effectiveness::SUPER_EFFECTIVE_ONE if [:ROCK, :GROUND, :STEEL].include?(defType)
+    return super
+  end
+  
+  def pbEffectGeneral(user)
+    user.pbOpposingSide.effects[PBEffects::StealthRock] = true
+    @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
+                            user.pbOpposingTeam(true)))
+  end
+end

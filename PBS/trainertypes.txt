@@ -157,3 +157,4 @@
 154,ALPHA_POKEMON,Alpha Pokémon,0,,,,Mixed,100,
 155,DESTROYEROFWORLDS,Destroyer of Worlds,0,,,,Male,100,
 156,TIME_STOPPER,Time Stopper,200,,,,Male,100,
+157,TOWER_TYCOON,Tower Tycoon,200,,,,Male,100,

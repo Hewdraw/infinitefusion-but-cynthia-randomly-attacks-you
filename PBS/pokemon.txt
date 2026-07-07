@@ -15375,7 +15375,7 @@ BattlerShadowSize = 1
 [468]
 Name = Cresselia
 InternalName = CRESSELIA
-Type1 = PSYCHIC
+Type1 = FAIRY
 BaseStats = 120,70,120,85,75,130
 GenderRate = AlwaysFemale
 GrowthRate = Slow
@@ -22021,7 +22021,7 @@ Name = Magtom
 InternalName = ROTOMMOWMAGCARGO
 Type1 = FIRE
 Type2 = GRASS
-BaseStats = 56,60,111,67,95,89
+BaseStats = 69,50,130,83,108,98
 Abilities = LEVITATE
 Moves = 1,TACKLE
 Shape = Head
@@ -22802,6 +22802,16 @@ Pokedex = A Mew is said to possess the genes of all Pokémon. It is capable of m
 WildItemCommon = LUMBERRY
 WildItemUncommon = LUMBERRY
 WildItemRare = LUMBERRY
+#-------------------------------
+[1000892]
+Name = Heatran
+InternalName = HEATRAN
+Type1 = FIRE
+Type2 = STEEL
+BaseStats = 91,90,106,77,130,106
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Legendary Raids

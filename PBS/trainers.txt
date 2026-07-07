@@ -10882,6 +10882,64 @@ Pokemon = METANG,5
     Happiness = 255
     Ball = LUXURYBALL
 
+####################### Misc Teams
+[TOWER_TYCOON,Palmer,0]    
+Pokemon = RHYPERIOR,5   
+    Offset = 0
+    Moves = EARTHQUAKE,ROCKSLIDE,SWORDSDANCE,ROCKWRECKERPLUS
+    Ability = SOLIDROCK
+    Item = PROTECTOR
+    Nature = ADAMANT
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,0,0,4
+    Happiness = 255
+Pokemon = CRESSELIA,5   
+    Offset = 0
+    Moves = LIGHTSCREEN,REFLECT,LUNARDANCE,MOONBLAST
+    Ability = LEVITATE
+    Item = LIGHTCLAY
+    Nature = TIMID
+    IV = 31,0,31,31,31,31
+    EV = 252,0,0,232,0,24
+    Happiness = 255
+Pokemon = REGIGIGAS,5   
+    Offset = 10
+    Moves = THUNDERWAVE,RETURN,SUBSTITUTE,EARTHQUAKE
+    Ability = SLOWSTART
+    Item = LEFTOVERS
+    Nature = ADAMANT
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,4,0,0
+    Happiness = 255
+Pokemon = DRAGONITE,5   
+    Offset = 0
+    Moves = DRAGONDANCE,OUTRAGE,FIREPUNCH,EARTHQUAKE
+    Ability = MULTISCALE
+    Item = LUMBERRY
+    Nature = ADAMANT
+    IV = 31,31,31,31,31,31
+    EV = 0,252,4,252,0,0
+    Happiness = 255
+Pokemon = MILOTIC,5 
+    Offset = 0
+    Moves = SURF,TOXIC,ICEBEAM,RECOVER
+    Ability = MARVELSCALE
+    Status = BURN
+    Item = LEFTOVERS
+    Nature = CALM
+    IV = 31,0,31,31,31,31
+    EV = 252,0,192,8,0,56
+    Happiness = 255
+Pokemon = HEATRAN,5 
+    Offset = 0
+    Moves = LAVAPLUME,TORMENT,SUBSTITUTE,EXPLOSIONPLUS
+    Ability = FLASHFIRE
+    Item = BUNDLEOFBALLOONS
+    Nature = CALM
+    IV = 31,0,31,31,31,31
+    EV = 252,0,4,0,0,252
+    Happiness = 255
+
 ####################### Legendary Teams
 [LEGENDARY_POKEMON,Articuno,0]
 Pokemon = ARTICUNO,11
