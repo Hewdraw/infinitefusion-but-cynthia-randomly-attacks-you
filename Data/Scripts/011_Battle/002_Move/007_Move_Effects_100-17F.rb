@@ -5753,8 +5753,8 @@ class PokeBattle_Move_351 < PokeBattle_TwoTurnMove
     return Effectiveness::SUPER_EFFECTIVE_ONE if [:ROCK, :GROUND, :STEEL].include?(defType)
     return super
   end
-  
-  def pbEffectGeneral(user)
+
+  def pbAdditionalEffect(user, target)
     user.pbOpposingSide.effects[PBEffects::StealthRock] = true
     @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
                             user.pbOpposingTeam(true)))

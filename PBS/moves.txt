@@ -1082,7 +1082,7 @@
 1113,WEB,Web,153,0,BUG,Status,0,20,0,FoeSide,1,c,"i havent thought of something funny this can do yet, have priority sticky web for now"
 1114,MEGAHORNPLUS,Megahorn+,349,20,BUG,Physical,100,5,0,NearOther,0,abef,"Using its tough and impressive horn, the user rams into the target with no letup."
 1115,OCTAZOOKAPLUS,Octazooka+,350,130,GUN,Special,100,5,100,NearOther,0,befn,"The user attacks by spraying ink in the foe's face or eyes. It may also lower the target's accuracy."
-1116,ROCKWRECKERPLUS,Rock Wrecker+,351,160,ROCK,Physical,100,5,0,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however."
+1116,ROCKWRECKERPLUS,Rock Wrecker+,351,160,ROCK,Physical,100,5,100,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however."
 
 
 
