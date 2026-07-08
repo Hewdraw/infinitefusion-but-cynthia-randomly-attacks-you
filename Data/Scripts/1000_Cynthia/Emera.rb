@@ -539,7 +539,7 @@ EMERADICT = {
     # },
     :ENIGMASTONE => {
         :name => "Enigma Stone",
-        :description => "Your Pokemon heal 1/2th hp when hit by a super effective move.",
+        :description => "Your Pokemon heal 1/4th hp when hit by a super effective move.",
         :rarity => :LEGENDARY,
         :legendary => ["Latias"],
         :tutormove => :DRACOMETEORPLUS,

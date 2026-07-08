@@ -1,4 +1,5 @@
 class Sprite_Player < Sprite_Character
+  attr_accessor :hair
   def initialize(viewport, character = nil)
     super
     @viewport = viewport

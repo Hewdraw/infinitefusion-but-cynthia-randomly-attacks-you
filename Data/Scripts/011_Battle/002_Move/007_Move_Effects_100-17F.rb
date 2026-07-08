@@ -2704,6 +2704,9 @@ class PokeBattle_Move_183 < PokeBattle_Move
     $PokemonGlobal.battlehplist.each do |b|
       b[0].hp = b[1]
     end
+    @battle.eachBattler do |b|
+      b.hp = b.pokemon.hp
+    end
   end
 end
 
@@ -5659,6 +5662,9 @@ class PokeBattle_Move_346 < PokeBattle_Move
     pbLegendaryBattle("Celebi", false, 1)
     $PokemonGlobal.battlehplist.each do |b|
       b[0].hp = b[1]
+    end
+    @battle.eachBattler do |b|
+      b.hp = b.pokemon.hp
     end
   end
 end
