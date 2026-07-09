@@ -155,7 +155,12 @@ def touhouCreateUnown(scene, info={})
     }
     enemyinfo = enemyinfo.merge(info)
     unown = TouhouEnemy.new(scene, enemyinfo)
-    unown.createPattern(patterninfo)
+    unown.createBulletPattern(patterninfo)
+    movementinfo = {
+        "location" => [rand(scene.width, scene.height)]
+        "speed" = > rand(5) + 5
+    }
+    unown.createMovementPattern()
     return unown
 end
 
@@ -183,7 +188,7 @@ class TouhouScene
             addSprite("playerbullet_#{@frameCounter}", @playerbulletcache[@playerbulletcache.length - 1].sprite)
         end
         @player.update()
-        if @frameCounter % 50 == 0
+        if @frameCounter % 500 == 0
             @opponents.push(touhouCreateUnown(self, {
                 "y" => 32,
                 "x" => 25 + rand(@width - 50),
@@ -477,9 +482,13 @@ end
 
 class TouhouEnemy < TouhouEntity
     def update
+        if @movementpatterns.length > 0
+            @movementpatterns[0].each do |pattern|
+                pattern.update
+            end
+        end
         if @bulletpatterns.length > 0
-            @currentpattern = @bulletpatterns[0]
-            @currentpattern.each do |pattern|
+            @bulletpatterns[0].each do |pattern|
                 pattern.update
             end
         end
@@ -487,8 +496,8 @@ class TouhouEnemy < TouhouEntity
 
     def initialize(scene, info)
         super
+        @movementpatterns = info["movementpatterns"] || []
         @bulletpatterns = info["bulletpatterns"] || []
-        @currentpattern = []
         @sprite.bitmap = info["sprite"]
         @sprite.src_rect.height /= 4
         @sprite.src_rect.width /= 4
@@ -502,11 +511,31 @@ class TouhouEnemy < TouhouEntity
         set_y(-100)
     end
 
-    def createPattern(info)
+    def createMovementPattern(info)
+        extrainfo = {
+            "enemy" => self,
+        }
+        @movementpatterns.push([TouhouBulletPattern.new(@scene, extrainfo.merge(info))])
+    end
+
+    def createBulletPattern(info)
         extrainfo = {
             "enemy" => self,
         }
         @bulletpatterns.push([TouhouBulletPattern.new(@scene, extrainfo.merge(info))])
+    end
+end
+
+class TouhouMovementPattern
+    def update
+
+    end
+
+    def initialize(scene, info)
+        @scene = scene
+        @enemy = info["enemy"]
+        @nextlocation = info["location"]
+        @speed = info["speed"]
     end
 end
 
