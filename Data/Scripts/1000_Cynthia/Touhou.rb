@@ -170,9 +170,7 @@ class TouhouScene
     attr_accessor :playerbulletcache
     attr_accessor :frameCounter
     attr_accessor :bitmap1
-    attr_accessor :leftborder
     attr_accessor :width
-    attr_accessor :topborder
     attr_accessor :height
     def update
         @frameCounter += 1
@@ -255,28 +253,33 @@ class TouhouScene
     end
 
     def initialize
-        @leftborder = 64
-        @width = Graphics.width / 2
-        @topborder = 32
-        @height = Graphics.height - 64
+        @leftborder = 16
+        @width = Graphics.width * 2 / 3
+        @topborder = 8
+        @height = Graphics.height - 16
         @spriteLoader = BattleSpriteLoader.new
         @attackoffset = 0
         @activeenemies = []
-        @frameCounter = 0
-        @bitmap1 = Bitmap.new("Graphics/Animations/eb59_3")
-        @bitmap2 = Bitmap.new("Graphics/Animations/eb195")
-        @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
-        @viewport.z = 99999
         @sprites = {}
         @visibility = {}
         @bulletsprites = []
         @bulletcache = []
         @playerbulletsprites = []
         @playerbulletcache = []
+        @frameCounter = 0
+        @bitmap1 = Bitmap.new("Graphics/Animations/eb59_3")
+        @bitmap2 = Bitmap.new("Graphics/Animations/eb195")
+        @uiviewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+        @uiviewport.z = 999
+        uibackgroundsprite = Sprite.new(@uiviewport)
+        uibackgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+        addSprite("uibackground", uibackgroundsprite)
+        @viewport = Viewport.new(@leftborder, @topborder, @width, @height)
+        @viewport.z = 99999
         backgroundsprite = Sprite.new(@viewport)
         backgroundsprite.bitmap = Bitmap.new("Graphics/Pictures/HallOfFame/hallfamebg_multiline")
-        backgroundsprite.x = @leftborder
-        backgroundsprite.y = @topborder
+        backgroundsprite.x = 0
+        backgroundsprite.y = 0
         backgroundsprite.src_rect.width = @width
         backgroundsprite.src_rect.height = @height
         addSprite("background",backgroundsprite)
@@ -340,13 +343,13 @@ class TouhouEntity
     attr_reader :y
     def set_x(value)
         @x = value
-        @sprite.x = @scene.leftborder + @x.round()
+        @sprite.x = @x.round()
         @sprite.ox = @sprite.width / 2
     end
 
     def set_y(value)
         @y = value
-        @sprite.y = @scene.topborder + @y.round()
+        @sprite.y = @y.round()
         @sprite.oy = @sprite.height / 2
     end
 
@@ -377,6 +380,15 @@ end
 
 class TouhouPlayer < TouhouEntity
     attr_accessor :requirerespawn
+
+    def collision_width
+        return width * 0.10
+    end
+
+    def collision_height
+        return height * 0.10
+    end
+
     def update
         if @requirerespawn == @scene.frameCounter
             @sprite.visible = true
@@ -448,13 +460,12 @@ class TouhouPlayer < TouhouEntity
     def initialize(scene)
         super
         @projectilebitmap = Bitmap.new("Graphics/Animations/MysteriousBalm")
-        @sprite = Sprite.new(@viewport)
         @sprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
         @sprite.tone = Tone.new(0, 0, -255)
         @sprite.angle += 90
         @sprite.z = 1000002
-        @sprite.zoom_x = 0.5
-        @sprite.zoom_y = 0.5
+        # @sprite.zoom_x = 0.5
+        # @sprite.zoom_y = 0.5
         @sprite.visible = true
         set_x(@scene.width / 2)
         set_y(@scene.height / 2)
