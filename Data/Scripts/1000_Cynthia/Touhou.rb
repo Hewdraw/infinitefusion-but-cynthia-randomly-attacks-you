@@ -158,7 +158,7 @@ def touhouCreateUnown(scene, info={})
     unown.createBulletPattern(patterninfo)
     movementinfo = {
         "location" => [rand(scene.width, scene.height)],
-        "speed" = > rand(5) + 5,
+        "speed" => rand(5) + 5,
     }
     unown.createMovementPattern()
     return unown
