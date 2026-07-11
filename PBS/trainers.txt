@@ -1768,6 +1768,39 @@ Pokemon = REAPINGSHELL,30
     Happiness = 255
     Ball = SHINYBALL
 #-------------------------------
+[SUPERNERD,Miguel,9]
+Pokemon = B89H110,24
+Pokemon = GENESECT,16
+    Offset = 1
+    Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+    Item = CHILLDRIVE
+    Ability = DOWNLOAD
+    Gender = F
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,252,0,0
+    Happiness = 255
+Pokemon = GENESECT,16
+    Offset = 1
+    Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+    Item = CHILLDRIVE
+    Ability = DOWNLOAD
+    Gender = F
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,252,0,0
+    Happiness = 255
+Pokemon = GENESECT,16
+    Offset = 1
+    Moves = LEECHLIFE,TECHNOBLAST,THUNDERBOLT,IRONHEAD
+    Item = CHILLDRIVE
+    Ability = DOWNLOAD
+    Gender = F
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,252,0,0
+    Happiness = 255
+#-------------------------------
 [TEAMROCKET_M,Doug]
 Pokemon = B15H81,28
     Ball = ROCKETBALL
