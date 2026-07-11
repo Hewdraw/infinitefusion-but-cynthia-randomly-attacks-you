@@ -158,3 +158,4 @@
 155,DESTROYEROFWORLDS,Destroyer of Worlds,0,,,,Male,100,
 156,TIME_STOPPER,Time Stopper,200,,,,Male,100,
 157,TOWER_TYCOON,Tower Tycoon,200,,,,Male,100,
+158,POKEMON,Partner Pokemon,200,,,,Male,100,

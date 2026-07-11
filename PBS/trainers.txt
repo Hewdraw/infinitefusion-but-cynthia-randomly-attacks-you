@@ -10973,6 +10973,12 @@ Pokemon = HEATRAN,5
     EV = 252,0,4,0,0,252
     Happiness = 255
 
+[POKEMON,Eevee,0]
+Pokemon = EEVEE,20
+
+[POKEMON,Elekid,0]
+Pokemon = ELEKID,20
+
 ####################### Legendary Teams
 [LEGENDARY_POKEMON,Articuno,0]
 Pokemon = ARTICUNO,11
