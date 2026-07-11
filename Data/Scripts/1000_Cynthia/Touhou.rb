@@ -528,14 +528,22 @@ end
 
 class TouhouMovementPattern
     def update
-
+        return false if @distance < 0
+        @enemy.set_x(@enemy.x + @anglevector[0])
+        @enemy.set_y(@enemy.y + @anglevector[1])
+        @distance -= @speed
+        return true
     end
 
     def initialize(scene, info)
         @scene = scene
         @enemy = info["enemy"]
-        @nextlocation = info["location"]
+        @nexty = info["y"] || @enemy.y
+        @nextx = info["x"] || @enemy.x
         @speed = info["speed"]
+        @angle = Math.atan2(@enemy.y - @nexty, @enemy.x - @nextx) * 180 / 3.14
+        @anglevector = [Math.cos(@angle)*@speed, Math.sin(@angle)*@speed]
+        @distance = Math.sqrt((@enemy.y - @nexty)**2 + (@enemy.x - @nextx)**2)
     end
 end
 
