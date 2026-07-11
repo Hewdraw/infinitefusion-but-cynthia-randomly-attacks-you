@@ -2560,7 +2560,7 @@ end
 class PokeBattle_Move_177 < PokeBattle_Move
   def pbCalcType(user)
     if user.isTerastallized?
-      return pbHiddenPower(user,user.pokemon.hiddenPowerType)
+      return pbHiddenPower(user,user.pokemon.hiddenPowerType)[0]
     end
     if user.pokemon.unteraTypes != nil
       if user.pokemon.unteraTypes.include?(:STELLAR)
