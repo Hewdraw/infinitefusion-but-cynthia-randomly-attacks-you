@@ -673,6 +673,7 @@ class PokeBattle_Battler
   end
 
   def airborne?
+    return true if isFusionOf?(:FANROTOM)
     return false if hasActiveItem?(:IRONBALL)
     return false if @effects[PBEffects::Ingrain]
     return false if @effects[PBEffects::SmackDown]

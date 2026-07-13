@@ -745,7 +745,7 @@ class PokeBattle_Move_11C < PokeBattle_Move
   end
 
   def pbCalcTypeModSingle(moveType, defType, user, target)
-    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING && !target.isFusionOf(:FANROTOM)
     return super
   end
 
@@ -3763,7 +3763,7 @@ class PokeBattle_Move_238 < PokeBattle_Move_0BD
   end
 
   def pbCalcTypeModSingle(moveType, defType, user, target)
-    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING && !target.isFusionOf(:FANROTOM)
     return super
   end
 
@@ -4327,7 +4327,7 @@ class PokeBattle_Move_276 < PokeBattle_Move
   end
 
   def pbCalcTypeModSingle(moveType, defType, user, target)
-    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING && !target.isFusionOf(:FANROTOM)
     return super
   end
 end
