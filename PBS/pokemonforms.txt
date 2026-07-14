@@ -45,7 +45,7 @@ Type1 = ELECTRIC
 Type2 = PSYCHIC
 BaseStats = 60,85,50,110,95,85
 Abilities = SURGESURFER
-HiddenAbility = SURGESURFER
+HiddenAbility = ELECTRICSURGE
 #-------------------------------
 [SANDSHREW,1]
 FormName = Kantonian
@@ -595,7 +595,7 @@ Type1 = GHOST
 Type2 = GHOST
 BaseStats = 38,30,85,30,55,65
 Abilities = MUMMY
-HiddenAbility = MUMMY
+HiddenAbility = MAGICGUARD
 #-------------------------------
 [YAMASK,2]
 FormName = Galarian
@@ -611,7 +611,7 @@ Type1 = GHOST
 Type2 = GHOST
 BaseStats = 58,50,145,30,95,105
 Abilities = MUMMY
-HiddenAbility = MUMMY
+HiddenAbility = MAGICGUARD
 #-------------------------------
 [COFAGRIGUS,2]
 FormName = Galarian

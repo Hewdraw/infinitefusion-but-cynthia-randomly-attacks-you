@@ -1456,6 +1456,32 @@ class Pokemon
       end
     end
     headstats = [:HP, :SPECIAL_ATTACK, :SPECIAL_DEFENSE]
+    if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
+      bsttemp = [{}, {}]
+      specieslist.each_with_index do |species,i|
+        next unless REGIONALLIST.flatten.include?(species.species)
+        GameData::Stat.each_main { |s|
+          bsttemp[i][s.id] = bstdata[i][s.id] + [(180-bstdata[i][s.id]) / 3, 0].max
+        }
+      end
+      bsttemp.each_with_index do |bst, i|
+        bsttemp[i] = bstdata[i] if bst == {}
+      end
+      bstdata = bsttemp
+    end
+    if hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
+      bsttemp = [{}, {}]
+      specieslist.each_with_index do |species,i|
+        hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
+        GameData::Stat.each_main { |s|
+          bsttemp[i][s.id] = bstdata[i][s.id] + [(180-bstdata[i][s.id]) / 3, 0].max
+        }
+      end
+      bsttemp.each_with_index do |bst, i|
+        bsttemp[i] = bstdata[i] if bst == {}
+      end
+      bstdata = bsttemp
+    end
     GameData::Stat.each_main { |s|
       statindex = 0
       statindex = 1 if headstats.include?(s.id)
@@ -1465,28 +1491,6 @@ class Pokemon
         ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
       end
     }
-    if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE]) || hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
-      bsttemp = [{}, {}]
-      specieslist.each_with_index do |species,i|
-        next unless REGIONALLIST.flatten.include?(species.species) || hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
-        GameData::Stat.each_main { |s|
-          bsttemp[i][s.id] = bstdata[i][s.id] + [(180-bstdata[i][s.id]) / 3, 0].max
-        }
-      end
-      bsttemp.each_with_index do |bst, i|
-        bsttemp[i] = bstdata[i] if bst == {}
-      end
-      bstdata = bsttemp
-      GameData::Stat.each_main { |s|
-        statindex = 0
-        statindex = 1 if headstats.include?(s.id)
-        if hasAbility?(:TOTALFREEZE) || hasItem?(:GODORB)
-          ret[s.id] = ((bstdata[statindex][s.id] * 0.6) + (bstdata[(statindex + 1) % 2][s.id] * 0.6)).floor.to_i
-        else
-          ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
-        end
-      }
-    end
     if hasItem?(:ANCESTRALGENE)
       ret[:ATTACK] = [ret[:ATTACK], 100].min
       ret[:SPECIAL_ATTACK] = [ret[:SPECIAL_ATTACK], 100].min
