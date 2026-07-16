@@ -121,21 +121,20 @@ def generateNextFloor()
     if !$PokemonGlobal.towervalues[:ladder1].nil?
         pbSetGraphic(4, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]))
         pbSetSelfSwitch(5, "A", true)
-        pbSetSelfSwitch(13, "A", true)
         pbSetGraphic(6, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]))
     end
     if !$PokemonGlobal.towervalues[:ladder2].nil?
         pbSetGraphic(7, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]))
         pbSetSelfSwitch(8, "A", true)
-        pbSetSelfSwitch(14, "A", true)
         pbSetGraphic(9, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]))
     end
     if !$PokemonGlobal.towervalues[:ladder3].nil?
         pbSetGraphic(10, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]))
         pbSetSelfSwitch(11, "A", true)
-        pbSetSelfSwitch(15, "A", true)
         pbSetGraphic(12, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]))
     end
+    pbSetSelfSwitch(13, "A", false)
+    pbSetSelfSwitch(13, "B", true)
 end
 
 def getTowerEvents()
@@ -247,16 +246,15 @@ def towerIncreaseFloor(nextfloor = nil)
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
         pbSetGraphic(4, "", 21)
         pbSetSelfSwitch(5, "A", false, 21)
-        pbSetSelfSwitch(13, "A", false, 21)
         pbSetGraphic(6, "", 21)
         pbSetGraphic(7, "", 21)
         pbSetSelfSwitch(8, "A", false, 21)
-        pbSetSelfSwitch(14, "A", false, 21)
         pbSetGraphic(9, "", 21)
         pbSetGraphic(10, "", 21)
         pbSetSelfSwitch(11, "A", false, 21)
-        pbSetSelfSwitch(15, "A", false, 21)
         pbSetGraphic(12, "", 21)
+        pbSetSelfSwitch(13, "A", false, 21)
+        pbSetSelfSwitch(13, "B", false, 21)
         $game_temp.player_new_map_id = 21
         $game_temp.player_new_x = 10
         $game_temp.player_new_y = 19
