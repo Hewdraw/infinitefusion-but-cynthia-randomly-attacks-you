@@ -21,9 +21,8 @@ def touhou()
     end
 end
 
-def touhouCreateUnown(scene, info={})
-    type = rand(5)
-    #type = 9
+def touhouCreateUnown(scene, info={}, movementinfo=[], type=nil)
+    type = rand(5) if !type
     patterninfo = {}
     case type
     when 0 #normal
@@ -154,13 +153,7 @@ def touhouCreateUnown(scene, info={})
         "shiny" => shiny,
     }
     enemyinfo = enemyinfo.merge(info)
-    unown = TouhouEnemy.new(scene, enemyinfo)
-    unown.createBulletPattern(patterninfo)
-    movementinfo = {
-        "location" => [rand(scene.width, scene.height)],
-        "speed" => rand(5) + 5,
-    }
-    unown.createMovementPattern()
+    unown = TouhouEnemy.new(scene, enemyinfo, [patterninfo], movementinfo)
     return unown
 end
 
@@ -188,17 +181,38 @@ class TouhouScene
             addSprite("playerbullet_#{@frameCounter}", @playerbulletcache[@playerbulletcache.length - 1].sprite)
         end
         @player.update()
-        if @frameCounter % 500 == 0
+        if @frameCounter % 100 == 0
             @opponents.push(touhouCreateUnown(self, {
-                "y" => 32,
-                "x" => 25 + rand(@width - 50),
+                "y" => -10,
+                "x" => @width / 3,
                 "size" => 0.5,
-            }))
+            },
+            [{
+                "y" => 100
+            },
+            {
+                "x" => @width + 100
+            }
+        ]))
+        end
+        if (@frameCounter + 50) % 100 == 0
+            @opponents.push(touhouCreateUnown(self, {
+                "y" => -10,
+                "x" => @width / 3 * 2,
+                "size" => 0.5,
+            },
+            [{
+                "y" => 100
+            },
+            {
+                "x" => -100
+            }
+        ]))
         end
         opponentindex = @opponents.length
         @opponents.reverse_each do |opponent|
             opponentindex -= 1
-            if opponent.x <= -100 && opponent.y <= -100
+            if opponent.x <= -100 && opponent.y <= -100 || opponent.x >= @width + 100 || opponent.y >= @height + 100
                 @opponents.delete_at(opponentindex)
                 next
             end
@@ -482,22 +496,38 @@ end
 
 class TouhouEnemy < TouhouEntity
     def update
+        if @movementpatterns.length == 0 && @movementinfo.length > 0
+            createMovementPattern(@movementinfo[0])
+            @movementinfo.delete_at(0)
+        end
         if @movementpatterns.length > 0
-            @movementpatterns[0].each do |pattern|
-                pattern.update
+            tempindex = @movementpatterns.length
+            @movementpatterns.reverse_each do |pattern|
+                tempindex -= 1
+                next if pattern.update
+                @movementpatterns.delete_at(tempindex)
             end
         end
+        if @bulletpatterns.length == 0 && @bulletinfo.length > 0
+            createBulletPattern(@bulletinfo[0])
+            @bulletinfo.delete_at(0)
+        end
         if @bulletpatterns.length > 0
-            @bulletpatterns[0].each do |pattern|
-                pattern.update
+            tempindex = @bulletpatterns.length
+            @bulletpatterns.reverse_each do |pattern|
+                tempindex -= 1
+                next if pattern.update
+                @bulletpatterns.delete_at(tempindex)
             end
         end
     end
 
-    def initialize(scene, info)
-        super
-        @movementpatterns = info["movementpatterns"] || []
-        @bulletpatterns = info["bulletpatterns"] || []
+    def initialize(scene, info, bulletinfo, movementinfo)
+        super(scene, info)
+        @movementpatterns = []
+        @movementinfo = movementinfo || []
+        @bulletpatterns = []
+        @bulletinfo = bulletinfo || []
         @sprite.bitmap = info["sprite"]
         @sprite.src_rect.height /= 4
         @sprite.src_rect.width /= 4
@@ -515,20 +545,20 @@ class TouhouEnemy < TouhouEntity
         extrainfo = {
             "enemy" => self,
         }
-        @movementpatterns.push([TouhouBulletPattern.new(@scene, extrainfo.merge(info))])
+        @movementpatterns.push(TouhouMovementPattern.new(@scene, extrainfo.merge(info)))
     end
 
     def createBulletPattern(info)
         extrainfo = {
             "enemy" => self,
         }
-        @bulletpatterns.push([TouhouBulletPattern.new(@scene, extrainfo.merge(info))])
+        @bulletpatterns.push(TouhouBulletPattern.new(@scene, extrainfo.merge(info)))
     end
 end
 
 class TouhouMovementPattern
     def update
-        return false if @distance < 0
+        return false if @distance <= 0
         @enemy.set_x(@enemy.x + @anglevector[0])
         @enemy.set_y(@enemy.y + @anglevector[1])
         @distance -= @speed
@@ -540,17 +570,19 @@ class TouhouMovementPattern
         @enemy = info["enemy"]
         @nexty = info["y"] || @enemy.y
         @nextx = info["x"] || @enemy.x
-        @speed = info["speed"]
-        @angle = Math.atan2(@enemy.y - @nexty, @enemy.x - @nextx) * 180 / 3.14
+        @speed = info["speed"] || 1
+        @hp = info["hp"] || 
+        @angle = Math.atan2(@nexty - @enemy.y, @nextx - @enemy.x)
         @anglevector = [Math.cos(@angle)*@speed, Math.sin(@angle)*@speed]
         @distance = Math.sqrt((@enemy.y - @nexty)**2 + (@enemy.x - @nextx)**2)
+
     end
 end
 
 class TouhouBulletPattern
     def update
-        return if @scene.player.requirerespawn >= @scene.frameCounter
-        return if @delay > @scene.frameCounter
+        return true if @scene.player.requirerespawn >= @scene.frameCounter
+        return true if @delay > @scene.frameCounter
         if !@currentangle
             @currentangle = @bulletinfo["angle"]
             @currentangle = Math.atan2(@scene.player.y - @enemy.y, @scene.player.x - @enemy.x) * 180 / 3.14 if !@currentangle
@@ -598,6 +630,7 @@ class TouhouBulletPattern
             @activeburst = 1
             @delay = @scene.frameCounter + @cooldown
         end
+        return true
     end
 
     def spawnBullet(info)

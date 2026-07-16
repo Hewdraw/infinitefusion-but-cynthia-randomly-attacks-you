@@ -1317,7 +1317,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TOUGHCLAWS,
 
 BattleHandlers::DamageCalcUserAbility.add(:EXPLOSIVE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 4 / 3.0 if move.function=="0E0"
+    mults[:base_damage_multiplier] *= 4 / 3.0 if ["0E0", "170"].include?(move.function)
   }
 )
 

@@ -446,7 +446,7 @@ class PokeBattle_Battler
       return true if hasActiveItem?([:PRISMSCALE, :DEEPSEATOOTH, :DEEPSEASCALE])
       return true if pbHasType?(:FIREWATERGRASS)
     when :GRASS
-      return true if hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :STICK])
+      return true if hasActiveItem?([:STICK])
       return true if pbHasType?(:FIREWATERGRASS)
     when :ELECTRIC
       return true if hasActiveAbility?(:WIRED)
@@ -667,13 +667,14 @@ class PokeBattle_Battler
   end
 
   def isTerastallized?
-    return true if @pokemon.unteraTypes != nil
-    return true if [:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :PYRITE].include?(@item_id)
+    return true if hasActiveEmera?(:TERACRYSTAL)
+    return true if @pokemon.unteraTypes != []
+    return true if [:PYRITE].include?(@item_id)
     return false
   end
 
   def airborne?
-    return true if isFusionOf?(:FANROTOM)
+    return true if isFusionOf(:FANROTOM)
     return false if hasActiveItem?(:IRONBALL)
     return false if @effects[PBEffects::Ingrain]
     return false if @effects[PBEffects::SmackDown]

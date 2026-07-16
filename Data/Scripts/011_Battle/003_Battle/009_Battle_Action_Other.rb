@@ -176,7 +176,7 @@ class PokeBattle_Battle
   def pbTerastallize(idxBattler)
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
-    return if battler.pokemon.unteraTypes != nil
+    return if battler.pokemon.unteraTypes != []
     trainerName = pbGetOwnerName(idxBattler)
     # Break Illusion
     if battler.hasActiveAbility?(:ILLUSION)
@@ -184,6 +184,7 @@ class PokeBattle_Battle
     end
     #pbDisplay(_INTL("{1} is Terastallizing into the {2}-Type!", battler.pbThis, battler.pokemon.tera))
     #pbCommonAnimation("MegaEvolution",battler)
+    battler.pokemon.hiddenPowerType = battler.pokemon.tera
     tempspecies = (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym
     level = battler.level
     ability = battler.ability

@@ -84,7 +84,7 @@ class PokeBattle_Battler
     when :SLEEP
       # No type is immune to sleep
     when :POISON
-      if !hasActiveAbility?([:CORROSION, :POISONHEAL, :GUTSPLUS])
+      if !hasActiveAbility?([:POISONHEAL, :GUTS, :GUTSPLUS]) || !user.hasActiveAbility?(:CORROSION)
         hasImmuneType |= pbHasType?(:POISON)
         hasImmuneType |= pbHasType?(:STEEL)
       end
@@ -93,7 +93,7 @@ class PokeBattle_Battler
     when :PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
     when :FROZEN
-      hasImmuneType |= pbHasType?(:ICE) && !hasActiveAbility?([:ICEBODY, :GUTSPLUS])
+      hasImmuneType |= pbHasType?(:ICE) && !hasActiveAbility?([:ICEBODY, :GUTS, :GUTSPLUS])
     end
     if hasImmuneType
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages

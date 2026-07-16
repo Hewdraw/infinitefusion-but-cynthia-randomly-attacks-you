@@ -1592,6 +1592,7 @@ class Pokemon
     @type1 = nil
     @type2 = nil
     setDefaultForms()
+    @unteraTypes = [] if !(tera && @unteraTypes != nil)
     if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
       getRegionalForm().each_with_index do |regional, i|
         next if regional.form == 0
@@ -1614,24 +1615,40 @@ class Pokemon
     if hasItem?(:ANCESTRALGENE) && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
       @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
-    if isFusionOf(:GENESECT)
+    if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
       @extraabilities.push(:FLASHFIRE) if hasItem?(:BURNDRIVE)
       @extraabilities.push(:MOTORDRIVE) if hasItem?(:SHOCKDRIVE)
       @extraabilities.push(:STORMDRAIN) if hasItem?(:DOUSEDRIVE)
       @extraabilities.push(:ICEBODY) if hasItem?(:CHILLDRIVE)
+      if hasItem?(:GUNDRIVE)
+        @unteraTypes.push(:GUN)
+        @extraabilities.push(:SNIPER)
+      end
     end
     if hasItem?(:WELLSPRINGMASK)
       @extraabilities.push(:WATERABSORB)
+      if hasType?(:GRASS)
+        @unteraTypes.push(:GRASS)
+        @unteraTypes.push(:ROCK) if hasType?(:WATER)
+      end
       @type1 = :WATER if @type1 == :GRASS
       @type2 = :WATER if @type2 == :GRASS
     end
     if hasItem?(:HEARTHFLAMEMASK)
       @extraabilities.push(:MOLDBREAKER)
+      if hasType?(:GRASS)
+        @unteraTypes.push(:GRASS)
+        @unteraTypes.push(:FIRE) if hasType?(:FIRE)
+      end
       @type1 = :FIRE if @type1 == :GRASS
       @type2 = :FIRE if @type2 == :GRASS
     end
     if hasItem?(:CORNERSTONEMASK)
       @extraabilities.push(:STURDY)
+      if hasType?(:GRASS)
+        @unteraTypes.push(:GRASS)
+        @unteraTypes.push(:ROCK) if hasType?(:ROCK)
+      end
       @type1 = :ROCK if @type1 == :GRASS
       @type2 = :ROCK if @type2 == :GRASS
     end

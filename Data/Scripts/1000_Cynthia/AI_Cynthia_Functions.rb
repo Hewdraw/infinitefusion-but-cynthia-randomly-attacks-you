@@ -2708,7 +2708,7 @@ class PokeBattle_AI
             multipliers[:final_damage_multiplier] *= 1.5
           end
         end
-        if user.pokemon.unteraTypes != nil
+        if user.pokemon.unteraTypes != []
           if user.pokemon.unteraTypes.include?(:STELLAR)
             if user.stellarmoves == nil
               user.stellarmoves = []

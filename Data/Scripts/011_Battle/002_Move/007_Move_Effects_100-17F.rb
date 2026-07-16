@@ -2562,18 +2562,11 @@ class PokeBattle_Move_177 < PokeBattle_Move
     if user.isTerastallized?
       return pbHiddenPower(user,user.pokemon.hiddenPowerType)[0]
     end
-    if user.pokemon.unteraTypes != nil
-      if user.pokemon.unteraTypes.include?(:STELLAR)
-        return :QMARKS
-      else
-        return user.type1
-      end
-    end
     return super
   end
 
   def pbBaseDamage(baseDmg,user,target)
-    if user.pokemon.unteraTypes != nil
+    if user.pokemon.unteraTypes != []
       if user.pokemon.unteraTypes.include?(:STELLAR)
         baseDmg = 100
       end
@@ -2595,7 +2588,7 @@ class PokeBattle_Move_177 < PokeBattle_Move
   end
 
   def pbAdditionalEffect(user,target)
-    if user.pokemon.unteraTypes != nil
+    if user.pokemon.unteraTypes != []
       if user.pokemon.unteraTypes.include?(:STELLAR)
         user.pbLowerStatStage(:SPECIAL_ATTACK,1,user,true)
         user.pbLowerStatStage(:ATTACK,1,user,true)

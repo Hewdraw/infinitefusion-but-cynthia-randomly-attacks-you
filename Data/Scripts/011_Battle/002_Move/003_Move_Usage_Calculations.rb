@@ -220,6 +220,7 @@ class PokeBattle_Move
       c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
     end
     c += 1 if c >= 0 && user.hasActiveItem?(:REAPERCLOTH) && punchingMove?
+    c += 1 if c >= 0 && user.hasActiveItem?(:GUNDRIVE) && [:TECHNOBLAST, :TECHNOBLASTPLUS].include?(@id) && user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
     if c>=0 && target.itemActive?
       c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,target,user,c)
     end
@@ -491,7 +492,7 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] *= 1.5
       end
     end
-    if type && user.pokemon.unteraTypes != nil
+    if type && user.pokemon.unteraTypes != []
       if user.pokemon.unteraTypes.include?(:STELLAR)
         if user.stellarmoves == nil
           user.stellarmoves = []

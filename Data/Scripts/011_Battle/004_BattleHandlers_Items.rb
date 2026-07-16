@@ -925,7 +925,7 @@ BattleHandlers::DamageCalcUserItem.add(:CORNERSTONEMASK,
 
 BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf(:GENESECT)
+    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
   }
 )
 
