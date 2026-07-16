@@ -75,6 +75,10 @@ def towerPokemon()
     amount = 1
     amount += 1 if hasEmera?(:POKEDEX)
     for _ in 0...amount do
+        if hasEmera?(:CATCHINGNET)
+            mon = getTowerPokemon("Bug")
+            pbAddPokemon(mon, 5)
+        end
         optioncount = 3
         options = []
         while options.length < optioncount

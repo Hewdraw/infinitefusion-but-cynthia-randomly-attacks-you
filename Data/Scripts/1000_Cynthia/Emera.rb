@@ -12,7 +12,7 @@ EMERADICT = {
     },
     :CATCHINGNET => {
         :name => "Catching Net",
-        :description => "Gain 2 extra Bug Pokemon at the start.",
+        :description => "Obtain an extra Bug Pokemon every Premier Ball floor.",
         :rarity => :STARTER,
     },
     :STICKYKEY => {

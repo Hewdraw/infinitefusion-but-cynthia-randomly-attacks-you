@@ -33,12 +33,6 @@ def setupTower()
         mon = getTowerPokemon()
         starters.push(mon) if !starters.include?(mon)
     end
-    if hasEmera?(:CATCHINGNET)
-        while starters.length < 5
-            mon = getTowerPokemon("Bug")
-            starters.push(mon) if !starters.include?(mon)
-        end
-    end
     starters.each do |pokemon|
         pbAddPokemon(pokemon, 5)
     end
