@@ -189,6 +189,7 @@ begin
     WonderRoom      = 12
     InverseRoom      = 13
     TheWorld        = 14
+    Web        = 15
   end
 
 rescue Exception

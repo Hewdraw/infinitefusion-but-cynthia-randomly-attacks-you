@@ -5759,3 +5759,18 @@ class PokeBattle_Move_351 < PokeBattle_TwoTurnMove
                             user.pbOpposingTeam(true)))
   end
 end
+
+class PokeBattle_Move_352 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if @battle.field.effects[PBEffects::Web]
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    @battle.field.effects[PBEffects::Web] = true
+    @battle.pbDisplay(_INTL("A web has been laid out!"))
+  end
+end

@@ -427,6 +427,7 @@ class PokeBattle_Move
     when :Misty
       multipliers[:base_damage_multiplier] /= 1.3 if target.pbHasType?(:FAIRY) && target.affectedByTerrain?
     end
+    multipliers[:base_damage_multiplier] *= 1.5 if type == :BUG && @battle.field.effects[PBEffects::Web]
     # Badge multipliers
     if @battle.internalBattle
       if user.pbOwnedByPlayer?

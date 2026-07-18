@@ -336,6 +336,7 @@ class PokeBattle_Battler
     # Other effects
     speedMult *= 2 if pbOwnSide.effects[PBEffects::Tailwind] > 0
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp] > 0
+    speedMult *= 1.5 if @battle.field.effects[PBEffects::Web]
     # Paralysis
     if status == :PARALYSIS && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
       speedMult /= 2

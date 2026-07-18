@@ -2631,6 +2631,7 @@ class PokeBattle_AI
       when :Misty
         multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
       end
+      multipliers[:base_damage_multiplier] *= 1.5 if type == :BUG && @battle.field.effects[PBEffects::Web]
       # Weather
       case weather
       when :Sun

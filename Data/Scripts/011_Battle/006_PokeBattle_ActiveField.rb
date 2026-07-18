@@ -25,6 +25,7 @@ begin
       @effects[PBEffects::TheWorld]       = 0
       @effects[PBEffects::WaterSportField] = 0
       @effects[PBEffects::WonderRoom]      = 0
+      @effects[PBEffects::Web]         = false
       @defaultWeather  = :None
       @weather         = :None
       @weatherDuration = 0
