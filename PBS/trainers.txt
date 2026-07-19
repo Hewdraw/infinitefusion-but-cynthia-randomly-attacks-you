@@ -11434,6 +11434,30 @@ Pokemon = KYUREM,11
     Happiness = 0
     Ball = MASTERBALL
 
+[LEGENDARY_POKEMON,Rotom,0]
+    Pokemon = ROTOM,11  
+    Offset = 4
+    Moves = RISINGVOLTAGE,HEX,WILLOWISP,BLIZZARD
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 2
+    Phasetwo = TRUE
+    Item = LEFTOVERS
+    Nature = CALM
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,252,0,252
+Pokemon = ROTOMWASH,11  
+    Offset = 4
+    Moves = HYDROPUMP,THUNDER,NASTYPLOT,HURRICANE
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 2
+    Item = SINNOHCOIN
+    Nature = TIMID
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,252,252,0
+    
+
 #placeholder
 [LEGENDARY_POKEMON,Regirock,0]
 Pokemon = REGIROCK,11 

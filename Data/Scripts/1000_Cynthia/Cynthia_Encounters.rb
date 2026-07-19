@@ -214,3 +214,23 @@ def pbCynthiaGetBadgeCount()
   return $PokemonGlobal.towervalues[:badges] if !$PokemonGlobal.towervalues.nil?
   return $Trainer.badge_count
 end
+
+def pbRotomEncounter()
+  rotomcount = 0
+  rotomcount += 1 if $game_switches[621] #goldenrod
+  rotomcount += 1 if $game_switches[697] #saffron
+  rotomcount += 1 if $game_switches[698] #celadon
+  case rotomcount
+  when 0
+    return false if !pbLegendaryBattle("Rotom")
+    pbReceiveItem(:TEACHYTV)
+  when 1
+    Kernel.pbMessage("todo")
+    return false
+  when 2
+    Kernel.pbMessage("todo")
+    return false
+  end
+
+  return true
+end

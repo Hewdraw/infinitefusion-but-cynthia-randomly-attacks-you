@@ -917,6 +917,7 @@
 851,GODORB,God Orb,God Orbs,1,0,"a",0,0,0
 852,BARB,Barb,Barbs,1,0,"If the holder of this item takes damage, the attacker will also be damaged.",0,0,0
 853,ESCAPEORB,Escape Orb,Escape Orbs,1,0,"Escape from a battle as if you had won but forfeit any rewards.",0,0,0
+854,TEACHYTV,Teachy TV,Teachy TVs,8,0,"Pocket Expert Move Tutor",1,0,6
 
 #    attr_reader :id
 #    attr_reader :id_number

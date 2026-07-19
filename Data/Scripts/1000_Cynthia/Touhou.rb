@@ -401,11 +401,11 @@ class TouhouPlayer < TouhouEntity
     attr_accessor :requirerespawn
 
     def collision_width
-        return width * 0.10
+        return width * 0.05
     end
 
     def collision_height
-        return height * 0.10
+        return height * 0.05
     end
 
     def update

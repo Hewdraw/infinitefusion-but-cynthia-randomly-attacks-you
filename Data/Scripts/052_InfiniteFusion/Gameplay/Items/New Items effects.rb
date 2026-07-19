@@ -1132,6 +1132,11 @@ ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
+  pbTutorMoveScreen(pkmn)
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ROTOM)
     pbMessage(_INTL("{1} changed form!", pkmn.name))

@@ -861,6 +861,7 @@ def getTowerItems()
 
     items[4].push([:OMNIDRIVE, 1]) if !$PokemonBag.pbHasItem?(:OMNIDRIVE)
     items[4].push([:TUTORMACHINE, 1]) if !$PokemonBag.pbHasItem?(:TUTORMACHINE)
+    items[4].push([:TEACHYTV, 1]) if !$PokemonBag.pbHasItem?(:TEACHYTV)
     items[4].push([:HEALIES, 1]) if !$PokemonBag.pbHasItem?(:HEALIES)
 
     return items
