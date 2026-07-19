@@ -222,6 +222,7 @@ def pbRotomEncounter()
   rotomcount += 1 if $game_switches[698] #celadon
   case rotomcount
   when 0
+    $PokemonGlobal.nextBattleBGM = "VSRotom"
     return false if !pbLegendaryBattle("Rotom")
     pbReceiveItem(:TEACHYTV)
   when 1
