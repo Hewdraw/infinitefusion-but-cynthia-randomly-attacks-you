@@ -67,7 +67,7 @@ class PokeBattle_Battler
       end
     end
     # Taunt
-    if @effects[PBEffects::Taunt]>0 && move.statusMove? && move.name != "The Skeleton Appears"
+    if @effects[PBEffects::Taunt]>0 && move.statusMove? && move.name != "The Skeleton Appears" && !hasActiveEmera?(:STICKYKEY) && !hasActiveEmera?(:KEY)
       if showMessages
         msg = _INTL("{1} can't use {2} after the taunt!",pbThis,move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
