@@ -859,7 +859,7 @@ class UndertaleMenu
     backgroundsprite = Sprite.new(viewport)
     backgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
     addSprite("background",backgroundsprite)
-    pbSEPlay("appearboost")
+    pbSEPlay("appearheart")
     pbWait(3)
     @heartsprite = Sprite.new(viewport)
     @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")

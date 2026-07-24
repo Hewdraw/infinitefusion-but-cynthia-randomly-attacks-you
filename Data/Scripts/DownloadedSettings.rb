@@ -6,6 +6,18 @@ module Settings
   SNOW_DAY = false
   MEW_OW_ENCOUNTER_CHANCE = 0
 
+  ALTERING_CAVE_ENCOUNTERS =
+    {
+    :MONDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :GROWLITHE],
+    :TUESDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :CUBONE],
+    :WEDNESDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :BELLSPROUT],
+    :THURSDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :PONYTA],
+    :FRIDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :DROWZEE],
+    :SATURDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :MANKEY],
+    :SUNDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :LICKITUNG],
+  }
+
+
   STARTUP_MESSAGES = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!" #Legacy starting PIF1 6.8
   STARTUP_MESSAGES_KANTO = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!"
   STARTUP_MESSAGES_HOENN = ""
