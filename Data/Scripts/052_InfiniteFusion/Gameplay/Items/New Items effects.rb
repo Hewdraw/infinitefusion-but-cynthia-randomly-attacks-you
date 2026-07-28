@@ -1128,7 +1128,19 @@ ItemHandlers::UseOnPokemon.add(:SHOCKORB, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
-  pbTutorMoveScreen(pkmn)
+  retval = true
+  tutorUtil = FusionTutorService.new(pokemon)
+  pbFadeOutIn {
+    scene = MoveRelearner_Scene.new
+    screen = MoveRelearnerScreen.new(scene)
+    moves = tutorUtil.getCompatibleMoves(legendaries)
+    if !moves.empty?
+      retval = screen.pbStartScreen(pokemon, moves)
+    else
+      return false
+    end
+  }
+  return retval
   next false
 })
 
@@ -2647,4 +2659,9 @@ ItemHandlers::BattleUseOnPokemon.add(:BLUENECTAR, proc { |item, poke, scene|
   form_name = "Sensu"
   form = 4
   next changeOricorioFormFromItem(poke,form_name,form)
+})
+
+ItemHandlers::UseFromBag.add(:BADEGG, proc { |item|
+  pbSEPlay("egg")
+  Kernel.pbMessage("* (You used the Bad Egg.)")
 })

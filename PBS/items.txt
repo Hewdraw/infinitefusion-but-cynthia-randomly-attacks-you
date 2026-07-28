@@ -782,7 +782,7 @@
 707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
 709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"todo",0,0,0
-710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,0,
+710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,6,
 711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"This is a crystallized form of Z-Power. It upgrades Necrozma's Photon Geyser to a Z-Move.",0,0,0
 712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,2,0,"Minimizes an IV for a Pokemon. Don't question how it does it.",1,0,0
 713,BOTTLECAP,Bottle Cap,Bottle Caps,2,0,"Maximizes an IV for a Pokemon. Don't question how it does it.",1,0,0
@@ -918,6 +918,7 @@
 852,BARB,Barb,Barbs,1,0,"If the holder of this item takes damage, the attacker will also be damaged.",0,0,0
 853,ESCAPEORB,Escape Orb,Escape Orbs,1,0,"Escape from a battle as if you had won but forfeit any rewards.",0,0,0
 854,TEACHYTV,Teachy TV,Teachy TVs,8,0,"Pocket Expert Move Tutor",1,0,6
+855,BADEGG,Bad Egg,Bad Eggs,8,0,"Not too important, not too unimportant.",2,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number
