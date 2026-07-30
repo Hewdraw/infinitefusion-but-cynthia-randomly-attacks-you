@@ -1263,6 +1263,7 @@ class PokemonPartyScreen
       cmdSummary = -1
       cmdMegaForm = -1
       cmdRegionalForm = -1
+      cmdRotomForm = -1
       cmdNickname = -1
       cmdDebug = -1
       cmdMoves = [-1] * pkmn.numMoves
@@ -1279,6 +1280,7 @@ class PokemonPartyScreen
       commands[cmdSummary = commands.length] = _INTL("Summary")
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
       commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0
+      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getRotomList.length > 0
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
         # Check for hidden moves and add any that were found
@@ -1412,6 +1414,34 @@ class PokemonPartyScreen
           end
           command = @scene.pbShowCommands(commandtext, abilitynamelist)
           pkmn.regionalability[i] = abilitylist[command]
+        end
+        pkmn.calc_stats
+      elsif cmdRotomForm >= 0 && command == cmdRotomForm
+        specieslist = [pkmn.species, pkmn.species]
+        if pkmn.isFusion? && getDexNumberForSpecies(pkmn.species) < 1000000
+          specieslist = [GameData::Species.get(getBodyIDNormalized(pkmn.species)).species, GameData::Species.get(getHeadIDNormalized(pkmn.species)).species]
+        end
+        specieslist.each_with_index do |species, i|
+          formlist = []
+          namelist = []
+          pkmn.getRotomList.each do |rotom|
+            formlist.push(rotom) if rotom.species == species
+            namelist.push(rotom.form_name) if rotom.species == species
+          end
+          next if namelist.length == 0
+          commandtext = _INTL("Select Rotom Form for the body") if i == 0
+          commandtext = _INTL("Select Rotom Form for the head") if i == 1
+          command = @scene.pbShowCommands(commandtext, namelist)
+          pkmn.rotomform[i] = command + 1
+          commandtext = _INTL("Select Rotom Ability for the body") if i == 0
+          commandtext = _INTL("Select Rotom Ability for the head") if i == 1
+          abilitynamelist = []
+          abilitylist = formlist[command].abilities + formlist[command].hidden_abilities
+          abilitylist.uniq.each do |ability|
+            abilitynamelist.push(GameData::Ability.get(ability).name)
+          end
+          command = @scene.pbShowCommands(commandtext, abilitynamelist)
+          pkmn.rotomability[i] = abilitylist[command]
         end
         pkmn.calc_stats
       elsif cmdHat >= 0 && command == cmdHat

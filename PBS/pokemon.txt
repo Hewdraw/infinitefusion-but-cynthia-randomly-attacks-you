@@ -22812,6 +22812,56 @@ BaseStats = 91,90,106,77,130,106
 Abilities = FLASHFIRE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000893]
+Name = Rorem
+InternalName = KYUREMWHITEFROSTROTOM
+Type1 = ELECTRIC
+Type2 = ICE
+BaseStats = 99,96,105,100,152,123
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000894]
+Name = Dialtom
+InternalName = DIALGAORIGINROTOMHEAT
+Type1 = STEEL
+Type2 = FIRE
+BaseStats = 90,83,125,96,146,130
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000895]
+Name = Kyotom
+InternalName = WASHROTOMKYOGRE
+Type1 = WATER
+Type2 = ELECTRIC
+BaseStats = 95,66,120,103,148,138
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000896]
+Name = Rofire
+InternalName = GOUGINGFIREMOWROTOM
+Type1 = ELECTRIC
+Type2 = DRAGON
+BaseStats = 92,93,125,97,117,121
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000897]
+Name = Xerntom
+InternalName = STEREOROTOMXERNEAS
+Type1 = FAIRY
+Type2 = SOUND
+BaseStats = 112,77,121,106,135,110
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Legendary Raids
@@ -22847,7 +22897,7 @@ BattlerShadowSize = 2
 #-------------------------------
 [1001000]
 Name = Articuno
-InternalName = GARTICUNO
+InternalName = GALARARTICUNO
 Type1 = PSYCHIC
 Type2 = FLYING
 GenderRate = Genderless

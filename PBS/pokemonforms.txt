@@ -963,6 +963,56 @@ BaseStats = 113,70,120,52,135,65
 Abilities = MINDSEYE
 HiddenAbility = MINDSEYE
 #-------------------------------
+# Rotoms
+#-------------------------------
+[ROTOM,1]
+FormName = Wash
+Type1 = ELECTRIC
+Type2 = WATER
+BaseStats = 86,50,135,110,144,135
+Abilities = LEVITATE,DRIZZLE
+HiddenAbility = WATERBUBBLE
+#-------------------------------
+[ROTOM,2]
+FormName = Heat
+Type1 = ELECTRIC
+Type2 = FIRE
+BaseStats = 86,50,135,110,144,135
+Abilities = LEVITATE,WELLBAKEDBODY
+HiddenAbility = IMMOLATE
+#-------------------------------
+[ROTOM,3]
+FormName = Frost
+Type1 = ELECTRIC
+Type2 = ICE
+BaseStats = 86,50,135,110,144,135
+Abilities = LEVITATE,REFRIGERATE
+HiddenAbility = SNOWWWARNING
+#-------------------------------
+[ROTOM,4]
+FormName = Fan
+Type1 = ELECTRIC
+Type2 = FLYING
+BaseStats = 86,50,135,110,144,135
+Abilities = EELEVATE,SHEERFORCE
+HiddenAbility = DELTASTREAM
+#-------------------------------
+[ROTOM,5]
+FormName = Mow
+Type1 = ELECTRIC
+Type2 = GRASS
+BaseStats = 86,50,135,110,144,135
+Abilities = EARTHEATER,GRASSYSURGE
+HiddenAbility = CONTRARY
+#-------------------------------
+[ROTOM,6]
+FormName = Stereo
+Type1 = ELECTRIC
+Type2 = SOUND
+BaseStats = 86,50,135,110,144,135
+Abilities = LEVITATE,QUARKDRIVE
+HiddenAbility = VOCALIZE
+#-------------------------------
 # Megas
 #-------------------------------
 [VENUSAUR,1]

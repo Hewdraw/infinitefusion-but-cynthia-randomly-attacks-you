@@ -28,7 +28,7 @@ class Pokemon
     GameData::Species.each do |data|
       next unless specieslist.include?(data.species)
       next if data.form == 0
-      next if !data.mega_stone
+      next if !(data.mega_stone || data.mega_move)
       ret.push(data)
     end
     return ret   # form number, or 0 if no accessible Mega form
@@ -43,8 +43,9 @@ class Pokemon
 
     GameData::Species.each do |data|
       next unless specieslist.include?(data.species)
+      next if [:ROTOM].include?(data.species)
       next if data.form == 0
-      next if data.mega_stone
+      next if data.mega_stone || data.mega_move
       ret.push(data)
     end
     return ret   # form number, or 0 if no accessible Mega form
@@ -67,6 +68,41 @@ class Pokemon
     return ret
   end
 
+  def getRotomList()
+    specieslist = [@species]
+    ret = []
+    if isFusion? && getDexNumberForSpecies(@species) < 1000000
+      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
+    end
+
+    GameData::Species.each do |data|
+      next unless specieslist.include?(data.species)
+      next unless data.species == :ROTOM
+      next if data.form > 5 && pbGetRotomCount() < 3
+      next if data.form == 0
+      next if data.mega_stone || data.mega_move
+      ret.push(data)
+    end
+    return ret   # form number, or 0 if no accessible Mega form
+  end
+
+  def getRotomForm()
+    setDefaultForms() if !@rotomform
+    ret = [GameData::Species.get(getBodyIDNormalized(@species)), GameData::Species.get(getHeadIDNormalized(@species))]
+    specieslist = [@species, @species]
+    if isFusion? && getDexNumberForSpecies(@species) < 1000000
+      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
+    end
+    getRotomList.each do |mega|
+      specieslist.each_with_index do |species, i|
+        next unless species == mega.species
+        next unless @rotomform[i] == mega.form
+        ret[i] = mega
+      end
+    end
+    return ret
+  end
+
   def setDefaultForms(override = false)
     specieslist = [@species]
     ret = []
@@ -74,13 +110,17 @@ class Pokemon
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
     megalist = [[], []]
+    rotomlist = [[], []]
     regionallist = [[], []]
     GameData::Species.each do |data|
       specieslist.each_with_index do |species, i|
         next unless species == data.species
         next if data.form == 0
-        if data.mega_stone
+        if data.mega_stone || data.mega_move
           megalist[i].push(data.form)
+        elsif species == :ROTOM
+          next if data.form > 5 && pbGetRotomCount() < 3
+          rotomlist[i].push(data.form)
         else
           regionallist[i].push(data.form)
         end
@@ -95,6 +135,19 @@ class Pokemon
         end
         @megaform[i] = mega
         next
+      end
+    end
+    if !@rotomform || override
+      @rotomform = [0, 0]
+      @rotomability = [nil, nil]
+      rotomlist.each_with_index do |rotom, i|
+        if rotom.length == 0
+          @rotomform[i] = 0
+          next
+        end
+        @rotomform[i] = rotom
+        abilitylist = getRotomList[i].abilities + getRotomList[i].hidden_abilities
+        @rotomability[i] = abilitylist[abilitylist.length]
       end
     end
     if !@regionalform || override

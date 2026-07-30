@@ -159,3 +159,4 @@
 156,TIME_STOPPER,Time Stopper,200,,,,Male,100,
 157,TOWER_TYCOON,Tower Tycoon,200,,,,Male,100,
 158,POKEMON,Partner Pokemon,200,,,,Male,100,
+159,STATIC,Static,70,,,,Female,100,

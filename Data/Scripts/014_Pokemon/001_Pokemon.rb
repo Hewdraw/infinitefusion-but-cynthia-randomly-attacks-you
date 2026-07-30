@@ -126,6 +126,8 @@ class Pokemon
   attr_accessor :megaform
   attr_accessor :regionalform
   attr_accessor :regionalability
+  attr_accessor :rotomform
+  attr_accessor :rotomability
   attr_accessor :extraabilities
   attr_accessor :abilityarray
   attr_accessor :boxicon

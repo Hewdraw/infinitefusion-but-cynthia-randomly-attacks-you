@@ -20,6 +20,7 @@ PARADOXLIST = [
   :TOTODILE, :CROCONAW, :FERALIGATR, :GABUMON, :GARURUMON, :WEREGARURUMON, :METALGARURUMON,
   :BLASTOISE, :MACHINEDRAMON,
   :MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALDRILL, :VOCALCELL,
+  :ROTOM, :STEREOROTOM,
 ]
 
 
@@ -35,7 +36,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,mult|
-    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species)))
+    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -456,6 +457,12 @@ BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
 
 BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
 
+BattleHandlers::AccuracyCalcUserItem.add(:ROTOMCATALOG,
+  proc { |item,user,mods,target,move,type|
+    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
+  }
+)
+
 BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
   proc { |item,user,mods,target,move,type|
     if (target.battle.choices[target.index][0]!=:UseMove &&
@@ -745,7 +752,7 @@ BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    next unless PARADOXLIST.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(user.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(user.species)).species)))
+    next unless PARADOXLIST.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(user.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(user.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -937,6 +944,12 @@ BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:ROTOMCATALOG,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if [:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetItem handlers
 #===============================================================================
@@ -1103,7 +1116,7 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
 
 BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,target,user,move,mults,baseDmg,type|
-    next unless PARADOXLIST.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(target.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(target.species)).species)))
+    next unless PARADOXLIST.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(target.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(target.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
     stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -1835,6 +1848,18 @@ BattleHandlers::EORHealingItem.add(:LEFTOVERS,
   }
 )
 
+BattleHandlers::EORHealingItem.add(:ROTOMCATALOG,
+  proc { |item,battler,battle|
+    next if !battler.canHeal?
+    next if ![:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
+
 BattleHandlers::EORHealingItem.add(:PROTECTOR,
   proc { |item,battler,battle|
     next if !battler.canHeal?
@@ -1992,7 +2017,7 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
 
 BattleHandlers::ItemOnSwitchIn.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,battle|
-    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species)))
+    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
     battle.pbDisplay(_INTL("{1} activates its Modified Booster Energy!",battler.pbThis))
   }
 )

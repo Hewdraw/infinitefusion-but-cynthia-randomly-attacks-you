@@ -1259,6 +1259,22 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.copy(:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE)
 
+ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
+  level = pkmn.level
+  next false if ![:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(pkmn.species)
+  pkmn.getRotomList.each do |rotom|
+    formlist.push(rotom.species)
+    namelist.push(rotom.form_name)
+  end
+  next false if namelist.length == 0
+  commandtext = _INTL("Select Rotom Form")
+  command = @scene.pbShowCommands(commandtext, namelist)
+  pbMessage(_INTL("{1} changed form!", pkmn.name))
+  pkmn.species = formlist[command]
+  pkmn.level = level
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene|
   next false if pkmn.species == :OMNIMON
   paradoxlist = {
@@ -1294,7 +1310,8 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:BLASTOISE] => [:MACHINEDRAMON],
     [:WARTORTLE] => [:MACHINEDRAMON],
     [:SQUIRTLE] => [:MACHINEDRAMON],
-    [:MELOETTA_P, :MELOETTA_A] => [:VOCALLEEK, :VOCALDRILL, :VOCALCELL]
+    [:MELOETTA_P, :MELOETTA_A] => [:VOCALLEEK, :VOCALDRILL, :VOCALCELL],
+    [:ROTOM] => [:STEREOROTOM],
   }
   level = pkmn.level
   paradoxlist.each do |unparadox, paradox|

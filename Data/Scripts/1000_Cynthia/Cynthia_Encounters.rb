@@ -215,23 +215,28 @@ def pbCynthiaGetBadgeCount()
   return $Trainer.badge_count
 end
 
-def pbRotomEncounter()
+def pbGetRotomCount()
   rotomcount = 0
   rotomcount += 1 if $game_switches[621] #goldenrod
   rotomcount += 1 if $game_switches[697] #saffron
   rotomcount += 1 if $game_switches[698] #celadon
-  case rotomcount
+  return rotomcount
+end
+
+def pbRotomEncounter()
+  case pbGetRotomCount()
   when 0
     $PokemonGlobal.nextBattleBGM = "VSRotom"
     return false if !pbLegendaryBattle("Rotom")
     pbReceiveItem(:TEACHYTV)
   when 1
-    Kernel.pbMessage("todo")
-    return false
+    $PokemonGlobal.nextBattleBGM = "VSStaticMiku"
+    return false if !pbTrainerBattle(:STATIC, "Hatsune Miku", nil, true)
+    pbAddPokemon(:ROTOM, 5)
+    pbReceiveItem(:ROTOMCATALOG)
   when 2
     Kernel.pbMessage("todo")
     return false
   end
-
   return true
 end

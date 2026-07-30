@@ -9,7 +9,7 @@ class PokeBattle_Battler
     @battle.pbPrimalReversion(@index) if !fainted?
     # Ending primordial weather, checking Trace
     pbContinualAbilityChecks(true)
-    if self.species == :WASHROTOM
+    if [:WASHROTOM, :WASHROTOMKYOGRE].include?(self.species) && switchIn
       if $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)
         @battle.pbDisplay(_INTL("{1} has taken a Sinnoh Coin", self.pbThis))
       elsif pbOwnedByPlayer?
@@ -26,14 +26,16 @@ class PokeBattle_Battler
       BattleHandlers.triggerAbilityOnSwitchIn(self.ability,self,@battle)
     end
     BattleHandlers.triggerAbilityOnSwitchIn(:EMERA,self,@battle) if !fainted?
-    @battle.pbMegaEvolve(@index) if !fainted? && self.species == :CREEPER
-    if self.species == :CREEPER && @battle.field.terrain == :Electric
-      @battle.pbDisplay(_INTL("{1} got charged by the terrain!",self.pbThis(true).capitalize))
-      @battle.pbMegaEvolve(self.index, true)
-    end
-    if self.species == :CREEPER && self.paralyzed?
-      @battle.pbDisplay(_INTL("{1} got charged by the paralysis!",self.pbThis(true).capitalize))
-      @battle.pbMegaEvolve(self.index, true)
+    if self.species == :CREEPER
+      @battle.pbMegaEvolve(@index) if !fainted?
+      if @battle.field.terrain == :Electric
+        @battle.pbDisplay(_INTL("{1} got charged by the terrain!",self.pbThis(true).capitalize))
+        @battle.pbMegaEvolve(self.index, true)
+      end
+      if self.paralyzed?
+        @battle.pbDisplay(_INTL("{1} got charged by the paralysis!",self.pbThis(true).capitalize))
+        @battle.pbMegaEvolve(self.index, true)
+      end
     end
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
