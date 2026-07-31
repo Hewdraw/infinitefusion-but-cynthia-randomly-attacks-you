@@ -36,7 +36,7 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,mult|
-    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?)
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -752,7 +752,7 @@ BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    next unless PARADOXLIST.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(user.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(user.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    next unless PARADOXLIST.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(user.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(user.species)).species))) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -2017,7 +2017,7 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
 
 BattleHandlers::ItemOnSwitchIn.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,battle|
-    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?)
     battle.pbDisplay(_INTL("{1} activates its Modified Booster Energy!",battler.pbThis))
   }
 )

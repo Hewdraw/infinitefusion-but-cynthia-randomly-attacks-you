@@ -11436,7 +11436,7 @@ Pokemon = KYUREM,11
 
 [LEGENDARY_POKEMON,Rotom,0]
     Pokemon = ROTOM,11  
-    Offset = 4
+    Offset = 1
     Moves = RISINGVOLTAGE,HEX,WILLOWISP,BLIZZARD
     Ability = LEGENDARYPRESSURE
     Hpbar = 2
@@ -11447,7 +11447,7 @@ Pokemon = KYUREM,11
     IV = 31,31,31,31,31,31
     EV = 252,0,0,252,0,252
 Pokemon = WASHROTOM,11  
-    Offset = 4
+    Offset = 1
     Moves = HYDROPUMP,THUNDER,NASTYPLOT,HURRICANE
     Ability = LEGENDARYPRESSURE
     Hpbar = 2

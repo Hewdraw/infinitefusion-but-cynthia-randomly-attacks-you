@@ -1145,7 +1145,7 @@ ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
-  pbTutorMoveScreen(pkmn)
+  pbExpertTutorMoveScreen(pkmn)
   next false
 })
 
