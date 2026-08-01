@@ -81,6 +81,7 @@ class MoveRelearnerScreen
   end
 
   def pbStartScreenExpert(pkmn)
+    tutorUtil = FusionTutorService.new(pokemon)
     moves = []
     pbCreatePreEvolutionTree(pkmn.species).each do |species|
       moves.push(tutorUtil.getCompatibleMoves(false))
