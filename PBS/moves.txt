@@ -1084,6 +1084,7 @@
 1115,OCTAZOOKAPLUS,Octazooka+,350,130,GUN,Special,100,5,100,NearOther,0,befn,"The user attacks by spraying ink in the foe's face or eyes. It may also lower the target's accuracy."
 1116,ROCKWRECKERPLUS,Rock Wrecker+,351,160,ROCK,Physical,100,5,100,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however."
 1117,ETERNABEAM,Eternabeam,0C2,160,DRAGON,Special,90,5,0,NearOther,0,bef,"The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
+1118,WILDBOLTSTORM,Wildbolt Storm,008,100,ELECTRIC,Special,80,10,30,AllNearFoes,0,bef,"a"
 
 
 

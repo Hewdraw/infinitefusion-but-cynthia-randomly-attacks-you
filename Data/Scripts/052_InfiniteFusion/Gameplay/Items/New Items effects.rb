@@ -1262,6 +1262,8 @@ ItemHandlers::UseOnPokemon.copy(:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE)
 ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
   level = pkmn.level
   next false if ![:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(pkmn.species)
+  formlist = []
+  namelist = []
   pkmn.getRotomList.each do |rotom|
     formlist.push(rotom.species)
     namelist.push(rotom.form_name)
