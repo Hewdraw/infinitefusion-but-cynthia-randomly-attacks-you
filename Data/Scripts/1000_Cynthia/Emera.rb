@@ -31,17 +31,23 @@ EMERADICT = {
         :rarity => :STARTER,
     },
 
-    :VIPCARD => {
-        :name => "VIP Card",
-        :description => "50% cheaper at the Shadross Shop.",
-        :rarity => :EVENT,
-    },
     :KEY => {
         :name => "Key",
         :description => "Use Greatest Metronome instead of Fighting. Can teach Greatest Metronome. Can open locked doors.",
         :rarity => :EVENT,
         :tutormove => :GREATESTMETRONOME,
         :tutorcondition => -> (pokemon) {return true},
+    },
+    :ROCK => {
+        :name => "Rock"
+        :description => "Rock moves gain 1.2x accuracy.",
+        :rarity => :EVENT,
+    },
+    }
+    :VIPCARD => {
+        :name => "VIP Card",
+        :description => "50% cheaper at the Shadross Shop.",
+        :rarity => :EVENT,
     },
 
     :APPLE => {
@@ -121,6 +127,11 @@ EMERADICT = {
     #     :description => "Your Pokemons Powder moves apply the Powder effect.",
     #     :rarity => :COMMON,
     # },
+    :HAMBURGERSTEAK => {
+        :name => "Hamburger Steak",
+        :description => "Your Pokemon's Rock Smash damage and additional effect chance doubles.",
+        :rarity => :COMMON,
+    },
     :LEPPAJUICE => {
         :name => "Leppa Juice",
         :description => "Your Pokemon regain 20% of a moves PP (rounded down) when knocking out a Pokemon with it.",
@@ -314,8 +325,9 @@ EMERADICT = {
     },
     :MOSSYROCK => {
         :name => "Mossy Rock",
-        :description => "Grassy Terrain is activated at the start of the battle.",
+        :description => "Grassy Terrain is activated at the start of the battle. Contains Moss.",
         :rarity => :UNCOMMON,
+        :misccommand => "Eat"
     },
     # :PHANTOMMEMBRAME => {
     #     :name => "Phantom Membrame",
@@ -662,6 +674,7 @@ EMERADICT = {
         :rarity => :LEGENDARY,
         :tutormove => :TERASTARSTORM,
         :tutorcondition => -> (pokemon) {return true},
+        :misccommand => "Change Type"
     },
     :TOXICCHAIN => {
         :name => "Toxic Chain",
@@ -764,7 +777,7 @@ def getEmeras
     EMERADICT.each do |emera, values|
         rarity = values[:rarity]
         next if !raritylist.include?(rarity)
-        next if getLooplet.emeras.include?(emera)
+        next if getLooplet.obtainedemeras.include?(emera)
         emeralist[raritylist.index(rarity)].push(emera)
     end
     return emeralist

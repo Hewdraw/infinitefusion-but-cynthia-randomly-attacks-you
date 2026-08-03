@@ -600,6 +600,7 @@ class PokeBattle_Move
         ret *= 1.5
       end
     end
+    ret *= 2 if user.hasActiveEmera?(:HAMBURGERSTEAK) && @id == :ROCKSMASH
     ret /= 2 if target.hasActiveEmera?(:LUCKYCHARM)
     ret += 10 if user.hasActiveItem?(:UPGRADE) if ret > 0
     ret = 100 if $DEBUG && Input.press?(Input::CTRL)

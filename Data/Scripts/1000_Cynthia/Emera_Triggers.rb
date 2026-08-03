@@ -90,6 +90,9 @@ BattleHandlers::DamageCalcUserAbility.add(:EMERA,
     if user.hasActiveEmera?(:HEAVYCORE)
       mults[:final_damage_multiplier] *= 1.1
     end
+    if user.hasActiveEmera?(:HAMBURGERSTEAK) && move.id == :ROCKSMASH
+      mults[:base_damage_multiplier] *= 2
+    end
   }
 )
 

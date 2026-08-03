@@ -380,7 +380,7 @@ class PokemonLoopletScreen
       # Generate command list
 
       commands[cmdUse = commands.length]    = _INTL("Tutor Move") if EMERADICT[item][:tutormove]
-      commands[cmdMisc = commands.length]     = _INTL("Change Type") if item == :TERACRYSTAL
+      commands[cmdMisc = commands.length]     = _INTL(EMERADICT[item][:misccommand]) if EMERADICT[item][:misccommand]
       commands[cmdToggle = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item) && EMERADICT[item][:rarity] != :STARTER
       commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item)
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
@@ -433,24 +433,31 @@ class PokemonLoopletScreen
         @scene.pbRefresh
         next
       elsif cmdMisc >= 0 && command == cmdMisc
-        scene = PokemonParty_Scene.new
-        screen = PokemonPartyScreen.new(scene,$Trainer.party)
-        screen.pbStartScene(_INTL("Which Pokémon?"),false)
-        loop do
-          chosen = screen.pbChoosePokemon
-          break if chosen<0
-          pokemon = $Trainer.party[chosen]
-          types = []
-          GameData::Type.each { |t| types.push(t.id) if !t.pseudo_type && ![:SHADOW].include?(t.id)}
-          types.sort! { |a, b| GameData::Type.get(a).id_number <=> GameData::Type.get(b).id_number }
-          typenames = []
-          types.each do |type|
-            typenames.push(GameData::Type.get(type).name)
+        case item
+        when :MOSSYROCK
+          pbMessage("You ate the Moss from the Rock.")
+          getLooplet.pbRemoveEmera(item)
+          getLooplet.pbStoreEmera(:ROCK)
+        when :TERACRYSTAL
+          scene = PokemonParty_Scene.new
+          screen = PokemonPartyScreen.new(scene,$Trainer.party)
+          screen.pbStartScene(_INTL("Which Pokémon?"),false)
+          loop do
+            chosen = screen.pbChoosePokemon
+            break if chosen<0
+            pokemon = $Trainer.party[chosen]
+            types = []
+            GameData::Type.each { |t| types.push(t.id) if !t.pseudo_type && ![:SHADOW].include?(t.id)}
+            types.sort! { |a, b| GameData::Type.get(a).id_number <=> GameData::Type.get(b).id_number }
+            typenames = []
+            types.each do |type|
+              typenames.push(GameData::Type.get(type).name)
+            end
+            type = types[Kernel.pbMessage("Select a Type", typenames)]
+            pokemon.hiddenPowerType = type
           end
-          type = types[Kernel.pbMessage("Select a Type", typenames)]
-          pokemon.hiddenPowerType = type
+          screen.pbEndScene
         end
-        screen.pbEndScene
       elsif cmdToggle >= 0 && command == cmdToggle
         if @bag.activeemeras.include?(item)
           @bag.activeemeras.delete(item)
@@ -505,6 +512,7 @@ class PokemonLooplet
     @choice    = 0
     @emeras = []
     @activeemeras = []
+    @obtainedemeras = []
     @emeravariables = {}
   end
 
@@ -548,7 +556,12 @@ class PokemonLooplet
 
   def pbStoreEmera(item)
     @emeras.push(item)
-    @activeemeras.push(item) #todo
+    @activeemeras.push(item)
+    @obtainedemeras.push(item)
+  end
+
+  def pbCanObtainEmera(item)
+    return false if @obtainedemeras.include?(item)
   end
 
   def pbRandomEmera(rarity=nil)

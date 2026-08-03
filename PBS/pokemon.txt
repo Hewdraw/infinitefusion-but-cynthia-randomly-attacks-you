@@ -19649,6 +19649,7 @@ BattlerShadowX = 0
 BattlerShadowSize = 5
 
 #Cynthia Pokemon
+#-------------------------------
 [1000099]
 Name = Cynthia
 InternalName = CYNTHIA
@@ -19961,6 +19962,7 @@ Kind = Virtual
 Pokedex = Additional software was installed to make it a better Pokémon. It began acting oddly, however.
 
 #Cynthia Megas
+#-------------------------------
 [1000200]
 Name = Garchomp
 InternalName = MEGAGARCHOMP
@@ -21203,6 +21205,7 @@ Color = Red
 Shape = BipedalTail
 Pokedex = It lies on warm rocks and uses the heat absorbed by its square-shaped scales to create fire energy.
 Generation = 9
+#-------------------------------
 [1000412]
 Name = Redstone Monstrosity
 InternalName = REDSTONEMONSTROSITY
@@ -21213,6 +21216,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000413]
 Name = Bunny
 InternalName = BUNNY
@@ -21222,6 +21226,7 @@ BaseStats = 10,170,5,135,10,20
 Abilities = HUGEPOWER
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000414]
 Name = Ender Dragon
 InternalName = ENDERDRAGON
@@ -21236,6 +21241,7 @@ Shape = Head
 
 
 #Hatsune Miku Megas
+#-------------------------------
 [1000500]
 Name = Creeper
 InternalName = MEGACREEPER
@@ -21245,6 +21251,7 @@ BaseStats = 130,180,70,140,50,70
 Abilities = CHARGEDEXPLOSIVE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000501]
 Name = Tyranwile
 InternalName = MEGAB300H248
@@ -21254,6 +21261,7 @@ BaseStats = 83,114,120,53,81,98
 Abilities = POWEREDSANDS
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000502]
 Name = Genvoir
 InternalName = MEGAB287H94 
@@ -21265,6 +21273,7 @@ Abilities = PIXELTAG
 HiddenAbility = PIXELTAG
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000503]
 Name = Poryrouge
 InternalName = ARMAROUGEPORYGONZPSYCHIC
@@ -21274,6 +21283,7 @@ GenderRate = Female50Percent
 Abilities = ADAPTABILITY
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000504]
 Name = Alcrerene
 InternalName = GMAXHATTERENEALCREMIE 
@@ -21284,6 +21294,7 @@ GenderRate = Female50Percent
 Abilities = MAGICBOUNCE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000505]
 Name = Garderos
 InternalName = MEGAB181H287 
@@ -21294,6 +21305,7 @@ GenderRate = Female50Percent
 Abilities = PIXILATE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000506]
 Name = Shedgle
 InternalName = SMEARGLESHEDINJAELECTRIC
@@ -21303,6 +21315,7 @@ GenderRate = Female50Percent
 Abilities = WONDERGUARD
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000507]
 Name = Mawancie
 InternalName = MEGAB500H300
@@ -21313,6 +21326,7 @@ GenderRate = Female50Percent
 Abilities = POWERBOUNCE
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000508]
 Name = Tinkanite
 InternalName = DRAGONITETINKATONNORMAL
@@ -21323,6 +21337,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000509]
 Name = Gardeancie
 InternalName = MEGAB500H287
@@ -21336,6 +21351,7 @@ Moves = 1,TACKLE
 Shape = Head
 
 #Hatsune Miku Fusions
+#-------------------------------
 [1000600]
 Name = Jigglyoptile
 InternalName = HELIOPTILEJIGGLYPUFF
@@ -21347,6 +21363,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000601]
 Name = Primagon
 InternalName = FLYGONPRIMARINA
@@ -21358,6 +21375,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000602]
 Name = Lapboom
 InternalName = RILLABOOMLAPRAS
@@ -21369,6 +21387,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000603]
 Name = Togeirfetch'd
 InternalName = SIRFETCHDTOGEKISS
@@ -21380,6 +21399,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000604]
 Name = Toxtrigar
 InternalName = GENGARTOXTRICITY
@@ -21391,6 +21411,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000605]
 Name = Tinkacario
 InternalName = LUCARIOTINKATON
@@ -21402,6 +21423,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000606]
 Name = Milodirge
 InternalName = SKELEDIRGEMILOTIC
@@ -21413,6 +21435,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000607]
 Name = Lucagoon
 InternalName = OBSTAGOONLUCARIO
@@ -21424,6 +21447,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000608]
 Name = Roseboom
 InternalName = RILLABOOMROSERADE 
@@ -21434,6 +21458,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000609]
 Name = Flacadrill
 InternalName = EXCADRILLFLAREON 
@@ -21445,6 +21470,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000610]
 Name = Primatricity
 InternalName = TOXTRICITYPRIMARINA 
@@ -21456,6 +21482,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000611]
 Name = Melomin
 InternalName = SHAYMINSKYMELOETTA 
@@ -21467,6 +21494,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000612]
 Name = Chandeedee
 InternalName = INDEEDEEFCHANSEY 
@@ -21478,6 +21506,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000613]
 Name = Poryrouge
 InternalName = ARMAROUGEPORYGONZ 
@@ -21489,6 +21518,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000614]
 Name = Alcrerene
 InternalName = HATTERENEALCREMIE 
@@ -21500,6 +21530,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000615]
 Name = Shedgle
 InternalName = SMEARGLESHEDINJA 
@@ -21511,6 +21542,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000616]
 Name = Tinkanite
 InternalName = DRAGONITETINKATON 
@@ -21522,6 +21554,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000617]
 Name = Flutter Chu
 InternalName = PIKACHUFLUTTERMANE 
@@ -21533,6 +21566,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000618]
 Name = Scream Boom
 InternalName = RILLABOOMSCREAMTAIL 
@@ -21544,6 +21578,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000619]
 Name = Iron Tales
 InternalName = ANINETALESIRONBUNDLE 
@@ -21555,6 +21590,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000620]
 Name = Iron Tana
 InternalName = KARTANAIRONVALIANT 
@@ -21566,6 +21602,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000621]
 Name = Walking Mane
 InternalName = FLUTTERMANEWALKINGWAKE 
@@ -21577,6 +21614,7 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
 [1000622]
 Name = Tinkgarde
 InternalName = ZYGARDETINKATON 
@@ -23631,7 +23669,7 @@ EffortPoints = 0,0,0,1,1,0
 Rareness = 45
 Happiness = 70
 Abilities = LEVITATE,DRIZZLE
-HiddenAbility = WATERBUBBLE
+HiddenAbility = COTTONDOWN
 Moves = 1,ASTONISH,1,DOUBLETEAM,5,THUNDERSHOCK,10,CONFUSERAY,15,CHARGE,20,ELECTROBALL,25,THUNDERWAVE,30,SHOCKWAVE,35,HEX,40,SUBSTITUTE,45,TRICK,50,DISCHARGE,55,UPROAR
 TutorMoves = ALLYSWITCH,CHARGEBEAM,CONFIDE,DARKPULSE,DOUBLETEAM,DREAMEATER,EERIEIMPULSE,ELECTRICTERRAIN,ELECTROBALL,ELECTROWEB,ENDURE,FACADE,FLASH,FOULPLAY,FRUSTRATION,HELPINGHAND,HEX,HIDDENPOWER,HYPERVOICE,LIGHTSCREEN,MIMIC,MUDSLAP,NASTYPLOT,NATURALGIFT,OMINOUSWIND,PAINSPLIT,POLTERGEIST,PROTECT,PSYCHUP,RAINDANCE,REFLECT,REST,RETURN,RISINGVOLTAGE,ROUND,SECRETPOWER,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SLEEPTALK,SNATCH,SNORE,SPITE,STOREDPOWER,SUBSTITUTE,SUCKERPUNCH,SUNNYDAY,SWAGGER,SWIFT,TELEKINESIS,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TRICK,UPROAR,VOLTSWITCH,WILLOWISP
 Compatibility = Amorphous
