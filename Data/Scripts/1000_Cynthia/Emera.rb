@@ -39,11 +39,10 @@ EMERADICT = {
         :tutorcondition => -> (pokemon) {return true},
     },
     :ROCK => {
-        :name => "Rock"
+        :name => "Rock",
         :description => "Rock moves gain 1.2x accuracy.",
         :rarity => :EVENT,
     },
-    }
     :VIPCARD => {
         :name => "VIP Card",
         :description => "50% cheaper at the Shadross Shop.",
