@@ -17,6 +17,10 @@ class PokeBattle_Battler
   end
 
   def pbRecoverHP(amt,anim=true,anyAnim=true)
+    eachOpposing.each do |mon|
+      amt *= 0.7 if mon.hasActiveEmera?(:CURSEINCENSE)
+      break
+    end
     amt = amt.round
     amt = adjustedTotalhp-@hp if amt>adjustedTotalhp-@hp
     amt = 1 if amt<1 && @hp<adjustedTotalhp

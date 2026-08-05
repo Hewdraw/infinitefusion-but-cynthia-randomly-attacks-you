@@ -268,6 +268,11 @@ EMERADICT = {
         :description => "Your Pokemon gain 1 Crit stage when using the same move repeatedly.",
         :rarity => :UNCOMMON,
     },
+    :CONDITIONMIRROR => {
+        :name => "Condition Mirror",
+        :description => "Your Pokemon gain the Synchronize Ability.",
+        :rarity => :UNCOMMON,
+    },
     # :EXTRADICE => {
     #     :name => "Extra Dice",
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
@@ -384,6 +389,11 @@ EMERADICT = {
         :description => "Opposing Pokemons Attack is lowered by 1 stage at the start of the battle.",
         :rarity => :UNCOMMON,
     },
+    :VANGUARDBELL => {
+        :name => "Vanguard Bell",
+        :description => "Your Pokemon heal 10% HP when applying a non-volatile Status.",
+        :rarity => :UNCOMMON,
+    },
     # :WINDCHARGE => {
     #     :name => "Wind Charge",
     #     :description => "Opposing Pokemon get switched out at the start of the battle.",
@@ -400,9 +410,19 @@ EMERADICT = {
     #     :description => "Trick Room activates at the start of the battle.",
     #     :rarity => :RARE,
     # },
+    :BUDDYSHIELD => {
+        :name => "Buddy Shield",
+        :description => "Your Pokemon gain the Friend Guard Ability.",
+        :rarity => :RARE,
+    },
     :CRT => {
         :name => "CRT",
         :description => "Your Pokemon gain the Static Ability.",
+        :rarity => :RARE,
+    },
+    :CURSEINCENSE => {
+        :name => "Curse Incense",
+        :description => "Opposing Pokemon heal 30% less HP.",
         :rarity => :RARE,
     },
     # :FERMENTEDSPIDEREYE => {

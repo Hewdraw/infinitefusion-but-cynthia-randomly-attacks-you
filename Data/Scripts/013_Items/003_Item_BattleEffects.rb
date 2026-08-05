@@ -384,7 +384,16 @@ ItemHandlers::BattleUseOnPokemon.add(:MAXPOTION,proc { |item,pokemon,battler,cho
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:FRESHWATER,proc { |item,pokemon,battler,choices,scene|
-  pbBattleHPItem(pokemon,battler,50,scene)
+  result = pbBattleHPItem(pokemon,battler,50,scene)
+  return false if !result
+  bottlecap = rand(100)
+  if bottlecap < 50
+    pbReceiveItem(:RUSTYBOTTLECAP)
+  elsif bottlecap < 85
+    pbReceiveItem(:BOTTLECAP)
+  else
+    pbReceiveItem(:GOLDENBOTTLECAP)
+  end
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:SODAPOP,proc { |item,pokemon,battler,choices,scene|

@@ -21264,7 +21264,7 @@ Shape = Head
 #-------------------------------
 [1000502]
 Name = Genvoir
-InternalName = MEGAB287H94 
+InternalName = MEGAB287H94
 Type1 = GHOST
 Type2 = FAIRY
 BaseStats = 62,78,70,110,168,108
@@ -21286,7 +21286,7 @@ Shape = Head
 #-------------------------------
 [1000504]
 Name = Alcrerene
-InternalName = GMAXHATTERENEALCREMIE 
+InternalName = GMAXHATTERENEALCREMIE
 Type1 = FAIRY
 Type2 = PSYCHIC
 BaseStats = 62,80,88,40,118,115
@@ -21297,7 +21297,7 @@ Shape = Head
 #-------------------------------
 [1000505]
 Name = Garderos
-InternalName = MEGAB181H287 
+InternalName = MEGAB181H287
 Type1 = PSYCHIC
 Type2 = DRAGON
 BaseStats = 75,91,91,63,165,126
@@ -21450,7 +21450,7 @@ Shape = Head
 #-------------------------------
 [1000608]
 Name = Roseboom
-InternalName = RILLABOOMROSERADE 
+InternalName = RILLABOOMROSERADE
 Type1 = GRASS
 BaseStats = 73,106,81,86,103,93
 GenderRate = Female50Percent
@@ -21461,7 +21461,7 @@ Shape = Head
 #-------------------------------
 [1000609]
 Name = Flacadrill
-InternalName = EXCADRILLFLAREON 
+InternalName = EXCADRILLFLAREON
 Type1 = FIRE
 Type2 = STEEL
 BaseStats = 80,133,60,80,80,95
@@ -21473,7 +21473,7 @@ Shape = Head
 #-------------------------------
 [1000610]
 Name = Primatricity
-InternalName = TOXTRICITYPRIMARINA 
+InternalName = TOXTRICITYPRIMARINA
 Type1 = WATER
 Type2 = POISON
 BaseStats = 78,90,71,70,122,100
@@ -21485,7 +21485,7 @@ Shape = Head
 #-------------------------------
 [1000611]
 Name = Melomin
-InternalName = SHAYMINSKYMELOETTA 
+InternalName = SHAYMINSKYMELOETTA
 Type1 = NORMAL
 Type2 = FLYING
 BaseStats = 100,94,75,114,125,110
@@ -21497,7 +21497,7 @@ Shape = Head
 #-------------------------------
 [1000612]
 Name = Chandeedee
-InternalName = INDEEDEEFCHANSEY 
+InternalName = INDEEDEEFCHANSEY
 Type1 = NORMAL
 Type2 = PSYCHIC
 BaseStats = 190,38,45,73,55,105
@@ -21509,7 +21509,7 @@ Shape = Head
 #-------------------------------
 [1000613]
 Name = Poryrouge
-InternalName = ARMAROUGEPORYGONZ 
+InternalName = ARMAROUGEPORYGONZ
 Type1 = NORMAL
 Type2 = PSYCHIC
 BaseStats = 85,66,90,80,131,76
@@ -21521,7 +21521,7 @@ Shape = Head
 #-------------------------------
 [1000614]
 Name = Alcrerene
-InternalName = HATTERENEALCREMIE 
+InternalName = HATTERENEALCREMIE
 Type1 = FAIRY
 Type2 = PSYCHIC
 BaseStats = 62,80,88,40,118,115
@@ -21533,7 +21533,7 @@ Shape = Head
 #-------------------------------
 [1000615]
 Name = Shedgle
-InternalName = SMEARGLESHEDINJA 
+InternalName = SMEARGLESHEDINJA
 Type1 = BUG
 Type2 = NORMAL
 BaseStats = 19,43,38,63,26,35
@@ -21545,7 +21545,7 @@ Shape = Head
 #-------------------------------
 [1000616]
 Name = Tinkanite
-InternalName = DRAGONITETINKATON 
+InternalName = DRAGONITETINKATON
 Type1 = FAIRY
 Type2 = FLYING
 BaseStats = 87,114,89,84,80,103
@@ -21557,7 +21557,7 @@ Shape = Head
 #-------------------------------
 [1000617]
 Name = Flutter Chu
-InternalName = PIKACHUFLUTTERMANE 
+InternalName = PIKACHUFLUTTERMANE
 Type1 = GHOST
 Type2 = ELECTRIC
 BaseStats = 51,71,51,125,115,110
@@ -21569,7 +21569,7 @@ Shape = Head
 #-------------------------------
 [1000618]
 Name = Scream Boom
-InternalName = RILLABOOMSCREAMTAIL 
+InternalName = RILLABOOMSCREAMTAIL
 Type1 = FAIRY
 Type2 = GRASS
 BaseStats = 110,105,93,93,63,100
@@ -21581,7 +21581,7 @@ Shape = Head
 #-------------------------------
 [1000619]
 Name = Iron Tales
-InternalName = ANINETALESIRONBUNDLE 
+InternalName = ANINETALESIRONBUNDLE
 Type1 = ICE
 Type2 = FAIRY
 BaseStats = 61,71,88,118,109,73
@@ -21593,7 +21593,7 @@ Shape = Head
 #-------------------------------
 [1000620]
 Name = Iron Tana
-InternalName = KARTANAIRONVALIANT 
+InternalName = KARTANAIRONVALIANT
 Type1 = FAIRY
 Type2 = STEEL
 BaseStats = 69,164,117,111,99,50
@@ -21605,7 +21605,7 @@ Shape = Head
 #-------------------------------
 [1000621]
 Name = Walking Mane
-InternalName = FLUTTERMANEWALKINGWAKE 
+InternalName = FLUTTERMANEWALKINGWAKE
 Type1 = WATER
 Type2 = FAIRY
 BaseStats = 84,64,67,126,128,100
@@ -21617,7 +21617,7 @@ Shape = Head
 #-------------------------------
 [1000622]
 Name = Tinkgarde
-InternalName = ZYGARDETINKATON 
+InternalName = ZYGARDETINKATON
 Type1 = FAIRY
 Type2 = GROUND
 BaseStats = 92,91,106,94,73,101
@@ -23830,7 +23830,7 @@ Color = Red
 Shape = Head
 Kind = Plasma
 Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
-#-------------------------------	
+#-------------------------------
 
 #-------------------------------
 [1001101]

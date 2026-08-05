@@ -1703,6 +1703,8 @@ class Pokemon
     list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
     list += [:BATTLEARMOR, :BERSERK] if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
+    list.push(:FRIENDGUARD) if hasActiveEmera?(:BUDDYSHIELD)
+    list.push(:SYNCHRONIZE) if hasActiveEmera?(:CONDITIONMIRROR)
     list.push(:STATIC) if hasActiveEmera?(:CRT)
     list.push(:SOLIDROCK) if hasActiveEmera?(:DISCOVERYSLATE)
     list.push(:QUICKDRAW) if hasActiveEmera?(:GALARICATWIG)

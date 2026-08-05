@@ -251,6 +251,7 @@ class PokeBattle_Battler
       end
     end
     PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
+    user.pbRecoverHP(user.hp / 10) if user && user.hasActiveEmera?(:VANGUARDBELL)
     # Form change check
     pbCheckFormOnStatusChange
     # Synchronize
