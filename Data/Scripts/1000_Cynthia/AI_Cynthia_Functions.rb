@@ -2318,6 +2318,7 @@ class PokeBattle_AI
       type = move.pbCalcType(user)
       if tera == user && move.function == "177"
         type = user.tera
+        type = :QMARKS if type == :STELLAR
       end
       typeMod = move.pbCalcTypeMod(type,user,target,tera)
       atk, atkStage = move.pbGetAttackStats(user,target)
@@ -2714,8 +2715,8 @@ class PokeBattle_AI
             if user.stellarmoves == nil
               user.stellarmoves = []
             end
-            if !user.stellarmoves.include?(GameData::Type.get(type).id)
-              if type && user.pokemon.unteraTypes.include?(GameData::Type.get(type).id)
+            if !user.stellarmoves.include?(type)
+              if type && user.pokemon.unteraTypes.include?(type)
                 multipliers[:final_damage_multiplier] *= 1.5
               else
                 multipliers[:final_damage_multiplier] *= 1.2

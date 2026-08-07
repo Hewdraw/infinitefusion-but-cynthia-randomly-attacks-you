@@ -498,16 +498,16 @@ class PokeBattle_Move
         if user.stellarmoves == nil
           user.stellarmoves = []
         end
-        if !user.stellarmoves.include?(GameData::Type.get(type).id)
-          user.stellarmoves.append(GameData::Type.get(type).id)
-          if type && user.pokemon.unteraTypes.include?(GameData::Type.get(type).id)
+        if !user.stellarmoves.include?(type)
+          user.stellarmoves.append(type)
+          if type && user.pokemon.unteraTypes.include?(type)
             multipliers[:final_damage_multiplier] *= 1.5
           else
             multipliers[:final_damage_multiplier] *= 1.2
           end
         end
       else
-        if type && user.pokemon.unteraTypes.include?(GameData::Type.get(type).id)
+        if type && user.pokemon.unteraTypes.include?(type)
           multipliers[:final_damage_multiplier] *= 1.5
         end
       end
