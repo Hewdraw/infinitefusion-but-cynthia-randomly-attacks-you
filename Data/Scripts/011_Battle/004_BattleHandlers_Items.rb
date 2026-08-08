@@ -459,7 +459,7 @@ BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
 
 BattleHandlers::AccuracyCalcUserItem.add(:ROTOMCATALOG,
   proc { |item,user,mods,target,move,type|
-    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
+    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
   }
 )
 
@@ -932,7 +932,7 @@ BattleHandlers::DamageCalcUserItem.add(:CORNERSTONEMASK,
 
 BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
+    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
   }
 )
 
@@ -946,7 +946,7 @@ BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
 
 BattleHandlers::DamageCalcUserItem.add(:ROTOMCATALOG,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.3 if [:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
+    mults[:base_damage_multiplier] *= 1.3 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
   }
 )
 
@@ -1851,7 +1851,7 @@ BattleHandlers::EORHealingItem.add(:LEFTOVERS,
 BattleHandlers::EORHealingItem.add(:ROTOMCATALOG,
   proc { |item,battler,battle|
     next if !battler.canHeal?
-    next if ![:ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
+    next if ![:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
     battle.pbCommonAnimation("UseItem",battler)
     battler.pbRecoverHP(battler.totalhp/16)
     battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",

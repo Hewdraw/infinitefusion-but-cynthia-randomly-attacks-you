@@ -75,11 +75,17 @@ class Pokemon
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
 
+    isrotom = false
+    specieslist.each do |species|
+      next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
+      isrotom = true
+    end
+
+    return if !isrotom
+
     GameData::Species.each do |data|
-      next unless specieslist.include?(data.species)
       next unless data.species == :ROTOM
       next if data.form > 5 && pbGetRotomCount() < 3
-      next if data.form == 0
       next if data.mega_stone || data.mega_move
       ret.push(data)
     end
@@ -93,18 +99,23 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
-    getRotomList.each do |mega|
+
+    isrotom = false
+    specieslist.each do |species|
+      next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
+      isrotom = true
+    end
+    getRotomList.each do |rotom|
       specieslist.each_with_index do |species, i|
-        next unless species == mega.species
-        next unless @rotomform[i] == mega.form
-        ret[i] = mega
+        next unless @rotomform[i] == rotom.form
+        ret[i] = rotom
       end
     end
     return ret
   end
 
   def setDefaultForms(override = false)
-    specieslist = [@species]
+    specieslist = [@species, @species]
     ret = []
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
@@ -133,7 +144,7 @@ class Pokemon
           @megaform[i] = 0
           next
         end
-        @megaform[i] = mega
+        @megaform[i] = mega[mega.length - 1]
         next
       end
     end
@@ -145,7 +156,7 @@ class Pokemon
           @rotomform[i] = 0
           next
         end
-        @rotomform[i] = rotom
+        @rotomform[i] = rotom[rotom.length - 1]
         abilitylist = getRotomList[i].abilities + getRotomList[i].hidden_abilities
         @rotomability[i] = abilitylist[abilitylist.length]
       end
@@ -158,7 +169,7 @@ class Pokemon
           @regionalform[i] = 0
           next
         end
-        @regionalform[i] = regional
+        @regionalform[i] = regional[regional.length - 1]
         abilitylist = getRegionalList[i].abilities + getRegionalList[i].hidden_abilities
         @regionalability[i] = abilitylist[abilitylist.length]
       end

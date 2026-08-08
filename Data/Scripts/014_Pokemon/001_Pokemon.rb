@@ -1448,6 +1448,12 @@ class Pokemon
         bstdata[i] = regional.base_stats
       end
     end
+    if hasItem?(:ROTOMCATALOG)
+      bstdata = getRotomForm()
+      bstdata.each_with_index do |rotom,i|
+        bstdata[i] = rotom.base_stats
+      end
+    end
     megasource = nil
     megasource = :EON if hasAbility?(:EON)
     megasource = :MEGASHARD if hasItem?(:MEGASHARD)
@@ -1603,6 +1609,13 @@ class Pokemon
         @extraabilities += @regionalability
       end
     end
+    if hasItem?(:ROTOMCATALOG)
+      getRotomForm().each_with_index do |rotom, i|
+        @type2 = rotom.type2 if i == 0
+        @type1 = rotom.type1 if i == 1
+        @extraabilities += @rotomability
+      end
+    end
     megasource = nil
     megasource = :EON if hasItem?(:EON)
     megasource = :MEGASHARD if hasItem?(:MEGASHARD)
@@ -1617,7 +1630,7 @@ class Pokemon
     if hasItem?(:ANCESTRALGENE) && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
       @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
-    if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :FANROTOM, :MOWROTOM, :HEATROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
+    if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
       @extraabilities.push(:FLASHFIRE) if hasItem?(:BURNDRIVE)
       @extraabilities.push(:MOTORDRIVE) if hasItem?(:SHOCKDRIVE)
       @extraabilities.push(:STORMDRAIN) if hasItem?(:DOUSEDRIVE)
