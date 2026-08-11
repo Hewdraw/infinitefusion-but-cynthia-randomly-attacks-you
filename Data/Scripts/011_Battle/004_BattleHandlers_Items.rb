@@ -459,7 +459,7 @@ BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
 
 BattleHandlers::AccuracyCalcUserItem.add(:ROTOMCATALOG,
   proc { |item,user,mods,target,move,type|
-    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
+    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
   }
 )
 

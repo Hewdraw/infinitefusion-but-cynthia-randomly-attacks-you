@@ -11,14 +11,14 @@ def touhou()
     scene = TouhouScene.new()
     pbBGMPlay("Megalovania")
     loop do
-        break if scene.result
-        scene.update
+        break if !scene.update
     end
     $PokemonGlobal.speedupdisabled = false
     if $game_system && $game_system.is_a?(Game_System)
         $game_system.bgm_resume(playingBGM)
         $game_system.bgs_resume(playingBGS)
     end
+    return scene.result
 end
 
 def touhouCreateUnown(scene, info={}, movementinfo=[], type=nil)
@@ -198,8 +198,9 @@ class TouhouScene
     attr_accessor :bitmap1
     attr_accessor :width
     attr_accessor :height
+    attr_accessor :gameactive
     def update
-        return if !@gameactive
+        return false if !@gameactive
         @frameCounter += 1
         if @frameCounter <= 1000
             @bulletcache.push(TouhouBullet.new(self))
@@ -273,6 +274,7 @@ class TouhouScene
         end
         Graphics.update
         Input.update
+        return true
     end
 
     def initialize
@@ -318,6 +320,7 @@ class TouhouScene
         # @arceussprite.x = Graphics.width / 2
         # addSprite("arceus", @arceussprite)
         @gameactive = true
+        @result = false
     end
 
     def addSprite(key,sprite)
@@ -479,6 +482,8 @@ class TouhouPlayer < TouhouEntity
         @scene.cacheAllBullets()
         @sprite.visible = false
         @requirerespawn = @scene.frameCounter + (3*Graphics.frame_rate)
+        @lives -= 1
+        @scene.gameactive = false if @lives < 0
     end
 
     def initialize(scene)
@@ -491,6 +496,7 @@ class TouhouPlayer < TouhouEntity
         # @sprite.zoom_x = 0.5
         # @sprite.zoom_y = 0.5
         @sprite.visible = true
+        @lives = 5
         set_x(@scene.width / 2)
         set_y(@scene.height / 2)
         @firecooldown = 0
