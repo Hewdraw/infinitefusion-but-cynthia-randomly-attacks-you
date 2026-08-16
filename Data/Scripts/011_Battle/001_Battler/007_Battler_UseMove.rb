@@ -214,10 +214,15 @@ class PokeBattle_Battler
       move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESISSUPERNOVA))
       @battle.pbHideAbilitySplash(self)
     end
-    if hasActiveAbility?(:GENESIS) && @zmove > 0 && move.id == :PSYCHICPLUS
+    if hasActiveAbility?(:GENESISPLUS) && @zmove > 0 && move.id == :PSYCHICPLUS
       @battle.pbShowAbilitySplash(self, false, true, "Genesis")
       move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESISSUPERNOVAPLUS))
       @battle.pbHideAbilitySplash(self)
+    end
+    if hasActiveItem?(:ROCKIUMZPLUS) && @zmove > 0 && move.type == :ROCK && move.damagingMove?
+      category = move.category
+      move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:CONTINENTALCRUSHPLUS))
+      move.category = category
     end
     return if !move # if move was not chosen somehow
     # Subtract PP

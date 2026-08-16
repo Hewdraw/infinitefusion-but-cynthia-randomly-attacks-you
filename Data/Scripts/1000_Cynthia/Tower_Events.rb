@@ -41,7 +41,7 @@ TOWER_EVENTS = {
     :VIENFOREST => {
         :location => "Vien Forest",
         :image => "BW155",
-        :floorrequirement => false, #todo
+        :floorrequirement => 0,
     },
     :VIENFOREST2 => {
         :location => "Vien Forest",
@@ -333,12 +333,11 @@ def resolveUnknownEvent(recursion = false)
                 hasgarchomp = pokemon
             end
             if hasgarchomp
-                Kernel.pbMessage("Your #{pokemon.name} jumps out and breaks the statue.")
+                Kernel.pbMessage("Your #{hasgarchomp.name} jumps out and crushes the statue.")
                 Kernel.pbMessage("Regirock awakens.")
-                Kernel.pbMessage("I should warn you this is a placeholder battle.")
                 return if !pbLegendaryBattle("Regirock")
             else
-                Kernel.pbMessage("You try to break it but seem unable to.")
+                Kernel.pbMessage("You try to crush it but seem unable to.")
                 Kernel.pbMessage("You gather some of the rocks laying around before leaving the cave.")
                 itemlist = [:HARDSTONE, :SMOOTHROCK, :ROCKGEM, :OVALSTONE]
                 itemlist.each do |item|
@@ -358,8 +357,8 @@ def resolveUnknownEvent(recursion = false)
         Kernel.pbMessage("You find yourself in a familiar place with a grown up tree blocking your path on the mountains.")
         Kernel.pbMessage("Suddenly a Torterra rises from the ground below you looking happy to see you.")
         pbObtainAlpha("Torterra")
-        Kernel.pbMessage("It presents you with a cool rock it picked up.")
-        #pbReceiveItem(:ROCKIUMZ) todo make this work
+        Kernel.pbMessage("It presents you with a rock it picked up.")
+        pbReceiveItem(:ROCKIUMZPLUS)
     when :WANDERINGTRADER
         Kernel.pbMessage("A Wandering Trader spawns next to you.")
         commonemera = getLooplet.pbRandomEmera(:COMMON)
