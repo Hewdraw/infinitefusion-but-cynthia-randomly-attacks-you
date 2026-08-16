@@ -2297,6 +2297,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
           fadeAnim = TrainerFadeAnimation.new(@battle.scene.sprites,@battle.scene.viewport,false, false)
           loop do
             fadeAnim.update
+            pbWait(1)
             break if fadeAnim.animDone?
           end
           fadeAnim.dispose
