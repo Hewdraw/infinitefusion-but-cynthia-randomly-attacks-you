@@ -2291,7 +2291,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       @battle.pbDisplay(_INTL("It's a one-hit KO!"))
       @battle.opponent.each_with_index do |trainer,i|
         if trainer.name == "Bruno"
-          @scene.pbShowOpponent(i)
+          @battle.scene.pbShowOpponent(i)
           pbDisplayPaused("nah were not doing that im turning on ohko clause")
           battle.rules["ohkoclause"] = true
           oldTrainer = addSprite(battle.scene.sprites["trainer_#{i}"],PictureOrigin::Bottom)
