@@ -2290,7 +2290,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
     if target.fainted?
       @battle.pbDisplay(_INTL("It's a one-hit KO!"))
       @battle.opponent.each_with_index do |trainer,i|
-        if trainer.name == "Hewdraw"
+        if trainer.name == "Bruno"
           @scene.pbShowOpponent(i)
           pbDisplayPaused("nah were not doing that im turning on ohko clause")
           battle.rules["ohkoclause"] = true
