@@ -2656,7 +2656,7 @@ Pokemon = B80H131,5
     EV = 252,0,4,0,0,252
     Happiness = 255
 #-------------------------------
-[ELITEFOUR_Bruno,Bruno,0]
+[ELITEFOUR_Bruno,Hewdraw,0]
 Pokemon = B237H36,5
     Offset = 6
     Moves = LIGHTSCREEN,REFLECT,TELEPORT,REST
@@ -2718,7 +2718,7 @@ Pokemon = URSALUNAHITMONCHAN,5
     EV = 252,136,0,120,0,0
     Happiness = 255
 #-------------------------------
-[ELITEFOUR_Bruno,Bruno,1]
+[ELITEFOUR_Bruno,Hewdraw,1]
 Pokemon = B237H36,5
     Offset = 6
     Moves = LIGHTSCREEN,REFLECT,TELEPORT,REST
@@ -2780,7 +2780,7 @@ Pokemon = URSALUNAHITMONCHAN,5
     EV = 252,136,0,120,0,0
     Happiness = 255
 #-------------------------------
-[ELITEFOUR_Bruno,Bruno,2]
+[ELITEFOUR_Bruno,Hewdraw,2]
 Pokemon = B237H36,5
     Offset = 2
     Moves = LIGHTSCREEN,REFLECT,TELEPORT,REST
