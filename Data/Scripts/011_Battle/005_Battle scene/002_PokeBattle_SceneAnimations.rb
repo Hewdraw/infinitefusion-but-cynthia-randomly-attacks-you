@@ -364,7 +364,7 @@ end
 # Doesn't show the ball thrown or the Pokémon.
 #===============================================================================
 class TrainerFadeAnimation < PokeBattle_Animation
-  def initialize(sprites,viewport,fullAnim=false,skiptrainer)
+  def initialize(sprites,viewport,fullAnim=false,skiptrainer=false)
     @fullAnim = fullAnim   # True at start of battle, false when switching
     @skiptrainer = skiptrainer
     super(sprites,viewport)
