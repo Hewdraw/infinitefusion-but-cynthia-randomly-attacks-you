@@ -2293,7 +2293,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
         if trainer.name == "Bruno"
           @battle.scene.pbShowOpponent(i)
           @battle.pbDisplayPaused("nah were not doing that im turning on ohko clause")
-          battle.rules["ohkoclause"] = true
+          @battle.rules["ohkoclause"] = true
           oldTrainer = @battle.scene.addSprite(battle.scene.sprites["trainer_#{i}"],PictureOrigin::Bottom)
           oldTrainer.moveDelta(0,8,Graphics.width/4,0)
           oldTrainer.setVisible(8,false)
