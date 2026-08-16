@@ -684,7 +684,7 @@
 630,NETWORKCHIP,Network Adapter,Network Adapters,8,0," An essential component for linking the PC Storage System to the mainland.",2,0,6
 #-------------------------------
 631,BANANA,Power Nut,Power Nuts,2,100,"Extra strength!",1,1,0
-632,GOLDENBANANA,Golden Power Nut,Golden Power Nuts,2,128,"Makes you stronger, but...",1,3,0
+632,GOLDENBANANA,Golden Power Nut,Golden Power Nuts,2,0,"Makes you stronger, but...",1,3,0
 #-------------------------------
 633,DEMHARDMODE,Dem's Badge,Dem's Badges,8,0,"A mysterious badge. Wear it for the ultimate challenge...",2,0,6
 634,LIGHTSTONE,Light Stone,Light Stones,8,0,"A mysterious stone imbued with the power of truth. It is said to be waiting for the emergence of a hero.",1,0,0
@@ -830,7 +830,7 @@
 755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",1,0,0,
 756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",1,0,0,
 757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,100,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",1,0,0,
-758,HPMAX,HP Max,Hp Maxes,2,128,"Makes you healthier!",1,3,0,
+758,HPMAX,HP Max,Hp Maxes,2,0,"Makes you healthier!",1,3,0,
 759,BEEZORITE,Beezorite,Beezorites,1,0,"todo",0,0,0
 760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"todo",0,0,0
 761,MEDICHAMITE,Medichamite,Medichamites,1,0,"todo",0,0,0
@@ -838,8 +838,8 @@
 763,PYRITE,Pyrite,Pyrite,1,0,"Fool's Gold. Makes the holder ???-Type.",0,0,0
 764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"todo",0,0,0
 765,GARDEROSITE,Garderosite,Garderosites,1,0,"todo",0,0,0
-766,BEEGPP,Beeg PP,Beeg PPs,2,10000,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
-767,MECHUMETAL,Mechu Metal,Mechu Metals,2,128,"Infinitely dense iron.",1,3,0,
+766,BEEGPP,Beeg PP,Beeg PPs,2,0,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
+767,MECHUMETAL,Mechu Metal,Mechu Metals,2,0,"Infinitely dense iron.",1,3,0,
 777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"todo",0,0,0
 778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"todo",0,0,0
 779,FLYINIUMZ,Flyiunium Z,Flyiunium Zs,1,0,"todo",0,0,0

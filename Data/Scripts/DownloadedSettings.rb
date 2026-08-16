@@ -20,7 +20,7 @@ module Settings
 
   STARTUP_MESSAGES = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!" #Legacy starting PIF1 6.8
   STARTUP_MESSAGES_KANTO = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!"
-  STARTUP_MESSAGES_HOENN = ""
+  STARTUP_MESSAGES_HOENN = "Make sure to restart the game once in a while if you experience lag issues."
   
   MAIN_MENU_LINKS = {
     "Discord" => "https://discord.com/invite/infinitefusion",

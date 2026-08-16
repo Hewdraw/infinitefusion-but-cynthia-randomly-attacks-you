@@ -30,7 +30,7 @@ CLOTHES_ROCKET_WHITE_F ="RocketJessie"
 
 DEFAULT_OUTFIT_MALE = "red"
 DEFAULT_OUTFIT_FEMALE = "leaf"
-STARTING_OUTFIT = "pikajamas"
+STARTING_OUTFIT = "maid"
 
 CLOTHES_BRENDAN = "red" #todo
 CLOTHES_MAY = "leaf"    #todo

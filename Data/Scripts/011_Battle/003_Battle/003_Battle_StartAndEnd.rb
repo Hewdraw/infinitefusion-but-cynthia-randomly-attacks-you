@@ -534,7 +534,7 @@ class PokeBattle_Battle
             if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
               coin += pbCynthiaGetBadgeCount+1
             end
-            if trainer.name == "Hatsune Mechu"
+            if trainer.trainer_type == :MECH_Miku
               coin += 30
             end
           end
