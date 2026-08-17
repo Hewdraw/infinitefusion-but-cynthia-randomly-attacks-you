@@ -67,7 +67,7 @@ def tripleFusion(item=false)
         else
             materialstring = "Fusing together "
             materialcount.each_with_index do |material, i|
-                materialstring += GameData::Species.get(materialcount).real_name
+                materialstring += GameData::Species.get(material).real_name
                 if i == materialcount.length - 2
                     materialstring += " and "
                 else
