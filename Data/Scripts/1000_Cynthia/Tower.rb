@@ -497,6 +497,7 @@ def towerEvent()
         return if !pbTrainerBattle(:TIME_STOPPER, "Hewdraw")
         pbCallBub(2, 1, true)
         Kernel.pbMessage("congrats, you win")
+        unlockClass(:TIMESTOPPER)
         resetTower()
         pbFadeOutIn(99999) {
           $game_temp.player_new_map_id = 32
