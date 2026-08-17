@@ -403,11 +403,14 @@ class PokeBattle_Battle
       break if @decision>0
       # End of round phase
       PBDebug.logonerr { pbEndOfRoundPhase }
-      if @field.effects[PBEffects::TheWorld] != 0
+      if @sides[0].effects[PBEffects::TheWorld] == true || @sides[1].effects[PBEffects::TheWorld] == true
         pbDisplay(_INTL("A Pocketwatch clicks and time stops!"))
         pbDisplay(_INTL("Time resumes and a knife launches out!"))
-        battler = @battlers[@field.effects[PBEffects::TheWorld]]
-        if !battler.fainted?
+        pbCalculatePriority           # recalculate speeds
+        priority = pbPriority(true)   # in order of fastest -> slowest speeds only
+        priority.each do |b|
+          next unless b.pbOwnSide.effects[PBEffects::TheWorld] == true
+          next if battler.fainted?
           oldLastRoundMoved = battler.lastRoundMoved
           battler.pbUseMoveSimple(:CUT)
           battler.lastRoundMoved = oldLastRoundMoved

@@ -30,6 +30,11 @@ EMERADICT = {
         :description => "Start mining every 5th floor.",
         :rarity => :STARTER,
     },
+    :LUNARDIAL => {
+        :name => "Lunar Dial",
+        :description => "Your Pokemon gain the Illusion World \"The World\" Ability.",
+        :rarity => :STARTER,
+    },
 
     :DEFENDGLOBE => {
         :name => "Defend Globe",

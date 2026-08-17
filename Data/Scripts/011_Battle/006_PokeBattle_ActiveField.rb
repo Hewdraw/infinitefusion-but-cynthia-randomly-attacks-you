@@ -22,7 +22,6 @@ begin
       @effects[PBEffects::PayDay]          = 0
       @effects[PBEffects::TrickRoom]       = 0
       @effects[PBEffects::InverseRoom]       = 0
-      @effects[PBEffects::TheWorld]       = 0
       @effects[PBEffects::WaterSportField] = 0
       @effects[PBEffects::WonderRoom]      = 0
       @effects[PBEffects::Web]         = false
@@ -65,6 +64,7 @@ begin
       @effects[PBEffects::ToxicSpikes]        = 0
       @effects[PBEffects::WideGuard]          = false
       @effects[PBEffects::GmaxWildfire]          = 0
+      @effects[PBEffects::TheWorld]       = false
     end
   end
 

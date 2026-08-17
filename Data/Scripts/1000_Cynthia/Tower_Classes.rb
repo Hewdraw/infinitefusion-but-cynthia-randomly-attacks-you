@@ -19,6 +19,10 @@ TRAINERCLASSDICT = {
         :name => "Super Nerd",
         :emera => :DIAMONDPICKAXE,
     },
+    :TIMESTOPPER => {
+        :name => "Time Stopper",
+        :emera => :LUNARDIAL,
+    }
 }
 
 def selectTrainerClass()
@@ -55,9 +59,8 @@ def selectTrainerClass()
             pbReceiveItem(item)
         end
     end
-    if hasEmera?(:STICKYKEY)
-        pbReceiveItem(:METRONOME)
-    end
+    pbReceiveItem(:METRONOME) if hasEmera?(:STICKYKEY)
+    putOnClothes("maid", true) if hasEmera?(:LUNARDIAL)
 end
 
 def getUnlockedClasses()

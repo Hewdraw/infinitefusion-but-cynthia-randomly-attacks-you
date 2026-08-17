@@ -3115,10 +3115,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:QUARKDRIVE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
   proc { |ability,battler,battle|
-    next if battle.field.effects[PBEffects::TheWorld] != 0
+    next if battler.pbOwnSide.effects[PBEffects::TheWorld] == true
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("A Pocketwatch clicks and time stops!"))
-    battle.field.effects[PBEffects::TheWorld] = battler.index
+    battler.pbOwnSide.effects[PBEffects::TheWorld] = true
     battle.pbDisplay(_INTL("Time resumes and a knife launches out!"))
     oldLastRoundMoved = battler.lastRoundMoved
     battler.pbUseMoveSimple(:CUT)

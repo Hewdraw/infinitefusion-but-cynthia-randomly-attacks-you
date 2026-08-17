@@ -487,11 +487,119 @@ SHADROSS_STOCK = {
 }
 
 SHADROSS_HINTS = {
-  :REAPERCLOTH => {
-    "badges" => 3,
+  :HINTS => {
+    "badges" => 0,
+    "cost" => 1,
+    "name" => "Hints?",
+    "hint" => "Wow you actually paid me to yap? I guess I will say useful stuff... starting now.",
+  },
+  :SCALING => {
+    "badges" => 0,
+    "cost" => 1,
+    "name" => "Scaling?",
+    "hint" => "Opponent's will scale based on the highest leveled Mon in your party. Buy some Candy to help!",
+  },
+  :PARTY => {
+    "badges" => 0,
+    "cost" => 2,
+    "name" => "Party",
+    "hint" => "Early on, worry about having a full team more than fused Mon. There's cool stuff on Route 1 to help, trust.",
+  },
+  :PC => {
+    "badges" => 0,
+    "cost" => 3,
+    "name" => "PC",
+    "hint" => "You should interact with a Personal Computer. Might get a fun surprise... Like a Porygon or a Repel. ...or at the Pokemon Center, most have an Egg Tutor man upstairs to the left. Very powerful resource.",
+  },
+  :BUSH => {
+    "badges" => 0,
+    "cost" => 5,
+    "name" => "Bush?",
+    "hint" => "Your rival has a funny tree guy. Probably got it somewhere in his dad's lab. There's a tree joke there somewhere.",
+  },
+  :BEES => {
+    "badges" => 0,
+    "cost" => 8,
+    "name" => "Bees",
+    "hint" => "Got an hour to waste and want a free thing? You should go home and watch a movie for inspiration.",
+  },
+  :TRAVEL => {
+    "badges" => 0,
+    "cost" => 13,
+    "name" => "Travel",
+    "hint" => "Don't mind all the gardening I've done in the Regions. Backtracking will be easier after Badge 3, trust.",
+  },
+  :COINSONE => {
+    "badges" => 0,
+    "cost" => 13,
+    "name" => "Coins 1",
+    "hint" => "Make sure to spend any Coins from foreign regions sooner rather than later. Roughly before you would beat a Gym... They seem to just vanish for anti-grinding gameplay reasons.",
+  },
+  :SHINIES => {
+    "badges" => 0,
+    "cost" => 21,
+    "name" => "Shinies",
+    "hint" => "Shiny Pokemon are a bit more common here. Even the trainers might be shiny sometimes! ...or is it a cosplay?",
+  },
+  :STONES => {
+    "badges" => 0,
+    "cost" => 34,
+    "name" => "Stones",
+    "hint" => "Evolution stones evolve a lot more Mon! ....this has nothing to do with the Roguelike in your menu screen that you definitely knew about.",
+  },
+  :ABILITIES => {
+    "badges" => 0,
+    "cost" => 55,
+    "name" => "Abilities",
+    "hint" => "Mon with hidden abilities will have a pop up when you encounter them! This is a pretty common, but you can buy Capsules or Patches from me instead.",
+  },
+  :BROCK => {
+    "badges" => 0,
+    "cost" => 144,
+    "name" => "BROCK",
+    "hint" => "Getting your ass beat by Onix? He only has a Fighting and Ground move, figure it out.",
+  },
+  :BALANCE => {
+    "badges" => 0,
+    "cost" => 89,
+    "name" => "Balance",
+    "hint" => "A lot of strong trainers are avoidable or you can outscale them, usually with EVs. Try some Mochi when you can!",
+  },
+  :CHESTS => {
+    "badges" => 0,
+    "cost" => 233,
+    "name" => "Chests",
+    "hint" => "Funky chests around, huh? Don't worry about it. Worry about how some can be repeated, others, well...",
+  },
+  :CACTUS => {
+    "badges" => 0,
+    "cost" => 377,
+    "name" => "Cactus",
+    "hint" => "Have you cleared the cactus stack yet? Heard they can lay spikes with their Needle Arms! ...that's not normal, FYI.",
+  },
+  :PARTNERS => {
+    "badges" => 0,
+    "cost" => 610,
+    "name" => "Partners",
+    "hint" => "Can you believe that Pikachu and Eevee are stronger than normal here? Let's go!",
+  },
+  :STATUS => {
+    "badges" => 0,
+    "cost" => 987,
+    "name" => "Status",
+    "hint" => "Sleep? Freeze? Evasion? Never heard of 'em. Have you ever played Legends Arceus for completely unrelated reasons?",
+  },
+  :COINSTWO => {
+    "badges" => 0,
+    "cost" => 1597,
+    "name" => "Coins 2",
+    "hint" => "Hey did you know strong opponents give you more Coins for having more badges? No? Now you do, go get me clothes washing funds.",
+  },
+  :NUHUH => {
+    "badges" => 0,
     "cost" => 2584,
     "name" => "Nuh uh",
-    "hint" => "Some unique items have been buffed for not-Roguelike reasons. Like hey, did you know Reaper Cloth is basically Eviolite? It does other stuff too, but another time.",
+    "hint" => "Hey so sometimes your bag or run button might break because I thought it was funny. Sorry, but not really.",
   },
 }
 

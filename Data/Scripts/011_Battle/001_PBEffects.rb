@@ -170,6 +170,7 @@ begin
     Tailwind           = 19
     ToxicSpikes        = 20
     WideGuard          = 21
+    TheWorld        = 22
 
     #===========================================================================
     # These effects apply to the battle (i.e. both sides)
@@ -188,8 +189,7 @@ begin
     WaterSportField = 11
     WonderRoom      = 12
     InverseRoom      = 13
-    TheWorld        = 14
-    Web        = 15
+    Web        = 14
   end
 
 rescue Exception
