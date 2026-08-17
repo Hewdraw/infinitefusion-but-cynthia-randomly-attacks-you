@@ -37,7 +37,7 @@ def tripleFusion(item=false)
                 end
             end
         end
-        next if materialcount.length >= [materials.length, 3].max()
+        next if materialcount.length < [materials.length, 3].max()
         $PokemonGlobal.triplefusions.push(triple)
         if !item
             pbCallBub(2, 43)
@@ -64,6 +64,7 @@ def tripleFusion(item=false)
                 Kernel.pbMessage("Very well... Let's proceed then.")
             end
             pbSet(3, triple)
+            return true
         else
             materialstring = "Fusing together "
             materialcount.each_with_index do |material, i|
@@ -77,8 +78,8 @@ def tripleFusion(item=false)
             materialstring += "."
             Kernel.pbMessage(materialstring)
             pbAddPokemon(triple, 5)
+            return true
         end
-        return true
     end
     return false
 end
