@@ -405,7 +405,7 @@ BattleHandlers::StatLossImmunityAbility.add(:CLEARBODY,
   }
 )
 
-BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY,:WHITESMOKE)
+BattleHandlers::StatLossImmunityAbility.copy(:CLEARBODY,:WHITESMOKE,:BATTLEARMORPLUS)
 
 BattleHandlers::StatLossImmunityAbility.add(:FLOWERVEIL,
   proc { |ability,battler,stat,battle,showMessages|
@@ -1489,6 +1489,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:SHELLARMORPLUS,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:BATTLEARMORPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.1
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetAbilityNonIgnorable handlers
 #===============================================================================
@@ -1564,7 +1570,7 @@ BattleHandlers::CriticalCalcTargetAbility.add(:BATTLEARMOR,
   }
 )
 
-BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:SHELLARMOR,:SHELLARMORPLUS)
+BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:BATTLEARMORPLUS,:SHELLARMOR,:SHELLARMORPLUS)
 
 #===============================================================================
 # TargetAbilityOnHit handlers

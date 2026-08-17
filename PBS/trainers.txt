@@ -11572,17 +11572,17 @@ Pokemon = CREEPER,5
     Happiness = 255
 
 ####################### Alpha Pokemon
-[DESTROYEROFWORLDS,Wandering Trader,0]
-Pokemon = WANDERINGTRADER,100
-    Offset = 50
-    Moves = GEOMANCY
-    Ability = ASONE
-    Hpbar = 10
-    Item = POWERHERB
-    Nature = SERIOUS
+[ALPHA_POKEMON,Armaldo,0]   
+Pokemon = ARMALDO,5 
+    Offset = 0
+    Moves = MAXXSPEED,VICTORYDANCE,STONEAXE,HEALORDER
+    Ability = BATTLEARMORPLUS
+    Item = LEFTOVERS
+    Nature = IMPISH
     Raid = TRUE
-    IV = 0,0,0,0,0,0
-    EV = 0,0,0,0,0,0
+    Hpbar = 2
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
 
 [ALPHA_POKEMON,Heracross,0]
 Pokemon = HERACROSS,5
@@ -11593,6 +11593,18 @@ Pokemon = HERACROSS,5
     Item = LOADEDDICE
     Nature = JOLLY
     Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,252,0,0
+
+[ALPHA_POKEMON,Slaking,0]   
+Pokemon = SLAKING,5 
+    Offset = 0
+    Moves = CRUSHGRIPPLUS,EARTHQUAKE,POWERUPPUNCH,COLLISIONCOURSE
+    Ability = TRUANTPLUS
+    Item = ASSAULTVEST
+    Nature = JOLLY
+    Raid = TRUE
+    Hpbar = 2
     IV = 31,31,31,31,31,31
     EV = 252,252,0,252,0,0
 
@@ -11632,16 +11644,67 @@ Pokemon = URSALUNA,5
     IV = 31,31,31,31,31,31
     EV = 252,252,0,0,0,252
 
-[ALPHA_POKEMON,Slaking,0]   
-Pokemon = SLAKING,5 
-    Offset = 0
-    Moves = CRUSHGRIPPLUS,EARTHQUAKE,POWERUPPUNCH,COLLISIONCOURSE
-    Ability = TRUANTPLUS
-    Item = ASSAULTVEST
-    Nature = JOLLY
+####################### Misc Tower
+[DESTROYEROFWORLDS,Wandering Trader,0]
+Pokemon = WANDERINGTRADER,100
+    Offset = 50
+    Moves = GEOMANCY
+    Ability = ASONE
+    Hpbar = 10
+    Item = POWERHERB
+    Nature = SERIOUS
     Raid = TRUE
-    Hpbar = 2
+    IV = 0,0,0,0,0,0
+    EV = 0,0,0,0,0,0
+
+[MONSTERHOUSE,Monster House!,0]
+Pokemon = PROBOPASS,5
+    Offset = 0
+    Moves = BODYPRESS,EARTHPOWER,FLASHCANNON,POWERGEM
+    Ability = LEGENDARYPRESSURE
+    Item = SANDYORB
+    Nature = SERIOUS
     IV = 31,31,31,31,31,31
-    EV = 252,252,0,252,0,0
+    EV = 252,0,252,0,0,252
+Pokemon = CLAYDOLL,5
+    Offset = 0
+    Moves = TRICKROOM,EARTHPOWER,PSYCHIC,CALMMIND
+    Ability = LEGENDARYPRESSURE
+    Item = HEALRIBBON
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+Pokemon = YANMEGA,5
+    Offset = 0
+    Moves = TAILWIND,AIRSLASH,BUGBUZZ,GIGADRAIN
+    Ability = LEGENDARYPRESSURE
+    Item = METRONOME
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+Pokemon = EXPLOUD,5
+    Offset = 0
+    Moves = BOOMBURST,FLING,HYPERVOICE,EARTHQUAKE
+    Ability = LEGENDARYPRESSURE
+    Item = GRAVLEROCK
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+Pokemon = VESPIQUEEN,5
+    Offset = 0
+    Moves = DEFENDORDER,HEALORDER,ATTACKORDER,ACROBATICS
+    Ability = LEGENDARYPRESSURE
+    Item = SITRUSBERRY
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+Pokemon = CAMERUPT,5
+    Offset = 0
+    Moves = ERUPTION,EARTHQUAKE,HEATWAVE,STONEEDGE
+    Ability = LEGENDARYPRESSURE
+    Item = GOLDENSEED
+    Nature = SERIOUS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
 
 #eof

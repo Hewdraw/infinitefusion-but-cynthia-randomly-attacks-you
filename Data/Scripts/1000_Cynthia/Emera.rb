@@ -31,6 +31,11 @@ EMERADICT = {
         :rarity => :STARTER,
     },
 
+    :DEFENDGLOBE => {
+        :name => "Defend Globe",
+        :description => "Your Bug Pokemon are Unaffected by Flying Moves.",
+        :rarity => :EVENT,
+    },
     :KEY => {
         :name => "Key",
         :description => "Use Greatest Metronome instead of Fighting. Can teach Greatest Metronome. Can open locked doors.",

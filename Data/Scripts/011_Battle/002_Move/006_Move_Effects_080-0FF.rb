@@ -3486,11 +3486,18 @@ end
 # User flings its item at the target. Power/effect depend on the item. (Fling)
 #===============================================================================
 class PokeBattle_Move_0F7 < PokeBattle_Move
+  def pbBaseType(user)
+    return :ROCK if user.item == :GRAVLEROCK
+    return super
+  end
+
   def initialize(battle,move)
     super
     # 80 => all Mega Stones
     # 10 => all Berries
     @flingPowers = {
+      150 => [:GRAVLEROCK
+             ],
       130 => [:IRONBALL,:BIGNUGGET
              ],
       100 => [:HARDSTONE,:RAREBONE,
@@ -3685,7 +3692,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     #       missed. The item is not consumed if the target was switched out by
     #       an effect like a target's Red Card.
     # NOTE: There is no item consumption animation.
-    user.pbConsumeItem(true,true,false) if user.item
+    user.pbConsumeItem(true,true,false) if user.item && user.item != :GRAVLEROCK
   end
 end
 

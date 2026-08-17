@@ -14,6 +14,12 @@ TOWER_EVENTS = {
         :location => "Murky",
         :location2 => "Forest",
         :image => "ARMALDO",
+        :floorrequirement => 0,
+    },
+    :EASTERNCAVE => {
+        :location => "Eastern",
+        :location2 => "Cave",
+        :image => "ARMALDO",
         :floorrequirement => false, #todo
     },
     :ROUTE33 => {
@@ -208,7 +214,7 @@ def resolveUnknownEvent(recursion = false)
             end
             $PokemonBag.pbDeleteItem(:MYSTICWATER, 1)
             Kernel.pbMessage("The tree looks happy.")
-            $PokemonGlobal.towervalues[:unknownlist].push("Big Tree")
+            $PokemonGlobal.towervalues[:unknownlist].push(:ROUTE332)
         end
     when :ROUTE332
         Kernel.pbMessage("You find yourself in a familiar place near a massive berry tree next to the road.")
@@ -220,7 +226,7 @@ def resolveUnknownEvent(recursion = false)
             $PokemonBag.pbStoreItem(berry, 5)
         end
         pbObtainAlpha("Heracross")
-    when :MURKYFOREST
+    when :MURKYFOREST #todo wigglytuff interaction maybe?
         Kernel.pbMessage("Once you venture deep inside the forest an Armaldo comes out of a cave and poses aggresively at you") if !recursion
         choice = pbUnknownCommands(["Fight.", "Talk.", "Flee."], ["Defend yourself.", "Perhaps you can talk your way out of this.", "Run away to live another day."])
         case choice
@@ -230,12 +236,24 @@ def resolveUnknownEvent(recursion = false)
             Kernel.pbMessage("You eventually manage to calm him down and he brings you inside the cave.")
             Kernel.pbMessage("He shows you a treasure map to Eastern Cave that he's planning to explore and invites you to come along.")
             Kernel.pbMessage("You agree to meet him later at the entrance to Eastern Cave.")
+            $PokemonGlobal.towervalues[:unknownlist].push(:EASTERNCAVE)
         when 2
             Kernel.pbMessage("You manage to run back to a nearby town.")
             Kernel.pbMessage("Walking around for a bit you spot a wanted poster with an Armaldo on it.")
             Kernel.pbMessage("After supplying information on Armaldo's Location you've been given a small reward.")
-            #todo
+            pbReceiveItem(:GOLDRIBBON)
         end
+    when :EASTERNCAVE
+        Kernel.pbMessage("You explore Eastern Cave with Armaldo.")
+        Kernel.pbMessage("Near the end of it you both fall into a pit.")
+        Kernel.pbMessage("It's a monster house!")
+        pbRegisterPartner(:ALPHA_POKEMON, "Armaldo")
+        result = pbTrainerBattle(:MONSTERHOUSE, "Monster House!")
+        pbDeregisterPartner()
+        return if !result
+        Kernel.pbMessage("Eventually you reach the end of the dungeon and find a treasure chest.")
+        getLooplet.pbStoreEmera(:DEFENDGLOBE)
+        pbObtainAlpha("Armaldo") if Kernel.pbMessage("Hey! Armaldo wants to join your team! Will you accept Armaldo as a member?", ["Yes", "No"]) == 0
     when :SECRETBAZAAR
         Kernel.pbMessage("You find a hidden staircase into a secret bazaar.") if !recursion
         Kernel.pbMessage("4 Pokemon are offering you their service before you leave.") if !recursion
@@ -351,7 +369,7 @@ def resolveUnknownEvent(recursion = false)
             end
             $PokemonBag.pbDeleteItem(:MIRACLESEED, 1)
             Kernel.pbMessage("The dying tree disappears as a new one sprouts. How preculiar.")
-            $PokemonGlobal.towervalues[:unknownlist].push("Torterra2")
+            $PokemonGlobal.towervalues[:unknownlist].push(:VIENFOREST2)
         end
     when :VIENFOREST2
         Kernel.pbMessage("You find yourself in a familiar place with a grown up tree blocking your path on the mountains.")

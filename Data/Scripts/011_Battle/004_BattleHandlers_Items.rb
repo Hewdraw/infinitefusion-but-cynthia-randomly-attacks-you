@@ -1848,6 +1848,8 @@ BattleHandlers::EORHealingItem.add(:LEFTOVERS,
   }
 )
 
+BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:HEALRIBBON)
+
 BattleHandlers::EORHealingItem.add(:ROTOMCATALOG,
   proc { |item,battler,battle|
     next if !battler.canHeal?
@@ -1978,10 +1980,10 @@ BattleHandlers::ItemOnSwitchIn.add(:PYRITE,
 
 BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
     battler.pbConfuse(_INTL("{1} became confused due its {2}!",battler.pbThis, battler.itemName))
     battler.pbRaiseStatStageByCause(:ATTACK,2,battler,battler.itemName)
     battler.pbRemoveItem()
-    battle.pbCommonAnimation("UseItem",battler)
   }
 )
 
@@ -2007,8 +2009,8 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
       end
       battle.pbShowAbilitySplash(battler)
       battle.pbDisplay(_INTL("The Booster Energy was used up..."))
-      battler.pbRemoveItem()
       battle.pbCommonAnimation("UseItem",battler)
+      battler.pbRemoveItem()
       battle.pbDisplay(_INTL("{1} used its Booster Energy to activate Protosynthesis!",battler.pbThis))
       battle.pbHideAbilitySplash(battler)
     end
@@ -2034,6 +2036,31 @@ BattleHandlers::ItemOnSwitchIn.add(:WHIPPEDDREAM,
     next unless user.isFusionOf(:SLURPUFF) || user.isFusionOf(:SWIRLIX)
     battle.pbStartTerrain(user, :Misty)
     user.pbUseMove(:MISTYEXPLOSION)
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:SANDYORB,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battle.pbDisplay("#{battler.pbThis} used its Sandy Orb!")
+    battle.pbStartWeather(battler,:Sandstorm,true)
+    battler.pbRemoveItem()
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:GOLDENSEED,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battle.pbDisplay("#{battler.pbThis} ate its Golden Seed!")
+    for i in 1..5 do
+      battler.pokemon.level += 1
+      battler.level += 1
+      battler.pbUpdate(false)
+      battle.scene.pbRefreshOne(battler.index)
+      battle.pbCommonAnimation("LevelUp", battler)
+      battle.pbDisplay(_INTL("{1} grew to Lv. {2}!", battler.name, battler.level))
+    end
+    battler.pbRemoveItem()
   }
 )
 

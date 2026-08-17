@@ -160,3 +160,4 @@
 157,TOWER_TYCOON,Tower Tycoon,200,,,,Male,100,
 158,POKEMON,Partner Pokemon,200,,,,Male,100,
 159,STATIC,Static,70,,,,Female,100,
+160,MONSTERHOUSE,It's a,0,,,,Mixed,100,
