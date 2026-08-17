@@ -284,7 +284,7 @@ def getTowerEventsList()
     eventlist["Shop"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
     eventlist["Shop"] /= 2 if $PokemonGlobal.towervalues[:floor] <= 20
     eventlist["Pokemart"] = 0 if $PokemonGlobal.towervalues[:floor] <= 5
-    eventlist["Pokemart"] /= 2 if $PokemonGlobal.towervalues[:floor] <= 20
+    eventlist["Pokemart"] *= 2 if $PokemonBag.pbHasItem?(:GOLDRIBBON)
     eventlist["Legendary"] = 0 if $PokemonGlobal.towervalues[:legendarylist].length == 0
     eventlist["Unknown"] = 0 if $PokemonGlobal.towervalues[:unknownlist].length == 0
     eventlist["Heal"] += 100 if $PokemonGlobal.towervalues[:floor] % 10 == 8
@@ -319,6 +319,13 @@ def towerEvent()
         Undertale()
         return if $PokemonGlobal.towervalues.nil?
     when "Pokemart"
+        if $PokemonBag.pbHasItem?(:GOLDRIBBON) > 0
+            Kernel.pbMessage("The clerk spots your Gold Ribbon and offers to pay 50k for it.")
+            if Kernel.pbMessage("Sell the Gold Ribbon?", ["Yes", "No"]) == 0
+                $PokemonBag.pbDeleteItem(:GOLDRIBBON, 1)
+                $Trainer.money += 50000
+            end
+        end
         pbPokemonMart([:POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION, :FULLRESTORE, :REVIVE, :MAXREVIVE, :ANTIDOTE, :PARLYZHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL, :FULLHEAL, :ETHER, :MAXETHER, :ELIXIR, :MAXELIXIR, :REPEL, :SACREDASH], nil, true)
     when "Heal"
         $Trainer.party.each do |pkmn|
