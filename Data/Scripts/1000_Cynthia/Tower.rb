@@ -21,10 +21,12 @@ def setupTower()
         :unknownlist => [],
         :eventvariables => {},
         :money => $Trainer.money,
+        :triplefusions => $PokemonGlobal.triplefusions,
         :escapeorb => false,
     }
     $PokemonGlobal.towervalues[:unknownlist] = getUnknownEventList()
     $Trainer.money = 0
+    $PokemonGlobal.triplefusions = []
 
     selectTrainerClass()
 
@@ -36,14 +38,15 @@ def setupTower()
     starters.each do |pokemon|
         pbAddPokemon(pokemon, 5)
     end
-    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
+    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICERS, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
     starteritems.each do |item|
         $PokemonBag.pbStoreItem(item)
     end
 end
 
 def resetTower()
-    $Trainer.money = $PokemonGlobal.towervalues[:money] if $PokemonGlobal.towervalues[:money]
+    $Trainer.money = $PokemonGlobal.towervalues[:money]
+    $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore
