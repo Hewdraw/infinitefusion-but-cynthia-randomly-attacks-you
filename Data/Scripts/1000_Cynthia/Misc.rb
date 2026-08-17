@@ -1,5 +1,5 @@
 TRIPLEFUSIONS = {
-    :ZAPMOLTICUNO => [[:ARTICUNO, :GALARARTICUNO], [:ZAPDOS, :GALARZAPDOS], [:MOLTRES, :GALARMOLTRES],
+    :ZAPMOLTICUNO => [[:ARTICUNO, :GALARARTICUNO], [:ZAPDOS, :GALARZAPDOS], [:MOLTRES, :GALARMOLTRES]],
     :ENRAICUNE => [[:RAIKOU, :RAGINGBOLT], [:ENTEI, :GOUGINGFIRE], [:SUICUNE, :WALKINGWAKE]],
     :KYODONQUAZA => [[:KYOGRE], [:GROUDON], [:RAYQUAZA]],
     :PALDIATINA => [[:PALKIA, :PALKIAORIGIN], [:DIALGA, :DIALGAORIGIN], [:GIRATINA, :GIRATINAORIGIN]],
@@ -17,7 +17,7 @@ TRIPLEFUSIONS = {
     :MAGNETON => [[:MAGNEMITE]],
 }
 
-def tripleFusion()
+def tripleFusion(item=false)
     $PokemonGlobal.triplefusions = [] if $PokemonGlobal.triplefusions.nil?
     TRIPLEFUSIONS.each do |triple, materials|
         next if $PokemonGlobal.triplefusions.include?(triple)
@@ -38,31 +38,46 @@ def tripleFusion()
             end
         end
         next if materialcount.length < [materials.length, 3].max()
-        pbCallBub(2, 43)
-        materialstring = "Your "
-        materialcount.each_with_index do |material, i|
-            materialstring += GameData::Species.get(materialcount).real_name
-            if i == materialcount.length - 2
-                materialstring += " and "
-            else
-                materialstring += ", "
-            end
-        end
-        materialstring += "..."
-        Kernel.pbMessage(materialstring)
-        pbCallBub(2, 43)
-        Kernel.pbMessage("My machine could clone them into a single Pokémon.")
-        pbCallBub(2, 43)
-        choice = Kernel.pbMessage("Would you like to do this?", ["Yes", "No"])
-        if choice == 1
-            pbCallBub(2, 43)
-            Kernel.pbMessage("Fine Then.")
-            return false
-        end
         $PokemonGlobal.triplefusions.push(triple)
-        pbSet(3, triple)
-        pbCallBub(2, 43)
-        Kernel.pbMessage("Very well... Let's proceed then.")        
+        if !item
+            pbCallBub(2, 43)
+            materialstring = "Your "
+            materialcount.each_with_index do |material, i|
+                materialstring += GameData::Species.get(materialcount).real_name
+                if i == materialcount.length - 2
+                    materialstring += " and "
+                else
+                    materialstring += ", "
+                end
+            end
+            materialstring += "..."
+            Kernel.pbMessage(materialstring)
+            pbCallBub(2, 43)
+            Kernel.pbMessage("My machine could clone them into a single Pokémon.")
+            pbCallBub(2, 43)
+            choice = Kernel.pbMessage("Would you like to do this?", ["Yes", "No"])
+            if choice == 1
+                pbCallBub(2, 43)
+                Kernel.pbMessage("Fine Then.")
+                return false
+            end
+            pbSet(3, triple)
+            pbCallBub(2, 43)
+            Kernel.pbMessage("Very well... Let's proceed then.")
+        else
+            materialstring = "Fusing together "
+            materialcount.each_with_index do |material, i|
+                materialstring += GameData::Species.get(materialcount).real_name
+                if i == materialcount.length - 2
+                    materialstring += " and "
+                else
+                    materialstring += ", "
+                end
+            end
+            materialstring += "."
+            Kernel.pbMessage(materialstring)
+            pbAddPokemon(triple, 5)
+        end
         return true
     end
 end

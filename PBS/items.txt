@@ -782,7 +782,7 @@
 707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
 709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"todo",0,0,0
-710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",1,0,6,
+710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",5,0,6,
 711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"This is a crystallized form of Z-Power. It upgrades Necrozma's Photon Geyser to a Z-Move.",0,0,0
 712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,2,0,"Minimizes an IV for a Pokemon. Don't question how it does it.",1,0,0
 713,BOTTLECAP,Bottle Cap,Bottle Caps,2,0,"Maximizes an IV for a Pokemon. Don't question how it does it.",1,0,0
@@ -826,10 +826,10 @@
 751,GYARADOSITE,Gyaradosite,Gyaradosites,1,0,"todo",0,0,0
 752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"todo",0,0,0
 753,MYSTERIOUSMETEORS,Mysterious Meteors,Mysterious Meteors,1,0,"todo",0,0,0
-754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",1,0,0,
-755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",1,0,0,
-756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",1,0,0,
-757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,100,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",1,0,0,
+754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",5,0,0,
+755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",5,0,0,
+756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",5,0,0,
+757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,100,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",0,0,0,
 758,HPMAX,HP Max,Hp Maxes,2,0,"Makes you healthier!",1,3,0,
 759,BEEZORITE,Beezorite,Beezorites,1,0,"todo",0,0,0
 760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"todo",0,0,0
@@ -838,7 +838,7 @@
 763,PYRITE,Pyrite,Pyrite,1,0,"Fool's Gold. Makes the holder ???-Type.",0,0,0
 764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"todo",0,0,0
 765,GARDEROSITE,Garderosite,Garderosites,1,0,"todo",0,0,0
-766,BEEGPP,Beeg PP,Beeg PPs,2,0,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",1,0,0,
+766,BEEGPP,Beeg PP,Beeg PPs,2,0,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",5,0,0,
 767,MECHUMETAL,Mechu Metal,Mechu Metals,2,0,"Infinitely dense iron.",1,3,0,
 777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"todo",0,0,0
 778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"todo",0,0,0
@@ -861,7 +861,7 @@
 795,KOMMONIUMZ,Kommonium Z,Kommonium Zs,1,0,"todo",0,0,0
 796,EEVIUMZ,Eevium Z,Eevium Zs,1,0,"todo",0,0,0
 797,MAWANCITE,Mawancite,Mawancites,1,0,"todo",0,0,0
-798,ANCESTRALGENE,Ancestral Gene,Ancestral Genes,1,0,"Use to Copy. When held by Mew, gives Ability but inhibits attacking potential.",1,0,0
+798,ANCESTRALGENE,Ancestral Gene,Ancestral Genes,1,0,"Use to Copy. When held by Mew, gives Ability but inhibits attacking potential.",5,0,0
 799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"todo",0,0,0
 800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"todo",0,0,0
 801,MINECRAFTBALL,Minecraft Block,Minecraft Blocks,3,0,"Weird Cobblemon extension.",0,0,0
@@ -872,16 +872,16 @@
 806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"todo",0,0,0
 807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"todo",0,0,0
 808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"Magic craft item. Swaps and slightly buffs attacking stats.",0,0,0
-809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that paralyzes the holder in battle.",1,0,0,
-810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"A Booster Energy device that brings out paradoxical potential out of viable targets",1,0,0
+809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that paralyzes the holder in battle.",5,0,0,
+810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"A Booster Energy device that brings out paradoxical potential out of viable targets",5,0,0
 811,HEALIES,Healies,Healies,8,0,"todo",2,0,6
-812,TUTORMACHINE,Tutor Machine,Tutor Machines,8,0,"Pocket Move Tutor",1,0,6
+812,TUTORMACHINE,Tutor Machine,Tutor Machines,8,0,"Pocket Move Tutor",5,0,6
 813,TM122,TM122,TM122s,4,10000,"TOMBSTONER",3,0,0,TOMBSTONER
 814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"",0,0,0
 815,ENDGATEWAY,End Gateway,End Gateways,8,0,"todo",2,0,6
-816,MEGASHARD,Mega Shard,Mega Shards,1,0,"todo",1,0,0,
-817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",1,0,0,
-818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"todo",1,0,0,
+816,MEGASHARD,Mega Shard,Mega Shards,1,0,"todo",5,0,0,
+817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",0,0,0,
+818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"todo",5,0,0,
 819,DIGIVICE,Digivice,Digivices,8,0,"A small, portable device that allows you to access the Pokémon storage system.",2,0,6,
 820,EJECTPACK,Eject Pack,Eject Packs,1,0,"todo",0,0,0
 821,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
@@ -917,9 +917,9 @@
 851,GODORB,God Orb,God Orbs,1,0,"a",0,0,0
 852,BARB,Barb,Barbs,1,0,"If the holder of this item takes damage, the attacker will also be damaged.",0,0,0
 853,ESCAPEORB,Escape Orb,Escape Orbs,1,0,"Escape from a battle as if you had won but forfeit any rewards.",0,0,0
-854,TEACHYTV,Teachy TV,Teachy TVs,8,0,"Pocket Expert Move Tutor",1,0,6
+854,TEACHYTV,Teachy TV,Teachy TVs,8,0,"Pocket Expert Move Tutor",5,0,6
 855,BADEGG,Bad Egg,Bad Eggs,8,0,"Not too important, not too unimportant.",2,0,0
-856,ROTOMCATALOG,Rotom Catalog,Rotom Catalogs,1,0,"All the prices are listed in sinnoh coins.",1,0,0,
+856,ROTOMCATALOG,Rotom Catalog,Rotom Catalogs,1,0,"All the prices are listed in sinnoh coins.",5,0,0,
 857,ROCKIUMZPLUS,Rockium Z+,Rockium Z+s,1,0,"todo",0,0,0
 858,GOLDRIBBON,Gold Ribbon,Gold Ribbons,1,50000,"Tax Evasion.",0,0,0
 859,SANDYORB,Sandy Orb,Sandy Orbs,1,0,"a",0,0,0
@@ -927,6 +927,7 @@
 861,GRAVLEROCK,Gravlerock,Gravlerocks,1,0,"a",0,0,0
 862,GOLDENSEED,Golden Seed,Golden Seeds,1,0,"a",0,0,0
 863,NERUPHONE,Neru Phone,Neru Phones,1,0,"A yellow flip phone. It seems able to have new Apps installed on it.",0,0,0
+864,TRIPLESPLICER,Triple Splicer,Triple Splicers,8,0,"Fuses the DNA of three specific Pokémon to create a new species. Can be reused as many times as you like.",2,0,6
 
 #    attr_reader :id
 #    attr_reader :id_number

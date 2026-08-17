@@ -2692,3 +2692,7 @@ ItemHandlers::UseFromBag.add(:BADEGG, proc { |item|
   pbSEPlay("egg")
   Kernel.pbMessage("* (You used the Bad Egg.)")
 })
+
+ItemHandlers::UseFromBag.add(:TRIPLESPLICER, proc { |item|
+  tripleFusion(true)
+})
