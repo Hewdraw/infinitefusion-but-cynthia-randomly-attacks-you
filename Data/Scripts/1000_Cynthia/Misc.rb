@@ -37,7 +37,7 @@ def tripleFusion(item=false)
                 end
             end
         end
-        next if materialcount.length < [materials.length, 3].max()
+        next if materialcount.length >= [materials.length, 3].max()
         $PokemonGlobal.triplefusions.push(triple)
         if !item
             pbCallBub(2, 43)
@@ -80,4 +80,5 @@ def tripleFusion(item=false)
         end
         return true
     end
+    return false
 end
