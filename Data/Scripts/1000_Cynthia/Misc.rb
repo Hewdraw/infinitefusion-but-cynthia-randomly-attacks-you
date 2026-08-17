@@ -22,7 +22,7 @@ def tripleFusion(item=false)
     TRIPLEFUSIONS.each do |triple, materials|
         next if $PokemonGlobal.triplefusions.include?(triple)
         materialcount = []
-        if materials.length == 1
+        if materials[0].length == 1
             $Trainer.party.each do |mon|
                 materials.each do |material|
                     materialcount.push(material) if mon.isFusionOf(material)
