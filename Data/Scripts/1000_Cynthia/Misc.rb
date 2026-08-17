@@ -24,7 +24,7 @@ def tripleFusion(item=false)
         materialcount = []
         if materials[0].length == 1
             $Trainer.party.each do |mon|
-                materials.each do |material|
+                materials[0].each do |material|
                     materialcount.push(material) if mon.isFusionOf(material)
                 end
             end
