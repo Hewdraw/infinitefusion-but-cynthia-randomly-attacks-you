@@ -64,7 +64,6 @@ def tripleFusion(item=false)
                 Kernel.pbMessage("Very well... Let's proceed then.")
             end
             pbSet(3, triple)
-            return true
         else
             materialstring = "Fusing together "
             materialcount.each_with_index do |material, i|
@@ -78,8 +77,8 @@ def tripleFusion(item=false)
             materialstring += "."
             Kernel.pbMessage(materialstring)
             pbAddPokemon(triple, 5)
-            return true
         end
+        return true
     end
     return false
 end
