@@ -58,12 +58,12 @@ def tripleFusion(item=false)
             choice = Kernel.pbMessage("Would you like to do this?", ["Yes", "No"])
             if choice == 1
                 pbCallBub(2, 43)
-                Kernel.pbMessage("Fine Then.")
-                return false
+                Kernel.pbMessage("Are you fucking stupid. I'm doing it anyways.")
+            else
+                pbCallBub(2, 43)
+                Kernel.pbMessage("Very well... Let's proceed then.")
             end
             pbSet(3, triple)
-            pbCallBub(2, 43)
-            Kernel.pbMessage("Very well... Let's proceed then.")
         else
             materialstring = "Fusing together "
             materialcount.each_with_index do |material, i|
