@@ -2746,7 +2746,7 @@ class PokeBattle_AI
       end
       # Aurora Veil, Reflect, Light Screen
       if !move.ignoresReflect? && !(key == :critDamage)
-         !(user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS]) || ["201", "213"].include?(move.function))
+         !(user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS]) || ["201", "213", "353"].include?(move.function))
         if target.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
           if @battle.pbSideBattlerCount(target)>1
             multipliers[:final_damage_multiplier] *= 2 / 3.0

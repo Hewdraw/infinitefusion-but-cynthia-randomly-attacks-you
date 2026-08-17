@@ -336,6 +336,22 @@ class PokeBattle_Battle
         b.pbFaint if b.fainted?
       end
     end
+    for side in 0...2
+      next if sides[side].effects[PBEffects::GmaxWildfire]==0
+      pbCommonAnimation("SeaOfFire") if side==0
+      pbCommonAnimation("SeaOfFireOpp") if side==1
+      priority.each do |b|
+        next if b.opposes?(side)
+        next if !b.takesIndirectDamage?
+        oldHP = b.hp
+        @scene.pbDamageAnimation(b)
+        b.pbReduceHP(b.totalhp/6,false)
+        pbDisplay(_INTL("{1} is hurt by the fire!",b.pbThis))
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        b.pbFaint if b.fainted?
+      end
+    end
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
       next if b.fainted?

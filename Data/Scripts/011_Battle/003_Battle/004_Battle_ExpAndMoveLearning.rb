@@ -63,7 +63,7 @@ class PokeBattle_Battle
           gainedlevels = opponent.pokemon.isSelfFusion? ? 2 : 1
           gainedlevels += 1 if opponent.pokemon.affection
           for i in 1..gainedlevels do
-            opponent.pokemon.exp += 1
+            opponent.pokemon.level += 1
             opponent.level += 1
             opponent.pbUpdate(false)
             @scene.pbRefreshOne(opponent.index)

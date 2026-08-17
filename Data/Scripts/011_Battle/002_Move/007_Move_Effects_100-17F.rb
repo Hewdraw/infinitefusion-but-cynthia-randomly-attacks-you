@@ -4271,6 +4271,9 @@ class PokeBattle_Move_270 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::HyperBeam] = 2
     user.currentMove = @id
+    return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
+    user.pbOpposingSide.effects[PBEffects::GmaxWildfire] = 4
+    @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end
 
@@ -5772,5 +5775,83 @@ class PokeBattle_Move_352 < PokeBattle_Move
   def pbEffectGeneral(user)
     @battle.field.effects[PBEffects::Web] = true
     @battle.pbDisplay(_INTL("A web has been laid out!"))
+  end
+end
+
+class PokeBattle_Move_353 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1, :SPECIAL_DEFENSE, 1]
+  end
+end
+
+class PokeBattle_Move_354 < PokeBattle_StatUpMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPECIAL_ATTACK, 1]
+  end
+
+  def multiHitMove?; return true; end
+
+  def pbNumHits(user,targets)
+    hitChances = [2,2,3,3,4,5]
+    hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    r = @battle.pbRandom(hitChances.length)
+    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    return hitChances[r]
+  end
+end
+
+class PokeBattle_Move_355 < PokeBattle_Move
+  def pbGetDefenseStats(user, target)
+    return target.defense, target.stages[:DEFENSE] + 6
+  end
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets)
+    return 4 + rand(7) if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    return 10
+  end
+
+  def successCheckPerHit?
+    return @accCheckPerHit
+  end
+
+  def pbOnStartUse(user,targets)
+    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+  end
+end
+
+class PokeBattle_Move_356 < PokeBattle_Move
+  def worksWithNoTargets?;     return true; end
+  def pbNumHits(user,targets); return 1;    end
+
+  def pbMoveFailed?(user,targets)
+    if !@battle.moldBreaker
+      bearer = @battle.pbCheckGlobalAbility(:DAMP)
+      if bearer!=nil
+        @battle.pbShowAbilitySplash(bearer)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
+        else
+          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
+             user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
+        end
+        @battle.pbHideAbilitySplash(bearer)
+        return true
+      end
+    end
+    return false
+  end
+
+  def pbSelfKO(user)
+    return if user.fainted?
+    user.pbReduceHP(user.hp,false)
+    user.pbItemHPHealCheck
+  end
+
+  def pbEffectGeneral(user)
+    return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
+    user.pbOpposingSide.effects[PBEffects::GmaxWildfire] = 4
+    @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end
