@@ -88,6 +88,7 @@ class PokemonGlobalMetadata
   attr_accessor :towervalues
   attr_accessor :towerclasses
   attr_accessor :porygonchance
+  attr_accessor :triplefusions
 
   def initialize
     # Movement
