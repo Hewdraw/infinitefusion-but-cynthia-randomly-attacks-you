@@ -171,6 +171,7 @@ begin
     ToxicSpikes        = 20
     WideGuard          = 21
     TheWorld        = 22
+    GmaxWildfire        = 23
 
     #===========================================================================
     # These effects apply to the battle (i.e. both sides)
