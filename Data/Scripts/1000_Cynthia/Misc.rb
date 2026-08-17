@@ -58,7 +58,7 @@ def tripleFusion(item=false)
             choice = Kernel.pbMessage("Would you like to do this?", ["Yes", "No"])
             if choice == 1
                 pbCallBub(2, 43)
-                Kernel.pbMessage("Are you fucking stupid. I'm doing it anyways.")
+                Kernel.pbMessage("Are you fucking stupid? I'm doing it anyways.")
             else
                 pbCallBub(2, 43)
                 Kernel.pbMessage("Very well... Let's proceed then.")
