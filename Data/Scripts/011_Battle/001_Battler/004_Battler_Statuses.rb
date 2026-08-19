@@ -84,7 +84,7 @@ class PokeBattle_Battler
     when :SLEEP
       # No type is immune to sleep
     when :POISON
-      if !hasActiveAbility?([:POISONHEAL, :GUTS, :GUTSPLUS]) || !user.hasActiveAbility?(:CORROSION)
+      if !hasActiveAbility?([:POISONHEAL, :GUTS, :GUTSPLUS]) || !(user && user.hasActiveAbility?(:CORROSION))
         hasImmuneType |= pbHasType?(:POISON)
         hasImmuneType |= pbHasType?(:STEEL)
       end
