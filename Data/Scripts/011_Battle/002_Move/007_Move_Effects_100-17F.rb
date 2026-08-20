@@ -2970,7 +2970,9 @@ class PokeBattle_Move_197 < PokeBattle_Move
     @battle.battlers.each do |b|
       next unless b.pokemon == battler
       next unless b.index
-      @battle.pbRecallAndReplace(b.index, idxParty)
+      newPkmn = @battle.pbGetReplacementPokemonIndex(b.index)
+      next if newPkmn<0
+      @battle.pbRecallAndReplace(b.index, newPkmn)
     end
   end
 end
