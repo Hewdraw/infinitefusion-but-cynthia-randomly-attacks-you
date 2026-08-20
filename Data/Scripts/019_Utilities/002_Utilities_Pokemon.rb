@@ -111,6 +111,17 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       pkmn.shiny = true
       pkmn.natural_shiny = true
     end
+  when :SNORUNT
+    pkmn.poke_ball = :QUICKBALL
+    pkmn.shiny = true
+    pkmn.natural_shiny = true
+    pkmn.item = :CHOICESCARF
+    pkmn.moves = [Pokemon::Move.new(:AGILITY)]
+    pkmn.iv[3] = 31
+    pkmn.ev[3] = 252
+    pkmn.nature = :TIMID
+    pkmn.ability = :SPEEDBOOST
+    pkmn.owner = Owner.new(0, "Sonic", 0, 2)
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName

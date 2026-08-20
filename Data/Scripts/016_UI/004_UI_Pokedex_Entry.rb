@@ -368,7 +368,7 @@ class PokemonPokedexInfo_Scene
     shadow = Color.new(168, 184, 184)
     shadowColor = Color.new(160, 200, 150)
 
-    if GameData::Species.get(getBodyIDNormalized(species_data.id_number)) == :MAWILE || GameData::Species.get(getHeadIDNormalized(species_data.id_number)) == :MAWILE
+    if [:MAWILE, :SHROOMAWGROSS].include?(GameData::Species.get(getBodyIDNormalized(species_data.id_number))) || [:MAWILE, :SHROOMAWGROSS].include?(GameData::Species.get(getHeadIDNormalized(species_data.id_number)))
       entryText = "Nice, a Mawile."
     elsif GameData::Species.get(getBodyIDNormalized(species_data.id_number)) == :METAGROSS || GameData::Species.get(getHeadIDNormalized(species_data.id_number)) == :METAGROSS
       entryText = "Metagross."
