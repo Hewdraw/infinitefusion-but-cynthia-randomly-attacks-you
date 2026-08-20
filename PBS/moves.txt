@@ -885,7 +885,7 @@
 914,THUNDERCLAPPLUS,Thunder Clap+,246,80,ELECTRIC,Special,100,5,10,NearOther,1,bef,"ur extra stinky"
 915,BURNINGBULWARKPLUS,Burning Bulwark+,247,0,FIRE,Status,0,10,0,User,4,,"Nice Smeargle/Ditto, jackass."
 916,ICEBEAMPLUS,Ice Beam+,248,90,ICE,Special,100,10,10,NearOther,0,bef,"The target is struck with an icy-cold beam of energy. It may also freeze the target solid."
-917,HYDROPUMPPLUS,Hydro Pump+,100,100,WATER,Special,100,10,0,NearOther,0,bef,"The target is blasted by a huge volume of water launched under great pressure."
+917,HYDROPUMPPLUS,Hydro Pump+,100,100,WATER,Special,50,10,0,NearOther,0,bef,"The target is blasted by a huge volume of water launched under great pressure."
 918,RAPIDSPINPLUS,Rapid Spin+,249,60,NORMAL,Physical,100,40,100,NearOther,0,abef,"A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes."
 919,BOOMBURSTPLUS,Boomburst+,250,150,NORMAL,Special,100,15,50,AllNearOthers,0,befk,"The user attacks everything around it with the destructive power of a terrible, explosive sound."
 920,MYSTICALFIREPLUS,Mystical Fire+,251,110,FIRE,Special,100,10,100,NearOther,0,bef,"The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat."
