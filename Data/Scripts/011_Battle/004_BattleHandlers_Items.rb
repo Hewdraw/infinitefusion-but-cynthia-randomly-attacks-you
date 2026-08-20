@@ -2065,6 +2065,37 @@ BattleHandlers::ItemOnSwitchIn.add(:GOLDENSEED,
   }
 )
 
+BattleHandlers::ItemOnSwitchIn.add(:GOLDENAPPLE,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battle.pbDisplay("#{battler.pbThis} ate its Golden Apple!")
+    battler.hpbars += 1
+    battler.pbRecoverHP(battler.totalhp / 2)
+    battler.pbRemoveItem()
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:SILVERWING,
+  proc { |item,battler,battle|
+    battler.pbTypes().each do |type|
+      case type
+      when :WATER
+        battle.pbStartWeather(battler,:Rain,true)
+        break
+      when :FIRE
+        battle.pbStartWeather(battler,:Sun,true)
+        break
+      when :GROUND,:ROCK
+        battle.pbStartWeather(battler,:Sandstorm,true)
+        break
+      when :ICE
+        battle.pbStartWeather(battler,:Hail,true)
+        break
+      end
+    end
+  }
+)
+
 #===============================================================================
 # ItemOnIntimidated handlers
 #===============================================================================

@@ -862,7 +862,7 @@
 796,EEVIUMZ,Eevium Z,Eevium Zs,1,0,"todo",0,0,0
 797,MAWANCITE,Mawancite,Mawancites,1,0,"todo",0,0,0
 798,ANCESTRALGENE,Ancestral Gene,Ancestral Genes,1,0,"Use to Copy. When held by Mew, gives Ability but inhibits attacking potential.",5,0,0
-799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"todo",0,0,0
+799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"a",0,0,0
 800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"todo",0,0,0
 801,MINECRAFTBALL,Minecraft Block,Minecraft Blocks,3,0,"Weird Cobblemon extension.",0,0,0
 802,MAXMUSHROOM,MAX Mushroom,MAX Mushrooms,1,0,"todo",0,0,0
@@ -870,7 +870,7 @@
 804,ELYTRA,Elytra,Elytras,1,0,"a",0,0,0
 805,ENDERPEARL,Ender Pearl,Ender Pearls,1,0,"todo",0,0,0
 806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"todo",0,0,0
-807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"todo",0,0,0
+807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"a",0,0,0
 808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"Magic craft item. Swaps and slightly buffs attacking stats.",0,0,0
 809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"An item to be held by a Pokémon. It is a bizarre orb that paralyzes the holder in battle.",5,0,0,
 810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"A Booster Energy device that brings out paradoxical potential out of viable targets",5,0,0
@@ -928,6 +928,8 @@
 862,GOLDENSEED,Golden Seed,Golden Seeds,1,0,"a",0,0,0
 863,NERUPHONE,Neru Phone,Neru Phones,1,0,"A yellow flip phone. It seems able to have new Apps installed on it.",0,0,0
 864,TRIPLESPLICER,Triple Splicer,Triple Splicers,8,0,"Fuses the DNA of three specific Pokémon to create a new species. Can be reused as many times as you like.",2,0,6
+865,RAINBOWWING,Rainbow Wing,Rainbow Wings,1,0,"a",0,0,0
+866,SILVERWING,Silver Wing,Silver Wings,1,0,"a",0,0,0
 
 #    attr_reader :id
 #    attr_reader :id_number

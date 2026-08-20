@@ -338,6 +338,9 @@ class PokeBattle_Battle
     if !battler.opposes? && [:AMULETCOIN, :LUCKINCENSE].include?(battler.item_id)
       @field.effects[PBEffects::AmuletCoin] = true
     end
+    if !battler.opposes? && [:RAINBOWWING].include?(battler.item_id)
+      @field.effects[PBEffects::RainbowWing] = true
+    end
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
     # Healing Wish

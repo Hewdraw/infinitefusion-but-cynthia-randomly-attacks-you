@@ -25,6 +25,7 @@ begin
       @effects[PBEffects::WaterSportField] = 0
       @effects[PBEffects::WonderRoom]      = 0
       @effects[PBEffects::Web]         = false
+      @effects[PBEffects::RainbowWing]      = false
       @defaultWeather  = :None
       @weather         = :None
       @weatherDuration = 0

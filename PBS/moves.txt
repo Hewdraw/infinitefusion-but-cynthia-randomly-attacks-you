@@ -1086,6 +1086,7 @@
 1117,ETERNABEAM,Eternabeam,0C2,160,DRAGON,Special,90,5,0,NearOther,0,bef,"The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
 1118,WILDBOLTSTORM,Wildbolt Storm,008,100,ELECTRIC,Special,80,10,30,AllNearFoes,0,bef,"a"
 1119,CYNTHIACONTINENTALPLUS,Continental Crush+,207,200,ROCK,Physical,100,1,0,NearOther,0,fp,"Nice Smeargle/Ditto, jackass."
+1120,AEROBLASTPLUS,Aeroblast+,357,60,FLYING,Special,100,5,0,Other,0,bef,"A vortex of air is shot at the target to inflict damage. Critical hits land more easily."
 
 
 

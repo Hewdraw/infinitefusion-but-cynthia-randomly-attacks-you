@@ -49,9 +49,23 @@ class PokeBattle_Battler
 
   def pbFaint(showMessage=true)
     if self.hasActiveAbility?(:SACREDASHES, true) && !@pokemon.battlevariables[:sacredashes]
+      @battle.pbShowAbilitySplash(self)
       pbRecoverHP(@totalhp / 2)
       @pokemon.battlevariables[:sacredashes] = true
-      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)   # Random
+      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
+      @battle.pbHideAbilitySplash(self)
+      return if newPkmn<0
+      @battle.pbRecallAndReplace(@index, newPkmn, true)
+      @battle.pbDisplay(_INTL("{1} was sent out!",newpbThis))
+      @battle.pbClearChoice(@index)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true)
+      return
+    end
+    if self.hasActiveItem?(:TOTEMOFUNDYING, true)
+      pbRecoverHP(@totalhp / 2)
+      @battle.pbCommonAnimation("UseItem",self)
+      self.pbRemoveItem()
+      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn, true)
       @battle.pbDisplay(_INTL("{1} was sent out!",newpbThis))

@@ -11521,6 +11521,40 @@ Pokemon = FANROTOM,5
     EV = 252,0,0,4,252,0
     Happiness = 255
 
+[LEGENDARY_POKEMON,Ho-Gia,0]
+Pokemon = B249H250,11  
+    Offset = 0
+    Moves = SACREDFIRE,BRAVEBIRD,EARTHQUAKE,AVALANCHE
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 1
+    Split = 2
+    Phasetwo = TRUE
+    Item = LIFEORB
+    Nature = RELAXED
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,252,0,0,0
+Pokemon = HOOH,11   
+    Offset = 1
+    Moves = REVIVALBLESSING,SACREDFIRE,RAINDANCE,ROOST
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 3
+    Item = DAMPROCK
+    Nature = CAREFUL
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,252,0
+Pokemon = LUGIA,11  
+    Offset = 1
+    Moves = AEROBLAST,HYDROPUMP,ANCIENTPOWER,EARTHPOWER
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 1
+    Item = LIFEORB
+    Nature = MODEST
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,252,252,0
+
 #placeholder
 [LEGENDARY_POKEMON,Regirock,0]
 Pokemon = REGIROCK,11 

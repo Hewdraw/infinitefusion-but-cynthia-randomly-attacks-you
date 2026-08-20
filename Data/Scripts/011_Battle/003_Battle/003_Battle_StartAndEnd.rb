@@ -441,6 +441,7 @@ class PokeBattle_Battle
         tMoney += pbMaxLevelInTeam(1, i) * t.base_money
       end
       tMoney *= 2 if @field.effects[PBEffects::AmuletCoin]
+      tMoney *= 2 if @field.effects[PBEffects::RainbowWing]
       tMoney *= 2 if @field.effects[PBEffects::HappyHour]
       oldMoney = pbPlayer.money
       pbPlayer.money += tMoney
@@ -452,6 +453,7 @@ class PokeBattle_Battle
     # Pick up money scattered by Pay Day
     if @field.effects[PBEffects::PayDay]>0
       @field.effects[PBEffects::PayDay] *= 2 if @field.effects[PBEffects::AmuletCoin]
+      @field.effects[PBEffects::PayDay] *= 2 if @field.effects[PBEffects::RainbowWing]
       @field.effects[PBEffects::PayDay] *= 2 if @field.effects[PBEffects::HappyHour]
       oldMoney = pbPlayer.money
       pbPlayer.money += @field.effects[PBEffects::PayDay]
@@ -459,6 +461,10 @@ class PokeBattle_Battle
       if moneyGained>0
         pbDisplayPaused(_INTL("You picked up ${1}!",moneyGained.to_s_formatted))
       end
+    end
+    if @field.effects[PBEffects::AmuletCoin] && trainerBattle? && rand(10) == 0
+      items_list = [:MUSCLEWING, :RESISTWING, :CLEVERWING, :SWIFTGWING, :HEALTHWING, :GENIUSWING, :PRETTYWING, :THUNDERSTONE, :FIRESTONE, :WATERSTONE, :REVIVE, :MAXREVIVE, :TOTEMOFUNDYING, :GOLDENAPPLE, :SUNSTONE, :HEATROCK, :BOOSTERENERGY, :GOLDENBOTTLECAP, :ABILITYPATCH, :ABILITYCAPSULE, :SACREDASH]. 
+      Kernel.pbItemBall(items_list.sample)
     end
   end
 
@@ -710,6 +716,7 @@ class PokeBattle_Battle
       next if !b
       pbCancelChoice(b.index)   # Restore unused items to Bag
       BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,true) if b.abilityActive?
+      battler.pbRecoverHP(battler.totalhp/5,false,false) if !endOfBattle && b.hasActiveItem?(:RAINBOWWING)
     end
 
     return @decision

@@ -5855,3 +5855,12 @@ class PokeBattle_Move_356 < PokeBattle_Move
     @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end
+
+class PokeBattle_Move_357 < PokeBattle_Move
+  def pbCritialOverride(user,target); return 1; end
+
+  def pbEffectGeneral(user)
+    user.pbOwnSide.effects[PBEffects::Tailwind] = 4
+    @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!", user.pbTeam(true)))
+  end
+end

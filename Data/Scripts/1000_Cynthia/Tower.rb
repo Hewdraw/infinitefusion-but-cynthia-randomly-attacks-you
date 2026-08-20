@@ -848,11 +848,11 @@ def getTowerItems()
         [ #secret rare
             [:SACREDASH, 1],
             [:BUNDLEOFBALLOONS, 1],
-            #[:TOTEMOFUNDYING, 1],
+            [:TOTEMOFUNDYING, 1],
             #[:ENDCRYSTAL, 1],
             [:ELYTRA, 1],
             #[:ENDERPEARL, 1],
-            #[:GOLDENAPPLE, 1],
+            [:GOLDENAPPLE, 1],
             [:WELLSPRINGMASK, 1],
             [:HEARTHFLAMEMASK, 1],
             [:CORNERSTONEMASK, 1],

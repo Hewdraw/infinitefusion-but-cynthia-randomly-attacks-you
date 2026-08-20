@@ -1389,6 +1389,7 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   upgradelist = {
+    [:LUGIA] => [[:AEROBLAST]],
     [:CHARMANDER, :CHARMELEON, :CHARIZARD, :AGUMON, :GREYMON, :METALGREYMON, :WARGREYMON, :OMNIMON, :TRIPLE_KANTO1, :TRIPLE_KANTO2, :VENUSTOIZARD] => [[:BLASTBURN]],
     [:TORCHIC, :COMBUSKEN, :BLAZIKEN, :TRIPLE_HOENN1, :TRIPLE_HOENN2, :SWAMPTILIKEN] => [[:BLAZEKICK]],
     [:RESHIRAM, :ZEKROM, :ZEKYUSHIRAM] => [[:BLUEFLARE], [:BOLTSTRIKE]],

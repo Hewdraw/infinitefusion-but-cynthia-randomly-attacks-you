@@ -533,6 +533,13 @@ BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
   }
 )
 
+BattleHandlers::PriorityChangeAbility.add(:STORMWINDS,
+  proc { |ability,battler,move,pri|
+    next pri+1 if [:Rain, :HeavyRain].include?(user.battle.pbWeather) && move.type == :FLYING
+  }
+)
+
+
 BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
   proc { |ability,battler,move,pri|
     if move.statusMove?
@@ -2260,6 +2267,8 @@ BattleHandlers::EORWeatherAbility.add(:RAINDISH,
   }
 )
 
+BattleHandlers::EORWeatherAbility.copy(:RAINDISH,:STORMWINDS)
+
 BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
   proc { |ability,battler,weather,battle|
     next unless [:Sun, :HarshSun].include?(weather)
@@ -2327,6 +2336,8 @@ BattleHandlers::EORHealingAbility.add(:HYDRATION,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::EORHealingAbility.copy(:HYDRATION,:STORMWINDS)
 
 BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
   proc { |ability,battler,battle|
