@@ -48,6 +48,17 @@ class PokeBattle_Battler
   end
 
   def pbFaint(showMessage=true)
+    if self.hasActiveAbility?(:SACREDASHES, true) && !@pokemon.battlevariables[:sacredashes]
+      pbRecoverHP(@totalhp / 2)
+      @pokemon.battlevariables[:sacredashes] = true
+      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)   # Random
+      return if newPkmn<0
+      @battle.pbRecallAndReplace(@index, newPkmn, true)
+      @battle.pbDisplay(_INTL("{1} was sent out!",newpbThis))
+      @battle.pbClearChoice(@index)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true)
+      return
+    end
     if @pokemon && @pokemon.phasetwo
       pbPhaseShift
       return

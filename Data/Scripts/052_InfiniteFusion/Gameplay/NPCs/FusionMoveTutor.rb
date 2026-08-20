@@ -274,6 +274,11 @@ class FusionTutorService
     pokemonList = [pokemonList] if !pokemonList.is_a?(Array)
     return true if @show_full_list
     for fusionPokemon in pokemonList
+      TRIPLE_FUSIONS.each do |triple,material|
+        next unless triple == @pokemon.species
+        next unless material.include?(fusionPokemon)
+        return true
+      end
       if @pokemon.isFusionOf(fusionPokemon)
         return true
       end

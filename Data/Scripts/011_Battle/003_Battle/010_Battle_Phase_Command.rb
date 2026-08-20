@@ -232,7 +232,7 @@ class PokeBattle_Battle
         case cmd
         when 0    # Fight
           next if @broken_buttons.include?(0)
-          if @battlers[idxBattler].hasActiveAbility?(:WONDERGUARD) && @battlers[idxBattler].hasActiveAbility?([:STURDY, :SHELLARMORPLUS])
+          if @battlers[idxBattler].hasActiveAbility?(:WONDERGUARD) && @battlers[idxBattler].hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR])
             pbDisplay(_INTL("nuh uh."))
             if @opponent
               @broken_buttons.push(0)
@@ -244,7 +244,7 @@ class PokeBattle_Battle
         when 1    # Bag
           next if @broken_buttons.include?(1)
           battler = @battlers[idxBattler]
-          if battler.hasActiveAbility?(:WONDERGUARD) && battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS])
+          if battler.hasActiveAbility?(:WONDERGUARD) && battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR])
             battler.hp = 0
             pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
             battler.pbFaint(false)

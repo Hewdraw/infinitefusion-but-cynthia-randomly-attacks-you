@@ -301,3 +301,27 @@ IsPseudoType = true
 Weaknesses = BUG,FAIRY,GUN,FLYING,POISON
 Resistances = WATER,FIRE,GRASS,ICE,DARK
 Immunities = STEEL,PSYCHIC
+#-------------------------------
+[41]
+Name = Fairy/Grass/Psychic/Steel/Fighting/Gun
+InternalName = FAIRYGRASSPSYCHICSTEELFIGHTINGGUN
+IsPsuedoType = true
+Weaknesses = GUN,FLYING,FIRE
+Resistances = BUG,DARK,WATER,ELECTRIC,PSYCHIC,ROCK,FAIRY
+Immunities = POISON,FIGHTING,SOUND,DRAGON,GRASS,QMARKS
+#-------------------------------
+[42]
+Name = Dark/Normal/Poison/Ground/Ice/Steel
+InternalName = DARKNORMALPOISONGROUNDICESTEEL
+IsPsuedoType = true
+Weaknesses = FIGHTING,GROUND,WATER,FIRE
+Resistances = BUG,FAIRY,DARK,GRASS,ICE,ROCK,NORMAL,FLYING,DRAGON
+Immunities = GHOST,PSYCHIC,POISON,ELECTRIC
+#-------------------------------
+[43]
+Name = Qmarks/Gun/Sound
+InternalName = QMARKSGUNSOUND
+IsPsuedoType = true
+Weaknesses = GUN
+Resistances = SOUND,NORMAL,FLYING,BUG,STEEL,WATER,GRASS,PSYCHIC,ICE,DARK
+Immunities = FIGHTING,POISON,GHOST,FIRE,DRAGON,FAIRY,QMARKS

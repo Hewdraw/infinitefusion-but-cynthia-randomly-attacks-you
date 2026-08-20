@@ -205,7 +205,7 @@ class PokeBattle_Move
         target.damageState.endured = true
         damage -= 1
       elsif damage==target.adjustedTotalhp
-        if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS]) && !@battle.moldBreaker
+        if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR]) && !@battle.moldBreaker
           target.damageState.sturdy = true
           damage -= 1
         elsif target.hasActiveItem?(:FOCUSSASH)

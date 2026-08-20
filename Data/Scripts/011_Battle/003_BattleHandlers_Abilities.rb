@@ -864,6 +864,14 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:DRAGONIZE,
   }
 )
 
+BattleHandlers::MoveBaseTypeModifierAbility.add(:OBFUSCATE,
+  proc { |ability,user,move,type|
+    next if type != :NORMAL || !GameData::Type.exists?(:QMARKS)
+    move.powerBoost = true
+    next :QMARKS
+  }
+)
+
 #===============================================================================
 # AccuracyCalcUserAbility handlers
 #===============================================================================
@@ -993,6 +1001,12 @@ BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GAL
 BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.4 if move.powerBoost
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:OBFUSCATE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.powerBoost
   }
 )
 
@@ -1241,6 +1255,14 @@ BattleHandlers::DamageCalcUserAbility.add(:SOLARPOWER,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:ORICHALCUMPULSE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.physicalMove? && [:Sun, :HarshSun].include?(user.battle.pbWeather)
+      mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if target.damageState.critical
@@ -1256,6 +1278,8 @@ BattleHandlers::DamageCalcUserAbility.add(:STAKEOUT,
     mults[:attack_multiplier] *= 2 if target.battle.choices[target.index][0] == :SwitchOut
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:STAKEOUT,:FEAR)
 
 BattleHandlers::DamageCalcUserAbility.add(:STEELWORKER,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1274,6 +1298,8 @@ BattleHandlers::DamageCalcUserAbility.add(:SUPREMEOVERLORD,
     mults[:attack_multiplier] *= 1 + (0.1 * user.effects[PBEffects::SupremeOverlord])
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:SUPREMEOVERLORD,:FEAR)
 
 
 BattleHandlers::DamageCalcUserAbility.add(:SWARM,
@@ -2511,7 +2537,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DEATH,
 
 BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
   proc { |ability,battler,battle|
-    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS]) && $PokemonSystem.aicontrolplayer == 1
+    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR]) && $PokemonSystem.aicontrolplayer == 1
       battler.hp = 0
       battle.pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
       battler.pbFaint(false)
@@ -2664,6 +2690,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:DROUGHT,
     pbBattleWeatherAbility(:Sun, battler, battle)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:DROUGHT,:ORICHALCUMPULSE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:DROUGHTPLUS,
   proc { |ability,battler,battle|
@@ -2829,7 +2857,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK)
+BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :FEAR)
 
 BattleHandlers::AbilityOnSwitchIn.add(:ASONE,
   proc { |ability,battler,battle|
@@ -2873,6 +2901,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENACE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:MENACE,:FEAR)
 
 BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   proc { |ability,battler,battle|
@@ -2989,6 +3019,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:SUPREMEOVERLORD,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:SUPREMEOVERLORD,:FEAR)
 
 BattleHandlers::AbilityOnSwitchIn.add(:TERAVOLT,
   proc { |ability,battler,battle|
@@ -3126,6 +3158,16 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWPLEDGE,
+  proc { |ability,battler,battle|
+    next if user.pbOwnSide.effects[PBEffects::Rainbow] > 0
+    user.pbOwnSide.effects[PBEffects::Rainbow] = 4
+    battle.pbDisplay(_INTL("A rainbow appeared in the sky on {1}'s side!",user.pbTeam(true)))
+    @battle.pbCommonAnimation((user.opposes?) ? "RainbowOpp" : "Rainbow")
+  }
+)
+
 
 
 #===============================================================================
