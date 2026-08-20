@@ -636,6 +636,10 @@ class PokeBattle_Battle
             battler.pokemon.species = :B378H379
           when :KYUREMWHITE, :KYUREMWHITE
             battler.pokemon.species = :KYUREM
+          when :HOOH
+            battler.pokemon.item = :RAINBOWWING
+          when :LUGIA
+            battler.pokemon.item = :SILVERWING
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
