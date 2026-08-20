@@ -2969,8 +2969,8 @@ class PokeBattle_Move_197 < PokeBattle_Move
     @battle.scene.pbDisplay(_INTL("{1}'s HP was restored.", battler.name))
     @battle.battlers.each do |b|
       next unless b.pokemon == battler
-      next unless battler.index
-      @battle.pbRecallAndReplace(battler.index, idxParty)
+      next unless b.index
+      @battle.pbRecallAndReplace(b.index, idxParty)
     end
   end
 end
