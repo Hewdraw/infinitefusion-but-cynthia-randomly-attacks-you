@@ -121,7 +121,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     pkmn.ev[3] = 252
     pkmn.nature = :TIMID
     pkmn.ability = :SPEEDBOOST
-    pkmn.owner = Owner.new(0, "Sonic", 0, 2)
+    pkmn.owner = Pokemon::Owner.new(0, "Sonic", 0, 2)
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName
