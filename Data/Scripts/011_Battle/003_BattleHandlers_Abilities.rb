@@ -3172,10 +3172,10 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
 
 BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWPLEDGE,
   proc { |ability,battler,battle|
-    next if user.pbOwnSide.effects[PBEffects::Rainbow] > 0
-    user.pbOwnSide.effects[PBEffects::Rainbow] = 4
-    battle.pbDisplay(_INTL("A rainbow appeared in the sky on {1}'s side!",user.pbTeam(true)))
-    @battle.pbCommonAnimation((user.opposes?) ? "RainbowOpp" : "Rainbow")
+    next if battler.pbOwnSide.effects[PBEffects::Rainbow] > 0
+    battler.pbOwnSide.effects[PBEffects::Rainbow] = 4
+    battle.pbDisplay(_INTL("A rainbow appeared in the sky on {1}'s side!",battler.pbTeam(true)))
+    battle.pbCommonAnimation((battler.opposes?) ? "RainbowOpp" : "Rainbow")
   }
 )
 
