@@ -716,7 +716,6 @@ class PokeBattle_Battle
       next if !b
       pbCancelChoice(b.index)   # Restore unused items to Bag
       BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,true) if b.abilityActive?
-      battler.pbRecoverHP(battler.totalhp/5,false,false) if !endOfBattle && b.hasActiveItem?(:RAINBOWWING)
     end
 
     return @decision

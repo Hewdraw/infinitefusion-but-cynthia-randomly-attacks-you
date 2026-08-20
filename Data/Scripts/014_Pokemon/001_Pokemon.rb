@@ -1851,11 +1851,11 @@ class Pokemon
     if !$PokemonGlobal.towervalues.nil?
       case @species
       when :BELDUM
-        @owner = Owner.new(0, "Shadross", 0, 2)
+        @owner = Owner.new(0, "Shadross", 1, 2)
       when :ZORUA
         @owner = Owner.new(0, "Kieru", 0, 2)
       when :HAWLUCHA
-        @owner = Owner.new(0, "Prof. Claire", 0, 2)
+        @owner = Owner.new(0, "Prof. Claire", 1, 2)
       else
         @owner = Owner.new(0, "Hewdraw", 0, 2)
       end

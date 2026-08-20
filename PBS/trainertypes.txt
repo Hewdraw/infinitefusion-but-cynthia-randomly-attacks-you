@@ -141,7 +141,7 @@
 138,LASS_blue,Lass,16,,,,Female,,
 139,DELIVERYMAN2,Delivery Man,32,,,,Male,,
 140,CREATOR_Minecraft,Creator of Minecraft,70,,,,Female,100,
-141,Skeleton_Dev,Skeleton Dev,200,,,,Male,100,
+141,Skeleton_Dev,Skeleton Dev,200,,,,Female,100,
 142,Non_Skeleton_Dev,Non Skeleton Dev,200,,,,Male,100,
 143,TEAMROCKET,Team Rocket?,0,,,,Male,100,
 144,WuhuIslandExecutioner,Wuhu Island Executioner,0,,,,Female,100,

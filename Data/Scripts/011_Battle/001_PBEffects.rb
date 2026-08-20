@@ -191,6 +191,7 @@ begin
     WonderRoom      = 12
     InverseRoom      = 13
     Web        = 14
+    RainbowWing        = 15
   end
 
 rescue Exception

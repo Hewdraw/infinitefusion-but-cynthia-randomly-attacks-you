@@ -55,6 +55,7 @@ class PokeBattle_Battler
     if abilityActive?
       BattleHandlers.triggerAbilityOnSwitchOut(self.ability,self,false)
     end
+    self.pbRecoverHP(self.totalhp/5,false,false) if self.hasActiveItem?(:RAINBOWWING)
     # Reset form
     @battle.peer.pbOnLeavingBattle(@battle,@pokemon,@battle.usedInBattle[idxOwnSide][@index/2])
     # Treat self as fainted
