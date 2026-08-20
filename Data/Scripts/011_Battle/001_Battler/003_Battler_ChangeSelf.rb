@@ -199,6 +199,7 @@ class PokeBattle_Battler
     @ability_id = :LEGENDARYPRESSURE
     @pokemon.moves.each { |move| @moves.push(PokeBattle_Move.from_pokemon_move(@battle,move))}
     @name = pokemon.name
+    @pokemon.battlevariables = {}
     if splitfrom
       pbInitEffects(false)
       @effects = splitfrom.effects
