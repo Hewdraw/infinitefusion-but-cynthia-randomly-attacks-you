@@ -50,7 +50,7 @@ class PokeBattle_Battler
   def pbFaint(showMessage=true)
     if self.hasActiveAbility?(:SACREDASHES, true) && !@pokemon.battlevariables[:sacredashes]
       @battle.pbShowAbilitySplash(self)
-      pbRecoverHP(@totalhp / 2)
+      pbRecoverHP(adjustedTotalhp / 2)
       @pokemon.battlevariables[:sacredashes] = true
       newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
       @battle.pbHideAbilitySplash(self)
