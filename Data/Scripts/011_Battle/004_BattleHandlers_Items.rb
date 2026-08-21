@@ -2081,15 +2081,19 @@ BattleHandlers::ItemOnSwitchIn.add(:SILVERWING,
       case type
       when :WATER
         battle.pbStartWeather(battler,:Rain,true)
+        battle.pbDisplay("The Silver Wing resonated with the user's type!")
         break
       when :FIRE
         battle.pbStartWeather(battler,:Sun,true)
+        battle.pbDisplay("The Silver Wing resonated with the user's type!")
         break
       when :GROUND,:ROCK
         battle.pbStartWeather(battler,:Sandstorm,true)
+        battle.pbDisplay("The Silver Wing resonated with the user's type!")
         break
       when :ICE
         battle.pbStartWeather(battler,:Hail,true)
+        battle.pbDisplay("The Silver Wing resonated with the user's type!")
         break
       end
     end
