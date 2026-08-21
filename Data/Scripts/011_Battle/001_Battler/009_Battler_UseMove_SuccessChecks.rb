@@ -421,6 +421,10 @@ class PokeBattle_Battler
       end
     end
     # Immunity because of ability (intentionally before type immunity check)
+    if target.hasActiveAbility?(:GOODASGOLD) && target != user && move.statusMove?()
+      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+      return false
+    end
     if target.species == :CREEPER && move.calcType == :ELECTRIC
       @battle.pbDisplay(_INTL("{1} got charged by the attack!",target.pbThis(true).capitalize))
       @battle.pbMegaEvolve(target.index, true)
