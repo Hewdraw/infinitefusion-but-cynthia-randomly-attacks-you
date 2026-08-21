@@ -38,7 +38,7 @@ def setupTower()
     starters.each do |pokemon|
         pbAddPokemon(pokemon, 5)
     end
-    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICERS, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
+    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICER, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
     starteritems.each do |item|
         $PokemonBag.pbStoreItem(item)
     end
@@ -85,7 +85,7 @@ def getTowerPokemon(filter=nil)
         next if data.get_previous_species != data.species
         next if [:MINIOR_C, :MELOETTA_P, :U_NECROZMA, :CASTFORM_SUNNY, :CASTFORM_RAINY, :CASTFORMSNOWY].include?(data.species)
         next if [:ORICORIO_1, :ORICORIO_2, :ORICORIO_3, :ORICORIO_4].include?(data.species) && rand(4) != 0 #randomly enable oricorio form, averages out
-        next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :RECICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE].include?(data.species)
+        next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :REGICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE].include?(data.species)
         next if data.id_number > NB_POKEMON && !legallist.include?(data.species)
         case filter
         when "Starter"

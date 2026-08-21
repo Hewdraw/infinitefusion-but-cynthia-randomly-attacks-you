@@ -505,6 +505,7 @@ end
 class PokemonLooplet
   attr_accessor :emeras
   attr_accessor :activeemeras
+  attr_accessor :obtainedemeras
   attr_accessor :emeravariables
 
   def initialize
