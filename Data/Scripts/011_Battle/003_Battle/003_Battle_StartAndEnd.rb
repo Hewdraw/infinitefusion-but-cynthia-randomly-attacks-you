@@ -430,7 +430,6 @@ class PokeBattle_Battle
   # End of battle
   #=============================================================================
   def pbGainMoney
-    return if $game_switches[SWITCH_IS_REMATCH] #is rematch
     return if !@internalBattle || !@moneyGain
     return if @opponent && @opponent[0].trainer_type == :WuhuIslandExecutioner
     return unless $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
@@ -462,7 +461,7 @@ class PokeBattle_Battle
         pbDisplayPaused(_INTL("You picked up ${1}!",moneyGained.to_s_formatted))
       end
     end
-    if @field.effects[PBEffects::RainbowWing] && trainerBattle? && rand(10) == 0
+    if @field.effects[PBEffects::RainbowWing] && trainerBattle? #&& rand(10) == 0
       items_list = [:MUSCLEWING, :RESISTWING, :CLEVERWING, :SWIFTWING, :HEALTHWING, :GENIUSWING, :PRETTYWING, :THUNDERSTONE, :FIRESTONE, :WATERSTONE, :REVIVE, :MAXREVIVE, :TOTEMOFUNDYING, :GOLDENAPPLE, :SUNSTONE, :HEATROCK, :BOOSTERENERGY, :GOLDENBOTTLECAP, :ABILITYPATCH, :ABILITYCAPSULE, :SACREDASH]
       Kernel.pbItemBall(items_list.sample)
     end
