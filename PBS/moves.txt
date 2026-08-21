@@ -376,7 +376,7 @@
 363,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move."
 364,HYPERFANG,Hyper Fang,00F,80,NORMAL,Physical,90,15,10,NearOther,0,abei,"The user bites hard on the target with its sharp front fangs. It may also make the target flinch."
 365,MEGAPUNCH,Mega Punch,000,80,NORMAL,Physical,85,20,0,NearOther,0,abefj,"The target is slugged by a punch thrown with muscle-packed power."
-366,RAZORWIND,Razor Wind,0C3,80,NORMAL,Special,100,10,0,AllNearFoes,0,befh,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits land more easily."
+366,RAZORWIND,Razor Wind,0C3,40,NORMAL,Special,0,10,0,AllNearFoes,0,befhq,"A two-turn attack. Blades of wind hit the foe on the second turn. Critical hits land more easily."
 367,SLAM,Slam,000,80,NORMAL,Physical,75,20,0,NearOther,0,abef,"The target is slammed with a long tail, vines, etc., to inflict damage."
 368,STRENGTH,Strength,000,80,NORMAL,Physical,100,15,0,NearOther,0,abef,"The target is slugged with a punch thrown at maximum power. It can also be used to move heavy boulders."
 369,TRIATTACK,Tri Attack,017,80,NORMAL,Special,100,10,20,NearOther,0,bef,"The user strikes with a simultaneous three-beam attack. May also paralyze, burn, or freeze the target."

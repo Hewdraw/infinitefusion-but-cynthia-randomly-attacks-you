@@ -2043,8 +2043,20 @@ end
 # Two turn attack. Skips first turn, attacks second turn. (Razor Wind)
 #===============================================================================
 class PokeBattle_Move_0C3 < PokeBattle_TwoTurnMove
+  def pbAccuracyCheck(user,target); return true; end
+
   def pbChargingTurnMessage(user,targets)
     @battle.pbDisplay(_INTL("{1} whipped up a whirlwind!",user.pbThis))
+  end
+
+  def multiHitMove?; return true; end
+
+  def pbNumHits(user,targets)
+    hitChances = [3,3,4,5]
+    hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    r = @battle.pbRandom(hitChances.length)
+    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    return hitChances[r]
   end
 end
 
