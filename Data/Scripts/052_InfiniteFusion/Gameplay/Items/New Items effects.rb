@@ -2157,7 +2157,9 @@ def pbUnfuse(pokemon, scene, supersplicers, pcPosition = nil)
       poke1.obtain_method = 0
 
       poke1.setDefaultForms(true)
+      poke1.calc_stats
       poke2.setDefaultForms(true)
+      poke2.calc_stats
 
       # scene.pbDisplay(p1.to_s + " " + p2.to_s)
       scene.pbHardRefresh

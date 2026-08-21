@@ -56,7 +56,7 @@ class PokeBattle_Battler
       @battle.pbHideAbilitySplash(self)
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
-      @battle.pbDisplay(_INTL("{1} was sent out!",newpbThis))
+      @battle.pbDisplay(_INTL("{1} was sent out!",newPkmn.pbThis))
       @battle.pbClearChoice(@index)
       @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true)
       return
@@ -68,7 +68,7 @@ class PokeBattle_Battler
       newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
-      @battle.pbDisplay(_INTL("{1} was sent out!",newpbThis))
+      @battle.pbDisplay(_INTL("{1} was sent out!",newPkmn.pbThis))
       @battle.pbClearChoice(@index)
       @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true)
       return

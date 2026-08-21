@@ -245,3 +245,81 @@ def cactus()
   pbSetSelfSwitch(cactusarray[$PokemonGlobal.cactusheight], "A", true)
   $PokemonGlobal.cactusheight -= 1
 end
+
+def mcCrafting
+    scene = MinecraftCraftingScene.new()
+    loop do
+        break if !scene.update
+    end
+end
+
+CRAFTINGLIST = {
+  :DIAMONDCHESTPLATE => [:ASSAULTVEST, :ENCHANTINGTABLE]
+}
+
+class MinecraftCraftingScene
+    def update
+        if Input.press?(Input::BACK)
+            endScreen
+            return false
+        end
+        Graphics.update
+        Input.update
+        return true
+    end
+
+    def initialize
+        @sprites = {}
+        @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+        @viewport.z = 999
+        backgroundsprite = Sprite.new(@viewport)
+        backgroundsprite.bitmap = Bitmap.new("Graphics/Battle animations/black_screen")
+        backgroundsprite.opacity = 50
+        addSprite("background", backgroundsprite)
+        recipebooksprite = Sprite.new(@viewport)
+        recipebooksprite.bitmap = Bitmap.new("Graphics/Minecraft/recipe_book")
+        recipebooksprite.y = (Graphics.height / 2) - (recipebooksprite.height / 2)
+        craftingtablesprite = Sprite.new(@viewport)
+        craftingtablesprite.bitmap = Bitmap.new("Graphics/Minecraft/crafting_table")
+        craftingtablesprite.y = (Graphics.height / 2) - (craftingtablesprite.height / 2)
+        totalwidth = recipebooksprite.width + craftingtablesprite.width + 1
+        recipebooksprite.x = (Graphics.width / 2) - (totalwidth / 2)
+        craftingtablesprite.x = (Graphics.width / 2) - (totalwidth / 2) + recipebooksprite.width + 1
+        addSprite("craftingtable", craftingtablesprite)
+        addSprite("recipebook", recipebooksprite)
+        @craftablebitmap = Bitmap.new("Graphics/Minecraft/slot_craftable")
+        @uncraftablebitmap = Bitmap.new("Graphics/Minecraft/slot_uncraftable")
+        for i in 0..19
+          craftableitem = Sprite.new(@viewport)
+          craftableitem.bitmap = @craftablebitmap
+          craftableitem.x = recipebooksprite.x + 12 + (craftableitem.width * (i % 5))
+          craftableitem.y = recipebooksprite.y + 35 + (craftableitem.height * (i / 5))
+          addSprite("craftable#{i}", craftableitem)
+        end
+        @cursorindex = 0
+        @activepage = 0
+        @maxpages = CRAFTINGLIST.keys().length() / 20
+
+        pagecounter = Window_UnformattedTextPokemon.newWithSize("",
+           recipebooksprite.x + 50, recipebooksprite.y + 120, recipebooksprite.width, recipebooksprite.height, @viewport)
+        pagecounter.windowskin  = nil
+        pagecounter.contents.font.name = MessageConfig.pbTryFonts("Minecraft Seven")
+        pagecounter.contents.font.size = 14
+        pagecounter.text = "#{@activepage+1}/#{@maxpages+1}"
+    end
+
+    def showPage()
+
+    end
+
+    def addSprite(key,sprite)
+        @sprites[key]    = sprite
+    end
+
+    def endScreen()
+        # Fade out all sprites
+        pbBGMFade(1.0)
+        pbFadeOutAndHide(@sprites)
+        pbDisposeSpriteHash(@sprites)
+    end
+end

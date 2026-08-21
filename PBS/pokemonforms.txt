@@ -971,7 +971,7 @@ Type1 = ELECTRIC
 Type2 = WATER
 BaseStats = 86,50,135,110,144,135
 Abilities = LEVITATE,DRIZZLE
-HiddenAbility = WATERBUBBLE
+HiddenAbility = COTTONDOWN
 #-------------------------------
 [ROTOM,2]
 FormName = Heat
