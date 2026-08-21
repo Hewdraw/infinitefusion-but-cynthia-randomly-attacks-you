@@ -318,7 +318,7 @@ class PokeBattle_Battler
       end
       if move.canProtectAgainst? && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)
         # Quick Guard
-        if target.pbOwnSide.effects[PBEffects::QuickGuard] &&
+        if target.pbOwnSide.effects[PBEffects::QuickGuard] && @battle.choices[user.index] &&
            @battle.choices[user.index][4]>0   # Move priority saved from pbCalculatePriority
           @battle.pbCommonAnimation("QuickGuard",target)
           @battle.pbDisplay(_INTL("Quick Guard protected {1}!",target.pbThis(true)))

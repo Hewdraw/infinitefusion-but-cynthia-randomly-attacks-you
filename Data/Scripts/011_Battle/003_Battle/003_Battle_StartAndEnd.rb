@@ -462,8 +462,8 @@ class PokeBattle_Battle
         pbDisplayPaused(_INTL("You picked up ${1}!",moneyGained.to_s_formatted))
       end
     end
-    if @field.effects[PBEffects::AmuletCoin] && trainerBattle? && rand(10) == 0
-      items_list = [:MUSCLEWING, :RESISTWING, :CLEVERWING, :SWIFTGWING, :HEALTHWING, :GENIUSWING, :PRETTYWING, :THUNDERSTONE, :FIRESTONE, :WATERSTONE, :REVIVE, :MAXREVIVE, :TOTEMOFUNDYING, :GOLDENAPPLE, :SUNSTONE, :HEATROCK, :BOOSTERENERGY, :GOLDENBOTTLECAP, :ABILITYPATCH, :ABILITYCAPSULE, :SACREDASH]. 
+    if @field.effects[PBEffects::RainbowWing] && trainerBattle? && rand(10) == 0
+      items_list = [:MUSCLEWING, :RESISTWING, :CLEVERWING, :SWIFTWING, :HEALTHWING, :GENIUSWING, :PRETTYWING, :THUNDERSTONE, :FIRESTONE, :WATERSTONE, :REVIVE, :MAXREVIVE, :TOTEMOFUNDYING, :GOLDENAPPLE, :SUNSTONE, :HEATROCK, :BOOSTERENERGY, :GOLDENBOTTLECAP, :ABILITYPATCH, :ABILITYCAPSULE, :SACREDASH]
       Kernel.pbItemBall(items_list.sample)
     end
   end
