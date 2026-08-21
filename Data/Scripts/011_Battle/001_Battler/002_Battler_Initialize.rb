@@ -302,6 +302,7 @@ class PokeBattle_Battler
     @effects[PBEffects::GlaiveRush]                = false
     @effects[PBEffects::CudChewTurn]                = -1
     @effects[PBEffects::CudChewBerry]                = nil
+    @effects[PBEffects::StanceChange]                = false
     @extraabilities = []
   end
 

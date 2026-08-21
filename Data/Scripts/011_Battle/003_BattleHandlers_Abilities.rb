@@ -3179,7 +3179,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWPLEDGE,
   }
 )
 
-
+BattleHandlers::AbilityOnSwitchIn.add(:STANCECHANGE,
+  proc { |ability,battler,battle|
+    battle.pbDisplay(_INTL("{1} changed to Shield Mode!", pbThis))
+    battler.pbLowerStatStage(:ATTACK, 1, false, true)
+    battler.pbLowerStatStage(:SPECIAL_ATTACK, 1, false, true)
+    battler.pbRaiseStatStage(:DEFENSE, 1, battler, false, true)
+    battler.pbRaiseStatStage(:SPECIAL_DEFENSE, 1, battler, false, true)
+  }
+)
 
 #===============================================================================
 # AbilityOnSwitchOut handlers

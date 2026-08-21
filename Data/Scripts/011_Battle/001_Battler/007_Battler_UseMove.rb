@@ -241,7 +241,7 @@ class PokeBattle_Battler
       end
     end
     # Stance Change
-    if self.ability == :STANCECHANGE
+    if hasActiveAbility?(:STANCECHANGE)
       if move.damagingMove?
         user = pbFindUser(choice, move)
         stanceChangeEffect(user, true)
@@ -622,24 +622,21 @@ class PokeBattle_Battler
   end
 
   def stanceChangeEffect(user, attacking = false)
-    inSwordForm = user.effects[PBEffects::PowerTrick]
+    inSwordForm = user.effects[PBEffects::StanceChange]
     if !inSwordForm && attacking
-      user.effects[PBEffects::PowerTrick] = true
-      user.attack, user.defense = user.defense, user.attack
-      user.spatk, user.spdef = user.spdef, user.spatk
-
-
-      #changeForm(1,:AEGISLASH)
-
+      user.effects[PBEffects::StanceChange] = true
       @battle.pbDisplay(_INTL("{1} changed to Sword Mode!", pbThis))
+      user.pbLowerStatStage(:DEFENSE, 2, false, true)
+      user.pbLowerStatStage(:SPECIAL_DEFENSE, 2, false, true)
+      user.pbRaiseStatStage(:ATTACK, 2, user, false, true)
+      user.pbRaiseStatStage(:SPECIAL_ATTACK, 2, user, false, true)
     elsif inSwordForm && !attacking
-      user.effects[PBEffects::PowerTrick] = false
-      user.attack, user.defense = user.defense, user.attack
-      user.spatk, user.spdef = user.spdef, user.spatk
-
-      #user.changeForm(nil,:AEGISLASH)
-
+      user.effects[PBEffects::StanceChange] = false
       @battle.pbDisplay(_INTL("{1} changed to Shield Mode!", pbThis))
+      user.pbLowerStatStage(:ATTACK, 2, false, true)
+      user.pbLowerStatStage(:SPECIAL_ATTACK, 2, false, true)
+      user.pbRaiseStatStage(:DEFENSE, 2, user, false, true)
+      user.pbRaiseStatStage(:SPECIAL_DEFENSE, 2, user, false, true)
     end
   end
 

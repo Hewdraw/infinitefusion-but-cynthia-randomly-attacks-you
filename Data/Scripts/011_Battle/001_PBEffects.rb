@@ -131,6 +131,7 @@ begin
     GlaiveRush        = 125
     CudChewTurn        = 126
     CudChewBerry        = 127
+    StanceChange        = 128
 
     #===========================================================================
     # These effects apply to a battler position
