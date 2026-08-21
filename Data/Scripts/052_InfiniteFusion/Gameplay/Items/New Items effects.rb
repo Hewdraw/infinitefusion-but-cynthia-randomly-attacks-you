@@ -1128,20 +1128,7 @@ ItemHandlers::UseOnPokemon.add(:SHOCKORB, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
-  retval = true
-  tutorUtil = FusionTutorService.new(pokemon)
-  pbFadeOutIn {
-    scene = MoveRelearner_Scene.new
-    screen = MoveRelearnerScreen.new(scene)
-    moves = tutorUtil.getCompatibleMoves(legendaries)
-    if !moves.empty?
-      retval = screen.pbStartScreen(pokemon, moves)
-    else
-      return false
-    end
-  }
-  return retval
-  next false
+  pbTutorMoveScreen(pkmn)
 })
 
 ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
