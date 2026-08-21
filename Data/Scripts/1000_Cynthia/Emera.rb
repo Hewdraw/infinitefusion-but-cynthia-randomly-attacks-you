@@ -178,7 +178,7 @@ EMERADICT = {
     },
     :NOTEBLOCK => {
         :name => "Noteblock",
-        :description => "Your Pokemons Metronome moves will use an addtional move.",
+        :description => "Your Pokemons Metronome moves will use an additional move.",
         :rarity => :COMMON,
     },
     # :OLDCARTRIDGE => {
