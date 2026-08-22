@@ -427,7 +427,7 @@ class PokeBattle_TwoTurnMove < PokeBattle_Move
       elsif @id == :GIGAMISSILE && [:Hail, :Snow].include?(@battle.pbWeather)
         damagingTurn = true
       else
-        @powerHerb = user.hasActiveItem?(:POWERHERB)
+        @powerHerb = user.hasActiveItem?([:POWERHERB, :SAGE])
         @damagingTurn = @powerHerb
       end
     end

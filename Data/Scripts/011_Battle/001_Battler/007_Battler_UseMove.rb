@@ -265,7 +265,7 @@ class PokeBattle_Battler
     # Add to counters for moves which increase them when used in succession
     move.pbChangeUsageCounters(self, specialUsage)
     # Charge up Metronome item
-    if hasActiveItem?(:METRONOME) && !specialUsage
+    if hasActiveItem?([:METRONOME, :METRONAGA]) && !specialUsage
       if @lastRegularMoveUsed && @lastRegularMoveUsed == move.id && !@lastMoveFailed
         @effects[PBEffects::Metronome] += 1
       else

@@ -1671,6 +1671,7 @@ class Pokemon
     @extraabilities.push(:GALEWINGSPLUS) if hasItem?(:ENCHANTEDELYTRA)
     @extraabilities.push(:STURDY) if hasItem?(:FOCUSEDBANDANA)
     @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
+    @extraabilities.push(:SKILLLINK) if hasItem?(:LOADEDDICESET)
     @extraabilities.push(:IRONFIST) if hasItem?(:ELECTIRIZER) && (isFusionOf(:ELEKID) || isFusionOf(:ELECTABUZZ) || isFusionOf(:ELECTIVIRE))
     @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)
     @extraabilities.push(:SHEERFORCE, :ANALYTIC) if hasItem?(:MAGMARIZER) && (isFusionOf(:MAGBY) || isFusionOf(:MAGMAR) || isFusionOf(:MAGMORTAR))

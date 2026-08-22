@@ -361,7 +361,7 @@ class PokeBattle_Battle
       @positions[battler.index].effects[PBEffects::LunarDance] = false
     end
     # Entry hazards
-    if !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
+    if !battler.hasActiveItem?([:HEAVYDUTYBOOTS, :DETOXBOOTS])
       # Stealth Rock
       if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? &&
         GameData::Type.exists?(:ROCK)
@@ -396,10 +396,21 @@ class PokeBattle_Battle
           return pbOnActiveOne(battler) # For replacement battler
         end
       end
+      # Sticky Web
+      if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? &&
+        !battler.airborne?
+        pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
+        if battler.pbCanLowerStatStage?(:SPEED)
+          battler.pbLowerStatStage(:SPEED, 1, nil)
+          battler.pbItemStatRestoreCheck
+        end
+      end
+    end
+    if !battler.hasActiveItem?([:HEAVYDUTYBOOTS])
       # Toxic Spikes
       if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? &&
         !battler.airborne?
-        if battler.pbHasType?(:POISON)
+        if battler.pbHasType?(:POISON) || battler.hasActiveItem?(:DETOXBOOTS)
           battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
           pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
         elsif battler.pbCanPoison?(nil, false)
@@ -408,15 +419,6 @@ class PokeBattle_Battle
           else
             battler.pbPoison(nil, _INTL("{1} was poisoned by the poison spikes!", battler.pbThis))
           end
-        end
-      end
-      # Sticky Web
-      if battler.pbOwnSide.effects[PBEffects::StickyWeb] && !battler.fainted? &&
-        !battler.airborne?
-        pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
-        if battler.pbCanLowerStatStage?(:SPEED)
-          battler.pbLowerStatStage(:SPEED, 1, nil)
-          battler.pbItemStatRestoreCheck
         end
       end
     end

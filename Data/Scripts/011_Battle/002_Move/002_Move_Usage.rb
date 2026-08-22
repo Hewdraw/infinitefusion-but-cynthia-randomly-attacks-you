@@ -212,7 +212,7 @@ class PokeBattle_Move
           target.damageState.focusSash = true
           damage -= 1
         end
-      elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100)<10
+      elsif target.hasActiveItem?([:FOCUSBAND, :FOCUSEDBAND]) && @battle.pbRandom(100)<10
         target.damageState.focusBand = true
         damage -= 1
       elsif (target.pokemon.affection || target.hasActiveEmera?(:SYNCSTONEULTIMATE)) && rand(100) < 20

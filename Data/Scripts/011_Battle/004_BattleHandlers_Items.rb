@@ -71,6 +71,30 @@ BattleHandlers::SpeedCalcItem.add(:IRONBALL,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:EVIOLYTE,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+      next mult * 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+      next mult * 1.2
+    end
+  }
+)
+
 #===============================================================================
 # WeightCalcItem handlers
 #===============================================================================
@@ -374,6 +398,8 @@ BattleHandlers::StatusCureItem.add(:MENTALHERB,
   }
 )
 
+BattleHandlers::StatusCureItem.copy(:MENTALHERB,:SAGE)
+
 BattleHandlers::StatusCureItem.add(:PECHABERRY,
   proc { |item,battler,battle,forced|
     next false if !forced && !battler.canConsumeBerry?
@@ -579,6 +605,31 @@ BattleHandlers::DamageCalcUserItem.add(:CHOICESPECS,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:EVIOMITE,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+      mults[:base_damage_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+      mults[:base_damage_multiplier] *= 1.2
+    end
+  }
+)
+
+
 BattleHandlers::DamageCalcUserItem.add(:WHIPPEDDREAM,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.5 if user.isFusionOf(:SLURPUFF)
@@ -713,6 +764,14 @@ BattleHandlers::DamageCalcUserItem.add(:LIFEORB,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:LIFEBELL,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if !move.is_a?(PokeBattle_Confusion)
+      mults[:final_damage_multiplier] *= 1.2
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserItem.add(:STICK,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:VOCALLEEK)
@@ -758,6 +817,8 @@ BattleHandlers::DamageCalcUserItem.add(:METRONOME,
     mults[:final_damage_multiplier] *= met
   }
 )
+
+BattleHandlers::DamageCalcUserItem.copy(:METRONOME,:METRONAGA)
 
 BattleHandlers::DamageCalcUserItem.add(:MIRACLESEED,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1065,6 +1126,18 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
 )
 
 BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
+
+BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+      mults[:defense_multiplier] *= 1.2
+    end
+  }
+)
 
 BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
   proc { |item,target,user,move,mults,baseDmg,type|
@@ -1589,6 +1662,8 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
   }
 )
 
+BattleHandlers::UserItemAfterMoveUse.copy(:SHELLBELL,:LIFEBELL)
+
 BattleHandlers::UserItemAfterMoveUse.add(:MAGMARIZER,
   proc { |item,user,targets,move,numHits,battle|
     next if !user.canHeal?
@@ -1677,6 +1752,8 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:WHITEHERB,
     next true
   }
 )
+
+BattleHandlers::EndOfMoveStatRestoreItem.copy(:WHITEHERB,:SAGE)
 
 BattleHandlers::EndOfMoveStatRestoreItem.add(:DRAGONSCALE,
   proc { |item,battler,battle,forced|
