@@ -173,6 +173,9 @@ begin
     WideGuard          = 21
     TheWorld        = 22
     GmaxWildfire        = 23
+    FlameSpikes        = 24
+    FrostSpikes        = 25
+    ChargeStones        = 26
 
     #===========================================================================
     # These effects apply to the battle (i.e. both sides)
