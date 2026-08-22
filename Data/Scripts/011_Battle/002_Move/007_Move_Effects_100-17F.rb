@@ -5943,3 +5943,74 @@ class PokeBattle_Move_357 < PokeBattle_Move
     @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!", user.pbTeam(true)))
   end
 end
+
+class PokeBattle_Move_358 < PokeBattle_Move
+  def ignoresSubstitute?(user)
+    ; return true;
+  end
+
+  def pbAdditionalEffect(user, target)
+    target.pbAttract(user) if target.pbCanAttract?(user, false)
+    return if !target.pbCanConfuse?(user,false,self)
+    target.pbConfuse
+  end
+end
+
+class PokeBattle_Move_358 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    randomUp = []
+    randomDown = []
+    GameData::Stat.each_battle do |s|
+      randomUp.push(s.id) if user.pbCanRaiseStatStage?(s.id, user)
+      randomDown.push(s.id) if user.pbCanLowerStatStage?(s.id, user)
+    end
+    return if randomUp.length==0 && randomDown.length==0
+    if randomUp.length>0
+      r = @battle.pbRandom(randomUp.length)
+      user.pbRaiseStatStage(randomUp[r], 2, user, false)
+      randomDown.delete(randomUp[r])
+    end
+    if randomDown.length>0
+      r = @battle.pbRandom(randomDown.length)
+      user.pbLowerStatStage(randomDown[r], 1, user, false)
+    end
+    user.pbItemStatRestoreCheck if randomDown.length>0
+  end
+end
+
+class PokeBattle_Move_359 < PokeBattle_Move
+  def ignoresReflect?
+    return true;
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0
+      user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::Reflect] > 0
+      user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+      user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
+    end
+  end
+
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 2;    end
+
+  def pbOnStartUse(user,targets)
+    @calcBaseDmg = 180
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    @calcBaseDmg /= 2
+    return @calcBaseDmg
+  end
+
+  def pbRecoilDamage(user,target)
+    return (target.damageState.totalHPLost/3.0).round
+  end
+end
