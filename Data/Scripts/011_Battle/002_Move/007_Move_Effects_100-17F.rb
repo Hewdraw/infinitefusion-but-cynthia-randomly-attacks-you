@@ -2819,6 +2819,11 @@ class PokeBattle_Move_189 < PokeBattle_Move
     user.pbOwnSide.effects[PBEffects::LightScreen] = 5
     user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
     @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
+    if user.hasActiveItem?(:LIGHTTABLE)
+      user.pbOwnSide.effects[PBEffects::Reflect] = 5
+      user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+      @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
+    end
   end
 end
 
@@ -2827,6 +2832,11 @@ class PokeBattle_Move_190 < PokeBattle_Move
     user.pbOwnSide.effects[PBEffects::Reflect] = 5
     user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
     @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
+    if user.hasActiveItem?(:LIGHTTABLE)
+      user.pbOwnSide.effects[PBEffects::LightScreen] = 5
+      user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+      @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
+    end
   end
 end
 
@@ -3511,6 +3521,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
     metronomecount = 2 if @id == :GREATERMETRONOME
     metronomecount = 3 if @id == :GREATESTMETRONOME
     metronomecount += 1 if user.hasActiveEmera?(:NOTEBLOCK)
+    metronomecount *= 2 if user.hasActiveItem?(:METRONAGA)
     move_keys = GameData::Move::DATA.keys
     # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
     #       a row. This is too unlikely to care about, though.

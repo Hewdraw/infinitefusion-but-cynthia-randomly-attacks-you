@@ -71,27 +71,25 @@ BattleHandlers::SpeedCalcItem.add(:IRONBALL,
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:EVIOLYTE,
-  proc { |item,target,user,move,mults,baseDmg,type|
-    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
-    #       means it also cares about the Pokémon's form. Some forms cannot
-    #       evolve even if the species generally can, and such forms are not
-    #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+BattleHandlers::SpeedCalcItem.add(:EVIOLYTE,
+  proc { |item,battler,mult|
+    if battler.pokemon.species_data.get_evolutions(true).length > 0 || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?) || battler.isFusionOf(:RAICHU)
       next mult * 1.5
     end
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
-  proc { |item,target,user,move,mults,baseDmg,type|
-    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
-    #       means it also cares about the Pokémon's form. Some forms cannot
-    #       evolve even if the species generally can, and such forms are not
-    #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+BattleHandlers::SpeedCalcItem.add(:EVERSTONEPLUS,
+  proc { |item,battler,mult|
+    if battler.pokemon.species_data.get_evolutions(true).length > 0 || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?) || battler.isFusionOf(:RAICHU)
       next mult * 1.2
     end
+  }
+)
+
+BattleHandlers::SpeedCalcItem.add(:SHUDDERORB,
+  proc { |item,battler,mult|
+    next mult*1.3 if [:POISON, :PARALYSIS].include?(battler.status)
   }
 )
 
@@ -605,30 +603,27 @@ BattleHandlers::DamageCalcUserItem.add(:CHOICESPECS,
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:EVIOMITE,
-  proc { |item,target,user,move,mults,baseDmg,type|
-    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
-    #       means it also cares about the Pokémon's form. Some forms cannot
-    #       evolve even if the species generally can, and such forms are not
-    #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+BattleHandlers::DamageCalcUserItem.add(:EVIOMITE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if user.pokemon.species_data.get_evolutions(true).length > 0 || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?) || user.isFusionOf(:RAICHU)
       mults[:base_damage_multiplier] *= 1.5
     end
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
-  proc { |item,target,user,move,mults,baseDmg,type|
-    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
-    #       means it also cares about the Pokémon's form. Some forms cannot
-    #       evolve even if the species generally can, and such forms are not
-    #       affected by Eviolite.
-    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+BattleHandlers::DamageCalcUserItem.add(:EVERSTONEPLUS,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if user.pokemon.species_data.get_evolutions(true).length > 0 || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?) || user.isFusionOf(:RAICHU)
       mults[:base_damage_multiplier] *= 1.2
     end
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:WINCINGORB,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if [:BURNED, :FROZEN].include?(user.status)
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:WHIPPEDDREAM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1136,6 +1131,12 @@ BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
     if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
       mults[:defense_multiplier] *= 1.2
     end
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:WEIRDORB,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.2
   }
 )
 
@@ -1710,7 +1711,7 @@ BattleHandlers::EndOfMoveItem.add(:LEPPABERRY,
     battle.pbCommonAnimation("EatBerry",battler) if !forced
     choice = found[battle.pbRandom(found.length)]
     pkmnMove = battler.pokemon.moves[choice]
-    if pkmnMove.total_pp == 1
+    if pkmnMove.total_pp == 1 && battler.pbOwnedByPlayer
       battle.pbDisplay("Nuh uh.")
       next true
     end
@@ -2044,6 +2045,35 @@ BattleHandlers::EOREffectItem.add(:SHOCKORB,
     next if !battler.pbCanParalyze?(nil,false)
     battler.pbParalyze(_INTL("{1} got paralyzed by the {2}!",
        battler.pbThis,battler.itemName))
+  }
+)
+
+BattleHandlers::EOREffectItem.add(:SHUDDERORB,
+  proc { |item,battler,battle|
+    case rand(2)
+    when 0
+      next if !battler.pbCanPoison?(nil,false)
+      battler.pbPoison(nil,_INTL("{1} was badly poisoned by the {2}!",
+         battler.pbThis,battler.itemName),true)
+    when 1
+      next if !battler.pbCanParalyze?(nil,false)
+      battler.pbParalyze(_INTL("{1} got paralyzed by the {2}!",
+         battler.pbThis,battler.itemName))
+    end
+  }
+)
+
+BattleHandlers::EOREffectItem.add(:WINCINGORB,
+  proc { |item,battler,battle|
+    case rand(2)
+    when 0
+      next if !battler.pbCanBurn?(nil,false)
+      battler.pbBurn(nil,_INTL("{1} was burned by the {2}!",battler.pbThis,battler.itemName))
+    when 1
+      next if !battler.pbCanFreeze?(nil,false)
+      battler.pbFreeze(_INTL("{1} got frostbite by the {2}!",
+         battler.pbThis,battler.itemName))
+    end
   }
 )
 

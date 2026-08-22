@@ -814,6 +814,11 @@ class PokeBattle_Move_0A2 < PokeBattle_Move
     user.pbOwnSide.effects[PBEffects::Reflect] = 5
     user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
     @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
+    if user.hasActiveItem?(:LIGHTTABLE)
+      user.pbOwnSide.effects[PBEffects::LightScreen] = 5
+      user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+      @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
+    end
   end
 end
 
@@ -835,6 +840,11 @@ class PokeBattle_Move_0A3 < PokeBattle_Move
     user.pbOwnSide.effects[PBEffects::LightScreen] = 5
     user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
     @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
+    if user.hasActiveItem?(:LIGHTTABLE)
+      user.pbOwnSide.effects[PBEffects::Reflect] = 5
+      user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+      @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
+    end
   end
 end
 
