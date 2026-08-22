@@ -930,32 +930,32 @@
 864,TRIPLESPLICER,Triple Splicer,Triple Splicers,8,0,"Fuses the DNA of three specific Pokémon to create a new species. Can be reused as many times as you like.",2,0,6
 865,RAINBOWWING,Rainbow Wing,Rainbow Wings,1,0,"a",0,0,0
 866,SILVERWING,Silver Wing,Silver Wings,1,0,"a",0,0,0
-867,ENCHANTEDGOLDENAPPLE,Enchanted Golden Apple,Enchanted Golden Apples,1,0,"todo",0,0,0
-868,ENCHANTEDELYTRA,Enchanted Elytra,Enchanted Elytras,1,0,"todo",0,0,0
-869,NETHERITECHESTPLATE,Netherite Chestplate,Netherite Chestplates,1,0,"todo",0,0,0
-870,FOCUSEDBANDANA,Focused Bandana,Focused Bandanas,1,0,"todo",0,0,0
-871,DETOXBOOTS,Detox Boots,Detox Bootss,1,0,"todo",0,0,0
-872,LOADEDDICESET,Loaded Diceset,Loaded Dicesets,1,0,"todo",0,0,0
-873,EVIOLYTE,Eviolyte,Eviolytes,1,0,"todo",0,0,0
-874,EVIOMITE,Eviomite,Eviomites,1,0,"todo",0,0,0
-875,EVERSTONEPLUS,Everstone+,Everstones+,1,0,"todo",0,0,0
-876,LIFEBELL,Life Bell,Life Bells,1,0,"todo",0,0,0
-877,SAGE,Sage,Sages,1,0,"todo",0,0,0
-878,METRONAGA,Metronaga,Metronagas,1,0,"todo",0,0,0
-879,LIGHTTABLE,Light Table,Light Tables,1,0,"todo",0,0,0
-880,SHUDDERORB,Shudder Orb,Shudder Orbs,1,0,"todo",0,0,0
-881,WINCINGORB,Wincing Orb,Wincing Orbs,1,0,"todo",0,0,0
-882,WEIRDORB,Weird Orb,Weird Orbs,1,0,"todo",0,0,0
-883,TOXBOOTS,Tox Boots,Tox Boots,1,0,"todo",0,0,0
-884,HOTBOOTS,Hot Boots?,Hot Boots?,1,0,"todo",0,0,0
-885,COLDBOOTS,Cold Boots??,Cold Boots??,1,0,"todo",0,0,0
-886,SHOCKBOOTS,Shock Boots,Shock Boots???,1,0,"todo",0,0,0
-887,BOOTS,Boots,Boots!,1,0,"todo",0,0,0
-888,MEDIUMNUGGET,Medium Nugget,Medium Nuggets,1,0,"todo",0,0,0
+867,ENCHANTEDGOLDENAPPLE,Enchanted Golden Apple,Enchanted Golden Apples,1,0,"a",0,0,0
+868,ENCHANTEDELYTRA,Enchanted Elytra,Enchanted Elytras,1,0,"a",0,0,0
+869,NETHERITECHESTPLATE,Netherite Chestplate,Netherite Chestplates,1,0,"a",0,0,0
+870,FOCUSEDBANDANA,Focused Bandana,Focused Bandanas,1,0,"a",0,0,0
+871,DETOXBOOTS,Detox Boots,Detox Bootss,1,0,"a",0,0,0
+872,LOADEDDICESET,Loaded Diceset,Loaded Dicesets,1,0,"a",0,0,0
+873,EVIOLYTE,Eviolyte,Eviolytes,1,0,"a",0,0,0
+874,EVIOMITE,Eviomite,Eviomites,1,0,"a",0,0,0
+875,EVERSTONEPLUS,Everstone+,Everstones+,1,0,"a",0,0,0
+876,LIFEBELL,Life Bell,Life Bells,1,0,"a",0,0,0
+877,SAGE,Sage,Sages,1,0,"a",0,0,0
+878,METRONAGA,Metronaga,Metronagas,1,0,"a",0,0,0
+879,LIGHTTABLE,Light Table,Light Tables,1,0,"a",0,0,0
+880,SHUDDERORB,Shudder Orb,Shudder Orbs,1,0,"a",0,0,0
+881,WINCINGORB,Wincing Orb,Wincing Orbs,1,0,"a",0,0,0
+882,WEIRDORB,Weird Orb,Weird Orbs,1,0,"a",0,0,0
+883,TOXBOOTS,Tox Boots,Tox Boots,1,0,"a",0,0,0
+884,HOTBOOTS,Hot Boots?,Hot Boots?,1,0,"a",0,0,0
+885,COLDBOOTS,Cold Boots??,Cold Boots??,1,0,"a",0,0,0
+886,SHOCKBOOTS,Shock Boots,Shock Boots???,1,0,"a",0,0,0
+887,BOOTS,Boots,Boots!,1,0,"a",0,0,0
+888,MEDIUMNUGGET,Medium Nugget,Medium Nuggets,1,0,"a",0,0,0
 889,CHICKENNUGGET,Chicken Nugget,Chicken Nuggets,1,0,"todo",0,0,0
 890,GOLDENCHICKENNUGGET,Golden Chicken Nugget,Golden Chicken Nuggets,1,0,"todo",0,0,0
 891,GOLDENCHICKEN,Golden Chicken,Golden Chickens,1,0,"todo",0,0,0
-892,SITRUSPAW,Sitrus Paw,Sitrus Paws,1,0,"todo",0,0,0
+892,SITRUSPAW,Sitrus Paw,Sitrus Paws,1,0,"todo",0,0,5
 893,PRIMALROCK,Primal Rock,Primal Rocks,1,0,"todo",0,0,0
 894,DESERTEDROCK,Deserted Rock,Deserted Rocks,1,0,"todo",0,0,0
 895,SHADOWEDROCK,Shadowed Rock,Shadowed Rocks,1,0,"todo",0,0,0
@@ -971,7 +971,7 @@
 905,HEAVYSUIT,Heavy Suit,Heavy Suits,1,0,"todo",0,0,0
 906,FLIGHTLESSWINGSUIT,Flightless Wingsuit,Flightless Wingsuits,1,0,"todo",0,0,0
 907,SCROLL,Scroll,Scrolls,1,0,"todo",0,0,0
-908,BERSERKBERRY,Berserk Berry,Berserk Berrys,1,0,"todo",0,0,0
+908,BERSERKBERRY,Berserk Berry,Berserk Berrys,1,0,"todo",0,0,5
 909,SHADOWGEM,Shadow Gem,Shadow Gems,1,0,"todo",0,0,0
 910,LIVEORB,Live Orb,Live Orbs,1,0,"todo",0,0,0
 911,ASSAULTHELMET,Assault Helmet,Assault Helmets,1,0,"todo",0,0,0
@@ -979,6 +979,7 @@
 913,FLINTNTANDSTEELNT,Flintn't and Steeln't,Flintn't and Steeln'ts,1,0,"todo",0,0,0
 914,THUNDERBALL,Thunder Ball,Thunder Balls,1,0,"todo",0,0,0
 915,HYPERGENE,Hyper Gene,Hyper Genes,1,0,"todo",0,0,0
+916,RECIPEBOOK,Recipe Book,Recipe Books,8,0,"Book of recipes.",0,0,6
 
 
 

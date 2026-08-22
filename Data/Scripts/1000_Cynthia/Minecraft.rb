@@ -248,6 +248,11 @@ end
 
 
 def mcCrafting
+    if !$PokemonBag.pbHasItem?(:RECIPEBOOK)
+        Kernel.pbMessage("A Crafting Table!")
+        Kernel.pbMessage("Unfortunately you don't know any recipes.")
+        return
+    end
     scene = MinecraftCraftingScene.new()
     loop do
         break if !scene.update
@@ -287,7 +292,7 @@ CRAFTINGLIST = {
     :SITRUSPAW => [:MANKEYPAW, :SITRUSBERRY],
     :PRIMALROCK => [:HEATROCK, :SITRUSBERRY],
     :DESERTEDROCK => [:SMOOTHROCK, :ICYROCK],
-    :SHADOWEDROCK => [:DESERTEDROCK, :PRIMALROCK],
+    #:SHADOWEDROCK => [:DESERTEDROCK, :PRIMALROCK],
     :MISTYSOWER => [:MISTYSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],
     :ELECTRICSOWER => [:ELECTRICSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],
     :PSYCHICSOWER => [:PSYCHICSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],

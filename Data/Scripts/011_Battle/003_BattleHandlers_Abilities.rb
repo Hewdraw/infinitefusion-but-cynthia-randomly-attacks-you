@@ -545,7 +545,6 @@ BattleHandlers::PriorityChangeAbility.add(:STORMWINDS,
   }
 )
 
-
 BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
   proc { |ability,battler,move,pri|
     if move.statusMove?
@@ -1942,6 +1941,54 @@ BattleHandlers::TargetAbilityOnHit.add(:STATIC,
 
 BattleHandlers::TargetAbilityOnHit.copy(:STATIC,:CHARGEDEXPLOSIVE)
 
+BattleHandlers::TargetAbilityOnHit.add(:TOXICDEBRIS,
+  proc { |ability,target,user,move,battle|
+    next if !move.physicalMove?
+    next if target.pbOpposingSide.effects[PBEffects::ToxicSpikes] >= 2
+    battle.pbShowAbilitySplash(target)
+    target.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
+    battle.pbDisplay(_INTL("Poison spikes were scattered all around {1}'s feet!",
+                            target.pbOpposingTeam(true)))
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:FLAMEDEBRIS,
+  proc { |ability,target,user,move,battle|
+    next if !move.physicalMove?
+    next if target.pbOpposingSide.effects[PBEffects::FlameSpikes] >= 1
+    battle.pbShowAbilitySplash(target)
+    target.pbOpposingSide.effects[PBEffects::FlameSpikes] += 1
+    battle.pbDisplay(_INTL("Flame spikes were scattered all around {1}'s feet!",
+                            target.pbOpposingTeam(true)))
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:FROSTDEBRIS,
+  proc { |ability,target,user,move,battle|
+    next if !move.physicalMove?
+    next if target.pbOpposingSide.effects[PBEffects::FrostSpikes] >= 1
+    battle.pbShowAbilitySplash(target)
+    target.pbOpposingSide.effects[PBEffects::FrostSpikes] += 1
+    battle.pbDisplay(_INTL("Frost spikes were scattered all around {1}'s feet!",
+                            target.pbOpposingTeam(true)))
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:CHARGEDDEBRIS,
+  proc { |ability,target,user,move,battle|
+    next if !move.physicalMove?
+    next if target.pbOpposingSide.effects[PBEffects::ChargeStones]
+    battle.pbShowAbilitySplash(target)
+    target.pbOpposingSide.effects[PBEffects::ChargeStones] += 1
+    battle.pbDisplay(_INTL("Charge stones were scattered all around {1}'s feet!",
+                            target.pbOpposingTeam(true)))
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
   proc { |ability,target,user,move,battle|
     next if move.calcType != :WATER
@@ -2011,6 +2058,50 @@ BattleHandlers::UserAbilityOnHit.add(:TOXICCHAIN,
         msg = _INTL("{1}'s {2} poisoned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
       end
       target.pbPoison(user,msg,true)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:FIRETOUCH,
+  proc { |ability,user,target,move,battle|
+    next if !move.contactMove?
+    next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanBurn?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} burned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbBurn(user,msg)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:FROSTTOUCH,
+  proc { |ability,user,target,move,battle|
+    next if !move.contactMove?
+    next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanFreeze?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} frostbites {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbFreeze(user,msg)
     end
     battle.pbHideAbilitySplash(user)
   }

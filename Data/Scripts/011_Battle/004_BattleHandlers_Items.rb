@@ -71,6 +71,14 @@ BattleHandlers::SpeedCalcItem.add(:IRONBALL,
   }
 )
 
+BattleHandlers::SpeedCalcItem.copy(:IRONBALL,:HEAVYDUTYPANTS)
+
+BattleHandlers::SpeedCalcItem.add(:HEAVYSUIT,
+  proc { |item,battler,mult|
+    next mult/1.3
+  }
+)
+
 BattleHandlers::SpeedCalcItem.add(:EVIOLYTE,
   proc { |item,battler,mult|
     if battler.pokemon.species_data.get_evolutions(true).length > 0 || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?) || battler.isFusionOf(:RAICHU)
@@ -245,6 +253,69 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
       battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
     else
       battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
+    end
+    next true
+  }
+)
+
+BattleHandlers::HPHealItem.add(:CHICKENNUGGET,
+  proc { |item,battler,battle,forced|
+    next false if !battler.canHeal?
+    next false if !forced && !(battler.canConsumePinchBerry?(false) || battler.status == :BURN)
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+    battler.pbRecoverHP(battler.totalhp/4)
+    itemName = GameData::Item.get(item).name
+    if forced
+      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
+    end
+    if battler.status == :BURN
+      battler.pbCureStatus(forced)
+      battle.pbDisplay(_INTL("{1}'s {2} healed its burn!",battler.pbThis,itemName)) if !forced
+    end
+    next true
+  }
+)
+
+
+BattleHandlers::HPHealItem.add(:GOLDENCHICKENNUGGET,
+  proc { |item,battler,battle,forced|
+    next false if !battler.canHeal?
+    next false if !forced && !(battler.canConsumePinchBerry?(false) || battler.status == :NONE ||
+                  battler.effects[PBEffects::Confusion]==0)
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+    battler.pbRecoverHP(battler.totalhp/4)
+    itemName = GameData::Item.get(item).name
+    if forced
+      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
+    end
+    oldStatus = battler.status
+    oldConfusion = (battler.effects[PBEffects::Confusion]>0)
+    battler.pbCureStatus(forced)
+    battler.pbCureConfusion
+    if forced
+      battle.pbDisplay(_INTL("{1} snapped out of its confusion.",battler.pbThis)) if oldConfusion
+    else
+      case oldStatus
+      when :SLEEP
+        battle.pbDisplay(_INTL("{1}'s {2} woke it up!",battler.pbThis,itemName))
+      when :POISON
+        battle.pbDisplay(_INTL("{1}'s {2} cured its poisoning!",battler.pbThis,itemName))
+      when :BURN
+        battle.pbDisplay(_INTL("{1}'s {2} healed its burn!",battler.pbThis,itemName))
+      when :PARALYSIS
+        battle.pbDisplay(_INTL("{1}'s {2} cured its paralysis!",battler.pbThis,itemName))
+      when :FROZEN
+        battle.pbDisplay(_INTL("{1}'s {2} defrosted it!",battler.pbThis,itemName))
+      end
+      if oldConfusion
+        battle.pbDisplay(_INTL("{1}'s {2} snapped it out of its confusion!",battler.pbThis,itemName))
+      end
     end
     next true
   }
@@ -514,6 +585,14 @@ BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
   }
 )
 
+BattleHandlers::AccuracyCalcUserItem.add(:THELENS,
+  proc { |item,user,mods,target,move,type|
+    mods[:accuracy_multiplier] *= 1.3
+  }
+)
+
+BattleHandlers::AccuracyCalcUserItem.copy(:THELENS, :SHADES)
+
 #===============================================================================
 # AccuracyCalcTargetItem handlers
 #===============================================================================
@@ -621,9 +700,28 @@ BattleHandlers::DamageCalcUserItem.add(:EVERSTONEPLUS,
 
 BattleHandlers::DamageCalcUserItem.add(:WINCINGORB,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.3 if [:BURNED, :FROZEN].include?(user.status)
+    mults[:base_damage_multiplier] *= 1.3 if [:BURN, :FROZEN].include?(user.status)
   }
 )
+
+BattleHandlers::DamageCalcUserItem.add(:BEEGSUCK,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if move.healingMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:LIVEORB,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 2 if ["0E0", "170", "356"]
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:ASSAULTHELMET,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.1
+  }
+)
+
 
 BattleHandlers::DamageCalcUserItem.add(:WHIPPEDDREAM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -779,6 +877,13 @@ BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:PICHU)
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:PLUSLE)
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:MINUN)
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:RAICHU)
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:GOROCHU)
   }
 )
 
@@ -1023,6 +1128,12 @@ BattleHandlers::DamageCalcUserItem.add(:ROTOMCATALOG,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:SHADOWGEM,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    pbBattleGem(user,:QMARKS,move,mults,type)
+  }
+)
+
 #===============================================================================
 # DamageCalcTargetItem handlers
 #===============================================================================
@@ -1053,6 +1164,14 @@ BattleHandlers::DamageCalcTargetItem.add(:NETHERITECHESTPLATE,
     mults[:defense_multiplier] *= 1.3
   }
 )
+
+BattleHandlers::DamageCalcTargetItem.add(:HEAVYSUIT,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.4
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.copy(:HEAVYSUIT,:FLIGHTLESSWINGSUIT)
 
 BattleHandlers::DamageCalcTargetAbility.add(:PRISMSCALE,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -1121,6 +1240,19 @@ BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
 )
 
 BattleHandlers::DamageCalcTargetItem.copy(:EVIOLITE,:REAPERCLOTH)
+
+BattleHandlers::DamageCalcTargetItem.add(:SHADES,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU) || target.isFusionOf(:TYRANTRUM)
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
 
 BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
   proc { |item,target,user,move,mults,baseDmg,type|
@@ -1330,6 +1462,18 @@ BattleHandlers::CriticalCalcUserItem.add(:DRAGONSCALE,
     next c
   }
 )
+
+BattleHandlers::CriticalCalcUserItem.add(:THELENS,
+  proc { |item,user,target,c|
+    if (target.battle.choices[target.index][0]!=:UseMove &&
+       target.battle.choices[target.index][0]!=:Shift) ||
+       target.movedThisRound?
+      c += 50
+    end
+    next c
+  }
+)
+
 
 #===============================================================================
 # CriticalCalcTargetItem handlers
@@ -1640,6 +1784,8 @@ BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
   }
 )
 
+BattleHandlers::UserItemAfterMoveUse.copy(:LIFEORB,:GOLDENCHICKEN)
+
 BattleHandlers::UserItemAfterMoveUse.add(:THROATSPRAY,
   proc { |item,user,targets,move,numHits,battle|
     next false if !move.soundMove?
@@ -1664,6 +1810,18 @@ BattleHandlers::UserItemAfterMoveUse.add(:SHELLBELL,
 )
 
 BattleHandlers::UserItemAfterMoveUse.copy(:SHELLBELL,:LIFEBELL)
+
+BattleHandlers::UserItemAfterMoveUse.add(:BEEGSUCK,
+  proc { |item,user,targets,move,numHits,battle|
+    next if !user.canHeal?
+    totalDamage = 0
+    targets.each { |b| totalDamage += b.damageState.totalHPLost }
+    next if totalDamage<=0
+    user.pbRecoverHP(totalDamage/(4.0/10))
+    battle.pbDisplay(_INTL("{1} restored a beeg amount of HP using its {2}!",
+       user.pbThis,user.itemName))
+  }
+)
 
 BattleHandlers::UserItemAfterMoveUse.add(:MAGMARIZER,
   proc { |item,user,targets,move,numHits,battle|
@@ -1847,7 +2005,7 @@ BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
   }
 )
 
-BattleHandlers::WeatherExtenderItem.copy(:DAMPROCK,:DRAGONSCALE)
+BattleHandlers::WeatherExtenderItem.copy(:DAMPROCK,:DRAGONSCALE, :PRIMALROCK)
 
 BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   proc { |item,battler,weather,duration,battle|
@@ -1855,17 +2013,23 @@ BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   }
 )
 
+BattleHandlers::WeatherExtenderItem.copy(:HEATROCK, :PRIMALROCK)
+
 BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
   proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Hail || weather == :Snow
   }
 )
 
+BattleHandlers::WeatherExtenderItem.copy(:ICYROCK, :DESERTEDROCK)
+
 BattleHandlers::WeatherExtenderItem.add(:SMOOTHROCK,
   proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Sandstorm
   }
 )
+
+BattleHandlers::WeatherExtenderItem.copy(:SMOOTHROCK, :DESERTEDROCK)
 
 #===============================================================================
 # TerrainExtenderItem handlers
@@ -2105,7 +2269,7 @@ BattleHandlers::ItemOnSwitchIn.add(:AIRBALLOON,
   }
 )
 
-BattleHandlers::ItemOnSwitchIn.copy(:AIRBALLOON, :BUNDLEOFBALLOONS)
+BattleHandlers::ItemOnSwitchIn.copy(:AIRBALLOON, :BUNDLEOFBALLOONS, :FLIGHTLESSWINGSUIT)
 
 BattleHandlers::ItemOnSwitchIn.add(:PYRITE,
   proc { |item,battler,battle|
@@ -2119,6 +2283,15 @@ BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
     battle.pbCommonAnimation("UseItem",battler)
     battler.pbConfuse(_INTL("{1} became confused due its {2}!",battler.pbThis, battler.itemName))
     battler.pbRaiseStatStageByCause(:ATTACK,2,battler,battler.itemName)
+    battler.pbRemoveItem()
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:HYPERGENE,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.pbConfuse(_INTL("{1} became confused due its {2}!",battler.pbThis, battler.itemName))
+    battler.pbRaiseStatStageByCause(:SPECIAL_ATTACK,2,battler,battler.itemName)
     battler.pbRemoveItem()
   }
 )

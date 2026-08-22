@@ -237,6 +237,11 @@ class PokeBattle_Move
     return true if user.hasActiveItem?(:MANKEYPAW)
     return true if c>50   # Merciless
     return true if user.effects[PBEffects::LaserFocus]>0
+    if user.hasActiveItem?(:SITRUSPAW)
+      @battle.pbCommonAnimation("EatBerry",user)
+      user.pbRemoveItem()
+      return true
+    end
     c += 1 if highCriticalRate?
     c += user.effects[PBEffects::FocusEnergy]
     c += 1 if user.inHyperMode? && @type == :SHADOW

@@ -694,6 +694,13 @@ class PokeBattle_Battle
          user,@field.weather,duration,self)
     end
     @field.weatherDuration = duration
+    if user.hasActiveItem?(:PRIMALROCK)
+      @field.weather = :HarshSun if newWeather == :Sun
+      @field.weather = :HeavyRain if newWeather == :Rain
+    end
+    if user.hasActiveItem?(:DESERTEDROCK)
+      @field.weather = :Snow if newWeather == :Hail
+    end
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if showAnim && weather_data
     pbHideAbilitySplash(user) if user

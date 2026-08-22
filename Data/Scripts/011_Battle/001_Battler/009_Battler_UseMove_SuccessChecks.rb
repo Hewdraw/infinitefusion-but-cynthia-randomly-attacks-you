@@ -50,7 +50,7 @@ class PokeBattle_Battler
     end
     # Choice Band
     if @effects[PBEffects::ChoiceBand]
-      if (hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF, :NETHERITECHESTPLATE]) || hasActiveAbility?(:GORILLATACTICS)) &&
+      if (hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF, :NETHERITECHESTPLATE, :MANKEYSCARF]) || hasActiveAbility?(:GORILLATACTICS)) &&
          pbHasMove?(@effects[PBEffects::ChoiceBand]) && !(@effects[PBEffects::Dynamax] > 0)
         if move.id!=@effects[PBEffects::ChoiceBand] && pbHasMove?(move.id)
           if showMessages
@@ -457,11 +457,7 @@ class PokeBattle_Battler
         @battle.pbHideAbilitySplash(target)
         return false
       end
-      if target.hasActiveItem?(:AIRBALLOON)
-        @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
-        return false
-      end
-      if target.hasActiveItem?(:BUNDLEOFBALLOONS)
+      if target.hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS, :FLIGHTLESSWINGSUIT])
         @battle.pbDisplay(_INTL("{1}'s {2} makes Ground moves miss!",target.pbThis,target.itemName))
         return false
       end

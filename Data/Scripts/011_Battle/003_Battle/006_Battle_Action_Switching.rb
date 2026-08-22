@@ -361,6 +361,36 @@ class PokeBattle_Battle
       @positions[battler.index].effects[PBEffects::LunarDance] = false
     end
     # Entry hazards
+    if battler.hasActiveItem?(:BOOTS)
+      if battler.pbOwnSide.effects[PBEffects::StealthRock]
+        battler.pbOwnSide.effects[PBEffects::StealthRock] = false
+        pbDisplay(_INTL("{1} absorbed the stealth rocks!", battler.pbThis))
+      end
+      if battler.pbOwnSide.effects[PBEffects::Spikes] > 0
+        battler.pbOwnSide.effects[PBEffects::Spikes] = 0
+        pbDisplay(_INTL("{1} absorbed the spikes!", battler.pbThis))
+      end
+      if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
+        battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+        pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
+      end
+      if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+        battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+        pbDisplay(_INTL("{1} absorbed the flame spikes!", battler.pbThis))
+      end
+      if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+        battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+        pbDisplay(_INTL("{1} absorbed the frost spikes!", battler.pbThis))
+      end
+      if battler.pbOwnSide.effects[PBEffects::ChargeStones] > 0
+        battler.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+        pbDisplay(_INTL("{1} absorbed the charge stones!", battler.pbThis))
+      end
+      if battler.pbOwnSide.effects[PBEffects::StickyWeb]
+        battler.pbOwnSide.effects[PBEffects::StickyWeb] = false
+        pbDisplay(_INTL("{1} absorbed the sticky webs!", battler.pbThis))
+      end
+    end
     if !battler.hasActiveItem?([:HEAVYDUTYBOOTS, :DETOXBOOTS])
       # Stealth Rock
       if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? &&
@@ -381,6 +411,25 @@ class PokeBattle_Battle
           end
         end
       end
+      # Charge Stones
+      if battler.pbOwnSide.effects[PBEffects::ChargeStones] && battler.takesIndirectDamage? &&
+        GameData::Type.exists?(:ELECTRIC)
+        bTypes = battler.pbTypes(true)
+        eff = Effectiveness.calculate(:ELECTRIC, bTypes[0], bTypes[1], bTypes[2])
+        if !Effectiveness.ineffective?(eff)
+          eff = eff.to_f / Effectiveness::NORMAL_EFFECTIVE
+          oldHP = battler.hp
+          reducedhp = battler.totalhp * eff / 8
+          reducedhp = reducedhp * 2 / 3 if battler.hasActiveItem?(:PROTECTOR)
+          reducedhp /= 2 if battler.hasActiveEmera?(:LIGHTDUTYBOOTS)
+          battler.pbReduceHP(reducedhp, false)
+          pbDisplay(_INTL("Charged stones dug into {1}!", battler.pbThis))
+          battler.pbItemHPHealCheck
+          if battler.pbAbilitiesOnDamageTaken(oldHP) # Switched out
+            return pbOnActiveOne(battler) # For replacement battler
+          end
+        end
+      end
       # Spikes
       if battler.pbOwnSide.effects[PBEffects::Spikes] > 0 && battler.takesIndirectDamage? &&
         !battler.airborne?
@@ -394,6 +443,26 @@ class PokeBattle_Battle
         battler.pbItemHPHealCheck
         if battler.pbAbilitiesOnDamageTaken(oldHP) # Switched out
           return pbOnActiveOne(battler) # For replacement battler
+        end
+      end
+      # Flame Spikes
+      if battler.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 && !battler.fainted? &&
+        !battler.airborne?
+        if battler.pbHasType?(:FIRE)
+          battler.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+          pbDisplay(_INTL("{1} absorbed the flame spikes!", battler.pbThis))
+        elsif battler.pbCanBurn?(nil, false)
+          battler.pbBurn(nil, _INTL("{1} was burned by the flame spikes!", battler.pbThis))
+        end
+      end
+      # Frost Spikes
+      if battler.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 && !battler.fainted? &&
+        !battler.airborne?
+        if battler.pbHasType?(:ICE)
+          battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+          pbDisplay(_INTL("{1} absorbed the frost spikes!", battler.pbThis))
+        elsif battler.pbCanBurn?(nil, false)
+          battler.pbBurn(nil, _INTL("{1} was frostbitten by the frost spikes!", battler.pbThis))
         end
       end
       # Sticky Web

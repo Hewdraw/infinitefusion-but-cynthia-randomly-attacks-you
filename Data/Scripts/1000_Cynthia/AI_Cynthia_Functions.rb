@@ -2462,6 +2462,10 @@ class PokeBattle_AI
           if user.item_id == (type.to_s + "GEM").to_sym
             multipliers[:base_damage_multiplier] *= 1.5
           end
+        when :SHADOWGEM
+          if type == :QMARKS
+            multipliers[:base_damage_multiplier] *= 1.5
+          end
         when :EXPERTBELT
           if Effectiveness.super_effective?(typeMod)
             multipliers[:final_damage_multiplier] *= 1.2

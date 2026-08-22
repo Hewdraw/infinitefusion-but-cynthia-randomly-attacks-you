@@ -163,12 +163,9 @@ class PokeBattle_Battle
               pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri)
             end
             pri = BattleHandlers.triggerPriorityChangeAbility(:EMERA,b,move,pri)
-            if move.name == "Grassy Glide" && self.field.terrain == :Grassy && b.affectedByTerrain?
-              pri += 1
-            end
-            if move.name == "Shoot" && b.pbHasType?(:GUN)
-              pri += 1
-            end
+            pri += 1 if b.hasActiveItem?(:MANKEYSCARF) && user.turnCount <= 1
+            pri += 1 if move.name == "Grassy Glide" && self.field.terrain == :Grassy && b.affectedByTerrain?
+            pri += 1 if move.name == "Shoot" && b.pbHasType?(:GUN)
             if move.name == "Tate no Rocket"
               b.eachOpposing do |opponent|
                 if opponent.pbHasType?(:DRAGON)

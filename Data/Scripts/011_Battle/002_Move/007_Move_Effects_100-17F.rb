@@ -390,6 +390,18 @@ class PokeBattle_Move_110 < PokeBattle_StatUpMove
       user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
     end
+    if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::ChargeStones] > 0
+      user.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
+    end
     if user.pbOwnSide.effects[PBEffects::StickyWeb]
       user.pbOwnSide.effects[PBEffects::StickyWeb] = false
       @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
@@ -3952,6 +3964,18 @@ class PokeBattle_Move_249 < PokeBattle_MultiStatUpMove
       user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
     end
+    if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::ChargeStones] > 0
+      user.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
+    end
     if user.pbOwnSide.effects[PBEffects::StickyWeb]
       user.pbOwnSide.effects[PBEffects::StickyWeb] = false
       @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
@@ -4692,6 +4716,18 @@ class PokeBattle_Move_294 < PokeBattle_Move
       user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
     end
+    if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::ChargeStones] > 0
+      user.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
+    end
     if user.pbOwnSide.effects[PBEffects::StickyWeb]
       user.pbOwnSide.effects[PBEffects::StickyWeb] = false
       @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
@@ -5212,6 +5248,24 @@ class PokeBattle_Move_322 < PokeBattle_TargetMultiStatDownMove
       target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
     end
+    if target.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+      target.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+      target.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0
+      target.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+      target.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::ChargeStones] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::ChargeStones] > 0
+      target.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      target.pbOpposingSide.effects[PBEffects::ChargeStones] = 0
+      @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
+    end
     if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
         target.pbOpposingSide.effects[PBEffects::StickyWeb]
       target.pbOwnSide.effects[PBEffects::StickyWeb] = false
@@ -5602,6 +5656,18 @@ class PokeBattle_Move_341 < PokeBattle_PoisonMove
     if user.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
       user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+      user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+    end
+    if user.pbOwnSide.effects[PBEffects::ChargeStones] > 0
+      user.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
     end
     if user.pbOwnSide.effects[PBEffects::StickyWeb]
       user.pbOwnSide.effects[PBEffects::StickyWeb] = false

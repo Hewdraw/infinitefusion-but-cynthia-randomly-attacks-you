@@ -66,6 +66,9 @@ begin
       @effects[PBEffects::WideGuard]          = false
       @effects[PBEffects::GmaxWildfire]          = 0
       @effects[PBEffects::TheWorld]       = false
+      @effects[PBEffects::FlameSpikes]        = 0
+      @effects[PBEffects::FrostSpikes]        = 0
+      @effects[PBEffects::ChargeStones]        = false
     end
   end
 

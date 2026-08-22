@@ -1154,10 +1154,16 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
     return false if targetSide.effects[PBEffects::StealthRock] ||
       targetSide.effects[PBEffects::Spikes] > 0 ||
       targetSide.effects[PBEffects::ToxicSpikes] > 0 ||
+      targetSide.effects[PBEffects::FlameSpikes] > 0 ||
+      targetSide.effects[PBEffects::FrostSpikes] > 0 ||
+      targetSide.effects[PBEffects::ChargeStones]  ||
       targetSide.effects[PBEffects::StickyWeb]
     return false if (targetOpposingSide.effects[PBEffects::StealthRock] ||
         targetOpposingSide.effects[PBEffects::Spikes] > 0 ||
         targetOpposingSide.effects[PBEffects::ToxicSpikes] > 0 ||
+        targetOpposingSide.effects[PBEffects::FlameSpikes] > 0 ||
+        targetOpposingSide.effects[PBEffects::FrostSpikes] > 0 ||
+        targetOpposingSide.effects[PBEffects::ChargeStones]  ||
         targetOpposingSide.effects[PBEffects::StickyWeb])
     return false if @battle.field.terrain != :None
     return super
@@ -1204,6 +1210,24 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       target.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
       target.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::FlameSpikes] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0
+      target.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+      target.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::FrostSpikes] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0
+      target.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+      target.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
+      @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+    end
+    if target.pbOwnSide.effects[PBEffects::ChargeStones] > 0 ||
+        target.pbOpposingSide.effects[PBEffects::ChargeStones] > 0
+      target.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      target.pbOpposingSide.effects[PBEffects::ChargeStones] = 0
+      @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
     end
     if target.pbOwnSide.effects[PBEffects::StickyWeb] ||
         target.pbOpposingSide.effects[PBEffects::StickyWeb]

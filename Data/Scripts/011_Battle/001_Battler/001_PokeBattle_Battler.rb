@@ -434,7 +434,7 @@ class PokeBattle_Battler
     when :GROUND
       return true if hasActiveItem?(:THICKCLUB)
     when :ROCK
-      return true if hasActiveItem?(:PROTECTOR)
+      return true if hasActiveItem?([:PROTECTOR, :DESERTEDROCK])
     when :BUG
     when :GHOST
       return true if hasActiveItem?(:ROTOMCATALOG) && [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(@species)
@@ -457,7 +457,7 @@ class PokeBattle_Battler
       return true if hasActiveItem?([:QUICKPOWDER, :METALPOWDER, :ICESPHERE, :MILLENNIUMCOMETSHARD, :SILVERWING])
       return true if hasActiveAbility?(:WIRED)
     when :ICE
-      return true if hasActiveItem?([:REAPERCLOTH, :ICESPHERE])
+      return true if hasActiveItem?([:REAPERCLOTH, :ICESPHERE, :DESERTEDROCK])
     when :DRAGON
       return true if hasActiveItem?(:DRAGONSCALE)
     when :DARK
@@ -684,7 +684,7 @@ class PokeBattle_Battler
     return false if hasActiveEmera?(:HEAVYCORE)
     return true if pbHasType?(:FLYING) && @battle.field.effects[PBEffects::InverseRoom] == 0
     return true if hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
-    return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS])
+    return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS, :FLIGHTLESSWINGSUIT])
     return true if @effects[PBEffects::MagnetRise] > 0
     return true if @effects[PBEffects::Telekinesis] > 0
     return false
