@@ -69,7 +69,6 @@ class FloorDisplay
         textlayer.x -= Graphics.width / 2
         textlayer.y -= Graphics.height / 1.9
         addSprite("text", textlayer)
-
     end
 
     def endScreen()

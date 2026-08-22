@@ -975,7 +975,7 @@ class UndertaleMenu
       @heartsprite.tone = Tone.new(0, -255, -255)
       @heartsprite.angle -= 90
     else
-      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full") if !$PokemonGlobal.towervalues.nil?
+      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
       @heartsprite.zoom_x = 2
       @heartsprite.zoom_y = 2
       @heartsprite.ox = @heartsprite.width
@@ -1256,7 +1256,7 @@ class UndertaleActMenu
       @heartsprite.tone = Tone.new(0, -255, -255)
       @heartsprite.angle -= 90
     else
-      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full") if !$PokemonGlobal.towervalues.nil?
+      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
       @heartsprite.zoom_x = 2
       @heartsprite.zoom_y = 2
       @heartsprite.ox = @heartsprite.width / 2
@@ -1468,7 +1468,7 @@ class UndertaleItemMenu
       @heartsprite.tone = Tone.new(0, -255, -255)
       @heartsprite.angle -= 90
     else
-      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full") if !$PokemonGlobal.towervalues.nil?
+      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
       @heartsprite.zoom_x = 2
       @heartsprite.zoom_y = 2
       @heartsprite.ox = @heartsprite.width / 2

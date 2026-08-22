@@ -3899,7 +3899,7 @@ class PokeBattle_Move_247 < PokeBattle_Move_234
   end
 
   def pbHealAmount(user)
-    return (user.totalhp / 2.0).round
+    return (user.totalhp / 16.0).round
   end
 end
 

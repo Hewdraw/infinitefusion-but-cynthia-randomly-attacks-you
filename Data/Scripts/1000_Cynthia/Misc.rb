@@ -14,7 +14,7 @@ TRIPLEFUSIONS = {
     :TRIPLE_KALOS1 => [[:CHESPIN, :QUILLADIN, :CHESNAUGHT], [:FENNEKIN, :BRAIXEN, :DELPHOX], [:FROAKIE, :FROGADIER, :GRENINJA]],
     :SHROOMAWGROSS => [[:MAWILE], [:SHROOMISH, :BRELOOM], [:BELDUM, :METANG, :METAGROSS]],
     :RATEKANDSHREW => [[:RATTATA, :RATICATE, :ALOLARATTATA, :ALOLARATICATE], [:EKANS, :ARBOK, :SEVIPER], [:SANDSHREW, :SANDSLASH, :ALOLASANDSHREW, :ALOLASANDSLASH]],
-    :MISTEON => [[:EEVEE, :VAPOREON, :JOLTEON, :FLAREON, :ESPEON, :UMBREON, :GLACEON, :LEAFEON, :SYLVEON]],
+    :MISTEON => [[:EEVEE, :VAPOREON, :JOLTEON, :FLAREON, :ESPEON, :UMBREON, :GLACEON, :LEAFEON, :SYLVEON, :KECLEON]],
     :DUGTRIO => [[:DIGLETT]],
     :ALOLADUGTRIO => [[:ALOLADIGLETT]],
     :MAGNETON => [[:MAGNEMITE]],
@@ -25,7 +25,7 @@ def tripleFusion(item=false)
     TRIPLEFUSIONS.each do |triple, materials|
         next if $PokemonGlobal.triplefusions.include?(triple)
         materialcount = []
-        if materials[0].length == 1
+        if materials.length == 1
             $Trainer.party.each do |mon|
                 materials[0].each do |material|
                     materialcount.push(material) if mon.isFusionOf(material)
