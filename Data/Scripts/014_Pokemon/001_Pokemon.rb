@@ -1668,6 +1668,8 @@ class Pokemon
       @type2 = :ROCK if @type2 == :GRASS
     end
     @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
+    @extraabilities.push(:GALEWINGSPLUS) if hasItem?(:ENCHANTEDELYTRA)
+    @extraabilities.push(:STURDY) if hasItem?(:FOCUSEDBANDANA)
     @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
     @extraabilities.push(:IRONFIST) if hasItem?(:ELECTIRIZER) && (isFusionOf(:ELEKID) || isFusionOf(:ELECTABUZZ) || isFusionOf(:ELECTIVIRE))
     @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)

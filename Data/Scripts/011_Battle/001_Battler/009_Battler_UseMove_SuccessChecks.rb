@@ -50,7 +50,7 @@ class PokeBattle_Battler
     end
     # Choice Band
     if @effects[PBEffects::ChoiceBand]
-      if (hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) || hasActiveAbility?(:GORILLATACTICS)) &&
+      if (hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF, :NETHERITECHESTPLATE]) || hasActiveAbility?(:GORILLATACTICS)) &&
          pbHasMove?(@effects[PBEffects::ChoiceBand]) && !(@effects[PBEffects::Dynamax] > 0)
         if move.id!=@effects[PBEffects::ChoiceBand] && pbHasMove?(move.id)
           if showMessages
@@ -95,7 +95,7 @@ class PokeBattle_Battler
     end
     # Assault Vest (prevents choosing status moves but doesn't prevent
     # executing them)
-    if (hasActiveItem?(:ASSAULTVEST) || hasActiveItem?(:DIAMONDCHESTPLATE)) && move.statusMove? && commandPhase
+    if hasActiveItem?([:ASSAULTVEST, :DIAMONDCHESTPLATE, :NETHERITECHESTPLATE]) && move.statusMove? && commandPhase
       if showMessages
         msg = _INTL("The effects of the {1} prevent status moves from being used!",
            itemName)

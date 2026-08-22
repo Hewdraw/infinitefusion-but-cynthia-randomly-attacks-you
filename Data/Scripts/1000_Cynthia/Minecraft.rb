@@ -256,10 +256,63 @@ end
 
 CRAFTINGLIST = {
     :DIAMONDCHESTPLATE => [:ASSAULTVEST, :ENCHANTINGTABLE],
-    :MISTSTONE => [:RARECANDY, :RAGECANDYBAR, :EVERSTONE],
+    :BUNDLEOFBALLOONS => [:AIRBALLOON, :AIRBALLOON, :LEFTOVERS],
+    :ENCHANTEDGOLDENAPPLE => [:ENCHANTINGTABLE, :GOLDENAPPLE],
+    :GOLDENBOTTLECAP => [:BOTTLECAP, :BOTTLECAP, :BOTTLECAP],
+    :NETHERITECHESTPLATE => [:ASSAULTVEST, :DIAMONDCHESTPLATE],
+    :FOCUSEDBANDANA => [:FOCUSBAND, :FOCUSSASH],
+    :DETOXBOOTS => [:HEAVYDUTYBOOTS, :TOXICORB],
+    :LOADEDDICESET => [:LOADEDDICE, :LOADEDDICE],
+    :EVIOLYTE => [:EVIOLITE, :CHOICESCARF],
+    :EVIOMITE => [:EVIOLITE, :CHOICEBAND, :CHOICESPECS],
+    :EVERSTONEPLUS => [:EVIOLITE, :EVIOLYTE, :EVIOMITE],
+    :GOLDENAPPLE => [:SITRUSBERRY, :BIGNUGGET, :BIGNUGGET],
+    :LIFEBELL => [:LIFEORB, :SHELLBELL],
+    :SAGE => [:POWERHERB, :WHITEHERB, :MENTALHERB],
+    :METRONAGA => [:METRONOME, :METRONOME, :METRONOME],
+    :LIGHTTABLE => [:LIGHTCLAY, :ENCHANTINGTABLE],
+    :SHUDDERORB => [:TOXICORB, :SHOCKORB],
+    :WINCINGORB => [:FLAMEORB, :FROSTORB],
+    :WEIRDORB => [:WINCINGORB, :SHUDDERORB, :LIFEORB],
+    :BIGNUGGET => [:NUGGET, :NUGGET],
+    :TOXBOOTS => [:DETOXBOOTS, :ENCHANTINGTABLE],
+    :HOTBOOTS => [:TOXBOOTS, :FLAMEORB],
+    :COLDBOOTS => [:HOTBOOTS, :ENCHANTINGTABLE],
+    :SHOCKBOOTS => [:COLDBOOTS, :SHOCKORB],
+    :BOOTS => [:HOTBOOTS, :COLDBOOTS, :SHOCKBOOTS],
+    :MEDIUMNUGGET => [:BIGNUGGET, :NUGGET],
+    :CHICKENNUGGET => [:NUGGET, :MEDIUMNUGGET, :BIGNUGGET],
+    :GOLDENCHICKENNUGGET => [:CHICKENNUGGET, :BIGNUGGET],
+    :GOLDENCHICKEN => [:GOLDENCHICKENNUGGET, :ELYTRA, :LOADEDDICE],
+    :SITRUSPAW => [:MANKEYPAW, :SITRUSBERRY],
+    :PRIMALROCK => [:HEATROCK, :SITRUSBERRY],
+    :DESERTEDROCK => [:SMOOTHROCK, :ICYROCK],
+    :SHADOWEDROCK => [:DESERTEDROCK, :PRIMALROCK],
+    :MISTYSOWER => [:MISTYSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],
+    :ELECTRICSOWER => [:ELECTRICSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],
+    :PSYCHICSOWER => [:PSYCHICSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],
+    :GRASSYSOWER => [:GRASSYSEED, :ENCHANTINGTABLE, :TERRAINEXTENDER],
+    :BEEGSUCK => [:BIGROOT, :SHELLBELL, :LEFTOVERS],
+    :MANKEYSCARF => [:MANKEYPAW, :CHOICESCARF, :QUICKCLAW],
+    :THELENS => [:SCOPELENS, :WIDELENS, :ZOOMLENS],
+    :SHADES => [:THELENS, :THELENS, :BLACKGLASSES],
+    :HEAVYDUTYPANTS => [:HEAVYDUTYBOOTS, :ENCHANTINGTABLE],
+    :HEAVYSUIT => [:HEAVYDUTYPANTS, :NETHERITECHESTPLATE],
+    :FLIGHTLESSWINGSUIT => [:HEAVYSUIT, :ENCHANTEDELYTRA],
+    :SCROLL => [:FOCUSEDBANDANA, :EXPERTBELT, :CHOICESCARF],
+    :BERSERKBERRY => [:BERSERKGENE, :LUMBERRY],
+    :ENCHANTINGTABLE => [:DIAMOND, :DIAMOND],
     :REAPERCLOTH => [:EVIOLITE, :DUSKSTONE],
+    :BIGROOT => [:GRASSYSEED, :FRESHWATER],
+    :SHADOWGEM => [:NORMALGEM, :DARKGEM, :GHOSTGEM],
+    :LIVEORB => [:LIFEORB, :ENCHANTINGTABLE],
+    :ASSAULTHELMET => [:LIFEORB, :ASSAULTVEST, :ROCKYHELMET],
+    :FLINTANDSTEEL => [:FLAMEORB, :IRON],
+    :FLINTNTANDSTEELNT => [:FLINTANDSTEEL, :FROSTORB],
+    :THUNDERBALL => [:MISTSTONE, :LIGHTBALL],
+    :HYPERGENE => [:BERSERKGENE, :PSYCHICGEM],
     :MAXREVIVE => [:REVIVE, :FULLRESTORE],
-    :ENCHANTINGTABLE => [:BOOKSHELF, :TABLE, :DIAMOND]
+    :MISTSTONE => [:RARECANDY, :RAGECANDYBAR, :EVERSTONE],
 }
 
 class MinecraftCraftingScene
@@ -315,7 +368,10 @@ class MinecraftCraftingScene
         if Input.trigger?(Input::USE)
             if @cursorindex < 0
                 @filtermode = (@filtermode + 1) % 2
+                itemtable = (@filtermode == 0) ? CRAFTINGLIST.keys : @craftablelist
                 @cursorindex = -5
+                @maxpages = itemtable.length() / 20
+                @activepage = 0
                 @sprites["filter"].bitmap = (@filtermode == 0) ? Bitmap.new("Graphics/Minecraft/filter_disabled") : Bitmap.new("Graphics/Minecraft/filter_enabled")
             elsif @cursorindex <= 19
                 if @craftablelist.include?(item)
@@ -356,7 +412,7 @@ class MinecraftCraftingScene
             itemsprite = @sprites["itemicon#{i}"]
             itemindex = i + @activepage * 20
             itemslot = nil
-            itemslot = itemtable[i] if i < itemtable.length
+            itemslot = itemtable[itemindex] if i < itemtable.length
             if !itemslot
                 craftableitem.visible = false
                 itemsprite.visible = false
@@ -526,7 +582,6 @@ class MinecraftCraftingScene
         end
         addSprite("heart", heartsprite)
 
-
         slashshadow = Sprite.new(@viewport)
         slashshadow.bitmap = Bitmap.new("Graphics/Minecraft/slash")
         slashshadow.x = recipebooksprite.x + recipebooksprite.width / 2 + 1
@@ -581,7 +636,7 @@ class MinecraftCraftingScene
 
 
     def changepage(page)
-        if page > maxpages
+        if page > @maxpages
             @activepage = 0
             return
         end
@@ -595,11 +650,16 @@ class MinecraftCraftingScene
     def calculateCraftables()
         @craftablelist = []
         CRAFTINGLIST.each do |item, materials|
-            materialcount = 0
+            materialcount = {}
             materials.each do |material|
-                materialcount += 1 if $PokemonBag.pbHasItem?(material)
+                materialcount[material] = 0 if materialcount[material].nil?
+                materialcount[material] += 1
             end
-            @craftablelist.push(item) if materialcount == materials.length
+            craftable = true
+            materialcount.each do |material,value|
+                craftable = false if $PokemonBag.pbQuantity(material) < value
+            end
+            @craftablelist.push(item) if craftable
         end
     end
 

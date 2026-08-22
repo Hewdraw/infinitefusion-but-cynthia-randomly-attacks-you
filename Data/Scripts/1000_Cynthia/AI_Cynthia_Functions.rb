@@ -2318,8 +2318,8 @@ class PokeBattle_AI
       type = move.pbCalcType(user)
       if tera == user && move.function == "177"
         type = user.tera
-        type = :QMARKS if type == :STELLAR
       end
+      type = :QMARKS if type == :STELLAR
       typeMod = move.pbCalcTypeMod(type,user,target,tera)
       atk, atkStage = move.pbGetAttackStats(user,target)
       if switchin == target && target.hasActiveAbility?([:INTIMIDATE, :SCULK]) && move.physicalMove? #todo menace

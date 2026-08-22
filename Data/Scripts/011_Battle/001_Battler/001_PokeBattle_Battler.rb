@@ -415,7 +415,7 @@ class PokeBattle_Battler
     if withType3 && @effects[PBEffects::Type3]
       ret.push(@effects[PBEffects::Type3]) if !ret.include?(@effects[PBEffects::Type3])
     end
-    ret.push(:FLYING) if !ret.include?(:FLYING) && hasActiveItem?(:ELYTRA)
+    ret.push(:FLYING) if !ret.include?(:FLYING) && hasActiveItem?([:ELYTRA, :ENCHANTEDELYTRA])
     ret.push(:FAIRY) if !ret.include?(:FAIRY) && hasActiveItem?(:WHIPPEDDREAM)
     ret.push(@pokemon.hiddenPowerType) if hasActiveEmera?(:TERACRYSTAL)
     return ret

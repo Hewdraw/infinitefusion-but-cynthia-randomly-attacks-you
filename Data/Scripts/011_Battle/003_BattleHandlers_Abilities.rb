@@ -533,6 +533,12 @@ BattleHandlers::PriorityChangeAbility.add(:GALEWINGS,
   }
 )
 
+BattleHandlers::PriorityChangeAbility.add(:GALEWINGSPLUS,
+  proc { |ability,battler,move,pri|
+    next pri+1 if move.type == :FLYING
+  }
+)
+
 BattleHandlers::PriorityChangeAbility.add(:STORMWINDS,
   proc { |ability,battler,move,pri|
     next pri+1 if [:Rain, :HeavyRain].include?(battler.battle.pbWeather) && move.type == :FLYING

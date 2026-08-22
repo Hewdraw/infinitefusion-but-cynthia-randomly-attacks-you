@@ -330,3 +330,4 @@
 404,GUTSPLUS,Guts+,"Boosts Attack if there is a status problem."
 405,FORCEDEVOLUTIONPLUS,Forced Evolution+,"a"
 406,BATTLEARMORPLUS,Battle Armor+,"The Pokémon is protected against critical hits."
+407,GALEWINGSPLUS,Gale Wings+,"Flying-type moves gain priority when its HP is full."

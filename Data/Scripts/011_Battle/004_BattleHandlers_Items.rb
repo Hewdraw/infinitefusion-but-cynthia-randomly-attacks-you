@@ -228,6 +228,22 @@ BattleHandlers::HPHealItem.add(:SITRUSBERRY,
   }
 )
 
+BattleHandlers::HPHealItem.add(:GOLDENAPPLE,
+  proc { |item,battler,battle,forced|
+    next false if !battler.canHeal?
+    battle.pbCommonAnimation("EatBerry",battler) if !forced
+    battler.pbRecoverHP(battler.totalhp)
+    itemName = GameData::Item.get(item).name
+    if forced
+      PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1} restored its health using its {2}!",battler.pbThis,itemName))
+    end
+    next true
+  }
+)
+
 BattleHandlers::HPHealItem.add(:STARFBERRY,
   proc { |item,battler,battle,forced|
     stats = []
@@ -967,6 +983,18 @@ BattleHandlers::DamageCalcTargetItem.add(:ASSAULTVEST,
 BattleHandlers::DamageCalcTargetItem.add(:DIAMONDCHESTPLATE,
   proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.5 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:ENCHANTEDELYTRA,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 0.8
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:NETHERITECHESTPLATE,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.3
   }
 )
 
@@ -2065,12 +2093,12 @@ BattleHandlers::ItemOnSwitchIn.add(:GOLDENSEED,
   }
 )
 
-BattleHandlers::ItemOnSwitchIn.add(:GOLDENAPPLE,
+BattleHandlers::ItemOnSwitchIn.add(:ENCHANTEDGOLDENAPPLE,
   proc { |item,battler,battle|
     battle.pbCommonAnimation("UseItem",battler)
     battle.pbDisplay("#{battler.pbThis} ate its Golden Apple!")
     battler.hpbars += 1
-    battler.pbRecoverHP(battler.totalhp / 2)
+    battler.pbRecoverHP(battler.totalhp)
     battler.pbRemoveItem()
   }
 )
