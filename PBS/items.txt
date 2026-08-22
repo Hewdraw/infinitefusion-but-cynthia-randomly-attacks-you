@@ -952,33 +952,33 @@
 886,SHOCKBOOTS,Shock Boots,Shock Boots???,1,0,"a",0,0,0
 887,BOOTS,Boots,Boots!,1,0,"a",0,0,0
 888,MEDIUMNUGGET,Medium Nugget,Medium Nuggets,1,0,"a",0,0,0
-889,CHICKENNUGGET,Chicken Nugget,Chicken Nuggets,1,0,"todo",0,0,0
-890,GOLDENCHICKENNUGGET,Golden Chicken Nugget,Golden Chicken Nuggets,1,0,"todo",0,0,0
-891,GOLDENCHICKEN,Golden Chicken,Golden Chickens,1,0,"todo",0,0,0
-892,SITRUSPAW,Sitrus Paw,Sitrus Paws,1,0,"todo",0,0,5
-893,PRIMALROCK,Primal Rock,Primal Rocks,1,0,"todo",0,0,0
-894,DESERTEDROCK,Deserted Rock,Deserted Rocks,1,0,"todo",0,0,0
-895,SHADOWEDROCK,Shadowed Rock,Shadowed Rocks,1,0,"todo",0,0,0
-896,MISTYSOWER,Misty Sower,Misty Sowers,1,0,"todo",0,0,0
-897,ELECTRICSOWER,Electric Sower,Electric Sowers,1,0,"todo",0,0,0
-898,PSYCHICSOWER,Psychic Sower,Psychic Sowers,1,0,"todo",0,0,0
-899,GRASSYSOWER,Grassy Sower,Grassy Sowers,1,0,"todo",0,0,0
-900,BEEGSUCK,Beeg Suck,Beeg Sucks,1,0,"todo",0,0,0
-901,MANKEYSCARF,Mankey Scarf,Mankey Scarfs,1,0,"todo",0,0,0
-902,THELENS,The Lens,The Lens,1,0,"todo",0,0,0
-903,SHADES,Shades,Shades,1,0,"todo",0,0,0
-904,HEAVYDUTYPANTS,Heavy Duty Pants?,Heavy Duty Pants?,1,0,"todo",0,0,0
-905,HEAVYSUIT,Heavy Suit,Heavy Suits,1,0,"todo",0,0,0
-906,FLIGHTLESSWINGSUIT,Flightless Wingsuit,Flightless Wingsuits,1,0,"todo",0,0,0
-907,SCROLL,Scroll,Scrolls,1,0,"todo",0,0,0
-908,BERSERKBERRY,Berserk Berry,Berserk Berrys,1,0,"todo",0,0,5
-909,SHADOWGEM,Shadow Gem,Shadow Gems,1,0,"todo",0,0,0
-910,LIVEORB,Live Orb,Live Orbs,1,0,"todo",0,0,0
-911,ASSAULTHELMET,Assault Helmet,Assault Helmets,1,0,"todo",0,0,0
-912,FLINTANDSTEEL,Flint and Steel,Flint and Steels,1,0,"todo",0,0,0
-913,FLINTNTANDSTEELNT,Flintn't and Steeln't,Flintn't and Steeln'ts,1,0,"todo",0,0,0
-914,THUNDERBALL,Thunder Ball,Thunder Balls,1,0,"todo",0,0,0
-915,HYPERGENE,Hyper Gene,Hyper Genes,1,0,"todo",0,0,0
+889,CHICKENNUGGET,Chicken Nugget,Chicken Nuggets,1,0,"a",0,0,0
+890,GOLDENCHICKENNUGGET,Golden Chicken Nugget,Golden Chicken Nuggets,1,0,"a",0,0,0
+891,GOLDENCHICKEN,Golden Chicken,Golden Chickens,1,0,"a",0,0,0
+892,SITRUSPAW,Sitrus Paw,Sitrus Paws,1,0,"a",0,0,5
+893,PRIMALROCK,Primal Rock,Primal Rocks,1,0,"a",0,0,0
+894,DESERTEDROCK,Deserted Rock,Deserted Rocks,1,0,"a",0,0,0
+895,SHADOWEDROCK,Shadowed Rock,Shadowed Rocks,1,0,"a",0,0,0
+896,MISTYSOWER,Misty Sower,Misty Sowers,1,0,"a",0,0,0
+897,ELECTRICSOWER,Electric Sower,Electric Sowers,1,0,"a",0,0,0
+898,PSYCHICSOWER,Psychic Sower,Psychic Sowers,1,0,"a",0,0,0
+899,GRASSYSOWER,Grassy Sower,Grassy Sowers,1,0,"a",0,0,0
+900,BEEGSUCK,Beeg Suck,Beeg Sucks,1,0,"a",0,0,0
+901,MANKEYSCARF,Mankey Scarf,Mankey Scarfs,1,0,"a",0,0,0
+902,THELENS,The Lens,The Lens,1,0,"a",0,0,0
+903,SHADES,Shades,Shades,1,0,"a",0,0,0
+904,HEAVYDUTYPANTS,Heavy Duty Pants?,Heavy Duty Pants?,1,0,"a",0,0,0
+905,HEAVYSUIT,Heavy Suit,Heavy Suits,1,0,"a",0,0,0
+906,FLIGHTLESSWINGSUIT,Flightless Wingsuit,Flightless Wingsuits,1,0,"a",0,0,0
+907,SCROLL,Scroll,Scrolls,1,0,"a",0,0,0
+908,BERSERKBERRY,Berserk Berry,Berserk Berrys,1,0,"a",0,0,5
+909,SHADOWGEM,Shadow Gem,Shadow Gems,1,0,"a",0,0,0
+910,LIVEORB,Live Orb,Live Orbs,1,0,"a",0,0,0
+911,ASSAULTHELMET,Assault Helmet,Assault Helmets,1,0,"a",0,0,0
+912,FLINTANDSTEEL,Flint and Steel,Flint and Steels,1,0,"a",0,0,0
+913,FLINTNTANDSTEELNT,Flintn't and Steeln't,Flintn't and Steeln'ts,1,0,"a",0,0,0
+914,THUNDERBALL,Thunder Ball,Thunder Balls,1,0,"a",0,0,0
+915,HYPERGENE,Hyper Gene,Hyper Genes,1,0,"a",0,0,0
 916,RECIPEBOOK,Recipe Book,Recipe Books,8,0,"Book of recipes.",0,0,6
 
 

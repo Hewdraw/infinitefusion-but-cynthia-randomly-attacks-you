@@ -2287,6 +2287,15 @@ BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   }
 )
 
+BattleHandlers::ItemOnSwitchIn.add(:BERSERKBERRY,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.pbRaiseStatStageByCause(:ATTACK,1,battler,battler.itemName)
+    battler.pbRaiseStatStageByCause(:SPECIAL_ATTACK,1,battler,battler.itemName)
+    battler.pbRemoveItem()
+  }
+)
+
 BattleHandlers::ItemOnSwitchIn.add(:HYPERGENE,
   proc { |item,battler,battle|
     battle.pbCommonAnimation("UseItem",battler)
