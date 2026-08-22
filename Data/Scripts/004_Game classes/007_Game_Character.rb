@@ -937,6 +937,10 @@ class Game_Character
   end
 
   def jump(x_plus, y_plus)
+    if $PokemonGlobal.healies
+      $PokemonGlobal.sliding = false
+      $PokemonGlobal.healies = false
+    end
     if x_plus != 0 || y_plus != 0
       if x_plus.abs > y_plus.abs
         (x_plus < 0) ? turn_left : turn_right
