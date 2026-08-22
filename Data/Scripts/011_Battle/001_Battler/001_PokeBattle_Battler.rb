@@ -683,7 +683,7 @@ class PokeBattle_Battler
     return false if @battle.field.effects[PBEffects::Gravity] > 0
     return false if hasActiveEmera?(:HEAVYCORE)
     return true if pbHasType?(:FLYING) && @battle.field.effects[PBEffects::InverseRoom] == 0
-    return true if hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
+    return true if hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST, :AERILATEPLUS]) && !@battle.moldBreaker
     return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS, :FLIGHTLESSWINGSUIT])
     return true if @effects[PBEffects::MagnetRise] > 0
     return true if @effects[PBEffects::Telekinesis] > 0

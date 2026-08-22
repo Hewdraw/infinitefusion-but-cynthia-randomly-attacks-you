@@ -614,7 +614,7 @@ BattleHandlers::MoveBlockingAbility.add(:DAZZLING,
   }
 )
 
-BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY, :ARMORTAIL)
+BattleHandlers::MoveBlockingAbility.copy(:DAZZLING,:QUEENLYMAJESTY, :ARMORTAIL, :ARMORTAILPLUS)
 
 #===============================================================================
 # MoveImmunityTargetAbility handlers
@@ -807,6 +807,8 @@ BattleHandlers::MoveBaseTypeModifierAbility.add(:AERILATE,
     next :FLYING
   }
 )
+
+BattleHandlers::MoveBaseTypeModifierAbility.copy(:AERILATE,:AERILATEPLUS)
 
 BattleHandlers::MoveBaseTypeModifierAbility.add(:GALVANIZE,
   proc { |ability,user,move,type|
@@ -1008,7 +1010,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE, :VOCALOID, :SCULK, :IMMOLATE, :DRAGONIZE)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:AERILATEPLUS,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE, :VOCALOID, :SCULK, :IMMOLATE, :DRAGONIZE)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1023,6 +1025,16 @@ BattleHandlers::DamageCalcUserAbility.add(:OBFUSCATE,
 )
 
 BattleHandlers::DamageCalcUserAbility.add(:ANALYTIC,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if (target.battle.choices[target.index][0]!=:UseMove &&
+       target.battle.choices[target.index][0]!=:Shift) ||
+       target.movedThisRound?
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:ANALYTICPLUS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if (target.battle.choices[target.index][0]!=:UseMove &&
        target.battle.choices[target.index][0]!=:Shift) ||
@@ -1406,6 +1418,12 @@ BattleHandlers::DamageCalcUserAllyAbility.copy(:POWERSPOT,:WIRED)
 # DamageCalcTargetAbility handlers
 #===============================================================================
 
+BattleHandlers::DamageCalcTargetAbility.add(:ANALYTIC,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] *= 3.0/4.0 if !target.movedThisRound?
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:DRYSKIN,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.25 if type == :FIRE
@@ -1421,6 +1439,16 @@ BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
 )
 
 BattleHandlers::DamageCalcTargetAbility.copy(:FILTER,:SOLIDROCK)
+
+BattleHandlers::DamageCalcTargetAbility.add(:ANTICIPATIONPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    next if battler.pokemon.battlevariables[:anticipationplus]
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 0
+      battler.pokemon.battlevariables[:anticipationplus] = true
+    end
+  }
+)
 
 BattleHandlers::DamageCalcTargetAbility.add(:FLOWERGIFT,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -1499,7 +1527,7 @@ BattleHandlers::DamageCalcTargetAbility.add(:MAGMAARMOR,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.copy(:MAGMAARMOR, :BATTLEARMOR)
+BattleHandlers::DamageCalcTargetAbility.copy(:MAGMAARMOR, :BATTLEARMOR, :ARMORTAILPLUS)
 
 BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -1608,7 +1636,7 @@ BattleHandlers::CriticalCalcTargetAbility.add(:BATTLEARMOR,
   }
 )
 
-BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:BATTLEARMORPLUS,:SHELLARMOR,:SHELLARMORPLUS)
+BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:BATTLEARMORPLUS,:SHELLARMOR,:SHELLARMORPLUS, :ARMORTAILPLUS)
 
 #===============================================================================
 # TargetAbilityOnHit handlers
@@ -1644,6 +1672,8 @@ BattleHandlers::TargetAbilityOnHit.add(:AFTERMATH,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.copy(:AFTERMATH,:AFTERMATHPLUS)
+
 BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
   proc { |ability,target,user,move,battle|
     next if !target.damageState.critical
@@ -1655,6 +1685,23 @@ BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINT,
       battle.pbDisplay(_INTL("{1} maxed its {2}!",target.pbThis,GameData::Stat.get(:ATTACK).name))
     else
       battle.pbDisplay(_INTL("{1}'s {2} maxed its {3}!",
+         target.pbThis,target.abilityName,GameData::Stat.get(:ATTACK).name))
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
+BattleHandlers::TargetAbilityOnHit.add(:ANGERPOINTPLUS,
+  proc { |ability,target,user,move,battle|
+    next if !target.damageState.critical
+    next if !target.pbCanRaiseStatStage?(:ATTACK,target)
+    battle.pbShowAbilitySplash(target)
+    target.stages[:ATTACK] += 3
+    battle.pbCommonAnimation("StatUp",target)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} increased its {2}!",target.pbThis,GameData::Stat.get(:ATTACK).name))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} increased its {3}!",
          target.pbThis,target.abilityName,GameData::Stat.get(:ATTACK).name))
     end
     battle.pbHideAbilitySplash(target)
@@ -2487,6 +2534,28 @@ BattleHandlers::EOREffectAbility.add(:BADDREAMS,
   }
 )
 
+BattleHandlers::EOREffectAbility.add(:BADDREAMSPLUS,
+  proc { |ability,battler,battle|
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler) || !b.asleep?
+      battle.pbShowAbilitySplash(battler)
+      next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      oldHP = b.hp
+      b.pbReduceHP(b.totalhp/8)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is tormented!",b.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} is tormented by {2}'s {3}!",b.pbThis,
+           battler.pbThis(true),battler.abilityName))
+      end
+      battle.pbHideAbilitySplash(battler)
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+    end
+  }
+)
+
 BattleHandlers::EOREffectAbility.add(:MOODY,
   proc { |ability,battler,battle|
     randomUp = []
@@ -2636,6 +2705,18 @@ BattleHandlers::TrappingTargetAbility.copy(:SHADOWTAG, :SCULK, :PIXELTAG)
 #===============================================================================
 
 
+BattleHandlers::AbilityOnSwitchIn.add(:ANGERPOINTPLUS,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.effects[PBEffects::FocusEnergy] += 1
+      battle.pbDisplay(_INTL("{1}'s critical rate increased!",b.pbThis))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:DEATH,
   proc { |ability,battler,battle|
     battler.hp = 0
@@ -2728,6 +2809,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:ANTICIPATION,
     end
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:ANTICIPATION,:ANTICIPATIONPLUS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:AURABREAK,
   proc { |ability,battler,battle|

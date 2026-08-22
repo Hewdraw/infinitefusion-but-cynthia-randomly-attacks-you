@@ -487,6 +487,7 @@ class PokeBattle_Move
       else
         multipliers[:final_damage_multiplier] *= 2
       end
+      multipliers[:final_damage_multiplier] * 0.3 if target.hasActiveAbility?(:ANGERPOINTPLUS)
     end
     # Random variance
     if !self.is_a?(PokeBattle_Confusion)

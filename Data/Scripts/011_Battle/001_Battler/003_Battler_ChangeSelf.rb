@@ -85,6 +85,9 @@ class PokeBattle_Battler
     @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis)) if showMessage
     updateSpirits()
     PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
+    if self.hasActiveAbility?(:AFTERMATHPLUS)
+      self.pbUseMoveSimple(:EXPLOSION)
+    end
     @battle.scene.pbFaintBattler(self) if !(@ability_id == :DEATH)
     pbInitEffects(false)
     if self.hasActiveAbility?(:EXPLOSIVE, true) || self.hasActiveAbility?(:CHARGEDEXPLOSIVE, true)
