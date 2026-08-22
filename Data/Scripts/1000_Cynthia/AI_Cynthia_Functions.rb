@@ -2089,7 +2089,7 @@ class PokeBattle_AI
         next if !pkmn || !pkmn.fainted?
         faintedlist.append(pkmn)
       end
-      score = 0 if faintedlist.length == 0
+      score = -100 if faintedlist.length == 0
     #---------------------------------------------------------------------------
     when "198" #todo
       score *= 2 if target.pbHasType?(:WATER) || target.pbHasType?(:STEEL)
