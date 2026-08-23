@@ -253,10 +253,12 @@ def mcCrafting
         Kernel.pbMessage("Unfortunately you don't know any recipes.")
         return
     end
+    playingBGM = $game_system.getPlayingBGM
     scene = MinecraftCraftingScene.new()
     loop do
         break if !scene.update
     end
+    pbBGMPlay(playingBGM)
 end
 
 CRAFTINGLIST = {
