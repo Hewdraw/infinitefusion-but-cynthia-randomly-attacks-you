@@ -38,7 +38,7 @@ def setupTower()
     starters.each do |pokemon|
         pbAddPokemon(pokemon, 5)
     end
-    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICER, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET]
+    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICER, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET, :RECIPEBOOK]
     starteritems.each do |item|
         $PokemonBag.pbStoreItem(item)
     end
@@ -279,6 +279,7 @@ def getTowerEventsList()
         "Pokemart" => 10,
         "Heal" => 25,
         "Tutor" => 25,
+        "Crafting" => 10,
         "Legendary" => [$PokemonGlobal.towervalues[:floor] - 46, 0].max / 3,
     }
     eventlist["Pokemon"] *= 2 if $PokemonGlobal.towervalues[:floor] <= 10
@@ -355,6 +356,8 @@ def towerEvent()
                 end
             end
         end
+    when "Crafting"
+        mcCrafting()
     when "Legendary"
         case $PokemonGlobal.towervalues[:activevariable]
         when "Articuno", "Mew", "Moltres", "Zapdos"
@@ -538,6 +541,8 @@ def getFloorGraphic(event)
         return "BWNurse"
     when "Tutor"
         return "Claire_Overworld"
+    when "Crafting"
+        return "TinkerersWorkshop"
     when "Legendary"
         case $PokemonGlobal.towervalues[:activevariable]
         when "Articuno"
@@ -608,6 +613,8 @@ def getNextFloorDescription(nextfloor)
         message = "Heal up, you'll need it."
     when "Tutor"
         message = "Learn an obtainable move."
+    when "Crafting"
+        message = "Craft new items."
     when "Legendary"
         message = "Fight a legendary battle."
     when "Gym"
