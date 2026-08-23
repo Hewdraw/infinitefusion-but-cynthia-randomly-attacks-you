@@ -57,7 +57,7 @@ class PokeBattle_Battler
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
       @battle.pbClearChoice(@index)
-      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
       return
     end
     if self.hasActiveItem?(:TOTEMOFUNDYING, true)
@@ -68,7 +68,7 @@ class PokeBattle_Battler
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
       @battle.pbClearChoice(@index)
-      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
       return
     end
     if @pokemon && @pokemon.phasetwo
