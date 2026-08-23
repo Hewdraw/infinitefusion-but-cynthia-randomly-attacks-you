@@ -650,7 +650,7 @@
 604,SECRETCAPSULE,Secret Capsule,Secret Capsules,1,0,"A capsule that unlocks a Pokémon's hidden ability",1,0,0
 605,ODDKEYSTONE_FULL,unknown_item,Odd Keystones,1,0,"This item has been removed from the game. It can safely be sold or deleted.",0,0,0
 #-------------------------------
-606,BERSERKGENE,Berserk Gene,Berserk Genes,1,0,"A strange gene. It appears to have some mysterious powers.",2,0,6
+606,BERSERKGENE,Berserk Gene,Berserk Genes,1,0,"A strange gene. It appears to have some mysterious powers.",2,0,0
 #-------------------------------
 607,DYNAMITE,Dynamite,Dynamites,1,100,"A stick of dynamite. Be careful with it!",1,1,0
 #-------------------------------

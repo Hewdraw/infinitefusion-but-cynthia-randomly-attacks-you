@@ -953,7 +953,6 @@ class UndertaleMenu
   # Lists of which button graphics to use in different situations/types of battle.
 
   def initialize(viewport,z)
-    @test = 0
     @x          = 0
     @y          = 0
     @z          = 0
