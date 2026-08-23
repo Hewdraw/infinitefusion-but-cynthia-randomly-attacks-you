@@ -53,8 +53,8 @@ class PokeBattle_Battler
       pbRecoverHP(adjustedTotalhp / 2)
       @pokemon.battlevariables[:sacredashes] = true
       canSwitch = false
-      @battle.eachInTeamFromBattlerIndex(user.index) do |_pkmn,i|
-        next if !@battle.pbCanSwitchLax?(user.index,i)
+      @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(@index,i)
         canSwitch = true
         break
       end
@@ -72,8 +72,8 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation("UseItem",self)
       self.pbRemoveItem()
       canSwitch = false
-      @battle.eachInTeamFromBattlerIndex(user.index) do |_pkmn,i|
-        next if !@battle.pbCanSwitchLax?(user.index,i)
+      @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(@index,i)
         canSwitch = true
         break
       end
