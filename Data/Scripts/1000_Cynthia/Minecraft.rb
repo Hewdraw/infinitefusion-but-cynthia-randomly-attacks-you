@@ -258,7 +258,6 @@ def mcCrafting
     loop do
         break if !scene.update
     end
-    pbWait(1)
     pbBGMPlay(playingBGM)
 end
 
@@ -326,6 +325,7 @@ CRAFTINGLIST = {
 
 class MinecraftCraftingScene
     def update
+        return if @ending
         if Input.trigger?(Input::UP) && @cursorindex >= 0
             loop do
                 @cursorindex -= 5
@@ -399,6 +399,7 @@ class MinecraftCraftingScene
             end
         end
         if Input.trigger?(Input::BACK)
+            @ending = true
             endScreen
             return false
         end
@@ -479,6 +480,7 @@ class MinecraftCraftingScene
     end
 
     def initialize
+        @ending = false
         @sprites = {}
         @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
         @viewport.z = 999
