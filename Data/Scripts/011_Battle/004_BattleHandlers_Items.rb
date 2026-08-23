@@ -1165,13 +1165,14 @@ BattleHandlers::DamageCalcTargetItem.add(:NETHERITECHESTPLATE,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.copy(:NETHERITECHESTPLATE,:FLIGHTLESSWINGSUIT)
+
 BattleHandlers::DamageCalcTargetItem.add(:HEAVYSUIT,
   proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.4
   }
 )
 
-BattleHandlers::DamageCalcTargetItem.copy(:HEAVYSUIT,:FLIGHTLESSWINGSUIT)
 
 BattleHandlers::DamageCalcTargetAbility.add(:PRISMSCALE,
   proc { |ability,target,user,move,mults,baseDmg,type|

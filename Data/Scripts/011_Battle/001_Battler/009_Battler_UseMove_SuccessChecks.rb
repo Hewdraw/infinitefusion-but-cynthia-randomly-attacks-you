@@ -95,7 +95,7 @@ class PokeBattle_Battler
     end
     # Assault Vest (prevents choosing status moves but doesn't prevent
     # executing them)
-    if hasActiveItem?([:ASSAULTVEST, :DIAMONDCHESTPLATE, :NETHERITECHESTPLATE]) && move.statusMove? && commandPhase
+    if hasActiveItem?([:ASSAULTVEST, :DIAMONDCHESTPLATE, :NETHERITECHESTPLATE, :HEAVYSUIT]) && move.statusMove? && commandPhase
       if showMessages
         msg = _INTL("The effects of the {1} prevent status moves from being used!",
            itemName)
@@ -447,7 +447,7 @@ class PokeBattle_Battler
     # Airborne-based immunity to Ground moves
     if move.damagingMove? && move.calcType == :GROUND &&
        target.airborne? && (!move.hitsFlyingTargets? || target.isFusionOf(:FANROTOM))
-      if target.hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST]) && !@battle.moldBreaker
+      if target.hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST, :AERILATEPLUS]) && !@battle.moldBreaker
         @battle.pbShowAbilitySplash(target)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1} avoided the attack!",target.pbThis))
