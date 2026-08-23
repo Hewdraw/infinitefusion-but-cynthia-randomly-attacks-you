@@ -169,6 +169,7 @@ def getEnderChestItems()
             [:CLEVERMOCHI, 5],
             [:SWIFTMOCHI, 5],
             [:REDCARD, 5],
+            [:MASTERBALL, 1],
         ],
         [ #rare
             [:DIAMOND, 1],
@@ -197,7 +198,6 @@ def getEnderChestItems()
             [:REVIVALHERB, 1],
             [:PPMAX, 1],
             [:CHERISHBALL, 5],
-            [:MASTERBALL, 1],
             [:EJECTPACK, 5],
             [:BLUNDERPOLICY, 5],
             [:THROATSPRAY, 5],
