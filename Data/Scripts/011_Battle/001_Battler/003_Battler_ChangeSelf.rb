@@ -52,6 +52,13 @@ class PokeBattle_Battler
       @battle.pbShowAbilitySplash(self)
       pbRecoverHP(adjustedTotalhp / 2)
       @pokemon.battlevariables[:sacredashes] = true
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(user.index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(user.index,i)
+        canSwitch = true
+        break
+      end
+      return if !canSwitch
       newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
       @battle.pbHideAbilitySplash(self)
       return if newPkmn<0
@@ -64,6 +71,13 @@ class PokeBattle_Battler
       pbRecoverHP(@totalhp / 2)
       @battle.pbCommonAnimation("UseItem",self)
       self.pbRemoveItem()
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(user.index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(user.index,i)
+        canSwitch = true
+        break
+      end
+      return if !canSwitch
       newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
