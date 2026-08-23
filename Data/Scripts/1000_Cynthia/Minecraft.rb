@@ -258,6 +258,7 @@ def mcCrafting
     loop do
         break if !scene.update
     end
+    pbWait(1)
     pbBGMPlay(playingBGM)
 end
 
