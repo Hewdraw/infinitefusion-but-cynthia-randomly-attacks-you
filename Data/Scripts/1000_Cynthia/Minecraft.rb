@@ -65,7 +65,7 @@ def getEventList()
     return [
         ["Hatsune Miku", 1, lambda {pbEncounterCynthia(encounter_type = "Hatsune Miku", nil, false, 1)}],
         ["Cynthia", 2, lambda {pbEncounterCynthia(encounter_type = [:CHAMPION_Sinnoh, "Cynthia"], nil, false, 0, 2)}],
-        ["Dennis", 2, lambda {pbDoubleTrainerBattle(:TEAMROCKET, "Dennis", 0, nil, :TEAMROCKET, "Dennis")}],
+        ["Dennis", 2, lambda {pbDoubleTrainerBattle(:TEAMROCKET, "Dennis", 0, nil, :TEAMROCKET, "Dennis", 1)}],
         ["Creeper", 1, lambda {pbLegendaryBattle("Creeper")}],
         ["Thunder Stone and 1 Creeper", 1, lambda {pbLegendaryBattle("Charged Creeper")}],
         ["Max Repel", 1, lambda {pbRepel(:MAXREPEL, 250)}],
