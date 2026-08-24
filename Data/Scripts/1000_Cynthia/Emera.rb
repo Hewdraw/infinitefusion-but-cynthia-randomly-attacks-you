@@ -15,6 +15,11 @@ EMERADICT = {
         :description => "Obtain an extra Bug Pokemon every Premier Ball floor.",
         :rarity => :STARTER,
     },
+    :EXPLORERBADGE => {
+        :name => "Explorer Badge",
+        :description => "",
+        :rarity => :STARTER,
+    },
     :STICKYKEY => {
         :name => "Sticky Key",
         :description => "Use Greatest Metronome instead of Fighting. Start with a Metronome.",
@@ -55,7 +60,7 @@ EMERADICT = {
     },
     :VIPCARD => {
         :name => "VIP Card",
-        :description => "50% cheaper at the Shadross Shop.",
+        :description => "50% discount at the Shadross Shop.",
         :rarity => :EVENT,
     },
 

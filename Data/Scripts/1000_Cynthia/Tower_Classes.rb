@@ -7,6 +7,10 @@ TRAINERCLASSDICT = {
         :name => "Bug Catcher",
         :emera => :CATCHINGNET,
     },
+    :EXPLORER => {
+        :name => "Explorer",
+        :emera => :EXPLORERBADGE,
+    },
     :GAMBLER => {
         :name => "Gambler",
         :emera => :STICKYKEY,

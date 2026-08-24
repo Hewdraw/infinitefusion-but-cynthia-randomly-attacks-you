@@ -955,7 +955,7 @@
 889,CHICKENNUGGET,Chicken Nugget,Chicken Nuggets,1,0,"a",0,0,0
 890,GOLDENCHICKENNUGGET,Golden Chicken Nugget,Golden Chicken Nuggets,1,0,"a",0,0,0
 891,GOLDENCHICKEN,Golden Chicken,Golden Chickens,1,0,"a",0,0,0
-892,SITRUSPAW,Sitrus Paw,Sitrus Paws,1,0,"a",0,0,5
+892,SITRUSPAW,Sitrus Paw,Sitrus Paws,5,0,"a",0,0,5
 893,PRIMALROCK,Primal Rock,Primal Rocks,1,0,"a",0,0,0
 894,DESERTEDROCK,Deserted Rock,Deserted Rocks,1,0,"a",0,0,0
 895,SHADOWEDROCK,Shadowed Rock,Shadowed Rocks,1,0,"a",0,0,0
@@ -971,7 +971,7 @@
 905,HEAVYSUIT,Heavy Suit,Heavy Suits,1,0,"a",0,0,0
 906,FLIGHTLESSWINGSUIT,Flightless Wingsuit,Flightless Wingsuits,1,0,"a",0,0,0
 907,SCROLL,Scroll,Scrolls,1,0,"a",0,0,0
-908,BERSERKBERRY,Berserk Berry,Berserk Berrys,1,0,"a",0,0,5
+908,BERSERKBERRY,Berserk Berry,Berserk Berrys,5,0,"a",0,0,5
 909,SHADOWGEM,Shadow Gem,Shadow Gems,1,0,"a",0,0,0
 910,LIVEORB,Live Orb,Live Orbs,1,0,"a",0,0,0
 911,ASSAULTHELMET,Assault Helmet,Assault Helmets,1,0,"a",0,0,0

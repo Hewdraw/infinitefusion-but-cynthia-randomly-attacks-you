@@ -580,10 +580,50 @@ class PokemonLooplet
   end
 end
 
-LOOPLETLIST = [:UNLIMITEDLOOPLET, :PLATINUMLOOPLET, :PEARLLOOPLET, :DIAMONDLOOPLET, :EMERALDLOOPLET, :SAPHIRELOOPLET, :RUBYLOOPLET, :CRYSTALLOOPLET, :GOLDLOOPLET, :SILVERLOOPLET]
+LOOPLETS = {
+  :UNLIMITEDLOOPLET => {
+    :capacity => -1,
+  },
+  :PLATINUMLOOPLET => {
+    :capacity => 16,
+    :badges => 16,
+  },
+  :PEARLLOOPLET => {
+    :capacity => 12,
+    :badges => 14,
+  },
+  :DIAMONDLOOPLET => {
+    :capacity => 10,
+    :badges => 12,
+  },
+  :EMERALDLOOPLET => {
+    :capacity => 8,
+    :badges => 10,
+  },
+  :SAPHIRELOOPLET => {
+    :capacity => 6,
+    :badges => 8,
+  },
+  :RUBYLOOPLET => {
+    :capacity => 4,
+    :badges => 6,
+  },
+  :CRYSTALLOOPLET => {
+    :capacity => 3,
+    :badges => 4,
+  },
+  :GOLDLOOPLET => {
+    :capacity => 2,
+    :badges => 2,
+  },
+  :SILVERLOOPLET => {
+    :capacity => 1,
+    :badges => 0,
+  },
+}
 
 def getLoopletType
-  LOOPLETLIST.each do |looplet|
+  LOOPLETS.each do |looplet|
     return looplet if $PokemonBag.pbHasItem?(looplet)
   end
   return nil

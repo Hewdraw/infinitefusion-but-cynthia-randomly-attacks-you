@@ -71,7 +71,7 @@ def getEventList()
         ["Max Repel", 1, lambda {pbRepel(:MAXREPEL, 250)}],
         ["Hewdraw", 1, lambda {pbTrainerBattle(:Non_Skeleton_Dev, "Hewdraw")}],
         ["Shadross", 1, lambda {pbTrainerBattle(:Skeleton_Dev, "Shadross")}],
-        ["Hatsune Miku", 1, lambda {pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, false, 0)],
+        ["Hatsune Miku", 1, lambda {pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, false, 0)}],
     ]
 end
 
@@ -247,6 +247,7 @@ def getEnderChestItems()
             [:LIGHTNINGSPHERE, 1],
             [:MODIFIEDBOOSTERENERGY, 1],
         ]
+    end
     return chestitems
 end
 

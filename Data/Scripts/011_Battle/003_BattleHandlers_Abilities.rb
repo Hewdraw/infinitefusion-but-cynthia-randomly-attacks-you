@@ -2539,6 +2539,10 @@ BattleHandlers::EOREffectAbility.add(:BADDREAMSPLUS,
     battle.eachOtherSideBattler(battler.index) do |b|
       next if !b.near?(battler) || !b.asleep?
       battle.pbShowAbilitySplash(battler)
+      if !b.effects[PBEffects::LeechSeed]
+        b.effects[PBEffects::LeechSeed] = battler.index
+        battle.pbDisplay(_INTL("{1} was seeded!",b.pbThis))
+      end
       next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       oldHP = b.hp
       b.pbReduceHP(b.totalhp/8)
