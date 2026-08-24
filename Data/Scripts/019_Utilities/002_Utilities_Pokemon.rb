@@ -66,7 +66,7 @@ end
 #===============================================================================
 # Giving Pokémon to the player (will send to storage if party is full)
 #===============================================================================
-def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, variableToSave=nil)
+def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, variableToSave=nil, extrainfo={})
   return false if !pkmnspecies
   if pbBoxesFull?
     pbMessage(_INTL("There's no more room for Pokémon!\1"))
@@ -123,6 +123,9 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     pkmn.ability = :SPEEDBOOST
     pkmn.owner = Pokemon::Owner.new(0, "Sonic", 0, 2)
     pkmn.calc_stats
+  end
+  extrainfo.each do |key,value|
+    pkmn.shiny = value if key == :shiny
   end
   tryRandomizeGiftPokemon(pkmn,dontRandomize)
   species_name = pkmn.speciesName

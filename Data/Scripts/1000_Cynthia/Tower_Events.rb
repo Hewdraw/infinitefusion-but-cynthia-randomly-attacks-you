@@ -22,6 +22,12 @@ TOWER_EVENTS = {
         :image => "ARMALDO",
         :floorrequirement => false, #todo
     },
+    :FREESHINY => {
+        :location => "Free",
+        :location2 => "Shiny!",
+        :image => "303s",
+        :floorrequirement => 0,
+    },
     :ROUTE33 => {
         :location => "Route 33",
         :image => "berrytreeLIECHIBERRY",
@@ -254,6 +260,21 @@ def resolveUnknownEvent(recursion = false)
         Kernel.pbMessage("Eventually you reach the end of the dungeon and find a treasure chest.")
         getLooplet.pbStoreEmera(:DEFENDGLOBE)
         pbObtainAlpha("Armaldo") if Kernel.pbMessage("Hey! Armaldo wants to join your team! Will you accept Armaldo as a member?", ["Yes", "No"]) == 0
+    when :FREESHINY
+        Kernel.pbMessage("Free Shiny!")
+        randompokemon = :MAWILE
+        while [:MAWILE, :BELDUM].include?(randompokemon)
+            randompokemon = getTowerPokemon()
+        end
+        choice = pbUnknownCommands(["Mawile", "Beldum", "#{GameData::Species.get(randompokemon).name}"], ["Nice, a Mawile!", "Ok i guess you don't have to take the Mawile.", "But i will judge you for it."])
+        case choice
+        when 0
+            pbAddPokemon(:MAWILE, 5)
+        when 1
+            pbAddPokemon(:BELDUM, 5)
+        when 2
+            pbAddPokemon(randompokemon, 5, true, false, nil, {:shiny=>true})
+        end
     when :SECRETBAZAAR
         Kernel.pbMessage("You find a hidden staircase into a secret bazaar.") if !recursion
         Kernel.pbMessage("4 Pokemon are offering you their service before you leave.") if !recursion
