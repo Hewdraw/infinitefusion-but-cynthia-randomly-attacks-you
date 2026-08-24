@@ -19,7 +19,9 @@ def setupTower()
         :activevariable => nil,
         :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
         :unknownlist => [],
-        :eventvariables => {},
+        :eventvariables => {
+            :unknownrooms => 0
+        },
         :money => $Trainer.money,
         :triplefusions => $PokemonGlobal.triplefusions,
         :escapeorb => false,
@@ -291,6 +293,7 @@ def getTowerEventsList()
     eventlist["Pokemart"] *= 2 if $PokemonBag.pbHasItem?(:GOLDRIBBON)
     eventlist["Legendary"] = 0 if $PokemonGlobal.towervalues[:legendarylist].length == 0
     eventlist["Unknown"] = 0 if $PokemonGlobal.towervalues[:unknownlist].length == 0
+    eventlist["Unknown"] *= 2 if hasEmera?(:EXPLORERBADGE)
     eventlist["Heal"] += 100 if $PokemonGlobal.towervalues[:floor] % 10 == 8
     eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] == 1
     return eventlist
@@ -311,8 +314,11 @@ def towerEvent()
             end
         end
     when "Unknown"
+        $PokemonGlobal.towervalues[:eventvariables][:unknownrooms] += 1
+        pbAddPokemon(getTowerPokemon()) if hasEmera?(:EXPLORERBADGE)
         resolveUnknownEvent
         return if $PokemonGlobal.towervalues.nil?
+        unlockClass(:EXPLORER) if $PokemonGlobal.towervalues[:eventvariables][:unknownrooms] >= 10
         $PokemonGlobal.towervalues[:activevariable] = nil
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])

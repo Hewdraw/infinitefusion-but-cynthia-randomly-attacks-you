@@ -17,7 +17,7 @@ EMERADICT = {
     },
     :EXPLORERBADGE => {
         :name => "Explorer Badge",
-        :description => "",
+        :description => "Unknown rooms are twice as common and you obtain a random Pokemon in them.",
         :rarity => :STARTER,
     },
     :STICKYKEY => {
