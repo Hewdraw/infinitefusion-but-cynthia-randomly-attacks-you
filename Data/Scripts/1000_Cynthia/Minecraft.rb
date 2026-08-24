@@ -51,7 +51,7 @@ def enderChest()
         end
     end
 
-    if rand(10) == 0 && $PokemonGlobal.towervalues.nil?
+    if rand(20) == 0 && $PokemonGlobal.towervalues.nil?
         $PokemonGlobal.enderchest = true
         eventlist = getEventList()
         randomevent = eventlist[rand(eventlist.length)]
@@ -69,6 +69,9 @@ def getEventList()
         ["Creeper", 1, lambda {pbLegendaryBattle("Creeper")}],
         ["Thunder Stone and 1 Creeper", 1, lambda {pbLegendaryBattle("Charged Creeper")}],
         ["Max Repel", 1, lambda {pbRepel(:MAXREPEL, 250)}],
+        ["Hewdraw", 1, lambda {pbTrainerBattle(:Non_Skeleton_Dev, "Hewdraw")}],
+        ["Shadross", 1, lambda {pbTrainerBattle(:Skeleton_Dev, "Shadross")}],
+        ["Hatsune Miku", 1, lambda {pbTrainerBattle(:CREATOR_Minecraft, "Hatsune Miku", nil, false, 0)],
     ]
 end
 
@@ -94,7 +97,7 @@ end
 
 def getEnderChestItems()
     return getTowerItems() if !$PokemonGlobal.towervalues.nil?
-    return [
+    chestitems = [
         [ #common
             [:NUGGET, 5],
             [:SLOWPOKETAIL, 5],
@@ -229,13 +232,22 @@ def getEnderChestItems()
             [:CORNERSTONEMASK, 1],
         ],
         [ #ultimate rare
-            [:EXODIATHEFORBIDDENONE, 1],
-            [:LEFTARMOFTHEFORBIDDENONE, 1],
-            [:RIGHTARMOFTHEFORBIDDENONE, 1],
-            [:LEFTLEGOFTHEFORBIDDENONE, 1],
-            [:RIGHTLEGOFTHEFORBIDDENONE, 1],
         ],
     ]
+    chestitems[4].push([:EXODIATHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:EXODIATHEFORBIDDENONE)
+    chestitems[4].push([:LEFTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:LEFTARMOFTHEFORBIDDENONE)
+    chestitems[4].push([:RIGHTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:RIGHTARMOFTHEFORBIDDENONE)
+    chestitems[4].push([:LEFTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:LEFTLEGOFTHEFORBIDDENONE)
+    chestitems[4].push([:RIGHTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:RIGHTLEGOFTHEFORBIDDENONE)
+
+    if chestitems[4].length == 0
+        chestitems[4] = [
+            [:FIRESPHERE, 1],
+            [:ICESPHERE, 1],
+            [:LIGHTNINGSPHERE, 1],
+            [:MODIFIEDBOOSTERENERGY, 1],
+        ]
+    return chestitems
 end
 
 def cactus()

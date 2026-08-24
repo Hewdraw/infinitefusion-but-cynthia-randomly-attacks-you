@@ -712,6 +712,7 @@ def getTowerItems()
             [:MANKEYPAW, 1],
             [:ABILITYCAPSULE, 5],
             [:BERSERKGENE, 5],
+            [:HYPERGENE, 5],
             [:BANANA, 5],
             [:SAFETYGOGGLES, 1],
             [:PROTECTIVEPADS, 1],
@@ -789,6 +790,7 @@ def getTowerItems()
             [:NAIVEMINT, 1],
             [:SERIOUSMINT, 1],
             [:STICKYBARB, 1],
+            [:NUGGET, 5],
         ],
         [ #rare
             [:EVIOLITE, 1],
@@ -839,6 +841,8 @@ def getTowerItems()
             [:MINDPLATE, 1],
             [:METALPOWDER, 1],
             [:QUICKPOWDER, 1],
+            [:SAGE, 5],
+            [:BERSERKBERRY, 5]
         ],
         [ #super rare
             [:CHOICEBAND, 1],
@@ -851,6 +855,8 @@ def getTowerItems()
             [:HEAVYDUTYBOOTS, 1],
             [:MISTSTONE, 1],
             [:ENCHANTINGTABLE, 1],
+            [:GOLDENAPPLE, 1],
+            [:FOCUSEDBANDANA, 1],
         ],
         [ #secret rare
             [:SACREDASH, 1],
@@ -859,11 +865,12 @@ def getTowerItems()
             #[:ENDCRYSTAL, 1],
             [:ELYTRA, 1],
             #[:ENDERPEARL, 1],
-            [:GOLDENAPPLE, 1],
+            [:ENCHANTEDGOLDENAPPLE, 1],
             [:WELLSPRINGMASK, 1],
             [:HEARTHFLAMEMASK, 1],
             [:CORNERSTONEMASK, 1],
             [:EMERA, 1],
+            [:NETHERITECHESTPLATE, 1],
         ],
         [ #ultimate rare
             [:PYRITE, 1],
