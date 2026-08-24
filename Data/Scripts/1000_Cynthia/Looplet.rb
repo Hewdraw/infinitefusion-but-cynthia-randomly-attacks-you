@@ -623,7 +623,7 @@ LOOPLETS = {
 }
 
 def getLoopletType
-  LOOPLETS.each do |looplet|
+  LOOPLETS.each do |looplet, info|
     return looplet if $PokemonBag.pbHasItem?(looplet)
   end
   return nil
