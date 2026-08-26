@@ -329,7 +329,7 @@ def towerEvent()
         Undertale()
         return if $PokemonGlobal.towervalues.nil?
     when "Pokemart"
-        if $PokemonBag.pbHasItem?(:GOLDRIBBON) > 0
+        if $PokemonBag.pbHasItem?(:GOLDRIBBON)
             Kernel.pbMessage("The clerk spots your Gold Ribbon and offers to pay 50k for it.")
             if Kernel.pbMessage("Sell the Gold Ribbon?", ["Yes", "No"]) == 0
                 $PokemonBag.pbDeleteItem(:GOLDRIBBON, 1)
