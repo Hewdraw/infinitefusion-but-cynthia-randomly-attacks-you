@@ -417,7 +417,16 @@ ItemHandlers::UseOnPokemon.add(:MAXPOTION, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:FRESHWATER, proc { |item, pkmn, scene|
-  next pbHPItem(pkmn, 50, scene)
+  result = pbHPItem(pkmn, 50, scene)
+  next false if !result
+  bottlecap = rand(100)
+  if bottlecap < 50
+    pbReceiveItem(:RUSTYBOTTLECAP)
+  elsif bottlecap < 85
+    pbReceiveItem(:BOTTLECAP)
+  else
+    pbReceiveItem(:GOLDENBOTTLECAP)
+  end
 })
 
 ItemHandlers::UseOnPokemon.add(:SODAPOP, proc { |item, pkmn, scene|

@@ -337,7 +337,10 @@ class Pokemon
 
   def isFusionOf(check_species)
     calc_stats if @materials.nil?
-    return @materials.include?(check_species)
+    check_species = [check_species] if !check_species.is_a?(Array)
+    check_species.each do |species|
+      return true if @materials.include?(species)
+    end
     #return hasBodyOf?(check_species) || hasHeadOf?(check_species)
   end
 

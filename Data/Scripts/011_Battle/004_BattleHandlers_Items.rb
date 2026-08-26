@@ -867,7 +867,7 @@ BattleHandlers::DamageCalcUserItem.add(:LIFEBELL,
 
 BattleHandlers::DamageCalcUserItem.add(:STICK,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:VOCALLEEK)
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:KANTOSIRFETCHD) || user.isFusionOf(:GALARFARFETCHD) || user.isFusionOf(:SIRFETCHD) || user.isFusionOf(:VOCALLEEK) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
   }
 )
 
@@ -880,7 +880,7 @@ BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
+BattleHandlers::DamageCalcUserItem.add(:THUNDERBALL,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:RAICHU)
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:GOROCHU)
@@ -1451,7 +1451,7 @@ BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|
-    next c + 2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:VOCALLEEK) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
+    next c + 2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:KANTOSIRFETCHD) || user.isFusionOf(:GALARFARFETCHD) || user.isFusionOf(:SIRFETCHD) || user.isFusionOf(:VOCALLEEK) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
   }
 )
 
