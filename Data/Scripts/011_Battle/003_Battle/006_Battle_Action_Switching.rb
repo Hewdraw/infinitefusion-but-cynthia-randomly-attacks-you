@@ -382,8 +382,8 @@ class PokeBattle_Battle
         battler.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the frost spikes!", battler.pbThis))
       end
-      if battler.pbOwnSide.effects[PBEffects::ChargeStones] > 0
-        battler.pbOwnSide.effects[PBEffects::ChargeStones] = 0
+      if battler.pbOwnSide.effects[PBEffects::ChargeStones]
+        battler.pbOwnSide.effects[PBEffects::ChargeStones] = false
         pbDisplay(_INTL("{1} absorbed the charge stones!", battler.pbThis))
       end
       if battler.pbOwnSide.effects[PBEffects::StickyWeb]

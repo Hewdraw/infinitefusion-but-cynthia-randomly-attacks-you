@@ -1223,10 +1223,10 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
       target.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
       @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
     end
-    if target.pbOwnSide.effects[PBEffects::ChargeStones] > 0 ||
-        target.pbOpposingSide.effects[PBEffects::ChargeStones] > 0
-      target.pbOwnSide.effects[PBEffects::ChargeStones] = 0
-      target.pbOpposingSide.effects[PBEffects::ChargeStones] = 0
+    if target.pbOwnSide.effects[PBEffects::ChargeStones] ||
+        target.pbOpposingSide.effects[PBEffects::ChargeStones]
+      target.pbOwnSide.effects[PBEffects::ChargeStones] = false
+      target.pbOpposingSide.effects[PBEffects::ChargeStones] = false
       @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
     end
     if target.pbOwnSide.effects[PBEffects::StickyWeb] ||

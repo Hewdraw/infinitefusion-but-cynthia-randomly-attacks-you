@@ -21,8 +21,8 @@ SHADROSS_STOCK = {
   },
   :BOTTLECAP => {
     "badges" => 0,
-    "cost" => 3,
-    "amount" => 6,
+    "cost" => 1,
+    "amount" => 2,
   },
   :GOLDENBOTTLECAP => {
     "badges" => 0,

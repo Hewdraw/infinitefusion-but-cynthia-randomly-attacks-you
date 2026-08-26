@@ -2029,7 +2029,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHARGEDDEBRIS,
     next if !move.physicalMove?
     next if target.pbOpposingSide.effects[PBEffects::ChargeStones]
     battle.pbShowAbilitySplash(target)
-    target.pbOpposingSide.effects[PBEffects::ChargeStones] += 1
+    target.pbOpposingSide.effects[PBEffects::ChargeStones] = true
     battle.pbDisplay(_INTL("Charge stones were scattered all around {1}'s feet!",
                             target.pbOpposingTeam(true)))
     battle.pbHideAbilitySplash(target)
