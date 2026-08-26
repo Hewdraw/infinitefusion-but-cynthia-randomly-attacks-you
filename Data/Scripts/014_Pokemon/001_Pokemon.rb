@@ -341,7 +341,7 @@ class Pokemon
     check_species.each do |species|
       return true if @materials.include?(species)
     end
-    #return hasBodyOf?(check_species) || hasHeadOf?(check_species)
+    return false
   end
 
 
