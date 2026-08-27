@@ -304,6 +304,7 @@ class PokeBattle_Move
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
     # Get the move's type
     type = @calcType   # nil is treated as physical
+    type = :QMARKS if type == :STELLAR
     # Calculate whether this hit deals critical damage
     target.damageState.critical = pbIsCritical?(user,target)
     # Calcuate base power of move
