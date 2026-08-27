@@ -614,12 +614,14 @@ def Undertale()
     $game_system.bgm_pause
     $game_system.bgs_pause
   end
-  UndertaleCommand(scene)
+  result = UndertaleCommand(scene)
+  scene.pbEndBattle
   if $game_system && $game_system.is_a?(Game_System)
     $game_system.bgm_resume(playingBGM)
     $game_system.bgs_resume(playingBGS)
   end
   Input.update
+  return result
 end
 
 def UndertaleCommand(scene)
@@ -629,19 +631,20 @@ def UndertaleCommand(scene)
     pbSEPlay("MenuSelect")
     case cmd
     when 0    # Fight
+      if $Trainer.party.length == 0
+        return false
+      end
       $PokemonGlobal.nextBattleBack = "Lava"
       $PokemonGlobal.nextBattleBGM = nil
       if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2)
-        scene.pbEndBattle
-        return
+        return true
       end
     when 1    # Act
       scene.UndertaleActMenu()
     when 2    # Item
       scene.UndertaleItemMenu()
     when 3    # Mercy
-      scene.pbEndBattle
-      return
+      return true
     end
   end
 end
