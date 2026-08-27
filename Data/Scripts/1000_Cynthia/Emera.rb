@@ -634,8 +634,8 @@ EMERADICT = {
         :name => "Red Chain",
         :description => "Opposing Pokemon with Legendary Pressure lose 1 stage in all stats at the start of the battle.",
         :rarity => :LEGENDARY,
-        :tutormove => :REDSTONEDUSTER,
-        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:ELECTRIC)},
+        :tutormove => :MYSTICALPOWER,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
     },
     # :REDSTONEHEART => {
     #     :name => "Redstone Heart",

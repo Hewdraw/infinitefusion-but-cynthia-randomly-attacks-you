@@ -2927,7 +2927,7 @@ end
 
 class PokeBattle_Move_195 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    baseDmg *= 2 if @battle.field.terrain == :Electric && user.affectedByTerrain?
+    baseDmg *= 2 if @battle.field.terrain == :Electric && target.affectedByTerrain?
     return baseDmg
   end
 end
@@ -5956,7 +5956,7 @@ class PokeBattle_Move_358 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_358 < PokeBattle_Move
+class PokeBattle_Move_359 < PokeBattle_Move
   def pbAdditionalEffect(user, target)
     randomUp = []
     randomDown = []
@@ -5978,7 +5978,7 @@ class PokeBattle_Move_358 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_359 < PokeBattle_Move
+class PokeBattle_Move_360 < PokeBattle_Move
   def ignoresReflect?
     return true;
   end
@@ -6012,5 +6012,39 @@ class PokeBattle_Move_359 < PokeBattle_Move
 
   def pbRecoilDamage(user,target)
     return (target.damageState.totalHPLost/3.0).round
+  end
+end
+
+class PokeBattle_Move_361 < PokeBattle_Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 1.5 if @battle.field.terrain == :Misty && user.affectedByTerrain?
+    return baseDmg
+  end
+
+  def worksWithNoTargets?;     return true; end
+  def pbNumHits(user,targets); return 1;    end
+
+  def pbMoveFailed?(user,targets)
+    if !@battle.moldBreaker
+      bearer = @battle.pbCheckGlobalAbility(:DAMP)
+      if bearer!=nil
+        @battle.pbShowAbilitySplash(bearer)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
+        else
+          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
+             user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
+        end
+        @battle.pbHideAbilitySplash(bearer)
+        return true
+      end
+    end
+    return false
+  end
+
+  def pbSelfKO(user)
+    return if user.fainted?
+    user.pbReduceHP(user.hp,false)
+    user.pbItemHPHealCheck
   end
 end

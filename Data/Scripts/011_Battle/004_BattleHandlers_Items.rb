@@ -712,7 +712,7 @@ BattleHandlers::DamageCalcUserItem.add(:BEEGSUCK,
 
 BattleHandlers::DamageCalcUserItem.add(:LIVEORB,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 2 if ["0E0", "170", "356"]
+    mults[:base_damage_multiplier] *= 2 if ["0E0", "170", "356", "360"]
   }
 )
 

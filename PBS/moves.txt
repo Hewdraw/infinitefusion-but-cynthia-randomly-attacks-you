@@ -854,7 +854,7 @@
 883,DRAGONCHEER,Dragon Cheer,0AA,0,DRAGON,Status,0,10,0,User,4,,"todo"
 884,HYDROSTEAM,Hydro Steam,000,80,WATER,Special,100,15,0,NearOther,0,bef,"ur stinky" #hardcoded
 885,THUNDERCLAP,Thunder Clap,116,70,ELECTRIC,Special,100,5,0,NearOther,1,bef,"ur stinky"
-886,MISTYEXPLOSION,Misty Explosion,000,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,"todo"
+886,MISTYEXPLOSION,Misty Explosion,361,100,FAIRY,Special,100,5,0,AllNearOthers,0,bef,"todo"
 887,STEELROLLER,Steel Roller,233,130,STEEL,Physical,100,5,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 888,STEELBEAM,Steel Beam,170,140,STEEL,Special,95,5,0,NearOther,0,bef,"ur stinky"
 889,POUNCE,Pounce,044,50,BUG,Physical,100,20,100,NearOther,0,abef,"ur stinky"
