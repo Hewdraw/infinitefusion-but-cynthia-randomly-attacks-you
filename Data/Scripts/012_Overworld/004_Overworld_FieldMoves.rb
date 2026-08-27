@@ -687,7 +687,7 @@ HiddenMoveHandlers::UseMove.add(:SECRETPOWER, proc { |move, pokemon|
 
 
 HiddenMoveHandlers::CanUseMove.add(:RELICSONG, proc { |move, pokemon, showmsg|
-  if  !(pokemon.isFusionOf(:MELOETTA_A) || pokemon.isFusionOf(:MELOETTA_P))
+  if  !pokemon.isFusionOf([:MELOETTA_A, :MELOETTA_P])
     pbMessage(_INTL("It won't have any effect")) if showmsg
     next false
   end
@@ -737,7 +737,7 @@ def changeMeloettaForm(pokemon)
 end
 
 HiddenMoveHandlers::CanUseMove.add(:TRIPLEBAKA, proc { |move, pokemon, showmsg|
-  if  !(pokemon.isFusionOf(:VOCALLEEK) || pokemon.isFusionOf(:VOCALCELL) || pokemon.isFusionOf(:VOCALDRILL))
+  if  !pokemon.isFusionOf([:VOCALLEEK, :VOCALCELL, :VOCALDRILL])
     pbMessage(_INTL("It won't have any effect")) if showmsg
     next false
   end

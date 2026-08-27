@@ -276,7 +276,7 @@ class PokeBattle_Move
       return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
     end
     if specialMove?
-      if user.hasActiveItem?(:LUCKYPUNCH) && (user.isFusionOf(:HAPPINY) || user.isFusionOf(:CHANSEY) || user.isFusionOf(:BLISSEY))
+      if user.hasActiveItem?(:LUCKYPUNCH) && user.isFusionOf([:HAPPINY, :CHANSEY, :BLISSEY])
         return target.spatk, target.stages[:SPECIAL_ATTACK] + 6
       end
       return user.attack * 0.9, user.stages[:ATTACK] + 6 if user.hasActiveEmera?(:AURORDROP) && attack * 0.9 > spatk

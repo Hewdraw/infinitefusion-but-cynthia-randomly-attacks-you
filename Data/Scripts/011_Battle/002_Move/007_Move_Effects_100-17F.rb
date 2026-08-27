@@ -5441,7 +5441,7 @@ class PokeBattle_Move_329 < PokeBattle_SleepMove
   def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
     return if numHits == 0
     return if user.fainted? || user.effects[PBEffects::Transform]
-    return if !(user.isFusionOf(:MELOETTA_A) || user.isFusionOf(:MELOETTA_P))
+    return if !user.isFusionOf([:MELOETTA_A, :MELOETTA_P])
     return if user.hasActiveAbility?([:SHEERFORCE, :VOCALIZE, :VOCALOID])
 
     is_meloetta_A = user.isFusionOf(:MELOETTA_A)

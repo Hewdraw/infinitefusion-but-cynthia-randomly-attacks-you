@@ -543,7 +543,7 @@ class PokeBattle_Battler
   def pbAttract(user,msg=nil)
     agender = user.gender
     ogender = gender
-    if user.isFusionOf(:FERROSEED) || user.isFusionOf(:FERROTHORN) || isFusionOf(:FERROSEED) || isFusionOf(:FERROTHORN)
+    if user.isFusionOf([:FERROSEED, :FERROTHORN]) || isFusionOf([:FERROSEED, :FERROTHORN])
       if agender==2 || ogender==2 || agender==ogender
         @battle.pbDisplay("But it failed.")
         @battle.pbDisplay("Bad for them.")

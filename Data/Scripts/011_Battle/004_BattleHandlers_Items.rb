@@ -867,7 +867,12 @@ BattleHandlers::DamageCalcUserItem.add(:LIFEBELL,
 
 BattleHandlers::DamageCalcUserItem.add(:STICK,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:FARFETCHD) || user.isFusionOf(:KANTOSIRFETCHD) || user.isFusionOf(:GALARFARFETCHD) || user.isFusionOf(:SIRFETCHD) || user.isFusionOf(:VOCALLEEK) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:FARFETCHD)
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:KANTOSIRFETCHD)
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:GALARFARFETCHD)
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:SIRFETCHD)
+    mults[:final_damage_multiplier] *= 1.2 if user.isFusionOf(:VOCALLEEK)
+    mults[:final_damage_multiplier] *= 1.2 if user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?
   }
 )
 
@@ -1110,7 +1115,8 @@ BattleHandlers::DamageCalcUserItem.add(:CORNERSTONEMASK,
 
 BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
+    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf(:GENESECT)
+    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
   }
 )
 
@@ -1827,7 +1833,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:BEEGSUCK,
 BattleHandlers::UserItemAfterMoveUse.add(:MAGMARIZER,
   proc { |item,user,targets,move,numHits,battle|
     next if !user.canHeal?
-    next unless user.isFusionOf(:MAGBY) || user.isFusionOf(:MAGMAR) || user.isFusionOf(:MAGMORTAR)
+    next unless user.isFusionOf([:MAGBY, :MAGMAR, :MAGMORTAR])
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage<=0
@@ -1840,7 +1846,7 @@ BattleHandlers::UserItemAfterMoveUse.add(:MAGMARIZER,
 BattleHandlers::UserItemAfterMoveUse.add(:ELECTIRIZER,
   proc { |item,user,targets,move,numHits,battle|
     next if !user.canHeal?
-    next unless user.isFusionOf(:ELEKID) || user.isFusionOf(:ELECTABUZZ) || user.isFusionOf(:ELECTIVIRE)
+    next unless user.isFusionOf([:ELEKID, :ELECTABUZZ, :ELECTIVIRE])
     next unless move.punchingMove?
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
@@ -1924,7 +1930,7 @@ BattleHandlers::EndOfMoveStatRestoreItem.add(:DRAGONSCALE,
       reducedStats = true
     end
     next false if !reducedStats
-    next false unless battler.isFusionOf(:HORSEA) || battler.isFusionOf(:SEADRA) || battler.isFusionOf(:KINGDRA)
+    next false unless battler.isFusionOf([:HORSEA, :SEADRA, :KINGDRA])
     next false if battler.pokemon.battlevariables[:dragonscale]
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbThis}'s #{itemName}") if forced
@@ -2137,7 +2143,7 @@ BattleHandlers::EORHealingItem.add(:ROTOMCATALOG,
 BattleHandlers::EORHealingItem.add(:PROTECTOR,
   proc { |item,battler,battle|
     next if !battler.canHeal?
-    next unless battler.isFusionOf(:RHYHORN) || battler.isFusionOf(:RHYDON) || battler.isFusionOf(:RHYPERIOR)
+    next unless battler.isFusionOf([:RHYHORN, :RHYDON, :RHYPERIOR])
     battle.pbCommonAnimation("UseItem",battler)
     battler.pbRecoverHP(battler.totalhp/16)
     battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
@@ -2352,7 +2358,7 @@ BattleHandlers::ItemOnSwitchIn.add(:DEEPSEASCALE,
 
 BattleHandlers::ItemOnSwitchIn.add(:WHIPPEDDREAM,
   proc { |item,user,target,move,battle|
-    next unless user.isFusionOf(:SLURPUFF) || user.isFusionOf(:SWIRLIX)
+    next unless user.isFusionOf([:SLURPUFF, :SWIRLIX])
     battle.pbStartTerrain(user, :Misty)
     user.pbUseMove(:MISTYEXPLOSION)
   }
