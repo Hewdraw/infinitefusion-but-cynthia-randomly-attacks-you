@@ -85,3 +85,13 @@ def tripleFusion(item=false)
     end
     return false
 end
+
+def increaseInevitable()
+    $PokemonGlobal.cynthiachance += 1
+    $PokemonGlobal.cynthiadoubleschance += 1
+    $PokemonGlobal.cynthiatripleschance += 1
+    $PokemonGlobal.cynthiafieldchance += 5000
+    $PokemonGlobal.cynthiaupgradechance += 1
+    $PokemonGlobal.cynthiahandschance += 1
+    $PokemonGlobal.hatsunemikuchance += 1
+end
