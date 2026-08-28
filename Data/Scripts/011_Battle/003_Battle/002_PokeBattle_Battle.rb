@@ -181,6 +181,10 @@ class PokeBattle_Battle
         if trainer.name == "Hewdraw"
           @broken_buttons.push(1)
         end
+        if trainer.name == "Shadross?"
+          @broken_buttons.push(1)
+          @broken_buttons.push(3)
+        end
       end
     end
     @broken_buttons.push(3) if $PokemonGlobal.enderchest
