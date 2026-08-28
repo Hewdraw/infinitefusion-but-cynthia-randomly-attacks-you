@@ -1594,6 +1594,8 @@ def goldenSkeletonBattle()
     pokemon.status = mon.status
     pokemon.poke_ball = :LEVELBALL
     pokemon.shiny = mon.shiny
+    pokemon.head_shiny = mon.head_shiny
+    pokemon.body_shiny = mon.body_shiny
     pokemon.natural_shiny = mon.natural_shiny
     pokemon.hiddenPowerType = mon.hiddenPowerType
     pokemon.megaform = mon.megaform
