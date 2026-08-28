@@ -356,7 +356,6 @@ class PokeBattle_Battle
         b.pbAbilitiesOnDamageTaken(oldHP)
         b.pbFaint if b.fainted?
       end
-      sides[side].effects[PBEffects::GmaxWildfire] -= 1
     end
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
@@ -697,6 +696,8 @@ class PokeBattle_Battle
       # Pledge Sea of Fire
       pbEORCountDownSideEffect(side,PBEffects::SeaOfFire,
          _INTL("The sea of fire around {1} disappeared!",@battlers[side].pbTeam(true)))
+      pbEORCountDownSideEffect(side,PBEffects::GmaxWildfire,
+         _INTL("The sea of wildfire around {1} disappeared!",@battlers[side].pbTeam(true)))
       # Pledge Swamp
       pbEORCountDownSideEffect(side,PBEffects::Swamp,
          _INTL("The swamp around {1} disappeared!",@battlers[side].pbTeam(true)))
