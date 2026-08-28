@@ -2517,7 +2517,7 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
       pkmn.status = :POISON
       next
     end
-    if abilities.include?(:GUTS) || abilities.include?(:GUTSPLUS) || abilities.include?(:FLAREBOOST) || abilities.include?(:WILDFIRE)
+    if abilities.include?(:GUTS) || abilities.include?(:GUTSPLUS) || abilities.include?(:FLAREBOOST) || abilities.include?(:FLAREBOOSTPLUS) || abilities.include?(:WILDFIRE)
       pkmn.status = :BURN
       next
     end
@@ -2543,7 +2543,7 @@ ItemHandlers::UseInField.add(:HEALIES, proc { |item|
       pkmn.status = :POISON
       next
     end
-    if abilities.include?(:GUTS) || abilities.include?(:GUTSPLUS) || abilities.include?(:FLAREBOOST) || abilities.include?(:WILDFIRE)
+    if abilities.include?(:GUTS) || abilities.include?(:GUTSPLUS) || abilities.include?(:FLAREBOOST) || abilities.include?(:FLAREBOOST) || abilities.include?(:WILDFIRE)
       pkmn.status = :BURN
       next
     end

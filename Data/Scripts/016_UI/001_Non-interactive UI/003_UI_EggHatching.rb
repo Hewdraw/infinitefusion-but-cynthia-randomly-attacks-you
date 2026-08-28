@@ -237,7 +237,7 @@ Events.onStepTaken += proc { |_sender,_e|
     egg.steps_to_hatch -= 10000
     egg.steps_to_hatch -= 1 if isWearingClothes(CLOTHES_BREEDER)
     for i in $Trainer.pokemon_party
-      next if !i.hasAbility?(:FLAMEBODY) && !i.hasAbility?(:MAGMAARMOR)
+      next if !i.hasAbility?([:FLAMEBODY, :FLAMEBODYPLUS, :MAGMAARMOR])
       egg.steps_to_hatch -= 1
       break
     end

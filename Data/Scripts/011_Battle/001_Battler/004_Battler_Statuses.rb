@@ -89,7 +89,7 @@ class PokeBattle_Battler
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when :BURN
-      hasImmuneType |= pbHasType?(:FIRE) && !hasActiveAbility?([:WILDFIRE, :GUTS, :GUTSPLUS, :FLAREBOOST])
+      hasImmuneType |= pbHasType?(:FIRE) && !hasActiveAbility?([:WILDFIRE, :GUTS, :GUTSPLUS, :FLAREBOOST, :FLAREBOOSTPLUS])
     when :PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && Settings::MORE_TYPE_EFFECTS && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
     when :FROZEN

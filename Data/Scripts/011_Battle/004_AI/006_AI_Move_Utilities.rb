@@ -125,7 +125,7 @@ class PokeBattle_AI
       when :GROUND
         return true if (target.airborne? && !move.hitsFlyingTargets?) || target.hasActiveAbility?([:EARTHEATER, :EARTHEATERPLUS])
       when :FIRE
-        return true if target.hasActiveAbility?([:FLASHFIRE, :HEATSINK])
+        return true if target.hasActiveAbility?([:FLASHFIRE, :FLASHFIREPLUS, :HEATSINK, :WIRED])
       when :WATER
         return true if target.hasActiveAbility?([:DRYSKIN,:DRYSKINPLUS,:STORMDRAIN,:WATERABSORB])
       when :GRASS

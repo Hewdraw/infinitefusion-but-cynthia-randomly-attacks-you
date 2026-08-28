@@ -2366,9 +2366,9 @@ class PokeBattle_AI
       if ((@battle.pbCheckGlobalAbility(:DARKAURA) || (switchin && switchin.ability_id == :DARKAURA)) && type == :DARK) ||
          ((@battle.pbCheckGlobalAbility(:FAIRYAURA) || (switchin && switchin.ability_id == :FAIRYAURA)) && type == :FAIRY)
         if @battle.pbCheckGlobalAbility(:AURABREAK) || (switchin && switchin.ability_id == :AURABREAK)
-          multipliers[:base_damage_multiplier] *= 2 / 3.0
-          multipliers[:base_damage_multiplier] *= 4 / 3.0
+          multipliers[:base_damage_multiplier] /= 4 / 3.0
         else
+          multipliers[:base_damage_multiplier] *= 4 / 3.0
         end
       end
       user.getAllAbilities.each do |ability|

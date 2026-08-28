@@ -347,9 +347,17 @@ class PokeBattle_Move
     if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
        (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
       if @battle.pbCheckGlobalAbility(:AURABREAK)
-        multipliers[:base_damage_multiplier] *= 2 / 3.0
+        multipliers[:base_damage_multiplier] /= 4 / 3.0
       else
         multipliers[:base_damage_multiplier] *= 4 / 3.0
+      end
+    end
+    if (@battle.pbCheckGlobalAbility(:DARKAURAPLUS) && type == :DARK) ||
+       (@battle.pbCheckGlobalAbility(:FAIRYAURAPLUS) && type == :FAIRY)
+      if @battle.pbCheckGlobalAbility(:AURABREAK)
+        multipliers[:base_damage_multiplier] /= 3 / 2.0
+      else
+        multipliers[:base_damage_multiplier] *= 3 / 2.0
       end
     end
     # Ability effects that alter damage

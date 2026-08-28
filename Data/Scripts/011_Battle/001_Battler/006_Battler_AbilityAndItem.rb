@@ -82,6 +82,27 @@ class PokeBattle_Battler
   def pbAbilitiesOnDamageTaken(oldHP,newHP=-1)
     return false if !abilityActive?
     newHP = @hp if newHP<0
+    if user.hasActiveAbility?(:EMERGENCYEXITPLUS) && oldHP>adjustedTotalhp/3 && newHP <= adjustedTotalhp/3
+      if !(self.effects[PBEffects::SkyDrop]>=0 || self.inTwoTurnAttack?("0CE")) && !@battle.pbAllFainted?(self.idxOpposingSide) && @battle.pbCanSwitch?(self.index) && @battle.pbCanChooseNonActive?(self.index)
+        @battle.pbShowAbilitySplash(self,true)
+        @battle.pbHideAbilitySplash(self)
+        if !Poke@Battle_SceneConstants::USE_ABILITY_SPLASH
+          @battle.pbDisplay(_INTL("{1}'s {2} activated!",self.pbThis,self.abilityName))
+        end
+        @battle.pbDisplay(_INTL("{1} went back to {2}!",
+           self.pbThis,@battle.pbGetOwnerName(self.index)))
+        if @battle.endOfRound   # Just switch out
+          @battle.scene.pbRecall(self.index) if !self.fainted?
+          self.pbAbilitiesOnSwitchOut   # Inc. primordial weather check
+          return true
+        end
+        newPkmn = @battle.pbGetReplacementPokemonIndex(self.index)   # Owner chooses
+        return false if newPkmn<0   # Shouldn't ever do this
+        @battle.pbRecallAndReplace(self.index,newPkmn)
+        @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
+        return true
+      end
+    end
     return false if oldHP<adjustedTotalhp/2 || newHP>=adjustedTotalhp/2   # Didn't drop below half
     ret = BattleHandlers.triggerAbilityOnHPDroppedBelowHalf(self.ability,self,@battle)
     return ret   # Whether self has switched out

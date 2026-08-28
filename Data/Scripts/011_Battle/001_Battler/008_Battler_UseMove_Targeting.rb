@@ -133,6 +133,7 @@ class PokeBattle_Battler
     # Lightning Rod
     targets = pbChangeTargetByAbility(:LIGHTNINGROD,:ELECTRIC,move,user,targets,priority,nearOnly)
     targets = pbChangeTargetByAbility(:HEATSINK,:FIRE,move,user,targets,priority,nearOnly)
+    targets = pbChangeTargetByAbility(:FLASHFIREPLUS,:FIRE,move,user,targets,priority,nearOnly)
     targets = pbChangeTargetByAbility(:POLAR,:ICE,move,user,targets,priority,nearOnly)
     # Storm Drain
     targets = pbChangeTargetByAbility(:STORMDRAIN,:WATER,move,user,targets,priority,nearOnly)

@@ -16,6 +16,12 @@ BattleHandlers::SpeedCalcAbility.add(:COMPETITIVEPLUS,
   }
 )
 
+BattleHandlers::SpeedCalcAbility.add(:FLAREBOOSTPLUS,
+  proc { |ability,battler,mult|
+    next mult * 1.1 if user.burned?
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:CURSEDBODYPLUS,
   proc { |ability,battler,mult|
     next mult*2.0/3.0
@@ -708,7 +714,23 @@ BattleHandlers::MoveImmunityTargetAbility.add(:FLASHFIRE,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:FLASHFIRE, :WILDFIRE, :WIRED)
+BattleHandlers::MoveImmunityTargetAbility.copy(:FLASHFIRE, :FLASHFIREPLUS, :WILDFIRE)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:WIRED,
+  proc { |ability,target,user,move,type,battle|
+    next false if user.index==target.index
+    next false if type != :FIRE
+    battle.pbShowAbilitySplash(target)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
+         target.pbThis,target.abilityName,move.name))
+    end
+    battle.pbHideAbilitySplash(target)
+    next true
+  }
+)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:LIGHTNINGROD,
   proc { |ability,target,user,move,type,battle|
@@ -1167,7 +1189,7 @@ BattleHandlers::DamageCalcUserAbility.add(:FLAREBOOST,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:FLAREBOOST, :WILDFIRE)
+BattleHandlers::DamageCalcUserAbility.copy(:FLAREBOOST, :FLAREBOOST, :WILDFIRE)
 
 BattleHandlers::DamageCalcUserAbility.add(:FLASHFIRE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1177,7 +1199,7 @@ BattleHandlers::DamageCalcUserAbility.add(:FLASHFIRE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:FLASHFIRE, :WILDFIRE)
+BattleHandlers::DamageCalcUserAbility.copy(:FLASHFIRE, :FLASHFIREPLUS, :WILDFIRE)
 
 BattleHandlers::DamageCalcUserAbility.add(:FLOWERGIFT,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1527,6 +1549,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:FILTER,
 
 BattleHandlers::DamageCalcTargetAbility.copy(:FILTER,:SOLIDROCK)
 
+BattleHandlers::DamageCalcTargetAbility.add(:FILTERPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    if Effectiveness.super_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 0.5
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:ANTICIPATIONPLUS,
   proc { |ability,target,user,move,mults,baseDmg,type|
     next if battler.pokemon.battlevariables[:anticipationplus]
@@ -1548,6 +1578,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:FLOWERGIFT,
 BattleHandlers::DamageCalcTargetAbility.add(:FLUFFY,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] *= 2 if move.calcType == :FIRE
+    mults[:final_damage_multiplier] /= 2 if move.contactMove?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FLUFFYPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if move.contactMove?
   }
 )
@@ -2101,6 +2137,22 @@ BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
   }
 )
 
+BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODYPLUS,
+  proc { |ability,target,user,move,battle|
+    next if !move.physicalMove?
+    battle.pbShowAbilitySplash(target)
+    if user.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
+       user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} burned {3}!",target.pbThis,target.abilityName,user.pbThis(true))
+      end
+      user.pbBurn(target,msg)
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
 BattleHandlers::TargetAbilityOnHit.add(:GOOEY,
   proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
@@ -2393,6 +2445,27 @@ BattleHandlers::UserAbilityOnHit.add(:FIRETOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
     next if battle.pbRandom(100)>=30
+    battle.pbShowAbilitySplash(user)
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      battle.pbShowAbilitySplash(target)
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      end
+      battle.pbHideAbilitySplash(target)
+    elsif target.pbCanBurn?(user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+      msg = nil
+      if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        msg = _INTL("{1}'s {2} burned {3}!",user.pbThis,user.abilityName,target.pbThis(true))
+      end
+      target.pbBurn(user,msg)
+    end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:FLASHFIREPLUS,
+  proc { |ability,user,target,move,battle|
+    next if battle.pbRandom(100)>=10
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -3304,6 +3377,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:FAIRYAURA,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:FAIRYAURA, :FAIRYAURAPLUS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:FOREWARN,
   proc { |ability,battler,battle|
