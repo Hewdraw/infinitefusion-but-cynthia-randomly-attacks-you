@@ -356,6 +356,7 @@ class PokeBattle_Battle
         b.pbAbilitiesOnDamageTaken(oldHP)
         b.pbFaint if b.fainted?
       end
+      sides[side].effects[PBEffects::GmaxWildfire] -= 1
     end
     # Status-curing effects/abilities and HP-healing items
     priority.each do |b|
