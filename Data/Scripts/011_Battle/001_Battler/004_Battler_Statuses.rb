@@ -84,7 +84,7 @@ class PokeBattle_Battler
     when :SLEEP
       # No type is immune to sleep
     when :POISON
-      if !hasActiveAbility?([:POISONHEAL, :GUTS, :GUTSPLUS]) || !(user && user.hasActiveAbility?(:CORROSION))
+      if !hasActiveAbility?([:POISONHEAL, :GUTS, :GUTSPLUS]) || !(user && user.hasActiveAbility?([:CORROSION, :CORROSIONPLUS]))
         hasImmuneType |= pbHasType?(:POISON)
         hasImmuneType |= pbHasType?(:STEEL)
       end
@@ -180,7 +180,7 @@ class PokeBattle_Battler
     case newStatus
     when :POISON
       # NOTE: target will have Synchronize, so it can't have Corrosion.
-      if !(target && target.hasActiveAbility?(:CORROSION))
+      if !(target && target.hasActiveAbility?([:CORROSION, :CORROSIONPLUS]))
         hasImmuneType |= pbHasType?(:POISON)
         hasImmuneType |= pbHasType?(:STEEL)
       end

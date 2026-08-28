@@ -893,6 +893,7 @@ def getTowerItems()
     items[3].push([:HPMAX, 1]) if !$PokemonBag.pbHasItem?(:HPMAX)
     items[3].push([:GOLDENBANANA, 1]) if !$PokemonBag.pbHasItem?(:GOLDENBANANA)
     items[3].push([:MECHUMETAL, 1]) if !$PokemonBag.pbHasItem?(:MECHUMETAL)
+    items[3].push([:RARESTBONE, 1]) if !$PokemonBag.pbHasItem?(:RARESTBONE)
 
     items[4].push([:OMNIDRIVE, 1]) if !$PokemonBag.pbHasItem?(:OMNIDRIVE)
     items[4].push([:TUTORMACHINE, 1]) if !$PokemonBag.pbHasItem?(:TUTORMACHINE)

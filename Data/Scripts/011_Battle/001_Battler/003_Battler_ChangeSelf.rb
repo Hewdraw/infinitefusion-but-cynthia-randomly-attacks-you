@@ -103,7 +103,7 @@ class PokeBattle_Battler
     @battle.scene.pbFaintBattler(self) if !(@ability_id == :DEATH)
     pbInitEffects(false)
     if self.hasActiveAbility?(:EXPLOSIVE, true) || self.hasActiveAbility?(:CHARGEDEXPLOSIVE, true)
-      if !@battle.pbCheckGlobalAbility(:DAMP)
+      if !@battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
         @battle.pbShowAbilitySplash(self)
         @battle.pbPriority(true).each do |b|
           next if !b

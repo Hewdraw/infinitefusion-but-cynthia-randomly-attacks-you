@@ -35,6 +35,14 @@ class PokeBattle_AI
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
+    if user.hasActiveAbility?([:CORROSIONPLUS])
+      ret = Effectiveness::SUPER_EFFECTIVE_ONE if defType == :STEEL &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
+    if user.hasActiveAbility?([:DRAGONSMAWPLUS])
+      ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if defType == :FAIRY &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
     # Miracle Eye
     if target.effects[PBEffects::MiracleEye]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK &&
@@ -115,11 +123,11 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill
       case type
       when :GROUND
-        return true if (target.airborne? && !move.hitsFlyingTargets?) || target.hasActiveAbility?([:EARTHEATER])
+        return true if (target.airborne? && !move.hitsFlyingTargets?) || target.hasActiveAbility?([:EARTHEATER, :EARTHEATERPLUS])
       when :FIRE
         return true if target.hasActiveAbility?([:FLASHFIRE, :HEATSINK])
       when :WATER
-        return true if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB])
+        return true if target.hasActiveAbility?([:DRYSKIN,:DRYSKINPLUS,:STORMDRAIN,:WATERABSORB])
       when :GRASS
         return true if target.hasActiveAbility?(:SAPSIPPER)
       when :ELECTRIC
@@ -134,7 +142,7 @@ class PokeBattle_AI
       return true if move.canMagicCoat? && target.hasActiveAbility?([:MAGICBOUNCE, :ENDER, :POWERBOUNCE, :PRANKINGMIRROR]) &&
                      target.opposes?(user)
       return true if move.soundMove? && target.hasActiveAbility?(:SOUNDPROOF)
-      return true if move.bombMove? && target.hasActiveAbility?([:BULLETPROOF,:ENDER])
+      return true if move.bombMove? && target.hasActiveAbility?([:BULLETPROOF, :BULLETPROOFPLUS,:ENDER])
       if move.powderMove?
         return true if target.pbHasType?(:GRASS)
         return true if target.hasActiveAbility?(:OVERCOAT)

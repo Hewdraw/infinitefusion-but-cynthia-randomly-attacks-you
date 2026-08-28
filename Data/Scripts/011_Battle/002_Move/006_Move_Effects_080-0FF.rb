@@ -2603,6 +2603,7 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
     else
       @healAmount = (user.totalhp/4.0).round
     end
+    @healAmount = (user.totalhp*7.0/10.0).round if user.hasActiveAbility?(:CHLOROPHYLLPLUS)
   end
 
   def pbHealAmount(user)
@@ -2783,7 +2784,7 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
 
   def pbMoveFailed?(user,targets)
     if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility(:DAMP)
+      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
       if bearer!=nil
         @battle.pbShowAbilitySplash(bearer)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH

@@ -428,6 +428,14 @@ class PokeBattle_Battler
         @battle.pbCommonAnimation("MegaEvolution2",user)
       end
     end
+    if target.hasActiveAbility?(:COLORCHANGEPLUS) && !move.callsAnotherMove? && !move.snatched && target.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
+      typeName = GameData::Type.get(move.calcType).name
+      @battle.pbShowAbilitySplash(target)
+      target.pbChangeTypes(move.calcType)
+      @battle.pbDisplay(_INTL("{1}'s {2} made it the {3} type!",target.pbThis,
+         target.abilityName,typeName))
+      @battle.pbHideAbilitySplash(target)
+    end
     #---------------------------------------------------------------------------
     magicCoater = -1
     magicBouncer = -1
@@ -584,11 +592,11 @@ class PokeBattle_Battler
     end
     # Dancer
     if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && realNumHits > 0 &&
-      !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility(:DANCER) &&
+      !move.snatched && magicCoater < 0 && @battle.pbCheckGlobalAbility([:DANCER, :DANCERPLUS]) &&
       move.danceMove?
       dancers = []
       @battle.pbPriority(true).each do |b|
-        dancers.push(b) if b.index != user.index && b.hasActiveAbility?(:DANCER)
+        dancers.push(b) if (b.index != user.index && b.hasActiveAbility?(:DANCER)) || b.hasActiveAbility?(:DANCERPLUS)
       end
       while dancers.length > 0
         nextUser = dancers.pop

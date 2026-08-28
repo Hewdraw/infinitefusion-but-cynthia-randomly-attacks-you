@@ -1512,7 +1512,7 @@ BattleHandlers::TargetItemOnHit.add(:AIRBALLOON,
 
 BattleHandlers::TargetItemOnHit.add(:BUNDLEOFBALLOONS,
   proc { |item,target,user,move,battle|
-    if move.type == :FIRE && (!battle.pbCheckGlobalAbility(:DAMP) || battle.moldBreaker)
+    if move.type == :FIRE && (!battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS]) || battle.moldBreaker)
       battle.pbDisplay(_INTL("{1}'s balloons exploded!",target.pbThis))
       if target.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
         battle.scene.pbDamageAnimation(target)

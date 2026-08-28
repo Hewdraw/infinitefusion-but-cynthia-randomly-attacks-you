@@ -169,7 +169,7 @@ class PokeBattle_Move
     end
     # Disguise will take the damage
     if !@battle.moldBreaker &&
-       !target.pokemon.battlevariables[:disguise] && target.hasActiveAbility?(:DISGUISE)
+       !target.pokemon.battlevariables[:disguise] && target.hasActiveAbility?([:DISGUISE, :DISGUISEPLUS])
       target.damageState.disguise = true
       return
     end
@@ -320,7 +320,7 @@ class PokeBattle_Move
       end
 
       dmg = target.totalhp/8
-      target.pbReduceHP(dmg,false)
+      target.pbReduceHP(dmg,false) if !target.hasActiveAbility?(:DISGUISEPLUS)
       target.pbItemHPHealCheck
       target.pbFaint if target.fainted?
       @battle.pbHideAbilitySplash(target)

@@ -344,7 +344,7 @@ class PokeBattle_TargetMultiStatDownMove < PokeBattle_Move
       # NOTE: It's a bit of a faff to make sure the appropriate failure message
       #       is shown here, I know.
       canLower = false
-      if target.hasActiveAbility?(:CONTRARY) && !@battle.moldBreaker
+      if target.hasActiveAbility?([:CONTRARY, :CONTRARYPLUS]) && !@battle.moldBreaker
         for i in 0...@statDown.length/2
           next if target.statStageAtMax?(@statDown[i*2])
           canLower = true

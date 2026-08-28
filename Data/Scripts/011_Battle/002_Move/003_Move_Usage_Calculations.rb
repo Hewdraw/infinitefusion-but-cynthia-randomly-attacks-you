@@ -43,6 +43,10 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GHOST &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
+    if user.hasActiveAbility?([:CORROSIONPLUS])
+      ret = Effectiveness::SUPER_EFFECTIVE_ONE if defType == :STEEL &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
     # Miracle Eye
     if target.effects[PBEffects::MiracleEye]
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :DARK &&

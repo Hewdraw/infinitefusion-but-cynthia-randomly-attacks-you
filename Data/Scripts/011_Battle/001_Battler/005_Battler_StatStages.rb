@@ -168,7 +168,7 @@ class PokeBattle_Battler
   def pbLowerStatStageBasic(stat,increment,ignoreContrary=false)
     if !@battle.moldBreaker
       # Contrary
-      if hasActiveAbility?(:CONTRARY) && !ignoreContrary
+      if hasActiveAbility?([:CONTRARY, :CONTRARYPLUS]) && !ignoreContrary
         return pbRaiseStatStageBasic(stat,increment,true)
       end
       # Simple
@@ -190,7 +190,7 @@ class PokeBattle_Battler
 
   def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,mirrorarmor=false)
     # Contrary
-    if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+    if hasActiveAbility?([:CONTRARY, :CONTRARYPLUS]) && !ignoreContrary && !@battle.moldBreaker
       return pbRaiseStatStage(stat,increment,user,showAnim,true)
     end
     if !mirrorarmor && hasActiveAbility?(:MIRRORARMOR) && !@battle.moldBreaker
@@ -232,7 +232,7 @@ class PokeBattle_Battler
 
   def pbLowerStatStageByCause(stat,increment,user,cause,showAnim=true,ignoreContrary=false)
     # Contrary
-    if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+    if hasActiveAbility?([:CONTRARY, :CONTRARYPLUS]) && !ignoreContrary && !@battle.moldBreaker
       return pbRaiseStatStageByCause(stat,increment,user,cause,showAnim,true)
     end
     obscured = false

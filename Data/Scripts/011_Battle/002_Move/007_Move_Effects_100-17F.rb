@@ -1981,7 +1981,7 @@ class PokeBattle_Move_160 < PokeBattle_Move
     #       has Contrary and is at +6" check too for symmetry. This move still
     #       works even if the stat stage cannot be changed due to an ability or
     #       other effect.
-    if !@battle.moldBreaker && target.hasActiveAbility?(:CONTRARY) &&
+    if !@battle.moldBreaker && target.hasActiveAbility?([:CONTRARY, :CONTRARYPLUS]) &&
       target.statStageAtMax?(:ATTACK)
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -2428,7 +2428,7 @@ class PokeBattle_Move_170 < PokeBattle_Move
 
   def pbMoveFailed?(user, targets)
     if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility(:DAMP)
+      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
       if bearer != nil
         @battle.pbShowAbilitySplash(bearer)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -5906,7 +5906,7 @@ class PokeBattle_Move_356 < PokeBattle_Move
 
   def pbMoveFailed?(user,targets)
     if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility(:DAMP)
+      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
       if bearer!=nil
         @battle.pbShowAbilitySplash(bearer)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
@@ -6026,7 +6026,7 @@ class PokeBattle_Move_361 < PokeBattle_Move
 
   def pbMoveFailed?(user,targets)
     if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility(:DAMP)
+      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
       if bearer!=nil
         @battle.pbShowAbilitySplash(bearer)
         if PokeBattle_SceneConstants::USE_ABILITY_SPLASH

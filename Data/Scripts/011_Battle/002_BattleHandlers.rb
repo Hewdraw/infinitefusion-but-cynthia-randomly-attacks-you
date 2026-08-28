@@ -593,7 +593,6 @@ def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false,fixedDurati
   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
     battle.pbDisplay(_INTL("{1}'s {2} activated!",battler.pbThis,battler.abilityName))
   end
-  fixedDuration = false if [:HarshSun, :HeavyRain, :StrongWinds].include?(weather)
   battle.pbStartWeather(battler,weather,fixedDuration)
   # NOTE: The ability splash is hidden again in def pbStartWeather.
 end

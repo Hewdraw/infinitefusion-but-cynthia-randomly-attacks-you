@@ -489,7 +489,10 @@ class PokeBattle_Battle
   end
 
   def pbCheckGlobalAbility(abil)
-    eachBattler { |b| return b if b.hasActiveAbility?(abil) }
+    abil = [abil] if !abil.is_a?(Array)
+    abil.each do |ability|
+      eachBattler { |b| return b if b.hasActiveAbility?(ability) }
+    end
     return nil
   end
 
