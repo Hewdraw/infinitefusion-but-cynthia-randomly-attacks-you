@@ -39,7 +39,7 @@ class Pokemon
   attr_accessor :statusCount
   # This Pokémon's shininess (true, false, nil). Is recalculated if made nil.
   # @param value [Boolean, nil] whether this Pokémon is shiny
-  #attr_writer :shiny
+  attr_accessor :shiny
   attr_accessor :glitter
   attr_accessor :head_shiny
   attr_accessor :body_shiny
