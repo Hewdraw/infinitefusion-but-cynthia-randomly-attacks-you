@@ -82,7 +82,7 @@ class PokeBattle_Battler
   def pbAbilitiesOnDamageTaken(oldHP,newHP=-1)
     return false if !abilityActive?
     newHP = @hp if newHP<0
-    if user.hasActiveAbility?(:EMERGENCYEXITPLUS) && oldHP>adjustedTotalhp/3 && newHP <= adjustedTotalhp/3
+    if hasActiveAbility?(:EMERGENCYEXITPLUS) && oldHP>adjustedTotalhp/3 && newHP <= adjustedTotalhp/3
       if !(self.effects[PBEffects::SkyDrop]>=0 || self.inTwoTurnAttack?("0CE")) && !@battle.pbAllFainted?(self.idxOpposingSide) && @battle.pbCanSwitch?(self.index) && @battle.pbCanChooseNonActive?(self.index)
         @battle.pbShowAbilitySplash(self,true)
         @battle.pbHideAbilitySplash(self)
