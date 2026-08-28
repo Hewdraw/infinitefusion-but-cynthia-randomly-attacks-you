@@ -1605,5 +1605,5 @@ def goldenSkeletonBattle()
     team.push(pokemon)
   end
 
-  return customTrainerBattle("Shadross?", :Skeleton_Non_Dev, team)
+  return customTrainerBattle("Shadross?", :Skeleton_Non_Dev, team, 50, "FUCK!")
 end
