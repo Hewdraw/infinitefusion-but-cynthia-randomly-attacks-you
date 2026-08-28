@@ -58,9 +58,9 @@ class PokeBattle_Battler
         canSwitch = true
         break
       end
+      @battle.pbHideAbilitySplash(self)
       return if !canSwitch
       newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
-      @battle.pbHideAbilitySplash(self)
       return if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
       @battle.pbClearChoice(@index)
