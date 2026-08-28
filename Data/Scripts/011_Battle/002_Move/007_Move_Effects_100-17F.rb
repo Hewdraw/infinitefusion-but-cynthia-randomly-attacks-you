@@ -5867,7 +5867,7 @@ end
 class PokeBattle_Move_354 < PokeBattle_StatUpMove
   def initialize(battle, move)
     super
-    @statDown = [:SPECIAL_ATTACK, 1]
+    @statUp = [:SPECIAL_ATTACK, 1]
   end
 
   def multiHitMove?; return true; end
