@@ -1587,6 +1587,7 @@ def goldenSkeletonBattle()
   $Trainer.party.each do |mon|
     pokemon = Pokemon.new(mon.species, mon.level + 6)
     pokemon.ability = mon.ability
+    pokemon.moves = mon.moves
     pokemon.item = mon.item
     pokemon.ev = mon.ev
     pokemon.iv = mon.iv
