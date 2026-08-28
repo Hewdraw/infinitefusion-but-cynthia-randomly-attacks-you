@@ -1165,13 +1165,17 @@ BattleHandlers::DamageCalcTargetItem.add(:ENCHANTEDELYTRA,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:FLIGHTLESSWINGSUIT,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.2
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.add(:NETHERITECHESTPLATE,
   proc { |item,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.3
   }
 )
-
-BattleHandlers::DamageCalcTargetItem.copy(:NETHERITECHESTPLATE,:FLIGHTLESSWINGSUIT)
 
 BattleHandlers::DamageCalcTargetItem.add(:HEAVYSUIT,
   proc { |item,target,user,move,mults,baseDmg,type|
