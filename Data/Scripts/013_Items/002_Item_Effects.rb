@@ -776,6 +776,16 @@ ItemHandlers::UseOnPokemon.add(:CALCIUM, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.copy(:CALCIUM, :GENIUSMOCHI)
 
+ItemHandlers::UseOnPokemon.add(:RARESTBONE, proc { |item, pkmn, scene|
+  if pbRaiseEffortValues(pkmn, :SPECIAL_ATTACK, 252) == 0
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  scene.pbDisplay(_INTL("{1}'s Special Attack increased.", pkmn.name))
+  pkmn.changeHappiness("vitamin")
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:ZINC, proc { |item, pkmn, scene|
   if pbRaiseEffortValues(pkmn, :SPECIAL_DEFENSE) == 0
     scene.pbDisplay(_INTL("It won't have any effect."))

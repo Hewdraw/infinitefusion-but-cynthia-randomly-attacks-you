@@ -603,8 +603,8 @@ SHADROSS_HINTS = {
   },
 }
 
-def Undertale()
-  UndertaleShopSetup()
+def Undertale(golden = false)
+  UndertaleShopSetup(golden)
   scene = Undertale_Scene.new
   playingBGS = nil
   playingBGM = nil
@@ -614,7 +614,7 @@ def Undertale()
     $game_system.bgm_pause
     $game_system.bgs_pause
   end
-  result = UndertaleCommand(scene)
+  result = UndertaleCommand(scene, golden)
   scene.pbEndBattle
   if $game_system && $game_system.is_a?(Game_System)
     $game_system.bgm_resume(playingBGM)
@@ -624,8 +624,9 @@ def Undertale()
   return result
 end
 
-def UndertaleCommand(scene)
+def UndertaleCommand(scene, golden = false)
   pbBGMPlay("Megalovania")
+  pbBGMPlay("VSCalc") if golden
   loop do
     cmd = scene.UndertaleCommandMenu()
     pbSEPlay("MenuSelect")
@@ -634,22 +635,42 @@ def UndertaleCommand(scene)
       if $Trainer.party.length == 0
         return false
       end
+      if golden
+        return goldenSkeletonBattle()
+      end
       $PokemonGlobal.nextBattleBack = "Lava"
       $PokemonGlobal.nextBattleBGM = nil
       if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2)
         return true
       end
     when 1    # Act
-      scene.UndertaleActMenu()
+      if !scene.UndertaleActMenu() && golden
+        return goldenSkeletonBattle()
+      end
     when 2    # Item
-      scene.UndertaleItemMenu()
+      if !scene.UndertaleItemMenu() && golden
+        return goldenSkeletonBattle()
+      end
     when 3    # Mercy
+      if golden
+        msgBox = scene.sprites["commandWindow"].sprites["msgBox"]
+        msgBox.text = ""
+        text = "Nuh uh"
+        pbWait(1)
+        for i in 0..text.length()
+          msgBox.text = text[0..i]
+          pbSEPlay("BattleText")
+          pbWait(1)
+        end
+        pbWait(40)
+        return goldenSkeletonBattle()
+      end
       return true
     end
   end
 end
 
-def UndertaleShopSetup()
+def UndertaleShopSetup(golden = false)
   if $PokemonGlobal.cynthiabadgetier && $Trainer.numbadges > $PokemonGlobal.cynthiabadgetier && $PokemonGlobal.towervalues.nil?
     $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
     if !$PokemonGlobal.pcItemStorage
@@ -665,6 +686,24 @@ def UndertaleShopSetup()
     $PokemonGlobal.shadrossstock.each do |key, value|
       value["cost"] = ((value["cost"] + 1) / 2.0).ceil
     end
+  end
+  $PokemonGlobal.shadrosshints = SHADROSS_HINTS
+  if golden
+    $PokemonGlobal.shadrossstock = {
+      :KNUCKLESANDWICH => {
+        "badges" => 0,
+        "cost" => 0,
+        "amount" => 1,
+      },
+    }
+    $PokemonGlobal.shadrosshints = {
+      :RUN => {
+        "badges" => 0,
+        "cost" => 69,
+        "name" => "Run",
+        "hint" => "Nuh uh",
+      },
+    }
   end
 end
 
@@ -788,17 +827,17 @@ class Undertale_Scene
       pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.hintitemindex != oldhintitemindex
       # Actions
       if Input.trigger?(Input::USE)                 # Confirm choice
-        hintitem = SHADROSS_HINTS.keys[cw.hintitemindex + cw.index]
+        hintitem = $PokemonGlobal.shadrosshints.keys[cw.hintitemindex + cw.index]
         if !hintitem
           break
         end
-        if pbCynthiaGetBadgeCount < SHADROSS_HINTS[hintitem]["badges"]
+        if pbCynthiaGetBadgeCount < $PokemonGlobal.shadrosshints[hintitem]["badges"]
           text = "Weak ass."
-        elsif $Trainer.money < SHADROSS_HINTS[hintitem]["cost"]
+        elsif $Trainer.money < $PokemonGlobal.shadrosshints[hintitem]["cost"]
           text = "Broke ass."
         else
-          text = "#{SHADROSS_HINTS[hintitem]["hint"]}."
-          $Trainer.money -= SHADROSS_HINTS[hintitem]["cost"]
+          text = "#{$PokemonGlobal.shadrosshints[hintitem]["hint"]}."
+          $Trainer.money -= $PokemonGlobal.shadrosshints[hintitem]["cost"]
           $PokemonGlobal.shadrossboughthints = [] if !$PokemonGlobal.shadrossboughthints
           $PokemonGlobal.shadrossboughthints.push(hintitem)
           cw.refresh
@@ -812,6 +851,7 @@ class Undertale_Scene
           pbWait(1)
         end
         pbWait(40)
+        return false if hintitem == :RUN
         cw.visible = true
       end
       if Input.trigger?(Input::BACK)
@@ -820,7 +860,7 @@ class Undertale_Scene
     end
     cw.visible = false
     @sprites["commandWindow"].displayText("You feel like you're going to have a bad time.")
-    return
+    return true 
   end
 
   def UndertaleItemMenu()
@@ -867,6 +907,7 @@ class Undertale_Scene
         else
           text = "Bought #{$PokemonGlobal.shadrossstock[item]["amount"]} #{$PokemonGlobal.shadrossstock[item]["amount"] == 1 ? GameData::Item.get(item).name : GameData::Item.get(item).name_plural}."
           $PokemonBag.pbDeleteItem(:SINNOHCOIN, $PokemonGlobal.shadrossstock[item]["cost"])
+          return false if item == :KNUCKLESANDWICH
           $PokemonBag.pbStoreItem(item, $PokemonGlobal.shadrossstock[item]["amount"])
         end
         cw.visible = false
@@ -886,7 +927,7 @@ class Undertale_Scene
     end
     cw.visible = false
     @sprites["commandWindow"].displayText("You feel like you're going to have a bad time.")
-    return
+    return true
   end
 end
 
@@ -1155,7 +1196,7 @@ class UndertaleActMenu
     if value > 4
       value = 4
     end
-    if !((@hintitemindex==0 && value <= 2) || (@hintitemindex==(SHADROSS_HINTS.length-4) && value >= 2))
+    if !((@hintitemindex==0 && value <= 2) || (@hintitemindex==($PokemonGlobal.shadrosshints.length-4) && value >= 2))
       @hintitemindex += value - @index
       @index = 2
       refresh
@@ -1218,8 +1259,8 @@ class UndertaleActMenu
     @hintboxinner.x = hintboxborder
     addSprite("hintboxinner", @hintboxinner)
     @hintlistings = Array.new(5) do |i|
-      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
-      hintitem = SHADROSS_HINTS[hintitem]["name"] if hintitem
+      hintitem = $PokemonGlobal.shadrosshints.keys[@hintitemindex+i]
+      hintitem = $PokemonGlobal.shadrosshints[hintitem]["name"] if hintitem
       hintitemtext = Window_UnformattedTextPokemon.newWithSize("",
          @hintbox.x + Graphics.width / 10 + Graphics.width / 20, @hintbox.y + (i*30), @hintbox.width - Graphics.width / 10 - Graphics.width / 20, @hintbox.height, viewport)
       hintitemtext.baseColor   = Color.new(255, 255, 255)
@@ -1233,9 +1274,9 @@ class UndertaleActMenu
       next hintitemtext
     end
     @hintprices = Array.new(5) do |i|
-      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
-      hintitemcost = SHADROSS_HINTS[hintitem]["cost"] if hintitem
-      hintitembadges = SHADROSS_HINTS[hintitem]["badges"] if hintitem
+      hintitem = $PokemonGlobal.shadrosshints.keys[@hintitemindex+i]
+      hintitemcost = $PokemonGlobal.shadrosshints[hintitem]["cost"] if hintitem
+      hintitembadges = $PokemonGlobal.shadrosshints[hintitem]["badges"] if hintitem
       #hintitembadges = 0 if hasEmera?(:FAKEBADGES)
       hintitemtext = Window_UnformattedTextPokemon.newWithSize("",
          @hintbox.x + Graphics.width / 10 + Graphics.width / 20 + Graphics.width * 1 / 2, @hintbox.y + (i*30), @hintbox.width - Graphics.width / 10 - Graphics.width / 20 - Graphics.width * 1 / 2, @hintbox.height, viewport)
@@ -1290,8 +1331,8 @@ class UndertaleActMenu
     @hintboxinner.z = self.z + 2
     for i in 0...@hintlistings.length
       hintitemtext = @hintlistings[i]
-      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
-      hintitem = SHADROSS_HINTS[hintitem]["name"] if hintitem
+      hintitem = $PokemonGlobal.shadrosshints.keys[@hintitemindex+i]
+      hintitem = $PokemonGlobal.shadrosshints[hintitem]["name"] if hintitem
       hintitemtext.text = hintitem if hintitem
       hintitemtext.text = "Exit" if !hintitem
       hintitemtext.z = self.z + 3
@@ -1301,9 +1342,9 @@ class UndertaleActMenu
       end
     end
     for i in 0...@hintprices.length
-      hintitem = SHADROSS_HINTS.keys[@hintitemindex+i]
-      hintitemcost = SHADROSS_HINTS[hintitem]["cost"] if hintitem
-      hintitembadges = SHADROSS_HINTS[hintitem]["badges"] if hintitem
+      hintitem = $PokemonGlobal.shadrosshints.keys[@hintitemindex+i]
+      hintitemcost = $PokemonGlobal.shadrosshints[hintitem]["cost"] if hintitem
+      hintitembadges = $PokemonGlobal.shadrosshints[hintitem]["badges"] if hintitem
       hintitemtext = @hintprices[i]
       hintitemtext.text = "#{hintitembadges} Badges" if hintitem
       hintitemtext.text = "#{hintitemcost} Poke" if hintitem && hintitembadges <= pbCynthiaGetBadgeCount
@@ -1537,4 +1578,27 @@ class UndertaleItemMenu
     # @msgBox.refresh
     refreshButtons
   end
+end
+
+def goldenSkeletonBattle()
+  $PokemonGlobal.nextBattleBack = "Lava"
+  $PokemonGlobal.nextBattleBGM = "VSCalciumREAL"
+  team = []
+  $Trainer.party.each do |mon|
+    pokemon = Pokemon.new(mon.species, mon.level + 6)
+    pokemon.ability = mon.ability
+    pokemon.item = mon.item
+    pokemon.ev = mon.ev
+    pokemon.iv = mon.iv
+    pokemon.status = mon.status
+    pokemon.poke_ball = mon.poke_ball
+    pokemon.hiddenPowerType = mon.hiddenPowerType
+    pokemon.megaform = mon.megaform
+    pokemon.regionalform = mon.regionalform
+    pokemon.rotomform = mon.rotomform
+    pokemon.rotomability = mon.rotomability
+    team.push(pokemon)
+  end
+
+  return customTrainerBattle("Shadross?", :Skeleton_Non_Dev, team)
 end

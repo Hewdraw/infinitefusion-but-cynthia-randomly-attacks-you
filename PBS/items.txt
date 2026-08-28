@@ -980,6 +980,8 @@
 914,THUNDERBALL,Thunder Ball,Thunder Balls,1,0,"a",0,0,0
 915,HYPERGENE,Hyper Gene,Hyper Genes,1,0,"a",0,0,0
 916,RECIPEBOOK,Recipe Book,Recipe Books,8,0,"Book of recipes.",0,0,6
+917,KNUCKLESANDWICH,Knuckle Sandwich,Knuckle Sandwichs,1,0,"a",0,0,0
+918,RARESTBONE,Rarest Bone,Rarest Bones,2,0,"IRaw gold bone that contains infinite calcium.",1,3,0,
 
 
 
