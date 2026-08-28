@@ -428,7 +428,7 @@ class PokeBattle_Battler
         @battle.pbCommonAnimation("MegaEvolution2",user)
       end
     end
-    if targets.each do |target|
+    targets.each do |target|
       if target.hasActiveAbility?(:COLORCHANGEPLUS) && !move.callsAnotherMove? && !move.snatched && target.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
         typeName = GameData::Type.get(move.calcType).name
         @battle.pbShowAbilitySplash(target)
