@@ -428,13 +428,15 @@ class PokeBattle_Battler
         @battle.pbCommonAnimation("MegaEvolution2",user)
       end
     end
-    if target.hasActiveAbility?(:COLORCHANGEPLUS) && !move.callsAnotherMove? && !move.snatched && target.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
-      typeName = GameData::Type.get(move.calcType).name
-      @battle.pbShowAbilitySplash(target)
-      target.pbChangeTypes(move.calcType)
-      @battle.pbDisplay(_INTL("{1}'s {2} made it the {3} type!",target.pbThis,
-         target.abilityName,typeName))
-      @battle.pbHideAbilitySplash(target)
+    if targets.each do |target|
+      if target.hasActiveAbility?(:COLORCHANGEPLUS) && !move.callsAnotherMove? && !move.snatched && target.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
+        typeName = GameData::Type.get(move.calcType).name
+        @battle.pbShowAbilitySplash(target)
+        target.pbChangeTypes(move.calcType)
+        @battle.pbDisplay(_INTL("{1}'s {2} made it the {3} type!",target.pbThis,
+           target.abilityName,typeName))
+        @battle.pbHideAbilitySplash(target)
+      end
     end
     #---------------------------------------------------------------------------
     magicCoater = -1

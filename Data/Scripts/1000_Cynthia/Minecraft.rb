@@ -340,6 +340,7 @@ class MinecraftCraftingScene
     def update
         return if @ending
         if Input.trigger?(Input::UP) && @cursorindex >= 0
+            pbSEPlay("MenuCursor")
             loop do
                 @cursorindex -= 5
                 break if @cursorindex >= 0 && @cursorindex <= 19 && @sprites["craftable#{@cursorindex}"].visible
@@ -347,6 +348,7 @@ class MinecraftCraftingScene
             end
         end
         if Input.trigger?(Input::DOWN) && @cursorindex <= 19
+            pbSEPlay("MenuCursor")
             loop do
                 @cursorindex += 5
                 break if @cursorindex >= 0 && @cursorindex <= 19 && @sprites["craftable#{@cursorindex}"].visible
@@ -354,6 +356,7 @@ class MinecraftCraftingScene
             end
         end
         if Input.trigger?(Input::LEFT) && @cursorindex >= 0
+            pbSEPlay("MenuCursor")
             if @cursorindex <= 19
                 loop do
                     if @cursorindex % 5 == 0
@@ -370,6 +373,7 @@ class MinecraftCraftingScene
 
         end
         if Input.trigger?(Input::RIGHT) && @cursorindex >= 0
+            pbSEPlay("MenuCursor")
             if @cursorindex <= 19
                 loop do
                     @cursorindex += 1
@@ -388,6 +392,7 @@ class MinecraftCraftingScene
         itemtable = (@filtermode == 0) ? CRAFTINGLIST.keys : @craftablelist
         item = itemtable[itemindex]
         if Input.trigger?(Input::USE)
+            pbSEPlay("MenuSelect")
             if @cursorindex < 0
                 @filtermode = (@filtermode + 1) % 2
                 itemtable = (@filtermode == 0) ? CRAFTINGLIST.keys : @craftablelist
