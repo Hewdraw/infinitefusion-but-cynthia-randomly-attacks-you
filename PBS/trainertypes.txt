@@ -161,4 +161,4 @@
 158,POKEMON,Partner Pokemon,200,,,,Male,100,
 159,STATIC,Static,70,,,,Female,100,
 160,MONSTERHOUSE,It's a,0,,,,Mixed,100,
-161,Skeleton_Non_Dev,Skeleton Non Dev?,200,,,,Female,100,
+161,Skeleton_Non_Dev,Skeleton Non Dev?,200,,,,Male,100,
