@@ -1777,6 +1777,21 @@ BattleHandlers::TargetItemAfterMoveUse.add(:REDCARD,
 # UserItemAfterMoveUse handlers
 #===============================================================================
 
+BattleHandlers::UserItemAfterMoveUse.add(:ENDERPEARL,
+  proc { |item,user,targets,move,numHits,battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    next if !battle.pbCanChooseNonActive?(user.index)
+    battle.pbCommonAnimation("UseItem",user)
+    battle.pbDisplay(_INTL("{1} is switched out with the {2}!",user.pbThis,user.itemName))
+    user.pbConsumeItem(true,false)
+    newPkmn = battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
+    next if newPkmn<0
+    battle.pbRecallAndReplace(user.index,newPkmn)
+    battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
+    switched.push(user.index)
+  }
+)
+
 BattleHandlers::UserItemAfterMoveUse.add(:LIFEORB,
   proc { |item,user,targets,move,numHits,battle|
     next if !user.takesIndirectDamage?
@@ -2131,6 +2146,19 @@ BattleHandlers::EORHealingItem.add(:LEFTOVERS,
 )
 
 BattleHandlers::EORHealingItem.copy(:LEFTOVERS,:HEALRIBBON)
+
+BattleHandlers::EORHealingItem.add(:ENDCRYSTAL,
+  proc { |item,battler,battle|
+    battle.battlers.each do |b|
+      next if !b.isFusionOf(:ENDERDRAGON)
+      next if !b.canHeal?
+      battle.pbCommonAnimation("UseItem",battler)
+      b.pbRecoverHP(b.totalhp/8)
+      battle.pbDisplay(_INTL("{1} restored HP using a {2}!",
+         b.pbThis,b.itemName))
+    end
+  }
+)
 
 BattleHandlers::EORHealingItem.add(:ROTOMCATALOG,
   proc { |item,battler,battle|

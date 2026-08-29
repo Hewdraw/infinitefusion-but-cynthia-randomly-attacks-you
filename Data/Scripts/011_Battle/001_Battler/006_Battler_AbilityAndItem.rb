@@ -197,6 +197,15 @@ class PokeBattle_Battler
         setInitialItem(nil)
       end
     end
+    if self.item == :ENDCRYSTAL && !@battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
+      @battle.pbPriority(true).each do |b|
+        next if !b
+        next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        @battle.scene.pbDamageAnimation(b)
+        b.pbReduceHP(b.totalhp/4,false)
+        @battle.pbDisplay(_INTL("{1} was caught in the End Crystal explosion!",b.pbThis))
+      end
+    end
     self.item = nil
   end
 

@@ -118,6 +118,15 @@ class PokeBattle_Battler
       end
       @battle.pbHideAbilitySplash(self)
     end
+    if self.hasActiveItem? == :ENDCRYSTAL && !@battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
+      @battle.pbPriority(true).each do |b|
+        next if !b
+        next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
+        @battle.scene.pbDamageAnimation(b)
+        b.pbReduceHP(b.totalhp/8,false)
+        @battle.pbDisplay(_INTL("{1} was caught in the End Crystal explosion!",b.pbThis))
+      end
+    end
     # Reset status
     self.status      = :NONE
     self.statusCount = 0

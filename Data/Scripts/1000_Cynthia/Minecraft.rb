@@ -333,7 +333,8 @@ CRAFTINGLIST = {
     :HYPERGENE => [:BERSERKGENE, :PSYCHICGEM],
     :MAXREVIVE => [:REVIVE, :FULLRESTORE],
     :MISTSTONE => [:RARECANDY, :RAGECANDYBAR, :EVERSTONE],
-    :BADAPPLE => [:LEFTOVERS, :ENCHANTINGTABLE, :LEPPABERRY]
+    :BADAPPLE => [:LEFTOVERS, :ENCHANTINGTABLE, :LEPPABERRY],
+    :MILLENNIUMANKH => [nil, :EXODIATHEFORBIDDENONE, nil, :LEFTARMOFTHEFORBIDDENONE, nil, :RIGHTARMOFTHEFORBIDDENONE, :LEFTLEGOFTHEFORBIDDENONE, nil, :RIGHTLEGOFTHEFORBIDDENONE]
 }
 
 class MinecraftCraftingScene
@@ -403,7 +404,7 @@ class MinecraftCraftingScene
             elsif @cursorindex <= 19
                 if @craftablelist.include?(item)
                     CRAFTINGLIST[item].each do |material|
-                        $PokemonBag.pbDeleteItem(material, 1)
+                        $PokemonBag.pbDeleteItem(material, 1) if material
                     end
                     $PokemonBag.pbStoreItem(item)
                     Kernel.pbMessage("You crafted a #{GameData::Item.get(item).name}")
@@ -681,6 +682,7 @@ class MinecraftCraftingScene
         CRAFTINGLIST.each do |item, materials|
             materialcount = {}
             materials.each do |material|
+                next if !material
                 materialcount[material] = 0 if materialcount[material].nil?
                 materialcount[material] += 1
             end
