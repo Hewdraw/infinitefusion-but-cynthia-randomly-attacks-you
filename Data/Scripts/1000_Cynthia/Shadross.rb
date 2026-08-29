@@ -799,63 +799,69 @@ class Undertale_Scene
     msgBox = @sprites["commandWindow"].sprites["msgBox"]
     msgBox.text = ""
     cw.visible = true
-    cw.visible = false
-    cw.visible = true
     ret = -1
+    hintactive = false
+    hintitem = nil
     loop do
-      oldIndex = cw.index
-      oldhintitemindex = cw.hintitemindex
-      pbUpdate(cw)
-      # Update selected command
-      if Input.trigger?(Input::UP)
-        cw.index = cw.index - 1
-      elsif Input.trigger?(Input::DOWN)
-        cw.index = cw.index + 1
-      elsif Input.trigger?(Input::RIGHT) 
-        cw.index = cw.index + 1
-        cw.index = cw.index + 1
-        cw.index = cw.index + 1
-        cw.index = cw.index + 1
-        cw.index = cw.index + 1
-      elsif Input.trigger?(Input::LEFT)
-        cw.index = cw.index - 1
-        cw.index = cw.index - 1
-        cw.index = cw.index - 1
-        cw.index = cw.index - 1
-        cw.index = cw.index - 1
-      end
-      pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.hintitemindex != oldhintitemindex
-      # Actions
-      if Input.trigger?(Input::USE)                 # Confirm choice
-        hintitem = $PokemonGlobal.shadrosshints.keys[cw.hintitemindex + cw.index]
-        if !hintitem
+      if hintactive
+        if Input.trigger?(Input::USE) || Input.trigger?(Input::BACK)
+          return false if hintitem == :RUN
+          cw.visible = true
+          hintactive = false
+        end
+        pbUpdate(cw)
+      else
+        oldIndex = cw.index
+        oldhintitemindex = cw.hintitemindex
+        pbUpdate(cw)
+        # Update selected command
+        if Input.trigger?(Input::UP)
+          cw.index = cw.index - 1
+        elsif Input.trigger?(Input::DOWN)
+          cw.index = cw.index + 1
+        elsif Input.trigger?(Input::RIGHT) 
+          cw.index = cw.index + 1
+          cw.index = cw.index + 1
+          cw.index = cw.index + 1
+          cw.index = cw.index + 1
+          cw.index = cw.index + 1
+        elsif Input.trigger?(Input::LEFT)
+          cw.index = cw.index - 1
+          cw.index = cw.index - 1
+          cw.index = cw.index - 1
+          cw.index = cw.index - 1
+          cw.index = cw.index - 1
+        end
+        pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.hintitemindex != oldhintitemindex
+        # Actions
+        if Input.trigger?(Input::USE)                 # Confirm choice
+             = $PokemonGlobal.shadrosshints.keys[cw.hintitemindex + cw.index]
+          if !hintitem
+            break
+          end
+          if pbCynthiaGetBadgeCount < $PokemonGlobal.shadrosshints[hintitem]["badges"]
+            text = "Weak ass."
+          elsif $Trainer.money < $PokemonGlobal.shadrosshints[hintitem]["cost"]
+            text = "Broke ass."
+          else
+            text = "#{$PokemonGlobal.shadrosshints[hintitem]["hint"]}"
+            $Trainer.money -= $PokemonGlobal.shadrosshints[hintitem]["cost"]
+            $PokemonGlobal.shadrossboughthints = [] if !$PokemonGlobal.shadrossboughthints
+            $PokemonGlobal.shadrossboughthints.push(hintitem)
+            cw.refresh
+          end
+          hintactive = true
+          cw.visible = false
+          msgBox.text = ""
+          for i in 0..text.length()
+            pbWait(1)
+            msgBox.text = text[0..i]
+            pbSEPlay("BattleText")
+          end
+        end
+        if Input.trigger?(Input::BACK)
           break
         end
-        if pbCynthiaGetBadgeCount < $PokemonGlobal.shadrosshints[hintitem]["badges"]
-          text = "Weak ass."
-        elsif $Trainer.money < $PokemonGlobal.shadrosshints[hintitem]["cost"]
-          text = "Broke ass."
-        else
-          text = "#{$PokemonGlobal.shadrosshints[hintitem]["hint"]}."
-          $Trainer.money -= $PokemonGlobal.shadrosshints[hintitem]["cost"]
-          $PokemonGlobal.shadrossboughthints = [] if !$PokemonGlobal.shadrossboughthints
-          $PokemonGlobal.shadrossboughthints.push(hintitem)
-          cw.refresh
-        end
-        cw.visible = false
-        msgBox.text = ""
-        pbWait(1)
-        for i in 0..text.length()
-          msgBox.text = text[0..i]
-          pbSEPlay("BattleText")
-          pbWait(1)
-        end
-        pbWait(40)
-        return false if hintitem == :RUN
-        cw.visible = true
-      end
-      if Input.trigger?(Input::BACK)
-        break
       end
     end
     cw.visible = false

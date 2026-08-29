@@ -600,6 +600,10 @@ class Pokemon
   # @return [Boolean] whether this Pokémon has the specified type
   def hasType?(type)
     type = GameData::Type.get(type).id
+    TRIPLETYPES.each do |tripletype, material|
+      next if !self.types.include?(tripletype)
+      return true if material == type
+    end
     return self.types.include?(type)
   end
 

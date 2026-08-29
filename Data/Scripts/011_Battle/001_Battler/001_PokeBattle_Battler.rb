@@ -468,6 +468,10 @@ class PokeBattle_Battler
       return true if hasActiveAbility?([:SNIPER, :FULLMETALBODY])
     end
     activeTypes = pbTypes(true)
+    TRIPLETYPES.each do |tripletype, material|
+      next if !activeTypes.include?(tripletype)
+      return true if material == type
+    end
     return activeTypes.include?(GameData::Type.get(type).id)
   end
 
