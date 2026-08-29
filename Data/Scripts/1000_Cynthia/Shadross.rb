@@ -835,7 +835,7 @@ class Undertale_Scene
         pbSEPlay("MenuCursor") if cw.index != oldIndex || cw.hintitemindex != oldhintitemindex
         # Actions
         if Input.trigger?(Input::USE)                 # Confirm choice
-             = $PokemonGlobal.shadrosshints.keys[cw.hintitemindex + cw.index]
+          hintitem = $PokemonGlobal.shadrosshints.keys[cw.hintitemindex + cw.index]
           if !hintitem
             break
           end
