@@ -376,3 +376,5 @@
 404,GUTSPLUS,Guts+,"Boosts Attack if there is a status problem."
 405,FORCEDEVOLUTIONPLUS,Forced Evolution+,"a"
 407,GALEWINGSPLUS,Gale Wings+,"Flying-type moves gain priority when its HP is full."
+500,BREAKTHESEAL,Break the Seal,"a"
+501,OBLITERATE,Obliterate,"a"

@@ -3016,6 +3016,33 @@ BattleHandlers::EOREffectAbility.add(:WIRED,
   }
 )
 
+BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
+  proc { |ability,battler,battle|
+    next if battler.turnCount == 0
+    next unless battler.species == :THEFORBIDDENONE
+    battle.pbShowAbilitySplash(battler)
+    battler.pokemon.battlevariables[:breaktheseal] -= 1
+    if battler.pokemon.battlevariables[:breaktheseal] > 0
+      battle.pbDisplay("#{battler.pokemon.battlevariables[:breaktheseal]} turns left.")
+      next
+    end
+    battler.pokemon.originalability = battler.pokemon.ability
+    battler.pokemon.originalform = battler.pokemon.species
+    battle.pbCommonAnimation("MegaEvolution",battler)
+    level = battler.level
+    battler.pokemon.species = :EXODIAINCARNATE
+    battler.species = :EXODIAINCARNATE
+    battler.level = level
+    battler.pbUpdate(true)
+    battle.scene.pbChangePokemon(battler,battler.pokemon)
+    battle.scene.pbRefreshOne(idxBattler)
+    battler.pbUpdate(true)
+    battle.pbCommonAnimation("MegaEvolution2",battler)
+    battle.pbDisplay("The seal has been broken!")
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 #===============================================================================
 # EORGainItemAbility handlers
 #===============================================================================
@@ -3494,7 +3521,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :FEAR, :BIGPECKSPLUS)
+BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :FEAR, :BIGPECKSPLUS, :OBLITERATE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:ASONE,
   proc { |ability,battler,battle|
@@ -3539,7 +3566,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENACE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MENACE,:FEAR)
+BattleHandlers::AbilityOnSwitchIn.copy(:MENACE, :FEAR, :OBLITERATE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   proc { |ability,battler,battle|
@@ -3557,6 +3584,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :OBLITERATE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:TETRAFORCE,
   proc { |ability,battler,battle|
@@ -3634,6 +3663,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:BREAKTHESEAL,
+  proc { |ability,battler,battle|
+    next if !battler.species == :THEFORBIDDENONE
+    battle.pbShowAbilitySplash(battler)
+    battler.pokemon.battlevariables[:breaktheseal] = 5 if battler.pokemon.battlevariables[:breaktheseal].nil?
+    battle.pbDisplay("#{battler.pokemon.battlevariables[:breaktheseal]} turns left.")
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 
 BattleHandlers::AbilityOnSwitchIn.add(:SNOWWARNING,
   proc { |ability,battler,battle|
