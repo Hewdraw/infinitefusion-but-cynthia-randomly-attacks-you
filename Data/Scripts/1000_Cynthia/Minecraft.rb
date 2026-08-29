@@ -461,7 +461,7 @@ class MinecraftCraftingScene
         for i in 0..8
             materialsprite = @sprites["materialicon#{i}"]
             materiallist = CRAFTINGLIST[item]
-            if @cursorindex < 0 || @cursorindex > 19 || !item || !materiallist || i >= materiallist.length
+            if @cursorindex < 0 || @cursorindex > 19 || !item || !materiallist || i >= materiallist.length || !materiallist[i]
                 materialsprite.visible = false
                 for j in 0..2
                     @sprites["countshadow#{j}digit#{i}"].visible = false
@@ -471,6 +471,7 @@ class MinecraftCraftingScene
             end
             materialsprite.visible = true
             materialsprite.item = materiallist[i]
+            next if !materiallist[i]
             quantity = [$PokemonBag.pbQuantity(materiallist[i]), 999].min
             quantitydigits = quantity.to_s.split("")
             for j in 0..2
