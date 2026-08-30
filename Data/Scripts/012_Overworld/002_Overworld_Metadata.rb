@@ -90,6 +90,7 @@ class PokemonGlobalMetadata
   attr_accessor :towerclasses
   attr_accessor :porygonchance
   attr_accessor :triplefusions
+  attr_accessor :chestitemspulled
 
   def initialize
     # Movement

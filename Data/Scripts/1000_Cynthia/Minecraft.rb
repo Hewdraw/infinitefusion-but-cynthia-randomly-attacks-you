@@ -21,6 +21,7 @@ def enderChest()
     itemlist = getEnderChestItems() 
     raritylist = getEnderChestWeights()
     totalrarities = raritylist.sum
+    exodiaitems = [:EXODIATHEFORBIDDENONE, :LEFTARMOFTHEFORBIDDENONE, :RIGHTARMOFTHEFORBIDDENONE, :LEFTLEGOFTHEFORBIDDENONE, :RIGHTLEGOFTHEFORBIDDENONE]
     for item in 1..10
         if item >= 9
             totalrarities -= raritylist[0]
@@ -47,6 +48,7 @@ def enderChest()
         end
         itemname = (randomitem[1] > 1) ? GameData::Item.get(randomitem[0]).name_plural : GameData::Item.get(randomitem[0]).name
         if $PokemonBag.pbStoreItem(*randomitem) 
+            $PokemonGlobal.chestitemspulled.push(randomitem[0]) if exodiaitems.include?(randomitem[0])
             pbMessage("You got #{randomitem[1]} \\C[#{itemcolor}]#{itemname}\\C[0]!")
         end
     end
@@ -217,7 +219,6 @@ def getEnderChestItems()
             [:HEAVYDUTYBOOTS, 1],
         ],
         [ #secret rare
-            [:SACREDASH, 1],
             [:BUNDLEOFBALLOONS, 1],
             [:TOTEMOFUNDYING, 1],
             [:ENDCRYSTAL, 1],
@@ -232,22 +233,15 @@ def getEnderChestItems()
             [:CORNERSTONEMASK, 1],
         ],
         [ #ultimate rare
+            [:SACREDASH, 1],
         ],
     ]
-    chestitems[4].push([:EXODIATHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:EXODIATHEFORBIDDENONE)
-    chestitems[4].push([:LEFTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:LEFTARMOFTHEFORBIDDENONE)
-    chestitems[4].push([:RIGHTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:RIGHTARMOFTHEFORBIDDENONE)
-    chestitems[4].push([:LEFTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:LEFTLEGOFTHEFORBIDDENONE)
-    chestitems[4].push([:RIGHTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:RIGHTLEGOFTHEFORBIDDENONE)
+    exodiaitems = [:EXODIATHEFORBIDDENONE, :LEFTARMOFTHEFORBIDDENONE, :RIGHTARMOFTHEFORBIDDENONE, :LEFTLEGOFTHEFORBIDDENONE, :RIGHTLEGOFTHEFORBIDDENONE]
 
-    if chestitems[4].length == 0
-        chestitems[4] = [
-            [:FIRESPHERE, 1],
-            [:ICESPHERE, 1],
-            [:LIGHTNINGSPHERE, 1],
-            [:MODIFIEDBOOSTERENERGY, 1],
-        ]
+    exodiaitems.each do |exodia|
+        chestitems[4].push([exodia]) if $PokemonGlobal.chestitemspulled.include?(exodia)
     end
+
     return chestitems
 end
 

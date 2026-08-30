@@ -2688,3 +2688,9 @@ ItemHandlers::UseFromBag.add(:BADEGG, proc { |item|
 ItemHandlers::UseFromBag.add(:TRIPLESPLICER, proc { |item|
   tripleFusion(true)
 })
+
+
+ItemHandlers::UseFromBag.add(:MILLENNIUMANKH, proc { |item|
+  $PokemonGlobal.nextBattleBGM = "VSExodia"
+  $PokemonBag.pbDeleteItem(:MILLENNIUMANKH) if pbLegendaryBattle("Exodia")
+})

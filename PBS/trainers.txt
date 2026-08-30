@@ -11555,6 +11555,18 @@ Pokemon = HOOH,11
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,252,0
 
+[LEGENDARY_POKEMON,Exodia,0]
+Pokemon = THEFORBIDDENONE,11    
+    Offset = 10
+    Moves = HYPERSPACEFURY,SWORDSDANCE,PSYCHOBOOST,COLLISIONCOURSE
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 5
+    Item = LEFTOVERS
+    Nature = JOLLY
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,252,0,0
+
 #placeholder
 [LEGENDARY_POKEMON,Regirock,0]
 Pokemon = REGIROCK,11 
