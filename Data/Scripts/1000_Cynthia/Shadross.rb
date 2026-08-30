@@ -66,8 +66,8 @@ SHADROSS_STOCK = {
   },
   :RARECANDY => {
     "badges" => 0,
-    "cost" => 3,
-    "amount" => 5,
+    "cost" => 1,
+    "amount" => 3,
   },
   :AMULETCOIN => {
     "badges" => 0,
