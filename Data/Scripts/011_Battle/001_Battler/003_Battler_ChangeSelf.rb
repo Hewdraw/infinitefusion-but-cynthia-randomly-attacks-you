@@ -118,7 +118,7 @@ class PokeBattle_Battler
       end
       @battle.pbHideAbilitySplash(self)
     end
-    if self.hasActiveItem? == :ENDCRYSTAL && !@battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
+    if self.hasActiveItem?(:ENDCRYSTAL) && !@battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
       @battle.pbPriority(true).each do |b|
         next if !b
         next if !b.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)

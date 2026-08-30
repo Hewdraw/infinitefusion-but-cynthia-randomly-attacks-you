@@ -234,11 +234,11 @@ def getEnderChestItems()
         [ #ultimate rare
         ],
     ]
-    chestitems[4].push([:EXODIATHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:EXODIATHEFORBIDDENONE)
-    chestitems[4].push([:LEFTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:LEFTARMOFTHEFORBIDDENONE)
-    chestitems[4].push([:RIGHTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:RIGHTARMOFTHEFORBIDDENONE)
-    chestitems[4].push([:LEFTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:LEFTLEGOFTHEFORBIDDENONE)
-    chestitems[4].push([:RIGHTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem(:RIGHTLEGOFTHEFORBIDDENONE)
+    chestitems[4].push([:EXODIATHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:EXODIATHEFORBIDDENONE)
+    chestitems[4].push([:LEFTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:LEFTARMOFTHEFORBIDDENONE)
+    chestitems[4].push([:RIGHTARMOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:RIGHTARMOFTHEFORBIDDENONE)
+    chestitems[4].push([:LEFTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:LEFTLEGOFTHEFORBIDDENONE)
+    chestitems[4].push([:RIGHTLEGOFTHEFORBIDDENONE, 1]) if !$PokemonBag.pbHasItem?(:RIGHTLEGOFTHEFORBIDDENONE)
 
     if chestitems[4].length == 0
         chestitems[4] = [
