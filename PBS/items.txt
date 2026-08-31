@@ -950,7 +950,7 @@
 884,HOTBOOTS,Hot Boots?,Hot Boots?,1,0,"a",0,0,0
 885,COLDBOOTS,Cold Boots??,Cold Boots??,1,0,"a",0,0,0
 886,SHOCKBOOTS,Shock Boots,Shock Boots???,1,0,"a",0,0,0
-887,BOOTS,Boots,Boots!,1,0,"a",0,0,0
+887,BOOTS,Boots!,Boots!,1,0,"a",0,0,0
 888,MEDIUMNUGGET,Medium Nugget,Medium Nuggets,1,0,"a",0,0,0
 889,CHICKENNUGGET,Chicken Nugget,Chicken Nuggets,1,0,"a",0,0,0
 890,GOLDENCHICKENNUGGET,Golden Chicken Nugget,Golden Chicken Nuggets,1,0,"a",0,0,0
