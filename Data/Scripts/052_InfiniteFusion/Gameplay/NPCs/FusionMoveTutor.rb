@@ -207,7 +207,6 @@ class FusionTutorService
       compatibleMoves << :INFERNALPARADE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :LUMINACRASH if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :AXEKICK if is_fusion_of([:THEFORBIDDENONE])
-
     end
     if includeLegendaries
       #legendary moves (only available after a certain trigger, maybe a different npc)

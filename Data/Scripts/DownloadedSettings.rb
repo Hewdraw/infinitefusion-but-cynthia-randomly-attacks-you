@@ -4,23 +4,11 @@ module Settings
 
   SHINY_POKEMON_CHANCE = 16
   SNOW_DAY = false
-  MEW_OW_ENCOUNTER_CHANCE = 1
-
-  ALTERING_CAVE_ENCOUNTERS =
-    {
-    :MONDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :WOOPER],
-    :TUESDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :SCRAGGY],
-    :WEDNESDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :SOLOSIS],
-    :THURSDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :KLINK],
-    :FRIDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :TANGELA],
-    :SATURDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :YAMASK],
-    :SUNDAY => [:ZUBAT, :ZUBAT, :ZUBAT, :WOOBAT, :STANTLER],
-  }
-
+  MEW_OW_ENCOUNTER_CHANCE = 0
 
   STARTUP_MESSAGES = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!" #Legacy starting PIF1 6.8
   STARTUP_MESSAGES_KANTO = "Pokémon Infinite Fusion 2 is now available! Download it from the game's Discord!"
-  STARTUP_MESSAGES_HOENN = "Pokémon Infinite Fusion 2 is still in development. Make sure to restart the game once in a while if you experience any lag issues."
+  STARTUP_MESSAGES_HOENN = ""
   
   MAIN_MENU_LINKS = {
     "Discord" => "https://discord.com/invite/infinitefusion",
@@ -74,7 +62,7 @@ module Settings
   AI_ENTRIES_RATE_LOG_FILE = 'Data/pokedex/rate_limit.log'  # Path to the log file
 
   #Spritepack
-  NEWEST_SPRITEPACK_MONTH = 7
+  NEWEST_SPRITEPACK_MONTH = 6
   NEWEST_SPRITEPACK_YEAR = 2026
 end
 

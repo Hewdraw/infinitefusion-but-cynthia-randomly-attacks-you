@@ -55,7 +55,7 @@ module GameData
 
       if !self::DATA.has_key?(other)
         if self == GameData::Item
-          return nil
+          return self::get(:UNKNOWN)
         else
           print(other, " ", caller) if self != GameData::Species
           return self::get(:PIKACHU)
@@ -109,12 +109,25 @@ module GameData
       keys.each { |key| yield self::DATA[key] if !key.is_a?(Integer) }
     end
 
-    def load
-      const_set(:DATA, load_data("Data/#{self::DATA_FILENAME}"))
-    end
 
+
+    def load
+      filename = "Data/#{self::DATA_FILENAME}"
+      raw = File.open(filename, "rb") { |f| f.read }
+      begin
+        const_set(:DATA, Marshal.load(Encryption.xor(raw)))
+      rescue TypeError, ArgumentError => e
+        echoln "Encrypted load failed for #{filename}: #{e.message}, trying plain..."
+        begin
+          const_set(:DATA, Marshal.load(raw))
+        rescue => e2
+          echoln "Plain load also failed for #{filename}: #{e2.message}"
+        end
+      end
+    end
     def save
-      save_data(self::DATA, "Data/#{self::DATA_FILENAME}")
+      raw = Marshal.dump(self::DATA)
+      File.open("Data/#{self::DATA_FILENAME}", "wb") { |f| f.write(Encryption.xor(raw)) }
     end
   end
 
@@ -172,11 +185,22 @@ module GameData
     end
 
     def load
-      const_set(:DATA, load_data("Data/#{self::DATA_FILENAME}"))
+      filename = "Data/#{self::DATA_FILENAME}"
+      raw = File.open(filename, "rb") { |f| f.read }
+      begin
+        const_set(:DATA, Marshal.load(Encryption.xor(raw)))
+      rescue TypeError, ArgumentError => e
+        echoln "Encrypted load failed for #{filename}: #{e.message}, trying plain..."
+        begin
+          const_set(:DATA, Marshal.load(raw))
+        rescue => e2
+          echoln "Plain load also failed for #{filename}: #{e2.message}"
+        end
+      end
     end
-
     def save
-      save_data(self::DATA, "Data/#{self::DATA_FILENAME}")
+      raw = Marshal.dump(self::DATA)
+      File.open("Data/#{self::DATA_FILENAME}", "wb") { |f| f.write(Encryption.xor(raw)) }
     end
   end
 
@@ -229,11 +253,22 @@ module GameData
     end
 
     def load
-      const_set(:DATA, load_data("Data/#{self::DATA_FILENAME}"))
+      filename = "Data/#{self::DATA_FILENAME}"
+      raw = File.open(filename, "rb") { |f| f.read }
+      begin
+        const_set(:DATA, Marshal.load(Encryption.xor(raw)))
+      rescue TypeError, ArgumentError => e
+        echoln "Encrypted load failed for #{filename}: #{e.message}, trying plain..."
+        begin
+          const_set(:DATA, Marshal.load(raw))
+        rescue => e2
+          echoln "Plain load also failed for #{filename}: #{e2.message}"
+        end
+      end
     end
-
     def save
-      save_data(self::DATA, "Data/#{self::DATA_FILENAME}")
+      raw = Marshal.dump(self::DATA)
+      File.open("Data/#{self::DATA_FILENAME}", "wb") { |f| f.write(Encryption.xor(raw)) }
     end
   end
 

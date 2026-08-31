@@ -22,19 +22,20 @@
 #     return __clauses__pbDecisionOnDraw
 #   end
 
-#   def pbJudgeCheckpoint(user,move=nil)
-#     if pbAllFainted?(0) && pbAllFainted?(1)
-#       if @rules["drawclause"]   # NOTE: Also includes Life Orb (not implemented)
-#         if !(move && move.function=="0DD")   # Not a draw if fainting occurred due to Liquid Ooze
-#           @decision = (user.opposes?) ? 1 : 2   # win / loss
-#         end
-#       elsif @rules["modifiedselfdestructclause"]
-#         if move && move.function=="0E0"   # Self-Destruct
-#           @decision = (user.opposes?) ? 1 : 2   # win / loss
-#         end
-#       end
-#     end
-#   end
+  # def pbJudgeCheckpoint(user,move=nil)
+
+  #   if pbAllFainted?(0) && pbAllFainted?(1)
+  #     if @rules["drawclause"]   # NOTE: Also includes Life Orb (not implemented)
+  #       if !(move && move.function=="0DD")   # Not a draw if fainting occurred due to Liquid Ooze
+  #         @decision = (user.opposes?) ? 1 : 2   # win / loss
+  #       end
+  #     elsif @rules["modifiedselfdestructclause"]
+  #       if move && move.function=="0E0"   # Self-Destruct
+  #         @decision = (user.opposes?) ? 1 : 2   # win / loss
+  #       end
+  #     end
+  #   end
+  # end
 
 #   def pbEndOfRoundPhase
 #     __clauses__pbEndOfRoundPhase
@@ -187,13 +188,14 @@
 #     @__clauses__aliased = true
 #   end
 
+
 #   def pbMoveFailed?(user,targets)
 #     if @battle.rules["selfkoclause"]
 #       # Check whether no unfainted Pokemon remain in either party
 #       count  = @battle.pbAbleNonActiveCount(user.idxOwnSide)
 #       count += @battle.pbAbleNonActiveCount(user.idxOpposingSide)
 #       if count==0
-#         @battle.pbDisplay("But it failed!")
+#         @battle.pbDisplay(_INTL("But it failed!"))
 #         return false
 #       end
 #     end
@@ -207,7 +209,7 @@
 #         return false
 #       end
 #     end
-#     return false
+#     return __clauses__pbMoveFailed?(user,targets)
 #   end
 # end
 

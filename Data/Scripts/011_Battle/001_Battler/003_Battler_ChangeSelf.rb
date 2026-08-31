@@ -96,6 +96,7 @@ class PokeBattle_Battler
     return if @fainted   # Has already fainted properly
     @battle.pbDisplayBrief(_INTL("{1} fainted!",pbThis)) if showMessage
     updateSpirits()
+    $Trainer.stats&.incr_nb_pokemon_defeated if opposes?
     PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
     if self.hasActiveAbility?(:AFTERMATHPLUS)
       self.pbUseMoveSimple(:EXPLOSION)
@@ -480,7 +481,6 @@ class PokeBattle_Battler
     @effects[PBEffects::TransformSpecies] = target.species
     pbChangeTypes(target)
     self.ability = target.ability
-    self.ability2 = target.ability2 if target.ability2
     @attack  = target.attack
     @defense = target.defense
     @spatk   = target.spatk

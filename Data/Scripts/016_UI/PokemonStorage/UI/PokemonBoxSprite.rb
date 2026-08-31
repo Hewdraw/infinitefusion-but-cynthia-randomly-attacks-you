@@ -4,14 +4,16 @@
 class PokemonBoxSprite < SpriteWrapper
   attr_accessor :refreshBox
   attr_accessor :refreshSprites
-
-  def initialize(storage, boxnumber, viewport = nil, fusionsEnabled = true)
+  attr_accessor :filterProc
+  attr_reader :boxnumber
+  def initialize(storage, boxnumber, viewport = nil, fusionsEnabled = true, filter = nil)
     super(viewport)
     @storage = storage
     @boxnumber = boxnumber
     @refreshBox = true
     @refreshSprites = true
     @pokemonsprites = []
+    @filterProc = filter
     for i in 0...PokemonBox::BOX_SIZE
       @pokemonsprites[i] = nil
       pokemon = @storage[boxnumber, i]
@@ -19,23 +21,29 @@ class PokemonBoxSprite < SpriteWrapper
       # boxicon = pokemon.boxicon if pokemon
       # boxicon = PokemonBoxIcon.new(pokemon, viewport) if pokemon.nil?
       @pokemonsprites[i] = PokemonBoxIcon.new(pokemon, viewport)
+      @pokemonsprites[i].apply_filter(@filterProc)
     end
     @contents = BitmapWrapper.new(324, 296)
     self.bitmap = @contents
     self.x = 184
     self.y = 18
-
     @fusions_enabled = fusionsEnabled
     refresh
   end
 
+  def setFilterProc(filter)
+    @filterProc=filter
+  end
+
   def disableFusions()
-    @fusions_enabled = false
+    #@fusions_enabled = false
+    @filterProc = proc { |pokemon| pokemon&.isFusion? == false }
     refreshAllBoxSprites()
   end
 
   def enableFusions()
-    @fusions_enabled = true
+    @filterProc = nil
+   # @fusions_enabled = true
     refreshAllBoxSprites()
   end
 
@@ -162,11 +170,13 @@ class PokemonBoxSprite < SpriteWrapper
     end
   end
 
-  def refreshAllBoxSprites
-    # spriteLoader = BattleSpriteLoader.new
+  #@filterProc is called on the @pokemon object of each BoxIcon.
+  # If true, full opacity, selectable, otherwise, low opacity, not selectable
+  def refreshAllBoxSprites()
     for i in 0...PokemonBox::BOX_SIZE
       if @pokemonsprites[i] && !@pokemonsprites[i].disposed?
-        @pokemonsprites[i].refresh(@fusions_enabled)
+        @pokemonsprites[i].refresh
+        @pokemonsprites[i].apply_filter(@filterProc)
       end
       # spriteLoader.preload_sprite_from_pokemon(@pokemonsprites[i].pokemon) if @pokemonsprites[i].pokemon
     end
@@ -177,6 +187,7 @@ class PokemonBoxSprite < SpriteWrapper
     for i in 0...PokemonBox::BOX_SIZE
       if @pokemonsprites[i] && !@pokemonsprites[i].disposed?
         @pokemonsprites[i].update
+        #@pokemonsprites[i].apply_filter(@filterProc)
       end
     end
   end

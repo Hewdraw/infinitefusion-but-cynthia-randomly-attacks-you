@@ -1228,6 +1228,13 @@ BattleHandlers::DamageCalcTargetItem.add(:COLBURBERRY,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:ROSELIBERRY,
+   proc { |item,user,target,move,mults,baseDmg,type|
+     pbBattleTypeWeakingBerry(:FAIRY,type,target,mults)
+   }
+)
+
+
 BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
   proc { |item,target,user,move,mults,baseDmg,type|
     if move.specialMove?

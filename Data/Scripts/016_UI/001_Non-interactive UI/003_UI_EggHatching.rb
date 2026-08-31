@@ -103,13 +103,13 @@ class PokemonEggHatch_Scene
     @pokemon.play_cry
     updateScene(frames)
     pbBGMStop()
-    pbMEPlay("Evolution success")
+    pbMEPlay("evolution_success")
     @pokemon.name = nil
     pbMessage(_INTL("\\se[]{1} hatched from the Egg!\\wt[80]", @pokemon.name)) { update }
-    if $PokemonGlobal.towervalues.nil? && pbConfirmMessage(
-        _INTL("Would you like to nickname the newly hatched {1}?", @pokemon.name)) { update }
+    if $PokemonGlobal.towervalues.nil? && $PokemonSystem.prompt_nicknames && pbConfirmMessage(
+      _INTL("Would you like to nickname the newly hatched {1}?", @pokemon.name)) { update }
       nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", @pokemon.name),
-                                  0, Pokemon::MAX_NAME_SIZE, "", @pokemon, true)
+                                    0, Pokemon::MAX_NAME_SIZE, "", @pokemon, true)
       @pokemon.name = nickname
       @nicknamed = true
     end
@@ -118,7 +118,7 @@ class PokemonEggHatch_Scene
       $Trainer.pokedex.register(@pokemon)
       $Trainer.pokedex.set_owned(@pokemon.species)
       pbMessage(_INTL("{1}'s data was added to the Pokédex", @pokemon.name))
-      pbShowPokedex(@pokemon.species)
+      pbShowPokedex(@pokemon)
     end
     nb_eggs_hatched = pbGet(VAR_NB_EGGS_HATCHED)
     pbSet(VAR_NB_EGGS_HATCHED,nb_eggs_hatched+1)
@@ -206,7 +206,7 @@ def pbHatch(pokemon)
   pokemon.owner          = Pokemon::Owner.new_from_trainer($Trainer)
   pokemon.level = 5
   pokemon.happiness      = 120
-  pokemon.timeEggHatched = pbGetTimeNow
+  pokemon.timeEggHatched = Time.new.to_i
   pokemon.obtain_method  = 1   # hatched from egg
   pokemon.hatched_map    = $game_map.map_id
   if player_on_hidden_ability_map
