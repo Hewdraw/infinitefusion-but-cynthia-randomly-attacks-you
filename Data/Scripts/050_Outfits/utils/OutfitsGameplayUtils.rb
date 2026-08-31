@@ -448,5 +448,5 @@ def select_hat()
 end
 
 def canPutHatOnPokemon(pokemon)
-  return !pokemon.egg? && !pokemon.isTripleFusion? && $game_switches[SWITCH_UNLOCKED_POKEMON_HATS]
+  return !pokemon.egg?
 end
