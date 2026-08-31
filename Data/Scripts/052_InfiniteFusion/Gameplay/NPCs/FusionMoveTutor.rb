@@ -241,7 +241,7 @@ class FusionTutorService
       compatibleMoves << :DOUBLEIRONBASH if canLearnMove(:DOUBLESLAP) && hasType(:STEEL)
       compatibleMoves << :STEAMERUPTION if (canLearnMove(:ERUPTION) && hasType(:WATER)) || is_fusion_of([:BLASTOISE, :MACHINEDRAMON])
       compatibleMoves << :SECRETSWORD if is_fusion_of([:HONEDGE, :DOUBLADE, :AEGISLASH, :GARDEVOIR, :GALLADE, :IRONVALIANT, :FARFETCHD, :ABSOL, :BISHARP, :DIANCIE, :MAGEARNA])
-      compatibleMoves << :SHADOWFORCE if canLearnMove(:PHANTOMFORCE, :THEFORBIDDENONE)
+      compatibleMoves << :SHADOWFORCE if canLearnMove(:PHANTOMFORCE) || is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :THUNDEROUSKICK if hasType(:ELECTRIC) && hasType(:FIGHTING)
       compatibleMoves << :FREEZINGGLARE if (hasType(:ICE) && hasType(:PSYCHIC)) || is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :FIERYWRATH if (hasType(:DARK) && hasType(:FIRE)) || is_fusion_of([:THEFORBIDDENONE])

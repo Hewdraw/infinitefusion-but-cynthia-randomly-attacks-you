@@ -202,12 +202,8 @@ BallHandlers::ModifyCatchRate.add(:HEAVYBALL,proc { |ball,catchRate,battle,battl
 })
 
 BallHandlers::ModifyCatchRate.add(:LOVEBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
-  battle.eachSameSideBattler do |b|
-    next if b.species!=battler.species
-    next if b.gender==battler.gender || b.gender==2 || battler.gender==2
-    catchRate *= 8
-    break
-  end
+  next 0 if battler.isFusionOf(:FERROSEED) || battler.isFusionOf(:FERROTHORN)
+  catchRate *= 8
   next [catchRate,255].min
 })
 

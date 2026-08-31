@@ -1254,8 +1254,8 @@ Pokemon = PIDGEY,16
 Pokemon = B16H27,16
 #-------------------------------
 [CAMPER,Jeff]
-Pokemon = SPEAROW,16
-Pokemon = B20H43,16
+Pokemon = ELECTRODE,16
+    Moves = EXPLOSION
 #-------------------------------
 [YOUNGSTER,Eddie]
 Pokemon = B50H102,21
@@ -11557,8 +11557,8 @@ Pokemon = HOOH,11
 
 [LEGENDARY_POKEMON,Exodia,0]
 Pokemon = THEFORBIDDENONE,11    
-    Offset = 10
-    Moves = HYPERSPACEFURY,SWORDSDANCE,PSYCHOBOOST,COLLISIONCOURSE
+    Offset = 14
+    Moves = KNOCKOFF,SWORDSDANCE,PSYCHOBOOST,COLLISIONCOURSE
     Ability = LEGENDARYPRESSURE
     Hpbar = 5
     Item = LEFTOVERS

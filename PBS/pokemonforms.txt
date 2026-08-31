@@ -1484,6 +1484,8 @@ BaseStats = 70,120,130,85,165,130
 FormName = Mega Scolipede
 MegaStone = MEGASTONEITE
 BaseStats = 60,140,149,62,75,99
+Abilities = SHELLARMOR
+HiddenAbility = SHELLARMOR
 #-------------------------------
 [SCRAFTY,1]
 FormName = Mega Scrafty

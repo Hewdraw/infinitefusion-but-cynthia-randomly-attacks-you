@@ -5135,15 +5135,15 @@ class PokeBattle_Move_316 < PokeBattle_Move_06C
   end
 end
 
-class PokeBattle_Move_317 < PokeBattle_StatDownMove
-  def initialize(battle, move)
-    super
-    @statDown = [:SPECIAL_DEFENSE, 2]
-  end
-
+class PokeBattle_Move_317 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
     target.pbSleep if target.pbCanSleep?(user,false,self)
+  end
+
+  def pbEffectGeneral(user)
+    return if !user.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
+    user.pbLowerStatStage(:SPECIAL_DEFENSE,2,user)
   end
 end
 

@@ -3023,7 +3023,12 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
     battle.pbShowAbilitySplash(battler)
     battler.pokemon.battlevariables[:breaktheseal] -= 1
     if battler.pokemon.battlevariables[:breaktheseal] > 0
-      battle.pbDisplay("#{battler.pokemon.battlevariables[:breaktheseal]} turns left.")
+      if battler.pokemon.battlevariables[:breaktheseal] == 1
+        battle.pbDisplay("#{battler.pokemon.battlevariables[:breaktheseal]} turn left.")
+      else
+        battle.pbDisplay("#{battler.pokemon.battlevariables[:breaktheseal]} turns left.")
+      end
+      battle.pbHideAbilitySplash(battler)
       next
     end
     battler.pokemon.originalability = battler.pokemon.ability
@@ -3032,6 +3037,7 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
     level = battler.level
     battler.pokemon.species = :EXODIAINCARNATE
     battler.species = :EXODIAINCARNATE
+    battler.ability = :LEGENDARYPRESSURE if battler.pokemon.originalability == :LEGENDARYPRESSURE
     battler.level = level
     battler.pbUpdate(true)
     battle.scene.pbChangePokemon(battler,battler.pokemon)
@@ -3039,6 +3045,20 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
     battler.pbUpdate(true)
     battle.pbCommonAnimation("MegaEvolution2",battler)
     battle.pbDisplay("The seal has been broken!")
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:OBLITERATE,
+  proc { |ability,battler,battle|
+    next if battler.turnCount == 0
+    battle.pbShowAbilitySplash(battler)
+    battle.battlers.each do |b|
+      next if battler == b
+      next if !(b.pbCanLowerStatStage?(:DEFENSE, battler) || b.pbCanLowerStatStage?(:SPECIAL_DEFENSE, battler))
+      b.pbLowerStatStageByAbility(:DEFENSE, 1, battler, false)
+      b.pbLowerStatStageByAbility(:SPECIAL_DEFENSE, 1, battler, false)
+    end
     battle.pbHideAbilitySplash(battler)
   }
 )

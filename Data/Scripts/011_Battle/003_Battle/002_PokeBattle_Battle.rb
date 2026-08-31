@@ -701,11 +701,11 @@ class PokeBattle_Battle
          user,@field.weather,duration,self)
     end
     @field.weatherDuration = duration
-    if user.hasActiveItem?(:PRIMALROCK)
+    if user && user.hasActiveItem?(:PRIMALROCK)
       @field.weather = :HarshSun if newWeather == :Sun
       @field.weather = :HeavyRain if newWeather == :Rain
     end
-    if user.hasActiveItem?(:DESERTEDROCK)
+    if user && user.hasActiveItem?(:DESERTEDROCK)
       @field.weather = :Snow if newWeather == :Hail
     end
     weather_data = GameData::BattleWeather.try_get(@field.weather)
