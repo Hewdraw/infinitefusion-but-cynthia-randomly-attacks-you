@@ -237,7 +237,7 @@ def getEnderChestItems()
         ],
     ]
     exodiaitems = [:EXODIATHEFORBIDDENONE, :LEFTARMOFTHEFORBIDDENONE, :RIGHTARMOFTHEFORBIDDENONE, :LEFTLEGOFTHEFORBIDDENONE, :RIGHTLEGOFTHEFORBIDDENONE]
-
+    $PokemonGlobal.chestitemspulled = [] if $PokemonGlobal.chestitemspulled.nil?
     exodiaitems.each do |exodia|
         chestitems[4].push([exodia]) if $PokemonGlobal.chestitemspulled.include?(exodia)
     end
