@@ -3608,6 +3608,12 @@ class PokeBattle_Move_226 < PokeBattle_Move
 end
 
 class PokeBattle_Move_228 < PokeBattle_TargetMultiStatDownMove
+  def tramplesMinimize?(param = 1)
+    return true if param == 1 # Perfect accuracy
+    return true if param == 2 # Double damage
+    return super
+  end
+
   def initialize(battle, move)
     super
     @statDown = [:DEFENSE, 1, :SPEED, 1]
