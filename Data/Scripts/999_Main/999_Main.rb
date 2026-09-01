@@ -139,15 +139,10 @@ end
 def showLoadingScreen
   selected_loading_screen = "Graphics/titles/loading_screen"
   picture = Sprite.new(@viewport)
-     picture.bitmap = pbBitmap(selected_loading_screen)
-     picture.visible=true
-
-  logo = Sprite.new(@viewport)
-    logo.bitmap = pbBitmap(logo_path)
-    logo.visible=true
+  picture.bitmap = pbBitmap(selected_loading_screen)
+  picture.visible=true
   Graphics.update
-     picture.dispose
-  logo.dispose
+  picture.dispose
 end
 
 

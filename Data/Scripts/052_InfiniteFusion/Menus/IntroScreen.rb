@@ -230,12 +230,12 @@ class GenOneStyle
     @sprites["selector"].opacity = 0
 
     @sprites["poke"] = Sprite.new(@viewport)
-    @sprites["poke"].bitmap = pbBitmap("Graphics/Trainers/trainer115")
+    @sprites["poke"].bitmap = pbBitmap("Graphics/Trainers/trainer144")
     @sprites["poke"].x = Graphics.width
     @sprites["poke"].y = 175
 
     @sprites["2poke"] = Sprite.new(@viewport)
-    @sprites["2poke"].bitmap = pbBitmap("Graphics/Trainers/trainer115")
+    @sprites["2poke"].bitmap = pbBitmap("Graphics/Trainers/trainer144")
     @sprites["2poke"].x = 0 - @sprites["2poke"].width
     @sprites["2poke"].y = 175
 

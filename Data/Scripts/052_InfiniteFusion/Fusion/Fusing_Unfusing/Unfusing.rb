@@ -1,5 +1,5 @@
 def pbUnfuse(pokemon, scene, partyPosition=nil, pcPosition = nil)
-  if pokemon.original_body && pokemon.original_head
+  if pokemon.original_body && pokemon.original_head && pokemon.species_data.id != :OMNIMON
     if pcPosition
       result = unfusePokemonFromPC(pokemon, scene, pcPosition)
     else
@@ -118,28 +118,16 @@ end
 def obtainUnfusedPokemonParty(head_pokemon, body_pokemon, partyPosition)
   if $Trainer.party.length >= 6
     message = _INTL("Your party is full! Keep which Pokémon in party?")
-    message = _INTL("Your party is full! Keep which Pokémon in party? The other will be released.") if isOnPinkanIsland()
     pbMessage(message)
     selectPokemonMessage = _INTL("Select a Pokémon to keep in your party.")
-    selectPokemonMessage = _INTL("Select a Pokémon to keep in your party. The other will be released") if isOnPinkanIsland()
     choice = Kernel.pbMessage(selectPokemonMessage, ["#{head_pokemon.name}", "#{body_pokemon.name}", _INTL("Cancel")], 2)
     #Removes the fusion, then store in an order that depends on which one is sent to PC
     if choice == 0 # Head
-      if isOnPinkanIsland()
-        $Trainer.party.delete_at(partyPosition)
-        pbAddPokemon(head_pokemon)
-      else
-        $Trainer.party[partyPosition] = head_pokemon
-        $PokemonStorage.pbStoreCaught(body_pokemon)
-      end
+      $Trainer.party[partyPosition] = head_pokemon
+      $PokemonStorage.pbStoreCaught(body_pokemon)
     elsif choice == 1 #body
-      if isOnPinkanIsland()
-        $Trainer.party.delete_at(partyPosition)
-        pbAddPokemon(body_pokemon)
-      else
-        $Trainer.party[partyPosition] = body_pokemon
-        $PokemonStorage.pbStoreCaught(head_pokemon)
-      end
+      $Trainer.party[partyPosition] = body_pokemon
+      $PokemonStorage.pbStoreCaught(head_pokemon)
     else
       return false
     end

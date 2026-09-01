@@ -34,23 +34,23 @@ class GameplayOptionsScene < PokemonOption_Scene
                                _INTL("Default to running when not holding the Run key")]
     )
 
-    difficulty_description = []
-    if Settings::KANTO
-      difficulty_description = [_INTL("All Pokémon in the team gain experience. Otherwise the same as Normal difficulty."),
-                                _INTL("The default experience. Levels are similar to the official games."),
-                                _INTL("Higher levels and smarter AI. All trainers have access to healing items.")]
-    else
-      difficulty_description = [_INTL("Trainer Pokémon levels are 10% lower"),
-                                _INTL("The default experience. Levels are similar to the official games."),
-                                _INTL("Trainer Pokémon levels are 10% higher"),]
-    end
-    options << EnumOption.new(_INTL("Difficulty"), [_INTL("Easy"), _INTL("Normal"), _INTL("Hard")],
-                              proc { $Trainer.selected_difficulty },
-                              proc { |value|
-                                setDifficulty(value)
-                                @manually_changed_difficulty = true
-                              }, difficulty_description
-    )
+    # difficulty_description = []
+    # if Settings::KANTO
+    #   difficulty_description = [_INTL("All Pokémon in the team gain experience. Otherwise the same as Normal difficulty."),
+    #                             _INTL("The default experience. Levels are similar to the official games."),
+    #                             _INTL("Higher levels and smarter AI. All trainers have access to healing items.")]
+    # else
+    #   difficulty_description = [_INTL("Trainer Pokémon levels are 10% lower"),
+    #                             _INTL("The default experience. Levels are similar to the official games."),
+    #                             _INTL("Trainer Pokémon levels are 10% higher"),]
+    # end
+    # options << EnumOption.new(_INTL("Difficulty"), [_INTL("Easy"), _INTL("Normal"), _INTL("Hard")],
+    #                           proc { $Trainer.selected_difficulty },
+    #                           proc { |value|
+    #                             setDifficulty(value)
+    #                             @manually_changed_difficulty = true
+    #                           }, difficulty_description
+    # )
 
     if Settings::HOENN
       options << EnumOption.new(_INTL("Overworld Encounters"), [_INTL("On"), _INTL("Off")],
@@ -61,24 +61,24 @@ class GameplayOptionsScene < PokemonOption_Scene
       )
     end
 
-    if $game_switches && (Settings::KANTO && ($game_switches[SWITCH_NEW_GAME_PLUS] || $game_switches[SWITCH_BEAT_THE_LEAGUE])) || Settings::HOENN # beat the league
-      options <<
-        EnumOption.new(_INTL("Battle type"), [_INTL("1v1"), _INTL("2v2"), _INTL("3v3")],
-                       proc { $PokemonSystem.battle_type },
-                       proc { |value|
-                         if value == 0
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
-                         elsif value == 1
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [2, 2]
-                         elsif value == 2
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [3, 3]
-                         else
-                           $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
-                         end
-                         $PokemonSystem.battle_type = value
-                       }, _INTL("Sets the number of Pokémon sent out in battles (when possible)")
-        )
-    end
+    # if $game_switches && (Settings::KANTO && ($game_switches[SWITCH_NEW_GAME_PLUS] || $game_switches[SWITCH_BEAT_THE_LEAGUE])) || Settings::HOENN # beat the league
+    #   options <<
+    #     EnumOption.new(_INTL("Battle type"), [_INTL("1v1"), _INTL("2v2"), _INTL("3v3")],
+    #                    proc { $PokemonSystem.battle_type },
+    #                    proc { |value|
+    #                      if value == 0
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
+    #                      elsif value == 1
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [2, 2]
+    #                      elsif value == 2
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [3, 3]
+    #                      else
+    #                        $game_variables[VAR_DEFAULT_BATTLE_TYPE] = [1, 1]
+    #                      end
+    #                      $PokemonSystem.battle_type = value
+    #                    }, _INTL("Sets the number of Pokémon sent out in battles (when possible)")
+    #     )
+    # end
 
     options << EnumOption.new(_INTL("Speed-up type"), [_INTL("Hold"), _INTL("Toggle")],
                               proc { $PokemonSystem.speedup },
@@ -115,18 +115,18 @@ class GameplayOptionsScene < PokemonOption_Scene
                                 _INTL("Use HMs automatically when interacting with an obstacle")]
     )
 
-    if $game_switches && $game_switches[SWITCH_LEGENDARY_MODE]
-      selected_game_mode = $game_switches[SWITCH_MODERN_MODE] ? 1 : 0
-      options << EnumOption.new(_INTL("Trainers"), [_INTL("Classic"), _INTL("Remix")],
-                                proc { selected_game_mode },
-                                proc { |value|
-                                  $game_switches[SWITCH_MODERN_MODE] = value == 1
-                                  @manually_changed_gamemode = true
-                                },
-                                [_INTL("Use trainers from Classic Mode for Legendary Mode"),
-                                 _INTL("Use trainers from Remix Mode for Legendary Mode")]
-      )
-    end
+    # if $game_switches && $game_switches[SWITCH_LEGENDARY_MODE]
+    #   selected_game_mode = $game_switches[SWITCH_MODERN_MODE] ? 1 : 0
+    #   options << EnumOption.new(_INTL("Trainers"), [_INTL("Classic"), _INTL("Remix")],
+    #                             proc { selected_game_mode },
+    #                             proc { |value|
+    #                               $game_switches[SWITCH_MODERN_MODE] = value == 1
+    #                               @manually_changed_gamemode = true
+    #                             },
+    #                             [_INTL("Use trainers from Classic Mode for Legendary Mode"),
+    #                              _INTL("Use trainers from Remix Mode for Legendary Mode")]
+    #   )
+    # end
     return options
   end
 end

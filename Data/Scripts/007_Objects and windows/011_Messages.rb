@@ -346,6 +346,7 @@ def pbGetMapNameFromId(id)
     map = pbGetBasicMapNameFromId(id)
   end
   map.gsub!(/\\PN/, $Trainer.name) if $Trainer
+  map += " " + $PokemonGlobal.towervalues[:floor].to_s + "F" if map == "Temporal Tower" && !$PokemonGlobal.towervalues.nil?
   return map
 end
 

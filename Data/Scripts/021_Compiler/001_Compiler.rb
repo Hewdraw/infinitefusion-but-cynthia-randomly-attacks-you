@@ -735,7 +735,7 @@ module Compiler
     yield(_INTL("Saving messages"))
     pbSetTextMessages
     MessageTypes.saveMessages
-    MessageTypes.loadMessageFile("Data/messages.dat") if safeExists?("Data/messages.dat")
+    #MessageTypes.loadMessageFile("Data/messages.dat") if safeExists?("Data/messages.dat")
     System.reload_cache
     echoln ""
     echoln _INTL("*** Finished full compile ***")

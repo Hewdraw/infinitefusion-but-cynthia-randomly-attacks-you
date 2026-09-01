@@ -3587,19 +3587,16 @@ class PokeBattle_Move_226 < PokeBattle_Move
     animation = IconSprite.new(user.battle.scene.viewport)
     animation.setBitmap("Graphics/Animations/gifs/UltimateJudgement000")
     animation.z = 10000
-    testvalue = 0
     pbWait(delay)
     animation.dispose
     animation = IconSprite.new(user.battle.scene.viewport)
     animation.setBitmap("Graphics/Animations/gifs/UltimateJudgement001")
     animation.z = 10001
-    testvalue = 0
     pbWait(delay)
     animation.dispose
     animation = IconSprite.new(user.battle.scene.viewport)
     animation.setBitmap("Graphics/Animations/gifs/UltimateJudgement002")
     animation.z = 10002
-    testvalue = 0
     pbWait(delay)
     animation.dispose
     $PokemonGlobal.speedupdisabled = false

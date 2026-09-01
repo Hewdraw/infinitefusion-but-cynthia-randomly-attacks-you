@@ -2836,6 +2836,18 @@ ItemHandlers::UseFromBag.add(:TRIPLESPLICER, proc { |item|
 })
 
 ItemHandlers::UseFromBag.add(:MILLENNIUMANKH, proc { |item|
+  bgm = $game_system.playing_bgm
+  pbBGMStop(1)
+  pbBGMPlay("ExodiaSummon")
+  $PokemonGlobal.speedupdisabled = true
+  delay = (Graphics.frame_rate*16*0.905).to_i
+  viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+  viewport.z = 99999
+  animation = IconSprite.new(viewport)
+  animation.setBitmap("Graphics/Animations/gifs/ExodiaSummon")
+  pbWait(delay)
+  animation.dispose
+  $PokemonGlobal.speedupdisabled = false
   $PokemonGlobal.nextBattleBGM = "VSExodia"
   $PokemonBag.pbDeleteItem(:MILLENNIUMANKH) if pbLegendaryBattle("Exodia")
 })

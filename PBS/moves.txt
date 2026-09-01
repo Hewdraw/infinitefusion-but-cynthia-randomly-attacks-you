@@ -1075,7 +1075,7 @@
 1106,GIGACANNON,Giga Cannon,354,35,GUN,Physical,100,5,50,NearOther,0,befmn,"Fires superdreadnought-class energy waves from its two cannons."
 1107,INFINITEHAND,Infinite Hand,355,20,ELECTRIC,Special,90,5,0,NearOther,0,befm,"Launches a blast of energy from its hand." #todo
 1108,GIGADESTROYER,Giga Destroyer,03F,160,GUN,Special,90,5,0,AllNearFoes,0,befmn,"Fires organic missiles from the hatch on part of its chest."
-1109,CATASTROPHEDAY,Catastrophe Day,356,600,GUN,Physical,100,5,20,AllNearOthers,0,befn,"Detonates itself in a large explosion." #todo
+1109,CATASTROPHEDAY,Catastrophe Day,356,500,GUN,Physical,100,5,20,AllNearOthers,0,befn,"Detonates itself in a large explosion." #todo
 1110,ATIMELESSENCOUNTER,A Timeless Encounter,346,0,PSYCHIC,Status,0,1,0,User,-7,d,"a"
 1111,FUTURESIGHTPLUS,Future Sight+,111,130,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target." #TODO
 1112,CRUSHGRIPPLUS,Crush Grip+,347,100,NORMAL,Physical,100,5,50,NearOther,0,abef,"The target is crushed with great force."

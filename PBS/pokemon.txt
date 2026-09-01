@@ -26655,4 +26655,5 @@ Shape = Quadruped
 Kind = Alpha
 Pokedex = The one who gathers all five cards - resurrecting the deity by reuniting his head with his four limbs - will gain the power to bury their enemies in an instant.
 
+
 #eof

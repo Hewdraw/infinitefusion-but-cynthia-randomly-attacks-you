@@ -26,20 +26,24 @@ class SpriteOptionsScene < PokemonOption_Scene
   def pbGetOptions(inloadscreen = false)
     options = []
 
-
-
-    generated_entries_option_selected = $PokemonSystem.use_generated_dex_entries ? 1 : 0
-    options << EnumOption.new(_INTL("Autogen dex entries"), [_INTL("Off"), _INTL("On")],
-                              proc { generated_entries_option_selected },
-                              proc { |value|
-                                $PokemonSystem.use_generated_dex_entries = value == 1
-                              },
-                              [
-                                _INTL("Fusions without a custom Pokédex entry display nothing."),
-                                _INTL("Fusions without a custom Pokédex entry display an auto-generated placeholder.")
-
-                              ]
+    options << EnumOption.new(_INTL("CPU Player"), [_INTL("Off"), _INTL("On")],
+                              proc { $PokemonSystem.aicontrolplayer },
+                              proc { |value| $PokemonSystem.aicontrolplayer = value },
+                              "Makes the CPU control the player in trainer battles."
     )
+
+    # generated_entries_option_selected = $PokemonSystem.use_generated_dex_entries ? 1 : 0
+    # options << EnumOption.new(_INTL("Autogen dex entries"), [_INTL("Off"), _INTL("On")],
+    #                           proc { generated_entries_option_selected },
+    #                           proc { |value|
+    #                             $PokemonSystem.use_generated_dex_entries = value == 1
+    #                           },
+    #                           [
+    #                             _INTL("Fusions without a custom Pokédex entry display nothing."),
+    #                             _INTL("Fusions without a custom Pokédex entry display an auto-generated placeholder.")
+
+    #                           ]
+    # )
 
     use_random_sprites = $PokemonSystem.random_sprites ? 1 : 0
     options << EnumOption.new(_INTL("Random Sprites"), [_INTL("Off"), _INTL("On")],
@@ -83,12 +87,12 @@ class SpriteOptionsScene < PokemonOption_Scene
                                _INTL("Uses the same party icon for all fusions")]
     )
 
-    battle_type_icon_option_selected = $PokemonSystem.type_icons ? 1 : 0
-    options << EnumOption.new(_INTL("Battle Type Icons"), [_INTL("Off"), _INTL("On")],
-                              proc { battle_type_icon_option_selected },
-                              proc { |value| $PokemonSystem.type_icons = value == 1 },
-                              _INTL("Display the enemy Pokémon type in battles.")
-    )
+    # battle_type_icon_option_selected = $PokemonSystem.type_icons ? 1 : 0
+    # options << EnumOption.new(_INTL("Battle Type Icons"), [_INTL("Off"), _INTL("On")],
+    #                           proc { battle_type_icon_option_selected },
+    #                           proc { |value| $PokemonSystem.type_icons = value == 1 },
+    #                           _INTL("Display the enemy Pokémon type in battles.")
+    # )
 
     options << EnumOption.new(_INTL("Battle Animations"), [_INTL("On"), _INTL("Off")],
                               proc { $PokemonSystem.battlescene },

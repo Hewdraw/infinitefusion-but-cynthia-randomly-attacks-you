@@ -155,7 +155,6 @@ end
 def promptCaughtPokemonAction(pokemon)
   pickedOption = false
   return pbStorePokemon(pokemon) if !$Trainer.party_full?
-  return promptKeepOrRelease(pokemon) if isOnPinkanIsland() && !$game_switches[SWITCH_PINKAN_FINISHED]
   while !pickedOption
     cmd_swap = _INTL("Add to your party")
     cmd_fuse = _INTL("Fuse in party")
