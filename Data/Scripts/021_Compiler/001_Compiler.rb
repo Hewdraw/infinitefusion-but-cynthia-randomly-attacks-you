@@ -696,16 +696,16 @@ module Compiler
     compile_abilities              # No dependencies
     yield(_INTL("Compiling move data"))
     compile_moves                  # Depends on Type
-    yield(_INTL("Compiling contest move data"))
-    compile_contest_moves #if respond_to?(:compile_contest_moves)
+    # yield(_INTL("Compiling contest move data"))
+    # compile_contest_moves #if respond_to?(:compile_contest_moves)
     yield(_INTL("Compiling item data"))
     compile_items                  # Depends on Move
     yield(_INTL("Compiling berry plant data"))
     compile_berry_plants           # Depends on Item
-    yield(_INTL("Compiling berry pokeblock data"))
-    compile_berry_data
-    yield(_INTL("Compiling berry dexes"))
-    compile_berry_dexes
+    # yield(_INTL("Compiling berry pokeblock data"))
+    # compile_berry_data
+    # yield(_INTL("Compiling berry dexes"))
+    # compile_berry_dexes
     yield(_INTL("Compiling Pokémon data"))
     compile_pokemon                # Depends on Move, Item, Type, Ability
     yield(_INTL("Compiling Pokémon forms data"))
@@ -735,7 +735,7 @@ module Compiler
     yield(_INTL("Saving messages"))
     pbSetTextMessages
     MessageTypes.saveMessages
-    #MessageTypes.loadMessageFile("Data/messages.dat") if safeExists?("Data/messages.dat")
+    MessageTypes.loadMessageFile("Data/messages.dat") if safeExists?("Data/messages.dat")
     System.reload_cache
     echoln ""
     echoln _INTL("*** Finished full compile ***")

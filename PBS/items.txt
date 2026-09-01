@@ -193,8 +193,8 @@
 191,STICK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0
 192,SOULDEW,Soul Dew,Soul Dews,1,0,"A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.",0,0,0
 193,DEEPSEATOOTH,Deep Sea Tooth,Deep Sea Teeth,1,2000,"An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.",0,0,0
-194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,1,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",1,0,7
-195,ADAMANTORB,Adamant Orb,Adamant Orbs,1,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",1,0,7
+194,DEEPSEASCALE,Deep Sea Scale,Deep Sea Scales,1,2000,"An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.",0,0,0
+195,ADAMANTORB,Adamant Orb,Adamant Orbs,1,10000,"A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.",0,0,0
 196,LUSTROUSORB,Lustrous Orb,Lustrous Orbs,1,10000,"A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.",0,0,0
 197,GRISEOUSORB,Griseous Orb,Griseous Orbs,1,10000,"A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.",0,0,0
 198,DOUSEDRIVE,Douse Drive,Douse Drives,1,1000,"A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.",0,0,0
@@ -771,13 +771,18 @@
 697,MUSHROOMSPORES,Mossy Spores,Mossy Spores,1,50,"Delicate spores harvested from a large mushroom in Petalburg Woods. It might have some use...",2,0,0
 #-------------------------------
 698,FIELDSLEEPINGBAG,Field Sleeping Bag,Field Sleeping Bags,8,0,"A handy field sleeping bag that can be used to nap anywhere.",2,0,6
-699,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
-700,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
-701,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0
-702,LEEK,Leek,Leeks,1,1000,"An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.",0,0,0,
-703,METAGROSSITE,Metagrossite,Metagrossites,1,0,"todo",0,0,0
-704,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"todo",0,0,0
-705,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"todo",0,0,0
+#-------------------------------
+699,EXPCANDY,Exp. Candy,Exp. Candies,2,10000,"A candy that is packed with energy. If consumed, it grants a Pokémon a small number of Exp. Points. ",1,0,0
+#-------------------------------
+700,SEAWEED,Seaweed,Seaweeds,1,100,"A bunch of seaweed that's common in the Hoenn region.",1,1,0
+#-------------------------------
+701,ROSELIBERRY,Resoli Berry,Resoli Berries,5,20,"Weakens a supereffective Fairy-type attack against the holding Pokémon.",0,0,5
+#-------------------------------
+702,SPRAYCAN,Spray Can,Spray Can,8,0,"A can of colored spray paint that can be used to paint on walls.",2,0,6
+703,SPAWNER,Spawner,Spawners,8,0,"Debug tool for spawning Pokémon.",2,0,6
+#-------------------------------
+704,PRESENT,Present,Presents,1,50,"A small gift box that contains coins.",2,0,0
+705,UNKNOWN,Thing,Things,1,50,"Some kind of object. You're not too sure what it is...",0,0,0
 706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"todo",0,0,0
 707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
@@ -865,8 +870,8 @@
 799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"a",0,0,0
 800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"a",0,0,0
 801,MINECRAFTBALL,Minecraft Block,Minecraft Blocks,3,0,"Weird Cobblemon extension.",0,0,0
-802,MAXMUSHROOM,MAX Mushroom,MAX Mushrooms,1,0,"todo",0,0,0
-803,MEGARING,Mega Ring,Mega Rings,1,0,"todo",0,0,0
+802,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0
+803,METAGROSSITE,Metagrossite,Metagrossites,1,0,"todo",0,0,0
 804,ELYTRA,Elytra,Elytras,1,0,"a",0,0,0
 805,ENDERPEARL,Ender Pearl,Ender Pearls,1,0,"a",0,0,0
 806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"todo",0,0,0
@@ -984,6 +989,10 @@
 918,RARESTBONE,Rarest Bone,Rarest Bones,2,0,"Raw gold bone that contains infinite calcium.",1,3,0,
 919,COCONUT,Coconut,Coconuts,8,20000,"Load bearing.",0,0,0
 920,MILLENNIUMANKH,Millennium Ankh,Millennium Ankhs,8,0,"A cursed artifact used to Summon the Forbidden One.",2,0,6
+921,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
+922,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
+923,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"todo",0,0,0
+924,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"todo",0,0,0
 
 
 

@@ -4971,32 +4971,32 @@ Pokemon = B132H52,49
 Pokemon = B132H52,54
     Moves = TRANSFORM
 #-------------------------------
-[WORKER,Angus]
+[ENGINEER,Angus]
 Pokemon = HERACROSS,37
 Pokemon = B217H202,39
 #-------------------------------
-[WORKER,Silvio]
+[ENGINEER,Silvio]
 Pokemon = DUGTRIO,37
 Pokemon = B26H180,39
 #-------------------------------
-[WORKER,Hermann]
+[ENGINEER,Hermann]
 Pokemon = MAGNETON,38
 Pokemon = MAGNETON,38
 Pokemon = B205H82,38
 #-------------------------------
-[WORKER,John]
+[ENGINEER,John]
 Pokemon = B95H214,44
 #-------------------------------
-[WORKER,Felix]
+[ENGINEER,Felix]
 Pokemon = MACHOP,39
 Pokemon = MACHOKE,39
 Pokemon = B67H212,39
 #-------------------------------
-[WORKER,Kevin]
+[ENGINEER,Kevin]
 Pokemon = ELECTRODE,42
 Pokemon = B210H82,42
 #-------------------------------
-[WORKER,Mark]
+[ENGINEER,Mark]
 Pokemon = MACHOKE,42
 Pokemon = B205H106,44
 #-------------------------------
@@ -6060,7 +6060,7 @@ Pokemon = FEEBAS,5
     IV = 8,8,8,8,8,8
     EV = 0,32,0,0,0,0
     Happiness = 255
-Pokemon = SHELLOS,5
+Pokemon = SHELLOS_W,5
     Offset = 1
     Moves = CHILLINGWATER,ICYWIND
     Item = RINDOBERRY
@@ -6134,7 +6134,7 @@ Pokemon = GIBLE,5
     IV = 8,8,8,8,8,8
     EV = 0,32,0,0,0,0
     Happiness = 255
-Pokemon = SHELLOS,5
+Pokemon = SHELLOS_W,5
     Offset = 1
     Moves = ANCIENTPOWER,SANDSTORM,ROUND
     Item = BERRYJUICE
@@ -6338,7 +6338,7 @@ Pokemon = PORYGON,5
     Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,17]
-Pokemon = SHELLOS,5
+Pokemon = SHELLOS_W,5
     Offset = -1
     Moves = SANDSTORM,ROCKTOMB,CHILLINGWATER
     Ability = SANDFORCE
@@ -6718,7 +6718,7 @@ Pokemon = HAKAMOO,5
     IV = 16,16,16,16,16,16
     EV = 128,0,0,0,0,0
     Happiness = 255
-Pokemon = SHELLOS,5
+Pokemon = SHELLOS_W,5
     Offset = 4
     Moves = EARTHPOWER,SCALD,SANDSTORM
     Ability = SANDFORCE
@@ -6844,7 +6844,7 @@ Pokemon = B298H401,5
     IV = 24,24,24,24,24,24
     EV = 0,160,0,0,0,0
     Happiness = 255
-Pokemon = GASTRODON,5
+Pokemon = GASTRODON_W,5
     Offset = 2
     Moves = RECOVER,EARTHPOWER,SCALD,ROUND
     Ability = STORMDRAIN
@@ -7106,7 +7106,7 @@ Pokemon = LICKILICKY,5
     IV = 24,24,24,0,24,24
     EV = 0,192,0,0,0,0
     Happiness = 255
-Pokemon = GASTRODON,5
+Pokemon = GASTRODON_W,5
     Offset = 2
     Moves = STEALTHROCK,YAWN,SCALD,ROUND
     Ability = STORMDRAIN
@@ -7138,7 +7138,7 @@ Pokemon = EELEKTROSSGABITE,5
     Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,36]
-Pokemon = GASTRODON,5
+Pokemon = GASTRODON_W,5
     Offset = 2
     Moves = SANDSTORM,STEALTHROCK,EARTHPOWER,ROUND
     Ability = SANDFORCE
@@ -7886,7 +7886,7 @@ Pokemon = B384H295,5
     IV = 31,0,31,31,31,31
     EV = 252,0,0,0,0,36
     Happiness = 255
-Pokemon = GASTRODON,5
+Pokemon = GASTRODON_W,5
     Offset = 2
     Moves = SCALD,EARTHPOWER,RECOVER,CLEARSMOG
     Ability = STORMDRAIN
@@ -8135,7 +8135,7 @@ Pokemon = HISUIARCANINE,5
     IV = 31,31,31,31,31,31
     EV = 0,252,0,68,0,0
     Happiness = 255
-Pokemon = GASTRODON,5
+Pokemon = GASTRODON_W,5
     Offset = 2
     Moves = SCALD,STEALTHROCK,TOXIC,RECOVER
     Ability = STORMDRAIN
@@ -8281,7 +8281,7 @@ Pokemon = ENAMORUSTHERIAN,5
     IV = 31,31,31,31,31,31
     EV = 252,0,0,0,0,68
     Happiness = 255
-Pokemon = GASTRODON,5
+Pokemon = GASTRODON_W,5
     Offset = 1
     Moves = SANDSTORM,RECOVER,EARTHPOWER,SCALD
     Ability = SANDFORCE

@@ -693,7 +693,7 @@ module MessageTypes
   TrainerInfoText = 27
   OutfitTexts = 28
   @@messages = Messages.new
-  @@messagesFallback = Messages.new("Data/messages.dat", true)
+  @@messagesFallback = Messages.new("Data/messages.dat")
 
   def self.stringToKey(str)
     return Messages.stringToKey(str)
