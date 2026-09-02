@@ -2217,7 +2217,7 @@ BattleHandlers::EOREffectItem.add(:BADAPPLE,
 BattleHandlers::EOREffectItem.add(:FLAMEORB,
   proc { |item,battler,battle|
     next if !battler.pbCanBurn?(nil,false)
-    battler.pbBurn(nil,_INTL("{1} was burned by the {2}!",battler.pbThis,battler.itemName))
+    battler.pbBurn(battler,_INTL("{1} was burned by the {2}!",battler.pbThis,battler.itemName))
   }
 )
 
@@ -2237,7 +2237,7 @@ BattleHandlers::EOREffectItem.add(:STICKYBARB,
 BattleHandlers::EOREffectItem.add(:TOXICORB,
   proc { |item,battler,battle|
     next if !battler.pbCanPoison?(nil,false)
-    battler.pbPoison(nil,_INTL("{1} was badly poisoned by the {2}!",
+    battler.pbPoison(battler,_INTL("{1} was badly poisoned by the {2}!",
        battler.pbThis,battler.itemName),true)
   }
 )
@@ -2245,7 +2245,7 @@ BattleHandlers::EOREffectItem.add(:TOXICORB,
 BattleHandlers::EOREffectItem.add(:FROSTORB,
   proc { |item,battler,battle|
     next if !battler.pbCanFreeze?(nil,false)
-    battler.pbFreeze(_INTL("{1} got frostbite by the {2}!",
+    battler.pbFreeze(battler,_INTL("{1} got frostbite by the {2}!",
        battler.pbThis,battler.itemName))
   }
 )
@@ -2253,7 +2253,7 @@ BattleHandlers::EOREffectItem.add(:FROSTORB,
 BattleHandlers::EOREffectItem.add(:SHOCKORB,
   proc { |item,battler,battle|
     next if !battler.pbCanParalyze?(nil,false)
-    battler.pbParalyze(_INTL("{1} got paralyzed by the {2}!",
+    battler.pbParalyze(battler,_INTL("{1} got paralyzed by the {2}!",
        battler.pbThis,battler.itemName))
   }
 )
@@ -2263,11 +2263,11 @@ BattleHandlers::EOREffectItem.add(:SHUDDERORB,
     case rand(2)
     when 0
       next if !battler.pbCanPoison?(nil,false)
-      battler.pbPoison(nil,_INTL("{1} was badly poisoned by the {2}!",
+      battler.pbPoison(battler,_INTL("{1} was badly poisoned by the {2}!",
          battler.pbThis,battler.itemName),true)
     when 1
       next if !battler.pbCanParalyze?(nil,false)
-      battler.pbParalyze(_INTL("{1} got paralyzed by the {2}!",
+      battler.pbParalyze(battler,_INTL("{1} got paralyzed by the {2}!",
          battler.pbThis,battler.itemName))
     end
   }
@@ -2278,10 +2278,10 @@ BattleHandlers::EOREffectItem.add(:WINCINGORB,
     case rand(2)
     when 0
       next if !battler.pbCanBurn?(nil,false)
-      battler.pbBurn(nil,_INTL("{1} was burned by the {2}!",battler.pbThis,battler.itemName))
+      battler.pbBurn(battler,_INTL("{1} was burned by the {2}!",battler.pbThis,battler.itemName))
     when 1
       next if !battler.pbCanFreeze?(nil,false)
-      battler.pbFreeze(_INTL("{1} got frostbite by the {2}!",
+      battler.pbFreeze(battler,_INTL("{1} got frostbite by the {2}!",
          battler.pbThis,battler.itemName))
     end
   }

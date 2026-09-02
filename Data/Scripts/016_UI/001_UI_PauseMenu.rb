@@ -97,6 +97,7 @@ class PokemonPauseMenu
   ICON_POKEDEX = "menuIcons/POKEDEX"
   ICON_POKEMON = "menuIcons/POKEMON"
   ICON_BAG = "menuIcons/BAG"
+  ICON_TEMPORALTOWER = "menuIcons/TEMPORALTOWER"
   ICON_POKENAV = "menuIcons/POKENAV"
   ICON_PLAYER = "menuIcons/PLAYER"
   ICON_OUTFIT = "menuIcons/OUTFITS"
@@ -134,7 +135,7 @@ class PokemonPauseMenu
     end
     commands[cmdPokemon = commands.length] = "  <icon=#{ICON_POKEMON}>  " + _INTL("Pokémon") if $Trainer.party_count > 0
     commands[cmdBag = commands.length] = "  <icon=#{ICON_BAG}>  " + _INTL("Bag") if !pbInBugContest?
-    commands[cmdTower = commands.length] = _INTL("Temporal Tower") if ![21, 32, 38].include?($game_map.map_id)
+    commands[cmdTower = commands.length] = "  <icon=#{ICON_TEMPORALTOWER}>  " + _INTL("Temporal Tower") if ![21, 32, 38].include?($game_map.map_id)
     commands[cmdLooplet = commands.length] = _INTL("Looplet") if getLooplet != nil
     commands[cmdPokegear = commands.length] = "  <icon=#{ICON_POKENAV}>  " + _INTL("PokéNav") if $Trainer.has_pokegear
     commands[cmdTrainer = commands.length] = "  <icon=#{ICON_PLAYER}>  " + _INTL("{1}", $Trainer.name)

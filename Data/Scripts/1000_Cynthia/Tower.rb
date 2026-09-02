@@ -1,4 +1,6 @@
 def setupTower()
+    print(Graphics.width)
+    print(Graphics.height)
     PokemonSelection.saveParty
     $PokemonBag.saveBagAndClear()
     $Trainer.party=[]
