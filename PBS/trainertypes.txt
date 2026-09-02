@@ -162,4 +162,4 @@
 159,STATIC,Static,70,,,,Female,100,
 160,MONSTERHOUSE,It's a,0,,,,Mixed,100,
 161,Skeleton_Non_Dev,Skeleton Non Dev?,200,,,,Male,100,
-162,EXODIA,Legendary Pokémon?,0,,,,Mixed,100,
+162,EXODIA,The Forbidden One,0,,,,Mixed,100,

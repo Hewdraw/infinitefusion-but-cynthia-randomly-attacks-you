@@ -3041,11 +3041,11 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
     battler.pbUpdate(true)
     battle.scene.pbChangePokemon(battler,battler.pokemon)
     battle.scene.pbRefreshOne(battler.index)
+    battler.ability = :LEGENDARYPRESSURE if battler.pokemon.originalability == :LEGENDARYPRESSURE
     battler.pbUpdate(true)
     battle.pbCommonAnimation("MegaEvolution2",battler)
     battle.pbDisplay("The seal has been broken!")
     battle.pbHideAbilitySplash(battler)
-    battler.ability = :LEGENDARYPRESSURE if battler.pokemon.originalability == :LEGENDARYPRESSURE
   }
 )
 

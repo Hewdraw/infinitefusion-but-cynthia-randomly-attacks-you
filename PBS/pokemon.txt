@@ -26969,7 +26969,7 @@ Kind = Shellfish
 Pokedex = The strongest Digimon in the Digital World, with a one-hundred percent metal body. Since Machinedramon consists of a combination of parts from countless cyborg Digimon, all of the cyborg Digimon produced so far are thought to have been merely prototypes for the completion of Machinedramon. Machinedramon is strong enough to overwhelm other Digimon, and boasts incredible processing power, but as a pure Machine Digimon it lacks a will of its own. Instead, someone has implanted a program loaded with malicious intentions into its DigiCore. This malevolent DigiCore provides Machinedramon with unlimited power.
 #-------------------------------
 [1001200]
-Name = The Forbidden One
+Name = Exodia
 InternalName = THEFORBIDDENONE
 Type1 = DARK
 Type2 = PSYCHIC
@@ -26995,7 +26995,7 @@ Kind = Alpha
 Pokedex = The one who gathers all five cards - resurrecting the deity by reuniting his head with his four limbs - will gain the power to bury their enemies in an instant.
 #-------------------------------
 [1001201]
-Name = Exodia Incarnate
+Name = Exodia
 InternalName = EXODIAINCARNATE
 Type1 = DARK
 Type2 = PSYCHIC
