@@ -329,7 +329,12 @@ class PokemonPokedexInfo_Scene
       dex_author = _INTL("Game Freak") unless getDexNumberForSpecies(@species) > NB_POKEMON
     end
     textpos.push([_INTL("Sprite: {1}", sprite_author), 224, 156, 0, base, shadow])
-    textpos.push([_INTL("Entry:  {1}", dex_author), 224, 188, 0, base, shadow]) if $Trainer.owned?(@species)
+
+    if [:MAWILE, :SHROOMAWGROSS].include?(GameData::Species.get(getBodyIDNormalized(species_data.id_number)).species) || [:MAWILE, :SHROOMAWGROSS].include?(GameData::Species.get(getHeadIDNormalized(species_data.id_number)).species)
+      textpos.push([_INTL("Entry: Nice!"), 224, 188, 0, base, shadow])
+    else
+      textpos.push([_INTL("Entry: Unfortunate"), 224, 188, 0, base, shadow])
+    end
 
     # Draw all text
     pbDrawTextPositions(overlay, textpos)
