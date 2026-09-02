@@ -2840,7 +2840,7 @@ ItemHandlers::UseFromBag.add(:MILLENNIUMANKH, proc { |item|
   pbBGMStop(1)
   pbBGMPlay("ExodiaSummon")
   $PokemonGlobal.speedupdisabled = true
-  delay = (Graphics.frame_rate*16).to_i
+  delay = (Graphics.frame_rate*16*0.95).to_i
   viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
   viewport.z = 99999
   animation = IconSprite.new(viewport)
