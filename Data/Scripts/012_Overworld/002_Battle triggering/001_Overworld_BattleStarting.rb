@@ -587,6 +587,8 @@ def pbLegendaryBattle(species, alpha=false, number=0)
   elsif species == "Wandering Trader"
     trainer = pbLoadTrainer(:DESTROYEROFWORLDS, species, number)
     $PokemonGlobal.nextBattleBGM = "VSDeath"
+  elsif species == "Exodia"
+    trainer = pbLoadTrainer(:EXODIA, species, number)
   else
     trainer = pbLoadTrainer(:LEGENDARY_POKEMON, species, number)
   end

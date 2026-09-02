@@ -305,14 +305,14 @@ module GameData
     Item.load
     BerryPlant.load
     Species.load
-    Ribbon.load
+    # Ribbon.load
     Encounter.load
-    EncounterModern.load
-    EncounterRandom.load
+    # EncounterModern.load
+    # EncounterRandom.load
     TrainerType.load
     Trainer.load
-    TrainerModern.load
-    TrainerExpert.load
+    # TrainerModern.load
+    # TrainerExpert.load
     Metadata.load
     MapMetadata.load
   end
