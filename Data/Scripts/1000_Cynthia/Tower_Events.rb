@@ -237,7 +237,7 @@ def resolveUnknownEvent(recursion = false)
         choice = pbUnknownCommands(["Fight.", "Talk.", "Flee."], ["Defend yourself.", "Perhaps you can talk your way out of this.", "Run away to live another day."])
         case choice
         when 0
-            return if !pbLegendaryBattle("Armaldo")
+            return if !pbLegendaryBattle("Armaldo", true)
         when 1
             Kernel.pbMessage("You eventually manage to calm him down and he brings you inside the cave.")
             Kernel.pbMessage("He shows you a treasure map to Eastern Cave that he's planning to explore and invites you to come along.")
