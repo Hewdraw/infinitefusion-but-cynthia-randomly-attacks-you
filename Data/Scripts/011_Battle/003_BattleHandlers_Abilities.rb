@@ -3041,7 +3041,7 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
     battler.level = level
     battler.pbUpdate(true)
     battle.scene.pbChangePokemon(battler,battler.pokemon)
-    battle.scene.pbRefreshOne(idxBattler)
+    battle.scene.pbRefreshOne(battler.index)
     battler.pbUpdate(true)
     battle.pbCommonAnimation("MegaEvolution2",battler)
     battle.pbDisplay("The seal has been broken!")
