@@ -52,7 +52,7 @@ module Graphics
       fast_forward_update
       return
     end
-    if $CanToggle && Input.trigger?(Input::X)
+    if $CanToggle && (Input.trigger?(Input::AUX1) || Input.trigger?(Input::X))
       $GameSpeed += 1
       $GameSpeed = 0 if $GameSpeed >= SPEEDUP_STAGES.size
     end
@@ -61,7 +61,7 @@ module Graphics
       speedStage = SPEEDUP_STAGES[$GameSpeed]
     else
       speedStage = 1
-      if Input.press?(Input::X) && $CanToggle
+      if (Input.trigger?(Input::AUX1) || Input.trigger?(Input::X)) && $CanToggle
         speedStage = self.get_speedup_speed + 1
       end
     end
