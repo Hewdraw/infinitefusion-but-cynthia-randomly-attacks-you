@@ -27,6 +27,12 @@ class GameplayOptionsScene < PokemonOption_Scene
     @current_game_mode = getTrainersDataMode
     options = []
 
+    options << EnumOption.new(_INTL("CPU Player"), [_INTL("Off"), _INTL("On")],
+                              proc { $PokemonSystem.aicontrolplayer },
+                              proc { |value| $PokemonSystem.aicontrolplayer = value },
+                              "Makes the CPU control the player in trainer battles."
+    )
+
     options << EnumOption.new(_INTL("Default Movement"), [_INTL("Walking"), _INTL("Running")],
                               proc { $PokemonSystem.runstyle },
                               proc { |value| $PokemonSystem.runstyle = value },

@@ -26,12 +26,6 @@ class SpriteOptionsScene < PokemonOption_Scene
   def pbGetOptions(inloadscreen = false)
     options = []
 
-    options << EnumOption.new(_INTL("CPU Player"), [_INTL("Off"), _INTL("On")],
-                              proc { $PokemonSystem.aicontrolplayer },
-                              proc { |value| $PokemonSystem.aicontrolplayer = value },
-                              "Makes the CPU control the player in trainer battles."
-    )
-
     # generated_entries_option_selected = $PokemonSystem.use_generated_dex_entries ? 1 : 0
     # options << EnumOption.new(_INTL("Autogen dex entries"), [_INTL("Off"), _INTL("On")],
     #                           proc { generated_entries_option_selected },

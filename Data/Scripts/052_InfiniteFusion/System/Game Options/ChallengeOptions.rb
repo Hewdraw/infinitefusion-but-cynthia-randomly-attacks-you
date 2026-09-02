@@ -26,10 +26,6 @@ class ChallengeOptionsScene < PokemonOption_Scene
 
   def pbGetOptions(inloadscreen = false)
     options = []
-    options << EnumOption.new(_INTL("Level caps"), [_INTL("Off"), _INTL("On")],
-                              proc { $PokemonSystem.level_caps },
-                              proc { |value| $PokemonSystem.level_caps = value },
-                              _INTL("Prevents leveling above the next gym leader's highest leveled Pokemon."))
 
     options << EnumOption.new(_INTL("Battle Style"), [_INTL("Switch"), _INTL("Set")],
                               proc { $PokemonSystem.battlestyle },

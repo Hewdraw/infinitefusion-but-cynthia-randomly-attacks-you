@@ -157,24 +157,16 @@ def promptCaughtPokemonAction(pokemon)
   return pbStorePokemon(pokemon) if !$Trainer.party_full?
   while !pickedOption
     cmd_swap = _INTL("Add to your party")
-    cmd_fuse = _INTL("Fuse in party")
     cmd_pc = _INTL("Store to PC")
 
     options = []
     options << cmd_swap
-    if !pokemon.isFusion? && playerHasFusionItems && hasUnfusedPokemonInParty(false)
-      options << cmd_fuse
-    end
     options << cmd_pc
 
     command = pbMessage(_INTL("\\ts[]Your team is full!"), options, options.length)
     case options[command]
     when cmd_swap
       if swapCaughtPokemon(pokemon)
-        pickedOption = true
-      end
-    when cmd_fuse
-      if fuseCaughtPokemon(pokemon)
         pickedOption = true
       end
     else

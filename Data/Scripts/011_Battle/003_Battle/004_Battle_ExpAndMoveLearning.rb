@@ -211,11 +211,7 @@ class PokeBattle_Battle
     exp = i if i >= 0
     # Make sure Exp doesn't exceed the maximum
     if pokemonExceedsLevelCap(pkmn)
-      if $PokemonSystem.level_caps==1 #Level caps enabled
-        exp = 0
-      else
-        exp = (exp *= 0.6).floor  #Pokémon still gain less exp when over level cap, even if level caps option is disabled
-      end
+      exp = 0
     end
 
 
