@@ -211,9 +211,11 @@ class DoublePreviewScreen
       ordered_species = []
       seen = {}
       body_chain.each do |body_sp|
+        body_dex = getDexNumberForSpecies(body_sp)
+        next if body_dex >= Settings::ZAPMOLCUNO_NB
         head_chain.each do |head_sp|
-          body_dex = getDexNumberForSpecies(body_sp)
           head_dex = getDexNumberForSpecies(head_sp)
+          next if head_dex >= Settings::ZAPMOLCUNO_NB
           fused_id = getFusedPokemonIdFromDexNum(body_dex, head_dex)
           next if seen[fused_id]
           next unless GameData::Species.get(fused_id)

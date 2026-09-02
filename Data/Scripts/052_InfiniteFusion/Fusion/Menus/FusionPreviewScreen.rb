@@ -32,7 +32,6 @@ class FusionPreviewScreen < DoublePreviewScreen
     end
 
     new_level = calculateFusedPokemonLevel(poke1.level, poke2.level, usingSuperSplicers)
-
     fusion_left = (poke1.species_data.id_number) * NB_POKEMON + poke2.species_data.id_number
     fusion_right = (poke2.species_data.id_number) * NB_POKEMON + poke1.species_data.id_number
 
