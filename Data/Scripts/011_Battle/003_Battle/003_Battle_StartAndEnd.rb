@@ -679,6 +679,8 @@ class PokeBattle_Battle
             battler.pokemon.item = :RAINBOWWING
           when :LUGIA
             battler.pokemon.item = :SILVERWING
+          when :EXODIAINCARNATE
+            battler.pokemon.species = :THEFORBIDDENONE
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
