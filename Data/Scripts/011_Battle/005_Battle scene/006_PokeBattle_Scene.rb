@@ -361,6 +361,8 @@ class PokeBattle_Scene
     if abilityName
       @sprites["abilityBar_#{side}"].ability_name = abilityName if !secondAbility
       @sprites["ability2Bar_#{side}"].ability_name = abilityName if secondAbility
+    elsif battler.tempability
+      @sprites["abilityBar_#{side}"].ability_name = battler.tempability
     end
 
 
