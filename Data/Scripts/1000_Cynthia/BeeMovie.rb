@@ -1,5 +1,5 @@
 def beeMovie
-	return if Kernel.pbMessage("Are you sure?", ["Yes", "No"]) == 1
+	return if Kernel.pbMessage("Are you sure?", ["No", "Yes"]) == 0
 	BEEMOVIESCRIPT.each do |line|
 		Kernel.pbMessage(line)
 	end
