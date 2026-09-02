@@ -267,7 +267,7 @@ class FusionTutorService
       compatibleMoves << :JUNGLEHEALING if hasType(:GRASS)
       compatibleMoves << :SPACIALREND if (hasType(:WATER) && hasType(:DRAGON)) || is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :SACREDFIRE if is_fusion_of([:ENTEI, :SUICUNE, :RAIKOU, :GOUGINGFIRE, :WALKINGWAKE, :RAGINGBOLT])
-      # compatibleMoves << :WINDBOLTSTORM if hasType(:ELECTRIC)
+      compatibleMoves << :WILDBOLTSTORM if hasType(:ELECTRIC)
       # compatibleMoves << :BLEAKWINDSTORM if hasType(:FLYING)
       # compatibleMoves << :SANDSEARSTORM if hasType(:GROUND)
       compatibleMoves << :SPRINGTIDESTORM if hasType(:FAIRY)
