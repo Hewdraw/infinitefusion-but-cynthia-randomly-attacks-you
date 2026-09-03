@@ -796,6 +796,9 @@ class PokeBattle_Battler
       pbSEPlay("MIKUMIKUBEAM")
       animationid = :HYPERBEAM
     end
+    if animationid == :CATASTROPHEDAY
+      animationid = :EXPLOSION
+    end
     move.pbShowAnimation(animationid, user, targets, hitNum)
     # Type-boosting Gem consume animation/message
     if user.effects[PBEffects::GemConsumed] && hitNum == 0

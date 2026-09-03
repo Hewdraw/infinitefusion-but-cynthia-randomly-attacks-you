@@ -2188,6 +2188,7 @@ class PokeBattle_Move_167 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.pbOwnSide.effects[PBEffects::AuroraVeil] = 5
     user.pbOwnSide.effects[PBEffects::AuroraVeil] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+    user.pbOwnSide.effects[PBEffects::AuroraVeil] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
     @battle.pbDisplay(_INTL("{1} made {2} stronger against physical and special moves!",
                             @name, user.pbTeam(true)))
   end
@@ -2830,10 +2831,12 @@ class PokeBattle_Move_189 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     user.pbOwnSide.effects[PBEffects::LightScreen] = 5
     user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+    user.pbOwnSide.effects[PBEffects::LightScreen] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
     @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
     if user.hasActiveItem?(:LIGHTTABLE)
       user.pbOwnSide.effects[PBEffects::Reflect] = 5
       user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+      user.pbOwnSide.effects[PBEffects::Reflect] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
       @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
     end
   end
@@ -2843,10 +2846,12 @@ class PokeBattle_Move_190 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
     user.pbOwnSide.effects[PBEffects::Reflect] = 5
     user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+    user.pbOwnSide.effects[PBEffects::Reflect] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
     @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
     if user.hasActiveItem?(:LIGHTTABLE)
       user.pbOwnSide.effects[PBEffects::LightScreen] = 5
       user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
+      user.pbOwnSide.effects[PBEffects::LightScreen] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
       @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
     end
   end
