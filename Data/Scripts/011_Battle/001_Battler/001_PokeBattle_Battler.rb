@@ -465,7 +465,7 @@ class PokeBattle_Battler
     when :FAIRY
       return true if hasActiveEmera?(:FAIRYWREATH)
     when :GUN
-      return true if hasActiveAbility?([:SNIPER, :FULLMETALBODY])
+      return true if hasActiveAbility?([:SNIPER, :FULLMETALBODY, :FULLMETALBODY])
     end
     activeTypes = pbTypes(true)
     TRIPLETYPES.each do |tripletype, material|

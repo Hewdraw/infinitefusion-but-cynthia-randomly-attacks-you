@@ -2038,7 +2038,7 @@ BattleHandlers::WeatherExtenderItem.add(:DAMPROCK,
   }
 )
 
-BattleHandlers::WeatherExtenderItem.copy(:DAMPROCK,:DRAGONSCALE, :PRIMALROCK)
+BattleHandlers::WeatherExtenderItem.copy(:DAMPROCK,:DRAGONSCALE)
 
 BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   proc { |item,battler,weather,duration,battle|
@@ -2046,7 +2046,12 @@ BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
   }
 )
 
-BattleHandlers::WeatherExtenderItem.copy(:HEATROCK, :PRIMALROCK)
+BattleHandlers::WeatherExtenderItem.add(:PRIMALROCK,
+  proc { |item,battler,weather,duration,battle|
+    next 8 if weather == :Rain || weather == :HeavyRain || weather == :Sun || weather == :HarshSun
+  }
+)
+
 
 BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
   proc { |item,battler,weather,duration,battle|
@@ -2054,15 +2059,17 @@ BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
   }
 )
 
-BattleHandlers::WeatherExtenderItem.copy(:ICYROCK, :DESERTEDROCK)
-
 BattleHandlers::WeatherExtenderItem.add(:SMOOTHROCK,
   proc { |item,battler,weather,duration,battle|
     next 8 if weather == :Sandstorm
   }
 )
 
-BattleHandlers::WeatherExtenderItem.copy(:SMOOTHROCK, :DESERTEDROCK)
+BattleHandlers::WeatherExtenderItem.add(:DESERTEDROCK,
+  proc { |item,battler,weather,duration,battle|
+    next 8 if weather == :Sandstorm || weather == :Sandstorm
+  }
+)
 
 #===============================================================================
 # TerrainExtenderItem handlers

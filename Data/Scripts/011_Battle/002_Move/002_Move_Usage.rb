@@ -208,6 +208,10 @@ class PokeBattle_Move
         if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR]) && !@battle.moldBreaker
           target.damageState.sturdy = true
           damage -= 1
+        elsif target.hasActiveAbility?([:EMERGENCYEXITPLUS]) && !@battle.moldBreaker && !target.pokemon.battlevariables[:emergencyexitplus]
+          target.pokemon.battlevariables[:emergencyexitplus] = true
+          target.damageState.sturdy = true
+          damage -= 1
         elsif target.hasActiveItem?(:FOCUSSASH)
           target.damageState.focusSash = true
           damage -= 1

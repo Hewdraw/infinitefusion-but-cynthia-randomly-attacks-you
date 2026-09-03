@@ -263,10 +263,6 @@ end
 #
 #===============================================================================
 class SpeciesHandlerHash < HandlerHash2
-  def trigger(entry, *args)
-    super(entry, *args) if args[0].hasActiveAbility?(:HOLD)
-    return super(entry, *args)
-  end
 end
 
 class AbilityHandlerHash < HandlerHash2
@@ -287,6 +283,10 @@ class AbilityHandlerHash < HandlerHash2
 end
 
 class ItemHandlerHash < HandlerHash2
+  def trigger(entry, *args)
+    super(entry, *args) if args[0] && args[0].is_a?(PokeBattle_Battler) && args[0].hasActiveAbility?(:HOLD)
+    return super(entry, *args)
+  end
 end
 
 class MoveHandlerHash < HandlerHash2

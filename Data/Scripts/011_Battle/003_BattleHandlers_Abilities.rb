@@ -110,6 +110,8 @@ BattleHandlers::WeightCalcAbility.add(:HEAVYMETAL,
   }
 )
 
+BattleHandlers::WeightCalcAbility.copy(:HEAVYMETAL, :FULLMETALBODYPLUS)
+
 BattleHandlers::WeightCalcAbility.add(:LIGHTMETAL,
   proc { |ability,battler,w|
     next [w/2,1].max
@@ -516,6 +518,8 @@ BattleHandlers::StatLossImmunityAbilityNonIgnorable.add(:FULLMETALBODY,
     next true
   }
 )
+
+BattleHandlers::StatLossImmunityAbilityNonIgnorable.copy(:FULLMETALBODY, :FULLMETALBODYPLUS)
 
 #===============================================================================
 # StatLossImmunityAllyAbility handlers
@@ -1410,7 +1414,12 @@ BattleHandlers::DamageCalcUserAbility.add(:STAKEOUT,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:STAKEOUT,:FEAR)
+BattleHandlers::DamageCalcUserAbility.add(:FEAR,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2 if target.battle.choices[target.index][0] == :SwitchOut
+    mults[:attack_multiplier] *= 1 + (0.1 * user.effects[PBEffects::SupremeOverlord])
+  }
+)
 
 BattleHandlers::DamageCalcUserAbility.add(:STEELWORKER,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1429,8 +1438,6 @@ BattleHandlers::DamageCalcUserAbility.add(:SUPREMEOVERLORD,
     mults[:attack_multiplier] *= 1 + (0.1 * user.effects[PBEffects::SupremeOverlord])
   }
 )
-
-BattleHandlers::DamageCalcUserAbility.copy(:SUPREMEOVERLORD,:FEAR)
 
 
 BattleHandlers::DamageCalcUserAbility.add(:SWARM,
@@ -1594,6 +1601,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:FURCOAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:FURCOATPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 2 if move.physicalMove? || move.function == "122"   # Psyshock
+    mults[:base_damage_multiplier] /= 2 if type == :FIRE || type == :ICE
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:GRASSPELT,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if user.battle.field.terrain == :Grassy
@@ -1660,8 +1674,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:QUARKDRIVE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:BEASTBOOSTPLUS,
-  proc { |ability,user,target,move,mults,baseDmg,type|
+BattleHandlers::DamageCalcTargetAbility.add(:BEASTBOOSTPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
     userStats = user.plainStats
     lowestStatValue = 9999
     loweststat = nil
@@ -1674,7 +1688,6 @@ BattleHandlers::DamageCalcUserAbility.add(:BEASTBOOSTPLUS,
     mults[:defense_multiplier] *= 1.2 if (loweststat == :DEFENSE && move.physicalMove?) || (loweststat == :SPECIAL_DEFENSE && move.specialMove?)
   }
 )
-
 
 BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -1700,6 +1713,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:BATTLEARMORPLUS,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:BATTLEARMORPLUS, :DEFIANTPLUS)
+
 BattleHandlers::DamageCalcTargetAbility.add(:BULLETPROOFPLUS,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.5 if move.specialMove?
@@ -1711,10 +1726,27 @@ BattleHandlers::DamageCalcTargetAbility.add(:CURSEDBODYPLUS,
     mults[:defense_multiplier] *= 1.5
   }
 )
-
-BattleHandlers::DamageCalcTargetAbility.add(:DEFIANTPLUS,
+BattleHandlers::DamageCalcTargetAbility.add(:FOREWARNPLUS,
   proc { |ability,target,user,move,mults,baseDmg,type|
-    mults[:defense_multiplier] *= 1.1
+    next if battler.turnCount > 1
+    mults[:defense_multiplier] *= 1.2
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FRIENDGUARDPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    alivecount = 0
+    battle.pbParty(battler).each do |mon|
+      alivecount += 1 if !mon.fainted?
+    end
+    mults[:final_damage_multiplier] *= 0.75 if alivecount >= 2
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:FULLMETALBODYPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.2 if move.physicalMove?
+    mults[:defense_multiplier] *= 0.8 if move.specialMove?
   }
 )
 
@@ -1763,7 +1795,7 @@ BattleHandlers::DamageCalcTargetAllyAbility.add(:FRIENDGUARD,
   }
 )
 
-BattleHandlers::DamageCalcTargetAllyAbility.copy(:FRIENDGUARD,:VOCALOID)
+BattleHandlers::DamageCalcTargetAllyAbility.copy(:FRIENDGUARD, :FRIENDGUARDPLUS, :VOCALOID)
 
 #===============================================================================
 # CriticalCalcUserAbility handlers
@@ -1793,7 +1825,7 @@ BattleHandlers::CriticalCalcTargetAbility.add(:BATTLEARMOR,
   }
 )
 
-BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR,:BATTLEARMORPLUS,:SHELLARMOR,:SHELLARMORPLUS, :ARMORTAILPLUS)
+BattleHandlers::CriticalCalcTargetAbility.copy(:BATTLEARMOR, :BATTLEARMORPLUS, :SHELLARMOR, :SHELLARMORPLUS, :ARMORTAILPLUS, :FULLMETALBODYPLUS)
 
 #===============================================================================
 # TargetAbilityOnHit handlers
@@ -2502,6 +2534,20 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTTOUCH,
       end
       target.pbFreeze(user,msg)
     end
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:FRISKPLUS,
+  proc { |ability,user,target,move,battle|
+    next if battle.pbRandom(100)>=30
+    next if target.damageState.unaffected || target.damageState.substitute
+    next if !target.item || target.unlosableItem?(target.item)
+    next if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
+    battle.pbShowAbilitySplash(user)
+    itemName = target.itemName
+    target.pbRemoveItem(false)
+    battle.pbDisplay(_INTL("{1} dropped its {2}!",target.pbThis,itemName))
     battle.pbHideAbilitySplash(user)
   }
 )
@@ -3466,6 +3512,52 @@ BattleHandlers::AbilityOnSwitchIn.add(:FOREWARN,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:FOREWARNPLUS,
+  proc { |ability,battler,battle|
+    next if !battler.pbOwnedByPlayer?
+    highestPower = 0
+    forewarnMoves = []
+    battle.eachOtherSideBattler(battler.index) do |b|
+      b.eachMove do |m|
+        power = m.baseDamage
+        power = 160 if ["070"].include?(m.function)    # OHKO
+        power = 150 if ["08B"].include?(m.function)    # Eruption
+        # Counter, Mirror Coat, Metal Burst
+        power = 120 if ["071","072","073"].include?(m.function)
+        # Sonic Boom, Dragon Rage, Night Shade, Endeavor, Psywave,
+        # Return, Frustration, Crush Grip, Gyro Ball, Hidden Power,
+        # Natural Gift, Trump Card, Flail, Grass Knot
+        power = 80 if ["06A","06B","06D","06E","06F",
+                       "089","08A","08C","08D","090",
+                       "096","097","098","09A"].include?(m.function)
+        next if power<highestPower
+        forewarnMoves = [] if power>highestPower
+        forewarnMoves.push(m.name)
+        highestPower = power
+      end
+    end
+    battle.pbShowAbilitySplash(battler)
+    if forewarnMoves.length>0
+      forewarnMoveName = forewarnMoves[battle.pbRandom(forewarnMoves.length)]
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} was alerted to {2}!",
+          battler.pbThis, forewarnMoveName))
+      else
+        battle.pbDisplay(_INTL("{1}'s Forewarn alerted it to {2}!",
+          battler.pbThis, forewarnMoveName))
+      end
+    end
+    battle.eachOtherSideBattler(battler.index) do |b|
+        battle.pbDisplay(_INTL("{1} was alerted to {2}'s {3}!",
+          battler.pbThis, b.pbThis, b.abilityName))
+        next if !b.item
+        battle.pbDisplay(_INTL("{1} was alerted to {2}'s {3}!",
+          battler.pbThis, b.pbThis, b.itemName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:FRISK,
   proc { |ability,battler,battle|
     next if !battler.pbOwnedByPlayer?
@@ -3483,6 +3575,8 @@ BattleHandlers::AbilityOnSwitchIn.add(:FRISK,
     end
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.copy(:FRISK, :FRISKPLUS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
   proc { |ability,battler,battle|
@@ -3541,7 +3635,23 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :FEAR, :BIGPECKSPLUS, :OBLITERATE)
+BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :BIGPECKSPLUS, :OBLITERATE)
+
+BattleHandlers::AbilityOnSwitchIn.add(:FEAR,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler)
+      b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbParty(battler).each do |mon|
+      battler.effects[PBEffects::SupremeOverlord] += 1 if mon.fainted?
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:ASONE,
   proc { |ability,battler,battle|
@@ -3586,7 +3696,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENACE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MENACE, :FEAR, :OBLITERATE)
+BattleHandlers::AbilityOnSwitchIn.copy(:MENACE, :OBLITERATE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   proc { |ability,battler,battle|
@@ -3716,8 +3826,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:SUPREMEOVERLORD,
     battle.pbHideAbilitySplash(battler)
   }
 )
-
-BattleHandlers::AbilityOnSwitchIn.copy(:SUPREMEOVERLORD,:FEAR)
 
 BattleHandlers::AbilityOnSwitchIn.add(:TERAVOLT,
   proc { |ability,battler,battle|
@@ -3893,6 +4001,8 @@ BattleHandlers::AbilityOnSwitchOut.add(:REGENERATOR,
     battler.pbRecoverHP(battler.totalhp/3,false,false)
   }
 )
+
+BattleHandlers::AbilityOnSwitchOut.copy(:REGENERATOR, :EMERGENCYEXITPLUS)
 
 #===============================================================================
 # AbilityChangeOnBattlerFainting handlers
