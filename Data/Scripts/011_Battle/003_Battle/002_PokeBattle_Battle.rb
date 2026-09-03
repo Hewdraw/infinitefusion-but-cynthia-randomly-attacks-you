@@ -712,7 +712,7 @@ class PokeBattle_Battle
     @field.weather = newWeather
     duration = (fixedDuration) ? 5 : -1
     if duration>0 && user && user.itemActive?
-      duration = BattleHandlers.triggerWeatherExtenderItem(user.item,
+      duration += BattleHandlers.triggerWeatherExtenderItem(user.item,
          user,@field.weather,duration,self)
     end
     @field.weatherDuration = duration
@@ -781,7 +781,7 @@ class PokeBattle_Battle
     @field.terrain = newTerrain
     duration = (fixedDuration) ? 5 : -1
     if duration>0 && user && user.itemActive?
-      duration = BattleHandlers.triggerTerrainExtenderItem(user.item,
+      duration += BattleHandlers.triggerTerrainExtenderItem(user.item,
          user,newTerrain,duration,self)
     end
     @field.terrainDuration = duration

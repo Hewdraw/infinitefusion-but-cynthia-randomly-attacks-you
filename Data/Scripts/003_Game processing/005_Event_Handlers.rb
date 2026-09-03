@@ -284,8 +284,10 @@ end
 
 class ItemHandlerHash < HandlerHash2
   def trigger(entry, *args)
-    super(entry, *args) if args[0] && args[0].is_a?(PokeBattle_Battler) && args[0].hasActiveAbility?(:HOLD)
-    return super(entry, *args)
+    retvalue = super(entry, *args)
+    holdretvalue = super(entry, *args) if args[0] && args[0].is_a?(PokeBattle_Battler) && args[0].hasActiveAbility?(:HOLD)
+    retvalue += holdretvalue if retvalue.is_a?(Integer) && holdretvalue.is_a?(Integer)
+    return retvalue || holdretvalue
   end
 end
 

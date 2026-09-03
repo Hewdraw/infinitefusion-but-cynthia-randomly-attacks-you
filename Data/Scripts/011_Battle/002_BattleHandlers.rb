@@ -377,12 +377,12 @@ module BattleHandlers
 
   def self.triggerWeatherExtenderItem(item,battler,weather,duration,battle)
     ret = WeatherExtenderItem.trigger(item,battler,weather,duration,battle)
-    return (ret!=nil) ? ret : duration
+    return (ret!=nil) ? ret : 0
   end
 
   def self.triggerTerrainExtenderItem(item,battler,terrain,duration,battle)
     ret = TerrainExtenderItem.trigger(item,battler,terrain,duration,battle)
-    return (ret!=nil) ? ret : duration
+    return (ret!=nil) ? ret : 0
   end
 
   def self.triggerTerrainStatBoostItem(item,battler,battle)
