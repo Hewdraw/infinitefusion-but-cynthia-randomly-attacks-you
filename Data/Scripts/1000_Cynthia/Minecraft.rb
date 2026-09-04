@@ -246,7 +246,7 @@ def getEnderChestItems()
 end
 
 def cactus()
-    cactusarray = [11, 78, 79, 80]
+    cactusarray = [78, 79, 80, 81]
     $PokemonGlobal.cactusheight = 3 if $PokemonGlobal.cactusheight == nil
     return if !pbWildBattle(:CACNEA, 5 + $PokemonGlobal.cactusheight)
     pbSetSelfSwitch(cactusarray[$PokemonGlobal.cactusheight], "A", true)
