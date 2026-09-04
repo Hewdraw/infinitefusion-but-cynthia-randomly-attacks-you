@@ -348,7 +348,7 @@
 343,TM56,TM56,TM56s,4,10000,"The user flings its held item at the target as an attack. Its power and effects depend on the item.",3,0,0,FLING
 344,TM57,TM57,TM57s,4,10000,"The user fires a concentrated bundle of electricity. It may also raise the user's Sp. Atk stat.",3,0,0,CHARGEBEAM
 345,TM58,TM58,TM58s,4,10000,"The user hurls the foe into the sky, then drops it on the next turn. The foe cannot attack while in the sky.",3,0,0,SKYDROP
-346,TM59,TM59,TM59s,4,15000,"The user attacks the target with fire. If the target is holding a Berry, the Berry becomes burnt up and unusable.",3,0,0,INCINERATE
+346,TM59,TM59,TM59s,4,15000,"The user attacks the target with fire. If the target is holding a Nut, the Nut becomes burnt up and unusable.",3,0,0,INCINERATE
 347,TM60,TM60,TM60s,4,10000,"The user suppresses the target and makes its move go last.",3,0,0,QUASH
 348,TM61,TM61,TM61s,4,10000,"The user shoots a sinister, bluish-white flame at the target to inflict a burn.",3,0,0,WILLOWISP
 349,TM62,TM62,TM62s,4,10000,"The user nimbly strikes the target. If the user is not holding an item, this attack inflicts massive damage.",3,0,0,ACROBATICS
@@ -392,70 +392,70 @@
 387,HM05,HM05,HM05s,4,0,"The user charges the target at an awesome speed. It can also be used to climb a waterfall.",4,0,0,WATERFALL
 388,HM06,HM06,HM06s,4,0,"The user dives on the first turn, and floats up and attacks on the second. It can be used to dive in the ocean.",4,0,0,DIVE
 #-------------------------------
-389,CHERIBERRY,Cheri Berry,Cheri Berries,5,20,"It may be used or held by a Pokémon to recover from paralysis.",1,1,5
-390,CHESTOBERRY,Chesto Berry,Chesto Berries,5,20,"It may be used or held by a Pokémon to recover from sleep.",1,1,5
-391,PECHABERRY,Pecha Berry,Pecha Berries,5,20,"It may be used or held by a Pokémon to recover from poison.",1,1,5
-392,RAWSTBERRY,Rawst Berry,Rawst Berries,5,20,"It may be used or held by a Pokémon to recover from a burn.",1,1,5
-393,ASPEARBERRY,Aspear Berry,Aspear Berries,5,20,"It may be used or held by a Pokémon to defrost it.",1,1,5
-394,LEPPABERRY,Leppa Berry,Leppa Berries,5,20,"It may be used or held by a Pokémon to restore a move's PP by 10.",1,2,5
-395,ORANBERRY,Oran Berry,Oran Berries,5,20,"It may be used or held by a Pokémon to heal the user by just 10 HP.",1,1,5
-396,PERSIMBERRY,Persim Berry,Persim Berries,5,20,"It may be used or held by a Pokémon to recover from confusion.",0,3,5
-397,LUMBERRY,Lum Berry,Lum Berries,5,20,"It may be used or held by a Pokémon to recover from any status problem.",1,1,5
-398,SITRUSBERRY,Sitrus Berry,Sitrus Berries,5,20,"It may be used or held by a Pokémon to heal the user's HP a little.",1,1,5
-399,FIGYBERRY,Figy Berry,Figy Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-400,WIKIBERRY,Wiki Berry,Wiki Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-401,MAGOBERRY,Mago Berry,Mago Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-402,AGUAVBERRY,Aguav Berry,Aguav Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-403,IAPAPABERRY,Iapapa Berry,Iapapa Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
-404,RAZZBERRY,Razz Berry,Razz Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-405,BLUKBERRY,Bluk Berry,Bluk Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-406,NANABBERRY,Power Nut Berry,Power Nut Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-407,WEPEARBERRY,Wepear Berry,Wepear Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-408,PINAPBERRY,Pinap Berry,Pinap Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-409,POMEGBERRY,Pomeg Berry,Pomeg Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base HP.",1,0,5
-410,KELPSYBERRY,Kelpsy Berry,Kelpsy Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.",1,0,5
-411,QUALOTBERRY,Qualot Berry,Qualot Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.",1,0,5
-412,HONDEWBERRY,Hondew Berry,Hondew Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.",1,0,5
-413,GREPABERRY,Grepa Berry,Grepa Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.",1,0,5
-414,TAMATOBERRY,Tamato Berry,Tamato Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.",1,0,5
-415,CORNNBERRY,Cornn Berry,Cornn Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-416,MAGOSTBERRY,Magost Berry,Magost Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-417,RABUTABERRY,Rabuta Berry,Rabuta Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-418,NOMELBERRY,Nomel Berry,Nomel Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-419,SPELONBERRY,Spelon Berry,Spelon Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-420,PAMTREBERRY,Pamtre Berry,Pamtre Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-421,WATMELBERRY,Watmel Berry,Watmel Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-422,DURINBERRY,Durin Berry,Durin Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-423,BELUEBERRY,Belue Berry,Belue Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Berry.",0,0,5
-424,OCCABERRY,Occa Berry,Occa Berries,5,20,"Weakens a supereffective Fire-type attack against the holding Pokémon.",0,0,5
-425,PASSHOBERRY,Passho Berry,Passho Berries,5,20,"Weakens a supereffective Water-type attack against the holding Pokémon.",0,0,5
-426,WACANBERRY,Wacan Berry,Wacan Berries,5,20,"Weakens a supereffective Electric-type attack against the holding Pokémon.",0,0,5
-427,RINDOBERRY,Rindo Berry,Rindo Berries,5,20,"Weakens a supereffective Grass-type attack against the holding Pokémon.",0,0,5
-428,YACHEBERRY,Yache Berry,Yache Berries,5,20,"Weakens a supereffective Ice-type attack against the holding Pokémon.",0,0,5
-429,CHOPLEBERRY,Chople Berry,Chople Berries,5,20,"Weakens a supereffective Fighting-type attack against the holding Pokémon.",0,0,5
-430,KEBIABERRY,Kebia Berry,Kebia Berries,5,20,"Weakens a supereffective Poison-type attack against the holding Pokémon.",0,0,5
-431,SHUCABERRY,Shuca Berry,Shuca Berries,5,20,"Weakens a supereffective Ground-type attack against the holding Pokémon.",0,0,5
-432,COBABERRY,Coba Berry,Coba Berries,5,20,"Weakens a supereffective Flying-type attack against the holding Pokémon.",0,0,5
-433,PAYAPABERRY,Payapa Berry,Payapa Berries,5,20,"Weakens a supereffective Psychic-type attack against the holding Pokémon.",0,0,5
-434,TANGABERRY,Tanga Berry,Tanga Berries,5,20,"Weakens a supereffective Bug-type attack against the holding Pokémon.",0,0,5
-435,CHARTIBERRY,Charti Berry,Charti Berries,5,20,"Weakens a supereffective Rock-type attack against the holding Pokémon.",0,0,5
-436,KASIBBERRY,Kasib Berry,Kasib Berries,5,20,"Weakens a supereffective Ghost-type attack against the holding Pokémon.",0,0,5
-437,HABANBERRY,Haban Berry,Haban Berries,5,20,"Weakens a supereffective Dragon-type attack against the holding Pokémon.",0,0,5
-438,COLBURBERRY,Colbur Berry,Colbur Berries,5,20,"Weakens a supereffective Dark-type attack against the holding Pokémon.",0,0,5
-439,BABIRIBERRY,Babiri Berry,Babiri Berries,5,20,"Weakens a supereffective Steel-type attack against the holding Pokémon.",0,0,5
-440,CHILANBERRY,Chilan Berry,Chilan Berries,5,20,"Weakens a Normal-type attack against the Pokémon holding this berry.",0,0,5
-441,LIECHIBERRY,Liechi Berry,Liechi Berries,5,20,"If held by a Pokémon, it raises its Attack stat in a pinch.",0,0,5
-442,GANLONBERRY,Ganlon Berry,Ganlon Berries,5,20,"If held by a Pokémon, it raises its Defense stat in a pinch.",0,0,5
-443,SALACBERRY,Salac Berry,Salac Berries,5,20,"If held by a Pokémon, it raises its Speed stat in a pinch.",0,0,5
-444,PETAYABERRY,Petaya Berry,Petaya Berries,5,20,"If held by a Pokémon, it raises its Sp. Atk stat in a pinch.",0,0,5
-445,APICOTBERRY,Apicot Berry,Apicot Berries,5,20,"If held by a Pokémon, it raises its Sp. Def stat in a pinch.",0,0,5
-446,LANSATBERRY,Lansat Berry,Lansat Berries,5,20,"If held by a Pokémon, it raises its critical-hit ratio in a pinch.",0,0,5
-447,STARFBERRY,Starf Berry,Starf Berries,5,20,"If held by a Pokémon, it sharply raises one of its stats in a pinch.",0,0,5
-448,ENIGMABERRY,Enigma Berry,Enigma Berries,5,20,"If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.",0,0,5
-449,MICLEBERRY,Micle Berry,Micle Berries,5,20,"If held by a Pokémon, it raises the accuracy of a move just once in a pinch.",0,0,5
-450,CUSTAPBERRY,Custap Berry,Custap Berries,5,20,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
-451,JABOCABERRY,Jaboca Berry,Jaboca Berries,5,20,"If held by a Pokémon and a physical attack lands, the attacker also takes damage.",0,0,5
-452,ROWAPBERRY,Rowap Berry,Rowap Berries,5,20,"If held by a Pokémon and a special attack lands, the attacker also takes damage.",0,0,5
+389,CHERIBERRY,Cheri Nut,Cheri Berries,5,20,"It may be used or held by a Pokémon to recover from paralysis.",1,1,5
+390,CHESTOBERRY,Chesto Nut,Chesto Berries,5,20,"It may be used or held by a Pokémon to recover from sleep.",1,1,5
+391,PECHABERRY,Pecha Nut,Pecha Berries,5,20,"It may be used or held by a Pokémon to recover from poison.",1,1,5
+392,RAWSTBERRY,Rawst Nut,Rawst Berries,5,20,"It may be used or held by a Pokémon to recover from a burn.",1,1,5
+393,ASPEARBERRY,Aspear Nut,Aspear Berries,5,20,"It may be used or held by a Pokémon to defrost it.",1,1,5
+394,LEPPABERRY,Leppa Nut,Leppa Berries,5,20,"It may be used or held by a Pokémon to restore a move's PP by 10.",1,2,5
+395,ORANBERRY,Oran Nut,Oran Berries,5,20,"It may be used or held by a Pokémon to heal the user by just 10 HP.",1,1,5
+396,PERSIMBERRY,Persim Nut,Persim Berries,5,20,"It may be used or held by a Pokémon to recover from confusion.",0,3,5
+397,LUMBERRY,Lum Nut,Lum Berries,5,20,"It may be used or held by a Pokémon to recover from any status problem.",1,1,5
+398,SITRUSBERRY,Sitrus Nut,Sitrus Berries,5,20,"It may be used or held by a Pokémon to heal the user's HP a little.",1,1,5
+399,FIGYBERRY,Figy Nut,Figy Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+400,WIKIBERRY,Wiki Nut,Wiki Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+401,MAGOBERRY,Mago Nut,Mago Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+402,AGUAVBERRY,Aguav Nut,Aguav Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+403,IAPAPABERRY,Iapapa Nut,Iapapa Berries,5,20,"If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.",0,0,5
+404,RAZZBERRY,Razz Nut,Razz Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+405,BLUKBERRY,Bluk Nut,Bluk Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+406,NANABBERRY,Nanab Nut,Nanab Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+407,WEPEARBERRY,Wepear Nut,Wepear Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+408,PINAPBERRY,Pinap Nut,Pinap Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+409,POMEGBERRY,Pomeg Nut,Pomeg Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base HP.",1,0,5
+410,KELPSYBERRY,Kelpsy Nut,Kelpsy Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.",1,0,5
+411,QUALOTBERRY,Qualot Nut,Qualot Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.",1,0,5
+412,HONDEWBERRY,Hondew Nut,Hondew Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.",1,0,5
+413,GREPABERRY,Grepa Nut,Grepa Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.",1,0,5
+414,TAMATOBERRY,Tamato Nut,Tamato Berries,5,20,"Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.",1,0,5
+415,CORNNBERRY,Cornn Nut,Cornn Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+416,MAGOSTBERRY,Magost Nut,Magost Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+417,RABUTABERRY,Rabuta Nut,Rabuta Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+418,NOMELBERRY,Nomel Nut,Nomel Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+419,SPELONBERRY,Spelon Nut,Spelon Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+420,PAMTREBERRY,Pamtre Nut,Pamtre Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+421,WATMELBERRY,Watmel Nut,Watmel Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+422,DURINBERRY,Durin Nut,Durin Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+423,BELUEBERRY,Belue Nut,Belue Berries,5,20,"In the Sinnoh region, they like to make sweets known as Poffins with this Nut.",0,0,5
+424,OCCABERRY,Occa Nut,Occa Berries,5,20,"Weakens a supereffective Fire-type attack against the holding Pokémon.",0,0,5
+425,PASSHOBERRY,Passho Nut,Passho Berries,5,20,"Weakens a supereffective Water-type attack against the holding Pokémon.",0,0,5
+426,WACANBERRY,Wacan Nut,Wacan Berries,5,20,"Weakens a supereffective Electric-type attack against the holding Pokémon.",0,0,5
+427,RINDOBERRY,Rindo Nut,Rindo Berries,5,20,"Weakens a supereffective Grass-type attack against the holding Pokémon.",0,0,5
+428,YACHEBERRY,Yache Nut,Yache Berries,5,20,"Weakens a supereffective Ice-type attack against the holding Pokémon.",0,0,5
+429,CHOPLEBERRY,Chople Nut,Chople Berries,5,20,"Weakens a supereffective Fighting-type attack against the holding Pokémon.",0,0,5
+430,KEBIABERRY,Kebia Nut,Kebia Berries,5,20,"Weakens a supereffective Poison-type attack against the holding Pokémon.",0,0,5
+431,SHUCABERRY,Shuca Nut,Shuca Berries,5,20,"Weakens a supereffective Ground-type attack against the holding Pokémon.",0,0,5
+432,COBABERRY,Coba Nut,Coba Berries,5,20,"Weakens a supereffective Flying-type attack against the holding Pokémon.",0,0,5
+433,PAYAPABERRY,Payapa Nut,Payapa Berries,5,20,"Weakens a supereffective Psychic-type attack against the holding Pokémon.",0,0,5
+434,TANGABERRY,Tanga Nut,Tanga Berries,5,20,"Weakens a supereffective Bug-type attack against the holding Pokémon.",0,0,5
+435,CHARTIBERRY,Charti Nut,Charti Berries,5,20,"Weakens a supereffective Rock-type attack against the holding Pokémon.",0,0,5
+436,KASIBBERRY,Kasib Nut,Kasib Berries,5,20,"Weakens a supereffective Ghost-type attack against the holding Pokémon.",0,0,5
+437,HABANBERRY,Haban Nut,Haban Berries,5,20,"Weakens a supereffective Dragon-type attack against the holding Pokémon.",0,0,5
+438,COLBURBERRY,Colbur Nut,Colbur Berries,5,20,"Weakens a supereffective Dark-type attack against the holding Pokémon.",0,0,5
+439,BABIRIBERRY,Babiri Nut,Babiri Berries,5,20,"Weakens a supereffective Steel-type attack against the holding Pokémon.",0,0,5
+440,CHILANBERRY,Chilan Nut,Chilan Berries,5,20,"Weakens a Normal-type attack against the Pokémon holding this Nut.",0,0,5
+441,LIECHIBERRY,Liechi Nut,Liechi Berries,5,20,"If held by a Pokémon, it raises its Attack stat in a pinch.",0,0,5
+442,GANLONBERRY,Ganlon Nut,Ganlon Berries,5,20,"If held by a Pokémon, it raises its Defense stat in a pinch.",0,0,5
+443,SALACBERRY,Salac Nut,Salac Berries,5,20,"If held by a Pokémon, it raises its Speed stat in a pinch.",0,0,5
+444,PETAYABERRY,Petaya Nut,Petaya Berries,5,20,"If held by a Pokémon, it raises its Sp. Atk stat in a pinch.",0,0,5
+445,APICOTBERRY,Apicot Nut,Apicot Berries,5,20,"If held by a Pokémon, it raises its Sp. Def stat in a pinch.",0,0,5
+446,LANSATBERRY,Lansat Nut,Lansat Berries,5,20,"If held by a Pokémon, it raises its critical-hit ratio in a pinch.",0,0,5
+447,STARFBERRY,Starf Nut,Starf Berries,5,20,"If held by a Pokémon, it sharply raises one of its stats in a pinch.",0,0,5
+448,ENIGMABERRY,Enigma Nut,Enigma Berries,5,20,"If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.",0,0,5
+449,MICLEBERRY,Micle Nut,Micle Berries,5,20,"If held by a Pokémon, it raises the accuracy of a move just once in a pinch.",0,0,5
+450,CUSTAPBERRY,Custap Nut,Custap Berries,5,20,"If held by a Pokémon, it gets to move first just once in a pinch.",0,0,5
+451,JABOCABERRY,Jaboca Nut,Jaboca Berries,5,20,"If held by a Pokémon and a physical attack lands, the attacker also takes damage.",0,0,5
+452,ROWAPBERRY,Rowap Nut,Rowap Berries,5,20,"If held by a Pokémon and a special attack lands, the attacker also takes damage.",0,0,5
 #-------------------------------
 453,GRASSMAIL,Grass Mail,Grass Mail,6,50,"Stationery featuring a print of a refreshingly green field. Let a Pokémon hold it for delivery.",0,0,2
 454,FLAMEMAIL,Flame Mail,Flame Mail,6,50,"Stationery featuring a print of flames in blazing red. Let a Pokémon hold it for delivery.",0,0,2
@@ -760,7 +760,7 @@
 #-------------------------------
 690,LIFTKEY,Lift Key,Lift Keys,8,0,"A key that operates the elevator in the Team Rocket Hideout. It bears the Team Rocket logo.",0,0,6
 #-------------------------------
-691,PINKANBERRY,Pinkan Berry,Pinkan Berries,5,0,"A type of Berry that is only found on Pinkan Island. This berry turns Pokémon that eats it pink.",0,0,5
+691,PINKANBERRY,Pinkan Nut,Pinkan Berries,5,0,"A type of Nut that is only found on Pinkan Island. This Nut turns Pokémon that eats it pink.",0,0,5
 #-------------------------------
 692,EMERGENCYWHISTLE,Emergency Whistle,Emergency Whistle,8,0,"A small whistle that emits a loud, high-pitched noise. It can be used to alert others.",0,0,6
 693,FAVORITEOUTFIT,Favorite Outfit,Favorite Outfits,8,0,"Allows you to quickly switch to the outfit you've marked as your favorite.",2,0,6
@@ -776,7 +776,7 @@
 #-------------------------------
 700,SEAWEED,Seaweed,Seaweeds,1,100,"A bunch of seaweed that's common in the Hoenn region.",1,1,0
 #-------------------------------
-701,ROSELIBERRY,Resoli Berry,Resoli Berries,5,20,"Weakens a supereffective Fairy-type attack against the holding Pokémon.",0,0,5
+701,ROSELIBERRY,Resoli Nut,Resoli Berries,5,20,"Weakens a supereffective Fairy-type attack against the holding Pokémon.",0,0,5
 #-------------------------------
 702,SPRAYCAN,Spray Can,Spray Can,8,0,"A can of colored spray paint that can be used to paint on walls.",2,0,6
 703,SPAWNER,Spawner,Spawners,8,0,"Debug tool for spawning Pokémon.",2,0,6
@@ -976,7 +976,7 @@
 905,HEAVYSUIT,Heavy Suit,Heavy Suits,1,0,"a",0,0,0
 906,FLIGHTLESSWINGSUIT,Flightless Wingsuit,Flightless Wingsuits,1,0,"a",0,0,0
 907,SCROLL,Scroll,Scrolls,1,0,"a",0,0,0
-908,BERSERKBERRY,Berserk Berry,Berserk Berrys,5,0,"a",0,0,5
+908,BERSERKBERRY,Berserk Nut,Berserk Nuts,5,0,"a",0,0,5
 909,SHADOWGEM,Shadow Gem,Shadow Gems,1,0,"a",0,0,0
 910,LIVEORB,Live Orb,Live Orbs,1,0,"a",0,0,0
 911,ASSAULTHELMET,Assault Helmet,Assault Helmets,1,0,"a",0,0,0

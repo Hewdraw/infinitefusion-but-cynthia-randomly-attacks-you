@@ -352,7 +352,7 @@ module Settings
             _INTL("Medicine"),
             _INTL("Poké Balls"),
             _INTL("TMs & HMs"),
-            _INTL("Berries"),
+            _INTL("Nuts"),
             _INTL("Mail"),
             _INTL("Battle Items"),
             _INTL("Key Items")
