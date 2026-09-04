@@ -248,6 +248,11 @@ def towerIncreaseFloor(nextfloor = nil)
     if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
         generateMysteryDungeon()
     else
+        if $PokemonGlobal.towervalues[:activevariable] == "Tutor"
+            setDialogIconOn(1)
+        else
+            setDialogIconOff(1)
+        end
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
         pbSetGraphic(4, "", 21)
         pbSetSelfSwitch(5, "A", false, 21)
@@ -362,6 +367,7 @@ def towerEvent()
                 end
             end
         end
+        setDialogIconOff(1)
     when "Crafting"
         mcCrafting()
     when "Legendary"
