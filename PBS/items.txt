@@ -235,7 +235,7 @@
 232,REVIVE,Revive,Revives,2,2000,"A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.",1,1,0
 233,MAXREVIVE,Max Revive,Max Revives,2,4000,"A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.",1,1,0
 234,BERRYJUICE,Berry Juice,Berry Juices,2,100,"A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.",1,1,0
-235,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,350,"A sour candy bar from Mahogany Town. It decreases a Pokémon's level by one",1,1,0
+235,RAGECANDYBAR,Rage Candy Bar,Rage Candy Bars,2,100,"A sour candy bar from Mahogany Town. It decreases a Pokémon's level by one",1,1,0
 236,SWEETHEART,Sweet Heart,Sweet Hearts,2,3000,"Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.",1,1,0
 237,FRESHWATER,Fresh Water,Fresh Waters,2,200,"Water with a high mineral content. It restores the HP of one Pokémon by 50 points.",1,1,0
 238,SODAPOP,Soda Pop,Soda Pops,2,300,"A fizzy soda drink. It restores the HP of one Pokémon by 60 points.",1,1,0
@@ -263,7 +263,7 @@
 260,GENIUSWING,Genius Wing,Genius Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Sp. Atk stat of a single Pokémon.",1,0,0
 261,CLEVERWING,Clever Wing,Clever Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Sp. Def stat of a single Pokémon.",1,0,0
 262,SWIFTWING,Swift Wing,Swift Wings,2,300,"An item for use on a Pokémon. It slightly increases the base Speed stat of a single Pokémon.",1,0,0
-263,RARECANDY,Rare Candy,Rare Candies,2,10000,"A candy that is packed with energy. It raises the level of a single Pokémon by one.",1,0,0
+263,RARECANDY,Rare Candy,Rare Candies,2,1000,"A candy that is packed with energy. It raises the level of a single Pokémon by one.",1,0,0
 #-------------------------------
 264,MASTERBALL,Master Ball,Master Balls,3,0,"The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.",0,4,4
 265,ULTRABALL,Ultra Ball,Ultra Balls,3,800,"An ultra-performance Ball that provides a higher Pokémon catch rate than a Great Ball.",0,4,4
@@ -637,7 +637,7 @@
 #-------------------------------
 597,SACREDPOTION,Secret Potion,Secret Potions,2,7000,"An ancient, secret medicine. It fully revives all fainted Pokémon in a battle.",2,0,0
 #-------------------------------
-598,ABILITYCAPSULE,Ability Capsule,Ability Capsules,2,9500,"A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.",1,0,0
+598,ABILITYCAPSULE,Ability Capsule,Ability Capsules,2,2000,"A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.",1,0,0
 #-------------------------------
 599,MAGICBOOTS,Magic Boots,Magic Boots,8,0,"A pair of magic boots that allow you to walk anywhere by pressing the CTRL key.",2,0,6
 #-------------------------------
