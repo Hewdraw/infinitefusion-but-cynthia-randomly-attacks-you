@@ -1988,7 +1988,7 @@ class Pokemon
       case @species
       when :BELDUM
         @owner = Owner.new(0, "Shadross", 1, 2)
-      when :ZORUA
+      when :ZORUA, :HISUIZORUA
         @owner = Owner.new(0, "Kieru", 0, 2)
       when :HAWLUCHA
         @owner = Owner.new(0, "Prof. Claire", 1, 2)
