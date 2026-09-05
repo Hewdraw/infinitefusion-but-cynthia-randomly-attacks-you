@@ -937,12 +937,12 @@ class PokemonStorageScene
       if pokemon.ability
         textstrings.push([pokemon.ability.name, 86, 300, 2, base, shadow])
       else
-        textstrings.push([_INTL("No ability"), 86, 300, 2, base, nonshadow])
+        textstrings.push([_INTL("No ability"), 86, 300, 2, base, shadow])
       end
       if pokemon.item
         textstrings.push([pokemon.item.name, 86, 336, 2, base, shadow])
       else
-        textstrings.push([_INTL("No item"), 86, 336, 2, base, nonshadow])
+        textstrings.push([_INTL("No item"), 86, 336, 2, base, shadow])
       end
       if pokemon.shiny?
         addShinyStarsToGraphicsArray(imagepos, 156, 198, pokemon.bodyShiny?, pokemon.headShiny?, pokemon.debugShiny?, pokemon.radarShiny?, nil, nil, nil, nil, false, true)

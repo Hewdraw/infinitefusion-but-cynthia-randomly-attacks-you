@@ -22,7 +22,6 @@ def pbStorePokemon(pkmn)
   pkmn.record_first_moves
   if $Trainer.party_full?
     storage = $PokemonStorage
-    storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
     oldcurbox = storage.currentBox
     storedbox = storage.pbStoreCaught(pkmn)
     curboxname = storage[oldcurbox].name

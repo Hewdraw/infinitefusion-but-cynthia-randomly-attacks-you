@@ -6,7 +6,7 @@ def setupTower()
         :seed => Random.new_seed,
         :floor => 0,
         :badges => 0,
-        :storage => PokemonStorage.new,
+        :pokemonstorage => $PokemonStorage,
         :looplet => PokemonLooplet.new,
         :cynthiachance => 0,
         :maxcynthiachance => 10,
@@ -26,6 +26,7 @@ def setupTower()
         :triplefusions => $PokemonGlobal.triplefusions,
         :escapeorb => false,
     }
+    $PokemonStorage = PokemonStorage.new
     $PokemonGlobal.towervalues[:unknownlist] = getUnknownEventList()
     $Trainer.money = 0
     $PokemonGlobal.triplefusions = []
@@ -51,6 +52,7 @@ def resetTower()
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
+    $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
     PokemonSelection.restore
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 21)
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)

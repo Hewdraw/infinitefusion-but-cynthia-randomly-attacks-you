@@ -2244,11 +2244,7 @@ def unfusePokemonLegacy(pokemon, scene, supersplicers, pcPosition = nil)
 
       if $Trainer.party.length >= 6
         if (keepInParty == 0)
-          if $PokemonGlobal.towervalues.nil?
-            $PokemonStorage.pbStoreCaught(poke2)
-          else
-            $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
-          end
+          $PokemonStorage.pbStoreCaught(poke2)
           scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
         else
           poke2 = Pokemon.new(bodyPoke, body_level)
@@ -2259,18 +2255,10 @@ def unfusePokemonLegacy(pokemon, scene, supersplicers, pcPosition = nil)
             box = pcPosition[0]
             index = pcPosition[1]
             # todo: store at next available position from current position
-            if $PokemonGlobal.towervalues.nil?
-              $PokemonStorage.pbStoreCaught(poke2)
-            else
-              $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
-            end
+            $PokemonStorage.pbStoreCaught(poke2)
           else
             # Fusing from party
-            if $PokemonGlobal.towervalues.nil?
-              $PokemonStorage.pbStoreCaught(poke2)
-            else
-              $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
-            end
+            $PokemonStorage.pbStoreCaught(poke2)
             scene.pbDisplay(_INTL("{1} was sent to the PC.", poke2.name))
           end
         end
@@ -2279,11 +2267,7 @@ def unfusePokemonLegacy(pokemon, scene, supersplicers, pcPosition = nil)
           box = pcPosition[0]
           index = pcPosition[1]
           # todo: store at next available position from current position
-          if $PokemonGlobal.towervalues.nil?
-            $PokemonStorage.pbStoreCaught(poke2)
-          else
-            $PokemonGlobal.towervalues[:storage].pbStoreCaught(poke2)
-          end
+          $PokemonStorage.pbStoreCaught(poke2)
         else
           Kernel.pbAddPokemonSilent(poke2, poke2.level)
         end
@@ -2629,7 +2613,6 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF, proc { |item|
 
 ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
   storage = $PokemonStorage
-  storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
   pbFadeOutIn {
     scene = PokemonStorageScene.new
     screen = PokemonStorageScreen.new(scene, storage)
@@ -2640,7 +2623,6 @@ ItemHandlers::UseInField.add(:BOXLINK, proc { |item|
 
 ItemHandlers::UseInField.add(:DIGIVICE, proc { |item|
   storage = $PokemonStorage
-  storage = $PokemonGlobal.towervalues[:storage] if !$PokemonGlobal.towervalues.nil?
   pbFadeOutIn {
     scene = PokemonStorageScene.new
     screen = PokemonStorageScreen.new(scene, storage)
