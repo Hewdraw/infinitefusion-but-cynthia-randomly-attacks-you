@@ -711,7 +711,7 @@ EMERADICT = {
         :misccommand => "Change Type"
     },
     :TOXICCHAIN => {
-        :name => "Toxic Chain",
+        :name => "Toxic Chains",
         :description => "Your Pokemon gain the Toxic Chain Ability.",
         :rarity => :LEGENDARY,
         :tutormove => :VENOSHOCK,
