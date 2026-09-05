@@ -281,6 +281,7 @@ class FusionTutorService
       compatibleMoves << :MINDBLOWN if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :PSYSTRIKE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :THUNDERCAGE if is_fusion_of([:THEFORBIDDENONE])
+      compatibleMoves << :MIKUMIKUBEAM if is_fusion_of([:THEFORBIDDENONE])
     end
     return compatibleMoves
   end

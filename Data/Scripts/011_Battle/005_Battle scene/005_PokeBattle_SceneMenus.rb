@@ -414,7 +414,7 @@ class FightMenuDisplay < BattleMenuBase
         @visibility["button_#{i}"] = true
         button.src_rect.x = (i==@index) ? @buttonBitmap.width/2 : 0
         movetype = moves[i].type
-        movetype = pbHiddenPower(user,user.pokemon.hiddenPowerType)[0] if moves[i].function = "090"
+        movetype = pbHiddenPower(user,user.pokemon.hiddenPowerType)[0] if moves[i].function == "090"
         button.src_rect.y = GameData::Type.get(movetype).id_number * BUTTON_HEIGHT
         button.z          = self.z + ((i==@index) ? 4 : 3)
       end
@@ -425,7 +425,7 @@ class FightMenuDisplay < BattleMenuBase
   def refreshMoveData(move)
     # Write PP and type of the selected move
     moveType = move.type
-    moveType = pbHiddenPower(user,user.pokemon.hiddenPowerType)[0] if move.function = "090"
+    moveType = pbHiddenPower(user,user.pokemon.hiddenPowerType)[0] if move.function == "090"
     if !USE_GRAPHICS
       moveTypeName = GameData::Type.get(moveType).name
       if move.total_pp<=0
