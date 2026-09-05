@@ -110,7 +110,7 @@ class PokeBattle_Move_087 < PokeBattle_Move
   end
 
   def pbBaseType(user)
-    ret = :NORMAL
+    ret = super
     case @battle.pbWeather
     when :Sun, :HarshSun
       ret = :FIRE if GameData::Type.exists?(:FIRE)
@@ -491,7 +491,7 @@ class PokeBattle_Move_096 < PokeBattle_Move
   #       this is good enough.
   def pbBaseType(user)
     item = user.item
-    ret = :NORMAL
+    ret = super
     if item
       @typeArray.each do |type, items|
         next if !items.include?(item.id)
@@ -742,7 +742,7 @@ class PokeBattle_Move_09F < PokeBattle_Move
   end
 
   def pbBaseType(user)
-    ret = :NORMAL
+    ret = super
     if user.itemActive?
       @itemTypes.each do |item, itemType|
         next if user.item != item

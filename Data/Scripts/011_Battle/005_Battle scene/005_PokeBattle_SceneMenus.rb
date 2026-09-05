@@ -414,6 +414,7 @@ class FightMenuDisplay < BattleMenuBase
         @visibility["button_#{i}"] = true
         button.src_rect.x = (i==@index) ? @buttonBitmap.width/2 : 0
         movetype = moves[i].type
+        movetype = battler.pokemon.battlevariables[:dubiousdisc][i] if @battler.hasActiveItem?(:DUBIOUSIDSC) && battler.pokemon.battlevariables[:dubiousdisc]
         movetype = pbHiddenPower(user,user.pokemon.hiddenPowerType)[0] if moves[i].function == "090"
         button.src_rect.y = GameData::Type.get(movetype).id_number * BUTTON_HEIGHT
         button.z          = self.z + ((i==@index) ? 4 : 3)
@@ -425,6 +426,7 @@ class FightMenuDisplay < BattleMenuBase
   def refreshMoveData(move)
     # Write PP and type of the selected move
     moveType = move.type
+    movetype = battler.pokemon.battlevariables[:dubiousdisc][i] if @battler.hasActiveItem?(:DUBIOUSIDSC) && battler.pokemon.battlevariables[:dubiousdisc]
     moveType = pbHiddenPower(user,user.pokemon.hiddenPowerType)[0] if move.function == "090"
     if !USE_GRAPHICS
       moveTypeName = GameData::Type.get(moveType).name

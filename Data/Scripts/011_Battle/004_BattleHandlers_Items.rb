@@ -690,6 +690,12 @@ BattleHandlers::DamageCalcUserItem.add(:EVIOMITE,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.add(:DUBIOUSDISC,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5
+  }
+)
+
 BattleHandlers::DamageCalcUserItem.add(:EVERSTONEPLUS,
   proc { |item,user,target,move,mults,baseDmg,type|
     if user.pokemon.species_data.get_evolutions(true).length > 0 || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?) || user.isFusionOf(:RAICHU)
@@ -2294,6 +2300,16 @@ BattleHandlers::EOREffectItem.add(:WINCINGORB,
   }
 )
 
+BattleHandlers::EOREffectItem.add(:DUBIOUSDISC,
+  proc { |item,battler,battle|
+    battler.pokemon.battlevariables[:dubiousdisc] = []
+    types = [:NORMAL, :FIGHTING, :FLYING, :POISONm :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
+    for i in 0..3
+      battler.pokemon.battlevariables[:dubiousdisc].push(types.sample)
+    end
+  }
+)
+
 #===============================================================================
 # CertainSwitchingUserItem handlers
 #===============================================================================
@@ -2466,6 +2482,16 @@ BattleHandlers::ItemOnSwitchIn.add(:SILVERWING,
         battle.pbStartWeather(battler,:Hail,true)
         break
       end
+    end
+  }
+)
+
+BattleHandlers::ItemOnSwitchIn.add(:DUBIOUSDISC,
+  proc { |item,battler,battle|
+    battler.pokemon.battlevariables[:dubiousdisc] = []
+    types = [:NORMAL, :FIGHTING, :FLYING, :POISONm :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
+    for i in 0..3
+      battler.pokemon.battlevariables[:dubiousdisc].push(types.sample)
     end
   }
 )

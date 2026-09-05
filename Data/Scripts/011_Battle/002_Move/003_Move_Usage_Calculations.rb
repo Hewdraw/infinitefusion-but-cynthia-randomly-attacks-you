@@ -4,6 +4,14 @@ class PokeBattle_Move
   #=============================================================================
   def pbBaseType(user)
     ret = @type
+    if user.hasActiveItem?(:DUBIOUSDISC) && battler.pokemon.battlevariables[:dubiousdisc]
+      user.moves.each_with_index do |move, i|
+        break if i > 3
+        if move.name == @name
+          ret = battler.pokemon.battlevariables[:dubiousdisc][i]
+        end
+      end
+    end
     if ret && user.abilityActive?
       ret = BattleHandlers.triggerMoveBaseTypeModifierAbility(user.ability,user,self,ret)
     end

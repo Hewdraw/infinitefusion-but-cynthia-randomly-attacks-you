@@ -3644,7 +3644,7 @@ class PokeBattle_Move_230 < PokeBattle_Move
   end
 
   def pbBaseType(user)
-    ret = :NORMAL
+    ret = super
     case @battle.field.terrain
     when :Electric
       ret = :ELECTRIC if GameData::Type.exists?(:ELECTRIC)
@@ -3993,7 +3993,7 @@ end
 
 class PokeBattle_Move_250 < PokeBattle_SleepMove
   def pbBaseType(user)
-    ret = :NORMAL
+    ret = super
     case @battle.field.terrain
     when :Misty
       ret = :FAIRY if GameData::Type.exists?(:FAIRY)
