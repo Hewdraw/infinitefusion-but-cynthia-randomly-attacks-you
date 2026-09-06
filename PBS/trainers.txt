@@ -3030,7 +3030,7 @@ Pokemon = GENGARGENGAR,5
 #-------------------------------
 [ELITEFOUR_Lance,Lance,2]
 Pokemon = B334H149,5
-    Offset = 4
+    Offset = 8
     Moves = RAINDANCE,UTURN,DRACOMETEOR,ROOST
     Ability = MULTISCALE
     Item = DAMPROCK
@@ -3092,7 +3092,7 @@ Pokemon = B149H148,5
 #-------------------------------
 [ELITEFOUR_Lance,Lance,3]
 Pokemon = B334H149,5
-    Offset = 8
+    Offset = 12
     Moves = RAINDANCE,UTURN,DRACOMETEOR,ROOST
     Ability = MULTISCALE
     Item = DAMPROCK
@@ -3154,7 +3154,7 @@ Pokemon = B149H148,5
 #-------------------------------
 [ELITEFOUR_Lance,Lance,4]
 Pokemon = B334H149,5
-    Offset = 8
+    Offset = 12
     Moves = RAINDANCE,UTURN,DRACOMETEOR,ROOST
     Ability = MULTISCALE
     Item = DAMPROCK
