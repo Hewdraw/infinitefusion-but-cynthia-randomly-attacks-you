@@ -22605,12 +22605,12 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000838]
-Name = Dragodos
-InternalName = MEGAB130H149
-Type1 = DRAGON
-Type2 = DARK
-BaseStats = 92,148,104,80,90,110
-Abilities = MOLDBREAKER
+Name = Gyaranite
+InternalName = MEGAB149H130
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 93,134,113,93,95,128
+Abilities = SCALEBREAKER
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------

@@ -664,7 +664,7 @@ class PokeBattle_Battler
   end
 
   def hasMoldBreaker?
-    return hasActiveAbility?([:MOLDBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :TOTALFREEZE, :CHARGEDEXPLOSIVE, :OBLITERATE])
+    return hasActiveAbility?([:MOLDBREAKER, :SCALEBREAKER, :TERAVOLT, :TURBOBLAZE, :TETRAFORCE, :TOTALFREEZE, :CHARGEDEXPLOSIVE, :OBLITERATE])
   end
 
   def canChangeType?

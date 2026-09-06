@@ -383,3 +383,4 @@
 405,FORCEDEVOLUTIONPLUS,Forced Evolution+,"a"
 500,BREAKTHESEAL,Break the Seal,"a"
 501,OBLITERATE,Obliterate,"a"
+502,SCALEBREAKER,Scale Breaker,"a"

@@ -1634,10 +1634,10 @@ BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
 #-------------------------------
-[B130H149,1]
-FormName = Mega Dragodos
-MegaStone = GYARADOSITE
-UnMegaForm = B130H149
+[B149H130,1]
+FormName = Mega Gyaranite
+MegaStone = GYARANINITE
+UnMegaForm = B149H130
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER

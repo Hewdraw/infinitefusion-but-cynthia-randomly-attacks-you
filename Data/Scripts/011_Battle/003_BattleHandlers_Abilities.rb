@@ -1642,6 +1642,8 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.copy(:MULTISCALE, :SCALEBREAKER)
+
 BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if (user.effects[PBEffects::Protosynthesis] % 10 == 2 && move.physicalMove?) || (user.effects[PBEffects::Protosynthesis] % 10 == 4 && move.specialMove?)
@@ -3715,7 +3717,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :OBLITERATE)
+BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :SCALEBREAKER, :OBLITERATE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:TETRAFORCE,
   proc { |ability,battler,battle|
