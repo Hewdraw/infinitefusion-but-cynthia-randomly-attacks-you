@@ -207,6 +207,9 @@ class FusionTutorService
       compatibleMoves << :INFERNALPARADE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :LUMINACRASH if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :AXEKICK if is_fusion_of([:THEFORBIDDENONE])
+      compatibleMoves << :WAVEYWAVE if is_fusion_of([:EEVEE, :VAPOREON, :FLAREON, :JOLTEON, :ESPEON, :UMBREON, :GLACEON, :LEAFEON]) && hasType(:SOUND)
+      compatibleMoves << :MISTYMIST if is_fusion_of([:EEVEE, :VAPOREON, :FLAREON, :JOLTEON, :ESPEON, :UMBREON, :GLACEON, :LEAFEON]) && hasType(:QMARKS)
+      compatibleMoves << :BLAMMYBLAM if is_fusion_of([:EEVEE, :VAPOREON, :FLAREON, :JOLTEON, :ESPEON, :UMBREON, :GLACEON, :LEAFEON]) && hasType(:GUN)
     end
     if includeLegendaries
       #legendary moves (only available after a certain trigger, maybe a different npc)
