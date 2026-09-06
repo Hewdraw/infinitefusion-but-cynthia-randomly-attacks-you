@@ -3091,7 +3091,7 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
     battle.scene.pbRefreshOne(battler.index)
     battler.ability = :LEGENDARYPRESSURE if battler.pokemon.originalability == :LEGENDARYPRESSURE
     battler.pbUpdate(true)
-    battle.pbCommonAnimation("PrimalExodia",battler)
+    battle.pbCommonAnimation("PrimalExodia2",battler)
     battle.pbDisplay("The seal has been broken!")
     battle.pbHideAbilitySplash(battler)
   }
