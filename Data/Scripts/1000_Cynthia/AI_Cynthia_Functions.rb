@@ -2381,7 +2381,7 @@ class PokeBattle_AI
             if type == :NORMAL
               multipliers[:base_damage_multiplier] *= 1.2
             end
-          when :ANALYTIC
+          when :ANALYTIC, :ANALYTICPLUS
             if user.pbSpeed < target.pbSpeed
               multipliers[:base_damage_multiplier] *= 1.3
             end
