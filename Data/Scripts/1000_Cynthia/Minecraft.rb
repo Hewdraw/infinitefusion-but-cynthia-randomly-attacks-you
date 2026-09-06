@@ -222,7 +222,7 @@ def getEnderChestItems()
             [:BUNDLEOFBALLOONS, 1],
             [:TOTEMOFUNDYING, 1],
             [:ENDCRYSTAL, 1],
-            [:MINECRAFTBALL, 1],
+            #[:MINECRAFTBALL, 1],
             [:ELYTRA, 1],
             [:ENDERPEARL, 1],
             [:DIAMONDCHESTPLATE, 1],
