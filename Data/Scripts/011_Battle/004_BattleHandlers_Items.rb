@@ -2303,7 +2303,7 @@ BattleHandlers::EOREffectItem.add(:WINCINGORB,
 BattleHandlers::EOREffectItem.add(:DUBIOUSDISC,
   proc { |item,battler,battle|
     battler.pokemon.battlevariables[:dubiousdisc] = []
-    types = [:NORMAL, :FIGHTING, :FLYING, :POISONm :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
+    types = [:NORMAL, :FIGHTING, :FLYING, :POISON, :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
     for i in 0..3
       battler.pokemon.battlevariables[:dubiousdisc].push(types.sample)
     end
@@ -2489,7 +2489,7 @@ BattleHandlers::ItemOnSwitchIn.add(:SILVERWING,
 BattleHandlers::ItemOnSwitchIn.add(:DUBIOUSDISC,
   proc { |item,battler,battle|
     battler.pokemon.battlevariables[:dubiousdisc] = []
-    types = [:NORMAL, :FIGHTING, :FLYING, :POISONm :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
+    types = [:NORMAL, :FIGHTING, :FLYING, :POISON, :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
     for i in 0..3
       battler.pokemon.battlevariables[:dubiousdisc].push(types.sample)
     end
