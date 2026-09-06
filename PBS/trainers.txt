@@ -188,7 +188,7 @@ Pokemon = B2H27,25
 [LASS,Lina]
 Pokemon = B77H84,28
 #-------------------------------
-[TEACHER,France]
+[TEACHER,Fr*nce]
 Pokemon = CLEFAIRY,26
 Pokemon = B122H52,26
 #-------------------------------
