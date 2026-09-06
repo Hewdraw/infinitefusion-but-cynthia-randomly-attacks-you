@@ -58,10 +58,11 @@ module Graphics
     end
     $frame += 1
     if $PokemonSystem && $PokemonSystem.speedup == 1
-      speedStage = SPEEDUP_STAGES[$GameSpeed]
+      speedupstages = [1, self.get_speedup_speed + 1 / 2, self.get_speedup_speed + 1]
+      speedStage = speedupstages[$GameSpeed]
     else
       speedStage = 1
-      if (Input.trigger?(Input::AUX1) || Input.trigger?(Input::X)) && $CanToggle
+      if (Input.press?(Input::AUX1) || Input.press?(Input::X)) && $CanToggle
         speedStage = self.get_speedup_speed + 1
       end
     end
