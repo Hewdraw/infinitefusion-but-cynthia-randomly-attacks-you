@@ -1342,21 +1342,21 @@ def pbWaterfall
   return false
 end
 
-# Events.onAction += proc { |_sender, _e|
-#   terrain = $game_player.pbFacingTerrainTag
-#   if terrain.waterfall || isFacingTempWaterfall()
-#     pbWaterfall
-#   elsif terrain.waterfall_crest
-#     pbMessage(_INTL("A wall of water is crashing down with a mighty roar."))
-#   end
-# }
+Events.onAction += proc { |_sender, _e|
+  terrain = $game_player.pbFacingTerrainTag
+  if terrain.waterfall #|| isFacingTempWaterfall()
+    pbWaterfall
+  elsif terrain.waterfall_crest
+    pbMessage(_INTL("A wall of water is crashing down with a mighty roar."))
+  end
+}
 
-def isFacingTempWaterfall()
-  return if !$game_temp.temp_waterfall
-  player_coordinates = [$game_player.x, $game_player.y]
-  echoln $game_temp.temp_waterfall.include?(player_coordinates)
-  return $game_temp.temp_waterfall.include?(player_coordinates)
-end
+# def isFacingTempWaterfall()
+#   return if !$game_temp.temp_waterfall
+#   player_coordinates = [$game_player.x, $game_player.y]
+#   echoln $game_temp.temp_waterfall.include?(player_coordinates)
+#   return $game_temp.temp_waterfall.include?(player_coordinates)
+# end
 
 HiddenMoveHandlers::CanUseMove.add(:WATERFALL, proc { |move, pkmn, showmsg|
   next false if !pbCheckHiddenMoveBadge(Settings::BADGE_FOR_WATERFALL, showmsg)
