@@ -39,11 +39,6 @@ SHADROSS_STOCK = {
     "cost" => 2,
     "amount" => 2,
   },
-  :OVALSTONE => {
-    "badges" => 0,
-    "cost" => 2,
-    "amount" => 2,
-  },
   :DEEPSEASCALE => {
     "badges" => 0,
     "cost" => 2,
@@ -371,6 +366,11 @@ SHADROSS_STOCK = {
   },
   :LOADEDDICE => {
     "badges" => 4,
+    "cost" => 12,
+    "amount" => 1,
+  },
+  :OVALSTONE => {
+    "badges" => 5,
     "cost" => 12,
     "amount" => 1,
   },

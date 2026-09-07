@@ -183,9 +183,13 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
+    availablelist = []
+    availablelist.push(:CHIMECHO) if megasource.include?(:PUREINCENSE)
+    availablelist.push(:LATIAS, :LATIOS) if megasource.include?(:EON)
+    availablelist = specieslist if megasource.include?(:MEGASHARD)
     getMegaList.each do |mega|
       specieslist.each_with_index do |species, i|
-        next if megasource == :EON && ![:LATIAS, :LATIOS].include?(species)
+        next unless availablelist.include?(species)
         next unless species == mega.species
         next unless @megaform[i] == mega.form
         ret[i] = mega

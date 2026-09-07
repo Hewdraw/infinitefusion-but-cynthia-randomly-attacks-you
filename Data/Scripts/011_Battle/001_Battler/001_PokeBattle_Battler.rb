@@ -439,7 +439,7 @@ class PokeBattle_Battler
     when :GHOST
       return true if hasActiveItem?(:ROTOMCATALOG) && [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(@species)
     when :STEEL
-      return true if hasActiveItem?(:MILLENNIUMCOMETSHARD)
+      return true if hasActiveItem?([:MILLENNIUMCOMETSHARD, :PUREINCENSE])
     when :FIRE
       return true if hasActiveAbility?(:WIRED)
       return true if hasActiveItem?([:MAGMARIZER, :FIRESPHERE])

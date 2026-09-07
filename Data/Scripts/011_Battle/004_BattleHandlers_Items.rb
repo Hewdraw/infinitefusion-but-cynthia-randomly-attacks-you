@@ -641,7 +641,7 @@ BattleHandlers::DamageCalcUserItem.add(:ADAMANTORB,
 
 BattleHandlers::DamageCalcUserItem.add(:BLACKBELT,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :FIGHTING
+    mults[:base_damage_multiplier] *= 1.3 if type == :FIGHTING
   }
 )
 
@@ -649,8 +649,8 @@ BattleHandlers::DamageCalcUserItem.copy(:BLACKBELT,:FISTPLATE)
 
 BattleHandlers::DamageCalcUserItem.add(:BLACKGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :DARK
-    mults[:base_damage_multiplier] *= 1.2 if move.id == :BODYPRESS
+    mults[:base_damage_multiplier] *= 1.3 if type == :DARK
+    mults[:base_damage_multiplier] *= 1.3 if move.id == :BODYPRESS
   }
 )
 
@@ -664,7 +664,7 @@ BattleHandlers::DamageCalcUserItem.add(:BUGGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:CHARCOAL,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :FIRE
+    mults[:base_damage_multiplier] *= 1.3 if type == :FIRE
   }
 )
 
@@ -754,7 +754,7 @@ BattleHandlers::DamageCalcUserItem.add(:DEEPSEATOOTH,
 
 BattleHandlers::DamageCalcUserItem.add(:DRAGONFANG,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :DRAGON
+    mults[:base_damage_multiplier] *= 1.3 if type == :DRAGON
   }
 )
 
@@ -775,7 +775,10 @@ BattleHandlers::DamageCalcUserItem.add(:ELECTRICGEM,
 BattleHandlers::DamageCalcUserItem.add(:EXPERTBELT,
   proc { |item,user,target,move,mults,baseDmg,type|
     if Effectiveness.super_effective?(target.damageState.typeMod)
-      mults[:final_damage_multiplier] *= 1.2
+      mults[:final_damage_multiplier] *= 1.3
+    end
+    if Effectiveness.extremely_effective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 1.3
     end
   }
 )
@@ -843,7 +846,7 @@ BattleHandlers::DamageCalcUserItem.add(:GROUNDGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:HARDSTONE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :ROCK
+    mults[:base_damage_multiplier] *= 1.3 if type == :ROCK
   }
 )
 
@@ -908,7 +911,7 @@ BattleHandlers::DamageCalcUserItem.add(:LUSTROUSORB,
 
 BattleHandlers::DamageCalcUserItem.add(:MAGNET,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :ELECTRIC
+    mults[:base_damage_multiplier] *= 1.3 if type == :ELECTRIC
   }
 )
 
@@ -916,7 +919,7 @@ BattleHandlers::DamageCalcUserItem.copy(:MAGNET,:ZAPPLATE,:DARKSTONE)
 
 BattleHandlers::DamageCalcUserItem.add(:METALCOAT,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :STEEL
+    mults[:base_damage_multiplier] *= 1.3 if type == :STEEL
   }
 )
 
@@ -933,7 +936,7 @@ BattleHandlers::DamageCalcUserItem.copy(:METRONOME,:METRONAGA)
 
 BattleHandlers::DamageCalcUserItem.add(:MIRACLESEED,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :GRASS
+    mults[:base_damage_multiplier] *= 1.3 if type == :GRASS
   }
 )
 
@@ -954,21 +957,27 @@ BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
 
 BattleHandlers::DamageCalcUserItem.add(:MUSCLEBAND,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.1 if move.physicalMove?
+    mults[:base_damage_multiplier] *= 1.2 if move.physicalMove?
   }
 )
 
 BattleHandlers::DamageCalcUserItem.add(:MYSTICWATER,
   proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if type == :WATER
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.copy(:MYSTICWATER,:SPLASHPLATE,:SEAINCENSE,:WAVEINCENSE)
+
+BattleHandlers::DamageCalcUserItem.add(:DEEPSEATOOTH,
+  proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.2 if type == :WATER
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:MYSTICWATER,:SPLASHPLATE,:SEAINCENSE,:WAVEINCENSE, :DEEPSEATOOTH)
-
 BattleHandlers::DamageCalcUserItem.add(:NEVERMELTICE,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :ICE
+    mults[:base_damage_multiplier] *= 1.3 if type == :ICE
   }
 )
 
@@ -988,7 +997,7 @@ BattleHandlers::DamageCalcUserItem.add(:PIXIEPLATE,
 
 BattleHandlers::DamageCalcUserItem.add(:POISONBARB,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :POISON
+    mults[:base_damage_multiplier] *= 1.3 if type == :POISON
   }
 )
 
@@ -1014,7 +1023,7 @@ BattleHandlers::DamageCalcUserItem.add(:ROCKGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:SHARPBEAK,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :FLYING
+    mults[:base_damage_multiplier] *= 1.3 if type == :FLYING
   }
 )
 
@@ -1022,13 +1031,13 @@ BattleHandlers::DamageCalcUserItem.copy(:SHARPBEAK,:SKYPLATE)
 
 BattleHandlers::DamageCalcUserItem.add(:SILKSCARF,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :NORMAL
+    mults[:base_damage_multiplier] *= 1.3 if type == :NORMAL
   }
 )
 
 BattleHandlers::DamageCalcUserItem.add(:SILVERPOWDER,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :BUG
+    mults[:base_damage_multiplier] *= 1.3 if type == :BUG
   }
 )
 
@@ -1036,7 +1045,7 @@ BattleHandlers::DamageCalcUserItem.copy(:SILVERPOWDER,:INSECTPLATE)
 
 BattleHandlers::DamageCalcUserItem.add(:SOFTSAND,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :GROUND
+    mults[:base_damage_multiplier] *= 1.3 if type == :GROUND
   }
 )
 
@@ -1057,7 +1066,7 @@ BattleHandlers::DamageCalcUserItem.add(:SOULDEW,
 
 BattleHandlers::DamageCalcUserItem.add(:SPELLTAG,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :GHOST
+    mults[:base_damage_multiplier] *= 1.3 if type == :GHOST
   }
 )
 
@@ -1084,7 +1093,7 @@ BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
 
 BattleHandlers::DamageCalcUserItem.add(:TWISTEDSPOON,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if type == :PSYCHIC
+    mults[:base_damage_multiplier] *= 1.3 if type == :PSYCHIC
   }
 )
 
@@ -1098,7 +1107,7 @@ BattleHandlers::DamageCalcUserItem.add(:WATERGEM,
 
 BattleHandlers::DamageCalcUserItem.add(:WISEGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.1 if move.specialMove?
+    mults[:base_damage_multiplier] *= 1.2 if move.specialMove?
   }
 )
 
@@ -1250,6 +1259,29 @@ BattleHandlers::DamageCalcTargetItem.add(:DEEPSEASCALE,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:EXPERTBELT,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    if Effectiveness.resistant?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 0.7
+    end
+    if Effectiveness.mostly_ineffective?(target.damageState.typeMod)
+      mults[:final_damage_multiplier] *= 0.7
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetItem.add(:EVERSTONE,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
+    #       means it also cares about the Pokémon's form. Some forms cannot
+    #       evolve even if the species generally can, and such forms are not
+    #       affected by Eviolite.
+    if target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
+      mults[:defense_multiplier] *= 1.1
+    end
+  }
+)
+
 BattleHandlers::DamageCalcTargetItem.add(:EVIOLITE,
   proc { |item,target,user,move,mults,baseDmg,type|
     # NOTE: Eviolite cares about whether the Pokémon itself can evolve, which
@@ -1299,7 +1331,7 @@ BattleHandlers::DamageCalcTargetItem.add(:WEIRDORB,
 BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
   proc { |item,target,user,move,mults,baseDmg,type|
     if move.physicalMove? && target.pokemon.species_data.get_evolutions(true).length > 0 || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?) || target.isFusionOf(:RAICHU)
-      mults[:defense_multiplier] *= 2
+      mults[:defense_multiplier] *= 1.75
     end
   }
 )
@@ -2351,6 +2383,7 @@ BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   proc { |item,battler,battle|
     battle.pbCommonAnimation("UseItem",battler)
     battler.pbConfuse(_INTL("{1} became confused due its {2}!",battler.pbThis, battler.itemName))
+    battler.effects[PBEffects::Confusion] = 256 if battler.effects[PBEffects::Confusion] > 0
     battler.pbRaiseStatStageByCause(:ATTACK,2,battler,battler.itemName)
     battler.pbRemoveItem()
   }

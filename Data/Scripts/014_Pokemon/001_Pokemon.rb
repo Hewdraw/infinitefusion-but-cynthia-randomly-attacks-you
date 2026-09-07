@@ -1556,10 +1556,11 @@ class Pokemon
         bstdata[i] = rotom.base_stats
       end
     end
-    megasource = nil
-    megasource = :EON if hasAbility?(:EON)
-    megasource = :MEGASHARD if hasItem?(:MEGASHARD)
-    if megasource
+    megasource = []
+    megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)
+    megasource.push(:EON) if hasAbility?(:EON)
+    megasource.push(:MEGASHARD) if hasItem?(:MEGASHARD)
+    if megasource.length > 0
       bstdata = getMegaShardForm(megasource)
       bstdata.each_with_index do |mega,i|
         bstdata[i] = mega.base_stats
@@ -1736,10 +1737,11 @@ class Pokemon
         @extraabilities += @rotomability
       end
     end
-    megasource = nil
-    megasource = :EON if hasItem?(:EON)
-    megasource = :MEGASHARD if hasItem?(:MEGASHARD)
-    if megasource
+    megasource = []
+    megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)
+    megasource.push(:EON) if hasAbility?(:EON)
+    megasource.push(:MEGASHARD) if hasItem?(:MEGASHARD)
+    if megasource.length > 0
       getMegaShardForm(megasource).each_with_index do |mega, i|
         next if mega.form == 0
         @type2 = mega.type2 if i == 0
