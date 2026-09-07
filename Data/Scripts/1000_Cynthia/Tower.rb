@@ -860,8 +860,8 @@ def getTowerItems()
             [:METALPOWDER, 1],
             [:QUICKPOWDER, 1],
             [:SAGE, 5],
-            [:BERSERKBERRY, 5]
-            [:PUREINCENSE, 5]
+            [:BERSERKBERRY, 5],
+            [:PUREINCENSE, 5],
         ],
         [ #super rare
             [:CHOICEBAND, 1],

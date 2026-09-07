@@ -241,83 +241,19 @@ module Compiler
       add_PBS_header_to_file(f)
       current_pocket = 0
       new_data = [
-:FLYINGGEM, "Boosts user's first Flying attack's power by x1.5. Consumable."],
-:PSYCHICGEM, "Boosts user's first Psychic attack's power by x1.5. Consumable."],
-:BUGGEM, "Boosts user's first Bug attack's power by x1.5. Consumable."],
-:ROCKGEM, "Boosts user's first Rock attack's power by x1.5. Consumable."],
-:GHOSTGEM, "Boosts user's first Ghost attack's power by x1.5. Consumable."],
-:DRAGONGEM, "Boosts user's first Dragon attack's power by x1.5. Consumable."],
-:DARKGEM, "Boosts user's first Dark attack's power by x1.5. Consumable."],
-:STEELGEM, "Boosts user's first Steel attack's power by x1.5. Consumable."],
-:NORMALGEM, "Boosts user's first Normal attack's power by x1.5. Consumable."],
-:LIGHTBALL, "Boosts Pichu/Pikachu/Plusle/Minun's ATK/Sp.ATK by x2 (once each). Gives Electric type benefits."],
-:LUCKYPUNCH, "Crit Stage increase. Fighting benefits. Happiny/Chansey x1.5 Sp.DEF. Evo-line gets Sniper, Crit Stage, varied Sp.ATK."],
-:METALPOWDER, "Normal/Psychic benefits and Limber/Pressure abilities. Ditto gains x1.5 DEF/Sp.DEF, even while transformed."],
-:QUICKPOWDER, "Normal/Psychic benefits and Limber/Pressure abilities. Ditto gains x1.1 SPE, even while transformed."],
-:THICKCLUB, "Ground benefits and Mold Breaker ability. Doubles ATK for Cubone or Marowak (once each)."],
-:STICK, "Grass benefits and Sniper ability. Farfetch'd evo-line and ??? gain x1.2 damage and 2 Crit Stages."],
-:SOULDEW, "x1.5 Sp.ATK/Sp.DEF if held by a Latios or Latias. Does not stack."],
-:DEEPSEATOOTH, "Water benefits, x1.2 Water power, Special Attacks hit target's DEF. Huntail evo-line has doubled Sp.ATK (once each)."],
-:DEEPSEASCALE, "Water benefits and sets up Aqua Ring on switch in. Gorebyss evo-line has doubled Sp.DEF (once each)."],
-:DOUSEDRIVE, "Genesect/Rotom gain x1.2 damage and Storm Drain, Technoblast heals for 50% of damage dealt and sets up Aqua Ring."],
-:SHOCKDRIVE, "Genesect/Rotom gain x1.2 damage and Motor Drive, Technoblast has 50% Paralysis chance."],
-:BURNDRIVE, "Genesect/Rotom gain x1.2 damage and Flash Fire, Technoblast has 50% Burn chance."],
-:CHILLDRIVE, "Genesect/Rotom gain x1.2 damage and Ice Body, Technoblast has 50% Frostbite chance."],
-:EVERSTONE, "Prevents evolving. Mon that can Evolve holding this item gains x1.1 DEF/Sp.DEF."],
-:DRAGONSCALE, "Dragon benefits, Loaded Dice, extends Rain. Kingdra-line gains 1 Crit Stage, 1 White Herb, Shed Skin, x1.2 damage."],
-:UPGRADE, "Normal benefits, x1.1 Accuracy, +10% chance for additional effects. Porygon-line gain x1.5 DEF/Sp.DEF (once each)."],
-:DUBIOUSDISC, "x1.5 damage. Randomizes user's attack Types."],
-:PROTECTOR, "Rock benefits, reduced Hazards effects, Battle Armor. Rhyhorn-line gains x1.5 DEF and 1/16th HP recovery each turn."],
-:ELECTIRIZER, "Electric benefits. Galvanize. Electivire line gets Iron Fist, 1/2 HP draining, contact moves get 30% Paralysis chance."],
-:MAGMARIZER, "Fire benefits. Immolate. Magmortar line gets Sheer Force, Analytic, Shell Bell, and x1.2 damage on S-E attacks."],
-:REAPERCLOTH, "Ice benefits. Eviolite(Dusknoir x1.2). Dusknoir-line x1.5 punching damage (once each), punching gains 1 Crit Stage. "],
-:PRISMSCALE, "Water benefits. x1.5 Sp.DEF when Statused. Milotic-line gains Magic Guard."],
-:OVALSTONE, "Normal benefits. Natural Cure. Non-Evolved mon have x1.75 DEF."],
-:HPUP, "Increases HP EVs by 12. (Max 252 per stat, 512 overall.)"],
-:PROTEIN, "Increases ATK EVs by 12. (Max 252 per stat, 512 overall.)"],
-:IRON, "Increases DEF EVs by 12. (Max 252 per stat, 512 overall.)"],
-:CALCIUM, "Increases Sp.ATK EVs by 12. (Max 252 per stat, 512 overall.)"],
-:ZINC, "Increases Sp.DEF EVs by 12. (Max 252 per stat, 512 overall.)"],
-:CARBOS, "Increases SPE EVs by 12. (Max 252 per stat, 512 overall.)"],
-:HEALTHWING, "Increases HP EVs by 4. (Max 252 per stat, 512 overall.)"],
-:MUSCLEWING, "Increases ATK EVs by 4. (Max 252 per stat, 512 overall.)"],
-:RESISTWING, "Increases DEF EVs by 4. (Max 252 per stat, 512 overall.)"],
-:GENIUSWING, "Increases Sp.ATK EVs by 4. (Max 252 per stat, 512 overall.)"],
-:CLEVERWING, "Increases Sp.DEF EVs by 4. (Max 252 per stat, 512 overall.)"],
-:SWIFTWING, "Increases SPE EVs by 4. (Max 252 per stat, 512 overall.)"],
-:FAIRYGEM, "Boosts user's first Fairy attack's power by x1.5. Consumable."],
-:MANKEYPAW, "Always crits, extra 50% chance to miss attacks (Unaffected by accuracy modifiers)."],
-:DIAMOND, "Crafting ingredient. This ore is found at level 15 or lower, most commonly between -50 and -64."],
-:BERSERKGENE, "Consumes on switch-in, boosting ATK by 2 Stages, but is confused for 256 turns."],
-:ASSAULTVEST, "Prevents Status move usage. x1.5 Sp.DEF."],
-:ULTRANECROZIUMZ, "Expensive. Does something, presumably with Necrozma."],
-:FRESHSTARTMOCHI, "Sets all invested EVs to 0. (Max 252 per stat, 512 overall.)"],
-:HEALTHMOCHI, "Increases HP EVs by 12. (Max 252 per stat, 512 overall.)"],
-:MUSCLEMOCHI, "Increases ATK EVs by 12. (Max 252 per stat, 512 overall.)"],
-:RESISTMOCHI, "Increases DEF EVs by 12. (Max 252 per stat, 512 overall.)"],
-:GENIUSMOCHI, "Increases Sp.ATK EVs by 12. (Max 252 per stat, 512 overall.)"],
-:CLEVERMOCHI, "Increases Sp.DEF EVs by 12. (Max 252 per stat, 512 overall.)"],
-:SWIFTMOCHI, "Increases SPE EVs by 12. (Max 252 per stat, 512 overall.)"],
-:FROSTORB, "Frostbites user at end of turn."],
-:HPMAX, "Maximum amounts of HP Up! Seems like a bottomless bottle..."],
-:DIAMONDCHESTPLATE, "Prevents Status move usage. x1.5 DEF."],
-:SHOCKORB, "Paralyzes user at end of turn."],
-] 
-      new_data_flat = new_data.flatten
+]
       GameData::Item.each do |i|
-        if current_pocket != i.pocket
-          current_pocket = i.pocket
-          f.write("\#-------------------------------\r\n")
-        end
+        # if current_pocket != i.pocket
+        #   current_pocket = i.pocket
+        #   f.write("\#-------------------------------\r\n")
+        # end
         move_name = (i.move) ? GameData::Move.get(i.move).id.to_s : ""
         sprintf_text = "%d,%s,%s,%s,%d,%d,%s,%d,%d,%d\r\n"
         sprintf_text = "%d,%s,%s,%s,%d,%d,%s,%d,%d,%d,%s\r\n" if move_name != ""
         description = csvQuoteAlways(i.real_description)
-        if new_data_flat.include?(i.id_number)
-          new_data.each do |data|
-            next if !data[0] == i.id_number
-            description = data[1]
-          end
+        new_data.each do |data|
+          next unless data[0] == i.id
+          description = csvQuoteAlways(data[1])
         end
         f.write(sprintf(sprintf_text,
           i.id_number,
