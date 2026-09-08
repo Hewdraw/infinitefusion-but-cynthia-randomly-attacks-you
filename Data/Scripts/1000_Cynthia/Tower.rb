@@ -250,11 +250,6 @@ def towerIncreaseFloor(nextfloor = nil)
     if $PokemonGlobal.towervalues[:activevariable] == "Mystery Dungeon"
         generateMysteryDungeon()
     else
-        if $PokemonGlobal.towervalues[:activevariable] == "Tutor"
-            setDialogIconOn(1)
-        else
-            setDialogIconOff(1)
-        end
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
         pbSetGraphic(4, "", 21)
         pbSetSelfSwitch(5, "A", false, 21)
@@ -272,6 +267,11 @@ def towerIncreaseFloor(nextfloor = nil)
         $game_temp.player_new_y = 19
         $game_temp.player_new_direction = 2
         $scene.transfer_player
+        if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
+            setDialogIconOn(1)
+        else
+            setDialogIconOff(1)
+        end
         $game_map.autoplay
         $game_map.refresh
     end
