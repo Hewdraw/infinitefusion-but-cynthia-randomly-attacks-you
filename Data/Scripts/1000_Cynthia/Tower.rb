@@ -39,7 +39,7 @@ def setupTower()
         starters.push(mon) if !starters.include?(mon)
     end
     starters.each do |pokemon|
-        pbAddPokemon(pokemon, 5)
+        pbAddPokemon(pokemon, getCurrentLevelCap())
     end
     starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICER, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET, :RECIPEBOOK]
     starteritems.each do |item|
@@ -50,9 +50,9 @@ end
 def resetTower()
     $Trainer.money = $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
+    $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
-    $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
     PokemonSelection.restore
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 21)
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)
@@ -89,7 +89,7 @@ def getTowerPokemon(filter=nil)
         next if data.get_previous_species != data.species
         next if [:MINIOR_C, :MELOETTA_P, :U_NECROZMA, :CASTFORM_SUNNY, :CASTFORM_RAINY, :CASTFORMSNOWY].include?(data.species)
         next if [:ORICORIO_1, :ORICORIO_2, :ORICORIO_3, :ORICORIO_4].include?(data.species) && rand(4) != 0 #randomly enable oricorio form, averages out
-        next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :REGICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE].include?(data.species)
+        next if [:ARTICUNO, :ZAPDOS, :MOLTRES, :MEWTWO, :MEW, :RAIKOU, :ENTEI, :SUICUNE, :LUGIA, :HOOH, :CELEBI, :ARCEUS, :KYOGRE, :GROUDON, :RAYQUAZA, :DIALGA, :PALKIA, :GIRATINA, :REGIGIGAS, :DARKRAI, :GENESECT, :RESHIRAM, :ZEKROM, :KYUREM, :LATIAS, :LATIOS, :DEOXYS, :JIRACHI, :REGIROCK, :REGICE, :REGISTEEL, :NECROZMA, :MELOETTA_A, :CRESSELIA, :DIANCIE, :ROTOM].include?(data.species)
         next if data.id_number > NB_POKEMON && !legallist.include?(data.species)
         case filter
         when "Starter"
@@ -199,7 +199,7 @@ def towerIncreaseFloor(nextfloor = nil)
     floordisplay = FloorDisplay.new()
     pbWait(10)
     $PokemonGlobal.towervalues[:floor] += 1
-    newlevel = 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max
+    newlevel = getCurrentLevelCap()
     if $PokemonGlobal.towervalues[:floor] != 1
         Kernel.pbMessage(_INTL("Your party grew to Lv. {1}!", newlevel))
         $Trainer.party.each do |pkmn|
@@ -322,7 +322,7 @@ def towerEvent()
         end
     when "Unknown"
         $PokemonGlobal.towervalues[:eventvariables][:unknownrooms] += 1
-        pbAddPokemon(getTowerPokemon()) if hasEmera?(:EXPLORERBADGE)
+        pbAddPokemon(getTowerPokemon(), getCurrentLevelCap()) if hasEmera?(:EXPLORERBADGE)
         resolveUnknownEvent
         return if $PokemonGlobal.towervalues.nil?
         unlockClass(:EXPLORER) if $PokemonGlobal.towervalues[:eventvariables][:unknownrooms] >= 10
@@ -397,7 +397,7 @@ def towerEvent()
         when "Genesect"
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
             if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
-                pbAddPokemon(:GENESECT, 5)
+                pbAddPokemon(:GENESECT, getCurrentLevelCap())
                 $PokemonBag.pbStoreItem(:OMNIDRIVE)
                 $PokemonBag.pbStoreItem(:BURNDRIVE)
                 $PokemonBag.pbStoreItem(:SHOCKDRIVE)
@@ -413,7 +413,7 @@ def towerEvent()
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
             if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
-                pbAddPokemon(:MELOETTA_A, 5) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
+                pbAddPokemon(:MELOETTA_A, getCurrentLevelCap()) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
             end
         end
         $PokemonGlobal.towervalues[:activevariable] = nil

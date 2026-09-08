@@ -41,6 +41,7 @@ def Kernel.getItemNamesAsString(list)
 end
 
 def getCurrentLevelCap()
+  return [5, 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max].max if !$PokemonGlobal.towervalues.nil?
   if Settings::KANTO
     current_max_level = Settings::LEVEL_CAPS_KANTO[$Trainer.badge_count]
   else
@@ -51,8 +52,7 @@ def getCurrentLevelCap()
 end
 
 def pokemonExceedsLevelCap(pokemon)
-  return pokemon.level >= 4 + [$PokemonGlobal.towervalues[:floor], 30].min + [(($PokemonGlobal.towervalues[:floor] - 30) * 66 / 170), 0].max if !$PokemonGlobal.towervalues.nil?
-  return false if $Trainer.badge_count >= Settings::NB_BADGES
+  return false if $Trainer.badge_count >= Settings::NB_BADGES && $PokemonGlobal.towervalues.nil?
   current_max_level = getCurrentLevelCap()
   return pokemon.level >= current_max_level
 end

@@ -1302,7 +1302,7 @@ class PokemonPartyScreen
       cmdEvolve = -1
 
       # Build the commands
-      commands[cmdEvolve = commands.length] = _INTL("Evolve!") if pkmn.evolve_from_party && pokemonAllowedToEvolve(pkmn)
+      commands[cmdEvolve = commands.length] = _INTL("Evolve!") if pkmn.check_evolution_on_level_up && pokemonAllowedToEvolve(pkmn)
       commands[cmdSummary = commands.length] = _INTL("Summary")
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
       commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0

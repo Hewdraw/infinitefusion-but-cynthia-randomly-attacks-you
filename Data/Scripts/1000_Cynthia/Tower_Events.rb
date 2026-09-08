@@ -89,7 +89,7 @@ def towerPokemon()
     for _ in 0...amount do
         if hasEmera?(:CATCHINGNET)
             mon = getTowerPokemon("Bug")
-            pbAddPokemon(mon, 5)
+            pbAddPokemon(mon, getCurrentLevelCap())
         end
         optioncount = 3
         options = []
@@ -99,7 +99,7 @@ def towerPokemon()
         end
         if hasEmera?(:CAPTURESTYLER)
             options.each do |mon|
-                pbAddPokemon(mon, 5)
+                pbAddPokemon(mon, getCurrentLevelCap())
                 $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
             end
             next
@@ -123,7 +123,7 @@ def towerPokemon()
             namearray.push(monname)
         end
         choice = Kernel.pbMessage("Pick one", namearray)
-        pbAddPokemon(options[choice], 5)
+        pbAddPokemon(options[choice], getCurrentLevelCap())
         $PokemonBag.pbStoreItem(:SINNOHCOIN) if hasEmera?(:ROTOMDEX)
     end
 end
