@@ -391,7 +391,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("{1} absorbed the sticky webs!", battler.pbThis))
       end
     end
-    if !battler.hasActiveItem?([:HEAVYDUTYBOOTS, :DETOXBOOTS])
+    if !battler.hasActiveItem?([:HEAVYDUTYBOOTS, :DETOXBOOTS]) || (battler.hasActiveEmera?(:NEWSHOES) && battler.hasActiveAbility?(:RUNAWAY))
       # Stealth Rock
       if battler.pbOwnSide.effects[PBEffects::StealthRock] && battler.takesIndirectDamage? &&
         GameData::Type.exists?(:ROCK)
@@ -475,7 +475,7 @@ class PokeBattle_Battle
         end
       end
     end
-    if !battler.hasActiveItem?([:HEAVYDUTYBOOTS])
+    if !battler.hasActiveItem?([:HEAVYDUTYBOOTS]) || (battler.hasActiveEmera?(:NEWSHOES) && battler.hasActiveAbility?(:RUNAWAY))
       # Toxic Spikes
       if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? &&
         !battler.airborne?

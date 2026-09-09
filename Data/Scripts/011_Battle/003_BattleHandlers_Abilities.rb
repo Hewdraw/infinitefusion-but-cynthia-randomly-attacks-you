@@ -3169,6 +3169,12 @@ BattleHandlers::CertainSwitchingUserAbility.add(:EONBOOST,
   }
 )
 
+BattleHandlers::CertainSwitchingUserAbility.add(:RUNAWAY,
+  proc { |ability,battler,battle|
+    next true
+  }
+)
+
 #===============================================================================
 # TrappingTargetAbility handlers
 #===============================================================================

@@ -40,12 +40,6 @@ BattleHandlers::AccuracyCalcUserAbility.add(:EMERA,
   }
 )
 
-BattleHandlers::CertainSwitchingUserAbility.add(:EMERA,
-  proc { |ability,battler,battle|
-    next true if battler.hasActiveAbility?(:RUNAWAY) && battler.hasActiveEmera?(:NEWSHOES)
-  }
-)
-
 BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
   proc { |ability,user,target,c|
     c += 1 if user.hasActiveEmera?(:SPINNINGLEEK)

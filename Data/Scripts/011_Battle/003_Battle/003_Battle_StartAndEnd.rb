@@ -590,7 +590,7 @@ class PokeBattle_Battle
               pbDisplayPaused(_INTL("You got #{coin} Sinnoh Coins for winning!"))
             end
           end
-          if @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:HEAVYDUTYBOOTS)
+          if @opponent[0].full_name == "Non Skeleton Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:BOOTS)
             pbDisplayPaused(_INTL("You got boots!? for winning!"))
           end
           if @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
