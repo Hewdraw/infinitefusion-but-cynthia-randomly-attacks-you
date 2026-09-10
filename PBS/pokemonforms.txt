@@ -963,6 +963,54 @@ BaseStats = 113,70,120,52,135,65
 Abilities = MINDSEYE
 HiddenAbility = MINDSEYE
 #-------------------------------
+[LYCANROC_D,1]
+FormName = Midday Lycanroc
+Type1 = ROCK
+Type2 = ROCK
+BaseStats = 75,115,65,112,55,65
+Abilities = KEENEYE,SANDRUSH
+HiddenAbility = STEADFAST
+#-------------------------------
+[LYCANROC_D,2]
+FormName = Dusk Lycanroc
+Type1 = ROCK
+Type2 = ROCK
+BaseStats = 75,115,65,112,55,65
+Abilities = TOUGHCLAWS,ARMORTAIL
+HiddenAbility = SPEEDBOOST
+#-------------------------------
+[LYCANROC_D,3]
+FormName = Midnight Lycanroc
+Type1 = ROCK
+Type2 = ROCK
+BaseStats = 85,115,75,82,55,75
+Abilities = KEENEYE,VITALSPIRIT
+HiddenAbility = NOGUARD
+#-------------------------------
+[LYCANROC_N,1]
+FormName = Midday Lycanroc
+Type1 = ROCK
+Type2 = ROCK
+BaseStats = 75,115,65,112,55,65
+Abilities = KEENEYE,SANDRUSH
+HiddenAbility = STEADFAST
+#-------------------------------
+[LYCANROC_N,2]
+FormName = Dusk Lycanroc
+Type1 = ROCK
+Type2 = ROCK
+BaseStats = 75,115,65,112,55,65
+Abilities = TOUGHCLAWS,ARMORTAIL
+HiddenAbility = SPEEDBOOST
+#-------------------------------
+[LYCANROC_N,3]
+FormName = Midnight Lycanroc
+Type1 = ROCK
+Type2 = ROCK
+BaseStats = 85,115,75,82,55,75
+Abilities = KEENEYE,VITALSPIRIT
+HiddenAbility = NOGUARD
+#-------------------------------
 # Rotoms
 #-------------------------------
 [ROTOM,1]

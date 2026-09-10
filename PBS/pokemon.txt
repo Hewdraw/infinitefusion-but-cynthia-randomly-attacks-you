@@ -18932,7 +18932,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = GASTRODON_E,Level,30
+Evolutions = GASTRODON_W,Item,MISTSTONE,GASTRODON_E,Level,30
 #-------------------------------
 [574]
 Name = Gastrodon
@@ -18999,7 +18999,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = GASTRODON_W,Level,30
+Evolutions = GASTRODON_E,Item,MISTSTONE,GASTRODON_W,Level,30
 #-------------------------------
 [576]
 Name = Gastrodon
@@ -27019,6 +27019,59 @@ Color = Gray
 Shape = Quadruped
 Kind = Alpha
 Pokedex = The one who gathers all five cards - resurrecting the deity by reuniting his head with his four limbs - will gain the power to bury their enemies in an instant.
+#-------------------------------
+[1001202]
+Name = Lycanroc
+InternalName = DUSKLYCANROC
+Type1 = ROCK
+BaseStats = 75,115,65,112,55,65
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 170
+EffortPoints = 0,2,0,0,0,0
+Rareness = 90
+Happiness = 50
+Abilities = TOUGHCLAWS,ARMORTAIL
+HiddenAbility = SPEEDBOOST
+Moves = 0,SUCKERPUNCH,1,ACCELEROCK,1,QUICKGUARD,1,QUICKATTACK,1,TACKLE,1,LEER,1,SANDATTACK,1,DOUBLETEAM,12,ROCKTHROW,16,HOWL,20,BITE,24,ROCKTOMB,30,ROAR,36,ROCKSLIDE,42,CRUNCH,48,SCARYFACE,54,STEALTHROCK,60,STONEEDGE
+TutorMoves = AGILITY,ASSURANCE,ATTRACT,BRICKBREAK,BULKUP,CAPTIVATE,CLOSECOMBAT,CONFIDE,COVET,CRUNCH,DOUBLETEAM,DRILLRUN,EARTHPOWER,ECHOEDVOICE,ENDEAVOR,ENDURE,FACADE,FIREFANG,FRUSTRATION,GIGAIMPACT,HIDDENPOWER,HYPERVOICE,IRONDEFENSE,IRONHEAD,IRONTAIL,LASHOUT,LASTRESORT,MIMIC,NATURALGIFT,PLAYROUGH,PROTECT,PSYCHICFANGS,REST,RETURN,ROAR,ROCKBLAST,ROCKPOLISH,ROCKSLIDE,ROCKTOMB,ROUND,SANDSTORM,SCARYFACE,SECRETPOWER,SLEEPTALK,SNARL,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SWAGGER,SWIFT,SWORDSDANCE,TAILSLAP,TAUNT,THUNDERFANG,TOXIC,ZENHEADBUTT
+Compatibility = Field
+StepsToHatch = 3840
+Height = 0.8
+Weight = 25.0
+Color = Brown
+Shape = Quadruped
+Kind = Wolf
+Pokedex = Its quick movements confuse its enemies. Well equipped with claws and fangs, it also uses the sharp rocks in its mane as weapons.
+Generation = 7
+#-------------------------------
+[1001203]
+Name = Iron Hands
+InternalName = IRONHANDS
+Type1 = FIGHTING
+Type2 = ELECTRIC
+BaseStats = 154,140,108,50,50,68
+GenderRate = Genderless
+GrowthRate = Slow
+BaseEXP = 285
+EffortPoints = 0,3,0,0,0,0
+Rareness = 50
+Happiness = 0
+Abilities = QUARKDRIVE,IRONFIST
+HiddenAbility = THERMALEXCHANGE
+Moves = 0,ELECTRICTERRAIN,1,TACKLE,1,FOCUSENERGY,1,ARMTHRUST,1,SANDATTACK,7,FAKEOUT,14,WHIRLWIND,21,THUNDERPUNCH,28,SLAM,35,FORCEPALM,42,SEISMICTOSS,49,CHARGE,56,WILDCHARGE,63,CLOSECOMBAT,70,DETECT,77,HEAVYSLAM,84,BELLYDRUM,91,FOCUSPUNCH
+TutorMoves = BODYPRESS,BODYSLAM,BRICKBREAK,BULLDOZE,CHARGE,CLOSECOMBAT,DOUBLEEDGE,DRAINPUNCH,EARTHQUAKE,ELECTRICTERRAIN,ENDURE,FACADE,FIREPUNCH,FLING,FOCUSBLAST,FOCUSPUNCH,GIGAIMPACT,HARDPRESS,HEAVYSLAM,HYPERBEAM,ICEPUNCH,IRONDEFENSE,IRONHEAD,LOWKICK,LOWSWEEP,METRONOME,PLAYROUGH,PROTECT,REST,REVERSAL,ROCKSLIDE,ROCKTOMB,SCARYFACE,SLEEPTALK,STOMPINGTANTRUM,SUBSTITUTE,SUPERCELLSLAM,SWORDSDANCE,TAKEDOWN,THUNDER,THUNDERBOLT,THUNDERPUNCH,VOLTSWITCH,WILDCHARGE
+Compatibility = Undiscovered
+StepsToHatch = 12800
+Height = 1.8
+Weight = 380.7
+Color = Gray
+Shape = Bipedal
+Habitat = Rare
+Kind = Paradox
+Pokedex = It is very similar to a cyborg covered exclusively by a paranormal magazine. The cyborg was said to be the modified form of a certain athlete.
+Generation = 9
+WildItemUncommon = BOOSTERENERGY
 
 
 #eof

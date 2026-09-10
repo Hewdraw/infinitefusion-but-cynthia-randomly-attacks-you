@@ -1348,6 +1348,9 @@ REGIONALLIST = [
   [:SLIGGOO, :HISUISLIGGOO],
   [:GOODRA, :HISUIGOODRA],
   [:URSALUNA, :BLOODMOONURSALUNA],
+  [:SHELLOS_E, :SHELLOS_W],
+  [:GASTRODON_E, :GASTRODON_W],
+  [:LYCANROC_D, :LYCANROC_N, :DUSKLYCANROC],
 ]
 
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
@@ -1359,13 +1362,12 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
       pbMessage(_INTL("{1} changed form!", pkmn.name))
       pkmn.species = regional[(i+1) % regional.length]
       if pkmn.miststone
-        preevo = GameData::Species.get(pokemon.species).get_previous_species
+        preevo = GameData::Species.get(pkmn.species).get_previous_species
         evolutions = GameData::Species.get(preevo).get_evolutions(true)
         evolutions.each do |evolution|
           next unless evolution[2] == :MISTSTONE
-          pokemon.ability = :FORCEDEVOLUTION
-          pokemon.calc_stats
-          pokemon.miststone = true
+          pkmn.ability = :FORCEDEVOLUTION
+          pkmn.calc_stats
           break
         end
       end
@@ -1407,7 +1409,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:SUICUNE] => [:WALKINGWAKE],
     [:RAIKOU] => [:RAGINGBOLT],
     [:ENRAICUNE] => [:MAIMINGSOUL],
-    [:DONPHAN] => [:GREATTUSK, :IRONTREADS],
+    [:PHANPY, :DONPHAN] => [:GREATTUSK, :IRONTREADS],
     [:IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF] => [:SCREAMTAIL],
     [:MISDREAVUS, :MISMAGIUS] => [:FLUTTERMANE],
     [:LARVESTA, :VOLCARONA] => [:IRONMOTH, :SLITHERWING],
@@ -1417,6 +1419,7 @@ ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene
     [:DEINO, :ZWEILOUS, :HYDREIGON] => [:IRONJUGULIS],
     [:LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR] => [:IRONTHORNS],
     [:RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE] => [:IRONVALIANT],
+    [:MAKUHITA, :HARIYAMA] => [:IRONHANDS],
     [:DIANCIE, :MEGADIANCIE] => [:MAGEARNA],
     [:GENESECT] => [:REAPINGSHELL],
     [:KABUTO, :KABUTOPS] => [:IRONHARVESTER],

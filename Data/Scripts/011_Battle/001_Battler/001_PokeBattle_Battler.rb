@@ -111,7 +111,7 @@ class PokeBattle_Battler
   end
 
   def attack
-    return @spatk if hasActiveItem?(:ENCHANTINGTABLE)
+    return @spatk if hasActiveItem?([:ENCHANTINGTABLE, :RARESTBONE])
     return @attack
   end
 
@@ -125,7 +125,7 @@ class PokeBattle_Battler
   attr_writer :defense
 
   def spatk
-    return @attack if hasActiveItem?(:ENCHANTINGTABLE)
+    return @attack if hasActiveItem?([:ENCHANTINGTABLE, :RARESTBONE])
     return @spatk
   end
 

@@ -3,23 +3,24 @@ PARADOXLIST = [
   :SUICUNE, :WALKINGWAKE,
   :RAIKOU, :RAGINGBOLT,
   :ENRAICUNE, :MAIMINGSOUL,
-  :PHANPY, :DONPHAN, :IRONTREADS,
-  :IRONTREADS, :GREATTUSK,
+  :PHANPY, :DONPHAN, :IRONTREADS, :GREATTUSK,
   :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
   :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
-  :LARVESTA, :VOLCARONA, :IRONMOTH,
-  :IRONMOTH, :SLITHERWING,
+  :LARVESTA, :VOLCARONA, :IRONMOTH, :SLITHERWING,
   :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
   :BAGON, :SHELGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
   :DELIBIRD, :IRONBUNDLE,
   :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
   :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
   :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
-  :DIANCIE, :MEGADIANCIE, :MAGEARNA,
+  :MAKUHITA, :HARIYAMA, :IRONHANDS,
+  :DIANCIE, :MEGADIANCIE, :MAGEARNA, :MEGAMAGEARNA,
+  :KABUTO, :KABUTOPS, :IRONHARVESTER, :GENESECT, :REAPINGSHELL,
+  :RESHIRAM, :ZEKROM,
   :BULBASAUR, :IVYSAUR, :VENUSAUR, :PALMON, :TOGEMON, :LILLYMON, :ROSEMON, :ROSEMONBM,
   :CHARMANDER, :CHARMELEON, :CHARIZARD, :AGUMON, :GREYMON, :METALGREYMON, :WARGREYMON,
   :TOTODILE, :CROCONAW, :FERALIGATR, :GABUMON, :GARURUMON, :WEREGARURUMON, :METALGARURUMON,
-  :BLASTOISE, :MACHINEDRAMON,
+  :SQUIRTLE, :WARTORTLE, :BLASTOISE, :MACHINEDRAMON,
   :MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALDRILL, :VOCALCELL,
   :ROTOM, :STEREOROTOM,
 ]
@@ -1099,6 +1100,16 @@ BattleHandlers::DamageCalcUserItem.add(:STEELGEM,
 BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
     proc { |item,user,target,move,mults,baseDmg,type|
       if move.physicalMove?
+        mults[:attack_multiplier] *= 2 if user.isFusionOf(:CUBONE)
+        mults[:attack_multiplier] *= 2 if user.isFusionOf(:MAROWAK)
+        mults[:attack_multiplier] *= 2 if user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?
+      end
+    }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:RARESTBONE,
+    proc { |item,user,target,move,mults,baseDmg,type|
+      if move.specialMove?
         mults[:attack_multiplier] *= 2 if user.isFusionOf(:CUBONE)
         mults[:attack_multiplier] *= 2 if user.isFusionOf(:MAROWAK)
         mults[:attack_multiplier] *= 2 if user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?

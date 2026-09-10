@@ -385,3 +385,4 @@
 501,OBLITERATE,Obliterate,"a"
 502,SCALEBREAKER,Scale Breaker,"a"
 503,AURAGUARD,Aura Guard,"a"
+504,THERMALEXCHANGE,Thermal Exchange,"todo"
