@@ -7,6 +7,10 @@ ItemHandlers::UseText.add(:BICYCLE, proc { |item|
 
 ItemHandlers::UseText.copy(:BICYCLE, :RACEBIKE)
 
+ItemHandlers::UseText.add(:NERUPHONE, proc { |item|
+  next _INTL("Call")
+})
+
 #===============================================================================
 # UseFromBag handlers
 # Return values: 0 = not used
@@ -43,6 +47,11 @@ ItemHandlers::UseFromBag.add(:BICYCLE, proc { |item|
 })
 
 ItemHandlers::UseFromBag.copy(:BICYCLE, :RACEBIKE)
+
+ItemHandlers::UseFromBag.add(:NERUPHONE, proc { |item|
+  pbBGMPlay("FlopEraVRC6")
+  next 2
+})
 
 ItemHandlers::UseFromBag.add(:OLDROD, proc { |item|
   notCliff = $game_map.passable?($game_player.x, $game_player.y, $game_player.direction, $game_player)

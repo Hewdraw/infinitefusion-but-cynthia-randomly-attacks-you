@@ -234,6 +234,7 @@ end
 Events.onStepTaken += proc { |_sender,_e|
   for egg in $Trainer.party
     next if egg.steps_to_hatch <= 0
+    next if !$PokemonGlobal.towervalues.nil?
     egg.steps_to_hatch -= 10000
     egg.steps_to_hatch -= 1 if isWearingClothes(CLOTHES_BREEDER)
     for i in $Trainer.pokemon_party

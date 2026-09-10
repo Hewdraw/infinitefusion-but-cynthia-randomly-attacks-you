@@ -1589,11 +1589,13 @@ BattleHandlers::DamageCalcTargetAbility.add(:FLUFFY,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:FLUFFYPLUS,
+BattleHandlers::DamageCalcTargetAbility.add(:AURAGUARD,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if move.contactMove?
   }
 )
+
+BattleHandlers::DamageCalcTargetAbility.copy(:AURAGUARD, :FLUFFYPLUS)
 
 BattleHandlers::DamageCalcTargetAbility.add(:FURCOAT,
   proc { |ability,target,user,move,mults,baseDmg,type|

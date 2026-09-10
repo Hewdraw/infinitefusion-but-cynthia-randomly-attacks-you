@@ -355,6 +355,20 @@ ItemHandlers::UseInBattle.add(:POKEFLUTE,proc { |item,battler,battle|
   battle.pbDisplay(_INTL("All Pokémon were roused by the tune!"))
 })
 
+ItemHandlers::UseInBattle.add(:NERUPHONE,proc { |item,battler,battle|
+  pbBGMPlay("FlopEraVRC6")
+})
+
+ItemHandlers::UseInBattle.add(:TIMEFLUTE,proc { |item,battler,battle|
+  battle.eachBattler do |b|
+    if b.status == :SLEEP
+      b.pbCureStatus(false)
+    else
+      b.pbRaiseStatStage(:ACCURACY, 1, battler)
+    end
+  end
+})
+
 ItemHandlers::UseInBattle.addIf(proc { |item| GameData::Item.get(item).is_poke_ball? },   # Poké Balls
   proc { |item,battler,battle|
     battle.pbThrowPokeBall(battler.index,item)

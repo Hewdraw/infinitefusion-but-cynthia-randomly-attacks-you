@@ -1379,11 +1379,15 @@ HiddenAbility = MAGICBOUNCE
 FormName = Mega Raichu X
 MegaStone = MEGASTONEITE
 BaseStats = 60,135,95,110,90,95
+Abilities = SURGESURFER
+HiddenAbility = SURGESURFER
 #-------------------------------
 [RAICHU,4]
 FormName = Mega Raichu Y
 MegaStone = MEGASTONEITE
 BaseStats = 60,100,55,130,160,80
+Abilities = NOGUARD
+HiddenAbility = NOGUARD
 #-------------------------------
 [CLEFABLE,1]
 FormName = Mega Clefable
@@ -1455,6 +1459,8 @@ MegaStone = MEGASTONEITE
 Type1 = DARK
 Type2 = GHOST
 BaseStats = 65,154,60,151,75,60
+Abilities = SHARPNESS
+HiddenAbility = SHARPNESS
 #-------------------------------
 [GARCHOMP,2]
 FormName = Mega Garchomp Z
@@ -1462,11 +1468,15 @@ MegaStone = MEGASTONEITE
 Type1 = DRAGON
 Type2 = DRAGON
 BaseStats = 108,130,85,151,141,85
+Abilities = LEVITATE
+HiddenAbility = LEVITATE
 #-------------------------------
 [LUCARIO,2]
 FormName = Mega Lucario Z
 MegaStone = MEGASTONEITE
 BaseStats = 70,100,70,151,164,70
+Abilities = AURAGUARD
+HiddenAbility = AURAGUARD
 #-------------------------------
 [FROSLASS,1]
 FormName = Mega Froslass
@@ -1491,6 +1501,8 @@ HiddenAbility = SHELLARMOR
 FormName = Mega Scrafty
 MegaStone = MEGASTONEITE
 BaseStats = 65,130,135,68,55,135
+Abilities = INTIMIDATE
+HiddenAbility = INTIMIDATE
 #-------------------------------
 [CHANDELURE,1]
 FormName = Mega Chandelure
@@ -1540,6 +1552,8 @@ MegaStone = MEGASTONEITE
 Type1 = BUG
 Type2 = STEEL
 BaseStats = 75,150,175,40,70,120
+Abilities = TOUGHCLAWS
+HiddenAbility = TOUGHCLAWS
 #-------------------------------
 [MAGEARNA,1]
 FormName = Mega Magearna

@@ -226,8 +226,11 @@ class PokeBattle_Scene
       itemName = item.name
       useType = item.battle_use
       cmdUse = -1
+      cmdCall = -1
       commands = []
-      commands[cmdUse = commands.length] = _INTL("Use") if useType && useType!=0
+      usedescription = _INTL("Use")
+      usedescription = _INTL("Call") if [:NERUPHONE, :TIMEFLUTE].include?(item.id)
+      commands[cmdUse = commands.length] = usedescription if useType && useType!=0
       commands[commands.length]          = _INTL("Cancel")
       command = itemScene.pbShowCommands(_INTL("{1} is selected.",itemName),commands)
       next unless cmdUse>=0 && command==cmdUse   # Use
