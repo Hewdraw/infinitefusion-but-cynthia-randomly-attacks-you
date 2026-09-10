@@ -1816,7 +1816,7 @@ class Pokemon
     @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && isFusionOf([:HAPPINY, :CHANSEY, :BLISSEY])
     @extraabilities.push(:SNIPER) if hasItem?(:STICK)
     @extraabilities.push(:NATURALCURE) if hasItem?(:OVALSTONE)
-    @extraabilities.push(:MOLDBREAKER) if hasItem?(:THICKCLUB)
+    @extraabilities.push(:MOLDBREAKER) if hasItem?([:THICKCLUB, :RAREBONE, :RARESTBONE])
     @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && isFusionOf(:MILOTIC)
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && isFusionOf([:HORSEA, :SEADRA, :KINGDRA])
     @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?([:QUICKPOWDER, :METALPOWDER])

@@ -3717,6 +3717,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:FORCEDEVOLUTION,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is exuding unnatural power.",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)

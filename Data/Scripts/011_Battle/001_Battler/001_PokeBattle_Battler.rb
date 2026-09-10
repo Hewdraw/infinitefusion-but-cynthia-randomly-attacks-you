@@ -432,7 +432,7 @@ class PokeBattle_Battler
     when :FLYING
     when :POISON
     when :GROUND
-      return true if hasActiveItem?(:THICKCLUB)
+      return true if hasActiveItem?([:THICKCLUB, :RAREBONE, :RARESTBONE])
     when :ROCK
       return true if hasActiveItem?([:PROTECTOR, :DESERTEDROCK])
     when :BUG

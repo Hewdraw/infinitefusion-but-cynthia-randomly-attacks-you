@@ -187,7 +187,7 @@
 187,LUCKYPUNCH,Lucky Punch,Lucky Punches,1,1000,"Crit Stage increase. Fighting benefits. Happiny/Chansey x1.5 Sp.DEF. Evo-line gets Sniper, Crit Stage, varied Sp.ATK.",0,0,0
 188,METALPOWDER,Metal Powder,Metal Powders,1,1000,"Normal/Psychic benefits and Limber/Pressure abilities. Ditto gains x1.5 DEF/Sp.DEF, even while transformed.",0,0,0
 189,QUICKPOWDER,Quick Powder,Quick Powders,1,1000,"Normal/Psychic benefits and Limber/Pressure abilities. Ditto gains x1.1 SPE, even while transformed.",0,0,0
-190,THICKCLUB,Thick Club,Thick Clubs,1,1000,"Ground benefits and Mold Breaker ability. Doubles ATK for Cubone or Marowak (once each).",0,0,0
+190,THICKCLUB,Thick Club,Thick Clubs,1,2000,"Ground benefits and Mold Breaker ability. Doubles ATK for Cubone or Marowak (once each).",0,0,0
 191,STICK,Leek,Leeks,1,1000,"Grass benefits and Sniper ability. Farfetch'd evo-line and ??? gain x1.2 damage and 2 Crit Stages.",0,0,0
 192,SOULDEW,Soul Dew,Soul Dews,1,0,"x1.5 Sp.ATK/Sp.DEF if held by a Latios or Latias. Does not stack.",0,0,0
 193,DEEPSEATOOTH,Deep Sea Tooth,Deep Sea Teeth,1,2000,"Water benefits, x1.2 Water power, Special Attacks hit target's DEF. Huntail evo-line has doubled Sp.ATK (once each).",0,0,0

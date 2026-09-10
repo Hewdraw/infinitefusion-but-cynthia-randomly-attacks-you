@@ -1107,6 +1107,8 @@ BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
     }
 )
 
+BattleHandlers::DamageCalcUserItem.copy(:THICKCLUB, :RAREBONE)
+
 BattleHandlers::DamageCalcUserItem.add(:RARESTBONE,
     proc { |item,user,target,move,mults,baseDmg,type|
       if move.specialMove?

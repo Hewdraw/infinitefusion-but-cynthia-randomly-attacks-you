@@ -15236,7 +15236,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = LYCANROC_N,LevelNight,25,LYCANROC_N,Item,MOONSTONE,LYCANROC_D,LevelDay,25,LYCANROC_D,Item,SUNSTONE
+Evolutions = DUSKLYCANROC,Item,MISTSTONE,LYCANROC_N,LevelNight,25,LYCANROC_N,Item,MOONSTONE,LYCANROC_D,LevelDay,25,LYCANROC_D,Item,SUNSTONE
 #-------------------------------
 [464]
 Name = Lycanroc
