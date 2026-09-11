@@ -578,7 +578,7 @@ class PokemonLoadScreen
       if show_continue
         commands[cmd_continue = commands.length] = "#{@selected_file}"
         #if @save_data[:player].mystery_gift_unlocked
-        commands[cmd_mystery_gift = commands.length] = _INTL("Mystery Gift")
+        #commands[cmd_mystery_gift = commands.length] = _INTL("Mystery Gift")
         #end
       end
 
