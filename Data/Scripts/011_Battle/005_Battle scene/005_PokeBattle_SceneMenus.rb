@@ -426,7 +426,7 @@ class FightMenuDisplay < BattleMenuBase
   def refreshMoveData(move)
     # Write PP and type of the selected move
     moveType = move.type
-    movetype = @battler.pokemon.battlevariables[:dubiousdisc][i] if @battler.hasActiveItem?(:DUBIOUSDISC) && @battler.pokemon.battlevariables[:dubiousdisc]
+    movetype = @battler.pokemon.battlevariables[:dubiousdisc][@index] if @battler.hasActiveItem?(:DUBIOUSDISC) && @battler.pokemon.battlevariables[:dubiousdisc]
     moveType = pbHiddenPower(@battler,@battler.pokemon.hiddenPowerType)[0] if move.function == "090"
     if !USE_GRAPHICS
       moveTypeName = GameData::Type.get(moveType).name
