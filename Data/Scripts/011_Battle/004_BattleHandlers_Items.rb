@@ -1,31 +1,3 @@
-PARADOXLIST = [
-  :ENTEI, :GOUGINGFIRE,
-  :SUICUNE, :WALKINGWAKE,
-  :RAIKOU, :RAGINGBOLT,
-  :ENRAICUNE, :MAIMINGSOUL,
-  :PHANPY, :DONPHAN, :IRONTREADS, :GREATTUSK,
-  :IGGLYBUFF, :JIGGLYPUFF, :WIGGLYTUFF, :SCREAMTAIL,
-  :MISDREAVUS, :MISMAGIUS, :FLUTTERMANE,
-  :LARVESTA, :VOLCARONA, :IRONMOTH, :SLITHERWING,
-  :MAGNEMITE, :MAGNETON, :MAGNEZONE, :SANDYSHOCKS,
-  :BAGON, :SHELGON, :SALAMENCE, :MEGASALAMENCE, :ROARINGMOON,
-  :DELIBIRD, :IRONBUNDLE,
-  :DEINO, :ZWEILOUS, :HYDREIGON, :IRONJUGULIS,
-  :LARVITAR, :PUPITAR, :TYRANITAR, :MEGATYRANITAR, :IRONTHORNS,
-  :RALTS, :KIRLIA, :GARDEVOIR, :MEGAGARDEVOIR, :GALLADE, :MEGAGALLADE, :IRONVALIANT,
-  :MAKUHITA, :HARIYAMA, :IRONHANDS,
-  :DIANCIE, :MEGADIANCIE, :MAGEARNA, :MEGAMAGEARNA,
-  :KABUTO, :KABUTOPS, :IRONHARVESTER, :GENESECT, :REAPINGSHELL,
-  :RESHIRAM, :ZEKROM,
-  :BULBASAUR, :IVYSAUR, :VENUSAUR, :PALMON, :TOGEMON, :LILLYMON, :ROSEMON, :ROSEMONBM,
-  :CHARMANDER, :CHARMELEON, :CHARIZARD, :AGUMON, :GREYMON, :METALGREYMON, :WARGREYMON,
-  :TOTODILE, :CROCONAW, :FERALIGATR, :GABUMON, :GARURUMON, :WEREGARURUMON, :METALGARURUMON,
-  :SQUIRTLE, :WARTORTLE, :BLASTOISE, :MACHINEDRAMON,
-  :MELOETTA_P, :MELOETTA_A, :VOCALLEEK, :VOCALDRILL, :VOCALCELL,
-  :ROTOM, :STEREOROTOM,
-]
-
-
 #===============================================================================
 # SpeedCalcItem handlers
 #===============================================================================
@@ -38,7 +10,8 @@ BattleHandlers::SpeedCalcItem.add(:CHOICESCARF,
 
 BattleHandlers::SpeedCalcItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,mult|
-    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?)
+    paradoxes = [PARADOXLIST.keys(), PARADOXLIST.values()].flatten.uniq
+    next unless paradoxes.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (paradoxes.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || paradoxes.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?)
     stats = [battler.attack, battler.defense, battler.spatk, battler.spdef, battler.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -960,7 +933,8 @@ BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
-    next unless PARADOXLIST.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(user.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(user.species)).species))) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
+    paradoxes = [PARADOXLIST.keys(), PARADOXLIST.values()].flatten.uniq
+    next unless paradoxes.include?(user.species) || (getDexNumberForSpecies(user.species) < 1000000 && (paradoxes.include?(GameData::Species.get(getBodyIDNormalized(user.species)).species) || paradoxes.include?(GameData::Species.get(getHeadIDNormalized(user.species)).species))) || (user.pokemon.species_data.id_number >= 1000099 && !user.pbOwnedByPlayer?)
     stats = [user.attack, user.defense, user.spatk, user.spdef, user.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -1435,7 +1409,8 @@ BattleHandlers::DamageCalcTargetItem.add(:METALPOWDER,
 
 BattleHandlers::DamageCalcTargetItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,target,user,move,mults,baseDmg,type|
-    next unless PARADOXLIST.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(target.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(target.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
+    paradoxes = [PARADOXLIST.keys(), PARADOXLIST.values()].flatten.uniq
+    next unless paradoxes.include?(target.species) || (getDexNumberForSpecies(target.species) < 1000000 && (paradoxes.include?(GameData::Species.get(getBodyIDNormalized(target.species)).species) || paradoxes.include?(GameData::Species.get(getHeadIDNormalized(target.species)).species))) || (target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?)
     stats = [target.attack, target.defense, target.spatk, target.spdef, target.speed]
     stats.each_with_index do |stat,i|
       if stat >= stats.max
@@ -2467,7 +2442,8 @@ BattleHandlers::ItemOnSwitchIn.add(:BOOSTERENERGY,
 
 BattleHandlers::ItemOnSwitchIn.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,battler,battle|
-    next unless PARADOXLIST.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (PARADOXLIST.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || PARADOXLIST.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?)
+    paradoxes = [PARADOXLIST.keys(), PARADOXLIST.values()].flatten.uniq
+    next unless paradoxes.include?(battler.species) || (getDexNumberForSpecies(battler.species) < 1000000 && (paradoxes.include?(GameData::Species.get(getBodyIDNormalized(battler.species)).species) || paradoxes.include?(GameData::Species.get(getHeadIDNormalized(battler.species)).species))) || (battler.pokemon.species_data.id_number >= 1000099 && !battler.pbOwnedByPlayer?)
     battle.pbDisplay(_INTL("{1} activates its Modified Booster Energy!",battler.pbThis))
   }
 )

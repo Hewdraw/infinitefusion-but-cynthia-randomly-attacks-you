@@ -210,6 +210,16 @@ def pbCynthiaRollEncounter(badgelist)
   return badgelist[cynthiaencounter]
 end
 
+def increaseInevitable()
+    $PokemonGlobal.cynthiachance += 1
+    $PokemonGlobal.cynthiadoubleschance += 1
+    $PokemonGlobal.cynthiatripleschance += 1
+    $PokemonGlobal.cynthiafieldchance += 5000
+    $PokemonGlobal.cynthiaupgradechance += 1
+    $PokemonGlobal.cynthiahandschance += 1
+    $PokemonGlobal.hatsunemikuchance += 1
+end
+
 def pbCynthiaGetBadgeCount()
   return $PokemonGlobal.towervalues[:badges] if !$PokemonGlobal.towervalues.nil?
   return $Trainer.badge_count

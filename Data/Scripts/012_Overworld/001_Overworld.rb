@@ -265,6 +265,8 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
     else
       if [:UNOWN, :B201H201].include?(encounter[0])
         pbLegendaryBattle("Unown")
+      elsif $game_map.map_id == 306 && rand(64) == 0 && PARADOXLIST.keys().include?(encounter[0])
+        pbWildBattle(PARADOXLIST[encounter[0]].sample, encounter[1])
       else
         pbWildBattle(encounter[0], encounter[1])
       end

@@ -389,7 +389,7 @@ def resolveUnknownEvent(recursion = false)
                 return resolveUnknownEvent(true)
             end
             $PokemonBag.pbDeleteItem(:MIRACLESEED, 1)
-            Kernel.pbMessage("The dying tree disappears as a new one sprouts. How preculiar.")
+            Kernel.pbMessage("The dying tree disappears as a new one sprouts. How peculiar.")
             $PokemonGlobal.towervalues[:unknownlist].push(:VIENFOREST2)
         end
     when :VIENFOREST2

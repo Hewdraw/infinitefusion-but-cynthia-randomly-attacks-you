@@ -25,9 +25,11 @@ def setupTower()
         :money => $Trainer.money,
         :triplefusions => $PokemonGlobal.triplefusions,
         :escapeorb => false,
+        :partner => $PokemonGlobal.partner
     }
     $PokemonStorage = PokemonStorage.new
     $PokemonGlobal.towervalues[:unknownlist] = getUnknownEventList()
+    $PokemonGlobal.partner = nil
     $Trainer.money = 0
     $PokemonGlobal.triplefusions = []
 
@@ -51,6 +53,7 @@ def resetTower()
     $Trainer.money = $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
     $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
+    $PokemonGlobal.partner = $PokemonGlobal.towervalues[:partner] if $PokemonGlobal.towervalues[:partner]
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore

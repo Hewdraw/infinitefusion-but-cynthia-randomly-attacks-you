@@ -315,9 +315,9 @@ class PokemonLoadScreen
     new_game_plus = show_continue && (@save_data[:player].new_game_plus_unlocked || $DEBUG)
     if show_continue
       commands[cmd_continue = commands.length] = _INTL("Continue")
-      if @save_data[:player].mystery_gift_unlocked
-        commands[cmd_mystery_gift = commands.length] = _INTL("Mystery Gift")
-      end
+      # if @save_data[:player].mystery_gift_unlocked
+      #   commands[cmd_mystery_gift = commands.length] = _INTL("Mystery Gift")
+      # end
     end
     commands[cmd_new_game = commands.length]  = _INTL("New Game")
     if new_game_plus
