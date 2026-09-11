@@ -1085,7 +1085,7 @@
 1116,ROCKWRECKERPLUS,Rock Wrecker+,351,160,ROCK,Physical,100,5,100,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however."
 1117,ETERNABEAM,Eternabeam,0C2,160,DRAGON,Special,90,5,0,NearOther,0,bef,"The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
 1118,WILDBOLTSTORM,Wildbolt Storm,008,100,ELECTRIC,Special,80,10,30,AllNearFoes,0,bef,"a"
-1119,CYNTHIACONTINENTALPLUS,Continental Crush+,207,200,ROCK,Physical,100,1,0,NearOther,0,fp,"Nice Smeargle/Ditto, jackass."
+1119,CONTINENTALCRUSHPLUS,Continental Crush+,207,200,ROCK,Physical,100,1,0,NearOther,0,fp,"Nice Smeargle/Ditto, jackass."
 1120,AEROBLASTPLUS,Aeroblast+,357,60,FLYING,Special,100,5,0,Other,0,bef,"A vortex of air is shot at the target to inflict damage. Critical hits land more easily."
 1121,WAVEYWAVE,Wavey Wave,358,90,SOUND,Physical,100,15,100,NearOther,0,bf,"a"
 1122,MISTYMIST,Misty Mist,359,90,QMARKS,Physical,100,15,100,NearOther,0,bfh,"a"

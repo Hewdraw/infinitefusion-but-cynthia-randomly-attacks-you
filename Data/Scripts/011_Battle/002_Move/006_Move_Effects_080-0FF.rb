@@ -1656,7 +1656,8 @@ class PokeBattle_Move_0B6 < PokeBattle_Move
        "190",
        "194",
        "205",
-       "309"
+       "309",
+       "351"
     ]
     @moveBlacklistSignatures = [
        :SNARL,
