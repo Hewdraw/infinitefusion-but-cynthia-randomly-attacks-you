@@ -4,11 +4,11 @@ class PokeBattle_Move
   #=============================================================================
   def pbBaseType(user)
     ret = @type
-    if user.hasActiveItem?(:DUBIOUSDISC) && battler.pokemon.battlevariables[:dubiousdisc]
+    if user.hasActiveItem?(:DUBIOUSDISC) && user.pokemon.battlevariables[:dubiousdisc]
       user.moves.each_with_index do |move, i|
         break if i > 3
         if move.name == @name
-          ret = battler.pokemon.battlevariables[:dubiousdisc][i]
+          ret = user.pokemon.battlevariables[:dubiousdisc][i]
         end
       end
     end
