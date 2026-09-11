@@ -232,31 +232,31 @@ class PokemonLoadScreen
 
   # @param file_path [String] file to load save data from
   # @return [Hash] save data
-  def load_save_file(file_path)
-    save_data = SaveData.read_from_file(file_path)
-    unless SaveData.valid?(save_data)
-      if File.file?(file_path + '.bak')
-        pbMessage(_INTL("The save file is corrupt. A backup will be loaded."))
-        save_data = load_save_file(file_path + '.bak')
-      else
-        self.prompt_save_deletion
-        return {}
-      end
-    end
-    return save_data
-  end
+  # def load_save_file(file_path)
+  #   save_data = SaveData.read_from_file(file_path)
+  #   unless SaveData.valid?(save_data)
+  #     if File.file?(file_path + '.bak')
+  #       pbMessage(_INTL("The save file is corrupt. A backup will be loaded."))
+  #       save_data = load_save_file(file_path + '.bak')
+  #     else
+  #       self.prompt_save_deletion
+  #       return {}
+  #     end
+  #   end
+  #   return save_data
+  # end
 
   # Called if all save data is invalid.
   # Prompts the player to delete the save files.
-  def prompt_save_deletion
-    pbMessage(_INTL("The save file is corrupt, or is incompatible with this game."))
-    exit unless pbConfirmMessageSerious(
-      _INTL("Do you want to delete the save file and start anew?")
-    )
-    self.delete_save_data
-    $game_system   = Game_System.new
-    $PokemonSystem = PokemonSystem.new
-  end
+  # def prompt_save_deletion
+  #   pbMessage(_INTL("The save file is corrupt, or is incompatible with this game."))
+  #   exit unless pbConfirmMessageSerious(
+  #     _INTL("Do you want to delete the save file and start anew?")
+  #   )
+  #   self.delete_save_data
+  #   $game_system   = Game_System.new
+  #   $PokemonSystem = PokemonSystem.new
+  # end
 
   def pbStartDeleteScreen
     @scene.pbStartDeleteScene
@@ -276,14 +276,14 @@ class PokemonLoadScreen
     $scene = pbCallTitle
   end
 
-  def delete_save_data
-    begin
-      SaveData.delete_file
-      pbMessage(_INTL("The saved data was deleted."))
-    rescue SystemCallError
-      pbMessage(_INTL("All saved data could not be deleted."))
-    end
-  end
+  # def delete_save_data
+  #   begin
+  #     SaveData.delete_file
+  #     pbMessage(_INTL("The saved data was deleted."))
+  #   rescue SystemCallError
+  #     pbMessage(_INTL("All saved data could not be deleted."))
+  #   end
+  # end
 
 
   #todo
