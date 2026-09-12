@@ -429,7 +429,7 @@ class FightMenuDisplay < BattleMenuBase
     if @battler.hasActiveItem?(:DUBIOUSDISC) && @battler.pokemon.battlevariables[:dubiousdisc]
       @battler.moves.each_with_index do |battlermove, i|
         next if move.id != battlermove.id
-        movetype = @battler.pokemon.battlevariables[:dubiousdisc][i]
+        moveType = @battler.pokemon.battlevariables[:dubiousdisc][i]
       end
     end
     moveType = pbHiddenPower(@battler,@battler.pokemon.hiddenPowerType)[0] if move.function == "090"
