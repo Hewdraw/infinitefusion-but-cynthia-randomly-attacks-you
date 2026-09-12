@@ -400,6 +400,13 @@ module GameData
           end
         end
 
+        #trainer rematch infinite fusion edit
+        if isRematch && !["Cynthia", "Shadross", "Hatsune Miku"].include?(tr_name)
+          nbRematch = getNumberRematch(rematchId)
+          level = getRematchLevel(level, nbRematch)
+          species = getSpecies(evolveRematchPokemon(nbRematch, species)).id
+        end
+
         if offset != nil
           offset = offset.to_i
         else
@@ -432,13 +439,6 @@ module GameData
 
 
         ####
-
-        #trainer rematch infinite fusion edit
-        if isRematch && !["Cynthia", "Shadross", "Hatsune Miku"].include?(tr_name)
-          nbRematch = getNumberRematch(rematchId)
-          level = getRematchLevel(level, nbRematch)
-          species = getSpecies(evolveRematchPokemon(nbRematch, species)).id
-        end
         pkmn = Pokemon.new(species, level, trainer, false)
 
         hptype = pkmn_data[:hptype]
