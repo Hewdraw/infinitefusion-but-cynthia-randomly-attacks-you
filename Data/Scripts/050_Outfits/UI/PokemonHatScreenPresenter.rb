@@ -150,7 +150,7 @@ class PokemonHatPresenter
       @original_pokemon_bitmap = spriteLoader.load_pif_sprite_pokemon(@pokemon)
     else
       if @pokemon.isTripleFusion?
-        @original_pokemon_bitmap = spriteLoader.load_pif_sprite_pokemon(@pokemon)
+        @original_pokemon_bitmap = spriteLoader.load_triple_fusion_sprite(@pokemon.id_number)
       elsif @pokemon.isFusion?
         @original_pokemon_bitmap = spriteLoader.load_fusion_sprite(@pokemon.head_id(),@pokemon.body_id())
       else
