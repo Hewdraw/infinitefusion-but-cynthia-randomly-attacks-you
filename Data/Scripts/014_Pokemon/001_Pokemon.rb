@@ -1749,7 +1749,7 @@ class Pokemon
         @extraabilities.push(mega.abilities[0])
       end
     end
-    if hasItem?(:ANCESTRALGENE) && isFusionOf(:MEW) && $PokemonGlobal.ancestralgeneability
+    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI]) && $PokemonGlobal.ancestralgeneability
       @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
     if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
@@ -1821,7 +1821,7 @@ class Pokemon
     @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && isFusionOf([:HORSEA, :SEADRA, :KINGDRA])
     @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?([:QUICKPOWDER, :METALPOWDER])
     @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
-    @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf(:JIRACHI)
+    @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf([:JIRACHI, :CELEMEWCHI])
     @extraabilities.push(:TOTALFREEZE) if hasItem?(:GODORB)
     @extraabilities.push(:GOODASGOLD) if hasItem?(:SINNOHCOIN) && isFusionOf(:WASHROTOM)
     @extraabilities.push(:HEATPROOF) if hasItem?(:NERUPHONE)
@@ -1846,7 +1846,7 @@ class Pokemon
       end
     end
     if ((list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION) && hasItem?(:MISTSTONE)) || list.include?(:FORCEDEVOLUTIONPLUS) || ability_id == :FORCEDEVOLUTIONPLUS
-      if isFusionOf(:MEW)
+      if isFusionOf([:MEW, :CELEMEWCHI])
         list += [:PRESSURE, :UNNERVE, :STEADFAST, :INSOMNIA, :IMMUNITY]
       else
         getAbilityList.each do |ability|
