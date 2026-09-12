@@ -412,7 +412,7 @@ module GameData
         else
           offset = -3
         end
-        offset += 5 * pbGet(VAR_LEAGUE_REMATCH_TIER)
+        #offset += 5 * pbGet(VAR_LEAGUE_REMATCH_TIER)
         shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
         shinychance /= 4 if GameData::Item.exists?(:SHINYCHARM) && $PokemonBag.pbHasItem?(:SHINYCHARM)
         shininess = pkmn_data[:shininess] || rand(shinychance) == 0
