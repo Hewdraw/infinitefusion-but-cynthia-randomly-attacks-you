@@ -1254,7 +1254,7 @@ Pokemon = PIDGEY,16
 Pokemon = B16H27,16
 #-------------------------------
 [CAMPER,Jeff]
-Pokemon = ELECTRODE,16
+Pokemon = HISUIELECTRODE,16
     Moves = EXPLOSION
 #-------------------------------
 [YOUNGSTER,Eddie]

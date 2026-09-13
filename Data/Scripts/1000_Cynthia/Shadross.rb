@@ -4,6 +4,11 @@ SHADROSS_STOCK = {
     "cost" => 48,
     "amount" => 1,
   },
+  :BLACKGLASSES => {
+    "badges" => 0,
+    "cost" => 1,
+    "amount" => 1,
+  },
   :BERRYJUICE => {
     "badges" => 0,
     "cost" => 2,

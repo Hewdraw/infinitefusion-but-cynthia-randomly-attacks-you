@@ -100,8 +100,8 @@
 100,LIFEORB,Life Orb,Life Orbs,1,4000,"Attacks do x1.3 damage, but attacks gain the 1/10 self-damage effect.",0,0,0
 101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,"User's attacks deal x1.3 damage for each tier of Super-Effectiveness. Recevies x0.7 damage for each tier of Resistance.",0,0,0
 102,METRONOME,Metronome,Metronomes,1,4000,"Repeating a move gains +20% damage each time until it fails, successfully using another move, or switching.",0,0,0
-103,MUSCLEBAND,Muscle Band,Muscle Bands,1,4000,"Physical attacks gain 1.2 power.",0,0,0
-104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,"Special attacks gain 1.2 power.",0,0,0
+103,MUSCLEBAND,Muscle Band,Muscle Bands,1,4000,"Physical attacks gain x1.2 power.",0,0,0
+104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,"Special attacks gain x1.2 power.",0,0,0
 105,RAZORCLAW,Razor Claw,Razor Claws,1,5000,"Raises user's Critical Hit Ratio by 1 Stage.",1,0,7
 106,SCOPELENS,Scope Lens,Scope Lenses,1,4000,"Raises user's Critical Hit Ratio by 1 Stage.",0,0,0
 107,WIDELENS,Wide Lens,Wide Lenses,1,4000,"Accuracy x1.1.",0,0,0
