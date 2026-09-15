@@ -96,7 +96,7 @@ def getTowerPokemon(filter=nil)
         next if data.id_number > NB_POKEMON && !legallist.include?(data.species)
         case filter
         when "Starter"
-            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :AGUMON, :GABUMON, :PALMON, :TRIPLE_KANTO1, :TRIPLE_JOHTO1, :TRIPLE_HOENN1, :TRIPLE_SINNOH1, :TRIPLE_KALOS1].flatten.include?(data.species)
+            next unless [Settings::KANTO_STARTERS, Settings::JOHTO_STARTERS, Settings::HOENN_STARTERS, Settings::SINNOH_STARTERS, Settings::KALOS_STARTERS, :AGUMON, :GABUMON, :PALMON, :TRIPLE_KANTO1, :TRIPLE_JOHTO1, :TRIPLE_HOENN1, :TRIPLE_SINNOH1, :TRIPLE_KALOS1, :GIBLE].flatten.include?(data.species)
         when "Bug"
             next unless data.hasType?(:BUG)
         end

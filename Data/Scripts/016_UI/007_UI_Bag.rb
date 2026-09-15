@@ -537,6 +537,10 @@ class PokemonBagScreen
         end
       elsif cmdToss>=0 && command==cmdToss   # Toss item
         qty = @bag.pbQuantity(item)
+        if item == :NERUPHONE
+          pbDisplay("Are you fucking stupid?")
+          qty = 0
+        end
         if qty>1
           helptext = _INTL("Toss out how many {1}?",itm.name_plural)
           qty = @scene.pbChooseNumber(helptext,qty)
