@@ -357,6 +357,10 @@ class PokeBattle_Battle
       field.terrain = :Grassy
       field.terrainDuration = 5
     end
+    if hasEmera?(:MOSS)
+      field.terrain = :Grassy
+      field.terrainDuration = -1
+    end
     terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
     pbCommonAnimation(terrain_data.animation) if terrain_data
     case @field.terrain

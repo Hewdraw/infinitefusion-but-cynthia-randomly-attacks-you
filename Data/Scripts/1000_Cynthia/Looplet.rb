@@ -434,8 +434,15 @@ class PokemonLoopletScreen
         next
       elsif cmdMisc >= 0 && command == cmdMisc
         case item
+        when :MOSS
+          pbMessage("You ate the Moss.")
+          $Trainer.party.each do |pkmn|
+              pkmn.heal
+          end
+          Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
         when :MOSSYROCK
           pbMessage("You ate the Moss from the Rock.")
+          unlockClass(:MOSSENJOYER)
           getLooplet.pbRemoveEmera(item)
           getLooplet.pbStoreEmera(:ROCK)
         when :TERACRYSTAL

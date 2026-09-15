@@ -30,6 +30,12 @@ EMERADICT = {
         :description => "Using a move switches your Pokemon out to a random other Pokemon.",
         :rarity => :STARTER,
     },
+    :MOSS => {
+        :name => "Moss",
+        :description => "Permanent Grassy Terrain is activated at the start of the battle. Tasty.",
+        :rarity => :STARTER,
+        :misccommand => "Eat"
+    },
     :DIAMONDPICKAXE => {
         :name => "Diamond Pickaxe",
         :description => "Start mining every 5th floor.",

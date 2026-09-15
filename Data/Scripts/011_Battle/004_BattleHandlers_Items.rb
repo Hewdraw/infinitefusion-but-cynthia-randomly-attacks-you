@@ -1311,6 +1311,12 @@ BattleHandlers::DamageCalcTargetItem.add(:SHADES,
   }
 )
 
+BattleHandlers::DamageCalcTargetItem.add(:SOFTSAND,
+  proc { |item,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:CACNEA)
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:CACTURNE)
+  }
+)
 
 BattleHandlers::DamageCalcTargetItem.add(:EVERSTONEPLUS,
   proc { |item,target,user,move,mults,baseDmg,type|
