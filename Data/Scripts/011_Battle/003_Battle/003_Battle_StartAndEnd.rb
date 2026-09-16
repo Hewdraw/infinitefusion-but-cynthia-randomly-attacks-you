@@ -601,6 +601,7 @@ class PokeBattle_Battle
             pbDisplayPaused(_INTL("You got Healies for winning!"))
           end
           unlockClass(:GAMBLER) if @classvariables[:metronome] && !$PokemonGlobal.towervalues.nil?
+          unlockClass(:ROGUE) if $Trainer.party.length == 1 && !$PokemonGlobal.towervalues.nil?
         end
       end
       # Gain money from winning a trainer battle, and from Pay Day

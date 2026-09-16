@@ -23,6 +23,10 @@ TRAINERCLASSDICT = {
         :name => "Moss Enjoyer",
         :emera => :MOSS,
     },
+    :ROGUE => {
+        :name => "Rogue",
+        :emera => :INDIEPROOF,
+    },
     :SUPERNERD => {
         :name => "Super Nerd",
         :emera => :DIAMONDPICKAXE,

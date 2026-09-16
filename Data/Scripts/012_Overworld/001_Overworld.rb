@@ -1062,7 +1062,7 @@ def pbReceiveItem(item, quantity = 1, item_name = "", music = nil, canRandom = t
   end
   promptRegisterItem(item)
   if $PokemonBag.pbStoreItem(item, quantity) # If item can be added
-    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].", itemname, pocket, PokemonBag.pocketNames()[pocket]))
+    pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].", itemname, pocket, PokemonBag.pocketNames()[pocket])) if $PokemonGlobal.towervalues.nil?
     return true
   end
   return false # Can't add the item

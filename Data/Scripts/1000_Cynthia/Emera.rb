@@ -36,6 +36,11 @@ EMERADICT = {
         :rarity => :STARTER,
         :misccommand => "Eat"
     },
+    :INDIEPROOF => {
+        :name => "Indie Proof",
+        :description => "You can only use 1 Pokemon. It gains 1.5x stats. Gain twice as much Emeras.",
+        :rarity => :STARTER,
+    },
     :DIAMONDPICKAXE => {
         :name => "Diamond Pickaxe",
         :description => "Start mining every 5th floor.",
@@ -435,6 +440,11 @@ EMERADICT = {
         :description => "Your Pokemon gain the Friend Guard Ability.",
         :rarity => :RARE,
     },
+    :CHAOSEMERALD => {
+        :name => "Chaos Emera-ld",
+        :description => "Gain a random Legendary Emera effect each battle.",
+        :rarity => :RARE,
+    },
     :CRT => {
         :name => "CRT",
         :description => "Your Pokemon gain the Static Ability.",
@@ -799,6 +809,7 @@ end
 
 def hasEmera?(emera)
     return false if !getLooplet
+    return true if getLooplet.emeravariables[:CHAOSEMERALD] == emera
     return getLooplet.pbHasEmera?(emera)
 end
 

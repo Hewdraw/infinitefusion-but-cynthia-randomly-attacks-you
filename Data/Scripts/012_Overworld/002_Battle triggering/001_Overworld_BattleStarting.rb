@@ -767,6 +767,7 @@ def pbTrainerBattleCore(*args)
   # Calculate who the player trainer(s) and their party are
   playerTrainers = [$Trainer]
   playerParty = $Trainer.party
+  playerParty = [$Trainer.party[0]] if hasEmera?(:INDIEPROOF)
   playerPartyStarts = [0]
   room_for_partner = (foeParty.length > 1)
   if !room_for_partner && $PokemonTemp.battleRules["size"] &&

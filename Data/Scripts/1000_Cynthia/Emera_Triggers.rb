@@ -52,6 +52,9 @@ BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
 
 BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
   proc { |ability,target,user,move,mults,baseDmg,type|
+    if target.hasActiveEmera?(:INDIEPROOF)
+      mults[:defense_multiplier] * 1.5
+    end
     if target.hasActiveEmera?(:COSMICFLUTE)
       mults[:defense_multiplier] *= 1.1
     end
@@ -72,6 +75,9 @@ BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
 
 BattleHandlers::DamageCalcUserAbility.add(:EMERA,
   proc { |ability,user,target,move,mults,baseDmg,type|
+    if user.hasActiveEmera?(:INDIEPROOF)
+      mults[:final_damage_multiplier] * 1.5
+    end
     if user.hasActiveEmera?(:BRAINPRISM) && Effectiveness.super_effective?(target.damageState.typeMod)
       mults[:final_damage_multiplier] *= 1.5
     end
@@ -100,6 +106,9 @@ BattleHandlers::PriorityChangeAbility.add(:EMERA,
 
 BattleHandlers::SpeedCalcAbility.add(:EMERA,
   proc { |ability,battler,mult|
+    if battler.hasActiveEmera?(:INDIEPROOF)
+      mult *= 1.5
+    end
     if battler.hasActiveEmera?(:POTIONOFSWIFTNESS) && battler.battle.turnCount == 0
       mult *= 2
     end
@@ -203,6 +212,14 @@ class PokeBattle_Battle
       next if !battler
       playerside.push(battler) if battler.idxOwnSide == 0
       opponentside.push(battler) if battler.idxOpposingSide == 0
+    end
+    if hasEmera?(:CHAOSEMERALD)
+      playerside[0].tempability = EMERADICT[:CHAOSEMERALD][:name]
+      pbShowAbilitySplash(playerside[0])
+      randomemera = getEmeras[3].sample
+      pbDisplay(_INTL("Your Chaos Emera-ld grants the power of {1}!", EMERADICT[:CHAOSEMERALD][:name]))
+      getLooplet.emeravariables[:CHAOSEMERALD] = randomemera
+      pbHideAbilitySplash(playerside[0])
     end
     if hasEmera?(:POTIONOFREGENERATION)
       playerside[0].tempability = EMERADICT[:POTIONOFREGENERATION][:name]

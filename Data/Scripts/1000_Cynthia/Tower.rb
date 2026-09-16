@@ -17,7 +17,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :activevariable => nil,
-        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
         :unknownlist => [],
         :eventvariables => {
             :unknownrooms => 0
@@ -395,6 +395,10 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "VSMeloetta"
         when "Reshirom"
             $PokemonGlobal.nextBattleBGM = "VSReshiramZekrom"
+        when "Rotom1"
+            $PokemonGlobal.nextBattleBGM = "VSRotom"
+        when "Rotom2"
+            $PokemonGlobal.nextBattleBGM = "VSStaticMiku"
         end
         case $PokemonGlobal.towervalues[:activevariable]
         when "Genesect"
@@ -413,6 +417,15 @@ def towerEvent()
                 $PokemonBag.pbStoreItem(:LIGHTSTONE)
                 $PokemonBag.pbStoreItem(:DARKSTONE)
             end
+        when "Rotom1"
+            return false if !pbLegendaryBattle("Rotom")
+            pbReceiveItem(:TEACHYTV)
+            $PokemonGlobal.towervalues[:legendarylist].push("Rotom2")
+        when "Rotom2"
+            return false if !pbTrainerBattle(:STATIC, "Hatsune Miku", nil, true)
+            pbAddPokemon(:ROTOM, 5)
+            pbReceiveItem(:ROTOMCATALOG)
+            #$PokemonGlobal.towervalues[:legendarylist].push("Rotom3") todo
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
             if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
