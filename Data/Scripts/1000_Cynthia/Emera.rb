@@ -38,7 +38,7 @@ EMERADICT = {
     },
     :INDIEPROOF => {
         :name => "Indie Proof",
-        :description => "You can only use 1 Pokemon. It gains 1.5x stats. Gain twice as much Emeras.",
+        :description => "You can only use 1 Pokemon. Its non-HP stats are doubled. Gain twice as much Emeras.",
         :rarity => :STARTER,
     },
     :DIAMONDPICKAXE => {
@@ -763,7 +763,7 @@ EMERADICT = {
     },
 }
 
-def grantRandomEmera(customweight = nil)
+def grantRandomEmera(customweight = nil, recursion = false)
     return if !getLooplet
     itemlist = getEmeras() 
     if customweight
@@ -796,6 +796,7 @@ def grantRandomEmera(customweight = nil)
     if getLooplet.pbStoreEmera(randomitem)
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
+    grantRandomEmera(customweight, true) if !recursion && hasEmera?(:INDIEPROOF)
 end
 
 def getEmeraWeights()

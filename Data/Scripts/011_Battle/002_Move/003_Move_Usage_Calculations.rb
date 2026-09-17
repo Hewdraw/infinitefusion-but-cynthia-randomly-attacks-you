@@ -395,6 +395,8 @@ class PokeBattle_Move
            b,user,target,self,multipliers,baseDmg,type)
       end
     end
+    BattleHandlers.triggerDamageCalcTargetAbility(:EMERA,
+       target,user,self,multipliers,baseDmg,type)
 
     # Item effects that alter damage
     if user.itemActive?

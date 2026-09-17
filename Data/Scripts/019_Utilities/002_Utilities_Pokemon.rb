@@ -81,10 +81,17 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
   end
   pkmn = pkmnspecies
   pkmn = Pokemon.new(pkmnspecies, level) if !pkmnspecies.is_a?(Pokemon)
-  pkmn.poke_ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil?
+  if !$PokemonGlobal.towervalues.nil?
+    pkmn.poke_ball = :PREMIERBALL
+    if !pkmnspecies.is_a?(Pokemon) && rand(4) == 0
+      chosenAbility = pkmn.getAbilityList.sample # format: [[:ABILITY, index],...]
+      pkmn.ability = chosenAbility[0]
+      pkmn.ability_index = chosenAbility[1]
+    end
+  end
   case pkmnspecies
   when :BONSLY
-    pkmn.ability = :STURDY
+    pkmn.ability = :STURDY if $PokemonGlobal.towervalues.nil?
   when :B218H301
     pkmn.ability = :SUCTIONCUPS
     pkmn.item = :CHERISHBALL

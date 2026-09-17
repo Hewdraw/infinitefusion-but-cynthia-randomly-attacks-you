@@ -631,10 +631,12 @@ class PokemonEvolutionScene
     pbEvolutionMethodAfterEvolution if !reversing
 
 
-    #oldAbility = @pokemon.ability.id if @pokemon.ability
+    oldAbility = @pokemon.ability.id if @pokemon.ability
+    oldAbilities = pokemon.abilities + pokemon.hidden_abilities
+    hasoldAbility = oldAbilities.include?(oldAbility)
     newSpecies = GameData::Species.get(@newspecies)
 
-    #allNewPossibleAbilities = newSpecies.abilities + newSpecies.hidden_abilities
+    allNewPossibleAbilities = newSpecies.abilities + newSpecies.hidden_abilities
 
     # Modify Pokémon to make it evolved
     @pokemon.species = @newspecies
@@ -655,9 +657,9 @@ class PokemonEvolutionScene
 
 
 
-    # if allNewPossibleAbilities.include?(oldAbility)
-    #   @pokemon.ability=oldAbility
-    # end
+    if allNewPossibleAbilities.include?(oldAbility) || !hasoldAbility
+      @pokemon.ability = oldAbility
+    end
 
     # Learn moves upon evolution for evolved species
     movelist = @pokemon.getMoveList

@@ -306,6 +306,7 @@ def getTowerEventsList()
     eventlist["Unknown"] *= 2 if hasEmera?(:EXPLORERBADGE)
     eventlist["Heal"] += 100 if $PokemonGlobal.towervalues[:floor] % 10 == 8
     eventlist["Heal"] += 50 if $PokemonGlobal.towervalues[:floor] == 1
+    eventlist["Crafting"] = 0 if $PokemonGlobal.towervalues[:floor] <= 10
     return eventlist
 end
 

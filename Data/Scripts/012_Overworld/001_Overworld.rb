@@ -997,7 +997,7 @@ def pbItemBall(item, quantity = 1, item_name = "", canRandom = true)
       pbMessage(_INTL("\\me[{1}]You found a {3}{2}\\c[0]!\\wtnp[30]", meName, itemname, text_color))
     end
     pbMessage(_INTL("You put the {1} away\\nin the <icon=bagPocket{2}>\\c[1]{3} Pocket\\c[0].",
-                    itemname, pocket, PokemonBag.pocketNames()[pocket]))
+                    itemname, pocket, PokemonBag.pocketNames()[pocket])) if $PokemonGlobal.towervalues.nil?
 
     promptRegisterItem(item)
     return true

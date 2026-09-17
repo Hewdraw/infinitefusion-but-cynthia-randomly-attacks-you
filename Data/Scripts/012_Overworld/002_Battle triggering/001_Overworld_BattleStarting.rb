@@ -635,6 +635,7 @@ def pbLegendaryBattle(species, alpha=false, number=0)
   # Calculate who the player trainer(s) and their party are
   playerTrainers    = [$Trainer]
   playerParty       = $Trainer.party
+  playerParty = [$Trainer.party[0]] if hasEmera?(:INDIEPROOF)
   playerPartyStarts = [0]
   # Create the battle scene (the visual side of it)
   scene = pbNewBattleScene
