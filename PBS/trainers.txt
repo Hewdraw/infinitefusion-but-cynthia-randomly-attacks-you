@@ -11667,16 +11667,16 @@ Pokemon = TORKOAL,5
     EV = 252,0,252,0,252,0
 
 [ALPHA_POKEMON,Torterra,0]
-Pokemon = TORKOAL,5
+Pokemon = TORTERRA,5
     Offset = 0
     Moves = QUIVERDANCE,SEEDFLAREPLUS,OBLIVIONWING,EARTHPOWER
     Ability = SHELLARMORPLUS
     Hpbar = 2
-    Item = LEFTOVERS
-    Nature = MODEST
+    Item = ENCHANTINGTABLE
+    Nature = ADAMANT
     Raid = TRUE
     IV = 31,31,31,31,31,31
-    EV = 252,0,252,0,252,0
+    EV = 252,252,252,0,0,0
 
 [ALPHA_POKEMON,Ursaluna,0]
 Pokemon = URSALUNA,5
@@ -11712,7 +11712,7 @@ Pokemon = PROBOPASS,5
     Nature = SERIOUS
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,0,252
-Pokemon = CLAYDOLL,5
+Pokemon = CLAYDOL,5
     Offset = 0
     Moves = TRICKROOM,EARTHPOWER,PSYCHIC,CALMMIND
     Ability = LEGENDARYPRESSURE

@@ -217,7 +217,7 @@ class PokeBattle_Battle
       playerside[0].tempability = EMERADICT[:CHAOSEMERALD][:name]
       pbShowAbilitySplash(playerside[0])
       randomemera = getEmeras[3].sample
-      pbDisplay(_INTL("Your Chaos Emera-ld grants the power of {1}!", EMERADICT[:CHAOSEMERALD][:name]))
+      pbDisplay(_INTL("Your Chaos Emera-ld grants the power of {1}!", EMERADICT[randomemera][:name]))
       getLooplet.emeravariables[:CHAOSEMERALD] = randomemera
       pbHideAbilitySplash(playerside[0])
     end

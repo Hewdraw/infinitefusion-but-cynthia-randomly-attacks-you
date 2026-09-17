@@ -632,7 +632,7 @@ class PokemonEvolutionScene
 
 
     oldAbility = @pokemon.ability.id if @pokemon.ability
-    oldAbilities = pokemon.abilities + pokemon.hidden_abilities
+    oldAbilities = @pokemon.species_data.abilities + @pokemon.species_data.hidden_abilities
     hasoldAbility = oldAbilities.include?(oldAbility)
     newSpecies = GameData::Species.get(@newspecies)
 

@@ -426,10 +426,10 @@ class PokeBattle_Battle
         priority = pbPriority(true)   # in order of fastest -> slowest speeds only
         priority.each do |b|
           next unless b.pbOwnSide.effects[PBEffects::TheWorld] == true
-          next if battler.fainted?
-          oldLastRoundMoved = battler.lastRoundMoved
-          battler.pbUseMoveSimple(:CUT)
-          battler.lastRoundMoved = oldLastRoundMoved
+          next if b.fainted?
+          oldLastRoundMoved = b.lastRoundMoved
+          b.pbUseMoveSimple(:CUT)
+          b.lastRoundMoved = oldLastRoundMoved
         end
         PBDebug.logonerr { pbEndOfRoundPhase(true) }
       end

@@ -417,7 +417,7 @@ class PokeBattle_Battler
     end
     ret.push(:FLYING) if !ret.include?(:FLYING) && hasActiveItem?([:ELYTRA, :ENCHANTEDELYTRA])
     ret.push(:FAIRY) if !ret.include?(:FAIRY) && hasActiveItem?(:WHIPPEDDREAM)
-    ret.push(@pokemon.hiddenPowerType) if !ret.include?(@pokemon.hiddenPowerType) if hasActiveEmera?(:TERACRYSTAL)
+    ret.push(pbHiddenPower(self,@pokemon.hiddenPowerType)[0]) if !ret.include?(pbHiddenPower(self,@pokemon.hiddenPowerType)[0]) if hasActiveEmera?(:TERACRYSTAL)
     return ret
   end
 

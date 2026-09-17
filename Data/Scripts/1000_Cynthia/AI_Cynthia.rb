@@ -283,6 +283,7 @@ class PokeBattle_AI
       next if move.pp==0 && move.total_pp>0
       next if !target.pbCanChooseMove?(move,true,false,false)
       next if target.pbEncoredMoveIndex != i && target.pbEncoredMoveIndex >= 0
+      next if !move || !target || !user
       next if pbCheckMoveImmunity(100,move,target,user,100)
       threattable[:moves][move] = pbCynthiaAssessMoveThreat(user, target, move, tera)
       if threattable[:moves][move][:category] == :status
