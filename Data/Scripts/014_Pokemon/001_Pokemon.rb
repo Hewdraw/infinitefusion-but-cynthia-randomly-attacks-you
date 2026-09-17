@@ -1870,6 +1870,7 @@ class Pokemon
     list.push(:EMBODYASPECT) if hasActiveEmera?(:TEALMASK) && hasItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
     list.push(:TOXICCHAIN) if hasActiveEmera?(:TOXICCHAIN)
     list.push(:DAMP) if hasActiveEmera?(:WATERBUCKET)
+    list.push(:STURDY) if hasActiveEmera?(:INDIEPROOF)
     list.push(:THEWORLD) if hasActiveEmera?(:LUNARDIAL)
     list += [:CUDCHEW, :CHEEKPOUCH, :GLUTTONY] if hasActiveEmera?(:YINYANGORB)
     return list
