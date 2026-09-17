@@ -1812,7 +1812,7 @@ def pbForceEvo(pokemon)
       forcedevolutions.push(evolution) if evolution[2] == :MISTSTONE
     end
   end
-  evolutions = forcedevolutions if !forcedevolutions.empty?
+  evolutions = forcedevolutions if !forcedevolutions.empty? && (pokemon.id < NB_POKEMON || pokemon.id > 1000000)
   # if multiple evolutions, pick a random one
   #(format of returned value is [[speciesNum, level]])
   newspecies = evolutions[rand(evolutions.length)][0]
