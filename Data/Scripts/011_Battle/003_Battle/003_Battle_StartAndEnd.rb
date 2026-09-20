@@ -706,8 +706,8 @@ class PokeBattle_Battle
           end
           ball = :POKEBALL
           ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil?
-          pbThrowPokeBall(battler.index, ball, catch_rate = 255, showPlayer = true)
           battler.pokemon.hp = 1
+          pbThrowPokeBall(battler.index, ball, catch_rate = 255, showPlayer = true)
         end
       end
       @scene.pbWildBattleSuccess if !Settings::GAIN_EXP_FOR_CAPTURE
