@@ -81,8 +81,8 @@ EMERADICT = {
         :rarity => :COMMON,
     },
     :BERRYTREE => {
-        :name => "Berry Tree",
-        :description => "Obtain a random Berry when going up a floor.",
+        :name => "Nut Tree",
+        :description => "Obtain a random Nut when going up a floor.",
         :rarity => :COMMON,
     },
     :BOOKANDQUILL => {

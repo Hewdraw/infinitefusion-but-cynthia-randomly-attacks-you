@@ -205,7 +205,7 @@ def resolveUnknownEvent(recursion = false)
         choice = pbUnknownCommands(["Gather some Berries.", "Shake the tree.", "Water the tree."], helptext)
         case choice
         when 0
-            berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY]
+            berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY, :SITRUSPAW, :BERSERKBERRY, :POWERNUT]
             berryamount = rand(10) + 6
             for i in 1..berryamount
                 pbItemBall(berrylist.sample)
@@ -227,7 +227,7 @@ def resolveUnknownEvent(recursion = false)
         Kernel.pbMessage("A Heracross jumps out of the tree looking happy to see you.")
         Kernel.pbMessage("It Guides you to a pile of Berries and seems to want to join you.")
         Kernel.pbMessage("You gained 5 of every berry.")
-        berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY]
+        berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY, :SITRUSPAW, :BERSERKBERRY, :POWERNUT]
         berrylist.each do |berry|
             $PokemonBag.pbStoreItem(berry, 5)
         end
@@ -270,11 +270,11 @@ def resolveUnknownEvent(recursion = false)
         choice = pbUnknownCommands(["Mawile", "Beldum", "#{GameData::Species.get(randompokemon).name}"], ["Nice, a Mawile!", "Ok i guess you don't have to take the Mawile.", "But i will judge you for it."])
         case choice
         when 0
-            pbAddPokemon(:MAWILE, 5)
+            pbAddPokemon(:MAWILE, getCurrentLevelCap())
         when 1
-            pbAddPokemon(:BELDUM, 5)
+            pbAddPokemon(:BELDUM, getCurrentLevelCap())
         when 2
-            pbAddPokemon(randompokemon, 5, true, false, nil, {:shiny=>true})
+            pbAddPokemon(randompokemon, getCurrentLevelCap(), true, false, nil, {:shiny=>true})
         end
     when :SECRETBAZAAR
         Kernel.pbMessage("You find a hidden staircase into a secret bazaar.") if !recursion

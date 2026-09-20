@@ -318,7 +318,7 @@ class PokeBattle_Battler
   #=============================================================================
   def pbSpeed
     return 1 if fainted?
-    return 1 if @battle.field.effects[PBEffects::TrickRoom]>0 && self.species == :REGIELEKI
+    return 1 if @battle.field.effects[PBEffects::TrickRoom]>0 && [:REGIELEKI, :SNORUNT, :GLALIE].include?(self.species)
     stageMul = [2, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8]
     stageDiv = [8, 7, 6, 5, 4, 3, 2, 2, 2, 2, 2, 2, 2]
     stage = @stages[:SPEED] + 6
