@@ -1092,6 +1092,7 @@
 1123,BLAMMYBLAM,Blammy Blam,360,90,GUN,Physical,0,15,100,NearOther,0,bfp,"a"
 1124,FALSESURRENDER,False Surrender,360,90,GUN,Physical,0,15,100,NearOther,0,bfp,"todo"
 1125,LASTRESPECTS,Last Respects,360,90,GUN,Physical,0,15,100,NearOther,0,bfp,"todo"
+1126,KNIFE,Knife,000,50,NORMAL,Physical,100,30,0,AllNearFoes,0,q,"Knife."
 
 
 

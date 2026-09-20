@@ -428,7 +428,7 @@ class PokeBattle_Battle
           next unless b.pbOwnSide.effects[PBEffects::TheWorld] == true
           next if b.fainted?
           oldLastRoundMoved = b.lastRoundMoved
-          b.pbUseMoveSimple(:CUT)
+          b.pbUseMoveSimple(:KNIFE)
           b.lastRoundMoved = oldLastRoundMoved
         end
         PBDebug.logonerr { pbEndOfRoundPhase(true) }
@@ -707,6 +707,7 @@ class PokeBattle_Battle
           ball = :POKEBALL
           ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil?
           pbThrowPokeBall(battler.index, ball, catch_rate = 255, showPlayer = true)
+          battler.pokemon.hp = 1
         end
       end
       @scene.pbWildBattleSuccess if !Settings::GAIN_EXP_FOR_CAPTURE

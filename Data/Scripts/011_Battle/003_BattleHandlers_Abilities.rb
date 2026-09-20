@@ -3048,7 +3048,7 @@ BattleHandlers::EOREffectAbility.add(:WIRED,
     if battler.turnCount>0 && battler.turnCount % 2 == 0
       battler.eachAlly do |b|
         next if b.effects[PBEffects::RedstoneCube] > 0
-        subLife = b.totalhp / 4
+        subLife = b.totalhp / 8
         subLife = 1 if subLife < 1
         b.effects[PBEffects::Trapping] = 0
         b.effects[PBEffects::TrappingMove] = nil
@@ -3976,7 +3976,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
     battler.pbOwnSide.effects[PBEffects::TheWorld] = true
     battle.pbDisplay(_INTL("Time resumes and a knife launches out!"))
     oldLastRoundMoved = battler.lastRoundMoved
-    battler.pbUseMoveSimple(:CUT)
+    battler.pbUseMoveSimple(:KNIFE)
     battler.lastRoundMoved = oldLastRoundMoved
     battle.pbHideAbilitySplash(battler)
   }

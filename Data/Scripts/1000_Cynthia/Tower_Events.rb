@@ -199,8 +199,8 @@ def resolveUnknownEvent(recursion = false)
             return if !pbLegendaryBattle("Ursaluna", true)
         end
     when :ROUTE33
-        Kernel.pbMessage("You spot a berry tree next to the road.") if !recursion
-        helptext = ["A large variety of berries can be seen haning on the tree.", "You think you see something moving in the foliage.", "It will surely grow bigger. Requires a Mystic Water."]
+        Kernel.pbMessage("You spot a nut tree next to the road.") if !recursion
+        helptext = ["A large variety of nuts can be seen haning on the tree.", "You think you see something moving in the foliage.", "It will surely grow bigger. Requires a Mystic Water."]
         helptext[2] = "It will surely grow bigger. \\C[2]Requires a Mystic Water." if $PokemonBag.pbQuantity(:MYSTICWATER) == 0
         choice = pbUnknownCommands(["Gather some Berries.", "Shake the tree.", "Water the tree."], helptext)
         case choice
@@ -209,6 +209,11 @@ def resolveUnknownEvent(recursion = false)
             berryamount = rand(10) + 6
             for i in 1..berryamount
                 pbItemBall(berrylist.sample)
+            end
+            if !hasEmera?(:STUNSEED) && rand(69) == 0
+                if getLooplet.pbStoreEmera(:STUNSEED)
+                    pbMessage("You got \\C[7]Stun Seed\\C[0]!")
+                end
             end
         when 1
             Kernel.pbMessage("An angry Heracross flies out of the tree.")
@@ -223,10 +228,10 @@ def resolveUnknownEvent(recursion = false)
             $PokemonGlobal.towervalues[:unknownlist].push(:ROUTE332)
         end
     when :ROUTE332
-        Kernel.pbMessage("You find yourself in a familiar place near a massive berry tree next to the road.")
+        Kernel.pbMessage("You find yourself in a familiar place near a massive nut tree next to the road.")
         Kernel.pbMessage("A Heracross jumps out of the tree looking happy to see you.")
         Kernel.pbMessage("It Guides you to a pile of Berries and seems to want to join you.")
-        Kernel.pbMessage("You gained 5 of every berry.")
+        Kernel.pbMessage("You gained 5 of every nut.")
         berrylist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY, :SITRUSPAW, :BERSERKBERRY, :POWERNUT]
         berrylist.each do |berry|
             $PokemonBag.pbStoreItem(berry, 5)

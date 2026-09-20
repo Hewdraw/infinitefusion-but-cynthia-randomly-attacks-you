@@ -105,24 +105,36 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
     if !$PokemonGlobal.towervalues.nil?
       pkmn.shiny = true
       pkmn.natural_shiny = true
+      GameData::Stat.each_main do |s|
+        pkmn.iv[s.id] = 31
+      end
     end
   when :BELDUM
     if !$PokemonGlobal.towervalues.nil?
       pkmn.poke_ball = :LUXURYBALL
       pkmn.shiny = true
       pkmn.natural_shiny = true
+      GameData::Stat.each_main do |s|
+        pkmn.iv[s.id] = 31
+      end
     end
   when :ZORUA, :HISUIZORUA
     if !$PokemonGlobal.towervalues.nil?
       pkmn.poke_ball = :POKEBALL
       pkmn.shiny = true
       pkmn.natural_shiny = true
+      GameData::Stat.each_main do |s|
+        pkmn.iv[s.id] = 31
+      end
     end
   when :HAWLUCHA
     if !$PokemonGlobal.towervalues.nil?
       pkmn.poke_ball = :GENDERBALL
       pkmn.shiny = true
       pkmn.natural_shiny = true
+      GameData::Stat.each_main do |s|
+        pkmn.iv[s.id] = 31
+      end
     end
   when :SNORUNT
     pkmn.poke_ball = :QUICKBALL

@@ -886,6 +886,7 @@ BattleHandlers::DamageCalcUserItem.add(:LIGHTBALL,
 BattleHandlers::DamageCalcUserItem.add(:THUNDERBALL,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:RAICHU)
+    mults[:attack_multiplier] *= 2 if user.isFusionOf(:ALOLARAICHU)
     mults[:attack_multiplier] *= 2 if user.isFusionOf(:GOROCHU)
   }
 )
