@@ -455,6 +455,7 @@ class PokeBattle_AI
   end
 
   def pbCynthiaGetMoveScore(move,user,target)
+    return 1 if target.fainted?
     if move.damagingMove?
       score = pbCynthiaGetMoveScoreDamage(move,user,target)
       # Two-turn attacks waste 2 turns to deal one lot of damage

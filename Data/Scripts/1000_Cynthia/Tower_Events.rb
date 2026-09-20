@@ -179,12 +179,14 @@ def resolveUnknownEvent(recursion = false)
                 newspecies = evolutions[rand(evolutions.length - 1)][0]
                 next false if newspecies == nil
                 next false if newspecies == :OMNIMON && pokemon.species != :OMNIMON
+                hasforcedevolution = pokemon.ability == :FORCEDEVOLUTION
                 evo = PokemonEvolutionScene.new
                 evo.pbStartScreen(pokemon, newspecies)
                 evo.pbEvolution
                 evo.pbEndScreen
                 if !forcedevolutions.empty?
                     pokemon.ability = :FORCEDEVOLUTION
+                    pokemon.ability = :FORCEDEVOLUTIONPLUS if hasforcedevolution
                     pokemon.calc_stats
                     pokemon.miststone = true
                 end
