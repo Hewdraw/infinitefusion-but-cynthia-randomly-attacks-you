@@ -51,7 +51,7 @@ class PokemonSystem
     @bgmvolume = 40 # Volume of background music and ME
     @sevolume = 40 # Volume of sound effects
     @textinput = 1 # Text input mode (0=cursor, 1=keyboard)
-    @quickHM = 0
+    @quickHM = 1
     @battle_type = 0
     @speedup = 0 # 0= hold, 1=toggle
     @speedup_speed = 3 # for hold only

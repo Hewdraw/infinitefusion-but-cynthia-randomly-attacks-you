@@ -21465,7 +21465,8 @@ Generation = 9
 [1000404]
 Name = Kricketune
 InternalName = KRICKETUNE
-Type1 = BUG
+Type1 = SOUND
+Type2 = BUG
 BaseStats = 77,85,51,65,55,51
 GenderRate = Female50Percent
 GrowthRate = Parabolic

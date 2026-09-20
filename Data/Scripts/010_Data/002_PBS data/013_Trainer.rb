@@ -410,7 +410,7 @@ module GameData
         if offset != nil
           offset = offset.to_i
         else
-          offset = -3
+          offset = rand([10, $Trainer.numbadges + 5].min) - 5
         end
         offset += 5 * pbGet(VAR_LEAGUE_REMATCH_TIER) if [315, 316, 317, 318, 328].include?($game_map)
         shinychance = Settings::ACTUAL_SHINY_POKEMON_CHANCE
@@ -484,7 +484,7 @@ module GameData
         else
           pkmn.reset_moves
         end
-        pkmn.learn_move_ignoremax(:METRONOME) if pkmn.isFusionOf(:TOGEPI) || pkmn.species.to_s.include?("TOGEPI")
+        pkmn.learn_move_ignoremax(:METRONOME) if pkmn.isFusionOf([:TOGEPI, :CLEFFA]) || pkmn.species.to_s.include?("TOGEPI") || pkmn.species.to_s.include?("CLEFFA")
         if trainer.special_name?
           for mon in $Trainer.party
             if mon.getAllAbilities().include?(:WONDERGUARD)

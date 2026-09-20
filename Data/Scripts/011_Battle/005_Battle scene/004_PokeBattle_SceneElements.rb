@@ -649,8 +649,10 @@ class PokemonBattlerSprite < RPG::Sprite
     if self.pkmn.dynamax != nil && self.pkmn.dynamax.is_a?(Integer)
       if self.pkmn.dynamax > 0
         @spriteY += 128
+        @spriteY += 64 if self.pkmn.isFusionOf(:WAILORD)
       end
     end
+    @spriteY += 64 if self.pkmn.isFusionOf(:WAILORD)
     # Apply metrics
     @pkmn.species_data.apply_metrics_to_sprite(self, @index)
   end
@@ -667,6 +669,9 @@ class PokemonBattlerSprite < RPG::Sprite
       if self.pkmn.dynamax > 0
         scale *= 3
       end
+    end
+    if self.pkmn.isFusionOf(:WAILORD)
+      scale *= 2
     end
     @_iconBitmap.scale_bitmap(scale)
 
