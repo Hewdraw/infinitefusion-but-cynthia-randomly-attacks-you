@@ -604,6 +604,8 @@ def getFloorGraphic(event)
             return "146"
         when "Reshirom"
             return "BW (5)"
+        when "Rotom1", "Rotom2", "Rotom3"
+            return "479"
         when "Suikou"
             return "243_245"
         when "Zapdos"

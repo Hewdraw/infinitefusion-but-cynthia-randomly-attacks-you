@@ -412,16 +412,7 @@ ItemHandlers::UseOnPokemon.add(:HYPERPOTION, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:MAXPOTION, proc { |item, pkmn, scene|
-  result = pbHPItem(pkmn, pkmn.totalhp - pkmn.hp, scene)
-  return false if !result
-  bottlecap = rand(100)
-  if bottlecap < 50
-    pbReceiveItem(:RUSTYBOTTLECAP)
-  elsif bottlecap < 85
-    pbReceiveItem(:BOTTLECAP)
-  else
-    pbReceiveItem(:GOLDENBOTTLECAP)
-  end
+  next pbHPItem(pkmn, pkmn.totalhp - pkmn.hp, scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:FRESHWATER, proc { |item, pkmn, scene|
