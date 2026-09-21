@@ -194,6 +194,10 @@ def towerIncreaseFloor(nextfloor = nil)
                 end
             end
             $PokemonGlobal.towervalues[:activevariable] = emeralegendaries.sample if emeralegendaries.length > 0
+            if $PokemonGlobal.towervalues[:eventvariables][:nextlegendary]
+                $PokemonGlobal.towervalues[:activevariable] = $PokemonGlobal.towervalues[:eventvariables][:nextlegendary]
+                $PokemonGlobal.towervalues[:eventvariables][:nextlegendary] = nil
+            end
             $PokemonGlobal.towervalues[:legendarylist].delete_if {|i| i == $PokemonGlobal.towervalues[:activevariable]}
         when "Unknown"
             $PokemonGlobal.towervalues[:activevariable] = getUnknownEvent

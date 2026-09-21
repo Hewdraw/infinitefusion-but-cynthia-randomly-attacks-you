@@ -20,12 +20,18 @@ TOWER_EVENTS = {
         :location => "Eastern",
         :location2 => "Cave",
         :image => "ARMALDO",
-        :floorrequirement => false, #todo
+        :floorrequirement => false,
     },
     :FREESHINY => {
         :location => "Free",
         :location2 => "Shiny!",
         :image => "303s",
+        :floorrequirement => 0,
+    },
+    :HILLOFTHEANCIENTS => {
+        :location => "Hill of the",
+        :location2 => "Ancients",
+        :image => "178_0",
         :floorrequirement => 0,
     },
     :ROUTE33 => {
@@ -129,6 +135,15 @@ def towerPokemon()
 end
 
 def getUnknownEvent()
+    if hasEmera?(:TELEPORTGEM)
+        list = []
+        defaulteventlist = getUnknownEventList()
+        $PokemonGlobal.towervalues[:unknownlist].each do |event|
+            next if defaulteventlist.include?(event)
+            list.push(event)
+        end
+        return list.sample if list.length > 0
+    end
     list = $PokemonGlobal.towervalues[:unknownlist]
     return list.sample
 end
@@ -282,6 +297,29 @@ def resolveUnknownEvent(recursion = false)
             pbAddPokemon(:BELDUM, getCurrentLevelCap())
         when 2
             pbAddPokemon(randompokemon, getCurrentLevelCap(), true, false, nil, {:shiny=>true})
+        end
+    when :HILLOFTHEANCIENTS
+        Kernel.pbMessage("A Xatu is watching the sunset.") if !recursion
+        Kernel.pbMessage("As you approach he turns around and offers you help.") if !recursion
+        choice = pbUnknownCommands(["Future Sight", "Stored Power", "Teleport"], ["He guides the way to help you find a Legendary you're looking for.", "Opens a Box to help you obtain items.", "Creates a Teleport Gem to help you out in battle."])
+        case choice
+        when 0
+            if $PokemonGlobal.towervalues[:legendarylist].length <= 2
+                Kernel.pbMessage("There are not enough Legendaries left for Xatu to guide you to.")
+                return resolveUnknownEvent(true)
+            end
+            legendarylist = []
+            while legendarylist.length < 3
+                legendary = $PokemonGlobal.towervalues[:legendarylist].sample
+                legendarylist.push(legendary) if !legendarylist.include?(legendary)
+            end
+            choice = Kernel.pbMessage("Which Legendary would you like to see next?", legendarylist)
+            $PokemonGlobal.towervalues[:eventvariables][:nextlegendary] = legendarylist[choice]
+        when 1
+            enderChest()
+        when 2
+            getLooplet.pbStoreEmera(:TELEPORTGEM)
+            pbMessage("You got Teleport Gem!")
         end
     when :SECRETBAZAAR
         Kernel.pbMessage("You find a hidden staircase into a secret bazaar.") if !recursion

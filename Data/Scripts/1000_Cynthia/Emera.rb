@@ -69,6 +69,11 @@ EMERADICT = {
         :description => "Rock moves gain 1.2x accuracy.",
         :rarity => :EVENT,
     },
+    :TELEPORTGEM => {
+        :name => "Teleport Gem",
+        :description => "Unown room locations that are unlocked by special conditions are now visited first when available.",
+        :rarity => :EVENT,
+    },
     :VIPCARD => {
         :name => "VIP Card",
         :description => "50% discount at the Shadross Shop.",
