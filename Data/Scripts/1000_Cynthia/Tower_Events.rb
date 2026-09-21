@@ -301,7 +301,7 @@ def resolveUnknownEvent(recursion = false)
     when :HILLOFTHEANCIENTS
         Kernel.pbMessage("A Xatu is watching the sunset.") if !recursion
         Kernel.pbMessage("As you approach he turns around and offers you help.") if !recursion
-        choice = pbUnknownCommands(["Future Sight", "Stored Power", "Teleport"], ["He guides the way to help you find a Legendary you're looking for.", "Opens a Box to help you obtain items.", "Creates a Teleport Gem to help you out in battle."])
+        choice = pbUnknownCommands(["Future Sight", "Stored Power", "Teleport"], ["He guides the way to help you find a Legendary you're looking for.", "Opens a Box to help you obtain items.", "Creates a Teleport Gem to help you out in naviating Temporal Tower."])
         case choice
         when 0
             if $PokemonGlobal.towervalues[:legendarylist].length <= 2
