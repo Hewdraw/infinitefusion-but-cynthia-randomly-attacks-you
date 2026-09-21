@@ -2707,11 +2707,13 @@ class PokeBattle_Move_183 < PokeBattle_Move
     else
       pbWildBattle(:SKELETON, user.level, 1, false)
     end
-    $PokemonGlobal.battlehplist.each do |b|
-      b[0].hp = b[1]
+    $Trainer.party.each do |pkmn|
+      pkmn.hp = $PokemonGlobal.battlehplist[pkmn] 
     end
     @battle.eachBattler do |b|
+      next unless $Trainer.party.include?(b.pokemon)
       b.hp = b.pokemon.hp
+      b.pbFaint if b.fainted?
     end
   end
 end
@@ -5743,11 +5745,13 @@ class PokeBattle_Move_346 < PokeBattle_Move
     $PokemonGlobal.battledepth += 1
     $PokemonGlobal.nextBattleBGM = "VSCelebi2"
     pbLegendaryBattle("Celebi", false, 1)
-    $PokemonGlobal.battlehplist.each do |b|
-      b[0].hp = b[1]
+    $Trainer.party.each do |pkmn|
+      pkmn.hp = $PokemonGlobal.battlehplist[pkmn] 
     end
     @battle.eachBattler do |b|
+      next unless $Trainer.party.include?(b.pokemon)
       b.hp = b.pokemon.hp
+      b.pbFaint if b.fainted?
     end
   end
 end

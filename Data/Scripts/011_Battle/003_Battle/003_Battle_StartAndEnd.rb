@@ -566,15 +566,15 @@ class PokeBattle_Battle
               end
               $PokemonGlobal.battledepth += 1
               if !pbTrainerBattle(:WuhuIslandExecutioner, "Cynthia", nil, false, 0)
-                $PokemonGlobal.battlehplist.each do |b|
-                  b[0].hp = b[1]
+                $Trainer.party.each do |pkmn|
+                  pkmn.hp = $PokemonGlobal.battlehplist[pkmn] 
                 end
                 @decision = 2
                 pbEndOfBattle
                 return
               end
-              $PokemonGlobal.battlehplist.each do |b|
-                b[0].hp = b[1]
+              $Trainer.party.each do |pkmn|
+                pkmn.hp = $PokemonGlobal.battlehplist[pkmn] 
               end
             end
             msg = (@endSpeeches[i] && @endSpeeches[i] !="") ? @endSpeeches[i] : "..."

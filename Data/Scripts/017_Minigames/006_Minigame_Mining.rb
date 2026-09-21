@@ -613,23 +613,31 @@ class MiningGameScene
           pbMessage(_INTL("The {1} shines with a bright light!", GameData::Item.get(i).name))
           case i
           when :DOMEFOSSIL
-            pbAddPokemon(:KABUTO)
+            if rand(16) == 0
+              pbAddPokemon(:IRONHARVESTER, getCurrentLevelCap())
+            else
+              pbAddPokemon(:KABUTO, getCurrentLevelCap())
+            end
           when :HELIXFOSSIL
-            pbAddPokemon(:OMANYTE)
+            pbAddPokemon(:OMANYTE, getCurrentLevelCap())
           when :OLDAMBER
-            pbAddPokemon(:AERODACTYL)
+            pbAddPokemon(:AERODACTYL, getCurrentLevelCap())
           when :ROOTFOSSIL
-            pbAddPokemon(:LILEEP)
+            if rand(4) == 0
+              pbAddPokemon(:B218H301, getCurrentLevelCap())
+            else
+              pbAddPokemon(:LILEEP, getCurrentLevelCap())
+            end
           when :CLAWFOSSIL
-            pbAddPokemon(:ANORITH)
+            pbAddPokemon(:ANORITH, getCurrentLevelCap())
           when :SKULLFOSSIL
-            pbAddPokemon(:CRANIDOS)
+            pbAddPokemon(:CRANIDOS, getCurrentLevelCap())
           when :ARMORFOSSIL
-            pbAddPokemon(:SHIELDON)
+            pbAddPokemon(:SHIELDON, getCurrentLevelCap())
           when :JAWFOSSIL
-            pbAddPokemon(:TYRUNT)
+            pbAddPokemon(:TYRUNT, getCurrentLevelCap())
           end
-          unlockClass(:SUPERNERD)
+          unlockClass(:SUPERNERD, getCurrentLevelCap())
         elsif i == :EMERA
           grantRandomEmera()
         elsif $PokemonBag.pbStoreItem(i)

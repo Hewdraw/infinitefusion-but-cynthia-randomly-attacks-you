@@ -266,7 +266,7 @@ def resolveUnknownEvent(recursion = false)
         return if !result
         Kernel.pbMessage("Eventually you reach the end of the dungeon and find a treasure chest.")
         getLooplet.pbStoreEmera(:DEFENDGLOBE)
-        pbMessage("You got #{itemname}!")
+        pbMessage("You got Defend Globe!")
         pbObtainAlpha("Armaldo") if Kernel.pbMessage("Hey! Armaldo wants to join your team! Will you accept Armaldo as a member?", ["Yes", "No"]) == 0
     when :FREESHINY
         Kernel.pbMessage("Free Shiny!")
@@ -508,6 +508,7 @@ def pbObtainAlpha(species)
     end
     pokemon.raid = nil
     pokemon.hpbars = nil
+    pokemon.level = getCurrentLevelCap()
     pbAddPokemon(pokemon)
 end
 

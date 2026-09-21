@@ -1074,8 +1074,8 @@ def pbAfterBattle(decision, canLose)
   if $PokemonGlobal.battledepth != nil && $PokemonGlobal.battledepth > 0
     $PokemonGlobal.battledepth -= 1
     $PokemonGlobal.battlehplist = {}
-    $Trainer.party do |b|
-      $PokemonGlobal.battlehplist[b] = b.hp
+    $Trainer.party.each do |pkmn|
+      $PokemonGlobal.battlehplist[pkmn] = pkmn.hp
     end
     return
   end

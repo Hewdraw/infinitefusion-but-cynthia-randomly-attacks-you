@@ -91,11 +91,11 @@ class PokemonDataBox < SpriteWrapper
     @viewport = viewport
     # Create other bitmaps
     @numbersBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/icon_numbers")
-    hpBarAmount = 1
-    if @battler.pokemon
-      hpBarAmount = 2 if @battler.pokemon.dynamax
-      hpBarAmount = @battler.hpbars if @battler.hpbars
-    end
+    hpBarAmount = 10
+    # if @battler.pokemon
+    #   hpBarAmount = 2 if @battler.pokemon.dynamax
+    #   hpBarAmount = @battler.hpbars if @battler.hpbars
+    # end
     @hpBarBitmaps = []
     @hpBarSprites = []
     for i in 0...hpBarAmount do
@@ -119,13 +119,13 @@ class PokemonDataBox < SpriteWrapper
   end
 
   def addHpBar(viewport)
-      hpbarcount = @hpBarSprites.length
-      @hpBarBitmaps.push(AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp"))
-      @hpBarSprites.push(SpriteWrapper.new(viewport))
-      @hpBarSprites[hpbarcount].bitmap = @hpBarBitmaps[hpbarcount].bitmap
-      @hpBarSprites[hpbarcount].src_rect.height = @hpBarBitmaps[hpbarcount].height / 3
-      @sprites["hpBar#{hpbarcount}"] = @hpBarSprites[hpbarcount]
-    end
+    hpbarcount = @hpBarSprites.length
+    @hpBarBitmaps.push(AnimatedBitmap.new("Graphics/Pictures/Battle/overlay_hp"))
+    @hpBarSprites.push(SpriteWrapper.new(viewport))
+    @hpBarSprites[hpbarcount].bitmap = @hpBarBitmaps[hpbarcount].bitmap
+    @hpBarSprites[hpbarcount].src_rect.height = @hpBarBitmaps[hpbarcount].height / 3
+    @sprites["hpBar#{hpbarcount}"] = @hpBarSprites[hpbarcount]
+  end
 
   def dispose
     pbDisposeSpriteHash(@sprites)
