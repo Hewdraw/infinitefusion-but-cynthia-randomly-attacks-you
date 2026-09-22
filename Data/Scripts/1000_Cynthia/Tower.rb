@@ -49,16 +49,110 @@ def setupTower()
     end
 end
 
+TOWERREWARDS = {
+    :BROCK => {
+        :name => "Brock",
+        :floor => 10,
+        :once => true,
+        :emerarestriction => [8,0,0,0]
+    },
+    :MISTY => {
+        :name => "Misty",
+        :floor => 20,
+        :once => true,
+        :emerarestriction => [8,5,0,0]
+    },
+    :SURGE => {
+        :name => "Surge",
+        :floor => 30,
+        :once => true,
+        :emerarestriction => [8,5,2,0]
+    },
+    :ERIKA => {
+        :name => "Erika",
+        :floor => 40,
+        :once => true,
+    },
+    :SABRINA => {
+        :name => "Sabrina",
+        :floor => 50,
+        :once => true,
+    },
+    :KOGA => {
+        :name => "Koga",
+        :floor => 60,
+        :once => true,
+    },
+    :BLAINE => {
+        :name => "Blaine",
+        :floor => 70,
+        :once => true,
+    },
+    :GIOVANNI => {
+        :name => "Giovanni",
+        :floor => 80,
+        :once => true,
+    },
+    :LORELEI => {
+        :name => "Lorelei",
+        :floor => 82,
+        :once => true,
+    },
+    :BRUNO => {
+        :name => "Bruno",
+        :floor => 84,
+        :once => true,
+    },
+    :AGATHA => {
+        :name => "Agatha",
+        :floor => 86,
+        :once => true,
+    },
+    :LANCE => {
+        :name => "Lance",
+        :floor => 88,
+        :once => true,
+    },
+    :BLUE => {
+        :name => "your Rival",
+        :floor => 90,
+        :once => true,
+    },
+    :HEWDRAW1 => {
+        :name => "Hewdraw",
+        :floor => 100,
+        :once => false,
+        :amount => 3
+    },
+}
+
 def resetTower()
+    floor = $PokemonGlobal.towervalues[:floor]
+    floor += 1 if $PokemonGlobal.towervalues[:activeevent].nil?
     $Trainer.money = $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
     $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
     $PokemonGlobal.partner = $PokemonGlobal.towervalues[:partner] if $PokemonGlobal.towervalues[:partner]
+    srand $PokemonGlobal.towervalues[:seed]
     $PokemonGlobal.towervalues = nil
     $PokemonBag.restoreBag()
     PokemonSelection.restore
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 21)
     pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)
+    highestfloor = $PokemonGlobal.highestfloor || 0
+    TOWERREWARDS.each do |key, values|
+        break if floor <= values[:floor]
+        next if highestfloor > values[:floor] && values[:once]
+        string = "For beating #{values[:name]} on floor #{values[:floor]} "
+        string += "for the first time " if values[:once]
+        amount = values[:amount] || 1
+        string += "you obtained #{amount} Emera!"
+        Kernel.pbMessage(string)
+        for _ in 1..amount
+            grantRandomEmera(values[:emerarestriction])
+        end
+    end
+    $PokemonGlobal.highestfloor = [floor, highestfloor].max
     srand
 end
 
@@ -541,6 +635,7 @@ def towerEvent()
         pbCallBub(2, 1, true)
         Kernel.pbMessage("congrats, you win")
         unlockClass(:TIMESTOPPER)
+        $PokemonGlobal.towervalues[:activeevent] = nil
         resetTower()
         pbFadeOutIn(99999) {
           $game_temp.player_new_map_id = 32

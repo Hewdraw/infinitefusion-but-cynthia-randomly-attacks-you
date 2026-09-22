@@ -68,6 +68,7 @@ EMERADICT = {
         :name => "Rock",
         :description => "Rock moves gain 1.2x accuracy.",
         :rarity => :EVENT,
+        :cost => 1,
     },
     :TELEPORTGEM => {
         :name => "Teleport Gem",
@@ -84,26 +85,31 @@ EMERADICT = {
         :name => "Apple",
         :description => "Your Pokemon heal for 1/16th when going up a floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :BERRYTREE => {
         :name => "Nut Tree",
         :description => "Obtain a random Nut when going up a floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :BOOKANDQUILL => {
         :name => "Book & Quill",
         :description => "You can Tutor an extra move in a Tutor floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :BREWINGSTAND => {
         :name => "Brewing Stand",
         :description => "Obtain a random Potion Item when going up a floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :CAPTURESTYLER => {
         :name => "Capture Styler",
         :description => "Obtain all Pokemon on Premier Ball floors.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     # :CHOICEDUMPLING => {
     #     :name => "Choice Dumpling",
@@ -119,17 +125,19 @@ EMERADICT = {
         :name => "Ender Chest",
         :description => "You can pay Sinnoh Coins to open chests again.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :FAKEBADGES => {
         :name => "Fake Badges",
         :description => "You can buy items from the shop as if you had 16 badges.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
-    :FLASHLIGHT => {
-        :name => "Flashlight",
-        :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
-        :rarity => :COMMON,
-    },
+    # :FLASHLIGHT => {
+    #     :name => "Flashlight",
+    #     :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
+    #     :rarity => :COMMON,
+    # },
     :FLOWERWREATH => {
         :name => "Flower Wreath",
         :description => "Your Fairy Pokemon gain Grass type benefits.",
@@ -186,11 +194,13 @@ EMERADICT = {
         :name => "Milk Bucket",
         :description => "Your Pokemons Status Condition is healed when going up a floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :MINTPLANT => {
         :name => "Mint Plant",
         :description => "Obtain a random Mint when going up a floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :NEWSHOES => {
         :name => "New Shoes",
@@ -211,6 +221,7 @@ EMERADICT = {
         :name => "Ogre Balloon",
         :description => "Obtain some Mochis when going up a floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :POTIONOFREGENERATION => {
         :name => "Potion of Regeneration",
@@ -231,6 +242,7 @@ EMERADICT = {
         :name => "Rotom Dex",
         :description => "Gain 1 Sinnoh Coin when you obtain a Pokemon from a Premier Ball floor.",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     # :SELFCONTROLEMERA => {
     #     :name => "Self Control Emera",
@@ -266,6 +278,7 @@ EMERADICT = {
         :name => "Trash Bags",
         :description => "Your Pokemon gain the Pickup Ability. You gain a random Pickup item when going up a floor",
         :rarity => :COMMON,
+        :towerexclusive => true,
     },
     :WATERBUCKET => {
         :name => "Water Bucket",
@@ -378,6 +391,7 @@ EMERADICT = {
         :name => "Pokedex",
         :description => "You can obtain a Pokemon twice in a Premier Ball floor.",
         :rarity => :UNCOMMON,
+        :towerexclusive => true,
     },
     # :POTIONOFFIRERESISTANCE => {
     #     :name => "Potion of Fire Resistance",
@@ -751,6 +765,7 @@ EMERADICT = {
         :rarity => :LEGENDARY,
         :tutormove => :ETERNABEAM,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DRAGON)},
+        :towerexclusive => true,
     },
     :WISHINGPIECE => {
         :name => "Wishing Piece",
@@ -835,6 +850,7 @@ def getEmeras
         rarity = values[:rarity]
         next if !raritylist.include?(rarity)
         next if getLooplet.obtainedemeras.include?(emera)
+        next if $PokemonGlobal.towervalues.nil? && values[:towerexclusive]
         emeralist[raritylist.index(rarity)].push(emera)
     end
     return emeralist

@@ -93,6 +93,8 @@ class PokemonGlobalMetadata
   attr_accessor :porygonchance
   attr_accessor :triplefusions
   attr_accessor :chestitemspulled
+  attr_accessor :looplet
+  attr_accessor :highestfloor
 
   attr_accessor :boat
   attr_accessor :acroBike

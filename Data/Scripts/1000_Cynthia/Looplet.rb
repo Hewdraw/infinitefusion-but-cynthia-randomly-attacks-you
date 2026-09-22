@@ -134,25 +134,11 @@ class PokemonLooplet_Scene
     @bag        = bag
     #pbRefreshFilter
     @sliderbitmap = AnimatedBitmap.new("Graphics/Pictures/Bag/icon_slider")
-    @pocketbitmap = AnimatedBitmap.new("Graphics/Pictures/Bag/icon_pocket")
     @sprites = {}
     @sprites["background"] = IconSprite.new(0,0,@viewport)
     @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
     pbSetSystemFont(@sprites["overlay"].bitmap)
     @sprites["bagsprite"] = IconSprite.new(30,20,@viewport)
-    # @sprites["pocketicon"] = BitmapSprite.new(186,32,@viewport)
-    # @sprites["pocketicon"].x = 0
-    # @sprites["pocketicon"].y = 224
-    # @sprites["leftarrow"] = AnimatedSprite.new("Graphics/Pictures/leftarrow",8,40,28,2,@viewport)
-    # @sprites["leftarrow"].x       = -4
-    # @sprites["leftarrow"].y       = 76
-    # @sprites["leftarrow"].visible = (!@choosing || numfilledpockets>1)
-    # @sprites["leftarrow"].play
-    # @sprites["rightarrow"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
-    # @sprites["rightarrow"].x       = 150
-    # @sprites["rightarrow"].y       = 76
-    # @sprites["rightarrow"].visible = (!@choosing || numfilledpockets>1)
-    # @sprites["rightarrow"].play
     @sprites["itemlist"] = Window_PokemonLooplet.new(@bag,168,-8,314,40+32+ITEMSVISIBLE*32)
     @sprites["itemlist"].viewport    = @viewport
     @sprites["itemlist"].index       = @bag.getChoice
@@ -191,7 +177,6 @@ class PokemonLooplet_Scene
     @oldsprites = nil
     pbDisposeSpriteHash(@sprites)
     @sliderbitmap.dispose
-    @pocketbitmap.dispose
     @viewport.dispose
   end
 
@@ -213,25 +198,13 @@ class PokemonLooplet_Scene
 
   def pbRefresh
     # Set the background image
-    @sprites["background"].setBitmap(sprintf("Graphics/Pictures/Bag/bg_1"))
+    @sprites["background"].setBitmap(sprintf("Graphics/Pictures/Bag/looplet_bg"))
     # Set the bag sprite
     @sprites["bagsprite"].setBitmap("Graphics/Pictures/Bag/Looplet_artwork_PSMD")
     @sprites["bagsprite"].zoom_x = 0.6
     @sprites["bagsprite"].zoom_y = 0.6
     @sprites["bagsprite"].y = 40
 
-    # # Draw the pocket icons
-    # @sprites["pocketicon"].bitmap.clear
-    # if @choosing && @filterlist
-    #   for i in 1...@bag.pockets.length
-    #     if @filterlist[i].length==0
-    #       @sprites["pocketicon"].bitmap.blt(6+(i-1)*22,6,
-    #          @pocketbitmap.bitmap,Rect.new((i-1)*20,28,20,20))
-    #     end
-    #   end
-    # end
-    # @sprites["pocketicon"].bitmap.blt(2+(@sprites["itemlist"].pocket-1)*22,2,
-    #    @pocketbitmap.bitmap,Rect.new((@sprites["itemlist"].pocket-1)*28,0,28,28))
     # Refresh the item window
     @sprites["itemlist"].refresh
     # Refresh more things
@@ -246,57 +219,17 @@ class PokemonLooplet_Scene
     pbDrawTextPositions(overlay,[
        [GameData::Item.get(getLoopletType).name,94,176,2,POCKETNAMEBASECOLOR,POCKETNAMESHADOWCOLOR]
     ])
-    # Draw slider arrows
-    # showslider = false
-    # if itemlist.top_row>0
-    #   overlay.blt(470,16,@sliderbitmap.bitmap,Rect.new(0,0,36,38))
-    #   showslider = true
-    # end
-    # if itemlist.top_item+itemlist.page_item_max<itemlist.itemCount
-    #   overlay.blt(470,228,@sliderbitmap.bitmap,Rect.new(0,38,36,38))
-    #   showslider = true
-    # end
-    # # Draw slider box
-    # if showslider
-    #   sliderheight = 174
-    #   boxheight = (sliderheight*itemlist.page_row_max/itemlist.row_max).floor
-    #   boxheight += [(sliderheight-boxheight)/2,sliderheight/6].min
-    #   boxheight = [boxheight.floor,38].max
-    #   y = 54
-    #   y += ((sliderheight-boxheight)*itemlist.top_row/(itemlist.row_max-itemlist.page_row_max)).floor
-    #   overlay.blt(470,y,@sliderbitmap.bitmap,Rect.new(36,0,36,4))
-    #   i = 0
-    #   while i*16<boxheight-4-18
-    #     height = [boxheight-4-18-i*16,16].min
-    #     overlay.blt(470,y+4+i*16,@sliderbitmap.bitmap,Rect.new(36,4,36,height))
-    #     i += 1
-    #   end
-    #   overlay.blt(470,y+boxheight-18,@sliderbitmap.bitmap,Rect.new(36,20,36,18))
-    # end
+    if getLoopletType != :UNLIMITEDLOOPLET
+      pbDrawTextPositions(overlay,[
+         ["#{getLooplet.getActiveCapacity} / #{getLooplet.getCapacity}",94,220,2,POCKETNAMEBASECOLOR,POCKETNAMESHADOWCOLOR]
+      ])
+    end
     # Set the selected item's icon
     @sprites["itemicon"].item = itemlist.item #todo
     # Set the selected item's description
     @sprites["itemtext"].text =
        (itemlist.item) ? EMERADICT[itemlist.item][:description] : _INTL("Close Looplet.")
   end
-
-  # def pbRefreshFilter
-  #   @filterlist = nil
-  #   return if !@choosing
-  #   return if @filterproc==nil
-  #   @filterlist = []
-  #   for i in 1...@bag.pockets.length
-  #     @filterlist[i] = []
-  #     for j in 0...@bag.pockets[i].length
-  #       @filterlist[i].push(j) if @filterproc.call(@bag.pockets[i][j][0])
-  #     end
-  #   end
-  # end
-
-  # def get_current_pocket
-  #   itemwindow = @sprites["itemlist"]
-  #   return @bag.pockets[itemwindow.pocket]
-  # end
 
   # Called when the item screen wants an item to be chosen from the screen
   def pbChooseItem
@@ -382,7 +315,7 @@ class PokemonLoopletScreen
       commands[cmdUse = commands.length]    = _INTL("Tutor Move") if EMERADICT[item][:tutormove]
       commands[cmdMisc = commands.length]     = _INTL(EMERADICT[item][:misccommand]) if EMERADICT[item][:misccommand]
       commands[cmdToggle = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item) && EMERADICT[item][:rarity] != :STARTER
-      commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item)
+      commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item) && canActivateEmera(item)
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
       commands[commands.length]                 = _INTL("Cancel")
       # Show commands generated above
@@ -439,6 +372,7 @@ class PokemonLoopletScreen
           $Trainer.party.each do |pkmn|
               pkmn.heal
           end
+          getLooplet.pbRemoveEmera(item)
           Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
         when :MOSSYROCK
           pbMessage("You ate the Moss from the Rock.")
@@ -544,8 +478,33 @@ class PokemonLooplet
     @emeras = sorted
   end
 
-  def getMaxActiveEmeras
-    return -1
+  def getCapacity
+    return LOOPLETS[getLoopletType()][:capacity]
+  end
+
+  def getActiveCapacity
+    activecapacity = 0
+    @activeemeras.each do |emera|
+      activecapacity += getEmeraCost(emera)
+    end
+    return activecapacity
+  end
+
+  def canActivateEmera(item)
+    return true if !$PokemonGlobal.towervalues.nil?
+    return getActiveCapacity + getEmeraCost(item) <= getCapacity()
+  end
+
+  def getEmeraCost(item)
+    raritycosts = {
+      :COMMON => 1,
+      :UNCOMMON => 2,
+      :RARE => 3,
+      :LEGENDARY => 4,
+    }
+    return EMERADICT[item][:cost] if EMERADICT[item][:cost]
+    return raritycosts[EMERADICT[item][:rarity]]if raritycosts[EMERADICT[item][:rarity]]
+    return 0
   end
 
   # Gets the index of the current selected item in the pocket
@@ -564,7 +523,7 @@ class PokemonLooplet
 
   def pbStoreEmera(item)
     @emeras.push(item)
-    @activeemeras.push(item)
+    @activeemeras.push(item) if canActivateEmera(item)
     @obtainedemeras.push(item)
   end
 
@@ -641,4 +600,22 @@ def getLooplet
   return nil if !getLoopletType
   $PokemonGlobal.looplet = PokemonLooplet.new if !$PokemonGlobal.looplet
   return $PokemonGlobal.looplet
+end
+
+def upgradeLooplet
+  LOOPLETS.each do |looplet, info|
+    next if looplet == :UNLIMITEDLOOPLET
+    next if $Trainer.numbadges < info[:badges]
+    break if $PokemonBag.pbHasItem?(looplet)
+    currentlooplet = getLoopletType()
+    if !currentlooplet
+      Kernel.pbMessage("You obtained the #{GameData::Item.get(looplet).name}")
+    else
+      $PokemonBag.pbDeleteItem(currentlooplet)
+      Kernel.pbMessage("Your Looplet upgraded to #{GameData::Item.get(looplet).name}")
+    end
+    $PokemonBag.pbStoreItem(looplet)
+    return true
+  end
+  return false
 end
