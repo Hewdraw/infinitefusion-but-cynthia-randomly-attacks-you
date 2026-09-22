@@ -37,14 +37,14 @@ class PokemonGameOption_Scene < PokemonOption_Scene
         "<icon=#{ICON_VISUALS}> " + _INTL("Sprites, Pokédex entries, etc.")
       )
 
-      options << ButtonOption.new(
-        _INTL("Challenge Options"),
-        proc {
-          @challenge_menu = true
-          openChallengeMenu()
-        },
-        "<icon=#{ICON_CHALLENGE}> " + _INTL("Set optional self-imposed challenges.")
-      )
+      # options << ButtonOption.new(
+      #   _INTL("Challenge Options"),
+      #   proc {
+      #     @challenge_menu = true
+      #     openChallengeMenu()
+      #   },
+      #   "<icon=#{ICON_CHALLENGE}> " + _INTL("Set optional self-imposed challenges.")
+      # )
 
       # if $game_switches[SWITCH_RANDOMIZED_AT_LEAST_ONCE]
       #   options << ButtonOption.new(

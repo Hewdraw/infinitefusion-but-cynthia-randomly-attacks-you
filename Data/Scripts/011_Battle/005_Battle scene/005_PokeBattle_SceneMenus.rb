@@ -425,6 +425,13 @@ class FightMenuDisplay < BattleMenuBase
 
   def refreshMoveData(move)
     # Write PP and type of the selected move
+    @infoOverlay.bitmap.clear
+    if !move
+      @visibility["typeIcon"] = false
+      return
+    end
+    @visibility["typeIcon"] = true
+    # Type icon
     moveType = move.type
     if @battler.hasActiveItem?(:DUBIOUSDISC) && @battler.pokemon.battlevariables[:dubiousdisc]
       @battler.moves.each_with_index do |battlermove, i|
@@ -433,23 +440,6 @@ class FightMenuDisplay < BattleMenuBase
       end
     end
     moveType = pbHiddenPower(@battler,@battler.pokemon.hiddenPowerType)[0] if move.function == "090"
-    if !USE_GRAPHICS
-      moveTypeName = GameData::Type.get(moveType).name
-      if move.total_pp<=0
-        @msgBox.text = _INTL("PP: ---<br>TYPE/{1}",moveTypeName)
-      else
-        @msgBox.text = _ISPRINTF("PP: {1: 2d}/{2: 2d}<br>TYPE/{3:s}",
-           move.pp,move.total_pp,moveTypeName)
-      end
-      return
-    end
-    @infoOverlay.bitmap.clear
-    if !move
-      @visibility["typeIcon"] = false
-      return
-    end
-    @visibility["typeIcon"] = true
-    # Type icon
     type_number = GameData::Type.get(moveType).id_number
     @typeIcon.src_rect.y = type_number * TYPE_ICON_HEIGHT
     # PP text

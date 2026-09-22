@@ -2397,6 +2397,10 @@ class PokeBattle_AI
             if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :GRASS
               multipliers[:attack_multiplier] *= 1.5
             end
+          when :STAKEOUT, :FEAR
+            if switchin == target
+              multipliers[:attack_multiplier] *= 2
+            end
           when :SWARM
             if (user.hp <= user.adjustedTotalhp / 3 || (target.pbSpeed > user.pbSpeed && user.hp / (100 / pbCynthiaGetThreat(user, target, false)[:highestDamage]) <= user.adjustedTotalhp / 3)) && type == :BUG
               multipliers[:attack_multiplier] *= 1.5

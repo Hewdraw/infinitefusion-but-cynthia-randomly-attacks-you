@@ -447,6 +447,7 @@ class PokeBattle_Battle
       next if !b.takesIndirectDamage?
       oldHP = b.hp
       dmg = (b.pbHasType?(:STEEL) || b.pbHasType?(:WATER)) ? b.totalhp/8 : b.totalhp/16
+      b.pbReduceHP(dmg,false)
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?

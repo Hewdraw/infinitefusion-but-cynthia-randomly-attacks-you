@@ -244,7 +244,6 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
   encounter_type = $PokemonEncounters.encounter_type
   return if !encounter_type
   return if !$PokemonEncounters.encounter_triggered?(encounter_type, repel_active) && !guarantee
-  return if $game_player.floating
   $PokemonTemp.encounterType = encounter_type
   encounter = generateWildEncounter(encounter_type)
 

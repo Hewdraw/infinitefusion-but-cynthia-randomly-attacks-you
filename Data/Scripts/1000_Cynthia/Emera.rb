@@ -735,7 +735,7 @@ EMERADICT = {
         :description => "Your Pokemon holding an Ogrepon Mask will gain the corresponding Embody Aspect on Switch in.",
         :rarity => :LEGENDARY,
         :tutormove => :IVYCUDGEL,
-        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:GRASS) || pokemon.hasType?(:WATER) || pokemon.hasType?(:FIRE) || pokemon.hasType?(:ROCK)},
+        :tutorcondition => -> (pokemon) {return true},
     },
     :TERACRYSTAL => {
         :name => "Tera Crystal",

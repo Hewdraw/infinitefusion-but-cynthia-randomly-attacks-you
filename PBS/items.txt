@@ -845,7 +845,7 @@
 854,TEACHYTV,Teachy TV,Teachy TVs,8,0,"Pocket Expert Move Tutor",5,0,6
 855,BADEGG,Bad Egg,Bad Eggs,8,0,"Not too important, not too unimportant.",2,0,0
 856,ROTOMCATALOG,Rotom Catalog,Rotom Catalogs,1,0,"All the prices are listed in sinnoh coins.",5,0,0
-857,ROCKIUMZPLUS,Rockium Z+,Rockium Z+s,1,0,"todo",0,0,0
+857,ROCKIUMZPLUS,Rockium Z+,Rockium Z+s,1,0,"a",0,0,0
 858,GOLDRIBBON,Gold Ribbon,Gold Ribbons,1,50000,"Tax Evasion.",0,0,0
 859,SANDYORB,Sandy Orb,Sandy Orbs,1,0,"a",0,0,0
 860,HEALRIBBON,Heal Ribbon,Heal Ribbons,1,0,"a",0,0,0
