@@ -3553,6 +3553,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
       break if metronomeMoveList.length >= metronomecount
     end
     metronomeMoveList.each do |move|
+      next if user.fainted?
       user.pbUseMoveSimple(move)
     end
   end

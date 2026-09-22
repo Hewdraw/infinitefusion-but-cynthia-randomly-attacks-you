@@ -187,7 +187,7 @@ SHADROSS_STOCK = {
   :SERIOUSMINT => {
     "badges" => 0,
     "cost" => 2,
-    "amount" => 1,
+    "amount" => 2,
   },
   :FIRESTONE => {
     "badges" => 1,
