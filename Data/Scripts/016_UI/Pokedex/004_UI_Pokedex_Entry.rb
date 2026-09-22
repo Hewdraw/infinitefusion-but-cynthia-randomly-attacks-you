@@ -693,8 +693,8 @@ class PokemonPokedexInfo_Scene
         @page = 3 if @page > 3
         pbPlayCursorSE if @page != oldpage
         dorefresh = true if @page != oldpage
-      # elsif Input.trigger?(Input::AUX2) && @page == 1
-      #   update_displayed_sprite(1)
+      elsif Input.trigger?(Input::AUX2) && @page == 1
+        update_displayed_sprite(1)
       # elsif Input.trigger?(Input::AUX1) && @page == 1
       #   update_displayed_sprite(-1)
       end
