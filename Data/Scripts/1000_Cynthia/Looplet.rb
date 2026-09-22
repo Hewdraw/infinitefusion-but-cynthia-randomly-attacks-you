@@ -315,7 +315,7 @@ class PokemonLoopletScreen
       commands[cmdUse = commands.length]    = _INTL("Tutor Move") if EMERADICT[item][:tutormove]
       commands[cmdMisc = commands.length]     = _INTL(EMERADICT[item][:misccommand]) if EMERADICT[item][:misccommand]
       commands[cmdToggle = commands.length]    = _INTL("Toggle off") if @bag.activeemeras.include?(item) && EMERADICT[item][:rarity] != :STARTER
-      commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item) && canActivateEmera(item)
+      commands[cmdToggle = commands.length]    = _INTL("Toggle on") if !@bag.activeemeras.include?(item) && getLooplet.canActivateEmera(item)
       commands[cmdSort = commands.length]        = _INTL("Sort bag")
       commands[commands.length]                 = _INTL("Cancel")
       # Show commands generated above
