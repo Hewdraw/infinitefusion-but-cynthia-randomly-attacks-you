@@ -1818,6 +1818,7 @@ def pbForceEvo(pokemon)
   newspecies = evolutions[rand(evolutions.length)][0]
   return false if newspecies == nil
   return false if newspecies == :OMNIMON
+  return false if newspecies == :DUDUDUNSPARCE && $PokemonGlobal.towervalues.nil?
   evo = PokemonEvolutionScene.new
   evo.pbStartScreen(pokemon, newspecies)
   evo.pbEvolution
