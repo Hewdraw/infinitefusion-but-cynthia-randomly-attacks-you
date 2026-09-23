@@ -1766,7 +1766,7 @@ class Pokemon
       @extraabilities.push(:WATERABSORB)
       if hasType?(:GRASS)
         @unteraTypes.push(:GRASS)
-        @unteraTypes.push(:ROCK) if hasType?(:WATER)
+        @unteraTypes.push(:WATER) if hasType?(:WATER)
       end
       @type1 = :WATER if @type1 == :GRASS
       @type2 = :WATER if @type2 == :GRASS

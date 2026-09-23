@@ -2578,6 +2578,11 @@ class PokeBattle_Move_177 < PokeBattle_Move
     return super
   end
 
+  def pbCalcTypeMod(moveType,user,target,tera=nil)
+    return Effectiveness::SUPER_EFFECTIVE if user.pokemon.unteraTypes.include?(:STELLAR) && target.isTerastallized?
+    return super
+  end
+
   def pbBaseDamage(baseDmg,user,target)
     if user.pokemon.unteraTypes != []
       if user.pokemon.unteraTypes.include?(:STELLAR)
