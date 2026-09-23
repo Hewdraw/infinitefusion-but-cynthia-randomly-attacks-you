@@ -97,12 +97,12 @@ class FusionTutorService
     compatibleMoves = []
     #normal moves
     if !includeLegendaries
-      compatibleMoves << :ATTACKORDER if is_fusion_of([:BEEDRILL])
+      compatibleMoves << :ATTACKORDER if is_fusion_of([:BEEDRILL, :VESPIQUEN])
       compatibleMoves << :FIRSTIMPRESSION if is_fusion_of([:SCYTHER, :SCIZOR, :PINSIR, :FARFETCHD, :TRAPINCH, :VIBRAVA, :FLYGON, :KABUTOPS, :ARMALDO])
       compatibleMoves << :POLLENPUFF if is_fusion_of([:BUTTERFREE, :CELEBI, :VILEPLUME, :PARASECT, :BRELOOM])
       compatibleMoves << :LUNGE if is_fusion_of([:SPINARAK, :ARIADOS, :JOLTIK, :GALVANTULA, :VENOMOTH, :VOLCARONA, :IRONMOTH, :SLITHERWING, :PINSIR, :PARASECT, :LEDIAN, :DODUO, :DODRIO, :STANTLER])
-      compatibleMoves << :DEFENDORDER if is_fusion_of([:BEEDRILL])
-      compatibleMoves << :HEALORDER if is_fusion_of([:BEEDRILL])
+      compatibleMoves << :DEFENDORDER if is_fusion_of([:BEEDRILL, :VESPIQUEN])
+      compatibleMoves << :HEALORDER if is_fusion_of([:BEEDRILL, :VESPIQUEN])
       compatibleMoves << :POWDER if is_fusion_of([:BUTTERFREE, :VENOMOTH, :VOLCARONA, :IRONMOTH, :SLITHERWING, :PARASECT, :BRELOOM])
       compatibleMoves << :TAILGLOW if is_fusion_of([:MAREEP, :FLAAFFY, :AMPHAROS, :LANTURN, :ZEKROM, :RESHIRAM])
       compatibleMoves << :DARKESTLARIAT if is_fusion_of([:SNORLAX, :REGIGIGAS, :POLIWRATH, :MACHAMP, :ELECTIVIRE, :DUSKNOIR, :SWAMPERT, :KROOKODILE, :GOLURK, :THEFORBIDDENONE])
