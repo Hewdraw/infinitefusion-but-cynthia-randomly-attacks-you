@@ -799,7 +799,7 @@
 778,FREEZINGGLARE,Freezing Glare,00D,90,PSYCHIC,Special,100,10,30,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 779,WAVECRASH,Wave Crash,0FB,120,WATER,Physical,100,10,0,NearOther,0,abef,"Nice Smeargle/Ditto, jackass."
 780,TOMBSTONER,TOMBSTONER,229,60,GHOST,Physical,100,15,50,NearOther,0,abef,"TOMBSTONER"
-781,EXPANDINGFORCE,Expanding Force,200,80,PSYCHIC,Special,100,10,0,AllNearFoes,0,bef,"The user attacks all opposing Pokémon with its psychic power. When the ground is Psychic Terrain, this move's power is boosted."
+781,EXPANDINGFORCE,Expanding Force,200,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks all opposing Pokémon with its psychic power. When the ground is Psychic Terrain, this move's power is boosted."
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
 783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,"ur stinky"
 784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"ur stinky" #TODO hazard clear
@@ -811,7 +811,7 @@
 790,FIRESPIT,Fire Spit,201,100,FIRE,Physical,85,10,20,AllNearFoes,0,bef,"ur stinky"
 791,QUASICONNECTIVITY,Quasi Connectivity,202,90,PSYCHIC,Physical,100,10,100,AllNearFoes,0,bef,"ur stinky" #todo
 792,REDSTONEDUSTER,Redstone Duster,105,65,ROCK,Physical,90,15,100,AllNearFoes,0,abef,"ur stinky" #todo
-793,MIKUMIKUBEAM,Miku Miku Beam!!!,203,140,ELECTRIC,Special,100,20,30,AllNearFoes,0,bef,"ur stinky" #todo
+793,MIKUMIKUBEAM,Miku Miku Beam!!!,203,140,ELECTRIC,Special,100,20,30,AllNearFoes,0,befk,"ur stinky" #todo
 794,TWINBEAMSLASH,Twin Beam Slash,204,70,FIRE,Physical,100,20,30,NearOther,0,befq,"ur stinky" #todo
 795,POWERUP,Power Up!,205,0,ELECTRIC,Status,0,5,0,User,0,,"ur stinky" #todo
 796,LEEK,Leek?!,206,0,GRASS,Status,0,40,0,NearOther,0,abef,"ur stinky" #todo

@@ -3028,6 +3028,11 @@ class PokeBattle_Move_199 < PokeBattle_Move
 end
 
 class PokeBattle_Move_200 < PokeBattle_Move
+  def pbTarget(user)
+    return GameData::Target.get(:AllNearFoes) if @battle.field.terrain == :Psychic
+    return super
+  end
+
   def pbBaseDamage(baseDmg,user,target)
     if @battle.field.terrain == :Psychic
       baseDmg *= 1.5
