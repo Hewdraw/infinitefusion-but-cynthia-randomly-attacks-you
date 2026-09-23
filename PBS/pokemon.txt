@@ -27085,7 +27085,7 @@ WildItemUncommon = BOOSTERENERGY
 
 
 #-------------------------------
-[102000]
+[1020000]
 Name = Vespiquen
 InternalName = VESPIQUEN
 Type1 = BUG
