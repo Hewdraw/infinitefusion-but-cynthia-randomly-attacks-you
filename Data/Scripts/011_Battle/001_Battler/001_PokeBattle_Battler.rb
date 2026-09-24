@@ -626,6 +626,7 @@ class PokeBattle_Battler
       end
     end
     return true if check_item.name[-3..-1] == "ite" && !["Eviolite", "Pyrite"].include?(check_item.name)
+    return true if check_item.name[-5..-1] == "ite Z" || check_item.name[-6..-1] == "ite ZZ"
     return true if check_item.name[-5..-1] == "ium Z"
     return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek", "Quick Powder", "Metal Powder", "God Orb", "Millennium Comet Shard", "Sinnoh Coin"].include?(check_item.name)
     # Other unlosable items
@@ -689,7 +690,7 @@ class PokeBattle_Battler
     return false if @battle.field.effects[PBEffects::Gravity] > 0
     return false if hasActiveEmera?(:HEAVYCORE)
     return true if pbHasType?(:FLYING) && @battle.field.effects[PBEffects::InverseRoom] == 0
-    return true if hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST, :AERILATEPLUS]) && !@battle.moldBreaker
+    return true if hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST, :LEVITATIONGUARD, :AERILATEPLUS]) && !@battle.moldBreaker
     return true if hasActiveItem?([:AIRBALLOON, :BUNDLEOFBALLOONS, :FLIGHTLESSWINGSUIT])
     return true if @effects[PBEffects::MagnetRise] > 0
     return true if @effects[PBEffects::Telekinesis] > 0

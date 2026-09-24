@@ -374,7 +374,7 @@ class Player < Trainer
   end
 
   def can_change_outfit()
-    return false if hasEmera?(:LUNARDIAL)
+    return false if !$PokemonGlobal.towervalues.nil?
     return true
   end
 

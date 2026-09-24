@@ -133,11 +133,11 @@ EMERADICT = {
         :rarity => :COMMON,
         :towerexclusive => true,
     },
-    # :FLASHLIGHT => {
-    #     :name => "Flashlight",
-    #     :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
-    #     :rarity => :COMMON,
-    # },
+    :FLASHLIGHT => {
+        :name => "Flashlight",
+        :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
+        :rarity => :COMMON,
+    },
     :FLOWERWREATH => {
         :name => "Flower Wreath",
         :description => "Your Fairy Pokemon gain Grass type benefits.",
@@ -341,9 +341,14 @@ EMERADICT = {
         :description => "Your Pokemon gain the Wonder Trade Ability.",
         :rarity => :UNCOMMON,
     },
-    # :HEAVYCLAY => {
-    #     :name => "Heavy Clay",
-    #     :description => "Activating Light Screen or Reflect now activates the other one as well.",
+    :HEAVYCLAY => {
+        :name => "Heavy Clay",
+        :description => "Effects that your Pokemon activate on the Field or a Side last 1 turn longer.",
+        :rarity => :UNCOMMON,
+    },
+    # :JACKOLANTERN => {
+    #     :name => "Jack O'Lantern",
+    #     :description => "Your Pokemons Will-O-Wisp cannot miss. Opposing Pokemon take twice as much burn damage.",
     #     :rarity => :UNCOMMON,
     # },
     :LIGHTNINGROD => {
@@ -361,11 +366,11 @@ EMERADICT = {
         :description => "Halves the likelyhood of additional effects occuring by opposing Pokemon.",
         :rarity => :UNCOMMON,
     },
-    # :TOPHAT => {
-    #     :name => "Top Hat",
-    #     :description => "Activates Magic Room at the start of the battle.",
-    #     :rarity => :UNCOMMON,
-    # },
+    :TOPHAT => {
+        :name => "Top Hat",
+        :description => "Activates Magic Room at the start of the battle.",
+        :rarity => :UNCOMMON,
+    },
     :MILOTICSCALE => {
         :name => "Milotic Scale",
         :description => "Your Pokemons Defense and Special Defense increase by 1.1x while they have a Status Condition.",
@@ -377,11 +382,11 @@ EMERADICT = {
         :rarity => :UNCOMMON,
         :misccommand => "Eat"
     },
-    # :PHANTOMMEMBRAME => {
-    #     :name => "Phantom Membrame",
-    #     :description => "Opposing Pokemon lose 1 Crit stage.",
-    #     :rarity => :UNCOMMON,
-    # },
+    :PHANTOMMEMBRAME => {
+        :name => "Phantom Membrame",
+        :description => "Opposing Pokemon lose 1 Crit stage.",
+        :rarity => :UNCOMMON,
+    },
     # :POCKETMETEOR => {
     #     :name => "Pocket Meteor",
     #     :description => "Your Pokemon gain Focus Energy when they lower their own Attack or Special Attack once per battle.",
@@ -449,11 +454,11 @@ EMERADICT = {
         :description => "Your Pokemon heal 1/4th HP when knocking out a Pokemon.",
         :rarity => :RARE,
     },
-    # :BAGOFTRICKS => {
-    #     :name => "Bag of Tricks",
-    #     :description => "Trick Room activates at the start of the battle.",
-    #     :rarity => :RARE,
-    # },
+    :BAGOFTRICKS => {
+        :name => "Bag of Tricks",
+        :description => "Trick Room activates at the start of the battle.",
+        :rarity => :RARE,
+    },
     :BUDDYSHIELD => {
         :name => "Buddy Shield",
         :description => "Your Pokemon gain the Friend Guard Ability.",
@@ -474,11 +479,11 @@ EMERADICT = {
         :description => "Opposing Pokemon heal 30% less HP.",
         :rarity => :RARE,
     },
-    # :FERMENTEDSPIDEREYE => {
-    #     :name => "Fermented Spider Eye",
-    #     :description => "Inverse Room activates at the start of the battle.",
-    #     :rarity => :RARE,
-    # },
+    :FERMENTEDSPIDEREYE => {
+        :name => "Fermented Spider Eye",
+        :description => "Inverse Room activates at the start of the battle.",
+        :rarity => :RARE,
+    },
     :GOLDENLEPPABERRY => {
         :name => "Golden Leppa Nut",
         :description => "Your Pokemon do not use PP half the time.",
@@ -648,7 +653,7 @@ EMERADICT = {
     #     :rarity => :LEGENDARY,
     #     :legendary => ["Mew"],
     #     :tutormove => :GENESISSUPERNOVA,
-    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:NORMAL)},
+    #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:PSYCHIC)},
     # },
     :MOONHEART => {
         :name => "Moon Heart",

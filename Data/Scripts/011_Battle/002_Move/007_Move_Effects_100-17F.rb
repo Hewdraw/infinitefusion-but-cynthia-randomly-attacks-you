@@ -659,7 +659,7 @@ class PokeBattle_Move_118 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    @battle.field.effects[PBEffects::Gravity] = 5
+    @battle.applyEffect(user, @battle.field, :Gravity, 5)
     @battle.pbDisplay(_INTL("Gravity intensified!"))
     @battle.eachBattler do |b|
       showMessage = false
@@ -869,7 +869,7 @@ class PokeBattle_Move_11F < PokeBattle_Move
       @battle.field.effects[PBEffects::TrickRoom] = 0
       @battle.pbDisplay(_INTL("{1} reverted the dimensions!", user.pbThis))
     else
-      @battle.field.effects[PBEffects::TrickRoom] = 5
+      @battle.applyEffect(user, @battle.field.effects, :TrickRoom, 5)
       @battle.pbDisplay(_INTL("{1} twisted the dimensions!", user.pbThis))
     end
   end
@@ -965,7 +965,7 @@ class PokeBattle_Move_124 < PokeBattle_Move
       @battle.field.effects[PBEffects::WonderRoom] = 0
       @battle.pbDisplay(_INTL("Wonder Room wore off, and the Defense and Sp. Def stats returned to normal!"))
     else
-      @battle.field.effects[PBEffects::WonderRoom] = 5
+      @battle.applyEffect(user, @battle.field.effects, :WonderRoom, 5)
       @battle.pbDisplay(_INTL("It created a bizarre area in which the Defense and Sp. Def stats are swapped!"))
     end
   end
@@ -1689,7 +1689,7 @@ class PokeBattle_Move_152 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    @battle.field.effects[PBEffects::FairyLock] = 2
+    @battle.applyEffect(user, user.pbOwnSide, :FairyLock, 2)
     @battle.pbDisplay(_INTL("No one will be able to run away during the next turn!"))
   end
 end
@@ -2186,11 +2186,7 @@ class PokeBattle_Move_167 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::AuroraVeil] = 5
-    user.pbOwnSide.effects[PBEffects::AuroraVeil] = 8 if user.hasActiveItem?(:LIGHTCLAY)
-    user.pbOwnSide.effects[PBEffects::AuroraVeil] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
-    @battle.pbDisplay(_INTL("{1} made {2} stronger against physical and special moves!",
-                            @name, user.pbTeam(true)))
+    @battle.applyEffect(user, user.pbOwnSide, :AuroraVeil, 5)
   end
 end
 
@@ -2836,31 +2832,15 @@ end
 
 class PokeBattle_Move_189 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
-    user.pbOwnSide.effects[PBEffects::LightScreen] = 5
-    user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
-    user.pbOwnSide.effects[PBEffects::LightScreen] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
-    @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
-    if user.hasActiveItem?(:LIGHTTABLE)
-      user.pbOwnSide.effects[PBEffects::Reflect] = 5
-      user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
-      user.pbOwnSide.effects[PBEffects::Reflect] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
-      @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
-    end
+    return if user.pbOwnSide[PBEffects::LightScreen] > 0
+    @battle.applyEffect(user, user.pbOwnSide, :LightScreen, 5)
   end
 end
 
 class PokeBattle_Move_190 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
-    user.pbOwnSide.effects[PBEffects::Reflect] = 5
-    user.pbOwnSide.effects[PBEffects::Reflect] = 8 if user.hasActiveItem?(:LIGHTCLAY)
-    user.pbOwnSide.effects[PBEffects::Reflect] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
-    @battle.pbDisplay(_INTL("{1} raised {2}'s Defense!",@name,user.pbTeam(true)))
-    if user.hasActiveItem?(:LIGHTTABLE)
-      user.pbOwnSide.effects[PBEffects::LightScreen] = 5
-      user.pbOwnSide.effects[PBEffects::LightScreen] = 8 if user.hasActiveItem?(:LIGHTCLAY)
-      user.pbOwnSide.effects[PBEffects::LightScreen] = 11 if user.hasActiveItem?(:LIGHTCLAY) && user.hasActiveAbility?(:HOLD)
-      @battle.pbDisplay(_INTL("{1} raised {2}'s Special Defense!",@name,user.pbTeam(true)))
-    end
+    return if user.pbOwnSide[PBEffects::Reflect] > 0
+    @battle.applyEffect(user, user.pbOwnSide, :Reflect, 5)
   end
 end
 
@@ -3127,6 +3107,12 @@ class PokeBattle_Move_202 < PokeBattle_Move
 end
 
 class PokeBattle_Move_203 < PokeBattle_ParalysisMove
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+      next if !b.canHeal?
+      b.pbRecoverHP(b.totalhp / 2)
+    end
+  end
 end
 
 class PokeBattle_Move_204 < PokeBattle_BurnMove
@@ -3194,6 +3180,8 @@ class PokeBattle_Move_206 < PokeBattle_Move
 end
 
 class PokeBattle_Move_207 < PokeBattle_Move
+  def pbAccuracyCheck(user,target); return true; end
+
   def pbInitialEffect(user,targets,hitNum)
     @battle.pbDisplay(_INTL("{1} surrounded itself with its Z-Power!",user.pbThis))
     user.zmove -= 1
@@ -4330,7 +4318,7 @@ class PokeBattle_Move_270 < PokeBattle_Move
     user.effects[PBEffects::HyperBeam] = 2
     user.currentMove = @id
     return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
-    user.pbOpposingSide.effects[PBEffects::GmaxWildfire] = 4
+    @battle.applyEffect(user, user.pbOwnSide, :GmaxWildfire, 4)
     @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end
@@ -4393,8 +4381,8 @@ class PokeBattle_Move_277 < PokeBattle_Move
   end
 
   def pbAdditionalEffect(user,target)
-    user.pbOwnSide.effects[PBEffects::Tailwind] = 4
     @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!", user.pbTeam(true)))
+    @battle.applyEffect(user, user.pbOwnSide, :Tailwind, 4)
   end
 end
 
@@ -5953,7 +5941,7 @@ class PokeBattle_Move_356 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
-    user.pbOpposingSide.effects[PBEffects::GmaxWildfire] = 4
+    @battle.applyEffect(user, user.pbOwnSide, :GmaxWildfire, 4)
     @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end
@@ -5962,8 +5950,8 @@ class PokeBattle_Move_357 < PokeBattle_Move
   def pbCritialOverride(user,target); return 1; end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Tailwind] = 4
     @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!", user.pbTeam(true)))
+    @battle.applyEffect(user, user.pbOwnSide, :Tailwind, 4)
   end
 end
 
@@ -6069,5 +6057,89 @@ class PokeBattle_Move_361 < PokeBattle_Move
     return if user.fainted?
     user.pbReduceHP(user.hp,false)
     user.pbItemHPHealCheck
+  end
+end
+
+class PokeBattle_Move_362 < PokeBattle_ParalysisMove
+  def pbBaseAccuracy(user, target)
+    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+    return super
+  end
+end
+
+class PokeBattle_Move_363 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPEED, 1]
+  end
+
+  def pbBaseAccuracy(user, target)
+    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+    return super
+  end
+end
+
+class PokeBattle_Move_364 < PokeBattle_BurnMove
+  def pbBaseAccuracy(user, target)
+    return 0 if [:Rain, :HeavyRain].include?(@battle.pbWeather)
+    return super
+  end
+end
+
+class PokeBattle_Move_365 < PokeBattle_Move_207
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 1.5 if @battle.pbWeather == :None && @battle.field.terrain == :None
+    return baseDmg
+  end
+
+  def pbEffectGeneral(user)
+    user.pokemon.originalform = user.pokemon.species
+    user.battle.pbMegaEvolve(user.index, true)
+  end
+end
+
+class PokeBattle_Move_366 < PokeBattle_Move
+  def initialize(battle, move)
+    super
+    @statUp = [:ATTACK, 3, :SPECIAL_ATTACK, 3]
+    @statDown = [:DEFENSE, 1, :SPECIAL_DEFENSE, 1]
+  end
+
+  def pbMoveFailed?(user, targets)
+    failed = true
+    for i in 0...@statUp.length / 2
+      if user.pbCanRaiseStatStage?(@statUp[i * 2], user, self)
+        failed = false; break
+      end
+    end
+    for i in 0...@statDown.length / 2
+      if user.pbCanLowerStatStage?(@statDown[i * 2], user, self)
+        failed = false; break
+      end
+    end
+    if failed
+      @battle.pbDisplay(_INTL("{1}'s stats can't be changed further!", user.pbThis))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    showAnim = true
+    for i in 0...@statDown.length / 2
+      next if !user.pbCanLowerStatStage?(@statDown[i * 2], user, self)
+      if user.pbLowerStatStage(@statDown[i * 2], @statDown[i * 2 + 1], user, showAnim)
+        showAnim = false
+      end
+    end
+    showAnim = true
+    for i in 0...@statUp.length / 2
+      next if !user.pbCanRaiseStatStage?(@statUp[i * 2], user, self)
+      if user.pbRaiseStatStage(@statUp[i * 2], @statUp[i * 2 + 1], user, showAnim)
+        showAnim = false
+      end
+    end
+    user.effects[PBEffects::FocusEnergy] += 1
+    battle.pbDisplay(_INTL("{1}'s critical rate increased!",b.pbThis))
   end
 end

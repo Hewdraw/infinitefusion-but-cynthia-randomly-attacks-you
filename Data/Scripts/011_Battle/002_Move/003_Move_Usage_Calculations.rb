@@ -226,10 +226,11 @@ class PokeBattle_Move
     if c>=0 && user.abilityActive?
       c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
     end
-    c = BattleHandlers.triggerCriticalCalcUserAbility(:EMERA,user,target,c) if c>=0
+    c = BattleHandlers.triggerCriticalCalcUserAbility(:EMERA,user,target,c) if c >= 0
     if c>=0 && target.abilityActive? && !@battle.moldBreaker
       c = BattleHandlers.triggerCriticalCalcTargetAbility(target.ability,target,user,c)
     end
+    c = BattleHandlers.triggerCriticalCalcTargetAbility(:EMERA,target,user,c) if c >= 0
     # Item effects that alter critical hit rate
     if c>=0 && user.itemActive?
       c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)

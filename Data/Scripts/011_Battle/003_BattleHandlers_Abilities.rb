@@ -1597,6 +1597,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:AURAGUARD,
 
 BattleHandlers::DamageCalcTargetAbility.copy(:AURAGUARD, :FLUFFYPLUS)
 
+BattleHandlers::DamageCalcTargetAbility.add(:LEVIATIONGUARD,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.5
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:FURCOAT,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 2 if move.physicalMove? || move.function == "122"   # Psyshock
@@ -3985,7 +3991,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
 BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWPLEDGE,
   proc { |ability,battler,battle|
     next if battler.pbOwnSide.effects[PBEffects::Rainbow] > 0
-    battler.pbOwnSide.effects[PBEffects::Rainbow] = 4
+    @battle.applyEffect(battler, battler.pbOwnSide, :Rainbow, 4)
     battle.pbDisplay(_INTL("A rainbow appeared in the sky on {1}'s side!",battler.pbTeam(true)))
     battle.pbCommonAnimation((battler.opposes?) ? "RainbowOpp" : "Rainbow")
   }

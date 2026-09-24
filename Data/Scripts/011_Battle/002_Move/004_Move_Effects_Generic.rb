@@ -702,19 +702,19 @@ class PokeBattle_PledgeMove < PokeBattle_Move
     case @comboEffect
     when :SeaOfFire   # Grass + Fire
       if user.pbOpposingSide.effects[PBEffects::SeaOfFire]==0
-        user.pbOpposingSide.effects[PBEffects::SeaOfFire] = 4
+        @battle.applyEffect(user, user.pbOwnSide, :SeaOfFire, 4)
         msg = _INTL("A sea of fire enveloped {1}!",user.pbOpposingTeam(true))
         animName = (user.opposes?) ? "SeaOfFire" : "SeaOfFireOpp"
       end
     when :Rainbow   # Fire + Water
       if user.pbOwnSide.effects[PBEffects::Rainbow]==0
-        user.pbOwnSide.effects[PBEffects::Rainbow] = 4
+        @battle.applyEffect(user, user.pbOwnSide, :Rainbow, 4)
         msg = _INTL("A rainbow appeared in the sky on {1}'s side!",user.pbTeam(true))
         animName = (user.opposes?) ? "RainbowOpp" : "Rainbow"
       end
     when :Swamp   # Water + Grass
       if user.pbOpposingSide.effects[PBEffects::Swamp]==0
-        user.pbOpposingSide.effects[PBEffects::Swamp] = 4
+        @battle.applyEffect(user, user.pbOwnSide, :Swamp, 4)
         msg = _INTL("A swamp enveloped {1}!",user.pbOpposingTeam(true))
         animName = (user.opposes?) ? "Swamp" : "SwampOpp"
       end

@@ -454,7 +454,7 @@ class PokeBattle_Move_01A < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Safeguard] = 5
+    @battle.applyEffect(user, user.pbOwnSide, :Safeguard, 5)
     @battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!", user.pbTeam))
   end
 end
@@ -1449,7 +1449,7 @@ class PokeBattle_Move_056 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Mist] = 5
+    @battle.applyEffect(user, user.pbOwnSide, :Mist, 5)
     @battle.pbDisplay(_INTL("{1} became shrouded in mist!", user.pbTeam))
   end
 end
@@ -1553,8 +1553,8 @@ class PokeBattle_Move_05B < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.pbOwnSide.effects[PBEffects::Tailwind] = 4
     @battle.pbDisplay(_INTL("The Tailwind blew from behind {1}!", user.pbTeam(true)))
+    @battle.applyEffect(user, user.pbOwnSide, :Tailwind, 4)
   end
 end
 

@@ -50,6 +50,13 @@ BattleHandlers::CriticalCalcUserAbility.add(:EMERA,
   }
 )
 
+BattleHandlers::CriticalCalcTargetAbility.add(:EMERA,
+  proc { |ability,target,user,c|
+    c -= 1 if target.hasActiveEmera?(:PHANTOMMEMBRAME)
+    next c
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:EMERA,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if target.hasActiveEmera?(:INDIEPROOF)
@@ -221,6 +228,27 @@ class PokeBattle_Battle
       getLooplet.emeravariables[:CHAOSEMERALD] = randomemera
       pbHideAbilitySplash(playerside[0])
     end
+    if hasEmera?(:TOPHAT)
+      playerside[0].tempability = EMERADICT[:TOPHAT][:name]
+      pbShowAbilitySplash(playerside[0])
+      applyEffect(playerside[0], @field.effects, :MagicRoom, 5)
+      @battle.pbDisplay(_INTL("The Top Hat created a bizarre area in which Pokémon's held items lose their effects!"))
+      pbHideAbilitySplash(playerside[0])
+    end
+    if hasEmera?(:BAGOFTRICKS) && @field.effects[PBEffects::TrickRoom] == 0
+      playerside[0].tempability = EMERADICT[:BAGOFTRICKS][:name]
+      pbShowAbilitySplash(playerside[0])
+      applyEffect(playerside[0], @field.effects, :TrickRoom, 5)
+      @battle.pbDisplay(_INTL("The Bag of Tricks twisted the dimensions!"))
+      pbHideAbilitySplash(playerside[0])
+    end
+    if hasEmera?(:FERMENTEDSPIDEREYE) && @field.effects[PBEffects::InverseRoom] == 0
+      playerside[0].tempability = EMERADICT[:FERMENTEDSPIDEREYE][:name]
+      pbShowAbilitySplash(playerside[0])
+      applyEffect(playerside[0], @field.effects, :InverseRoom, 5)
+      @battle.pbDisplay(_INTL("The Fermended Spider Eye inverted the battlefield!"))
+      pbHideAbilitySplash(playerside[0])
+    end
     if hasEmera?(:POTIONOFREGENERATION)
       playerside[0].tempability = EMERADICT[:POTIONOFREGENERATION][:name]
       pbShowAbilitySplash(playerside[0])
@@ -322,7 +350,7 @@ end
 
 def pbFloorEmeras
   if hasEmera?(:BERRYTREE)
-    itemlist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY, :SITRUSPAW, :BERSERKBERRY, :POWERNUT]
+    itemlist = [:CHERIBERRY, :CHESTOBERRY, :PECHABERRY, :RAWSTBERRY, :ASPEARBERRY, :LEPPABERRY, :ORANBERRY, :PERSIMBERRY, :LUMBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY, :OCCABERRY, :PASSHOBERRY, :WACANBERRY, :RINDOBERRY, :YACHEBERRY, :CHOPLEBERRY, :KEBIABERRY, :SHUCABERRY, :COBABERRY, :PAYAPABERRY, :TANGABERRY, :CHARTIBERRY, :KASIBBERRY, :HABANBERRY, :COLBURBERRY, :BABIRIBERRY, :CHILANBERRY, :LIECHIBERRY, :GANLONBERRY, :SALACBERRY, :PETAYABERRY, :APICOTBERRY, :LANSATBERRY, :STARFBERRY, :ENIGMABERRY, :MICLEBERRY, :CUSTAPBERRY, :JABOCABERRY, :ROWAPBERRY, :SITRUSPAW, :BERSERKBERRY, :BANANA]
     item = itemlist.sample
     $PokemonBag.pbStoreItem(item, 1)
   end
