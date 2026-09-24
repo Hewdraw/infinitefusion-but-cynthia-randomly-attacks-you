@@ -2832,14 +2832,14 @@ end
 
 class PokeBattle_Move_189 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
-    return if user.pbOwnSide[PBEffects::LightScreen] > 0
+    return if user.pbOwnSide.effects[PBEffects::LightScreen] > 0
     @battle.applyEffect(user, user.pbOwnSide, :LightScreen, 5)
   end
 end
 
 class PokeBattle_Move_190 < PokeBattle_Move
   def pbAdditionalEffect(user,target)
-    return if user.pbOwnSide[PBEffects::Reflect] > 0
+    return if user.pbOwnSide.effects[PBEffects::Reflect] > 0
     @battle.applyEffect(user, user.pbOwnSide, :Reflect, 5)
   end
 end
