@@ -9,41 +9,6 @@ end
 TIME_FOR_RANDOM_EVENTS = 60#3600 #1 hour
 
 
-## Extend pbTrainerBattle to call postTrainerBattleAction at the end of every trainer battle
-alias original_pbTrainerBattle pbTrainerBattle
-
-
-def pbTrainerBattle(trainerID, trainerName,endSpeech=nil,
-                    doubleBattle=false, trainerPartyID=0,
-                    canLose=false, outcomeVar=1,
-                    name_override = nil, trainer_type_overide = nil,
-                    event_id = nil, map_id = nil)
-  
-  trainer_data = pbLoadTrainerTemp(trainerID, trainerName, trainerPartyID)
-  displayPreBattleText(trainer_data)
-  map_id = $game_map.map_id
-  result = original_pbTrainerBattle(trainerID, trainerName, endSpeech,doubleBattle,trainerPartyID,
-                                    canLose, outcomeVar,name_override,trainer_type_overide,event_id,map_id)
-  updateRematchableTrainer(trainerID, trainerName, trainerPartyID, event_id, nil, map_id) if Settings::GAME_ID == :IF_HOENN
-  return result
-end
-
-def pbLoadTrainerTemp(tr_type, tr_name, tr_version = 0)
-  tr_type_data = GameData::TrainerType.try_get(tr_type)
-  raise _INTL("Trainer type {1} does not exist.", tr_type) if !tr_type_data
-  tr_type = tr_type_data.id
-  trainer_data = getTrainersDataMode.try_get(tr_type, tr_name, tr_version)
-  if !trainer_data
-    trainer_data = GameData::Trainer.try_get(tr_type, tr_name, tr_version)
-  end
-  if !trainer_data && [:CHAMPION_Sinnoh, :CREATOR_Minecraft].include?(tr_type) && tr_version > 0 #todo temporary
-    return pbLoadTrainer(tr_type,tr_name,tr_version - 1)
-  end
-  return (trainer_data) ? trainer_data : nil
-end
-
-
-
 def displayPreBattleText(trainer_data)
   if trainer_data.battleText && !trainer_data.battleText.empty? && @event_id
     messages = trainer_data.battle_text.split("<br>")
