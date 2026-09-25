@@ -1503,6 +1503,12 @@ BattleHandlers::DamageCalcUserAbility.add(:WATERBUBBLE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:DEVOTIONTOTHECREATOR,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2 if type == :GHOST
+  }
+)
+
 #===============================================================================
 # DamageCalcUserAllyAbility handlers
 #===============================================================================

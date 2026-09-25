@@ -73,6 +73,10 @@ class PokeBattle_Move
       ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if defType == :GROUND &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
+    if user.hasActiveAbility?(:DEVOTIONTOTHECREATOR)
+      ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if defType == :NORMAL &&
+                                                   Effectiveness.ineffective_type?(moveType, defType)
+    end
     if user.hasActiveEmera?(:DEFENDGLOBE)
       ret = Effectiveness::INEFFECTIVE if defType == :BUG && moveType == :FLYING
     end
