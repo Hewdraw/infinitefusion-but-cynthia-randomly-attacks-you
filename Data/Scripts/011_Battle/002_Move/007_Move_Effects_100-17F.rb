@@ -6347,3 +6347,17 @@ class PokeBattle_Move_373 < PokeBattle_Move_207
     end
   end
 end
+
+class PokeBattle_Move_374 < PokeBattle_Move_188
+  def pbEffectGeneral(user)
+    return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
+    @battle.applyEffect(user, user.pbOpposingSide, :GmaxWildfire, 4)
+    @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
+  end
+end
+
+class PokeBattle_Move_375 < PokeBattle_Move_188
+  def pbEffectGeneral(user)
+    @battle.applyEffect(user, user.pbOwnSide, :AuroraVeil, 5)
+  end
+end

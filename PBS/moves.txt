@@ -1106,6 +1106,8 @@
 1137,GREATWIDEWORLDICEBEAM,Great Wide World Ice Beam,372,240,ICE,Special,0,1,0,NearOther,0,fpz,"The target is struck with an icy-cold beam of energy. It may also freeze the target solid."
 1138,CHARGEBEAMPLUS,Charge Beam+,020,80,ELECTRIC,Special,100,10,100,NearOther,0,bef,"The user fires a concentrated bundle of electricity. It may also raise the user's Sp. Atk stat."
 1139,ENDLESSPOSIBILITIESEXTREMEEVOBOOST,Endless Posibilities Extreme Evoboost,373,0,NORMAL,Status,0,1,0,User,0,z,"Nice Smeargle/Ditto, jackass."
+1140,GMAXWILDFIRE,G-Max Wildfire,374,90,FIRE,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
+1141,GMAXRESONANCE,G-Max Resonance,375,90,ICE,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
 
 
 

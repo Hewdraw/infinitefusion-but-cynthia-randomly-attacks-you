@@ -252,6 +252,10 @@ class PokeBattle_Battle
       if tempspecies == :GMAXHATTERENEALCREMIE
         maxmoves[:FAIRY] = :GMAXSMITEFINALE
       end
+      if tempspecies == :GMAXB6H131
+        maxmoves[:FIRE] = :GMAXWILDFIRE
+        maxmoves[:ICE] = :GMAXRESONANCE
+      end
     end
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
