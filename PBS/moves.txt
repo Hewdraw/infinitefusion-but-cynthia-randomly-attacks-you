@@ -983,7 +983,7 @@
 1013,DOUBLESHOT,Double Shot,295,70,QMARKS,Physical,100,5,0,NearOther,0,bef,"Annihilates the opponent with successive shots of fire and ice from the WarGreymon and MetalGarurumon heads."
 1014,ULTIMATEUPPERCUT,Ultimate Uppercut,296,100,FIGHTING,Physical,70,5,0,NearOther,0,abefq,"Uses the Grey Sword to send the enemy in the air then repeatedly blasts them with the Garuru Cannon."
 1015,SWORDOFRUIN,Sword of Ruin,297,100,FIGHTING,Physical,70,5,0,NearOther,0,abefq,"Rends the air with its Grey Sword to produce a large explosion."
-1016,OMNIHOWLING,Omni Howling,298,0,QMARKS,Status,0,5,0,NearOther,0,cek,"Attacks with a howl that can shake the world."
+1016,OMNIHOWLING,Omni Howling,298,0,QMARKS,Status,0,5,0,User,0,cek,"Attacks with a howl that can shake the world."
 1017,OMNIBLAST,Omni Blast,299,150,QMARKS,Special,100,1,10,NearOther,0,ef,"Drops a bolt of lightning on the enemy."
 1018,POISONIVY,Poison Ivy,300,10,POISON,Special,100,15,30,NearOther,0,bef,"Entangles the opponent in ivy laced with a powerful toxin, completely paralyzing them."
 1019,PLANTSHOCK,Plant Shock,007,35,GRASS,Physical,100,25,30,NearOther,0,befh,"Attacks the enemy with ivy."
