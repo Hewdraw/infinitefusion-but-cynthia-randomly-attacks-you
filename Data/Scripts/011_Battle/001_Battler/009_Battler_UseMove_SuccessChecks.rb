@@ -8,7 +8,7 @@ class PokeBattle_Battler
   # move) or an unusable move may be called by another move such as Metronome.
   #=============================================================================
   def pbCanChooseMove?(move,commandPhase,showMessages=true,specialUsage=false)
-    case move.funtion
+    case move.function
     when "012", "174"
       if user.turnCount > 1
         if showMessages
