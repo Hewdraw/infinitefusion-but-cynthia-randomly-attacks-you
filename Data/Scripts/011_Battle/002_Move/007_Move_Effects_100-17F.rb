@@ -3629,7 +3629,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
     metronomecount = 2 if @id == :GREATERMETRONOME
     metronomecount = 3 if @id == :GREATESTMETRONOME
     metronomecount += 1 if user.hasActiveEmera?(:NOTEBLOCK)
-    metronomecount *= 2 if user.hasActiveItem?(:METRONAGA)
+    metronomecount += 1 if user.hasActiveItem?(:METRONAGA)
     move_keys = GameData::Move::DATA.keys
     # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
     #       a row. This is too unlikely to care about, though.
