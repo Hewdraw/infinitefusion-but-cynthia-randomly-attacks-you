@@ -357,7 +357,7 @@ class PokeBattle_Move
   def pbCalcDamageMultipliers(user,target,numTargets,type,baseDmg,multipliers)
     # Global abilities
     if (@battle.pbCheckGlobalAbility(:DARKAURA) && type == :DARK) ||
-       (@battle.pbCheckGlobalAbility(:FAIRYAURA) && type == :FAIRY)
+       (@battle.pbCheckGlobalAbility([:FAIRYAURA, :LEVITATIONAURA]) && type == :FAIRY)
       if @battle.pbCheckGlobalAbility(:AURABREAK)
         multipliers[:base_damage_multiplier] /= 4 / 3.0
       else

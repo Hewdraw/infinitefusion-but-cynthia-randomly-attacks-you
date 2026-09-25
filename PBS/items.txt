@@ -917,6 +917,7 @@
 926,LUCARIONITEZ,Lucarionite Z,Lucarionite Zs,1,0,"todo",0,0,0
 927,EELEKTROSSITE,Eelekstrossite,Eelekstrossites,1,0,"todo",0,0,0
 928,GARCARIONITEZZ,Garcarionite ZZ,Garcarionite ZZs,1,0,"todo",0,0,0
+929,FLOPHOXITE,Flophoxite,Flophoxites,1,0,"todo",0,0,0
 
 
 

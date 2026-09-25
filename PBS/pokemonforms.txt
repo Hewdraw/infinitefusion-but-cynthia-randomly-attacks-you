@@ -1861,3 +1861,11 @@ UnMegaForm = B296H299
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
+#-------------------------------
+[DELPHOXFLOETTEETERNAL,1]
+FormName = Flophox
+MegaStone = FLOPHOXITE
+UnMegaForm = DELPHOXFLOETTEETERNAL
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER

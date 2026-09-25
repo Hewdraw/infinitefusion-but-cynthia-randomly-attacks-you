@@ -6334,3 +6334,16 @@ class PokeBattle_Move_372 < PokeBattle_Move
     return baseDmg
   end
 end
+
+class PokeBattle_Move_373 < PokeBattle_Move_207
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+      user.pbRaiseStatStage(:ATTACK,2,user)
+      user.pbRaiseStatStage(:DEFENSE,2,user)
+      user.pbRaiseStatStage(:SPECIAL_ATTACK,2,user)
+      user.pbRaiseStatStage(:SPECIAL_DEFENSE,2,user)
+      user.pbRaiseStatStage(:SPEED,2,user)
+      user.pbRaiseStatStage(:ACCURACY,2,user)
+    end
+  end
+end

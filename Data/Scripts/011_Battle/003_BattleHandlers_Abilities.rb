@@ -3381,6 +3381,24 @@ BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELDPLUS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:LEAFSFULLONEFFORT,
+  proc { |ability,battler,battle|
+    next if battler.pokemon.battlevariables[:leafsfulloneffort]
+    battle.pbShowAbilitySplash(battler)
+    @battle.eachSameSideBattler(battler) do |b|
+      b.pbRaiseStatStage(:ATTACK,1,battler)
+      b.pbRaiseStatStage(:DEFENSE,1,battler)
+      b.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler)
+      b.pbRaiseStatStage(:SPECIAL_DEFENSE,1,battler)
+      b.pbRaiseStatStage(:SPEED,1,battler)
+      b.pbRaiseStatStage(:ACCURACY,1,battler)
+      b.pbRaiseStatStage(:EVASION,1,battler)
+    end
+    battle.pbHideAbilitySplash(battler)
+    battler.pokemon.battlevariables[:leafsfulloneffort] = true
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:DELTASTREAM,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:StrongWinds, battler, battle, true, false)
@@ -3520,7 +3538,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:FAIRYAURA,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:FAIRYAURA, :FAIRYAURAPLUS)
+BattleHandlers::AbilityOnSwitchIn.copy(:FAIRYAURA, :FAIRYAURAPLUS, :LEVITATIONAURA)
 
 BattleHandlers::AbilityOnSwitchIn.add(:FOREWARN,
   proc { |ability,battler,battle|

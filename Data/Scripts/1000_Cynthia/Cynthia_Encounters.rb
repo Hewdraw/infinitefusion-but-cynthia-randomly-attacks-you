@@ -153,8 +153,8 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
 
   if encounter_type[1] == "Hatsune Miku"
       encounter_id = numbadges
-      if encounter_id > 12 #temporary
-        encounter_id = 12
+      if encounter_id > 13 #temporary
+        encounter_id = 13
       end
   end
 

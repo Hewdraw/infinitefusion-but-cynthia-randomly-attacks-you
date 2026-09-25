@@ -2366,7 +2366,7 @@ class PokeBattle_AI
       }
 
       if ((@battle.pbCheckGlobalAbility(:DARKAURA) || (switchin && switchin.ability_id == :DARKAURA)) && type == :DARK) ||
-         ((@battle.pbCheckGlobalAbility(:FAIRYAURA) || (switchin && switchin.ability_id == :FAIRYAURA)) && type == :FAIRY)
+         ((@battle.pbCheckGlobalAbility([:FAIRYAURA, :LEVITATIONAURA]) || (switchin && [:FAIRYAURA, :LEVITATIONAURA].include?(switchin.ability_id))) && type == :FAIRY)
         if @battle.pbCheckGlobalAbility(:AURABREAK) || (switchin && switchin.ability_id == :AURABREAK)
           multipliers[:base_damage_multiplier] /= 4 / 3.0
         else

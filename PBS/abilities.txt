@@ -391,3 +391,6 @@
 507,TIMEFLOWSOVERHISUI,Time Flows over Hisui,"a"
 508,BECALMINGBEAUTY,Becalming Beauty,"a"
 509,STOPRIGHTTHERE,Stop Right There!,"a"
+510,LEAFSFULLONEFFORT,Leaf's Full-On Effort,"a"
+511,LEVITATIONAURA,Leviation Aura,"a"
+
