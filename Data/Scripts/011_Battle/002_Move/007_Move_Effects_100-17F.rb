@@ -3569,6 +3569,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
        "14A",   # Crafty Shield
        "14B",   # King's Shield
        "14C",   # Spiky Shield
+       "14E",
        "168",   # Baneful Bunker
        # Moves that call other moves
        "0AE",   # Mirror Move
@@ -6231,7 +6232,7 @@ class PokeBattle_Move_366 < PokeBattle_Move
       end
     end
     user.effects[PBEffects::FocusEnergy] += 1
-    battle.pbDisplay(_INTL("{1}'s critical rate increased!",b.pbThis))
+    battle.pbDisplay(_INTL("{1}'s critical rate increased!",user.pbThis))
   end
 end
 

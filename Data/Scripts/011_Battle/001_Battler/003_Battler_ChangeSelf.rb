@@ -48,9 +48,11 @@ class PokeBattle_Battler
   end
 
   def pbFaint(showMessage=true)
-    if self.hasActiveAbility?([:SACREDASHES, :BECALMINGBEAUTY], true) && !@pokemon.battlevariables[:sacredashes]
+    if self.hasActiveAbility?(:SACREDASHES, true) && !@pokemon.battlevariables[:sacredashes]
       @battle.pbShowAbilitySplash(self)
       pbRecoverHP(adjustedTotalhp / 2)
+      self.status      = :NONE
+      self.statusCount = 0
       @pokemon.battlevariables[:sacredashes] = true
       canSwitch = false
       @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
@@ -67,9 +69,32 @@ class PokeBattle_Battler
       @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
       return
     end
+    if self.hasActiveAbility?(:BECALMINGBEAUTY, true) && !@pokemon.battlevariables[:becalmingbeauty]
+      @battle.pbShowAbilitySplash(self)
+      pbRecoverHP(adjustedTotalhp)
+      self.status      = :NONE
+      self.statusCount = 0
+      @pokemon.battlevariables[:becalmingbeauty] = true
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(@index,i)
+        canSwitch = true
+        break
+      end
+      @battle.pbHideAbilitySplash(self)
+      return if !canSwitch
+      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
+      return if newPkmn<0
+      @battle.pbRecallAndReplace(@index, newPkmn)
+      @battle.pbClearChoice(@index)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
+      return
+    end
     if self.hasActiveItem?(:TOTEMOFUNDYING, true)
-      pbRecoverHP(@totalhp / 2)
       @battle.pbCommonAnimation("UseItem",self)
+      pbRecoverHP(@totalhp / 2)
+      self.status      = :NONE
+      self.statusCount = 0
       self.pbRemoveItem()
       canSwitch = false
       @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|

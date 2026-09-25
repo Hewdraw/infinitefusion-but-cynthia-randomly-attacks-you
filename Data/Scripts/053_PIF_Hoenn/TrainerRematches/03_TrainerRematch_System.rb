@@ -18,7 +18,7 @@ def pbTrainerBattle(trainerID, trainerName,endSpeech=nil,
                     canLose=false, outcomeVar=1,
                     name_override = nil, trainer_type_overide = nil,
                     event_id = nil, map_id = nil)
-  trainer_data = GameData::Trainer.get(trainerID,trainerName,trainerPartyID)
+  trainer_data = pbLoadTrainer(trainerID, trainerName, trainerPartyID)
   displayPreBattleText(trainer_data)
   map_id = $game_map.map_id
   result = original_pbTrainerBattle(trainerID, trainerName, endSpeech,doubleBattle,trainerPartyID,
