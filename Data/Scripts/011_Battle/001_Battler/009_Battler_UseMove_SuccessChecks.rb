@@ -10,7 +10,7 @@ class PokeBattle_Battler
   def pbCanChooseMove?(move,commandPhase,showMessages=true,specialUsage=false)
     case move.function
     when "012", "174"
-      if user.turnCount > 1
+      if @turnCount > 1
         if showMessages
           @battle.pbDisplay(_INTL("But it failed!"))
         end
