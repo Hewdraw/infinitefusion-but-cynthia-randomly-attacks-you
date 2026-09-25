@@ -615,7 +615,26 @@ def upgradeLooplet
       Kernel.pbMessage("Your Looplet upgraded to #{GameData::Item.get(looplet).name}")
     end
     $PokemonBag.pbStoreItem(looplet)
-    return true
+    break
   end
-  return false
+  debugEmeras
 end
+
+def debugEmeras
+    highestfloor = $PokemonGlobal.highestfloor || 0
+    return if highestfloor <= 10 || getLooplet.obtainedemeras.length > 0
+    floor = highestfloor
+    highestfloor = 0
+    TOWERREWARDS.each do |key, values|
+        break if floor <= values[:floor]
+        next if highestfloor > values[:floor] && values[:once]
+        string = "For beating #{values[:name]} on floor #{values[:floor]} "
+        string += "for the first time " if values[:once]
+        amount = values[:amount] || 1
+        string += "you obtained #{amount} Emera!"
+        Kernel.pbMessage(string)
+        for _ in 1..amount
+            grantRandomEmera(values[:emerarestriction])
+        end
+    end
+  end

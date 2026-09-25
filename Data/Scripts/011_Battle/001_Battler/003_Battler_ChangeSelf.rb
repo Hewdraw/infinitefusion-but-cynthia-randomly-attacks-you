@@ -48,7 +48,7 @@ class PokeBattle_Battler
   end
 
   def pbFaint(showMessage=true)
-    if self.hasActiveAbility?(:SACREDASHES, true) && !@pokemon.battlevariables[:sacredashes]
+    if self.hasActiveAbility?([:SACREDASHES, :BECALMINGBEAUTY], true) && !@pokemon.battlevariables[:sacredashes]
       @battle.pbShowAbilitySplash(self)
       pbRecoverHP(adjustedTotalhp / 2)
       @pokemon.battlevariables[:sacredashes] = true

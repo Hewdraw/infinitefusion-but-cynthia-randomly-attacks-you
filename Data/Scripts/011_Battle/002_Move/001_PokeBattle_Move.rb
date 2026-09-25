@@ -139,6 +139,9 @@ class PokeBattle_Move
   def protectPenalty?;    return @flags[/p/]; end
   def slicingMove?;       return @flags[/q/]; end
 
+  def maxMove?;       return @flags[/x/]; end
+  def zMove?;       return @flags[/z/]; end
+
 
   # Causes perfect accuracy (param=1) and double damage (param=2).
   def tramplesMinimize?(_param=1); return false; end

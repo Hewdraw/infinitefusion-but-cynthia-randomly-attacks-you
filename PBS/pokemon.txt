@@ -20457,7 +20457,61 @@ Abilities = ADAPTABILITY
 HiddenAbility = ADAPTABILITY
 Moves = 1,TACKLE
 Shape = Head
-
+#-------------------------------
+[1000210]
+Name = Lucaurus
+InternalName = MEGATHUNDURUSLUCARIO
+Type1 = FIGHTING
+Type2 = FLYING
+BaseStats = 73,125,76,111,135,73
+GenderRate = Female50Percent
+Abilities = ADAPTABILITY
+HiddenAbility = ADAPTABILITY
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000211]
+Name = Garchomp
+InternalName = MEGAGARCHOMPZ
+Type1 = DRAGON
+Type2 = GROUND
+BaseStats = 108,130,85,151,141,85
+Abilities = LEVITATE
+HiddenAbility = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000212]
+Name = Lucario
+InternalName = MEGALUCARIOZ
+Type1 = FIGHTING
+Type2 = STEEL
+BaseStats = 108,130,85,151,141,85
+Abilities = AURAGUARD
+HiddenAbility = AURAGUARD
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000213]
+Name = Eelektross
+InternalName = MEGAEELEKTROSS
+Type1 = ELECTRIC
+BaseStats = 85,145,80,80,135,90
+Abilities = EELEVATE
+HiddenAbility = EELEVATE
+Moves = 1,TACKLE
+Shape = Head
+#------------------------------- #no sprite
+[1000214]
+Name = Garcario
+InternalName = MEGAGARCARIOZZ
+Type1 = DRAGON
+Type2 = STEEL
+BaseStats = 95,110,75,151,148,80
+Abilities = LEVITATIONGUARD
+HiddenAbility = LEVITATIONGUARD
+Moves = 1,TACKLE
+Shape = Head
 
 
 #Cynthia Teras
@@ -20665,6 +20719,57 @@ Name = Thundceon
 InternalName = GLACEONTHUNDURUSELECTRIC
 Type1 = ELECTRIC
 BaseStats = 74,78,96,80,126,85
+GenderRate = Female50Percent
+Abilities = DROUGHT
+HiddenAbility = DROUGHT
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000264]
+Name = Landeon
+InternalName = JOLTEONLANDORUSGRASS
+Type1 = GRASS
+BaseStats = 81,85,70,120,113,85
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000265]
+Name = Garchomp
+InternalName = MEGAGARCHOMPZFIRE
+Type1 = FIRE
+BaseStats = 108,130,85,151,141,85
+Abilities = LEVITATE
+HiddenAbility = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000266]
+Name = Lucario
+InternalName = MEGALUCARIOZFLYING
+Type1 = FLYING
+BaseStats = 108,130,85,151,141,85
+Abilities = AURAGUARD
+HiddenAbility = AURAGUARD
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000267]
+Name = Eelektross
+InternalName = MEGAEELEKTROSSELECTRIC
+Type1 = ELECTRIC
+BaseStats = 85,145,80,80,135,90
+Abilities = EELEVATE
+HiddenAbility = EELEVATE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000268]
+Name = Lickinine
+InternalName = HARCANINELICKILICKYROCK
+Type1 = ROCK
+BaseStats = 105,105,85,76,85,90
 GenderRate = Female50Percent
 Abilities = DROUGHT
 HiddenAbility = DROUGHT
@@ -21380,6 +21485,149 @@ Abilities = DROUGHT
 HiddenAbility = DROUGHT
 Moves = 1,TACKLE
 Shape = Head
+#-------------------------------
+[1000359]
+Name = Lucaurus
+InternalName = THUNDURUSLUCARIO
+Type1 = FIGHTING
+Type2 = FLYING
+BaseStats = 73,113,70,104,118,73
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000360]
+Name = Miloviary
+InternalName = BRAVIARYMILOTIC
+Type1 = WATER
+Type2 = FLYING
+BaseStats = 96,102,76,80,85,108
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000361]
+Name = Landeon
+InternalName = JOLTEONLANDORUS
+Type1 = GROUND
+Type2 = ELECTRIC
+BaseStats = 81,85,70,120,113,85
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000362]
+Name = Poryus
+InternalName = TORNADUSPORYGONZ
+Type1 = NORMAL
+Type2 = FLYING
+BaseStats = 83,103,70,104,131,76
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000363]
+Name = Thundtic
+InternalName = MILOTICTHUNDURUS
+Type1 = ELECTRIC
+Type2 = WATER
+BaseStats = 84,78,76,91,116,95
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#------------------------------- #no sprite
+[1000364]
+Name = Bravchomp
+InternalName = GARCHOMPBRAVIARY
+Type1 = FLYING
+Type2 = GROUND
+BaseStats = 102,127,88,94,64,78
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000365]
+Name = Landreon
+InternalName = FLAREONLANDORUSTHERIAN
+Type1 = GROUND
+Type2 = FIRE
+BaseStats = 81,135,70,73,101,90
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000366]
+Name = Raymorus
+InternalName = ENAMORUSRAYQUAZA
+Type1 = DRAGON
+Type2 = FLYING
+BaseStats = 94,126,76,102,145,86
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000367]
+Name = Landchomp
+InternalName = GARCHOMPLANDORUSTHERIAN
+Type1 = GROUND
+Type2 = DRAGON
+BaseStats = 95,135,93,98,96,81
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000368]
+Name = Tornadcario
+InternalName = LUCARIOTORNADUSTHERIAN
+Type1 = FLYING
+Type2 = STEEL
+BaseStats = 76,106,73,100,111,83
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000369]
+Name = Landfeon
+InternalName = LEAFEONLANDORUSTHERIAN
+Type1 = GROUND
+Type2 = GRASS
+BaseStats = 81,121,116,93,90,75
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#-------------------------------
+[1000370]
+Name = Sylmorus
+InternalName = ENAMORUSSYLVEON
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 88,98,68,90,118,113
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+#------------------------------- #no sprite
+[1000371]
+Name = Giramo-o
+InternalName = KOMMOOGIRATINAORIGIN
+Type1 = GHOST
+Type2 = FIGHTING
+BaseStats = 125,113,116,86,113,101
+Abilities = SANDFORCE
+HiddenAbility = SANDFORCE
+Shape = BipedalTail
+Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
 
 
 

@@ -3739,7 +3739,7 @@ class PokeBattle_Move_0F9 < PokeBattle_Move
       @battle.field.effects[PBEffects::MagicRoom] = 0
       @battle.pbDisplay(_INTL("The area returned to normal!"))
     else
-      @battle.applyEffect(user, @battle.field.effects, :MagicRoom, 5)
+      @battle.applyEffect(user, @battle.field, :MagicRoom, 5)
       @battle.pbDisplay(_INTL("It created a bizarre area in which Pokémon's held items lose their effects!"))
     end
   end

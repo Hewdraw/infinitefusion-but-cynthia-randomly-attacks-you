@@ -1512,7 +1512,7 @@ HiddenAbility = SHARPNESS
 #-------------------------------
 [GARCHOMP,2]
 FormName = Mega Garchomp Z
-MegaStone = MEGASTONEITE
+MegaStone = GARCHOMPITEZ
 Type1 = DRAGON
 Type2 = DRAGON
 BaseStats = 108,130,85,151,141,85
@@ -1521,7 +1521,7 @@ HiddenAbility = LEVITATE
 #-------------------------------
 [LUCARIO,2]
 FormName = Mega Lucario Z
-MegaStone = MEGASTONEITE
+MegaStone = LUCARIONITEZ
 BaseStats = 70,100,70,151,164,70
 Abilities = AURAGUARD
 HiddenAbility = AURAGUARD
@@ -1603,6 +1603,13 @@ BaseStats = 75,150,175,40,70,120
 Abilities = TOUGHCLAWS
 HiddenAbility = TOUGHCLAWS
 #-------------------------------
+[EELEKTROSS,1]
+FormName = Mega Eelektross
+MegaStone = EELEKTROSSITE
+BaseStats = 85,145,80,80,135,90
+Abilities = EELEVATE
+HiddenAbility = EELEVATE
+#-------------------------------
 [MAGEARNA,1]
 FormName = Mega Magearna
 MegaStone = MEGASTONEITE
@@ -1626,7 +1633,7 @@ HiddenAbility = HUGEPOWER
 #-------------------------------
 [B296H299,1]
 FormName = Mega Garcario
-MegaStone = LUCACHOMPITE
+MegaStone = GARCARIONITE
 UnMegaForm = B296H299
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
@@ -1828,6 +1835,22 @@ HiddenAbility = HUGEPOWER
 FormName = Mega Sablewile
 MegaStone = SABLWILITE
 UnMegaForm = B300H421
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+#-------------------------------
+[THUNDURUSLUCARIO,1]
+FormName = Mega Lucaurus
+MegaStone = LUCARIONITE
+UnMegaForm = THUNDURUSLUCARIO
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+#-------------------------------
+[B296H299,2]
+FormName = Mega Garcario ZZ
+MegaStone = GARCARIONITEZZ
+UnMegaForm = B296H299
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER

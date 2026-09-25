@@ -1398,6 +1398,8 @@ BattleHandlers::DamageCalcUserAbility.add(:ORICHALCUMPULSE,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.copy(:ORICHALCUMPULSE, :TIMEFLOWSOVERHISUI)
+
 BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if target.damageState.critical
@@ -1639,6 +1641,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:ICESCALES,
 BattleHandlers::DamageCalcTargetAbility.add(:MARVELSCALE,
   proc { |ability,target,user,move,mults,baseDmg,type|
     if target.pbHasAnyStatus? && move.physicalMove?
+      mults[:defense_multiplier] *= 1.5
+    end
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:BECALMINGBEAUTY,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    if target.pbHasAnyStatus?
       mults[:defense_multiplier] *= 1.5
     end
   }
@@ -2553,7 +2563,7 @@ BattleHandlers::UserAbilityOnHit.add(:FRISKPLUS,
     next if battle.pbRandom(100)>=30
     next if target.damageState.unaffected || target.damageState.substitute
     next if !target.item || target.unlosableItem?(target.item)
-    next if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !@battle.moldBreaker
+    next if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !battle.moldBreaker
     battle.pbShowAbilitySplash(user)
     itemName = target.itemName
     target.pbRemoveItem(false)
@@ -2712,6 +2722,14 @@ BattleHandlers::UserAbilityEndOfMove.add(:EARTHEATERPLUS,
     end
   }
 )
+
+BattleHandlers::UserAbilityEndOfMove.add(:TIMEFLOWSOVERHISUI,
+  proc { |ability,user,targets,move,battle|
+    next if !move.zMove?
+    pbBattleWeatherAbility(:Sun, battler, battle)
+  }
+)
+
 
 
 #===============================================================================
@@ -3233,7 +3251,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DEATH,
 
 BattleHandlers::AbilityOnSwitchIn.add(:WONDERGUARD,
   proc { |ability,battler,battle|
-    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR]) && $PokemonSystem.aicontrolplayer == 1
+    if battler.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR, :STOPRIGHTTHERE]) && $PokemonSystem.aicontrolplayer == 1
       battler.hp = 0
       battle.pbDisplayBrief(_INTL("{1} fainted by Intentional Game Design!",battler.pbThis))
       battler.pbFaint(false)
@@ -3431,6 +3449,15 @@ BattleHandlers::AbilityOnSwitchIn.copy(:DROUGHT,:ORICHALCUMPULSE)
 BattleHandlers::AbilityOnSwitchIn.add(:DROUGHTPLUS,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:Sun, battler, battle, false, false)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TIMEFLOWSOVERHISUI,
+  proc { |ability,battler,battle|
+    next if [:Sun, :HarshSun].include?(battle.pbWeather)
+    next if battler.pokemon.battlevariables[:timeflowsoverhisui]
+    pbBattleWeatherAbility(:Sun, battler, battle)
+    battler.pokemon.battlevariables[:timeflowsoverhisui] = true
   }
 )
 
@@ -3841,6 +3868,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:SNOWWWARNING,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:STOPRIGHTTHERE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler,GameData::Ability.get(ability).real_name)
+    if ![:Snow, :Hail].include?(battle.pbWeather) && !battler.pokemon.battlevariables[:stoprightthere]
+      pbBattleWeatherAbility(:Snow, battler, battle)
+      battler.pokemon.battlevariables[:stoprightthere] = true
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:SUPREMEOVERLORD,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
@@ -3991,7 +4030,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
 BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWPLEDGE,
   proc { |ability,battler,battle|
     next if battler.pbOwnSide.effects[PBEffects::Rainbow] > 0
-    @battle.applyEffect(battler, battler.pbOwnSide, :Rainbow, 4)
+    battle.applyEffect(battler, battler.pbOwnSide, :Rainbow, 4)
     battle.pbDisplay(_INTL("A rainbow appeared in the sky on {1}'s side!",battler.pbTeam(true)))
     battle.pbCommonAnimation((battler.opposes?) ? "RainbowOpp" : "Rainbow")
   }

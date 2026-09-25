@@ -788,16 +788,17 @@ class PokeBattle_Battler
     # Show move animation (for this hit)
     animationid = move.id
     animationid = animationid.to_s.chomp("PLUS").to_sym if animationid.to_s[-4..-1] == "PLUS"
-    if animationid == :THESKELETONAPPEARS
+    case animationid
+    when :THESKELETONAPPEARS
       pbSEPlay("SkeletonGuitar")
       animationid = :SCARYFACE
-    end
-    if animationid == :MIKUMIKUBEAM
+    when :MIKUMIKUBEAM
       pbSEPlay("MIKUMIKUBEAM")
       animationid = :HYPERBEAM
-    end
-    if animationid == :CATASTROPHEDAY
+    when :CATASTROPHEDAY
       animationid = :EXPLOSION
+    when :KNIFE
+      animationid = :CUT
     end
     move.pbShowAnimation(animationid, user, targets, hitNum)
     # Type-boosting Gem consume animation/message

@@ -10,7 +10,7 @@ class PokeBattle_Battle
             end
         when :LightScreen
             pbDisplay(_INTL("{1}'s Special Defense is raised by the Light Screen!", user.pbTeam(true)))
-            if !recurison && user.hasActiveItem?(:LIGHTTABLE)
+            if !recursion && user.hasActiveItem?(:LIGHTTABLE)
                 applyEffect(user, target, :Reflect, duration, true)
             end
             if user.hasActiveItem?(:LIGHTCLAY) && duration.is_a?(Integer)
@@ -19,7 +19,7 @@ class PokeBattle_Battle
             end
         when :Reflect
             pbDisplay(_INTL("{1}'s Defense is raised by the Reflect!", user.pbTeam(true)))
-            if !recurison && user.hasActiveItem?(:LIGHTTABLE)
+            if !recursion && user.hasActiveItem?(:LIGHTTABLE)
                 applyEffect(user, target, :LightScreen, duration, true)
             end
             if user.hasActiveItem?(:LIGHTCLAY) && duration.is_a?(Integer)

@@ -912,7 +912,11 @@
 921,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
 922,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
 923,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"todo",0,0,0
-924,LUCACHOMPITE,Lucachompite,Lucachompites,1,0,"todo",0,0,0
+924,GARCARIONITE,Garcarionite,Garcarionites,1,0,"todo",0,0,0
+925,GARCHOMPITEZ,Garchompite Z,Garchompite Zs,1,0,"todo",0,0,0
+926,LUCARIONITEZ,Lucarionite Z,Lucarionite Zs,1,0,"todo",0,0,0
+927,EELEKTROSSITE,Eelekstrossite,Eelekstrossites,1,0,"todo",0,0,0
+928,GARCARIONITEZZ,Garcarionite ZZ,Garcarionite ZZs,1,0,"todo",0,0,0
 
 
 

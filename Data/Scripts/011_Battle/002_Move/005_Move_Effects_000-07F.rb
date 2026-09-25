@@ -2281,7 +2281,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
       return true
     end
-    if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR]) && !@battle.moldBreaker
+    if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR, :STOPRIGHTTHERE]) && !@battle.moldBreaker
       @battle.pbShowAbilitySplash(target)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))

@@ -869,7 +869,7 @@ class PokeBattle_Move_11F < PokeBattle_Move
       @battle.field.effects[PBEffects::TrickRoom] = 0
       @battle.pbDisplay(_INTL("{1} reverted the dimensions!", user.pbThis))
     else
-      @battle.applyEffect(user, @battle.field.effects, :TrickRoom, 5)
+      @battle.applyEffect(user, @battle.field, :TrickRoom, 5)
       @battle.pbDisplay(_INTL("{1} twisted the dimensions!", user.pbThis))
     end
   end
@@ -965,7 +965,7 @@ class PokeBattle_Move_124 < PokeBattle_Move
       @battle.field.effects[PBEffects::WonderRoom] = 0
       @battle.pbDisplay(_INTL("Wonder Room wore off, and the Defense and Sp. Def stats returned to normal!"))
     else
-      @battle.applyEffect(user, @battle.field.effects, :WonderRoom, 5)
+      @battle.applyEffect(user, @battle.field, :WonderRoom, 5)
       @battle.pbDisplay(_INTL("It created a bizarre area in which the Defense and Sp. Def stats are swapped!"))
     end
   end
@@ -2768,10 +2768,10 @@ class PokeBattle_Move_188 < PokeBattle_Move
     return highestpower + 10 - (highestpower % 10)
   end
 
-  def pbAdditionalEffect(user,target)
-    case type
+  def pbEffectGeneral(user)
+    case @type
     when :NORMAL
-      @battle.eachSameSideBattler(target) do |b|
+      @battle.eachOtherSideBattler(user) do |b|
         b.pbLowerStatStage(:SPEED,1,user)
       end
     when :FIGHTING
@@ -2793,11 +2793,11 @@ class PokeBattle_Move_188 < PokeBattle_Move
     when :ROCK
       @battle.pbStartWeather(user,:Sandstorm,true,false)
     when :BUG
-      @battle.eachSameSideBattler(target) do |b|
+      @battle.eachOtherSideBattler(user) do |b|
         b.pbLowerStatStage(:SPECIAL_ATTACK,1,user)
       end
     when :GHOST
-      @battle.eachSameSideBattler(target) do |b|
+      @battle.eachOtherSideBattler(user) do |b|
         b.pbLowerStatStage(:DEFENSE,1,user)
       end
     when :STEEL
@@ -2817,15 +2817,105 @@ class PokeBattle_Move_188 < PokeBattle_Move
     when :ICE
       @battle.pbStartWeather(user,:Hail,true,false)
     when :DRAGON
-      @battle.eachSameSideBattler(target) do |b|
+      @battle.eachOtherSideBattler(user) do |b|
         b.pbLowerStatStage(:ATTACK,1,user)
       end
     when :DARK
-      @battle.eachSameSideBattler(target) do |b|
+      @battle.eachOtherSideBattler(user) do |b|
         b.pbLowerStatStage(:SPECIAL_DEFENSE,1,user)
       end
     when :FAIRY
       @battle.pbStartTerrain(user, :Misty)
+    when :SOUND
+      @battle.eachOtherSideBattler(user) do |b|
+        b.pbLowerStatStage(:EVASION,1,user)
+      end
+      if user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+        user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+        @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
+      end
+      if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0
+        user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+        @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", user.pbOpposingTeam))
+      end
+      if user.pbOpposingSide.effects[PBEffects::Reflect] > 0
+        user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+        @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", user.pbOpposingTeam))
+      end
+      if user.pbOpposingSide.effects[PBEffects::Mist] > 0
+        user.pbOpposingSide.effects[PBEffects::Mist] = 0
+        @battle.pbDisplay(_INTL("{1}'s Mist faded!", user.pbOpposingTeam))
+      end
+      if user.pbOpposingSide.effects[PBEffects::Safeguard] > 0
+        user.pbOpposingSide.effects[PBEffects::Safeguard] = 0
+        @battle.pbDisplay(_INTL("{1} is no longer protected by Safeguard!!", user.pbOpposingTeam))
+      end
+      if user.pbOpposingSide.effects[PBEffects::StealthRock] ||
+          user.pbOwnSide.effects[PBEffects::StealthRock]
+        user.pbOpposingSide.effects[PBEffects::StealthRock] = false
+        user.pbOwnSide.effects[PBEffects::StealthRock] = false
+        @battle.pbDisplay(_INTL("{1} blew away stealth rocks!", user.pbThis))
+      end
+      if user.pbOpposingSide.effects[PBEffects::Spikes] > 0 ||
+          user.pbOwnSide.effects[PBEffects::Spikes] > 0
+        user.pbOpposingSide.effects[PBEffects::Spikes] = 0
+        user.pbOwnSide.effects[PBEffects::Spikes] = 0
+        @battle.pbDisplay(_INTL("{1} blew away spikes!", user.pbThis))
+      end
+      if user.pbOpposingSide.effects[PBEffects::ToxicSpikes] > 0 ||
+          user.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
+        user.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+        user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+        @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
+      end
+      if user.pbOpposingSide.effects[PBEffects::FlameSpikes] > 0 ||
+          user.pbOwnSide.effects[PBEffects::FlameSpikes] > 0
+        user.pbOpposingSide.effects[PBEffects::FlameSpikes] = 0
+        user.pbOwnSide.effects[PBEffects::FlameSpikes] = 0
+        @battle.pbDisplay(_INTL("{1} blew away flame spikes!", user.pbThis))
+      end
+      if user.pbOpposingSide.effects[PBEffects::FrostSpikes] > 0 ||
+          user.pbOwnSide.effects[PBEffects::FrostSpikes] > 0
+        user.pbOpposingSide.effects[PBEffects::FrostSpikes] = 0
+        user.pbOwnSide.effects[PBEffects::FrostSpikes] = 0
+        @battle.pbDisplay(_INTL("{1} blew away frost spikes!", user.pbThis))
+      end
+      if user.pbOpposingSide.effects[PBEffects::ChargeStones] ||
+          user.pbOwnSide.effects[PBEffects::ChargeStones]
+        user.pbOpposingSide.effects[PBEffects::ChargeStones] = false
+        user.pbOwnSide.effects[PBEffects::ChargeStones] = false
+        @battle.pbDisplay(_INTL("{1} blew away charge stones!", user.pbThis))
+      end
+      if user.pbOpposingSide.effects[PBEffects::StickyWeb] ||
+          user.pbOwnSide.effects[PBEffects::StickyWeb]
+        user.pbOpposingSide.effects[PBEffects::StickyWeb] = false
+        user.pbOwnSide.effects[PBEffects::StickyWeb] = false
+        @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
+      end
+    if @battle.field.terrain != :None
+      case @battle.field.terrain
+      when :Electric
+        @battle.pbDisplay(_INTL("The electricity disappeared from the battlefield."))
+      when :Grassy
+        @battle.pbDisplay(_INTL("The grass disappeared from the battlefield."))
+      when :Misty
+        @battle.pbDisplay(_INTL("The mist disappeared from the battlefield."))
+      when :Psychic
+        @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
+      end
+      @battle.field.terrain = :None
+    end
+    when :GUN
+      if user.pbOpposingSide.effects[PBEffects::Spikes] < 3
+        user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+        @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+                                user.pbOpposingTeam(true)))
+      end
+    when :QMARKS
+      @battle.eachOtherSideBattler(user) do |b|
+        b.pbResetStatStages
+      end
+      @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", user.pbOpposingTeam))
     end
   end
 end
@@ -3110,6 +3200,7 @@ class PokeBattle_Move_203 < PokeBattle_ParalysisMove
   def pbEffectGeneral(user)
     @battle.eachSameSideBattler(user) do |b|
       next if !b.canHeal?
+      next if b == user
       b.pbRecoverHP(b.totalhp / 2)
     end
   end
@@ -3303,14 +3394,14 @@ class PokeBattle_Move_212 < PokeBattle_Move_188
     return (target.totalhp/6.0).round
   end
 
-  def pbAdditionalEffect(user,target)
+  def pbEffectGeneral(user)
     @battle.eachSameSideBattler(user) do |b|
       next if b.hp==b.adjustedTotalhp
       amt = pbHealAmount(b)
       b.pbRecoverHP(amt)
       @battle.pbDisplay(_INTL("{1}'s HP was restored.",b.pbThis))
     end
-    @battle.eachSameSideBattler(target) do |b|
+    @battle.eachOtherSideBattler(user) do |b|
       return if !b.pbCanConfuse?(user,false,self)
       b.pbConfuse
     end
@@ -6141,5 +6232,104 @@ class PokeBattle_Move_366 < PokeBattle_Move
     end
     user.effects[PBEffects::FocusEnergy] += 1
     battle.pbDisplay(_INTL("{1}'s critical rate increased!",b.pbThis))
+  end
+end
+
+class PokeBattle_Move_367 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    return true if !user.pbCanRaiseStatStage?(:ATTACK, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:DEFENSE, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:SPEED, user, self, true)
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    user.pbRaiseStatStage(:ATTACK,2,user)
+    user.pbRaiseStatStage(:DEFENSE,2,user)
+    user.pbRaiseStatStage(:SPEED,1,user) if [:Sun, :HarshSun].include?(@battle.pbWeather)
+  end
+end
+
+class PokeBattle_Move_368 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:ACCURACY, 1]
+  end
+
+  def pbEffectGeneral(user)
+    @battle.eachSameSideBattler(user) do |b|
+      statArray = []
+      GameData::Stat.each_battle do |s|
+        statArray.push(s.id) if b.pbCanRaiseStatStage?(s.id, user, self)
+      end
+      return if statArray.length == 0
+      stat = statArray[@battle.pbRandom(statArray.length)]
+      b.pbRaiseStatStage(stat, 1, user)
+      end
+  end
+end
+
+class PokeBattle_Move_369 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    return true if !user.pbCanRaiseStatStage?(:DEFENSE, user, self, true) &&
+    !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user, self, true) &&
+    user.effects[PBEffects::AquaRing] &&
+    !user.pbCanBurn?(user,true,self,true)
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    user.pbRaiseStatStage(:DEFENSE,1,user)
+    user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+    user.effects[PBEffects::AquaRing] = true
+    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+    user.pbBurn(user)
+  end
+end
+
+class PokeBattle_Move_370 < PokeBattle_Move
+  def healingMove?
+    return true;
+  end
+
+  def pbCalcDamage(user, target, numTargets = 1)
+    if target.hasRaisedStatStages?
+      pbShowAnimation(@id, user, target, 1) # Stat stage-draining animation
+      @battle.pbDisplay(_INTL("{1} stole the target's boosted stats!", user.pbThis))
+      showAnim = true
+      GameData::Stat.each_battle do |s|
+        next if target.stages[s.id] <= 0
+        if user.pbCanRaiseStatStage?(s.id, user, self)
+          if user.pbRaiseStatStage(s.id, target.stages[s.id], user, showAnim)
+            showAnim = false
+          end
+        end
+        target.stages[s.id] = 0
+      end
+    end
+    super
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.hpLost <= 0
+    hpGain = (target.damageState.hpLost * 0.4).round
+    user.pbRecoverHPFromDrain(hpGain, target)
+  end
+end
+
+class PokeBattle_Move_371 < PokeBattle_FreezeMove
+  def pbAdditionalEffect(user, target)
+    super if @battle.pbRandom(100) < pbAdditionalEffectChance(user, target, 20)
+    target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user) if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self) && !target.damageState.substitute
+    @battle.eachSameSideBattler(user) do |b|
+      b.pbRaiseStatStage(:SPEED,1,user)
+    end
+  end
+end
+
+class PokeBattle_Move_372 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    baseDmg *= 1.5 if [:Hail, :Snow].include?(@battle.pbWeather)
+    return baseDmg
   end
 end

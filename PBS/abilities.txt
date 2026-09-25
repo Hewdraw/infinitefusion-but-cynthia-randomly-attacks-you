@@ -386,3 +386,8 @@
 502,SCALEBREAKER,Scale Breaker,"a"
 503,AURAGUARD,Aura Guard,"a"
 504,THERMALEXCHANGE,Thermal Exchange,"todo"
+505,LEVITATIONGUARD,Levitation Guard,"a"
+506,DEVOTIONTOTHECREATOR,Devotion to the Creator,"a"
+507,TIMEFLOWSOVERHISUI,Time Flows over Hisui,"a"
+508,BECALMINGBEAUTY,Becalming Beauty,"a"
+509,STOPRIGHTTHERE,Stop Right There!,"a"
