@@ -4410,7 +4410,7 @@ class PokeBattle_Move_270 < PokeBattle_Move
     user.effects[PBEffects::HyperBeam] = 2
     user.currentMove = @id
     return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
-    @battle.applyEffect(user, user.pbOwnSide, :GmaxWildfire, 4)
+    @battle.applyEffect(user, user.pbOpposingSide, :GmaxWildfire, 4)
     @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end
@@ -6033,7 +6033,7 @@ class PokeBattle_Move_356 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     return if user.pbOpposingSide.effects[PBEffects::GmaxWildfire] > 0
-    @battle.applyEffect(user, user.pbOwnSide, :GmaxWildfire, 4)
+    @battle.applyEffect(user, user.pbOpposingSide, :GmaxWildfire, 4)
     @battle.pbDisplay("The opposing Pokemon were surrounded by fire!")
   end
 end

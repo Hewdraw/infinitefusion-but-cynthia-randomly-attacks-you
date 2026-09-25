@@ -2131,6 +2131,8 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "223"
       score = 15 + rand(50) + rand(50) + rand(50)
+    when "366", "367", "369"
+      score = 200
     end
     effectchance = 100
     if move.addlEffect > 0
