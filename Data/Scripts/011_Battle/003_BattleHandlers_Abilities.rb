@@ -3385,7 +3385,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:LEAFSFULLONEFFORT,
   proc { |ability,battler,battle|
     next if battler.pokemon.battlevariables[:leafsfulloneffort]
     battle.pbShowAbilitySplash(battler)
-    @battle.eachSameSideBattler(battler) do |b|
+    battle.eachSameSideBattler(battler) do |b|
       b.pbRaiseStatStage(:ATTACK,1,battler)
       b.pbRaiseStatStage(:DEFENSE,1,battler)
       b.pbRaiseStatStage(:SPECIAL_ATTACK,1,battler)
