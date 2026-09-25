@@ -20501,7 +20501,7 @@ Abilities = EELEVATE
 HiddenAbility = EELEVATE
 Moves = 1,TACKLE
 Shape = Head
-#------------------------------- #no sprite
+#-------------------------------
 [1000214]
 Name = Garcario
 InternalName = MEGAGARCARIOZZ
@@ -21540,7 +21540,7 @@ Abilities = SANDFORCE
 HiddenAbility = SANDFORCE
 Shape = BipedalTail
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
-#------------------------------- #no sprite
+#-------------------------------
 [1000364]
 Name = Bravchomp
 InternalName = GARCHOMPBRAVIARY
@@ -21617,7 +21617,7 @@ Abilities = SANDFORCE
 HiddenAbility = SANDFORCE
 Shape = BipedalTail
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
-#------------------------------- #no sprite
+#-------------------------------
 [1000371]
 Name = Giramo-o
 InternalName = KOMMOOGIRATINAORIGIN

@@ -1610,6 +1610,13 @@ BaseStats = 85,145,80,80,135,90
 Abilities = EELEVATE
 HiddenAbility = EELEVATE
 #-------------------------------
+[DRAGALGE,1]
+FormName = Mega Dragalge
+MegaStone = MEGASTONEITE
+BaseStats = 65,85,105,44,132,163
+Abilities = REGENERATOR
+HiddenAbility = REGENERATOR
+#-------------------------------
 [MAGEARNA,1]
 FormName = Mega Magearna
 MegaStone = MEGASTONEITE
