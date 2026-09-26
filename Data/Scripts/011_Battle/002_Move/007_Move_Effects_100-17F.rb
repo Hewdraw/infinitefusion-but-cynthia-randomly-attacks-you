@@ -3569,6 +3569,7 @@ class PokeBattle_Move_223 < PokeBattle_Move
        "14A",   # Crafty Shield
        "14B",   # King's Shield
        "14C",   # Spiky Shield
+       "14D"
        "14E",
        "168",   # Baneful Bunker
        # Moves that call other moves
