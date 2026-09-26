@@ -10580,7 +10580,7 @@ Pokemon = DARKRAI,5
     Happiness = 255
     Ball = PREMIERBALL
 
-[Non_Skeleton_Dev,Hewdraw,0]
+[Dragon_Dev,Hewdraw,0]
 Pokemon = ALOLANINETALES,75
     Offset = 0
     Moves = AURORAVEIL,MOONBLAST,BLIZZARD,FREEZEDRY
@@ -10649,7 +10649,7 @@ Pokemon = MAWILESHINY,75
     Happiness = 255
     Ball = PREMIERBALL
 
-[Non_Skeleton_Dev,Hewdraw,1]
+[Dragon_Dev,Hewdraw,1]
 Pokemon = ALOLAVULPIX,5
     Offset = 0
     Moves = AURORAVEIL,MOONBLAST,BLIZZARD,FREEZEDRY
@@ -10719,7 +10719,7 @@ Pokemon = MAWILESHINY,5
     Happiness = 255
     Ball = PREMIERBALL
 
-[Non_Skeleton_Dev,Hewdraw,2]
+[Dragon_Dev,Hewdraw,2]
 Pokemon = ALOLANINETALES,5
     Offset = 0
     Shiny = TRUE
@@ -10865,7 +10865,7 @@ Pokemon = HYDRAPPLEALOLAEXEGGUTOR,5
     Happiness = 255
     Ball = PREMIERBALL
 
-[Non_Skeleton_Dev,Hewdraw,3]
+[Dragon_Dev,Hewdraw,3]
 Pokemon = JOLTEONANINETALES,5
     Offset = 0
     Moves = AURORAVEIL,VOLTSWITCH,BLIZZARD,SAPPYSEED
@@ -10936,7 +10936,7 @@ Pokemon = MAWILESHINY,5
     Happiness = 255
     Ball = PREMIERBALL
 
-[Non_Skeleton_Dev,Hewdraw,4]
+[Dragon_Dev,Hewdraw,4]
 Pokemon = B273H113,5
     Offset = 0
     Moves = SPIKES,TOXIC,FACADE,STEALTHROCK
@@ -11005,7 +11005,7 @@ Pokemon = B500H196,5
     Happiness = 255
     Ball = PREMIERBALL
 
-[Non_Skeleton_Dev,Hewdraw,5]
+[Dragon_Dev,Hewdraw,5]
 Pokemon = PALMON,5
     Offset = -4
     Moves = NIOIKOUGEKI,POISONIVY,LEECHSEED,SYNTHESIS

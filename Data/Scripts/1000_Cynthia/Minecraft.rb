@@ -71,7 +71,7 @@ def getEventList()
         ["Creeper", 1, lambda {pbLegendaryBattle("Creeper")}],
         ["Thunder Stone and 1 Creeper", 1, lambda {pbLegendaryBattle("Charged Creeper")}],
         ["Max Repel", 1, lambda {pbRepel(:MAXREPEL, 250)}],
-        ["Hewdraw", 1, lambda {pbTrainerBattle(:Non_Skeleton_Dev, "Hewdraw")}],
+        ["Hewdraw", 1, lambda {pbTrainerBattle(:Dragon_Dev, "Hewdraw")}],
         ["Shadross", 1, lambda {pbTrainerBattle(:Skeleton_Dev, "Shadross")}],
         ["Hatsune Miku", 1, lambda {pbEncounterCynthia(encounter_type = [:CHAMPION_Sinnoh, "Cynthia"], [:CREATOR_Minecraft, "Hatsune Miku"], false, 1)}],
     ]

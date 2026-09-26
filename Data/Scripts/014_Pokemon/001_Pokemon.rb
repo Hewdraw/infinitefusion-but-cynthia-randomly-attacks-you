@@ -1996,7 +1996,7 @@ class Pokemon
       when :HAWLUCHA
         @owner = Owner.new(0, "Prof. Claire", 1, 2)
       else
-        @owner = Owner.new(0, "Hewdraw", 0, 2)
+        @owner = Owner.new(0, "Hewdraw", 1, 2)
       end
     elsif owner.is_a?(Owner)
       @owner = owner
