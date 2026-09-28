@@ -603,7 +603,7 @@ class PokemonLoadScreen
 
       # commands[cmd_discord = commands.length] = _INTL("Discord")
       # commands[cmd_wiki = commands.length] = _INTL("Wiki")
-      commands[cmd_savefile = commands.length] = _INTL("Savefile management") if show_continue
+      # commands[cmd_savefile = commands.length] = _INTL("Savefile management") if show_continue
       commands[cmd_debug = commands.length] = _INTL("Debug") if $DEBUG
       commands[cmd_quit = commands.length] = _INTL("Quit Game")
       cmd_left = -3
