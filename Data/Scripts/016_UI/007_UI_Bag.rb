@@ -548,7 +548,11 @@ class PokemonBagScreen
         if qty>0
           itemname = itm.name_plural if qty>1
           if pbConfirm(_INTL("Is it OK to throw away {1} {2}?",qty,itemname))
-            pbDisplay(_INTL("Threw away {1} {2}.",qty,itemname))
+            if item == :EGG
+              pbDisplay("What Egg?")
+            else
+              pbDisplay(_INTL("Threw away {1} {2}.",qty,itemname))
+            end
             qty.times { @bag.pbDeleteItem(item) }
             @scene.pbRefresh
           end

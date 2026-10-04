@@ -964,7 +964,11 @@ ItemHandlers::UseOnPokemon.add(:RARECANDY, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:LEGENDARYCANDY, proc { |item, pkmn, scene|
-  $PokemonGlobal.cynthiachance += 1 if $PokemonGlobal.towervalues.nil?
+  if !$PokemonGlobal.towervalues.nil?
+    pbChangeLevel(pkmn, getCurrentLevelCap(), scene)
+    next false
+  end
+  $PokemonGlobal.cynthiachance += 1
   if !(can_use_rare_candy(pkmn))
     if pkmn.level > getCurrentLevelCap()
       pbChangeLevel(pkmn, pkmn.level - 1, scene)

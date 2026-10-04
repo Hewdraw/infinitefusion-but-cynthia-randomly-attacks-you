@@ -77,7 +77,7 @@ class PokeBattle_Move
       ret = Effectiveness::NOT_VERY_EFFECTIVE_ONE if defType == :NORMAL &&
                                                    Effectiveness.ineffective_type?(moveType, defType)
     end
-    if user.hasActiveEmera?(:DEFENDGLOBE)
+    if target.hasActiveEmera?(:DEFENDGLOBE)
       ret = Effectiveness::INEFFECTIVE if defType == :BUG && moveType == :FLYING
     end
     return ret
@@ -560,7 +560,7 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] /= 2.0
     end
     # Drowsy
-    if target.status == :SLEEP && !(target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE) || target.hasActiveAbility?([:TRUEEYE, :GUTSPLUS]))
+    if target.status == :SLEEP && !(((target.pbHasMove?(:SLEEPTALK) || target.pbHasMove?(:SNORE)) && !target.hasActiveEmera?([:STICKYKEY, :KEY])) || target.hasActiveAbility?([:TRUEEYE, :GUTSPLUS]))
       multipliers[:final_damage_multiplier] *= 4.0/3.0
     end
     # Aurora Veil, Reflect, Light Screen

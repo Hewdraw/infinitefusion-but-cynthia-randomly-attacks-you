@@ -80,7 +80,7 @@ GameData::Evolution.register({
   :id            => :LevelDay,
   :parameter     => Integer,
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.level >= parameter && PBDayNight.isDay?
+    next pkmn.level >= parameter && (PBDayNight.isDay? || !$PokemonGlobal.towervalues.nil?)
   }
 })
 
@@ -88,7 +88,7 @@ GameData::Evolution.register({
   :id            => :LevelNight,
   :parameter     => Integer,
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.level >= parameter && PBDayNight.isNight?
+    next pkmn.level >= parameter && (PBDayNight.isNight? || !$PokemonGlobal.towervalues.nil?)
   }
 })
 
@@ -96,7 +96,7 @@ GameData::Evolution.register({
   :id            => :LevelMorning,
   :parameter     => Integer,
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.level >= parameter && PBDayNight.isMorning?
+    next pkmn.level >= parameter && (PBDayNight.isMorning? || !$PokemonGlobal.towervalues.nil?)
   }
 })
 
@@ -104,7 +104,7 @@ GameData::Evolution.register({
   :id            => :LevelAfternoon,
   :parameter     => Integer,
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.level >= parameter && PBDayNight.isAfternoon?
+    next pkmn.level >= parameter && (PBDayNight.isAfternoon? || !$PokemonGlobal.towervalues.nil?)
   }
 })
 
@@ -112,7 +112,7 @@ GameData::Evolution.register({
   :id            => :LevelEvening,
   :parameter     => Integer,
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.level >= parameter && PBDayNight.isEvening?
+    next pkmn.level >= parameter && (PBDayNight.isEvening? || !$PokemonGlobal.towervalues.nil?)
   }
 })
 
