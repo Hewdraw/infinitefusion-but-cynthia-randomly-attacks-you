@@ -4152,8 +4152,7 @@ class PokeBattle_Move_252 < PokeBattle_Move
 
   def pbMoveFailed?(user, targets)
     if user.effects[PBEffects::Ingrain] ||
-      user.effects[PBEffects::SmackDown] ||
-      user.effects[PBEffects::MagnetRise] > 0
+      user.effects[PBEffects::SmackDown]
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -4161,21 +4160,8 @@ class PokeBattle_Move_252 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::MagnetRise] = 5
-    @battle.pbDisplay(_INTL("{1} levitated with electromagnetism!", user.pbThis))
-  end
-
-  def pbFailsAgainstTarget?(user,target)
-    return false if damagingMove?
-    if target.effects[PBEffects::MeanLook]>=0
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    if Settings::MORE_TYPE_EFFECTS && target.pbHasType?(:GHOST)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
-      return true
-    end
-    return false
+    user.effects[PBEffects::MagnetRise] = 1000
+    @battle.pbDisplay(_INTL("{1} levitated!", user.pbThis))
   end
 
   def pbAdditionalEffect(user,target)

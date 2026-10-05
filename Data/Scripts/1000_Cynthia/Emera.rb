@@ -133,11 +133,11 @@ EMERADICT = {
         :rarity => :COMMON,
         :towerexclusive => true,
     },
-    :FLASHLIGHT => {
-        :name => "Flashlight",
-        :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
-        :rarity => :COMMON,
-    },
+    # :FLASHLIGHT => {
+    #     :name => "Flashlight",
+    #     :description => "Your Pokemon with Illuminate lower the Accuracy of all opponents when it switches in or uses Flash.",
+    #     :rarity => :COMMON,
+    # },
     :FLOWERWREATH => {
         :name => "Flower Wreath",
         :description => "Your Fairy Pokemon gain Grass type benefits.",
