@@ -1108,6 +1108,7 @@
 1139,ENDLESSPOSIBILITIESEXTREMEEVOBOOST,Endless Posibilities Extreme Evoboost,373,0,NORMAL,Status,0,1,0,UserAndAllies,0,z,"Nice Smeargle/Ditto, jackass."
 1140,GMAXWILDFIRE,G-Max Wildfire,374,90,FIRE,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
 1141,GMAXRESONANCE,G-Max Resonance,375,90,ICE,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
+1142,BODYPRESSPLUS,Body Press+,178,100,DARK,Physical,100,5,0,NearOther,0,abef,"youre lucky this move is easy to add."
 
 
 

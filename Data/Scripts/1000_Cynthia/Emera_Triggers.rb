@@ -144,9 +144,10 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
     if user.hasActiveEmera?(:LEPPAJUICE)
       targets.each do |b|
         next if !b.damageState.fainted
+        next if !user.moves.include?(move)
         user.tempability = EMERADICT[:LEPPAJUICE][:name]
         battle.pbShowAbilitySplash(user)
-        move.pp = [move.total_pp, move.pp + (move.pp / 5)].max()
+        move.pp = [move.total_pp, move.pp + (move.pp / 5)].min()
         battle.pbDisplay(_INTL("{1}'s PP was restored.",user.pbThis))
         battle.pbHideAbilitySplash(user)
       end
