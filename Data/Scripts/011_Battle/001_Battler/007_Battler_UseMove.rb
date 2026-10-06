@@ -178,17 +178,19 @@ class PokeBattle_Battler
     # Start using the move
     pbBeginTurn(choice)
     # Force the use of certain moves if they're already being used
-    if usingMultiTurnAttack?
-      choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
-      specialUsage = true
-    elsif @effects[PBEffects::Encore] > 0 && choice[1] >= 0 &&
-      @battle.pbCanShowCommands?(@index)
-      idxEncoredMove = pbEncoredMoveIndex
-      if idxEncoredMove >= 0 && @battle.pbCanChooseMove?(@index, idxEncoredMove, false)
-        if choice[1] != idxEncoredMove # Change move if battler was Encored mid-round
-          choice[1] = idxEncoredMove
-          choice[2] = @moves[idxEncoredMove]
-          choice[3] = -1 # No target chosen
+    if choice[2].id != :KNIFE
+      if usingMultiTurnAttack?
+        choice[2] = PokeBattle_Move.from_pokemon_move(@battle, Pokemon::Move.new(@currentMove))
+        specialUsage = true
+      elsif @effects[PBEffects::Encore] > 0 && choice[1] >= 0 &&
+        @battle.pbCanShowCommands?(@index)
+        idxEncoredMove = pbEncoredMoveIndex
+        if idxEncoredMove >= 0 && @battle.pbCanChooseMove?(@index, idxEncoredMove, false)
+          if choice[1] != idxEncoredMove # Change move if battler was Encored mid-round
+            choice[1] = idxEncoredMove
+            choice[2] = @moves[idxEncoredMove]
+            choice[3] = -1 # No target chosen
+          end
         end
       end
     end
@@ -260,7 +262,7 @@ class PokeBattle_Battler
       # Beginning the use of a two-turn attack
       @effects[PBEffects::TwoTurnAttack] = move.id
       @currentMove = move.id
-    else
+    elsif move.id != :KNIFE
       @effects[PBEffects::TwoTurnAttack] = nil # Cancel use of two-turn attack
     end
     # Add to counters for moves which increase them when used in succession

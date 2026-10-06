@@ -9,9 +9,9 @@ class PokeBattle_Move
 
   # Reset move usage counters (child classes can increment them).
   def pbChangeUsageCounters(user,specialUsage)
-    user.effects[PBEffects::FuryCutter]   = 0
+    user.effects[PBEffects::FuryCutter]   = 0 unless @id == :KNIFE
     user.effects[PBEffects::ParentalBond] = 0
-    user.effects[PBEffects::ProtectRate]  = 1
+    user.effects[PBEffects::ProtectRate]  = 1 unless @id == :KNIFE
     @battle.field.effects[PBEffects::FusionBolt]  = false
     @battle.field.effects[PBEffects::FusionFlare] = false
   end
