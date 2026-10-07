@@ -589,7 +589,7 @@ class PokeBattle_Battler
       :RECIEVER,
       :TRACE,
       :WONDERGUARD,
-      :WONDERTRADEGUARD
+      :WONDERTRADE
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -678,7 +678,7 @@ class PokeBattle_Battler
   def isTerastallized?
     return true if hasActiveEmera?(:TERACRYSTAL)
     return true if @pokemon.unteraTypes != []
-    return true if [:PYRITE].include?(@item_id)
+    return true if [:PYRITE, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM].include?(@item_id)
     return false
   end
 

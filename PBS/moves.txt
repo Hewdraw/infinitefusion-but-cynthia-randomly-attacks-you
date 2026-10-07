@@ -896,7 +896,7 @@
 925,ROCKSLIDEPLUS,Rock Slide+,00F,120,ROCK,Physical,100,10,30,AllNearFoes,0,be,"Large boulders are hurled at the foes to inflict damage. It may also make the targets flinch."
 926,PSYSHOCKPLUS,Psyshock+,253,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user materializes an odd psychic wave to attack the target. This attack does physical damage."
 927,EXTREMESPEEDPLUS,Extreme Speed+,241,80,FLYING,Physical,100,10,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move."
-928,DRAGONCLAWPLUS,Dragon Claw+,0A0,80,DRAGON,Physical,100,15,0,NearOther,0,abefq,"The user slashes the target with huge, sharp claws."
+928,DRAGONCLAWPLUS,Dragon Claw+,376,80,DRAGON,Physical,100,15,0,NearOther,0,abefq,"The user slashes the target with huge, sharp claws."
 929,CLANGINGSCALESPLUS,Clanging Scales+,254,55,DRAGON,Special,100,5,0,AllNearFoes,0,befk,"The user rubs its scales and makes a huge noise. Also lowers the user's Defense stat."
 930,PLAYROUGHPLUS,Play Rough+,04A,100,FAIRY,Physical,100,10,20,NearOther,0,abef,"The user plays rough with the target and attacks it. This may also lower the target's Attack stat."
 932,BLASTBURNPLUS,Blast Burn+,255,150,FIRE,Special,100,5,0,NearOther,0,bef,"The target is razed by a fiery explosion. The user must rest on the next turn, however."

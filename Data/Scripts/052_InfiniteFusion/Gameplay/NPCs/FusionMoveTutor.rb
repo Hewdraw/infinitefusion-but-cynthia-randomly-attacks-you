@@ -97,6 +97,7 @@ class FusionTutorService
     compatibleMoves = []
     #normal moves
     if !includeLegendaries
+      compatibleMoves << :TERABLAST
       compatibleMoves << :ATTACKORDER if is_fusion_of([:BEEDRILL, :VESPIQUEN])
       compatibleMoves << :FIRSTIMPRESSION if is_fusion_of([:SCYTHER, :SCIZOR, :PINSIR, :FARFETCHD, :TRAPINCH, :VIBRAVA, :FLYGON, :KABUTOPS, :ARMALDO])
       compatibleMoves << :POLLENPUFF if is_fusion_of([:BUTTERFREE, :CELEBI, :VILEPLUME, :PARASECT, :BRELOOM])

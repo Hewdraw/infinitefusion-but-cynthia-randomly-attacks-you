@@ -1307,6 +1307,7 @@ class PokemonPartyScreen
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
       commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0
       commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getRotomList.length > 0 && pkmn.isFusionOf(:ROTOM) && pkmn.isFusion?()
+      commands[cmdPet = commands.length] = _INTL("Pet")
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
         # Check for hidden moves and add any that were found
@@ -1472,6 +1473,9 @@ class PokemonPartyScreen
           pkmn.rotomability[i] = abilitylist[command]
         end
         pkmn.calc_stats
+      elsif cmdPet  >= 0 && command == cmdPet
+        pbDisplay(_INTL("You pet #{pkmn.name}!"))
+        pkmn.changeHappiness("groom")
       elsif cmdEvolve  >= 0 && command == cmdEvolve
         evolvePokemon(pkmn)
       elsif cmdHat >= 0 && command == cmdHat
