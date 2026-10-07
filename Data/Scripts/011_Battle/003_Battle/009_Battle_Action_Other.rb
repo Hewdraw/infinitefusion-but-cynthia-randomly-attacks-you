@@ -303,17 +303,6 @@ class PokeBattle_Battle
     sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
     @scene.pbRefreshOne(idxBattler)
     battler.effects[PBEffects::Dynamax] = 0
-    if battler.pokemon.gigantamax
-      tempspecies = (battler.pokemon.species.to_s[4..-1]).to_sym
-      level = battler.level
-      battler.pokemon.species = tempspecies
-      battler.species = tempspecies
-      battler.level = level
-      battler.pbUpdate(true)
-      @scene.pbChangePokemon(battler,battler.pokemon)
-      @scene.pbRefreshOne(idxBattler)
-      pbCommonAnimation("MegaEvolution2",battler)
-    end
     pbCommonAnimation("StatDown",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxsmall"))
     oldhp = battler.hp.to_f
@@ -339,6 +328,17 @@ class PokeBattle_Battle
     sprite.y += 32
     sprite.setPokemonBitmap(battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
+    if battler.pokemon.gigantamax
+      tempspecies = (battler.pokemon.species.to_s[4..-1]).to_sym
+      level = battler.level
+      battler.pokemon.species = tempspecies
+      battler.species = tempspecies
+      battler.level = level
+      battler.pbUpdate(true)
+      @scene.pbChangePokemon(battler,battler.pokemon)
+      @scene.pbRefreshOne(idxBattler)
+      pbCommonAnimation("MegaEvolution2",battler)
+    end
     battler.pokemon.moves = battler.undynamoves
     battler.moves = []
     battler.pokemon.moves.each_with_index do |move,i|
