@@ -356,7 +356,7 @@ ItemHandlers::UseInBattle.add(:POKEFLUTE,proc { |item,battler,battle|
 })
 
 ItemHandlers::UseInBattle.add(:NERUPHONE,proc { |item,battler,battle|
-  pbBGMPlay("FlopEraVRC6")
+  pbBGMPlay("FlopEra")
 })
 
 ItemHandlers::UseInBattle.add(:TIMEFLUTE,proc { |item,battler,battle|

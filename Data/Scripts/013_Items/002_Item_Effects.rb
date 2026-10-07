@@ -49,7 +49,7 @@ ItemHandlers::UseFromBag.add(:BICYCLE, proc { |item|
 ItemHandlers::UseFromBag.copy(:BICYCLE, :RACEBIKE)
 
 ItemHandlers::UseFromBag.add(:NERUPHONE, proc { |item|
-  pbBGMPlay("FlopEraVRC6")
+  pbBGMPlay("FlopEra")
   next 2
 })
 
