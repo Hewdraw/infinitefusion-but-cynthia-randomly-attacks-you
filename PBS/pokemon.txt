@@ -27561,7 +27561,7 @@ Generation = 9
 #-------------------------------
 [1001210]
 Name = Ogerpon
-InternalName = OGERPONCORNERSTONEMASK
+InternalName = OGERPONCORNERSTONE
 Type1 = GRASS
 Type2 = ROCK
 BaseStats = 80,120,84,110,60,96
@@ -27588,7 +27588,7 @@ Generation = 9
 #-------------------------------
 [1001211]
 Name = Ogerpon
-InternalName = OGERPONCORNERSTONEMASKROCK
+InternalName = OGERPONCORNERSTONEROCK
 Type1 = ROCK
 BaseStats = 80,120,84,110,60,96
 GenderRate = AlwaysFemale
