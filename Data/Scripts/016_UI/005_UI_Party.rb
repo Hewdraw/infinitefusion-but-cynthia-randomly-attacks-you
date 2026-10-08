@@ -1475,6 +1475,12 @@ class PokemonPartyScreen
         pkmn.calc_stats
       elsif cmdPet  >= 0 && command == cmdPet
         pbDisplay(_INTL("You pet #{pkmn.name}!"))
+        if pkmn.isFusionOf(:PIKACHU)
+          pbLearnMove(pkmn, :PIKAPAPOW)
+        end
+        if pkmn.isFusionOf(:EEVEE)
+          pbLearnMove(pkmn, :VEEVEEVOLLEY)
+        end
         pkmn.changeHappiness("groom")
       elsif cmdEvolve  >= 0 && command == cmdEvolve
         evolvePokemon(pkmn)
