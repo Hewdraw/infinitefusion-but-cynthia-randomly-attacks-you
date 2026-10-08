@@ -90,6 +90,7 @@ class PokemonGlobalMetadata
   attr_accessor :towerlocation
   attr_accessor :towervalues
   attr_accessor :towerclasses
+  attr_accessor :towerquicksave
   attr_accessor :porygonchance
   attr_accessor :triplefusions
   attr_accessor :chestitemspulled
