@@ -208,20 +208,32 @@ def continueTower()
     pbMapInterpreter.pbSetSelfSwitch(2, "A", true, 32)
     if $PokemonGlobal.towervalues[:activeevent]
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
+        if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
+            setDialogIconOn(1)
+        else
+            setDialogIconOff(1)
+        end
     else
-        pbSetGraphic(1, "")
+        pbSetGraphic(1, "", 21)
         if !$PokemonGlobal.towervalues[:ladder1].nil?
-            pbSetGraphic(4, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]))
-            pbSetGraphic(6, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]))
+            pbSetGraphic(4, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]), 21)
+            pbSetGraphic(6, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]), 21)
         end
         if !$PokemonGlobal.towervalues[:ladder2].nil?
-            pbSetGraphic(7, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]))
-            pbSetGraphic(9, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]))
+            pbSetGraphic(7, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]), 21)
+            pbSetGraphic(9, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]), 21)
         end
         if !$PokemonGlobal.towervalues[:ladder3].nil?
-            pbSetGraphic(10, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]))
-            pbSetGraphic(12, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]))
+            pbSetGraphic(10, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]), 21)
+            pbSetGraphic(12, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]), 21)
         end
+        $game_temp.player_new_map_id = 21
+        $game_temp.player_new_x = 10
+        $game_temp.player_new_y = 19
+        $game_temp.player_new_direction = 2
+        $scene.transfer_player
+        $game_map.autoplay
+        $game_map.refresh
     end
     $PokemonGlobal.towerquicksave = nil
 end
