@@ -40,15 +40,15 @@ def shrekMovie
 		$game_system.bgm_resume(playingBGM)
 		$game_system.bgs_resume(playingBGS)
 	end
-	ogerpon = Pokemon.new(:OGERPON, 10)
-	ogerpon.ability = :TERASHIFT
-	ogerpon.ability_index = 2
 	if !$PokemonGlobal.movieswatched.include?(:shrek)
+		ogerpon = Pokemon.new(:OGERPON, 10)
+		ogerpon.ability = :TERASHIFT
+		ogerpon.ability_index = 2
 		pbAddPokemon(ogerpon)
 		Kernel.pbMessage("Damn you really went through all that?")
 		$PokemonGlobal.movieswatched.push(:shrek)
 	else
-		Kernel.pbMessage("Youre not geting a second fucking ogerpon.")
+		Kernel.pbMessage("You're not geting a second fucking Ogerpon.")
 	end
 
 end
