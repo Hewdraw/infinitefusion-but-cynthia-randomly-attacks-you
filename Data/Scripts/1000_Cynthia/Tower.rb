@@ -156,6 +156,74 @@ def resetTower()
     srand
 end
 
+def quicksaveTower()
+    floor = $PokemonGlobal.towervalues[:floor]
+    floor += 1 if $PokemonGlobal.towervalues[:activeevent].nil?
+    $PokemonGlobal.towerquicksave = $PokemonGlobal.towervalues
+    $PokemonGlobal.towerquicksave[:extrainfo] = {
+        :money => $Trainer.money,
+        :triplefusions => $PokemonGlobal.triplefusions,
+        :pokemonstorage => $PokemonStorage,
+    }
+    $Trainer.money = $PokemonGlobal.towervalues[:money]
+    $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
+    $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
+    $PokemonGlobal.partner = $PokemonGlobal.towervalues[:partner] if $PokemonGlobal.towervalues[:partner]
+    srand $PokemonGlobal.towervalues[:seed]
+    $PokemonGlobal.towervalues = nil
+    $PokemonBag.restoreBag()
+    PokemonSelection.restore
+    pbMapInterpreter.pbSetSelfSwitch(2, "A", false, 32)
+    highestfloor = $PokemonGlobal.highestfloor || 0
+    TOWERREWARDS.each do |key, values|
+        break if floor <= values[:floor]
+        next if highestfloor > values[:floor] && values[:once]
+        string = "For beating #{values[:name]} on floor #{values[:floor]} "
+        string += "for the first time " if values[:once]
+        amount = values[:amount] || 1
+        string += "you obtained #{amount} Emera!"
+        Kernel.pbMessage(string)
+        for _ in 1..amount
+            grantRandomEmera(values[:emerarestriction])
+        end
+    end
+    $PokemonGlobal.highestfloor = [floor, highestfloor].max
+    srand
+end
+
+def continueTower()
+    PokemonSelection.saveParty
+    $PokemonBag.saveBagAndClear()
+    $Trainer.party=[]
+    $PokemonGlobal.towervalues = $PokemonGlobal.towerquicksave
+    $PokemonGlobal.towervalues[:money] = $Trainer.money
+    $PokemonGlobal.towervalues[:triplefusions] = $PokemonGlobal.triplefusions
+    $PokemonGlobal.towervalues[:partner] = $PokemonGlobal.partner
+    $Trainer.money = $PokemonGlobal.towervalues[:extrainfo][:money]
+    $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:extrainfo][:triplefusions]
+    $PokemonStorage = $PokemonGlobal.towervalues[:extrainfo][:pokemonstorage]
+    $PokemonGlobal.partner = nil
+    pbMapInterpreter.pbSetSelfSwitch(2, "A", true, 32)
+    if $PokemonGlobal.towervalues[:activeevent]
+        pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
+    else
+        pbSetGraphic(1, "")
+        if !$PokemonGlobal.towervalues[:ladder1].nil?
+            pbSetGraphic(4, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]))
+            pbSetGraphic(6, getFloorGraphic($PokemonGlobal.towervalues[:ladder1]))
+        end
+        if !$PokemonGlobal.towervalues[:ladder2].nil?
+            pbSetGraphic(7, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]))
+            pbSetGraphic(9, getFloorGraphic($PokemonGlobal.towervalues[:ladder2]))
+        end
+        if !$PokemonGlobal.towervalues[:ladder3].nil?
+            pbSetGraphic(10, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]))
+            pbSetGraphic(12, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]))
+        end
+    end
+    $PokemonGlobal.towerquicksave = nil
+end
+
 def leaveTower()
     return true if $PokemonGlobal.towerlocation.nil?
     pbFadeOutIn(99999) {
