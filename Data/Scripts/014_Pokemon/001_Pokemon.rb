@@ -303,6 +303,12 @@ class Pokemon
     calc_stats
   end
 
+  def setOriginalForm
+    return if !@originalform.nil?
+    @originalform = @species
+    @originalability = @ability
+  end
+
   def sprite_scale()
     @sprite_scale = 1 if !@sprite_scale
     return @sprite_scale
@@ -1681,6 +1687,18 @@ class Pokemon
 
   # Recalculates this Pokémon's stats.
   def calc_stats(hpbars=1)
+    case @species
+    when :OGERPON
+      return @species = :OGERPONWELLSPRING if hasItem?(:WELLSPRINGMASK)
+      return @species = :OGERPONHEARTHFLAME if hasItem?(:HEARTHFLAMEMASK)
+      return @species = :OGERPONCORNERSTONE if hasItem?(:CORNERSTONEMASK)
+    when :OGERPONWELLSPRING
+      return @species = :OGERPON if !hasItem?(:WELLSPRINGMASK)
+    when :OGERPONHEARTHFLAME
+      return @species = :OGERPON if !hasItem?(:HEARTHFLAMEMASK)
+    when :OGERPONCORNERSTONE
+      return @species = :OGERPON if !hasItem?(:CORNERSTONEMASK)
+    end
     base_stats = self.baseStats
       this_level = self.level
     this_IV = self.calcIV
@@ -1721,7 +1739,7 @@ class Pokemon
     @type1 = nil
     @type2 = nil
     setDefaultForms()
-    @unteraTypes = [] if !(tera && @unteraTypes != nil)
+    @unteraTypes = [] if !(@tera && @unteraTypes != nil)
     if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
       getRegionalForm().each_with_index do |regional, i|
         next if regional.form == 0
@@ -1764,7 +1782,7 @@ class Pokemon
     end
     if hasItem?(:WELLSPRINGMASK)
       @extraabilities.push(:WATERABSORB)
-      if hasType?(:GRASS)
+      if hasType?(:GRASS) && @species != :OGERPONWELLSPRING
         @unteraTypes.push(:GRASS)
         @unteraTypes.push(:WATER) if hasType?(:WATER)
       end
@@ -1773,7 +1791,7 @@ class Pokemon
     end
     if hasItem?(:HEARTHFLAMEMASK)
       @extraabilities.push(:MOLDBREAKER)
-      if hasType?(:GRASS)
+      if hasType?(:GRASS) && @species != :OGERPONHEARTHFLAME
         @unteraTypes.push(:GRASS)
         @unteraTypes.push(:FIRE) if hasType?(:FIRE)
       end
@@ -1782,7 +1800,7 @@ class Pokemon
     end
     if hasItem?(:CORNERSTONEMASK)
       @extraabilities.push(:STURDY)
-      if hasType?(:GRASS)
+      if hasType?(:GRASS) && @species != :OGERPONCORNERSTONE
         @unteraTypes.push(:GRASS)
         @unteraTypes.push(:ROCK) if hasType?(:ROCK)
       end

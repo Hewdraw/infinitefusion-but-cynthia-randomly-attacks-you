@@ -2121,6 +2121,8 @@ Events.onEndBattle += proc { |_sender,_e|
       pokemon.species = pokemon.originalform
       pokemon.ability = pokemon.originalability
       pokemon.level = level
+      pokemon.tera = nil
+      pokemon.unteraTypes = []
       pokemon.calc_stats
     end
     pokemon.moves.each_with_index do |move, i|
@@ -3991,7 +3993,7 @@ end
 class PokeBattle_Move_245 < PokeBattle_Move_136
   def pbInitialEffect(user,targets,hitNum)
     if user.pokemon.species == :DIANCIE
-      user.pokemon.originalform = user.pokemon.species
+      user.pokemon.setOriginalForm
       user.battle.pbMegaEvolve(user.index, true)
     end
   end
@@ -5279,7 +5281,7 @@ class PokeBattle_Move_321 < PokeBattle_TargetMultiStatDownMove
 
   def pbInitialEffect(user,targets,hitNum)
     if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(user.pokemon.species)
-      user.pokemon.originalform = user.pokemon.species
+      user.pokemon.setOriginalForm
       battle.pbMegaEvolve(user.index, true)
     end
   end
@@ -5293,7 +5295,7 @@ class PokeBattle_Move_322 < PokeBattle_TargetMultiStatDownMove
 
   def pbInitialEffect(user,targets,hitNum)
     if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(user.pokemon.species)
-      user.pokemon.originalform = user.pokemon.species
+      user.pokemon.setOriginalForm
       battle.pbMegaEvolve(user.index, true)
     end
   end
@@ -6173,7 +6175,7 @@ class PokeBattle_Move_365 < PokeBattle_Move_207
   end
 
   def pbEffectGeneral(user)
-    user.pokemon.originalform = user.pokemon.species
+    user.pokemon.setOriginalForm
     user.battle.pbMegaEvolve(user.index, true)
   end
 end

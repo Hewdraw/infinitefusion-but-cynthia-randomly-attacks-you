@@ -3111,8 +3111,7 @@ BattleHandlers::EOREffectAbility.add(:BREAKTHESEAL,
       battle.pbHideAbilitySplash(battler)
       next
     end
-    battler.pokemon.originalability = battler.pokemon.ability
-    battler.pokemon.originalform = battler.pokemon.species
+    battler.pokemon.setOriginalForm
     battle.pbCommonAnimation("PrimalExodia",battler)
     level = battler.level
     battler.pokemon.species = :EXODIAINCARNATE
@@ -3506,24 +3505,44 @@ BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
 BattleHandlers::AbilityOnSwitchIn.add(:EON,
   proc { |ability,battler,battle|
     if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(battler.pokemon.species)
-      battler.pokemon.originalability = battler.pokemon.ability
-      battler.pokemon.originalform = battler.pokemon.species
+      battler.pokemon.setOriginalForm
       battle.pbMegaEvolve(battler.index, true)
     end
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
+  proc { |ability,battler,battle|
+    return if ![:OGERPON, :OGERPONWELLSPRING, :OGERPONHEARTHFLAME, :OGERPONCORNERSTONE].include?(battler.pokemon.species)
+    battler.pokemon.setOriginalForm
+    case battler.pokemon.species
+    when :OGERPON
+      battler.pokemon.tera = :GRASS
+    when :OGERPONWELLSPRING
+      battler.pokemon.tera = :WATER
+    when :OGERPONHEARTHFLAME
+      battler.pokemon.tera = :FIRE
+    when :OGERPONCORNERSTONE
+      battler.pokemon.tera = :ROCK
+    end
+    battler.pbTerastallize(battler.index)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:EMBODYASPECT,
   proc { |ability,battler,battle|
-    next if !battler.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK])
+    next unless battler.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK]) || [:OGERPONGRASS, :OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(battler.pokemon.species)
     battle.pbShowAbilitySplash(battler)
-    if battler.hasActiveItem?(:WELLSPRINGMASK)
+    if battler.pokemon.species = :OGERPONGRASS
+      battler.pbRaiseStatStageByAbility(:SPEED,1,battler,GameData::Ability.get(ability).real_name)
+    end
+    if battler.hasActiveItem?(:WELLSPRINGMASK) || battler.pokemon.species == :OGERPONWELLSPRINGWATER
       battler.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
     end
-    if battler.hasActiveItem?(:HEARTHFLAMEMASK)
+    if battler.hasActiveItem?(:HEARTHFLAMEMASK) || battler.pokemon.species == :OGERPONHEARTHFLAMEFIRE
       battler.pbRaiseStatStageByAbility(:ATTACK,1,battler,GameData::Ability.get(ability).real_name)
     end
-    if battler.hasActiveItem?(:CORNERSTONEMASK)
+    if battler.hasActiveItem?(:CORNERSTONEMASK) || battler.pokemon.species == :OGERPONCORNERSTONEROCK
       battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
     end
     battle.pbHideAbilitySplash(battler)

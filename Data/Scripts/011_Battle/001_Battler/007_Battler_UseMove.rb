@@ -413,8 +413,7 @@ class PokeBattle_Battler
       end
     end
     if user.hasActiveItem?(:GODORB) && [:KYUREM, :KYUREMBLACK, :KYUREMWHITE].include?(user.species) && !move.statusMove?
-      user.pokemon.originalability = user.pokemon.ability
-      user.pokemon.originalform = :KYUREM
+      user.pokemon.setOriginalForm
       tempspecies = :KYUREMWHITE
       tempspecies = :KYUREMBLACK if move.physicalMove?
       tempspecies = :KYUREMBLACK if [:GLACIATE, :GLACIEATEPLUS, :TERABLAST].include?(move.id) && targets.length > 0 && targets[0].defense < targets[0].spdef

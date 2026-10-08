@@ -190,6 +190,7 @@ class PokeBattle_Battle
     tempspecies = (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym
     level = battler.level
     ability = battler.ability
+    ability = :EMBODYASPECT if [:OGERPON, :OGERPONWELLSPRING, :OGERPONHEARTHFLAME, :OGERPONCORNERSTONE].include?(battler.pokemon.species)
     types = [battler.pokemon.type1, battler.pokemon.type2]
     if battler.pokemon.tera == :STELLAR
       types = [battler.pokemon.tera]
