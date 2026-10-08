@@ -637,6 +637,7 @@ class PokemonStorageScreen
         else
           pbDisplay(_INTL("Took the {1}.", itemname))
           pokemon.item = nil
+          pokemon.calc_stats
           @scene.pbHardRefresh
         end
       end
@@ -645,6 +646,7 @@ class PokemonStorageScreen
       if item
         itemname = GameData::Item.get(item).name
         pokemon.item = item
+        pokemon.calc_stats
         $PokemonBag.pbDeleteItem(item)
         pbDisplay(_INTL("{1} is now being held.", itemname))
         @scene.pbHardRefresh

@@ -18,7 +18,6 @@ def beeMovie
 	else
 		Kernel.pbMessage("Damn you really went through all that again?")
 	end
-
 end
 
 def shrekMovie
@@ -50,7 +49,6 @@ def shrekMovie
 	else
 		Kernel.pbMessage("You're not geting a second fucking Ogerpon.")
 	end
-
 end
 
 
