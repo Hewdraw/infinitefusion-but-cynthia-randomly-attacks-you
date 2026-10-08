@@ -3535,7 +3535,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:EMBODYASPECT,
   proc { |ability,battler,battle|
     next unless battler.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK]) || [:OGERPONGRASS, :OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(battler.pokemon.species)
     battle.pbShowAbilitySplash(battler)
-    if battler.pokemon.species = :OGERPONGRASS
+    if battler.pokemon.species == :OGERPONGRASS
       battler.pbRaiseStatStageByAbility(:SPEED,1,battler,GameData::Ability.get(ability).real_name)
     end
     if battler.hasActiveItem?(:WELLSPRINGMASK) || battler.pokemon.species == :OGERPONWELLSPRINGWATER
