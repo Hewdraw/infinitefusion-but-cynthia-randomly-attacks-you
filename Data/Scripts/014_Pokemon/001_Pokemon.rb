@@ -1689,15 +1689,39 @@ class Pokemon
   def calc_stats(hpbars=1)
     case @species
     when :OGERPON
-      return @species = :OGERPONWELLSPRING if hasItem?(:WELLSPRINGMASK)
-      return @species = :OGERPONHEARTHFLAME if hasItem?(:HEARTHFLAMEMASK)
-      return @species = :OGERPONCORNERSTONE if hasItem?(:CORNERSTONEMASK)
+      if hasItem?(:WELLSPRINGMASK)
+        @species = :OGERPONWELLSPRING 
+        @ability = :TERASHIFT
+        return
+      end
+      if hasItem?(:HEARTHFLAMEMASK)
+        @species = :OGERPONHEARTHFLAME 
+        @ability = :TERASHIFT
+        return
+      end
+      if hasItem?(:CORNERSTONEMASK)
+        @species = :OGERPONCORNERSTONE 
+        @ability = :TERASHIFT
+        return
+      end
     when :OGERPONWELLSPRING
-      return @species = :OGERPON if !hasItem?(:WELLSPRINGMASK)
+      if !hasItem?(:WELLSPRINGMASK)
+        @species = :OGERPON 
+        @ability = :TERASHIFT
+        return
+      end
     when :OGERPONHEARTHFLAME
-      return @species = :OGERPON if !hasItem?(:HEARTHFLAMEMASK)
+      if !hasItem?(:OGERPONHEARTHFLAME)
+        @species = :OGERPON 
+        @ability = :TERASHIFT
+        return
+      end
     when :OGERPONCORNERSTONE
-      return @species = :OGERPON if !hasItem?(:CORNERSTONEMASK)
+      if !hasItem?(:CORNERSTONEMASK)
+        @species = :OGERPON 
+        @ability = :TERASHIFT
+        return
+      end
     end
     base_stats = self.baseStats
       this_level = self.level
