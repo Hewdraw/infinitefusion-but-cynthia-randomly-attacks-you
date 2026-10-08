@@ -206,13 +206,15 @@ def continueTower()
     $PokemonStorage = $PokemonGlobal.towervalues[:extrainfo][:pokemonstorage]
     $PokemonGlobal.partner = nil
     pbMapInterpreter.pbSetSelfSwitch(2, "A", true, 32)
+    $game_temp.player_new_map_id = 21
+    $game_temp.player_new_x = 10
+    $game_temp.player_new_y = 19
+    $game_temp.player_new_direction = 2
+    $scene.transfer_player
+    $game_map.autoplay
+    $game_map.refresh
     if $PokemonGlobal.towervalues[:activeevent]
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
-        if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
-            setDialogIconOn(1)
-        else
-            setDialogIconOff(1)
-        end
     else
         pbSetGraphic(1, "", 21)
         if !$PokemonGlobal.towervalues[:ladder1].nil?
@@ -228,13 +230,11 @@ def continueTower()
             pbSetGraphic(12, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]), 21)
         end
     end
-    $game_temp.player_new_map_id = 21
-    $game_temp.player_new_x = 10
-    $game_temp.player_new_y = 19
-    $game_temp.player_new_direction = 2
-    $scene.transfer_player
-    $game_map.autoplay
-    $game_map.refresh
+    if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
+        setDialogIconOn(1)
+    else
+        setDialogIconOff(1)
+    end
     $PokemonGlobal.towerquicksave = nil
 end
 
