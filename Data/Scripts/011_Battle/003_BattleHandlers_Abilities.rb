@@ -3514,6 +3514,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:EON,
 BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
   proc { |ability,battler,battle|
     return if ![:OGERPON, :OGERPONWELLSPRING, :OGERPONHEARTHFLAME, :OGERPONCORNERSTONE].include?(battler.pokemon.species)
+    battle.pbShowAbilitySplash(battler)
     battler.pokemon.setOriginalForm
     case battler.pokemon.species
     when :OGERPON
@@ -3526,6 +3527,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
       battler.pokemon.tera = :ROCK
     end
     battle.pbTerastallize(battler.index)
+    battle.pbHideAbilitySplash(battler)
   }
 )
 
