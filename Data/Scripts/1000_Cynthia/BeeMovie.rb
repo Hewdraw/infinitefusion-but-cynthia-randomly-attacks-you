@@ -43,8 +43,8 @@ def shrekMovie
 	ogerpon = Pokemon.new(:OGERPON, 10)
 	ogerpon.ability = :TERASHIFT
 	ogerpon.ability_index = 2
-	pbAddPokemon(ogerpon)
 	if !$PokemonGlobal.movieswatched.include?(:shrek)
+		pbAddPokemon(ogerpon)
 		Kernel.pbMessage("Damn you really went through all that?")
 		$PokemonGlobal.movieswatched.push(:shrek)
 	else
