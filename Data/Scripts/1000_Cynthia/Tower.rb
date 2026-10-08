@@ -227,14 +227,14 @@ def continueTower()
             pbSetGraphic(10, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]), 21)
             pbSetGraphic(12, getFloorGraphic($PokemonGlobal.towervalues[:ladder3]), 21)
         end
-        $game_temp.player_new_map_id = 21
-        $game_temp.player_new_x = 10
-        $game_temp.player_new_y = 19
-        $game_temp.player_new_direction = 2
-        $scene.transfer_player
-        $game_map.autoplay
-        $game_map.refresh
     end
+    $game_temp.player_new_map_id = 21
+    $game_temp.player_new_x = 10
+    $game_temp.player_new_y = 19
+    $game_temp.player_new_direction = 2
+    $scene.transfer_player
+    $game_map.autoplay
+    $game_map.refresh
     $PokemonGlobal.towerquicksave = nil
 end
 
