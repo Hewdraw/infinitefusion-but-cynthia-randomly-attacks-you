@@ -1,5 +1,6 @@
 def beeMovie
 	return if Kernel.pbMessage("Are you sure?", ["No", "Yes"]) == 0
+	$PokemonGlobal.movieswatched = [] if $PokemonGlobal.movieswatched.nil?
 	BEEMOVIESCRIPT.each do |line|
 		Kernel.pbMessage(line)
 	end
@@ -11,11 +12,18 @@ def beeMovie
 	beedrill.makeMale
 	pbAddPokemon(beedrill)
 	pbReceiveItem(:HM02)
-	Kernel.pbMessage("Damn you really went through all that?")
+	if !$PokemonGlobal.movieswatched.include?(:beemovie)
+		Kernel.pbMessage("Damn you really went through all that?")
+		$PokemonGlobal.movieswatched.push(:beemovie)
+	else
+		Kernel.pbMessage("Damn you really went through all that again?")
+	end
+
 end
 
 def shrekMovie
 	return if Kernel.pbMessage("Are you sure?", ["No", "Yes"]) == 0
+	$PokemonGlobal.movieswatched = [] if $PokemonGlobal.movieswatched.nil?
 	playingBGS = nil
 	playingBGM = nil
 	if $game_system && $game_system.is_a?(Game_System)
@@ -36,7 +44,13 @@ def shrekMovie
 	ogerpon.ability = :TERASHIFT
 	ogerpon.ability_index = 2
 	pbAddPokemon(ogerpon)
-	Kernel.pbMessage("Damn you really went through all that?")
+	if !$PokemonGlobal.movieswatched.include?(:shrek)
+		Kernel.pbMessage("Damn you really went through all that?")
+		$PokemonGlobal.movieswatched.push(:shrek)
+	else
+		Kernel.pbMessage("Youre not geting a second fucking ogerpon.")
+	end
+
 end
 
 
