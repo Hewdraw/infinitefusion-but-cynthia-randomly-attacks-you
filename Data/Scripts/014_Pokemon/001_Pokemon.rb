@@ -1711,7 +1711,7 @@ class Pokemon
         return
       end
     when :OGERPONHEARTHFLAME
-      if !hasItem?(:OGERPONHEARTHFLAME)
+      if !hasItem?(:HEARTHFLAMEMASK)
         @species = :OGERPON 
         @ability = :TERASHIFT
         return
