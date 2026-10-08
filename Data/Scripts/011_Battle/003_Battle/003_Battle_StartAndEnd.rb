@@ -686,6 +686,7 @@ class PokeBattle_Battle
             battler.pokemon.item = :SILVERWING
           when :EXODIAINCARNATE
             battler.pokemon.species = :THEFORBIDDENONE
+            battler.pokemon.originalability = :BREAKTHESEAL
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
