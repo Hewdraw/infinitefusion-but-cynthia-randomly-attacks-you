@@ -164,6 +164,7 @@ def quicksaveTower()
         :money => $Trainer.money,
         :triplefusions => $PokemonGlobal.triplefusions,
         :pokemonstorage => $PokemonStorage,
+        :bag => $PokemonBag.pockets.map(&:dup)
     }
     $Trainer.money = $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
@@ -199,6 +200,7 @@ def continueTower()
     $PokemonGlobal.towervalues[:money] = $Trainer.money
     $PokemonGlobal.towervalues[:triplefusions] = $PokemonGlobal.triplefusions
     $PokemonGlobal.towervalues[:partner] = $PokemonGlobal.partner
+    $PokemonBag.pockets = $PokemonGlobal.towervalues[:extrainfo][:bag]
     $Trainer.money = $PokemonGlobal.towervalues[:extrainfo][:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:extrainfo][:triplefusions]
     $PokemonStorage = $PokemonGlobal.towervalues[:extrainfo][:pokemonstorage]

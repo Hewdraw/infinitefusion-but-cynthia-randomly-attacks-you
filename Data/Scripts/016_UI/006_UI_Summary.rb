@@ -904,7 +904,7 @@ class PokemonSummary_Scene
   end
 
   def drawPageFive
-    if !$Trainer.has_pokedex
+    if !$Trainer.has_pokedex || @pokemon.id_number > 1000099
       pbPlayBuzzerSE
       drawPageFour
       @page -= 1
@@ -1457,7 +1457,7 @@ class PokemonSummary_Scene
           dorefresh = true
         end
       elsif Input.trigger?(Input::RIGHT) && !@pokemon.egg?
-        if @page == 4 && (!$Trainer.has_pokedex || !@is_player || @id_number > 1000099)
+        if @page == 4 && (!$Trainer.has_pokedex || !@is_player || @pokemon.id_number > 1000099)
           pbSEPlay("GUI sel buzzer")
         else
           oldpage = @page
