@@ -3525,7 +3525,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
     when :OGERPONCORNERSTONE
       battler.pokemon.tera = :ROCK
     end
-    battler.pbTerastallize(battler.index)
+    battle.pbTerastallize(battler.index)
   }
 )
 

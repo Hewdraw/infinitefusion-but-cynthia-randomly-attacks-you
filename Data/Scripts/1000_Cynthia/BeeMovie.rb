@@ -33,6 +33,8 @@ def shrekMovie
 		$game_system.bgs_resume(playingBGS)
 	end
 	ogerpon = Pokemon.new(:OGERPON, 10)
+	ogerpon.ability = :TERASHIFT
+	ogerpon.ability_index = 2
 	pbAddPokemon(ogerpon)
 	Kernel.pbMessage("Damn you really went through all that?")
 end
