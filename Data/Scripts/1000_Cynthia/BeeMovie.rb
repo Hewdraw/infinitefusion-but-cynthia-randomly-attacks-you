@@ -16,8 +16,21 @@ end
 
 def shrekMovie
 	return if Kernel.pbMessage("Are you sure?", ["No", "Yes"]) == 0
+	playingBGS = nil
+	playingBGM = nil
+	if $game_system && $game_system.is_a?(Game_System)
+		playingBGS = $game_system.getPlayingBGS
+		playingBGM = $game_system.getPlayingBGM
+		$game_system.bgm_pause
+		$game_system.bgs_pause
+	end
+	pbBGMPlay("Shrek")
 	SHREKMOVIESCRIPT.each do |line|
 		Kernel.pbMessage(line)
+	end
+	if $game_system && $game_system.is_a?(Game_System)
+		$game_system.bgm_resume(playingBGM)
+		$game_system.bgs_resume(playingBGS)
 	end
 	ogerpon = Pokemon.new(:OGERPON, 10)
 	pbAddPokemon(ogerpon)
