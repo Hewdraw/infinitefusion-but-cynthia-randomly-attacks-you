@@ -1112,7 +1112,7 @@ class PokemonFusionScene
 
       @pokemon1.name = newspeciesname if @pokemon1.name == oldspeciesname
 
-      @pokemon1.level = setPokemonLevel(@pokemon1.level, @pokemon2.level, superSplicer)
+      @pokemon1.level = [setPokemonLevel(@pokemon1.level, @pokemon2.level, superSplicer), getCurrentLevelCap()].min
       @pokemon1.calc_stats
       @pokemon1.obtain_method = 0
 

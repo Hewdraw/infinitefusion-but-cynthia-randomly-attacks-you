@@ -47,7 +47,8 @@ def shrekMovie
 		Kernel.pbMessage("Damn you really went through all that?")
 		$PokemonGlobal.movieswatched.push(:shrek)
 	else
-		Kernel.pbMessage("You're not geting a second fucking Ogerpon.")
+		while Kernel.pbMessage("You're not geting a second fucking Ogerpon.", ["Please?", "Okay..."]) == 0
+		end
 	end
 end
 
