@@ -211,7 +211,6 @@ class PokemonStorageScreen
   end
 
   def pcWithdrawCommand
-    isTransferBox = @storage[@storage.currentBox].is_a?(StorageTransferBox)
     loop do
       selected = @scene.pbSelectBox(@storage.party)
       if selected == nil
@@ -260,7 +259,6 @@ class PokemonStorageScreen
   end
 
   def pcDepositCommand
-    isTransferBox = @storage[@storage.currentBox].is_a?(StorageTransferBox)
     loop do
       selected = @scene.pbSelectParty(@storage.party)
       if selected == -3 # Close box
@@ -382,13 +380,6 @@ class PokemonStorageScreen
       pbDisplay(_INTL("Your party's full!"))
       return false
     end
-    if @scene.inTransferBox && @storage[box].can_use_transfer_box?
-      pokemon = $PokemonStorage[*selected]
-      return if @storage[box].check_is_duplicate(pokemon)
-      unless verifyTransferBoxAutosave
-        return
-      end
-    end
 
     @scene.pbWithdraw(selected, heldpoke, @storage.party.length)
     if heldpoke
@@ -446,13 +437,6 @@ class PokemonStorageScreen
   def pbHold(selected)
     box = selected[0]
     index = selected[1]
-    if @scene.inTransferBox && box != -1
-      pokemon = $PokemonStorage[*selected]
-      return if @storage[box].check_is_duplicate(pokemon)
-      unless verifyTransferBoxAutosave
-        return
-      end
-    end
     if box == -1 && pbAble?(@storage[box, index]) && pbAbleCount <= 1
       pbPlayBuzzerSE
       pbDisplay(_INTL("That's your last Pokémon!"))
@@ -462,24 +446,11 @@ class PokemonStorageScreen
     @heldpkmn = @storage[box, index]
     @storage.pbDelete(box, index)
     @scene.pbRefresh
-    if @scene.inTransferBox && box != -1
-      @saveWhenPlaceDown = true
-    end
   end
 
   def pbPlace(selected)
     box = selected[0]
     index = selected[1]
-    if @scene.inTransferBox && box != -1
-      if @heldpkmn.owner.name == "RENTAL"
-        pbMessage(_INTL("This Pokémon cannot be transferred."))
-        return
-      end
-      return if @storage[box].check_is_duplicate(@heldpkmn)
-      unless verifyTransferBoxAutosave  #Warning on the first time
-        return
-      end
-    end
 
     if @storage[box, index]
       pbDisplay(_INTL("Can't place that there."))
@@ -518,19 +489,6 @@ class PokemonStorageScreen
 
     if !@storage[box, index]
       raise _INTL("Position {1},{2} is empty...", box, index)
-    end
-
-    if @scene.inTransferBox && box != -1
-      if @heldpkmn.owner.name == "RENTAL"
-        pbMessage(_INTL("This Pokémon cannot be transferred."))
-        return
-      end
-      pokemon = $PokemonStorage[*selected]
-      return if @storage[box].check_is_duplicate(pokemon)
-
-      unless verifyTransferBoxAutosave
-        return
-      end
     end
 
     if box == -1 && pbAble?(@storage[box, index]) && pbAbleCount <= 1 && !pbAble?(@heldpkmn)
@@ -677,8 +635,6 @@ class PokemonStorageScreen
       boxCommandSetWallpaper
     when cmd_name
       boxCommandName
-    when cmd_info
-      transferBoxTutorial
     end
   end
 
