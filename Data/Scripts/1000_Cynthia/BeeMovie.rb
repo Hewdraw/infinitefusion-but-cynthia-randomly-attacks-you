@@ -41,7 +41,7 @@ def shrekMovie
 	end
 	if !$PokemonGlobal.movieswatched.include?(:shrek)
 		ogerpon = Pokemon.new(:OGERPON, 10)
-		ogerpon.ability = :TERASHIFT
+		ogerpon.ability = :DEFIANT
 		ogerpon.ability_index = 2
 		pbAddPokemon(ogerpon)
 		Kernel.pbMessage("Damn you really went through all that?")

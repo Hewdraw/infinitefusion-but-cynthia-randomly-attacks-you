@@ -1691,35 +1691,35 @@ class Pokemon
     when :OGERPON
       if hasItem?(:WELLSPRINGMASK)
         @species = :OGERPONWELLSPRING 
-        @ability = :TERASHIFT
+        @ability = :DEFIANT
         return
       end
       if hasItem?(:HEARTHFLAMEMASK)
         @species = :OGERPONHEARTHFLAME 
-        @ability = :TERASHIFT
+        @ability = :DEFIANT
         return
       end
       if hasItem?(:CORNERSTONEMASK)
         @species = :OGERPONCORNERSTONE 
-        @ability = :TERASHIFT
+        @ability = :DEFIANT
         return
       end
     when :OGERPONWELLSPRING
       if !hasItem?(:WELLSPRINGMASK)
         @species = :OGERPON 
-        @ability = :TERASHIFT
+        @ability = :DEFIANT
         return
       end
     when :OGERPONHEARTHFLAME
       if !hasItem?(:HEARTHFLAMEMASK)
         @species = :OGERPON 
-        @ability = :TERASHIFT
+        @ability = :DEFIANT
         return
       end
     when :OGERPONCORNERSTONE
       if !hasItem?(:CORNERSTONEMASK)
         @species = :OGERPON 
-        @ability = :TERASHIFT
+        @ability = :DEFIANT
         return
       end
     end
