@@ -766,7 +766,7 @@ class PokeBattle_Battle
     priority.each do |battler|
       next if battler.fainted? || !battler.hasActiveAbility?(:PSYCHOBREAK)
       eachOtherSideBattler(battler.index) do |b|
-        if b.pbCanSleep?(battler,true,self,true)
+        if b.pbCanSleep?(battler,true,nil,true)
           b.pbInflictStatus(:SLEEP, 999)
         end
       end

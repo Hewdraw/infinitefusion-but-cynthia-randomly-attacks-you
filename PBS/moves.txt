@@ -801,7 +801,7 @@
 780,TOMBSTONER,TOMBSTONER,229,60,GHOST,Physical,100,15,50,NearOther,0,abef,"TOMBSTONER"
 781,EXPANDINGFORCE,Expanding Force,200,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks all opposing Pokémon with its psychic power. When the ground is Psychic Terrain, this move's power is boosted."
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
-783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,"ur stinky"
+783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,"todo"
 784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"ur stinky" #TODO hazard clear
 785,STONEAXE,Stone Axe,105,65,ROCK,Physical,90,15,100,NearOther,0,abefq,"ur stinky"
 786,REVIVALBLESSING,Revival Blessing,197,0,NORMAL,Status,0,1,0,User,0,,"ur stinky" #partial todo
