@@ -637,7 +637,7 @@ class MiningGameScene
           when :JAWFOSSIL
             pbAddPokemon(:TYRUNT, getCurrentLevelCap())
           end
-          unlockClass(:SUPERNERD, getCurrentLevelCap())
+          unlockClass(:SUPERNERD)
         elsif i == :EMERA
           grantRandomEmera()
         elsif $PokemonBag.pbStoreItem(i)
