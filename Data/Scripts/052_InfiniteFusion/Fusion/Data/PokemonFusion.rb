@@ -794,6 +794,7 @@ class PokemonFusionScene
     spriteLoader = BattleSpriteLoader.new
     if fusion_pif_sprite
       @fusion_pif_sprite = fusion_pif_sprite
+      @sprites["rsprite2"].bitmap = spriteloader.load_pif_sprite_directly(@fusion_pif_sprite).bitmap 
     elsif @newspecies != :OMNIMON
       @fusion_pif_sprite = spriteLoader.obtain_fusion_pif_sprite(poke_head_number, poke_body_number) 
       @sprites["rsprite2"].bitmap = spriteloader.load_pif_sprite_directly(@fusion_pif_sprite).bitmap 
