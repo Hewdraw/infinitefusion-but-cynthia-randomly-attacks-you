@@ -276,6 +276,7 @@ def resolveUnknownEvent(recursion = false)
         Kernel.pbMessage("Near the end of it you both fall into a pit.")
         Kernel.pbMessage("It's a monster house!")
         pbRegisterPartner(:ALPHA_POKEMON, "Armaldo")
+        $PokemonGlobal.nextBattleBGM = "VSMonsterHouse"
         result = pbTrainerBattle(:MONSTERHOUSE, "Monster House!")
         pbDeregisterPartner()
         return if !result

@@ -110,6 +110,26 @@ class PokeBattle_Battler
       @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
       return
     end
+    if self.hasActiveItem?(:REVIVERSEED, true)
+      @battle.pbCommonAnimation("UseItem",self)
+      pbRecoverHP(@totalhp)
+      self.status      = :NONE
+      self.statusCount = 0
+      self.pbRemoveItem()
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(@index,i)
+        canSwitch = true
+        break
+      end
+      return if !canSwitch
+      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
+      return if newPkmn<0
+      @battle.pbRecallAndReplace(@index, newPkmn)
+      @battle.pbClearChoice(@index)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
+      return
+    end
     if @pokemon && @pokemon.phasetwo
       pbPhaseShift
       return

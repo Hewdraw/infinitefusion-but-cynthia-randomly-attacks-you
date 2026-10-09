@@ -918,6 +918,8 @@
 927,EELEKTROSSITE,Eelekstrossite,Eelekstrossites,1,0,"todo",0,0,0
 928,GARCARIONITEZZ,Garcarionite ZZ,Garcarionite ZZs,1,0,"todo",0,0,0
 929,FLOPHOXITE,Flophoxite,Flophoxites,1,0,"todo",0,0,0
+930,REVIVERSEED,Reviver Seed,Reviver Seeds,1,0,"a",0,0,0
+931,MUGORB,Mug Orb,Mug Orbs,1,0,"a",0,0,0
 
 
 

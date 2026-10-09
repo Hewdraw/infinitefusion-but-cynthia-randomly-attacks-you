@@ -2540,6 +2540,17 @@ BattleHandlers::ItemOnSwitchIn.add(:DUBIOUSDISC,
   }
 )
 
+BattleHandlers::ItemOnSwitchIn.add(:MUGORB,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battler.pbRemoveItem()
+    battle.pbDisplay("#{battler.pbThis} used its Mug Orb!")
+    oldLastRoundMoved = battler.lastRoundMoved
+    battler.pbUseMoveSimple(:THIEF)
+    battler.lastRoundMoved = oldLastRoundMoved
+  }
+)
+
 #===============================================================================
 # ItemOnIntimidated handlers
 #===============================================================================
