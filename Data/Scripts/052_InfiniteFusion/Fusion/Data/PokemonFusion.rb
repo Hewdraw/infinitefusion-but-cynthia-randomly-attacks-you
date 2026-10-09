@@ -794,12 +794,12 @@ class PokemonFusionScene
     spriteLoader = BattleSpriteLoader.new
     if fusion_pif_sprite
       @fusion_pif_sprite = fusion_pif_sprite
+    elsif @newspecies != :OMNIMON
+      @fusion_pif_sprite = spriteLoader.obtain_fusion_pif_sprite(poke_head_number, poke_body_number) 
+      @sprites["rsprite2"].bitmap = spriteloader.load_pif_sprite_directly(@fusion_pif_sprite).bitmap 
     else
-      @fusion_pif_sprite = spriteLoader.obtain_fusion_pif_sprite(poke_head_number, poke_body_number) if @newspecies != :OMNIMON
+      @sprites["rsprite2"].setPokemonBitmapFromId(1001114, false, pokemon_head.shiny? || pokemon_body.shiny?)
     end
-
-    # this will use the sprite that is set when we call obtain_fusion_pif_sprite, and apply the shiny effect
-    @sprites["rsprite2"].bitmap = spriteloader.load_pif_sprite_directly(@fusion_pif_sprite).bitmap
 
     splicer_bitmap = "Graphics/Items/#{splicerItem}"
     @sprites["dnasplicer"].setBitmap(splicer_bitmap)
@@ -1085,13 +1085,6 @@ class PokemonFusionScene
       pbChooseAbility(ability1, ability2) if newSpecies != :OMNIMON && isPlayerPokemon
 
       setFusionMoves(@pokemon1, @pokemon2, firstOptionSelected) if !noMoves && isPlayerPokemon
-      if newSpecies == :OMNIMON
-        movelist = pkmn.getMoveList
-        for i in movelist
-          next if i[0]!=0
-          pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
-        end
-      end
 
       removeItem = false
       if @pokemon2.isShiny? || @pokemon1.isShiny?

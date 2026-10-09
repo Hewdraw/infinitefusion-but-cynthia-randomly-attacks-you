@@ -9,8 +9,13 @@ class FusionMovesOptionsScene < PokemonOption_Scene
     @poke2 = poke2
 
     @fused_pokemon = @poke1
-    @head_species = @fused_pokemon.species_data.head_pokemon
-    @body_species = @fused_pokemon.species_data.body_pokemon
+    if @fused_pokemon.species != :OMNIMON
+      @head_species = @fused_pokemon.species_data.head_pokemon
+      @body_species = @fused_pokemon.species_data.body_pokemon
+    else
+      @head_species = GameData::Species.get(:WARGREYMON)
+      @body_species = GameData::Species.get(:METALGARURUMON)
+    end
 
     @selected_moves = []
     @index_vertical = 0

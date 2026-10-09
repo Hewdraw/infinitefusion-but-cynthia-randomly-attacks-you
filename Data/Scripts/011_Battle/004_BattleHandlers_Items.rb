@@ -2498,6 +2498,7 @@ BattleHandlers::ItemOnSwitchIn.add(:ENCHANTEDGOLDENAPPLE,
   proc { |item,battler,battle|
     battle.pbCommonAnimation("UseItem",battler)
     battle.pbDisplay("#{battler.pbThis} ate its Golden Apple!")
+    battler.hpbars = 1 if battler.hpbars.nil?
     battler.hpbars += 1
     battler.pbRecoverHP(battler.totalhp)
     battler.pbRemoveItem()
