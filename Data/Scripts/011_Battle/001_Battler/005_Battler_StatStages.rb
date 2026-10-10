@@ -228,6 +228,7 @@ class PokeBattle_Battler
       @battle.pbRecallAndReplace(self.index,newPkmn)
       @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
       self.pbEffectsOnSwitchIn(true)
+      unlockClass(:JUGGLER) if self.pbOwnedByPlayer? && !$PokemonGlobal.towervalues.nil?
     end
     return true
   end
@@ -274,6 +275,7 @@ class PokeBattle_Battler
       @battle.pbRecallAndReplace(self.index,newPkmn)
       @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
       user.pbEffectsOnSwitchIn(true)
+      unlockClass(:JUGGLER) if self.pbOwnedByPlayer? && !$PokemonGlobal.towervalues.nil?
     end
     return true
   end

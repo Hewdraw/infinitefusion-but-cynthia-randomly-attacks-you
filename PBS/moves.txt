@@ -371,7 +371,7 @@
 358,REVELATIONDANCE,Revelation Dance,169,100,NORMAL,Special,100,15,0,NearOther,0,befo,"The user attacks the target by dancing very hard. The user's type determines the type of this move."
 359,ROCKCLIMB,Rock Climb,013,90,NORMAL,Physical,85,20,20,NearOther,0,abef,"The user attacks the target by smashing into it with incredible force. It may also confuse the target."
 360,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,85,20,0,NearOther,0,abef,"A reckless, full-body charge attack for slamming into the foe. It also damages the user a little."
-361,UPROAR,Uproar,0D1,90,NORMAL,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
+361,UPROAR,Uproar,0D1,90,SOUND,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
 362,BODYSLAM,Body Slam,007,85,NORMAL,Physical,100,15,30,NearOther,0,abef,"The user drops onto the target with its full body weight. It may leave the target with paralysis."
 363,EXTREMESPEED,Extreme Speed,000,80,NORMAL,Physical,100,5,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move."
 364,HYPERFANG,Hyper Fang,00F,80,NORMAL,Physical,90,15,10,NearOther,0,abei,"The user bites hard on the target with its sharp front fangs. It may also make the target flinch."
@@ -434,7 +434,7 @@
 421,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,15,0,NearOther,0,bef,"The user draws power to attack by using its held Nut. The Nut determines its type and power."
 422,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
 423,RETURN,Return,000,102,NORMAL,Physical,100,20,0,NearOther,0,abef,"A full-power attack."
-424,SONICBOOM,Sonic Boom,06A,1,NORMAL,Special,90,20,0,NearOther,0,bef,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
+424,SONICBOOM,Sonic Boom,000,50,SOUND,Special,100,30,0,NearOther,1,befk,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
 425,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,"The power stored using the move Stockpile is released all at once in an attack."
 426,SUPERFANG,Super Fang,06C,1,NORMAL,Physical,90,10,0,NearOther,0,abef,"The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half."
 427,TRUMPCARD,Trump Card,097,1,NORMAL,Special,0,5,0,NearOther,0,abef,"The fewer PP this move has, the greater its attack power."
@@ -1109,6 +1109,8 @@
 1140,GMAXWILDFIRE,G-Max Wildfire,374,90,FIRE,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
 1141,GMAXRESONANCE,G-Max Resonance,375,90,ICE,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
 1142,BODYPRESSPLUS,Body Press+,178,100,DARK,Physical,100,5,0,NearOther,0,abef,"youre lucky this move is easy to add."
+1143,SOPRANO,Soprano,377,130,SOUND,Special,100,5,0,NearOther,0,befk,"a"
+1144,VIBRATO,Vibrato,000,100,SOUND,Physical,100,10,0,AllNearOthers,0,befk,"a"
 
 
 

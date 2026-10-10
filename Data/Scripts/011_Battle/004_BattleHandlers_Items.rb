@@ -1807,6 +1807,7 @@ BattleHandlers::TargetItemAfterMoveUse.add(:EJECTBUTTON,
     battle.pbRecallAndReplace(battler.index,newPkmn)
     battle.pbClearChoice(battler.index)   # Replacement Pokémon does nothing this round
     switched.push(battler.index)
+    unlockClass(:JUGGLER) if battler.pbOwnedByPlayer? && !$PokemonGlobal.towervalues.nil?
   }
 )
 

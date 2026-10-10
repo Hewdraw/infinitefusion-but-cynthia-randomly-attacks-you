@@ -1,14 +1,23 @@
 def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trainer = false, badge_bonus = 0, amount=1)
-  if $PokemonGlobal.cynthiachance == nil
-    $PokemonGlobal.cynthiachance = 0
-  end
-  if $PokemonGlobal.cynthiaupgradechance == nil
-    $PokemonGlobal.cynthiaupgradechance = 0
-  end
   numbadges = pbCynthiaGetBadgeCount
   encounter_id = nil
   doublebattle = false
   losequote = nil
+
+  $PokemonGlobal.cynthiachance = 0 if $PokemonGlobal.cynthiachance.nil?
+  $PokemonGlobal.cynthiaupgradechance = 0 if $PokemonGlobal.cynthiaupgradechance.nil?
+  $PokemonGlobal.cynthiabadgetier = numbadges if $PokemonGlobal.cynthiabadgetier.nil?
+  
+  if numbadges > $PokemonGlobal.cynthiabadgetier
+    $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
+    if $PokemonGlobal.pcItemStorage
+      $PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN,999)
+    end
+    $PokemonGlobal.cynthiaupgradechance = 0
+    $PokemonGlobal.cynthiabadgetier = numbadges
+    $PokemonGlobal.cynthiachance = 1000
+  end
+
   if !encounter_type
     chanceincrease = 1
     if !Settings::FLUTES_CHANGE_WILD_ENCOUNTER_LEVELS
@@ -33,21 +42,6 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
       end
     end
     $PokemonGlobal.cynthiachance += chanceincrease
-    if $PokemonGlobal.cynthiaupgradechance == nil
-      $PokemonGlobal.cynthiaupgradechance = 0
-    end
-    if $PokemonGlobal.cynthiabadgetier == nil
-      $PokemonGlobal.cynthiabadgetier = numbadges
-    end
-    if numbadges > $PokemonGlobal.cynthiabadgetier
-      $PokemonBag.pbDeleteItem(:SINNOHCOIN, 999)
-      if $PokemonGlobal.pcItemStorage
-        $PokemonGlobal.pcItemStorage.pbDeleteItem(:SINNOHCOIN,999)
-      end
-      $PokemonGlobal.cynthiaupgradechance = 0
-      $PokemonGlobal.cynthiabadgetier = numbadges
-      $PokemonGlobal.cynthiachance = 1000
-    end
     maxcynthiachance = 160
     maxcynthiachance *= 2 if pbCynthiaGetBadgeCount < 1
     maxcynthiachance *= 2 if pbCynthiaGetBadgeCount < 2
@@ -94,9 +88,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
       end
     end
   end
-  if numbadges > 17
-    numbadges == 17
-  end
+  numbadges == 17 if numbadges > 17
 
   if encounter_type[1] == "Cynthia"
     badges = [
@@ -153,9 +145,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
 
   if encounter_type[1] == "Hatsune Miku"
       encounter_id = numbadges
-      if encounter_id > 13 #temporary
-        encounter_id = 13
-      end
+      encounter_id = 13 if encounter_id > 13 #temporary
   end
 
   if !encounter_type.is_a?(Array)

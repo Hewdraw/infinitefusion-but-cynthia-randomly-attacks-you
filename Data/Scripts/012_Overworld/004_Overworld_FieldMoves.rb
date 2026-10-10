@@ -1119,58 +1119,58 @@ HiddenMoveHandlers::UseMove.add(:SWEETSCENT, proc { |move, pokemon|
   next true
 })
 
-HiddenMoveHandlers::CanUseMove.add(:RAINDANCE, proc { |move, pkmn, showmsg|
-  next true if Settings::GAME_ID == :IF_HOENN
-})
+# HiddenMoveHandlers::CanUseMove.add(:RAINDANCE, proc { |move, pkmn, showmsg|
+#   next true if Settings::GAME_ID == :IF_HOENN
+# })
 
-HiddenMoveHandlers::UseMove.add(:RAINDANCE, proc { |move, pokemon|
-  if !pbHiddenMoveAnimation(pokemon)
-    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
-  end
-  if isWeatherWind?()
-    changeCurrentWeather(:Storm, 1)
-  else
-    changeCurrentWeather(:Rain, 1)
-  end
-  next true
-})
+# HiddenMoveHandlers::UseMove.add(:RAINDANCE, proc { |move, pokemon|
+#   if !pbHiddenMoveAnimation(pokemon)
+#     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+#   end
+#   if isWeatherWind?()
+#     changeCurrentWeather(:Storm, 1)
+#   else
+#     changeCurrentWeather(:Rain, 1)
+#   end
+#   next true
+# })
 
-HiddenMoveHandlers::CanUseMove.add(:SUNNYDAY, proc { |move, pkmn, showmsg|
-  next true if Settings::GAME_ID == :IF_HOENN
-})
-HiddenMoveHandlers::UseMove.add(:SUNNYDAY, proc { |move, pokemon|
-  if !pbHiddenMoveAnimation(pokemon)
-    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
-  end
-  changeCurrentWeather(:Sunny, 1)
-  next true
-})
+# HiddenMoveHandlers::CanUseMove.add(:SUNNYDAY, proc { |move, pkmn, showmsg|
+#   next true if Settings::GAME_ID == :IF_HOENN
+# })
+# HiddenMoveHandlers::UseMove.add(:SUNNYDAY, proc { |move, pokemon|
+#   if !pbHiddenMoveAnimation(pokemon)
+#     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+#   end
+#   changeCurrentWeather(:Sunny, 1)
+#   next true
+# })
 
-HiddenMoveHandlers::CanUseMove.add(:WHIRLWIND, proc { |move, pkmn, showmsg|
-  next true if Settings::GAME_ID == :IF_HOENN
-})
-HiddenMoveHandlers::UseMove.add(:WHIRLWIND, proc { |move, pokemon|
-  if !pbHiddenMoveAnimation(pokemon)
-    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
-  end
-  if isWeatherRain?()
-    changeCurrentWeather(:Storm, 1)
-  else
-    changeCurrentWeather(:Wind, 1)
-  end
-  next true
-})
+# HiddenMoveHandlers::CanUseMove.add(:WHIRLWIND, proc { |move, pkmn, showmsg|
+#   next true if Settings::GAME_ID == :IF_HOENN
+# })
+# HiddenMoveHandlers::UseMove.add(:WHIRLWIND, proc { |move, pokemon|
+#   if !pbHiddenMoveAnimation(pokemon)
+#     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+#   end
+#   if isWeatherRain?()
+#     changeCurrentWeather(:Storm, 1)
+#   else
+#     changeCurrentWeather(:Wind, 1)
+#   end
+#   next true
+# })
 
-HiddenMoveHandlers::CanUseMove.add(:THUNDER, proc { |move, pkmn, showmsg|
-  next true if Settings::GAME_ID == :IF_HOENN
-})
-HiddenMoveHandlers::UseMove.add(:THUNDER, proc { |move, pokemon|
-  if !pbHiddenMoveAnimation(pokemon)
-    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
-  end
-  changeCurrentWeather(:Storm, 1)
-  next true
-})
+# HiddenMoveHandlers::CanUseMove.add(:THUNDER, proc { |move, pkmn, showmsg|
+#   next true if Settings::GAME_ID == :IF_HOENN
+# })
+# HiddenMoveHandlers::UseMove.add(:THUNDER, proc { |move, pokemon|
+#   if !pbHiddenMoveAnimation(pokemon)
+#     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+#   end
+#   changeCurrentWeather(:Storm, 1)
+#   next true
+# })
 
 HiddenMoveHandlers::CanUseMove.add(:MAGNETRISE, proc { |move, pkmn, showmsg|
   next true unless $PokemonGlobal.surfing
@@ -1202,34 +1202,34 @@ HiddenMoveHandlers::UseMove.add(:SPLASH, proc { |move, pokemon|
 })
 
 
-HiddenMoveHandlers::CanUseMove.add(:MIST, proc { |move, pkmn, showmsg|
-  next true if Settings::GAME_ID == :IF_HOENN
-})
-HiddenMoveHandlers::UseMove.add(:MIST, proc { |move, pokemon|
-  if !pbHiddenMoveAnimation(pokemon)
-    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
-  end
-  changeCurrentWeather(:Fog, 4)
-  next true
-})
+# HiddenMoveHandlers::CanUseMove.add(:MIST, proc { |move, pkmn, showmsg|
+#   next true if Settings::GAME_ID == :IF_HOENN
+# })
+# HiddenMoveHandlers::UseMove.add(:MIST, proc { |move, pokemon|
+#   if !pbHiddenMoveAnimation(pokemon)
+#     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+#   end
+#   changeCurrentWeather(:Fog, 4)
+#   next true
+# })
 
-HiddenMoveHandlers::CanUseMove.add(:DEFOG, proc { |move, pkmn, showmsg|
-  next true if Settings::GAME_ID == :IF_HOENN
-})
-HiddenMoveHandlers::UseMove.add(:DEFOG, proc { |move, pokemon|
-  if !pbHiddenMoveAnimation(pokemon)
-    pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
-  end
-  current_weather = $game_weather.map_current_weather_type($game_map.map_id)
-  if current_weather == :Fog
-    changeCurrentWeather(:None, 1)
-    pbMessage(_INTL("The fog cleared out!"))
-    next true
-  else
-    pbMessage(_INTL("There's no fog to clear."))
-    next false
-  end
-})
+# HiddenMoveHandlers::CanUseMove.add(:DEFOG, proc { |move, pkmn, showmsg|
+#   next true if Settings::GAME_ID == :IF_HOENN
+# })
+# HiddenMoveHandlers::UseMove.add(:DEFOG, proc { |move, pokemon|
+#   if !pbHiddenMoveAnimation(pokemon)
+#     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
+#   end
+#   current_weather = $game_weather.map_current_weather_type($game_map.map_id)
+#   if current_weather == :Fog
+#     changeCurrentWeather(:None, 1)
+#     pbMessage(_INTL("The fog cleared out!"))
+#     next true
+#   else
+#     pbMessage(_INTL("There's no fog to clear."))
+#     next false
+#   end
+# })
 
 #===============================================================================
 # Teleport

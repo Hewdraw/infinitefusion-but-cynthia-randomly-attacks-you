@@ -5768,14 +5768,15 @@ class PokeBattle_Move_341 < PokeBattle_PoisonMove
 end
 
 class PokeBattle_Move_342 < PokeBattle_Move
-  def pbEffectGeneral(user)
-    if user.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self)
-      user.pbLowerStatStage(:SPECIAL_ATTACK,1,user,true)
-    end
+  def pbEffectAfterAllHits(user, target)
     if user.pbOwnedByPlayer?
       @battle.field.effects[PBEffects::PayDay] += 5 * user.level
     end
     @battle.pbDisplay(_INTL("Coins were scattered everywhere!"))
+    return if user.fainted? || target.damageState.unaffected
+    if user.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self)
+      user.pbLowerStatStage(:SPECIAL_ATTACK,1,user,true)
+    end
   end
 end
 
@@ -6364,5 +6365,14 @@ class PokeBattle_Move_376 < PokeBattle_Move
       return user.attack, user.stages[:ATTACK] + 6
     end
     return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+end
+
+class PokeBattle_Move_377 < PokeBattle_Move
+  def pbEffectAfterAllHits(user,target)
+    return if user.fainted? || target.damageState.unaffected
+    if user.pbCanLowerStatStage?(:SPECIAL_ATTACK,user,self)
+      user.pbLowerStatStage(:SPECIAL_ATTACK,1,user)
+    end
   end
 end
