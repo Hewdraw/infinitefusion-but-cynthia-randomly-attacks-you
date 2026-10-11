@@ -213,6 +213,8 @@ class FusionTutorService
       compatibleMoves << :BLAMMYBLAM if is_fusion_of([:EEVEE, :VAPOREON, :FLAREON, :JOLTEON, :ESPEON, :UMBREON, :GLACEON, :LEAFEON]) && hasType(:GUN)
       compatibleMoves << :NASTYPLOT if is_fusion_of([:GARCHOMP])
       compatibleMoves << :VACUUMWAVE if is_fusion_of([:GARCHOMP])
+      compatibleMoves << :VIBRATO if canLearnMove(:UPROAR)
+      compatibleMoves << :SONICBOOM if is_fusion_of([:LATIAS, :LATIOS]) || canLearnMove(:METALSOUND) || hasType(:SOUND)
     end
     if includeLegendaries
       #legendary moves (only available after a certain trigger, maybe a different npc)
@@ -288,6 +290,7 @@ class FusionTutorService
       compatibleMoves << :PSYSTRIKE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :THUNDERCAGE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :MIKUMIKUBEAM if is_fusion_of([:THEFORBIDDENONE])
+      compatibleMoves << :SOPRANO if hasType(:SOUND) || canLearnMove(:BOOMBURST)
     end
     return compatibleMoves
   end

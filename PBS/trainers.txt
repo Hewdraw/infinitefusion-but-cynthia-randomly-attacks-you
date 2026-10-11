@@ -233,6 +233,8 @@ Pokemon = B129H14,25
 Pokemon = B129H132,25
 Pokemon = B129H10,25
 Pokemon = B129H13,25
+Pokemon = KYOGRE,25
+    Ace = TRUE
 #-------------------------------
 [CAMPER,Justin]
 Pokemon = B29H33,29
