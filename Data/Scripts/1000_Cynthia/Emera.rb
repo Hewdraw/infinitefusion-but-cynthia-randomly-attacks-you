@@ -831,7 +831,7 @@ end
 def grantEmera(emera)
     itemname = EMERADICT[emera][:name]
     itemcolor = getEmeraColor(EMERADICT[emera][:rarity])
-    if getLooplet.pbStoreEmera(randomitem)
+    if getLooplet.pbStoreEmera(emera)
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
 end
