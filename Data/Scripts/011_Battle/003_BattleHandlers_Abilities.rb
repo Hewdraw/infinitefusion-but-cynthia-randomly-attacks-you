@@ -1370,7 +1370,7 @@ BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
 
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    next if if target.effects[PBEffects::Dynamax] > 0
+    next if target.effects[PBEffects::Dynamax] > 0
     mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0
   }
 )
