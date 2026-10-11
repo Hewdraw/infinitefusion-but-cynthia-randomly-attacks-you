@@ -6376,3 +6376,28 @@ class PokeBattle_Move_377 < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_378 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if @battle.field.effects[PBEffects::InverseRoom] > 100
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if @battle.field.effects[PBEffects::InverseRoom] > 0
+      @battle.field.effects[PBEffects::InverseRoom] = 0
+      @battle.pbDisplay(_INTL("{1} reverted the dimensions!", user.pbThis))
+    else
+      @battle.applyEffect(user, @battle.field, :InverseRoom, 5)
+      @battle.pbDisplay(_INTL("{1} inverted the dimensions!", user.pbThis))
+    end
+  end
+
+  def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+    return if @battle.field.effects[PBEffects::InverseRoom] > 0 # No animation
+    super
+  end
+end
