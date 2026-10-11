@@ -62,7 +62,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
 
   numbadges += badge_bonus
   if $PokemonGlobal.towervalues.nil?
-    if getDayOfTheWeek().to_s == "MONDAY" && !(pbCynthiaGetBadgeCount == 0)
+    if getDayOfTheWeek().to_s == "MONDAY" && pbCynthiaGetBadgeCount != 0
       $PokemonGlobal.cynthiaupgradechance += 18
     end
     for mon in $Trainer.party
@@ -123,7 +123,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
       else
         $PokemonGlobal.hatsunemikuchance += 1
       end
-      if getDayOfTheWeek().to_s == "MONDAY" && !(pbCynthiaGetBadgeCount == 0)
+      if getDayOfTheWeek().to_s == "MONDAY" && pbCynthiaGetBadgeCount != 0
         $PokemonGlobal.hatsunemikuchance += 3
         mikumaxchance = 30
       end

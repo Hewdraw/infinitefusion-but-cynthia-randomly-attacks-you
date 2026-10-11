@@ -358,7 +358,7 @@ class PokeBattle_AI
         pbCynthiaRegisterMove(user,move,choices)
       end
     end
-    if !switch && !$Trainer.party.include?(user) && !(user.effects[PBEffects::Dynamax] > 0) && (rand(10) == 0 || choices.length == 0) && (user.isFusionOf([:TOGETIC, :TOGEKISS, :CLEFAIRY, :CLEFABLE]) || user.species.to_s.include?("TOGETIC") || user.species.to_s.include?("TOGEKISS") || user.species.to_s.include?("CLEFAIRY") || user.species.to_s.include?("CLEFABLE"))
+    if !switch && !$Trainer.party.include?(user) && user.effects[PBEffects::Dynamax] ==0 && (rand(10) == 0 || choices.length == 0) && (user.isFusionOf([:TOGETIC, :TOGEKISS, :CLEFAIRY, :CLEFABLE]) || user.species.to_s.include?("TOGETIC") || user.species.to_s.include?("TOGEKISS") || user.species.to_s.include?("CLEFAIRY") || user.species.to_s.include?("CLEFABLE"))
       choices = []
       pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATERMETRONOME)),choices) if user.isFusionOf([:TOGETIC, :CLEFAIRY]) || user.species.to_s.include?("TOGETIC") || user.species.to_s.include?("CLEFAIRY")
       pbCynthiaRegisterMove(user,PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GREATESTMETRONOME)),choices) if user.isFusionOf([:TOGEKISS, :CLEFABLE]) || user.species.to_s.include?("TOGEKISS") || user.species.to_s.include?("CLEFABLE")

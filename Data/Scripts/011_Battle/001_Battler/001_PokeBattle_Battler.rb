@@ -338,7 +338,7 @@ class PokeBattle_Battler
     speedMult /= 2 if pbOwnSide.effects[PBEffects::Swamp] > 0
     speedMult *= 1.5 if @battle.field.effects[PBEffects::Web] if pbHasType?(:BUG) && !airborne?
     # Paralysis
-    if status == :PARALYSIS && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
+    if status == :PARALYSIS && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS]) && !hasActiveItem?(:SHUDDERORB)
       speedMult /= 2
     end
     # Badge multiplier

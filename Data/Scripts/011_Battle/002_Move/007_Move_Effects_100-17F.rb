@@ -2763,7 +2763,7 @@ class PokeBattle_Move_188 < PokeBattle_Move
     return baseDmg if user.undynamoves == nil
     highestpower = baseDmg
     user.undynamoves.each_with_index do |move,i|
-      next if !(user.moves[i].id == self.id)
+      next if user.moves[i].id != self.id
       next if !((user.undynamoves[i].base_damage + 150 / 2) > (highestpower))
       highestpower = (user.undynamoves[i].base_damage + 150) / 2
     end
@@ -6319,7 +6319,7 @@ class PokeBattle_Move_371 < PokeBattle_FreezeMove
   end
 end
 
-class PokeBattle_Move_372 < PokeBattle_Move
+class PokeBattle_Move_372 < PokeBattle_Move_207
   def pbBaseDamage(baseDmg,user,target)
     baseDmg *= 1.5 if [:Hail, :Snow].include?(@battle.pbWeather)
     return baseDmg

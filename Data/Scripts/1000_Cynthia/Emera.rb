@@ -80,6 +80,14 @@ EMERADICT = {
         :description => "50% discount at the Shadross Shop.",
         :rarity => :EVENT,
     },
+    :INVARALLOY => {
+        :name => "Invar Alloy",
+        :description => "Extends Inverse Room by 3 turns. Can teach Inverse Room.",
+        :rarity => :EVENT,
+        :tutormove => :INVERSEROOM,
+        :tutorcondition => -> (pokemon) {return true},
+    },
+
 
     :APPLE => {
         :name => "Apple",
@@ -815,13 +823,17 @@ def grantRandomEmera(customweight = nil, recursion = false)
             randomrarity -= rarity
         end
     end
-    randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
-    itemname = EMERADICT[randomitem][:name]
-    itemcolor = getEnderChestRarityColors()[randomrarity]
+    randomitem = itemlist[randomrarity].sample()
+    grantEmera(randomitem)
+    #grantRandomEmera(customweight, true) if !recursion && hasEmera?(:INDIEPROOF)
+end
+
+def grantEmera(emera)
+    itemname = EMERADICT[emera][:name]
+    itemcolor = getEmeraColor(EMERADICT[emera][:rarity])
     if getLooplet.pbStoreEmera(randomitem)
         pbMessage("You got \\C[#{itemcolor}]#{itemname}\\C[0]!")
     end
-    #grantRandomEmera(customweight, true) if !recursion && hasEmera?(:INDIEPROOF)
 end
 
 def getEmeraWeights()
@@ -831,6 +843,20 @@ def getEmeraWeights()
     2, #super rare
     1, #secret rare
   ]
+end
+
+def getEmeraColor(rarity)
+    raritycolors = {
+        :STARTER => 7,
+        :EVENT => 7,
+        :COMMON => 7, #gray
+        :UNCOMMON => 3, #green
+        :RARE => 1, #blue
+        :LEGENDARY => 6, #yellow
+        #:MYTHICAL => 2, #red
+    }
+    return 7 if !raritycolors.keys().include?(rarity)
+    return raritycolors[rarity]
 end
 
 def hasEmera?(emera)
