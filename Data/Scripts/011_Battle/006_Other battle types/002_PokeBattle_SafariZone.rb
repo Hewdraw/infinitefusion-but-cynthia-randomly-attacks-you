@@ -8,6 +8,10 @@ class PokeBattle_FakeBattler
   attr_reader :owned
   attr_reader :hpbars
 
+  def adjustedTotalhp
+    return hp
+  end
+
   def initialize(battle,index)
     @battle  = battle
     @pokemon = battle.party2[0]

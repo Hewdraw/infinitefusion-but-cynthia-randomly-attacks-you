@@ -2608,6 +2608,10 @@ ItemHandlers::UseInField.add(:ENDGATEWAY, proc { |item|
 })
 
 def useEndGateway()
+  if pbInSafari?
+    Kernel.pbMessage("nuh uh.")
+    return false
+  end
   if [51, 46, 428, 531, 21, 32].include?($game_map.map_id) && $PokemonGlobal.endgatewaylocation
     Kernel.pbMessage(_INTL("{1} used the End Gateway!", $Trainer.name))
     pbFadeOutIn(99999) {
