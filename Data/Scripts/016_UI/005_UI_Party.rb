@@ -1306,7 +1306,7 @@ class PokemonPartyScreen
       commands[cmdSummary = commands.length] = _INTL("Summary")
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
       commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0
-      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getRotomList.length > 0 && pkmn.isFusionOf(:ROTOM) && pkmn.isFusion?()
+      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getRotomList.length > 0 && pkmn.isFusionOf(:ROTOM)
       commands[cmdPet = commands.length] = _INTL("Pet")
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?

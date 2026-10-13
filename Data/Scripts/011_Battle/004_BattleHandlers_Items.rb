@@ -1148,7 +1148,7 @@ BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
 
 BattleHandlers::DamageCalcUserItem.add(:ROTOMCATALOG,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.3 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
+    mults[:base_damage_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
   }
 )
 
