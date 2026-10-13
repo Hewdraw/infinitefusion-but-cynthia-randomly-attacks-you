@@ -350,10 +350,10 @@ class PokeBattle_Battler
     # Messages include Magnitude's number and Pledge moves' "it's a combo!"
     move.pbOnStartUse(user, targets)
     # Self-thawing due to the move
-    if user.status == :FROZEN && move.thawsUser?
-      user.pbCureStatus(false)
-      @battle.pbDisplay(_INTL("{1} melted the ice!", user.pbThis))
-    end
+    # if user.status == :FROZEN && move.thawsUser?
+    #   user.pbCureStatus(false)
+    #   @battle.pbDisplay(_INTL("{1} melted the ice!", user.pbThis))
+    # end
     # Powder
     if user.effects[PBEffects::Powder] && move.calcType == :FIRE
       @battle.pbCommonAnimation("Powder", user)

@@ -52,10 +52,10 @@ class PokeBattle_Battler
       return false
     end
     # Weather immunity
-    if newStatus == :FROZEN && [:Sun, :HarshSun].include?(@battle.pbWeather)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
-      return false
-    end
+    # if newStatus == :FROZEN && [:Sun, :HarshSun].include?(@battle.pbWeather)
+    #   @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
+    #   return false
+    # end
     # Terrains immunity
     if affectedByTerrain?
       case @battle.field.terrain
