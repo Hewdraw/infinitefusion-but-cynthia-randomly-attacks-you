@@ -942,7 +942,7 @@ class PokeBattle_AI
       if user.asleep?
         score += 100   # Because it can only be used while asleep
       else
-        score -= 90
+        score -= 101
       end
       score += 1 if movefunction == "210"
     #---------------------------------------------------------------------------
