@@ -1112,6 +1112,7 @@
 1143,SOPRANO,Soprano,377,130,SOUND,Special,100,5,0,NearOther,0,befk,"a"
 1144,VIBRATO,Vibrato,000,100,SOUND,Physical,100,10,0,AllNearOthers,0,befk,"a"
 1145,INVERSEROOM,Inverse Room,378,0,PSYCHIC,Status,0,5,0,BothSides,-7,e,"The user creates a bizarre area in which make a wild fucking guess for five turns."
+1146,SHOOTMINUS,Shoot-,180,110,GUN,Special,100,5,0,NearOther,0,befn,"Gun."
 
 
 

@@ -1638,6 +1638,14 @@ BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
 #-------------------------------
+[METAGROSSSHINY,2]
+FormName = Mega Metagross Z
+MegaStone = METAGROSSITEZ
+UnMegaForm = METAGROSSSHINY
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+#-------------------------------
 [B296H299,1]
 FormName = Mega Garcario
 MegaStone = GARCARIONITE

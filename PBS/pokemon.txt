@@ -7372,7 +7372,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 22
 BattlerShadowX = -2
 BattlerShadowSize = 2
-Evolutions = HOENNCURSOLA,Item,MISTSTONE
+Evolutions = JOHTOCURSOLA,Item,MISTSTONE
 #-------------------------------
 [223]
 Name = Remoraid
@@ -22601,6 +22601,27 @@ BaseStats = 98,88,101,44,123,76
 Abilities = DROUGHT
 Moves = 1,TACKLE
 Shape = Quadruped
+#-------------------------------
+[1000727]
+Name = Bronztoise
+InternalName = BLASTOISEBRONZONG
+Type1 = STEEL
+Type2 = GUN
+BaseStats = 71,85,105,63,81,112
+Abilities = FLASHFIRE
+Moves = 1,TACKLE
+Shape = Head
+#-------------------------------
+[1000728]
+Name = Metagross
+InternalName = MEGAMETAGROSSSHINYZ
+Type1 = STEEL
+Type2 = GUN
+Weight = 1000000
+BaseStats = 80,80,120,151,149,120
+Abilities = LEVITATE
+Moves = 1,TACKLE
+Shape = Head
 
 #Misc
 #-------------------------------
@@ -23599,6 +23620,7 @@ BaseStats = 112,77,121,106,135,110
 Abilities = FLASHFIRE
 Moves = 1,TACKLE
 Shape = Head
+
 
 
 #Legendary Raids
@@ -26510,7 +26532,7 @@ Generation = 8
 #-------------------------------
 [1001170]
 Name = Cursola
-InternalName = HOENNCURSOLA
+InternalName = JOHTOCURSOLA
 Type1 = WATER
 Type2 = GHOST
 BaseStats = 80,85,130,30,145,40

@@ -327,7 +327,7 @@
 325,FROSTDEBRIS,Frost Debris,"a"
 326,CHARGEDDEBRIS,Charged Debris,"a"
 327,FIRETOUCH,Fire Touch,"a"
-
+328,GUNVANIZE,Gunvanize,"Normal-type moves become Gun-type and powered."
 329,AERILATEPLUS,Aerilate+,"Normal-type moves become Flying-type and power up."
 330,AFTERMATHPLUS,Aftermath+,"Damages the attacker landing the finishing hit."
 331,ANALYTICPLUS,Analytic+,"Boosts move power when the Pokémon moves last."

@@ -1489,6 +1489,18 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:ILLEGALGUNPARTS, proc { |item, pkmn, scene|
+  hasshoot = false
+  pkmn.moves.each_with_index do |move, i|
+    next if move.id != :SHOOT
+    pkmn.moves[i] = Pokemon::Move.new(:SHOOTMINUS)
+    scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
+    hasshoot = true
+  end
+  next false if hasshoot
+  pbLearnMove(:SHOOT)
+  next false
+})
 
 #
 # #TRACKER (for roaming legendaries)

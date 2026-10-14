@@ -2389,6 +2389,13 @@ BattleHandlers::ItemOnSwitchIn.add(:PYRITE,
   }
 )
 
+BattleHandlers::ItemOnSwitchIn.add(:ILLEGALGUNPARTS,
+  proc { |item,battler,battle|
+    battle.pbDisplay(_INTL("{1} is brandishing an illegal Gun-Typing!",
+       battler.pbThis,battler.itemName))
+  }
+)
+
 BattleHandlers::ItemOnSwitchIn.add(:BERSERKGENE,
   proc { |item,battler,battle|
     battle.pbCommonAnimation("UseItem",battler)

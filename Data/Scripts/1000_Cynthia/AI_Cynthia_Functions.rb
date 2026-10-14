@@ -2379,7 +2379,7 @@ class PokeBattle_AI
             multipliers[:attack_multiplier] /= 2.0 if move.physicalMove?
           end
           case ability
-          when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID
+          when :AERILATE,:PIXILATE,:REFRIGERATE,:GALVANIZE, :GUNVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE,:VOCALOID
             if type == :NORMAL
               multipliers[:base_damage_multiplier] *= 1.2
             end

@@ -1835,6 +1835,7 @@ class Pokemon
     @extraabilities.push(:GALEWINGSPLUS) if hasItem?(:ENCHANTEDELYTRA)
     @extraabilities.push(:STURDY) if hasItem?([:FOCUSEDBANDANA, :ASSAULTHELMET])
     @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
+    @extraabilities.push(:GUNVANIZE) if hasItem?(:ILLEGALGUNPARTS)
     @extraabilities.push(:SKILLLINK) if hasItem?(:LOADEDDICESET)
     @extraabilities.push(:SHEDSKIN, :NATURALCURE, :SYNCHRONIZE) if hasItem?(:WEIRDORB)
     @extraabilities.push(:TOXICDEBRIS) if hasItem?(:TOXBOOTS)
@@ -1866,7 +1867,7 @@ class Pokemon
     @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf([:JIRACHI, :CELEMEWCHI])
     @extraabilities.push(:TOTALFREEZE) if hasItem?(:GODORB)
     @extraabilities.push(:GOODASGOLD) if hasItem?(:SINNOHCOIN) && isFusionOf(:WASHROTOM)
-    @extraabilities.push(:HEATPROOF) if hasItem?(:NERUPHONE)
+    @extraabilities.push(:HEATPROOF) if hasItem?(:NERUPHONE) #todo
     @abilityarray = createAbilityArray
     @boxicon = nil
   end

@@ -401,6 +401,7 @@ class PokeBattle_Battler
   # (e.g. -1).
   def pbTypes(withType3 = false)
     return [:QMARKS] if hasActiveItem?(:PYRITE)
+    return [:GUN] if hasActiveItem?(:ILLEGALGUNPARTS)
     ret = [@type1]
     ret.push(@type2) if @type2 != @type1
     # Burn Up erases the Fire-type.
@@ -678,7 +679,7 @@ class PokeBattle_Battler
   def isTerastallized?
     return true if hasActiveEmera?(:TERACRYSTAL)
     return true if @pokemon.unteraTypes != []
-    return true if [:PYRITE, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM].include?(@item_id)
+    return true if [:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM].include?(@item_id)
     return false
   end
 
