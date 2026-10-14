@@ -1498,7 +1498,7 @@ ItemHandlers::UseOnPokemon.add(:ILLEGALGUNPARTS, proc { |item, pkmn, scene|
     hasshoot = true
   end
   next false if hasshoot
-  pbLearnMove(:SHOOT)
+  pbLearnMove(pkmn, :SHOOT)
   next false
 })
 
