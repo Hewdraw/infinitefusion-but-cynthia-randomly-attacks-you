@@ -2222,18 +2222,6 @@ BattleHandlers::EORHealingItem.add(:ENDCRYSTAL,
   }
 )
 
-BattleHandlers::EORHealingItem.add(:ROTOMCATALOG,
-  proc { |item,battler,battle|
-    next if !battler.canHeal?
-    next if ![:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(battler.species)
-    battle.pbCommonAnimation("UseItem",battler)
-    battler.pbRecoverHP(battler.totalhp/16)
-    battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!",
-       battler.pbThis,battler.itemName))
-  }
-)
-
-
 BattleHandlers::EORHealingItem.add(:PROTECTOR,
   proc { |item,battler,battle|
     next if !battler.canHeal?

@@ -40,7 +40,7 @@ def enderChest()
             end
         end
         itemcolor = getEnderChestRarityColors()[randomrarity]
-        randomitem = itemlist[randomrarity][rand(itemlist[randomrarity].length)]
+        randomitem = itemlist[randomrarity].sample
         if randomitem[0] == :EMERA
             pbMessage("You got an \\C[#{itemcolor}]Emera\\C[0]!")
             grantRandomEmera
@@ -239,7 +239,7 @@ def getEnderChestItems()
     exodiaitems = [:EXODIATHEFORBIDDENONE, :LEFTARMOFTHEFORBIDDENONE, :RIGHTARMOFTHEFORBIDDENONE, :LEFTLEGOFTHEFORBIDDENONE, :RIGHTLEGOFTHEFORBIDDENONE]
     $PokemonGlobal.chestitemspulled = [] if $PokemonGlobal.chestitemspulled.nil?
     exodiaitems.each do |exodia|
-        chestitems[4].push([exodia]) if !$PokemonGlobal.chestitemspulled.include?(exodia)
+        chestitems[4].push([exodia, 1]) if !$PokemonGlobal.chestitemspulled.include?(exodia)
     end
 
     return chestitems
