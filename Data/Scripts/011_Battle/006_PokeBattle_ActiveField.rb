@@ -26,7 +26,7 @@ begin
       @effects[PBEffects::WonderRoom]      = 0
       @effects[PBEffects::Web]         = false
       @effects[PBEffects::RainbowWing]      = false
-      @effects[PBEffects::Darkworld]      = 0
+      @effects[PBEffects::DarkWorld]      = 0
       @defaultWeather  = :None
       @weather         = :None
       @weatherDuration = 0

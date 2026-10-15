@@ -925,6 +925,7 @@
 934,AQUAKNIFE,Aqua Knife,Aqua Knifes,1,0,"A mischievous blade. Attacks with this weapon are easier to make critical.",0,0,0
 935,BLACKKNIFE,Black Knife,Black Knifes,1,0,"SlayDark+",0,0,0
 936,BLACKSHARD,Black Shard,Black Shards,1,0,"SlayDark ^",0,0,0
+937,SHADOWCRYSTAL,Shadow Crystal,Shadow Crystals,1,0,"A sharp shadow moves like water in the hand.",0,0,0
 
 
 

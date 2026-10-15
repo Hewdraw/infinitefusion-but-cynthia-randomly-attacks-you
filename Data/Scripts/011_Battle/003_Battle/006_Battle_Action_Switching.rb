@@ -343,7 +343,7 @@ class PokeBattle_Battle
     end
     # Update battlers' participants (who will gain Exp/EVs when a battler faints)
     eachBattler { |b| b.pbUpdateParticipants }
-    if @battle.field.effects[PBEffects::DarkWorld] > 0 && !battler.pokemon.hasType?(:FAIRY)
+    if @field.effects[PBEffects::DarkWorld] > 0 && !battler.pokemon.hasType?(:FAIRY)
       pbDisplay(_INTL("{1} succumbed to the Darkness.", battler.pbThis))
     end
     # Healing Wish
