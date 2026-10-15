@@ -4123,7 +4123,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SHADOWSHIELDPLUS,
   proc { |ability,battler,battle|
     battle.pbDisplay("Dark, Darker, Yet Darker")
     battle.pbDisplay("All non-Lightners have succumbed to Darkness.")
-    battler.field.effects[PBEffects::DarkWorld] = 1000
+    battle.field.effects[PBEffects::DarkWorld] = 1000
   }
 )
 

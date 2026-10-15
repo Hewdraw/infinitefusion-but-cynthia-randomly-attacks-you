@@ -400,7 +400,7 @@ class PokeBattle_Battler
   # same type more than once, and should not include any invalid type numbers
   # (e.g. -1).
   def pbTypes(withType3 = false)
-    return [:DARK] if @battle.field.effects[PBEffects::DarkWorld] > 0 && !@pokemon.hasType?(:FAIRY)
+    return [:DARK] if @battle.field.effects[PBEffects::DarkWorld] > 0 && !@pokemon.hasType?(:FAIRY) && !hasActiveItem?(:BLACKKNIFE)
     return [:QMARKS] if hasActiveItem?(:PYRITE)
     return [:GUN] if hasActiveItem?(:ILLEGALGUNPARTS)
     ret = [@type1]
