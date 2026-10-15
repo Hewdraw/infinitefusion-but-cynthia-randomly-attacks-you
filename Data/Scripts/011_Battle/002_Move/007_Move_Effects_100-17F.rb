@@ -6490,14 +6490,14 @@ class PokeBattle_Move_382 < PokeBattle_Move
     @battle.pbDisplay(_INTL("All effects disappeared from the battlefield."))
     @battle.field.terrain = :None
     @battle.field.terrain = :None
-    @battle.pbOwnSide.effects.each do |effect|
+    user.pbOwnSide.effects.each do |effect|
       if effect.is_a?(Integer)
         effect = 0
       else
         effect = false
       end
     end
-    @battle.pbOpposingSide.effects.each do |effect|
+    user.pbOpposingSide.effects.each do |effect|
       if effect.is_a?(Integer)
         effect = 0
       else
