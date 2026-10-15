@@ -291,6 +291,7 @@ class FusionTutorService
       compatibleMoves << :THUNDERCAGE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :MIKUMIKUBEAM if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :SOPRANO if hasType(:SOUND) || canLearnMove(:BOOMBURST)
+      compatibleMoves << :JARONA if hasType(:GRASS)
     end
     return compatibleMoves
   end

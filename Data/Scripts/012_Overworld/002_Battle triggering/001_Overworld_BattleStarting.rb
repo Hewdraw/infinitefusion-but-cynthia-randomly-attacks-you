@@ -583,7 +583,7 @@ def pbLegendaryBattle(species, alpha=false, number=0)
   # Generate trainers and their parties based on the arguments given
   if alpha
     trainer = pbLoadTrainer(:ALPHA_POKEMON, species, number)
-    $PokemonGlobal.nextBattleBGM = "VSAlpha"
+    $PokemonGlobal.nextBattleBGM = "VSAlpha" if $PokemonGlobal.nextBattleBGM.nil?
   elsif species == "Wandering Trader"
     trainer = pbLoadTrainer(:DESTROYEROFWORLDS, species, number)
     $PokemonGlobal.nextBattleBGM = "VSDeath"

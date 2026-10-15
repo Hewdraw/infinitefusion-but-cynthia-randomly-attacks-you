@@ -481,6 +481,8 @@ BattleHandlers::StatLossImmunityAbility.add(:HYPERCUTTER,
   }
 )
 
+BattleHandlers::StatLossImmunityAbility.copy(:HYPERCUTTER, :HYPERCUTTERPLUS)
+
 BattleHandlers::StatLossImmunityAbility.add(:KEENEYE,
   proc { |ability,battler,stat,battle,showMessages|
     next false if stat!=:ACCURACY
@@ -1245,6 +1247,12 @@ BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
 
 BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS, :POWERBOUNCE, :POWERFULSANDS)
 
+BattleHandlers::DamageCalcUserAbility.add(:THEROARING,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:HUSTLE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 1.5 if move.physicalMove?
@@ -1376,10 +1384,16 @@ BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:HYPERCUTTERPLUS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 2 if move.slicingMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     next if target.effects[PBEffects::Dynamax] > 0
-    mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0
+    mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0 || move.id == :JARONA
   }
 )
 
@@ -1674,6 +1688,14 @@ BattleHandlers::DamageCalcTargetAbility.add(:MULTISCALE,
 )
 
 BattleHandlers::DamageCalcTargetAbility.copy(:MULTISCALE, :SCALEBREAKER)
+
+BattleHandlers::DamageCalcTargetAbility.add(:SHADOWSHIELDPLUS,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:final_damage_multiplier] /= 2
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.copy(:SHADOWSHIELDPLUS, :THEROARING)
 
 BattleHandlers::DamageCalcTargetAbility.add(:PROTOSYNTHESIS,
   proc { |ability,target,user,move,mults,baseDmg,type|
@@ -2456,10 +2478,18 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 #===============================================================================
 
 BattleHandlers::UserAbilityOnHit.add(:MOXIEPLUS,
-  proc { |ability,user,targets,move,battle|
+  proc { |ability,user,target,move,battle|
     next if battle.pbRandom(100)>=20
     next if !user.pbCanRaiseStatStage?(:ATTACK,user)
     user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
+  }
+)
+
+BattleHandlers::UserAbilityOnHit.add(:HYPERCUTTERPLUS,
+  proc { |ability,user,target,move,battle|
+    next if battle.pbRandom(100)>=20
+    next if !target.pbCanLowerStatStage?(:DEFENSE,user)
+    target.pbLowerStatStageByAbility(:DEFENSE,1,user,GameData::Ability.get(ability).real_name)
   }
 )
 
@@ -3145,6 +3175,16 @@ BattleHandlers::EOREffectAbility.add(:OBLITERATE,
       b.pbLowerStatStageByAbility(:DEFENSE, 1, battler, false)
       b.pbLowerStatStageByAbility(:SPECIAL_DEFENSE, 1, battler, false)
     end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::EOREffectAbility.add(:OBLITERATE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    oldLastRoundMoved = battler.lastRoundMoved
+    battler.pbUseMoveSimple(:ROAR)
+    battler.lastRoundMoved = oldLastRoundMoved
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -4076,6 +4116,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
     battler.pbUseMoveSimple(:KNIFE)
     battler.lastRoundMoved = oldLastRoundMoved
     battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:SHADOWSHIELDPLUS,
+  proc { |ability,battler,battle|
+    battle.pbDisplay("Dark, Darker, Yet Darker")
+    battle.pbDisplay("All non-Lightners have succumbed to Darkness.")
+    battler.field.effects[PBEffects::DarkWorld] = 1000
   }
 )
 

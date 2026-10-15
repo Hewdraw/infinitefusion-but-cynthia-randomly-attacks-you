@@ -2226,17 +2226,17 @@ class PokeBattle_AI
         key = :critDamage
       when "0BD", "0BE", "204", "238", "239"   #Double Kick, Twineedle
         baseDmg *= 2
-      when "0BF"   # Triple Kick
+      when "0BF", "379"   # Triple Kick
         case originalkey
         when :minDamage
           baseDmg *= 3
         when :averageDamage
-          baseDmg = 47 #todo accuracy check
+          baseDmg *= 4.7 #todo accuracy check
         else
           baseDmg *= 6   # Hits do x1, x2, x3 baseDmg in turn, for x6 in total
         end
       when "0C0", "176"   # Fury Attack
-        if user.hasActiveAbility?(:SKILLLINK)
+        if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
           baseDmg *= 5
         else
           if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
@@ -2313,6 +2313,8 @@ class PokeBattle_AI
         end
       when "329"
         baseDmg *= 1.5 if user.hasActiveAbility?(:KEYCHANGE)
+      when "381"
+        baseDmg *= 3
       end
       
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]

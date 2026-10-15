@@ -442,6 +442,10 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
       return false
     end
+    if target.hasActiveItem?(:BLACKKNIFE) && target != user && move.statusMove?()
+      @battle.pbDisplay(_INTL("Your ACTs do nothing to this foe."))
+      return false
+    end
     if target.species == :CREEPER && move.calcType == :ELECTRIC
       @battle.pbDisplay(_INTL("{1} got charged by the attack!",target.pbThis(true).capitalize))
       @battle.pbMegaEvolve(target.index, true)

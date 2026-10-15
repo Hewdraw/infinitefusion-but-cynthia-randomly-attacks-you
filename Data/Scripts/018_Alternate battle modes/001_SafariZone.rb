@@ -85,7 +85,7 @@ Events.onStepTakenTransferPossible += proc { |_sender,e|
   if pbInSafari? && pbSafariState.decision==0 && Settings::SAFARI_STEPS > 0
     pbSafariState.steps -= 1
     if pbSafariState.steps == 1 && $PokemonBag.pbQuantity(:LEPPABERRY) > 0
-      if pbConfirmMessage(_INTL("You are almost out of steps! Would you like to use a Leppa Berry?"))
+      if pbConfirmMessage(_INTL("You are almost out of steps! Would you like to use a Leppa Nut?"))
         $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)
         pbSafariState.steps += 500
       end

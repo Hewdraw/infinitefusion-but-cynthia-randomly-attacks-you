@@ -368,7 +368,7 @@
 355,JUDGMENT,Judgment,09F,100,NORMAL,Special,100,10,0,NearOther,0,bef,"The user releases countless shots of light. Its type varies with the kind of Plate the user is holding."
 356,HYPERVOICE,Hyper Voice,000,90,NORMAL,Special,100,10,0,AllNearFoes,0,befk,"The user lets loose a horribly echoing shout with the power to inflict damage."
 357,MULTIATTACK,Multi-Attack,09F,120,NORMAL,Physical,100,10,0,NearOther,0,abef,"Cloaking itself in high energy, the user slams into the target. This move's type depends on the held memory."
-358,REVELATIONDANCE,Revelation Dance,169,100,NORMAL,Special,100,15,0,NearOther,0,befo,"The user attacks the target by dancing very hard. The user's type determines the type of this move."
+358,REVELATIONDANCE,Revelation Dance,169,100,QMARKS,Special,100,15,0,NearOther,0,befo,"The user attacks the target by dancing very hard. The user's type determines the type of this move."
 359,ROCKCLIMB,Rock Climb,013,90,NORMAL,Physical,85,20,20,NearOther,0,abef,"The user attacks the target by smashing into it with incredible force. It may also confuse the target."
 360,TAKEDOWN,Take Down,0FA,90,NORMAL,Physical,85,20,0,NearOther,0,abef,"A reckless, full-body charge attack for slamming into the foe. It also damages the user a little."
 361,UPROAR,Uproar,0D1,90,SOUND,Special,100,10,0,RandomNearFoe,0,befk,"The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
@@ -1113,6 +1113,15 @@
 1144,VIBRATO,Vibrato,000,100,SOUND,Physical,100,10,0,AllNearOthers,0,befk,"a"
 1145,INVERSEROOM,Inverse Room,378,0,PSYCHIC,Status,0,5,0,BothSides,-7,e,"The user creates a bizarre area in which make a wild fucking guess for five turns."
 1146,SHOOTMINUS,Shoot-,180,110,GUN,Special,100,5,0,NearOther,0,befn,"Gun."
+1147,KNIFEPLUS,Knife+,379,30,STEEL,Physical,90,30,0,RandomNearFoe,0,fhq,"Knifes."
+1148,KNIFEFAN,Knife Fan,000,95,FAIRY,Physical,100,30,0,AllNearFoes,0,fhq,"Knifes."
+1149,PRECIPICEBLADESPLUS,Precipice Blades+,380,125,GROUND,Physical,100,5,30,AllNearFoes,0,befq,"The user attacks its foes by manifesting the power of the land in fearsome blades of stone."
+1150,PETALDANCEPLUS,Petal Dance+,381,40,GRASS,Special,100,5,10,RandomNearFoe,0,abefoq,"The user attacks by scattering petals for two to three turns. The user then becomes confused."
+1151,JARONA,Jarona,000,60,GRASS,Physical,100,5,0,NearOther,1,abefj,"Here i come San Frandisco."
+1152,CRYSTALBARRAGE,Crystal Barrage,0C0,30,ROCK,Special,90,10,0,NearOther,0,befn,"The user hurls hard rocks at the target. Two to five rocks are launched in quick succession."
+1153,BOARDREND,Board Rend,382,100,GHOST,Physical,100,5,0,AllNearOthers,0,efq,"a"
+1154,SANGUINESLASH,Sanguine Slash,000,120,DARK,Physical,100,5,0,NearOther,0,efq,"a"
+1155,CRYSTALNOVA,Crystal Nova,383,1,STEEL,Physical,100,1,0,AllNearOthers,0,efq,"a"
 
 
 

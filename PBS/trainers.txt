@@ -1524,7 +1524,7 @@ Pokemon = B148H181,57
 #-------------------------------
 [COOLTRAINER_F2,Jeanette]
 Pokemon = B123H15,45
-Pokemon = BELLSPROUT,77
+Pokemon = BELLSPROUT,200
     Moves = WRINGOUT,MAGICALLEAF,DOUBLETEAM,SYNTHESIS
 #-------------------------------
 [TEAMROCKET_M,Phillip]
@@ -12157,6 +12157,58 @@ Pokemon = URSALUNA,5
     Raid = TRUE
     IV = 31,31,31,31,31,31
     EV = 252,252,0,0,0,252
+
+[ALPHA_POKEMON,Mawile,0]
+Pokemon = MAWILESHINY,5
+    Offset = 0
+    Moves = KNIFEPLUS,KNIFEFAN,PETALDANCEPLUS,PRECIPICEBLADESPLUS
+    Ability = HYPERCUTTERPLUS
+    Shiny = TRUE
+    Hpbar = 2
+    Phasetwo = TRUE
+    Gender = F
+    Item = AQUAKNIFE
+    Nature = ADAMANT
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,0,0,252
+Pokemon = MEGAMAWILESHINY,5
+    Offset = 0
+    Moves = KNIFEPLUS,KNIFEFAN,PETALDANCEPLUS,PRECIPICEBLADESPLUS
+    Ability = HYPERCUTTERPLUS
+    Shiny = TRUE
+    Hpbar = 2
+    Gender = F
+    Item = AQUAKNIFE
+    Nature = ADAMANT
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,0,0,252
+
+[ALPHA_POKEMON,Sableye,0]
+Pokemon = SABLEYE,5
+    Offset = 10
+    Moves = CRYSTALBARRAGE,BOARDREND,SANGUINESLASH,CRYSTALNOVA
+    Ability = SHADOWSHIELDPLUS
+    Hpbar = 2
+    Phasetwo = TRUE
+    Gender = M
+    Item = BLACKKNIFE
+    Nature = RELAXED
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
+Pokemon = MEGASABLEYE,5
+    Offset = 10
+    Moves = CRYSTALBARRAGE,BOARDREND,SANGUINESLASH,CRYSTALNOVA
+    Ability = THEROARING
+    Hpbar = 2
+    Gender = M
+    Item = BLACKKNIFE
+    Nature = RELAXED
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,252
 
 ####################### Misc Tower
 [DESTROYEROFWORLDS,Wandering Trader,0]

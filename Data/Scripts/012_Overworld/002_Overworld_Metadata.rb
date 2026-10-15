@@ -97,6 +97,7 @@ class PokemonGlobalMetadata
   attr_accessor :looplet
   attr_accessor :highestfloor
   attr_accessor :movieswatched
+  attr_accessor :darkworlds
 
   attr_accessor :boat
   attr_accessor :acroBike

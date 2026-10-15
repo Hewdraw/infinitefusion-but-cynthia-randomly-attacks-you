@@ -2553,7 +2553,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
-    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
 
@@ -3675,7 +3675,7 @@ class PokeBattle_Move_225 < PokeBattle_Move
   end
 
   def pbOnStartUse(user,targets)
-    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
   end
 end
 
@@ -4526,7 +4526,7 @@ class PokeBattle_Move_281 < PokeBattle_TargetStatDownMove
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
-    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
 end
@@ -5024,7 +5024,7 @@ class PokeBattle_Move_304 < PokeBattle_TargetStatDownMove
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
-    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
 end
@@ -5888,7 +5888,7 @@ class PokeBattle_Move_349 < PokeBattle_Move
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
-    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
   
@@ -5970,7 +5970,7 @@ class PokeBattle_Move_354 < PokeBattle_StatUpMove
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     r = @battle.pbRandom(hitChances.length)
-    r = hitChances.length-1 if user.hasActiveAbility?(:SKILLLINK)
+    r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
 end
@@ -5990,7 +5990,7 @@ class PokeBattle_Move_355 < PokeBattle_Move
   end
 
   def pbOnStartUse(user,targets)
-    @accCheckPerHit = !user.hasActiveAbility?(:SKILLLINK) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
   end
 end
 
@@ -6399,5 +6399,130 @@ class PokeBattle_Move_378 < PokeBattle_Move
   def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
     return if @battle.field.effects[PBEffects::InverseRoom] > 0 # No animation
     super
+  end
+end
+
+class PokeBattle_Move_379 < PokeBattle_Move
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 3;    end
+
+  def successCheckPerHit?
+    return @accCheckPerHit
+  end
+
+  def pbOnStartUse(user,targets)
+    @calcBaseDmg = 0
+    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    @calcBaseDmg += baseDmg
+    return @calcBaseDmg
+  end
+end
+
+class PokeBattle_Move_380 < PokeBattle_BurnMove
+  def hitsFlyingTargets?
+    return true;
+  end
+
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :GROUND && defType == :FLYING && !target.isFusionOf(:FANROTOM)
+    return super
+  end
+
+  def pbEffectAfterAllHits(user, target)
+    return if target.fainted?
+    return if target.damageState.unaffected || target.damageState.substitute
+    return if target.inTwoTurnAttack?("0CE") || target.effects[PBEffects::SkyDrop] >= 0 # Sky Drop
+    return if !target.airborne? && !target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce
+    target.effects[PBEffects::SmackDown] = true
+    if target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
+      target.effects[PBEffects::TwoTurnAttack] = nil
+      @battle.pbClearChoice(target.index) if !target.movedThisRound?
+    end
+    target.effects[PBEffects::MagnetRise] = 0
+    target.effects[PBEffects::Telekinesis] = 0
+    @battle.pbDisplay(_INTL("{1} fell straight down!", target.pbThis))
+  end
+end
+
+class PokeBattle_Move_381 < PokeBattle_ConfuseMove
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 3;    end
+
+  def pbEffectAfterAllHits(user,target)
+    return if user.fainted? || target.fainted? || target.damageState.unaffected
+    return unless rand(10) < 3
+    battle.pbDisplay(_INTL("A knife launches out!"))  
+  end
+end
+
+class PokeBattle_Move_382 < PokeBattle_Move
+  def pbEffectAfterAllHits(user, target)
+    @battle.pbDisplay(_INTL("The board got cleaved in half"))
+    @battle.pbDisplay(_INTL("All effects disappeared from the battlefield."))
+    @battle.field.terrain = :None
+    @battle.field.terrain = :None
+    @battle.pbOwnSide.effects.each do |effect|
+      if effect.is_a?(Integer)
+        effect = 0
+      else
+        effect = false
+      end
+    end
+    @battle.pbOpposingSide.effects.each do |effect|
+      if effect.is_a?(Integer)
+        effect = 0
+      else
+        effect = false
+      end
+    end
+    @battle.field.effects.each do |effect|
+      if effect.is_a?(Integer)
+        next if effect > 100
+        effect = 0
+      else
+        effect = false
+      end
+    end
+  end
+end
+
+class PokeBattle_Move_383 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    return [200*((user.adjustedTotalhp-user.hp)/user.adjustedTotalhp),1].max
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if user.hp > user.adjustedTotalhp / 2
+    user.pbRaiseStatStage(:ATTACK, 1, user)
+    user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
   end
 end

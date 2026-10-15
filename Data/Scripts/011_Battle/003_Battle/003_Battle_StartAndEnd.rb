@@ -687,6 +687,11 @@ class PokeBattle_Battle
           when :EXODIAINCARNATE
             battler.pokemon.species = :THEFORBIDDENONE
             battler.pokemon.originalability = :BREAKTHESEAL
+          when :MEGAMAWILESHINY
+            battler.pokemon.species = :MAWILE
+          when :MEGASABLEYE
+            battler.pokemon.species = :SABLEYE
+            battler.pokemon.item = :BLACKSHARD
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
@@ -706,7 +711,7 @@ class PokeBattle_Battle
             battler.pokemon.ability = GameData::Ability.get(ability).id
           end
           ball = :POKEBALL
-          ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil?
+          ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil? || battler.pokemon.species == :MAWILE
           battler.pokemon.hp = 1
           pbThrowPokeBall(battler.index, ball, catch_rate = 255, showPlayer = true)
         end

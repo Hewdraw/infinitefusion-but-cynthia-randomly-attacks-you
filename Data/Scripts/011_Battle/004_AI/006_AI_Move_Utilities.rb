@@ -237,7 +237,7 @@ class PokeBattle_AI
     when "0BF"   # Triple Kick
       baseDmg *= 6   # Hits do x1, x2, x3 baseDmg in turn, for x6 in total
     when "0C0", "176"   # Fury Attack
-      if user.hasActiveAbility?(:SKILLLINK)
+      if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
         baseDmg *= 5
       else
         if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
@@ -279,6 +279,7 @@ class PokeBattle_AI
     when "175"   # Double Iron Bash
       baseDmg *= 2
       baseDmg *= 2 if skill>=PBTrainerAI.mediumSkill && target.effects[PBEffects::Minimize]
+    when "381"
     end
     return baseDmg
   end

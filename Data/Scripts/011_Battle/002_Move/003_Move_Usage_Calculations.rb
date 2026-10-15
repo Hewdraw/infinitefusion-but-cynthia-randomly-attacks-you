@@ -80,6 +80,9 @@ class PokeBattle_Move
     if target.hasActiveEmera?(:DEFENDGLOBE)
       ret = Effectiveness::INEFFECTIVE if defType == :BUG && moveType == :FLYING
     end
+    if user.hasActiveItem?([:BLACKSHARD, :BLACKKNIFE])
+      ret = Effectiveness::SUPER_EFFECTIVE_ONE if defType == :DARK
+    end
     return ret
   end
 

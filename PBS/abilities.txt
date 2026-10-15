@@ -381,6 +381,8 @@
 403,TRUANTPLUS,Truant+,"Pokémon can't attack on consecutive turns."
 404,GUTSPLUS,Guts+,"Boosts Attack if there is a status problem."
 405,FORCEDEVOLUTIONPLUS,Forced Evolution+,"a"
+406,HYPERCUTTERPLUS,Hyper Cutter+,"Prevents other Pokémon from lowering Attack stat."
+407,SHADOWSHIELDPLUS,Shadow Shield,"Resists damage while its HP is full."
 700,BREAKTHESEAL,Break the Seal,"a"
 701,OBLITERATE,Obliterate,"a"
 702,SCALEBREAKER,Scale Breaker,"a"
@@ -397,3 +399,4 @@
 713,SEEDSOWER,Seed Sower,"todo"
 714,SANDSPIT,Sand Spit,"todo"
 715,SPICYSPRAY,Spicy Spray,"todo"
+716,THEROARING,The Roaring,"are you menaced seeing this in the files?"

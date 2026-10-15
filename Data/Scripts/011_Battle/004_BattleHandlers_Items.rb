@@ -855,6 +855,16 @@ BattleHandlers::DamageCalcUserItem.add(:LIFEORB,
   }
 )
 
+BattleHandlers::DamageCalcUserItem.copy(:LIFEORB, :BLACKSHARD)
+
+BattleHandlers::DamageCalcUserItem.add(:BLACKKNIFE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    if !move.is_a?(PokeBattle_Confusion)
+      mults[:final_damage_multiplier] *= 1.6
+    end
+  }
+)
+
 BattleHandlers::DamageCalcUserItem.add(:LIFEBELL,
   proc { |item,user,target,move,mults,baseDmg,type|
     if !move.is_a?(PokeBattle_Confusion)
@@ -1511,7 +1521,7 @@ BattleHandlers::CriticalCalcUserItem.add(:RAZORCLAW,
   }
 )
 
-BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS)
+BattleHandlers::CriticalCalcUserItem.copy(:RAZORCLAW,:SCOPELENS, :AQUAKNIFE)
 
 BattleHandlers::CriticalCalcUserItem.add(:STICK,
   proc { |item,user,target,c|

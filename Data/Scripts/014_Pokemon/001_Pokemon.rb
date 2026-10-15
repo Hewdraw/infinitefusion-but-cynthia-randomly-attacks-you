@@ -928,6 +928,7 @@ class Pokemon
     return nil
   end
 
+
   def item_id
     return nil unless @item
     if GameData::Item.exists?(@item)
@@ -1867,6 +1868,7 @@ class Pokemon
     @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf([:JIRACHI, :CELEMEWCHI])
     @extraabilities.push(:TOTALFREEZE) if hasItem?(:GODORB)
     @extraabilities.push(:GOODASGOLD) if hasItem?(:SINNOHCOIN) && isFusionOf(:WASHROTOM)
+    @extraabilities.push(:SHARPNESS) if hasItem?([:AQUAKNIFE, :BLACKKNIFE])
     @extraabilities.push(:HEATPROOF) if hasItem?(:NERUPHONE) #todo
     @abilityarray = createAbilityArray
     @boxicon = nil
