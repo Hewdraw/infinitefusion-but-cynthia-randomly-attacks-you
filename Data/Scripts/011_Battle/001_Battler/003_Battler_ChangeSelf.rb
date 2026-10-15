@@ -218,6 +218,7 @@ class PokeBattle_Battler
       @hp = 1
       @battle.pbDisplayPaused("...")
       @battle.pbDisplayPaused("The Sableye grins at you.")
+      pbSEPlay("DarkFountain")
       @battle.pbDisplayPaused("With a Roar he stabs the Black Knife into the ground!")
       oldLastRoundMoved = @lastRoundMoved
       pbUseMoveSimple(:ROAR)
@@ -319,6 +320,8 @@ class PokeBattle_Battler
     pbBGMPlay("VSMegaDiancie") if pokemon.species == :MEGADIANCIE
     pbBGMPlay("VSMeloetta2") if pokemon.species == :MELOETTA_A
     pbBGMPlay("VSTripleBaka") if pokemon.species == :VOCALLEEK
+    pbBGMPlay("VSPetalDance2") if pokemon.species == :MEGAMAWILESHINY
+    pbBGMPlay("VSRoaringKnight2") if pokemon.species == :MEGASABLEYE
   end
 
   def updateSpirits()
