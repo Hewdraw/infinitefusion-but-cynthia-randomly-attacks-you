@@ -202,6 +202,7 @@ class PokeBattle_Battler
     if @species == :MAWILESHINY
       @pokemon.hp = 1
       @hp = 1
+      pbBGMFade(1)
       @battle.pbDisplayPaused("...")
       @battle.pbDisplayPaused("The Mawile takes her Aqua Knife...")
       @battle.pbDisplayPaused("And stabs it down into the ground!")
@@ -216,6 +217,7 @@ class PokeBattle_Battler
     if @species == :SABLEYE
       @pokemon.hp = 1
       @hp = 1
+      pbBGMFade(1)
       @battle.pbDisplayPaused("...")
       @battle.pbDisplayPaused("The Sableye grins at you.")
       pbSEPlay("DarkFountain")
