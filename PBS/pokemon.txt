@@ -22390,6 +22390,20 @@ Pokedex = Its two sets of jaws thrash about violently as if they each had a will
 Generation = 6
 Shape = Bipedal
 #-------------------------------
+[1000705]
+Name = Sableye
+InternalName = MEGASABLEYE
+BaseStats = 50,85,125,20,85,115
+Type1 = DARK
+Type2 = GHOST
+Abilities = MAGICBOUNCE
+HiddenAbility = MAGICBOUNCE
+Height = 1.0
+Weight = 23.5
+Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Generation = 6
+Shape = Bipedal
+#-------------------------------
 [1000706]
 Name = Metagross
 InternalName = METAGROSSSHINY

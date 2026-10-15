@@ -689,9 +689,11 @@ class PokeBattle_Battle
             battler.pokemon.originalability = :BREAKTHESEAL
           when :MEGAMAWILESHINY
             battler.pokemon.species = :MAWILE
+            battler.pokemon.ability = :HYPERCUTTERPLUS
           when :MEGASABLEYE
             battler.pokemon.species = :SABLEYE
             battler.pokemon.item = :BLACKSHARD
+            battler.pokemon.ability = :PRANKSTER
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|

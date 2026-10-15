@@ -6486,7 +6486,7 @@ end
 
 class PokeBattle_Move_382 < PokeBattle_Move
   def pbEffectAfterAllHits(user, target)
-    @battle.pbDisplay(_INTL("The board got cleaved in half"))
+    @battle.pbDisplay(_INTL("The board got cleaved in half."))
     @battle.pbDisplay(_INTL("All effects disappeared from the battlefield."))
     @battle.field.terrain = :None
     @battle.field.terrain = :None

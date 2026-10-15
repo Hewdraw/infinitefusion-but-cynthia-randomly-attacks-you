@@ -202,27 +202,27 @@ class PokeBattle_Battler
     if @species == :MAWILESHINY
       @pokemon.hp = 1
       @hp = 1
-      @battle.pbDisplayConfirm("...")
-      @battle.pbDisplayConfirm("The Mawile takes her Aqua Knife...")
-      @battle.pbDisplayConfirm("And stabs it down into the ground!")
+      @battle.pbDisplayPaused("...")
+      @battle.pbDisplayPaused("The Mawile takes her Aqua Knife...")
+      @battle.pbDisplayPaused("And stabs it down into the ground!")
       pbSEPlay("DarkFountain")
-      @battle.pbDisplayConfirm("A Dark Fountain opens.")
-      @battle.pbDisplayConfirm("A Dark World engulfs you.")
+      @battle.pbDisplayPaused("A Dark Fountain opens.")
+      @battle.pbDisplayPaused("A Dark World engulfs you.")
       pbSEPlay("weirdjingle")
-      @battle.pbDisplayConfirm("Dark, Darker, Yet Darker.")
-      @battle.pbDisplayConfirm("All non-Lightners have succumbed to Darkness.")
+      @battle.pbDisplayPaused("Dark, Darker, Yet Darker.")
+      @battle.pbDisplayPaused("All non-Lightners have succumbed to Darkness.")
       @battle.field.effects[PBEffects::DarkWorld] = 10000
     end
     if @species == :SABLEYE
       @pokemon.hp = 1
       @hp = 1
-      @battle.pbDisplayConfirm("...")
-      @battle.pbDisplayConfirm("The Sableye grins at you.")
-      @battle.pbDisplayConfirm("With a Roar he stabs the Black Knife into the ground!")
+      @battle.pbDisplayPaused("...")
+      @battle.pbDisplayPaused("The Sableye grins at you.")
+      @battle.pbDisplayPaused("With a Roar he stabs the Black Knife into the ground!")
       oldLastRoundMoved = @lastRoundMoved
       pbUseMoveSimple(:ROAR)
       @lastRoundMoved = oldLastRoundMoved
-      @battle.pbDisplayConfirm("The Roaring is coming!")
+      @battle.pbDisplayPaused("The Roaring is coming!")
     end
     @battle.pbCommonAnimation("UltraBurst2", self)
     if @pokemon.split
