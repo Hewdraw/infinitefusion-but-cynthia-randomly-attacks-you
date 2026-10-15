@@ -3179,16 +3179,6 @@ BattleHandlers::EOREffectAbility.add(:OBLITERATE,
   }
 )
 
-BattleHandlers::EOREffectAbility.add(:OBLITERATE,
-  proc { |ability,battler,battle|
-    battle.pbShowAbilitySplash(battler)
-    oldLastRoundMoved = battler.lastRoundMoved
-    battler.pbUseMoveSimple(:ROAR)
-    battler.lastRoundMoved = oldLastRoundMoved
-    battle.pbHideAbilitySplash(battler)
-  }
-)
-
 #===============================================================================
 # EORGainItemAbility handlers
 #===============================================================================
