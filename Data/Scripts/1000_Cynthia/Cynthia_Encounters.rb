@@ -4,7 +4,6 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   doublebattle = false
   losequote = nil
 
-  $PokemonGlobal.cynthiachance = 0 if $PokemonGlobal.cynthiachance.nil?
   $PokemonGlobal.cynthiaupgradechance = 0 if $PokemonGlobal.cynthiaupgradechance.nil?
   $PokemonGlobal.cynthiabadgetier = numbadges if $PokemonGlobal.cynthiabadgetier.nil?
   
@@ -19,6 +18,8 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
   end
 
   if !encounter_type
+    $PokemonGlobal.cynthiachance = 0 if $PokemonGlobal.cynthiachance.nil?
+
     chanceincrease = 1
     if !Settings::FLUTES_CHANGE_WILD_ENCOUNTER_LEVELS
       chanceincrease *= 2 if $PokemonMap.blackFluteUsed
