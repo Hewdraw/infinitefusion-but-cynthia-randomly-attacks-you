@@ -114,13 +114,13 @@ class SystemOptionsScene < PokemonOption_Scene
                      _INTL("Automatically download missing custom sprites and Pokédex entries from the internet")
       )
 
-    device_option_selected = $PokemonSystem.on_mobile ? 1 : 0
-    options << EnumOption.new(_INTL("Device"), [_INTL("PC"), _INTL("Mobile")],
-                              proc { device_option_selected },
-                              proc { |value| $PokemonSystem.on_mobile = value == 1 },
-                              [_INTL("The intended device on which to play the game."),
-                               _INTL("Disables some options that aren't supported when playing on mobile.")]
-    )
+    # device_option_selected = $PokemonSystem.on_mobile ? 1 : 0
+    # options << EnumOption.new(_INTL("Device"), [_INTL("PC"), _INTL("Mobile")],
+    #                           proc { device_option_selected },
+    #                           proc { |value| $PokemonSystem.on_mobile = value == 1 },
+    #                           [_INTL("The intended device on which to play the game."),
+    #                            _INTL("Disables some options that aren't supported when playing on mobile.")]
+    # )
 
 
     return options

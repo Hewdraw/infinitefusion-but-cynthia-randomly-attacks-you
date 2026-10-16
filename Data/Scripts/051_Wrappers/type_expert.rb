@@ -132,7 +132,8 @@ def type_expert_battle(type_id)
       pbMessage(_INTL("When you wear it, you can sometimes find {1}-type related items after battles!", type.real_name))
       show_nb_type_experts_defeated()
       if type_id == :FAIRY
-        $PokemonBag.pbStoreItem(:ENDGATEWAY)
+        pbMessage("And as an extra reward you can have this!")
+        pbReceiveItem(:ENDGATEWAY)
       end
       return true
     end
