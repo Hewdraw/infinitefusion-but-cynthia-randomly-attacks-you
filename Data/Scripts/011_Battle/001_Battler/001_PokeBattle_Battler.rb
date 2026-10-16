@@ -287,7 +287,7 @@ class PokeBattle_Battler
   def pbThis(lowerCase = false)
     if opposes?
       if @battle.trainerBattle?
-        return lowerCase ? _INTL("the Alpha {1}", name) : _INTL("The Alpha {1}", name) if @battle.legendaryBattle? && @battle.opponent[0].id == :ALPHA_POKEMON
+        return lowerCase ? _INTL("the Alpha {1}", name) : _INTL("The Alpha {1}", name) if pbGetOwnerFromBattlerIndex(@index).id == :ALPHA_POKEMON
         return lowerCase ? _INTL("the Legendary {1}", name) : _INTL("The Legendary {1}", name) if @battle.legendaryBattle?
         return lowerCase ? _INTL("the opposing {1}", name) : _INTL("The opposing {1}", name)
       else
