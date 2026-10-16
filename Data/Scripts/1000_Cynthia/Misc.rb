@@ -217,3 +217,8 @@ def tripleFusion(item=false)
     end
     return false
 end
+
+def isDarkWorld()
+    return true if [21, 32, 38, 428, 805].include?($game_map.map_id)
+    return false
+end

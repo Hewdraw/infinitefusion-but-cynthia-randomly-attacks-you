@@ -36,6 +36,9 @@ class Window_PokemonItemStorage < Window_DrawableCommand
     else
       item     = @bag[index][0]
       itemname = @adapter.getDisplayName(item)
+      if item == :SHADOWCRYSTAL && !isDarkWorld
+        itemname = "Glass"
+      end
       baseColor = (index==@sortIndex) ? Color.new(248,24,24) : self.baseColor
       textpos.push([itemname,rect.x,rect.y-6,false,self.baseColor,self.shadowColor])
       if !GameData::Item.get(item).is_important?   # Not a Key item/HM/TM
@@ -146,6 +149,10 @@ class ItemStorage_Scene
     # Get item description
     if itemwindow.item
       @sprites["itemtextwindow"].text = GameData::Item.get(itemwindow.item).description
+      if itemwindow.item == :SHADOWCRYSTAL && !isDarkWorld
+        @sprites["icon"].item = :GLASS
+        @sprites["itemtextwindow"].text = "It feels like glass, but..."
+      end
     else
       @sprites["itemtextwindow"].text = _INTL("Close storage.")
     end

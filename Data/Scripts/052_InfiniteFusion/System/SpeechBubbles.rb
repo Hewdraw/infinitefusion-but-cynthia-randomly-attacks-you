@@ -47,6 +47,8 @@ class Window_AdvancedTextPokemon
   def text=(value)
     if value != nil && value != "" && $PokemonTemp.speechbubble_bubble && $PokemonTemp.speechbubble_bubble > 0
       value = "<c3=9040E8,B8A8E0>" + value[18..-1] if $game_map.events[$PokemonTemp.speechbubble_talking].character_name == "TheSketon"
+      value = "<c3=48D8D8,A8E0E0>" + value[18..-1] if ["TheDragon", "UpsideDownDev", "TimeStopper"].include?($game_map.events[$PokemonTemp.speechbubble_talking].character_name)
+      value = "<c3=FBA2A4,F8A8B8>" + value[18..-1] if $game_map.events[$PokemonTemp.speechbubble_talking].character_name == "Claire_Overworld"
       if $PokemonTemp.speechbubble_bubble == 1
         $PokemonTemp.speechbubble_bubble = 0
         resizeToFit2(value,400,100)

@@ -541,6 +541,11 @@ class PokemonBagScreen
           pbDisplay("Are you fucking stupid?")
           qty = 0
         end
+        if item == :SHADOWCRYSTAL
+          pbDisplay("(You didn't quite understand why...)")
+          pbDisplay("(But, the thought of discarding it felt very wrong.)")
+          qty = 0
+        end
         if qty>1
           helptext = _INTL("Toss out how many {1}?",itm.name_plural)
           qty = @scene.pbChooseNumber(helptext,qty)

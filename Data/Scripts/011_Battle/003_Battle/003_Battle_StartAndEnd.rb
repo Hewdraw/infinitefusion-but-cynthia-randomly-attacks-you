@@ -714,6 +714,7 @@ class PokeBattle_Battle
           end
           ball = :POKEBALL
           ball = :PREMIERBALL if !$PokemonGlobal.towervalues.nil? || battler.pokemon.species == :MAWILE
+          ball = :DUSKBALL if battler.pokemon.species == :SABLEYE
           battler.pokemon.hp = 1
           pbThrowPokeBall(battler.index, ball, catch_rate = 255, showPlayer = true)
         end

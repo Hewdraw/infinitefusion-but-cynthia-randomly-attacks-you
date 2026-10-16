@@ -4109,14 +4109,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:THEWORLD,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:SHADOWSHIELDPLUS,
-  proc { |ability,battler,battle|
-    battle.pbDisplay("Dark, Darker, Yet Darker")
-    battle.pbDisplay("All non-Lightners have succumbed to Darkness.")
-    battle.field.effects[PBEffects::DarkWorld] = 1000
-  }
-)
-
 BattleHandlers::AbilityOnSwitchIn.add(:RAINBOWPLEDGE,
   proc { |ability,battler,battle|
     next if battler.pbOwnSide.effects[PBEffects::Rainbow] > 0

@@ -268,7 +268,7 @@ class FusionTutorService
       compatibleMoves << :ORIGINPULSE if hasType(:WATER) && (canLearnMove(:WATERSPOUT) || canLearnMove(:HYDROCANNON))
       compatibleMoves << :DARKVOID if (hasType(:DARK) && canLearnMove(:HYPNOSIS)) || is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :DYNAMAXCANNON if (hasType(:POISON) && canLearnMove(:DRAGONPULSE)) || (hasType(:DRAGON) && canLearnMove(:SLUDGEBOMB)) || is_fusion_of([:THEFORBIDDENONE])
-      compatibleMoves << :IVYCUDGEL if hasType(:GRASS) || hasType(:ROCK) || hasType(:FIRE) || hasType(:WATER)
+      compatibleMoves << :IVYCUDGEL if hasType(:GRASS) || hasType(:ROCK) || hasType(:FIRE) || hasType(:WATER) || hasType(:QMARKS)
       compatibleMoves << :COLLISIONCOURSE if (hasType(:DRAGON) && hasType(:FIGHTING)) || is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :ELECTRODRIFT if hasType(:DRAGON) && hasType(:ELECTRIC)
       compatibleMoves << :RUINATION if hasType(:DARK) || is_fusion_of([:THEFORBIDDENONE])
