@@ -125,7 +125,10 @@ module GameData
       return false
     end
 
-    def can_hold?;           return !is_important?; end
+    def can_hold?;
+      return false if @id == :SHADOWCRYSTAL
+      return !is_important?;
+    end
 
     def unlosable?(species, ability)
       return true if $game_switches[SWITCH_RANDOM_HELD_ITEMS]

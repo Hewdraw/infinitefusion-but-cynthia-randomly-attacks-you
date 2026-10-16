@@ -667,6 +667,8 @@ Pokemon = B101H82,43
 #-------------------------------
 [SCIENTIST,Frisk]
 Pokemon = B63H4,51
+    Offset = 10
+    Moves = KNIFE
 Pokemon = B91H92,46
 #-------------------------------
 [SCIENTIST,Johnson]

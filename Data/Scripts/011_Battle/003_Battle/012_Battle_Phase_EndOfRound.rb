@@ -540,6 +540,7 @@ class PokeBattle_Battle
     # drowsy countdown
     priority.each do |b|
       next if b.status != :SLEEP
+      next if @field.effects[PBEffects::DarkWorld] > 0
       b.statusCount -= 1
       if b.statusCount<=0
         b.pbCureStatus
