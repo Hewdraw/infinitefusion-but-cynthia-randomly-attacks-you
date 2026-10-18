@@ -830,7 +830,7 @@ def grantRandomEmera(customweight = nil, recursion = false)
             randomrarity -= rarity
         end
     end
-    randomrarity = 4 if itemlist[4].length > 0 && randomrarity = 3 && rand(100) == 0
+    randomrarity = 4 if itemlist[4].length > 0 && randomrarity == 3 && rand(100) == 0
     randomitem = itemlist[randomrarity].sample()
     grantEmera(randomitem)
     #grantRandomEmera(customweight, true) if !recursion && hasEmera?(:INDIEPROOF)
