@@ -1,5 +1,5 @@
 def playerHasFusionItems()
-  return pbHasItem?(:DNASPLICERS) || pbHasItem?(:SUPERSPLICERS) || pbHasItem?(:INFINITESPLICERS) || pbHasItem?(:INFINITESPLICERS2)
+  return pbHasItem?(:DNASPLICERS) || pbHasItem?(:SUPERSPLICERS) || pbHasItem?(:INFINITESPLICERS) || pbHasItem?(:INFINITESPLICERS2) || pbHasItem?(:PREMIERSPLICERS)
 end
 
 def hasUnfusedPokemonInParty(allow_fainted=true)
@@ -18,16 +18,19 @@ def selectSplicer()
   dna_splicers_const = _INTL("DNA Splicers")
   super_splicers_const = _INTL("Super Splicers")
   infinite_splicers_const = _INTL("Infinite Splicers")
+  premier_splicers_const = _INTL("Premier Splicers")
 
   dnaSplicersQt = $PokemonBag.pbQuantity(:DNASPLICERS)
   superSplicersQt = $PokemonBag.pbQuantity(:SUPERSPLICERS)
   infiniteSplicersQt = $PokemonBag.pbQuantity(:INFINITESPLICERS)
   infiniteSplicers2Qt = $PokemonBag.pbQuantity(:INFINITESPLICERS2)
+  premierSplicersQt = $PokemonBag.pbQuantity(:PREMIERSPLICERS)
 
   options = []
   options.push("#{infinite_splicers_const}") if infiniteSplicers2Qt > 0 || infiniteSplicersQt > 0
   options.push("#{super_splicers_const} (#{superSplicersQt})") if superSplicersQt > 0
   options.push("#{dna_splicers_const} (#{dnaSplicersQt})") if dnaSplicersQt > 0
+  options.push("#{premier_splicers_const}") if premierSplicersQt > 0
 
   if options.length <= 0
     pbDisplay(_INTL("You have no fusion items available."))
@@ -45,6 +48,8 @@ def selectSplicer()
     return :SUPERSPLICERS
   elsif ret.start_with?(infinite_splicers_const)
     return infiniteSplicers2Qt >= 1 ? :INFINITESPLICERS2 : :INFINITESPLICERS
+  elsif ret.start_with?(premier_splicers_const)
+    return :PREMIERSPLICERS
   end
   return nil
 end

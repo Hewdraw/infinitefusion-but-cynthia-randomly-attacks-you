@@ -699,9 +699,9 @@ class PokemonMartScreen
             if GameData::Item.get(item).is_poke_ball?
               extra_item = :PREMIERBALL
             elsif item == :DNASPLICERS || item == :SUPERSPLICERS
-              extra_item = :DNAREVERSER
+              extra_item = :PREMIERSPLICERS
             elsif item == :DNAREVERSER
-              extra_item = :DNASPLICERS
+              extra_item = :PREMIERSPLICERS
             end
           end
         end

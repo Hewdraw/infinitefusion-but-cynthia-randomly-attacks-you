@@ -710,11 +710,15 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS, proc { |item, pokemon, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.copy(:DNASPLICERS, :PREMIERSPLICERS)
+
 ItemHandlers::UseInField.add(:DNASPLICERS, proc { |item|
   fusion_success = useSplicerFromField(item)
   next 3 if fusion_success
   next false
 })
+
+ItemHandlers::UseInField.copy(:DNASPLICERS, :PREMIERSPLICERS)
 
 ItemHandlers::UseInField.add(:SUPERSPLICERS, proc { |item|
   fusion_success = useSplicerFromField(item)

@@ -926,6 +926,7 @@
 935,BLACKKNIFE,Black Knife,Black Knifes,1,0,"SlayDark+",0,0,0
 936,BLACKSHARD,Black Shard,Black Shards,1,0,"SlayDark ^",0,0,0
 937,SHADOWCRYSTAL,Shadow Crystal,Shadow Crystals,8,0,"A sharp shadow moves like water in the hand.",0,0,0
+938,PREMIERSPLICERS,Premier Splicers,Premier Splicers,1,300,"A splicer that fuses the DNA of any two Pokemon into a single entirely new Pokemon.",1,0,0
 
 
 
