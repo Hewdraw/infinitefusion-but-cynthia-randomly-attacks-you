@@ -770,8 +770,8 @@ class PokemonMartScreen
       @scene.pbHideMoney
     end
     @scene.pbEndSellScene
+    return true
   end
-  return true
 end
 
 def replaceShopStockWithRandomized(stock)
