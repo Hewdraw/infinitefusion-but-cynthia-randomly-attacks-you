@@ -787,7 +787,7 @@ class PokemonStorageScreen
   end
 
   def isSuperSplicer?(item)
-    return item == :SUPERSPLICERS || item == :INFINITESPLICERS2
+    return [:INFINITESPLICERS, :INFINITESPLICERS2, :PREMIERSPLICERS].include?(item)
   end
 
   def pbFusionCommands(selected)

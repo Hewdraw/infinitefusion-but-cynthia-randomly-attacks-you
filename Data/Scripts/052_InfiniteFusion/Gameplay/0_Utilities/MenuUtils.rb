@@ -218,7 +218,7 @@ def fuseCaughtPokemon(caughtPokemon)
       actualPartyPokemon = $Trainer.party[partyPosition]  # real reference, not clone
       pbFuse(actualPartyPokemon, caughtPokemon, splicerItem, fusion_pif_sprite)
     end
-    $PokemonBag.pbDeleteItem(splicerItem) if [:DNASPLICERS, :SUPERSPLICERS, :PREMIERSPLICERS].include?(splicerItem)
+    $PokemonBag.pbDeleteItem(splicerItem) if [:DNASPLICERS, :SUPERSPLICERS].include?(splicerItem)
     return true
   end
   return false

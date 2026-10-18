@@ -1229,17 +1229,17 @@ class PokemonPartyScreen
     return unless splicerItem
     if pbDNASplicing(pokemon,@scene,splicerItem,partyPosition)
       echoln splicerItem
-      $PokemonBag.pbDeleteItem(splicerItem, 1) unless splicerItem == :INFINITESPLICERS || splicerItem == :INFINITESPLICERS2
+      $PokemonBag.pbDeleteItem(splicerItem, 1) unless [:INFINITESPLICERS, :INFINITESPLICERS2, :PREMIERSPLICERS].include?(splicerItem)
     end
   end
 
   def unfuseFromParty(pokemon,index)
     splicerItem = selectSplicer()
     return unless splicerItem
-    isSuperSplicer = [:SUPERSPLICERS,:INFINITESPLICERS2].include?(splicerItem)
+    isSuperSplicer = [:SUPERSPLICERS,:INFINITESPLICERS2,:PREMIERSPLICERS].include?(splicerItem)
     echoln index
     if pbUnfuse(pokemon,@scene,index, nil)
-      $PokemonBag.pbDeleteItem(splicerItem, 1) unless splicerItem == :INFINITESPLICERS || splicerItem == :INFINITESPLICER2
+      $PokemonBag.pbDeleteItem(splicerItem, 1) unless [:INFINITESPLICERS, :INFINITESPLICERS2, :PREMIERSPLICERS].include?(splicerItem)
     end
   end
 

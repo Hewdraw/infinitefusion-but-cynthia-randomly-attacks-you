@@ -762,7 +762,7 @@ class PokemonMartScreen
             $game_map.autoplay
             $game_map.refresh
           }
-          return
+          return false
         end
         pbDisplayPaused(_INTL("Turned over the {1} and received ${2}.", itemname, price.to_s_formatted)) { pbSEPlay("Mart buy item") }
         @scene.pbRefresh
@@ -771,6 +771,7 @@ class PokemonMartScreen
     end
     @scene.pbEndSellScene
   end
+  return true
 end
 
 def replaceShopStockWithRandomized(stock)
@@ -824,7 +825,7 @@ def pbPokemonMart(stock, speech_welcome = nil, cantsell = false, speech_bye=nil,
     elsif cmdSell >= 0 && cmd == cmdSell
       scene = PokemonMart_Scene.new
       screen = PokemonMartScreen.new(scene, stock)
-      screen.pbSellScreen
+      break if !screen.pbSellScreen
     else
       unless speech_bye == ""
         pbMessage(speech_bye ? speech_bye : _INTL("Please come again!"))

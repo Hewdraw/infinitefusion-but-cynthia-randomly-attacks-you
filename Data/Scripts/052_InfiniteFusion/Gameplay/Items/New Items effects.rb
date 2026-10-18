@@ -710,15 +710,11 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS, proc { |item, pokemon, scene|
   next false
 })
 
-ItemHandlers::UseOnPokemon.copy(:DNASPLICERS, :PREMIERSPLICERS)
-
 ItemHandlers::UseInField.add(:DNASPLICERS, proc { |item|
   fusion_success = useSplicerFromField(item)
   next 3 if fusion_success
   next false
 })
-
-ItemHandlers::UseInField.copy(:DNASPLICERS, :PREMIERSPLICERS)
 
 ItemHandlers::UseInField.add(:SUPERSPLICERS, proc { |item|
   fusion_success = useSplicerFromField(item)
@@ -738,8 +734,10 @@ ItemHandlers::UseInField.add(:INFINITESPLICERS2, proc { |item|
   next false
 })
 
+ItemHandlers::UseInField.copy(:INFINITESPLICERS2, :PREMIERSPLICERS)
+
 def isSuperSplicersMechanics(item)
-  return [:SUPERSPLICERS, :INFINITESPLICERS2].include?(item)
+  return [:SUPERSPLICERS, :INFINITESPLICERS2, :PREMIERSPLICERS].include?(item)
 end
 
 def useSplicerFromField(item)
@@ -1875,6 +1873,8 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS, proc { |item, pokemon, scene|
   next true if pbDNASplicing(pokemon, scene, item)
   next false
 })
+
+ItemHandlers::UseOnPokemon.copy(:INFINITESPLICERS2, :PREMIERSPLICERS)
 
 def getPokemonPositionInParty(pokemon)
   for i in 0..$Trainer.party.length

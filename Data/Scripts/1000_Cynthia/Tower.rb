@@ -43,7 +43,7 @@ def setupTower()
     starters.each do |pokemon|
         pbAddPokemon(pokemon, getCurrentLevelCap())
     end
-    starteritems = [:DIGIVICE, :INFINITESPLICERS2, :INFINITEREVERSERS, :TRIPLESPLICER, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET, :RECIPEBOOK]
+    starteritems = [:DIGIVICE, :PREMIERSPLICERS, :INFINITEREVERSERS, :TRIPLESPLICER, :LEGENDARYCANDY, :SHINYCHARM, :UNLIMITEDLOOPLET, :RECIPEBOOK]
     starteritems.each do |item|
         $PokemonBag.pbStoreItem(item)
     end
