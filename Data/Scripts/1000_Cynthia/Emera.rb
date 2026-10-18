@@ -794,6 +794,14 @@ EMERADICT = {
         :tutormove => :MALIGNANTCHAIN,
         :tutorcondition => -> (pokemon) {return pokemon.hasType?(:DARK)},
     },
+
+    :DEVILSKNIFE => {
+        :name => "Devilsknife",
+        :description => "Your Pokemon use a random Metronome move at the end of each turn.",
+        :rarity => :MYTHICAL,
+        :tutormove => :GREATESTMETRONOME,
+        :tutorcondition => -> (pokemon) {return true},
+    },
 }
 
 def grantRandomEmera(customweight = nil, recursion = false)
@@ -808,7 +816,6 @@ def grantRandomEmera(customweight = nil, recursion = false)
         next if item.length > 0
         raritylist[i] = 0
     end
-    raritylist[4] = 0
     totalrarities = raritylist.sum
     if totalrarities == 0  
         pbMessage("No Emeras left to obtain.")
@@ -823,6 +830,7 @@ def grantRandomEmera(customweight = nil, recursion = false)
             randomrarity -= rarity
         end
     end
+    randomrarity = 4 if itemlist[4].length > 0 && randomrarity = 3 && rand(100) == 0
     randomitem = itemlist[randomrarity].sample()
     grantEmera(randomitem)
     #grantRandomEmera(customweight, true) if !recursion && hasEmera?(:INDIEPROOF)
@@ -853,7 +861,7 @@ def getEmeraColor(rarity)
         :UNCOMMON => 3, #green
         :RARE => 1, #blue
         :LEGENDARY => 6, #yellow
-        #:MYTHICAL => 2, #red
+        :MYTHICAL => 2, #red
     }
     return 7 if !raritycolors.keys().include?(rarity)
     return raritycolors[rarity]
@@ -875,8 +883,10 @@ def getEmeras
         ],
         [ #legendary
         ],
+        [ #mythical
+        ],
     ]
-    raritylist = [:COMMON, :UNCOMMON, :RARE, :LEGENDARY]
+    raritylist = [:COMMON, :UNCOMMON, :RARE, :LEGENDARY, :MYTHICAL]
     EMERADICT.each do |emera, values|
         rarity = values[:rarity]
         next if !raritylist.include?(rarity)

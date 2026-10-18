@@ -341,6 +341,14 @@ class PokeBattle_Battle
         b.pbFaint if b.fainted?
       end
     end
+    priority.each do |b|
+      next if b.fainted?
+      next if !b.hasActiveEmera?(:DEVILSKNIFE)
+      oldLastRoundMoved = battler.lastRoundMoved
+      metronomes = [:METRONOME, :GREATERMETRONOME, :GREATESTMETRONOME]
+      battler.pbUseMoveSimple(metronomes.sample)
+      battler.lastRoundMoved = oldLastRoundMoved
+    end
     for side in 0...2
       next if sides[side].effects[PBEffects::GmaxWildfire]==0
       pbCommonAnimation("SeaOfFire") if side==0

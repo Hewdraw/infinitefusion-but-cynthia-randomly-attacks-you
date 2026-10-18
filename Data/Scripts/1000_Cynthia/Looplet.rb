@@ -501,6 +501,7 @@ class PokemonLooplet
       :UNCOMMON => 2,
       :RARE => 3,
       :LEGENDARY => 4,
+      :MYTHICAL => 16,
     }
     return EMERADICT[item][:cost] if EMERADICT[item][:cost]
     return raritycosts[EMERADICT[item][:rarity]]if raritycosts[EMERADICT[item][:rarity]]
