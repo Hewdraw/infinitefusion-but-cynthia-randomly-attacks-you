@@ -920,7 +920,7 @@
 929,FLOPHOXITE,Flophoxite,Flophoxites,1,0,"todo",0,0,0
 930,REVIVERSEED,Reviver Seed,Reviver Seeds,1,0,"a",0,0,0
 931,MUGORB,Mug Orb,Mug Orbs,1,0,"a",0,0,0
-932,ILLEGALGUNPARTS,Illegal Gun Parts,Illegal Gun Parts,1,0,"Gun.",5,0,0
+932,ILLEGALGUNPARTS,Illegal Gun Parts,Illegal Gun Parts,1,138840,"Gun.",5,0,0
 933,METAGROSSITEZ,Metagrossite Z,Metagrossite Zs,1,0,"todo",0,0,0
 934,AQUAKNIFE,Aqua Knife,Aqua Knifes,1,0,"A mischievous blade. Attacks with this weapon are easier to make critical.",0,0,0
 935,BLACKKNIFE,Black Knife,Black Knifes,1,0,"SlayDark+",0,0,0

@@ -570,6 +570,9 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "VSMiguel"
         when "Ho-Gia"
             $PokemonGlobal.nextBattleBGM = "VSLugia"
+        when "Jirachi"
+            
+                $PokemonGlobal.nextBattleBGM = "VSJirachi"
         when "Latias"
             $PokemonGlobal.nextBattleBGM = "VSLati"
         when "Meloetta"
@@ -754,7 +757,7 @@ def getFloorGraphic(event)
     when "Heal"
         return "BWNurse"
     when "Tutor"
-        return "Claire_Overworld"
+        return "Claire_Darkworld"
     when "Crafting"
         return "TinkerersWorkshop"
     when "Legendary"

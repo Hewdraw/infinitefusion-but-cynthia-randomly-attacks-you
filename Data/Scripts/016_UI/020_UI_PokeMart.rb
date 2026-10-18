@@ -745,6 +745,25 @@ class PokemonMartScreen
         qty.times do
           @adapter.removeItem(item)
         end
+        if item == :ILLEGALGUNPARTS
+          pbDisplayPaused(_INTL("Turned over the {1}...", itemname)) { pbSEPlay("Mart buy item") }
+          pbDisplayPaused("The police arrives and arrests you.")
+          pbDisplayPaused("You're taken to jail.")
+          @scene.pbHideMoney
+          @scene.pbEndSellScene
+          $Trainer.money = 0
+          pbFadeOutIn(99999) {
+            Kernel.pbCancelVehicles
+            $game_temp.player_new_map_id = 179
+            $game_temp.player_new_x = 39
+            $game_temp.player_new_y = 5
+            $game_temp.player_new_direction = 2
+            $scene.transfer_player
+            $game_map.autoplay
+            $game_map.refresh
+          }
+          return
+        end
         pbDisplayPaused(_INTL("Turned over the {1} and received ${2}.", itemname, price.to_s_formatted)) { pbSEPlay("Mart buy item") }
         @scene.pbRefresh
       end
