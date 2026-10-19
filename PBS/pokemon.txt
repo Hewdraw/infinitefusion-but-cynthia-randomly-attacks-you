@@ -20437,14 +20437,14 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000208]
-Name = Gigachomp
-InternalName = MEGAGARCHOMPGIGALITH
-Type1 = ROCK
+Name = Garchomp
+InternalName = MEGAB299H299
+Type1 = DRAGON
 Type2 = GROUND
-BaseStats = 92,158,120,69,80,85
+BaseStats = 108,156,105,111,134,88
 GenderRate = Female50Percent
-Abilities = SANDFORCE
-HiddenAbility = SANDFORCE
+Abilities = LIVIDOUTRAGESMASHER
+HiddenAbility = LIVIDOUTRAGESMASHER
 Moves = 1,TACKLE
 Shape = Head
 #-------------------------------

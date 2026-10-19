@@ -348,6 +348,7 @@ class PokeBattle_Battle
     when :Snow        then pbDisplay(_INTL("Snow is falling."))
     when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
     when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
+    when :IntenseSand then pbDisplay(_INTL("An intense sandstream is howling!"))
     when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
     when :ShadowSky   then pbDisplay(_INTL("The sky is shadowy."))
     end

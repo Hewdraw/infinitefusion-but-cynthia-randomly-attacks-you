@@ -400,3 +400,4 @@
 714,SANDSPIT,Sand Spit,"todo"
 715,SPICYSPRAY,Spicy Spray,"todo"
 716,THEROARING,The Roaring,"are you menaced seeing this in the files?"
+717,LIVIDOUTRAGESMASHER,Livid Outrage Smasher,"a"

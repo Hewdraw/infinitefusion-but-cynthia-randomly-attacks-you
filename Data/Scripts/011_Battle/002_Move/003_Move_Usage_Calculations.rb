@@ -65,6 +65,10 @@ class PokeBattle_Move
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING &&
                                                    Effectiveness.super_effective_type?(moveType, defType)
     end
+    if @battle.pbWeather == :IntenseSand
+      ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :GROUND &&
+                                                   Effectiveness.super_effective_type?(moveType, defType)
+    end
     # Grounded Flying-type Pokémon become susceptible to Ground moves
     if !target.airborne?
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if defType == :FLYING && moveType == :GROUND
@@ -501,9 +505,20 @@ class PokeBattle_Move
       elsif type == :WATER
         multipliers[:final_damage_multiplier] *= 1.5
       end
-    when :Sandstorm
+    when :Sandstorm, :IntenseSand
       if (target.hasActiveAbility?(:ADAPTINGSANDS) || target.pbHasType?(:ROCK)) && specialMove? && @function != "122"   # Psyshock
         multipliers[:defense_multiplier] *= 1.5
+      end
+      if @battle.pbWeather == :IntenseSand
+        if target.pbHasType?(:DRAGON) && physicalMove?
+          multipliers[:defense_multiplier] *= 1.5
+        end
+        if target.pbHasType?(:GROUND) && specialMove?
+          multipliers[:defense_multiplier] *= 1.5
+        end
+        if type == :GROUND
+          multipliers[:final_damage_multiplier] *= 1.5
+        end
       end
     when :Snow
       if target.pbHasType?(:ICE) && physicalMove? && @function != "202"
@@ -634,7 +649,7 @@ class PokeBattle_Move
         ret *= 1.5
       end
     end
-    if @battle.pbWeather == :Sandstorm
+    if [:Sandstorm, :IntenseSand].include?(@battle.pbWeather)
       if ["005", "006", "0BE", "159"].include?(@function)
         ret *= 1.5
       end

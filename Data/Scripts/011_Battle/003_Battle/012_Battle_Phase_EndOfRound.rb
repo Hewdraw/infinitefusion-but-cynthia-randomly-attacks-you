@@ -40,9 +40,9 @@ class PokeBattle_Battle
     # Weather wears off
     if @field.weatherDuration==0
       case @field.weather
-      when :Sun       then pbDisplay(_INTL("The sunlight faded."))
-      when :Rain      then pbDisplay(_INTL("The rain stopped."))
-      when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
+      when :Sun, :HarshSun       then pbDisplay(_INTL("The sunlight faded."))
+      when :Rain, :HeavyRain      then pbDisplay(_INTL("The rain stopped."))
+      when :Sandstorm, :IntenseSand then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :Snow      then pbDisplay(_INTL("The snow stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
@@ -65,6 +65,7 @@ class PokeBattle_Battle
 #    when :Snow        then pbDisplay("The snow continues to fall.")
 #    when :HarshSun    then pbDisplay("The sunlight is extremely harsh.")
 #    when :HeavyRain   then pbDisplay("It is raining heavily.")
+    when :Sandstorm   then pbDisplay(_INTL("The sand is streaming intensely."))
 #    when :StrongWinds then pbDisplay("The wind is strong.")
     when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
     end
@@ -79,7 +80,7 @@ class PokeBattle_Battle
       # Weather damage
       # NOTE:
       case curWeather
-      when :Sandstorm
+      when :Sandstorm, :IntenseSand
         next if !b.takesSandstormDamage?
         pbDisplay(_INTL("{1} is buffeted by the sandstorm!",b.pbThis))
         @scene.pbDamageAnimation(b)

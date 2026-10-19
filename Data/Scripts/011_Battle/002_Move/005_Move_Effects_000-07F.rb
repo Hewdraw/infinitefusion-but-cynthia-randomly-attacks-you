@@ -64,7 +64,7 @@ class PokeBattle_Move_006 < PokeBattle_PoisonMove
   end
 
   def pbOverrideSuccessCheckPerHit(user, target)
-    return (Settings::MORE_TYPE_EFFECTS && statusMove? && (user.pbHasType?(:POISON) || @battle.pbWeather == :Sandstorm))
+    return (Settings::MORE_TYPE_EFFECTS && statusMove? && (user.pbHasType?(:POISON) || [:Sandstorm, :IntenseSand].include?(@battle.pbWeather)))
   end
 end
 

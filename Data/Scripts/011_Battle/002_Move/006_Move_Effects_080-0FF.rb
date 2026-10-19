@@ -116,7 +116,7 @@ class PokeBattle_Move_087 < PokeBattle_Move
       ret = :FIRE if GameData::Type.exists?(:FIRE)
     when :Rain, :HeavyRain
       ret = :WATER if GameData::Type.exists?(:WATER)
-    when :Sandstorm
+    when :Sandstorm, :IntenseSand
       ret = :ROCK if GameData::Type.exists?(:ROCK)
     when :Hail, :Snow
       ret = :ICE if GameData::Type.exists?(:ICE)

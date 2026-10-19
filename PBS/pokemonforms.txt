@@ -1723,7 +1723,7 @@ HiddenAbility = HUGEPOWER
 #-------------------------------
 [MEWTWOMEWTWO,1]
 FormName = Mega Mewtwo
-MegaStone = MEWTWONITE
+MegaStone = MEWTWONITEPLUS
 UnMegaForm = MEWTWO
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
@@ -1825,10 +1825,10 @@ BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER
 #-------------------------------
-[GARCHOMPGIGALITH,1]
-FormName = Mega Gigachomp
-MegaStone = GARCHOMPITE
-UnMegaForm = GARCHOMPGIGALITH
+[B299H299,1]
+FormName = Mega Garchomp
+MegaStone = GARCHOMPITEPLUS
+UnMegaForm = B299H299
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER

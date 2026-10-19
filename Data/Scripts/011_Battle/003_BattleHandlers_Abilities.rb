@@ -66,7 +66,7 @@ BattleHandlers::SpeedCalcAbility.add(:QUICKFEET,
 
 BattleHandlers::SpeedCalcAbility.add(:SANDRUSH,
   proc { |ability,battler,mult|
-    next mult * 2 if [:Sandstorm].include?(battler.battle.pbWeather)
+    next mult * 2 if [:Sandstorm, :IntenseSand].include?(battler.battle.pbWeather)
   }
 )
 
@@ -1054,7 +1054,7 @@ BattleHandlers::AccuracyCalcTargetAbility.add(:NOGUARD,
 
 BattleHandlers::AccuracyCalcTargetAbility.add(:SANDVEIL,
   proc { |ability,target,mods,user,move,type|
-    mods[:evasion_multiplier] *= 1.25 if target.battle.pbWeather == :Sandstorm
+    mods[:evasion_multiplier] *= 1.25 if [:Sandstorm, :IntenseSand].include?(target.battle.pbWeather)
   }
 )
 
@@ -1360,7 +1360,7 @@ BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
 
 BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.pbWeather == :Sandstorm &&
+    if [:Sandstorm, :IntenseSand].include?(user.battle.pbWeather) &&
        [:ROCK, :GROUND, :STEEL].include?(type)
       mults[:base_damage_multiplier] *= 1.3
     end
@@ -1371,7 +1371,7 @@ BattleHandlers::DamageCalcUserAbility.copy(:SANDFORCE, :POWERFULSANDS)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXELATEDSANDS,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    if user.battle.pbWeather == :Sandstorm &&
+    if [:Sandstorm, :IntenseSand].include?(user.battle.pbWeather) &&
        [:ROCK, :GROUND, :STEEL, :FAIRY].include?(type)
       mults[:base_damage_multiplier] *= 1.3
     end
@@ -3452,6 +3452,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELAND,
 BattleHandlers::AbilityOnSwitchIn.add(:DESOLATELANDPLUS,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:HarshSun, battler, battle, true)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:LIVIDOUTRAGESMASHER,
+  proc { |ability,battler,battle|
+    pbBattleWeatherAbility(:IntenseSand, battler, battle, true, false)
   }
 )
 

@@ -2106,7 +2106,7 @@ BattleHandlers::WeatherExtenderItem.add(:HEATROCK,
 
 BattleHandlers::WeatherExtenderItem.add(:PRIMALROCK,
   proc { |item,battler,weather,duration,battle|
-    next 3 if weather == :Rain || weather == :HeavyRain || weather == :Sun || weather == :HarshSun
+    next 3 if [:Rain, :HeavyRain, :Sun, :HarshSun, :Sandstorm, :IntenseSand].include?(weather)
   }
 )
 
@@ -2119,13 +2119,13 @@ BattleHandlers::WeatherExtenderItem.add(:ICYROCK,
 
 BattleHandlers::WeatherExtenderItem.add(:SMOOTHROCK,
   proc { |item,battler,weather,duration,battle|
-    next 3 if weather == :Sandstorm
+    next 3 if [:Sandstorm, :IntenseSand].include?(weather)
   }
 )
 
 BattleHandlers::WeatherExtenderItem.add(:DESERTEDROCK,
   proc { |item,battler,weather,duration,battle|
-    next 3 if weather == :Sandstorm || weather == :Sandstorm
+    next 3 if [:Hail, :Snow, :Sandstorm, :IntenseSand].include?(weather)
   }
 )
 

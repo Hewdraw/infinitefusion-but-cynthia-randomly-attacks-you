@@ -587,7 +587,7 @@ def pbBattleTypeWeakingBerry(type,moveType,target,mults)
 end
 
 def pbBattleWeatherAbility(weather,battler,battle,ignorePrimal=false,fixedDuration=true)
-  return if !ignorePrimal && [:HarshSun, :HeavyRain, :StrongWinds].include?(battle.field.weather)
+  return if !ignorePrimal && [:HarshSun, :HeavyRain, :IntenseSand, :StrongWinds].include?(battle.field.weather)
   return if battle.field.weather==weather
   battle.pbShowAbilitySplash(battler)
   if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH

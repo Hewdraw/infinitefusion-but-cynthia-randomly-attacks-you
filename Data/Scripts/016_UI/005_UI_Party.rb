@@ -1306,6 +1306,7 @@ class PokemonPartyScreen
       commands[cmdSummary = commands.length] = _INTL("Summary")
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
       commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0
+      commands[cmdParadoxForm = commands.length] = _INTL("Paradox Form") if pkmn.hasItem?([:MODIFIEDBOOSTERENERGY]) && pkmn.getParadoxList.length > 0
       commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getRotomList.length > 0 && pkmn.isFusionOf(:ROTOM)
       commands[cmdPet = commands.length] = _INTL("Pet")
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
@@ -1441,6 +1442,34 @@ class PokemonPartyScreen
           end
           command = @scene.pbShowCommands(commandtext, abilitynamelist)
           pkmn.regionalability[i] = abilitylist[command]
+        end
+        pkmn.calc_stats
+      elsif cmdParadoxForm >= 0 && command == cmdParadoxForm
+        specieslist = [pkmn.species, pkmn.species]
+        if pkmn.isFusion? && getDexNumberForSpecies(pkmn.species) < 1000000
+          specieslist = [GameData::Species.get(getBodyIDNormalized(pkmn.species)).species, GameData::Species.get(getHeadIDNormalized(pkmn.species)).species]
+        end
+        specieslist.each_with_index do |species, i|
+          formlist = []
+          namelist = []
+          pkmn.getParadoxList.each do |paradox|
+            formlist.push(paradox) if paradox.species == species
+            namelist.push(paradox.form_name.gsub("Paradox ", "")) if paradox.species == species
+          end
+          next if namelist.length == 0
+          commandtext = _INTL("Select Paradox Form for the body") if i == 0
+          commandtext = _INTL("Select Paradox Form for the head") if i == 1
+          command = @scene.pbShowCommands(commandtext, namelist)
+          pkmn.paradoxform[i] = command + 1
+          commandtext = _INTL("Select Paradox Ability for the body") if i == 0
+          commandtext = _INTL("Select Paradox Ability for the head") if i == 1
+          abilitynamelist = []
+          abilitylist = formlist[command].abilities + formlist[command].hidden_abilities
+          abilitylist.uniq.each do |ability|
+            abilitynamelist.push(GameData::Ability.get(ability).name)
+          end
+          command = @scene.pbShowCommands(commandtext, abilitynamelist)
+          pkmn.paradoxability[i] = abilitylist[command]
         end
         pkmn.calc_stats
       elsif cmdRotomForm >= 0 && command == cmdRotomForm

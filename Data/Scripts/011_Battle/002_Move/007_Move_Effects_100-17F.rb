@@ -2340,7 +2340,7 @@ end
 #===============================================================================
 class PokeBattle_Move_16D < PokeBattle_HealingMove
   def pbHealAmount(user)
-    return (user.totalhp * 2 / 3.0).round if @battle.pbWeather == :Sandstorm
+    return (user.totalhp * 2 / 3.0).round if [:Sandstorm, :IntenseSand].include?(@battle.pbWeather)
     return (user.totalhp / 2.0).round
   end
 end

@@ -137,6 +137,8 @@ class Pokemon
   attr_accessor :originalability
   attr_accessor :affection
   attr_accessor :megaform
+  attr_accessor :paradoxform
+  attr_accessor :paradoxability
   attr_accessor :regionalform
   attr_accessor :regionalability
   attr_accessor :rotomform
@@ -1551,6 +1553,12 @@ class Pokemon
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
     specieslist = [GameData::Species.get(getBodyIDNormalized(@species)), GameData::Species.get(getHeadIDNormalized(@species))]
     bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
+    if hasItem?(:MODIFIEDBOOSTERENERGY)
+      bstdata = getParadoxForm()
+      bstdata.each_with_index do |paradox,i|
+        bstdata[i] = paradox.base_stats
+      end
+    end
     if hasItem?([:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE])
       bstdata = getRegionalForm()
       bstdata.each_with_index do |regional,i|
@@ -1765,6 +1773,14 @@ class Pokemon
     @type2 = nil
     setDefaultForms()
     @unteraTypes = [] if !(@tera && @unteraTypes != nil)
+    if hasItem?(:MODIFIEDBOOSTERENERGY)
+      getParadoxForm().each_with_index do |paradox, i|
+        next if paradox.form == 0
+        @type2 = paradox.type2 if i == 0
+        @type1 = paradox.type1 if i == 1
+        @extraabilities += @paradoxability
+      end
+    end
     if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
       getRegionalForm().each_with_index do |regional, i|
         next if regional.form == 0

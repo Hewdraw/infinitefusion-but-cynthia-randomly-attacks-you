@@ -81,6 +81,12 @@ GameData::BattleWeather.register({
 })
 
 GameData::BattleWeather.register({
+  :id        => :IntenseSand,
+  :name      => _INTL("IntenseSand"),
+  :animation => "Sandstorm"
+})
+
+GameData::BattleWeather.register({
   :id        => :ShadowSky,
   :name      => _INTL("Shadow Sky"),
   :animation => "ShadowSky"

@@ -1610,7 +1610,10 @@ def goldenSkeletonBattle()
     pokemon.natural_shiny = mon.natural_shiny
     pokemon.hiddenPowerType = mon.hiddenPowerType
     pokemon.megaform = mon.megaform
+    pokemon.paradoxform = mon.paradoxform
+    pokemon.paradoxability = mon.paradoxability
     pokemon.regionalform = mon.regionalform
+    pokemon.regionalability = mon.regionalability
     pokemon.rotomform = mon.rotomform
     pokemon.rotomability = mon.rotomability
     team.push(pokemon)

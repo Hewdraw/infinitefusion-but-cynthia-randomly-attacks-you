@@ -2440,7 +2440,7 @@ Pokemon = MEWTWOMEWTWO,5
     Moves = DRAINPUNCH,DREAMEATER,EARTHQUAKE,HEX
     Ace = TRUE
     Ability = PRESSURE
-    Item = MEWTWONITE
+    Item = MEWTWONITEPLUS
     Gender = F
     Nature = JOLLY
     IV = 31,31,31,31,31,31
@@ -7796,25 +7796,15 @@ Pokemon = B299H134,5
     Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,48]
-Pokemon = GIGALITH,1
-    Offset = -100
-    Moves = SELFDESTRUCT
-    Ability = SANDSTREAM
-    Item = LUMBERRY
-    Gender = F
-    Nature = MILD
-    IV = 0,0,0,0,0,0
-    EV = 0,0,0,0,0,0
-    Happiness = 255
 Pokemon = GARCHOMP,5
-    Offset = 17
-    Moves = SCALESHOT,OUTRAGE,EARTHQUAKE,IRONHEAD
+    Offset = 12
+    Moves = DRAGONPULSE,EARTHPOWER,POWERGEM,STEALTHROCK
     Ability = ROUGHSKIN
-    Item = GARCHOMPITE
+    Item = GARCHOMPITEZ
     Gender = F
-    Nature = ADAMANT
+    Nature = MODEST
     IV = 31,31,31,31,31,31
-    EV = 4,252,0,252,0,0
+    EV = 252,0,130,0,0,130
     Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,49]
@@ -8878,15 +8868,15 @@ Pokemon = GIBLE,100
     IV = 31,31,31,31,31,31
     EV = 252,0,0,132,0,0
     Happiness = 255
-Pokemon = GARCHOMPGIGALITH,5
-    Offset = 2
-    Moves = DRAGONCLAW,EARTHQUAKE,IRONHEAD,STONEEDGE
-    Ability = SANDSTREAM
-    Item = GARCHOMPITE
+Pokemon = B299H299,5    
+    Offset = 0
+    Moves = EARTHQUAKE,BEHEMOTHBLADE,GLAIVERUSH,DRAGONDANCE
+    Ability = SANDVEIL
+    Item = GARCHOMPITEPLUS
     Gender = F
     Nature = JOLLY
     IV = 31,31,31,31,31,31
-    EV = 0,132,0,252,0,0
+    EV = 0,252,0,132,0,0
     Happiness = 255
 
 [CHAMPION_Sinnoh,Cynthia,66]

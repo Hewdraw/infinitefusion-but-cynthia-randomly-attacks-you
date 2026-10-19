@@ -719,6 +719,7 @@ class PokeBattle_Battle
     if user && user.hasActiveItem?(:PRIMALROCK)
       @field.weather = :HarshSun if newWeather == :Sun
       @field.weather = :HeavyRain if newWeather == :Rain
+      @field.weather = :IntenseSand if newWeather == :Sandstorm
     end
     if user && user.hasActiveItem?(:DESERTEDROCK)
       @field.weather = :Snow if newWeather == :Hail
@@ -734,6 +735,7 @@ class PokeBattle_Battle
     when :Snow        then pbDisplay(_INTL("It started to snow!"))
     when :HarshSun    then pbDisplay(_INTL("The sunlight turned extremely harsh!"))
     when :HeavyRain   then pbDisplay(_INTL("A heavy rain began to fall!"))
+    when :IntenseSand then pbDisplay(_INTL("An intense sandstream is howling!"))
     when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
     when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
     end

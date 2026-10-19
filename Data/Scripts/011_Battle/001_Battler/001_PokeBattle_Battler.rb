@@ -701,6 +701,7 @@ class PokeBattle_Battler
 
   def hasLevitate?
     return true if hasActiveAbility?([:LEVITATE, :EELEVATE, :ENDER, :EONBOOST, :LEVITATIONGUARD, :LEVITATIONAURA, :AERILATEPLUS])
+    return true if pbHasType?(:DRAGON) && @battle.pbWeather == :IntenseSand
     return false
   end
 

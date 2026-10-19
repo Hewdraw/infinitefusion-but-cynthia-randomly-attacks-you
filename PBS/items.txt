@@ -706,7 +706,7 @@
 706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"todo",0,0,0
 707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
-709,MEWTWONITE,Mewtwonite,Mewtwonites,1,0,"todo",0,0,0
+709,MEWTWONITEPLUS,Mewtwonite+,Mewtwonite+s,1,0,"a",0,0,0
 710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",5,0,6
 711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"Expensive. Does something, presumably with Necrozma.",0,0,0
 712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,2,0,"Minimizes an IV for a Pokemon. Don't question how it does it.",1,0,0
@@ -927,6 +927,7 @@
 936,BLACKSHARD,Black Shard,Black Shards,1,0,"SlayDark ^",0,0,0
 937,SHADOWCRYSTAL,Shadow Crystal,Shadow Crystals,8,0,"A sharp shadow moves like water in the hand.",0,0,0
 938,PREMIERSPLICERS,Premier Splicers,Premier Splicers,1,300,"A splicer that fuses the DNA of any two Pokemon into a single entirely new Pokemon.",1,0,0
+939,GARCHOMPITEPLUS,Garchompite+,Garchompite+s,1,0,"a",0,0,0
 
 
 
