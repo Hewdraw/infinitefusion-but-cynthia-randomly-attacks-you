@@ -354,6 +354,11 @@ class PokemonStorageScreen
     if command == 1
       command_confirm = pbShowCommands(_INTL("The {1} Pokémon will be lost forever. Release them?", final_released.length), [_INTL("No"), _INTL("Yes")])
       if command_confirm == 1
+        for index in selected
+          pokemon = @storage[box, index]
+          next if !pokemon
+          $PokemonBag.pbStoreItem(pokemon.item) if pokemon.item
+        end
         @multiSelectRange = nil
         @scene.pbUpdateSelectionRect(0, 0)
         @scene.animate_release_multi(box, final_released)

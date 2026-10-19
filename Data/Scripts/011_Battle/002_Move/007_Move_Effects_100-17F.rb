@@ -3675,7 +3675,7 @@ class PokeBattle_Move_225 < PokeBattle_Move
   end
 
   def pbOnStartUse(user,targets)
-    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :LOADEDDICESET, :DRAGONSCALE])
   end
 end
 
@@ -6524,5 +6524,20 @@ class PokeBattle_Move_383 < PokeBattle_Move
     return if user.hp > user.adjustedTotalhp / 2
     user.pbRaiseStatStage(:ATTACK, 1, user)
     user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
+  end
+end
+
+class PokeBattle_Move_384 < PokeBattle_FlinchMove
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    return Effectiveness::SUPER_EFFECTIVE_ONE if defType == :GHOST
+    return super
+  end
+end
+
+class PokeBattle_Move_385 < PokeBattle_Move
+  def pbBaseType(user)
+    userTypes = user.pbTypes(true)
+    return userTypes[1] if userTypes.length > 1
+    return userTypes[0]
   end
 end

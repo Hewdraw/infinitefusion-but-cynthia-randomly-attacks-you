@@ -542,6 +542,7 @@ class PokemonStorageScreen
       end
 
       pkmnname = pokemon.name
+      $PokemonBag.pbStoreItem(pokemon.item) if pokemon.item
       @scene.pbRelease(selected, heldpoke)
       if heldpoke
         @heldpkmn = nil

@@ -801,7 +801,7 @@
 780,TOMBSTONER,TOMBSTONER,229,60,GHOST,Physical,100,15,50,NearOther,0,abef,"TOMBSTONER"
 781,EXPANDINGFORCE,Expanding Force,200,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user attacks all opposing Pokémon with its psychic power. When the ground is Psychic Terrain, this move's power is boosted."
 782,COACHING,Coaching,000,90,GROUND,Physical,100,10,0,NearOther,0,abef,"todo lmao" #TODO moveset
-783,RAGINGBULL,Raging Bull,10A,90,FIRE,Physical,0,10,0,NearOther,0,abef,"todo"
+783,RAGINGBULL,Raging Bull,385,90,FIRE,Physical,0,10,0,NearOther,0,abef,"todo"
 784,TIDYUP,Tidy Up,026,0,NORMAL,Status,100,10,0,User,0,,"ur stinky" #TODO hazard clear
 785,STONEAXE,Stone Axe,105,65,ROCK,Physical,90,15,100,NearOther,0,abefq,"ur stinky"
 786,REVIVALBLESSING,Revival Blessing,197,0,NORMAL,Status,0,1,0,User,0,,"ur stinky" #partial todo
@@ -1113,8 +1113,8 @@
 1144,VIBRATO,Vibrato,000,100,SOUND,Physical,100,10,0,AllNearOthers,0,befk,"a"
 1145,INVERSEROOM,Inverse Room,378,0,PSYCHIC,Status,0,5,0,BothSides,-7,e,"The user creates a bizarre area in which make a wild fucking guess for five turns."
 1146,SHOOTMINUS,Shoot-,180,110,GUN,Special,100,5,0,NearOther,0,befn,"Gun."
-1147,KNIFEPLUS,Knife+,379,30,STEEL,Physical,90,30,0,RandomNearFoe,0,fhq,"Knifes."
-1148,KNIFEFAN,Knife Fan,000,95,FAIRY,Physical,100,30,0,AllNearFoes,0,fhq,"Knifes."
+1147,KNIFEPLUS,Knife+,379,30,STEEL,Physical,90,30,0,RandomNearFoe,0,fhq,"Knives."
+1148,KNIFEFAN,Knife Fan,000,95,FAIRY,Physical,100,30,0,AllNearFoes,0,fhq,"Knives."
 1149,PRECIPICEBLADESPLUS,Precipice Blades+,380,125,GROUND,Physical,100,5,30,AllNearFoes,0,befq,"The user attacks its foes by manifesting the power of the land in fearsome blades of stone."
 1150,PETALDANCEPLUS,Petal Dance+,381,40,GRASS,Special,100,5,10,RandomNearFoe,0,abefoq,"The user attacks by scattering petals for two to three turns. The user then becomes confused."
 1151,JARONA,Jarona,000,60,GRASS,Physical,100,5,0,NearOther,1,abefj,"Here i come San Frandisco."
@@ -1122,6 +1122,7 @@
 1153,BOARDREND,Board Rend,382,100,GHOST,Physical,100,5,0,AllNearOthers,0,efq,"a"
 1154,SANGUINESLASH,Sanguine Slash,000,120,DARK,Physical,100,5,0,NearOther,0,efq,"a"
 1155,CRYSTALNOVA,Crystal Nova,383,1,STEEL,Physical,100,1,0,AllNearOthers,0,efq,"a"
+1156,SILVERBULLET,Silver Bullet,384,70,ICE,Special,100,20,20,NearOther,0,bef,"Silver Gun."
 
 
 

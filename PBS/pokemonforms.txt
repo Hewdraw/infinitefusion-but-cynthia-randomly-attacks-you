@@ -1,4 +1,39 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+# Paradoxes
+#-------------------------------
+[PHANPY,1]
+FormName = Paradox Great Tusk
+Type1 = GROUND
+Type2 = FIGHTING
+BaseStats = 115,131,131,87,53,53
+Abilities = PROTOSYNTHESIS,ROUGHSKIN
+HiddenAbility = GUTS
+#-------------------------------
+[DONPHAN,1]
+FormName = Paradox Great Tusk
+Type1 = GROUND
+Type2 = FIGHTING
+BaseStats = 115,131,131,87,53,53
+Abilities = PROTOSYNTHESIS,ROUGHSKIN
+HiddenAbility = GUTS
+#-------------------------------
+[PHANPY,2]
+FormName = Paradox Iron Treads
+Type1 = GROUND
+Type2 = STEEL
+BaseStats = 90,112,120,106,72,70
+Abilities = QUARKDRIVE,SPEEDBOOST
+HiddenAbility = TRANSISTOR
+#-------------------------------
+[DONPHAN,2]
+FormName = Paradox Iron Treads
+Type1 = GROUND
+Type2 = STEEL
+BaseStats = 90,112,120,106,72,70
+Abilities = QUARKDRIVE,SPEEDBOOST
+HiddenAbility = TRANSISTOR
+#-------------------------------
 # Regionals
 #-------------------------------
 [RATTATA,1]
