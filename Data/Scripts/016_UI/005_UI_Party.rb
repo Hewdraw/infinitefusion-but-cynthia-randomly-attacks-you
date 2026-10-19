@@ -1288,6 +1288,7 @@ class PokemonPartyScreen
       cmdSummary = -1
       cmdMegaForm = -1
       cmdRegionalForm = -1
+      cmdParadoxForm = -1
       cmdRotomForm = -1
       cmdNickname = -1
       cmdDebug = -1
