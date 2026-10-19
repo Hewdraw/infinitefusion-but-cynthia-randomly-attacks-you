@@ -244,6 +244,7 @@ class PokeBattle_AI
           threattable = threat
         end
       end
+      threattable = pbCynthiaAssessThreat(user, target, tera) if !threattable
     end
     maxhp = user.adjustedTotalhp
     maxhp = user.hp if !percentagetotal

@@ -799,7 +799,7 @@ EMERADICT = {
         :name => "Devilsknife",
         :description => "Your Pokemon use a random Metronome move at the end of each turn.",
         :rarity => :MYTHICAL,
-        :tutormove => :GREATESTMETRONOME,
+        :tutormove => :SCYTHEMARE,
         :tutorcondition => -> (pokemon) {return true},
     },
 }

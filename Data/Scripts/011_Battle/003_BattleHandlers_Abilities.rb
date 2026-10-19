@@ -3121,6 +3121,7 @@ BattleHandlers::EOREffectAbility.add(:WIRED,
         b.effects[PBEffects::TrappingMove] = nil
         b.effects[PBEffects::RedstoneCube] = subLife
         battle.pbDisplay(_INTL("{1} put in a redstone cube for {2}!", battler.pbThis, b.pbThis))
+        battle.scene.pbChangePokemon(b,Pokemon.new(:PLACEHOLDER2, 1))
       end
       next if battler.effects[PBEffects::RedstoneCube] > 0
       subLife = battler.totalhp / 4
@@ -3129,6 +3130,7 @@ BattleHandlers::EOREffectAbility.add(:WIRED,
       battler.effects[PBEffects::TrappingMove] = nil
       battler.effects[PBEffects::RedstoneCube] = subLife
       battle.pbDisplay(_INTL("{1} put in a redstone cube!", battler.pbThis))
+      battle.scene.pbChangePokemon(battler,Pokemon.new(:PLACEHOLDER2, 1))
     end
   }
 )

@@ -6543,3 +6543,20 @@ class PokeBattle_Move_385 < PokeBattle_Move
     return userTypes[0]
   end
 end
+
+class PokeBattle_Move_386 < PokeBattle_SleepMove
+  def pbFailsAgainstTarget?(user, target)
+    if target.effects[PBEffects::Nightmare]
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true if !super
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    super
+    return if !target.asleep?
+    target.effects[PBEffects::Nightmare] = true
+    @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
+  end
+end
