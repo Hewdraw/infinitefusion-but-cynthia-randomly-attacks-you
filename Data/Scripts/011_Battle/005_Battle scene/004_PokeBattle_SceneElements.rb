@@ -676,6 +676,12 @@ class PokemonBattlerSprite < RPG::Sprite
     @_iconBitmap.scale_bitmap(scale)
 
     self.bitmap = (@_iconBitmap) ? @_iconBitmap.bitmap : nil
+    if pkmn.hat.nil? && !$Trainer.party.include?(pkmn)
+      pkmn.hat = "ogremaskblue" if pkmn.hasItem?(:WELLSPRINGMASK)
+      pkmn.hat = "ogremaskgrey" if pkmn.hasItem?(:CORNERSTONEMASK)
+      pkmn.hat = "ogremaskred" if pkmn.hasItem?(:HEARTHFLAMEMASK)
+      pkmn.hat_y = @_iconBitmap.height / 3
+    end
     add_hat_to_bitmap(self.bitmap, pkmn.hat, pkmn.hat_x, pkmn.hat_y, scale, pkmn.hat_mirrored_horizontal, pkmn.hat_mirrored_vertical) if self.bitmap && pkmn.hat
 
     pbSetPosition
