@@ -231,6 +231,7 @@ class PokeBattle_Move_10C < PokeBattle_Move
     user.effects[PBEffects::TrappingMove] = nil
     user.effects[PBEffects::Substitute] = @subLife
     @battle.pbDisplay(_INTL("{1} put in a substitute!", user.pbThis))
+    @battle.scene.pbChangePokemon(user,:PLACEHOLDER1)
   end
 end
 
@@ -4663,6 +4664,7 @@ class PokeBattle_Move_286 < PokeBattle_Move
     user.effects[PBEffects::TrappingMove] = nil
     user.effects[PBEffects::Substitute] = @subLife
     @battle.pbDisplay(_INTL("{1} put in a substitute!", user.pbThis))
+    @battle.scene.pbChangePokemon(user,:PLACEHOLDER1)
   end
 end
 

@@ -323,6 +323,7 @@ class PokeBattle_Move
     if target.damageState.substitute && target.effects[PBEffects::Substitute]==0 && target.effects[PBEffects::RedstoneCube]==0
       target.effects[PBEffects::Substitute] = 0
       @battle.pbDisplay(_INTL("{1}'s substitute faded!",target.pbThis))
+      @battle.scene.pbChangePokemon(target,target.pokemon)
     end
   end
 
