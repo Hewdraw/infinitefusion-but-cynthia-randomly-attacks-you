@@ -489,7 +489,7 @@ class TouhouPlayer < TouhouEntity
     def initialize(scene)
         super
         @projectilebitmap = Bitmap.new("Graphics/Animations/MysteriousBalm")
-        @sprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
+        @sprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/UndertaleHeart")
         @sprite.tone = Tone.new(0, 0, -255)
         @sprite.angle += 90
         @sprite.z = 1000002

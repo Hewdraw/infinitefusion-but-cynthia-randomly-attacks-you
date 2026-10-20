@@ -222,3 +222,21 @@ def isDarkWorld()
     return true if [21, 32, 38, 428, 805].include?($game_map.map_id)
     return false
 end
+
+def getSoulSprite(viewport)
+    heartsprite = Sprite.new(viewport)
+    if $PokemonGlobal.towervalues.nil?
+        heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/UndertaleHeart")
+    else
+        heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/UndertaleHardcore")
+    end
+    color = "aqua" if hasEmera?(:LUNARDIAL)
+    case color
+    when "aqua"
+        heartsprite.tone = Tone.new(-170, 0, 0)
+    else
+        heartsprite.tone = Tone.new(0, -255, -255)
+    end
+    heartsprite.angle -= 90
+    return heartsprite
+end

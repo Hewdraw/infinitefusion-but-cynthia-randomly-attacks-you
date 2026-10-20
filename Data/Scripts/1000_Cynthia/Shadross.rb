@@ -1023,17 +1023,7 @@ class UndertaleMenu
     addSprite("background",backgroundsprite)
     pbSEPlay("appearheart")
     pbWait(3)
-    @heartsprite = Sprite.new(viewport)
-    if $PokemonGlobal.towervalues.nil?
-      @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
-      @heartsprite.tone = Tone.new(0, -255, -255)
-      @heartsprite.angle -= 90
-    else
-      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
-      @heartsprite.zoom_x = 2
-      @heartsprite.zoom_y = 2
-      @heartsprite.ox = @heartsprite.width
-    end
+    @heartsprite = getSoulSprite(viewport)
     @heartsprite.x = Graphics.width / 2 + @heartsprite.width / 2
     @heartsprite.y = Graphics.height / 2 - @heartsprite.height
     addSprite("heartsprite", @heartsprite)
@@ -1304,17 +1294,7 @@ class UndertaleActMenu
       addSprite("hintitemprice_#{i}",hintitemtext)
       next hintitemtext
     end
-    @heartsprite = Sprite.new(viewport)
-    if $PokemonGlobal.towervalues.nil?
-      @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
-      @heartsprite.tone = Tone.new(0, -255, -255)
-      @heartsprite.angle -= 90
-    else
-      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
-      @heartsprite.zoom_x = 2
-      @heartsprite.zoom_y = 2
-      @heartsprite.ox = @heartsprite.width / 2
-    end
+    @heartsprite = getSoulSprite(viewport)
     @heartsprite.x = @hintboxinner.x + @heartsprite.width * 1.5
     @heartsprite.y = @hintlistings[@index].y + Graphics.width / 20 + 1
     addSprite("heartsprite",@heartsprite)
@@ -1516,17 +1496,7 @@ class UndertaleItemMenu
       addSprite("itemprice_#{i}",itemtext)
       next itemtext
     end
-    @heartsprite = Sprite.new(viewport)
-    if $PokemonGlobal.towervalues.nil?
-      @heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
-      @heartsprite.tone = Tone.new(0, -255, -255)
-      @heartsprite.angle -= 90
-    else
-      @heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
-      @heartsprite.zoom_x = 2
-      @heartsprite.zoom_y = 2
-      @heartsprite.ox = @heartsprite.width / 2
-    end
+    @heartsprite = getSoulSprite(viewport)
     @heartsprite.x = @shopboxinner.x + @heartsprite.width * 1.5
     @heartsprite.y = @shoplistings[@index].y + Graphics.width / 20 + 1
     addSprite("heartsprite",@heartsprite)

@@ -592,20 +592,9 @@ class MinecraftCraftingScene
         leftarrowsprite.y = recipebooksprite.y + recipebooksprite.height - 10 - leftarrowsprite.height
         addSprite("leftarrow", leftarrowsprite)
 
-        heartsprite = Sprite.new(@viewport)
-        if $PokemonGlobal.towervalues.nil?
-            heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/000")
-            heartsprite.tone = Tone.new(0, -255, -255)
-            heartsprite.angle -= 90
-            heartsprite.ox = heartsprite.width / 2
-            heartsprite.oy = heartsprite.height / 2
-        else
-            heartsprite.bitmap = Bitmap.new("Graphics/Minecraft/hardcore_full")
-            heartsprite.zoom_x = 2
-            heartsprite.zoom_y = 2
-            heartsprite.ox = heartsprite.width / 2 + 5
-            heartsprite.oy = heartsprite.height / 2
-        end
+        heartsprite = getSoulSprite(@viewport)
+        heartsprite.ox = heartsprite.width / 2
+        heartsprite.oy = heartsprite.height / 2
         addSprite("heart", heartsprite)
 
         slashshadow = Sprite.new(@viewport)
