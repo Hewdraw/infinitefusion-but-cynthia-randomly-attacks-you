@@ -18,6 +18,7 @@ class PokeBattle_Battler
 
   def pbRecoverHP(amt,anim=true,anyAnim=true)
     amt *= 0.7 if hasEmera?(:CURSEINCENSE) && !$Trainer.party.include?(@pokemon)
+    amt *= 2 if hasActiveEmera?(:MOSSPLUS)
     amt = amt.round
     amt = adjustedTotalhp-@hp if amt>adjustedTotalhp-@hp
     amt = 1 if amt<1 && @hp<adjustedTotalhp

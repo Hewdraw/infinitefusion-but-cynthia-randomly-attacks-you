@@ -367,18 +367,39 @@ class PokemonLoopletScreen
         next
       elsif cmdMisc >= 0 && command == cmdMisc
         case item
-        when :MOSS
-          pbMessage("You ate the Moss.")
+        when :MOSS, :MOSSPLUS
+          Kernel.pbMessage("You ate the Moss.")
+          $Trainer.party.each do |pkmn|
+              pkmn.heal
+          end
+          Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
+          getLooplet.pbStoreEmera(:MOSS)
+          getLooplet.pbRemoveEmera(item)
+          Kernel.pbMessage("Your Moss is consumed.")
+        case :MOSSPLUS
+          Kernel.pbMessage("You ate the Moss.")
+          $Trainer.party.each do |pkmn|
+              pkmn.heal
+          end
+          Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
+          getLooplet.pbStoreEmera(:MOSS)
+          getLooplet.pbRemoveEmera(item)
+          Kernel.pbMessage("Your Moss shrinks.")
+        when :MOSSYROCK
+          Kernel.pbMessage("You ate the Moss from the Rock.")
           $Trainer.party.each do |pkmn|
               pkmn.heal
           end
           getLooplet.pbRemoveEmera(item)
           Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
-        when :MOSSYROCK
-          pbMessage("You ate the Moss from the Rock.")
           unlockClass(:MOSSENJOYER)
           getLooplet.pbRemoveEmera(item)
           getLooplet.pbStoreEmera(:ROCK)
+          if hasEmera?(:MOSS)
+            Kernel.pbMessage("Your Moss powers grow.")
+            getLooplet.pbRemoveEmera(:MOSS)
+            getLooplet.pbStoreEmera(:MOSSPLUS)
+          end
         when :TERACRYSTAL
           scene = PokemonParty_Scene.new
           screen = PokemonPartyScreen.new(scene,$Trainer.party)

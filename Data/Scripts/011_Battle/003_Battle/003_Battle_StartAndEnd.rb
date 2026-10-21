@@ -358,7 +358,7 @@ class PokeBattle_Battle
       field.terrain = :Grassy
       field.terrainDuration = 5
     end
-    if hasEmera?(:MOSS)
+    if hasEmera?(:MOSS) || hasEmera?(:MOSSPLUS)
       field.terrain = :Grassy
       field.terrainDuration = -1
     end

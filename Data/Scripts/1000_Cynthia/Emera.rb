@@ -64,6 +64,12 @@ EMERADICT = {
         :tutormove => :GREATESTMETRONOME,
         :tutorcondition => -> (pokemon) {return true},
     },
+    :MOSSPLUS => {
+        :name => "Moss+",
+        :description => "Permanent Grassy Terrain is activated at the start of the battle. Tasty. Doubles all healing you do.",
+        :rarity => :EVENT,
+        :misccommand => "Eat"
+    },
     :ROCK => {
         :name => "Rock",
         :description => "Rock moves gain 1.2x accuracy.",
