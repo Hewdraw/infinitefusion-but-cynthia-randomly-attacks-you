@@ -1383,12 +1383,18 @@ BattleHandlers::DamageCalcUserAbility.add(:SHARPNESS,
     mults[:base_damage_multiplier] *= 1.5 if move.slicingMove?
   }
 )
-
 BattleHandlers::DamageCalcUserAbility.add(:HYPERCUTTERPLUS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 2 if move.slicingMove?
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.add(:TEMPEST,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.5 if move.windMove?
+  }
+)
+
 
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
