@@ -21,11 +21,11 @@ class PokeBattle_Battler
         @level = level
       else
         @battle.pbDisplay(_INTL("{1} thinks you're a broke ass", self.pbThis))
-        pbRaiseStatStage(:ATTACK,1,user)
-        pbRaiseStatStage(:DEFENSE,1,user)
-        pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
-        pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-        pbRaiseStatStage(:SPEED,1,user)
+        pbRaiseStatStage(:ATTACK,1,self)
+        pbRaiseStatStage(:DEFENSE,1,self)
+        pbRaiseStatStage(:SPECIAL_ATTACK,1,self)
+        pbRaiseStatStage(:SPECIAL_DEFENSE,1,self)
+        pbRaiseStatStage(:SPEED,1,self)
       end
     end
     # Abilities that trigger upon switching in
