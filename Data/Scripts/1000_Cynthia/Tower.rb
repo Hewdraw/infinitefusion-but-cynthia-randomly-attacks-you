@@ -1065,6 +1065,7 @@ def getTowerItems()
             [:SAGE, 5],
             [:BERSERKBERRY, 5],
             [:PUREINCENSE, 5],
+            [:BOOSTERENERGY, 5],
         ],
         [ #super rare
             [:CHOICEBAND, 1],
@@ -1079,6 +1080,9 @@ def getTowerItems()
             [:ENCHANTINGTABLE, 1],
             [:GOLDENAPPLE, 1],
             [:FOCUSEDBANDANA, 1],
+            [:MUGORB, 1],
+            [:GRAVLEROCK, 1],
+            [:GOLDRIBBON, 1],
         ],
         [ #secret rare
             [:SACREDASH, 1],
@@ -1093,11 +1097,16 @@ def getTowerItems()
             [:CORNERSTONEMASK, 1],
             [:EMERA, 1],
             [:NETHERITECHESTPLATE, 1],
+            [:BLACKSHARD, 1],
+            [:AQUAKNIFE, 1],
+            [:REVIVERSEED, 1],
+            [:ILLEGALGUNPARTS, 1],
         ],
         [ #ultimate rare
             [:PYRITE, 1],
             [:MEGASHARD, 1],
             [:MODIFIEDBOOSTERENERGY, 1],
+            [:MILLENNIUMANKH, 1],
         ],
     ]
 

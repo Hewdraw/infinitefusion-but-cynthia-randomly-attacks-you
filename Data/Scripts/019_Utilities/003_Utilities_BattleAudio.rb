@@ -103,7 +103,7 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
     end
     return pbStringToAudioFile("TheSkeletonAppears") if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
     return pbStringToAudioFile("CtcUNOwen") if [:Dragon_Dev, :Upside_Down_Dev].include?(trainer_type_data.id) && trainerarray.length() == 1
-    return pbStringToAudioFile("ShadHewDuel") if trainer_type_data.id == :Skeleton_Dev
+    return pbStringToAudioFile("VSSkeletonDragon") if trainer_type_data.id == :Skeleton_Dev
     return pbStringToAudioFile("Miku") if [:CREATOR_Minecraft, :CREATOR_Minecraft2, :COOLTRAINER_MIKU, :Sound_of_Future].include?(trainer_type_data.id)
     return pbStringToAudioFile("MikuFairy") if trainer_type_data.id == :TYPE_EXPERT_FAIRY
     return pbStringToAudioFile("Volo") if trainer_type_data.id == :YOUNGSTER && trainer_type_data.name == "Joe"
