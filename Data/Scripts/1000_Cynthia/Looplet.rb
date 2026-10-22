@@ -376,7 +376,7 @@ class PokemonLoopletScreen
           getLooplet.pbStoreEmera(:MOSS)
           getLooplet.pbRemoveEmera(item)
           Kernel.pbMessage("Your Moss is consumed.")
-        case :MOSSPLUS
+        when :MOSSPLUS
           Kernel.pbMessage("You ate the Moss.")
           $Trainer.party.each do |pkmn|
               pkmn.heal
