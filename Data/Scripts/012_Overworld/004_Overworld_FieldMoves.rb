@@ -1197,7 +1197,7 @@ HiddenMoveHandlers::UseMove.add(:SPLASH, proc { |move, pokemon|
     pbMessage(_INTL("{1} used {2}!", pokemon.name, GameData::Move.get(move).name))
   end
   pbSEPlay("jump", 80, 100)
-  $game_player.jump(0,0)
+  #$game_player.jump(0,0)
   next true
 })
 
