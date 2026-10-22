@@ -136,6 +136,15 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
         pkmn.iv[s.id] = 31
       end
     end
+  when :BUNEARY
+    if !$PokemonGlobal.towervalues.nil?
+      pkmn.poke_ball = :LUXURYBALL
+      pkmn.shiny = true
+      pkmn.natural_shiny = true
+      GameData::Stat.each_main do |s|
+        pkmn.iv[s.id] = 31
+      end
+    end
   when :SNORUNT
     pkmn.poke_ball = :QUICKBALL
     pkmn.shiny = true

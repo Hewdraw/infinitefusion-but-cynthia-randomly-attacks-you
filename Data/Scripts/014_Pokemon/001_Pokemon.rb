@@ -2056,6 +2056,8 @@ class Pokemon
         @owner = Owner.new(0, "Kieru", 0, 2)
       when :HAWLUCHA
         @owner = Owner.new(0, "Prof. Claire", 1, 2)
+      when :BUNEARY
+        @owner = Owner.new(0, "Jasper", 0, 2)
       else
         @owner = Owner.new(0, "Hewdraw", 1, 2)
       end
