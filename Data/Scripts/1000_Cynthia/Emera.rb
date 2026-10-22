@@ -135,12 +135,6 @@ EMERADICT = {
         :description => "Your Pokemon gain 1 Accuracy after missing a move.",
         :rarity => :COMMON,
     },
-    :ENDERCHEST => {
-        :name => "Ender Chest",
-        :description => "You can pay Sinnoh Coins to open chests again.",
-        :rarity => :COMMON,
-        :towerexclusive => true,
-    },
     :FAKEBADGES => {
         :name => "Fake Badges",
         :description => "You can buy items from the shop as if you had 16 badges.",
@@ -324,6 +318,12 @@ EMERADICT = {
         :name => "Condition Mirror",
         :description => "Your Pokemon gain the Synchronize Ability.",
         :rarity => :UNCOMMON,
+    },
+    :ENDERCHEST => {
+        :name => "Ender Chest",
+        :description => "You can pay Sinnoh Coins to open chests again.",
+        :rarity => :UNCOMMON,
+        :towerexclusive => true,
     },
     # :EXTRADICE => {
     #     :name => "Extra Dice",
