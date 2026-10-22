@@ -19,6 +19,13 @@ class PokeBattle_Battler
         @species = :ROTOM
         @battle.scene.pbChangePokemon(self,@pokemon)
         @level = level
+      else
+        @battle.pbDisplay(_INTL("{1} thinks you're a broke ass", self.pbThis))
+        pbRaiseStatStage(:ATTACK,1,user)
+        pbRaiseStatStage(:DEFENSE,1,user)
+        pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
+        pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
+        pbRaiseStatStage(:SPEED,1,user)
       end
     end
     # Abilities that trigger upon switching in

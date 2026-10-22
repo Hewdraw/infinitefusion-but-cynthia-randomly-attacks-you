@@ -169,11 +169,6 @@ EMERADICT = {
         :tutormove => :FLING,
         :tutorcondition => -> (pokemon) {return true},
     },
-    :GIMMIGHOULCOIN => {
-        :name => "Gimmighoul Coin",
-        :description => "Gain twice as much Sinnoh Coins from winning a battle.",
-        :rarity => :COMMON,
-    },
     # :GUNPOWDER => {
     #     :name => "Gunpowder",
     #     :description => "Your Pokemons Powder moves apply the Powder effect.",
@@ -345,6 +340,11 @@ EMERADICT = {
     #     :description => "Applying Drowsy also Confuses.",
     #     :rarity => :UNCOMMON,
     # },
+    :GIMMIGHOULCOIN => {
+        :name => "Gimmighoul Coin",
+        :description => "Gain twice as much Sinnoh Coins from winning a battle.",
+        :rarity => :UNCOMMON,
+    },
     :GOLDENBELL => {
         :name => "Golden Bell",
         :description => "Your Pokemon heal 1/8th of the damage they deal.",
