@@ -298,6 +298,7 @@ BattleHandlers::HPHealItem.add(:GOLDENCHICKENNUGGET,
 BattleHandlers::HPHealItem.add(:GOLDENAPPLE,
   proc { |item,battler,battle,forced|
     next false if !battler.canHeal?
+    next false if !forced && !battler.canConsumePinchBerry?(false)
     battle.pbCommonAnimation("EatBerry",battler) if !forced
     battler.pbRecoverHP(battler.totalhp)
     itemName = GameData::Item.get(item).name
