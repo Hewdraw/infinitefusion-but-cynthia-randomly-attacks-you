@@ -1699,35 +1699,35 @@ class Pokemon
     case @species
     when :OGERPON
       if hasItem?(:WELLSPRINGMASK)
-        @species = :OGERPONWELLSPRING 
+        transForm(self, :OGERPONWELLSPRING)
         @ability = :DEFIANT
         return
       end
       if hasItem?(:HEARTHFLAMEMASK)
-        @species = :OGERPONHEARTHFLAME 
+        transForm(self, :OGERPONHEARTHFLAME)
         @ability = :DEFIANT
         return
       end
       if hasItem?(:CORNERSTONEMASK)
-        @species = :OGERPONCORNERSTONE 
+        transForm(self, :OGERPONCORNERSTONE)
         @ability = :DEFIANT
         return
       end
     when :OGERPONWELLSPRING
       if !hasItem?(:WELLSPRINGMASK)
-        @species = :OGERPON 
+        transForm(self, :OGERPON)
         @ability = :DEFIANT
         return
       end
     when :OGERPONHEARTHFLAME
       if !hasItem?(:HEARTHFLAMEMASK)
-        @species = :OGERPON 
+        transForm(self, :OGERPON)
         @ability = :DEFIANT
         return
       end
     when :OGERPONCORNERSTONE
       if !hasItem?(:CORNERSTONEMASK)
-        @species = :OGERPON 
+        transForm(self, :OGERPON)
         @ability = :DEFIANT
         return
       end
