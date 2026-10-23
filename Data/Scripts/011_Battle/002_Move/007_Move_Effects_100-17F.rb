@@ -6560,3 +6560,11 @@ class PokeBattle_Move_386 < PokeBattle_SleepMove
     @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
   end
 end
+
+class PokeBattle_Move_387 < PokeBattle_FlinchMove
+  def pbAdditionalEffect(user, target)
+    user.pbRaiseStatStage(:ATTACK, 1, user)
+    return if user.turnCount > 1
+    super
+  end
+end
