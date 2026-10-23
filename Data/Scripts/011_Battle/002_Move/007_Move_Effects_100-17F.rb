@@ -6600,3 +6600,25 @@ class PokeBattle_Move_388 < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_389 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1]
+  end
+  
+  def pbAccuracyCheck(user,target); return true; end
+
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+end
