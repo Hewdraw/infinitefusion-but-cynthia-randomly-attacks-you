@@ -973,7 +973,13 @@ BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYES,
   }
 )
 
-BattleHandlers::AccuracyCalcUserAbility.copy(:COMPOUNDEYES,:CHARGEDEXPLOSIVE)
+BattleHandlers::AccuracyCalcUserAbility.add(:CHARGEDEXPLOSIVE,
+  proc { |ability,user,mods,target,move,type|
+    mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0
+    mods[:accuracy_multiplier] *= 1.3
+  }
+)
+
 
 BattleHandlers::AccuracyCalcUserAbility.add(:COMPOUNDEYESPLUS,
   proc { |ability,user,mods,target,move,type|
@@ -994,7 +1000,7 @@ BattleHandlers::AccuracyCalcUserAbility.add(:KEENEYE,
   }
 )
 
-BattleHandlers::AccuracyCalcUserAbility.copy(:KEENEYE, :ILLUMINATE, :CHARGEDEXPLOSIVE)
+BattleHandlers::AccuracyCalcUserAbility.copy(:KEENEYE, :ILLUMINATE)
 
 BattleHandlers::AccuracyCalcUserAbility.add(:NOGUARD,
   proc { |ability,user,mods,target,move,type|
@@ -1096,7 +1102,7 @@ BattleHandlers::DamageCalcUserAbility.add(:AERILATE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:AERILATEPLUS,:PIXILATE,:REFRIGERATE,:GALVANIZE, :GUNVANIZE,:ADAPTINGPIXELS,:PIXELATEDSANDS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE, :VOCALOID, :SCULK, :IMMOLATE, :DRAGONIZE)
+BattleHandlers::DamageCalcUserAbility.copy(:AERILATE,:AERILATEPLUS,:PIXILATE,:REFRIGERATE,:GALVANIZE, :GUNVANIZE,:ADAPTINGPIXELS,:PIXELTAG,:PIXELBOUNCE,:VOCALIZE, :SCULK, :IMMOLATE, :DRAGONIZE)
 
 BattleHandlers::DamageCalcUserAbility.add(:PIXAERILATE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1245,7 +1251,17 @@ BattleHandlers::DamageCalcUserAbility.add(:HUGEPOWER,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS, :POWERBOUNCE, :POWERFULSANDS)
+BattleHandlers::DamageCalcUserAbility.copy(:HUGEPOWER,:PUREPOWER, :POWEREDSANDS, :POWERBOUNCE)
+
+BattleHandlers::DamageCalcUserAbility.add(:POWERFULSANDS,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:attack_multiplier] *= 2 if move.physicalMove?
+    if [:Sandstorm, :IntenseSand].include?(user.battle.pbWeather) &&
+       [:ROCK, :GROUND, :STEEL].include?(type)
+      mults[:base_damage_multiplier] *= 1.3
+    end
+  }
+)
 
 BattleHandlers::DamageCalcUserAbility.add(:THEROARING,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1282,7 +1298,20 @@ BattleHandlers::DamageCalcUserAbility.add(:MINUS,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:MINUS,:PLUS,:VOCALOID)
+BattleHandlers::DamageCalcUserAbility.copy(:MINUS,:PLUS)
+
+BattleHandlers::DamageCalcUserAbility.add(:VOCALOID,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.soundMove?
+    mults[:base_damage_multiplier] *= 1.2 if move.powerBoost
+    next if !move.specialMove?
+    user.eachAlly do |b|
+      next if !b.hasActiveAbility?([:MINUS, :PLUS,:VOCALOID])
+      mults[:attack_multiplier] *= 1.5
+      break
+    end
+  }
+)
 
 BattleHandlers::DamageCalcUserAbility.add(:NEUROFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -1344,8 +1373,6 @@ BattleHandlers::DamageCalcUserAbility.add(:PUNKROCK,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:PUNKROCK, :VOCALOID)
-
 BattleHandlers::DamageCalcUserAbility.add(:RIVALRY,
   proc { |ability,user,target,move,mults,baseDmg,type|
     if user.gender!=2 && target.gender!=2
@@ -1367,10 +1394,9 @@ BattleHandlers::DamageCalcUserAbility.add(:SANDFORCE,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.copy(:SANDFORCE, :POWERFULSANDS)
-
 BattleHandlers::DamageCalcUserAbility.add(:PIXELATEDSANDS,
   proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if move.powerBoost
     if [:Sandstorm, :IntenseSand].include?(user.battle.pbWeather) &&
        [:ROCK, :GROUND, :STEEL, :FAIRY].include?(type)
       mults[:base_damage_multiplier] *= 1.3
@@ -3765,7 +3791,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:INTIMIDATE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :BIGPECKSPLUS, :OBLITERATE)
+BattleHandlers::AbilityOnSwitchIn.copy(:INTIMIDATE, :SCULK, :BIGPECKSPLUS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:FEAR,
   proc { |ability,battler,battle|
@@ -3826,8 +3852,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:MENACE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MENACE, :OBLITERATE)
-
 BattleHandlers::AbilityOnSwitchIn.add(:MISTYSURGE,
   proc { |ability,battler,battle|
     next if battle.field.terrain == :Misty
@@ -3853,7 +3877,25 @@ BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :SCALEBREAKER, :OBLITERATE)
+BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :SCALEBREAKER)
+
+BattleHandlers::AbilityOnSwitchIn.add(:OBLITERATE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler, :SPECIAL_ATTACK)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.near?(battler)
+      b.pbLowerAttackStatStageIntimidate(battler)
+      b.pbItemOnIntimidatedCheck
+    end
+    battle.pbDisplay(_INTL("{1} breaks the mold!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
 
 BattleHandlers::AbilityOnSwitchIn.add(:TETRAFORCE,
   proc { |ability,battler,battle|

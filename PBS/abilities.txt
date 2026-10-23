@@ -301,7 +301,7 @@
 299,SCREENCLEANER,Screen Cleaner,"todo"
 300,CUDCHEW,Cud Chew,"todo"
 301,TOXICDEBRIS,Toxic Debris,"a"
-302,FROSTTOUCH,Frost Touch,"todo"
+302,FROSTTOUCH,Frost Touch,"a"
 303,PERISHBODY,Perish Body,"todo"
 304,WANDERINGSPIRIT,Wandering Spirit,"todo"
 305,MIMICRY,Mimicry,"todo"
