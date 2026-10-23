@@ -759,11 +759,11 @@ HiddenMoveHandlers::UseMove.add(:TRIPLEBAKA, proc { |move, pokemon|
   pbMessage(_INTL("{1} changed form!", pokemon.name))
   case pokemon.species
   when :VOCALLEEK
-    pokemon.species = :VOCALDRILL
+    transForm(pokemon, :VOCALDRILL)
   when :VOCALDRILL
-    pokemon.species = :VOCALCELL
+    transForm(pokemon, :VOCALCELL)
   when :VOCALCELL
-    pokemon.species = :VOCALLEEK
+    transForm(pokemon, :VOCALLEEK)
   end
 })
 

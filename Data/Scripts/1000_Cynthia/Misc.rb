@@ -223,7 +223,7 @@ def transForm(pkmn, species)
     movelist = pkmn.getMoveList
     for i in movelist
         next if i[0]!=0
-        pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
+        pbLearnMove(pkmn,i[1],true)
     end
     if pkmn.miststone
         preevo = GameData::Species.get(pkmn.species).get_previous_species
