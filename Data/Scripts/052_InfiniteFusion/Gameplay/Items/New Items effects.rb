@@ -1271,52 +1271,31 @@ ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
 
 ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   if pkmn.isSpecies?(:ROTOM)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :WASHROTOM
-    pkmn.level = level
-    pbLearnMove(pkmn, :HYDROPUMP)
+    transForm(pkmn, :WASHROTOM)
     next true
   end
   if pkmn.isSpecies?(:WASHROTOM)
-    pbMessage(_INTL("{1} changed form!", pkmn.name))
-    level = pkmn.level
-    pkmn.species = :ROTOM
-    pkmn.level = level
+    transForm(pkmn, :ROTOM)
     next true
   end
   next false
 })
 
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
-  level = pkmn.level
   REGIONALLIST.each do |regional|
     next if !regional.include?(pkmn.species)
     regional.each_with_index do |region, i|
       next if region != pkmn.species
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
-      pkmn.species = regional[(i+1) % regional.length]
-      if pkmn.miststone
-        preevo = GameData::Species.get(pkmn.species).get_previous_species
-        evolutions = GameData::Species.get(preevo).get_evolutions(true)
-        evolutions.each do |evolution|
-          next unless evolution[2] == :MISTSTONE
-          pkmn.ability = :FORCEDEVOLUTION
-          pkmn.calc_stats
-          break
-        end
-      end
+      transForm(pkmn, regional[(i+1) % regional.length])
       break
     end
   end
-  pkmn.level = level
   next false
 })
 
 ItemHandlers::UseOnPokemon.copy(:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE)
 
 ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
-  level = pkmn.level
   next false if ![:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(pkmn.species)
   formlist = []
   namelist = []
@@ -1329,46 +1308,38 @@ ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
   next false if namelist.length == 0
   commandtext = _INTL("Select Rotom Form")
   command = scene.pbShowCommands(commandtext, namelist)
-  pbMessage(_INTL("{1} changed form!", pkmn.name))
-  pkmn.species = [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM][formlist[command]]
-  pkmn.level = level
-  movelist = [:THUNDERSHOCK, :HYDROPUMP, :OVERHEAT, :BLIZZARD, :HURRICANE, :LEAFSTORM, :BOOMBURST]
-  pbLearnMove(pkmn, movelist[formlist[command]])
+  transForm(pkmn, [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM][formlist[command]])
   next false
 })
 
 ItemHandlers::UseOnPokemon.add(:MODIFIEDBOOSTERENERGY, proc { |item, pkmn, scene|
   next false if pkmn.species == :OMNIMON
-  level = pkmn.level
   PARADOXLIST.each do |unparadox, paradox|
     if unparadox.include?(pkmn.species)
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
       if pkmn.unparadox.nil?
         pkmn.unparadox = pkmn.species
       end
-      pkmn.species = paradox[0]
+      transForm(pkmn, paradox[0])
       break
     end
     if paradox.include?(pkmn.species)
       paradox.each_with_index do |para, i|
         next if para != pkmn.species
-        pbMessage(_INTL("{1} changed form!", pkmn.name))
         if i == paradox.length - 1
           if !pkmn.unparadox.nil? && unparadox.include?(pkmn.unparadox)
-            pkmn.species = pkmn.unparadox
+            transForm(pkmn, pkmn.unparadox)
           else
-            pkmn.species = unparadox[0]
+            transForm(pkmn, unparadox[0])
           end
           pkmn.unparadox = nil
         else
-          pkmn.species = paradox[i+1]
+          transForm(pkmn, paradox[i+1])
         end
         break
       end
       break
     end
   end
-  pkmn.level = level
   next false
 })
 
@@ -1378,30 +1349,16 @@ ItemHandlers::UseOnPokemon.add(:MEGASHARD, proc { |item, pkmn, scene|
     :WEREGARURUMON => :METALGARURUMON,
     :LILLYMON => :ROSEMON
   }
-  level = pkmn.level
   megalist.each do |unmega, mega|
     if unmega == pkmn.species
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
-      pkmn.species = mega
-      movelist = pkmn.getMoveList
-      for i in movelist
-        next if i[0]!=0
-        pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
-      end
+      transForm(pkmn, mega)
       break
     end
     if mega == pkmn.species
-      pbMessage(_INTL("{1} changed form!", pkmn.name))
-      pkmn.species = unmega
-      movelist = pkmn.getMoveList
-      for i in movelist
-        next if i[0]!=0
-        pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
-      end
+      transForm(pkmn, unmega)
       break
     end
   end
-  pkmn.level = level
   next false
 })
 

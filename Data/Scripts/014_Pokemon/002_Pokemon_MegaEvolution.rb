@@ -115,7 +115,7 @@ class Pokemon
       isrotom = true
     end
 
-    return if !isrotom
+    return ret if !isrotom
 
     GameData::Species.each do |data|
       next unless data.species == :ROTOM

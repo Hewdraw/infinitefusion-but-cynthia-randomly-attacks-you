@@ -630,7 +630,7 @@ class PokeBattle_Battler
     return true if check_item.name[-3..-1] == "ite" && !["Eviolite", "Pyrite"].include?(check_item.name)
     return true if check_item.name[-5..-1] == "ite Z" || check_item.name[-6..-1] == "ite ZZ"
     return true if check_item.name[-5..-1] == "ium Z"
-    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek", "Quick Powder", "Metal Powder", "God Orb", "Millennium Comet Shard", "Sinnoh Coin"].include?(check_item.name)
+    return true if ["Thunder Stone", "Ice Sphere", "Lightning Sphere", "Fire Sphere", "Mega Shard", "Rotom Catalog", "Modified Booster Energy", "Ancestral Gene", "Wellspring Mask", "Hearthflame Mask", "Cornerstone Mask", "Douse Drive", "Chill Drive", "Burn Drive", "Shock Drive", "Elytra", "Electirizer", "Magmarizer", "Protector", "Lucky Punch", "Oval Stone", "Thick Club", "Prism Scale", "Dragon Scale", "Leek", "Quick Powder", "Metal Powder", "God Orb", "Millennium Comet Shard", "Sinnoh Coin"].include?(check_item.name)
     # Other unlosable items
     return GameData::Item.get(check_item).unlosable?(@species, self.ability)
   end

@@ -419,14 +419,7 @@ class PokeBattle_Battler
       tempspecies = :KYUREMBLACK if [:GLACIATE, :GLACIEATEPLUS, :TERABLAST].include?(move.id) && targets.length > 0 && targets[0].defense < targets[0].spdef
       if tempspecies != user.species
         @battle.pbCommonAnimation("MegaEvolution",user)
-        level = user.level
-        user.pokemon.species = tempspecies
-        user.species = tempspecies
-        user.level = level
-        user.pbUpdate(true)
-        @battle.scene.pbChangePokemon(user,user.pokemon)
-        @battle.scene.pbRefreshOne(user.index)
-        user.pbUpdate(true)
+        battleTransForm(user, tempspecies)
         @battle.pbCommonAnimation("MegaEvolution2",user)
       end
     end

@@ -151,14 +151,7 @@ class PokeBattle_Battle
     tempspecies = ("MEGA" + battler.pokemon.species.to_s)
     tempspecies += "Z" if battler.itemName[-5..-1] == "ite Z"
     tempspecies += "ZZ" if battler.itemName[-6..-1] == "ite ZZ"
-    level = battler.level
-    battler.pokemon.species = tempspecies.to_sym
-    battler.species = tempspecies.to_sym
-    battler.level = level
-    battler.pbUpdate(true)
-    @scene.pbChangePokemon(battler,battler.pokemon)
-    @scene.pbRefreshOne(idxBattler)
-    battler.pbUpdate(true)
+    battleTransForm(battler, tempspecies.to_sym)
     pbCommonAnimation("MegaEvolution2",battler)
     megaName = battler.pokemon.megaName
     megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
@@ -187,23 +180,13 @@ class PokeBattle_Battle
     #pbDisplay(_INTL("{1} is Terastallizing into the {2}-Type!", battler.pbThis, battler.pokemon.tera))
     #pbCommonAnimation("MegaEvolution",battler)
     battler.pokemon.hiddenPowerType = battler.pokemon.tera
-    tempspecies = (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym
-    level = battler.level
     ability = battler.ability
     ability = :EMBODYASPECT if [:OGERPON, :OGERPONWELLSPRING, :OGERPONHEARTHFLAME, :OGERPONCORNERSTONE].include?(battler.pokemon.species)
     types = [battler.pokemon.type1, battler.pokemon.type2]
     if battler.pokemon.tera == :STELLAR
       types = [battler.pokemon.tera]
     end
-    battler.pokemon.species = tempspecies
-    battler.species = tempspecies
-    battler.level = level
-    battler.pokemon.unteraTypes = types
-    battler.pbUpdate(true)
-    battler.ability = ability
-    battler.pokemon.ability = ability
-    @scene.pbChangePokemon(battler,battler.pokemon)
-    @scene.pbRefreshOne(idxBattler)
+    battleTransForm(battler, (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym)
     pbCommonAnimation("MegaEvolution2",battler)
     battler.pbEffectsOnSwitchIn if [:OGERPONGRASS, :OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(battler.pokemon.species)
     @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
@@ -243,13 +226,7 @@ class PokeBattle_Battle
     battler.effects[PBEffects::Torment] = false
     if battler.pokemon.gigantamax
       tempspecies = ("GMAX" + battler.pokemon.species.to_s).to_sym
-      level = battler.level
-      battler.pokemon.species = tempspecies
-      battler.species = tempspecies
-      battler.level = level
-      battler.pbUpdate(true)
-      @scene.pbChangePokemon(battler,battler.pokemon)
-      @scene.pbRefreshOne(idxBattler)
+      battleTransForm(battler, tempspecies)
       pbCommonAnimation("MegaEvolution2",battler)
       if tempspecies == :GMAXHATTERENEALCREMIE
         maxmoves[:FAIRY] = :GMAXSMITEFINALE
@@ -332,13 +309,7 @@ class PokeBattle_Battle
     @scene.pbRefreshOne(idxBattler)
     if battler.pokemon.gigantamax
       tempspecies = (battler.pokemon.species.to_s[4..-1]).to_sym
-      level = battler.level
-      battler.pokemon.species = tempspecies
-      battler.species = tempspecies
-      battler.level = level
-      battler.pbUpdate(true)
-      @scene.pbChangePokemon(battler,battler.pokemon)
-      @scene.pbRefreshOne(idxBattler)
+      battleTransForm(battler, tempspecies)
       pbCommonAnimation("MegaEvolution2",battler)
     end
     battler.pokemon.moves = battler.undynamoves
@@ -483,14 +454,7 @@ class PokeBattle_Battle
       pbCommonAnimation("MegaEvolution",battler)
     end
     tempspecies = ("PRIMAL" + battler.pokemon.species.to_s).to_sym
-    level = battler.level
-    battler.pokemon.species = tempspecies
-    battler.species = tempspecies
-    battler.level = level
-    battler.pbUpdate(true)
-    @scene.pbChangePokemon(battler,battler.pokemon)
-    @scene.pbRefreshOne(idxBattler)
-    battler.pbUpdate(true)
+    battleTransForm(battler, tempspecies)
     if battler.isSpecies?(:KYOGRE)
       pbCommonAnimation("PrimalKyogre2",battler)
     elsif battler.isSpecies?(:GROUDON)

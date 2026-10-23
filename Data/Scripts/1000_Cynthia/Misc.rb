@@ -30,9 +30,7 @@ PARADOXLIST = {
     [:ROSEMON, :ROSEMONBM] => [:VENUSAUR],
     [:IVYSAUR] => [:TOGEMON],
     [:BULBASAUR] => [:PALMON],
-    [:BLASTOISE] => [:MACHINEDRAMON],
-    [:WARTORTLE] => [:MACHINEDRAMON],
-    [:SQUIRTLE] => [:MACHINEDRAMON],
+    [:SQUIRTLE, :WARTORTLE, :BLASTOISE] => [:MACHINEDRAMON],
     [:MELOETTA_P, :MELOETTA_A] => [:VOCALLEEK, :VOCALDRILL, :VOCALCELL],
     [:ROTOM] => [:STEREOROTOM],
 }
@@ -216,6 +214,44 @@ def tripleFusion(item=false)
         return true
     end
     return false
+end
+
+def transForm(pkmn, species)
+    level = pkmn.level
+    pbMessage(_INTL("{1} changed form!", pkmn.name))
+    pkmn.species = species
+    movelist = pkmn.getMoveList
+    for i in movelist
+        next if i[0]!=0
+        pbLearnMove(pkmn,i[1],true) { scene.pbUpdate }
+    end
+    if pkmn.miststone
+        preevo = GameData::Species.get(pkmn.species).get_previous_species
+        evolutions = GameData::Species.get(preevo).get_evolutions(true)
+        evolutions.each do |evolution|
+            next unless evolution[2] == :MISTSTONE
+            pkmn.ability = :FORCEDEVOLUTION
+            pkmn.calc_stats
+            break
+        end
+    end
+    pkmn.level = level
+end
+
+def battleTransForm(battler, species)
+    battler.pokemon.setOriginalForm
+    level = battler.level
+    battler.pokemon.species = species
+    battler.species = species
+    battler.level = level
+    battler.pbUpdate(true)
+    battler.battle.scene.pbChangePokemon(battler,battler.pokemon)
+    battler.battle.scene.pbRefreshOne(battler.index)
+    if battler.pokemon.originalability == :LEGENDARYPRESSURE
+        battler.ability = :LEGENDARYPRESSURE 
+        battler.pokemon.ability = :LEGENDARYPRESSURE
+    end
+    battler.pbUpdate(true)
 end
 
 def isDarkWorld()
