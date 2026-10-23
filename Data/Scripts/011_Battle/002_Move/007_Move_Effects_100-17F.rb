@@ -6568,3 +6568,35 @@ class PokeBattle_Move_387 < PokeBattle_FlinchMove
     super
   end
 end
+
+class PokeBattle_Move_388 < PokeBattle_Move
+  def recoilMove?
+    return true;
+  end
+
+  def unusableInGravity?
+    return true;
+  end
+
+  def pbCrashDamage(user)
+    return if !user.takesIndirectDamage?
+    return if user.fainted?
+    @battle.pbDisplay(_INTL("{1} kept going and crashed!", user.pbThis))
+    @battle.scene.pbDamageAnimation(user)
+    user.pbReduceHP(1, false)
+    user.pbItemHPHealCheck
+    if user.fainted?
+      user.pbFaint 
+      @battle.pbDisplay("How the fuck did you manage to faint from 1 crash damage.")
+    end
+  end
+
+  def pbInitialEffect(user,targets,hitNum)
+    targets.each do |target|
+      if pbCalcTypeMod(:NORMAL,user,target) > pbCalcTypeMod(@calcType,user,target)
+        @calcType = :NORMAL
+        break
+      end
+    end
+  end
+end
