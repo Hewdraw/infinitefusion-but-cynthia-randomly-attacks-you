@@ -793,6 +793,8 @@ class PokeBattle_Battler
       animationid = :EXPLOSION
     when :KNIFE
       animationid = :CUT
+    when :DIGITALIZEOFTHESOUL
+      animationid = :THOUSANDARROWS
     end
     move.pbShowAnimation(animationid, user, targets, hitNum)
     # Type-boosting Gem consume animation/message
@@ -885,7 +887,7 @@ class PokeBattle_Battler
         next if b.damageState.calcDamage == 0
         chance = move.pbAdditionalEffectChance(user, b)
         next if chance <= 0
-        if @battle.pbRandom(100) < chance
+        if @battle.pbRandom(100, user, b) < chance
           move.pbAdditionalEffect(user, b)
         end
       end
@@ -896,7 +898,7 @@ class PokeBattle_Battler
       next if b.damageState.calcDamage == 0 || b.damageState.substitute
       chance = move.pbFlinchChance(user, b)
       next if chance <= 0
-      if @battle.pbRandom(100) < chance
+      if @battle.pbRandom(100, user, b) < chance
         PBDebug.log("[Item/ability triggered] #{user.pbThis}'s King's Rock/Razor Fang or Stench")
         b.pbFlinch(user)
       end

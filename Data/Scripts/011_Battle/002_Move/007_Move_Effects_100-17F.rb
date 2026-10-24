@@ -2553,7 +2553,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -3467,10 +3467,10 @@ class PokeBattle_Move_216 < PokeBattle_Move
     chance = pbAdditionalEffectChance(user, target, 50)
     chance2 = pbAdditionalEffectChance(user, target, 30)
     return if chance == 0 && chance2 == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbLowerStatStage(:DEFENSE,1,user) if target.pbCanLowerStatStage?(:DEFENSE,user,self)
     end
-    target.pbFlinch(user) if @battle.pbRandom(100) < chance2
+    target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance2
   end
 end
 
@@ -3667,7 +3667,7 @@ end
 class PokeBattle_Move_225 < PokeBattle_Move
   def multiHitMove?;           return true; end
   def pbNumHits(user,targets)
-    return 4 + rand(7) if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    return 4 + @battle.pbRandom(7, user, targets, false) if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     return 10
   end
 
@@ -4109,7 +4109,7 @@ class PokeBattle_Move_251 < PokeBattle_TargetStatDownMove
   def pbAdditionalEffect(user,target)
     super
     return if target.damageState.substitute
-    return unless rand(100) < pbAdditionalEffectChance(user,target,20)
+    return unless @battle.pbRandom(100, user, target) < pbAdditionalEffectChance(user,target,20)
     target.pbBurn(user) if target.pbCanBurn?(user,false,self)
   end
 
@@ -4260,10 +4260,10 @@ class PokeBattle_Move_259 < PokeBattle_Move
     chance = pbAdditionalEffectChance(user, target, 100)
     chance2 = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0 && chance2 == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbLowerStatStage(:ACCURACY,1,user) if target.pbCanLowerStatStage?(:ACCURACY,user,self)
     end
-    if @battle.pbRandom(100) < chance2
+    if @battle.pbRandom(100, user, target) < chance2
       target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user) if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self)
     end
   end
@@ -4436,7 +4436,7 @@ class PokeBattle_Move_275 < PokeBattle_Move
     target.pbResetStatStages
     @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", target.pbThis))
     return if target.damageState.substitute
-    return unless rand(100) < pbAdditionalEffectChance(user, target, 20)
+    return unless @battle.pbRandom(100, user, target) < pbAdditionalEffectChance(user, target, 20)
     target.pbBurn if target.pbCanBurn?(user,false,self)
   end
 end
@@ -4526,7 +4526,7 @@ class PokeBattle_Move_281 < PokeBattle_TargetStatDownMove
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -4565,10 +4565,10 @@ class PokeBattle_Move_284 < PokeBattle_Move
     chance = pbAdditionalEffectChance(user, target, 20)
     chance2 = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0 && chance2 == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbFreeze if target.pbCanFreeze?(user, false, self)
     end
-    target.pbFlinch(user) if @battle.pbRandom(100) < chance2
+    target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance2
   end
 
   def ignoresReflect?
@@ -4761,7 +4761,7 @@ class PokeBattle_Move_293 < PokeBattle_TargetMultiStatDownMove
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbFreeze if target.pbCanFreeze?(user,false,self)
     end
   end
@@ -4921,7 +4921,7 @@ class PokeBattle_Move_300 < PokeBattle_PoisonMove
     if user.hasActiveItem?(:GRIPCLAW)
       target.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
     else
-      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2)
+      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2, user, target)
     end
     target.effects[PBEffects::TrappingMove] = @id
     target.effects[PBEffects::TrappingUser] = user.index
@@ -4970,15 +4970,6 @@ class PokeBattle_Move_301 < PokeBattle_Move
       @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
     end
   end
-
-  def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
-    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0 ||
-      user.pbOpposingSide.effects[PBEffects::Reflect] > 0 ||
-      user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
-      hitNum = 1 # Wall-breaking anim
-    end
-    super
-  end
 end
 
 class PokeBattle_Move_302 < PokeBattle_TargetStatDownMove
@@ -5010,7 +5001,7 @@ class PokeBattle_Move_303 < PokeBattle_PoisonMove
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user, target, 20)
     return if chance == 0
-    target.pbFlinch(user) if @battle.pbRandom(100) < chance
+    target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance
   end
 end
 
@@ -5025,7 +5016,7 @@ class PokeBattle_Move_304 < PokeBattle_TargetStatDownMove
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -5284,7 +5275,7 @@ class PokeBattle_Move_321 < PokeBattle_TargetMultiStatDownMove
   def pbInitialEffect(user,targets,hitNum)
     if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(user.pokemon.species)
       user.pokemon.setOriginalForm
-      battle.pbMegaEvolve(user.index, true)
+      @battle.pbMegaEvolve(user.index, true)
     end
   end
 end
@@ -5298,7 +5289,7 @@ class PokeBattle_Move_322 < PokeBattle_TargetMultiStatDownMove
   def pbInitialEffect(user,targets,hitNum)
     if [:LATIAS, :LATIOS, :B378H379, :B379H378].include?(user.pokemon.species)
       user.pokemon.setOriginalForm
-      battle.pbMegaEvolve(user.index, true)
+      @battle.pbMegaEvolve(user.index, true)
     end
   end
 
@@ -5467,25 +5458,25 @@ class PokeBattle_Move_326 < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     target.pbSleep
-    target.pbAttract(user) if rand(10) < 2 && target.pbCanAttract?(user, false)
-    target.pbConfuse if rand(10) < 2 && target.pbCanConfuse?(user,false,self)
-    if rand(10) < 2 && !(pbMoveFailedAromaVeil?(user,target) || (target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker))
+    target.pbAttract(user) if @battle.pbRandom(100, user, target) < 20 && target.pbCanAttract?(user, false)
+    target.pbConfuse if @battle.pbRandom(100, user, target) < 20 && target.pbCanConfuse?(user,false,self)
+    if @battle.pbRandom(100, user, target) < 20 && !(pbMoveFailedAromaVeil?(user,target) || (target.hasActiveAbility?(:OBLIVIOUS) && !@battle.moldBreaker))
       target.effects[PBEffects::Taunt] = 4
       @battle.pbDisplay(_INTL("{1} fell for the taunt!",target.pbThis))
     end
-    if rand(10) < 2
+    if @battle.pbRandom(100, user, target) < 20
       target.effects[PBEffects::Nightmare] = true
       @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
     end
-    if rand(10) < 2 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target))
+    if @battle.pbRandom(100, user, target) < 20 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target))
       target.effects[PBEffects::Torment] = true
       @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
     end
-    if rand(10) < 2
+    if @battle.pbRandom(100, user, target) < 20
       target.effects[PBEffects::Embargo] = 5
       @battle.pbDisplay(_INTL("{1} can't use items anymore!",target.pbThis))
     end
-    if rand(10) < 2 && !target.unstoppableAbility?
+    if @battle.pbRandom(100, user, target) < 20 && !target.unstoppableAbility?
       target.effects[PBEffects::GastroAcid] = true
       target.effects[PBEffects::Truant] = false
       @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", target.pbThis))
@@ -5550,24 +5541,24 @@ class PokeBattle_Move_329 < PokeBattle_SleepMove
         changeSpeciesSpecific(user.pokemon,:B466H467)
       end
       if user.hasActiveAbility?(:KEYCHANGE)
-        battle.pbShowAbilitySplash(mon)
+        @battle.pbShowAbilitySplash(mon)
         user.pbRaiseStatStage(:ATTACK,1,user)
         user.pbRaiseStatStage(:SPEED,1,user)
         user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
         user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-        battle.pbHideAbilitySplash(mon)
+        @battle.pbHideAbilitySplash(mon)
       end
       user.playChangeFormAnimation("Shiny")
     else
       user.changeSpecies(user.pokemon, :MELOETTA_A, :MELOETTA_P, "Shiny") if is_meloetta_A
       user.changeSpecies(user.pokemon, :MELOETTA_P, :MELOETTA_A, "Shiny") if is_meloetta_P
       if user.hasActiveAbility?(:KEYCHANGE)
-        battle.pbShowAbilitySplash(mon)
+        @battle.pbShowAbilitySplash(mon)
         user.pbRaiseStatStage(:ATTACK,1,user) if is_meloetta_P
         user.pbRaiseStatStage(:SPEED,1,user) if is_meloetta_P
         user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user) if is_meloetta_A
         user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user) if is_meloetta_A
-        battle.pbHideAbilitySplash(mon)
+        @battle.pbHideAbilitySplash(mon)
       end
     end
   end
@@ -5586,7 +5577,7 @@ end
 
 class PokeBattle_Move_331 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    if rand(10) < 3
+    if @battle.pbRandom(100, user, target) < 30
       @battle.pbDisplay(_INTL("{1} is going all out with this attack!", user.pbThis))
       baseDmg *= 2
     end
@@ -5889,7 +5880,7 @@ class PokeBattle_Move_349 < PokeBattle_Move
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -5971,7 +5962,7 @@ class PokeBattle_Move_354 < PokeBattle_StatUpMove
   def pbNumHits(user,targets)
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -5983,7 +5974,7 @@ class PokeBattle_Move_355 < PokeBattle_Move
   end
   def multiHitMove?;           return true; end
   def pbNumHits(user,targets)
-    return 4 + rand(7) if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+    return 4 + @battle.pbRandom(7, user, targets, false) if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
     return 10
   end
 
@@ -6225,7 +6216,7 @@ class PokeBattle_Move_366 < PokeBattle_Move
       end
     end
     user.effects[PBEffects::FocusEnergy] += 1
-    battle.pbDisplay(_INTL("{1}'s critical rate increased!",user.pbThis))
+    @battle.pbDisplay(_INTL("{1}'s critical rate increased!",user.pbThis))
   end
 end
 
@@ -6288,7 +6279,7 @@ class PokeBattle_Move_370 < PokeBattle_Move
 
   def pbCalcDamage(user, target, numTargets = 1)
     if target.hasRaisedStatStages?
-      pbShowAnimation(@id, user, target, 1) # Stat stage-draining animation
+      pbShowAnimation(:SPECTRALTHIEF, user, target, 1) # Stat stage-draining animation
       @battle.pbDisplay(_INTL("{1} stole the target's boosted stats!", user.pbThis))
       showAnim = true
       GameData::Stat.each_battle do |s|
@@ -6313,7 +6304,7 @@ end
 
 class PokeBattle_Move_371 < PokeBattle_FreezeMove
   def pbAdditionalEffect(user, target)
-    super if @battle.pbRandom(100) < pbAdditionalEffectChance(user, target, 20)
+    super if @battle.pbRandom(100, user, target) < pbAdditionalEffectChance(user, target, 20)
     target.pbLowerStatStage(:SPECIAL_DEFENSE,1,user) if target.pbCanLowerStatStage?(:SPECIAL_DEFENSE,user,self) && !target.damageState.substitute
     @battle.eachSameSideBattler(user) do |b|
       b.pbRaiseStatStage(:SPEED,1,user)
@@ -6481,8 +6472,8 @@ class PokeBattle_Move_381 < PokeBattle_ConfuseMove
 
   def pbEffectAfterAllHits(user,target)
     return if user.fainted? || target.fainted? || target.damageState.unaffected
-    return unless rand(10) < 3
-    battle.pbDisplay(_INTL("A knife launches out!"))  
+    return unless @battle.pbRandom(100, user, target) < 30
+    @battle.pbDisplay(_INTL("A knife launches out!"))  
   end
 end
 
@@ -6620,5 +6611,147 @@ class PokeBattle_Move_389 < PokeBattle_TargetStatDownMove
       return user.attack, user.stages[:ATTACK] + 6
     end
     return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+end
+
+class PokeBattle_Move_390 < PokeBattle_Move
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+
+  def pbCalcAccuracyMultipliers(user,target,multipliers)
+    super
+    modifiers[:evasion_stage] = 0
+  end
+
+  def pbGetDefenseStats(user,target)
+    ret1, _ret2 = super
+    return ret1, 6   # Def/SpDef stat stage
+  end
+
+  def ignoresReflect?
+    return true;
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbOpposingSide.effects[PBEffects::LightScreen] > 0
+      user.pbOpposingSide.effects[PBEffects::LightScreen] = 0
+      @battle.pbDisplay(_INTL("{1}'s Light Screen wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::Reflect] > 0
+      user.pbOpposingSide.effects[PBEffects::Reflect] = 0
+      @battle.pbDisplay(_INTL("{1}'s Reflect wore off!", user.pbOpposingTeam))
+    end
+    if user.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
+      user.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
+      @battle.pbDisplay(_INTL("{1}'s Aurora Veil wore off!", user.pbOpposingTeam))
+    end
+  end
+end
+
+class PokeBattle_Move_391 < PokeBattle_Move
+  def pbInitialEffect(user,targets,hitum)
+    return if user.hasActiveAbility?(:LEVITATE)
+    user.extraabilities.push(:LEVITATE)
+    @battle.pbDisplay(_INTL("{1} levitated!", user.pbThis))
+  end
+
+  def multiHitMove?;           return true; end
+  def pbNumHits(user,targets); return 3;    end
+
+  def successCheckPerHit?
+    return @accCheckPerHit
+  end
+
+  def pbOnStartUse(user,targets)
+    @calcBaseDmg = 0
+    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    @calcBaseDmg += baseDmg
+    return @calcBaseDmg
+  end
+
+  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    return if user.fainted? || numHits==0
+    return if !target.fainted?
+    targetSwitched = true
+    targets.each do |b|
+      targetSwitched = false if !switchedBattlers.include?(b.index)
+    end
+    return if targetSwitched
+    return if !@battle.pbCanChooseNonActive?(user.index)
+    @battle.pbDisplay(_INTL("{1} went back to {2}!",user.pbThis,
+       @battle.pbGetOwnerName(user.index)))
+    @battle.pbPursuit(user.index)
+    return if user.fainted?
+    newPkmn = @battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
+    return if newPkmn<0
+    @battle.pbRecallAndReplace(user.index,newPkmn)
+    @battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
+    @battle.moldBreaker = false
+    switchedBattlers.push(user.index)
+    user.pbEffectsOnSwitchIn(true)
+  end
+end
+
+class PokeBattle_Move_392 < PokeBattle_TargetMultiStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:DEFENSE, 1, :SPECIAL_DEFENSE, 1]
+  end
+
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 1.5 if user.pbHasType?(:DRAGON)
+    return baseDmg
+  end
+
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+end
+
+class PokeBattle_Move_393 < PokeBattle_Move
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+
+    bonusattack = 0
+    partylist = []
+    @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn,i|
+      next if !pkmn.able?
+      partylist.push(pkmn)
+    end
+    if partylist.length > 0
+      partymon = partylist[partylist.length]
+      bonusattack = [partymon.baseStats[:ATTACK], partymon.baseStats[:SPECIAL_ATTACK]].max
+    end
+    if attack > spatk
+      return user.attack + bonusattack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk + bonusattack, user.stages[:SPECIAL_ATTACK] + 6
   end
 end

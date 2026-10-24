@@ -491,7 +491,7 @@ class PokeBattle_Battler
   end
 
   def pbConfusionDuration(duration=-1)
-    duration = 2+@battle.pbRandom(4) if duration<=0
+    duration = 2+@battle.pbRandom(4, self, nil, false) if duration<=0
     return duration
   end
 

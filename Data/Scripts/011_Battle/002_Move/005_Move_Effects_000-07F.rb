@@ -125,10 +125,10 @@ class PokeBattle_Move_009 < PokeBattle_Move
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end
-    target.pbFlinch(user) if @battle.pbRandom(100) < chance
+    target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance
   end
 end
 
@@ -153,10 +153,10 @@ class PokeBattle_Move_00B < PokeBattle_Move
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbBurn(user) if target.pbCanBurn?(user, false, self)
     end
-    target.pbFlinch(user) if @battle.pbRandom(100) < chance
+    target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance
   end
 end
 
@@ -188,10 +188,10 @@ class PokeBattle_Move_00E < PokeBattle_Move
     return if target.damageState.substitute
     chance = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0
-    if @battle.pbRandom(100) < chance
+    if @battle.pbRandom(100, user, target) < chance
       target.pbFreeze if target.pbCanFreeze?(user, false, self)
     end
-    target.pbFlinch(user) if @battle.pbRandom(100) < chance
+    target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance
   end
 end
 

@@ -509,7 +509,7 @@ BattleHandlers::PriorityBracketChangeItem.copy(:LAGGINGTAIL,:FULLINCENSE)
 
 BattleHandlers::PriorityBracketChangeItem.add(:QUICKCLAW,
   proc { |item,battler,subPri,battle|
-    next 1 if subPri<1 && battle.pbRandom(100)<20
+    next 1 if subPri<1 && battle.pbRandom(100, battler)<20
   }
 )
 

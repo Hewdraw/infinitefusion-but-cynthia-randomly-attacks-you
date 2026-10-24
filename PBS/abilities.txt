@@ -402,3 +402,4 @@
 716,THEROARING,The Roaring,"are you menaced seeing this in the files?"
 717,LIVIDOUTRAGESMASHER,Livid Outrage Smasher,"a"
 718,TEMPEST,Tempest,"a"
+719,ALPHAINFORCE,Alpha inForce,"a"

@@ -623,7 +623,7 @@ BattleHandlers::PriorityBracketChangeAbility.add(:STALL,
 
 BattleHandlers::PriorityBracketChangeAbility.add(:QUICKDRAW,
   proc { |item,battler,subPri,battle|
-    next 1 if subPri<1 && battle.pbRandom(100)<30
+    next 1 if subPri<1 && battle.pbRandom(100, battler)<30
   }
 )
 
@@ -1996,7 +1996,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
       break
     end
     next if !regularMove || (regularMove.pp==0 && regularMove.total_pp>0)
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, target, user)>=30
     battle.pbShowAbilitySplash(target)
     if !move.pbMoveFailedAromaVeil?(target,user,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       user.effects[PBEffects::Disable]     = 3
@@ -2020,7 +2020,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CUTECHARM,
   proc { |ability,target,user,move,battle|
     next if target.fainted?
     next if !move.pbContactMove?(user)
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, target, user)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanAttract?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -2059,7 +2059,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPORE,
     #       inflicting a status condition. It can try (and fail) to inflict a
     #       status condition that the user is immune to.
     next if !move.pbContactMove?(user)
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, target, user)>=30
     r = battle.pbRandom(3)
     next if r==0 && user.asleep?
     next if r==1 && user.poisoned?
@@ -2161,7 +2161,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPOREPLUS,
       if target.hasActiveItem?(:GRIPCLAW)
         user.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
       else
-        user.effects[PBEffects::Trapping] = 5+battle.pbRandom(2)
+        user.effects[PBEffects::Trapping] = 5+battle.pbRandom(2, target, user, false)
       end
       user.effects[PBEffects::TrappingMove] = :BIND
       user.effects[PBEffects::TrappingUser] = target.index
@@ -2242,7 +2242,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPOREPLUS,
 BattleHandlers::TargetAbilityOnHit.add(:FLAMEBODY,
   proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.burned? || battle.pbRandom(100)>=30
+    next if user.burned? || battle.pbRandom(100, target, user)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanBurn?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -2374,7 +2374,7 @@ BattleHandlers::TargetAbilityOnHit.copy(:MUMMY, :ZOMBIE)
 BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
   proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.poisoned? || battle.pbRandom(100)>=30
+    next if user.poisoned? || battle.pbRandom(100, target, user)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanPoison?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -2398,7 +2398,7 @@ BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
 BattleHandlers::TargetAbilityOnHit.add(:SNOWCLOAK,
   proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.frozen? || battle.pbRandom(100)>=30
+    next if user.frozen? || battle.pbRandom(100, target, user)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanFreeze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -2421,7 +2421,7 @@ BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
 BattleHandlers::TargetAbilityOnHit.add(:STATIC,
   proc { |ability,target,user,move,battle|
     next if !move.pbContactMove?(user)
-    next if user.paralyzed? || battle.pbRandom(100)>=30
+    next if user.paralyzed? || battle.pbRandom(100, target, user)>=30
     battle.pbShowAbilitySplash(target)
     if user.pbCanParalyze?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH) &&
        user.affectedByContactEffect?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -2511,7 +2511,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
 
 BattleHandlers::UserAbilityOnHit.add(:MOXIEPLUS,
   proc { |ability,user,target,move,battle|
-    next if battle.pbRandom(100)>=20
+    next if battle.pbRandom(100, user, target)>=20
     next if !user.pbCanRaiseStatStage?(:ATTACK,user)
     user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
   }
@@ -2519,7 +2519,7 @@ BattleHandlers::UserAbilityOnHit.add(:MOXIEPLUS,
 
 BattleHandlers::UserAbilityOnHit.add(:HYPERCUTTERPLUS,
   proc { |ability,user,target,move,battle|
-    next if battle.pbRandom(100)>=20
+    next if battle.pbRandom(100, user, target)>=20
     next if !target.pbCanLowerStatStage?(:DEFENSE,user)
     target.pbLowerStatStageByAbility(:DEFENSE,1,user,GameData::Ability.get(ability).real_name)
   }
@@ -2528,7 +2528,7 @@ BattleHandlers::UserAbilityOnHit.add(:HYPERCUTTERPLUS,
 BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, user, target)>=30
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2549,7 +2549,7 @@ BattleHandlers::UserAbilityOnHit.add(:POISONTOUCH,
 
 BattleHandlers::UserAbilityOnHit.add(:TOXICCHAIN,
   proc { |ability,user,target,move,battle|
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, user, target)>=30
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2571,7 +2571,7 @@ BattleHandlers::UserAbilityOnHit.add(:TOXICCHAIN,
 BattleHandlers::UserAbilityOnHit.add(:FIRETOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, user, target)>=30
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2592,7 +2592,7 @@ BattleHandlers::UserAbilityOnHit.add(:FIRETOUCH,
 
 BattleHandlers::UserAbilityOnHit.add(:FLASHFIREPLUS,
   proc { |ability,user,target,move,battle|
-    next if battle.pbRandom(100)>=10
+    next if battle.pbRandom(100, user, target)>=10
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2614,7 +2614,7 @@ BattleHandlers::UserAbilityOnHit.add(:FLASHFIREPLUS,
 BattleHandlers::UserAbilityOnHit.add(:FROSTTOUCH,
   proc { |ability,user,target,move,battle|
     next if !move.contactMove?
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, user, target)>=30
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2635,7 +2635,7 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTTOUCH,
 
 BattleHandlers::UserAbilityOnHit.add(:FRISKPLUS,
   proc { |ability,user,target,move,battle|
-    next if battle.pbRandom(100)>=30
+    next if battle.pbRandom(100, user, target)>=30
     next if target.damageState.unaffected || target.damageState.substitute
     next if !target.item || target.unlosableItem?(target.item)
     next if target.hasActiveAbility?([:STICKYHOLD, :EONBOOST]) && !battle.moldBreaker
@@ -2801,7 +2801,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:EARTHEATERPLUS,
 BattleHandlers::UserAbilityEndOfMove.add(:TIMEFLOWSOVERHISUI,
   proc { |ability,user,targets,move,battle|
     next if !move.zMove?
-    pbBattleWeatherAbility(:Sun, battler, battle)
+    pbBattleWeatherAbility(:Sun, user, battle)
   }
 )
 
@@ -2974,7 +2974,7 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
 
 BattleHandlers::EORHealingAbility.add(:HEALER,
   proc { |ability,battler,battle|
-    next unless battle.pbRandom(100)<30
+    next unless battle.pbRandom(100, battler)<30
     battler.eachAlly do |b|
       next if b.status == :NONE
       battle.pbShowAbilitySplash(battler)
@@ -3029,7 +3029,7 @@ BattleHandlers::EORHealingAbility.copy(:HYDRATION,:STORMWINDS)
 BattleHandlers::EORHealingAbility.add(:SHEDSKIN,
   proc { |ability,battler,battle|
     next if battler.status == :NONE
-    next unless battle.pbRandom(100)<30
+    next unless battle.pbRandom(100, battler)<30
     battle.pbShowAbilitySplash(battler)
     oldStatus = battler.status
     battler.pbCureStatus(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -3213,7 +3213,7 @@ BattleHandlers::EORGainItemAbility.add(:HARVEST,
     next if battler.item
     next if !battler.recycleItem || !GameData::Item.get(battler.recycleItem).is_berry?
     if ![:Sun, :HarshSun].include?(battle.pbWeather)
-      next unless battle.pbRandom(100)<50
+      next unless battle.pbRandom(100, battler)<50
     end
     battle.pbShowAbilitySplash(battler)
     battler.item = battler.recycleItem

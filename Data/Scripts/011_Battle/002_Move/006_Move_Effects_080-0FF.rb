@@ -354,7 +354,7 @@ end
 class PokeBattle_Move_094 < PokeBattle_Move
   def pbOnStartUse(user,targets)
     @presentDmg = 0   # 0 = heal, >0 = damage
-    r = @battle.pbRandom(100)
+    r = @battle.pbRandom(100, user, targets, false)
     if r<40;    @presentDmg = 40
     elsif r<70; @presentDmg = 80
     elsif r<80; @presentDmg = 120
@@ -411,7 +411,7 @@ class PokeBattle_Move_095 < PokeBattle_Move
        9,9,
        10
     ]
-    magni = magnitudes[@battle.pbRandom(magnitudes.length)]
+    magni = magnitudes[@battle.pbRandom(magnitudes.length, user, targets, false)]
     @magnitudeDmg = baseDmg[magni-4]
     @battle.pbDisplay(_INTL("Magnitude {1}!",magni))
   end
@@ -890,7 +890,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     return if target.fainted?
     return if target.damageState.unaffected || target.damageState.substitute
     chance = pbAdditionalEffectChance(user,target)
-    return if @battle.pbRandom(100)>=chance
+    return if @battle.pbRandom(100, user, target)>=chance
     case @secretPower
     when 2
       target.pbSleep if target.pbCanSleep?(user,false,self)
@@ -1974,7 +1974,7 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
     end
     hitChances = [2,2,3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -2051,7 +2051,7 @@ class PokeBattle_Move_0C3 < PokeBattle_TwoTurnMove
   def pbNumHits(user,targets)
     hitChances = [3,3,4,5]
     hitChances = [4,5] if user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-    r = @battle.pbRandom(hitChances.length)
+    r = @battle.pbRandom(hitChances.length, user, targets, false)
     r = hitChances.length-1 if user.hasActiveAbility?([:SKILLLINK, :THEROARING])
     return hitChances[r]
   end
@@ -2330,7 +2330,7 @@ class PokeBattle_Move_0CF < PokeBattle_Move
     if user.hasActiveItem?(:GRIPCLAW)
       target.effects[PBEffects::Trapping] = (Settings::MECHANICS_GENERATION >= 5) ? 8 : 6
     else
-      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2)
+      target.effects[PBEffects::Trapping] = 5+@battle.pbRandom(2, user, target, false)
     end
     target.effects[PBEffects::TrappingMove] = @id
     target.effects[PBEffects::TrappingUser] = user.index
@@ -2415,7 +2415,7 @@ end
 class PokeBattle_Move_0D2 < PokeBattle_Move
   def pbEffectAfterAllHits(user,target)
     if !target.damageState.unaffected && user.effects[PBEffects::Outrage]==0
-      user.effects[PBEffects::Outrage] = 2+@battle.pbRandom(2)
+      user.effects[PBEffects::Outrage] = 2+@battle.pbRandom(2, user, target)
       user.currentMove = @id
     end
     if user.effects[PBEffects::Outrage]>0

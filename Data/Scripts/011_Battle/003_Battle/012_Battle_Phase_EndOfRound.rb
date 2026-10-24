@@ -379,7 +379,7 @@ class PokeBattle_Battle
       BattleHandlers.triggerEORHealingAbility(b.ability,b,self) if b.abilityActive?
       # Black Sludge, Leftovers
       BattleHandlers.triggerEORHealingItem(b.item,b,self) if b.itemActive?
-      if (b.pokemon.affection || b.hasActiveEmera?(:SYNCSTONEULTIMATE)) && rand(100) < 20 && b.status != :NONE && !b.hasActiveAbility?(:BECALMINGBEAUTY)
+      if (b.pokemon.affection || b.hasActiveEmera?(:SYNCSTONEULTIMATE)) && pbRandom(100, b) < 20 && b.status != :NONE && !b.hasActiveAbility?(:BECALMINGBEAUTY)
         oldStatus = b.status
         b.pbCureStatus(false)
         case oldStatus
@@ -742,7 +742,7 @@ class PokeBattle_Battle
       next if b.fainted?
       # Hyper Mode (Shadow Pokémon)
       if b.inHyperMode?
-        if pbRandom(100)<10
+        if pbRandom(100, b)<10
           b.pokemon.hyper_mode = false
           b.pokemon.adjustHeart(-50)
           pbDisplay(_INTL("{1} came to its senses!",b.pbThis))

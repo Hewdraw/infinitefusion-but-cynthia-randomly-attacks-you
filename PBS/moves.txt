@@ -1127,6 +1127,10 @@
 1158,FAKEOUTPLUS,Fake Out+,387,20,NORMAL,Physical,100,10,100,NearOther,3,abe,"An attack that hits first and makes the target flinch. It only works the first turn the user is in battle."
 1159,HIJUMPKICKPLUS,High Jump Kick+,388,140,FIGHTING,Physical,95,10,0,NearOther,0,abef,"The target is attacked with a knee kick from a jump. If it misses, the user is hurt instead."
 1160,SHADOWCLAWPLUS,Shadow Claw+,389,90,GHOST,Physical,0,10,100,NearOther,0,abefhq,"The user slashes with a sharp claw made from shadows. Critical hits land more easily."
+1161,DIVINESWORDGRADEALPHA,Divine Sword Grade Alpha,390,110,FAIRY,Special,100,5,0,NearOther,0,abefq,"Draws out a convergence of light that was pierced into the center of a magic circle of DigiCode, and stabs it through the opponent."
+1162,DIGITALIZEOFTHESOUL,Digitalize of Soul,391,25,QMARKS,Special,90,5,0,NearOther,0,bef,"Spreads the wings on its back and flies up high, then deploys a magic circle even larger than the sky, with which it summons a legendary monster from another dimension."
+1163,BLADEOFTHEDRAGONKING,Blade of the Dragon King,392,80,STEEL,Special,100,10,30,NearOther,0,abefq,"Swings the Ouryuken."
+1164,KYOKYOKUSENJINOURYUKEN,Kyukyoku Senjin Ouryuken,393,70,DRAGON,Special,0,5,0,NearOther,0,abefq,"Swings the Ouryuken."
 
 
 

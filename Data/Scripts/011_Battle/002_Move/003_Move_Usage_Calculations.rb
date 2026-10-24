@@ -167,7 +167,7 @@ class PokeBattle_Move
     evasion  = (evasion  * modifiers[:evasion_multiplier]).round
     evasion = 1 if evasion < 1
     # Calculation
-    randnumber = @battle.pbRandom(100)
+    randnumber = @battle.pbRandom(100, user, target)
     if (target.pokemon.affection || target.hasActiveEmera?(:SYNCSTONEULTIMATE)) && randnumber >= (modifiers[:base_accuracy] - 10) * accuracy / evasion && randnumber < modifiers[:base_accuracy] * accuracy / evasion
       target.damageState.affectionmiss = true
       return false
@@ -271,7 +271,7 @@ class PokeBattle_Move
     c += 1 if user.inHyperMode? && @type == :SHADOW
     c = ratios.length-1 if c>=ratios.length
     # Calculation
-    randnumber = @battle.pbRandom(ratios[c])
+    randnumber = @battle.pbRandom(ratios[c], user, target)
     if (user.pokemon.affection || user.hasActiveEmera?(:SYNCSTONEULTIMATE)) && randnumber == 1
       target.damageState.affectioncritical = true
       return true
@@ -536,7 +536,7 @@ class PokeBattle_Move
     end
     # Random variance
     if !self.is_a?(PokeBattle_Confusion)
-      random = 85+@battle.pbRandom(16)
+      random = 100 - @battle.pbRandom(16, user, target)
       multipliers[:final_damage_multiplier] *= random / 100.0
     end
     # STAB

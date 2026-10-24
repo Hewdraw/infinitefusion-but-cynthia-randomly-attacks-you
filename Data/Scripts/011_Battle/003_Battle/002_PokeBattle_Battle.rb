@@ -102,7 +102,36 @@ class PokeBattle_Battle
 
   include PokeBattle_BattleCommon
 
-  def pbRandom(x); return rand(x); end
+  def pbRandom(x, user=nil, target=nil, useradvantage=true)
+    if target.is_a?(Array)
+      if target.length == 1
+        target = target[0]
+      else
+        target = nil
+      end
+    end
+    roll = rand(x)
+    if useradvantage
+      if user
+        return 0 if user.hasActiveAbility?(:ALPHAINFORCE) && user.turnCount <= 1
+        return [roll, rand(x)].min if user.hasActiveEmera?(:VWHEEL)
+      end
+      if target
+        return x-1 if target.hasActiveAbility?(:ALPHAINFORCE) && target.turnCount <= 1
+        return [roll, rand(x)].max if target.hasActiveEmera?(:VWHEEL)
+      end
+    else
+      if target
+        return 0 if target.hasActiveAbility?(:ALPHAINFORCE) && target.turnCount <= 1
+        return [roll, rand(x)].min if target.hasActiveEmera?(:VWHEEL)
+      end
+      if user
+        return x-1 if user.hasActiveAbility?(:ALPHAINFORCE) && user.turnCount <= 1
+        return [roll, rand(x)].max if user.hasActiveEmera?(:VWHEEL)
+      end
+    end
+    return roll
+  end
 
   #=============================================================================
   # Creating the battle class

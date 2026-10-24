@@ -778,6 +778,13 @@ EMERADICT = {
     #     :tutormove => :ELECTRODRIFT,
     #     :tutorcondition => -> (pokemon) {return pokemon.hasType?(:ELECTRIC)},
     # },
+    :VWHEEL => {
+        :name => "V-Wheel",
+        :description => "Your Pokemon have Advantage on random number checks.",
+        :rarity => :LEGENDARY,
+        :tutormove => :SEARINGSHOT,
+        :tutorcondition => -> (pokemon) {return pokemon.hasType?(:FIRE)},
+    },
     :WISHINGSTAR => {
         :name => "Wishing Star",
         :description => "Gain an extra Emera when beating Hatsune Miku.",

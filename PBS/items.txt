@@ -703,8 +703,8 @@
 703,SPAWNER,Spawner,Spawners,8,0,"Debug tool for spawning Pokémon.",2,0,6
 704,PRESENT,Present,Presents,1,50,"A small gift box that contains coins.",2,0,0
 705,UNKNOWN,Thing,Things,1,50,"Some kind of object. You're not too sure what it is...",0,0,0
-706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"todo",0,0,0
-707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"todo",0,0,0
+706,ALTACARIONITE,Altacarionite,Altacarionites,1,0,"a",0,0,0
+707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"a",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
 709,MEWTWONITEPLUS,Mewtwonite+,Mewtwonite+s,1,0,"a",0,0,0
 710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",5,0,6
@@ -745,53 +745,53 @@
 745,JOLLYMINT,Jolly Mint,Jolly Mints,2,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Atk stat may suffer.",1,0,0
 746,NAIVEMINT,Naive Mint,Naive Mints,2,0,"Having a Pokémon smell this mint can make its Speed stat grow stronger. However, its Sp. Def stat may suffer.",1,0,0
 747,SERIOUSMINT,Serious Mint,Serious Mints,2,0,"Having a Pokémon smell this mint will cause its Attack, Defense, Sp. Atk, Sp. Def, and Speed stats to grow at an equal rate.",1,0,0
-748,SLOWBRONITE,Slowbronite,Slowbronites,1,0,"todo",0,0,0
-749,HERACRONITE,Heracronite,Heracronites,1,0,"todo",0,0,0
-750,GENGARITE,Gengarite,Gengarites,1,0,"todo",0,0,0
-751,GYARANINITE,Gyaraninite,Gyaraninites,1,0,"todo",0,0,0
-752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"todo",0,0,0
+748,SLOWBRONITE,Slowbronite,Slowbronites,1,0,"a",0,0,0
+749,HERACRONITE,Heracronite,Heracronites,1,0,"a",0,0,0
+750,GENGARITE,Gengarite,Gengarites,1,0,"a",0,0,0
+751,GYARANINITE,Gyaraninite,Gyaraninites,1,0,"a",0,0,0
+752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"a",0,0,0
 753,MYSTERIOUSMETEORS,Mysterious Meteors,Mysterious Meteors,1,0,"todo",0,0,0
 754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",5,0,0
 755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",5,0,0
 756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",5,0,0
 757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,100,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",0,0,0
 758,HPMAX,HP Max,Hp Maxes,2,0,"Maximum amounts of HP Up! Seems like a bottomless bottle...",1,3,0
-759,BEEZORITE,Beezorite,Beezorites,1,0,"todo",0,0,0
-760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"todo",0,0,0
-761,MEDICHAMITE,Medichamite,Medichamites,1,0,"todo",0,0,0
-762,TYRANWILITE,Tyranwilite,Tyranwilites,1,0,"todo",0,0,0
+759,BEEZORITE,Beezorite,Beezorites,1,0,"a",0,0,0
+760,AERODACTYLITE,Aerodactylite,Aerodactylites,1,0,"a",0,0,0
+761,MEDICHAMITE,Medichamite,Medichamites,1,0,"a",0,0,0
+762,TYRANWILITE,Tyranwilite,Tyranwilites,1,0,"a",0,0,0
 763,PYRITE,Pyrite,Pyrite,1,0,"Fool's Gold. Makes the holder ???-Type.",0,0,0
-764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"todo",0,0,0
-765,GARDEROSITE,Garderosite,Garderosites,1,0,"todo",0,0,0
+764,GENVOIRITE,Genvoirite,Genvoirites,1,0,"a",0,0,0
+765,GARDEROSITE,Garderosite,Garderosites,1,0,"a",0,0,0
 766,BEEGPP,Beeg PP,Beeg PPs,2,0,"It can repeatedly raise the top PP of selected moves that are known by target Pokémon.",5,0,0
 767,MECHUMETAL,Mechu Metal,Mechu Metals,2,0,"Infinitely dense iron.",1,3,0
-777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"todo",0,0,0
-778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"todo",0,0,0
-779,FLYINIUMZ,Flyiunium Z,Flyiunium Zs,1,0,"todo",0,0,0
-780,POISONIUMZ,Poisonium Z,Poisonium Zs,1,0,"todo",0,0,0
-781,GROUNDIUMZ,Groundium Z,Groundium Zs,1,0,"todo",0,0,0
-782,ROCKIUMZ,Rockium Z,Rockium Zs,1,0,"todo",0,0,0
-783,BUGINIUMZ,Buginium Z,Buginium Zs,1,0,"todo",0,0,0
-784,GHOSTIUMZ,Ghostium Z,Ghostium Zs,1,0,"todo",0,0,0
-785,STEELIUMZ,Steelium Z,Steelium Zs,1,0,"todo",0,0,0
-786,FIRIUMZ,Firium Z,Firium Zs,1,0,"todo",0,0,0
-787,WATERIUMZ,Waterium Z,Waterium Zs,1,0,"todo",0,0,0
-788,GRASSIUMZ,Grassium Z,Grassium Zs,1,0,"todo",0,0,0
-789,ELECTRIUMZ,Electrium Z,Electrium Zs,1,0,"todo",0,0,0
-790,PSYCHIUMZ,Psychium Z,Psychium Zs,1,0,"todo",0,0,0
-791,ICIUMZ,Icium Z,Icium Zs,1,0,"todo",0,0,0
-792,DRAGONIUMZ,Dragonium Z,Dragonium Zs,1,0,"todo",0,0,0
-793,DARKINIUMZ,Darkinium Z,Darkinium Zs,1,0,"todo",0,0,0
-794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"todo",0,0,0
-795,KOMMONIUMZ,Kommonium Z,Kommonium Zs,1,0,"todo",0,0,0
-796,EEVIUMZ,Eevium Z,Eevium Zs,1,0,"todo",0,0,0
-797,MAWANCITE,Mawancite,Mawancites,1,0,"todo",0,0,0
+777,NORMALIUMZ,Normalium Z,Normalium Zs,1,0,"a",0,0,0
+778,FIGHTINIUMZ,Fightinium Z,Fightinium Zs,1,0,"a",0,0,0
+779,FLYINIUMZ,Flyiunium Z,Flyiunium Zs,1,0,"a",0,0,0
+780,POISONIUMZ,Poisonium Z,Poisonium Zs,1,0,"a",0,0,0
+781,GROUNDIUMZ,Groundium Z,Groundium Zs,1,0,"a",0,0,0
+782,ROCKIUMZ,Rockium Z,Rockium Zs,1,0,"a",0,0,0
+783,BUGINIUMZ,Buginium Z,Buginium Zs,1,0,"a",0,0,0
+784,GHOSTIUMZ,Ghostium Z,Ghostium Zs,1,0,"a",0,0,0
+785,STEELIUMZ,Steelium Z,Steelium Zs,1,0,"a",0,0,0
+786,FIRIUMZ,Firium Z,Firium Zs,1,0,"a",0,0,0
+787,WATERIUMZ,Waterium Z,Waterium Zs,1,0,"a",0,0,0
+788,GRASSIUMZ,Grassium Z,Grassium Zs,1,0,"a",0,0,0
+789,ELECTRIUMZ,Electrium Z,Electrium Zs,1,0,"a",0,0,0
+790,PSYCHIUMZ,Psychium Z,Psychium Zs,1,0,"a",0,0,0
+791,ICIUMZ,Icium Z,Icium Zs,1,0,"a",0,0,0
+792,DRAGONIUMZ,Dragonium Z,Dragonium Zs,1,0,"a",0,0,0
+793,DARKINIUMZ,Darkinium Z,Darkinium Zs,1,0,"a",0,0,0
+794,FAIRIUMZ,Farium Z,Farium Zs,1,0,"a",0,0,0
+795,KOMMONIUMZ,Kommonium Z,Kommonium Zs,1,0,"a",0,0,0
+796,EEVIUMZ,Eevium Z,Eevium Zs,1,0,"a",0,0,0
+797,MAWANCITE,Mawancite,Mawancites,1,0,"a",0,0,0
 798,ANCESTRALGENE,Ancestral Gene,Ancestral Genes,1,0,"Use to Copy. When held by Mew, gives Ability but inhibits attacking potential.",5,0,0
 799,TOTEMOFUNDYING,Totem of Undying,Totems of Undying,1,0,"a",0,0,0
 800,ENDCRYSTAL,End Crystal,End Crystals,1,0,"a",0,0,0
 801,MINECRAFTBALL,Minecraft Block,Minecraft Blocks,3,0,"Weird Cobblemon extension.",0,0,0
-802,MAWILITE,Mawilite,Mawilites,1,0,"todo",0,0,0
-803,METAGROSSITE,Metagrossite,Metagrossites,1,0,"todo",0,0,0
+802,MAWILITE,Mawilite,Mawilites,1,0,"a",0,0,0
+803,METAGROSSITE,Metagrossite,Metagrossites,1,0,"a",0,0,0
 804,ELYTRA,Elytra,Elytras,1,0,"a",0,0,0
 805,ENDERPEARL,Ender Pearl,Ender Pearls,1,0,"a",0,0,0
 806,DIAMONDCHESTPLATE,Diamond Chestplate,Diamond Chestplates,1,0,"Prevents Status move usage. x1.5 DEF.",0,0,0
@@ -799,21 +799,21 @@
 808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"Magic craft item. Swaps and slightly buffs attacking stats.",0,0,0
 809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"Paralyzes user at end of turn.",5,0,0
 810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"A Booster Energy device that brings out paradoxical potential out of viable targets",5,0,0
-811,HEALIES,Healies,Healies,8,0,"todo",2,0,6
+811,HEALIES,Healies,Healies,8,0,"a",2,0,6
 812,TUTORMACHINE,Tutor Machine,Tutor Machines,8,0,"Pocket Move Tutor",5,0,6
 813,TM122,TM122,TM122s,4,10000,"TOMBSTONER",3,0,0,TOMBSTONER
-814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"",0,0,0
-815,ENDGATEWAY,End Gateway,End Gateways,8,0,"todo",2,0,6
-816,MEGASHARD,Mega Shard,Mega Shards,1,0,"todo",5,0,0
+814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"a",0,0,0
+815,ENDGATEWAY,End Gateway,End Gateways,8,0,"a",2,0,6
+816,MEGASHARD,Mega Shard,Mega Shards,1,0,"a",5,0,0
 817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",0,0,0
-818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"todo",5,0,0
+818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"a",5,0,0
 819,DIGIVICE,Digivice,Digivices,8,0,"A small, portable device that allows you to access the Pokémon storage system.",2,0,6
-820,EJECTPACK,Eject Pack,Eject Packs,1,0,"todo",0,0,0
+820,EJECTPACK,Eject Pack,Eject Packs,1,0,"a",0,0,0
 821,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
-822,LOADEDDICE,Loaded Dice,Loaded Die,1,100,"todo",0,0,0
-823,GARCHOMPITE,Garchompite,Garchompites,1,0,"todo",0,0,0
-824,ALTARIANITE,Altarianite,Altarianites,1,0,"todo",0,0,0
-825,LUCARIONITE,Lucarionite,Lucarionites,1,0,"todo",0,0,0
+822,LOADEDDICE,Loaded Dice,Loaded Die,1,100,"a",0,0,0
+823,GARCHOMPITE,Garchompite,Garchompites,1,0,"a",0,0,0
+824,ALTARIANITE,Altarianite,Altarianites,1,0,"a",0,0,0
+825,LUCARIONITE,Lucarionite,Lucarionites,1,0,"a",0,0,0
 826,EXODIATHEFORBIDDENONE,Exodia the Forbidden One,Exodias the Forbidden One,8,0,"The one who gathers all five cards - resurrecting the deity by reuniting his head with his four limbs - will gain the power to bury their enemies in an instant.",0,0,0
 827,LEFTARMOFTHEFORBIDDENONE,Left Arm of the Forbidden One,Left Arms of the Forbidden One,8,0,"A forbidden left arm sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
 828,RIGHTARMOFTHEFORBIDDENONE,Right Arm of the Forbidden One,Right Arms of the Forbidden One,8,0,"A forbidden right arm sealed by magic. Whosoever breaks this seal will know infinite power.",0,0,0
@@ -830,14 +830,14 @@
 839,DIAMONDLOOPLET,Diamond Looplet,Diamond Looplets,8,0,"Diamond Looplet",0,0,6
 840,PEARLLOOPLET,Pearl Looplet,Pearl Looplets,8,0,"Pearl Looplet",0,0,6
 841,PLATINUMLOOPLET,Platinum Looplet,Platinum Looplets,8,0,"Platinum Looplet",0,0,6
-842,SALARIANITE,Salarianite,Salarianites,1,0,"todo",0,0,0
-843,SABLNETTITE,Sablnettite,Sablnettites,1,0,"todo",0,0,0
-844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"todo",0,0,0
-845,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"todo",0,0,0
+842,SALARIANITE,Salarianite,Salarianites,1,0,"a",0,0,0
+843,SABLNETTITE,Sablnettite,Sablnettites,1,0,"a",0,0,0
+844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"a",0,0,0
+845,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"a",0,0,0
 846,MILLENNIUMCOMETSHARD,Millennium Comet Shard,Millennium Comet Shards,1,0,"can you believe that this fucker sleeps for a whole thousand years?",0,0,0
-847,LUNARDIAL,Lunar Dial,Lunar Dials,1,0,"todo",0,0,0
-848,SABLWILITE,Sablwilite,Sablwilites,1,0,"todo",0,0,0
-849,BADAPPLE,Bad Apple,Bad Apples,1,0,"todo",0,0,0
+847,LUNARDIAL,Lunar Dial,Lunar Dials,1,0,"a",0,0,0
+848,SABLWILITE,Sablwilite,Sablwilites,1,0,"a",0,0,0
+849,BADAPPLE,Bad Apple,Bad Apples,1,0,"a",0,0,0
 850,TIMEFLUTE,Time Flute,Time Flutes,8,0,"travel back to a time when you werent stinky",0,10,0
 851,GODORB,God Orb,God Orbs,1,0,"a",0,0,0
 852,BARB,Barb,Barbs,1,0,"If the holder of this item takes damage, the attacker will also be damaged.",0,0,0
@@ -909,19 +909,19 @@
 918,RARESTBONE,Rarest Bone,Rarest Bones,2,0,"Raw gold bone that contains infinite calcium.",1,3,0
 919,COCONUT,Coco Nut,Coco Nuts,5,20000,"Load bearing.",0,0,0
 920,MILLENNIUMANKH,Millennium Ankh,Millennium Ankhs,8,0,"A cursed artifact used to Summon the Forbidden One.",2,0,6
-921,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"todo",0,0,0
-922,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"todo",0,0,0
-923,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"todo",0,0,0
-924,GARCARIONITE,Garcarionite,Garcarionites,1,0,"todo",0,0,0
-925,GARCHOMPITEZ,Garchompite Z,Garchompite Zs,1,0,"todo",0,0,0
-926,LUCARIONITEZ,Lucarionite Z,Lucarionite Zs,1,0,"todo",0,0,0
-927,EELEKTROSSITE,Eelekstrossite,Eelekstrossites,1,0,"todo",0,0,0
-928,GARCARIONITEZZ,Garcarionite ZZ,Garcarionite ZZs,1,0,"todo",0,0,0
-929,FLOPHOXITE,Flophoxite,Flophoxites,1,0,"todo",0,0,0
+921,THROATSPRAY,Throat Spray,Throat Sprays,1,0,"a",0,0,0
+922,BOOSTERENERGY,Booster Energy,Booster Energies,1,0,"a",0,0,0
+923,BUNDLEOFBALLOONS,Bundle of Balloons,Bundles of Balloons,1,0,"a",0,0,0
+924,GARCARIONITE,Garcarionite,Garcarionites,1,0,"a",0,0,0
+925,GARCHOMPITEZ,Garchompite Z,Garchompite Zs,1,0,"a",0,0,0
+926,LUCARIONITEZ,Lucarionite Z,Lucarionite Zs,1,0,"a",0,0,0
+927,EELEKTROSSITE,Eelekstrossite,Eelekstrossites,1,0,"a",0,0,0
+928,GARCARIONITEZZ,Garcarionite ZZ,Garcarionite ZZs,1,0,"a",0,0,0
+929,FLOPHOXITE,Flophoxite,Flophoxites,1,0,"a",0,0,0
 930,REVIVERSEED,Reviver Seed,Reviver Seeds,1,0,"a",0,0,0
 931,MUGORB,Mug Orb,Mug Orbs,1,0,"a",0,0,0
 932,ILLEGALGUNPARTS,Illegal Gun Parts,Illegal Gun Parts,1,138840,"Gun.",5,0,0
-933,METAGROSSITEZ,Metagrossite Z,Metagrossite Zs,1,0,"todo",0,0,0
+933,METAGROSSITEZ,Metagrossite Z,Metagrossite Zs,1,0,"a",0,0,0
 934,AQUAKNIFE,Aqua Knife,Aqua Knifes,1,0,"A mischievous blade. Attacks with this weapon are easier to make critical.",0,0,0
 935,BLACKKNIFE,Black Knife,Black Knifes,1,0,"SlayDark+",0,0,0
 936,BLACKSHARD,Black Shard,Black Shards,1,0,"SlayDark ^",0,0,0

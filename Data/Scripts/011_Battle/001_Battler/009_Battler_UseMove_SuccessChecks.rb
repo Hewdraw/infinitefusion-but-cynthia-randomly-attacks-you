@@ -221,7 +221,7 @@ class PokeBattle_Battler
     return true if skipAccuracyCheck
     # Check status problems and continue their effects/cure them
     if @status == :SLEEP && !hasActiveAbility?([:TRUEEYE, :GUTSPLUS])
-      if @battle.pbRandom(100) < ((@battle.pbWeather == :Snow || @battle.pbWeather == :Hail) ? 66 : 33)
+      if @battle.pbRandom(100, self, nil, false) < ((@battle.pbWeather == :Snow || @battle.pbWeather == :Hail) ? 66 : 33)
         pbContinueStatus
         if !move.usableWhenAsleep?   # Snore/Sleep Talk
           @lastMoveFailed = true
@@ -268,7 +268,7 @@ class PokeBattle_Battler
       else
         @battle.pbCommonAnimation("Confusion",self)
         @battle.pbDisplay(_INTL("{1} is confused!",pbThis))
-        if @battle.pbRandom(100)<33
+        if @battle.pbRandom(100, self, nil, false)<33
           pbConfusionDamage(_INTL("It hurt itself in its confusion!"))
           @lastMoveFailed = true
           return false
@@ -277,7 +277,7 @@ class PokeBattle_Battler
     end
     # Paralysis
     if @status == :PARALYSIS
-      if @battle.pbRandom(8)==0 && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
+      if @battle.pbRandom(8, self, nil, false)==0 && !hasActiveAbility?([:QUICKFEET, :GUTSPLUS])
         pbContinueStatus
         @lastMoveFailed = true
         return false
@@ -288,7 +288,7 @@ class PokeBattle_Battler
       @battle.pbCommonAnimation("Attract",self)
       @battle.pbDisplay(_INTL("{1} is in love with {2}!",pbThis,
          @battle.battlers[@effects[PBEffects::Attract]].pbThis(true)))
-      if @battle.pbRandom(100)<50
+      if @battle.pbRandom(100, self, nil, false)<50
         @battle.pbDisplay(_INTL("{1} is immobilized by love!",pbThis))
         @lastMoveFailed = true
         return false
@@ -460,7 +460,7 @@ class PokeBattle_Battler
     end
     # Dark-type immunity to moves made faster by Prankster
     if user.effects[PBEffects::Prankster] &&
-       target.pbHasType?(:DARK) && target.opposes?(user)
+       target.pbHasType?(:DARK) && target.opposes?(user) && !user.hasActiveItem?(:BLACKSHARD)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
       return false
@@ -563,7 +563,7 @@ class PokeBattle_Battler
       end
     end
     if user.hasActiveItem?(:MANKEYPAW)
-      miss = true if rand(2)==1
+      miss = true if @battle.pbRandom(2, user, target)==1
     end
     if !miss
       # Called by another move
