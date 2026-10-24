@@ -76,7 +76,7 @@ class Pokemon
 
     GameData::Species.each do |data|
       next unless specieslist.include?(data.species)
-      next if data.form_name == "Paradox"
+      next if data.form_name && data.form_name[0..6] == "Paradox"
       next if [:ROTOM].include?(data.species)
       next if data.form == 0
       next if data.mega_stone || data.mega_move
@@ -164,6 +164,9 @@ class Pokemon
         next if data.form == 0
         if data.mega_stone || data.mega_move
           megalist[i].push(data.form)
+        elsif data.form_name[0..6] == "Paradox" || data.form_name == "Stereo"
+          paradoxlist[i].push(data.form)
+          rotomlist[i].push(data.form) if data.form_name == "Stereo"
         elsif species == :ROTOM
           next if data.form > 5 && pbGetRotomCount() < 3
           rotomlist[i].push(data.form)
@@ -183,7 +186,10 @@ class Pokemon
         next
       end
     end
+    #todo refactor this its a mess
     if !@rotomform || override
+      rotomspecieslist = getRotomList
+      rotomspecieslist = rotomspecieslist * 2 unless isFusion? && getDexNumberForSpecies(@species) < 1000000
       @rotomform = [0, 0]
       @rotomability = [nil, nil]
       rotomlist.each_with_index do |rotom, i|
@@ -192,11 +198,13 @@ class Pokemon
           next
         end
         @rotomform[i] = rotom[rotom.length - 1]
-        abilitylist = getRotomList[i].abilities + getRotomList[i].hidden_abilities
+        abilitylist = rotomspecieslist[i].abilities + rotomspecieslist[i].hidden_abilities
         @rotomability[i] = abilitylist[abilitylist.length]
       end
     end
     if !@paradoxform || override
+      paradoxspecieslist = getParadoxList
+      paradoxspecieslist = paradoxspecieslist * 2 unless isFusion? && getDexNumberForSpecies(@species) < 1000000
       @paradoxform = [0, 0]
       @paradoxability = [nil, nil]
       paradoxlist.each_with_index do |paradox, i|
@@ -205,11 +213,13 @@ class Pokemon
           next
         end
         @paradoxform[i] = paradox[paradox.length - 1]
-        abilitylist = getParadoxList[i].abilities + getParadoxList[i].hidden_abilities
+        abilitylist = paradoxspecieslist[i].abilities + paradoxspecieslist[i].hidden_abilities
         @paradoxability[i] = abilitylist[abilitylist.length]
       end
     end
     if !@regionalform || override
+      regionalspecieslist = getParadoxList
+      regionalspecieslist = regionalspecieslist * 2 unless isFusion? && getDexNumberForSpecies(@species) < 1000000
       @regionalform = [0, 0]
       @regionalability = [nil, nil]
       regionallist.each_with_index do |regional, i|
@@ -218,7 +228,7 @@ class Pokemon
           next
         end
         @regionalform[i] = regional[regional.length - 1]
-        abilitylist = getRegionalList[i].abilities + getRegionalList[i].hidden_abilities
+        abilitylist = regionalspecieslist[i].abilities + regionalspecieslist[i].hidden_abilities
         @regionalability[i] = abilitylist[abilitylist.length]
       end
     end

@@ -34,6 +34,454 @@ BaseStats = 90,112,120,106,72,70
 Abilities = QUARKDRIVE,SPEEDBOOST
 HiddenAbility = TRANSISTOR
 #-------------------------------
+[ENTEI,1]
+FormName = Paradox Gouging Fire
+Type1 = FIRE
+Type2 = DRAGON
+BaseStats = 105,115,121,91,65,93
+Abilities = PROTOSYNTHESIS,DESOLATELAND
+HiddenAbility = DRAGONSMAW
+#-------------------------------
+[SUICUNE,1]
+FormName = Paradox Walking Wake
+Type1 = WATER
+Type2 = DRAGON
+BaseStats = 99,83,91,109,125,83
+Abilities = PROTOSYNTHESIS,PRIMORDIALSEA
+HiddenAbility = DRAGONSMAW
+#-------------------------------
+[RAIKOU,1]
+FormName = Paradox Raging Bolt
+Type1 = ELECTRIC
+Type2 = DRAGON
+BaseStats = 125,73,91,75,137,89
+Abilities = PROTOSYNTHESIS,ELECTRICSURGE
+HiddenAbility = DRAGONSMAW
+#-------------------------------
+[ENRAICUNE,1]
+FormName = Paradox Maiming Soul
+Type1 = FIREWATERELECTRICDRAGON
+Type2 = FIREWATERELECTRICDRAGON
+BaseStats = 110,91,101,92,109,89
+Abilities = DRAGONSMAW,ORICHALCUMPULSE
+HiddenAbility = SACREDASHES
+#-------------------------------
+[IGGLYBUFF,1]
+FormName = Paradox Scream Tail
+Type1 = FAIRY
+Type2 = PSYCHIC
+BaseStats = 115,65,99,111,65,115
+Abilities = PROTOSYNTHESIS,MISTYSURGE
+HiddenAbility = PIXILATE
+#-------------------------------
+[JIGGLYPUFF,1]
+FormName = Paradox Scream Tail
+Type1 = FAIRY
+Type2 = PSYCHIC
+BaseStats = 115,65,99,111,65,115
+Abilities = PROTOSYNTHESIS,MISTYSURGE
+HiddenAbility = PIXILATE
+#-------------------------------
+[WIGGLYTUFF,1]
+FormName = Paradox Scream Tail
+Type1 = FAIRY
+Type2 = PSYCHIC
+BaseStats = 115,65,99,111,65,115
+Abilities = PROTOSYNTHESIS,MISTYSURGE
+HiddenAbility = PIXILATE
+#-------------------------------
+[MISDREAVUS,1]
+FormName = Paradox Flutter Mane
+Type1 = GHOST
+Type2 = FAIRY
+BaseStats = 55,55,55,135,135,135
+Abilities = PROTOSYNTHESIS,INFILTRATOR
+HiddenAbility = LEVITATE
+#-------------------------------
+[MISMAGIUS,1]
+FormName = Paradox Flutter Mane
+Type1 = GHOST
+Type2 = FAIRY
+BaseStats = 55,55,55,135,135,135
+Abilities = PROTOSYNTHESIS,INFILTRATOR
+HiddenAbility = LEVITATE
+#-------------------------------
+[LARVESTA,1]
+FormName = Paradox Iron Moth
+Type1 = FIRE
+Type2 = POISON
+BaseStats = 80,70,60,110,140,110
+Abilities = QUARKDRIVE,SOLARPOWER
+HiddenAbility = LEVITATE
+#-------------------------------
+[LARVESTA,2]
+FormName = Paradox Slither Wing
+Type1 = BUG
+Type2 = FIGHTING
+BaseStats = 85,135,79,81,85,105
+Abilities = PROTOSYNTHESIS,TINTEDLENS
+HiddenAbility = REGENERATOR
+#-------------------------------
+[VOLCARONA,1]
+FormName = Paradox Iron Moth
+Type1 = FIRE
+Type2 = POISON
+BaseStats = 80,70,60,110,140,110
+Abilities = QUARKDRIVE,SOLARPOWER
+HiddenAbility = LEVITATE
+#-------------------------------
+[VOLCARONA,2]
+FormName = Paradox Slither Wing
+Type1 = BUG
+Type2 = FIGHTING
+BaseStats = 85,135,79,81,85,105
+Abilities = PROTOSYNTHESIS,TINTEDLENS
+HiddenAbility = REGENERATOR
+#-------------------------------
+[MAGNEMITE,1]
+FormName = Paradox Sandy Shocks
+Type1 = ELECTRIC
+Type2 = GROUND
+BaseStats = 85,81,97,101,121,85
+Abilities = PROTOSYNTHESIS,ELECTRICSURGE
+HiddenAbility = PARENTALBOND
+#-------------------------------
+[MAGNETON,1]
+FormName = Paradox Sandy Shocks
+Type1 = ELECTRIC
+Type2 = GROUND
+BaseStats = 85,81,97,101,121,85
+Abilities = PROTOSYNTHESIS,ELECTRICSURGE
+HiddenAbility = PARENTALBOND
+#-------------------------------
+[MAGNEZONE,1]
+FormName = Paradox Sandy Shocks
+Type1 = ELECTRIC
+Type2 = GROUND
+BaseStats = 85,81,97,101,121,85
+Abilities = PROTOSYNTHESIS,ELECTRICSURGE
+HiddenAbility = PARENTALBOND
+#-------------------------------
+[BAGON,1]
+FormName = Paradox Roaring Moon
+Type1 = DRAGON
+Type2 = DARK
+BaseStats = 105,139,71,119,55,101
+Abilities = PROTOSYNTHESIS,INTIMIDATE
+HiddenAbility = AERILATE
+#-------------------------------
+[SHELGON,1]
+FormName = Paradox Roaring Moon
+Type1 = DRAGON
+Type2 = DARK
+BaseStats = 105,139,71,119,55,101
+Abilities = PROTOSYNTHESIS,INTIMIDATE
+HiddenAbility = AERILATE
+#-------------------------------
+[SALAMENCE,2]
+FormName = Paradox Roaring Moon
+Type1 = DRAGON
+Type2 = DARK
+BaseStats = 105,139,71,119,55,101
+Abilities = PROTOSYNTHESIS,INTIMIDATE
+HiddenAbility = AERILATE
+#-------------------------------
+[DELIBIRD,1]
+FormName = Paradox Iron Bundle
+Type1 = ICE
+Type2 = WATER
+BaseStats = 56,80,114,136,124,60
+Abilities = QUARKDRIVE,COMPOUNDEYES
+HiddenAbility = ICEBODY
+#-------------------------------
+[DEINO,1]
+FormName = Paradox Iron Jugulis
+Type1 = DARK
+Type2 = FLYING
+BaseStats = 94,80,86,108,122,80
+Abilities = QUARKDRIVE,SOULHEART
+HiddenAbility = SHEERFORCE
+#-------------------------------
+[ZWEILOUS,1]
+FormName = Paradox Iron Jugulis
+Type1 = DARK
+Type2 = FLYING
+BaseStats = 94,80,86,108,122,80
+Abilities = QUARKDRIVE,SOULHEART
+HiddenAbility = SHEERFORCE
+#-------------------------------
+[HYDREIGON,1]
+FormName = Paradox Iron Jugulis
+Type1 = DARK
+Type2 = FLYING
+BaseStats = 94,80,86,108,122,80
+Abilities = QUARKDRIVE,SOULHEART
+HiddenAbility = SHEERFORCE
+#-------------------------------
+[LARVITAR,1]
+FormName = Paradox Iron Thorns
+Type1 = ROCK
+Type2 = ELECTRIC
+BaseStats = 100,134,110,72,70,84
+Abilities = QUARKDRIVE,EARTHEATER
+HiddenAbility = GORILLATACTICS
+#-------------------------------
+[PUPITAR,1]
+FormName = Paradox Iron Thorns
+Type1 = ROCK
+Type2 = ELECTRIC
+BaseStats = 100,134,110,72,70,84
+Abilities = QUARKDRIVE,EARTHEATER
+HiddenAbility = GORILLATACTICS
+#-------------------------------
+[TYRANITAR,2]
+FormName = Paradox Iron Thorns
+Type1 = ROCK
+Type2 = ELECTRIC
+BaseStats = 100,134,110,72,70,84
+Abilities = QUARKDRIVE,EARTHEATER
+HiddenAbility = GORILLATACTICS
+#-------------------------------
+[RALTS,1]
+FormName = Paradox Iron Valiant
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 74,130,90,116,120,60
+Abilities = QUARKDRIVE,MOLDBREAKER
+HiddenAbility = DOWNLOAD
+#-------------------------------
+[KIRLIA,1]
+FormName = Paradox Iron Valiant
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 74,130,90,116,120,60
+Abilities = QUARKDRIVE,MOLDBREAKER
+HiddenAbility = DOWNLOAD
+#-------------------------------
+[GARDEVOIR,2]
+FormName = Paradox Iron Valiant
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 74,130,90,116,120,60
+Abilities = QUARKDRIVE,MOLDBREAKER
+HiddenAbility = DOWNLOAD
+#-------------------------------
+[GALLADE,2]
+FormName = Paradox Iron Valiant
+Type1 = FAIRY
+Type2 = FIGHTING
+BaseStats = 74,130,90,116,120,60
+Abilities = QUARKDRIVE,MOLDBREAKER
+HiddenAbility = DOWNLOAD
+#-------------------------------
+[MAKUHITA,1]
+FormName = Paradox Iron Hands
+Type1 = FIGHTING
+Type2 = ELECTRIC
+BaseStats = 154,140,108,50,50,68
+Abilities = QUARKDRIVE,IRONFIST
+HiddenAbility = THERMALEXCHANGE
+#-------------------------------
+[HARIYAMA,1]
+FormName = Paradox Iron Hands
+Type1 = FIGHTING
+Type2 = ELECTRIC
+BaseStats = 154,140,108,50,50,68
+Abilities = QUARKDRIVE,IRONFIST
+HiddenAbility = THERMALEXCHANGE
+#-------------------------------
+[DIANCIE,2]
+FormName = Paradox Magearna
+Type1 = STEEL
+Type2 = FAIRY
+BaseStats = 80,95,115,65,130,115
+Abilities = SOULHEART,QUARKDRIVE
+HiddenAbility = DOWNLOAD
+#-------------------------------
+[GENESECT,1]
+FormName = Paradox Reaping Shell
+Type1 = BUG
+Type2 = WATER
+BaseStats = 70,135,120,110,120,115
+Abilities = PROTOSYNTHESIS,SWIFTSWIM
+HiddenAbility = WATERBUBBLE
+#-------------------------------
+[KABUTO,1]
+FormName = Paradox Iron Harvester
+Type1 = BUG
+Type2 = WATER
+BaseStats = 60,120,105,100,105,100
+Abilities = QUARKDRIVE,SWIFTSWIM
+HiddenAbility = WATERBUBBLE
+#-------------------------------
+[KABUTOPS,1]
+FormName = Paradox Iron Harvester
+Type1 = BUG
+Type2 = WATER
+BaseStats = 60,120,105,100,105,100
+Abilities = QUARKDRIVE,SWIFTSWIM
+HiddenAbility = WATERBUBBLE
+#-------------------------------
+[RESHIRAM,1]
+FormName = Paradox Zekrom
+Type1 = DRAGON
+Type2 = ELECTRIC
+BaseStats = 100,150,120,90,120,100
+Abilities = TERAVOLT,GUTS
+HiddenAbility = QUARKDRIVE
+#-------------------------------
+[ZEKROM,1]
+FormName = Paradox Reshiram
+Type1 = DRAGON
+Type2 = FIRE
+BaseStats = 100,120,100,90,150,120
+Abilities = TURBOBLAZE,FLAREBOOST
+HiddenAbility = PROTOSYNTHESIS
+#-------------------------------
+[CHARMANDER,1]
+FormName = Paradox Agumon
+Type1 = FIRE
+Type2 = DRAGON
+BaseStats = 65,70,55,59,20,40
+Abilities = BLAZE,FLAMEBODY
+HiddenAbility = GUTS
+#-------------------------------
+[CHARMELEON,1]
+FormName = Paradox Greymon
+Type1 = FIRE
+Type2 = DRAGON
+BaseStats = 90,80,65,70,35,65
+Abilities = TOUGHCLAWS,ROUGHSKIN
+HiddenAbility = MOXIE
+#-------------------------------
+[CHARIZARD,3]
+FormName = Paradox MetalGreymon
+Type1 = STEEL
+Type2 = FIRE
+BaseStats = 120,100,95,80,44,95
+Abilities = BLAZE
+HiddenAbility = SOLARPOWER
+#-------------------------------
+[TOTODILE,1]
+FormName = Paradox Gabumon
+Type1 = ICE
+Type2 = DRAGON
+BaseStats = 70,49,40,65,45,45
+Abilities = RATTLED,TOUGHCLAWS
+HiddenAbility = FLUFFY
+#-------------------------------
+[CROCONAW,1]
+FormName = Paradox Garurumon
+Type1 = ICE
+Type2 = GROUND
+BaseStats = 75,60,45,95,60,70
+Abilities = FURCOAT,TOUGHCLAWS
+HiddenAbility = INTIMIDATE
+#-------------------------------
+[FERALIGATR,2]
+FormName = Paradox WereGarurumon
+Type1 = ICE
+Type2 = FIGHTING
+BaseStats = 110,115,45,125,50,85
+Abilities = SCRAPPY,TOUGHCLAWS
+HiddenAbility = MOLDBREAKER
+#-------------------------------
+[BULBASAUR,1]
+FormName = Paradox Palmon
+Type1 = GRASS
+Type2 = GRASS
+BaseStats = 74,54,40,55,45,50
+Abilities = SUCTIONCUPS,STENCH
+HiddenAbility = CHLOROPHYLL
+#-------------------------------
+[IVYSAUR,1]
+FormName = Paradox Togemon
+Type1 = GRASS
+Type2 = FIGHTING
+BaseStats = 100,55,55,65,55,75
+Abilities = ROUGHSKIN,IRONFIST
+HiddenAbility = SANDRUSH
+#-------------------------------
+[VENUSAUR,2]
+FormName = Paradox Lillymon
+Type1 = GRASS
+Type2 = FAIRY
+BaseStats = 110,75,60,85,70,125
+Abilities = CUTECHARM,FRIENDGUARD
+HiddenAbility = FAIRYAURA
+#-------------------------------
+[SQUIRTLE,1]
+FormName = Paradox Machinedramon
+Type1 = GUN
+Type2 = DRAGON
+BaseStats = 130,115,100,85,70,130
+Abilities = MEGALAUNCHER,FULLMETALBODY
+HiddenAbility = SKILLLINK
+#-------------------------------
+[WARTORTLE,1]
+FormName = Paradox Machinedramon
+Type1 = GUN
+Type2 = DRAGON
+BaseStats = 130,115,100,85,70,130
+Abilities = MEGALAUNCHER,FULLMETALBODY
+HiddenAbility = SKILLLINK
+#-------------------------------
+[BLASTOISE,2]
+FormName = Paradox Machinedramon
+Type1 = GUN
+Type2 = DRAGON
+BaseStats = 130,115,100,85,70,130
+Abilities = MEGALAUNCHER,FULLMETALBODY
+HiddenAbility = SKILLLINK
+#-------------------------------
+[MELOETTA_A,1]
+FormName = Paradox Vocal Leek
+Type1 = SOUND
+Type2 = FAIRY
+BaseStats = 128,77,90,128,77,100
+Abilities = VOCALOID,MAGICBOUNCE
+HiddenAbility = SUPERSNIPER
+#-------------------------------
+[MELOETTA_A,2]
+FormName = Paradox Vocal Drill
+Type1 = SOUND
+Type2 = STEEL
+BaseStats = 128,100,128,77,77,90
+Abilities = VOCALOID,PIERCINGDRILL
+HiddenAbility = PRANKSTER
+#-------------------------------
+[MELOETTA_A,3]
+FormName = Paradox Vocal Cell
+Type1 = SOUND
+Type2 = ELECTRIC
+BaseStats = 100,77,77,128,128,90
+Abilities = VOCALOID,DAZZLING
+HiddenAbility = TRANSISTOR
+#-------------------------------
+[MELOETTA_P,1]
+FormName = Paradox Vocal Leek
+Type1 = SOUND
+Type2 = FAIRY
+BaseStats = 128,77,90,128,77,100
+Abilities = VOCALOID,MAGICBOUNCE
+HiddenAbility = SUPERSNIPER
+#-------------------------------
+[MELOETTA_P,2]
+FormName = Paradox Vocal Drill
+Type1 = SOUND
+Type2 = STEEL
+BaseStats = 128,100,128,77,77,90
+Abilities = VOCALOID,PIERCINGDRILL
+HiddenAbility = PRANKSTER
+#-------------------------------
+[MELOETTA_P,3]
+FormName = Paradox Vocal Cell
+Type1 = SOUND
+Type2 = ELECTRIC
+BaseStats = 100,77,77,128,128,90
+Abilities = VOCALOID,DAZZLING
+HiddenAbility = TRANSISTOR
+#-------------------------------
 # Regionals
 #-------------------------------
 [RATTATA,1]
