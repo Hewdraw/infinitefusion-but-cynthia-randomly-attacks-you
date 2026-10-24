@@ -6746,7 +6746,7 @@ class PokeBattle_Move_393 < PokeBattle_Move
       partylist.push(pkmn)
     end
     if partylist.length > 0
-      partymon = partylist[partylist.length]
+      partymon = partylist[partylist.length-1]
       bonusattack = [partymon.baseStats[:ATTACK], partymon.baseStats[:SPECIAL_ATTACK]].max
     end
     if attack > spatk
