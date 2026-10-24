@@ -482,6 +482,30 @@ BaseStats = 100,77,77,128,128,90
 Abilities = VOCALOID,DAZZLING
 HiddenAbility = TRANSISTOR
 #-------------------------------
+[GIBLE,1]
+FormName = Paradox Alphamon
+Type1 = FAIRY
+Type2 = DRAGON
+BaseStats = 120,105,95,125,115,140
+Abilities = PRESSURE,STAKEOUT
+HiddenAbility = ALPHAINFORCE
+#-------------------------------
+[GABITE,1]
+FormName = Paradox Alphamon
+Type1 = FAIRY
+Type2 = DRAGON
+BaseStats = 120,105,95,125,115,140
+Abilities = PRESSURE,STAKEOUT
+HiddenAbility = ALPHAINFORCE
+#-------------------------------
+[GARCHOMP,3]
+FormName = Paradox Alphamon
+Type1 = FAIRY
+Type2 = DRAGON
+BaseStats = 120,105,95,125,115,140
+Abilities = PRESSURE,STAKEOUT
+HiddenAbility = ALPHAINFORCE
+#-------------------------------
 # Regionals
 #-------------------------------
 [RATTATA,1]
