@@ -236,6 +236,11 @@ module PokeBattle_BattleCommon
       @criticalCapture = true
       return 0
     end
+    battler.eachOpposing do |b|
+      next unless b.hasActiveAbility?(:ALPHAINFORCE)
+      @criticalCapture = true
+      return 0
+    end
     return 4 if pbCynthiaGetBadgeCount == 0 || pbCynthiaGetBadgeCount >= 12
     # Get a catch rate if one wasn't provided
     catch_rate = pkmn.species_data.catch_rate if !catch_rate
