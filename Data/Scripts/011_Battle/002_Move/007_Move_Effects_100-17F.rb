@@ -6742,7 +6742,7 @@ class PokeBattle_Move_393 < PokeBattle_Move
     bonusattack = 0
     partylist = []
     @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn,i|
-      next if !pkmn.able?
+      next if !pkmn.able? || pkmn == user.pokemon
       partylist.push(pkmn)
     end
     if partylist.length > 0
