@@ -213,25 +213,29 @@ class PokeBattle_Battle
     priority.each do |b|
       next if b.fainted?
       next if timestop
-      if !b.hasActiveEmera?(:WISHINGPIECE)
-        next if !b.raid
-        next if !b.hasActiveAbility?(:LEGENDARYPRESSURE)
+      canpulse = false
+      if b.hasActiveAbility?(:MYTHICALPRESSURE)
+        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if b.turnCount % 6 == 5
+        canpulse = true if b.turnCount % 6 == 0 && b.turnCount > 0
+      end
+      if b.raid && b.hasActiveAbility?(:LEGENDARYPRESSURE)
         raidcooldown = 6
         if !b.raid.is_a?(Integer)
           b.raid = raidcooldown
         end
         b.raid -= 1
-        next if b.raid > 1
         pbShowAbilitySplash(b,false,true,"Legendary Pressure")
         if b.raid == 1
           pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
           pbHideAbilitySplash(b)
-          next
         end
-      else
-        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turnCount % 10 == 9
-        next unless @turnCount % 10 == 0 && @turnCount > 0
+        canpulse = true unless if b.raid > 1
       end
+      if b.hasActiveEmera?(:WISHINGPIECE)
+        pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turnCount % 10 == 9
+        canpulse = true if @turnCount % 10 == 0 && @turnCount > 0
+      end
+      next if !canpulse
       pbCommonAnimation("UltraBurst2", b)
       resetstat = false
       GameData::Stat.each_battle do |s|

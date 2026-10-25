@@ -304,12 +304,14 @@ class PokeBattle_Battler
         user.pbReducePP(move) if b.opposes?(user) && b.hasActiveAbility?(:PRESSURE)
         user.pbReducePP(move) if b.opposes?(user) && b.hasActiveAbility?(:PSYCHOBREAK)
         user.pbReducePP(move) if b.opposes?(user) && b.hasActiveAbility?(:LEGENDARYPRESSURE)
+        user.pbReducePP(move) if b.opposes?(user) && b.hasActiveAbility?(:MYTHICALPRESSURE)
       end
       if move.pbTarget(user).affects_foe_side
         @battle.eachOtherSideBattler(user) do |b|
           user.pbReducePP(move) if b.hasActiveAbility?(:PRESSURE)
           user.pbReducePP(move) if b.hasActiveAbility?(:PSYCHOBREAK)
           user.pbReducePP(move) if b.hasActiveAbility?(:LEGENDARYPRESSURE)
+          user.pbReducePP(move) if b.hasActiveAbility?(:MYTHICALPRESSURE)
         end
       end
     end

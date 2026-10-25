@@ -148,6 +148,8 @@ module PokeBattle_BattleCommon
       @scene.pbThrowAndDeflect(ball, 1)
       if battler.hasActiveAbility?(:LEGENDARYPRESSURE)
         pbDisplay(_INTL("{1}'s Legendary Pressure deflects the ball", battler.name))
+      elsif battler.hasActiveAbility?(:MYTHICALPRESSURE)
+        pbDisplay(_INTL("{1}'s Mythical Pressure deflects the ball", battler.name))
       else
         pbDisplay(_INTL("{1}'s Wild Might deflects the ball", battler.name))
       end

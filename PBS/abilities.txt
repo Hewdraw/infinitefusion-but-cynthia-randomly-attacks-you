@@ -403,3 +403,4 @@
 717,LIVIDOUTRAGESMASHER,Livid Outrage Smasher,"a"
 718,TEMPEST,Tempest,"a"
 719,ALPHAINFORCE,Alpha inForce,"a"
+720,MYTHICALPRESSURE,Mythical Pressure,"a"

@@ -227,6 +227,7 @@ class Pokemon
           @regionalform[i] = 0
           next
         end
+        next if !regionalspecieslist[i]
         @regionalform[i] = regional[regional.length - 1]
         abilitylist = regionalspecieslist[i].abilities + regionalspecieslist[i].hidden_abilities
         @regionalability[i] = abilitylist[abilitylist.length]

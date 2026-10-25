@@ -3349,7 +3349,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDERTRADE,
 BattleHandlers::AbilityOnSwitchIn.add(:LEGENDARYPRESSURE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is emanating a legendary pressure!",battler.pbThis))
+    battle.pbDisplay(_INTL("{1} is emanating a Legendary pressure!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:MYTHICALPRESSURE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay(_INTL("{1} is emanating a Mythical pressure!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
