@@ -540,7 +540,7 @@ class PokeBattle_Move
       multipliers[:final_damage_multiplier] *= random / 100.0
     end
     # STAB
-    if type && user.pbHasType?(type)
+    if type && user.pbHasType?(type) || (user.hasActiveEmera?(:KNIFE) && [:KNIFE, :KNIFEPLUS].include?(@id))
       if user.hasActiveAbility?([:ADAPTABILITY, :ADAPTINGPIXELS, :ADAPTIVETECHNICIAN])
         multipliers[:final_damage_multiplier] *= 2
       else

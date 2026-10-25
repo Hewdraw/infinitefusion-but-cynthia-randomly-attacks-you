@@ -811,7 +811,7 @@ def getFloorGraphic(event)
             return "gary_oak_overworld_bw_completed_by_malice936-d5ruwuc"
         end
     when "Sakuya"
-        return "TheDragon"
+        return "TheDragonMaid"
     end
 end
 
