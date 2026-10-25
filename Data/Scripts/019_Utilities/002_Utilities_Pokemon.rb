@@ -145,6 +145,19 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
         pkmn.iv[s.id] = 31
       end
     end
+  when :SMEARGLE
+    if !PokemonGlobal.towervalues.nil?
+      movelist = []
+      move_keys = GameData::Move::DATA.keys
+      1000.times do
+        move_id = move_keys[rand(move_keys.length)]
+        move_data = GameData::Move.get(move_id)
+        next if [:STRUGGLE, :FAKEMOVE].include?(move_data.id)
+        movelist.push(Pokemon::Move.new(move_id))
+        break if movelist.length >= 4
+      end
+      pkmn.moves = movelist
+    end
   when :SNORUNT
     pkmn.poke_ball = :QUICKBALL
     pkmn.shiny = true
