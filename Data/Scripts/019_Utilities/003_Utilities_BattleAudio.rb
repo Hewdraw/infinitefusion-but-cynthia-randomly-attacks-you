@@ -101,7 +101,7 @@ def pbGetTrainerBattleBGM(trainer)   # can be a Player, NPCTrainer or an array o
       return pbStringToAudioFile("CynthiaEncounter6") if pbCynthiaGetBadgeCount <= 14
       return pbStringToAudioFile("CynthiaEncounter7")
     end
-    return pbStringToAudioFile("TheSkeletonAppears") if trainer_type_data.id == :Skeleton_Dev && trainerarray.length() == 1
+    return pbStringToAudioFile("TheSkeletonAppears") if [:Skeleton_Dev, :DarkSkeleton_Dev].include?(trainer_type_data.id) && trainerarray.length() == 1
     return pbStringToAudioFile("CtcUNOwen") if [:Dragon_Dev, :Upside_Down_Dev].include?(trainer_type_data.id) && trainerarray.length() == 1
     return pbStringToAudioFile("VSSkeletonDragon") if trainer_type_data.id == :Skeleton_Dev
     return pbStringToAudioFile("Miku") if [:CREATOR_Minecraft, :CREATOR_Minecraft2, :COOLTRAINER_MIKU, :Sound_of_Future].include?(trainer_type_data.id)

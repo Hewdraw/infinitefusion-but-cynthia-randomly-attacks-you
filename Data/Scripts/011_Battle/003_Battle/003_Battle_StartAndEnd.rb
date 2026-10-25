@@ -210,7 +210,7 @@ class PokeBattle_Battle
           @field.effects[PBEffects::InverseRoom] = 10000
           pbDisplayPaused(_INTL("The battlefield turned inverted!"))
         end
-        if trainer.trainer_type == :Skeleton_Dev && trainer.first_pokemon.poke_ball == :PREMIERBALL
+        if [:Skeleton_Dev, :DarkSkeleton_Dev].include?(trainer.trainer_type) && trainer.first_pokemon.poke_ball == :PREMIERBALL
           @field.effects[PBEffects::InverseRoom] = 10000
           pbDisplayPaused(_INTL("The battlefield turned inverted!"))
           if hasEmera?(:KNIFE)
@@ -599,6 +599,9 @@ class PokeBattle_Battle
             pbDisplayPaused(_INTL("You got boots!? for winning!"))
           end
           if @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
+            pbDisplayPaused(_INTL("You got Healies for winning!"))
+          end
+          if @opponent[0].trainer_type == :DarkSkeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HIGHHEALS)
             pbDisplayPaused(_INTL("You got Healies for winning!"))
           end
           unlockClass(:GAMBLER) if @classvariables[:metronome] && !$PokemonGlobal.towervalues.nil?

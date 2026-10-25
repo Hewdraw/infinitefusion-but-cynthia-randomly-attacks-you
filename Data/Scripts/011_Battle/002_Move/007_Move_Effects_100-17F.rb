@@ -2707,7 +2707,11 @@ class PokeBattle_Move_183 < PokeBattle_Move
     $PokemonGlobal.nextBattleBack = "Lava"
     $PokemonGlobal.nextBattleBGM = nil
     if !user.pbOwnedByPlayer?
-      pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+      if $PokemonGlobal.towervalues.nil?
+        pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+      else
+        pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1, nil, :DarkSkeleton_Dev)
+      end
     else
       pbWildBattle(:SKELETON, user.level, 1, false)
     end

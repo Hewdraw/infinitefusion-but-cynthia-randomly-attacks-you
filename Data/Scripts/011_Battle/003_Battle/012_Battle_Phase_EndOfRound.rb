@@ -220,16 +220,14 @@ class PokeBattle_Battle
       end
       if b.raid && b.hasActiveAbility?(:LEGENDARYPRESSURE)
         raidcooldown = 6
-        if !b.raid.is_a?(Integer)
-          b.raid = raidcooldown
-        end
+        b.raid = raidcooldown if !b.raid.is_a?(Integer)
         b.raid -= 1
         pbShowAbilitySplash(b,false,true,"Legendary Pressure")
         if b.raid == 1
           pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
           pbHideAbilitySplash(b)
         end
-        canpulse = true unless if b.raid > 1
+        canpulse = true unless b.raid > 1
       end
       if b.hasActiveEmera?(:WISHINGPIECE)
         pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turnCount % 10 == 9

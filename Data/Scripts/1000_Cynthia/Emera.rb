@@ -516,8 +516,8 @@ EMERADICT = {
     :KNIFE => {
         :name => "Knife",
         :description => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it.", #todo make the skeleton appears fail
-        :altdescription => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it. Makes your Knives STAB harder."
-        :altdescriptioncondition => -> () {return hasEmera?(:LUNARDIAL)}
+        :altdescription => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it. Makes your Knives STAB harder.",
+        :altdescriptioncondition => -> () {return hasEmera?(:LUNARDIAL)},
         :rarity => :RARE,
     },
     # :MACE => {

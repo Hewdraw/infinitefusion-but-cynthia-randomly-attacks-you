@@ -645,8 +645,9 @@ def UndertaleCommand(scene, golden = false)
       end
       $PokemonGlobal.nextBattleBack = "Lava"
       $PokemonGlobal.nextBattleBGM = nil
-      if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2)
-        return true
+      if $PokemonGlobal.towervalues.nil?
+        return true if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2)
+        return true if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2, nil, :DarkSkeleton_Dev)
       end
     when 1    # Act
       if !scene.UndertaleActMenu() && golden
@@ -1077,7 +1078,11 @@ class UndertaleMenu
       button.visible = true
     end
     @skeleton = Sprite.new(viewport)
-    @skeleton.bitmap = Bitmap.new("Graphics/Undertale/Skeleton")
+    if $PokemonGlobal.towervalues.nil?
+      @skeleton.bitmap = Bitmap.new("Graphics/Undertale/Skeleton")
+    else
+      @skeleton.bitmap = Bitmap.new("Graphics/Undertale/DarkSkeleton")
+    end
     @skeleton.x = Graphics.width / 2 - @skeleton.width / 2
     @skeleton.y = Graphics.height / 4 - @skeleton.height / 2
     addSprite("skeleton", @skeleton)

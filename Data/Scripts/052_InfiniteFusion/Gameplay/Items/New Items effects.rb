@@ -2540,7 +2540,7 @@ ItemHandlers::UseFromBag.add(:HEALIES, proc { |item|
     end
   end
   pbMessage(_INTL("Your Pokémon were fully healed."))
-  $PokemonGlobal.healies = true if $PokemonGlobal.towervalues.nil?
+  $PokemonGlobal.healies = true
   next 1
 })
 
@@ -2566,7 +2566,57 @@ ItemHandlers::UseInField.add(:HEALIES, proc { |item|
     end
   end
   pbMessage(_INTL("Your Pokémon were fully healed."))
-  $PokemonGlobal.healies = true if $PokemonGlobal.towervalues.nil?
+  $PokemonGlobal.healies = true
+  next 1
+})
+
+ItemHandlers::UseFromBag.add(:HIGHHEALS, proc { |item|
+  $Trainer.party.each do |pkmn|
+    pkmn.heal
+    abilities = pkmn.getAllAbilities(true)
+    if abilities.include?(:POISONHEAL) || abilities.include?(:MAGICGUARD) || abilities.include?(:TOXICBOOST)
+      pkmn.status = :POISON
+      next
+    end
+    if abilities.include?(:GUTS) || abilities.include?(:GUTSPLUS) || abilities.include?(:FLAREBOOST) || abilities.include?(:FLAREBOOSTPLUS) || abilities.include?(:WILDFIRE)
+      pkmn.status = :BURN
+      next
+    end
+    if abilities.include?(:ICEBODY)
+      pkmn.status = :FROZEN
+      next
+    end
+    if abilities.include?(:QUICKFEET)
+      pkmn.status = :PARALYSIS
+      next
+    end
+  end
+  pbMessage(_INTL("Your Pokémon were fully healed."))
+  next 1
+})
+
+ItemHandlers::UseInField.add(:HIGHHEALS, proc { |item|
+  $Trainer.party.each do |pkmn|
+    pkmn.heal
+    abilities = pkmn.getAllAbilities(true)
+    if abilities.include?(:POISONHEAL) || abilities.include?(:MAGICGUARD) || abilities.include?(:TOXICBOOST)
+      pkmn.status = :POISON
+      next
+    end
+    if abilities.include?(:GUTS) || abilities.include?(:GUTSPLUS) || abilities.include?(:FLAREBOOST) || abilities.include?(:FLAREBOOST) || abilities.include?(:WILDFIRE)
+      pkmn.status = :BURN
+      next
+    end
+    if abilities.include?(:ICEBODY)
+      pkmn.status = :FROZEN
+      next
+    end
+    if abilities.include?(:QUICKFEET)
+      pkmn.status = :PARALYSIS
+      next
+    end
+  end
+  pbMessage(_INTL("Your Pokémon were fully healed."))
   next 1
 })
 

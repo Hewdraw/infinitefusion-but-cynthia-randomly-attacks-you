@@ -751,7 +751,7 @@ def getFloorGraphic(event)
     when "Miku"
         return "HatsuneMiku"
     when "Shop"
-        return "TheSketon"
+        return "TheDarkSketon"
     when "Pokemart"
         return "BW (85)"
     when "Heal"
