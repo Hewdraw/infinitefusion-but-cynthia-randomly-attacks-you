@@ -2299,7 +2299,7 @@ BattleHandlers::EOREffectItem.add(:TOXICORB,
 BattleHandlers::EOREffectItem.add(:FROSTORB,
   proc { |item,battler,battle|
     next if !battler.pbCanFreeze?(nil,false)
-    battler.pbFreeze(battler,_INTL("{1} got frostbite by the {2}!",
+    battler.pbFreeze(_INTL("{1} got frostbite by the {2}!",
        battler.pbThis,battler.itemName))
   }
 )
@@ -2335,7 +2335,7 @@ BattleHandlers::EOREffectItem.add(:WINCINGORB,
       battler.pbBurn(battler,_INTL("{1} was burned by the {2}!",battler.pbThis,battler.itemName))
     when 1
       next if !battler.pbCanFreeze?(nil,false)
-      battler.pbFreeze(battler,_INTL("{1} got frostbite by the {2}!",
+      battler.pbFreeze(_INTL("{1} got frostbite by the {2}!",
          battler.pbThis,battler.itemName))
     end
   }
