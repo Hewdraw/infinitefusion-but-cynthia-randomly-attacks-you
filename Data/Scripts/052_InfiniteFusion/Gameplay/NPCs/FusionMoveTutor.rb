@@ -284,7 +284,7 @@ class FusionTutorService
       compatibleMoves << :DOOMDESIRE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :ASTRALBARRAGE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :HYPERSPACEHOLE if is_fusion_of([:THEFORBIDDENONE])
-      compatibleMoves << :JUDGMENT if is_fusion_of([:THEFORBIDDENONE])
+      compatibleMoves << :JUDGMENT if is_fusion_of([:THEFORBIDDENONE, :BIDOOF, :BIBAREL])
       compatibleMoves << :LUSTERPURGE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :MINDBLOWN if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :PSYSTRIKE if is_fusion_of([:THEFORBIDDENONE])

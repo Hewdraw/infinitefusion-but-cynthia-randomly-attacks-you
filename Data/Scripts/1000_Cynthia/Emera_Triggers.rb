@@ -100,6 +100,9 @@ BattleHandlers::DamageCalcUserAbility.add(:EMERA,
     if user.hasActiveEmera?(:HAMBURGERSTEAK) && move.id == :ROCKSMASH
       mults[:base_damage_multiplier] *= 2
     end
+    if user.hasActiveEmera?(:HOLYMACKEREL) && user.pbHasType?(:WATER)
+      mults[:base_damage_multiplier] *= 1.25 if target.pbHasType?(:GHOST) || target.pbHasType?(:DARK)
+    end
   }
 )
 
@@ -248,6 +251,14 @@ class PokeBattle_Battle
       pbShowAbilitySplash(playerside[0])
       applyEffect(playerside[0], @field.effects, :InverseRoom, 5)
       @battle.pbDisplay(_INTL("The Fermended Spider Eye inverted the battlefield!"))
+      pbHideAbilitySplash(playerside[0])
+    end
+    if hasEmera?(:CALTROPS)
+      playerside[0].tempability = EMERADICT[:CALTROPS][:name]
+      pbShowAbilitySplash(playerside[0])
+      playerside[0].pbOpposingSide.effects[PBEffects::Spikes] += 1
+      @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+                              playerside[0].pbOpposingTeam(true)))
       pbHideAbilitySplash(playerside[0])
     end
     if hasEmera?(:POTIONOFREGENERATION)
