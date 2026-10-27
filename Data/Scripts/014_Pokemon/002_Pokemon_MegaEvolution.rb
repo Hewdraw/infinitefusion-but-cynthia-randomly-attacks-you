@@ -130,11 +130,10 @@ class Pokemon
           @megaform[i] = 0
           next
         end
-        @megaform[i] = mega[mega.length - 1].form
+        @megaform[i] = mega[-1].form
         next
       end
     end
-    #todo refactor this its a mess
     if !@rotomform || override
       @rotomform = [0, 0]
       @rotomability = [nil, nil]
@@ -143,9 +142,9 @@ class Pokemon
           @rotomform[i] = 0
           next
         end
-        @rotomform[i] = rotom[rotom.length - 1].form
-        abilitylist = rotom[rotom.length - 1].abilities + rotom[rotom.length - 1].hidden_abilities
-        @rotomability[i] = abilitylist[abilitylist.length - 1]
+        @rotomform[i] = rotom[-1].form
+        abilitylist = rotom[-1].abilities + rotom[-1].hidden_abilities
+        @rotomability[i] = abilitylist[-1]
       end
     end
     if !@paradoxform || override
@@ -156,9 +155,9 @@ class Pokemon
           @paradoxform[i] = 0
           next
         end
-        @paradoxform[i] = paradox[paradox.length - 1].form
-        abilitylist = paradox[paradox.length - 1].abilities + paradox[paradox.length - 1].hidden_abilities
-        @paradoxability[i] = abilitylist[abilitylist.length - 1]
+        @paradoxform[i] = paradox[-1].form
+        abilitylist = paradox[-1].abilities + paradox[-1].hidden_abilities
+        @paradoxability[i] = abilitylist[-1]
       end
     end
     if !@regionalform || override
@@ -169,9 +168,9 @@ class Pokemon
           @regionalform[i] = 0
           next
         end
-        @regionalform[i] = regional[regional.length - 1].form
-        abilitylist = regional[regional.length - 1].abilities + regional[regional.length - 1].hidden_abilities
-        @regionalability[i] = abilitylist[abilitylist.length - 1]
+        @regionalform[i] = regional[-1].form
+        abilitylist = regional[-1].abilities + regional[-1].hidden_abilities
+        @regionalability[i] = abilitylist[-1]
       end
     end
   end
