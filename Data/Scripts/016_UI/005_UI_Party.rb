@@ -1305,10 +1305,10 @@ class PokemonPartyScreen
       # Build the commands
       commands[cmdEvolve = commands.length] = _INTL("Evolve!") if pkmn.check_evolution_on_level_up && pokemonAllowedToEvolve(pkmn)
       commands[cmdSummary = commands.length] = _INTL("Summary")
-      commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getMegaList.length > 0
-      commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getRegionalList.length > 0
-      commands[cmdParadoxForm = commands.length] = _INTL("Paradox Form") if pkmn.hasItem?([:MODIFIEDBOOSTERENERGY]) && pkmn.getParadoxList.length > 0
-      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getRotomList.length > 0 && pkmn.isFusionOf(:ROTOM)
+      commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getFormList("Mega").flatten.length > 0
+      commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getFormList("Regional").flatten.length > 0
+      commands[cmdParadoxForm = commands.length] = _INTL("Paradox Form") if pkmn.hasItem?([:MODIFIEDBOOSTERENERGY]) && pkmn.getFormList("Paradox").flatten.length > 0
+      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getFormList("Rotom").flatten.length > 0 && pkmn.isFusionOf(:ROTOM)
       commands[cmdPet = commands.length] = _INTL("Pet")
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?
@@ -1407,7 +1407,7 @@ class PokemonPartyScreen
         end
         specieslist.each_with_index do |species, i|
           formlist = []
-          pkmn.getMegaList.each do |mega|
+          pkmn.getFormList("mega")[i].each do |mega|
             formlist.push(mega.form_name) if mega.species == species
           end
           next if formlist.length == 0
@@ -1425,7 +1425,7 @@ class PokemonPartyScreen
         specieslist.each_with_index do |species, i|
           formlist = []
           namelist = []
-          pkmn.getRegionalList.each do |regional|
+          pkmn.getFormList("Regional")[i].each do |regional|
             formlist.push(regional) if regional.species == species
             namelist.push(regional.form_name) if regional.species == species
           end
@@ -1453,7 +1453,7 @@ class PokemonPartyScreen
         specieslist.each_with_index do |species, i|
           formlist = []
           namelist = []
-          pkmn.getParadoxList.each do |paradox|
+          pkmn.getFormList("Paradox")[i].each do |paradox|
             formlist.push(paradox) if paradox.species == species
             namelist.push(paradox.form_name.gsub("Paradox ", "")) if paradox.species == species
           end
@@ -1481,7 +1481,7 @@ class PokemonPartyScreen
         specieslist.each_with_index do |species, i|
           formlist = []
           namelist = []
-          pkmn.getRotomList.each do |rotom|
+          pkmn.getFormList("Rotom")[i].each do |rotom|
             formname = rotom.form_name
             formname = "Rotom" if formname.nil?
             formlist.push(rotom) if rotom.species == species

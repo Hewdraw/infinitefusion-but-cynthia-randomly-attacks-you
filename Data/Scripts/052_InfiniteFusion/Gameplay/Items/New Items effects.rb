@@ -1299,7 +1299,7 @@ ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
   next false if ![:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(pkmn.species)
   formlist = []
   namelist = []
-  pkmn.getRotomList.each do |rotom|
+  pkmn.getFormList("Rotom")[0].each do |rotom|
     formname = rotom.form_name
     formname = "Rotom" if formname.nil?
     formlist.push(rotom.form)

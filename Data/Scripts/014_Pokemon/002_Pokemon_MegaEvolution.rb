@@ -18,36 +18,43 @@ class Pokemon
     return ret   # form number, or 0 if no accessible Mega form
   end
 
-  def getMegaList
-    specieslist = [@species]
-    ret = []
+  def getFormList(filter)
+    specieslist = [@species, @species]
+    ret = [[], []]
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
 
     GameData::Species.each do |data|
-      next unless specieslist.include?(data.species)
+      case filter
+      when "Rotom"
+        next unless data.species == :ROTOM
+      else
+        next unless specieslist.include?(data.species)
+      end
       next if data.form == 0
-      next if !(data.mega_stone || data.mega_move)
-      ret.push(data)
+      specieslist.each_with_index do |species, i|
+        case filter
+        when "Paradox"
+          next unless data.species == species
+          next unless data.form_name[0..6] == "Paradox" || data.form_name == "Stereo"
+        when "Mega"
+          next unless data.species == species
+          next if !(data.mega_stone || data.mega_move)
+        when "Regional"
+          next unless data.species == species
+          next if data.mega_stone || data.mega_move
+          next if data.form_name && data.form_name[0..6] == "Paradox"
+          next if [:ROTOM].include?(data.species)
+        when "Rotom"
+          next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
+          next if data.form > 5 && pbGetRotomCount() < 3
+          next if data.mega_stone || data.mega_move
+        end
+        ret[i].push(data)
+      end
     end
-    return ret   # form number, or 0 if no accessible Mega form
-  end
-
-  def getParadoxList
-    specieslist = [@species]
-    ret = []
-    if isFusion? && getDexNumberForSpecies(@species) < 1000000
-      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
-    end
-
-    GameData::Species.each do |data|
-      next unless specieslist.include?(data.species)
-      next if data.form == 0
-      next unless data.form_name[0..6] == "Paradox" || data.form_name == "Stereo"
-      ret.push(data)
-    end
-    return ret   # form number, or 0 if no accessible Mega form
+    return ret
   end
 
   def getParadoxForm
@@ -57,32 +64,14 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
-    getParadoxList.each do |paradox|
-      specieslist.each_with_index do |species, i|
+    specieslist.each_with_index do |species, i|
+      getFormList("Paradox")[i].each do |paradox|
         next unless species == paradox.species
         next unless @paradoxform[i] == paradox.form
         ret[i] = paradox
       end
     end
     return ret
-  end
-
-  def getRegionalList
-    specieslist = [@species]
-    ret = []
-    if isFusion? && getDexNumberForSpecies(@species) < 1000000
-      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
-    end
-
-    GameData::Species.each do |data|
-      next unless specieslist.include?(data.species)
-      next if data.form_name && data.form_name[0..6] == "Paradox"
-      next if [:ROTOM].include?(data.species)
-      next if data.form == 0
-      next if data.mega_stone || data.mega_move
-      ret.push(data)
-    end
-    return ret   # form number, or 0 if no accessible Mega form
   end
 
   def getRegionalForm()
@@ -92,38 +81,14 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
-    getRegionalList.each do |regional|
-      specieslist.each_with_index do |species, i|
+    specieslist.each_with_index do |species, i|
+      getFormList("Regional")[i].each do |regional|
         next unless species == regional.species
         next unless @regionalform[i] == regional.form
         ret[i] = regional
       end
     end
     return ret
-  end
-
-  def getRotomList()
-    specieslist = [@species]
-    ret = []
-    if isFusion? && getDexNumberForSpecies(@species) < 1000000
-      specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
-    end
-
-    isrotom = false
-    specieslist.each do |species|
-      next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
-      isrotom = true
-    end
-
-    return ret if !isrotom
-
-    GameData::Species.each do |data|
-      next unless data.species == :ROTOM
-      next if data.form > 5 && pbGetRotomCount() < 3
-      next if data.mega_stone || data.mega_move
-      ret.push(data)
-    end
-    return ret   # form number, or 0 if no accessible Mega form
   end
 
   def getRotomForm()
@@ -139,8 +104,8 @@ class Pokemon
       next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
       isrotom = true
     end
-    getRotomList.each do |rotom|
-      specieslist.each_with_index do |species, i|
+    specieslist.each_with_index do |species, i|
+      getFormList("Rotom")[i].each do |rotom|
         next unless @rotomform[i] == rotom.form
         ret[i] = rotom
       end
@@ -154,82 +119,58 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
-    megalist = [[], []]
-    rotomlist = [[], []]
-    regionallist = [[], []]
-    paradoxlist = [[], []]
-    GameData::Species.each do |data|
-      specieslist.each_with_index do |species, i|
-        next unless species == data.species
-        next if data.form == 0
-        if data.mega_stone || data.mega_move
-          megalist[i].push(data.form)
-        elsif data.form_name[0..6] == "Paradox" || data.form_name == "Stereo"
-          paradoxlist[i].push(data.form)
-          rotomlist[i].push(data.form) if data.form_name == "Stereo"
-        elsif species == :ROTOM
-          next if data.form > 5 && pbGetRotomCount() < 3
-          rotomlist[i].push(data.form)
-        else
-          regionallist[i].push(data.form)
-        end
-      end
-    end
+    megalist = 
+    rotomlist = 
+    regionallist = 
+    paradoxlist = 
     if !@megaform || override
       @megaform = [0, 0]
-      megalist.each_with_index do |mega, i|
+      getFormList("Mega").each_with_index do |mega, i|
         if mega.length == 0
           @megaform[i] = 0
           next
         end
-        @megaform[i] = mega[mega.length - 1]
+        @megaform[i] = mega[mega.length - 1].form
         next
       end
     end
     #todo refactor this its a mess
     if !@rotomform || override
-      rotomspecieslist = getRotomList
-      rotomspecieslist = rotomspecieslist * 2 unless isFusion? && getDexNumberForSpecies(@species) < 1000000
       @rotomform = [0, 0]
       @rotomability = [nil, nil]
-      rotomlist.each_with_index do |rotom, i|
+      getFormList("Rotom").each_with_index do |rotom, i|
         if rotom.length == 0
           @rotomform[i] = 0
           next
         end
-        @rotomform[i] = rotom[rotom.length - 1]
-        abilitylist = rotomspecieslist[i].abilities + rotomspecieslist[i].hidden_abilities
-        @rotomability[i] = abilitylist[abilitylist.length]
+        @rotomform[i] = rotom[rotom.length - 1].form
+        abilitylist = rotom[rotom.length - 1].abilities + rotom[rotom.length - 1].hidden_abilities
+        @rotomability[i] = abilitylist[abilitylist.length - 1]
       end
     end
     if !@paradoxform || override
-      paradoxspecieslist = getParadoxList
-      paradoxspecieslist = paradoxspecieslist * 2 unless isFusion? && getDexNumberForSpecies(@species) < 1000000
       @paradoxform = [0, 0]
       @paradoxability = [nil, nil]
-      paradoxlist.each_with_index do |paradox, i|
-        if paradox.length == 0 || paradoxspecieslist[i]
+      getFormList("Paradox").each_with_index do |paradox, i|
+        if paradox.length == 0
           @paradoxform[i] = 0
           next
         end
-        @paradoxform[i] = paradox[paradox.length - 1]
-        abilitylist = paradoxspecieslist[i].abilities + paradoxspecieslist[i].hidden_abilities
-        @paradoxability[i] = abilitylist[abilitylist.length]
+        @paradoxform[i] = paradox[paradox.length - 1].form
+        abilitylist = paradox[paradox.length - 1].abilities + paradox[paradox.length - 1].hidden_abilities
+        @paradoxability[i] = abilitylist[abilitylist.length - 1]
       end
     end
     if !@regionalform || override
-      regionalspecieslist = getParadoxList
-      regionalspecieslist = regionalspecieslist * 2 unless isFusion? && getDexNumberForSpecies(@species) < 1000000
       @regionalform = [0, 0]
       @regionalability = [nil, nil]
-      regionallist.each_with_index do |regional, i|
+      getFormList("Regional").each_with_index do |regional, i|
         if regional.length == 0
           @regionalform[i] = 0
           next
         end
-        next if !regionalspecieslist[i]
-        @regionalform[i] = regional[regional.length - 1]
-        abilitylist = regionalspecieslist[i].abilities + regionalspecieslist[i].hidden_abilities
+        @regionalform[i] = regional[regional.length - 1].form
+        abilitylist = regional[regional.length - 1].abilities + regional[regional.length - 1].hidden_abilities
         @regionalability[i] = abilitylist[abilitylist.length]
       end
     end
@@ -246,8 +187,8 @@ class Pokemon
     availablelist.push(:CHIMECHO) if megasource.include?(:PUREINCENSE)
     availablelist.push(:LATIAS, :LATIOS) if megasource.include?(:EON)
     availablelist = specieslist if megasource.include?(:MEGASHARD)
-    getMegaList.each do |mega|
-      specieslist.each_with_index do |species, i|
+    specieslist.each_with_index do |species, i|
+      getFormList("Mega")[i].each do |mega|
         next unless availablelist.include?(species)
         next unless species == mega.species
         next unless @megaform[i] == mega.form

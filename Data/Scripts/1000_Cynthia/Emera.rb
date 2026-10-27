@@ -309,6 +309,11 @@ EMERADICT = {
         :description => "Your Pokemon gain the Early Bird Ability.",
         :rarity => :UNCOMMON,
     },
+    # :ALERTSPECS => {
+    #     :name => "Alect Specs",
+    #     :description => "Your Pokemon gain the Sticky Hold Ability.",
+    #     :rarity => :UNCOMMON,
+    # },
     :CHOICERIBBON => {
         :name => "Choice Ribbon",
         :description => "Your Pokemon gain 1 Crit stage when using the same move repeatedly.",
@@ -328,6 +333,11 @@ EMERADICT = {
     # :EXTRADICE => {
     #     :name => "Extra Dice",
     #     :description => "Your Pokemons Multistrike moves hit an addtional time.",
+    #     :rarity => :UNCOMMON,
+    # },
+    # :FICKLERIBBON => {
+    #     :name => "Fickle Ribbon",
+    #     :description => "Your Pokemon gain 1 Crit stage when using a different move than the turn before.",
     #     :rarity => :UNCOMMON,
     # },
     :GALARICATWIG => {
