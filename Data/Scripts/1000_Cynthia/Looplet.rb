@@ -227,10 +227,13 @@ class PokemonLooplet_Scene
     # Set the selected item's icon
     @sprites["itemicon"].item = itemlist.item #todo
     # Set the selected item's description
-    description = EMERADICT[itemlist.item][:description]
-    description = EMERADICT[itemlist.item][:altdescription] if EMERADICT[itemlist.item][:altdescriptioncondition] && EMERADICT[itemlist.item][:altdescriptioncondition].call()
-    @sprites["itemtext"].text = (itemlist.item) ? description : _INTL("Close Looplet.")
-       
+    if itemlist.item
+      description = EMERADICT[itemlist.item][:description]
+      description = EMERADICT[itemlist.item][:altdescription] if EMERADICT[itemlist.item][:altdescriptioncondition] && EMERADICT[itemlist.item][:altdescriptioncondition].call()
+    else
+      description = _INTL("Close Looplet.")
+    end
+    @sprites["itemtext"].text = description
   end
 
   # Called when the item screen wants an item to be chosen from the screen
