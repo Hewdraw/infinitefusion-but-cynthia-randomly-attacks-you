@@ -137,7 +137,7 @@ class PokeBattle_Battler
     targets = pbChangeTargetByAbility(:POLAR,:ICE,move,user,targets,priority,nearOnly)
     # Storm Drain
     targets = pbChangeTargetByAbility(:STORMDRAIN,:WATER,move,user,targets,priority,nearOnly)
-    targets = pbChangeTargetByAbility(:DRKYSKINPLUS,:WATER,move,user,targets,priority,nearOnly)
+    targets = pbChangeTargetByAbility(:DRYSKINPLUS,:WATER,move,user,targets,priority,nearOnly)
     return targets
   end
 

@@ -271,12 +271,18 @@ def getSoulSprite(viewport)
     color = "Kindness" if hasEmera?(:MOSS) || hasEmera?(:MOSSPLUS)
     color = "Perseverance" if hasEmera?(:INDIEPROOF)
     case color
+    when "Bravery"
+        heartsprite.tone = Tone.new(-3, -89, -255)
+    when "Integrity"
+        heartsprite.tone = Tone.new(-255, -195, 0)
+    when "Justice"
+        heartsprite.tone = Tone.new(0, 0, -255)
     when "Kindness"
-        heartsprite.tone = Tone.new(-255, -93, -255)
+        heartsprite.tone = Tone.new(-255, -63, -255)
     when "Patience"
-        heartsprite.tone = Tone.new(-170, 0, 0)
+        heartsprite.tone = Tone.new(-189, -3, 0)
     when "Perseverance"
-        heartsprite.tone = Tone.new(-63, -255, 0)
+        heartsprite.tone = Tone.new(-42, -202, -38)
     else
         heartsprite.tone = Tone.new(0, -255, -255)
     end

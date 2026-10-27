@@ -514,8 +514,11 @@ def towerEvent()
     when "Miku"
         pbEncounterCynthia([:CREATOR_Minecraft, "Hatsune Miku"], [nil, :Sound_of_Future])
         return if $PokemonGlobal.towervalues.nil?
-        grantRandomEmera() if hasEmera?(:WISHINGSTAR)
-        grantRandomEmera()
+        if !$PokemonGlobal.towervalues[:escapeorb]
+            srand(($PokemonGlobal.towervalues[:seed]*5)+$PokemonGlobal.towervalues[:floor])
+            grantRandomEmera() if hasEmera?(:WISHINGSTAR)
+            grantRandomEmera()
+        end
     when "Shop"
         Undertale()
         return if $PokemonGlobal.towervalues.nil?
@@ -587,7 +590,7 @@ def towerEvent()
         case $PokemonGlobal.towervalues[:activevariable]
         when "Genesect"
             return if !pbTrainerBattle(:SUPERNERD, "Miguel", nil, false, 8)
-            if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+            if !$PokemonGlobal.towervalues[:escapeorb]
                 pbAddPokemon(:GENESECT, getCurrentLevelCap())
                 $PokemonBag.pbStoreItem(:OMNIDRIVE)
                 $PokemonBag.pbStoreItem(:BURNDRIVE)
@@ -597,22 +600,26 @@ def towerEvent()
             end
         when "Reshirom"
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
-            if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+            if !$PokemonGlobal.towervalues[:escapeorb]
                 $PokemonBag.pbStoreItem(:LIGHTSTONE)
                 $PokemonBag.pbStoreItem(:DARKSTONE)
             end
         when "Rotom1"
             return false if !pbLegendaryBattle("Rotom")
-            pbReceiveItem(:TEACHYTV)
+            if !$PokemonGlobal.towervalues[:escapeorb]
+                pbReceiveItem(:TEACHYTV)
+            end
             $PokemonGlobal.towervalues[:legendarylist].push("Rotom2")
         when "Rotom2"
             return false if !pbTrainerBattle(:STATIC, "Hatsune Miku", nil, true)
-            pbAddPokemon(:ROTOM, 5)
-            pbReceiveItem(:ROTOMCATALOG)
+            if !$PokemonGlobal.towervalues[:escapeorb]
+                pbAddPokemon(:ROTOM, 5)
+                pbReceiveItem(:ROTOMCATALOG)
+            end
             #$PokemonGlobal.towervalues[:legendarylist].push("Rotom3") todo
         else
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
-            if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+            if !$PokemonGlobal.towervalues[:escapeorb]
                 pbAddPokemon(:MELOETTA_A, getCurrentLevelCap()) if $PokemonGlobal.towervalues[:activevariable] == "Meloetta"
             end
         end
@@ -668,7 +675,8 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "johto_gym_battle-BW"
             return if !pbTrainerBattle(:LEADER_Chuck, "Chuck")
         end
-        if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+        if !$PokemonGlobal.towervalues[:escapeorb]
+            srand(($PokemonGlobal.towervalues[:seed]*5)+$PokemonGlobal.towervalues[:floor])
             grantRandomEmera
         end
         $PokemonGlobal.towervalues[:badges] += 1
@@ -690,7 +698,8 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "champion_blue"
             return if !pbTrainerBattle(:CHAMPION, "Blue")
         end
-        if $PokemonGlobal.towervalues.nil? || !$PokemonGlobal.towervalues[:escapeorb]
+        if !$PokemonGlobal.towervalues[:escapeorb]
+            srand(($PokemonGlobal.towervalues[:seed]*5)+$PokemonGlobal.towervalues[:floor])
             grantRandomEmera
         end
     when "Sakuya"

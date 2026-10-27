@@ -806,8 +806,6 @@ BattleHandlers::MoveImmunityTargetAbility.add(:STORMDRAIN,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:STORMDRAIN,:DRYSKINPLUS)
-
 BattleHandlers::MoveImmunityTargetAbility.add(:TELEPATHY,
   proc { |ability,target,user,move,type,battle|
     next false if move.statusMove?
@@ -844,7 +842,16 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WATERABSORB,
   }
 )
 
-BattleHandlers::MoveImmunityTargetAbility.copy(:WATERABSORB,:DRYSKIN,:DRYSKINPLUS)
+BattleHandlers::MoveImmunityTargetAbility.copy(:WATERABSORB,:DRYSKIN)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:DRYSKINPLUS,
+  proc { |ability,target,user,move,type,battle|
+    if pbBattleMoveImmunityHealAbility(user,target,move,type,:WATER,battle)
+      next pbBattleMoveImmunityStatAbility(user,target,move,type,:WATER,:SPECIAL_ATTACK,1,battle)
+    end
+    next false
+  }
+)
 
 BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
   proc { |ability,target,user,move,type,battle|
@@ -2908,7 +2915,7 @@ BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
   }
 )
 
-BattleHandlers::EORWeatherAbility.add(:DRYSKIN,
+BattleHandlers::EORWeatherAbility.add(:DRYSKINPLUS,
   proc { |ability,battler,weather,battle|
     if [:Rain, :HeavyRain].include?(weather)
       next if !battler.canHeal?

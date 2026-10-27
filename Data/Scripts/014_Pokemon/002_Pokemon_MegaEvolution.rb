@@ -208,7 +208,7 @@ class Pokemon
       @paradoxform = [0, 0]
       @paradoxability = [nil, nil]
       paradoxlist.each_with_index do |paradox, i|
-        if paradox.length == 0
+        if paradox.length == 0 || paradoxspecieslist[i]
           @paradoxform[i] = 0
           next
         end
