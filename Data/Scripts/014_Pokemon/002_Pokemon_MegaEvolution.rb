@@ -171,7 +171,7 @@ class Pokemon
         end
         @regionalform[i] = regional[regional.length - 1].form
         abilitylist = regional[regional.length - 1].abilities + regional[regional.length - 1].hidden_abilities
-        @regionalability[i] = abilitylist[abilitylist.length]
+        @regionalability[i] = abilitylist[abilitylist.length - 1]
       end
     end
   end
