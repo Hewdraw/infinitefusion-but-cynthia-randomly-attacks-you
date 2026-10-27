@@ -648,7 +648,7 @@ def UndertaleCommand(scene, golden = false)
       if $PokemonGlobal.towervalues.nil?
         return true if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2)
       else
-        return true if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2, nil, :DarkSkeleton_Dev)
+        return true if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 2, false, 1, nil, :DarkSkeleton_Dev)
       end
     when 1    # Act
       if !scene.UndertaleActMenu() && golden
