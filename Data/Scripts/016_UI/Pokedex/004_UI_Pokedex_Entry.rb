@@ -357,6 +357,8 @@ class PokemonPokedexInfo_Scene
       entryText = "Unfortunately not a Mawile."
     end
     case species_data.species
+    when :CAT
+      entryText = "Cat."
     when :TOTODILE
       entryText = "No Squirtle?"
     when :SQUIRTLE

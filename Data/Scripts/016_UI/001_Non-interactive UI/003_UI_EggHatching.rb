@@ -105,7 +105,7 @@ class PokemonEggHatch_Scene
     pbBGMStop()
     pbMEPlay("evolution_success")
     @pokemon.name = nil
-    pbMessage(_INTL("\\se[]{1} hatched from the Egg!\\wt[80]", @pokemon.name)) { update }
+    pbMessage(_INTL("\\se[]{1} hatched from the Bad Egg!\\wt[80]", @pokemon.name)) { update }
     if $PokemonGlobal.towervalues.nil? && $PokemonSystem.prompt_nicknames && pbConfirmMessage(
       _INTL("Would you like to nickname the newly hatched {1}?", @pokemon.name)) { update }
       nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", @pokemon.name),
@@ -221,7 +221,7 @@ def pbHatch(pokemon)
     pbMessage(_INTL("Huh?\1"))
     pbMessage(_INTL("...\1"))
     pbMessage(_INTL("... .... .....\1"))
-    pbMessage(_INTL("{1} hatched from the Egg!", speciesname))
+    pbMessage(_INTL("{1} hatched from the Bad Egg!", speciesname))
     if pbConfirmMessage(_INTL("Would you like to nickname the newly hatched {1}?", speciesname))
       nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", speciesname),
                                     0, Pokemon::MAX_NAME_SIZE, "", pokemon)
