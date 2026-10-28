@@ -6173,6 +6173,7 @@ class PokeBattle_Move_365 < PokeBattle_Move_207
   end
 
   def pbEffectGeneral(user)
+    return if ![:ALTARIAHARCANINE].include?(user.pokemon.species)
     user.pokemon.setOriginalForm
     user.battle.pbMegaEvolve(user.index, true)
   end
