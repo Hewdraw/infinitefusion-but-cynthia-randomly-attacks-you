@@ -341,3 +341,27 @@ IsPseudoType = true
 Weaknesses = WATER,GRASS,ICE,GROUND,BUG,GHOST,DARK
 Resistances = POISON,ROCK,FLYING,STEEL,FIGHTING,PSYCHIC
 Immunities = ELECTRIC
+#-------------------------------
+[46]
+Name = Normal/Dark/Steel/Qmarks
+InternalName = NORMALDARKSTEELQMARKS
+IsPsuedoType = true
+Weaknesses = FIGHTING,GUN,SOUND
+Resistances = BUG,FAIRY,WATER,ELECTRIC
+Immunities = GHOST,DARK,PSYCHIC,NORMAL,FLYING,ROCK,STEEL,GRASS,ICE,DRAGON,POISON
+#-------------------------------
+[47]
+Name = Electric/Fairy/Ghost/Water/Dragon
+InternalName = ELECTRICFAIRYGHOSTWATERDRAGON
+IsPsuedoType = true
+Weaknesses = GROUND,GHOST,FAIRY
+Resistances = FLYING,STEEL,ELECTRIC
+Immunities = GUN,FIGHTING,BUG,DRAGON,NORMAL,FIRE,WATER
+#-------------------------------
+[48]
+Name = Grass/Water/Ground/Psychic/Fairy
+InternalName = GRASSWATERGROUNDPSYCHICFAIRY
+IsPsuedoType = true
+Weaknesses = FLYING,POISON,BUG,ICE,GRASS,GHOST
+Resistances = GROUND,WATER,ROCK,PSYCHIC,SOUND
+Immunities = ELECTRIC,FIGHTING,DRAGON
