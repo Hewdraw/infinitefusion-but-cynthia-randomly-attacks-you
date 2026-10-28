@@ -508,6 +508,7 @@ class PokeBattle_Battler
     getAllAbilities.each do |ability|
       next if !abilityActive?(ignore_fainted, ability)
       next if !check_ability.include?(ability)
+      next if ability == :ALPHAINFORCE && !(@pokemon.alpha || isFusionOf([:ARCEUS, :ALPHAMON, :CYNTHIA, :KYOGRE, :UNOWN]))
       @tempability = GameData::Ability.get(ability).real_name if ability != @ability_id
       return true
     end

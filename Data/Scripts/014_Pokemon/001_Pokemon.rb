@@ -147,6 +147,7 @@ class Pokemon
   attr_accessor :abilityarray
   attr_accessor :boxicon
   attr_accessor :miststone
+  attr_accessor :alpha
 
   attr_accessor :sprite_scale #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)
   attr_accessor :size_category #the size attribute for scaling the sprite (used only for gourgeist/pumpkaboo)

@@ -356,6 +356,10 @@ ItemHandlers::UseInBattle.add(:POKEFLUTE,proc { |item,battler,battle|
 })
 
 ItemHandlers::UseInBattle.add(:NERUPHONE,proc { |item,battler,battle|
+  if isDarkWorld()
+    pbMessage("But it doesn't seem to be working.")
+    next
+  end
   pbBGMPlay("FlopEra")
 })
 

@@ -356,6 +356,18 @@ class PokemonPokedexInfo_Scene
     else
       entryText = "Unfortunately not a Mawile."
     end
+    case species_data.species
+    when :TOTODILE
+      entryText = "No Squirtle?"
+    when :SQUIRTLE
+      entryText = "Finally, The Beginning."
+    when :WARTORTLE
+      entryText = "The Middle."
+    when :BLASTOISE
+      entryText = "The Final, Yet not the End."
+    when :MILLENNIUM
+      entryText = "01110000 01110010 01101111 01100011 01100101 01100101 01100100"
+    end
 
     max_chars_per_page = 150
     pages = splitTextIntoPages(entryText, max_chars_per_page)

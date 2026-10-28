@@ -434,7 +434,7 @@
 421,NATURALGIFT,Natural Gift,096,1,NORMAL,Physical,100,15,0,NearOther,0,bef,"The user draws power to attack by using its held Nut. The Nut determines its type and power."
 422,PRESENT,Present,094,1,NORMAL,Physical,90,15,0,NearOther,0,bef,"The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
 423,RETURN,Return,000,102,NORMAL,Physical,100,20,0,NearOther,0,abef,"A full-power attack."
-424,SONICBOOM,Sonic Boom,000,50,SOUND,Special,100,30,0,NearOther,1,befk,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
+424,SONICBOOM,Sonic Boom,06A,50,SOUND,Special,100,30,0,NearOther,1,befk,"The target is hit with a destructive shock wave that always inflicts 20 HP damage."
 425,SPITUP,Spit Up,113,1,NORMAL,Special,100,10,0,NearOther,0,bf,"The power stored using the move Stockpile is released all at once in an attack."
 426,SUPERFANG,Super Fang,06C,1,NORMAL,Physical,90,10,0,NearOther,0,abef,"The user chomps hard on the target with its sharp front fangs. It cuts the target's HP to half."
 427,TRUMPCARD,Trump Card,097,1,NORMAL,Special,0,5,0,NearOther,0,abef,"The fewer PP this move has, the greater its attack power."

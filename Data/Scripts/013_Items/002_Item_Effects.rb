@@ -49,6 +49,10 @@ ItemHandlers::UseFromBag.add(:BICYCLE, proc { |item|
 ItemHandlers::UseFromBag.copy(:BICYCLE, :RACEBIKE)
 
 ItemHandlers::UseFromBag.add(:NERUPHONE, proc { |item|
+  if isDarkWorld()
+    pbMessage("But it doesn't seem to be working.")
+    next 2
+  end
   pbBGMPlay("FlopEra")
   next 2
 })

@@ -406,7 +406,7 @@ def towerIncreaseFloor(nextfloor = nil)
             gainedhp += pkmn.totalhp / 16 if hasEmera?(:APPLE)
             pkmn.hp = [pkmn.hp + gainedhp, pkmn.totalhp].min
             oldspecies = pkmn.species
-            check_evolution = true
+            check_evolution = !pkmn.evolve_from_party
             while check_evolution
                 newspecies = pkmn.check_evolution_on_level_up
                 if newspecies

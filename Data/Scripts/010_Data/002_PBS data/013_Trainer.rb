@@ -37,6 +37,7 @@ module GameData
       "Gigantamax" => [:gigantamax, "b"],
       "Affection" => [:affection, "b"],
       "Raid" => [:raid, "b"],
+      "Alpha" => [:alpha, "b"],
       "Hpbar" => [:hpbars, "s"],
       "Split" => [:split, "s"],
       "Phasetwo" => [:phasetwo, "b"],
@@ -459,6 +460,7 @@ module GameData
         pkmn.dynamax = (pkmn_data[:dynamax]) ? true : nil
         pkmn.gigantamax = (pkmn_data[:gigantamax]) ? true : nil
         pkmn.raid = (pkmn_data[:raid]) ? true : nil
+        pkmn.alpha = (pkmn_data[:alpha]) ? true : nil
         pkmn.hpbars = (pkmn_data[:hpbars]) ? pkmn_data[:hpbars].to_i : nil
         pkmn.split = (pkmn_data[:split]) ? pkmn_data[:split].to_i : nil
         pkmn.phasetwo = (pkmn_data[:phasetwo]) ? true : nil

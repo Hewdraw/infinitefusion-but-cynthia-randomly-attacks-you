@@ -2147,9 +2147,11 @@ end
 #===============================================================================
 # Inflicts a fixed 20HP damage. (Sonic Boom)
 #===============================================================================
-class PokeBattle_Move_06A < PokeBattle_FixedDamageMove
-  def pbFixedDamage(user, target)
-    return 20
+class PokeBattle_Move_06A < PokeBattle_Move
+  def pbCalcDamage(user,target,numTargets=1)
+    super
+    return if target.damageState.calcDamage > 20
+    target.damageState.calcDamage = 20
   end
 end
 
