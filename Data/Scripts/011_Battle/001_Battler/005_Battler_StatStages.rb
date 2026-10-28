@@ -338,6 +338,11 @@ class PokeBattle_Battler
     end
     return false if !pbCanLowerStatStage?(stat,user)
     return pbLowerStatStageByCause(stat,1,user,user.abilityName)
+    if hasActiveAbility?(:RATTLED)
+      pbShowAbilitySplash(self)
+      pbRaiseStatStageByCause(:SPEED, 1, self, abilityName)
+      pbHideAbilitySplash(self)
+    end
   end
 
   #=============================================================================
