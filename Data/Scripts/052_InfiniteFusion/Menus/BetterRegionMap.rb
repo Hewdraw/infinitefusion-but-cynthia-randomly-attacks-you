@@ -262,21 +262,21 @@ class BetterRegionMap
   end
 
   def on_stop_moving
-    return unless @can_fly
-    return if @snapping
-    x = $PokemonGlobal.regionMapSel[0]
-    y = $PokemonGlobal.regionMapSel[1]
-    nearby_fly_spot = findNearbyHealingSpot(x, y,2)
-    if nearby_fly_spot
-      @snapping = true
-      new_x, new_y = nearby_fly_spot
-      if [new_x, new_y] != @position_before_moving
-        snap_to_position(new_x, new_y)
-        update_text
-        on_hover(new_x, new_y)
-      end
-      @snapping = false
-    end
+    # return unless @can_fly
+    # return if @snapping
+    # x = $PokemonGlobal.regionMapSel[0]
+    # y = $PokemonGlobal.regionMapSel[1]
+    # nearby_fly_spot = findNearbyHealingSpot(x, y,2)
+    # if nearby_fly_spot
+    #   @snapping = true
+    #   new_x, new_y = nearby_fly_spot
+    #   if [new_x, new_y] != @position_before_moving
+    #     snap_to_position(new_x, new_y)
+    #     update_text
+    #     on_hover(new_x, new_y)
+    #   end
+    #   @snapping = false
+    # end
   end
 
   #Fly icons, or whatever else in override

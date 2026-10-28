@@ -111,16 +111,16 @@ class QuestMap < BetterRegionMap
       return
     end
 
-    nearby_quest = find_quest_near_coordinates(x, y, 2)
-    if nearby_quest
-      @snapping = true
-      new_x, new_y = nearby_quest
-      if [new_x, new_y] != @position_before_moving
-        snap_to_position(new_x, new_y)
-        on_hover(new_x, new_y)
-      end
-      @snapping = false
-    end
+    # nearby_quest = find_quest_near_coordinates(x, y, 2)
+    # if nearby_quest
+    #   @snapping = true
+    #   new_x, new_y = nearby_quest
+    #   if [new_x, new_y] != @position_before_moving
+    #     snap_to_position(new_x, new_y)
+    #     on_hover(new_x, new_y)
+    #   end
+    #   @snapping = false
+    # end
   end
 
   def find_quest_near_coordinates(current_x, current_y, radius)
