@@ -17819,7 +17819,8 @@ BattlerShadowSize = 2
 [541]
 Name = Spinda
 InternalName = SPINDA
-Type1 = NORMAL
+Type1 = QMARKS
+Type2 = NORMAL
 BaseStats = 60,60,60,60,60,60
 GenderRate = Female50Percent
 GrowthRate = Fast
@@ -20508,7 +20509,7 @@ Shape = Head
 #-------------------------------
 [1000214]
 Name = Garcario
-InternalName = MEGAGARCARIOZZ
+InternalName = MEGAB296H299ZZ
 Type1 = DRAGON
 Type2 = STEEL
 BaseStats = 95,110,75,151,148,80
