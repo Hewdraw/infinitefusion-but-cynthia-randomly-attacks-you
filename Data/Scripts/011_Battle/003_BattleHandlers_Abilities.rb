@@ -557,7 +557,7 @@ BattleHandlers::StatLossImmunityAllyAbility.add(:FLOWERVEIL,
 BattleHandlers::AbilityOnStatLoss.add(:COMPETITIVE,
   proc { |ability,battler,stat,user|
     next if user && !user.opposes?(battler)
-    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler,GameData::Ability.get(ability).name)
+    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,2,battler,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -566,7 +566,7 @@ BattleHandlers::AbilityOnStatLoss.copy(:COMPETITIVE, :COMPETITIVEPLUS)
 BattleHandlers::AbilityOnStatLoss.add(:DEFIANT,
   proc { |ability,battler,stat,user|
     next if user && !user.opposes?(battler)
-    battler.pbRaiseStatStageByAbility(:ATTACK,2,battler,GameData::Ability.get(ability).name)
+    battler.pbRaiseStatStageByAbility(:ATTACK,2,battler,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -639,7 +639,7 @@ BattleHandlers::PriorityBracketChangeAbility.add(:QUICKDRAW,
 
 BattleHandlers::AbilityOnFlinch.add(:STEADFAST,
   proc { |ability,battler,battle|
-    battler.pbRaiseStatStageByAbility(:SPEED,1,battler,GameData::Ability.get(ability).name)
+    battler.pbRaiseStatStageByAbility(:SPEED,1,battler,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2347,7 +2347,7 @@ BattleHandlers::TargetAbilityOnHit.copy(:IRONBARBS,:ROUGHSKIN)
 BattleHandlers::TargetAbilityOnHit.add(:JUSTIFIED,
   proc { |ability,target,user,move,battle|
     next if move.calcType != :DARK
-    target.pbRaiseStatStageByAbility(:ATTACK,1,target,GameData::Ability.get(ability).name)
+    target.pbRaiseStatStageByAbility(:ATTACK,1,target,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2398,7 +2398,7 @@ BattleHandlers::TargetAbilityOnHit.add(:POISONPOINT,
 BattleHandlers::TargetAbilityOnHit.add(:RATTLED,
   proc { |ability,target,user,move,battle|
     next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
-    target.pbRaiseStatStageByAbility(:SPEED,1,target,GameData::Ability.get(ability).name)
+    target.pbRaiseStatStageByAbility(:SPEED,1,target,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2421,7 +2421,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SNOWCLOAK,
 
 BattleHandlers::TargetAbilityOnHit.add(:STAMINA,
   proc { |ability,target,user,move,battle|
-    target.pbRaiseStatStageByAbility(:DEFENSE,1,target,GameData::Ability.get(ability).name)
+    target.pbRaiseStatStageByAbility(:DEFENSE,1,target,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2496,7 +2496,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CHARGEDDEBRIS,
 BattleHandlers::TargetAbilityOnHit.add(:WATERCOMPACTION,
   proc { |ability,target,user,move,battle|
     next if move.calcType != :WATER
-    target.pbRaiseStatStageByAbility(:DEFENSE,2,target,GameData::Ability.get(ability).name)
+    target.pbRaiseStatStageByAbility(:DEFENSE,2,target,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2506,7 +2506,7 @@ BattleHandlers::TargetAbilityOnHit.add(:WEAKARMOR,
     next if !target.pbCanLowerStatStage?(:DEFENSE, target) &&
             !target.pbCanRaiseStatStage?(:SPEED, target)
     battle.pbShowAbilitySplash(target)
-    target.pbLowerStatStageByAbility(:DEFENSE, 1, target, false,GameData::Ability.get(ability).name)
+    target.pbLowerStatStageByAbility(:DEFENSE, 1, target, false, false,GameData::Ability.get(ability).name)
     target.pbRaiseStatStageByAbility(:SPEED, 2, target, false,GameData::Ability.get(ability).name)
     battle.pbHideAbilitySplash(target)
   }
@@ -2520,7 +2520,7 @@ BattleHandlers::UserAbilityOnHit.add(:MOXIEPLUS,
   proc { |ability,user,target,move,battle|
     next if battle.pbRandom(100, user, target)>=20
     next if !user.pbCanRaiseStatStage?(:ATTACK,user)
-    user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
+    user.pbRaiseStatStageByAbility(:ATTACK,1,user,true,GameData::Ability.get(ability).real_name)
   }
 )
 
@@ -2528,7 +2528,7 @@ BattleHandlers::UserAbilityOnHit.add(:HYPERCUTTERPLUS,
   proc { |ability,user,target,move,battle|
     next if battle.pbRandom(100, user, target)>=20
     next if !target.pbCanLowerStatStage?(:DEFENSE,user)
-    target.pbLowerStatStageByAbility(:DEFENSE,1,user,GameData::Ability.get(ability).real_name)
+    target.pbLowerStatStageByAbility(:DEFENSE,1,user,true,false,GameData::Ability.get(ability).real_name)
   }
 )
 
@@ -2715,7 +2715,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:BEASTBOOST,
     GameData::Stat.each_main_battle do |s|
       next if userStats[s.id] < highestStatValue
       if user.pbCanRaiseStatStage?(s.id, user)
-        user.pbRaiseStatStageByAbility(s.id, numFainted, user,GameData::Ability.get(ability).name)
+        user.pbRaiseStatStageByAbility(s.id, numFainted, user, true, GameData::Ability.get(ability).name)
       end
       break
     end
@@ -2770,7 +2770,7 @@ BattleHandlers::UserAbilityEndOfMove.add(:MOXIE,
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0 || !user.pbCanRaiseStatStage?(:ATTACK,user)
-    user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user,GameData::Ability.get(ability).name)
+    user.pbRaiseStatStageByAbility(:ATTACK,numFainted,user,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2783,10 +2783,12 @@ BattleHandlers::UserAbilityEndOfMove.add(:BATTLEBOND,
     numFainted = 0
     targets.each { |b| numFainted += 1 if b.damageState.fainted }
     next if numFainted==0
-    user.pbRaiseStatStageByAbility(:ATTACK,1,user,GameData::Ability.get(ability).real_name)
-    user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,user,GameData::Ability.get(ability).real_name)
-    user.pbRaiseStatStageByAbility(:SPEED,1,user,GameData::Ability.get(ability).real_name)
+    battle.pbShowAbilitySplash(user)
+    user.pbRaiseStatStageByAbility(:ATTACK,1,user,false,GameData::Ability.get(ability).real_name)
+    user.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,user,false,GameData::Ability.get(ability).real_name)
+    user.pbRaiseStatStageByAbility(:SPEED,1,user,false,GameData::Ability.get(ability).real_name)
     user.pokemon.battlevariables[:battlebond] = true
+    battle.pbHideAbilitySplash(user)
   }
 )
 
@@ -2823,7 +2825,7 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERK,
     next if !move.damagingMove?
     next if target.damageState.initialHP<target.adjustedTotalhp/2 || target.hp>=target.adjustedTotalhp/2
     next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target)
-    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,GameData::Ability.get(ability).name)
+    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -2832,9 +2834,11 @@ BattleHandlers::TargetAbilityAfterMoveUse.add(:BERSERKPLUS,
     next if !move.damagingMove?
     next if target.damageState.initialHP<target.adjustedTotalhp/2 || target.hp>=target.adjustedTotalhp/2
     next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK,target) && !target.pbCanRaiseStatStage?(:ATTACK,target) && !target.pbCanRaiseStatStage?(:SPEED,target)
-    target.pbRaiseStatStageByAbility(:ATTACK,1,target,GameData::Ability.get(ability).real_name)
-    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,GameData::Ability.get(ability).real_name)
-    target.pbRaiseStatStageByAbility(:SPEED,1,target,GameData::Ability.get(ability).real_name)
+    battle.pbShowAbilitySplash(target)
+    target.pbRaiseStatStageByAbility(:ATTACK,1,target,false,GameData::Ability.get(ability).real_name)
+    target.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,target,false,GameData::Ability.get(ability).real_name)
+    target.pbRaiseStatStageByAbility(:SPEED,1,target,false,GameData::Ability.get(ability).real_name)
+    battle.pbHideAbilitySplash(target)
   }
 )
 
@@ -3127,7 +3131,7 @@ BattleHandlers::EOREffectAbility.add(:MOODY,
     end
     if randomDown.length>0
       r = battle.pbRandom(randomDown.length)
-      battler.pbLowerStatStageByAbility(randomDown[r],1,battler,false,GameData::Ability.get(ability).name)
+      battler.pbLowerStatStageByAbility(randomDown[r],1,battler,false,false,GameData::Ability.get(ability).name)
     end
     battle.pbHideAbilitySplash(battler)
     battler.pbItemStatRestoreCheck if randomDown.length>0
@@ -3204,8 +3208,8 @@ BattleHandlers::EOREffectAbility.add(:OBLITERATE,
     battle.battlers.each do |b|
       next if battler == b
       next if !(b.pbCanLowerStatStage?(:DEFENSE, battler) || b.pbCanLowerStatStage?(:SPECIAL_DEFENSE, battler))
-      b.pbLowerStatStageByAbility(:DEFENSE, 1, battler, false)
-      b.pbLowerStatStageByAbility(:SPECIAL_DEFENSE, 1, battler, false)
+      b.pbLowerStatStageByAbility(:DEFENSE, 1, battler,false,false,GameData::Ability.get(ability).name)
+      b.pbLowerStatStageByAbility(:SPECIAL_DEFENSE, 1, battler,false,false,GameData::Ability.get(ability).name)
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3446,14 +3450,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:DARKAURA,
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELD,
   proc { |ability,battler,battle|
     next if battler.pokemon.battlevariables[:dauntlessshield]
-    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,true,GameData::Ability.get(ability).real_name)
     battler.pokemon.battlevariables[:dauntlessshield] = true
   }
 )
 
 BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELDPLUS,
   proc { |ability,battler,battle|
-    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+    battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,true,GameData::Ability.get(ability).real_name)
   }
 )
 
@@ -3509,7 +3513,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOAD,
       oSpDef += b.spdef
     end
     stat = (oDef<oSpDef) ? :ATTACK : :SPECIAL_ATTACK
-    battler.pbRaiseStatStageByAbility(stat,1,battler,GameData::Ability.get(ability).name)
+    battler.pbRaiseStatStageByAbility(stat,1,battler,true,GameData::Ability.get(ability).name)
   }
 )
 
@@ -3523,10 +3527,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:DOWNLOADPLUS,
       oAtk   += b.attack
       oSpAtk += b.spatk
     end
+    battle.pbShowAbilitySplash(battler)
     stat = (oDef<oSpDef) ? :ATTACK : :SPECIAL_ATTACK
-    battler.pbRaiseStatStageByAbility(stat,1,battler,GameData::Ability.get(ability).real_name)
+    battler.pbRaiseStatStageByAbility(stat,1,battler,false,GameData::Ability.get(ability).real_name)
     stat = (oAtk<oSpAtk) ? :DEFENSE : :SPECIAL_DEFENSE
-    battler.pbRaiseStatStageByAbility(stat,1,battler,GameData::Ability.get(ability).real_name)
+    battler.pbRaiseStatStageByAbility(stat,1,battler,false,GameData::Ability.get(ability).real_name)
+    battle.pbHideAbilitySplash(battler)
   }
 )
 
@@ -3617,20 +3623,18 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
 BattleHandlers::AbilityOnSwitchIn.add(:EMBODYASPECT,
   proc { |ability,battler,battle|
     next unless battler.hasActiveItem?([:WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK]) || [:OGERPONGRASS, :OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(battler.pokemon.species)
-    battle.pbShowAbilitySplash(battler)
     if battler.pokemon.species == :OGERPONGRASS
-      battler.pbRaiseStatStageByAbility(:SPEED,1,battler,GameData::Ability.get(ability).real_name)
+      battler.pbRaiseStatStageByAbility(:SPEED,1,battler,true,GameData::Ability.get(ability).real_name)
     end
     if battler.hasActiveItem?(:WELLSPRINGMASK) || battler.pokemon.species == :OGERPONWELLSPRINGWATER
-      battler.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+      battler.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE,1,battler,true,GameData::Ability.get(ability).real_name)
     end
     if battler.hasActiveItem?(:HEARTHFLAMEMASK) || battler.pokemon.species == :OGERPONHEARTHFLAMEFIRE
-      battler.pbRaiseStatStageByAbility(:ATTACK,1,battler,GameData::Ability.get(ability).real_name)
+      battler.pbRaiseStatStageByAbility(:ATTACK,1,battler,true,GameData::Ability.get(ability).real_name)
     end
     if battler.hasActiveItem?(:CORNERSTONEMASK) || battler.pokemon.species == :OGERPONCORNERSTONEROCK
-      battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,GameData::Ability.get(ability).real_name)
+      battler.pbRaiseStatStageByAbility(:DEFENSE,1,battler,true,GameData::Ability.get(ability).real_name)
     end
-    battle.pbHideAbilitySplash(battler)
   }
 )
 
@@ -3924,7 +3928,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:CHARGEDEXPLOSIVE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay(_INTL("{1} sparks with electricity!",battler.pbThis))
-    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler)
+    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler,false,GameData::Ability.get(ability).real_name)
     battle.pbHideAbilitySplash(battler)
     $PokemonGlobal.flashUsed = "creeper"
   }
@@ -4015,7 +4019,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:SNOWWWARNING,
 BattleHandlers::AbilityOnSwitchIn.add(:STOPRIGHTTHERE,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler,GameData::Ability.get(ability).real_name)
+    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler,false,GameData::Ability.get(ability).real_name)
     if ![:Snow, :Hail].include?(battle.pbWeather) && !battler.pokemon.battlevariables[:stoprightthere]
       pbBattleWeatherAbility(:Snow, battler, battle)
       battler.pokemon.battlevariables[:stoprightthere] = true
@@ -4235,7 +4239,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.copy(:POWEROFALCHEMY,:RECEIVER)
 
 BattleHandlers::AbilityOnBattlerFainting.add(:SOULHEART,
   proc { |ability,battler,fainted,battle|
-    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler,GameData::Ability.get(ability).name)
+    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler,true,GameData::Ability.get(ability).name)
   }
 )
 
