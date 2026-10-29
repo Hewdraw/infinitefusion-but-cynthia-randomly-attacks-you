@@ -223,6 +223,12 @@ BattleHandlers::StatusImmunityAbility.add(:WATERVEIL,
 
 BattleHandlers::StatusImmunityAbility.copy(:WATERVEIL,:WATERBUBBLE)
 
+BattleHandlers::StatusImmunityAbility.add(:PURIFYINGSALT,
+  proc { |ability,battler,status|
+    next true
+  }
+)
+
 #===============================================================================
 # StatusImmunityAbilityNonIgnorable handlers
 #===============================================================================
@@ -1789,6 +1795,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:PURIFYINGSALT,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] /= 2 if type == :GHOST
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:WATERBUBBLE,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:final_damage_multiplier] /= 2 if type == :FIRE
@@ -2226,6 +2238,9 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPOREPLUS,
     when PBEffects::SaltCure
       user.effects[PBEffects::SaltCure] = true
       battle.pbDisplay(_INTL("{1} was salt cured!",user.pbThis))
+    when PBEffects::CloudMinion
+      user.effects[PBEffects::CloudMinion] = true
+      battle.pbDisplay(_INTL("{1} was Cloud Minioned!",user.pbThis))
     when PBEffects::Taunt
         b.effects[PBEffects::Taunt] = 4
         battle.pbDisplay(_INTL("{1} fell for the taunt!",b.pbThis))

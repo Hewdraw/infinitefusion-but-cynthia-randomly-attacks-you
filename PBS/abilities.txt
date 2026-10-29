@@ -404,3 +404,6 @@
 718,TEMPEST,Tempest,"a"
 719,ALPHAINFORCE,Alpha inForce,"a"
 720,MYTHICALPRESSURE,Mythical Pressure,"a"
+721,PURIFYINGSALT,Purifying Salt,"a"
+722,DARKMATTER,Dark Matter,"todo"
+723,SUPERSHADOW,Super Shadow,"todo"

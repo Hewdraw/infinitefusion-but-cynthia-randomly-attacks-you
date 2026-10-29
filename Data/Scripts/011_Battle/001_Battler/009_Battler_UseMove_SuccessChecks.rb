@@ -391,6 +391,17 @@ class PokeBattle_Battler
           end
           return false
         end
+        if target.effects[PBEffects::SpikyShield]
+          @battle.pbCommonAnimation("SpikyShield",target)
+          @battle.pbDisplay(_INTL("{1} protected itself!",target.pbThis))
+          target.damageState.protected = true
+          @battle.successStates[user.index].protected = true
+          @battle.scene.pbDamageAnimation(user)
+          user.pbReduceHP(user.totalhp/4,false)
+          @battle.pbDisplay(_INTL("{1} was hurt!",user.pbThis))
+          user.pbItemHPHealCheck
+          return false
+        end
         # Baneful Bunker
         if target.effects[PBEffects::BanefulBunker]
           @battle.pbCommonAnimation("BanefulBunker",target)

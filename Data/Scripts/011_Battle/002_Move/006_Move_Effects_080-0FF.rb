@@ -247,10 +247,6 @@ class PokeBattle_Move_090 < PokeBattle_Move
     return hp[0]
   end
 
-  def pbBaseDamage(baseDmg,user,target)
-    return super
-  end
-
   def pbGetAttackStats(user, target)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
@@ -1075,6 +1071,7 @@ class PokeBattle_Move_0AD < PokeBattle_Move
     target.pbOwnSide.effects[PBEffects::WideGuard]    = false
     target.effects[PBEffects::BurningBulwark]          = false
     target.effects[PBEffects::Obstruct]          = false
+    target.effects[PBEffects::ShieldAndCounter]            = false
   end
 end
 
@@ -2246,6 +2243,7 @@ class PokeBattle_Move_0CD < PokeBattle_TwoTurnMove
     target.pbOwnSide.effects[PBEffects::WideGuard]    = false
     target.effects[PBEffects::BurningBulwark]          = false
     target.effects[PBEffects::Obstruct]          = false
+    target.effects[PBEffects::ShieldAndCounter]            = false
   end
 end
 

@@ -480,6 +480,7 @@ class PokeBattle_Battler
         break if magicCoater >= 0 || magicBouncer >= 0
         success = pbProcessMoveHit(move, user, targets, i, skipAccuracyCheck)
         if !success
+          next if move.id == :SEVENSWING
           if i == 0 && targets.length > 0
             hasFailed = false
             targets.each do |t|
@@ -791,12 +792,16 @@ class PokeBattle_Battler
     when :MIKUMIKUBEAM
       pbSEPlay("MIKUMIKUBEAM")
       animationid = :HYPERBEAM
-    when :CATASTROPHEDAY
+    when :CATASTROPHEDAY, :TESTAMENT
       animationid = :EXPLOSION
-    when :KNIFE
+    when :KNIFE, :KNIFEPLUS
       animationid = :CUT
     when :DIGITALIZEOFTHESOUL
       animationid = :THOUSANDARROWS
+    when :RISINGHALO
+      animationid = :THUNDER
+    when :DEATHHAND
+      animationid = :DARKPULSE
     end
     move.pbShowAnimation(animationid, user, targets, hitNum)
     # Type-boosting Gem consume animation/message

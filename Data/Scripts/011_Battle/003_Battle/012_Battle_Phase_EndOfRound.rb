@@ -463,6 +463,16 @@ class PokeBattle_Battle
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?
     end
+    priority.each do |b|
+      next if !b.effects[PBEffects::CloudMinion]
+      next if !b.takesIndirectDamage?
+      oldHP = b.hp
+      dmg = (b.pbHasType?(:FAIRY) || b.pbHasType?(:QMARKS)) ? b.totalhp/8 : b.totalhp/16
+      b.pbReduceHP(dmg,false)
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+    end
     # Damage from poisoning
     priority.each do |b|
       next if b.fainted?
@@ -828,6 +838,7 @@ class PokeBattle_Battle
       b.effects[PBEffects::Roost]            = false
       b.effects[PBEffects::Snatch]           = 0
       b.effects[PBEffects::SpikyShield]      = false
+      b.effects[PBEffects::ShieldAndCounter]      = false
       b.effects[PBEffects::Spotlight]        = 0
       b.effects[PBEffects::ThroatChop]       -= 1 if b.effects[PBEffects::ThroatChop]>0
       b.effects[PBEffects::BurningBulwark]    = false

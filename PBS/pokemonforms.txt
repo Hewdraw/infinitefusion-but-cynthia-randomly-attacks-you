@@ -506,6 +506,55 @@ BaseStats = 120,105,95,125,115,140
 Abilities = PRESSURE,STAKEOUT
 HiddenAbility = ALPHAINFORCE
 #-------------------------------
+[CLEFFA,1]
+FormName = Paradox Patamon
+Type1 = FLYING
+Type2 = FAIRY
+BaseStats = 47,26,20,41,43,41
+Abilities = CUTECHARM,TEMPEST
+HiddenAbility = PIXILATE
+#-------------------------------
+[CLEFAIRY,1]
+FormName = Paradox Angemon
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 57,46,32,52,68,68
+Abilities = COMPETITIVE,NATURALCURE
+HiddenAbility = FAIRYAURA
+#-------------------------------
+[CLEFABLE,2]
+FormName = Paradox MagnaAngemon
+Type1 = FAIRY
+Type2 = FLYING
+BaseStats = 80,50,60,81,105,107
+Abilities = SHARPNESS,BERSERK
+HiddenAbility = ICESCALES
+#-------------------------------
+[GASTLY,1]
+FormName = Paradox DemiDevimon
+Type1 = DARK
+Type2 = FLYING
+BaseStats = 60,60,20,70,50,50
+Abilities = MENACE,POWERSPOT
+HiddenAbility = PRANKSTER
+#-------------------------------
+[HAUNTER,1]
+FormName = Paradox Devimon
+Type1 = DARK
+Type2 = FAIRY
+BaseStats = 80,75,30,70,80,80
+Abilities = MENACE,LEVITATE
+HiddenAbility = DARKAURA
+#-------------------------------
+[GENGAR,2]
+FormName = Paradox Myotismon
+Type1 = DARK
+Type2 = GHOST
+BaseStats = 88,78,45,77,99,113
+Abilities = DARKMATTER,REGENERATOR
+HiddenAbility = SUPREMEOVERLORD
+#-------------------------------
+#-------------------------------
 # Regionals
 #-------------------------------
 [RATTATA,1]

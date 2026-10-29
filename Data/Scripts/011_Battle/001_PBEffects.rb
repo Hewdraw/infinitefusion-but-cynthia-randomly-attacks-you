@@ -132,6 +132,8 @@ begin
     CudChewTurn        = 126
     CudChewBerry        = 127
     StanceChange        = 128
+    ShieldAndCounter         = 129
+    CloudMinion                = 130
 
     #===========================================================================
     # These effects apply to a battler position
