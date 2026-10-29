@@ -27922,7 +27922,7 @@ Shape = HeadArms
 Habitat = Cave
 Kind = Gas
 Pokedex = A Dark Angel Digimon clothed in jet-black garb. Devimon was once a radiant Digimon of the Angemon species, but it became a Dark Angel when it fell into the distorted space of the Digital World known as the Dark Area. The prominent Mark of Evil on its chest is proof of this. Though it has a cunning and malevolent personality, Devimon is also extremely intelligent. It's said that any who stare into its glowing, red eyes fall victim to its mind control and become subject to its whims.
-Evolutions = MYOTISMON,Level,40
+Evolutions = MYOTISMON,Level,30
 #-------------------------------
 [1001219]
 Name = Myotismon
