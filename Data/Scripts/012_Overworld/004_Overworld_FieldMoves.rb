@@ -560,11 +560,17 @@ HiddenMoveHandlers::CanUseMove.add(:FLY, proc { |move, pkmn, showmsg|
 HiddenMoveHandlers::CanUseMove.add(:TELEPORT, proc { |move, pkmn, showmsg|
   next pbCanUseFly(showmsg)
 })
+HiddenMoveHandlers::CanUseMove.add(:BOOMBUBBLE, proc { |move, pkmn, showmsg|
+  next pbCanUseFly(showmsg)
+})
 
 HiddenMoveHandlers::UseMove.add(:FLY, proc { |move, pokemon|
   next pbFly(move, pokemon)
 })
 HiddenMoveHandlers::UseMove.add(:TELEPORT, proc { |move, pokemon|
+  next pbFly(move, pokemon)
+})
+HiddenMoveHandlers::UseMove.add(:BOOMBUBBLE, proc { |move, pokemon|
   next pbFly(move, pokemon)
 })
 
