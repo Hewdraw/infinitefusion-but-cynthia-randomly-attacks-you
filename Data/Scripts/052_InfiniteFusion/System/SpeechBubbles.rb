@@ -48,7 +48,7 @@ class Window_AdvancedTextPokemon
     if value != nil && value != "" && $PokemonTemp.speechbubble_bubble && $PokemonTemp.speechbubble_bubble > 0
       value = "<c3=9040E8,B8A8E0>" + value[18..-1] if ["TheSketon", "TheDarkSketon"].include?($game_map.events[$PokemonTemp.speechbubble_talking].character_name)
       value = "<c3=55ffff,645cab>" + value[18..-1] if ["TheDragon", "TheDragonMaid", "UpsideDownDev"].include?($game_map.events[$PokemonTemp.speechbubble_talking].character_name)
-      value = "<c3=FBA2A4,F8A8B8>" + value[18..-1] if ["Claire_Overworld", "Claire_Darkworld"].include?($game_map.events[$PokemonTemp.speechbubble_talking].character_name)
+      value = "<c3=FBA2A4,dc899a>" + value[18..-1] if ["Claire_Overworld", "Claire_Darkworld"].include?($game_map.events[$PokemonTemp.speechbubble_talking].character_name)
       if $PokemonTemp.speechbubble_bubble == 1
         $PokemonTemp.speechbubble_bubble = 0
         resizeToFit2(value,400,100)
