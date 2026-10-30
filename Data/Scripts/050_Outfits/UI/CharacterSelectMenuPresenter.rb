@@ -80,7 +80,6 @@ class CharacterSelectMenuPresenter
 
   def main()
     #@trainerPreview.show()
-    pbBGMPlay("INTROREDONE")
     pbSEPlay("GUI naming tab swap start", 80, 100)
     @current_index = 0
     loop do
