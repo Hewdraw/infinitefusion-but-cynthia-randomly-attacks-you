@@ -453,10 +453,8 @@ def towerIncreaseFloor(nextfloor = nil)
         $scene.transfer_player
         if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
             setDialogIconOn(1)
-            pbBGMPlay("ClaireTheme")
         else
             setDialogIconOff(1)
-            pbBGMPlay("TemporalTower")
         end
         $game_map.autoplay
         $game_map.refresh
@@ -540,6 +538,7 @@ def towerEvent()
         end
         Kernel.pbMessage(_INTL("Your Pokémon were fully healed."))
     when "Tutor"
+        pbBGMPlay("ClaireTheme")
         amount = 1
         amount += 1 if hasEmera?(:BOOKANDQUILL)
         for _ in 0...amount do
@@ -560,6 +559,7 @@ def towerEvent()
             end
         end
         setDialogIconOff(1)
+        pbBGMPlay("TemporalTower")
     when "Crafting"
         mcCrafting()
     when "Legendary"
