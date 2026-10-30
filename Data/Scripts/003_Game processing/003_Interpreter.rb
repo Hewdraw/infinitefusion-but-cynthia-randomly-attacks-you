@@ -339,6 +339,12 @@ class Interpreter
     $MapFactory.getMap(mapid, false).need_refresh = true
   end
 
+  def pbSetEventBelowPlayer(eventid, mapid = -1)
+    mapid = @map_id if mapid < 0
+    $MapFactory.getMap(mapid, false).events[eventid].z = -1
+    $MapFactory.getMap(mapid, false).need_refresh = true
+  end
+
   def tsOff?(c)
     return get_self.tsOff?(c)
   end
