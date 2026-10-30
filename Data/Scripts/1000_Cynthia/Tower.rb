@@ -434,7 +434,6 @@ def towerIncreaseFloor(nextfloor = nil)
         generateMysteryDungeon()
     else
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
-        pbSetEventBelowPlayer(3, 21)
         pbSetGraphic(4, "", 21)
         pbSetSelfSwitch(5, "A", false, 21)
         pbSetGraphic(6, "", 21)
