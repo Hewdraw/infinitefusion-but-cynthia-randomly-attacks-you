@@ -226,7 +226,7 @@ class PokeBattle_Battler
       oldLastRoundMoved = @lastRoundMoved
       pbUseMoveSimple(:ROAR)
       @lastRoundMoved = oldLastRoundMoved
-      @battle.pbDisplayPaused("The Roaring is coming!")
+      @battle.pbDisplayPaused("The Roaring is advancing!")
     end
     @battle.pbCommonAnimation("UltraBurst2", self)
     if @pokemon.split

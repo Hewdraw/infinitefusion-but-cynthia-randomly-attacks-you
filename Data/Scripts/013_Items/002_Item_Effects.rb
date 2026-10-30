@@ -51,10 +51,20 @@ ItemHandlers::UseFromBag.copy(:BICYCLE, :RACEBIKE)
 ItemHandlers::UseFromBag.add(:NERUPHONE, proc { |item|
   if isDarkWorld()
     pbMessage("But it doesn't seem to be working.")
-    next 2
+    next 1
   end
   pbBGMPlay("FlopEra")
-  next 2
+  next 1
+})
+
+ItemHandlers::UseFromBag.add(:AQUAKNIFE, proc { |item|
+  if isDarkWorld()
+    pbMessage("You stab the Aqua Knife down towards the floor.")
+    pbMessage("Yet somehow time seems to revert to before you did so.")
+    next 1
+  end
+  pbMessage("You stab a cyan colored Petal down towards the floor.. It does nothing.")
+  next 1
 })
 
 ItemHandlers::UseFromBag.add(:OLDROD, proc { |item|
