@@ -678,10 +678,17 @@ class PokeBattle_Battler
     return ![:MULTITYPE, :RKSSYSTEM].include?(@ability_id)
   end
 
+  def isMegad?
+    return true if @species.to_s.include?("MEGA")
+    return true if hasActiveItem?([:MEGASHARD, :PUREINCENSE])
+    return true if hasActiveAbility?(:EON)
+    return false
+  end
+
   def isTerastallized?
     return true if hasActiveEmera?(:TERACRYSTAL)
     return true if @pokemon.unteraTypes != []
-    return true if [:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM].include?(@item_id)
+    return true if hasActiveItem?([:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM])
     return false
   end
 

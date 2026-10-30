@@ -269,17 +269,6 @@ class PokemonDataBox < SpriteWrapper
       shinyX = (@battler.opposes?(0)) ? -8 : -6 # Foe's/player's
       addShinyStarsToGraphicsArray(imagePos, @spriteBaseX + shinyX, 15, @battler.pokemon.bodyShiny?, @battler.pokemon.headShiny?, false, false)
     end
-    # Draw Mega Evolution/Primal Reversion icon
-    # if @battler.mega?
-    #   imagePos.push(["Graphics/Pictures/Battle/icon_mega", @spriteBaseX + 8, 34])
-    # elsif @battler.primal?
-    #   primalX = (@battler.opposes?) ? 208 : -28 # Foe's/player's
-    #   if @battler.isSpecies?(:KYOGRE)
-    #     imagePos.push(["Graphics/Pictures/Battle/icon_primal_Kyogre", @spriteBaseX + primalX, 4])
-    #   elsif @battler.isSpecies?(:GROUDON)
-    #     imagePos.push(["Graphics/Pictures/Battle/icon_primal_Groudon", @spriteBaseX + primalX, 4])
-    #   end
-    # end
     # Draw owned icon (foe Pokémon only)
     if @battler.owned? && @battler.opposes?(0)
       imagePos.push(["Graphics/Pictures/Battle/icon_own", @spriteBaseX - 8, 42])
@@ -323,6 +312,7 @@ class PokemonDataBox < SpriteWrapper
     if type1_number == type2_number
       imagePos.push([types_icon_path, type_icons_x_position, type1_icon_y_position,
                      x_offset, type1_y_offset, -1, iconHeight])
+      extraiconposition = type2_icon_y_position
     else
       imagePos.push([types_icon_path, type_icons_x_position,
                      type1_icon_y_position,
@@ -332,6 +322,16 @@ class PokemonDataBox < SpriteWrapper
       imagePos.push([types_icon_path, type_icons_x_position, type2_icon_y_position,
                      x_offset,
                      type2_y_offset, -1, iconHeight])
+      extraiconposition = type2_icon_y_position + vertical_margin + iconHeight
+    end
+
+    extraicons = []
+    extraicons.push("icon_mega") if @battler.isMegad?
+    extraicons.push("icon_dynamax") if @battler.effects[PBEffects::Dynamax] > 0
+    extraicons.push("icon_tera") if @battler.isTerastallized?
+    extraicons.push("icon_affection") if @battler.pokemon.affection || @battler.hasActiveEmera?(:SYNCSTONEULTIMATE)
+    extraicons.each_with_index do |icon, i|
+      imagePos.push(["Graphics/Pictures/Battle/#{icon}", type_icons_x_position, extraiconposition + (21 * i)])
     end
   end
 
