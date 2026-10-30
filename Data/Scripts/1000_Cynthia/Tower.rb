@@ -452,8 +452,10 @@ def towerIncreaseFloor(nextfloor = nil)
         $scene.transfer_player
         if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
             setDialogIconOn(1)
+            pbBGMPlay("ClaireTheme")
         else
             setDialogIconOff(1)
+            pbBGMPlay("TemporalTower")
         end
         $game_map.autoplay
         $game_map.refresh
