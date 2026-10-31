@@ -291,7 +291,7 @@ class PokeBattle_Move_10D < PokeBattle_Move
     return if !user.pbHasType?(:GHOST)
     # Ghost effect
     @battle.pbDisplay(_INTL("{1} cut its own HP and laid a curse on {2}!", user.pbThis, target.pbThis(true)))
-    target.effects[PBEffects::Curse] = true
+    @battle.applyEffect(user, target, :Curse, true, {:nomessage => true})
     user.pbReduceHP(user.totalhp / 2, false)
     user.pbItemHPHealCheck
   end
@@ -3881,8 +3881,7 @@ class PokeBattle_Move_237 < PokeBattle_Move_09F
 
   def pbEffectAfterAllHits(user, target)
     if user.hasActiveItem?(:DOUSEDRIVE) && !user.effects[PBEffects::AquaRing]
-      user.effects[PBEffects::AquaRing] = true
-      @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+      @battle.applyEffect(user, user, :AquaRing)
     end
   end
 end
@@ -6273,8 +6272,7 @@ class PokeBattle_Move_369 < PokeBattle_Move
   def pbEffectGeneral(user)
     user.pbRaiseStatStage(:DEFENSE,1,user)
     user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-    user.effects[PBEffects::AquaRing] = true
-    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+    @battle.applyEffect(user, user, :AquaRing)
     user.pbBurn(user)
   end
 end
@@ -7209,10 +7207,7 @@ class PokeBattle_Move_412 < PokeBattle_MultiStatUpMove
   def pbEffectGeneral(user)
     super
     @battle.pbStartWeather(user,:HarshSun,true,false)
-    if !user.effects[PBEffects::AquaRing]
-      user.effects[PBEffects::AquaRing] = true
-      @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
-    end
+    @battle.applyEffect(user, user, :AquaRing)
   end
 
   def pbMoveFailed?(user,targets)
@@ -7307,8 +7302,7 @@ class PokeBattle_Move_417 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user, target)
-    @battle.pbDisplay(_INTL("{1} laid a curse on {2}!", user.pbThis, target.pbThis(true)))
-    target.effects[PBEffects::Curse] = true
+    @battle.applyEffect(user, target, :Curse)
   end
 end
 
@@ -7398,8 +7392,7 @@ class PokeBattle_Move_421 < PokeBattle_Move
         end
       end
       if @battle.pbRandom(100, user, b) < 10
-        @battle.pbDisplay(_INTL("{1} laid a curse on {2}!", user.pbThis, b.pbThis(true)))
-        b.effects[PBEffects::Curse] = true
+        @battle.applyEffect(user, target, :Curse)
       end
     end
   end
@@ -7577,8 +7570,7 @@ class PokeBattle_Move_432 < PokeBattle_Move
       @battle.pbDisplay(_INTL("{1} can no longer escape!",target.pbThis))
     end
     if @battle.pbRandom(100, user, target) < 10
-      @battle.pbDisplay(_INTL("{1} laid a curse on {2}!", user.pbThis, target.pbThis(true)))
-      target.effects[PBEffects::Curse] = true
+      @battle.applyEffect(user, target, :Curse)
     end
     if @battle.pbRandom(100, user, target) < 10
       target.effects[PBEffects::HealBlock] = 5

@@ -2189,12 +2189,9 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPOREPLUS,
       user.effects[PBEffects::MeanLook] = target.index
       battle.pbDisplay(_INTL("{1} can no longer escape!",user.pbThis))
     when PBEffects::Confusion
-      if user.pbCanConfuse?(target,false,nil)
-        user.pbConfuse
-      end
+      user.pbConfuse if user.pbCanConfuse?(target,false,nil)
     when PBEffects::Curse
-      battle.pbDisplay(_INTL("{1} laid a curse on {2}!", target.pbThis, user.pbThis(true)))
-      user.effects[PBEffects::Curse] = true
+      battle.applyEffect(target, user, :Curse)
     when PBEffects::Yawn
       user.effects[PBEffects::Yawn] = 2
       battle.pbDisplay(_INTL("{1} made {2} drowsy!", target.pbThis, user.pbThis(true)))

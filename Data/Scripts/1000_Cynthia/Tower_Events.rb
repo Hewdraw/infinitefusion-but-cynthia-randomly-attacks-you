@@ -377,7 +377,7 @@ def resolveUnknownEvent(recursion = false)
         Kernel.pbMessage("You come across a purple skeleton.")
         Kernel.pbMessage("What will you try to get from him?")
         helptext = ["Perhaps you can get a discount later. Costs 10 Sinnoh Coins.", "Teach something Shadow Bone+.", "Gives a lot of Special Attack.", "Theyre kinda sick, you might have to fight him for it."]
-        helptext[0] = "Perhaps you can get a discount later. \\C[2]Costs 10 Sinnoh Coins." if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
+        helptext[0] = "Perhaps you can get a discount later. Costs \\C[2]10 Sinnoh Coins\\C[0]." if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
         helptext[3] = "Your Knife flashes from the looplet." if hasEmera?(:KNIFE)
         choice = pbUnknownCommands(["Shop Membership", "A Bone", "Calcium", "His Shades"], helptext)
         case choice

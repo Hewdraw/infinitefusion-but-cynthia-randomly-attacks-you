@@ -787,7 +787,6 @@ class PokeBattle_Move_0A1 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     @battle.applyEffect(user, user.pbOwnSide, :LuckyChant, 5)
-    @battle.pbDisplay(_INTL("The Lucky Chant shielded {1} from critical hits!",user.pbTeam(true)))
   end
 end
 
@@ -2634,8 +2633,7 @@ class PokeBattle_Move_0DA < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    user.effects[PBEffects::AquaRing] = true
-    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!",user.pbThis))
+    @battle.applyEffect(user, user, :AquaRing)
   end
 end
 

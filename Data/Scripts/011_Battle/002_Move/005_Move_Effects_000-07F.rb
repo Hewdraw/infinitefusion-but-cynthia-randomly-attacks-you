@@ -1450,7 +1450,6 @@ class PokeBattle_Move_056 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     @battle.applyEffect(user, user.pbOwnSide, :Mist, 5)
-    @battle.pbDisplay(_INTL("{1} became shrouded in mist!", user.pbTeam))
   end
 end
 

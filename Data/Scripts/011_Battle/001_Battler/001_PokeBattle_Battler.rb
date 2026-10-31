@@ -108,6 +108,7 @@ class PokeBattle_Battler
     new_item = GameData::Item.try_get(value)
     @item_id = (new_item) ? new_item.id : nil
     @pokemon.item = @item_id if @pokemon
+    @battle.scene.pbRefreshOne(@index)
   end
 
   def attack
