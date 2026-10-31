@@ -475,14 +475,9 @@ ItemHandlers::UseFromBag.add(:MUSHROOMSPORES, proc { |item|
 ItemHandlers::UseFromBag.add(:ODDKEYSTONE, proc { |item|
   TOTAL_SPIRITS_NEEDED = 108
   nbSpirits = pbGet(VAR_ODDKEYSTONE_NB)
-  if nbSpirits == 107
-    Kernel.pbMessage(_INTL("The Odd Keystone appears to be moving on its own."))
-    Kernel.pbMessage(_INTL("Voices can be heard whispering from it..."))
-    Kernel.pbMessage(_INTL("Just... one... more..."))
-  elsif nbSpirits < TOTAL_SPIRITS_NEEDED
+  if nbSpirits < TOTAL_SPIRITS_NEEDED
     nbNeeded = TOTAL_SPIRITS_NEEDED - nbSpirits
-    Kernel.pbMessage(_INTL("Voices can be heard whispering from the Odd Keystone..."))
-    Kernel.pbMessage(_INTL("Bring... us... {1}... spirits", nbNeeded.to_s))
+    Kernel.pbMessage(_INTL("<c3=FF0000,000000>* {1} left.\\C[0]", nbNeeded.to_s))
   else
     Kernel.pbMessage(_INTL("The Odd Keystone appears to be moving on its own."))
     Kernel.pbMessage(_INTL("It seems as if some poweful energy is trying to escape from it."))

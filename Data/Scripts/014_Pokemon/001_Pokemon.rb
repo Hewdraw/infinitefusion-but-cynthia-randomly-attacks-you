@@ -1809,7 +1809,7 @@ class Pokemon
         @extraabilities.push(mega.abilities[0])
       end
     end
-    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI]) && $PokemonGlobal.ancestralgeneability
+    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
       @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
     if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
