@@ -477,6 +477,7 @@ ItemHandlers::UseFromBag.add(:ODDKEYSTONE, proc { |item|
   nbSpirits = pbGet(VAR_ODDKEYSTONE_NB)
   if nbSpirits < TOTAL_SPIRITS_NEEDED
     nbNeeded = TOTAL_SPIRITS_NEEDED - nbSpirits
+    pbBGMPlay("IKnowWhatYouAre")
     Kernel.pbMessage(_INTL("<c3=FF0000,000000>* {1} left.\\C[0]", nbNeeded.to_s))
   else
     Kernel.pbMessage(_INTL("The Odd Keystone appears to be moving on its own."))

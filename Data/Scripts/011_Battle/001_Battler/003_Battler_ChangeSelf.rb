@@ -328,7 +328,7 @@ class PokeBattle_Battler
   end
 
   def updateSpirits()
-    if $PokemonBag.pbQuantity(:ODDKEYSTONE)>=1 && @pokemon.hasType?(:GHOST)
+    if $PokemonBag.pbQuantity(:ODDKEYSTONE)>=1
       nbSpirits = pbGet(VAR_ODDKEYSTONE_NB)
       if nbSpirits < 108
         pbSet(VAR_ODDKEYSTONE_NB, nbSpirits+1)
