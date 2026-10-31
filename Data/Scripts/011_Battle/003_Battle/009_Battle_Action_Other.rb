@@ -188,6 +188,7 @@ class PokeBattle_Battle
     end
     battleTransForm(battler, (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym)
     battler.pokemon.unteraTypes = types
+    @scene.pbRefreshOne(idxBattler)
     pbCommonAnimation("MegaEvolution2",battler)
     battler.pbEffectsOnSwitchIn if [:OGERPONGRASS, :OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(battler.pokemon.species)
     @battleAI.pbDefaultChooseEnemyCommand(idxBattler)

@@ -331,7 +331,7 @@ class PokemonDataBox < SpriteWrapper
     extraicons.push("icon_tera") if @battler.isTerastallized?
     extraicons.push("icon_affection") if @battler.pokemon.affection || @battler.hasActiveEmera?(:SYNCSTONEULTIMATE)
     extraicons.each_with_index do |icon, i|
-      imagePos.push(["Graphics/Pictures/Battle/#{icon}", type_icons_x_position, extraiconposition + (21 * i)])
+      imagePos.push(["Graphics/Pictures/Battle/#{icon}", type_icons_x_position + (21 * i), extraiconposition])
     end
   end
 
