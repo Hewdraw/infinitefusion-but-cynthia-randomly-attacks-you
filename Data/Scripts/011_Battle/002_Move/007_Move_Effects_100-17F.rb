@@ -2572,7 +2572,7 @@ class PokeBattle_Move_176 < PokeBattle_Move
 end
 
 class PokeBattle_Move_177 < PokeBattle_Move
-  def pbCalcType(user)
+  def pbBaseType(user)
     if user.isTerastallized?
       return pbHiddenPower(user,user.pokemon.hiddenPowerType)[0]
     end
