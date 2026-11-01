@@ -6826,7 +6826,7 @@ class PokeBattle_Move_398 < PokeBattle_Move
     user.effects[PBEffects::LockOn]    = 2
     user.effects[PBEffects::LockOnPos] = target.index
     @battle.pbDisplay(_INTL("{1} took aim at {2}!",user.pbThis,target.pbThis(true)))
-    if target.airborne || target.inTwoTurnAttack("0C9", "0CC")
+    if target.airborne? || target.inTwoTurnAttack("0C9", "0CC")
       target.effects[PBEffects::SmackDown] = true
       if target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
         target.effects[PBEffects::TwoTurnAttack] = nil
@@ -7508,7 +7508,7 @@ class PokeBattle_Move_428 < PokeBattle_BurnMove
 end
 
 class PokeBattle_Move_429 < PokeBattle_Move
-  def pbBaseType(user)
+  def pbCalcType(user)
     types = [:NORMAL, :FIGHTING, :FLYING, :POISON, :GROUND, :ROCK, :BUG, :GHOST, :STEEL, :QMARKS, :FIRE, :WATER, :GRASS, :ELECTRIC, :PSYCHIC, :ICE, :DRAGON, :DARK, :FAIRY, :SOUND, :GUN]
     return types.sample
   end
