@@ -266,7 +266,7 @@ class PokeBattle_Battle
       pbShowAbilitySplash(playerside[0])
       pbDisplay(_INTL("Your Pokemon are surrounded by a veil of water!"))
       playerside.each do |battler|
-        applyEffect(user, user, :AquaRing, true, {:nomessage => true})
+        applyEffect(battler, battler, :AquaRing, true, {:nomessage => true})
       end
       pbHideAbilitySplash(playerside[0])
     end
