@@ -248,47 +248,17 @@ class PokemonLooplet_Scene
         Graphics.update
         Input.update
         pbUpdate
-        if itemwindow.sorting && itemwindow.index>=thispocket.length
-          itemwindow.index = (oldindex==thispocket.length-1) ? 0 : thispocket.length-1
-        end
         if itemwindow.index!=oldindex
-          # Move the item being switched
-          if itemwindow.sorting
-            thispocket.insert(itemwindow.index,thispocket.delete_at(oldindex))
-          end
           # Update selected item for current pocket
           @bag.setChoice(itemwindow.index)
           pbRefresh
         end
-        if itemwindow.sorting
-          if Input.trigger?(Input::ACTION) ||
-             Input.trigger?(Input::USE)
-            itemwindow.sorting = false
-            pbPlayDecisionSE
-            pbRefresh
-          elsif Input.trigger?(Input::BACK)
-            thispocket.insert(swapinitialpos,thispocket.delete_at(itemwindow.index))
-            itemwindow.index = swapinitialpos
-            itemwindow.sorting = false
-            pbPlayCancelSE
-            pbRefresh
-          end
-        else
-          if Input.trigger?(Input::ACTION)   # Start switching the selected item
-            if thispocket.length>1 && itemwindow.index<thispocket.length &&
-               !Settings::BAG_POCKET_AUTO_SORT[itemwindow.pocket]
-              itemwindow.sorting = true
-              swapinitialpos = itemwindow.index
-              pbPlayDecisionSE
-              pbRefresh
-            end
-          elsif Input.trigger?(Input::BACK)   # Cancel the item screen
-            pbPlayCloseMenuSE
-            return nil
-          elsif Input.trigger?(Input::USE)   # Choose selected item
-            (itemwindow.item) ? pbPlayDecisionSE : pbPlayCloseMenuSE
-            return itemwindow.item
-          end
+        if Input.trigger?(Input::BACK)   # Cancel the item screen
+          pbPlayCloseMenuSE
+          return nil
+        elsif Input.trigger?(Input::USE)   # Choose selected item
+          (itemwindow.item) ? pbPlayDecisionSE : pbPlayCloseMenuSE
+          return itemwindow.item
         end
       end
     }
