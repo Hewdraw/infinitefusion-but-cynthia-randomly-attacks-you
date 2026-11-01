@@ -6490,7 +6490,7 @@ class PokeBattle_Move_382 < PokeBattle_Move
     @battle.pbDisplay(_INTL("The board got cleaved in half."))
     @battle.pbDisplay(_INTL("All effects disappeared from the battlefield."))
     @battle.field.terrain = :None
-    @battle.field.terrain = :None
+    @battle.field.weather = :None
     user.pbOwnSide.effects.each do |effect|
       if effect.is_a?(Integer)
         effect = 0

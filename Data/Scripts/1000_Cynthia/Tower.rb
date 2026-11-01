@@ -165,6 +165,7 @@ def quicksaveTower()
         :triplefusions => $PokemonGlobal.triplefusions,
         :pokemonstorage => $PokemonStorage,
         :bag => $PokemonBag.pockets.map(&:dup)
+        :party => $Trainer.party
     }
     $Trainer.money = $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
@@ -204,6 +205,7 @@ def continueTower()
     $Trainer.money = $PokemonGlobal.towervalues[:extrainfo][:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:extrainfo][:triplefusions]
     $PokemonStorage = $PokemonGlobal.towervalues[:extrainfo][:pokemonstorage]
+    $Trainer.party = $PokemonGlobal.towervalues[:extrainfo][:party]
     $PokemonGlobal.partner = nil
     pbMapInterpreter.pbSetSelfSwitch(2, "A", true, 32)
     $game_temp.player_new_map_id = 21
