@@ -413,9 +413,7 @@ class FightMenuDisplay < BattleMenuBase
         end
         @visibility["button_#{i}"] = true
         button.src_rect.x = (i==@index) ? @buttonBitmap.width/2 : 0
-        movetype = moves[i].type
-        movetype = @battler.pokemon.battlevariables[:dubiousdisc][i] if @battler.hasActiveItem?(:DUBIOUSDISC) && @battler.pokemon.battlevariables[:dubiousdisc]
-        movetype = pbHiddenPower(@battler,@battler.pokemon.hiddenPowerType)[0] if moves[i].function == "090"
+        movetype = moves[i].pbBaseType(@battler)
         button.src_rect.y = GameData::Type.get(movetype).id_number * BUTTON_HEIGHT
         button.z          = self.z + ((i==@index) ? 4 : 3)
       end
@@ -432,14 +430,7 @@ class FightMenuDisplay < BattleMenuBase
     end
     @visibility["typeIcon"] = true
     # Type icon
-    moveType = move.type
-    if @battler.hasActiveItem?(:DUBIOUSDISC) && @battler.pokemon.battlevariables[:dubiousdisc]
-      @battler.moves.each_with_index do |battlermove, i|
-        next if move.id != battlermove.id
-        moveType = @battler.pokemon.battlevariables[:dubiousdisc][i]
-      end
-    end
-    moveType = pbHiddenPower(@battler,@battler.pokemon.hiddenPowerType)[0] if move.function == "090"
+    moveType = move.pbBaseType(@battler)
     type_number = GameData::Type.get(moveType).id_number
     @typeIcon.src_rect.y = type_number * TYPE_ICON_HEIGHT
     # PP text

@@ -15,6 +15,9 @@ class PokeBattle_Move
     if ret && user.abilityActive?
       ret = BattleHandlers.triggerMoveBaseTypeModifierAbility(user.ability,user,self,ret)
     end
+    if ret && soundMove? && user.hasActiveItem?(:MMICROPHONE)
+      ret = :SOUND
+    end
     return ret
   end
 
@@ -30,9 +33,6 @@ class PokeBattle_Move
         ret = :ELECTRIC
         @powerBoost = false
       end
-    end
-    if ret && soundMove? && user.hasActiveItem?(:MMICROPHONE)
-      ret = :SOUND
     end
     return ret
   end
