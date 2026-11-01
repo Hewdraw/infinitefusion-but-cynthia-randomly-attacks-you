@@ -379,6 +379,9 @@ class PokeBattle_Move
         multipliers[:base_damage_multiplier] *= 3 / 2.0
       end
     end
+    if @battle.pbCheckGlobalAbility(:SWORDOFRUIN) && !target.hasActiveAbility?(:SWORDOFRUIN)
+      multipliers[:defense_multiplier] *= 0.75
+    end
     # Ability effects that alter damage
     if user.abilityActive?
       BattleHandlers.triggerDamageCalcUserAbility(user.ability,

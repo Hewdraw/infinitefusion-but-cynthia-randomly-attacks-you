@@ -2375,6 +2375,9 @@ class PokeBattle_AI
           multipliers[:base_damage_multiplier] *= 4 / 3.0
         end
       end
+      if @battle.pbCheckGlobalAbility(:SWORDOFRUIN) && !target.hasActiveAbility?(:SWORDOFRUIN)
+        multipliers[:defense_multiplier] *= 0.75
+      end
       user.getAllAbilities.each do |ability|
         if user.abilityActive?(false, ability)
           if switchin == user && ability == :SLOWSTART
