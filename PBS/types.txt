@@ -365,3 +365,11 @@ IsPsuedoType = true
 Weaknesses = FLYING,POISON,BUG,ICE,GRASS,GHOST
 Resistances = GROUND,WATER,ROCK,PSYCHIC,SOUND
 Immunities = ELECTRIC,FIGHTING,DRAGON
+#-------------------------------
+[49]
+Name = Dark/Ghost/Psychic/Dragon/Water/Normal
+InternalName = DARKGHOSTPSYCHICDRAGONWATERNORMAL
+IsPsuedoType = true
+Weaknesses = BUG,FAIRY,DARK,DRAGON,SOUND
+Resistances = POISON,STEEL
+Immunities = FIGHTING,GUN,GHOST,PSYCHIC,NORMAL,FIRE,WATER
