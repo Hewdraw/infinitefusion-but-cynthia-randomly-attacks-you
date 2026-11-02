@@ -216,6 +216,7 @@ class FusionTutorService
       compatibleMoves << :VIBRATO if canLearnMove(:UPROAR)
       compatibleMoves << :SONICBOOM if is_fusion_of([:LATIAS, :LATIOS]) || canLearnMove(:METALSOUND) || hasType(:SOUND)
       compatibleMoves << :METEORBEAM if is_fusion_of([:METAGROSS, :STARMIE, :DIANCIE, :CLEFFA, :CLEFAIRY, :CLEFABLE, :MEW, :JIRACHI, :GEODUDE, :GRAVELER, :GOLEM, :RAYQUAZA, :DEOXYS, :ARCEUS, :AERODACTYL, :IRONTHORNS, :LUNATONE, :SOLROCK, :MINIOR, :OMANYTE, :OMASTAR, :NOSEPASS, :PROBOPASS, :IRONJUGULIS, :CARBINK, :AMPHAROS])
+      compatibleMoves << :ROULETTE if canLearnMoveType(:GUN)
     end
     if includeLegendaries
       #legendary moves (only available after a certain trigger, maybe a different npc)
@@ -327,6 +328,13 @@ class FusionTutorService
     return @pokemon.compatible_with_move?(move)
   end
 
+  def canLearnMoveType(type)
+    return true if @show_full_list
+    GameData::Move.each do |move|
+      next unless move.type == type
+      return true if @pokemon.compatible_with_move?(move)
+    end
+  end
 end
 
 

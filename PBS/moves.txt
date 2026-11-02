@@ -1090,8 +1090,8 @@
 1121,WAVEYWAVE,Wavey Wave,358,90,SOUND,Physical,100,15,100,NearOther,0,bf,"a"
 1122,MISTYMIST,Misty Mist,359,90,QMARKS,Physical,100,15,100,NearOther,0,bfh,"a"
 1123,BLAMMYBLAM,Blammy Blam,360,90,GUN,Physical,0,15,100,NearOther,0,fp,"a"
-1124,FALSESURRENDER,False Surrender,000,90,GUN,Physical,0,15,100,NearOther,0,bfp,"todo"
-1125,LASTRESPECTS,Last Respects,000,90,GUN,Physical,0,15,100,NearOther,0,bfp,"todo"
+1124,FALSESURRENDER,False Surrender,000,90,DARK,Physical,0,15,100,NearOther,0,bfp,"todo"
+1125,LASTRESPECTS,Last Respects,000,90,GHOST,Physical,0,15,100,NearOther,0,bfp,"todo"
 1126,KNIFE,Knife,241,50,STEEL,Physical,100,30,0,RandomNearFoe,0,q,"Knife."
 1127,ATTACKORDERPLUS,Attack Order+,241,102,BUG,Physical,102,10,0,NearOther,0,befh,"The user calls out its underlings to pummel the target. Critical hits land more easily."
 1128,BLEAKWINDSTORM,Bleakwind Storm,363,100,FLYING,Special,80,10,30,AllNearFoes,0,befl,"a"
@@ -1185,6 +1185,7 @@
 1216,HAMMERKNUCKLE,Hammer Knuckle,430,60,FIGHTING,Physical,100,5,20,NearOther,0,abefj,"Puts both hands together and swings with all its might."
 1217,DOUBLEDUST,Double Dust,431,60,FAIRY,Physical,100,5,17,NearOther,0,abefj,"Puts both hands together and swings with all its might."
 1218,SLASHNAIL,Slash Nail,432,100,DARK,Physical,100,5,100,NearOther,0,abefq,"Tears the enemy with the giant claws on its left hand."
+1219,ROULETTE,Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 
 
 

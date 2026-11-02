@@ -66,7 +66,7 @@ EMERADICT = {
     },
     :MOSSPLUS => {
         :name => "Moss+",
-        :description => "Permanent Grassy Terrain is activated at the start of the battle. Tasty. Doubles all healing you do.",
+        :description => "Permanent Grassy Terrain is activated at the start of the battle. Doubles all healing you do. Tasty.",
         :rarity => :EVENT,
         :misccommand => "Eat"
     },
@@ -90,6 +90,7 @@ EMERADICT = {
         :name => "Invar Alloy",
         :description => "Extends Inverse Room by 3 turns. Can teach Inverse Room.",
         :rarity => :EVENT,
+        :cost => 1,
         :tutormove => :INVERSEROOM,
         :tutorcondition => -> (pokemon) {return true},
     },

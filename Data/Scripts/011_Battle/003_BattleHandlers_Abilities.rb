@@ -3356,7 +3356,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:WONDERTRADE,
     if battler.pbOwnedByPlayer? || battler.getAllAbilities.include?(gainedability)
       ability_keys = GameData::Ability::DATA.keys
       10000.times do
-        ability_id = ability_keys[battle.pbRandom(ability_keys.length)]
+        ability_id = ability_keys.sample
         next if battler.ungainableAbility?(ability_id)
         next if battler.getAllAbilities.include?(ability_id)
         gainedability = ability_id

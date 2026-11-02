@@ -1,4 +1,9 @@
 TOWER_EVENTS = {
+    :GAMECORNER => {
+        :location => "Game corner",
+        :image => "BW035",
+        :floorrequirement => 10,
+    },
     :HOTSPRING => {
         :location => "Hot Spring",
         :image => "TORKOAL",
@@ -150,6 +155,39 @@ end
 
 def resolveUnknownEvent(recursion = false)
     case $PokemonGlobal.towervalues[:activevariable]
+    when :GAMECORNER
+        Kernel.pbMessage("You approach one of the tables and the croupier offers you a special bet.") if !recursion
+        choice = pbUnknownCommands(["Moves", "Ability", "Species"], ["Randomize the moves a Pokemon has.", "Randomize the ability a Pokemon has.", "Randomize the species a Pokemon is."])
+        scene = PokemonParty_Scene.new
+        screen = PokemonPartyScreen.new(scene,$Trainer.party)
+        screen.pbStartScene(_INTL("Randomize which Pokémon?"),false)
+        chosen = screen.pbChoosePokemon
+        return resolveUnknownEvent(true) if chosen<0
+        pkmn = $Trainer.party[chosen]
+        case choice
+        when 0
+            movelist = []
+            move_keys = GameData::Move::DATA.keys
+            1000.times do
+                move_id = move_keys.sample
+                move_data = GameData::Move.get(move_id)
+                next if [:STRUGGLE, :FAKEMOVE].include?(move_data.id)
+                movelist.push(Pokemon::Move.new(move_id))
+                break if movelist.length >= 4
+            end
+            pkmn.moves = movelist
+        when 1
+            ability_keys = GameData::Ability::DATA.keys
+            ability_id = ability_keys.sample
+            gainedability = ability_id
+        when 2
+            if pkmn.isFusion?
+                species_id = "B#{rand(NB_POKEMON)+1}H#{rand(NB_POKEMON)+1}".to_sym
+            else
+                species_id = GameData::Species.get(rand(NB_POKEMON)+1).species
+            end
+            transForm(pkmn, species_id)
+        end
     when :HOTSPRING
         Kernel.pbMessage("You encounter a Torkoal heating up a spring.")
         choice = pbUnknownCommands(["Soak in the water.", "Splash the Torkoal with water.", "Gather herbs nearby."], ["You could probably rest up.", "Are you sure you want to anger it?", "You think you spot some Revival Herbs and Energy Roots."])

@@ -150,7 +150,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       movelist = []
       move_keys = GameData::Move::DATA.keys
       1000.times do
-        move_id = move_keys[rand(move_keys.length)]
+        move_id = move_keys.sample
         move_data = GameData::Move.get(move_id)
         next if [:STRUGGLE, :FAKEMOVE].include?(move_data.id)
         movelist.push(Pokemon::Move.new(move_id))

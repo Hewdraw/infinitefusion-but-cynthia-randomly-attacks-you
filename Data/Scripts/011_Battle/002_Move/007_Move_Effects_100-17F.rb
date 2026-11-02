@@ -3543,7 +3543,6 @@ class PokeBattle_Move_222 < PokeBattle_Move
   end
 end
 
-
 class PokeBattle_Move_223 < PokeBattle_Move
   def callsAnotherMove?; return true; end
 
@@ -7607,6 +7606,40 @@ class PokeBattle_Move_432 < PokeBattle_Move
       @battle.pbDisplay(_INTL("The effects of {1} prevent {2} from using certain moves!",
                               @name, target.pbThis(true))) if target.effects[PBEffects::ThroatChop] == 0
       target.effects[PBEffects::ThroatChop] = 3
+    end
+  end
+end
+
+class PokeBattle_Move_433 < PokeBattle_Move
+  def callsAnotherMove?; return true; end
+
+  def pbEffectGeneral(user)
+    metronomeMoveList = []
+    metronomecount = 1
+    metronomecount += 1 if user.hasActiveEmera?(:NOTEBLOCK)
+    metronomecount += 1 if user.hasActiveItem?(:METRONAGA)
+    user.moves.each do |move|
+      next if move.pp < 1
+      metronomecount += 1 if [:SHOOT, :SHOOTMINUS, :SHOOTPLUS, :SHOOTMINUSPLUS, :SHOOTPLUSMINUS].include?(move.id)
+      move.pp -= 1
+    end
+    move_keys = GameData::Move::DATA.keys
+    # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
+    #       a row. This is too unlikely to care about, though.
+    10000.times do
+      move_id = move_keys[@battle.pbRandom(move_keys.length)]
+      move_data = GameData::Move.get(move_id)
+      next if !move_data.type == :GUN
+      metronomeMoveList.push(move_id)
+      break if metronomeMoveList.length >= metronomecount
+    end
+    metronomeMoveList.each do |move|
+      next if user.fainted?
+      if rand(6) == 5
+        user.pbUseMoveSimple(:SHOOT, user.index)
+      else
+        user.pbUseMoveSimple(move)
+      end
     end
   end
 end
