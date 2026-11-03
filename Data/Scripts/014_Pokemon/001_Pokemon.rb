@@ -1908,7 +1908,7 @@ class Pokemon
         next if rotom.form == 0
         list.push(@rotomability)
       end
-      list.push(:LEGENDARYPRESSURE) if isFusionOf(:MEGAROTOM)
+      list.push(:LEGENDARYPRESSURE) if isFusionOf([:WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM, :MEGAROTOM])
     end
     megasource = []
     megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)

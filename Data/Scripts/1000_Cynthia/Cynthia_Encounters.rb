@@ -237,7 +237,7 @@ def pbRotomEncounter()
     pbReceiveItem(:ROTOMCATALOG)
   when 2
     $PokemonGlobal.nextBattleBGM = "VSFlopEraRemix"
-    return false if !pbDoubleTrainerBattle(:SPOKEN_FOR, "Kasane Teto", 0, nil, :FLOP_ERA, "Akita Neru")
+    return false if !pbDoubleTrainerBattle(:FLOP_ERA, "Akita Neru", 0, nil, :SPOKEN_FOR, "Kasane Teto")
     pbAddPokemon(:ROTOM, 5)
   end
   return true

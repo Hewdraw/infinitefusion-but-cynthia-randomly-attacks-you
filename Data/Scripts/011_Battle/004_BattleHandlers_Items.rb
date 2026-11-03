@@ -544,12 +544,6 @@ BattleHandlers::AccuracyCalcUserItem.add(:WIDELENS,
 
 BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
 
-BattleHandlers::AccuracyCalcUserItem.add(:ROTOMCATALOG,
-  proc { |item,user,mods,target,move,type|
-    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(user.species)
-  }
-)
-
 BattleHandlers::AccuracyCalcUserItem.add(:ZOOMLENS,
   proc { |item,user,mods,target,move,type|
     if (target.battle.choices[target.index][0]!=:UseMove &&
@@ -1154,12 +1148,6 @@ BattleHandlers::DamageCalcUserItem.copy(:DOUSEDRIVE,:BURNDRIVE,:SHOCKDRIVE,:CHIL
 BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.2 if move.soundMove?
-  }
-)
-
-BattleHandlers::DamageCalcUserItem.add(:ROTOMCATALOG,
-  proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(user.species)
   }
 )
 
