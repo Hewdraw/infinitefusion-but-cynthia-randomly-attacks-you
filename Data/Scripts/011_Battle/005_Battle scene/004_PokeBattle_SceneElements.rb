@@ -309,7 +309,14 @@ class PokemonDataBox < SpriteWrapper
     x_offset = 0
 
     types_icon_path = "Graphics/Pictures/Battle/typesSmall"
-    if type1_number == type2_number
+    if TRIPLETYPES[@battle.type1]
+      TRIPLETYPES[@battle.type1].each_with_index do |type, i|
+        type_number = GameData::Type.get(type).id_number
+        type_y_offset = type_number * iconHeight
+        imagePos.push([types_icon_path, type_icons_x_position + (21 * i), type1_icon_y_position,
+                     x_offset, type1_y_offset, -1, iconHeight])
+      end
+    elsif type1_number == type2_number
       imagePos.push([types_icon_path, type_icons_x_position, type1_icon_y_position,
                      x_offset, type1_y_offset, -1, iconHeight])
       extraiconposition = type2_icon_y_position

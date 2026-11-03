@@ -137,7 +137,7 @@ class PokeBattle_Battle
     # Mega Evolve
     if !force
       case battler.pokemon.species
-      when :RAYQUAZA   # Rayquaza
+      when :RAYQUAZA, :RAYQUAZAROTOM   # Rayquaza
         pbDisplay(_INTL("{1}'s fervent wish has reached {2}!",trainerName,battler.pbThis))
       when :CREEPER
         pbDisplay(_INTL("{1} got charged by its {2}!",
