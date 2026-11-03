@@ -236,6 +236,15 @@ def transForm(pkmn, species)
     level = pkmn.level
     pbMessage(_INTL("{1} changed form!", pkmn.name))
     pkmn.species = species
+    if species == :BIKEROTOMMIRAIDON
+        tempspecies = nil
+        tempspecies = :BIKEROTOMMIRAIDON if pkmn.ability == :HADRONENGINE
+        tempspecies = :BIKEROTOMKORAIDON if pkmn.ability == :ORICHALCUMPULSE
+        tempspecies = :BIKEROTOMCYCLIZAR if pkmn.ability == :REGENERATOR
+        if tempspecies != species
+            pkmn.species = tempspecies
+        end
+    end
     movelist = pkmn.getMoveList
     for i in movelist
         next if i[0]!=0

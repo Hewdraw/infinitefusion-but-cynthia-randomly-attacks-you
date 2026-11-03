@@ -225,7 +225,7 @@ def pbGetRotomCount()
 end
 
 def pbRotomEncounter()
-  case pbGetRotomCount()
+  case 2
   when 0
     $PokemonGlobal.nextBattleBGM = "VSRotom"
     return false if !pbLegendaryBattle("Rotom")
@@ -239,7 +239,6 @@ def pbRotomEncounter()
     $PokemonGlobal.nextBattleBGM = "VSFlopEraRemix"
     return false if !pbDoubleTrainerBattle(:SPOKEN_FOR, "Kasane Teto", 0, nil, :FLOP_ERA, "Akita Neru")
     pbAddPokemon(:ROTOM, 5)
-    pbReceiveItem(:ROTOMCATALOG)
   end
   return true
 end

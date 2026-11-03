@@ -522,7 +522,7 @@ class PokeBattle_Battler
     list = [@ability_id]
     return list if @effects[PBEffects::Transform]
     list += @extraabilities if @extraabilities
-    list += @pokemon.getAllAbilities(false)
+    list += @pokemon.getAllAbilities(false) if @pokemon
     return list.uniq
   end
 

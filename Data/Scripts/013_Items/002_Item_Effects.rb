@@ -1324,9 +1324,17 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, pkmn, scene|
   if choice >= namelist.length
     next false
   end
-  newabil = (pkmn.ability_index + 1) % 2
-  pkmn.ability_index = newabil
+  pkmn.ability_index = choice
   pkmn.ability = abilitylist[choice]
+  if [:BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR].include?(pkmn.species)
+    tempspecies = nil
+    tempspecies = :BIKEROTOMMIRAIDON if pkmn.ability == :HADRONENGINE
+    tempspecies = :BIKEROTOMKORAIDON if pkmn.ability == :ORICHALCUMPULSE
+    tempspecies = :BIKEROTOMCYCLIZAR if pkmn.ability == :REGENERATOR
+    if tempspecies != species
+      transForm(pkmn, tempspecies)
+    end
+  end
   scene.pbHardRefresh
   scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, namelist[choice]))
   pkmn.calc_stats
@@ -1347,8 +1355,6 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
-  newabil = 2
-  newabil = 0 if pkmn.hasHiddenAbility?
   namelist = []
   abilitylist.each do |ability|
     namelist.push(GameData::Ability.get(ability).name)
@@ -1358,7 +1364,16 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
     next false
   end
   pkmn.ability = abilitylist[choice]
-  pkmn.ability_index = newabil
+  pkmn.ability_index = 2
+  if [:BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR].include?(pkmn.species)
+    tempspecies = nil
+    tempspecies = :BIKEROTOMMIRAIDON if pkmn.ability == :HADRONENGINE
+    tempspecies = :BIKEROTOMKORAIDON if pkmn.ability == :ORICHALCUMPULSE
+    tempspecies = :BIKEROTOMCYCLIZAR if pkmn.ability == :REGENERATOR
+    if tempspecies != species
+      transForm(pkmn, tempspecies)
+    end
+  end
   scene.pbHardRefresh
   scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!", pkmn.name, namelist[choice]))
   pkmn.calc_stats

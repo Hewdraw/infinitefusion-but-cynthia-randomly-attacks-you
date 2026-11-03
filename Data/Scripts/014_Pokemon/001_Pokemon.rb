@@ -143,7 +143,6 @@ class Pokemon
   attr_accessor :regionalability
   attr_accessor :rotomform
   attr_accessor :rotomability
-  attr_accessor :extraabilities
   attr_accessor :abilityarray
   attr_accessor :boxicon
   attr_accessor :miststone
@@ -1732,15 +1731,6 @@ class Pokemon
         @ability = :DEFIANT
         return
       end
-    when :BIKEROTOMMIRAIDON,:BIKEROTOMKORAIDON,:BIKEROTOMCYCLIZAR
-      tempspecies = nil
-      tempspecies = :BIKEROTOMMIRAIDON if ability_id == :HADRONENGINE
-      tempspecies = :BIKEROTOMKORAIDON if ability_id == :ORICHALCUMPULSE
-      tempspecies = :BIKEROTOMCYCLIZAR if ability_id == :REGENERATOR
-      if tempspecies != @species
-        transForm(self, tempspecies)
-        return
-      end
     end
     base_stats = self.baseStats
       this_level = self.level
@@ -1778,7 +1768,6 @@ class Pokemon
     @speed = stats[:SPEED]
     @materials = [@species]
     @materials = [GameData::Species.get(getBodyIDNormalized(@species)).species, GameData::Species.get(getHeadIDNormalized(@species)).species] unless getDexNumberForSpecies(@species) >= 1000000 || getDexNumberForSpecies(@species) <= NB_POKEMON
-    @extraabilities = []
     @type1 = nil
     @type2 = nil
     setDefaultForms()
@@ -1788,7 +1777,6 @@ class Pokemon
         next if paradox.form == 0
         @type2 = paradox.type2 if i == 0
         @type1 = paradox.type1 if i == 1
-        @extraabilities += @paradoxability
       end
     end
     if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
@@ -1796,14 +1784,12 @@ class Pokemon
         next if regional.form == 0
         @type2 = regional.type2 if i == 0
         @type1 = regional.type1 if i == 1
-        @extraabilities += @regionalability
       end
     end
     if hasItem?(:ROTOMCATALOG)
       getRotomForm().each_with_index do |rotom, i|
         @type2 = rotom.type2 if i == 0
         @type1 = rotom.type1 if i == 1
-        @extraabilities += @rotomability
       end
     end
     if isSpecies?(:BIKEROTOM)
@@ -1825,11 +1811,7 @@ class Pokemon
         next if mega.form == 0
         @type2 = mega.type2 if i == 0
         @type1 = mega.type1 if i == 1
-        @extraabilities.push(mega.abilities[0])
       end
-    end
-    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
-      @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
     if hasItem?(:GUNDRIVE)
       if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])
@@ -1889,7 +1871,7 @@ class Pokemon
         end
       end
     end
-    list += [:QUARKDRIVE, :DRIZZLE, :REFRIGERATE, :WELLBAKEDBODY, :EELEVATE, :GRASSYSURGE, :STATIC] if list.include?(:ASONEROTOM) || ability_id = :ASONEROTOM
+    list += [:QUARKDRIVE, :DRIZZLE, :REFRIGERATE, :WELLBAKEDBODY, :EELEVATE, :GRASSYSURGE, :STATIC] if list.include?(:ASONEROTOM) || ability_id == :ASONEROTOM
     list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
     list += [:BATTLEARMOR, :BERSERK] if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
@@ -1909,6 +1891,38 @@ class Pokemon
     list.push(:STURDY) if hasActiveEmera?(:INDIEPROOF)
     list.push(:THEWORLD) if hasActiveEmera?(:LUNARDIAL)
     list += [:CUDCHEW, :CHEEKPOUCH, :GLUTTONY] if hasActiveEmera?(:YINYANGORB)
+    if hasItem?(:MODIFIEDBOOSTERENERGY)
+      getParadoxForm().each_with_index do |paradox, i|
+        next if paradox.form == 0
+        list.push(@paradoxability)
+      end
+    end
+    if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
+      getRegionalForm().each_with_index do |regional, i|
+        next if regional.form == 0
+        list.push(@regionalability)
+      end
+    end
+    if hasItem?(:ROTOMCATALOG)
+      getRotomForm().each_with_index do |rotom, i|
+        next if rotom.form == 0
+        list.push(@rotomability)
+      end
+      list.push(:LEGENDARYPRESSURE) if isFusionOf(:MEGAROTOM)
+    end
+    megasource = []
+    megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)
+    megasource.push(:EON) if list.include?(:EON) || ability_id == :EON
+    megasource.push(:MEGASHARD) if hasItem?(:MEGASHARD)
+    if megasource.length > 0
+      getMegaShardForm(megasource).each_with_index do |mega, i|
+        next if mega.form == 0
+        list.push(mega.abilities[0])
+      end
+    end
+    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
+      list.push($PokemonGlobal.ancestralgeneability)
+    end
     return list
   end
 
@@ -2071,39 +2085,6 @@ class Pokemon
       },
     }
     retlist = []
-
-    if hasItem?(:MODIFIEDBOOSTERENERGY)
-      getParadoxForm().each_with_index do |paradox, i|
-        next if paradox.form == 0
-        retlist.push(@paradoxability)
-      end
-    end
-    if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
-      getRegionalForm().each_with_index do |regional, i|
-        next if regional.form == 0
-        retlist.push(@regionalability)
-      end
-    end
-    if hasItem?(:ROTOMCATALOG)
-      getRotomForm().each_with_index do |rotom, i|
-        retlist.push(@rotomability)
-      end
-      retlist.push(:LEGENDARYPRESSURE) if isFusionOf(:MEGAROTOM)
-    end
-    megasource = []
-    megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)
-    megasource.push(:EON) if hasAbility?(:EON)
-    megasource.push(:MEGASHARD) if hasItem?(:MEGASHARD)
-    if megasource.length > 0
-      getMegaShardForm(megasource).each_with_index do |mega, i|
-        next if mega.form == 0
-        retlistpush(mega.abilities[0])
-      end
-    end
-    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
-      retlistpush($PokemonGlobal.ancestralgeneability)
-    end
-    
     return retlist if !itemabilities[@item]
     itemabilities[@item].each do |ability, function|
       retlist.push(ability) if function.call()

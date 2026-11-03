@@ -9,7 +9,7 @@ class PokeBattle_Battler
     @battle.pbPrimalReversion(@index) if !fainted?
     # Ending primordial weather, checking Trace
     pbContinualAbilityChecks(true)
-    if [:WASHROTOM, :WASHROTOMKYOGRE].include?(self.species) && switchIn
+    if [:WASHROTOM, :WASHROTOMKYOGRE, :HGOODRAWASHROTOM].include?(self.species) && switchIn
       if $PokemonBag.pbDeleteItem(:SINNOHCOIN, 1)
         @battle.pbDisplay(_INTL("{1} has taken a Sinnoh Coin", self.pbThis))
       elsif pbOwnedByPlayer?
