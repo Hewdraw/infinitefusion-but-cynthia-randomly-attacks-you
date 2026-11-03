@@ -483,6 +483,7 @@ ItemHandlers::UseFromBag.add(:ODDKEYSTONE, proc { |item|
     Kernel.pbMessage(_INTL("The Odd Keystone appears to be moving on its own."))
     Kernel.pbMessage(_INTL("It seems as if some poweful energy is trying to escape from it."))
     if (Kernel.pbMessage(_INTL("Let it out?"), [_INTL("No"), _INTL("Yes")], 0)) == 1
+      $PokemonGlobal.spiritomb = true
       pbWildBattle(:SPIRITOMB, 27)
       pbSet(VAR_ODDKEYSTONE_NB, 0)
     end

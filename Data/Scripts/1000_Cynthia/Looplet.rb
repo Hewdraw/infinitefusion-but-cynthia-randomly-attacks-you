@@ -342,6 +342,18 @@ class PokemonLoopletScreen
         next
       elsif cmdMisc >= 0 && command == cmdMisc
         case item
+        when :DEVILSKNIFE
+          if isDarkWorld()
+            pbMessage("You stab the Devilsknife down towards the floor.")
+            pbMessage("A laugh resounds as you realize you tried to stab with a Scythe")
+          end
+          pbMessage("The Devilsknife Emera is stuck in the Looplet and you can't seem to get it out.")
+        when :KNIFE
+          if isDarkWorld()
+            pbMessage("You stab the Knife down towards the floor.")
+            pbMessage("Yet somehow time seems to revert to before you did so.")
+          end
+          pbMessage("The Knife Emera is stuck in the Looplet and you can't seem to get it out.")
         when :MOSS, :MOSSPLUS
           Kernel.pbMessage("You ate the Moss.")
           $Trainer.party.each do |pkmn|

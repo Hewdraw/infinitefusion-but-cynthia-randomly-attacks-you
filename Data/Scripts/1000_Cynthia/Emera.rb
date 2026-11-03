@@ -540,6 +540,7 @@ EMERADICT = {
         :altdescription => "Your Pokemon gain the Pickpocket Ability. Skeletons dislike it. Makes your Knives STAB harder.",
         :altdescriptioncondition => -> () {return hasEmera?(:LUNARDIAL)},
         :rarity => :RARE,
+        :misccommand => "Use"
     },
     # :MACE => {
     #     :name => "Mace",
@@ -837,6 +838,7 @@ EMERADICT = {
         :rarity => :MYTHICAL,
         :tutormove => :SCYTHEMARE,
         :tutorcondition => -> (pokemon) {return true},
+        :misccommand => "Use"
     },
 }
 

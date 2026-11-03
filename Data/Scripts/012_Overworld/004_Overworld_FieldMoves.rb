@@ -773,6 +773,20 @@ HiddenMoveHandlers::UseMove.add(:TRIPLEBAKA, proc { |move, pokemon|
   end
 })
 
+HiddenMoveHandlers::CanUseMove.add(:KNIFE, proc { |move, pokemon, showmsg|
+  next true
+})
+
+HiddenMoveHandlers::CanUseMove.copy(:KNIFE, :KNIFEPLUS)
+
+HiddenMoveHandlers::UseMove.add(:KNIFE, proc { |move, pokemon|
+  pbMessage(_INTL("{1} threw out a {2}!", pokemon.name, GameData::Move.get(move).name))
+  pbMessage("It doesn't seem to comprehend instructions to do something other than throwing it.")
+})
+
+HiddenMoveHandlers::UseMove.copy(:KNIFE, :KNIFEPLUS)
+
+
 #===============================================================================
 # Rock Smash
 #===============================================================================

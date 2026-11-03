@@ -25,6 +25,7 @@ class PokemonBag
     @registeredItems = []
     @registeredIndex = [0, 0, 1]
     pbStoreItem(:COCONUT) if GameData::Item.exists?(:COCONUT)
+    pbStoreItem(:ENTERCARDS) if GameData::Item.exists?(:ENTERCARDS)
   end
 
   def rearrange

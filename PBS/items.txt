@@ -929,7 +929,7 @@
 938,PREMIERSPLICERS,Premier Splicers,Premier Splicers,8,300,"A splicer that fuses the DNA of any two Pokemon into a single entirely new Pokemon.",5,0,6
 939,GARCHOMPITEPLUS,Garchompite+,Garchompite+s,1,0,"a",0,0,0
 940,HIGHHEALS,High Heals,High Heals,8,0,"a",2,0,6
-
+941,ENTERCARDS,Entercards,Entercards,8,0,"Utilize the power of ley lines to open a Magnagate to Temporal Tower from the Menu.",0,0,0
 
 
 

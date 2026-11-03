@@ -369,6 +369,12 @@ class PokemonPokedexInfo_Scene
       entryText = "The Final, Yet not the End."
     when :MILLENNIUM
       entryText = "01110000 01110010 01101111 01100011 01100101 01100101 01100100"
+    when :SPIRITOMB
+      if $PokemonGlobal.spiritomb
+        entryText = "Waste of Souls."
+        baseColor = Color.new(255, 0, 0)
+        shadow = Color.new(0, 0, 0)
+      end
     end
 
     max_chars_per_page = 150
