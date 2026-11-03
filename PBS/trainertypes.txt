@@ -164,3 +164,5 @@
 161,Skeleton_Non_Dev,Skeleton Non Dev?,200,,,,Male,100,
 162,EXODIA,The Forbidden One,0,,,,Mixed,100,
 163,DarkSkeleton_Dev,Skeleton Dev,200,,,,Female,100,
+164,SPOKEN_FOR,Spoken For,70,,,,Female,100,
+165,FLOP_ERA,Flop Era,70,,,,Female,100,

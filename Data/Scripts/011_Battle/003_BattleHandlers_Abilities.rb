@@ -35,7 +35,6 @@ BattleHandlers::SpeedCalcAbility.add(:PROTOSYNTHESIS,
   }
 )
 
-
 BattleHandlers::SpeedCalcAbility.add(:QUARKDRIVE,
   proc { |ability,battler,mult|
     next mult*1.5 if battler.effects[PBEffects::QuarkDrive] % 10 == 5
@@ -1465,6 +1464,15 @@ BattleHandlers::DamageCalcUserAbility.add(:ORICHALCUMPULSE,
 )
 
 BattleHandlers::DamageCalcUserAbility.copy(:ORICHALCUMPULSE, :TIMEFLOWSOVERHISUI)
+
+BattleHandlers::DamageCalcUserAbility.add(:ORICHALCUMPULSE,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    if move.physicalMove? && [:Electric].include?(user.battle.terrain)
+      mults[:attack_multiplier] *= 1.3
+    end
+  }
+)
+
 
 BattleHandlers::DamageCalcUserAbility.add(:SNIPER,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -3593,15 +3601,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
   }
 )
-
-BattleHandlers::AbilityOnSwitchIn.add(:ELECTRICSURGE,
-  proc { |ability,battler,battle|
-    next if battle.field.terrain == :Electric
-    battle.pbShowAbilitySplash(battler)
-    battle.pbStartTerrain(battler, :Electric, false)
-    # NOTE: The ability splash is hidden again in def pbStartTerrain.
-  }
-)
+BattleHandlers::AbilityOnSwitchIn.copy(:ELECTRICSURGE, :HADRONENGINE)
 
 BattleHandlers::AbilityOnSwitchIn.add(:EON,
   proc { |ability,battler,battle|
@@ -3771,6 +3771,31 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
     battle.pbShowAbilitySplash(battler)
     battle.pbStartTerrain(battler, :Grassy, false)
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:GRAVITATIONALPULL,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.applyEffect(user, @battle.field, :Gravity, 5)
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:DYNAMOPRH,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battler.pokemon.dynamax = true
+    battle.pbDynamax(battler.index)
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:ASONEROTOM,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay("#{battler.pbThis} has multiple abilities!")
+    battle.pbHideAbilitySplash(battler)
   }
 )
 

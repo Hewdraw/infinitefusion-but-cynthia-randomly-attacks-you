@@ -546,7 +546,7 @@ BattleHandlers::AccuracyCalcUserItem.copy(:WIDELENS,:UPGRADE)
 
 BattleHandlers::AccuracyCalcUserItem.add(:ROTOMCATALOG,
   proc { |item,user,mods,target,move,type|
-    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
+    mods[:accuracy_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(user.species)
   }
 )
 
@@ -1145,7 +1145,7 @@ BattleHandlers::DamageCalcUserItem.add(:CORNERSTONEMASK,
 BattleHandlers::DamageCalcUserItem.add(:DOUSEDRIVE,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf(:GENESECT)
-    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
+    mults[:base_damage_multiplier] *= 1.2 if user.isFusionOf([:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])
   }
 )
 
@@ -1159,7 +1159,7 @@ BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
 
 BattleHandlers::DamageCalcUserItem.add(:ROTOMCATALOG,
   proc { |item,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(user.species)
+    mults[:base_damage_multiplier] *= 1.2 if [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(user.species)
   }
 )
 

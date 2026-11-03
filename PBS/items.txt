@@ -930,6 +930,8 @@
 939,GARCHOMPITEPLUS,Garchompite+,Garchompite+s,1,0,"a",0,0,0
 940,HIGHHEALS,High Heals,High Heals,8,0,"a",2,0,6
 941,ENTERCARDS,Entercards,Entercards,8,0,"Utilize the power of ley lines to open a Magnagate to Temporal Tower from the Menu.",0,0,0
+942,AGGRONITE,Aggronite,Aggronites,1,0,"a",0,0,0
+943,GUNDRIVE,Gun Drive,Gun Drives,1,1000,"a",0,0,0
 
 
 

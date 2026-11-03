@@ -442,7 +442,7 @@ class PokeBattle_Battler
       return true if hasActiveItem?(:SOFTSAND) && isFusionOf?([:CACNEA, :CACTURNE])
     when :BUG
     when :GHOST
-      return true if hasActiveItem?(:ROTOMCATALOG) && [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(@species)
+      return true if hasActiveItem?(:ROTOMCATALOG) && [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM, :MEGAROTOM].include?(@species)
     when :STEEL
       return true if hasActiveItem?([:MILLENNIUMCOMETSHARD, :PUREINCENSE])
     when :FIRE
@@ -522,7 +522,7 @@ class PokeBattle_Battler
     list = [@ability_id]
     return list if @effects[PBEffects::Transform]
     list += @extraabilities if @extraabilities
-    list += @pokemon.getAllAbilities(false) if @pokemon
+    list += @pokemon.getAllAbilities(false)
     return list.uniq
   end
 

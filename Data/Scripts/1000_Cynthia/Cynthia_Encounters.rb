@@ -236,8 +236,10 @@ def pbRotomEncounter()
     pbAddPokemon(:ROTOM, 5)
     pbReceiveItem(:ROTOMCATALOG)
   when 2
-    Kernel.pbMessage("todo")
-    return false
+    $PokemonGlobal.nextBattleBGM = "VSFlopEraRemix"
+    return false if !pbDoubleTrainerBattle(:SPOKEN_FOR, "Kasane Teto", 0, nil, :FLOP_ERA, "Akita Neru")
+    pbAddPokemon(:ROTOM, 5)
+    pbReceiveItem(:ROTOMCATALOG)
   end
   return true
 end

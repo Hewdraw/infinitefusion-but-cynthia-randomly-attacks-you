@@ -601,6 +601,7 @@ def towerEvent()
                 $PokemonBag.pbStoreItem(:SHOCKDRIVE)
                 $PokemonBag.pbStoreItem(:DOUSEDRIVE)
                 $PokemonBag.pbStoreItem(:CHILLDRIVE)
+                $PokemonBag.pbStoreItem(:GUNDRIVE)
             end
         when "Reshirom"
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])

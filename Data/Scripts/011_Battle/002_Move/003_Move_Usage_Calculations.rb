@@ -247,7 +247,7 @@ class PokeBattle_Move
       c = BattleHandlers.triggerCriticalCalcUserItem(user.item,user,target,c)
     end
     c += 1 if c >= 0 && user.hasActiveItem?(:REAPERCLOTH) && punchingMove?
-    c += 1 if c >= 0 && user.hasActiveItem?(:GUNDRIVE) && [:TECHNOBLAST, :TECHNOBLASTPLUS].include?(@id) && user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
+    c += 1 if c >= 0 && user.hasActiveItem?(:GUNDRIVE) && [:TECHNOBLAST, :TECHNOBLASTPLUS].include?(@id) && user.isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])
     if c>=0 && target.itemActive?
       c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,target,user,c)
     end

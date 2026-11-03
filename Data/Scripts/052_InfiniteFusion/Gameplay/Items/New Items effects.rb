@@ -1293,7 +1293,7 @@ ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.copy(:ICESPHERE, :FIRESPHERE, :LIGHTNINGSPHERE)
 
 ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
-  next false if ![:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(pkmn.species)
+  next false if ![:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(pkmn.species)
   formlist = []
   namelist = []
   pkmn.getFormList("Rotom")[0].each do |rotom|
@@ -1305,7 +1305,7 @@ ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn, scene|
   next false if namelist.length == 0
   commandtext = _INTL("Select Rotom Form")
   command = scene.pbShowCommands(commandtext, namelist)
-  transForm(pkmn, [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM][formlist[command]])
+  transForm(pkmn, [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :PHONEROTOM][formlist[command]])
   next false
 })
 

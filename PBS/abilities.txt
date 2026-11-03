@@ -408,3 +408,7 @@
 722,DARKMATTER,Dark Matter,"todo"
 723,SUPERSHADOW,Super Shadow,"todo"
 724,SWORDOFRUIN,Sword of Ruin,"a"
+725,HADRONENGINE,Hadron Engine,"a"
+726,GRAVITATIONALPULL,Gravitational Pull,"a"
+727,DYNAMORPH,Dynamorph,"a"
+728,ASONEROTOM,As One,"a"

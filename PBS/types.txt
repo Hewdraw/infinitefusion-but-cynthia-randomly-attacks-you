@@ -373,3 +373,11 @@ IsPsuedoType = true
 Weaknesses = BUG,FAIRY,DARK,DRAGON,SOUND
 Resistances = POISON,STEEL
 Immunities = FIGHTING,GUN,GHOST,PSYCHIC,NORMAL,FIRE,WATER
+#-------------------------------
+[50]
+Name = Electric/Water/Fire/Ice/Flying/Grass/Sound/Dragon/Fighting/Normal/Psychic/Gun
+InternalName = ELECTRICWATERFIREICEFLYINGGRASSSOUNDDRAGONFIGHTINGNORMALPSYCHICGUN
+IsPsuedoType = true
+Weaknesses = FLYING,GUN,ROCK
+Resistances = BUG,FAIRY,SOUND
+Immunities = GROUND,STEEL,GRASS,FIRE,WATER,FIGHTING,GHOST,QMARKS

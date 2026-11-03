@@ -661,25 +661,6 @@ class PokeBattle_Move_118 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     @battle.applyEffect(user, @battle.field, :Gravity, 5)
-    @battle.pbDisplay(_INTL("Gravity intensified!"))
-    @battle.eachBattler do |b|
-      showMessage = false
-      if b.inTwoTurnAttack?("0C9", "0CC", "0CE") # Fly/Bounce/Sky Drop
-        b.effects[PBEffects::TwoTurnAttack] = nil
-        @battle.pbClearChoice(b.index) if !b.movedThisRound?
-        showMessage = true
-      end
-      if b.effects[PBEffects::MagnetRise] > 0 ||
-        b.effects[PBEffects::Telekinesis] > 0 ||
-        b.effects[PBEffects::SkyDrop] >= 0
-        b.effects[PBEffects::MagnetRise] = 0
-        b.effects[PBEffects::Telekinesis] = 0
-        b.effects[PBEffects::SkyDrop] = -1
-        showMessage = true
-      end
-      @battle.pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!",
-                              b.pbThis)) if showMessage
-    end
   end
 end
 
@@ -6820,37 +6801,6 @@ class PokeBattle_Move_398 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_398 < PokeBattle_Move
-  def pbEffectAgainstTarget(user,target)
-    user.effects[PBEffects::LockOn]    = 2
-    user.effects[PBEffects::LockOnPos] = target.index
-    @battle.pbDisplay(_INTL("{1} took aim at {2}!",user.pbThis,target.pbThis(true)))
-    if target.airborne? || target.inTwoTurnAttack("0C9", "0CC")
-      target.effects[PBEffects::SmackDown] = true
-      if target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
-        target.effects[PBEffects::TwoTurnAttack] = nil
-        @battle.pbClearChoice(target.index) if !target.movedThisRound?
-      end
-      target.effects[PBEffects::MagnetRise] = 0
-      target.effects[PBEffects::Telekinesis] = 0
-      @battle.pbDisplay(_INTL("{1} fell straight down!", target.pbThis))
-    end
-    chance = pbAdditionalEffectChance(user, target, 40)
-    chance2 = pbAdditionalEffectChance(user, target, 40)
-    chance3 = pbAdditionalEffectChance(user, target, 40)
-    return if chance == 0 && chance2 == 0
-    if @battle.pbRandom(100, user, target) < chance
-      target.pbLowerStatStage(:DEFENSE,2,user) if target.pbCanLowerStatStage?(:DEFENSE,user,self)
-    end
-    if @battle.pbRandom(100, user, target) < chance
-      target.pbLowerStatStage(:SPEED,2,user) if target.pbCanLowerStatStage?(:SPEED,user,self)
-    end
-    if @battle.pbRandom(100, user, target) < chance2
-      target.pbParalyze(user) if target.pbCanParalyze?(user, true)
-    end
-  end
-end
-
 class PokeBattle_Move_399 < PokeBattle_StatUpMove
   def initialize(battle, move)
     super
@@ -7640,6 +7590,37 @@ class PokeBattle_Move_433 < PokeBattle_Move
       else
         user.pbUseMoveSimple(move)
       end
+    end
+  end
+end
+
+class PokeBattle_Move_434 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    user.effects[PBEffects::LockOn]    = 2
+    user.effects[PBEffects::LockOnPos] = target.index
+    @battle.pbDisplay(_INTL("{1} took aim at {2}!",user.pbThis,target.pbThis(true)))
+    if target.airborne? || target.inTwoTurnAttack("0C9", "0CC")
+      target.effects[PBEffects::SmackDown] = true
+      if target.inTwoTurnAttack?("0C9", "0CC") # Fly/Bounce. NOTE: Not Sky Drop.
+        target.effects[PBEffects::TwoTurnAttack] = nil
+        @battle.pbClearChoice(target.index) if !target.movedThisRound?
+      end
+      target.effects[PBEffects::MagnetRise] = 0
+      target.effects[PBEffects::Telekinesis] = 0
+      @battle.pbDisplay(_INTL("{1} fell straight down!", target.pbThis))
+    end
+    chance = pbAdditionalEffectChance(user, target, 40)
+    chance2 = pbAdditionalEffectChance(user, target, 40)
+    chance3 = pbAdditionalEffectChance(user, target, 40)
+    return if chance == 0 && chance2 == 0
+    if @battle.pbRandom(100, user, target) < chance
+      target.pbLowerStatStage(:DEFENSE,2,user) if target.pbCanLowerStatStage?(:DEFENSE,user,self)
+    end
+    if @battle.pbRandom(100, user, target) < chance2
+      target.pbLowerStatStage(:SPEED,2,user) if target.pbCanLowerStatStage?(:SPEED,user,self)
+    end
+    if @battle.pbRandom(100, user, target) < chance3
+      target.pbParalyze(user) if target.pbCanParalyze?(user, true)
     end
   end
 end

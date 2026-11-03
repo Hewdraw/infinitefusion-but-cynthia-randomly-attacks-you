@@ -1617,6 +1617,30 @@ BaseStats = 86,50,135,110,144,135
 Abilities = LEVITATE,QUARKDRIVE
 HiddenAbility = VOCALIZE
 #-------------------------------
+[ROTOM,7]
+FormName = Bike
+Type1 = ELECTRIC
+Type2 = DRAGON
+BaseStats = 86,50,135,110,144,135
+Abilities = HADRONENGINE,ORICHALCUMPULSE
+HiddenAbility = REGENERATOR
+#-------------------------------
+[ROTOM,8]
+FormName = Phone
+Type1 = ELECTRIC
+Type2 = PSYCHIC
+BaseStats = 86,50,135,110,144,135
+Abilities = HEATPROOF,TRACE
+HiddenAbility = TINTEDLENS
+#-------------------------------
+[ROTOM,9]
+FormName = Drone
+Type1 = ELECTRIC
+Type2 = GUN
+BaseStats = 86,50,135,110,144,135
+Abilities = LEVITATE,INFILTRATOR
+HiddenAbility = SPEEDBOOST
+#-------------------------------
 # Megas
 #-------------------------------
 [VENUSAUR,1]
@@ -2430,6 +2454,22 @@ HiddenAbility = HUGEPOWER
 FormName = Flophox
 MegaStone = FLOPHOXITE
 UnMegaForm = DELPHOXFLOETTEETERNAL
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+#-------------------------------
+[AGGRONHEATROTOM,1]
+FormName = Rogron
+MegaStone = AGGRONITE
+UnMegaForm = AGGRONHEATROTOM
+BaseStats = 50,105,125,50,55,95
+Abilities = HUGEPOWER
+HiddenAbility = HUGEPOWER
+#-------------------------------
+[RAYQUAZAROTOM,1]
+FormName = Roleki
+MegaMove = DRAGONASCENT
+UnMegaForm = RAYQUAZAROTOM
 BaseStats = 50,105,125,50,55,95
 Abilities = HUGEPOWER
 HiddenAbility = HUGEPOWER

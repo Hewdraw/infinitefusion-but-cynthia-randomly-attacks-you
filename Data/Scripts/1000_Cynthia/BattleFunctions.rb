@@ -19,6 +19,23 @@ class PokeBattle_Battle
             end
         when :Curse
             pbDisplay(_INTL("{1} laid a curse on {2}!", user.pbThis, target.pbThis(true))) if !args[:nomessage]
+        when :Gravity
+            pbDisplay(_INTL("Gravity intensified!"))
+            eachBattler do |b|
+                showMessage = false
+                if b.inTwoTurnAttack?("0C9", "0CC", "0CE") # Fly/Bounce/Sky Drop
+                    b.effects[PBEffects::TwoTurnAttack] = nil
+                    pbClearChoice(b.index) if !b.movedThisRound?
+                    showMessage = true
+                end
+                if b.effects[PBEffects::MagnetRise] > 0 || b.effects[PBEffects::Telekinesis] > 0 || b.effects[PBEffects::SkyDrop] >= 0
+                    b.effects[PBEffects::MagnetRise] = 0
+                    b.effects[PBEffects::Telekinesis] = 0
+                    b.effects[PBEffects::SkyDrop] = -1
+                    showMessage = true
+                end
+                pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!", b.pbThis)) if showMessage
+            end
         when :LightScreen
             pbDisplay(_INTL("{1}'s Special Defense is raised by the Light Screen!", user.pbTeam))
             if !args[:recursion] && user.hasActiveItem?(:LIGHTTABLE)

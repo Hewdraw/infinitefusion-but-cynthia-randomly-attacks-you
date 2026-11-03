@@ -1145,7 +1145,7 @@
 1176,ANGELROD,Angel Rod,397,1,FAIRY,Physical,100,15,0,NearOther,0,bef,"Attacks with its Angel Rod."
 1177,OMNITYPHOON,Omni Typhoon,398,80,QMARKS,Special,100,15,0,NearOther,0,bef,"Creates a divine tornado."
 1178,ANGELSLAM,Angel Slam,0EC,80,FAIRY,Physical,100,10,0,NearOther,-6,aef,"Uses its Holy Rod to pick up an enemy and slam them into the ground."
-1179,STAFFSWEEP,Staff Sweep,398,0,FAIRY,Status,100,15,0,NearOther,0,bce,"Trips the opponent with its Holy Rod."
+1179,STAFFSWEEP,Staff Sweep,434,0,FAIRY,Status,100,15,0,NearOther,0,bce,"Trips the opponent with its Holy Rod."
 1180,AIRSLAM,Air Slam,399,60,FAIRY,Physical,100,15,100,NearOther,0,bef,"Spins through the air swinging its Holy Rod."
 1181,HOLYSHOT,Holy Shot,400,120,FAIRY,Special,90,5,100,NearOther,0,bef,"Shoots a burst of holy energy."
 1182,HEAVENSGATE,Heaven's Gate,401,140,QMARKS,Special,70,5,0,NearOther,0,befm,"Manifests a door to subspace from which there is no return, and consigns the opponent to oblivion through it. The gate can also fire a blast of light, or transport the opponent to another location."
@@ -1186,6 +1186,7 @@
 1217,DOUBLEDUST,Double Dust,431,60,FAIRY,Physical,100,5,17,NearOther,0,abefj,"Puts both hands together and swings with all its might."
 1218,SLASHNAIL,Slash Nail,432,100,DARK,Physical,100,5,100,NearOther,0,abefq,"Tears the enemy with the giant claws on its left hand."
 1219,ROULETTE,Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
+1220,SHEDSKIN,Shed Skin,000,0,NORMAL,Status,0,5,0,User,1,,"todo"
 
 
 

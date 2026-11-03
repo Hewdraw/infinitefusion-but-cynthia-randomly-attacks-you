@@ -1732,6 +1732,15 @@ class Pokemon
         @ability = :DEFIANT
         return
       end
+    when :BIKEROTOMMIRAIDON,:BIKEROTOMKORAIDON,:BIKEROTOMCYCLIZAR
+      tempspecies = nil
+      tempspecies = :BIKEROTOMMIRAIDON if ability_id == :HADRONENGINE
+      tempspecies = :BIKEROTOMKORAIDON if ability_id == :ORICHALCUMPULSE
+      tempspecies = :BIKEROTOMCYCLIZAR if ability_id == :REGENERATOR
+      if tempspecies != @species
+        transForm(self, tempspecies)
+        return
+      end
     end
     base_stats = self.baseStats
       this_level = self.level
@@ -1797,6 +1806,16 @@ class Pokemon
         @extraabilities += @rotomability
       end
     end
+    if isSpecies?(:BIKEROTOM)
+      if @type1 == :ELECTRIC
+        @type1 = :FIGHTING if hasAbility?(:ORICHALCUMPULSE)
+        @type1 = :NORMAL if hasAbility?(:REGENERATOR)
+      end
+      if hasAbility?(:ORICHALCUMPULSE)
+        @attack = stats[:SPECIAL_ATTACK]
+        @spatk = stats[:ATTACK]
+      end
+    end
     megasource = []
     megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)
     megasource.push(:EON) if hasAbility?(:EON)
@@ -1812,18 +1831,12 @@ class Pokemon
     if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
       @extraabilities.push($PokemonGlobal.ancestralgeneability)
     end
-    if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM])
-      @extraabilities.push(:FLASHFIRE) if hasItem?(:BURNDRIVE)
-      @extraabilities.push(:MOTORDRIVE) if hasItem?(:SHOCKDRIVE)
-      @extraabilities.push(:STORMDRAIN) if hasItem?(:DOUSEDRIVE)
-      @extraabilities.push(:ICEBODY) if hasItem?(:CHILLDRIVE)
-      if hasItem?(:GUNDRIVE)
+    if hasItem?(:GUNDRIVE)
+      if isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])
         @unteraTypes.push(:GUN)
-        @extraabilities.push(:SNIPER)
       end
     end
     if hasItem?(:WELLSPRINGMASK)
-      @extraabilities.push(:WATERABSORB)
       if hasType?(:GRASS) && @species != :OGERPONWELLSPRING
         @unteraTypes.push(:GRASS)
         @unteraTypes.push(:WATER) if hasType?(:WATER)
@@ -1832,7 +1845,6 @@ class Pokemon
       @type2 = :WATER if @type2 == :GRASS
     end
     if hasItem?(:HEARTHFLAMEMASK)
-      @extraabilities.push(:MOLDBREAKER)
       if hasType?(:GRASS) && @species != :OGERPONHEARTHFLAME
         @unteraTypes.push(:GRASS)
         @unteraTypes.push(:FIRE) if hasType?(:FIRE)
@@ -1841,7 +1853,6 @@ class Pokemon
       @type2 = :FIRE if @type2 == :GRASS
     end
     if hasItem?(:CORNERSTONEMASK)
-      @extraabilities.push(:STURDY)
       if hasType?(:GRASS) && @species != :OGERPONCORNERSTONE
         @unteraTypes.push(:GRASS)
         @unteraTypes.push(:ROCK) if hasType?(:ROCK)
@@ -1849,44 +1860,6 @@ class Pokemon
       @type1 = :ROCK if @type1 == :GRASS
       @type2 = :ROCK if @type2 == :GRASS
     end
-    @extraabilities.push(:GALEWINGS) if hasItem?(:ELYTRA)
-    @extraabilities.push(:GALEWINGSPLUS) if hasItem?(:ENCHANTEDELYTRA)
-    @extraabilities.push(:STURDY) if hasItem?([:FOCUSEDBANDANA, :ASSAULTHELMET])
-    @extraabilities.push(:GALVANIZE) if hasItem?(:ELECTIRIZER)
-    @extraabilities.push(:GUNVANIZE) if hasItem?(:ILLEGALGUNPARTS)
-    @extraabilities.push(:SKILLLINK) if hasItem?(:LOADEDDICESET)
-    @extraabilities.push(:SHEDSKIN, :NATURALCURE, :SYNCHRONIZE) if hasItem?(:WEIRDORB)
-    @extraabilities.push(:TOXICDEBRIS) if hasItem?(:TOXBOOTS)
-    @extraabilities.push(:FLAMEDEBRIS) if hasItem?(:HOTBOOTS)
-    @extraabilities.push(:FROSTDEBRIS) if hasItem?(:COLDBOOTS)
-    @extraabilities.push(:CHARGEDDEBRIS) if hasItem?(:SHOCKBOOTS)
-    @extraabilities.push(:PARENTALBOND) if hasItem?(:GOLDENCHICKEN)
-    @extraabilities.push(:MISTYSURGE) if hasItem?(:MISTYSOWER)
-    @extraabilities.push(:ELECRICSURGE) if hasItem?(:ELECTRICSOWER)
-    @extraabilities.push(:PSYCHICSURGE) if hasItem?(:PSYCHICSOWER)
-    @extraabilities.push(:GRASSYSURGE) if hasItem?(:GRASSYSOWER)
-    @extraabilities.push(:TINTEDLENS) if hasItem?(:SHADES)
-    @extraabilities.push(:NOGUARD) if hasItem?(:SCROLL)
-    @extraabilities.push(:ROCKHEAD) if hasItem?(:ASSAULTHELMET)
-    @extraabilities.push(:FIRETOUCH) if hasItem?(:FLINTANDSTEEL)
-    @extraabilities.push(:FROSTTOUCH) if hasItem?(:FLINTNTANDSTEELNT)
-    @extraabilities.push(:IRONFIST) if hasItem?(:ELECTIRIZER) && isFusionOf([:ELEKID, :ELECTABUZZ, :ELECTIVIRE])
-    @extraabilities.push(:IMMOLATE) if hasItem?(:MAGMARIZER)
-    @extraabilities.push(:SHEERFORCE, :ANALYTIC) if hasItem?(:MAGMARIZER) && isFusionOf([:MAGBY, :MAGMAR, :MAGMORTAR])
-    @extraabilities.push(:BATTLEARMOR) if hasItem?(:PROTECTOR)
-    @extraabilities.push(:SNIPER) if hasItem?(:LUCKYPUNCH) && isFusionOf([:HAPPINY, :CHANSEY, :BLISSEY])
-    @extraabilities.push(:SNIPER) if hasItem?(:STICK)
-    @extraabilities.push(:NATURALCURE) if hasItem?(:OVALSTONE)
-    @extraabilities.push(:MOLDBREAKER) if hasItem?([:THICKCLUB, :RAREBONE, :RARESTBONE])
-    @extraabilities.push(:MAGICGUARD) if hasItem?(:PRISMSCALE) && isFusionOf(:MILOTIC)
-    @extraabilities.push(:SHEDSKIN) if hasItem?(:DRAGONSCALE) && isFusionOf([:HORSEA, :SEADRA, :KINGDRA])
-    @extraabilities.push(:LIMBER, :PRESSURE) if hasItem?([:QUICKPOWDER, :METALPOWDER])
-    @extraabilities.push(:DAMP) if hasItem?(:DAMPROCK)
-    @extraabilities.push(:LEGENDARYPRESSURE) if hasItem?(:MILLENNIUMCOMETSHARD) && isFusionOf([:JIRACHI, :CELEMEWCHI])
-    @extraabilities.push(:TOTALFREEZE) if hasItem?(:GODORB)
-    @extraabilities.push(:GOODASGOLD) if hasItem?(:SINNOHCOIN) && isFusionOf(:WASHROTOM)
-    @extraabilities.push(:SHARPNESS) if hasItem?([:AQUAKNIFE, :BLACKKNIFE])
-    @extraabilities.push(:HEATPROOF) if hasItem?(:NERUPHONE) #todo
     @abilityarray = createAbilityArray
     @boxicon = nil
   end
@@ -1901,7 +1874,7 @@ class Pokemon
 
   def createAbilityArray
     list = []
-    list += @extraabilities if @extraabilities
+    list += getItemAbilities()
     if list.include?(:LEGENDARYPRESSURE) || ability_id == :LEGENDARYPRESSURE || list.include?(:MYTHICALPRESSURE) || ability_id == :MYTHICALPRESSURE
       getAbilityList.each do |ability|
         list.push(ability[0])
@@ -1916,6 +1889,7 @@ class Pokemon
         end
       end
     end
+    list += [:QUARKDRIVE, :DRIZZLE, :REFRIGERATE, :WELLBAKEDBODY, :EELEVATE, :GRASSYSURGE, :STATIC] if list.include?(:ASONEROTOM) || ability_id = :ASONEROTOM
     list.push(:EARLYBIRD) if hasActiveEmera?(:ALARMCLOCK)
     list += [:BATTLEARMOR, :BERSERK] if hasActiveEmera?(:BERSERKERARMOR)
     list.push(:TOXICBOOST) if hasActiveEmera?(:BINDINGMOCHI)
@@ -1936,6 +1910,205 @@ class Pokemon
     list.push(:THEWORLD) if hasActiveEmera?(:LUNARDIAL)
     list += [:CUDCHEW, :CHEEKPOUCH, :GLUTTONY] if hasActiveEmera?(:YINYANGORB)
     return list
+  end
+
+  def getItemAbilities()
+    itemabilities = {
+      :ELYTRA => {
+        :GALEWINGS => -> () {return true},
+      },
+      :ENCHANTEDELYTRA => {
+        :GALEWINGSPLUS => -> () {return true},
+      },
+      :FOCUSEDBANDANA => {
+        :STURDY => -> () {return true},
+      },
+      :ASSAULTHELMET => {
+        :STURDY => -> () {return true},
+        :ROCKHEAD => -> () {return true},
+      },
+      :ELECTIRIZER => {
+        :GALVANIZE => -> () {return true},
+        :IRONFIST => -> () {return isFusionOf([:ELEKID, :ELECTABUZZ, :ELECTIVIRE])},
+      },
+      :ILLEGALGUNPARTS => {
+        :GUNVANIZE => -> () {return true},
+      },
+      :LOADEDDICESET => {
+        :SKILLLINK => -> () {return true},
+      },
+      :WEIRDORB => {
+        :NATURALCURE => -> () {return true},
+        :SHEDSKIN => -> () {return true},
+        :SYNCHRONIZE => -> () {return true},
+      },
+      :TOXBOOTS => {
+        :TOXICDEBRIS => -> () {return true},
+      },
+      :HOTBOOTS => {
+        :FLAMEDEBRIS => -> () {return true},
+      },
+      :COLDBOOTS => {
+        :FROSTDEBRIS => -> () {return true},
+      },
+      :SHOCKBOOTS => {
+        :CHARGEDDEBRIS => -> () {return true},
+      },
+      :GOLDENCHICKEN => {
+        :PARENTALBOND => -> () {return true},
+      },
+      :MISTYSOWER => {
+        :MISTYSURGE => -> () {return true},
+      },
+      :ELECTRICSOWER => {
+        :ELECRICSURGE => -> () {return true},
+      },
+      :PSYCHICSOWER => {
+        :PSYCHICSURGE => -> () {return true},
+      },
+      :GRASSYSOWER => {
+        :GRASSYSURGE => -> () {return true},
+      },
+      :SHADES => {
+        :TINTEDLENS => -> () {return true},
+      },
+      :SCROLL => {
+        :NOGUARD => -> () {return true},
+      },
+      :SCROLL => {
+        :NOGUARD => -> () {return true},
+      },
+      :FLINTANDSTEEL => {
+        :FIRETOUCH => -> () {return true},
+      },
+      :FLINTNTANDSTEELNT => {
+        :FROSTTOUCH => -> () {return true},
+      },
+      :MAGMARIZER => {
+        :IMMOLATE => -> () {return true},
+        :ANALYTIC => -> () {return isFusionOf([:MAGBY, :MAGMAR, :MAGMORTAR])},
+        :SHEERFORCE => -> () {return isFusionOf([:MAGBY, :MAGMAR, :MAGMORTAR])},
+      },
+      :PROTECTOR => {
+        :BATTLEARMOR => -> () {return true},
+      },
+      :LUCKYPUNCH => {
+        :SNIPER => -> () {return isFusionOf([:HAPPINY, :CHANSEY, :BLISSEY])},
+      },
+      :STICK => {
+        :SNIPER => -> () {return true},
+      },
+      :OVALSTONE => {
+        :NATURALCURE => -> () {return true},
+      },
+      :THICKCLUB => {
+        :MOLDBREAKER => -> () {return true},
+      },
+      :RAREBONE => {
+        :MOLDBREAKER => -> () {return true},
+      },
+      :RARESTBONE => {
+        :MOLDBREAKER => -> () {return true},
+      },
+      :PRISMSCALE => {
+        :MAGICGUARD => -> () {return isFusionOf(:MILOTIC)},
+      },
+      :DRAGONSCALE => {
+        :SHEDSKIN => -> () {return isFusionOf([:HORSEA, :SEADRA, :KINGDRA])},
+      },
+      :QUICKPOWDER => {
+        :LIMBER => -> () {return true},
+        :PRESSURE => -> () {return true},
+      },
+      :METALPOWDER => {
+        :LIMBER => -> () {return true},
+        :PRESSURE => -> () {return true},
+      },
+      :DAMPROCK => {
+        :DAMP => -> () {return true},
+      },
+      :MILLENNIUMCOMETSHARD => {
+        :LEGENDARYPRESSURE => -> () {return isFusionOf([:JIRACHI, :CELEMEWCHI])},
+      },
+      :GODORB => {
+        :TOTALFREEZE => -> () {return true},
+      },
+      :SINNOHCOIN => {
+        :GOODASGOLD => -> () {return isFusionOf(:WASHROTOM)},
+      },
+      :AQUAKNIFE => {
+        :SHARPNESS => -> () {return true},
+      },
+      :BLACKKNIFE => {
+        :SHARPNESS => -> () {return true},
+      },
+      :NERUPHONE => {
+        :HEATPROOF => -> () {return true},
+      },
+      :BURNDRIVE => {
+        :FLASHFIRE => -> () {return isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])},
+      },
+      :SHOCKDRIVE => {
+        :MOTORDRIVE => -> () {return isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])},
+      },
+      :DOUSEDRIVE => {
+        :STORMDRAIN => -> () {return isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])},
+      },
+      :CHILLDRIVE => {
+        :ICEBODY => -> () {return isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])},
+      },
+      :GUNDRIVE => {
+        :SNIPER => -> () {return isFusionOf([:GENESECT, :ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])},
+      },
+      :WELLSPRINGMASK => {
+        :WATERABSORB => -> () {return true},
+      },
+      :HEARTHFLAMEMASK => {
+        :MOLDBREAKER => -> () {return true},
+      },
+      :CORNERSTONEMASK => {
+        :STURDY => -> () {return true},
+      },
+    }
+    retlist = []
+
+    if hasItem?(:MODIFIEDBOOSTERENERGY)
+      getParadoxForm().each_with_index do |paradox, i|
+        next if paradox.form == 0
+        retlist.push(@paradoxability)
+      end
+    end
+    if hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE])
+      getRegionalForm().each_with_index do |regional, i|
+        next if regional.form == 0
+        retlist.push(@regionalability)
+      end
+    end
+    if hasItem?(:ROTOMCATALOG)
+      getRotomForm().each_with_index do |rotom, i|
+        retlist.push(@rotomability)
+      end
+      retlist.push(:LEGENDARYPRESSURE) if isFusionOf(:MEGAROTOM)
+    end
+    megasource = []
+    megasource.push(:PUREINCENSE) if hasItem?(:PUREINCENSE)
+    megasource.push(:EON) if hasAbility?(:EON)
+    megasource.push(:MEGASHARD) if hasItem?(:MEGASHARD)
+    if megasource.length > 0
+      getMegaShardForm(megasource).each_with_index do |mega, i|
+        next if mega.form == 0
+        retlistpush(mega.abilities[0])
+      end
+    end
+    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
+      retlistpush($PokemonGlobal.ancestralgeneability)
+    end
+    
+    return retlist if !itemabilities[@item]
+    itemabilities[@item].each do |ability, function|
+      retlist.push(ability) if function.call()
+    end
+    return retlist
   end
 
   def hasActiveEmera?(emera)

@@ -47,7 +47,7 @@ class Pokemon
           next if data.form_name && data.form_name[0..6] == "Paradox"
           next if [:ROTOM].include?(data.species)
         when "Rotom"
-          next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
+          next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(species)
           next if data.form > 5 && pbGetRotomCount() < 3
           next if data.mega_stone || data.mega_move
         end
@@ -101,7 +101,7 @@ class Pokemon
 
     isrotom = false
     specieslist.each do |species|
-      next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOM, :PHONEROTOM].include?(species)
+      next unless [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM].include?(species)
       isrotom = true
     end
     specieslist.each_with_index do |species, i|
@@ -119,10 +119,6 @@ class Pokemon
     if isFusion? && getDexNumberForSpecies(@species) < 1000000
       specieslist = [GameData::Species.get(getBodyID(@species)).species, GameData::Species.get(getHeadID(@species)).species]
     end
-    megalist = 
-    rotomlist = 
-    regionallist = 
-    paradoxlist = 
     if !@megaform || override
       @megaform = [0, 0]
       getFormList("Mega").each_with_index do |mega, i|
