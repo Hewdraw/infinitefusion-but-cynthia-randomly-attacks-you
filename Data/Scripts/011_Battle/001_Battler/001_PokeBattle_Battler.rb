@@ -436,10 +436,10 @@ class PokeBattle_Battler
     when :POISON
     when :GROUND
       return true if hasActiveItem?([:THICKCLUB, :RAREBONE, :RARESTBONE])
-      return true if hasActiveItem?(:SOFTSAND) && isFusionOf?([:CACNEA, :CACTURNE])
+      return true if hasActiveItem?(:SOFTSAND) && isFusionOf([:CACNEA, :CACTURNE])
     when :ROCK
       return true if hasActiveItem?([:PROTECTOR, :DESERTEDROCK])
-      return true if hasActiveItem?(:SOFTSAND) && isFusionOf?([:CACNEA, :CACTURNE])
+      return true if hasActiveItem?(:SOFTSAND) && isFusionOf([:CACNEA, :CACTURNE])
     when :BUG
     when :GHOST
       return true if hasActiveItem?(:ROTOMCATALOG) && [:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM, :MEGAROTOM].include?(@species)

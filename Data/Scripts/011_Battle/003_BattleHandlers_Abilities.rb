@@ -3777,7 +3777,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
 BattleHandlers::AbilityOnSwitchIn.add(:GRAVITATIONALPULL,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.applyEffect(battler, @battle.field, :Gravity, 5)
+    battle.applyEffect(battler, battle.field, :Gravity, 5)
     battle.pbHideAbilitySplash(battler)
   }
 )

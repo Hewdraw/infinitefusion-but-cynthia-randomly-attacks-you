@@ -6942,14 +6942,14 @@ class PokeBattle_Move_402 < PokeBattle_Move
   def pbGetDefenseStats(user, target)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
     stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
-    attackstage = target.stages[:DEFENSE] + 6
-    attack = target.attack*stageMul[attackstage]/stageDiv[attackstage]
-    spatkstage = target.stages[:SPECIAL_DEFENSE] + 6
-    spatk = target.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
-    if attack > spatk
-      return target.attack, target.stages[:SPECIAL_DEFENSE] + 6
+    defensestage = target.stages[:DEFENSE] + 6
+    defense = target.defense*stageMul[defensestage]/stageDiv[defensestage]
+    spdefstage = target.stages[:SPECIAL_DEFENSE] + 6
+    spdef = target.spdef*stageMul[spdefstage]/stageDiv[spdefstage]
+    if defense > spdef
+      return target.spdef, target.stages[:SPECIAL_DEFENSE] + 6
     end
-    return target.spatk, target.stages[:DEFENSE] + 6
+    return target.defense, target.stages[:DEFENSE] + 6
   end
 end
 
