@@ -316,6 +316,7 @@ class PokemonDataBox < SpriteWrapper
         imagePos.push([types_icon_path, type_icons_x_position + (21 * i), type1_icon_y_position,
                      x_offset, type_y_offset, -1, iconHeight])
       end
+      extraiconposition = type2_icon_y_position
     elsif type1_number == type2_number
       imagePos.push([types_icon_path, type_icons_x_position, type1_icon_y_position,
                      x_offset, type1_y_offset, -1, iconHeight])

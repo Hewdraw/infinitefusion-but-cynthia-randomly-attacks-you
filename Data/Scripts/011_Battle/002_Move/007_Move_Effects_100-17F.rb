@@ -6887,7 +6887,7 @@ class PokeBattle_Move_401 < PokeBattle_Move
   end
 
   def pbOnStartUse(user,targets)
-    if @battle.pbRandom(100, user, target) < 30
+    if @battle.pbRandom(100, user) < 30
       @switchmove = true
     end
   end
