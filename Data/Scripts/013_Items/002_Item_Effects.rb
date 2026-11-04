@@ -992,7 +992,27 @@ ItemHandlers::UseOnPokemon.add(:LEGENDARYCANDY, proc { |item, pkmn, scene|
     scene.pbDisplay(_INTL("It didn't have any effect... or did it?"))
     next false
   end
-  pbChangeLevel(pkmn, pkmn.level + 1, scene)
+  while pkmn.level < getCurrentLevelCap() - 1
+    $PokemonGlobal.cynthiachance += 1
+    pkmn.level += 1
+    movelist = pkmn.getMoveList
+    for i in movelist
+      next if i[0] != pkmn.level
+      pbLearnMove(pkmn, i[1], true) { scene.pbUpdate }
+    end
+    newspecies = pkmn.check_evolution_on_level_up unless pkmn.evolve_from_party
+    if newspecies
+      pbFadeOutInWithMusic {
+        evo = PokemonEvolutionScene.new
+        evo.pbStartScreen(pkmn, newspecies)
+        evo.pbEvolution
+        evo.pbEndScreen
+        scene.pbRefresh if scene.is_a?(PokemonPartyScreen)
+      }
+    end
+    newspecies = nil
+  end
+  pbChangeLevel(pkmn, getCurrentLevelCap(), scene)
   scene.pbHardRefresh
   next false
 })
