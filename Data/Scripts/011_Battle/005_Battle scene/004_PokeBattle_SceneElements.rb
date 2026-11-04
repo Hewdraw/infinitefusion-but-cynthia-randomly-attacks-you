@@ -338,7 +338,7 @@ class PokemonDataBox < SpriteWrapper
     extraicons.push("icon_dynamax") if @battler.effects[PBEffects::Dynamax] > 0
     extraicons.push("icon_tera") if @battler.isTerastallized?
     extraicons.push("icon_affection") if @battler.pokemon.affection || @battler.hasActiveEmera?(:SYNCSTONEULTIMATE)
-    extraicons.push("icon_alpha") if @battler.pokemon.alpha || battler.isFusionOf([:ARCEUS, :ALPHAMON, :CYNTHIA, :KYOGRE, :UNOWN]
+    extraicons.push("icon_alpha") if @battler.pokemon.alpha || battler.isFusionOf([:ARCEUS, :ALPHAMON, :CYNTHIA, :KYOGRE, :UNOWN])
     extraicons.each_with_index do |icon, i|
       imagePos.push(["Graphics/Pictures/Battle/#{icon}", type_icons_x_position + (21 * i), extraiconposition])
     end
