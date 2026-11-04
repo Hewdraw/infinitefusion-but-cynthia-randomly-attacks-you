@@ -593,7 +593,8 @@ class PokeBattle_Battler
       :RECIEVER,
       :TRACE,
       :WONDERGUARD,
-      :WONDERTRADE
+      :WONDERTRADE,
+      :ASONEROTOM,
     ]
     return ability_blacklist.include?(abil.id)
   end
