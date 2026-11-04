@@ -96,6 +96,7 @@ class PokemonGlobalMetadata
   attr_accessor :chestitemspulled
   attr_accessor :looplet
   attr_accessor :highestfloor
+  attr_accessor :classesbeaten
   attr_accessor :movieswatched
   attr_accessor :darkworlds
   attr_accessor :spiritomb

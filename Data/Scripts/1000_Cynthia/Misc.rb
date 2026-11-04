@@ -294,10 +294,7 @@ def getSoulSprite(viewport)
     else
         heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/UndertaleHardcore")
     end
-    color = "Justice" if hasEmera?(:YELLOWHAT)
-    color = "Kindness" if hasEmera?(:MOSS) || hasEmera?(:MOSSPLUS)
-    color = "Patience" if hasEmera?(:LUNARDIAL)
-    color = "Perseverance" if hasEmera?(:INDIEPROOF)
+    color = TRAINERCLASSDICT[trainerclass][:soul]
     case color
     when "Bravery"
         heartsprite.tone = Tone.new(-3, -89, -255)

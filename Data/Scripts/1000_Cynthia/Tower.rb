@@ -129,6 +129,7 @@ TOWERREWARDS = {
 def resetTower()
     floor = $PokemonGlobal.towervalues[:floor]
     floor += 1 if $PokemonGlobal.towervalues[:activeevent].nil?
+    trainerclass = $PokemonGlobal.towervalues[:trainerclass]
     $Trainer.money = $PokemonGlobal.towervalues[:money]
     $PokemonGlobal.triplefusions = $PokemonGlobal.towervalues[:triplefusions]
     $PokemonStorage = $PokemonGlobal.towervalues[:pokemonstorage] if $PokemonGlobal.towervalues[:pokemonstorage]
@@ -151,6 +152,12 @@ def resetTower()
         for _ in 1..amount
             grantRandomEmera(values[:emerarestriction])
         end
+    end
+    $PokemonGlobal.classesbeaten = [] if $PokemonGlobal.classesbeaten.nil?
+    if floor == 200 && !$PokemonGlobal.classesbeaten.include?(trainerclass)
+        $PokemonGlobal.classesbeaten.push(trainerclass)
+        Kernel.pbMessage("For beating a run with the #{TRAINERCLASSDICT[trainerclass][:name]} Class for the first time you obtained its Emera!")
+        grantEmera(TRAINERCLASSDICT[trainerclass][:emera])
     end
     $PokemonGlobal.highestfloor = [floor, highestfloor].max
     srand

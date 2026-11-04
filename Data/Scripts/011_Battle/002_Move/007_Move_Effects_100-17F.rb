@@ -2690,10 +2690,14 @@ class PokeBattle_Move_183 < PokeBattle_Move
     $PokemonGlobal.nextBattleBack = "Lava"
     $PokemonGlobal.nextBattleBGM = nil
     if !user.pbOwnedByPlayer?
-      if $PokemonGlobal.towervalues.nil?
-        pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+      if hasActiveEmera?(:YELLOWHAT)
+        Undertale()
       else
-        pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1, nil, :DarkSkeleton_Dev)
+        if $PokemonGlobal.towervalues.nil?
+          pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1)
+        else
+          pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 1, nil, :DarkSkeleton_Dev)
+        end
       end
     else
       pbWildBattle(:SKELETON, user.level, 1, false)

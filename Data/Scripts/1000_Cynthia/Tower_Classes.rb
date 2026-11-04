@@ -7,9 +7,10 @@ TRAINERCLASSDICT = {
         :name => "Bug Catcher",
         :emera => :CATCHINGNET,
     },
-    :COWBOY => {
-        :name => "Cowboy",
+    :GUNSLINGER => {
+        :name => "Gunslinger",
         :emera => :YELLOWHAT,
+        :soul => "Justice",
     },
     :EXPLORER => {
         :name => "Explorer",
@@ -26,10 +27,12 @@ TRAINERCLASSDICT = {
     :MOSSENJOYER => {
         :name => "Moss Enjoyer",
         :emera => :MOSS,
+        :soul => "Kindness",
     },
     :ROGUE => {
         :name => "Rogue",
         :emera => :INDIEPROOF,
+        :soul => "Perseverance",
     },
     :SUPERNERD => {
         :name => "Super Nerd",
@@ -38,6 +41,7 @@ TRAINERCLASSDICT = {
     :TIMESTOPPER => {
         :name => "Time Stopper",
         :emera => :LUNARDIAL,
+        :soul => "Patience",
     }
 }
 
@@ -80,6 +84,7 @@ def selectTrainerClass()
     end
     pbReceiveItem(:METRONOME) if hasEmera?(:STICKYKEY)
     putOnClothes("maid", true) if hasEmera?(:LUNARDIAL)
+    $PokemonGlobal.towervalues[:trainerclass] = trainerclass
 end
 
 def getUnlockedClasses()
