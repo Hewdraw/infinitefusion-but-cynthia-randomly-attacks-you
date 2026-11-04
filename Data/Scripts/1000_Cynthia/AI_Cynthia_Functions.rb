@@ -2169,7 +2169,7 @@ class PokeBattle_AI
       when "010"   # Stomp
         baseDmg *= 2 if target.effects[PBEffects::Minimize]
       # Sonic Boom, Dragon Rage, Super Fang, Night Shade, Endeavor
-      when "06A", "06B", "06C", "06D", "06E"
+      when "06B", "06C", "06D", "06E"
         damagedictionary[originalkey] = move.pbFixedDamage(user,target)
         next
       when "06F"   # Psywave
