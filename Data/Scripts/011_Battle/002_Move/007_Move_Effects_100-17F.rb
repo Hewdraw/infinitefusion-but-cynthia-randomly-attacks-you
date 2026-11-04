@@ -6672,7 +6672,7 @@ class PokeBattle_Move_391 < PokeBattle_Move
 
   def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
     return if user.fainted? || numHits==0
-    return if !target.fainted?
+    return if !targets[0].fainted?
     targetSwitched = true
     targets.each do |b|
       targetSwitched = false if !switchedBattlers.include?(b.index)
