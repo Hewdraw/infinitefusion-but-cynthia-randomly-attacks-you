@@ -241,6 +241,7 @@ module Compiler
       add_PBS_header_to_file(f)
       current_pocket = 0
       new_data = [
+        #[:ID, "description"],
 ]
       GameData::Item.each do |i|
         # if current_pocket != i.pocket

@@ -98,7 +98,7 @@
 98,ABSORBBULB,Absorb Bulb,Absorb Bulbs,1,4000,"Sp.ATK is boosted by 1 Stage if hit by a Water move. Consumable.",0,0,0
 99,CELLBATTERY,Cell Battery,Cell Batteries,1,4000,"ATK is boosted by 1 Stage if hit by an Electric move. Consumable.",0,0,0
 100,LIFEORB,Life Orb,Life Orbs,1,4000,"Attacks do x1.3 damage, but attacks gain the 1/10 self-damage effect.",0,0,0
-101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,"User's attacks deal x1.3 damage for each tier of Super-Effectiveness. Recevies x0.7 damage for each tier of Resistance.",0,0,0
+101,EXPERTBELT,Expert Belt,Expert Belts,1,4000,"Gains x1.3 damage per tier of Super-Effectiveness. Resists x0.7 damage per tier of Resistance.",0,0,0
 102,METRONOME,Metronome,Metronomes,1,4000,"Repeating a move gains +20% damage each time until it fails, successfully using another move, or switching.",0,0,0
 103,MUSCLEBAND,Muscle Band,Muscle Bands,1,4000,"Physical attacks gain x1.2 power.",0,0,0
 104,WISEGLASSES,Wise Glasses,Wise Glasses,1,4000,"Special attacks gain x1.2 power.",0,0,0
@@ -204,7 +204,7 @@
 204,UPGRADE,Upgrade,Upgrades,1,2000,"Normal benefits, x1.1 Accuracy, +10% chance for additional effects. Porygon-line gain x1.5 DEF/Sp.DEF (once each).",1,0,7
 205,DUBIOUSDISC,Dubious Disc,Dubious Discs,1,2000,"x1.5 damage. Randomizes user's attack Types.",1,0,7
 206,PROTECTOR,Protector,Protectors,1,2000,"Rock benefits, reduced Hazards effects, Battle Armor. Rhyhorn-line gains x1.5 DEF and 1/16th HP recovery each turn.",1,0,7
-207,ELECTIRIZER,Electirizer,Electirizers,1,2000,"Electric benefits. Galvanize. Electivire line gets Iron Fist, 1/2 HP draining, contact moves get 30% Paralysis chance.",1,0,7
+207,ELECTIRIZER,Electirizer,Electirizers,1,2000,"Electric benefits, Galvanize. Electivire line: Iron Fist, 1/2 HP draining, 30% Paralysis chance on contact moves.",1,0,7
 208,MAGMARIZER,Magmarizer,Magmarizers,1,2000,"Fire benefits. Immolate. Magmortar line gets Sheer Force, Analytic, Shell Bell, and x1.2 damage on S-E attacks.",1,0,7
 209,REAPERCLOTH,Reaper Cloth,Reaper Cloths,1,2000,"Ice benefits. Eviolite(Dusknoir x1.2). Dusknoir-line x1.5 punching damage (once each), punching gains 1 Crit Stage. ",1,0,7
 210,PRISMSCALE,Prism Scale,Prism Scales,1,2000,"Water benefits. x1.5 Sp.DEF when Statused. Milotic-line gains Magic Guard.",1,0,7
@@ -666,13 +666,13 @@
 666,SAFETYGOGGLES,Safety Goggles,Safety Goggles,1,4000,"An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.",0,0,0
 667,PROTECTIVEPADS,Protective Pads,Protective Pads,1,4000,"An item to be held by a Pokémon. They protect the holder from effects caused by making contact.",0,0,0
 668,TERRAINEXTENDER,Terrain Extender,Terrain Extenders,1,4000,"An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.",0,0,0
-669,ELECTRICSEED,Electric Seed,Electric Seeds,1,500,"An item to be held by a Pokémon. It boosts Defense on Electric Terrain. It can only be used once.",0,0,0
-670,PSYCHICSEED,Psychic Seed,Psychic Seeds,1,500,"An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain. It can only be used once.",0,0,0
-671,MISTYSEED,Misty Seed,Misty Seeds,1,500,"An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain. It can only be used once.",0,0,0
-672,GRASSYSEED,Grassy Seed,Grassy Seeds,1,500,"An item to be held by a Pokémon. It boosts Defense on Grassy Terrain. It can only be used once.",0,0,0
-673,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,1,500,"An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack. It can only be used once.",0,0,0
-674,SNOWBALL,Snowball,Snowballs,1,500,"An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack. It can only be used once.",0,0,0
-675,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,1,1000,"An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.",0,0,0
+669,ELECTRICSEED,Electric Seed,Electric Seeds,1,500,"Consumes in Electric Terrain. Raises DEF by 1 Stage.",0,0,0
+670,PSYCHICSEED,Psychic Seed,Psychic Seeds,1,500,"Consumes in Psychic Terrain. Raises Sp.DEF by 1 Stage.",0,0,0
+671,MISTYSEED,Misty Seed,Misty Seeds,1,500,"Consumes in Misty Terrain. Raises Sp.DEF by 1 Stage.",0,0,0
+672,GRASSYSEED,Grassy Seed,Grassy Seeds,1,500,"Consumes in Grassy Terrain. Raises DEF by 1 Stage.",0,0,0
+673,LUMINOUSMOSS,Luminous Moss,Luminous Mosses,1,500,"Consumes on being hit by a Water move. Raises holder's Sp.DEF by 1 Stage.",0,0,0
+674,SNOWBALL,Snowball,Snowballs,1,500,"Consomes on being hit by an Ice move. Raises holder's ATK by 1 Stage.",0,0,0
+675,WEAKNESSPOLICY,Weakness Policy,Weakness Policies,1,1000,"Consumes on being hit by a Super-Effective move. Raises user's ATK and Sp.ATK by 2 Stages.",0,0,0
 676,ADRENALINEORB,Adrenaline Orb,Adrenaline Orbs,1,300,"An item to be held by a Pokémon. It boosts Speed when intimidated. It can be used only once.",0,0,0
 677,DEBUGCANDY,Unknown item,Unknown items,2,0,"This item has been removed from the game. It can safely be sold or deleted.",0,0,8
 678,STRANGEPRISM,Strange Prism,Strange Prisms,8,0,"A mysterious prism that was found in a dark cave. It's unclear what its purpose is.",2,0,6
@@ -751,9 +751,9 @@
 751,GYARANINITE,Gyaraninite,Gyaraninites,1,0,"a",0,0,0
 752,PIDGEOTITE,Pidgeotite,Pidgeotites,1,0,"a",0,0,0
 753,MYSTERIOUSMETEORS,Mysterious Meteors,Mysterious Meteors,1,0,"todo",0,0,0
-754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"The Legendary Orb of Ice. It resonates with Articuno, providing it with the powers of a lost type and Special Defense.",5,0,0
-755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"The Legendary Orb of Lightning. It resonates with Zapdos, providing it with the powers of a lost type and Speed.",5,0,0
-756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"The Legend Orb of Fire. It resonates with Moltres, providing it with the powers of a lost type and Special Attack.",5,0,0
+754,ICESPHERE,Ice Sphere,Ice Spheres,1,0,"Use: Unfused Regional Forms. Held: Ice/Psychic Benefits. Regional Menu (Types/Ability/Stats with Forced Evolution).",5,0,0
+755,LIGHTNINGSPHERE,Lightning Sphere,Lightning Spheres,1,0,"Use: Unfused Regional Forms. Held: Electric/Figfhting Benefits. Regional Menu (Types/Ability/Stats with Forced Evolution).",5,0,0
+756,FIRESPHERE,Fire Sphere,Fire Spheres,1,0,"Use: Unfused Regional Forms. Held: Fire/Dark Benefits. Regional Menu (Types/Ability/Stats with Forced Evolution).",5,0,0
 757,HEAVYDUTYBOOTS,Heavy-Duty Boots,Heavy-Duty Boots,1,100,"An item to be held by a Pokémon. These boots protect the holder from the effects of traps and the like set on the battlefield.",0,0,0
 758,HPMAX,HP Max,Hp Maxes,2,0,"Maximum amounts of HP Up! Seems like a bottomless bottle...",1,3,0
 759,BEEZORITE,Beezorite,Beezorites,1,0,"a",0,0,0
@@ -798,15 +798,15 @@
 807,GOLDENAPPLE,Golden Apple,Golden Apples,1,0,"a",0,0,0
 808,ENCHANTINGTABLE,Enchanting Table,Enchanting Tables,1,0,"Magic craft item. Swaps and slightly buffs attacking stats.",0,0,0
 809,SHOCKORB,Shock Orb,Shock Orbs,1,4000,"Paralyzes user at end of turn.",5,0,0
-810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"A Booster Energy device that brings out paradoxical potential out of viable targets",5,0,0
+810,MODIFIEDBOOSTERENERGY,Modified Booster Energy,Modified Booster Energies,1,0,"Use: Swap unfused Paradox Form. Held: Paradox Menu (Stats/Types/Abilities), also x1.3 to highest Stat (x1.5 if SPE).",5,0,0
 811,HEALIES,Healies,Healies,8,0,"a",2,0,6
 812,TUTORMACHINE,Tutor Machine,Tutor Machines,8,0,"Pocket Move Tutor",5,0,6
 813,TM122,TM122,TM122s,4,10000,"TOMBSTONER",3,0,0,TOMBSTONER
 814,GARDEANCITE,Gardeancite,Gardeancites,1,0,"a",0,0,0
 815,ENDGATEWAY,End Gateway,End Gateways,8,0,"a",2,0,6
-816,MEGASHARD,Mega Shard,Mega Shards,1,0,"a",5,0,0
+816,MEGASHARD,Mega Shard,Mega Shards,1,0,"Held: Adds Mega Form Menu to party summary screen. Gives Stats/Abilities/Types of Mega Form(s) selected.",5,0,0
 817,MEGASTONEITE,Mega Stoneite,Mega Stoneites,1,0,"how did you get this?",0,0,0
-818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"a",5,0,0
+818,OMNIDRIVE,Omni Drive,Omni Drives,8,0,"Use to upgrade signature attacks to + variants.",5,0,0
 819,DIGIVICE,Digivice,Digivices,8,0,"A small, portable device that allows you to access the Pokémon storage system.",2,0,6
 820,EJECTPACK,Eject Pack,Eject Packs,1,0,"a",0,0,0
 821,BLUNDERPOLICY,Blunder Policy,Blunder Policies,1,0,"An item to be held by a Pokémon. If the holder misses with a move due to low accuracy, this policy will sharply boost its Speed stat.",0,0,0
@@ -834,7 +834,7 @@
 843,SABLNETTITE,Sablnettite,Sablnettites,1,0,"a",0,0,0
 844,MAWLIXITE,Mawlixite,Mawlixites,1,0,"a",0,0,0
 845,BEEDRILLITE,Beedrillite,Beedrillites,1,0,"a",0,0,0
-846,MILLENNIUMCOMETSHARD,Millennium Comet Shard,Millennium Comet Shards,1,0,"can you believe that this fucker sleeps for a whole thousand years?",0,0,0
+846,MILLENNIUMCOMETSHARD,Millennium Comet Shard,Millennium Comet Shards,1,0,"Held by Jirachi/Jirachi Fusion: Gives Legendary Pressure.",0,0,0
 847,LUNARDIAL,Lunar Dial,Lunar Dials,1,0,"a",0,0,0
 848,SABLWILITE,Sablwilite,Sablwilites,1,0,"a",0,0,0
 849,BADAPPLE,Bad Apple,Bad Apples,1,0,"a",0,0,0
@@ -844,7 +844,7 @@
 853,ESCAPEORB,Escape Orb,Escape Orbs,1,0,"Escape from a battle as if you had won but forfeit any rewards.",0,0,0
 854,TEACHYTV,Teachy TV,Teachy TVs,8,0,"Pocket Expert Move Tutor",5,0,6
 855,BADEGG,Bad Egg,Bad Eggs,8,0,"Not too important, not too unimportant.",2,0,0
-856,ROTOMCATALOG,Rotom Catalog,Rotom Catalogs,1,0,"Rotom only. Use: Swap form. Hold: x1.2 Acc/damage, Ghost benefits, form Stats/Typing/Ability options.",5,0,0
+856,ROTOMCATALOG,Rotom Catalog,Rotom Catalogs,1,0,"Use: Swap Unlocked Forms. Held: Ghost benefits, Form Menu(Stats/Abilities/Typings) OR Legendary Pressure for Form.",5,0,0
 857,ROCKIUMZPLUS,Rockium Z+,Rockium Z+s,1,0,"a",0,0,0
 858,GOLDRIBBON,Gold Ribbon,Gold Ribbons,1,50000,"Tax Evasion.",0,0,0
 859,SANDYORB,Sandy Orb,Sandy Orbs,1,0,"a",0,0,0
