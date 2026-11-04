@@ -217,7 +217,10 @@ class PokeBattle_Battle
       :ICE => :MAXHAILSTORM,
       :DRAGON => :MAXWYRMWIND,
       :DARK => :MAXDARKNESS,
-      :FAIRY => :MAXSTARFALL
+      :FAIRY => :MAXSTARFALL,
+      :QMARKS => :MAXSTARFALL,
+      :SOUND => :MAXSTARFALL,
+      :FAIRY => :MAXSTARFALL,
     }
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
@@ -265,7 +268,6 @@ class PokeBattle_Battle
     battler.pokemon.forget_all_moves
     battler.moves = []
     battler.undynamoves.each_with_index do |move,i|
-      next if !move
       if move.category != 2
         move = Pokemon::Move.new(maxmoves[move.type])
       else
