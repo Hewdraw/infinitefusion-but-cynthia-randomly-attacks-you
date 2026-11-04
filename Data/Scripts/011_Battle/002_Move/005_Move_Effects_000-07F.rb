@@ -2104,11 +2104,7 @@ class PokeBattle_Move_068 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user, target)
-    @battle.applyEffect(user, target, :GastroAcid, 2)
-    target.effects[PBEffects::GastroAcid] = true
-    target.effects[PBEffects::Truant] = false
-    @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", target.pbThis))
-    target.pbOnAbilityChanged(target.ability)
+    @battle.applyEffect(user, target, :GastroAcid, true)
   end
 end
 

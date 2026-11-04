@@ -15,6 +15,11 @@ EMERADICT = {
         :description => "Obtain an extra Bug Pokemon every Premier Ball floor.",
         :rarity => :STARTER,
     },
+    :YELLOWHAT => {
+        :name => "YellowHat",
+        :description => "Using a Gun move also uses Roulette. Gain Illegal Gun Parts at the start.",
+        :rarity => :STARTER,
+    },
     :EXPLORERBADGE => {
         :name => "Explorer Badge",
         :description => "Unknown rooms are twice as common and you obtain a random Pokemon in them.",

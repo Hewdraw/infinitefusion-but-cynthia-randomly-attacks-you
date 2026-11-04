@@ -7,6 +7,10 @@ TRAINERCLASSDICT = {
         :name => "Bug Catcher",
         :emera => :CATCHINGNET,
     },
+    :COWBOY => {
+        :name => "Cowboy",
+        :emera => :YELLOWHAT,
+    },
     :EXPLORER => {
         :name => "Explorer",
         :emera => :EXPLORERBADGE,
@@ -70,6 +74,9 @@ def selectTrainerClass()
         gainedlist.each do |item|
             pbReceiveItem(item)
         end
+    end
+    if hasEmera?(:YELLOWHAT)
+        pbReceiveItem(:ILLEGALGUNPARTS)
     end
     pbReceiveItem(:METRONOME) if hasEmera?(:STICKYKEY)
     putOnClothes("maid", true) if hasEmera?(:LUNARDIAL)

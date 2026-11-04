@@ -207,6 +207,11 @@ BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
         pbHideAbilitySplash(user)
       end
     end
+    if user.hasActiveEmera?(:YELLOWHAT) && move.id != :ROULETTE && move.type == :GUN && !getLooplet.emeravariables[:YELLOWHAT]
+      getLooplet.emeravariables[:YELLOWHAT] = true
+      user.pbUseMoveSimple(:ROULETTE)
+      getLooplet.emeravariables[:YELLOWHAT] = false
+    end
   }
 )
 
