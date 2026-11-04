@@ -1348,6 +1348,7 @@ BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON)
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON2)
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGONZ)
+    mults[:defense_multiplier] *= 1.5 if target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?
   }
 )
 

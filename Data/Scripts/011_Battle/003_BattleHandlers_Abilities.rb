@@ -3782,7 +3782,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRAVITATIONALPULL,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:DYNAMOPRH,
+BattleHandlers::AbilityOnSwitchIn.add(:DYNAMORPH,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battler.pokemon.dynamax = true
