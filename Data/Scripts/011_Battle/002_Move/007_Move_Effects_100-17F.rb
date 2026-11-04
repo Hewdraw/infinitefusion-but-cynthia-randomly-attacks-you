@@ -7588,7 +7588,7 @@ class PokeBattle_Move_433 < PokeBattle_Move
       if rand(6) == 5
         user.pbUseMoveSimple(:SHOOT, user.index)
       else
-        user.pbUseMoveSimple(move, true)
+        user.pbUseMoveSimple(move)
       end
     end
   end
