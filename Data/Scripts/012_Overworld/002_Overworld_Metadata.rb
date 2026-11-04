@@ -99,6 +99,7 @@ class PokemonGlobalMetadata
   attr_accessor :movieswatched
   attr_accessor :darkworlds
   attr_accessor :spiritomb
+  attr_accessor :zeldasecret
 
   attr_accessor :boat
   attr_accessor :acroBike

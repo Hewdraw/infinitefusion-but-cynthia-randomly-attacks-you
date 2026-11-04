@@ -1553,6 +1553,17 @@ class Pokemon
     GameData::Stat.each_main { |s| ret[s.id] = this_base_stats[s.id] }
     specieslist = [GameData::Species.get(getBodyIDNormalized(@species)), GameData::Species.get(getHeadIDNormalized(@species))]
     bstdata = [specieslist[0].base_stats, specieslist[1].base_stats]
+    bsttemp = [{}, {}]
+    specieslist.each_with_index do |species,i|
+      GameData::Stat.each_main { |s|
+        bsttemp[i][s.id] = bstdata[i][s.id]
+        if species == :AEGISLASH
+          bsttemp[i][s.id] = 150 if [:ATTACK, :SPECIAL_ATTACK].include?(s.id) && hasAbility?(:INTREPIDSWORD)
+          bsttemp[i][s.id] = 150 if [:DEFENSE, :SPECIAL_DEFENSE].include?(s.id) && hasAbility?(:DAUNTLESSSHIELD)
+        end
+      }
+    end
+    bstdata = bsttemp
     if hasItem?(:MODIFIEDBOOSTERENERGY)
       bstdata = getParadoxForm()
       bstdata.each_with_index do |paradox,i|
@@ -1598,7 +1609,6 @@ class Pokemon
     if hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
       bsttemp = [{}, {}]
       specieslist.each_with_index do |species,i|
-        hasAbility?([:FORCEDEVOLUTION, :FORCEDEVOLUTIONPLUS])
         GameData::Stat.each_main { |s|
           bsttemp[i][s.id] = bstdata[i][s.id] + [(180-bstdata[i][s.id]) / 3, 0].max
         }
