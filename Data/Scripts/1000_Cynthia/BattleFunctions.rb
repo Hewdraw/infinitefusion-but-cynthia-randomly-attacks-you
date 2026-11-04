@@ -19,6 +19,13 @@ class PokeBattle_Battle
             end
         when :Curse
             pbDisplay(_INTL("{1} laid a curse on {2}!", user.pbThis, target.pbThis(true))) if !args[:nomessage]
+        when :GastoAcid
+            return false if target.unstoppableAbility?
+            target.effects[PBEffects::GastroAcid] = true
+            target.effects[PBEffects::Truant] = false
+            battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", target.pbThis))
+            target.pbOnAbilityChanged(target.ability)
+            return true
         when :Gravity
             pbDisplay(_INTL("Gravity intensified!"))
             eachBattler do |b|
@@ -60,8 +67,11 @@ class PokeBattle_Battle
                 duration += 3
                 duration += 3 if user.hasActiveAbility?(:HOLD)
             end
+        when :Yawn
+            pbDisplay(_INTL("{1} made {2} drowsy!", user.pbThis, target.pbThis(true)))
         end
         duration += 1 if duration.is_a?(Integer) && user.hasActiveEmera?(:HEAVYCLAY) && [:AuroraVeil, :LightScreen, :LuckyChant, :Mist, :Rainbow, :Reflect, :Safeguard, :SeaOfFire, :Swamp, :Tailwind, :GmaxWildFire, :FairyLock, :Gravity, :MagicRoom, :TrickRoom, :WonderRoom, :InverseRoom]
         target.effects[PBEffects.const_get(effect)] = duration
+        return true
     end
 end

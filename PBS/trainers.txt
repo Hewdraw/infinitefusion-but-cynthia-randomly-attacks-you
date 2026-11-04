@@ -12264,6 +12264,32 @@ Pokemon = SLAKING,5
     IV = 31,31,31,31,31,31
     EV = 252,252,0,252,0,0
 
+[ALPHA_POKEMON,Snorlax,0]
+Pokemon = SNORLAX,5 
+    Offset = 0
+    Moves = SLACKOFFPLUS,EXTREMESPEED,EARTHQUAKE,CURSE
+    Ability = THICKFATPLUS
+    Item = LEFTOVERS
+    Nature = BRAVE
+    Alpha = TRUE
+    Raid = TRUE
+    Hpbar = 2
+    IV = 31,31,31,31,31,31
+    EV = 252,252,252,0,0,0
+
+[ALPHA_POKEMON,Snorlax,1]
+Pokemon = SNORLAX,5 
+    Offset = 0
+    Moves = DIZZYPUNCHPLUS,THOUSANDARROWS,REST,SLEEPTALK
+    Ability = THICKFATPLUS
+    Item = LEFTOVERS
+    Nature = BRAVE
+    Alpha = TRUE
+    Raid = TRUE
+    Hpbar = 2
+    IV = 31,31,31,31,31,31
+    EV = 252,252,252,0,0,0
+
 [ALPHA_POKEMON,Torkoal,0]
 Pokemon = TORKOAL,5
     Offset = 0

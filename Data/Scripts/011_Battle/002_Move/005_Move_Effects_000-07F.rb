@@ -43,8 +43,7 @@ class PokeBattle_Move_004 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user, target)
-    target.effects[PBEffects::Yawn] = 2
-    @battle.pbDisplay(_INTL("{1} made {2} drowsy!", user.pbThis, target.pbThis(true)))
+    @battle.applyEffect(user, target, :Yawn, 2)
   end
 end
 
@@ -2105,6 +2104,7 @@ class PokeBattle_Move_068 < PokeBattle_Move
   end
 
   def pbEffectAgainstTarget(user, target)
+    @battle.applyEffect(user, target, :GastroAcid, 2)
     target.effects[PBEffects::GastroAcid] = true
     target.effects[PBEffects::Truant] = false
     @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", target.pbThis))

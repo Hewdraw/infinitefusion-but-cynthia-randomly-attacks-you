@@ -7624,3 +7624,25 @@ class PokeBattle_Move_434 < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_435 < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    chance = pbAdditionalEffectChance(user, target, 20)
+    chance2 = pbAdditionalEffectChance(user, target, 20)
+    return if chance == 0 && chance2 == 0
+    if @battle.pbRandom(100, user, target) < chance
+      target.pbConfuse if target.pbCanConfuse?(user,true,self)
+    end
+    if @battle.pbRandom(100, user, target) < chance2
+      target.pbParalyze(user) if target.pbCanParalyze?(user, true)
+    end
+  end
+end
+
+class PokeBattle_Move_436 < PokeBattle_Move
+  def pbEffectAgainstTarget(user, target)
+    @battle.applyEffect(user, target, :Yawn, 2)
+    @battle.applyEffect(user, target, :GastroAcid, true)
+    user.pbRecoverHP(user.totalhp / 2)
+  end
+end

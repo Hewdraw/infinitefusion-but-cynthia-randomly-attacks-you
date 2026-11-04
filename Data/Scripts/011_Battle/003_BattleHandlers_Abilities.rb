@@ -228,6 +228,12 @@ BattleHandlers::StatusImmunityAbility.add(:PURIFYINGSALT,
   }
 )
 
+BattleHandlers::StatusImmunityAbility.add(:THICKFATPLUS,
+  proc { |ability,battler,status|
+    next true if [:BURN, :FROZEN].include?(status)
+  }
+)
+
 #===============================================================================
 # StatusImmunityAbilityNonIgnorable handlers
 #===============================================================================
@@ -876,6 +882,21 @@ BattleHandlers::MoveImmunityTargetAbility.add(:WONDERGUARD,
 )
 
 BattleHandlers::MoveImmunityTargetAbility.copy(:WONDERGUARD)
+
+BattleHandlers::MoveImmunityTargetAbility.add(:THICKFATPLUS,
+  proc { |ability,target,user,move,type,battle|
+    next false if ![:FIRE, :ICE].include?(move.type)
+    battle.pbShowAbilitySplash(target)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("It doesn't affect {1}...",target.pbThis(true)))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} made {3} ineffective!",
+         target.pbThis,target.abilityName,move.name))
+    end
+    battle.pbHideAbilitySplash(target)
+    next true
+  }
+)
 
 #===============================================================================
 # MoveBaseTypeModifierAbility handlers
@@ -1803,6 +1824,12 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
+BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:defense_multiplier] *= 1.2 if move.physicalMove?
+  }
+)
+
 BattleHandlers::DamageCalcTargetAbility.add(:PURIFYINGSALT,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] /= 2 if type == :GHOST
@@ -2201,8 +2228,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPOREPLUS,
     when PBEffects::Curse
       battle.applyEffect(target, user, :Curse)
     when PBEffects::Yawn
-      user.effects[PBEffects::Yawn] = 2
-      battle.pbDisplay(_INTL("{1} made {2} drowsy!", target.pbThis, user.pbThis(true)))
+      battle.applyEffect(target, user, :Yawn, 2)
     when PBEffects::Encore
       user.effects[PBEffects::Encore]     = 4
       user.effects[PBEffects::EncoreMove] = move
