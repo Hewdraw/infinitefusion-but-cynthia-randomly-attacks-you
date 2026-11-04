@@ -32,7 +32,7 @@ class Pokemon
       else
         next unless specieslist.include?(data.species)
       end
-      next if data.form == 0
+      next if data.form == 0 && filter != "Rotom"
       specieslist.each_with_index do |species, i|
         case filter
         when "Paradox"

@@ -1390,7 +1390,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn, scene|
     tempspecies = :BIKEROTOMMIRAIDON if pkmn.ability == :HADRONENGINE
     tempspecies = :BIKEROTOMKORAIDON if pkmn.ability == :ORICHALCUMPULSE
     tempspecies = :BIKEROTOMCYCLIZAR if pkmn.ability == :REGENERATOR
-    if tempspecies != species
+    if tempspecies != pkmn.species
       transForm(pkmn, tempspecies)
     end
   end
