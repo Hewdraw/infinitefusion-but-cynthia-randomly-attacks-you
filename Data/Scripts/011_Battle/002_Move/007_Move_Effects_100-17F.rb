@@ -7579,7 +7579,7 @@ class PokeBattle_Move_433 < PokeBattle_Move
     10000.times do
       move_id = move_keys[@battle.pbRandom(move_keys.length)]
       move_data = GameData::Move.get(move_id)
-      next if !move_data.type == :GUN
+      next if move_data.type != :GUN
       metronomeMoveList.push(move_id)
       break if metronomeMoveList.length >= metronomecount
     end

@@ -203,7 +203,7 @@ class FusionTutorService
       compatibleMoves << :FISHIOUSREND if is_fusion_of([:SHARPEDO])
       compatibleMoves << :BODYPRESS if is_fusion_of([:THEFORBIDDENONE]) || (hasType(:ROCK) && hasType(:DRAGON))
       compatibleMoves << :METEORASSAULT if is_fusion_of([:THEFORBIDDENONE])
-      compatibleMoves << :EXPANDINGFORCE if is_fusion_of([:THEFORBIDDENONE])
+      compatibleMoves << :EXPANDINGFORCE if is_fusion_of([:THEFORBIDDENONE]) || canLearnMove(:PSYCHIC)
       compatibleMoves << :ERUPTION if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :INFERNALPARADE if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :LUMINACRASH if is_fusion_of([:THEFORBIDDENONE])

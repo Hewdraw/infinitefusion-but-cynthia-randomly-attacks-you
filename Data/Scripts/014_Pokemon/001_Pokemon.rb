@@ -1923,7 +1923,7 @@ class Pokemon
     if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
       list.push($PokemonGlobal.ancestralgeneability)
     end
-    return list
+    return list.flatten
   end
 
   def getItemAbilities()

@@ -1407,7 +1407,7 @@ class PokemonPartyScreen
         end
         specieslist.each_with_index do |species, i|
           formlist = []
-          pkmn.getFormList("mega")[i].each do |mega|
+          pkmn.getFormList("Mega")[i].each do |mega|
             formlist.push(mega.form_name) if mega.species == species
           end
           next if formlist.length == 0

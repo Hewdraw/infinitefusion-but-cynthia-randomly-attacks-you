@@ -4276,6 +4276,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.copy(:POWEROFALCHEMY,:RECEIVER)
 
 BattleHandlers::AbilityOnBattlerFainting.add(:SOULHEART,
   proc { |ability,battler,fainted,battle|
+    next if battler == fainted
     battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK,1,battler,true,GameData::Ability.get(ability).name)
   }
 )

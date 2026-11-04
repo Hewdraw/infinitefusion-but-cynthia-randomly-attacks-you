@@ -23718,7 +23718,7 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000906]
-Name = Rogron
+Name = Rodra
 InternalName = HGOODRAWASHROTOM
 Type1 = ELECTRIC
 Type2 = STEEL
@@ -23728,7 +23728,7 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000907]
-Name = Roleki
+Name = Roquaza
 InternalName = RAYQUAZAROTOM
 Type1 = ELECTRIC
 Type2 = FLYING
@@ -23738,7 +23738,7 @@ Moves = 1,TACKLE
 Shape = Head
 #-------------------------------
 [1000908]
-Name = Roleki
+Name = Roquaza
 InternalName = MEGARAYQUAZAROTOM
 Type1 = ELECTRIC
 Type2 = FLYING

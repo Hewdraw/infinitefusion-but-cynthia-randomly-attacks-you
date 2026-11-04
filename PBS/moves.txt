@@ -893,7 +893,7 @@
 922,JAWLOCKPLUS,Jaw Lock+,088,80,DARK,Physical,100,10,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 923,DARKPULSEPLUS,Dark Pulse+,00F,120,DARK,Special,100,15,20,Other,0,bem,"The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch."
 924,SPLASHPLUS,Splash+,320,0,NORMAL,Status,0,40,0,User,0,,"The user just flops and splashes around to no effect at all..."
-925,ROCKSLIDEPLUS,Rock Slide+,00F,120,ROCK,Physical,100,10,30,AllNearFoes,0,be,"Large boulders are hurled at the foes to inflict damage. It may also make the targets flinch."
+925,ROCKSLIDEPLUS,Rock Slide+,00F,100,ROCK,Physical,100,10,35,AllNearFoes,0,be,"Large boulders are hurled at the foes to inflict damage. It may also make the targets flinch."
 926,PSYSHOCKPLUS,Psyshock+,253,80,PSYCHIC,Special,100,10,0,NearOther,0,bef,"The user materializes an odd psychic wave to attack the target. This attack does physical damage."
 927,EXTREMESPEEDPLUS,Extreme Speed+,241,80,FLYING,Physical,100,10,0,NearOther,2,abef,"The user charges the target at blinding speed. This attack always goes before any other move."
 928,DRAGONCLAWPLUS,Dragon Claw+,376,80,DRAGON,Physical,100,15,0,NearOther,0,abefq,"The user slashes the target with huge, sharp claws."
