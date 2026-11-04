@@ -421,7 +421,10 @@ class Interpreter
   end
 
   def pbPushThisBoulder
-    pbPushThisEvent if $PokemonMap.strengthUsed
+    if $PokemonMap.strengthUsed
+      pbSEPlay("Strength")
+      pbPushThisEvent
+    end
     return true
   end
 
