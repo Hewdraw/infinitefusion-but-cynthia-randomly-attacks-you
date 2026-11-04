@@ -187,6 +187,8 @@ class PokeBattle_Battle
       types = [battler.pokemon.tera]
     end
     battleTransForm(battler, (battler.pokemon.species.to_s + battler.pokemon.tera.to_s).to_sym)
+    battler.ability = ability
+    battler.pokemon.ability = ability
     battler.pokemon.unteraTypes = types
     @scene.pbRefreshOne(idxBattler)
     pbCommonAnimation("MegaEvolution2",battler)
