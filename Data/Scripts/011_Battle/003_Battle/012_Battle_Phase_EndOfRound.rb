@@ -222,7 +222,7 @@ class PokeBattle_Battle
         raidcooldown = 6
         b.raid = raidcooldown if !b.raid.is_a?(Integer)
         b.raid -= 1
-        pbShowAbilitySplash(b,false,true,"Legendary Pressure")
+        pbShowAbilitySplash(b,false,true,"Legendary Pressure") if b.raid <= 1
         if b.raid == 1
           pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
           pbHideAbilitySplash(b)
