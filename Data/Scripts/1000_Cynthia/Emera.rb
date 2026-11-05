@@ -218,7 +218,7 @@ EMERADICT = {
     },
     :NEWSHOES => {
         :name => "New Shoes",
-        :description => "Your Pokemon with Run Away are unaffected by hazards and their moves that switch them out gain 1 priority.",
+        :description => "Your Pokemon with Run Away are unaffected by hazards and their switching moves gain 1 priority.",
         :rarity => :COMMON,
     },
     :NOTEBLOCK => {

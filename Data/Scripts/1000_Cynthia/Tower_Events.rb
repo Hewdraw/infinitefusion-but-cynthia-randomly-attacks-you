@@ -188,6 +188,7 @@ def resolveUnknownEvent(recursion = false)
             end
             transForm(pkmn, species_id)
         end
+        screen.pbEndScene
     when :HOTSPRING
         Kernel.pbMessage("You encounter a Torkoal heating up a spring.")
         choice = pbUnknownCommands(["Soak in the water.", "Splash the Torkoal with water.", "Gather herbs nearby."], ["You could probably rest up.", "Are you sure you want to anger it?", "You think you spot some Revival Herbs and Energy Roots."])
