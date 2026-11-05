@@ -225,7 +225,7 @@ def pbGetRotomCount()
 end
 
 def pbRotomEncounter()
-  case 2
+  case pbGetRotomCount()
   when 0
     $PokemonGlobal.nextBattleBGM = "VSRotom"
     return false if !pbLegendaryBattle("Rotom")
