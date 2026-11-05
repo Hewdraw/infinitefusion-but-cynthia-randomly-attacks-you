@@ -1559,7 +1559,9 @@ class Pokemon
         bsttemp[i][s.id] = bstdata[i][s.id]
         if species == :AEGISLASH
           bsttemp[i][s.id] = 140 if [:ATTACK, :SPECIAL_ATTACK].include?(s.id) && hasAbility?(:INTREPIDSWORD)
+          bsttemp[i][s.id] = 50 if [:DEFENSE, :SPECIAL_DEFENSE].include?(s.id) && hasAbility?(:INTREPIDSWORD)
           bsttemp[i][s.id] = 140 if [:DEFENSE, :SPECIAL_DEFENSE].include?(s.id) && hasAbility?(:DAUNTLESSSHIELD)
+          bsttemp[i][s.id] = 50 if [:ATTACK, :SPECIAL_ATTACK].include?(s.id) && hasAbility?(:DAUNTLESSSHIELD)
         end
       }
     end
