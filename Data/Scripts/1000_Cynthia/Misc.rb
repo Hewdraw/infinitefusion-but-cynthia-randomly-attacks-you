@@ -294,7 +294,8 @@ def getSoulSprite(viewport)
     else
         heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/UndertaleHardcore")
     end
-    color = TRAINERCLASSDICT[trainerclass][:soul]
+    colof = nil
+    color = TRAINERCLASSDICT[PokemonGlobal.towervalues[:trainerclass]][:soul] if !$PokemonGlobal.towervalues.nil?
     case color
     when "Bravery"
         heartsprite.tone = Tone.new(-3, -89, -255)

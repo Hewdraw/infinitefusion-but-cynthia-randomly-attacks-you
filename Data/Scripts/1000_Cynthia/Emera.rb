@@ -179,6 +179,11 @@ EMERADICT = {
         :description => "Your Pokemon's Rock Smash damage and additional effect chance doubles.",
         :rarity => :COMMON,
     },
+    :HOLYMACKEREL => {
+        :name => "Holy Mackerel",
+        :description => "Your Water Pokemon deal 1.25x damage to Dark and Ghost Pokemon.",
+        :rarity => :COMMON,
+    },
     :LEPPAJUICE => {
         :name => "Leppa Juice",
         :description => "Your Pokemon regain 20% of a moves PP (rounded down) when knocking out a Pokemon with it.",
@@ -375,11 +380,6 @@ EMERADICT = {
         :name => "Heavy Clay",
         :description => "Effects that your Pokemon activate on the Field or a Side last 1 turn longer.",
         :rarity => :UNCOMMON,
-    },
-    :HOLYMACKEREL => {
-        :name => "Holy Mackerel",
-        :description => "Your Water Pokemon deal 1.25x damage to Dark and Ghost Pokemon.",
-        :rarity => :COMMON,
     },
     # :JACKOLANTERN => {
     #     :name => "Jack O'Lantern",
