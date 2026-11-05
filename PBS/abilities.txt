@@ -413,3 +413,4 @@
 726,GRAVITATIONALPULL,Gravitational Pull,"a"
 727,DYNAMORPH,Dynamorph,"a"
 728,ASONEROTOM,As One,"a"
+729,INTREPIDSWORD,Intrepid Sword,"Boosts Attack when entering a battle."

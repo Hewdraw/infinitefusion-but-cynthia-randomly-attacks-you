@@ -3507,6 +3507,15 @@ BattleHandlers::AbilityOnSwitchIn.add(:DAUNTLESSSHIELDPLUS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:INTREPIDSWORD,
+  proc { |ability,battler,battle|
+    next if battler.pokemon.battlevariables[:intrepidsword]
+    battler.pbRaiseStatStageByAbility(:ATTACK,1,battler,true,GameData::Ability.get(ability).real_name)
+    battler.pokemon.battlevariables[:intrepidsword] = true
+  }
+)
+
+
 BattleHandlers::AbilityOnSwitchIn.add(:LEAFSFULLONEFFORT,
   proc { |ability,battler,battle|
     next if battler.pokemon.battlevariables[:leafsfulloneffort]
