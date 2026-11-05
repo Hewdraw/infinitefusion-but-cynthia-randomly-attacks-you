@@ -39,6 +39,7 @@ class PokeBattle_Battle
   # NOTE: Messages are only shown while in the party screen when choosing a
   #       command for the next round.
   def pbCanSwitch?(idxBattler, idxParty = -1, partyScene = nil,switchmove=false)
+    return false if @battlers[idxBattler].effects[PBEffects::Commander]
     # Check whether party Pokémon can switch in
     return false if !pbCanSwitchLax?(idxBattler, idxParty, partyScene)
     # Make sure another battler isn't already choosing to switch to the party

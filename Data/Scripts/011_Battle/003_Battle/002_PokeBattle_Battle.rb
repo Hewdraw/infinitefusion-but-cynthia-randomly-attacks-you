@@ -891,6 +891,9 @@ class PokeBattle_Battle
   end
 
   def pbCommonAnimation(name,user=nil,targets=nil)
+    return if user && user.isCommander?
+    target = target[0] if target.is_a?(Array)
+    return if target && target.isCommander?
     @scene.pbCommonAnimation(name,user,targets) if @showAnims
   end
 

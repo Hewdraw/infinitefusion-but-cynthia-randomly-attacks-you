@@ -143,6 +143,7 @@ end
 #===============================================================================
 class PokeBattle_Move_088 < PokeBattle_Move
   def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
     return true if @battle.switching
     return super
   end
@@ -948,7 +949,10 @@ end
 # Always hits.
 #===============================================================================
 class PokeBattle_Move_0A5 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
 end
 
 
@@ -2036,7 +2040,10 @@ end
 # Two turn attack. Skips first turn, attacks second turn. (Razor Wind)
 #===============================================================================
 class PokeBattle_Move_0C3 < PokeBattle_TwoTurnMove
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
 
   def pbChargingTurnMessage(user,targets)
     @battle.pbDisplay(_INTL("{1} whipped up a whirlwind!",user.pbThis))
@@ -3026,6 +3033,10 @@ class PokeBattle_Move_0EB < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
+    if target.isCommander?
+      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      return true
+    end
     if target.effects[PBEffects::Dynamax] > 0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
@@ -3079,6 +3090,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       next if b.fainted? || b.damageState.unaffected || switchedBattlers.include?(b.index)
       newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
       next if newPkmn<0
+      next if b.isCommander?
       @battle.pbRecallAndReplace(b.index, newPkmn, true)
       @battle.pbDisplay(_INTL("{1} was dragged out!",b.pbThis))
       @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
@@ -3120,6 +3132,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
       next if switchedBattlers.include?(b.index)
       next if b.effects[PBEffects::Ingrain]
       next if b.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+      next if b.isCommander?
       newPkmn = @battle.pbGetReplacementPokemonIndex(b.index,true)   # Random
       next if newPkmn<0
       @battle.pbRecallAndReplace(b.index, newPkmn, true)

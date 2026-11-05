@@ -898,6 +898,15 @@ BattleHandlers::MoveImmunityTargetAbility.add(:THICKFATPLUS,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:COMMANDERPLUS,
+  proc { |ability,target,user,move,type,battle|
+    next false if !target.isCommander?
+    battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
+    next true
+  }
+)
+
+
 #===============================================================================
 # MoveBaseTypeModifierAbility handlers
 #===============================================================================
@@ -4265,6 +4274,34 @@ BattleHandlers::AbilityOnSwitchIn.add(:STANCECHANGE,
     battler.pbRaiseStatStage(:SPECIAL_DEFENSE, 1, battler, false, true)
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:COMMANDERPLUS,
+  proc { |ability, battler, battle|
+    showAnim = true
+    battle.eachSameSideBattler(battler.index) do |b|
+      next if !b || !b.near?(battler) || b.fainted?
+      next if battle.choices[b.index][0] == :SwitchOut
+      next if !b.isSpecies?(:RATTATA)
+      next if b.effects[PBEffects::Commander]
+      battle.pbShowAbilitySplash(battler)
+      battle.pbClearChoice(battler.index)
+      battle.pbDisplay(_INTL("{1} commands {2}!", battler.pbThis, b.pbThis(true)))
+      battle.scene.sprites["pokemon_#{battler.index}"].visible = false
+      battle.scene.sprites["shadow_#{battler.index}"].visible = false
+      b.effects[PBEffects::Commander] = [battler.index, battler.species]
+      battler.effects[PBEffects::Commander] = [b.index]
+      [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED].each do |stat|
+        next if !b.pbCanRaiseStatStage?(stat, b)
+        if b.pbRaiseStatStage(stat, 3, b, showAnim)
+          showAnim = false
+        end
+      end
+      battle.pbHideAbilitySplash(battler)
+      break
+    end
+  }
+)
+
 
 #===============================================================================
 # AbilityOnSwitchOut handlers

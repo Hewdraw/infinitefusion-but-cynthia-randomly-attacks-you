@@ -14,6 +14,8 @@ class PokeBattle_Battle
       return false if idxBattler==2 || idxBattler==3   # In middle spot already
       idxOther = ((idxBattler%2)==0) ? 2 : 3
     end
+    return false if @battlers[idxBattler].effects[PBEffects::Commander] || 
+                    @battlers[idxOther].effects[PBEffects::Commander]
     return false if pbGetOwnerIndexFromBattlerIndex(idxBattler)!=pbGetOwnerIndexFromBattlerIndex(idxOther)
     return true
   end

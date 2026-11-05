@@ -440,6 +440,11 @@ module BattleHandlers
 
   def self.triggerAbilityOnSwitchIn(ability,battler,battle)
     AbilityOnSwitchIn.trigger(ability,battler,battle)
+    battle.eachSameSideBattler(battler.index) do |b|
+      next if !b.hasActiveAbility?(:COMMANDERPLUS)
+      next if b.effects[PBEffects::Commander]
+      AbilityOnSwitchIn.trigger([:COMMANDERPLUS], b, battle)   
+    end
   end
 
   def self.triggerItemOnSwitchIn(item,battler,battle)

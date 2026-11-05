@@ -120,6 +120,9 @@ class PokeBattle_Battler
   def pbContinualAbilityChecks(onSwitchIn=false)
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
+    if hasActiveAbility?(:COMMANDERPLUS)
+      BattleHandlers.triggerAbilityOnSwitchIn([:COMMANDERPLUS], self, @battle)
+    end
     # Trace
     # if hasActiveAbility?(:TRACE)
     #   # NOTE: In Gen 5 only, Trace only triggers upon the Trace bearer switching

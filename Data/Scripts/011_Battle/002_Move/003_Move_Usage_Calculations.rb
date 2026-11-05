@@ -141,6 +141,7 @@ class PokeBattle_Move
   # Accuracy calculations for one-hit KO moves and "always hit" moves are
   # handled elsewhere.
   def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
     # "Always hit" effects and "always hit" accuracy
     return true if target.effects[PBEffects::Telekinesis]>0
     return true if target.effects[PBEffects::Minimize] && tramplesMinimize?(1)

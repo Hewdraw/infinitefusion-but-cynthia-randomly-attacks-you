@@ -555,6 +555,8 @@ class PokeBattle_Battler
       :ASONE,
       :EON,
       :FORCEDEVOLUTION,
+      :ASONEROTOM,
+      :COMMANDERPLUS,
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -595,6 +597,7 @@ class PokeBattle_Battler
       :WONDERGUARD,
       :WONDERTRADE,
       :ASONEROTOM,
+      :COMMANDERPLUS,
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -863,6 +866,16 @@ class PokeBattle_Battler
   def setBelched
     @battle.belch[@index & 1][@pokemonIndex] = true
   end
+  
+  def isCommander?
+    commander = @effects[PBEffects::Commander]
+    return commander && commander.length == 1
+  end
+  
+  def isCommanderHost?
+    commander = @effects[PBEffects::Commander]
+    return commander && commander.length == 2
+  end  
 
   #=============================================================================
   # Methods relating to this battler's position on the battlefield

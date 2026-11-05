@@ -868,13 +868,16 @@ end
 class PokeBattle_Move_120 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
     numTargets = 0
-    @idxAlly = -1
-    idxUserOwner = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
-    user.eachAlly do |b|
-      next if @battle.pbGetOwnerIndexFromBattlerIndex(b.index) != idxUserOwner
-      next if !b.near?(user)
-      numTargets += 1
-      @idxAlly = b.index
+    if !user.effects[PBEffects::Commander]
+      @idxAlly = -1
+      idxUserOwner = @battle.pbGetOwnerIndexFromBattlerIndex(user.index)
+      user.eachAlly do |b|
+        next if @battle.pbGetOwnerIndexFromBattlerIndex(b.index) != idxUserOwner
+        next if !b.near?(user)
+        next if b.effects[PBEffects::Commander]
+        numTargets += 1
+        @idxAlly = b.index
+      end
     end
     if numTargets != 1
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -1123,7 +1126,8 @@ class PokeBattle_Move_139 < PokeBattle_TargetStatDownMove
   end
 
   def pbAccuracyCheck(user, target)
-    ; return true;
+    return false if target.isCommander?
+    return true;
   end
 end
 
@@ -1142,7 +1146,8 @@ class PokeBattle_Move_13A < PokeBattle_TargetMultiStatDownMove
   end
 
   def pbAccuracyCheck(user, target)
-    ; return true;
+    return false if target.isCommander?
+    return true
   end
 end
 
@@ -1172,7 +1177,8 @@ class PokeBattle_Move_13B < PokeBattle_StatDownMove
   # end
 
   def pbAccuracyCheck(user, target)
-    ; return true;
+    return false if target.isCommander?
+    return true
   end
 
   def pbEffectAgainstTarget(user, target)
@@ -1204,7 +1210,8 @@ class PokeBattle_Move_13C < PokeBattle_TargetStatDownMove
   end
 
   def pbAccuracyCheck(user, target)
-    ; return true;
+    return false if target.isCommander?
+    return true
   end
 end
 
@@ -1459,7 +1466,8 @@ class PokeBattle_Move_147 < PokeBattle_Move
   end
 
   def pbAccuracyCheck(user, target)
-    ; return true;
+    return false if target.isCommander?
+    return true
   end
 
   def pbEffectAgainstTarget(user, target)
@@ -2724,7 +2732,10 @@ class PokeBattle_Move_184 < PokeBattle_Move
 end
 
 class PokeBattle_Move_185 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
   def multiHitMove?;           return true; end
   def pbNumHits(user,targets); return 2;    end
 end
@@ -2749,7 +2760,10 @@ class PokeBattle_Move_187 < PokeBattle_Move
 end
 
 class PokeBattle_Move_188 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
   
   def pbBaseDamage(baseDmg,user,target)
     return baseDmg if user.undynamoves == nil
@@ -2971,7 +2985,10 @@ class PokeBattle_Move_191 < PokeBattle_Move
 end
 
 class PokeBattle_Move_192 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
   def pbBaseDamage(baseDmg,user,target)
     return [(user.happiness*2/5).floor,1].max
   end
@@ -3265,7 +3282,10 @@ class PokeBattle_Move_206 < PokeBattle_Move
 end
 
 class PokeBattle_Move_207 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
 
   def pbInitialEffect(user,targets,hitNum)
     @battle.pbDisplay(_INTL("{1} surrounded itself with its Z-Power!",user.pbThis))
@@ -4123,7 +4143,10 @@ class PokeBattle_Move_251 < PokeBattle_TargetStatDownMove
 end
 
 class PokeBattle_Move_252 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
 
   def pbGetAttackStats(user, target)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
@@ -5596,7 +5619,10 @@ class PokeBattle_Move_334 < PokeBattle_Move
 end
 
 class PokeBattle_Move_335 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
 
   def pbGetAttackStats(user, target)
     return user.attack, [user.stages[:ATTACK] + 6, 6].max
@@ -5763,7 +5789,10 @@ class PokeBattle_Move_342 < PokeBattle_Move
 end
 
 class PokeBattle_Move_343 < PokeBattle_Move
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
   def pbCritialOverride(user,target); return 1; end
 end
 
@@ -6590,7 +6619,10 @@ class PokeBattle_Move_389 < PokeBattle_TargetStatDownMove
     @statDown = [:DEFENSE, 1]
   end
   
-  def pbAccuracyCheck(user,target); return true; end
+  def pbAccuracyCheck(user,target)
+    return false if target.isCommander?
+    return true
+  end
 
   def pbGetAttackStats(user, target)
     stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]

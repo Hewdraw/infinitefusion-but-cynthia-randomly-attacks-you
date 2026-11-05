@@ -34,6 +34,7 @@ class PokeBattle_Battle
   #=============================================================================
   def pbCanShowCommands?(idxBattler)
     battler = @battlers[idxBattler]
+    return false if battler.isCommander?
     return false if !battler || battler.fainted?
     return false if battler.usingMultiTurnAttack?
     return true

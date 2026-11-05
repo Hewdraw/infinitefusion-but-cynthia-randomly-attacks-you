@@ -49,6 +49,18 @@ class PokeBattle_Battler
   end
 
   def pbFaint(showMessage=true)
+    commanderIdx = nil
+    if @effects[PBEffects::Commander]
+      pairedBattler = @battle.battlers[@effects[PBEffects::Commander][0]]
+      if pairedBattler&.effects[PBEffects::Commander]
+        if isCommander?
+          commanderIdx = @index
+        else
+          commanderIdx = pairedBattler.index
+          pairedBattler.effects[PBEffects::Commander] = nil
+        end
+      end
+    end
     if self.hasActiveAbility?(:SACREDASHES, true) && !@pokemon.battlevariables[:sacredashes]
       @battle.pbShowAbilitySplash(self)
       pbRecoverHP(adjustedTotalhp / 2)
@@ -196,6 +208,12 @@ class PokeBattle_Battler
     pbAbilitiesOnFainting
     # Check for end of primordial weather
     @battle.pbEndPrimordialWeather
+    if commanderIdx
+      commander = @battle.battlers[commanderIdx]
+      return if commander.fainted?
+      @battle.scene.sprites["pokemon_#{commanderIdx}"].visible = true
+      @battle.scene.sprites["shadow_#{commanderIdx}"].visible = true
+    end
   end
 
   def pbPhaseShift

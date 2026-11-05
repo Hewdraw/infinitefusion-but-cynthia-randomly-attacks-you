@@ -11434,6 +11434,28 @@ Pokemon = HEATRAN,5
     EV = 252,0,4,0,0,252
     Happiness = 255
 
+[Wild_Pokemon,Raticate,0]   
+Pokemon = JOEY,5    
+    Offset = 0
+    Moves = EARTHQUAKE,FRUSTRATION,LOWKICK,SUCKERPUNCH
+    Ability = COMMANDERPLUS
+    Item = NORMALGEM
+    Nature = ADAMANT
+    IV = 31,31,31,31,31,31
+    EV = 252,228,0,0,0,32
+    Happiness = 0
+Pokemon = RATTATA,5 
+    Offset = 0
+    Moves = FACADE,CRUNCH,HIDDENPOWER,MIMIC
+    Ability = GUTS
+    Status = BURN
+    Item = EVERSTONEPLUS
+    HPType = GROUND
+    Nature = ADAMANT
+    IV = 31,0,31,31,31,31
+    EV = 252,252,0,8,0,0
+    Happiness = 255
+
 [POKEMON,Eevee,0]
 Pokemon = EEVEE,20
 

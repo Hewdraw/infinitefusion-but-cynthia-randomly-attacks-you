@@ -134,6 +134,7 @@ begin
     StanceChange        = 128
     ShieldAndCounter         = 129
     CloudMinion                = 130
+    Commander                = 131
 
     #===========================================================================
     # These effects apply to a battler position
