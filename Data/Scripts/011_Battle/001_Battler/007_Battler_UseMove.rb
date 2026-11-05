@@ -634,16 +634,16 @@ class PokeBattle_Battler
     if !inSwordForm && attacking
       user.effects[PBEffects::StanceChange] = true
       @battle.pbDisplay(_INTL("{1} changed to Sword Mode!", user.pbThis))
-      user.pbLowerStatStage(:DEFENSE, 2, user, false, true)
-      user.pbLowerStatStage(:SPECIAL_DEFENSE, user, 2, false, true)
-      user.pbRaiseStatStage(:ATTACK, 2, user, false, true)
+      user.pbLowerStatStage(:DEFENSE, 2, user, true, true)
+      user.pbLowerStatStage(:SPECIAL_DEFENSE, 2, user, false, true)
+      user.pbRaiseStatStage(:ATTACK, 2, user, true, true)
       user.pbRaiseStatStage(:SPECIAL_ATTACK, 2, user, false, true)
     elsif inSwordForm && !attacking
       user.effects[PBEffects::StanceChange] = false
       @battle.pbDisplay(_INTL("{1} changed to Shield Mode!", user.pbThis))
-      user.pbLowerStatStage(:ATTACK, 2, user, false, true)
+      user.pbLowerStatStage(:ATTACK, 2, user, true, true)
       user.pbLowerStatStage(:SPECIAL_ATTACK, 2, user, false, true)
-      user.pbRaiseStatStage(:DEFENSE, 2, user, false, true)
+      user.pbRaiseStatStage(:DEFENSE, 2, user, true, true)
       user.pbRaiseStatStage(:SPECIAL_DEFENSE, 2, user, false, true)
     end
   end
