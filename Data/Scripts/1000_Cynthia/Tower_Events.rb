@@ -176,10 +176,12 @@ def resolveUnknownEvent(recursion = false)
                 break if movelist.length >= 4
             end
             pkmn.moves = movelist
+            pbMessage(_INTL("{1} changed moves!", pkmn.name))
         when 1
             ability_keys = GameData::Ability::DATA.keys
             ability_id = ability_keys.sample
-            gainedability = ability_id
+            pkmn.ability = ability_id
+            pbMessage(_INTL("{1} changed ability!", pkmn.name))
         when 2
             if pkmn.isFusion?
                 species_id = "B#{rand(NB_POKEMON)+1}H#{rand(NB_POKEMON)+1}".to_sym
