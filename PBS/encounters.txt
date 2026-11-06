@@ -2022,14 +2022,14 @@ Land,10
     5,KINGLER,28,32
     5,SEADRA,28,32
 #-------------------------------
-[402] # Pokemon Tower F3
-Cave,5
-    65,GASTLY,25,30
-    10,CUBONE,20,25
-    10,HAUNTER,30,35
-    5,DROWZEE,30,35
-    5,GOLBAT,25,35
-    5,RATICATE,25,35
+#[402] # Pokemon Tower F3
+#Cave,5
+#    65,GASTLY,25,30
+#    10,CUBONE,20,25
+#    10,HAUNTER,30,35
+#    5,DROWZEE,30,35
+#    5,GOLBAT,25,35
+#    5,RATICATE,25,35
 #-------------------------------
 [403] # Pokemon Tower F4
 Cave,5
