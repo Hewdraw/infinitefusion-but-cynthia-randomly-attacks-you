@@ -412,10 +412,11 @@ class Pokemon
   end
 
 
-  def isFusionOf(check_species)
+  def isFusionOf(check_species,check_triple=true)
     calc_stats if @materials.nil?
     check_species = [check_species] if !check_species.is_a?(Array)
     check_species.each do |species|
+      return true if check_triple && TRIPLEFUSIONS[@species] && TRIPLEFUSIONS[@species].flatten.include?(species)
       return true if @materials.include?(species)
     end
     return false
@@ -1875,7 +1876,7 @@ class Pokemon
       end
     end
     if ((list.include?(:FORCEDEVOLUTION) || ability_id == :FORCEDEVOLUTION) && hasItem?(:MISTSTONE)) || list.include?(:FORCEDEVOLUTIONPLUS) || ability_id == :FORCEDEVOLUTIONPLUS
-      if isFusionOf([:MEW, :CELEMEWCHI])
+      if isFusionOf(:MEW)
         list += [:PRESSURE, :UNNERVE, :STEADFAST, :INSOMNIA, :IMMUNITY]
       else
         getAbilityList.each do |ability|
@@ -1932,7 +1933,7 @@ class Pokemon
         list.push(mega.abilities[0])
       end
     end
-    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :CELEMEWCHI, :MEWTWO, :DEOSECTWO]) && $PokemonGlobal.ancestralgeneability
+    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :MEWTWO]) && $PokemonGlobal.ancestralgeneability
       list.push($PokemonGlobal.ancestralgeneability)
     end
     return list.flatten
@@ -2054,7 +2055,7 @@ class Pokemon
         :DAMP => -> () {return true},
       },
       :MILLENNIUMCOMETSHARD => {
-        :LEGENDARYPRESSURE => -> () {return isFusionOf([:JIRACHI, :CELEMEWCHI])},
+        :LEGENDARYPRESSURE => -> () {return isFusionOf(:JIRACHI)},
       },
       :GODORB => {
         :TOTALFREEZE => -> () {return true},

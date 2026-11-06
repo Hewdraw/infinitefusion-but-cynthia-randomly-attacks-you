@@ -1345,9 +1345,9 @@ BattleHandlers::DamageCalcTargetItem.add(:OVALSTONE,
 
 BattleHandlers::DamageCalcTargetItem.add(:UPGRADE,
   proc { |item,target,user,move,mults,baseDmg,type|
-    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON)
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON, false)
     mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGON2)
-    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGONZ)
+    mults[:defense_multiplier] *= 1.5 if target.isFusionOf(:PORYGONZ, false)
     mults[:defense_multiplier] *= 1.5 if target.pokemon.species_data.id_number >= 1000099 && !target.pbOwnedByPlayer?
   }
 )

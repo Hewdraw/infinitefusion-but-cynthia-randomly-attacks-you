@@ -389,8 +389,8 @@ class PokeBattle_Battler
     return @pokemon.hasHeadOf?(check_species)
   end
 
-  def isFusionOf(check_species)
-    return @pokemon.isFusionOf(check_species)
+  def isFusionOf(check_species, check_triple=true)
+    return @pokemon.isFusionOf(check_species, check_triple)
   end
 
   def isFusion?()
@@ -442,7 +442,7 @@ class PokeBattle_Battler
       return true if hasActiveItem?(:SOFTSAND) && isFusionOf([:CACNEA, :CACTURNE])
     when :BUG
     when :GHOST
-      return true if hasActiveItem?(:ROTOMCATALOG) && isFusionOf([:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM, :MEGAROTOM])
+      return true if hasActiveItem?(:ROTOMCATALOG) && isFusionOf([:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])
     when :STEEL
       return true if hasActiveItem?([:MILLENNIUMCOMETSHARD, :PUREINCENSE])
     when :FIRE

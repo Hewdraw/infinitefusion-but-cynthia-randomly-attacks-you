@@ -1308,7 +1308,7 @@ class PokemonPartyScreen
       commands[cmdMegaForm = commands.length] = _INTL("Mega Form") if pkmn.hasItem?(:MEGASHARD) && pkmn.getFormList("Mega").flatten.length > 0
       commands[cmdRegionalForm = commands.length] = _INTL("Regional Form") if pkmn.hasItem?([:ICESPHERE, :LIGHTNINGSPHERE, :FIRESPHERE]) && pkmn.getFormList("Regional").flatten.length > 0
       commands[cmdParadoxForm = commands.length] = _INTL("Paradox Form") if pkmn.hasItem?([:MODIFIEDBOOSTERENERGY]) && pkmn.getFormList("Paradox").flatten.length > 0
-      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getFormList("Rotom").flatten.length > 0 && pkmn.isFusionOf(:ROTOM)
+      commands[cmdRotomForm = commands.length] = _INTL("Rotom Form") if pkmn.hasItem?([:ROTOMCATALOG]) && pkmn.getFormList("Rotom").flatten.length > 0 && pkmn.isFusionOf(:ROTOM, false)
       commands[cmdPet = commands.length] = _INTL("Pet")
       commands[cmdDebug = commands.length] = _INTL("Debug") if $DEBUG
       if !pkmn.egg?

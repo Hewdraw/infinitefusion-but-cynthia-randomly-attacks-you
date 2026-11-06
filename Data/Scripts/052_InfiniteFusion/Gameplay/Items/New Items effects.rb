@@ -1395,7 +1395,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:BUNEARY, :LOPUNNY, :HITMONLEE] => [[:HIJUMPKICK]],
     [:SQUIRTLE, :WARTORTLE, :BLASTOISE, :MACHINEDRAMON] => [[:HYDROCANNON]],
     [:DELIBIRD, :IRONBUNDLE, :LUGIA, :ROTOM, :WASHROTOM] => [[:HYDROPUMP]],
-    [:SUICUNE, :WALKINGWAKE, :ENRAICUNE] => [[:HYDROSTEAM]],
+    [:SUICUNE, :WALKINGWAKE] => [[:HYDROSTEAM]],
     [:MELOETTA_A, :MELOETTA_P, :VOCALLEEK, :VOCALDRILL, :VOCALCELL] => [[:HYPNOSIS, :MESMERIZER]],
     [:REGICE, :ARTICUNO, :GALARARTICUNO] => [[:ICEBEAM]],
     [:DUSKULL, :DUSCLOPS, :DUSKNOIR, :HITMONCHAN, :ELEKID, :ELECTABUZZ, :ELECTIVIRE] => [[:ICEPUNCH]],
@@ -1433,7 +1433,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:WEEDLE, :KAKUNA, :BEEDRILL, :VESPIQUEN] => [[:TWINEEDLE]],
     [:FROAKIE, :FROGADIER,:GRENINJA] => [[:WATERSHURIKEN]],
   }
-  allmoves = pkmn.isFusionOf(:GENESECT) || pkmn.species == :DEOSECTWO
+  allmoves = pkmn.isFusionOf(:GENESECT)
   upgradelist.each do |pokemon, movearray|
     pokemon.each do |mon|
       next unless allmoves || pkmn.isFusionOf(mon) || (TRIPLEFUSIONS[mon] && TRIPLEFUSIONS[mon].flatten.include?(mon))
