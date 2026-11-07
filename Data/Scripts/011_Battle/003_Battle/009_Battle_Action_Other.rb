@@ -266,17 +266,15 @@ class PokeBattle_Battle
     sprite.y -= 128
     sprite.setPokemonBitmap(battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
-    battler.undynamoves = battler.pokemon.moves.clone
-    battler.pokemon.forget_all_moves
     battler.moves = []
-    battler.undynamoves.each_with_index do |move,i|
+    battler.pokemon.moves.each_with_index do |move,i|
       if move.category != 2
         move = Pokemon::Move.new(maxmoves[move.type])
       else
         move = Pokemon::Move.new(:MAXGUARD)
       end
       battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,move)
-      battler.moves[i].category = battler.undynamoves[i].category
+      battler.moves[i].category = battler.pokemon.moves[i].category
     end
     @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
     pbDisplay(_INTL("{1} has Dynamaxed?!",battler.pbThis))
@@ -321,7 +319,6 @@ class PokeBattle_Battle
       battleTransForm(battler, tempspecies)
       pbCommonAnimation("MegaEvolution2",battler)
     end
-    battler.pokemon.moves = battler.undynamoves
     battler.moves = []
     battler.pokemon.moves.each_with_index do |move,i|
       battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,move)

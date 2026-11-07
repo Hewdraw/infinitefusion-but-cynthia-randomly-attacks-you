@@ -45,7 +45,6 @@ class PokeBattle_Battler
   attr_accessor :willtera
   attr_accessor :stellarmoves
   attr_accessor :dynamax
-  attr_accessor :undynamoves
   attr_accessor :ace
   attr_accessor :raid
   attr_accessor :hpbars
@@ -70,10 +69,6 @@ class PokeBattle_Battler
 
   def stellarmoves=(value)
     @stellarmoves = value
-  end
-
-  def undynamoves=(value)
-    @undynamoves = value
   end
 
   def moves=(value)

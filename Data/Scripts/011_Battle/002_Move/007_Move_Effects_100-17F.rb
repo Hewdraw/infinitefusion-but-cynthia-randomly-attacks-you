@@ -2766,12 +2766,12 @@ class PokeBattle_Move_188 < PokeBattle_Move
   end
   
   def pbBaseDamage(baseDmg,user,target)
-    return baseDmg if user.undynamoves == nil
+    return baseDmg if user.effects[PBEffects::Dynamax] == 0
     highestpower = baseDmg
-    user.undynamoves.each_with_index do |move,i|
+    user.pokemon.moves.each_with_index do |move,i|
       next if user.moves[i].id != self.id
-      next if !((user.undynamoves[i].base_damage + 150 / 2) > (highestpower))
-      highestpower = (user.undynamoves[i].base_damage + 150) / 2
+      next if !((move.base_damage + 150 / 2) > (highestpower))
+      highestpower = (move.base_damage + 150) / 2
     end
     return highestpower + 10 - (highestpower % 10)
   end

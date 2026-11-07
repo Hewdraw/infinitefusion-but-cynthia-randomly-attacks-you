@@ -1186,7 +1186,7 @@
 1217,DOUBLEDUST,Double Dust,431,60,FAIRY,Physical,100,5,17,NearOther,0,abefj,"Puts both hands together and swings with all its might."
 1218,SLASHNAIL,Slash Nail,432,100,DARK,Physical,100,5,100,NearOther,0,abefq,"Tears the enemy with the giant claws on its left hand."
 1219,ROULETTE,Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
-1220,SHEDSKIN,Shed Skin,000,0,NORMAL,Status,0,5,0,User,1,,"todo"
+1220,SHEDTAIL,Shed Tail,000,0,NORMAL,Status,0,5,0,User,1,,"todo"
 1221,DIZZYPUNCHPLUS,Dizzy Punch+,435,110,NORMAL,Physical,100,10,100,NearOther,0,abefj,"The target is hit with rhythmically launched punches that may also leave it confused."
 1222,SLACKOFFPLUS,Slack Off+,436,0,NORMAL,Status,0,5,0,NearOther,0,d,"The user slacks off, restoring its own HP by up to half of its maximum HP."
 
