@@ -38,14 +38,14 @@ class PokemonBoxArrow < SpriteWrapper
 
   def x=(value)
     _multiSelect_PokemonBoxArrow_x_eq(value)
-    multiHeldPokemon.each { |pkmn| pkmn.x = self.x + (pkmn.heldox * 48) } if holdingMulti?
+    multiHeldPokemon.each { |pkmn| pkmn.x = self.x + 32 + (pkmn.heldox * 48) } if holdingMulti?
   end
 
   alias _multiSelect_PokemonBoxArrow_y_eq y=
 
   def y=(value)
     _multiSelect_PokemonBoxArrow_y_eq(value)
-    multiHeldPokemon.each { |pkmn| pkmn.y = self.y + 16 + (pkmn.heldoy * 48) } if holdingMulti?
+    multiHeldPokemon.each { |pkmn| pkmn.y = self.y + 48 + (pkmn.heldoy * 48) } if holdingMulti?
   end
 
   def setSprite(sprite)

@@ -105,14 +105,14 @@ class PokemonBoxArrow < SpriteWrapper
     super
     @handsprite.x = self.x
     @spriteX = x if !@updating
-    heldPokemon.x = self.x if holding?
+    heldPokemon.x = self.x + 32 if holding?
   end
 
   def y=(value)
     super
     @handsprite.y = self.y
     @spriteY = y if !@updating
-    heldPokemon.y = self.y + 16 if holding?
+    heldPokemon.y = self.y + 48 if holding?
   end
 
   def z=(value)
