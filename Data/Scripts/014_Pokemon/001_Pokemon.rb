@@ -687,7 +687,7 @@ class Pokemon
     type = GameData::Type.get(type).id
     TRIPLETYPES.each do |tripletype, material|
       next if !self.types.include?(tripletype)
-      return true if material == type
+      return true if material.include?(type)
     end
     return self.types.include?(type)
   end
@@ -1870,6 +1870,9 @@ class Pokemon
   def createAbilityArray
     list = []
     list += getItemAbilities()
+    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :MEWTWO]) && $PokemonGlobal.ancestralgeneability
+      list.push($PokemonGlobal.ancestralgeneability)
+    end
     if list.include?(:LEGENDARYPRESSURE) || ability_id == :LEGENDARYPRESSURE || list.include?(:MYTHICALPRESSURE) || ability_id == :MYTHICALPRESSURE
       getAbilityList.each do |ability|
         list.push(ability[0])
@@ -1932,9 +1935,6 @@ class Pokemon
         next if mega.form == 0
         list.push(mega.abilities[0])
       end
-    end
-    if hasItem?(:ANCESTRALGENE) && isFusionOf([:MEW, :MEWTWO]) && $PokemonGlobal.ancestralgeneability
-      list.push($PokemonGlobal.ancestralgeneability)
     end
     return list.flatten
   end

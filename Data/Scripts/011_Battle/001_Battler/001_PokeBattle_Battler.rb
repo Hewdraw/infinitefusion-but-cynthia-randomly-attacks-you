@@ -470,7 +470,7 @@ class PokeBattle_Battler
     activeTypes = pbTypes(true)
     TRIPLETYPES.each do |tripletype, material|
       next if !activeTypes.include?(tripletype)
-      return true if material == type
+      return true if material.include?(type)
     end
     return activeTypes.include?(GameData::Type.get(type).id)
   end
