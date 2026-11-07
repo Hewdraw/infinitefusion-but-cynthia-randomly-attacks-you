@@ -153,9 +153,9 @@ class PokemonBoxSprite < SpriteWrapper
                        boxname, Color.new(248, 248, 248), Color.new(40, 48, 48))
       @refreshBox = false
     end
-    yval = self.y + 30
+    yval = self.y + 78
     for j in 0...PokemonBox::BOX_HEIGHT
-      xval = self.x + 10
+      xval = self.x + 42
       for k in 0...PokemonBox::BOX_WIDTH
         sprite = @pokemonsprites[j * PokemonBox::BOX_WIDTH + k]
         if sprite && !sprite.disposed?

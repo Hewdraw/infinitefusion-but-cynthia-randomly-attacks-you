@@ -139,7 +139,7 @@ end
 #===============================================================================
 # Pokémon icon (for defined Pokémon)
 #===============================================================================
-class PokemonIconSprite < SpriteWrapper
+class PokemonIconSprite < PokemonSprite
   attr_accessor :selected
   attr_accessor :active
   attr_reader :pokemon
@@ -162,11 +162,6 @@ class PokemonIconSprite < SpriteWrapper
     @adjusted_y = 0 # Offset due to "jumping" animation in party screen
   end
 
-  def dispose
-    @animBitmap.dispose if @animBitmap
-    super
-  end
-
   def x
     return @logical_x;
   end
@@ -185,106 +180,26 @@ class PokemonIconSprite < SpriteWrapper
     super(@logical_y + @adjusted_y)
   end
 
-  def animBitmap=(value)
-    @animBitmap = value
-  end
-
   def pokemon=(value)
     @pokemon = value
-    @animBitmap.dispose if @animBitmap
-    @animBitmap = nil
     if !@pokemon
       self.bitmap = nil
       @currentFrame = 0
       @counter = 0
       return
     end
-    if useRegularIcon(@pokemon.species) || @pokemon.egg?
-      @animBitmap = AnimatedBitmap.new(GameData::Species.icon_filename_from_pokemon(value))
-    elsif useTripleFusionIcon(@pokemon.species)
-      @animBitmap = AnimatedBitmap.new(pbResolveBitmap(sprintf("Graphics/Icons/iconDNA")))
-    else
-      @animBitmap = createFusionIcon()
+    setPokemonBitmap(@pokemon)
+    if self.src_rect
+      self.zoom_x = 1 / (self.src_rect.width / 64.0)
+      self.zoom_y = 1 / (self.src_rect.height / 64.0)
     end
-    self.bitmap = @animBitmap.bitmap
-    self.src_rect.width = @animBitmap.height
-    self.src_rect.height = @animBitmap.height
-    @numFrames = @animBitmap.width / @animBitmap.height
-    @currentFrame = 0 if @currentFrame >= @numFrames
-    changeOrigin
-  end
-  def useTripleFusionIcon(species)
-    dexNum = getDexNumberForSpecies(species)
-    return isTripleFusion?(dexNum)
-  end
-
-  def useRegularIcon(species)
-    dexNum = getDexNumberForSpecies(species)
-    return true if dexNum <= Settings::NB_POKEMON
-    return true if dexNum > 1000099
-    return false if $game_variables == nil
-    return true if $game_variables[VAR_FUSION_ICON_STYLE] != 0
-    bitmapFileName = sprintf("Graphics/Icons/icon%03d", dexNum)
-    return true if pbResolveBitmap(bitmapFileName)
-    return false
   end
 
   SPRITE_OFFSET = 10
 
-  def createFusionIcon()
-    bodyPoke_number = getBodyID(pokemon.species)
-    headPoke_number = getHeadID(pokemon.species, bodyPoke_number)
-
-    bodyPoke = GameData::Species.get(bodyPoke_number).species
-    headPoke = GameData::Species.get(headPoke_number).species
-
-    icon1 = AnimatedBitmap.new(GameData::Species.icon_filename(headPoke, @pokemon.spriteform_head))
-    icon2 = AnimatedBitmap.new(GameData::Species.icon_filename(bodyPoke, @pokemon.spriteform_body))
-
-    dexNum = getDexNumberForSpecies(@pokemon.species)
-    ensureFusionIconExists
-    bitmapFileName = sprintf("Graphics/Pokemon/FusionIcons/icon%03d", dexNum)
-    headPokeFileName = GameData::Species.icon_filename(headPoke, @pokemon.spriteform_head)
-
-    bitmapPath = sprintf("%s.png", bitmapFileName)
-    generated_new_icon = generateFusionIcon(headPokeFileName, bitmapPath)
-    result_icon = generated_new_icon ? AnimatedBitmap.new(bitmapPath) : icon1
-
-    for i in 0..icon1.width - 1
-      for j in ((icon1.height / 2) + Settings::FUSION_ICON_SPRITE_OFFSET)..icon1.height - 1
-        temp = icon2.bitmap.get_pixel(i, j)
-        result_icon.bitmap.set_pixel(i, j, temp)
-      end
-    end
-    return result_icon
-  end
-
   def setOffset(offset = PictureOrigin::Center)
     @offset = offset
     changeOrigin
-  end
-
-  def changeOrigin
-    return if !self.bitmap
-    @offset = PictureOrigin::TopLeft if !@offset
-    case @offset
-    when PictureOrigin::TopLeft, PictureOrigin::Left, PictureOrigin::BottomLeft
-      self.ox = 0
-    when PictureOrigin::Top, PictureOrigin::Center, PictureOrigin::Bottom
-      self.ox = self.src_rect.width / 2
-    when PictureOrigin::TopRight, PictureOrigin::Right, PictureOrigin::BottomRight
-      self.ox = self.src_rect.width
-    end
-    case @offset
-    when PictureOrigin::TopLeft, PictureOrigin::Top, PictureOrigin::TopRight
-      self.oy = 0
-    when PictureOrigin::Left, PictureOrigin::Center, PictureOrigin::Right
-      # NOTE: This assumes the top quarter of the icon is blank, so oy is placed
-      #       in the middle of the lower three quarters of the image.
-      self.oy = self.src_rect.height * 5 / 8
-    when PictureOrigin::BottomLeft, PictureOrigin::Bottom, PictureOrigin::BottomRight
-      self.oy = self.src_rect.height
-    end
   end
 
   # How long to show each frame of the icon for
@@ -298,16 +213,12 @@ class PokemonIconSprite < SpriteWrapper
     elsif @pokemon.hp <= @pokemon.totalhp / 2;
       ret *= 2 # Yellow HP - 0.5 seconds
     end
-    ret /= @numFrames
     ret = 1 if ret < 1
     return ret
   end
 
   def update
-    return if !@animBitmap
     super
-    @animBitmap.update
-    self.bitmap = @animBitmap.bitmap
     # Update animation
     cl = self.counterLimit
     if cl == 0
@@ -315,15 +226,14 @@ class PokemonIconSprite < SpriteWrapper
     else
       @counter += 1
       if @counter >= cl
-        @currentFrame = (@currentFrame + 1) % @numFrames
+        @currentFrame = (@currentFrame + 1) % 2
         @counter = 0
       end
     end
-    self.src_rect.x = self.src_rect.width * @currentFrame
     # Update "jumping" animation (used in party screen)
     if @selected
       @adjusted_x = 4
-      @adjusted_y = (@currentFrame >= @numFrames / 2) ? -2 : 6
+      @adjusted_y = (@currentFrame >= 1) ? -2 : 6
     else
       @adjusted_x = 0
       @adjusted_y = 0

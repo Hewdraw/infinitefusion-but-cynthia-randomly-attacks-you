@@ -103,8 +103,8 @@ class PokemonBoxPartySprite < SpriteWrapper
     xvalues = [] # [18, 90, 18, 90, 18, 90]
     yvalues = [] # [2, 18, 66, 82, 130, 146]
     for i in 0...Settings::MAX_PARTY_SIZE
-      xvalues.push(18 + 72 * (i % 2))
-      yvalues.push(2 + 16 * (i % 2) + 64 * (i / 2))
+      xvalues.push(50 + 72 * (i % 2))
+      yvalues.push(34 + 16 * (i % 2) + 64 * (i / 2))
     end
     for j in 0...Settings::MAX_PARTY_SIZE
       @pokemonsprites[j] = nil if @pokemonsprites[j] && @pokemonsprites[j].disposed?

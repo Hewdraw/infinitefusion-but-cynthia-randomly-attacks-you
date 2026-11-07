@@ -1,11 +1,11 @@
 #===============================================================================
 # Pokémon icons
 #===============================================================================
-class PokemonBoxIcon < IconSprite
+class PokemonBoxIcon < PokemonSprite
   attr_accessor :pokemon
 
   def initialize(pokemon, viewport = nil)
-    super(0, 0, viewport)
+    super(viewport)
     @pokemon = pokemon
     @release = Interpolator.new
     @startRelease = false
@@ -13,47 +13,61 @@ class PokemonBoxIcon < IconSprite
     refresh
   end
 
+
+  def pokemon=(value)
+    @pokemon = value
+    if !@pokemon
+      self.bitmap = nil
+      return
+    end
+    setPokemonBitmap(@pokemon)
+    if self.src_rect
+      self.zoom_x = 1 / (self.src_rect.width / 64.0)
+      self.zoom_y = 1 / (self.src_rect.height / 64.0)
+    end
+  end
+
   def releasing?
     return @release.tweening?
   end
 
-  def useRegularIcon(species)
-    dexNum = getDexNumberForSpecies(species)
-    return true if dexNum <= Settings::NB_POKEMON
-    return true if dexNum > 1000099
-    return false if $game_variables == nil
-    return true if $game_variables[VAR_FUSION_ICON_STYLE] != 0
-    bitmapFileName = sprintf("Graphics/Icons/icon%03d", dexNum)
-    return true if pbResolveBitmap(bitmapFileName)
-    return false
-  end
+  # def useRegularIcon(species)
+  #   dexNum = getDexNumberForSpecies(species)
+  #   return true if dexNum <= Settings::NB_POKEMON
+  #   return true if dexNum > 1000099
+  #   return false if $game_variables == nil
+  #   return true if $game_variables[VAR_FUSION_ICON_STYLE] != 0
+  #   bitmapFileName = sprintf("Graphics/Icons/icon%03d", dexNum)
+  #   return true if pbResolveBitmap(bitmapFileName)
+  #   return false
+  # end
 
-  def createFusionIcon(species, spriteform_head = nil, spriteform_body = nil)
-    bodyPoke_number = getBodyID(species)
-    headPoke_number = getHeadID(species, bodyPoke_number)
+  # def createFusionIcon(species, spriteform_head = nil, spriteform_body = nil)
+  #   bodyPoke_number = getBodyID(species)
+  #   headPoke_number = getHeadID(species, bodyPoke_number)
 
-    bodyPoke = GameData::Species.get(bodyPoke_number).species
-    headPoke = GameData::Species.get(headPoke_number).species
+  #   bodyPoke = GameData::Species.get(bodyPoke_number).species
+  #   headPoke = GameData::Species.get(headPoke_number).species
 
-    icon1 = AnimatedBitmap.new(GameData::Species.icon_filename(headPoke, spriteform_head))
-    icon2 = AnimatedBitmap.new(GameData::Species.icon_filename(bodyPoke, spriteform_body))
+  #   icon1 = AnimatedBitmap.new(GameData::Species.icon_filename(headPoke, spriteform_head))
+  #   icon2 = AnimatedBitmap.new(GameData::Species.icon_filename(bodyPoke, spriteform_body))
 
-    dexNum = getDexNumberForSpecies(species)
-    ensureFusionIconExists
-    bitmapFileName = sprintf("Graphics/Pokemon/FusionIcons/icon%03d", dexNum)
-    headPokeFileName = GameData::Species.icon_filename(headPoke, spriteform_head)
-    bitmapPath = sprintf("%s.png", bitmapFileName)
-    generated_new_icon = generateFusionIcon(headPokeFileName, bitmapPath)
-    result_icon = generated_new_icon ? AnimatedBitmap.new(bitmapPath) : icon1
+  #   dexNum = getDexNumberForSpecies(species)
+  #   ensureFusionIconExists
+  #   bitmapFileName = sprintf("Graphics/Pokemon/FusionIcons/icon%03d", dexNum)
+  #   headPokeFileName = GameData::Species.icon_filename(headPoke, spriteform_head)
+  #   bitmapPath = sprintf("%s.png", bitmapFileName)
+  #   generated_new_icon = generateFusionIcon(headPokeFileName, bitmapPath)
+  #   result_icon = generated_new_icon ? AnimatedBitmap.new(bitmapPath) : icon1
 
-    for i in 0..icon1.width - 1
-      for j in ((icon1.height / 2) + Settings::FUSION_ICON_SPRITE_OFFSET)..icon1.height - 1
-        temp = icon2.bitmap.get_pixel(i, j)
-        result_icon.bitmap.set_pixel(i, j, temp)
-      end
-    end
-    return result_icon
-  end
+  #   for i in 0..icon1.width - 1
+  #     for j in ((icon1.height / 2) + Settings::FUSION_ICON_SPRITE_OFFSET)..icon1.height - 1
+  #       temp = icon2.bitmap.get_pixel(i, j)
+  #       result_icon.bitmap.set_pixel(i, j, temp)
+  #     end
+  #   end
+  #   return result_icon
+  # end
 
   def release
     self.ox = self.src_rect.width / 2 # 32
