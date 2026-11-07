@@ -2117,6 +2117,7 @@ Events.onEndBattle += proc { |_sender,_e|
       pokemon.unteraTypes = []
       pokemon.calc_stats
     end
+    pokemon.dynamax = nil
     pokemon.moves.each_with_index do |move, i|
       if move.id == :ZEKROMKICK
         pp = move.pp
