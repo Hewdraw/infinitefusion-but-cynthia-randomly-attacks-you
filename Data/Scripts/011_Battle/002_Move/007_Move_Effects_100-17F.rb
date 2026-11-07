@@ -2699,7 +2699,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
     $PokemonGlobal.nextBattleBack = "Lava"
     $PokemonGlobal.nextBattleBGM = nil
     if !user.pbOwnedByPlayer?
-      if hasActiveEmera?(:YELLOWHAT)
+      if hasEmera?(:YELLOWHAT)
         Undertale()
       else
         if $PokemonGlobal.towervalues.nil?
