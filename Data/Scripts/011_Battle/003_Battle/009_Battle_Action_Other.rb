@@ -222,7 +222,7 @@ class PokeBattle_Battle
       :FAIRY => :MAXSTARFALL,
       :QMARKS => :MAXSTARFALL,
       :SOUND => :MAXSTARFALL,
-      :FAIRY => :MAXSTARFALL,
+      :GUN => :MAXSTARFALL,
     }
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
