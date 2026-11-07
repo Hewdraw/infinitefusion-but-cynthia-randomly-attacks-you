@@ -2119,18 +2119,19 @@ Events.onEndBattle += proc { |_sender,_e|
     end
     pokemon.dynamax = nil
     pokemon.moves.each_with_index do |move, i|
-      if move.id == :ZEKROMKICK
-        pp = move.pp
+      case move.id
+      when :GREATROULETTE, :GREATERROULETTE, :GREATESTMETRONOME
+        newmove = Pokemon::Move.new(:ROULETTE)
+      when :ZEKROMKICK
         newmove = Pokemon::Move.new(:FUSIONBOLT)
-        newmove.pp = pp
-        pokemon.moves[i] = newmove
-      end
-      if move.id == :RESHIRAMBEAM
-        pp = move.pp
+      when :RESHIRAMBEAM
         newmove = Pokemon::Move.new(:FUSIONFLARE)
-        newmove.pp = pp
-        pokemon.moves[i] = newmove
+      else
+        next
       end
+      pp = move.pp
+      newmove.pp = pp
+      pokemon.moves[i] = newmove
     end
   end
 }
@@ -7603,13 +7604,11 @@ class PokeBattle_Move_433 < PokeBattle_Move
   def pbEffectGeneral(user)
     metronomeMoveList = []
     metronomecount = 1
+    metronomecount = 2 if @id == :GREATROULETTE
+    metronomecount = 3 if @id == :GREATERROULETTE
+    metronomecount = 4 if @id == :GREATESTROULETTE
     metronomecount += 1 if user.hasActiveEmera?(:NOTEBLOCK)
     metronomecount += 1 if user.hasActiveItem?(:METRONAGA)
-    user.moves.each do |move|
-      next if move.pp < 1
-      metronomecount += 1 if [:SHOOT, :SHOOTMINUS, :SHOOTPLUS, :SHOOTMINUSPLUS, :SHOOTPLUSMINUS].include?(move.id)
-      move.pp -= 1
-    end
     move_keys = GameData::Move::DATA.keys
     # NOTE: You could be really unlucky and roll blacklisted moves 1000 times in
     #       a row. This is too unlikely to care about, though.
@@ -7622,8 +7621,10 @@ class PokeBattle_Move_433 < PokeBattle_Move
     end
     metronomeMoveList.each do |move|
       next if user.fainted?
-      if rand(6) == 5
-        user.pbUseMoveSimple(:SHOOT, user.index)
+      if @battle.pbRandom(6, user) == 5
+        @battle.pbDisplay("#{user.pbThis} shot themselves.")
+        user.pbReduceHP(uset.totalhp / 6, false)
+        user.pbItemHPHealCheck
       else
         user.pbUseMoveSimple(move)
       end

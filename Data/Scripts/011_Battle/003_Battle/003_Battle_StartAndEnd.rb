@@ -138,23 +138,34 @@ class PokeBattle_Battle
           pkmn.battlevariables = {}
           pkmn.originalform = nil
           pkmn.originalability = nil
-          if pkmn.hasItem?(:DARKSTONE)
-            pkmn.moves.each_with_index do |move, i|
-              next unless move.id == :FUSIONBOLT
-              pp = move.pp
+          pkmn.moves.each_with_index do |move,i|
+            case move.id
+            when :ROULETTE
+              guncount = 0
+              pkmn.moves.each do |move|
+                next if move.id == :ROULETTE
+                guncount += 1 if move.type == :GUN
+              end
+              case guncount
+              when 1
+                newmove = Pokemon::Move.new(:GREATROULETTE)
+              when 2
+                newmove = Pokemon::Move.new(:GREATERROULETTE)
+              when 3
+                newmove = Pokemon::Move.new(:GREATESTROULETTE)
+              end
+            when :FUSIONBOLT
+              next unless pkmn.hasItem?(:DARKSTONE)
               newmove = Pokemon::Move.new(:ZEKROMKICK)
-              newmove.pp = pp
-              pkmn.moves[i] = newmove
-            end
-          end
-          if pkmn.hasItem?(:LIGHTSTONE)
-            pkmn.moves.each_with_index do |move, i|
-              next unless move.id == :FUSIONFLARE
-              pp = move.pp
+            when :FUSIONFLARE
+              next unless pkmn.hasItem?(:LIGHTSTONE)
               newmove = Pokemon::Move.new(:RESHIRAMBEAM)
-              newmove.pp = pp
-              pkmn.moves[i] = newmove
+            else
+              next
             end
+            pp = move.pp
+            newmove.pp = pp
+            pkmn.moves[i] = newmove
           end
         end
         ret[side][idxTrainer] = []

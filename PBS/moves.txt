@@ -1192,6 +1192,9 @@
 1223,MAXGUSTAV,Max Gustav,188,90,GUN,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
 1224,MAXREVERB,Max Reverb,188,90,SOUND,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
 1225,MAXHYSTERIA,Max Hysteria,188,90,QMARKS,Physical,0,3,100,NearOther,0,fpx,"Nice Smeargle/Ditto, jackass."
+1226,GREATROULETTE,Great Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
+1227,GREATERROULETTE,Greater Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
+1228,GREATESTROULETTE,Greatest Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 
 
 
