@@ -1454,12 +1454,14 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:ILLEGALGUNPARTS, proc { |item, pkmn, scene|
+  hasshootminus = pkmn.hasMove?(:SHOOTMINUS)
   hasshoot = false
   pkmn.moves.each_with_index do |move, i|
     next if move.id != :SHOOT
+    hasshoot = true
+    next if hasshootminus
     pkmn.moves[i] = Pokemon::Move.new(:SHOOTMINUS)
     scene.pbDisplay(_INTL("{1} learned {2}!", pkmn.name, pkmn.moves[i].name)) { pbSEPlay("Pkmn move learnt") }
-    hasshoot = true
   end
   next false if hasshoot
   pbLearnMove(pkmn, :SHOOT)
