@@ -200,7 +200,7 @@ class PokeBattle_Battle
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
-  def pbDynamax(idxBattler, force)
+  def pbDynamax(idxBattler, force=false)
     maxmoves = {
       :NORMAL => :MAXSTRIKE,
       :FIGHTING => :MAXKNUCKLE,
@@ -220,9 +220,9 @@ class PokeBattle_Battle
       :DRAGON => :MAXWYRMWIND,
       :DARK => :MAXDARKNESS,
       :FAIRY => :MAXSTARFALL,
-      :QMARKS => :MAXSTARFALL,
-      :SOUND => :MAXSTARFALL,
-      :GUN => :MAXSTARFALL,
+      :QMARKS => :MAXGUSTAV,
+      :SOUND => :MAXREVERB,
+      :GUN => :MAXHYSTERIA,
     }
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
