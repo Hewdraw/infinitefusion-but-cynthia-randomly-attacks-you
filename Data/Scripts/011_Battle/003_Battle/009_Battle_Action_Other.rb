@@ -200,7 +200,7 @@ class PokeBattle_Battle
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
-  def pbDynamax(idxBattler)
+  def pbDynamax(idxBattler, force)
     maxmoves = {
       :NORMAL => :MAXSTRIKE,
       :FIGHTING => :MAXKNUCKLE,
@@ -276,9 +276,9 @@ class PokeBattle_Battle
       battler.moves[i] = PokeBattle_Move.from_pokemon_move(self,move)
       battler.moves[i].category = battler.pokemon.moves[i].category
     end
-    @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
     pbDisplay(_INTL("{1} has Dynamaxed?!",battler.pbThis))
-    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
+    @battleAI.pbDefaultChooseEnemyCommand(idxBattler) if !force
+    pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION if !force
   end
 
   def pbUnDynamax(idxBattler)
