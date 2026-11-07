@@ -773,6 +773,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:MOTORDRIVE,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:WELLBAKEDBODY,
+  proc { |ability,target,user,move,type,battle|
+    next pbBattleMoveImmunityStatAbility(user,target,move,type,:FIRE,:DEFENSE,2,battle)
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:VOCALOID,
   proc { |ability,target,user,move,type,battle|
     next true if pbBattleMoveImmunityStatAbility(user,target,move,type,:ELECTRIC,:SPEED,1,battle)
@@ -3831,7 +3837,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DYNAMORPH,
     next if battler.pokemon.battlevariables[:dynamorph]
     battle.pbShowAbilitySplash(battler)
     battler.pokemon.dynamax = true
-    battle.pbDynamax(battler.index)
+    battle.pbDynamax(battler.index, true)
     battle.pbHideAbilitySplash(battler)
     battler.pokemon.battlevariables[:dynamorph] = true
   }

@@ -314,7 +314,7 @@
 312,TOTALFREEZE,Total Freeze,"a"
 313,HOLD,Hold,"Held Items are twice as effective."
 314,PIERCINGDRILL,Piercing Drill,"Drill that pieces the heavens. (and protect)"
-315,WELLBAKEDBODY,Well-Baked Body,"todo Fire-type moves deal no damage and sharply boost Defense."
+315,WELLBAKEDBODY,Well-Baked Body,"Fire-type moves deal no damage and sharply boost Defense."
 316,EELEVATE,Eelevate,"a"
 317,COTTONDOWN,Cotton Down,"todo Scatters Speed-lowering cotton fluff when hit."
 318,RAINBOWPLEDGE,Rainbow Pledge,"a"
