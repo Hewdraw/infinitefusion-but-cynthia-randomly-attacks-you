@@ -220,9 +220,9 @@ class PokeBattle_Battle
       :DRAGON => :MAXWYRMWIND,
       :DARK => :MAXDARKNESS,
       :FAIRY => :MAXSTARFALL,
-      :QMARKS => :MAXGUSTAV,
+      :GUN => :MAXGUSTAV,
       :SOUND => :MAXREVERB,
-      :GUN => :MAXHYSTERIA,
+      :QMARKS => :MAXHYSTERIA,
     }
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon

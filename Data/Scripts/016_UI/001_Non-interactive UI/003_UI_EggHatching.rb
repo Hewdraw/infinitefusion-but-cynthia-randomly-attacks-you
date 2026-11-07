@@ -206,6 +206,7 @@ def pbHatch(pokemon)
   pokemon.owner          = Pokemon::Owner.new_from_trainer($Trainer)
   pokemon.level = 5
   pokemon.happiness      = 120
+  pokemon.calc_stats
   pokemon.timeEggHatched = Time.new.to_i
   pokemon.obtain_method  = 1   # hatched from egg
   pokemon.hatched_map    = $game_map.map_id
