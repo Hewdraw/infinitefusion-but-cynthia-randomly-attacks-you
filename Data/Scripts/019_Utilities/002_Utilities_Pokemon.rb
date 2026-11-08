@@ -110,13 +110,14 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       end
     end
   when :BELDUM
-    if !$PokemonGlobal.towervalues.nil?
+    if !$PokemonGlobal.towervalues.nil? || extrainfo[:beldum]
       pkmn.poke_ball = :LUXURYBALL
       pkmn.shiny = true
       pkmn.natural_shiny = true
       GameData::Stat.each_main do |s|
         pkmn.iv[s.id] = 31
       end
+      pkmn.owner = Owner.new(0, "Shadross", 1, 2)
     end
   when :ZORUA, :HISUIZORUA
     if !$PokemonGlobal.towervalues.nil?
