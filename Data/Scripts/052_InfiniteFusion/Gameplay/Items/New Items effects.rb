@@ -1469,13 +1469,6 @@ ItemHandlers::UseOnPokemon.add(:ILLEGALGUNPARTS, proc { |item, pkmn, scene|
   next false
 })
 
-ItemHandlers::UseOnPokemon.add(:TM123, proc { |item, pkmn, scene|
-  next false if pkmn.hasMove?(:DOOM)
-  next false if !pkmn.pbHasType?(:DARK)
-  pbLearnMove(pkmn, :DOOM)
-  next false
-})
-
 #
 # #TRACKER (for roaming legendaries)
 # ItemHandlers::UseInField.add(:REVEALGLASS, proc { |item|
