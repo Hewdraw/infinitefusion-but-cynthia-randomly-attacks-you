@@ -14455,8 +14455,8 @@ BattlerShadowSize = 4
 [440]
 Name = Noibat
 InternalName = NOIBAT
-Type1 = FLYING
-Type2 = DRAGON
+Type1 = DRAGON
+Type2 = SOUND
 BaseStats = 40,30,35,55,45,40
 GenderRate = Female50Percent
 GrowthRate = Medium
@@ -14489,8 +14489,8 @@ Evolutions = NOIVERN,Level,48,NOIVERN,Item,MOONSTONE,NOIVERN,Item,DUSKSTONE
 [441]
 Name = Noivern
 InternalName = NOIVERN
-Type1 = FLYING
-Type2 = DRAGON
+Type1 = DRAGON
+Type2 = SOUND
 BaseStats = 85,70,80,123,97,80
 GenderRate = Female50Percent
 GrowthRate = Medium
