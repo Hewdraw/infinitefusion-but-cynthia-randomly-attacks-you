@@ -887,6 +887,7 @@ class MoveRelearnerScreen
         tutorUtil = FusionTutorService.new(pkmn)
         pbCreatePreEvolutionTree(pkmn.species).each do |species|
           moves.push(pbGetSpeciesEggMoves(species))
+          moves.push(:EGGBOMB)
           moves.push(GameData::Species.get_species_form(species, 0).tutor_moves)
           moves.push(pbGetRelearnableMoves(pkmn))
           moves.push(tutorUtil.getCompatibleMoves(false))
