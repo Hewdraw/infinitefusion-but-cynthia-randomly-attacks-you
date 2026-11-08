@@ -415,4 +415,4 @@
 728,ASONEROTOM,As One,"a"
 729,INTREPIDSWORD,Intrepid Sword,"Boosts Attack when entering a battle."
 730,COMMANDERPLUS,Commander+,"a"
-731,GENERATIONAL,Generational+,"a"
+731,GENERATIONAL,Generational,"a"

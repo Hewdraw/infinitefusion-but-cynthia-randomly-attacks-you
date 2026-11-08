@@ -1266,10 +1266,22 @@ ItemHandlers::UseOnPokemon.add(:BADINCUBATOR, proc { |item, pkmn, scene|
     Kernel.pbMessage("Broke Ass.")
     next false
   end
+  playingBGS = nil
+  playingBGM = nil
+  if $game_system && $game_system.is_a?(Game_System)
+    playingBGS = $game_system.getPlayingBGS
+    playingBGM = $game_system.getPlayingBGM
+    $game_system.bgm_pause
+    $game_system.bgs_pause
+  end
   pbBGMPlay("ClaireTheme")
   if pbRelearnEggMoveScreen(pkmn)
     Kernel.pbMessage("The Bad Incubator took $4000.")
     $Trainer.money -= 4000
+  end
+  if $game_system && $game_system.is_a?(Game_System)
+    $game_system.bgm_resume(playingBGM)
+    $game_system.bgs_resume(playingBGS)
   end
 })
 ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
