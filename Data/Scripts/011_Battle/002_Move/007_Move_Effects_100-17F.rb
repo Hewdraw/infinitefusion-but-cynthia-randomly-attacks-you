@@ -3634,7 +3634,8 @@ class PokeBattle_Move_223 < PokeBattle_Move
        "205",
        "263",
        "270",
-       "309"
+       "309",
+       "351"
     ]
     @moveBlacklistSignatures = [
        :FAKEMOVE          #not a real move
