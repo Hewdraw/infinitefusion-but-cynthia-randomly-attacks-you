@@ -7570,7 +7570,7 @@ class PokeBattle_Move_433 < PokeBattle_Move
       next if user.fainted?
       if @battle.pbRandom(6, user) == 5
         @battle.pbDisplay("#{user.pbThis} shot themselves.")
-        user.pbReduceHP(uset.totalhp / 6, false)
+        user.pbReduceHP(user.totalhp / 6, false)
         user.pbItemHPHealCheck
       else
         user.pbUseMoveSimple(move)
