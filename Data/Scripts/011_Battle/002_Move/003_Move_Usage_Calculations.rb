@@ -408,7 +408,7 @@ class PokeBattle_Move
         multipliers[:base_damage_multiplier] *= 3 / 2.0
       end
     end
-    if @battle.pbCheckGlobalAbility(:GENERATIONAL) && explosiveMove?
+    if @battle.pbCheckGlobalAbility(:GENERATIONAL) && explosionMove?
       multipliers[:base_damage_multiplier] *= 2
     end
     if @battle.pbCheckGlobalAbility(:SWORDOFRUIN) && !target.hasActiveAbility?(:SWORDOFRUIN)

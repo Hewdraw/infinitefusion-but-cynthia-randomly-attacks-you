@@ -341,7 +341,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} snatched {2}'s move!", user.pbThis, pbThis(true)))
     end
     # "But it failed!" checks
-    if !@battle.moldBreaker && move.explosiveMove?
+    if !@battle.moldBreaker && move.explosionMove?
       bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
       if bearer!=nil
         @battle.pbShowAbilitySplash(bearer)
