@@ -1145,13 +1145,13 @@ class Pokemon
       body_species = GameData::Species.get(body_species_id)
       case move_id
       when :DOOM
-        retun true if head_species.type1 == :DARK || head_species.type2 == :DARK || body_species.type1 == :DARK || body_species.type2 == :DARK
+        return true if head_species.type1 == :DARK || head_species.type2 == :DARK || body_species.type1 == :DARK || body_species.type2 == :DARK
       end
       return move_data && (pokemon_can_learn_move(head_species, move_data) || pokemon_can_learn_move(body_species, move_data))
     else
       case move_id
       when :DOOM
-        retun true if species_data.type1 == :DARK || species_data.type2 == :DARK
+        return true if species_data.type1 == :DARK || species_data.type2 == :DARK
       end
       return move_data && pokemon_can_learn_move(species_data, move_data)
     end
