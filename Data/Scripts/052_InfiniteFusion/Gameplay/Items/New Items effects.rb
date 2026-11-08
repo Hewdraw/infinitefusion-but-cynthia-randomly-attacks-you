@@ -1266,7 +1266,8 @@ ItemHandlers::UseOnPokemon.add(:BADINCUBATOR, proc { |item, pkmn, scene|
     Kernel.pbMessage("Broke Ass.")
     next false
   end
-  if pbRelearnEggMoveScreen(pbGetPokemon(1))
+  pbBGMPlay("ClaireTheme")
+  if pbRelearnEggMoveScreen(pkmn)
     Kernel.pbMessage("The Bad Incubator took $4000.")
     $Trainer.money -= 4000
   end

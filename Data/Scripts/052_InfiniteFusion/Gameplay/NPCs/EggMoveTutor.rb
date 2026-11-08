@@ -34,6 +34,7 @@ class MoveRelearnerScreen
     pbCreatePreEvolutionTree(pkmn.species).each do |species|
       moves.push(pbGetSpeciesEggMoves(species))
     end
+    moves.push(:EGGBOMB)
     moves = moves.flatten.uniq
     return false if moves.length == 0
 
