@@ -934,6 +934,7 @@
 943,GUNDRIVE,Gun Drive,Gun Drives,1,1000,"a",0,0,0
 944,TM123,TM123,TM123s,4,0,"DOOM",3,0,0,DOOM
 945,ROSEGLASSES,Rose glasses,Rose glassess,1,0,"a",0,0,0
+946,BADINCUBATOR,Bad Incubator,Bad Incubators,8,0,"Pocket Egg Move Tutor",5,0,6
 
 
 
