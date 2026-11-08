@@ -55,6 +55,12 @@ TOWER_EVENTS = {
         :image => "KIRLIA",
         :floorrequirement => 0,
     },
+    :SHADROSS => {
+        :location => "Pallet",
+        :location2 => "Town",
+        :image => "TheDarkSketon",
+        :floorrequirement => 0,
+    },
     :SINNOHUNDERGROUND => {
         :location => "Underground",
         :location2 => "Path",
@@ -414,7 +420,7 @@ def resolveUnknownEvent(recursion = false)
         pbBGMPlay("Mining")
         pbMiningGame
         pbBGMPlay("TemporalTower")
-    when :SHADROSS #todo
+    when :SHADROSS
         Kernel.pbMessage("You come across a purple skeleton.")
         Kernel.pbMessage("What will you try to get from her?")
         helptext = ["Spend Sinnoh Coins to buy items.","Perhaps you can get a discount later. Costs 10 Sinnoh Coins.", "DOOM!", "See some \"Old Sprites\" VERY \"up close\" and VERY \"personal\"."]
