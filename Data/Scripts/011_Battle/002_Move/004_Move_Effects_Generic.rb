@@ -629,6 +629,11 @@ class PokeBattle_WeatherMove < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
+    return if damagingMove?
+    @battle.pbStartWeather(user,@weatherType,true,false)
+  end
+
+  def pbAdditionalEffect(user,target)
     @battle.pbStartWeather(user,@weatherType,true,false)
   end
 end
