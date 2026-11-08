@@ -164,6 +164,7 @@ class PokeBattle_Battle
             else
               next
             end
+            next if !newmove
             pp = move.pp
             newmove.pp = pp
             pkmn.moves[i] = newmove
