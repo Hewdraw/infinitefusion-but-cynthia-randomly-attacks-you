@@ -1291,7 +1291,20 @@ ItemHandlers::UseOnPokemon.add(:BADINCUBATOR, proc { |item, pkmn, scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:OMNITUTOR, proc { |item, pkmn, scene|
+  playingBGS = nil
+  playingBGM = nil
+  if $game_system && $game_system.is_a?(Game_System)
+    playingBGS = $game_system.getPlayingBGS
+    playingBGM = $game_system.getPlayingBGM
+    $game_system.bgm_pause
+    $game_system.bgs_pause
+  end
+  pbBGMPlay("ClaireTheme")
   pbTowerMoveScreen(pkmn)
+  if $game_system && $game_system.is_a?(Game_System)
+    $game_system.bgm_resume(playingBGM)
+    $game_system.bgs_resume(playingBGS)
+  end
 })
 
 ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
