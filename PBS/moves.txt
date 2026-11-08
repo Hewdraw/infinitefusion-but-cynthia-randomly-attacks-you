@@ -1195,6 +1195,7 @@
 1226,GREATROULETTE,Great Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 1227,GREATERROULETTE,Greater Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 1228,GREATESTROULETTE,Greatest Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
+1229,DOOM,Doom,437,500,DARK,Physical,100,5,0,AllNearOthers,0,bef,"DOOM!"
 
 
 
