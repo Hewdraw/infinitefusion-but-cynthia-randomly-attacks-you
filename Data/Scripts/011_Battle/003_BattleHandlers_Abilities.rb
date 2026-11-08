@@ -1593,7 +1593,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TOUGHCLAWS,
 
 BattleHandlers::DamageCalcUserAbility.add(:EXPLOSIVE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    mults[:base_damage_multiplier] *= 4 / 3.0 if ["0E0", "170", "356", "360"].include?(move.function)
+    mults[:base_damage_multiplier] *= 4 / 3.0 if move.explosionMove?
   }
 )
 
@@ -2850,6 +2850,15 @@ BattleHandlers::UserAbilityEndOfMove.add(:BATTLEBOND,
     user.pbRaiseStatStageByAbility(:SPEED,1,user,false,GameData::Ability.get(ability).real_name)
     user.pokemon.battlevariables[:battlebond] = true
     battle.pbHideAbilitySplash(user)
+  }
+)
+
+BattleHandlers::UserAbilityEndOfMove.add(:GENERATIONAL,
+  proc { |ability,user,targets,move,battle|
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted==0
+    user.effects[PBEffects::HyperBeam] = 0
   }
 )
 

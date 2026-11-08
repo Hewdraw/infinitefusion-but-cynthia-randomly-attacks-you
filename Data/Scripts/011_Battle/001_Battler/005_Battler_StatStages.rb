@@ -45,7 +45,7 @@ class PokeBattle_Battler
     return increment
   end
 
-  def pbRaiseStatStage(stat,increment,user,showAnim=true,ignoreContrary=false)
+  def pbRaiseStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,recursion=false)
     # Contrary
     if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
       return pbLowerStatStage(stat,increment,user,showAnim,true)
@@ -69,6 +69,14 @@ class PokeBattle_Battler
       BattleHandlers.triggerAbilityOnStatGain(self.ability,self,stat,user)
     end
     checkStatRaiseBattleChallenge(stat,increment) if user && user.pbOwnedByPlayer?
+    if !recursion && hasActiveAbility?(:GENERATIONAL)
+      case stat
+      when :SPECIAL_ATTACK
+        pbRaiseStatStage(:SPECIAL_DEFENSE, increment, user, false, ignoreContrary, true)
+      when :SPECIAL_DEFENSE
+        pbRaiseStatStage(:SPECIAL_ATTACK, increment, user, false, ignoreContrary, true)
+      end
+    end
     return true
   end
 
@@ -190,12 +198,12 @@ class PokeBattle_Battler
     return increment
   end
 
-  def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,mirrorarmor=false)
+  def pbLowerStatStage(stat,increment,user,showAnim=true,ignoreContrary=false,recursion=false)
     # Contrary
     if hasActiveAbility?([:CONTRARY, :CONTRARYPLUS]) && !ignoreContrary && !@battle.moldBreaker
       return pbRaiseStatStage(stat,increment,user,showAnim,true)
     end
-    if !mirrorarmor && hasActiveAbility?(:MIRRORARMOR) && !@battle.moldBreaker
+    if !recursion && hasActiveAbility?(:MIRRORARMOR) && !@battle.moldBreaker
       return user.pbLowerStatStage(stat,increment,self,showAnim,ignoreContrary,true)
     end
     obscured = false
@@ -229,6 +237,15 @@ class PokeBattle_Battler
       @battle.pbClearChoice(self.index)   # Replacement Pokémon does nothing this round
       self.pbEffectsOnSwitchIn(true)
       unlockClass(:JUGGLER) if self.pbOwnedByPlayer? && !$PokemonGlobal.towervalues.nil?
+      return true
+    end
+    if !recursion && hasActiveAbility?(:GENERATIONAL)
+      case stat
+      when :SPECIAL_ATTACK
+        pbLowerStatStage(:SPECIAL_DEFENSE, increment, user, false, ignoreContrary, true)
+      when :SPECIAL_DEFENSE
+        pbLowerStatStage(:SPECIAL_ATTACK, increment, user, false, ignoreContrary, true)
+      end
     end
     return true
   end

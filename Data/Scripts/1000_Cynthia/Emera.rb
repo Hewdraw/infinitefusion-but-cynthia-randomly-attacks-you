@@ -226,11 +226,11 @@ EMERADICT = {
         :description => "Your Pokemons Metronome moves will use an additional move.",
         :rarity => :COMMON,
     },
-    # :OLDCARTRIDGE => {
-    #     :name => "Old Cartridge",
-    #     :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon.",
-    #     :rarity => :COMMON,
-    # },
+    :OLDCARTRIDGE => {
+        :name => "Old Cartridge",
+        :description => "Your Pokemons recharge Moves do not recharge when it knocks out a Pokemon.",
+        :rarity => :COMMON,
+    },
     :OGREBALLOON => {
         :name => "Ogre Balloon",
         :description => "Obtain some Mochis when going up a floor.",

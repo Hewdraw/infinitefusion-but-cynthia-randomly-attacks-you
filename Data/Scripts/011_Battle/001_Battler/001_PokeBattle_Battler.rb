@@ -602,7 +602,7 @@ class PokeBattle_Battler
     return false if fainted? && !ignoreFainted
     return false if @effects[PBEffects::Embargo] > 0
     return false if @battle.field.effects[PBEffects::MagicRoom] > 0
-    return false if hasActiveAbility?(:KLUTZ, ignoreFainted)
+    return false if hasActiveAbility?([:KLUTZ, :GENERATIONAL], ignoreFainted)
     return true
   end
 
@@ -689,7 +689,7 @@ class PokeBattle_Battler
   def isTerastallized?
     return true if hasActiveEmera?(:TERACRYSTAL)
     return true if @pokemon.unteraTypes != []
-    return true if hasActiveItem?([:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM])
+    return true if hasActiveItem?([:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :ELYTRA, :ENCHANTEDELYTRA, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM])
     return false
   end
 

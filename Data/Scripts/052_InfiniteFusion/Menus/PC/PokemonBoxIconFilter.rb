@@ -9,7 +9,7 @@ class PokemonBoxIcon
       self.zoom_x = 1 / (self.src_rect.width / 64.0)
       self.zoom_y = 1 / (self.src_rect.height / 64.0)
     end
-    
+
     # if useRegularIcon(@pokemon.species) || @pokemon.egg?
     #   self.setBitmap(GameData::Species.icon_filename_from_pokemon(@pokemon))
     # else

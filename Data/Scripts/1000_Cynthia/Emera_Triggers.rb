@@ -144,6 +144,11 @@ BattleHandlers::TargetAbilityOnHit.add(:EMERA,
 BattleHandlers::UserAbilityEndOfMove.add(:EMERA,
   proc { |ability,user,targets,move,battle|
     next if user.fainted?
+    if user.hasActiveEmera?(:OLDCARTRIDGE)
+      numFainted = 0
+      targets.each { |b| numFainted += 1 if b.damageState.fainted }
+      user.effects[PBEffects::HyperBeam] = 0 if numFainted > 0
+    end
     if user.hasActiveEmera?(:LEPPAJUICE)
       targets.each do |b|
         next if !b.damageState.fainted

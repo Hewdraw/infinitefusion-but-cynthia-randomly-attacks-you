@@ -138,7 +138,8 @@ class PokeBattle_Move
   def danceMove?;         return @flags[/o/]; end
   def protectPenalty?;    return @flags[/p/]; end
   def slicingMove?;       return @flags[/q/]; end
-  def windMove?;          return @flags[/l/]; end
+  def windMove?;          return @flags[/r/]; end
+  def explosionMove?;     return @flags[/s/]; end
 
   def maxMove?;       return @flags[/x/]; end
   def zMove?;       return @flags[/z/]; end

@@ -1638,6 +1638,10 @@ class Pokemon
         ret[s.id] = (((2 * bstdata[statindex][s.id]) / 3.0) + (bstdata[(statindex + 1) % 2][s.id] / 3.0)).floor.to_i
       end
     }
+    if hasAbility?(:GENERATIONAL)
+      ret[:SPECIAL_ATTACK] = [ret[:SPECIAL_ATTACK], ret[:SPECIAL_DEFENSE]].max
+      ret[:SPECIAL_DEFENSE] = ret[:SPECIAL_DEFENSE]
+    end
     if hasItem?(:ANCESTRALGENE)
       ret[:ATTACK] = [ret[:ATTACK], 100].min
       ret[:SPECIAL_ATTACK] = [ret[:SPECIAL_ATTACK], 100].min
@@ -2076,6 +2080,9 @@ class Pokemon
       },
       :BLACKKNIFE => {
         :SHARPNESS => -> () {return true},
+      },
+      :ROSEGLASSES => {
+        :GENERATIONAL => -> () {return true},
       },
       :NERUPHONE => {
         :HEATPROOF => -> () {return true},

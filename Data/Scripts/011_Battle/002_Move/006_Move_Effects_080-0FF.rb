@@ -2772,24 +2772,6 @@ class PokeBattle_Move_0E0 < PokeBattle_Move
   def worksWithNoTargets?;     return true; end
   def pbNumHits(user,targets); return 1;    end
 
-  def pbMoveFailed?(user,targets)
-    if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
-      if bearer!=nil
-        @battle.pbShowAbilitySplash(bearer)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
-        else
-          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-             user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
-        end
-        @battle.pbHideAbilitySplash(bearer)
-        return true
-      end
-    end
-    return false
-  end
-
   def pbSelfKO(user)
     return if user.fainted?
     user.pbReduceHP(user.hp,false)

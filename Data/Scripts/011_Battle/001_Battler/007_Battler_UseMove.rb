@@ -341,6 +341,23 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} snatched {2}'s move!", user.pbThis, pbThis(true)))
     end
     # "But it failed!" checks
+    if !@battle.moldBreaker && move.explosiveMove?
+      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
+      if bearer!=nil
+        @battle.pbShowAbilitySplash(bearer)
+        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,move.name))
+        else
+          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
+             user.pbThis,move.name,bearer.pbThis(true),bearer.abilityName))
+        end
+        @battle.pbHideAbilitySplash(bearer)
+        user.lastMoveFailed = true
+        pbCancelMoves
+        pbEndTurn(choice)
+        return
+      end
+    end
     if move.pbMoveFailed?(user, targets)
       PBDebug.log(sprintf("[Move failed] In function code %s's def pbMoveFailed?", move.function))
       user.lastMoveFailed = true
@@ -792,7 +809,7 @@ class PokeBattle_Battler
     when :MIKUMIKUBEAM
       pbSEPlay("MIKUMIKUBEAM")
       animationid = :HYPERBEAM
-    when :CATASTROPHEDAY, :TESTAMENT
+    when :CATASTROPHEDAY, :TESTAMENT, :DOOM
       animationid = :EXPLOSION
     when :KNIFE, :KNIFEPLUS
       animationid = :CUT

@@ -42,6 +42,25 @@ class PokeBattle_Move
   #=============================================================================
   def pbCalcTypeModSingle(moveType,defType,user,target)
     ret = Effectiveness.calculate_one(moveType, defType)
+    if @battle.pbCheckGlobalAbility(:GENERATIONAL)
+      case defType
+      when :DARK
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :PSYCHIC
+      when :STEEL
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :PSYCHIC
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :NORMAL
+      when :PSYCHIC
+        ret = Effectiveness::INEFFECTIVE if moveType == :GHOST
+      when :BUG
+        ret = Effectiveness::SUPER_EFFECTIVE_ONE if moveType == :POISON
+      when :POISON
+        ret = Effectiveness::SUPER_EFFECTIVE_ONE if moveType == :BUG
+      when :FAIRY
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :DRAGON
+      when :FIRE
+        ret = Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :ICE
+      end
+    end
     # Ring Target
     if target.hasActiveItem?(:RINGTARGET)
       ret = Effectiveness::NORMAL_EFFECTIVE_ONE if Effectiveness.ineffective_type?(moveType, defType)
@@ -147,6 +166,7 @@ class PokeBattle_Move
     return true if target.effects[PBEffects::Minimize] && tramplesMinimize?(1)
     baseAcc = pbBaseAccuracy(user,target)
     return true if baseAcc==0
+    return false if @battle.pbCheckGlobalAbility(:GENERATIONAL) && @battle.pbRandom(256, user, target) == 255
     # Calculate all multiplier effects
     modifiers = {}
     modifiers[:base_accuracy]  = baseAcc
@@ -272,6 +292,10 @@ class PokeBattle_Move
     c += 1 if user.inHyperMode? && @type == :SHADOW
     c = ratios.length-1 if c>=ratios.length
     # Calculation
+    if user.hasActiveAbility?(:GENERATIONAL)
+      return true if c > 0
+      return @battle.pbRandom(100, user, target) < user.pokemon.species_data.base_stats[:SPEED] * 100 / 512
+    end
     randnumber = @battle.pbRandom(ratios[c], user, target)
     if (user.pokemon.affection || user.hasActiveEmera?(:SYNCSTONEULTIMATE)) && randnumber == 1
       target.damageState.affectioncritical = true
@@ -300,7 +324,9 @@ class PokeBattle_Move
       end
       return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
     end
-    if specialMove?
+    special = specialMove?
+    special = [:FIRE, :WATER, :GRASS, :DRAGON, :ELECTRIC, :DARK, :PSYCHIC, :ICE, :FAIRY, :QMARKS, :SOUND].include?(@type) if user.hasActiveAbility?(:GENERATIONAL)
+    if special
       return user.attack, user.stages[:ATTACK] if user.hasActiveAbility?(:OBLITERATE)
       return target.spatk, target.stages[:SPECIAL_ATTACK] + 6 if user.hasActiveItem?(:LUCKYPUNCH) && user.isFusionOf([:HAPPINY, :CHANSEY, :BLISSEY])
       return user.attack * 0.9, user.stages[:ATTACK] + 6 if user.hasActiveEmera?(:AURORDROP) && attack * 0.9 > spatk
@@ -311,7 +337,9 @@ class PokeBattle_Move
   end
 
   def pbGetDefenseStats(user,target)
-    if specialMove?
+    special = specialMove?
+    special = [:FIRE, :WATER, :GRASS, :DRAGON, :ELECTRIC, :DARK, :PSYCHIC, :ICE, :FAIRY, :QMARKS, :SOUND].include?(@type) if user.hasActiveAbility?(:GENERATIONAL)
+    if special
       return target.defense, target.stages[:DEFENSE]+6 if user.hasActiveItem?(:DEEPSEATOOTH)
       return target.spdef, target.stages[:SPECIAL_DEFENSE]+6
     end
@@ -379,6 +407,9 @@ class PokeBattle_Move
       else
         multipliers[:base_damage_multiplier] *= 3 / 2.0
       end
+    end
+    if @battle.pbCheckGlobalAbility(:GENERATIONAL) && explosiveMove?
+      multipliers[:base_damage_multiplier] *= 2
     end
     if @battle.pbCheckGlobalAbility(:SWORDOFRUIN) && !target.hasActiveAbility?(:SWORDOFRUIN)
       multipliers[:defense_multiplier] *= 0.75

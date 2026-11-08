@@ -2419,24 +2419,6 @@ class PokeBattle_Move_170 < PokeBattle_Move
     return true;
   end
 
-  def pbMoveFailed?(user, targets)
-    if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
-      if bearer != nil
-        @battle.pbShowAbilitySplash(bearer)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, @name))
-        else
-          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-                                  user.pbThis, @name, bearer.pbThis(true), bearer.abilityName))
-        end
-        @battle.pbHideAbilitySplash(bearer)
-        return true
-      end
-    end
-    return false
-  end
-
   def pbSelfKO(user)
     return if !user.takesIndirectDamage?
     user.pbReduceHP((user.totalhp / 2.0).round, false)
@@ -6012,24 +5994,6 @@ class PokeBattle_Move_356 < PokeBattle_Move
   def worksWithNoTargets?;     return true; end
   def pbNumHits(user,targets); return 1;    end
 
-  def pbMoveFailed?(user,targets)
-    if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
-      if bearer!=nil
-        @battle.pbShowAbilitySplash(bearer)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
-        else
-          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-             user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
-        end
-        @battle.pbHideAbilitySplash(bearer)
-        return true
-      end
-    end
-    return false
-  end
-
   def pbSelfKO(user)
     return if user.fainted?
     user.pbReduceHP(user.hp,false)
@@ -6131,24 +6095,6 @@ class PokeBattle_Move_361 < PokeBattle_Move
 
   def worksWithNoTargets?;     return true; end
   def pbNumHits(user,targets); return 1;    end
-
-  def pbMoveFailed?(user,targets)
-    if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
-      if bearer!=nil
-        @battle.pbShowAbilitySplash(bearer)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
-        else
-          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-             user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
-        end
-        @battle.pbHideAbilitySplash(bearer)
-        return true
-      end
-    end
-    return false
-  end
 
   def pbSelfKO(user)
     return if user.fainted?
@@ -7687,26 +7633,21 @@ class PokeBattle_Move_436 < PokeBattle_Move
 end
 
 class PokeBattle_Move_437 < PokeBattle_Move
+  def pbGetAttackStats(user, target)
+    stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
+    stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
+    attackstage = user.stages[:ATTACK] + 6
+    attack = user.attack*stageMul[attackstage]/stageDiv[attackstage]
+    spatkstage = user.stages[:SPECIAL_ATTACK] + 6
+    spatk = user.spatk*stageMul[spatkstage]/stageDiv[spatkstage]
+    if attack > spatk
+      return user.attack, user.stages[:ATTACK] + 6
+    end
+    return user.spatk, user.stages[:SPECIAL_ATTACK] + 6
+  end
+  
   def worksWithNoTargets?;     return true; end
   def pbNumHits(user,targets); return 1;    end
-
-  def pbMoveFailed?(user,targets)
-    if !@battle.moldBreaker
-      bearer = @battle.pbCheckGlobalAbility([:DAMP, :DAMPPLUS])
-      if bearer!=nil
-        @battle.pbShowAbilitySplash(bearer)
-        if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} cannot use {2}!",user.pbThis,@name))
-        else
-          @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3}'s {4}!",
-             user.pbThis,@name,bearer.pbThis(true),bearer.abilityName))
-        end
-        @battle.pbHideAbilitySplash(bearer)
-        return true
-      end
-    end
-    return false
-  end
 
   def pbSelfKO(user)
     return if user.fainted?
