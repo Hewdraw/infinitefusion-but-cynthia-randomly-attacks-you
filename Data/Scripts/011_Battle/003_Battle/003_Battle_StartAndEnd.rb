@@ -139,7 +139,6 @@ class PokeBattle_Battle
           pkmn.originalform = nil
           pkmn.originalability = nil
           pkmn.moves.each_with_index do |move,i|
-            next if !move
             case move.id
             when :ROULETTE
               guncount = 0

@@ -4319,6 +4319,14 @@ BattleHandlers::AbilityOnSwitchIn.add(:COMMANDERPLUS,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:STANCECHANGE,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    battle.pbDisplay("#{battler.pbThis} hasn't updated their game version!")
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 
 #===============================================================================
 # AbilityOnSwitchOut handlers

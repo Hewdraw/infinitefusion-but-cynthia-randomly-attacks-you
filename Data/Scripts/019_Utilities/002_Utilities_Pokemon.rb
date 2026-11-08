@@ -117,7 +117,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       GameData::Stat.each_main do |s|
         pkmn.iv[s.id] = 31
       end
-      pkmn.owner = Owner.new(0, "Shadross", 1, 2)
+      pkmn.owner = Pokemon::Owner.new(0, "Shadross", 1, 2)
     end
   when :ZORUA, :HISUIZORUA
     if !$PokemonGlobal.towervalues.nil?

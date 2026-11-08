@@ -442,6 +442,7 @@ def resolveUnknownEvent(recursion = false)
         when 2
             pbReceiveItem(:TM123)
         when 3
+            $PokemonGlobal.nextBattleBGM = "VSGennedShadross" 
             return if !pbTrainerBattle(:Skeleton_Dev, "Shadross", nil, false, 6, false, 1, nil, :DarkSkeleton_Dev)
             pbReceiveItem(:ROSEGLASSES)
         end

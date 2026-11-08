@@ -7009,7 +7009,7 @@ class PokeBattle_Move_405 < PokeBattle_Move
     target.effects[PBEffects::Truant] = false
     @battle.pbDisplay(_INTL("{1}'s Ability was suppressed!", target.pbThis))
     target.pbOnAbilityChanged(target.ability)
-    b.pbResetStatStages
+    target.pbResetStatStages
     @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", target.pbThis))
     if target.pbCanLowerStatStage?(:DEFENSE, user, self)
       target.pbLowerStatStage(:DEFENSE, 1, user)
