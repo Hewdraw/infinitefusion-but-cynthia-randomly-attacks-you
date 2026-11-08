@@ -1105,6 +1105,7 @@ def getTowerItems()
             [:MUGORB, 1],
             [:GRAVLEROCK, 1],
             [:GOLDRIBBON, 1],
+            [:TM123, 1],
         ],
         [ #secret rare
             [:SACREDASH, 1],
@@ -1137,6 +1138,7 @@ def getTowerItems()
     items[3].push([:GOLDENBANANA, 1]) if !$PokemonBag.pbHasItem?(:GOLDENBANANA)
     items[3].push([:MECHUMETAL, 1]) if !$PokemonBag.pbHasItem?(:MECHUMETAL)
     items[3].push([:RARESTBONE, 1]) if !$PokemonBag.pbHasItem?(:RARESTBONE)
+    items[3].push([:BADINCUBATOR, 1]) if !$PokemonBag.pbHasItem?(:BADINCUBATOR)
 
     items[4].push([:OMNIDRIVE, 1]) if !$PokemonBag.pbHasItem?(:OMNIDRIVE)
     items[4].push([:TUTORMACHINE, 1]) if !$PokemonBag.pbHasItem?(:TUTORMACHINE)

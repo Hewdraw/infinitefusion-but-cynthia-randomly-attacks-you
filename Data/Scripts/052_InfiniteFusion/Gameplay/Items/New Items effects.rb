@@ -1261,6 +1261,11 @@ ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
   pbTutorMoveScreen(pkmn)
 })
 
+ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
+  pbExpertTutorMoveScreen(pkmn)
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:BADINCUBATOR, proc { |item, pkmn, scene|
   if $Trainer.money < 4000
     Kernel.pbMessage("Broke Ass.")
@@ -1284,9 +1289,9 @@ ItemHandlers::UseOnPokemon.add(:BADINCUBATOR, proc { |item, pkmn, scene|
     $game_system.bgs_resume(playingBGS)
   end
 })
-ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
-  pbExpertTutorMoveScreen(pkmn)
-  next false
+
+ItemHandlers::UseOnPokemon.add(:OMNITUTOR, proc { |item, pkmn, scene|
+  pbTowerMoveScreen(pkmn)
 })
 
 ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|

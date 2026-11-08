@@ -935,6 +935,7 @@
 944,TM123,TM123,TM123s,4,0,"DOOM",3,0,0,DOOM
 945,ROSEGLASSES,Rose glasses,Rose glassess,1,0,"a",0,0,0
 946,BADINCUBATOR,Bad Incubator,Bad Incubators,8,0,"Pocket Egg Move Tutor",5,0,6
+947,OMNITUTOR,Omni Tutor,Omni Tutors,8,0,"Pocket Omni Move Tutor",5,0,6
 
 
 
