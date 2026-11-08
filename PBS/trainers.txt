@@ -11444,6 +11444,49 @@ Pokemon = GENNEDDEOXYSDEFENSE,5
     EV = 252,0,8,0,0,252
     Happiness = 255
 
+[CLAIREPROFESSOR,Claire,0]  
+Pokemon = ANGEMON,15
+    Offset = 1
+    Moves = AEROSLASH,HOLYSHOT,OMNITYPHOON,THUNDERWAVE
+    Ability = FAIRYAURA
+    Item = ELYTRA
+    Nature = TIMID
+    HPType = GROUND
+    IV = 31,0,31,31,31,31
+    EV = 0,0,0,252,252,8
+    Happiness = 255
+    Ball = GENDERBALL
+Pokemon = DEVIMON,15
+    Offset = 0
+    Moves = DEATHCLAW,MOONLIGHT,SUBSTITUTE,INFESTATION
+    Ability = MENACE
+    Item = LEFTOVERS
+    Nature = CAREFUL
+    IV = 31,0,31,31,31,31
+    EV = 252,0,8,0,0,252
+    Happiness = 0
+    Ball = TOXICBALL
+Pokemon = CLEFAIRY,15
+    Offset = 1
+    Moves = GREATERMETRONOME,MOONLIGHT,FLAMETHROWER,REVELATIONDANCE
+    Ability = MAGICGUARD
+    Item = EVIOLITE
+    Nature = QUIRKY
+    IV = 31,31,31,31,31,31
+    EV = 252,0,252,0,0,8
+    Happiness = 255
+    Ball = GENDERBALL
+Pokemon = HAUNTER,15
+    Offset = 0
+    Moves = SHADOWBALL,SLUDGEBOMB,THUNDERBOLT,ENERGYBALL
+    Ability = PROTOSYNTHESIS
+    Item = BOOSTERENERGY
+    Nature = MODEST
+    IV = 31,0,31,31,31,31
+    EV = 0,0,8,252,252,0
+    Happiness = 0
+    Ball = GENDERBALL
+
 ####################### Misc Teams
 [TOWER_TYCOON,Palmer,0]    
 Pokemon = RHYPERIOR,5   

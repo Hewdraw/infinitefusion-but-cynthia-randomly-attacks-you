@@ -167,3 +167,4 @@
 164,SPOKEN_FOR,Spoken For,70,,,,Female,100,
 165,FLOP_ERA,Flop Era,70,,,,Female,100,
 166,Wild_Pokemon,Wild Pokemon,0,,,,Male,0,
+167,CLAIREPROFESSOR,Professor,200,,,,Female,100,

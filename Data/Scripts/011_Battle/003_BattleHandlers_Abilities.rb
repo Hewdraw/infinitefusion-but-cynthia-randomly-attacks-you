@@ -2718,6 +2718,7 @@ BattleHandlers::UserAbilityOnHit.add(:FRISKPLUS,
 BattleHandlers::UserAbilityOnHit.add(:STUN,
   proc { |ability,user,target,move,battle|
     next if target.movedThisRound?
+    next if battler.pokemon.battlevariables[:stun]
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2733,6 +2734,7 @@ BattleHandlers::UserAbilityOnHit.add(:STUN,
       target.pbParalyze(user,msg)
     end
     battle.pbHideAbilitySplash(user)
+    battler.pokemon.battlevariables[:stun] = true
   }
 )
 
@@ -3623,7 +3625,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
 
 BattleHandlers::AbilityOnSwitchIn.copy(:DRIZZLE, :DAMPPLUS)
 
-BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLE,
+BattleHandlers::AbilityOnSwitchIn.add(:DRIZZLEPLUS,
   proc { |ability,battler,battle|
     pbBattleWeatherAbility(:Rain, battler, battle, false, false)
   }
@@ -4319,11 +4321,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:COMMANDERPLUS,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:STANCECHANGE,
+BattleHandlers::AbilityOnSwitchIn.add(:GENERATIONAL,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     battle.pbDisplay("#{battler.pbThis} hasn't updated their game version!")
     battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:STUN,
+  proc { |ability,battler,battle|
+    battler.pokemon.battlevariables[:stun] = false
   }
 )
 

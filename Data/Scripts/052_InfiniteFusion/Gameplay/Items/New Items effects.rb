@@ -1261,6 +1261,16 @@ ItemHandlers::UseOnPokemon.add(:TUTORMACHINE, proc { |item, pkmn, scene|
   pbTutorMoveScreen(pkmn)
 })
 
+ItemHandlers::UseOnPokemon.add(:BADINCUBATOR, proc { |item, pkmn, scene|
+  if $Trainer.money < 4000
+    Kernel.pbMessage("Broke Ass.")
+    next false
+  end
+  if pbRelearnEggMoveScreen(pbGetPokemon(1))
+    Kernel.pbMessage("The Bad Incubator took $4000.")
+    $Trainer.money -= 4000
+  end
+})
 ItemHandlers::UseOnPokemon.add(:TEACHYTV, proc { |item, pkmn, scene|
   pbExpertTutorMoveScreen(pkmn)
   next false
