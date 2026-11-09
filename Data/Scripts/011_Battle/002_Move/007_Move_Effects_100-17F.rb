@@ -2692,7 +2692,7 @@ class PokeBattle_Move_183 < PokeBattle_Move
         end
       end
     else
-      pbWildBattle(:SKELETON, user.level, 1, false)
+      pbWildBattle(:SKELETON, user.level, 1, false, false, true)
     end
     $Trainer.party.each do |pkmn|
       pkmn.hp = $PokemonGlobal.battlehplist[pkmn] 

@@ -465,7 +465,7 @@ def pbWildBattle(species, level, outcomeVar = 1, canRun = true, canLose = false,
   # Potentially call a different pbWildBattle-type method instead (for roaming
   # Pokémon, Safari battles, Bug Contest battles)
   handled = [nil]
-  Events.onWildBattleOverride.trigger(nil, species, level, handled)
+  Events.onWildBattleOverride.trigger(nil, species, level, handled) if !special
   return handled[0] if handled[0] != nil
   # Set some battle rules
   setBattleRule("outcomeVar", outcomeVar) if outcomeVar != 1
