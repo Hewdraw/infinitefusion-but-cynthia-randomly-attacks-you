@@ -15,8 +15,8 @@ EMERADICT = {
         :description => "Obtain an extra Bug Pokemon every Premier Ball floor.",
         :rarity => :STARTER,
     },
-    :YELLOWHAT => {
-        :name => "YellowHat",
+    :EMPTYGUN => {
+        :name => "Empty Gun",
         :description => "Using a Gun move also uses Roulette. Gain Illegal Gun Parts at the start.",
         :rarity => :STARTER,
     },

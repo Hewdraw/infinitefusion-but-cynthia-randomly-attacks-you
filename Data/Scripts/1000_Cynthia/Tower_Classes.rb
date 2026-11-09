@@ -9,7 +9,7 @@ TRAINERCLASSDICT = {
     },
     :GUNSLINGER => {
         :name => "Gunslinger",
-        :emera => :YELLOWHAT,
+        :emera => :EMPTYGUN,
         :soul => "Justice",
     },
     :EXPLORER => {
@@ -79,7 +79,7 @@ def selectTrainerClass()
             pbReceiveItem(item)
         end
     end
-    if hasEmera?(:YELLOWHAT)
+    if hasEmera?(:EMPTYGUN)
         pbReceiveItem(:ILLEGALGUNPARTS)
     end
     pbReceiveItem(:METRONOME) if hasEmera?(:STICKYKEY)
