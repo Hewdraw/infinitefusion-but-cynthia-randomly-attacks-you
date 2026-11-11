@@ -217,6 +217,7 @@ class FusionTutorService
       compatibleMoves << :SONICBOOM if is_fusion_of([:LATIAS, :LATIOS]) || canLearnMove(:METALSOUND) || hasType(:SOUND)
       compatibleMoves << :METEORBEAM if is_fusion_of([:METAGROSS, :STARMIE, :DIANCIE, :CLEFFA, :CLEFAIRY, :CLEFABLE, :MEW, :JIRACHI, :GEODUDE, :GRAVELER, :GOLEM, :RAYQUAZA, :DEOXYS, :ARCEUS, :AERODACTYL, :IRONTHORNS, :LUNATONE, :SOLROCK, :MINIOR, :OMANYTE, :OMASTAR, :NOSEPASS, :PROBOPASS, :IRONJUGULIS, :CARBINK, :AMPHAROS])
       compatibleMoves << :ROULETTE if canLearnMoveType(:GUN)
+      compatibleMoves << :DOOM if is_fusion_of([:AXEW, :FRAXURE, :HAXORUS])
     end
     if includeLegendaries
       #legendary moves (only available after a certain trigger, maybe a different npc)

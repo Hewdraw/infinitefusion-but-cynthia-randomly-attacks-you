@@ -1146,12 +1146,16 @@ class Pokemon
       case move_id
       when :DOOM
         return true if head_species.type1 == :DARK || head_species.type2 == :DARK || body_species.type1 == :DARK || body_species.type2 == :DARK
+      when :TOMBSTONER
+        return true if head_species.type1 == :GHOST || head_species.type2 == :GHOST || body_species.type1 == :GHOST || body_species.type2 == :GHOST
       end
       return move_data && (pokemon_can_learn_move(head_species, move_data) || pokemon_can_learn_move(body_species, move_data))
     else
       case move_id
       when :DOOM
         return true if species_data.type1 == :DARK || species_data.type2 == :DARK
+      when :TOMBSTONER
+        return true if species_data.type1 == :GHOST || species_data.type2 == :GHOST
       end
       return move_data && pokemon_can_learn_move(species_data, move_data)
     end
