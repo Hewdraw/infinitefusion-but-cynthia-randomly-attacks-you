@@ -1591,7 +1591,7 @@ class Pokemon
         bstdata[i] = regional.base_stats
       end
     end
-    if hasItem?(:ROTOMCATALOG)
+    if hasItem?(:ROTOMCATALOG) && isFusionOf(:ROTOM)
       bstdata = getRotomForm()
       bstdata.each_with_index do |rotom,i|
         bstdata[i] = rotom.base_stats
@@ -1815,7 +1815,7 @@ class Pokemon
         @type1 = regional.type1 if i == 1
       end
     end
-    if hasItem?(:ROTOMCATALOG)
+    if hasItem?(:ROTOMCATALOG) && isFusionOf(:ROTOM)
       getRotomForm().each_with_index do |rotom, i|
         @type2 = rotom.type2 if i == 0
         @type1 = rotom.type1 if i == 1
@@ -1935,7 +1935,7 @@ class Pokemon
         list.push(@regionalability)
       end
     end
-    if hasItem?(:ROTOMCATALOG)
+    if hasItem?(:ROTOMCATALOG) && isFusionOf(:ROTOM)
       getRotomForm().each_with_index do |rotom, i|
         next if rotom.form == 0
         list.push(@rotomability)
