@@ -6869,6 +6869,7 @@ Pokemon = PORYGON2,5
     Moves = TERABLAST,RECOVER,SHADOWBALL
     Ability = DOWNLOAD
     Item = NORMALGEM
+    HPType = NORMAL
     Gender = F
     Nature = MODEST
     IV = 24,24,24,24,24,24
