@@ -5184,7 +5184,7 @@ BattlerEnemyX = -1
 BattlerEnemyY = 20
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TYPHLOSION,Level,36
+Evolutions = HISUITYPHLOSION,Item,MISTSTONE,TYPHLOSION,Level,36
 #-------------------------------
 [157]
 Name = Typhlosion
