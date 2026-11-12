@@ -607,14 +607,14 @@ class PokeBattle_Battle
               pbDisplayPaused(_INTL("You got #{coin} Sinnoh Coins for winning!"))
             end
           end
-          if @opponent[0].full_name == "Dragon Dev Hewdraw" && opponent.length == 2 && $PokemonBag.pbStoreItem(:BOOTS)
+          if @opponent[0].full_name == "Dragon Dev Hewdraw" && $game_map.map_id == 303 && $PokemonBag.pbStoreItem(:BOOTS)
             pbDisplayPaused(_INTL("You got boots!? for winning!"))
           end
           if @opponent[0].trainer_type == :Skeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HEALIES)
             pbDisplayPaused(_INTL("You got Healies for winning!"))
           end
           if @opponent[0].trainer_type == :DarkSkeleton_Dev && @opponent[0].first_pokemon.poke_ball == :PREMIERBALL && $PokemonBag.pbStoreItem(:HIGHHEALS)
-            pbDisplayPaused(_INTL("You got Healies for winning!"))
+            pbDisplayPaused(_INTL("You got High Heals for winning!"))
           end
           unlockClass(:GAMBLER) if @classvariables[:metronome] && !$PokemonGlobal.towervalues.nil?
           unlockClass(:ROGUE) if $Trainer.party.length == 1 && !$PokemonGlobal.towervalues.nil?
@@ -649,7 +649,7 @@ class PokeBattle_Battle
           end
         end
         # Lose money from losing a battle
-        if trainerBattle? && @opponent[0].full_name == "Dragon Dev Hewdraw" && opponent.length == 2
+        if trainerBattle? && @opponent[0].full_name == "Dragon Dev Hewdraw" && $game_map.map_id == 303
           pbDisplayPaused(_INTL("You gave your shoes to the winner..."))
           $Trainer.has_running_shoes = false
         else
