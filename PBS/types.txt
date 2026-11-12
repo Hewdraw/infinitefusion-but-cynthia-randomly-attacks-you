@@ -62,7 +62,7 @@ Immunities = POISON
 Name = ???
 InternalName = QMARKS
 IsPseudoType = true
-Weaknesses = GUN,SOUND
+Weaknesses = GUN,SOUND,QMARKS
 Resistances = NORMAL,FIGHTING,FLYING,POISON,GROUND,ROCK,BUG,GHOST,STEEL,FIRE,WATER,GRASS,ELECTRIC,PSYCHIC,ICE,DRAGON,DARK,FAIRY
 #-------------------------------
 [10]

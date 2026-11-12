@@ -1,6 +1,7 @@
 
 module Settings
   LATEST_GAME_RELEASE = "6.8.0"
+  NB_POKEMON = 576
 
   SHINY_POKEMON_CHANCE = 16
   SNOW_DAY = false
@@ -49,12 +50,6 @@ module Settings
   BASE_POKEMON_SPRITES_REPO_URL = ""
   BASE_POKEMON_ALT_SPRITES_REPO_URL = ""
   BASE_POKEMON_ALT_SPRITES_NEW_URL = ""
-
-  BASE_POKEMON_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_base/"		#legacy
-  CUSTOM_FUSIONS_SPRITESHEET_URL = "https://infinitefusion.net/spritesheets/spritesheets_custom/"	#legacy
-  BASE_POKEMON_SPRITESHEET_RESIZED_URL = "https://infinitefusion.net/spritesheets_resized/spritesheets_base/"		#legacy
-  CUSTOM_FUSIONS_SPRITESHEET_RESIZED_URL = "https://infinitefusion.net/spritesheets_resized/spritesheets_custom/"	#legacy
- 
 
   BASE_POKEMON_SPRITESHEET_TRUE_SIZE_URL = "https://infinitefusion.net/customsprites/spritesheets/spritesheets_base/"
   CUSTOM_FUSIONS_SPRITESHEET_TRUE_SIZE_URL = "https://infinitefusion.net/customsprites/spritesheets/spritesheets_custom/"
