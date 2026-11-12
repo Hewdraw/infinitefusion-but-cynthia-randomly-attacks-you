@@ -1249,7 +1249,12 @@ Cave,5
 #-------------------------------
 [235] # Ruins of Alph
 Cave,5
-    100,UNOWN,25,30
+    35,UNOWN,25,30
+    15,CLEFFA,25,30
+    15,GASTLY,25,30
+    15,KABUTO,25,30
+    5,GIBLE,25,30
+    5,SQUIRTLE,25,30
 #-------------------------------
 [236] # Route 4
 LandDay,10
@@ -1645,8 +1650,8 @@ Cave,5
 #-------------------------------
 [306] # Victory Road
 Cave,5
+    15,MAKUHITA,44,44
     10,DELIBIRD,44,44
-    10,MAKUHITA,44,44
     10,MISDREAVUS,44,44
     10,LARVESTA,44,44
     5,KIRLIA,44,44
@@ -1660,7 +1665,6 @@ Cave,5
     5,CHARMANDER,44,44
     5,BULBASAUR,44,44
     5,TOTODILE,44,44
-    5,SQUIRTLE,44,44
 #-------------------------------
 [307] # Victory Road
 Cave,5
