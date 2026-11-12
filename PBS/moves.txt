@@ -1075,7 +1075,7 @@
 1106,GIGACANNON,Giga Cannon,354,35,GUN,Physical,100,5,50,Other,0,befmn,"Fires superdreadnought-class energy waves from its two cannons."
 1107,INFINITEHAND,Infinite Hand,355,20,ELECTRIC,Special,90,5,0,Other,0,befm,"Launches a blast of energy from its hand." #todo
 1108,GIGADESTROYER,Giga Destroyer,03F,160,GUN,Special,90,5,0,AllFoes,0,befmn,"Fires organic missiles from the hatch on part of its chest."
-1109,CATASTROPHEDAY,Catastrophe Day,356,400,GUN,Physical,100,5,0,AllNearOthers,0,befns,"Detonates itself in a large explosion."
+1109,CATASTROPHEDAY,Catastrophe Day,356,340,GUN,Physical,100,5,0,AllNearOthers,0,befns,"Detonates itself in a large explosion."
 1110,ATIMELESSENCOUNTER,A Timeless Encounter,346,0,PSYCHIC,Status,0,1,0,User,-7,d,"a"
 1111,FUTURESIGHTPLUS,Future Sight+,111,130,PSYCHIC,Special,100,10,0,NearOther,0,,"Two turns after this move is used, a hunk of psychic energy attacks the target." #TODO
 1112,CRUSHGRIPPLUS,Crush Grip+,347,100,NORMAL,Physical,100,5,50,NearOther,0,abef,"The target is crushed with great force."
@@ -1159,7 +1159,7 @@
 1190,JUDGMENTSLASH,Judgment Slash,409,100,QMARKS,Special,0,5,0,NearOther,0,befq,"Performs a single strike that destroys evil."
 1191,STRIKEOFTHESEVENSTARS,Strike of the Seven Stars,410,7,FAIRY,Special,90,5,0,NearOther,0,befn,"Fires seven super-heated spheres of light at the opponent. "
 1192,SEVENSWING,Seven's Wing,411,70,FLYING,Special,70,5,20,NearOther,0,befr,"Seven's Wing"
-1193,TESTAMENT,Testament,356,400,FAIRY,Special,100,5,0,AllNearOthers,0,befns,"Sacrifices its mortal life to trigger a Big Bang."
+1193,TESTAMENT,Testament,356,340,FAIRY,Special,100,5,0,AllNearOthers,0,befns,"Sacrifices its mortal life to trigger a Big Bang."
 1194,DIVINEBREAKER,Divine Breaker,000,80,FAIRY,Special,100,5,0,NearOther,0,befn,"Launches an orb of light."
 1195,HOLYSUNSHINE,Holy Sunshine,412,0,FAIRY,Status,0,5,0,User,0,,"Submerges the battlefield in holy light."
 1196,RISINGHALO,Rising Halo,413,30,ELECTRIC,Special,70,5,15,NearOther,0,bef,"Calls down powerful bolts of divine lightning."
@@ -1195,7 +1195,7 @@
 1226,GREATROULETTE,Great Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 1227,GREATERROULETTE,Greater Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 1228,GREATESTROULETTE,Greatest Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
-1229,DOOM,Doom,437,500,DARK,Physical,100,5,0,AllNearOthers,0,befs,"DOOM!"
+1229,DOOM,Doom,437,260,DARK,Physical,100,5,0,AllNearOthers,0,befs,"DOOM!"
 
 
 
