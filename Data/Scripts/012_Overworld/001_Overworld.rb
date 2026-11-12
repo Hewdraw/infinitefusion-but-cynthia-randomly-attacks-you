@@ -264,10 +264,16 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
     else
       if [:UNOWN, :B201H201].include?(encounter[0])
         pbLegendaryBattle("Unown")
-      elsif $game_map.map_id == 306 && rand(2) == 0
+      elsif $game_map.map_id == 306 && rand(16) == 0
+        paradoxed = false
         PARADOXLIST.each do |original, paradox|
           next unless original.include?(encounter[0])
           encounter[0] = paradox.sample
+          paradoxed = true
+        end
+        if hasEmera?(:HYPERSPACEREPEL) && !paradoxed
+          $PokemonTemp.encounterType = nil
+          return
         end
         pbWildBattle(encounter[0], encounter[1])
       elsif hasEmera?(:HYPERSPACEREPEL)
