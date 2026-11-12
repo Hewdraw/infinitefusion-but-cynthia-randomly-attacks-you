@@ -2695,7 +2695,7 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTTOUCH,
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} frostbites {3}!",user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbFreeze(user,msg)
+      target.pbFreeze(msg)
     end
     battle.pbHideAbilitySplash(user)
   }
