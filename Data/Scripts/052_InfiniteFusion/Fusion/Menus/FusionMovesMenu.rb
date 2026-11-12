@@ -37,8 +37,8 @@ class FusionMovesOptionsScene < PokemonOption_Scene
   def initUIElements
     Kernel.pbClearText()
     @sprites["pokeicon_fused"] = PokemonIconSprite.new(@fused_pokemon.species, @viewport)
-    @sprites["pokeicon_fused"].x = 12
-    @sprites["pokeicon_fused"].y = 0
+    @sprites["pokeicon_fused"].x = 46
+    @sprites["pokeicon_fused"].y = 32
 
     @sprites["titleMsg"] = Window_UnformattedTextPokemon.newWithSize(
       _INTL("Select the moves you want to keep"), 64, 0, Graphics.width, 64, @viewport)
@@ -90,12 +90,12 @@ class FusionMovesOptionsScene < PokemonOption_Scene
   def showPokemonIcons
 
     @sprites["pokeicon_1"] = PokemonIconSprite.new(@head_species.species, @viewport)
-    @sprites["pokeicon_1"].x = 264
-    @sprites["pokeicon_1"].y = 50
+    @sprites["pokeicon_1"].x = 296
+    @sprites["pokeicon_1"].y = 82
 
     @sprites["pokeicon_2"] = PokemonIconSprite.new(@body_species.species, @viewport)
-    @sprites["pokeicon_2"].x = 388
-    @sprites["pokeicon_2"].y = 50
+    @sprites["pokeicon_2"].x = 420
+    @sprites["pokeicon_2"].y = 82
 
     @sprites["pokecursor"] = IconSprite.new(0, 0, @viewport)
     @sprites["pokecursor"].setBitmap("Graphics/Pictures/Fusion/cursor")

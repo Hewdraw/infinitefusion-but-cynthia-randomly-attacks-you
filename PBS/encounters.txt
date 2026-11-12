@@ -1249,7 +1249,7 @@ Cave,5
 #-------------------------------
 [235] # Ruins of Alph
 Cave,5
-    35,UNOWN,25,30
+    15,UNOWN,25,30
     15,CLEFFA,25,30
     15,GASTLY,25,30
     15,KABUTO,25,30
