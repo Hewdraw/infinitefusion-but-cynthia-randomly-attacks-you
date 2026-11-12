@@ -936,7 +936,7 @@
 945,ROSEGLASSES,Rose glasses,Rose glassess,1,0,"a",0,0,0
 946,BADINCUBATOR,Bad Incubator,Bad Incubators,8,0,"Pocket Egg Move Tutor",5,0,6
 947,OMNITUTOR,Omni Tutor,Omni Tutors,8,0,"Pocket Omni Move Tutor",5,0,6
-
+948,SNOWORB,Snow Orb,Snow Orbs,1,0,"a",0,0,0
 
 
 

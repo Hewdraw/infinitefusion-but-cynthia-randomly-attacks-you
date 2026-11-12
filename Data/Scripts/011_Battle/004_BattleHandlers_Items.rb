@@ -2474,6 +2474,15 @@ BattleHandlers::ItemOnSwitchIn.add(:SANDYORB,
   }
 )
 
+BattleHandlers::ItemOnSwitchIn.add(:SNOWORB,
+  proc { |item,battler,battle|
+    battle.pbCommonAnimation("UseItem",battler)
+    battle.pbDisplay("#{battler.pbThis} used its Snow Orb!")
+    battle.pbStartWeather(battler,:Snow,true)
+    battler.pbRemoveItem()
+  }
+)
+
 BattleHandlers::ItemOnSwitchIn.add(:GOLDENSEED,
   proc { |item,battler,battle|
     battle.pbCommonAnimation("UseItem",battler)

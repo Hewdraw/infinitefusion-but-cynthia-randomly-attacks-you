@@ -11041,6 +11041,38 @@ Pokemon = GABUMON,5
     EV = 252,0,252,0,0,8
     Happiness = 255
     Ball = PREMIERBALL
+    
+[Dragon_Dev,Hewdraw,6]  
+Pokemon = ROSEMON,5 
+    Offset = 0
+    Moves = BEAUTYSHOCK,THORNSHOOT,ROSESPEAR,FLOWERCANNON
+    Ability = INTIMIDATE
+    Ball = PREMIERBALL
+    Item = CHOICESPECS
+    Nature = JOLLY
+    IV = 31,31,31,31,31,31
+    EV = 8,0,0,252,252,0
+    Happiness = 255
+Pokemon = WARGREYMON,5  
+    Offset = 0
+    Moves = POWERFULFLAME,GREATTORNADO,DRAMONKILLERWAVE,TERRADESTROYER
+    Ability = DAUNTLESSSHIELD
+    Ball = PREMIERBALL
+    Item = ASSAULTVEST
+    Nature = MODEST
+    IV = 31,31,31,31,31,31
+    EV = 252,0,0,8,252,0
+    Happiness = 255
+Pokemon = METALGARURUMON,5  
+    Offset = 0
+    Moves = GIGAMISSILE,FOXFIRE,TACHYONCUTTER,ICESTATUE
+    Ability = FILTER
+    Item = SNOWORB
+    Ball = PREMIERBALL
+    Nature = JOLLY
+    IV = 31,31,31,31,31,31
+    EV = 8,0,0,252,252,0
+    Happiness = 255
 
 [Skeleton_Dev,Shadross,0]
 Pokemon = B346H449,75
@@ -11444,6 +11476,45 @@ Pokemon = GENNEDDEOXYSDEFENSE,5
     IV = 31,31,31,31,31,31
     EV = 252,0,8,0,0,252
     Happiness = 255
+
+[Skeleton_Dev,Shadross,7]    
+Pokemon = HAXORUS,5 
+    Offset = 0
+    Moves = DRAGONDANCE,STONEAXE,OUTRAGEPLUS,POISONJAB
+    Name = Doom
+    Ability = MOLDBREAKER
+    Shiny = TRUE
+    Ball = LUXURYBALL
+    Item = FOCUSEDBANDANA
+    Nature = JOLLY
+    IV = 31,31,31,31,31,31
+    EV = 8,252,0,252,0,0
+    Happiness = 255
+Pokemon = METAGROSS,5   
+    Offset = 0
+    Moves = METEORMASHPLUS,AGILITY,PSYCHICFANGS,POWERUPPUNCH
+    Ability = CLEARBODY
+    Name = Greed
+    Ball = LUXURYBALL
+    Item = LIFEBELL
+    Shiny = TRUE
+    Nature = ADAMANT
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,8,0,0
+    Happiness = 255
+Pokemon = BISHARP,5 
+    Offset = 0
+    Moves = SWORDSDANCE,KOWTOWCLEAVEPLUS,STONEEDGE,BEHEMOTHBLADE
+    Ability = DEFIANT
+    Name = Wrath
+    Shiny = TRUE
+    Item = EVIOLYTE
+    Ball = LUXURYBALL
+    Nature = ADAMANT
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,8,0,0
+    Happiness = 255
+    
 
 [CLAIREPROFESSOR,Claire,0]  
 Pokemon = ANGEMON,15

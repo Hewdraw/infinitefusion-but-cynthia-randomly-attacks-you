@@ -5399,33 +5399,33 @@ class PokeBattle_Move_325 < PokeBattle_Move
     if hitNum == 0
       case user.species
       when :VOCALLEEK
-        hitNum = 1
+        hitNum = 0
       when :VOCALDRILL
-        hitNum = 2
+        hitNum = 1
       when :VOCALCELL
-        hitNum = 3
+        hitNum = 2
       end
     else
       case user.species
       when :VOCALLEEK
-        hitNum = 2
+        hitNum = 1
         user.species = :VOCALDRILL
         user.pokemon.species = :VOCALDRILL
         user.playChangeFormAnimation("Shiny")
       when :VOCALDRILL
-        hitNum = 3
+        hitNum = 2
         user.species = :VOCALCELL
         user.pokemon.species = :VOCALCELL
         user.playChangeFormAnimation("Shiny")
       when :VOCALCELL
-        hitNum = 1
+        hitNum = 0
         user.species = :VOCALLEEK
         user.pokemon.species = :VOCALLEEK
         user.playChangeFormAnimation("Shiny")
       end
     end
     case hitNum
-    when 1
+    when 0
       @calcType = :FAIRY
       stageMul = [2,2,2,2,2,2, 2, 3,4,5,6,7,8]
       stageDiv = [8,7,6,5,4,3, 2, 2,2,2,2,2,2]
@@ -5438,10 +5438,10 @@ class PokeBattle_Move_325 < PokeBattle_Move
       else
         @category = 1
       end
-    when 2
+    when 1
       @calcType = :STEEL
       @category = 0
-    when 3
+    when 2
       @calcType = :ELECTRIC
       @category = 1
     end
@@ -5538,24 +5538,24 @@ class PokeBattle_Move_329 < PokeBattle_SleepMove
         changeSpeciesSpecific(user.pokemon,:B466H467)
       end
       if user.hasActiveAbility?(:KEYCHANGE)
-        @battle.pbShowAbilitySplash(mon)
+        @battle.pbShowAbilitySplash(user)
         user.pbRaiseStatStage(:ATTACK,1,user)
         user.pbRaiseStatStage(:SPEED,1,user)
         user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user)
         user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user)
-        @battle.pbHideAbilitySplash(mon)
+        @battle.pbHideAbilitySplash(user)
       end
       user.playChangeFormAnimation("Shiny")
     else
       user.changeSpecies(user.pokemon, :MELOETTA_A, :MELOETTA_P, "Shiny") if is_meloetta_A
       user.changeSpecies(user.pokemon, :MELOETTA_P, :MELOETTA_A, "Shiny") if is_meloetta_P
       if user.hasActiveAbility?(:KEYCHANGE)
-        @battle.pbShowAbilitySplash(mon)
+        @battle.pbShowAbilitySplash(user)
         user.pbRaiseStatStage(:ATTACK,1,user) if is_meloetta_P
         user.pbRaiseStatStage(:SPEED,1,user) if is_meloetta_P
         user.pbRaiseStatStage(:SPECIAL_ATTACK,1,user) if is_meloetta_A
         user.pbRaiseStatStage(:SPECIAL_DEFENSE,1,user) if is_meloetta_A
-        @battle.pbHideAbilitySplash(mon)
+        @battle.pbHideAbilitySplash(user)
       end
     end
   end

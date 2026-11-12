@@ -257,7 +257,7 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
   if pbEncounterCynthia()
     $PokemonTemp.encounterTriggered = true
   else $PokemonEncounters.allow_encounter?(encounter, repel_active)
-    if $PokemonEncounters.have_double_wild_battle?
+    if $PokemonEncounters.have_double_wild_battle? && !hasEmera?(:HYPERSPACEREPEL)
       encounter2 = $PokemonEncounters.choose_wild_pokemon(encounter_type)
       encounter2 = EncounterModifier.trigger(encounter2)
       pbDoubleWildBattle(encounter[0], encounter[1], encounter2[0], encounter2[1])
@@ -266,6 +266,9 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
         pbLegendaryBattle("Unown")
       elsif $game_map.map_id == 306 && rand(64) == 0 && PARADOXLIST.keys().include?(encounter[0])
         pbWildBattle(PARADOXLIST[encounter[0]].sample, encounter[1])
+      elsif hasEmera?(:HYPERSPACEREPEL)
+        $PokemonTemp.encounterType = nil
+        return
       else
         pbWildBattle(encounter[0], encounter[1])
       end
