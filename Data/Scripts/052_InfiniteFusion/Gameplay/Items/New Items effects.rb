@@ -1475,7 +1475,7 @@ ItemHandlers::UseOnPokemon.add(:OMNIDRIVE, proc { |item, pkmn, scene|
     [:WEEDLE, :KAKUNA, :BEEDRILL, :VESPIQUEN] => [[:TWINEEDLE]],
     [:FROAKIE, :FROGADIER,:GRENINJA] => [[:WATERSHURIKEN]],
   }
-  allmoves = pkmn.isFusionOf(:GENESECT)
+  allmoves = pkmn.isFusionOf([:GENESECT, :SMEARGLE])
   upgradelist.each do |pokemon, movearray|
     pokemon.each do |mon|
       next unless allmoves || pkmn.isFusionOf(mon) || (TRIPLEFUSIONS[mon] && TRIPLEFUSIONS[mon].flatten.include?(mon))
