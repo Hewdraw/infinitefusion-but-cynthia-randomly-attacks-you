@@ -273,11 +273,13 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
         end
         if hasEmera?(:HYPERSPACEREPEL) && !paradoxed
           $PokemonTemp.encounterType = nil
+          $PokemonEncounters.reset_step_count
           return
         end
         pbWildBattle(encounter[0], encounter[1])
       elsif hasEmera?(:HYPERSPACEREPEL)
         $PokemonTemp.encounterType = nil
+        $PokemonEncounters.reset_step_count
         return
       else
         pbWildBattle(encounter[0], encounter[1])
