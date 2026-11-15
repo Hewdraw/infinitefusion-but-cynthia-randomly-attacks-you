@@ -6483,7 +6483,7 @@ class PokeBattle_Move_383 < PokeBattle_Move
     return [200*((user.adjustedTotalhp-user.hp)/user.adjustedTotalhp),1].max
   end
 
-  def pbAdditionalEffect(user, target)
+  def pbEffectGeneral(user)
     return if user.hp > user.adjustedTotalhp / 2
     user.pbRaiseStatStage(:ATTACK, 1, user)
     user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
