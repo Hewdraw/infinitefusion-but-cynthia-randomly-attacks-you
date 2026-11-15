@@ -66,7 +66,7 @@
 63,TOPSYTURVY,Topsy-Turvy,141,0,DARK,Status,0,20,0,NearOther,0,bce,"All stat changes affecting the target turn topsy-turvy and become the opposite of what they were."
 64,TORMENT,Torment,0B7,0,DARK,Status,100,15,0,NearOther,0,bce,"The user torments and enrages the foe, making it incapable of using the same move twice in a row."
 #-------------------------------
-65,ROAROFTIME,Roar of Time,0C2,150,DRAGON,Special,90,5,0,NearOther,0,bef,"The user blasts the target with power that distorts even time. The user must rest on the next turn."
+65,ROAROFTIME,Roar of Time,0C2,150,DRAGON,Special,90,5,0,AllNearFoes,0,bef,"The user blasts the target with power that distorts even time. The user must rest on the next turn."
 66,DRACOMETEOR,Draco Meteor,03F,130,DRAGON,Special,90,5,0,NearOther,0,bef,"Comets are summoned down from the sky. The attack's recoil harshly reduces the user's Sp. Atk stat."
 67,OUTRAGE,Outrage,0D2,120,DRAGON,Physical,100,10,0,RandomNearFoe,0,abef,"The user rampages and attacks for two to three turns. It then becomes confused, however."
 68,CLANGINGSCALES,Clanging Scales,15F,110,DRAGON,Special,100,5,0,AllNearFoes,0,befk,"The user rubs its scales and makes a huge noise. Also lowers the user's Defense stat."
