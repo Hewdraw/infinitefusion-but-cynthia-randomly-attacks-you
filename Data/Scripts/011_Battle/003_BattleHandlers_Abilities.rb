@@ -2718,7 +2718,9 @@ BattleHandlers::UserAbilityOnHit.add(:FRISKPLUS,
 BattleHandlers::UserAbilityOnHit.add(:STUN,
   proc { |ability,user,target,move,battle|
     next if target.movedThisRound?
-    next if battler.pokemon.battlevariables[:stun]
+    next if target.fainted?
+    next if target.status == :PARALYSIS
+    next if user.pokemon.battlevariables[:stun]
     battle.pbShowAbilitySplash(user)
     if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
       battle.pbShowAbilitySplash(target)
@@ -2734,7 +2736,7 @@ BattleHandlers::UserAbilityOnHit.add(:STUN,
       target.pbParalyze(user,msg)
     end
     battle.pbHideAbilitySplash(user)
-    battler.pokemon.battlevariables[:stun] = true
+    user.pokemon.battlevariables[:stun] = true
   }
 )
 
