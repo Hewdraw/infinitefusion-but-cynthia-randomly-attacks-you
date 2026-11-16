@@ -171,14 +171,14 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} is in Hyper Reverse Mode! It's too confused to do anything!",pbThis))
       return false
     when 3
-      @battle.pbDisplay(_INTL("{1} ignored orders and returned to its ball!",pbThis))
       canSwitch = false
       @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
         next if !@battle.pbCanSwitchLax?(@index,i)
         canSwitch = true
         break
       end
-      return false if !canSwitch
+      return true if !canSwitch
+      @battle.pbDisplay(_INTL("{1} ignored orders and returned to its ball!",pbThis))
       newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
       return false if newPkmn<0
       @battle.pbRecallAndReplace(@index, newPkmn)
