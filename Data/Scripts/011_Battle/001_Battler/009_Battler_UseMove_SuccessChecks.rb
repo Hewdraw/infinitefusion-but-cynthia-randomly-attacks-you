@@ -149,8 +149,7 @@ class PokeBattle_Battler
     # Do nothing if using Snore/Sleep Talk
     #b = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
     # Use another move
-    choice = rand(4)
-    case choice
+    case rand(4)
     when 0
       return false if !@battle.pbCanShowFightMenu?(@index)
       otherMoves = []
