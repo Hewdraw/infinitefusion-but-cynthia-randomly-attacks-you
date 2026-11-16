@@ -602,7 +602,11 @@ class PokemonEvolutionScene
       pbUpdate
     end
     # Success jingle/message
-    pbMEPlay("evolution_success")
+    if @pokemon.species == :SHADOWBLASTOISE
+      pbMEPlay("LongWeirdRoute")
+    else
+      pbMEPlay("evolution_success")
+    end
     sprite_bitmap=@sprites["rsprite2"].getBitmap
 
     #drawSpriteCredits(sprite_bitmap.filename,sprite_bitmap.path, @viewport)
