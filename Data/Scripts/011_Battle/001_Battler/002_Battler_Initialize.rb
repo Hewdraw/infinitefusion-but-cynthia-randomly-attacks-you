@@ -315,7 +315,7 @@ class PokeBattle_Battler
     return if !@pokemon
     if @hpbars
       @pokemon.calc_stats(@hpbars)
-      currenthp = @hp + ((@pokemon.totalhp - @totalhp)*@hpbars)
+      currenthp = @hp + ((@pokemon.totalhp - @totalhp)*(@hpbars-1))
     else
       @pokemon.calc_stats
       currenthp = @pokemon.hp

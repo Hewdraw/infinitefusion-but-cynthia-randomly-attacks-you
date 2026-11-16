@@ -16,7 +16,7 @@ class PokeBattle_FakeBattler
     return totalhp
   end
 
-  def adjustedTotalhp
+  def adjustedCurrenthp
     return hp
   end
 

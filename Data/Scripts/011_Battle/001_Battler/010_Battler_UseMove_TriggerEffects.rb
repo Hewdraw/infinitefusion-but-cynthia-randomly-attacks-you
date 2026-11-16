@@ -89,7 +89,7 @@ class PokeBattle_Battler
     #     end
     #   end
     # end
-    if move.shadowMove? && !user.fainted? && @battle.pbRandom(100, user) < 70
+    if move.shadowMove? && !user.fainted? && @battle.pbRandom(100, user, nil, false) < 30
       user.pbHyperReverse if user.pbCanHyperReverse?(user, true)
     end
     # Destiny Bond
