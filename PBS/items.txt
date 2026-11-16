@@ -707,7 +707,7 @@
 707,ALTACHOMPITE,Altachompite,Altachompites,1,0,"a",0,0,0
 708,SINNOHCOIN,Sinnoh Coin,Sinnoh Coins,8,2,"Washing Machines like these. Oddly ephemeral.",1,0,0
 709,MEWTWONITEPLUS,Mewtwonite+,Mewtwonite+s,1,0,"a",0,0,0
-710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon by one. Infinite use.",5,0,6
+710,LEGENDARYCANDY,Legendary Candy,Legendary Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon. Infinite use.",5,0,6
 711,ULTRANECROZIUMZ,Ultranecrozium Z,Ultranecrozium Z,8,0,"Expensive. Does something, presumably with Necrozma.",0,0,0
 712,RUSTYBOTTLECAP,Rusty Bottle Cap,Rusty Bottle Caps,2,0,"Minimizes an IV for a Pokemon. Don't question how it does it.",1,0,0
 713,BOTTLECAP,Bottle Cap,Bottle Caps,2,0,"Maximizes an IV for a Pokemon. Don't question how it does it.",1,0,0
@@ -937,6 +937,7 @@
 946,BADINCUBATOR,Bad Incubator,Bad Incubators,8,0,"Pocket Egg Move Tutor",5,0,6
 947,OMNITUTOR,Omni Tutor,Omni Tutors,8,0,"Pocket Omni Move Tutor",5,0,6
 948,SNOWORB,Snow Orb,Snow Orbs,1,0,"a",0,0,0
+949,MYTHICALCANDY,Mythical Candy,Mythical Candies,8,0,"A candy that is packed with energy. It raises the level of a single Pokémon. Infinite use.",5,0,6
 
 
 
