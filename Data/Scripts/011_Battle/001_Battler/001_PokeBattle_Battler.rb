@@ -166,10 +166,17 @@ class PokeBattle_Battler
     @battle.scene.pbRefreshOne(@index)
   end
 
+  def hpbars
+    return @hpbars if @hpbars
+    return 1
+  end
+
   def adjustedTotalhp
-    return @totalhp * 2 if @pokemon.dynamax.is_a?(Integer) && @pokemon.dynamax > 0
-    return @totalhp * @hpbars if @hpbars
-    return @totalhp
+    return @totalhp * hpbars
+  end
+
+  def adjustedCurrenthp
+    return @hp / hpbars
   end
 
   #=============================================================================
@@ -690,6 +697,12 @@ class PokeBattle_Battler
     return true if hasActiveEmera?(:TERACRYSTAL)
     return true if @pokemon.unteraTypes != []
     return true if hasActiveItem?([:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :ELYTRA, :ENCHANTEDELYTRA, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM])
+    return false
+  end
+
+  def isDynamaxed?
+    return true if [:HATSUNEMECHU].include?(@species)
+    return true if @effects[PBEffects::Dynamax] > 0
     return false
   end
 

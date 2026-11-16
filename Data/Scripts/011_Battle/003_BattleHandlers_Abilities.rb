@@ -1472,7 +1472,7 @@ BattleHandlers::DamageCalcUserAbility.add(:TEMPEST,
 
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
-    next if target.effects[PBEffects::Dynamax] > 0
+    next if target.isDynamaxed?
     mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0 || move.id == :JARONA
   }
 )
@@ -2057,7 +2057,7 @@ BattleHandlers::TargetAbilityOnHit.add(:CURSEDBODY,
   proc { |ability,target,user,move,battle|
     next if user.fainted?
     next if user.effects[PBEffects::Disable]>0
-    next if user.effects[PBEffects::Dynamax] > 0
+    next if user.isDynamaxed?
     regularMove = nil
     user.eachMove do |m|
       next if m.id!=user.lastRegularMoveUsed
@@ -2366,13 +2366,7 @@ BattleHandlers::TargetAbilityOnHit.add(:INNARDSOUT,
     battle.pbShowAbilitySplash(target)
     if user.takesIndirectDamage?(PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
       battle.scene.pbDamageAnimation(user)
-      if target.effects[PBEffects::Dynamax] > 0
-        user.pbReduceHP(target.damageState.hpLost/2,false)
-      elsif target.hpbars
-        user.pbReduceHP(target.damageState.hpLost/target.hpbars,false)
-      else
-        user.pbReduceHP(target.damageState.hpLost,false)
-      end
+      user.pbReduceHP(target.damageState.hpLost/target.hpbars,false)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("{1} is hurt!",user.pbThis))
       else

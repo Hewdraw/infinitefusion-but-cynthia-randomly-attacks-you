@@ -248,23 +248,26 @@ class PokeBattle_Battle
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
     oldhp = battler.hp.to_f
+    endhp = oldhp * ((battler.hpbars + 1.0) / battler.hpbars)
+    battler.hpbars = 1 if battler.hpbars.nil?
+    battler.hpbars += 1
     time = 64
     for i in 0..(time-1)
       sprite.zoom_x += 0.03125
       sprite.zoom_y += 0.03125
       sprite.y += 2
-      if oldhp+(oldhp * i/time).round >= battler.hp + 1
-        battler.hp = oldhp+(oldhp * i/time).round
+      if oldhp+((endhp-oldhp) * i/time).round >= battler.hp + 1
+        battler.hp = oldhp+((endhp-oldhp) * i/time).round
       end
       @scene.pbRefreshOne(idxBattler)
       pbWait(1)
     end
     battler.pokemon.dynamax = 3
-    battler.hp = oldhp * 2
+    battler.hp = endhp
     sprite.zoom_x -= 2
     sprite.zoom_y -= 2
     sprite.y -= 128
-    sprite.setPokemonBitmap(battler.pokemon)
+    #sprite.setPokemonBitmap(battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
     battler.moves = []
     battler.pokemon.moves.each_with_index do |move,i|
@@ -284,35 +287,36 @@ class PokeBattle_Battle
   def pbUnDynamax(idxBattler)
     battler = @battlers[idxBattler]
     return if !battler || !battler.pokemon
-    return if (battler.pokemon.dynamax == nil) || battler.pokemon.dynamax == true
+    return if battler.pokemon.dynamax == nil || battler.pokemon.dynamax == true
     trainerName = pbGetOwnerName(idxBattler)
     sprite = @scene.sprites["pokemon_" + idxBattler.to_s]
     @scene.pbRefreshOne(idxBattler)
     battler.effects[PBEffects::Dynamax] = 0
     pbCommonAnimation("StatDown",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxsmall"))
-    oldhp = battler.hp.to_f
-    endhp = (battler.hp / 2).round
+    oldhp = battler.hp
+    endhp = oldhp * (battler.hpbars / (battler.hpbars + 1.0))
     time = 40
     for i in 0..(time-1)
       sprite.zoom_x -= 0.0165
       sprite.zoom_y -= 0.0165
       sprite.y -= 3.2
-      if oldhp-(oldhp * i/time/2).round <= battler.hp - 1
-        battler.hp = oldhp-(oldhp * i/time/2).round
+      if oldhp-((endhp - oldhp) * i/time/2).round <= battler.hp - 1
+        battler.hp = oldhp-((endhp - oldhp) * i/time/2).round
       end
       @scene.pbRefreshOne(idxBattler)
       pbWait(1)
     end
     battler.pokemon.dynamax = nil
     battler.hp = endhp
-    if battler.hp > battler.totalhp
-      battler.hp = battler.totalhp
+    battler.hpbars -= 1
+    if battler.hp > battler.adjustedTotalhp
+      battler.hp = battler.adjustedTotalhp
     end
     sprite.zoom_x += 0.64
     sprite.zoom_y += 0.64
     sprite.y += 32
-    sprite.setPokemonBitmap(battler.pokemon)
+    #sprite.setPokemonBitmap(battler.pokemon)
     @scene.pbRefreshOne(idxBattler)
     if battler.pokemon.gigantamax
       tempspecies = (battler.pokemon.species.to_s[4..-1]).to_sym

@@ -14,7 +14,7 @@ class PokeBattle_Battle
       pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
       return false
     end
-    if battler.effects[PBEffects::Encore]>0 && !(battler.effects[PBEffects::Dynamax] > 0)
+    if battler.effects[PBEffects::Encore]>0 && !battler.isDynamaxed?
       idxEncoredMove = battler.pbEncoredMoveIndex
       return false if idxEncoredMove>=0 && idxMove!=idxEncoredMove
     end
@@ -25,7 +25,7 @@ class PokeBattle_Battle
     battler = @battlers[idxBattler]
     battler.eachMoveWithIndex do |m,i|
       next if m.pp==0 && m.total_pp>0 && !sleepTalk
-      if battler.effects[PBEffects::Encore]>0 && !(battler.effects[PBEffects::Dynamax] > 0)
+      if battler.effects[PBEffects::Encore]>0 && !battler.isDynamaxed?
         idxEncoredMove = battler.pbEncoredMoveIndex
         next if idxEncoredMove>=0 && i!=idxEncoredMove
       end

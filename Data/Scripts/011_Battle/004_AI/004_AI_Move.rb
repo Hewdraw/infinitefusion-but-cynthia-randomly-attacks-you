@@ -197,7 +197,7 @@ class PokeBattle_AI
         score -= 80 if miss
       end
       # Pick a good move for the Choice items
-      if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) && !(user.effects[PBEffects::Dynamax] > 0)
+      if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF]) && !user.isDynamaxed?
         if move.baseDamage >= 60;
           score += 60
         elsif move.damagingMove?;

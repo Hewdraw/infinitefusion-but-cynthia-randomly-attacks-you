@@ -575,7 +575,7 @@ class PokeBattle_Battler
   #=============================================================================
   def pbFlinch(_user=nil)
     return if hasActiveAbility?(:INNERFOCUS) && !@battle.moldBreaker
-    return if @effects[PBEffects::Dynamax] > 0
+    return if isDynamaxed?
     @effects[PBEffects::Flinch] = true
   end
 end

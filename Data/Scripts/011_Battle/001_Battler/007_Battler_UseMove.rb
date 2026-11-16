@@ -84,7 +84,7 @@ class PokeBattle_Battler
       @effects[PBEffects::Encore] = 0
       @effects[PBEffects::EncoreMove] = nil
     end
-    if effects[PBEffects::Dynamax] > 0
+    if isDynamaxed?
       @effects[PBEffects::Encore] = 0
     end
     @effects[PBEffects::GlaiveRush] = false
@@ -116,7 +116,7 @@ class PokeBattle_Battler
   def pbEndTurn(_choice)
     @lastRoundMoved = @battle.turnCount # Done something this round
     if !@effects[PBEffects::ChoiceBand] &&
-      (hasActiveItem?([:CHOICEBAND, :CHOICESPECS, :CHOICESCARF, :NETHERITECHESTPLATE, :MANKEYSCARF]) || hasActiveAbility?(:GORILLATACTICS)) && !(@effects[PBEffects::Dynamax] > 0)
+      (hasActiveItem?([:CHOICEBAND, :CHOICESPECS, :CHOICESCARF, :NETHERITECHESTPLATE, :MANKEYSCARF]) || hasActiveAbility?(:GORILLATACTICS)) && !isDynamaxed?
       if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
         @effects[PBEffects::ChoiceBand] = @lastMoveUsed
       elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
@@ -906,7 +906,7 @@ class PokeBattle_Battler
     targets.each { |b| b.pbFaint if b && b.fainted? }
     user.pbFaint if user.fainted?
     # Additional effect
-    if !user.hasActiveAbility?(:SHEERFORCE) || user.effects[PBEffects::Dynamax] > 0
+    if !user.hasActiveAbility?(:SHEERFORCE) || isDynamaxed?
       targets.each do |b|
         next if b.damageState.calcDamage == 0
         chance = move.pbAdditionalEffectChance(user, b)

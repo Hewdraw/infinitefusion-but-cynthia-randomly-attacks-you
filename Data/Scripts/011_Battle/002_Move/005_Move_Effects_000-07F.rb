@@ -1510,27 +1510,18 @@ end
 #===============================================================================
 class PokeBattle_Move_05A < PokeBattle_Move
   def pbEffectAgainstTarget(user, target)
-    if target.effects[PBEffects::Dynamax] > 0
-      newHP = (user.hp + (target.hp/2)) / 2
-    elsif target.hpbars
-      newHP = (user.hp + (target.hp/target.hpbars)) / 2
-    else
-      newHP = (user.hp + target.hp) / 2
+    newHP = (user.adjustedCurrenthp + target.adjustedCurrenthp) / 2
+    usernewHP = newHP * user.hpbars
+    targetnewHP = newHP * target.hpbars
+    if user.hp > usernewHP;
+      user.pbReduceHP(user.hp - usernewHP, false, false)
+    elsif user.hp < usernewHP;
+      user.pbRecoverHP(usernewHP - user.hp, false)
     end
-    if user.hp > newHP;
-      user.pbReduceHP(user.hp - newHP, false, false)
-    elsif user.hp < newHP;
-      user.pbRecoverHP(newHP - user.hp, false)
-    end
-    if target.effects[PBEffects::Dynamax] > 0
-      newHP = newHP * 2
-    elsif target.hpbars
-      newHP = newHP * target.hpbars
-    end
-    if target.hp > newHP;
-      target.pbReduceHP(target.hp - newHP, false, false)
-    elsif target.hp < newHP;
-      target.pbRecoverHP(newHP - target.hp, false)
+    if target.hp > targetnewHP;
+      target.pbReduceHP(target.hp - targetnewHP, false, false)
+    elsif target.hp < targetnewHP;
+      target.pbRecoverHP(targetnewHP - target.hp, false)
     end
     @battle.pbDisplay(_INTL("The battlers shared their pain!"))
     user.pbItemHPHealCheck
@@ -1993,7 +1984,7 @@ class PokeBattle_Move_066 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2041,7 +2032,7 @@ class PokeBattle_Move_067 < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2171,13 +2162,7 @@ class PokeBattle_Move_06C < PokeBattle_FixedDamageMove
   end
 
   def pbFixedDamage(user, target)
-    if target.effects[PBEffects::Dynamax] > 0
-      return (target.hp / 4.0).round
-    elsif target.hpbars
-      return (target.hp / (target.hpbars * 2.0)).round
-    else
-      return (target.hp / 2.0).round
-    end
+    return (target.adjustedCurrenthp / 2.0).round
   end
 end
 
@@ -2195,7 +2180,7 @@ end
 #===============================================================================
 class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
   def pbFailsAgainstTarget?(user, target)
-    if user.hp >= target.hp
+    if user.adjustedCurrenthp >= target.adjustedCurrenthp
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2207,13 +2192,7 @@ class PokeBattle_Move_06E < PokeBattle_FixedDamageMove
   end
 
   def pbFixedDamage(user, target)
-    if target.effects[PBEffects::Dynamax] > 0
-      return (target.hp/2).round - user.hp
-    elsif target.hpbars
-      return (target.hp/target.hpbars).round - user.hp
-    else
-      return target.hp - user.hp
-    end
+    return target.adjustedCurrenthp - user.adjustedCurrenthp
   end
 end
 
@@ -2274,7 +2253,7 @@ class PokeBattle_Move_070 < PokeBattle_FixedDamageMove
       @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
       return true
     end
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
       return true
     end

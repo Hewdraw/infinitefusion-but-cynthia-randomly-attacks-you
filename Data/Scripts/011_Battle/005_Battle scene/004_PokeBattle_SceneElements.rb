@@ -92,10 +92,6 @@ class PokemonDataBox < SpriteWrapper
     # Create other bitmaps
     @numbersBitmap = AnimatedBitmap.new("Graphics/Pictures/Battle/icon_numbers")
     hpBarAmount = 10
-    # if @battler.pokemon
-    #   hpBarAmount = 2 if @battler.pokemon.dynamax
-    #   hpBarAmount = @battler.hpbars if @battler.hpbars
-    # end
     @hpBarBitmaps = []
     @hpBarSprites = []
     for i in 0...hpBarAmount do
@@ -335,7 +331,7 @@ class PokemonDataBox < SpriteWrapper
 
     extraicons = []
     extraicons.push("icon_mega") if @battler.isMegad?
-    extraicons.push("icon_dynamax") if @battler.effects[PBEffects::Dynamax] > 0
+    extraicons.push("icon_dynamax") if @battler.isDynamaxed?
     extraicons.push("icon_tera") if @battler.isTerastallized?
     extraicons.push("icon_affection") if @battler.pokemon.affection || @battler.hasActiveEmera?(:SYNCSTONEULTIMATE)
     extraicons.push("icon_alpha") if @battler.pokemon.alpha || battler.isFusionOf([:ARCEUS, :ALPHAMON, :CYNTHIA, :KYOGRE, :UNOWN])

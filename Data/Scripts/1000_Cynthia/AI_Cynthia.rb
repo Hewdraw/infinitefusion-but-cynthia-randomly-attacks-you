@@ -118,8 +118,7 @@ class PokeBattle_AI
     damagethreshold = ((100.0-opposingThreat)/opposingThreat).ceil #todo hazards
     damagethreshold = (100.0/opposingThreat).ceil if user.fainted? #todo hazards
     damagethreshold += 1 if switchOutspeeds
-    activeDamagethreshold = (100.0/activeOpposingThreat).ceil
-    activeDamagethreshold = (200.0/activeOpposingThreat).ceil if user.effects[PBEffects::Dynamax] > 0
+    activeDamagethreshold = ((user.adjustedTotalhp/user.totalhp*100)/activeOpposingThreat).ceil
     activeDamagethreshold += 1 if activeUserOutspeeds
     hitsDifferential = (1+(100.0/switchThreat).floor) / (100.0/activeUserThreat).floor
     switchScore = damagethreshold - (activeDamagethreshold * hitsDifferential)

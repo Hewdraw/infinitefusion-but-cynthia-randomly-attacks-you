@@ -581,7 +581,7 @@ end
 #===============================================================================
 class PokeBattle_Move_09A < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -609,7 +609,7 @@ end
 #===============================================================================
 class PokeBattle_Move_09B < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1701,7 +1701,7 @@ class PokeBattle_Move_0B7 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1749,7 +1749,7 @@ class PokeBattle_Move_0B9 < PokeBattle_Move
   def ignoresSubstitute?(user); return true; end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -1875,7 +1875,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -3019,7 +3019,7 @@ class PokeBattle_Move_0EB < PokeBattle_Move
       @battle.pbDisplay(_INTL("But it failed!")) if show_message
       return true
     end
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -3109,7 +3109,7 @@ class PokeBattle_Move_0EC < PokeBattle_Move
     return if user.fainted? || numHits==0
     roarSwitched = []
     targets.each do |b|
-      next if b.effects[PBEffects::Dynamax] > 0
+      next if b.isDynamaxed?
       next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
       next if switchedBattlers.include?(b.index)
       next if b.effects[PBEffects::Ingrain]

@@ -63,7 +63,7 @@ class PokeBattle_Battler
     # Choice Band
     if @effects[PBEffects::ChoiceBand]
       if (hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF, :NETHERITECHESTPLATE, :MANKEYSCARF]) || hasActiveAbility?(:GORILLATACTICS)) &&
-         pbHasMove?(@effects[PBEffects::ChoiceBand]) && !(@effects[PBEffects::Dynamax] > 0)
+         pbHasMove?(@effects[PBEffects::ChoiceBand]) && !isDynamaxed?
         if move.id!=@effects[PBEffects::ChoiceBand] && pbHasMove?(move.id)
           if showMessages
             choicename = itemName
@@ -88,7 +88,7 @@ class PokeBattle_Battler
     end
     # Torment
     if @effects[PBEffects::Torment] && !@effects[PBEffects::Instructed] &&
-       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id && !(@effects[PBEffects::Dynamax] > 0)
+       @lastMoveUsed && move.id==@lastMoveUsed && move.id!=@battle.struggle.id && !isDynamaxed?
       if showMessages
         msg = _INTL("{1} can't use the same move twice in a row due to the torment!",pbThis)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
@@ -314,7 +314,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!",target.pbThis))
       return false
     end
-    if !(user.effects[PBEffects::Dynamax] > 0 || user.hasActiveAbility?([:UNSEENFIST, :PIERCINGDRILL, :TRUANTPLUS]))
+    if !user.hasActiveAbility?([:UNSEENFIST, :PIERCINGDRILL, :TRUANTPLUS])
       # Crafty Shield
       if target.pbOwnSide.effects[PBEffects::CraftyShield] && user.index!=target.index &&
          move.statusMove? && !move.pbTarget(user).targets_all && !user.hasActiveAbility?(:CHARGEDEXPLOSIVE)

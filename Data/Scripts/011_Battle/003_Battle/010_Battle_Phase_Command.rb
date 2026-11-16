@@ -43,7 +43,7 @@ class PokeBattle_Battle
   def pbCanShowFightMenu?(idxBattler)
     battler = @battlers[idxBattler]
     # Encore
-    return false if battler.effects[PBEffects::Encore]>0 && !(battler.effects[PBEffects::Dynamax] > 0)
+    return false if battler.effects[PBEffects::Encore]>0 && !battler.isDynamaxed?
     # No moves that can be chosen (will Struggle instead)
     usable = false
     battler.eachMoveWithIndex do |_m,i|

@@ -2277,7 +2277,7 @@ class PokeBattle_Move_16B < PokeBattle_Move
   end
 
   def pbFailsAgainstTarget?(user, target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -2750,7 +2750,7 @@ class PokeBattle_Move_188 < PokeBattle_Move
   end
   
   def pbBaseDamage(baseDmg,user,target)
-    return baseDmg if user.effects[PBEffects::Dynamax] == 0
+    return baseDmg if !user.isDynamaxed?
     highestpower = baseDmg
     user.pokemon.moves.each_with_index do |move,i|
       next if user.moves[i].id != self.id
@@ -4414,7 +4414,7 @@ class PokeBattle_Move_272 < PokeBattle_Move
 end
 
 class PokeBattle_Move_273 < PokeBattle_Move
-  def pbCritialOverride(user,target); return target.effects[PBEffects::Dynamax] > 0; end
+  def pbCritialOverride(user,target); return target.isDynamaxed?; end
 end
 
 class PokeBattle_Move_274 < PokeBattle_Move
@@ -4699,7 +4699,7 @@ class PokeBattle_Move_289 < PokeBattle_FreezeMove
     return if user.fainted? || numHits==0
     roarSwitched = []
     targets.each do |b|
-      next if b.effects[PBEffects::Dynamax] > 0
+      next if b.isDynamaxed?
       next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
       next if switchedBattlers.include?(b.index)
       next if b.effects[PBEffects::Ingrain]
@@ -4930,7 +4930,7 @@ end
 
 class PokeBattle_Move_301 < PokeBattle_Move
   def pbFailsAgainstTarget?(user,target)
-    if target.effects[PBEffects::Dynamax] > 0
+    if target.isDynamaxed?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
@@ -5465,7 +5465,7 @@ class PokeBattle_Move_326 < PokeBattle_Move
       target.effects[PBEffects::Nightmare] = true
       @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
     end
-    if @battle.pbRandom(100, user, target) < 20 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target))
+    if @battle.pbRandom(100, user, target) < 20 && !(target.isDynamaxed? || pbMoveFailedAromaVeil?(user,target))
       target.effects[PBEffects::Torment] = true
       @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
     end
@@ -5598,7 +5598,7 @@ end
 
 class PokeBattle_Move_334 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    baseDmg *= 2 if target.effects[PBEffects::Dynamax] > 0
+    baseDmg *= 2 if target.isDynamaxed?
     return baseDmg
   end
 end
@@ -6883,7 +6883,7 @@ class PokeBattle_Move_401 < PokeBattle_Move
     return if user.fainted? || numHits==0
     roarSwitched = []
     targets.each do |b|
-      next if b.effects[PBEffects::Dynamax] > 0
+      next if b.isDynamaxed?
       next if b.fainted? || b.damageState.unaffected || b.damageState.substitute
       next if switchedBattlers.include?(b.index)
       next if b.effects[PBEffects::Ingrain]
@@ -6907,7 +6907,7 @@ end
 
 class PokeBattle_Move_402 < PokeBattle_Move
   def pbBaseDamage(baseDmg, user, target)
-    baseDmg *= 2 if target.effects[PBEffects::Dynamax] > 0
+    baseDmg *= 2 if target.isDynamaxed?
     return baseDmg
   end
 
@@ -7483,7 +7483,7 @@ class PokeBattle_Move_432 < PokeBattle_Move
     if @battle.pbRandom(100, user, target) < 10 && target.pbCanConfuse?(user,false,self)
       target.pbConfuse
     end
-    if @battle.pbRandom(100, user, target) < 10 && !(target.effects[PBEffects::Dynamax] > 0 || pbMoveFailedAromaVeil?(user,target))
+    if @battle.pbRandom(100, user, target) < 10 && !(target.isDynamaxed? || pbMoveFailedAromaVeil?(user,target))
       target.effects[PBEffects::Torment] = true
       @battle.pbDisplay(_INTL("{1} was subjected to torment!",target.pbThis))
     end

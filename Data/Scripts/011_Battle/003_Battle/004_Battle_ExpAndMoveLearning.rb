@@ -89,18 +89,12 @@ class PokeBattle_Battle
             opponent.pbUpdate(false)
             if opponent.pokemon.species == :DUDUDUNSPARCE
               newmove = Pokemon::Move.new(:HYPERIMPALER)
-              if opponent.effects[PBEffects::Dynamax] > 0
-                user.pokemon.moves.each_with_index do |move,i|
-                  if move.name == "Hyper Drill"
-                    user.pokemon.moves[i] = newmove
-                    pbDisplay(_INTL("{1} learned {2}!", opponent.name, "Hyper Impaler")) { pbSEPlay("Pkmn move learnt") }
-                  end
-                end
-              else
-                opponent.pokemon.moves.each_with_index do |move,i|
-                  if move.name == "Hyper Drill"
+              opponent.pokemon.moves.each_with_index do |move,i|
+                if move.id == :HYPERDRILL
+                  opponent.pokemon.moves[i] = newmove
+                  pbDisplay(_INTL("{1} learned Hyper Impaler!", opponent.name)) { pbSEPlay("Pkmn move learnt") }
+                  if !opponent.isDynamaxed?
                     opponent.moves[i] = PokeBattle_Move.from_pokemon_move(self,newmove)
-                    pbDisplay(_INTL("{1} learned {2}!", opponent.name, "Hyper Impaler")) { pbSEPlay("Pkmn move learnt") }
                   end
                 end
               end

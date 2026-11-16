@@ -630,7 +630,7 @@ class PokeBattle_Battle
       idxEncoreMove = b.pbEncoredMoveIndex
       if idxEncoreMove>=0
         b.effects[PBEffects::Encore] -= 1
-        if b.effects[PBEffects::Encore]==0 || b.moves[idxEncoreMove].pp==0  || b.effects[PBEffects::Dynamax] > 0
+        if b.effects[PBEffects::Encore]==0 || b.moves[idxEncoreMove].pp==0  || b.isDynamaxed?
           b.effects[PBEffects::Encore] = 0
           pbDisplay(_INTL("{1}'s encore ended!",b.pbThis))
         end
