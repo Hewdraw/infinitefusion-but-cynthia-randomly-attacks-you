@@ -2,6 +2,7 @@
 # Pokémon sprite (used out of battle)
 #===============================================================================
 class PokemonSprite < SpriteWrapper
+  attr_reader :back
   def initialize(viewport = nil)
     super(viewport)
     @_iconbitmap = nil

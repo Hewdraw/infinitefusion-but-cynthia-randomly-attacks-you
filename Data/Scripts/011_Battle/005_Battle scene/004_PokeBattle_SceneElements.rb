@@ -571,6 +571,7 @@ class PokemonBattlerSprite < RPG::Sprite
   attr_accessor :index
   attr_accessor :selected
   attr_reader :sideSize
+  attr_reader :back
 
   def initialize(viewport, sideSize, index, battleAnimations)
     super(viewport)
