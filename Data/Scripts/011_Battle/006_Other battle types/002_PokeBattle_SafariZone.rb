@@ -8,7 +8,7 @@ class PokeBattle_FakeBattler
   attr_reader :owned
   attr_reader :hpbars
 
-  def hpbars
+  def hpbarcount
     return 1
   end
 

@@ -166,17 +166,17 @@ class PokeBattle_Battler
     @battle.scene.pbRefreshOne(@index)
   end
 
-  def hpbars
+  def hpbarcount
     return @hpbars if @hpbars
     return 1
   end
 
   def adjustedTotalhp
-    return @totalhp * hpbars
+    return @totalhp * hpbarcount
   end
 
   def adjustedCurrenthp
-    return @hp / hpbars
+    return @hp / hpbarcount
   end
 
   #=============================================================================
