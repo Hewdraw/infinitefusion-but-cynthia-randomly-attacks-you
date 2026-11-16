@@ -120,7 +120,6 @@ def pbChangeLevel(pkmn, newlevel, scene, force=false)
   if pkmn.level == newlevel
     pbMessage(_INTL("{1}'s level remained unchanged.", pkmn.name))
   elsif pkmn.level > newlevel
-    return false if pkmn.isShadow && !force
     attackdiff = pkmn.attack
     defensediff = pkmn.defense
     speeddiff = pkmn.speed
@@ -142,6 +141,7 @@ def pbChangeLevel(pkmn, newlevel, scene, force=false)
     pbTopRightWindow(_INTL("Max. HP<r>{1}\r\nAttack<r>{2}\r\nDefense<r>{3}\r\nSp. Atk<r>{4}\r\nSp. Def<r>{5}\r\nSpeed<r>{6}",
                            pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed))
   else
+    return false if pkmn.isShadowPokemon? && !force
     attackdiff = pkmn.attack
     defensediff = pkmn.defense
     speeddiff = pkmn.speed
