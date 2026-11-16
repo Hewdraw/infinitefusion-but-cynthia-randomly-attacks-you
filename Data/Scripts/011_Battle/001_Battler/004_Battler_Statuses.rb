@@ -127,6 +127,7 @@ class PokeBattle_Battler
           when :BURN      then msg = _INTL("{1} cannot be burned!", pbThis)
           when :PARALYSIS then msg = _INTL("{1} cannot be paralyzed!", pbThis)
           when :FROZEN    then msg = _INTL("{1} cannot get frostbite!", pbThis)
+          when :HYPERREVERSE    then msg = _INTL("{1} cannot get hyper reversed!", pbThis)
           end
         elsif immAlly
           case newStatus
@@ -143,7 +144,10 @@ class PokeBattle_Battler
             msg = _INTL("{1} cannot be paralyzed because of {2}'s {3}!",
                pbThis,immAlly.pbThis(true),immAlly.abilityName)
           when :FROZEN
-            msg = _INTL("{1} cannot be frozen solid because of {2}'s {3}!",
+            msg = _INTL("{1} cannot be frostbit because of {2}'s {3}!",
+               pbThis,immAlly.pbThis(true),immAlly.abilityName)
+          when :HYPERREVERSE
+            msg = _INTL("{1} cannot get hyper reversed because of {2}'s {3}!",
                pbThis,immAlly.pbThis(true),immAlly.abilityName)
           end
         else
@@ -153,6 +157,7 @@ class PokeBattle_Battler
           when :BURN      then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
           when :PARALYSIS then msg = _INTL("{1}'s {2} prevents paralysis!", pbThis, abilityName)
           when :FROZEN    then msg = _INTL("{1}'s {2} prevents frostbite!", pbThis, abilityName)
+          when :HYPERREVERSE    then msg = _INTL("{1}'s {2} prevents hyper reverse!", pbThis, abilityName)
           end
         end
         @battle.pbDisplay(msg)
@@ -248,6 +253,9 @@ class PokeBattle_Battler
         end
       when :FROZEN
         @battle.pbDisplay(_INTL("{1} got frostbite!", pbThis))
+      when :HYPERREVERSE
+        @battle.pbDisplay(_INTL("{1}'s emotions rose to a fever pitch!", pbThis))
+        @battle.pbDisplay(_INTL("It entered Hyper Reverse Mode!"))
       end
     end
     PBDebug.log("[Status change] #{pbThis}'s sleep count is #{newStatusCount}") if newStatus == :SLEEP
@@ -394,6 +402,21 @@ class PokeBattle_Battler
   end
 
   #=============================================================================
+  # Hyper Reverse Mode
+  #=============================================================================
+  def hyperReversed?
+    return pbHasStatus?(:HYPERREVERSE)
+  end
+
+  def pbCanHyperReverse?(user, showMessages, move = nil)
+    return pbCanInflictStatus?(:HYPERREVERSE, user, showMessages, move, true)
+  end
+
+  def pbHyperReverse(msg = nil)
+    pbInflictStatus(:HYPERREVERSE, 0, msg)
+  end
+
+  #=============================================================================
   # Generalised status displays
   #=============================================================================
   def pbContinueStatus
@@ -415,6 +438,10 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} is paralyzed! It can't move!", pbThis))
     when :FROZEN
       @battle.pbDisplay(_INTL("{1} was hurt by its frostbite!", pbThis))
+    when :HYPERREVERSE
+      @battle.pbDisplay(_INTL("{1} is in Hyper Reverse Mode!", pbThis))
+      @battle.pbDisplay(_INTL("It attacked itself!"))
+      @battle.pbDisplay(_INTL("It hurt itself in the confusion!"))
     end
     PBDebug.log("[Status continues] #{pbThis}'s sleep count is #{@statusCount}") if self.status == :SLEEP
   end
@@ -429,6 +456,7 @@ class PokeBattle_Battler
       when :BURN      then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
       when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
       when :FROZEN    then @battle.pbDisplay(_INTL("{1}'s frostbite was healed' !", pbThis))
+      when :HYPERREVERSE    then @battle.pbDisplay(_INTL("{1} came to its senses' !", pbThis))
       end
     end
     PBDebug.log("[Status change] #{pbThis}'s status was cured") if !showMessages

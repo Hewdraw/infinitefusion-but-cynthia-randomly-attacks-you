@@ -567,6 +567,18 @@ class PokeBattle_Battle
         b.pbCureStatus
       end
     end
+    priority.each do |b|
+      next if b.status != :HYPERREVERSE
+      next if b.hasActiveAbility?(:GUTSPLUS)
+      if b.takesIndirectDamage?
+        oldHP = b.hp
+        dmg = b.totalhp/16
+        b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+        b.pbItemHPHealCheck
+        b.pbAbilitiesOnDamageTaken(oldHP)
+        b.pbFaint if b.fainted?
+      end
+    end
     # Damage from sleep (Nightmare)
     priority.each do |b|
       b.effects[PBEffects::Nightmare] = false if !b.asleep?

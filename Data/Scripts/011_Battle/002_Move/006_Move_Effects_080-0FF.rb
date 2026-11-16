@@ -120,6 +120,8 @@ class PokeBattle_Move_087 < PokeBattle_Move
       ret = :ROCK if GameData::Type.exists?(:ROCK)
     when :Hail, :Snow
       ret = :ICE if GameData::Type.exists?(:ICE)
+    when :ShadowSky
+      ret = :QMARKS
     end
     return ret
   end

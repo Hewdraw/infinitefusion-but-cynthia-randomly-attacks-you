@@ -115,11 +115,12 @@ end
 #===============================================================================
 # Change a Pokémon's level
 #===============================================================================
-def pbChangeLevel(pkmn, newlevel, scene)
+def pbChangeLevel(pkmn, newlevel, scene, force=false)
   newlevel = newlevel.clamp(1, GameData::GrowthRate.max_level)
   if pkmn.level == newlevel
     pbMessage(_INTL("{1}'s level remained unchanged.", pkmn.name))
   elsif pkmn.level > newlevel
+    return false if pkmn.isShadow && !force
     attackdiff = pkmn.attack
     defensediff = pkmn.defense
     speeddiff = pkmn.speed

@@ -89,6 +89,9 @@ class PokeBattle_Battler
     #     end
     #   end
     # end
+    if move.shadowMove? && !user.fainted? && @battle.pbRandom(100, user) < 70
+      user.pbHyperReverse if user.pbCanHyperReverse(user, true)
+    end
     # Destiny Bond
     # NOTE: Although Destiny Bond is similar to Grudge, they don't apply at
     #       the same time (although Destiny Bond does check whether it's going

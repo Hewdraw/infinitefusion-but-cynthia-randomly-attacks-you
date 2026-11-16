@@ -22,6 +22,7 @@ class PokeBattle_DamageState
   attr_accessor :affection
   attr_accessor :affectionmiss
   attr_accessor :affectioncritical
+  attr_accessor :abyssohko
 
   def initialize; reset; end
 
@@ -52,5 +53,6 @@ class PokeBattle_DamageState
     @affection = false
     @affectionmiss = false
     @affectioncritical = false
+    @abyssohko = false
   end
 end

@@ -304,6 +304,9 @@ class PokeBattle_Move
 
   def pbHitEffectivenessMessages(user,target,numTargets=1)
     return if target.damageState.disguise
+    if target.damageState.abyssohko && target.fainted?
+      @battle.pbDisplay(_INTL("It's a one-hit KO!"))
+    end
     if target.damageState.substitute
       @battle.pbDisplay(_INTL("The substitute took damage for {1}!",target.pbThis(true)))
     end

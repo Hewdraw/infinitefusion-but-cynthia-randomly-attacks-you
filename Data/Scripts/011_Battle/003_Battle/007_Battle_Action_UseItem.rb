@@ -3,7 +3,7 @@ class PokeBattle_Battle
   # Choosing to use an item
   #=============================================================================
   def pbCanUseItemOnPokemon?(item,pkmn,battler,scene,showMessages=true)
-    if !pkmn || pkmn.egg?
+    if !pkmn || pkmn.egg? || (pkmn.status == :HYPERREVERSE && GameData::Item.get(item).id != :TIMEFLUTE)
       scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
       return false
     end

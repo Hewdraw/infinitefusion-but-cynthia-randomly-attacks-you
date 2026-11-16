@@ -44,7 +44,6 @@ PARADOXLIST = {
     [:GASTLY] => [:DEMIDEVIMON],
 }
 
-
 REGIONALLIST = [
     [:RATTATA, :ALOLARATTATA],
     [:RATICATE, :ALOLARATICATE],
@@ -110,6 +109,10 @@ REGIONALLIST = [
     [:SHELLOS_E, :SHELLOS_W],
     [:GASTRODON_E, :GASTRODON_W],
     [:LYCANROC_D, :LYCANROC_N, :DUSKLYCANROC],
+]
+
+SHADOWLIST = [
+    [:BLASTOISE, :SHADOWBLASTOISE]
 ]
 
 TRIPLEFUSIONS = {
@@ -250,6 +253,12 @@ def transForm(pkmn, species)
         tempspecies = :BIKEROTOMCYCLIZAR if pkmn.ability == :REGENERATOR
         if tempspecies != species
             pkmn.species = tempspecies
+        end
+    end
+
+    pkmn.moves.each_with_index do |move, i|
+        if move.shadowMove? && !pkmn.isShadowPokemon?
+            pkmn.moves[i] = Pokemon::Move.new(:TACKLE)
         end
     end
     movelist = pkmn.getMoveList

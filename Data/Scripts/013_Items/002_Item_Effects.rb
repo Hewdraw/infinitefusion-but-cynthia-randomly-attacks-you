@@ -961,6 +961,7 @@ ItemHandlers::UseOnPokemon.add(:SERIOUSMINT, proc { |item, pkmn, scene|
 ItemHandlers::UseOnPokemon.copy(:SERIOUSMINT, :LONELYMINT, :ADAMANTMINT, :NAUGHTYMINT, :BRAVEMINT, :BOLDMINT, :IMPISHMINT, :LAXMINT, :RELAXEDMINT, :MODESTMINT, :MILDMINT, :RASHMINT, :QUIETMINT, :CALMMINT, :GENTLEMINT, :CAREFULMINT, :SASSYMINT, :TIMIDMINT, :HASTYMINT, :JOLLYMINT, :NAIVEMINT)
 
 def can_use_rare_candy(pkmn)
+  return false if pkmn.isShadowPokemon?
   return false if pkmn.level >= GameData::GrowthRate.max_level || pkmn.shadowPokemon?
   return false if pokemonExceedsLevelCap(pkmn)
   return true

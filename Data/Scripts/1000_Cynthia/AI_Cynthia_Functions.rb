@@ -2682,6 +2682,10 @@ class PokeBattle_AI
         if (target.pbHasType?(:ICE) || (target == tera && target.tera == :ICE)) && move.physicalMove? && move.function != "202"
           multipliers[:defense_multiplier] *= 1.5
         end
+      when :ShadowSky
+        if shadowMove?
+          multipliers[:final_damage_multiplier] *= 1.5
+        end
       end
 
       if pbTargetsMultiple?(move,user)

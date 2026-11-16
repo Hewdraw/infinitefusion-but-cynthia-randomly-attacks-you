@@ -117,15 +117,13 @@ class PokeBattle_Move
     tTypes = target.pbTypes(true)
     tTypes = [target.tera] if target == tera
     # Get effectivenesses
-    typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 3   # 3 types max
-    if moveType == :SHADOW
-      if target.shadowPokemon?
+    typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 4   # 3 types max
+    if shadowMove?
+      if target.isShadowPokemon?
         typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
       else
         typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
       end
-    elsif moveType == :QMARKS && target.isTerastallized?
-      typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE
     else
       if target == tera && target.tera == :FLYING
         target.effects[PBEffects::MagnetRise] += 1 #temporary airborne
@@ -257,6 +255,7 @@ class PokeBattle_Move
     # Ability effects that alter critical hit rate
     if c>=0 && user.abilityActive?
       c = BattleHandlers.triggerCriticalCalcUserAbility(user.ability,user,target,c)
+      c += 1 if c >= 0 && user.hasActiveAbility?(:SHADOWLAUNCHEr) && pulseMove?
     end
     c = BattleHandlers.triggerCriticalCalcUserAbility(:EMERA,user,target,c) if c >= 0
     if c>=0 && target.abilityActive? && !@battle.moldBreaker
@@ -273,6 +272,16 @@ class PokeBattle_Move
       c = BattleHandlers.triggerCriticalCalcTargetItem(target.item,target,user,c)
     end
     return false if c<0
+    c += 1 if highCriticalRate?
+    c += user.effects[PBEffects::FocusEnergy]
+    c += 1 if user.hyperReversed?
+    if @id == :SHADOWABYSS
+      ohkoratio = [24, 16, 8, 4]
+      tempc = [c, ohkoratio.length-1].min
+      if @battle.pbRandom(ohkoratio[c], user, target) == 0
+        target.damageState.abyssohko = true
+      end
+    end
     # Move-specific "always/never a critical hit" effects
     case pbCritialOverride(user,target)
     when 1,true  then return true
@@ -287,9 +296,6 @@ class PokeBattle_Move
       user.pbRemoveItem()
       return true
     end
-    c += 1 if highCriticalRate?
-    c += user.effects[PBEffects::FocusEnergy]
-    c += 1 if user.inHyperMode? && @type == :SHADOW
     c = ratios.length-1 if c>=ratios.length
     # Calculation
     if user.hasActiveAbility?(:GENERATIONAL)
@@ -522,6 +528,15 @@ class PokeBattle_Move
         end
       end
     end
+    if user.isShadowPokemon?
+      multipliers[:attack_multiplier] *= 1.2
+    end
+    if target.isShadowPokemon?
+      multipliers[:defense_multiplier] /= 1.2
+    end
+    if target.effects[PBEffects::Substitute]>0 || target.effects[PBEffects::RedstoneCube]>0 && move.id == :SHADOWBREAK
+      multipliers[:final_damage_multiplier] *= 0.5
+    end
     # Multi-targeting attacks
     if numTargets>1
       multipliers[:final_damage_multiplier] *= 0.75
@@ -558,6 +573,10 @@ class PokeBattle_Move
     when :Snow
       if target.pbHasType?(:ICE) && physicalMove? && @function != "202"
         multipliers[:defense_multiplier] *= 1.5
+      end
+    when :ShadowSky
+      if shadowMove?
+        multipliers[:final_damage_multiplier] *= 1.5
       end
     end
     # Critical hits
@@ -646,6 +665,9 @@ class PokeBattle_Move
     if protectPenalty? && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::Obstruct] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock] || target.effects[PBEffects::ShieldAndCounter])
       multipliers[:final_damage_multiplier] /= 4.0
     end
+    if @id == :SHADOWBREAK && (target.effects[PBEffects::Protect] || target.effects[PBEffects::KingsShield] || target.effects[PBEffects::Obstruct] || target.effects[PBEffects::SpikyShield] || target.effects[PBEffects::BanefulBunker] || target.effects[PBEffects::BurningBulwark] || target.pbOwnSide.effects[PBEffects::MatBlock] || target.effects[PBEffects::ShieldAndCounter])
+      multipliers[:final_damage_multiplier] /= 2.0
+    end
     # Move-specific base damage modifiers
     multipliers[:base_damage_multiplier] = pbBaseDamageMultiplier(multipliers[:base_damage_multiplier], user, target)
     # Move-specific final damage modifiers
@@ -660,7 +682,7 @@ class PokeBattle_Move
     ret = (effectChance>0) ? effectChance : @addlEffect
     ret *= 2 if user.hasActiveAbility?(:SERENEGRACE)
     ret *= 2 if user.pbOwnSide.effects[PBEffects::Rainbow]>0
-    if @battle.pbWeather == :Snow || @battle.pbWeather == :Hail
+    if [:Snow, :Hail].include?(@battle.pbWeather)
       if ["00C", "00D", "00E", "017", "0A4", "0C5", "0C6", "135", "187", "235", "284", "291", "293"].include?(@function)
         ret *= 1.5
       end
@@ -668,7 +690,7 @@ class PokeBattle_Move
         ret *= 1.5
       end
     end
-    if @battle.pbWeather == :Sun || @battle.pbWeather == :HarshSun
+    if [:Sun, :HarshSun].include?(@battle.pbWeather)
       if ["00A", "00B", "017", "0A4", "0C6", "0FE", "235"].include?(@function)
         ret *= 1.5
       end
@@ -676,7 +698,7 @@ class PokeBattle_Move
         ret *= 1.5
       end
     end
-    if @battle.pbWeather == :Rain || @battle.pbWeather == :HeavyRain
+    if [:Rain, :HeavyRain].include?(@battle.pbWeather)
       if ["007", "008", "009", "017", "0A4", "0C5", "0CC", "0FD", "235", "291"].include?(@function)
         ret *= 1.5
       end
@@ -686,6 +708,11 @@ class PokeBattle_Move
     end
     if [:Sandstorm, :IntenseSand].include?(@battle.pbWeather)
       if ["005", "006", "0BE", "159"].include?(@function)
+        ret *= 1.5
+      end
+    end
+    if [:ShadowSky].include?(@battle.pbWeather)
+      if ["444"].include?(@function)
         ret *= 1.5
       end
     end

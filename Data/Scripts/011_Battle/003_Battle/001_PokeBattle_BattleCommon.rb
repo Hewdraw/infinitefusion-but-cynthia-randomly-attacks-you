@@ -244,6 +244,7 @@ module PokeBattle_BattleCommon
     return 4 if pbCynthiaGetBadgeCount == 0 || pbCynthiaGetBadgeCount >= 12
     # Get a catch rate if one wasn't provided
     catch_rate = pkmn.species_data.catch_rate if !catch_rate
+    catch_rate = 70 if pkmn.isShadowPokemon?
     # Modify catch_rate depending on the Poké Ball's effect
     ultraBeast = [:NIHILEGO, :BUZZWOLE, :PHEROMOSA, :XURKITREE, :CELESTEELA,
                   :KARTANA, :GUZZLORD, :POIPOLE, :NAGANADEL, :STAKATAKA,

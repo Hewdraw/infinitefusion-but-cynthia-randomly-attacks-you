@@ -367,7 +367,7 @@ class PokemonPokedexInfo_Scene
       entryText = "The Middle."
     when :BLASTOISE
       entryText = "The Final, Yet not the End."
-    when :MILLENNIUM
+    when :SHADOWBLASTOISE
       entryText = "01110000 01110010 01101111 01100011 01100101 01100101 01100100"
     when :SPIRITOMB
       if $PokemonGlobal.spiritomb

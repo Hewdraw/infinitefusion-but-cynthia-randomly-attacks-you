@@ -187,6 +187,25 @@ end
 
 
 
+class PokeBattle_HyperReverseMove < PokeBattle_Move
+  def pbFailsAgainstTarget?(user,target)
+    return false if damagingMove?
+    return !target.pbCanHyperReverse?(user,true,self)
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    return if damagingMove?
+    target.pbHyperReverse(user)
+  end
+
+  def pbAdditionalEffect(user,target)
+    return if target.damageState.substitute
+    target.pbHyperReverse(user) if target.pbCanHyperReverse?(user,false,self)
+  end
+end
+
+
+
 #===============================================================================
 # Other problem-causing classes.
 #===============================================================================

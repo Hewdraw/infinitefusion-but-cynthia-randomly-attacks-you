@@ -88,6 +88,10 @@ class PokeBattle_Battle
 
   def pbAttackPhaseMegaEvolution
     pbPriority.each do |b|
+      if b.hasActiveAbility?(:SYNERGYBURST) && GameData::Species.try_get(("MEGA" + b.pokemon.species.to_s).to_sym)
+        b.pokemon.setOriginalForm
+        pbMegaEvolve(b.index, true)
+      end
       next if wildBattle? && b.opposes?
       next unless @choices[b.index][0]==:UseMove && !b.fainted?
       owner = pbGetOwnerIndexFromBattlerIndex(b.index)

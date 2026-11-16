@@ -723,7 +723,7 @@
 702,RAGEFIST,Rage Fist,220,50,GHOST,Physical,100,10,0,NearOther,0,abefj,"Nice Smeargle/Ditto, jackass."
 703,TACHYONCUTTER,Tachyon Cutter,185,50,STEEL,Special,0,10,0,NearOther,0,befq,"Nice Smeargle/Ditto, jackass."
 704,PSYCHICNOISE,Psychic Noise,186,75,PSYCHIC,Special,100,10,100,NearOther,0,befk,"Nice Smeargle/Ditto, jackass."
-705,THUNDERCAGE,Thunder Cage,0D0,80,ELECTRIC,Special,90,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
+705,THUNDERCAGE,Thunder Cage,0CF,80,ELECTRIC,Special,90,15,0,NearOther,0,bef,"Nice Smeargle/Ditto, jackass."
 706,ZIPPYZAP,Zippy Zap,0A0,50,ELECTRIC,Physical,100,15,0,NearOther,2,ab,"Nice Smeargle/Ditto, jackass."
 707,FLOATYFALL,Floaty Fall,00F,90,FLYING,Physical,95,15,0,NearOther,30,ab,"Nice Smeargle/Ditto, jackass."
 708,SPLISHYSPLASH,Splishy Splash,007,90,WATER,Special,100,15,30,AllNearFoes,0,b,"Nice Smeargle/Ditto, jackass."
@@ -1196,6 +1196,22 @@
 1227,GREATERROULETTE,Greater Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 1228,GREATESTROULETTE,Greatest Roulette,433,0,GUN,Status,0,5,0,User,1,,"You happy now?"
 1229,DOOM,Doom,437,260,DARK,Physical,100,5,0,AllNearOthers,0,befs,"DOOM!"
+1230,SHADOWBLITZ,Shadow Blitz,000,40,QMARKS,Physical,100,0,0,NearOther,1,abefy,"a"
+1231,SHADOWWAVE,Shadow Wave,438,50,QMARKS,Special,100,0,100,AllNearFoes,0,befy,"a"
+1232,SHADOWMIST,Shadow Mist,439,0,QMARKS,Status,100,0,0,AllNearFoes,0,ey,"a"
+1233,SHADOWHOLD,Shadow Hold,0EF,0,QMARKS,Status,80,0,0,AllNearFoes,0,ey,"a"
+1234,SHADOWPANIC,Shadow Panic,013,0,QMARKS,Status,60,0,0,AllNearFoes,0,ey,"a"
+1235,SHADOWRUSH,Shadow Rush,440,55,QMARKS,Physical,100,0,0,NearOther,0,abefy,"a"
+1236,SHADOWRAVE,Shadow Rave,441,70,QMARKS,Special,70,0,0,AllNearFoes,0,ey,"partial todo"
+1236,SHADOWDOWN,Shadow Down,04C,0,QMARKS,Status,100,0,0,AllNearFoes,0,ey,"a"
+1236,SHADOWSHED,Shadow Down,442,0,QMARKS,Status,0,0,0,BothSides,0,ey,"a"
+1237,SHADOWHALF,Shadow Half,443,0,QMARKS,Status,0,0,0,BothSides,0,ey,"a"
+1238,SHADOWBREAK,Shadow Break,10A,75,QMARKS,Physical,80,0,0,NearOther,0,aefy,"a"
+1239,SHADOWSTORM,Shadow Storm,444,95,QMARKS,Special,70,0,30,AllNearFoes,0,befry,"a"
+1240,SHADOWSKY,Shadow Sky,445,0,QMARKS,Status,0,0,0,BothSides,0,y,"a"
+1241,SHADOWEND,Shadow End,446,120,QMARKS,Physical,60,0,0,NearOther,1,abefy,"a"
+1242,SHADOWTERRAIN,Shadow Terrain,447,0,QMARKS,Status,0,0,0,BothSides,1,y,"todo"
+1243,SHADOWABYSS,Shadow Abyss,448,80,QMARKS,Special,90,0,0,NearOther,1,befmy,"a"
 
 
 
@@ -1236,4 +1252,5 @@
 #  def explosionMove?;    return @flags[/s/]; end
 
 #  def maxMove?;       return @flags[/x/]; end
+#  def shadowMove?;    return @flags[/y/]; end
 #  def zMove?;       return @flags[/z/]; end

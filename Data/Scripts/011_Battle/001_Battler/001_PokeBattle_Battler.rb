@@ -610,6 +610,7 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::Embargo] > 0
     return false if @battle.field.effects[PBEffects::MagicRoom] > 0
     return false if hasActiveAbility?([:KLUTZ, :GENERATIONAL], ignoreFainted)
+    return false if hyperReversed? && !isShadowPokemon?
     return true
   end
 
@@ -706,6 +707,11 @@ class PokeBattle_Battler
     return false
   end
 
+  def isShadowPokemon?
+    return true if @species.to_s.include?("SHADOW")
+    return false
+  end
+
   def airborne?
     return true if isFusionOf(:FANROTOM)
     return false if hasActiveItem?(:IRONBALL)
@@ -770,7 +776,7 @@ class PokeBattle_Battler
 
   def takesShadowSkyDamage?
     return false if fainted?
-    return false if shadowPokemon?
+    return false if isShadowPokemon?
     return true
   end
 

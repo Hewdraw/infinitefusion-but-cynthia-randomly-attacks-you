@@ -141,8 +141,9 @@ class PokeBattle_Move
   def windMove?;          return @flags[/r/]; end
   def explosionMove?;     return @flags[/s/]; end
 
-  def maxMove?;       return @flags[/x/]; end
-  def zMove?;       return @flags[/z/]; end
+  def maxMove?;           return @flags[/x/]; end
+  def shadowMove?;        return @flags[/y/]; end
+  def zMove?;             return @flags[/z/]; end
 
 
   # Causes perfect accuracy (param=1) and double damage (param=2).
@@ -152,7 +153,7 @@ class PokeBattle_Move
   def ignoresSubstitute?(user)   # user is the Pokémon using this move
     return true if soundMove?
     return true if ["201", "213", "353"].include?(@function)
-    return true if [:SUPREMECANNON].include?(@id)
+    return true if [:SUPREMECANNON, :SHADOWBREAK].include?(@id)
     return true if user && user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS])
     return false
   end

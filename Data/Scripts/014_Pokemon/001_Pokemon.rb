@@ -513,6 +513,11 @@ class Pokemon
     calc_stats
   end
 
+  def isShadowPokemon?
+    return true if @species.to_s.include?("SHADOW")
+    return false
+  end
+
   #=============================================================================
   # Level
   #=============================================================================
@@ -1511,6 +1516,7 @@ class Pokemon
   # into) or nil (keep checking).
   # @return [Symbol, nil] the ID of the species to evolve into
   def check_evolution_internal(species = nil)
+    return nil if isShadowPokemon?
     return nil if egg? || shadowPokemon?
     return nil if hasItem?(:EVERSTONE)
     return nil if hasAbility?(:BATTLEBOND)

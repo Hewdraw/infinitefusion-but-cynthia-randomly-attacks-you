@@ -2553,7 +2553,7 @@ class PokeBattle_Move_177 < PokeBattle_Move
   end
 
   def pbCalcTypeMod(moveType,user,target,tera=nil)
-    return Effectiveness::SUPER_EFFECTIVE if user.pokemon.unteraTypes.include?(:STELLAR) && target.isTerastallized?
+    return Effectiveness::SUPER_EFFECTIVE_ONE if user.pokemon.unteraTypes.include?(:STELLAR) && target.isTerastallized?
     return super
   end
 
@@ -7653,5 +7653,202 @@ class PokeBattle_Move_437 < PokeBattle_Move
     return if user.fainted?
     user.pbReduceHP(user.hp,false)
     user.pbItemHPHealCheck
+  end
+end
+
+class PokeBattle_Move_438 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:SPEED, 1]
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if target.isShadowPokemon?
+    super
+  end
+end
+
+
+class PokeBattle_Move_439 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    @battle.eachOtherSideBattler(user) do |b|
+      b.pbResetStatStages
+    end
+    @battle.pbDisplay(_INTL("{1}'s stat changes were eliminated!", user.pbOpposingTeam))
+  end
+end
+
+class PokeBattle_Move_440 < PokeBattle_RecoilMove
+  def pbIsCritical?(user,target)
+    if user.hyperReversed?
+      return @battle.pbRandom(100, user, target) < 91
+    end
+    return super
+  end
+  def pbRecoilDamage(user,target)
+    return (target.damageState.totalHPLost/16.0).round
+  end
+end
+
+class PokeBattle_Move_441 < PokeBattle_Move
+  def hitsFlyingTargets?
+    return false;
+  end
+
+  def hitsDiggingTargets?
+    return true;
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if target.isShadowPokemon?
+    return if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3
+    user.pbOpposingSide.effects[PBEffects::Spikes] += 1
+    @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+                            user.pbOpposingTeam(true)))
+  end
+end
+
+
+class PokeBattle_Move_442 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    @battle.pbDisplay(_INTL("All effects disappeared from the battlefield."))
+    user.pbOwnSide.effects.each do |effect|
+      if effect.is_a?(Integer)
+        effect = 0
+      else
+        effect = false
+      end
+    end
+    user.pbOpposingSide.effects.each do |effect|
+      if effect.is_a?(Integer)
+        effect = 0
+      else
+        effect = false
+      end
+    end
+    @battle.field.effects.each do |effect|
+      if effect.is_a?(Integer)
+        next if effect > 100
+        effect = 0
+      else
+        effect = false
+      end
+    end
+  end
+end
+
+class PokeBattle_Move_443 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    @battle.eachBattler do |b|
+      next if b.hp==1
+      next if b.raid
+      b.pbReduceHP(b.adjustedCurrenthp/2,false)
+    end
+    @battle.pbDisplay(_INTL("Each Pokémon's HP was halved!"))
+    @battle.eachBattler { |b| b.pbItemHPHealCheck }
+  end
+end
+
+class PokeBattle_Move_444 < PokeBattle_HyperReverseMove
+  def hitsFlyingTargets?
+    return true;
+  end
+
+  def pbBaseAccuracy(user, target)
+    case @battle.pbWeather
+    when :ShadowSky
+      return 0
+    end
+    return super
+  end
+end
+
+class PokeBattle_Move_445 < PokeBattle_WeatherMove
+  def initialize(battle,move)
+    super
+    @weatherType = :ShadowSky
+  end
+end
+
+class PokeBattle_Move_446 < PokeBattle_RecoilMove
+  def pbBaseAccuracy(user, target)
+    return 75 if user.hyperReversed?
+    return super
+  end
+
+  def pbRecoilDamage(user,target)
+    return (target.damageState.totalHPLost/2.0).round
+  end
+end
+
+class PokeBattle_Move_447 < PokeBattle_Move
+  # def pbMoveFailed?(user, targets)
+  #   if @battle.field.terrain == :Shadow
+  #     @battle.pbDisplay(_INTL("But it failed!"))
+  #     return true
+  #   end
+  #   return false
+  # end
+
+  # def pbEffectGeneral(user)
+  #   @battle.pbStartTerrain(user, :Shadow)
+  # end
+end
+
+class PokeBattle_Move_448 < PokeBattle_Move
+  def pbOnStartUse(user,targets)
+    @calcBaseDmg = 0
+    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    if target.isFusionOf([:GEODUDE, :ALOLAGEODUDE]) && @id == :ROCKSMASH
+      target.hp = 0
+      target.pbFaint
+    end
+  end
+
+  def pbHitEffectivenessMessages(user, target, numTargets = 1)
+    if target.isFusionOf([:GEODUDE, :ALOLAGEODUDE]) && @id == :ROCKSMASH
+      @battle.pbDisplay(_INTL("Reduced to atoms."))
+    end
+  end
+end
+
+class PokeBattle_Move_448 < PokeBattle_Move
+  def pbMoveFailed?(user, targets)
+    if @battle.rules["ohkoclause"]
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    target = targets[0]
+    return true if !target
+    if target.level > user.level || target.raid
+      @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
+      return true
+    end
+    if target.isDynamaxed?
+      @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
+      return true
+    end
+    if target.hasActiveAbility?([:STURDY, :SHELLARMORPLUS, :FEAR, :STOPRIGHTTHERE]) && !@battle.moldBreaker
+      @battle.pbShowAbilitySplash(target)
+      if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+        @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
+      else
+        @battle.pbDisplay(_INTL("But it failed to affect {1} because of its {2}!",
+                                target.pbThis(true), target.abilityName))
+      end
+      @battle.pbHideAbilitySplash(target)
+      return true
+    end
+    return false
+  end
+
+  def pbCalcDamage(user,target,numTargets=1)
+    if target.damageState.abyssohko
+      return target.totalhp
+    end
+    return super
   end
 end

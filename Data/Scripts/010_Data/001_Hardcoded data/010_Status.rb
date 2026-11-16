@@ -77,3 +77,10 @@ GameData::Status.register({
   :name      => _INTL("Frozen"),
   :animation => "Frozen"
 })
+
+GameData::Status.register({
+  :id        => :HYPERREVERSE,
+  :id_number => 6,
+  :name      => _INTL("Hyper Reverse Mode"),
+  :animation => "Poison"
+})

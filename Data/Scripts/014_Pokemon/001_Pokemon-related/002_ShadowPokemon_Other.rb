@@ -223,9 +223,15 @@ class PokeBattle_Battler
   end
 
   def pbHyperModeObedience(move)
-    return true if !inHyperMode?
-    return true if !move || move.type == :SHADOW
-    return rand(100)<20
+    return true if !hyperReversed?
+    if @battle.pbRandom(256, self) == 0
+      @battle.pbDisplay("#{pbThis} came to its senses.")
+      pbCureStatus
+      return true
+    end
+    return true if !move
+    return true if move.shadowMove?
+    return @battle.pbRandom(100, self) < 75
   end
 end
 

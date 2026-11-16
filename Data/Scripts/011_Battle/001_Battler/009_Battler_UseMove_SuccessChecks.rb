@@ -130,17 +130,15 @@ class PokeBattle_Battler
     return true if usingMultiTurnAttack?
     return true if choice[0]!=:UseMove
     return true if !@battle.internalBattle
-    return true if !@battle.pbOwnedByPlayer?(@index)
-    disobedient = false
+    #return true if !@battle.pbOwnedByPlayer?(@index)
     # Pokémon may be disobedient; calculate if it is
-    badgeLevel = 10 * (@battle.pbPlayer.badge_count + 1)
-    badgeLevel = GameData::GrowthRate.max_level if @battle.pbPlayer.badge_count >= 8
-    if (@pokemon.foreign?(@battle.pbPlayer) && @level>badgeLevel) || @pokemon.force_disobey
-      a = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
-      disobedient |= (a>=badgeLevel)
-    end
-    disobedient |= !pbHyperModeObedience(choice[2])
-    return true if !disobedient
+    # badgeLevel = 10 * (@battle.pbPlayer.badge_count + 1)
+    # badgeLevel = GameData::GrowthRate.max_level if @battle.pbPlayer.badge_count >= 8
+    # if (@pokemon.foreign?(@battle.pbPlayer) && @level>badgeLevel) || @pokemon.force_disobey
+    #   a = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
+    #   disobedient |= (a>=badgeLevel)
+    # end
+    return true if pbHyperModeObedience(choice[2])
     # Pokémon is disobedient; make it do something else
     return pbDisobey(choice,badgeLevel)
   end
@@ -150,10 +148,11 @@ class PokeBattle_Battler
     PBDebug.log("[Disobedience] #{pbThis} disobeyed")
     @effects[PBEffects::Rage] = false
     # Do nothing if using Snore/Sleep Talk
-    b = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
+    #b = ((@level+badgeLevel)*@battle.pbRandom(256)/256).floor
     # Use another move
-    if b<badgeLevel
-      @battle.pbDisplay(_INTL("{1} ignored orders!",pbThis))
+    choice = rand(4)
+    case choice
+    when 0
       return false if !@battle.pbCanShowFightMenu?(@index)
       otherMoves = []
       eachMoveWithIndex do |_m,i|
@@ -165,7 +164,29 @@ class PokeBattle_Battler
       choice[1] = newChoice
       choice[2] = @moves[newChoice]
       choice[3] = -1
+      @battle.pbDisplay(_INTL("{1} selfishly used {2} without orders!",pbThis, @moves[newChoice].name))
       return true
+    when 1
+      @battle.pbDisplay(_INTL("Unbelievable! {1} ignored orders and attacked a trainer (todo)!",pbThis))
+      return false
+    when 2
+      @battle.pbDisplay(_INTL("{1} is in Hyper Reverse Mode! It's too confused to do anything!",pbThis))
+      return false
+    when 3
+      @battle.pbDisplay(_INTL("{1} ignored orders and returned to its ball!",pbThis))
+      canSwitch = false
+      @battle.eachInTeamFromBattlerIndex(@index) do |_pkmn,i|
+        next if !@battle.pbCanSwitchLax?(@index,i)
+        canSwitch = true
+        break
+      end
+      return false if !canSwitch
+      newPkmn = @battle.pbGetReplacementPokemonIndex(@index)
+      return false if newPkmn<0
+      @battle.pbRecallAndReplace(@index, newPkmn)
+      @battle.pbClearChoice(@index)
+      @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
+      return false
     end
     c = @level-badgeLevel
     r = @battle.pbRandom(256)

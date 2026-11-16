@@ -58,6 +58,7 @@ class PokeBattle_Battle
       next unless b && !b.opposes?
       next unless b.fainted?
       next unless @opponent && @opponent[0].special_name?
+      next if b.isShadowPokemon?
       b.participants.each do |opponent|
         next if opponent.fainted?
         if (pbRandom(16, opponent, nil) < pbCynthiaGetBadgeCount && !opponent.fainted?) || opponent.pokemon.species.to_s[-11..-1] == "DUDUNSPARCE"
@@ -143,6 +144,7 @@ class PokeBattle_Battle
 
   def pbGainExpOne(idxParty, defeatedBattler, numPartic, expShare, expAll, showMessages = true)
     pkmn = pbParty(0)[idxParty] # The Pokémon gaining EVs from defeatedBattler
+    return if pkmn.isShadowPokemon?
     growth_rate = pkmn.growth_rate
     # Don't bother calculating if gainer is already at max Exp
     if pkmn.exp >= growth_rate.maximum_exp
@@ -191,7 +193,7 @@ class PokeBattle_Battle
     isOutsider = (pkmn.owner.id != pbPlayer.id ||
       (pkmn.owner.language != 0 && pkmn.owner.language != pbPlayer.language)) ||
       pkmn.isSelfFusion? #also self fusions
-    if isOutsider
+    if isOutsider || hasEmera?(:SYNCSTONEULTIMATE)
       if pkmn.owner.language != 0 && pkmn.owner.language != pbPlayer.language
         exp = (exp * 1.7).floor
       else

@@ -292,6 +292,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 4
+Evolutions = SHADOWBLASTOISE,Item,MISTSTONE
 #-------------------------------
 [10]
 Name = Caterpie
@@ -28460,6 +28461,58 @@ Shape = BipedalTail
 Habitat = Cave
 Kind = Shadow
 Pokedex = An Evil King Digimon with many Evil-species and Dark Angel Digimon under its command. Daemon was originally an Angel Digimon, and one of quite high rank at that. However, it resorted to rebellion—or perhaps violence—against the personifications of the Digital World's goodness (which may have been the very humans who built it), and was thus deleted to the Dark Area (the graveyard of erased data). Daemon and its ilk have vowed to one day subjugate the Digital World and exact revenge upon these personifications of goodness.
+
+# Shadows
+#-------------------------------
+[1002000]
+Name = Blastoise
+InternalName = SHADOWBLASTOISE
+Type1 = WATER
+Type2 = GUN
+BaseStats = 79,83,100,78,85,105
+GenderRate = FemaleOneEighth
+GrowthRate = Parabolic
+BaseEXP = 239
+EffortPoints = 0,0,0,0,0,3
+Rareness = 70
+Happiness = 70
+Abilities = SYNERGYBURST,SHADOWDISH
+HiddenAbility = FORCEDEVOLUTION
+Moves = 0,SHADOWABYSS,1,SHADOWBLITZ,1,SHADOWWAVE,6,SHADOWMIST,9,SHADOWPANIC,14,SHADOWRUSH,17,SHADOWRAVE,20,SHADOWDOWN,23,SHADOWSHED,27,SHADOWHALF,33,SHADOWBREAK,38,SHADOWSTORM,44,SHADOWSKY,48,SHADOWEND,52,SHADOWTERRAIN
+Compatibility = Monster,Water1
+StepsToHatch = 5355
+Height = 1.6
+Weight = 85.5
+Color = Blue
+Shape = BipedalTail
+Habitat = WatersEdge
+Kind = Shellfish
+Pokedex = The waterspouts that protrude from its shell are highly accurate. Their bullets of water can precisely nail tin cans from a distance of over 160 feet.
+#-------------------------------
+[1002001]
+Name = Blastoise
+InternalName = MEGASHADOWBLASTOISE
+Type1 = QMARKS
+Type2 = GUN
+BaseStats = 79,103,120,78,135,115
+GenderRate = FemaleOneEighth
+GrowthRate = Parabolic
+BaseEXP = 239
+EffortPoints = 0,0,0,0,0,3
+Rareness = 70
+Happiness = 70
+Abilities = SHADOWLAUNCHER,SHADOWDISH
+HiddenAbility = FORCEDEVOLUTIONPLUS
+Moves = 0,SHADOWABYSS,1,SHADOWBLITZ,1,SHADOWWAVE,6,SHADOWMIST,9,SHADOWPANIC,14,SHADOWRUSH,17,SHADOWRAVE,20,SHADOWDOWN,23,SHADOWSHED,27,SHADOWHALF,33,SHADOWBREAK,38,SHADOWSTORM,44,SHADOWSKY,48,SHADOWEND,52,SHADOWTERRAIN
+Compatibility = Monster,Water1
+StepsToHatch = 5355
+Height = 1.6
+Weight = 85.5
+Color = Blue
+Shape = BipedalTail
+Habitat = WatersEdge
+Kind = Shellfish
+Pokedex = The waterspouts that protrude from its shell are highly accurate. Their bullets of water can precisely nail tin cans from a distance of over 160 feet.
 
 
 

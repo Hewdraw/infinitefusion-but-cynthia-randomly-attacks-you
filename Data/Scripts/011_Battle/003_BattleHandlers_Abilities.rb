@@ -93,6 +93,13 @@ BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
   }
 )
 
+BattleHandlers::SpeedCalcAbility.add(:SHADOWDISH,
+  proc { |ability,battler,mult|
+    next mult * 1.1 if [:Rain, :HeavyRain, :ShadowSky].include?(battler.battle.pbWeather)
+  }
+)
+
+
 BattleHandlers::SpeedCalcAbility.add(:UNBURDEN,
   proc { |ability,battler,mult|
     next mult*2 if battler.effects[PBEffects::Unburden] && !battler.item
@@ -1332,6 +1339,15 @@ BattleHandlers::DamageCalcUserAbility.add(:IRONFIST,
 BattleHandlers::DamageCalcUserAbility.add(:MEGALAUNCHER,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.5 if move.pulseMove?
+  }
+)
+
+BattleHandlers::DamageCalcUserAbility.add(:SHADOWLAUNCHER,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if move.pulseMove?
+    if user.hp <= user.adjustedTotalhp / 3 && move.shadowMove?
+      mults[:base_damage_multiplier] *= 1.3
+    end
   }
 )
 
@@ -3047,6 +3063,29 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
   }
 )
 
+BattleHandlers::EORWeatherAbility.add(:SHADOWDISH,
+  proc { |ability,battler,weather,battle|
+    next unless [:ShadowSky].include?(weather)
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battle.eachOtherSideBattler(battler.index) do |b|
+      next if !b.takesIndirectDamage?
+      oldHP = b.hp
+      pbCommonAnimation("LeechSeed",battler,b)
+      battler.pbRecoverHP(b.pbReduceHP(b.totalhp/16))
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+    end
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 #===============================================================================
 # EORHealingAbility handlers
 #===============================================================================
@@ -3886,6 +3925,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
             choice.effects[PBEffects::RedstoneCube]>0 ||
             choice.effects[PBEffects::SkyDrop]>=0 ||
             choice.semiInvulnerable?
+    next if choice.isShadowPokemon?
     battle.pbShowAbilitySplash(battler,true)
     battle.pbHideAbilitySplash(battler)
     battle.pbAnimation(:TRANSFORM,battler,choice)

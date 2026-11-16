@@ -416,3 +416,6 @@
 729,INTREPIDSWORD,Intrepid Sword,"Boosts Attack when entering a battle."
 730,COMMANDERPLUS,Commander+,"a"
 731,GENERATIONAL,Generational,"a"
+732,SYNERGYBURST,Synergy Burst,"a"
+733,SHADOWDISH,Shadow Dish,"a"
+734,SHADOWLAUNCHER,Shadow Launcher,"a"
