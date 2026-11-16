@@ -248,7 +248,7 @@ class PokeBattle_Battle
     pbCommonAnimation("StatUp",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxbig"))
     oldhp = battler.hp.to_f
-    endhp = oldhp * ((battler.hpbars + 1.0) / battler.hpbars)
+    endhp = oldhp * ((battler.hpbarcount + 1.0) / battler.hpbarcount)
     battler.hpbars = 1 if battler.hpbars.nil?
     battler.hpbars += 1
     time = 64
@@ -295,7 +295,7 @@ class PokeBattle_Battle
     pbCommonAnimation("StatDown",battler)
     pbSEPlay(pbStringToAudioFile("dynamaxsmall"))
     oldhp = battler.hp
-    endhp = oldhp * (battler.hpbars / (battler.hpbars + 1.0))
+    endhp = oldhp * (battler.hpbarcount / (battler.hpbarcount + 1.0))
     time = 40
     for i in 0..(time-1)
       sprite.zoom_x -= 0.0165
