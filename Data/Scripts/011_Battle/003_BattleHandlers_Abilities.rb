@@ -3071,7 +3071,7 @@ BattleHandlers::EORWeatherAbility.add(:SHADOWDISH,
     battle.eachOtherSideBattler(battler.index) do |b|
       next if !b.takesIndirectDamage?
       oldHP = b.hp
-      pbCommonAnimation("LeechSeed",battler,b)
+      battle.pbCommonAnimation("LeechSeed",battler,b)
       battler.pbRecoverHP(b.pbReduceHP(b.totalhp/16))
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
