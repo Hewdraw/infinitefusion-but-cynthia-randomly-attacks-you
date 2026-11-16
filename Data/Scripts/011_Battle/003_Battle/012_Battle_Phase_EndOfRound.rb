@@ -573,7 +573,8 @@ class PokeBattle_Battle
       if b.takesIndirectDamage?
         oldHP = b.hp
         dmg = b.totalhp/16
-        b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+        b.pbContinueStatus
+        b.pbReduceHP(dmg,false)
         b.pbItemHPHealCheck
         b.pbAbilitiesOnDamageTaken(oldHP)
         b.pbFaint if b.fainted?

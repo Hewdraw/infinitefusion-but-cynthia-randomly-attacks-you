@@ -2683,7 +2683,7 @@ class PokeBattle_AI
           multipliers[:defense_multiplier] *= 1.5
         end
       when :ShadowSky
-        if shadowMove?
+        if move.shadowMove?
           multipliers[:final_damage_multiplier] *= 1.5
         end
       end
