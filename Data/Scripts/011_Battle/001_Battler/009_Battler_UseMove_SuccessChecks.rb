@@ -139,10 +139,10 @@ class PokeBattle_Battler
     # end
     return true if pbHyperModeObedience(choice[2])
     # Pokémon is disobedient; make it do something else
-    return pbDisobey(choice,badgeLevel)
+    return pbDisobey(choice)
   end
 
-  def pbDisobey(choice,badgeLevel)
+  def pbDisobey(choice)
     move = choice[2]
     PBDebug.log("[Disobedience] #{pbThis} disobeyed")
     @effects[PBEffects::Rage] = false
@@ -187,26 +187,26 @@ class PokeBattle_Battler
       @battle.battlers[newPkmn].pbEffectsOnSwitchIn(true) if @battle.battlers[newPkmn]
       return false
     end
-    c = @level-badgeLevel
-    r = @battle.pbRandom(256)
-    # Fall asleep
-    if r<c && pbCanSleep?(self,false)
-      pbSleepSelf(_INTL("{1} began to nap!",pbThis))
-      return false
-    end
-    # Hurt self in confusion
-    r -= c
-    if r < c && @status != :SLEEP
-      pbConfusionDamage(_INTL("{1} won't obey! It hurt itself in its confusion!",pbThis))
-      return false
-    end
-    # Show refusal message and do nothing
-    case @battle.pbRandom(4)
-    when 0 then @battle.pbDisplay(_INTL("{1} won't obey!",pbThis))
-    when 1 then @battle.pbDisplay(_INTL("{1} turned away!",pbThis))
-    when 2 then @battle.pbDisplay(_INTL("{1} is loafing around!",pbThis))
-    when 3 then @battle.pbDisplay(_INTL("{1} pretended not to notice!",pbThis))
-    end
+    # c = @level-badgeLevel
+    # r = @battle.pbRandom(256)
+    # # Fall asleep
+    # if r<c && pbCanSleep?(self,false)
+    #   pbSleepSelf(_INTL("{1} began to nap!",pbThis))
+    #   return false
+    # end
+    # # Hurt self in confusion
+    # r -= c
+    # if r < c && @status != :SLEEP
+    #   pbConfusionDamage(_INTL("{1} won't obey! It hurt itself in its confusion!",pbThis))
+    #   return false
+    # end
+    # # Show refusal message and do nothing
+    # case @battle.pbRandom(4)
+    # when 0 then @battle.pbDisplay(_INTL("{1} won't obey!",pbThis))
+    # when 1 then @battle.pbDisplay(_INTL("{1} turned away!",pbThis))
+    # when 2 then @battle.pbDisplay(_INTL("{1} is loafing around!",pbThis))
+    # when 3 then @battle.pbDisplay(_INTL("{1} pretended not to notice!",pbThis))
+    # end
     return false
   end
 
