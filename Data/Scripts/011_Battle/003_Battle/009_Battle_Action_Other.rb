@@ -267,7 +267,7 @@ class PokeBattle_Battle
     sprite.zoom_x -= 2
     sprite.zoom_y -= 2
     sprite.y -= 128
-    #sprite.setPokemonBitmap(battler.pokemon)
+    sprite.setPokemonBitmap(battler.pokemon, sprite.back)
     @scene.pbRefreshOne(idxBattler)
     battler.moves = []
     battler.pokemon.moves.each_with_index do |move,i|
@@ -316,7 +316,7 @@ class PokeBattle_Battle
     sprite.zoom_x += 0.64
     sprite.zoom_y += 0.64
     sprite.y += 32
-    #sprite.setPokemonBitmap(battler.pokemon)
+    sprite.setPokemonBitmap(battler.pokemon, sprite.back)
     @scene.pbRefreshOne(idxBattler)
     if battler.pokemon.gigantamax
       tempspecies = (battler.pokemon.species.to_s[4..-1]).to_sym
