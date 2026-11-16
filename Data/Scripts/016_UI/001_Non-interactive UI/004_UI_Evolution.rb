@@ -602,7 +602,7 @@ class PokemonEvolutionScene
       pbUpdate
     end
     # Success jingle/message
-    if @newSpecies == :SHADOWBLASTOISE
+    if @newspecies == :SHADOWBLASTOISE
       pbMEPlay("LongWeirdRoute")
     else
       pbMEPlay("evolution_success")
