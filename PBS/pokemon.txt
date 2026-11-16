@@ -28492,7 +28492,7 @@ Pokedex = The waterspouts that protrude from its shell are highly accurate. Thei
 [1002001]
 Name = Blastoise
 InternalName = MEGASHADOWBLASTOISE
-Type1 = QMARKS
+Type1 = WATER
 Type2 = GUN
 BaseStats = 79,103,120,78,135,115
 GenderRate = FemaleOneEighth
