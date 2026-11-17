@@ -56,6 +56,7 @@ class Pokemon
     def target;        return GameData::Move.get(@id).target;        end
     def priority;      return GameData::Move.get(@id).priority;      end
     def flags;         return GameData::Move.get(@id).flags;         end
+    def shadowMove?;   return @flags[/y/]; end
     def name;          return GameData::Move.get(@id).name;          end
     def description;   return GameData::Move.get(@id).description;   end
     def hidden_move?;  return GameData::Move.get(@id).hidden_move?;  end

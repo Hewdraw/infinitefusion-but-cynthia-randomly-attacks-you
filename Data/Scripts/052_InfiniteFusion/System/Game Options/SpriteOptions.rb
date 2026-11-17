@@ -74,12 +74,12 @@ class SpriteOptionsScene < PokemonOption_Scene
                                _INTL("Eggs all use the same sprite.")]
     )
 
-    options << EnumOption.new(_INTL("Fusion Icons"), [_INTL("Combined"), _INTL("DNA")],
-                              proc { $game_variables[VAR_FUSION_ICON_STYLE] },
-                              proc { |value| $game_variables[VAR_FUSION_ICON_STYLE] = value },
-                              [_INTL("Combines both Pokémon's party icons"),
-                               _INTL("Uses the same party icon for all fusions")]
-    )
+    # options << EnumOption.new(_INTL("Fusion Icons"), [_INTL("Combined"), _INTL("DNA")],
+    #                           proc { $game_variables[VAR_FUSION_ICON_STYLE] },
+    #                           proc { |value| $game_variables[VAR_FUSION_ICON_STYLE] = value },
+    #                           [_INTL("Combines both Pokémon's party icons"),
+    #                            _INTL("Uses the same party icon for all fusions")]
+    # )
 
     # battle_type_icon_option_selected = $PokemonSystem.type_icons ? 1 : 0
     # options << EnumOption.new(_INTL("Battle Type Icons"), [_INTL("Off"), _INTL("On")],
