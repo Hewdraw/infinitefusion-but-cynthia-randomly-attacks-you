@@ -297,6 +297,14 @@ class FusionTutorService
       compatibleMoves << :MIKUMIKUBEAM if is_fusion_of([:THEFORBIDDENONE])
       compatibleMoves << :SOPRANO if hasType(:SOUND) || canLearnMove(:BOOMBURST)
       compatibleMoves << :JARONA if hasType(:GRASS)
+      compatibleMoves << :KNIFEPLUS if is_fusion_of([:MAWILE])
+      compatibleMoves << :KNIFEFAN if is_fusion_of([:MAWILE])
+      compatibleMoves << :PETALDANCEPLUS if is_fusion_of([:MAWILE])
+      compatibleMoves << :PRECIPICEBLADESPLUS if is_fusion_of([:MAWILE])
+      compatibleMoves << :CRYSTALBARRAGE if is_fusion_of([:SABLEYE])
+      compatibleMoves << :BOARDREND if is_fusion_of([:SABLEYE])
+      compatibleMoves << :SANGUINESLASH if is_fusion_of([:SABLEYE])
+      compatibleMoves << :CRYSTALNOVA if is_fusion_of([:SABLEYE])
     end
     return compatibleMoves
   end
