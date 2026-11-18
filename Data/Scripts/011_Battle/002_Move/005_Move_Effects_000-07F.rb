@@ -1511,8 +1511,8 @@ end
 class PokeBattle_Move_05A < PokeBattle_Move
   def pbEffectAgainstTarget(user, target)
     newHP = (user.adjustedCurrenthp + target.adjustedCurrenthp) / 2
-    usernewHP = newHP * user.hpbars
-    targetnewHP = newHP * target.hpbars
+    usernewHP = newHP * user.hpbarcount
+    targetnewHP = newHP * target.hpbarcount
     if user.hp > usernewHP;
       user.pbReduceHP(user.hp - usernewHP, false, false)
     elsif user.hp < usernewHP;

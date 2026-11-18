@@ -423,10 +423,10 @@ def resolveUnknownEvent(recursion = false)
     when :SHADROSS
         Kernel.pbMessage("You come across a purple skeleton.")
         Kernel.pbMessage("What will you try to get from them?")
-        helptext = ["Spend Sinnoh Coins to buy items.","Perhaps you can get a discount later. Costs 10 Sinnoh Coins.", "DOOM!", "See some \"Old Sprites\" VERY \"up close\" and VERY \"personal\"."]
+        helptext = ["Spend Sinnoh Coins to buy items.","Perhaps you can get a discount later. Costs 10 Sinnoh Coins.", "DOOM?", "See some \"Old Sprites\" VERY \"up close\" and VERY \"personal\"."]
         helptext[1] = "Perhaps you can get a discount later. Costs \\C[2]10 Sinnoh Coins\\C[0]." if $PokemonBag.pbQuantity(:SINNOHCOIN) < 10
         helptext[3] = "Your Knife flashes from the looplet." if hasEmera?(:KNIFE)
-        choice = pbUnknownCommands(["Her wares", "Shop Membership", "DOOM!", "Concept Art"], helptext)
+        choice = pbUnknownCommands(["Their wares", "Shop Membership", "DOOM!", "Concept Art"], helptext)
         case choice
         when 0
             Undertale()
