@@ -3760,7 +3760,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:RKSSYSTEM,
     battler.effects[PBEffects::RKSSystem] = teratype
     battle.pbDisplay("#{battler.pbThis}'s RKS System engaged a stellar #{GameData::Type.get(teratype).name} energy!")
     battle.pbCommonAnimation("MegaEvolution2",battler)
-    battle.pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, battler.pokemon.tera))
+    battle.pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, GameData::Type.get(teratype).name))
     battle.pbHideAbilitySplash(battler)
   }
 )
