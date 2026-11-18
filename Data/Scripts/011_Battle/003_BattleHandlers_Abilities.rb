@@ -3753,12 +3753,12 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
 BattleHandlers::AbilityOnSwitchIn.add(:RKSSYSTEM,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    type = pbHiddenPower(battler,battler.pokemon.hiddenPowerType)[0]
+    teratype = pbHiddenPower(battler,battler.pokemon.hiddenPowerType)[0]
     platetype = Kernel.getPlateType(battler.item)
-    type = platetype if platetype != -1
+    teratype = platetype if platetype != -1
     battler.pokemon.unteraTypes = battler.pbTypes
-    battler.effects[PBEffects::RKSSystem] = type
-    battle.pbDisplay("#{battler.pbThis}'s RKS System engaged a stellar #{GameData::Type.get(a).name} energy!")
+    battler.effects[PBEffects::RKSSystem] = teratype
+    battle.pbDisplay("#{battler.pbThis}'s RKS System engaged a stellar #{GameData::Type.get(teratype).name} energy!")
     battle.pbCommonAnimation("MegaEvolution2",battler)
     battle.pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, battler.pokemon.tera))
     battle.pbHideAbilitySplash(battler)
