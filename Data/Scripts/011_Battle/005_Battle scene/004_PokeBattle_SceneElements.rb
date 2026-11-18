@@ -683,7 +683,7 @@ class PokemonBattlerSprite < RPG::Sprite
     @_iconBitmap.scale_bitmap(scale)
 
     self.bitmap = (@_iconBitmap) ? @_iconBitmap.bitmap : nil
-    if pkmn.hat.nil? && !$Trainer.party.include?(pkmn)
+    if pkmn.hat.nil? && !$Trainer.party.include?(pkmn) && ![:OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(pkmn.species)
       pkmn.hat = "ogremaskblue" if pkmn.hasItem?(:WELLSPRINGMASK)
       pkmn.hat = "ogremaskgrey" if pkmn.hasItem?(:CORNERSTONEMASK)
       pkmn.hat = "ogremaskred" if pkmn.hasItem?(:HEARTHFLAMEMASK)

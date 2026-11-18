@@ -1731,40 +1731,42 @@ class Pokemon
 
   # Recalculates this Pokémon's stats.
   def calc_stats(hpbars=1)
-    case @species
-    when :OGERPON
-      if hasItem?(:WELLSPRINGMASK)
-        transForm(self, :OGERPONWELLSPRING)
-        @ability = :DEFIANT
-        return
-      end
-      if hasItem?(:HEARTHFLAMEMASK)
-        transForm(self, :OGERPONHEARTHFLAME)
-        @ability = :DEFIANT
-        return
-      end
-      if hasItem?(:CORNERSTONEMASK)
-        transForm(self, :OGERPONCORNERSTONE)
-        @ability = :DEFIANT
-        return
-      end
-    when :OGERPONWELLSPRING
-      if !hasItem?(:WELLSPRINGMASK)
-        transForm(self, :OGERPON)
-        @ability = :DEFIANT
-        return
-      end
-    when :OGERPONHEARTHFLAME
-      if !hasItem?(:HEARTHFLAMEMASK)
-        transForm(self, :OGERPON)
-        @ability = :DEFIANT
-        return
-      end
-    when :OGERPONCORNERSTONE
-      if !hasItem?(:CORNERSTONEMASK)
-        transForm(self, :OGERPON)
-        @ability = :DEFIANT
-        return
+    if $Trainer.party.include?(self)
+      case @species
+      when :OGERPON
+        if hasItem?(:WELLSPRINGMASK)
+          transForm(self, :OGERPONWELLSPRING)
+          @ability = :DEFIANT
+          return
+        end
+        if hasItem?(:HEARTHFLAMEMASK)
+          transForm(self, :OGERPONHEARTHFLAME)
+          @ability = :DEFIANT
+          return
+        end
+        if hasItem?(:CORNERSTONEMASK)
+          transForm(self, :OGERPONCORNERSTONE)
+          @ability = :DEFIANT
+          return
+        end
+      when :OGERPONWELLSPRING
+        if !hasItem?(:WELLSPRINGMASK)
+          transForm(self, :OGERPON)
+          @ability = :DEFIANT
+          return
+        end
+      when :OGERPONHEARTHFLAME
+        if !hasItem?(:HEARTHFLAMEMASK)
+          transForm(self, :OGERPON)
+          @ability = :DEFIANT
+          return
+        end
+      when :OGERPONCORNERSTONE
+        if !hasItem?(:CORNERSTONEMASK)
+          transForm(self, :OGERPON)
+          @ability = :DEFIANT
+          return
+        end
       end
     end
     base_stats = self.baseStats
