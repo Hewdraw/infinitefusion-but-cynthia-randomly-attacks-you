@@ -705,10 +705,10 @@ class PokeBattle_Battle
           when :MEGAMAWILESHINY
             battler.pokemon.species = :MAWILE
             battler.pokemon.ability = :HYPERCUTTERPLUS
-          when :MEGASABLEYE
-            battler.pokemon.species = :SABLEYE
+          when :MEGASHADOWSABLEYE
+            battler.pokemon.species = :SHADOWSABLEYE
             battler.pokemon.item = :BLACKSHARD
-            battler.pokemon.ability = :PRANKSTER
+            battler.pokemon.ability = :HAZING
           end
           battler.pokemon.ev = {}
           GameData::Stat.each_main do |s|
