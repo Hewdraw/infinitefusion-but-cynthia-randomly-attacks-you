@@ -12372,6 +12372,17 @@ Pokemon = HOOH,11
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,252,0
 
+Pokemon = REGIROCK,11   
+    Offset = 0
+    Moves = MIGHTYCLEAVE,BODYPRESS,IRONDEFENSE,EARTHQUAKE
+    Ability = LEGENDARYPRESSURE
+    Hpbar = 2
+    Item = LEFTOVERS
+    Nature = IMPISH
+    Raid = TRUE
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,0,0,252
+
 [LEGENDARY_POKEMON,Ogerpon,0]
 Pokemon = OGERPON,11    
     Offset = 0
@@ -12428,19 +12439,6 @@ Pokemon = THEFORBIDDENONE,11
     Raid = TRUE
     IV = 31,31,31,31,31,31
     EV = 252,252,0,252,0,0
-
-#placeholder
-[LEGENDARY_POKEMON,Regirock,0]
-Pokemon = REGIROCK,11 
-    Offset = 5
-    Moves = BODYPRESS,MIGHTYCLEAVE,EARTHQUAKE,CURSE
-    Ability = LEGENDARYPRESSURE
-    Hpbar = 4
-    Item = LEFTOVERS
-    Nature = CAREFUL
-    Raid = TRUE
-    IV = 31,0,31,31,31,31
-    EV = 252,252,0,0,0,252
 
 [LEGENDARY_POKEMON,Unown,0]
 Pokemon = UNOWN,11
