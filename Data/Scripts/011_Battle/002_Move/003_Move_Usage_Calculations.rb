@@ -119,7 +119,7 @@ class PokeBattle_Move
     # Get effectivenesses
     typeMods = [Effectiveness::NORMAL_EFFECTIVE_ONE] * 4   # 3 types max
     if shadowMove? || (user.hasActiveAbility?(:SUPERSHADOW) && user.stages[:EVASION] >= 1)
-      if target.isShadowPokemon? || target.hasActiveAbility?([:DARKMATTER, :SUPERSHADOW])
+      if target.isShadowPokemon?
         typeMods[0] = Effectiveness::NOT_VERY_EFFECTIVE_ONE
       else
         typeMods[0] = Effectiveness::SUPER_EFFECTIVE_ONE

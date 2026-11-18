@@ -717,6 +717,7 @@ class PokeBattle_Battler
 
   def isShadowPokemon?
     return true if @species.to_s.include?("SHADOW")
+    return true if hasActiveAbility?([:DARKMATTER, :SUPERSHADOW])
     return false
   end
 
