@@ -1177,7 +1177,7 @@
 1208,BLOODYSTREAM,Bloody Stream,423,60,GHOST,Physical,90,10,20,NearOther,0,bef,"Uses a stream of blood like a whip."
 1209,CLOUDMINION,Cloud Minion,424,40,DARK,Special,100,15,100,NearOther,0,bef,"Throws a spiral of dark mist."
 1210,BLOODPUNCH,Blood Punch,425,20,GHOST,Physical,90,5,0,NearOther,0,abefj,"Continuous strikes using both hands."
-1211,EVILSQUALL,Evil Squall,000,0,QMARKS,Status,0,5,0,BothSides,0,,"TODO Conjures a torrential rain of darkness."
+1211,EVILSQUALL,Evil Squall,449,0,QMARKS,Status,0,5,0,BothSides,1,,"Conjures a torrential rain of darkness."
 1212,DEADSCREAM,Dead Scream,426,55,SOUND,Special,90,5,100,AllNearOthers,0,befk,"Sends out a black, ghost-like entity that turns the victim black and paralyzes them."
 1213,NIGHTMAREWAVE,Nightmare Wave,427,60,DARK,Special,100,10,100,NearOther,0,befkm,"Uses a special radio wave to lure the enemy to sleep."
 1214,FLAMEINFERNO,Flame Inferno,428,110,FIRE,Special,70,10,50,NearOther,0,bef,"Attacks with extremely high-temperature hellfire that burns up the opponent without a trace."

@@ -7070,7 +7070,7 @@ class PokeBattle_Move_408 < PokeBattle_TwoTurnMove
 end
 
 class PokeBattle_Move_409 < PokeBattle_Move
-  def pbCritialOverride(user,target); return target.pbHasType?(:DARK) || target.pbHasType?(:GHOST); end #TODO SHADOW
+  def pbCritialOverride(user,target); return target.pbHasType?(:DARK) || target.pbHasType?(:GHOST) || target.isShadowPokemon?; end
 
   def pbBaseType(user)
     hp = pbHiddenPower(user,user.pokemon.hiddenPowerType)
@@ -7845,5 +7845,13 @@ class PokeBattle_Move_448 < PokeBattle_Move
       return target.totalhp
     end
     return super
+  end
+end
+
+class PokeBattle_Move_449 < PokeBattle_Move
+  def pbEffectGeneral(user)
+    @battle.pbStartWeather(user,@weatherType,true,false)
+    @field.weatherDuration += 1
+    user.pbRaiseStatStage(:EVASION, 1, user)
   end
 end
