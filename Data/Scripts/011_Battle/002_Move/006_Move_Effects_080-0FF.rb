@@ -285,7 +285,6 @@ def pbHiddenPower(pkmn,forcedType=nil)
   if forcedType != nil
     return [forcedType,power]
   end
-  print(type)
   return [type,power]
 end
 
