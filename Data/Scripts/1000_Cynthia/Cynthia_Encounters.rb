@@ -43,7 +43,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
       end
     end
     $PokemonGlobal.cynthiachance += chanceincrease
-    maxcynthiachance = 160
+    maxcynthiachance = 190
     maxcynthiachance *= 2 if pbCynthiaGetBadgeCount < 1
     maxcynthiachance *= 2 if pbCynthiaGetBadgeCount < 2
     if rand(maxcynthiachance) < $PokemonGlobal.cynthiachance || (isRepelActive() && !$PokemonTemp.pokeradar)
