@@ -227,7 +227,7 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis))
           pbHideAbilitySplash(b)
         end
-        canpulse = true unless b.raid > 1
+        canpulse = true unless b.raid > 0
       end
       if b.hasActiveEmera?(:WISHINGPIECE)
         pbDisplay(_INTL("{1} is preparing an empowering wave!",b.pbThis)) if @turnCount % 10 == 9
