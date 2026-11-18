@@ -384,6 +384,7 @@
 406,HYPERCUTTERPLUS,Hyper Cutter+,"Prevents other Pokémon from lowering Attack stat."
 407,SHADOWSHIELDPLUS,Shadow Shield+,"Resists damage while its HP is full."
 408,THICKFATPLUS,Thick Fat+,"Ups resistance to Fire- and Ice-type moves."
+409,SHEERFORCEPLUS,Sheer Force+,"Removes added effects to increase move damage."
 700,BREAKTHESEAL,Break the Seal,"a"
 701,OBLITERATE,Obliterate,"a"
 702,SCALEBREAKER,Scale Breaker,"a"

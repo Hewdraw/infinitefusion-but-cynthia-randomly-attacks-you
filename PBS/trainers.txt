@@ -12500,6 +12500,19 @@ Pokemon = SNORLAX,5
     IV = 31,31,31,31,31,31
     EV = 252,252,252,0,0,0
 
+[ALPHA_POKEMON,Tauros,0]
+Pokemon = TAUROS,5 
+    Offset = 0
+    Moves = COMBATTORQUE,EARTHQUAKEPLUS,BODYSLAM,THROATCHOP
+    Ability = SHEERFORCEPLUS
+    Item = LEFTOVERS
+    Nature = JOLLY
+    Alpha = TRUE
+    Raid = TRUE
+    Hpbar = 2
+    IV = 31,31,31,31,31,31
+    EV = 252,252,0,252,0,0
+
 [ALPHA_POKEMON,Torkoal,0]
 Pokemon = TORKOAL,5
     Offset = 0

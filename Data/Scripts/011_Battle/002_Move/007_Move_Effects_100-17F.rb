@@ -4266,16 +4266,11 @@ class PokeBattle_Move_259 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_260 < PokeBattle_Move_076
-  def pbEffectGeneral(user)
-    return if user.pbOpposingSide.effects[PBEffects::Spikes] >= 3
-    latemove = false
-    user.eachOpposing do |opponent|
-      latemove = true if opponent.movedThisRound?
-    end
-    return unless latemove
-    user.pbOpposingSide.effects[PBEffects::Spikes] += 1
-    @battle.pbDisplay(_INTL("Spikes were scattered all around {1}'s feet!",
+class PokeBattle_Move_260 < PokeBattle_Move
+  def pbAdditionalEffect(user, target)
+    return if user.pbOpposingSide.effects[PBEffects::StealthRock]
+    user.pbOpposingSide.effects[PBEffects::StealthRock] = true
+    @battle.pbDisplay(_INTL("Pointed stones float in the air around {1}!",
                             user.pbOpposingTeam(true)))
   end
 end
@@ -5523,7 +5518,7 @@ class PokeBattle_Move_329 < PokeBattle_SleepMove
     return if numHits == 0
     return if user.fainted? || user.effects[PBEffects::Transform]
     return if !user.isFusionOf([:MELOETTA_A, :MELOETTA_P])
-    return if user.hasActiveAbility?([:SHEERFORCE, :VOCALIZE, :VOCALOID])
+    return if user.hasActiveAbility?([:SHEERFORCE, :SHEERFORCEPLUS, :VOCALIZE, :VOCALOID])
 
     is_meloetta_A = user.isFusionOf(:MELOETTA_A)
     is_meloetta_P = user.isFusionOf(:MELOETTA_P)

@@ -1491,13 +1491,14 @@ BattleHandlers::DamageCalcUserAbility.add(:TEMPEST,
   }
 )
 
-
 BattleHandlers::DamageCalcUserAbility.add(:SHEERFORCE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     next if target.isDynamaxed?
     mults[:base_damage_multiplier] *= 1.3 if move.addlEffect > 0 || move.id == :JARONA
   }
 )
+
+BattleHandlers::DamageCalcUserAbility.copy(:SHEERFORCE, :SHEERFORCEPLUS)
 
 BattleHandlers::DamageCalcUserAbility.add(:SLOWSTART,
   proc { |ability,user,target,move,mults,baseDmg,type|
@@ -4068,7 +4069,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:MOLDBREAKER,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :SCALEBREAKER)
+BattleHandlers::AbilityOnSwitchIn.copy(:MOLDBREAKER, :SCALEBREAKER, :SHEERFORCEPLUS)
 
 BattleHandlers::AbilityOnSwitchIn.add(:OBLITERATE,
   proc { |ability,battler,battle|
