@@ -4332,7 +4332,6 @@ BattleHandlers::AbilityOnSwitchIn.add(:STANCECHANGE,
 
 BattleHandlers::AbilityOnSwitchIn.add(:COMMANDERPLUS,
   proc { |ability, battler, battle|
-    showAnim = true
     battle.eachSameSideBattler(battler.index) do |b|
       next if !b || !b.near?(battler) || b.fainted?
       next if battle.choices[b.index][0] == :SwitchOut
@@ -4347,9 +4346,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:COMMANDERPLUS,
       battler.effects[PBEffects::Commander] = [b.index]
       [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED].each do |stat|
         next if !b.pbCanRaiseStatStage?(stat, b)
-        if b.pbRaiseStatStage(stat, 3, b, showAnim)
-          showAnim = false
-        end
+        b.pbRaiseStatStage(stat, 3, b)
       end
       battle.pbHideAbilitySplash(battler)
       break
