@@ -342,7 +342,7 @@ class PokeBattle_Battler
     pbBGMPlay("VSMeloetta2") if pokemon.species == :MELOETTA_A
     pbBGMPlay("VSTripleBaka") if pokemon.species == :VOCALLEEK
     pbBGMPlay("VSPetalDance2") if pokemon.species == :MEGAMAWILESHINY
-    pbBGMPlay("VSRoaringKnight2") if pokemon.species == :MEGASABLEYE
+    pbBGMPlay("VSRoaringKnight2") if pokemon.species == :MEGASHADOWSABLEYE
   end
 
   def updateSpirits()
