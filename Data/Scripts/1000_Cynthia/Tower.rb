@@ -1085,6 +1085,7 @@ def getTowerItems()
             [:AMMOPLATE, 1],
             [:REVERBPLATE, 1],
             [:MYSTERYPLATE, 1],
+            [:BLANKPLATE, 1],
             [:METALPOWDER, 1],
             [:QUICKPOWDER, 1],
             [:SAGE, 5],
