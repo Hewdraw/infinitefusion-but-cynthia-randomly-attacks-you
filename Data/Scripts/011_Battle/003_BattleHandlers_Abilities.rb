@@ -3756,7 +3756,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:RKSSYSTEM,
     type = pbHiddenPower(battler,battler.pokemon.hiddenPowerType)[0]
     platetype = Kernel.getPlateType(battler.item)
     type = platetype if platetype != -1
-    battler.unteraTypes = battler.pbTypes
+    battler.pokemon.unteraTypes = battler.pbTypes
     battler.effects[PBEffects::RKSSystem] = type
     battle.pbDisplay("#{battler.pbThis}'s RKS System engaged a stellar #{GameData::Type.get(a).name} energy!")
     battle.pbCommonAnimation("MegaEvolution2",battler)
