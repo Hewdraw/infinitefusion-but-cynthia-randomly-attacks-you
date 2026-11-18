@@ -3745,7 +3745,9 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
     when :OGERPONCORNERSTONE
       battler.pokemon.tera = :ROCK
     end
+    haslegendarypressure = (battler.ability == :LEGENDARYPRESSURE)
     battle.pbTerastallize(battler.index)
+    battler.ability = :LEGENDARYPRESSURE if haslegendarypressure
     battle.pbHideAbilitySplash(battler)
   }
 )
