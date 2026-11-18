@@ -7791,26 +7791,6 @@ class PokeBattle_Move_447 < PokeBattle_Move
 end
 
 class PokeBattle_Move_448 < PokeBattle_Move
-  def pbOnStartUse(user,targets)
-    @calcBaseDmg = 0
-    @accCheckPerHit = !user.hasActiveAbility?([:SKILLLINK, :THEROARING]) || !user.hasActiveItem?([:LOADEDDICE, :DRAGONSCALE])
-  end
-
-  def pbEffectAgainstTarget(user, target)
-    if target.isFusionOf([:GEODUDE, :ALOLAGEODUDE]) && @id == :ROCKSMASH
-      target.hp = 0
-      target.pbFaint
-    end
-  end
-
-  def pbHitEffectivenessMessages(user, target, numTargets = 1)
-    if target.isFusionOf([:GEODUDE, :ALOLAGEODUDE]) && @id == :ROCKSMASH
-      @battle.pbDisplay(_INTL("Reduced to atoms."))
-    end
-  end
-end
-
-class PokeBattle_Move_448 < PokeBattle_Move
   def pbMoveFailed?(user, targets)
     if @battle.rules["ohkoclause"]
       @battle.pbDisplay(_INTL("But it failed!"))
@@ -7846,12 +7826,24 @@ class PokeBattle_Move_448 < PokeBattle_Move
     end
     return super
   end
+
+  def pbHitEffectivenessMessages(user, target, numTargets = 1)
+    if target.fainted? && target.damageState.abyssohko
+      @battle.pbDisplay(_INTL("It's a one-hit KO!"))
+    end
+  end
 end
 
 class PokeBattle_Move_449 < PokeBattle_Move
-  def pbEffectGeneral(user)
-    @battle.pbStartWeather(user,@weatherType,true,false)
-    @field.weatherDuration += 1
-    user.pbRaiseStatStage(:EVASION, 1, user)
+  def pbEffectAgainstTarget(user, target)
+    if !target.asleep?
+      target.pbSleep if target.pbCanSleep?(user, true)
+      @battle.applyEffect(user, target, :Curse)
+    else
+      [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED].each do |stat|
+        next if !target.pbCanLowerStatStage?(stat, user)
+        target.pbLowerStatStage(stat, 1, user)
+      end
+    end
   end
 end

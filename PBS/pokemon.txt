@@ -28513,6 +28513,60 @@ Shape = BipedalTail
 Habitat = WatersEdge
 Kind = Shellfish
 Pokedex = The waterspouts that protrude from its shell are highly accurate. Their bullets of water can precisely nail tin cans from a distance of over 160 feet.
+#-------------------------------
+[1002002]
+Name = Sableye
+InternalName = SHADOWSABLEYE
+Type1 = DARK
+Type2 = QMARKS
+BaseStats = 50,75,75,50,65,65
+GenderRate = Female50Percent
+GrowthRate = Parabolic
+BaseEXP = 133
+EffortPoints = 0,1,1,0,0,0
+Rareness = 45
+Happiness = 35
+Abilities = HAZING,KNIFEDANCE
+HiddenAbility = SYNERGYBURST
+Moves = 0,SHADOWSABER,1,SHADOWBLITZ,1,SHADOWWAVE,6,SHADOWMIST,9,SHADOWPANIC,14,SHADOWRUSH,17,SHADOWRAVE,20,SHADOWDOWN,23,SHADOWSHED,27,SHADOWHALF,33,SHADOWBREAK,38,SHADOWSTORM,44,SHADOWSKY,48,SHADOWEND,52,SHADOWTERRAIN
+Compatibility = Humanlike
+StepsToHatch = 6400
+Height = 0.5
+Weight = 11.0
+Color = Purple
+Shape = Bipedal
+Habitat = Cave
+Kind = Darkness
+Pokedex = It digs branching holes in caves using its sharp claws in search of food--raw gems. A Sableye lurks in darkness and is seen only rarely.
+Generation = 3
+WildItemUncommon = WIDELENS
+#-------------------------------
+[1002003]
+Name = Sableye
+InternalName = MEGASHADOWSABLEYE
+Type1 = DARK
+Type2 = QMARKS
+BaseStats = 50,85,125,20,85,115
+GenderRate = Female50Percent
+GrowthRate = Parabolic
+BaseEXP = 133
+EffortPoints = 0,1,1,0,0,0
+Rareness = 45
+Happiness = 35
+Abilities = SHADOWSHIELDPLUS,BADDREAMSPLUS
+HiddenAbility = LEGENDARYPRESSURE
+Moves = 0,SHADOWSABER,1,SHADOWBLITZ,1,SHADOWWAVE,6,SHADOWMIST,9,SHADOWPANIC,14,SHADOWRUSH,17,SHADOWRAVE,20,SHADOWDOWN,23,SHADOWSHED,27,SHADOWHALF,33,SHADOWBREAK,38,SHADOWSTORM,44,SHADOWSKY,48,SHADOWEND,52,SHADOWTERRAIN
+Compatibility = Humanlike
+StepsToHatch = 6400
+Height = 0.5
+Weight = 11.0
+Color = Purple
+Shape = Bipedal
+Habitat = Cave
+Kind = Darkness
+Pokedex = It digs branching holes in caves using its sharp claws in search of food--raw gems. A Sableye lurks in darkness and is seen only rarely.
+Generation = 3
+WildItemUncommon = WIDELENS
 
 
 

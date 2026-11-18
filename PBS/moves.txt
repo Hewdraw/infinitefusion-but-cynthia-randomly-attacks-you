@@ -1212,7 +1212,8 @@
 1243,SHADOWEND,Shadow End,446,120,QMARKS,Physical,60,0,0,NearOther,1,abefy,"a"
 1244,SHADOWTERRAIN,Shadow Terrain,447,0,QMARKS,Status,0,0,0,BothSides,1,y,"todo"
 1245,SHADOWABYSS,Shadow Abyss,448,80,QMARKS,Special,90,0,0,NearOther,1,befmy,"a"
-1246,COMBATTORQUE,Combat Torque,013,100,FIGHTING,Special,100,10,30,NearOther,1,abef,"a"
+1246,SHADOWSABER,Shadow Saber,449,0,QMARKS,Status,0,0,0,NearOther,1,ey,"a"
+1247,COMBATTORQUE,Combat Torque,013,100,FIGHTING,Special,100,10,30,NearOther,1,abef,"a"
 
 
 

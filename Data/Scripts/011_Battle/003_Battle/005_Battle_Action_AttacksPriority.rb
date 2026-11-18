@@ -166,6 +166,11 @@ class PokeBattle_Battle
             pri += 1 if b.hasActiveItem?(:MANKEYSCARF) && user.turnCount <= 1
             pri += 1 if move.id == :GRASSYGLIDE && self.field.terrain == :Grassy && b.affectedByTerrain?
             pri += 1 if [:SHOOT, :SHOOTMINUS, :SHOOTPLUS, :SHOOTPLUSMINUS, :SHOOTMINUSPLUS].include?(move.id) && b.pbHasType?(:GUN)
+            if move.statusMove?
+              b.eachOpposing do |opponent|
+                pri -= 1 if opponent.hasActiveAbility?(:HAZING)
+              end
+            end
             if move.id == :TATENOROCKET
               b.eachOpposing do |opponent|
                 if opponent.pbHasType?(:DRAGON)

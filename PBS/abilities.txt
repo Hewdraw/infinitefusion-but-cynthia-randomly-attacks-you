@@ -420,3 +420,5 @@
 732,SYNERGYBURST,Synergy Burst,"a"
 733,SHADOWDISH,Shadow Dish,"a"
 734,SHADOWLAUNCHER,Shadow Launcher,"a"
+735,HAZING,Hazing,"a"
+736,KNIFEDANCE,Knife Dance,"a"

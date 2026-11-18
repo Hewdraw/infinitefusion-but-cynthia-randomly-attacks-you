@@ -629,6 +629,14 @@ BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
 
 BattleHandlers::PriorityChangeAbility.copy(:PRANKSTER, :PRANKINGMIRROR)
 
+BattleHandlers::PriorityChangeAbility.add(:PRANKSTER,
+  proc { |ability,battler,move,pri|
+    if move.statusMove?
+      next pri+1
+    end
+  }
+)
+
 BattleHandlers::PriorityChangeAbility.add(:TRIAGE,
   proc { |ability,battler,move,pri|
     next pri+3 if move.healingMove?
@@ -1862,9 +1870,15 @@ BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
   }
 )
 
-BattleHandlers::DamageCalcTargetAbility.add(:THICKFAT,
+BattleHandlers::DamageCalcTargetAbility.add(:THICKFATPLUS,
   proc { |ability,target,user,move,mults,baseDmg,type|
     mults[:defense_multiplier] *= 1.2 if move.physicalMove?
+  }
+)
+
+BattleHandlers::DamageCalcTargetAbility.add(:HAZING,
+  proc { |ability,target,user,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] /= 2 if type != :DARK && type != :FAIRY
   }
 )
 
@@ -3343,6 +3357,18 @@ BattleHandlers::EOREffectAbility.add(:OBLITERATE,
     battle.pbHideAbilitySplash(battler)
   }
 )
+
+BattleHandlers::EOREffectAbility.add(:HAZING,
+  proc { |ability,battler,battle|
+    next if battler.turnCount == 0
+    battle.pbShowAbilitySplash(battler)
+    oldLastRoundMoved = battler.lastRoundMoved
+    battler.pbUseMoveSimple(:KNIFE)
+    battler.lastRoundMoved = oldLastRoundMoved
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 
 #===============================================================================
 # EORGainItemAbility handlers

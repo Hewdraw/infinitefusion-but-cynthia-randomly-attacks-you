@@ -1675,6 +1675,15 @@ BaseStats = 79,103,120,78,135,115
 Abilities = MEGALAUNCHER
 HiddenAbility = MEGALAUNCHER
 #-------------------------------
+[SHADOWBLASTOISE,1]
+FormName = Mega Blastoise
+MegaStone = MEGASTONEITE
+Type1 = WATER
+Type2 = GUN
+BaseStats = 79,103,120,78,135,115
+Abilities = SHADOWLAUNCHER
+HiddenAbility = SHADOWLAUNCHER
+#-------------------------------
 [BEEDRILL,1]
 FormName = Mega Beedrill
 MegaStone = MEGASTONEITE
@@ -1839,6 +1848,13 @@ MegaStone = MEGASTONEITE
 BaseStats = 50,85,125,20,85,115
 Abilities = MAGICBOUNCE
 HiddenAbility = MAGICBOUNCE
+#-------------------------------
+[SHADOWSABLEYE,1]
+FormName = Mega Sableye
+MegaStone = MEGASTONEITE
+BaseStats = 50,85,125,20,85,115
+Abilities = LEGENDARYPRESSURE
+HiddenAbility = LEGENDARYPRESSURE
 #-------------------------------
 [MAWILE,1]
 FormName = Mega Mawile
