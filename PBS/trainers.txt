@@ -12336,7 +12336,6 @@ Pokemon = MEGAROTOM,5
     IV = 31,31,31,31,31,31
     EV = 252,0,0,4,252,0
     Happiness = 255
-    
 
 [LEGENDARY_POKEMON,Ho-Gia,0]
 Pokemon = B249H250,11  
@@ -12372,6 +12371,7 @@ Pokemon = HOOH,11
     IV = 31,31,31,31,31,31
     EV = 252,0,252,0,252,0
 
+[LEGENDARY_POKEMON,Regirock,0]
 Pokemon = REGIROCK,11   
     Offset = 0
     Moves = MIGHTYCLEAVE,BODYPRESS,IRONDEFENSE,EARTHQUAKE
