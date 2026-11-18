@@ -262,7 +262,7 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
       encounter2 = EncounterModifier.trigger(encounter2)
       pbDoubleWildBattle(encounter[0], encounter[1], encounter2[0], encounter2[1])
     else
-      if [349, 350, 800].include?($game_map.map_id) && $PokemonGlobal.regirock.nil? && rand(20) == 0
+      if [349, 350, 800].include?($game_map.map_id) && $PokemonGlobal.regirock.nil? && rand(2) == 0
         $PokemonGlobal.nextBattleBGM = "VSRegi"
         $PokemonGlobal.regirock = true if pbLegendaryBattle("Regirock")
       elsif [:UNOWN, :B201H201].include?(encounter[0])
