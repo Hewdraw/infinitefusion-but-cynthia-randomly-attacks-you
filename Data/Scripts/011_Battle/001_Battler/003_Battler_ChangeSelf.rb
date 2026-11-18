@@ -233,7 +233,7 @@ class PokeBattle_Battler
       @battle.pbDisplayPaused("All non-Lightners have succumbed to Darkness.")
       @battle.field.effects[PBEffects::DarkWorld] = 10000
     end
-    if @species == :SABLEYE
+    if @species == :SHADOWSABLEYE
       @pokemon.hp = 1
       @hp = 1
       pbBGMFade(1)

@@ -301,10 +301,10 @@ class FusionTutorService
       compatibleMoves << :KNIFEFAN if is_fusion_of([:MAWILE])
       compatibleMoves << :PETALDANCEPLUS if is_fusion_of([:MAWILE])
       compatibleMoves << :PRECIPICEBLADESPLUS if is_fusion_of([:MAWILE])
-      compatibleMoves << :CRYSTALBARRAGE if is_fusion_of([:SABLEYE])
-      compatibleMoves << :BOARDREND if is_fusion_of([:SABLEYE])
-      compatibleMoves << :SANGUINESLASH if is_fusion_of([:SABLEYE])
-      compatibleMoves << :CRYSTALNOVA if is_fusion_of([:SABLEYE])
+      compatibleMoves << :CRYSTALBARRAGE if is_fusion_of([:SABLEYE, :SHADOWSABLEYE])
+      compatibleMoves << :BOARDREND if is_fusion_of([:SABLEYE, :SHADOWSABLEYE])
+      compatibleMoves << :SANGUINESLASH if is_fusion_of([:SABLEYE, :SHADOWSABLEYE])
+      compatibleMoves << :CRYSTALNOVA if is_fusion_of([:SABLEYE, :SHADOWSABLEYE])
     end
     return compatibleMoves
   end
