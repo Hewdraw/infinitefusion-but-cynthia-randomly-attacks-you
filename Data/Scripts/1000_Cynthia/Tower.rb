@@ -17,7 +17,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :activevariable => nil,
-        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "OGERPON", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
         :unknownlist => [],
         :eventvariables => {
             :unknownrooms => 0
@@ -585,12 +585,13 @@ def towerEvent()
         when "Ho-Gia"
             $PokemonGlobal.nextBattleBGM = "VSLugia"
         when "Jirachi"
-            
-                $PokemonGlobal.nextBattleBGM = "VSJirachi"
+            $PokemonGlobal.nextBattleBGM = "VSJirachi"
         when "Latias"
             $PokemonGlobal.nextBattleBGM = "VSLati"
         when "Meloetta"
             $PokemonGlobal.nextBattleBGM = "VSMeloetta"
+        when "Ogerpon"
+            $PokemonGlobal.nextBattleBGM = "VSOgerpon"
         when "Reshirom"
             $PokemonGlobal.nextBattleBGM = "VSReshiramZekrom"
         when "Rotom1"
@@ -609,6 +610,12 @@ def towerEvent()
                 $PokemonBag.pbStoreItem(:DOUSEDRIVE)
                 $PokemonBag.pbStoreItem(:CHILLDRIVE)
                 $PokemonBag.pbStoreItem(:GUNDRIVE)
+            end
+        when "Ogerpon"
+            return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
+            if !$PokemonGlobal.towervalues[:escapeorb]
+                $PokemonBag.pbStoreItem(:HEARTHFLAMEMASK)
+                $PokemonBag.pbStoreItem(:WELLSPRINGMASK)
             end
         when "Reshirom"
             return if !pbLegendaryBattle($PokemonGlobal.towervalues[:activevariable])
@@ -807,6 +814,8 @@ def getFloorGraphic(event)
             return "151"
         when "Moltres"
             return "146"
+        when "Ogerpon"
+            return "OGERPON"
         when "Reshirom"
             return "BW (5)"
         when "Rotom1", "Rotom2", "Rotom3"
