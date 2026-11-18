@@ -176,12 +176,12 @@ class PokeBattle_FreezeMove < PokeBattle_Move
 
   def pbEffectAgainstTarget(user,target)
     return if damagingMove?
-    target.pbFreeze
+    target.pbFreeze(user)
   end
 
   def pbAdditionalEffect(user,target)
     return if target.damageState.substitute
-    target.pbFreeze if target.pbCanFreeze?(user,false,self)
+    target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
   end
 end
 

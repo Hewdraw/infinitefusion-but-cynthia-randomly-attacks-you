@@ -2739,7 +2739,7 @@ class PokeBattle_Move_187 < PokeBattle_Move
     @battle.eachBattler { |b| b.pbResetStatStages }
     @battle.pbDisplay(_INTL("All stat changes were eliminated!"))
     return if target.damageState.substitute
-    target.pbFreeze if target.pbCanFreeze?(user,false,self)
+    target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
   end
 end
 
@@ -3818,7 +3818,7 @@ class PokeBattle_Move_235 < PokeBattle_Move
     when 0 then
       target.pbBurn(user) if target.pbCanBurn?(user, false, self)
     when 1 then
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user, false, self)
     when 2 then
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end
@@ -3864,7 +3864,7 @@ class PokeBattle_Move_237 < PokeBattle_Move_09F
   def pbAdditionalEffect(user, target)
     return if target.damageState.substitute
     target.pbBurn(user) if user.hasActiveItem?(:BURNDRIVE) && target.pbCanBurn?(user, false, self)
-    target.pbFreeze if user.hasActiveItem?(:CHILLDRIVE) && target.pbCanFreeze?(user, false, self)
+    target.pbFreeze(user) if user.hasActiveItem?(:CHILLDRIVE) && target.pbCanFreeze?(user, false, self)
     target.pbParalyze(user) if user.hasActiveItem?(:SHOCKDRIVE) && target.pbCanParalyze?(user, false, self)
   end
 
@@ -4563,7 +4563,7 @@ class PokeBattle_Move_284 < PokeBattle_Move
     chance2 = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0 && chance2 == 0
     if @battle.pbRandom(100, user, target) < chance
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user, false, self)
     end
     target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance2
   end
@@ -4733,7 +4733,7 @@ class PokeBattle_Move_291 < PokeBattle_Move
     return if target.damageState.substitute
     case @battle.pbRandom(2)
     when 0 then
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user, false, self)
     when 1 then
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end
@@ -4759,7 +4759,7 @@ class PokeBattle_Move_293 < PokeBattle_TargetMultiStatDownMove
     chance = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0
     if @battle.pbRandom(100, user, target) < chance
-      target.pbFreeze if target.pbCanFreeze?(user,false,self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
     end
   end
 end
@@ -5639,7 +5639,7 @@ class PokeBattle_Move_336 < PokeBattle_Move
     when :FIRE then
       target.pbBurn(user) if target.pbCanBurn?(user, false, self)
     when :ICE then
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user, false, self)
     when :ELECTRIC then
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end

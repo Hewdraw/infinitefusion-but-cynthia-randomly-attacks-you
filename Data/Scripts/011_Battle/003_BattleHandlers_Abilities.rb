@@ -2231,7 +2231,7 @@ BattleHandlers::TargetAbilityOnHit.add(:EFFECTSPOREPLUS,
           msg = _INTL("{1}'s {2} made {3} fall asleep!",target.pbThis,
              target.abilityName,user.pbThis(true))
         end
-        user.pbFreeze(msg)
+        user.pbFreeze(target, msg)
       end
     when :SLEEP
       if user.pbCanSleep?(target,PokeBattle_SceneConstants::USE_ABILITY_SPLASH)
@@ -2484,7 +2484,7 @@ BattleHandlers::TargetAbilityOnHit.add(:SNOWCLOAK,
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} frostbites {3}!",target.pbThis,target.abilityName,user.pbThis(true))
       end
-      user.pbFreeze()
+      user.pbFreeze(target)
     end
     battle.pbHideAbilitySplash(target)
   }
@@ -2705,7 +2705,7 @@ BattleHandlers::UserAbilityOnHit.add(:FROSTTOUCH,
       if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
         msg = _INTL("{1}'s {2} frostbites {3}!",user.pbThis,user.abilityName,target.pbThis(true))
       end
-      target.pbFreeze(msg)
+      target.pbFreeze(user, msg)
     end
     battle.pbHideAbilitySplash(user)
   }

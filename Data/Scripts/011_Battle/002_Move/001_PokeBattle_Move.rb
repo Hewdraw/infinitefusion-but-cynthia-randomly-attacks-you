@@ -154,7 +154,7 @@ class PokeBattle_Move
     return true if soundMove?
     return true if ["201", "213", "353"].include?(@function)
     return true if [:SUPREMECANNON, :SHADOWBREAK].include?(@id)
-    return true if user && user.hasActiveAbility?([:INFILTRATOR, :CHARGEDEXPLOSIVE, :TRUANTPLUS])
+    return true if user && user.hasActiveAbility?([:INFILTRATOR, :STALWART, :CHARGEDEXPLOSIVE, :TRUANTPLUS])
     return false
   end
 end

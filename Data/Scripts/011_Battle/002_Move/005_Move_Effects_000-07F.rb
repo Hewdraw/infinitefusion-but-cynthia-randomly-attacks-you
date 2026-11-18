@@ -188,7 +188,7 @@ class PokeBattle_Move_00E < PokeBattle_Move
     chance = pbAdditionalEffectChance(user, target, 10)
     return if chance == 0
     if @battle.pbRandom(100, user, target) < chance
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user, false, self)
     end
     target.pbFlinch(user) if @battle.pbRandom(100, user, target) < chance
   end
@@ -311,7 +311,7 @@ class PokeBattle_Move_017 < PokeBattle_Move
     when 0 then
       target.pbBurn(user) if target.pbCanBurn?(user, false, self)
     when 1 then
-      target.pbFreeze if target.pbCanFreeze?(user, false, self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user, false, self)
     when 2 then
       target.pbParalyze(user) if target.pbCanParalyze?(user, false, self)
     end
@@ -494,7 +494,7 @@ class PokeBattle_Move_01B < PokeBattle_Move
       target.pbParalyze(user)
       msg = _INTL("{1} was cured of paralysis.", user.pbThis)
     when :FROZEN
-      target.pbFreeze
+      target.pbFreeze(user)
       msg = _INTL("{1} was thawed out.", user.pbThis)
     end
     if msg != ""

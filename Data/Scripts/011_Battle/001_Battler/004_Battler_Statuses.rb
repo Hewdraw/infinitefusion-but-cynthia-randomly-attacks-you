@@ -397,8 +397,8 @@ class PokeBattle_Battler
     return pbCanInflictStatus?(:FROZEN, user, showMessages, move)
   end
 
-  def pbFreeze(msg = nil)
-    pbInflictStatus(:FROZEN, 0, msg)
+  def pbFreeze(user, msg = nil)
+    pbInflictStatus(:FROZEN, 0, msg, user)
   end
 
   #=============================================================================
@@ -412,8 +412,8 @@ class PokeBattle_Battler
     return pbCanInflictStatus?(:HYPERREVERSE, user, showMessages, move, true)
   end
 
-  def pbHyperReverse(msg = nil)
-    pbInflictStatus(:HYPERREVERSE, 0, msg)
+  def pbHyperReverse(user, msg = nil)
+    pbInflictStatus(:HYPERREVERSE, 0, msg, user)
   end
 
   #=============================================================================

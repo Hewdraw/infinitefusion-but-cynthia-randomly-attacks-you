@@ -897,7 +897,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     when 0, 1
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     when 9
-      target.pbFreeze if target.pbCanFreeze?(user,false,self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
     when 5
       if target.pbCanLowerStatStage?(:ATTACK,user,self)
         target.pbLowerStatStage(:ATTACK,1,user)
@@ -2108,7 +2108,7 @@ class PokeBattle_Move_0C5 < PokeBattle_TwoTurnMove
     if rand(2) == 0
       target.pbParalyze(user) if target.pbCanParalyze?(user,false,self)
     else
-      target.pbFreeze if target.pbCanFreeze?(user,false,self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
     end
   end
 end
@@ -2129,7 +2129,7 @@ class PokeBattle_Move_0C6 < PokeBattle_TwoTurnMove
     if rand(2) == 0
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     else
-      target.pbFreeze if target.pbCanFreeze?(user,false,self)
+      target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
     end
   end
 end
@@ -3674,7 +3674,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     when :TOXICORB
       target.pbPoison(user,nil,true) if target.pbCanPoison?(user,false,self)
     when :FROSTORB
-      target.pbFreeze(nil) if target.pbCanFreeze?(user,false,self)
+      target.pbFreeze(user,nil) if target.pbCanFreeze?(user,false,self)
     when :FLAMEORB
       target.pbBurn(user) if target.pbCanBurn?(user,false,self)
     when :LIGHTBALL, :SHOCKORB
