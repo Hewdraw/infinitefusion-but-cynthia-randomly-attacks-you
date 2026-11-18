@@ -147,7 +147,7 @@ def pbAddPokemon(pkmnspecies, level = 1, see_form = true, dontRandomize=false, v
       end
     end
   when :SMEARGLE
-    if !PokemonGlobal.towervalues.nil?
+    if !$PokemonGlobal.towervalues.nil?
       movelist = []
       move_keys = GameData::Move::DATA.keys
       1000.times do
