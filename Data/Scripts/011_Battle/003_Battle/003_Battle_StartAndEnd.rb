@@ -697,6 +697,8 @@ class PokeBattle_Battle
             battler.pokemon.item = :RAINBOWWING
           when :LUGIA
             battler.pokemon.item = :SILVERWING
+          when :OGERPONCORNERSTONEROCK
+            battler.pokemon.species = :OGERPONCORNERSTONE
           when :EXODIAINCARNATE
             battler.pokemon.species = :THEFORBIDDENONE
             battler.pokemon.originalability = :BREAKTHESEAL
