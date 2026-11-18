@@ -1618,6 +1618,12 @@ ItemHandlers::UseOnPokemon.add(:ZAPPLATE, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:DREADPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :DARK
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
 ItemHandlers::UseOnPokemon.add(:AMMOPLATE, proc { |item, pkmn, scene|
   pkmn.hiddenPowerType = :GUN
   scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
