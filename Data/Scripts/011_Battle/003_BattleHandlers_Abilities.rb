@@ -93,6 +93,12 @@ BattleHandlers::SpeedCalcAbility.add(:SWIFTSWIM,
   }
 )
 
+BattleHandlers::SpeedCalcAbility.add(:DARKMATTER,
+  proc { |ability,battler,mult|
+    next mult * 2 if [:ShadowSky].include?(battler.battle.pbWeather)
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:SHADOWDISH,
   proc { |ability,battler,mult|
     next mult * 1.1 if [:Rain, :HeavyRain, :ShadowSky].include?(battler.battle.pbWeather)
@@ -3063,6 +3069,21 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
   }
 )
 
+BattleHandlers::EORWeatherAbility.add(:DARKMATTER,
+  proc { |ability,battler,weather,battle|
+    next unless [:ShadowSky].include?(weather)
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(battler.totalhp/16)
+    if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1}'s HP was restored.",battler.pbThis))
+    else
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",battler.pbThis,battler.abilityName))
+    end
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
 BattleHandlers::EORWeatherAbility.add(:SHADOWDISH,
   proc { |ability,battler,weather,battle|
     next unless [:ShadowSky].include?(weather)
@@ -3724,6 +3745,21 @@ BattleHandlers::AbilityOnSwitchIn.add(:TERASHIFT,
       battler.pokemon.tera = :ROCK
     end
     battle.pbTerastallize(battler.index)
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:RKSSYSTEM,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    type = pbHiddenPower(battler,battler.pokemon.hiddenPowerType)[0]
+    platetype = Kernel.getPlateType(battler.item)
+    type = platetype if platetype != -1
+    battler.unteraTypes = battler.pbTypes
+    battler.effects[PBEffects::RKSSystem] = type
+    battle.pbDisplay("#{battler.pbThis}'s RKS System engaged a stellar #{GameData::Type.get(a).name} energy!")
+    battle.pbCommonAnimation("MegaEvolution2",battler)
+    battle.pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, battler.pokemon.tera))
     battle.pbHideAbilitySplash(battler)
   }
 )

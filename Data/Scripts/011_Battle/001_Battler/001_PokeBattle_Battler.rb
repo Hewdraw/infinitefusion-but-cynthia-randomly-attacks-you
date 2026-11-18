@@ -403,6 +403,7 @@ class PokeBattle_Battler
   # same type more than once, and should not include any invalid type numbers
   # (e.g. -1).
   def pbTypes(withType3 = false)
+    return [@effects[PBEffects::RKSSystem]] if @effects[PBEffects::RKSSystem]
     return [:DARK] if @battle.field.effects[PBEffects::DarkWorld] > 0 && !@pokemon.hasType?(:FAIRY) && !@pokemon.hasType?(:DARK)
     return [:QMARKS] if hasActiveItem?(:PYRITE)
     return [:GUN] if hasActiveItem?(:ILLEGALGUNPARTS)
@@ -704,7 +705,7 @@ class PokeBattle_Battler
   def isTerastallized?
     return true if hasActiveEmera?(:TERACRYSTAL)
     return true if @pokemon.unteraTypes != []
-    return true if hasActiveItem?([:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :ELYTRA, :ENCHANTEDELYTRA, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM])
+    return true if hasActiveItem?([:PYRITE, :WELLSPRINGMASK, :HEARTHFLAMEMASK, :CORNERSTONEMASK, :ILLEGALGUNPARTS, :ELYTRA, :ENCHANTEDELYTRA, :FISTPLATE, :SKYPLATE, :TOXICPLATE, :EARTHPLATE, :STONEPLATE, :INSECTPLATE, :SPOOKYPLATE, :IRONPLATE, :FLAMEPLATE, :SPLASHPLATE, :MEADOWPLATE, :ZAPPLATE, :MINDPLATE, :ICICLEPLATE, :DRACOPLATE, :DREADPLATE, :PIXIEPLATE, :AMMOPLATE, :REVERBPLATE, :MYSTERYPLATE, :FIREGEM, :WATERGEM, :ELECTRICGEM, :GRASSGEM, :ICEGEM, :FIGHTINGGEM, :POISONGEM, :GROUNDGEM, :FLYINGGEM, :PSYCHICGEM, :BUGGEM, :ROCKGEM, :GHOSTGEM, :DRAGONGEM, :DARKGEM, :STEELGEM, :NORMALGEM, :FAIRYGEM, :SHADOWGEM])
     return false
   end
 

@@ -16,6 +16,9 @@ def Kernel.getPlateType(item)
   return :DRAGON if item == PBItems::DRACOPLATE
   return :DARK if item == PBItems::DREADPLATE
   return :FAIRY if item == PBItems::PIXIEPLATE
+  return :GUN if item == :AMMOPLATE
+  return :SOUND if item == :REVERBPLATE
+  return :QMARKS if item == :MYSTERYPLATE
   return -1
 end
 

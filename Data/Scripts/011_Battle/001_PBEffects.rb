@@ -135,6 +135,7 @@ begin
     ShieldAndCounter         = 129
     CloudMinion                = 130
     Commander                = 131
+    RKSSystem                = 132
 
     #===========================================================================
     # These effects apply to a battler position

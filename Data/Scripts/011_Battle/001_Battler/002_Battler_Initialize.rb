@@ -305,6 +305,7 @@ class PokeBattle_Battler
     @effects[PBEffects::ShieldAndCounter]         = 
     @effects[PBEffects::CloudMinion]                = false
     @effects[PBEffects::Commander]                = nil
+    @effects[PBEffects::RKSSystem]                = nil
     @extraabilities = []
   end
 
