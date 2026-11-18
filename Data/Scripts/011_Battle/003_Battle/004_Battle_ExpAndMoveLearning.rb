@@ -58,8 +58,8 @@ class PokeBattle_Battle
       next unless b && !b.opposes?
       next unless b.fainted?
       next unless @opponent && @opponent[0].special_name?
-      next if b.isShadowPokemon?
       b.participants.each do |opponent|
+        next if opponent.isShadowPokemon?
         next if opponent.fainted?
         if (pbRandom(16, opponent, nil) < pbCynthiaGetBadgeCount && !opponent.fainted?) || opponent.pokemon.species.to_s[-11..-1] == "DUDUNSPARCE"
           gainedlevels = opponent.pokemon.isSelfFusion? ? 2 : 1
