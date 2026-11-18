@@ -1510,6 +1510,132 @@ ItemHandlers::UseOnPokemon.add(:ILLEGALGUNPARTS, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.add(:BLANKPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :NORMAL
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:DRACOPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :DRAGON
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:DREAD, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :DARK
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:EARTHPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :GROUND
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:FISTPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :FIGHTING
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:FLAMEPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :FIRE
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:ICICLEPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :ICE
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:INSECTPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :BUG
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:IRONPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :STEEL
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:MEADOWPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :GRASS
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:MINDPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :PSYCHIC
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:PIXIEPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :FAIRY
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:SKYPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :FLYING
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:SPLASHPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :WATER
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:SPOOKYPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :GHOST
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:STONEPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :ROCK
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:TOXICPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :ZAPPLATE
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:ZAPPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :ELECTRIC
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:AMMOPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :GUN
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:REVERBPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :SOUND
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:MYSTERYPLATE, proc { |item, pkmn, scene|
+  pkmn.hiddenPowerType = :QMARKS
+  scene.pbDisplay("#{pkmn.name}'s Hidden Power type changed!")
+  next false
+})
+
 #
 # #TRACKER (for roaming legendaries)
 # ItemHandlers::UseInField.add(:REVEALGLASS, proc { |item|

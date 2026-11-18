@@ -183,6 +183,7 @@ def tripleFusion(item=false)
         materialcount = []
         if materials.length == 1
             $Trainer.party.each do |mon|
+                next if mon.species == triple
                 materials[0].each do |material|
                     materialcount.push(material) if mon.isFusionOf(material)
                 end
@@ -308,7 +309,7 @@ def getSoulSprite(viewport)
         heartsprite.bitmap = Bitmap.new("Graphics/Undertale/PlayerHeart/Default/UndertaleHardcore")
     end
     colof = nil
-    color = TRAINERCLASSDICT[PokemonGlobal.towervalues[:trainerclass]][:soul] if !$PokemonGlobal.towervalues.nil?
+    color = TRAINERCLASSDICT[$PokemonGlobal.towervalues[:trainerclass]][:soul] if !$PokemonGlobal.towervalues.nil?
     case color
     when "Bravery"
         heartsprite.tone = Tone.new(-3, -89, -255)

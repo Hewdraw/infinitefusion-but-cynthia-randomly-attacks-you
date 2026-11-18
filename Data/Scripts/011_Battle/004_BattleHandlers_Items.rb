@@ -614,7 +614,11 @@ BattleHandlers::DamageCalcUserItem.add(:BLACKBELT,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:BLACKBELT,:FISTPLATE)
+BattleHandlers::DamageCalcUserItem.add(:FISTPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :FIGHTING
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:BLACKGLASSES,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -623,7 +627,11 @@ BattleHandlers::DamageCalcUserItem.add(:BLACKGLASSES,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:BLACKGLASSES,:DREADPLATE)
+BattleHandlers::DamageCalcUserItem.add(:DREADPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :DARK
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:BUGGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -637,7 +645,11 @@ BattleHandlers::DamageCalcUserItem.add(:CHARCOAL,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:CHARCOAL,:FLAMEPLATE)
+BattleHandlers::DamageCalcUserItem.add(:FLAMEPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :FIRE
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:CHOICEBAND,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -727,7 +739,11 @@ BattleHandlers::DamageCalcUserItem.add(:DRAGONFANG,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:DRAGONFANG,:DRACOPLATE)
+BattleHandlers::DamageCalcUserItem.add(:DRACOPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :DRAGON
+  }
+)
 
 
 BattleHandlers::DamageCalcUserItem.add(:DARKSTONE,
@@ -834,7 +850,14 @@ BattleHandlers::DamageCalcUserItem.add(:HARDSTONE,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:HARDSTONE,:STONEPLATE,:ROCKINCENSE)
+BattleHandlers::DamageCalcUserItem.copy(:HARDSTONE,:ROCKINCENSE)
+
+BattleHandlers::DamageCalcUserItem.add(:STONEPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if type == :ROCK
+  }
+)
+
 
 BattleHandlers::DamageCalcUserItem.add(:ICEGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -910,7 +933,11 @@ BattleHandlers::DamageCalcUserItem.add(:MAGNET,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:MAGNET,:ZAPPLATE)
+BattleHandlers::DamageCalcUserItem.add(:ZAPPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :ELECTRIC
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:METALCOAT,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -918,7 +945,11 @@ BattleHandlers::DamageCalcUserItem.add(:METALCOAT,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:METALCOAT,:IRONPLATE)
+BattleHandlers::DamageCalcUserItem.add(:IRONPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :STEEL
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:METRONOME,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -935,7 +966,13 @@ BattleHandlers::DamageCalcUserItem.add(:MIRACLESEED,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:MEADOWPLATE,:ROSEINCENSE)
+BattleHandlers::DamageCalcUserItem.copy(:MIRACLESEED,:ROSEINCENSE)
+
+BattleHandlers::DamageCalcUserItem.add(:MEADOWPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :GRASS
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:MODIFIEDBOOSTERENERGY,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -963,13 +1000,15 @@ BattleHandlers::DamageCalcUserItem.add(:MYSTICWATER,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:MYSTICWATER,:SPLASHPLATE,:SEAINCENSE,:WAVEINCENSE)
+BattleHandlers::DamageCalcUserItem.copy(:MYSTICWATER,:SEAINCENSE,:WAVEINCENSE)
 
-BattleHandlers::DamageCalcUserItem.add(:DEEPSEATOOTH,
+BattleHandlers::DamageCalcUserItem.add(:SPLASHPLATE,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.2 if type == :WATER
   }
 )
+
+BattleHandlers::DamageCalcUserItem.copy(:SPLASHPLATE,:DEEPSEATOOTH)
 
 BattleHandlers::DamageCalcUserItem.add(:NEVERMELTICE,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -977,7 +1016,11 @@ BattleHandlers::DamageCalcUserItem.add(:NEVERMELTICE,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:NEVERMELTICE,:ICICLEPLATE)
+BattleHandlers::DamageCalcUserItem.add(:ICICLEPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.3 if type == :ICE
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:NORMALGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -997,7 +1040,11 @@ BattleHandlers::DamageCalcUserItem.add(:POISONBARB,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:POISONBARB,:TOXICPLATE)
+BattleHandlers::DamageCalcUserItem.add(:TOXICPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :POISON
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:POISONGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1023,11 +1070,21 @@ BattleHandlers::DamageCalcUserItem.add(:SHARPBEAK,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:SHARPBEAK,:SKYPLATE)
+BattleHandlers::DamageCalcUserItem.add(:SKYPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :FLYING
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:SILKSCARF,
   proc { |item,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] *= 1.3 if type == :NORMAL
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:BLANKPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :NORMAL
   }
 )
 
@@ -1037,7 +1094,11 @@ BattleHandlers::DamageCalcUserItem.add(:SILVERPOWDER,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:SILVERPOWDER,:INSECTPLATE)
+BattleHandlers::DamageCalcUserItem.add(:INSECTPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :BUG
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:SOFTSAND,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1045,7 +1106,11 @@ BattleHandlers::DamageCalcUserItem.add(:SOFTSAND,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:SOFTSAND,:EARTHPLATE)
+BattleHandlers::DamageCalcUserItem.add(:EARTHPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :GROUND
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:SOULDEW,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1066,16 +1131,17 @@ BattleHandlers::DamageCalcUserItem.add(:SPELLTAG,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:SPELLTAG,:SPOOKYPLATE)
+BattleHandlers::DamageCalcUserItem.add(:SPOOKYPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :GHOST
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:STEELGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleGem(user,:STEEL,move,mults,type)
   }
 )
-
-
-
 
 BattleHandlers::DamageCalcUserItem.add(:THICKCLUB,
     proc { |item,user,target,move,mults,baseDmg,type|
@@ -1105,7 +1171,13 @@ BattleHandlers::DamageCalcUserItem.add(:TWISTEDSPOON,
   }
 )
 
-BattleHandlers::DamageCalcUserItem.copy(:TWISTEDSPOON,:MINDPLATE,:ODDINCENSE)
+BattleHandlers::DamageCalcUserItem.copy(:TWISTEDSPOON,:ODDINCENSE)
+
+BattleHandlers::DamageCalcUserItem.add(:MINDPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :PSYCHIC
+  }
+)
 
 BattleHandlers::DamageCalcUserItem.add(:WATERGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
@@ -1154,6 +1226,24 @@ BattleHandlers::DamageCalcUserItem.add(:MMICROPHONE,
 BattleHandlers::DamageCalcUserItem.add(:SHADOWGEM,
   proc { |item,user,target,move,mults,baseDmg,type|
     pbBattleGem(user,:QMARKS,move,mults,type)
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:AMMOPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :GUN
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:REVERBPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :SOUND
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:MYSTERYPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :MYSTERYPLATE
   }
 )
 

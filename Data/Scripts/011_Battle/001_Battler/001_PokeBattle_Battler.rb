@@ -429,52 +429,59 @@ class PokeBattle_Battler
   def pbHasType?(type)
     return false if !type
     return true if hasActiveEmera?(:ARCEUSRING)
+    activeTypes = pbTypes(true)
     case type
     when :NORMAL
-      return true if hasActiveItem?([:UPGRADE, :OVALSTONE, :QUICKPOWDER, :METALPOWDER])
+      return true if hasActiveItem?([:BLANKPLATE, :UPGRADE, :OVALSTONE, :QUICKPOWDER, :METALPOWDER])
     when :FIGHTING
-      return true if hasActiveItem?([:LUCKYPUNCH, :LIGHTNINGSPHERE])
+      return true if hasActiveItem?([:FIRSTPLATE, :LUCKYPUNCH, :LIGHTNINGSPHERE])
     when :FLYING
+      return true if hasActiveItem?([:SKYPLATE])
     when :POISON
+      return true if hasActiveItem?([:TOXICPLATE])
     when :GROUND
-      return true if hasActiveItem?([:THICKCLUB, :RAREBONE, :RARESTBONE])
+      return true if hasActiveItem?([:EARTHPLATE, :THICKCLUB, :RAREBONE, :RARESTBONE])
       return true if hasActiveItem?(:SOFTSAND) && isFusionOf([:CACNEA, :CACTURNE])
     when :ROCK
-      return true if hasActiveItem?([:PROTECTOR, :DESERTEDROCK])
+      return true if hasActiveItem?([:STONEPLATE, :PROTECTOR, :DESERTEDROCK])
       return true if hasActiveItem?(:SOFTSAND) && isFusionOf([:CACNEA, :CACTURNE])
     when :BUG
+      return true if hasActiveItem?([:INSECTPLATE])
     when :GHOST
+      return true if hasActiveItem?([:SPOOKYPLATE])
       return true if hasActiveItem?(:ROTOMCATALOG) && isFusionOf([:ROTOM, :WASHROTOM, :HEATROTOM, :FROSTROTOM, :FANROTOM, :MOWROTOM, :STEREOROTOM, :DRONEROTOM, :BIKEROTOMMIRAIDON, :BIKEROTOMKORAIDON, :BIKEROTOMCYCLIZAR, :PHONEROTOM])
     when :STEEL
-      return true if hasActiveItem?([:MILLENNIUMCOMETSHARD, :PUREINCENSE])
+      return true if hasActiveItem?([:IRONPLATE, :MILLENNIUMCOMETSHARD, :PUREINCENSE])
     when :FIRE
+      return true if hasActiveItem?([:FLAMEPLATE, :MAGMARIZER, :FIRESPHERE])
       return true if hasActiveAbility?(:WIRED)
-      return true if hasActiveItem?([:MAGMARIZER, :FIRESPHERE])
-      return true if pbHasType?(:FIREWATERGRASS)
     when :WATER
-      return true if hasActiveItem?([:PRISMSCALE, :DEEPSEATOOTH, :DEEPSEASCALE])
-      return true if pbHasType?(:FIREWATERGRASS)
+      return true if hasActiveItem?([:SPLASHPLATE, :PRISMSCALE, :DEEPSEATOOTH, :DEEPSEASCALE])
     when :GRASS
-      return true if hasActiveItem?([:STICK, :AQUAKNIFE])
-      return true if pbHasType?(:FIREWATERGRASS)
+      return true if hasActiveEmera?(:FLOWERWREATH) && activeTypes.include?(:FAIRY)
+      return true if hasActiveItem?([:MEADOWPLATE, :STICK, :AQUAKNIFE])
     when :ELECTRIC
+      return true if hasActiveItem?([:ZAPPLATE, :LIGHTBALL, :ELECTIRIZER, :LIGHTNINGSPHERE])
       return true if hasActiveAbility?(:WIRED)
-      return true if hasActiveItem?([:LIGHTBALL, :ELECTIRIZER, :LIGHTNINGSPHERE])
     when :PSYCHIC
-      return true if hasActiveItem?([:QUICKPOWDER, :METALPOWDER, :ICESPHERE, :MILLENNIUMCOMETSHARD, :SILVERWING])
+      return true if hasActiveItem?([:MINDPLATE, :QUICKPOWDER, :METALPOWDER, :ICESPHERE, :MILLENNIUMCOMETSHARD, :SILVERWING])
       return true if hasActiveAbility?(:WIRED)
     when :ICE
-      return true if hasActiveItem?([:REAPERCLOTH, :ICESPHERE, :DESERTEDROCK])
+      return true if hasActiveItem?([:ICICLEPLATE, :REAPERCLOTH, :ICESPHERE, :DESERTEDROCK])
     when :DRAGON
-      return true if hasActiveItem?(:DRAGONSCALE)
+      return true if hasActiveItem?([:DRACOPLATE, :DRAGONSCALE])
     when :DARK
-      return true if hasActiveItem?(:FIRESPHERE)
+      return true if hasActiveItem?([:DREADPLATE, :FIRESPHERE])
     when :FAIRY
-      return true if hasActiveEmera?(:FAIRYWREATH)
+      return true if hasActiveItem?([:PIXIEPLATE])
     when :GUN
+      return true if hasActiveItem?([:AMMOPLATE])
       return true if hasActiveAbility?([:SNIPER, :FULLMETALBODY, :FULLMETALBODY])
+    when :SOUND
+      return true if hasActiveItem?([:REVERBPLATE])
+    when :QMARKS
+      return true if hasActiveItem?([:MYSTERYPLATE])
     end
-    activeTypes = pbTypes(true)
     TRIPLETYPES.each do |tripletype, material|
       next if !activeTypes.include?(tripletype)
       return true if material.include?(type)
