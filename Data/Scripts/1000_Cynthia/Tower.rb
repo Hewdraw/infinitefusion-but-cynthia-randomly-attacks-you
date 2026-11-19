@@ -17,7 +17,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :activevariable => nil,
-        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Ogerpon", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Ogerpon", "Regirock", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
         :unknownlist => [],
         :eventvariables => {
             :unknownrooms => 0
@@ -571,6 +571,8 @@ def towerEvent()
             $PokemonGlobal.nextBattleBGM = "VSMeloetta"
         when "Ogerpon"
             $PokemonGlobal.nextBattleBGM = "VSOgerpon"
+        when "Regirock"
+            $PokemonGlobal.nextBattleBGM = "VSRegi"
         when "Reshirom"
             $PokemonGlobal.nextBattleBGM = "VSReshiramZekrom"
         when "Rotom1"
@@ -787,6 +789,8 @@ def getFloorGraphic(event)
             return "146"
         when "Ogerpon"
             return "OGERPON"
+        when "Regirock"
+            return "REGIROCK"
         when "Reshirom"
             return "BW (5)"
         when "Rotom1", "Rotom2", "Rotom3"
