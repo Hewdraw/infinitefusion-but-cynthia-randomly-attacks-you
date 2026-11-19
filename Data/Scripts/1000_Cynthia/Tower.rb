@@ -17,7 +17,7 @@ def setupTower()
         :ladder3 => nil,
         :activeevent => "Pokemon",
         :activevariable => nil,
-        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "OGERPON", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
+        :legendarylist => ["Articuno", "Celebi", "Diancie", "Entei", "Genesect", "Ho-Gia", "Jirachi", "Kyurem", "Latias", "Meloetta", "Mew", "Moltres", "Ogerpon", "Reshirom", "Rotom1", "Suikou", "Zapdos"],
         :unknownlist => [],
         :eventvariables => {
             :unknownrooms => 0
