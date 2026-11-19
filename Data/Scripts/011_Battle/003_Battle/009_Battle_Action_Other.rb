@@ -196,7 +196,7 @@ class PokeBattle_Battle
     pbCommonAnimation("MegaEvolution2",battler)
     battler.pbEffectsOnSwitchIn if [:OGERPONGRASS, :OGERPONWELLSPRINGWATER, :OGERPONHEARTHFLAMEFIRE, :OGERPONCORNERSTONEROCK].include?(battler.pokemon.species)
     @battleAI.pbDefaultChooseEnemyCommand(idxBattler)
-    pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, GameData::Type.get(battler.pokemon.tera).name))
+    pbDisplay(_INTL("{1} has Terastallized into the {2}-Type!",battler.pbThis, battler.pokemon.tera.to_s.titleize))
     pbCalculatePriority(false,[idxBattler]) if Settings::RECALCULATE_TURN_ORDER_AFTER_MEGA_EVOLUTION
   end
 
