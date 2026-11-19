@@ -264,7 +264,10 @@ def pbBattleOnStepTaken(repel_active, guarantee=false)
     else
       if [349, 350, 800].include?($game_map.map_id) && $PokemonGlobal.regirock.nil? && rand(15) == 0
         $PokemonGlobal.nextBattleBGM = "VSRegi"
-        $PokemonGlobal.regirock = true if pbLegendaryBattle("Regirock")
+        if pbLegendaryBattle("Regirock")
+          $PokemonGlobal.regirock = true
+          pbMapInterpreter.pbSetSelfSwitch(40, "A", true, 349)
+        end
       elsif [:UNOWN, :B201H201].include?(encounter[0])
         pbLegendaryBattle("Unown")
       elsif $game_map.map_id == 306 && rand(6) == 0
