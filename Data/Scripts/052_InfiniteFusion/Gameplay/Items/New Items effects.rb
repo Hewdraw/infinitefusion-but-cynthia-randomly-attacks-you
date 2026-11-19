@@ -2818,16 +2818,7 @@ def useEndGateway()
   end
   if [51, 46, 428, 531].include?($game_map.map_id) && $PokemonGlobal.endgatewaylocation
     Kernel.pbMessage(_INTL("{1} used the End Gateway!", $Trainer.name))
-    pbFadeOutIn(99999) {
-      Kernel.pbCancelVehicles
-      $game_temp.player_new_map_id = $PokemonGlobal.endgatewaylocation[0]
-      $game_temp.player_new_x = $PokemonGlobal.endgatewaylocation[1]
-      $game_temp.player_new_y = $PokemonGlobal.endgatewaylocation[2]
-      $game_temp.player_new_direction = 2
-      $scene.transfer_player
-      $game_map.autoplay
-      $game_map.refresh
-    }
+    transferPlayer(*$PokemonGlobal.endgatewaylocation)
     pbEraseEscapePoint
     return true
   end
@@ -2838,16 +2829,7 @@ def useEndGateway()
 
   Kernel.pbMessage(_INTL("{1} used the End Gateway!", $Trainer.name))
   $PokemonGlobal.endgatewaylocation = [$game_map.map_id, $game_player.x, $game_player.y]
-  pbFadeOutIn(99999) {
-    Kernel.pbCancelVehicles
-    $game_temp.player_new_map_id = 51
-    $game_temp.player_new_x = 39
-    $game_temp.player_new_y = 52
-    $game_temp.player_new_direction = 2
-    $scene.transfer_player
-    $game_map.autoplay
-    $game_map.refresh
-  }
+  transferPlayer(51, 39, 52)
   pbEraseEscapePoint
   return true
 end

@@ -112,16 +112,7 @@ def pbStartOver(gameover = false)
   end
   if !$PokemonGlobal.towervalues.nil?
     resetTower
-    pbFadeOutIn(99999) {
-      Kernel.pbCancelVehicles
-      $game_temp.player_new_map_id = 32
-      $game_temp.player_new_x = 10
-      $game_temp.player_new_y = 15
-      $game_temp.player_new_direction = 2
-      $scene.transfer_player
-      $game_map.autoplay
-      $game_map.refresh
-    }
+    transferPlayer(32, 10, 15, 2)
     pbEraseEscapePoint
     return
   end

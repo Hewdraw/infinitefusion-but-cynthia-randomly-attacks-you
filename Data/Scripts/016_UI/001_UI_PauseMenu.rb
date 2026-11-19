@@ -224,16 +224,7 @@ class PokemonPauseMenu
         end
       elsif cmdTower >= 0 && command == cmdTower
         $PokemonGlobal.towerlocation = [$game_map.map_id, $game_player.x, $game_player.y]
-        pbFadeOutIn(99999) {
-          Kernel.pbCancelVehicles
-          $game_temp.player_new_map_id = 32
-          $game_temp.player_new_x = 10
-          $game_temp.player_new_y = 18
-          $game_temp.player_new_direction = 8
-          $scene.transfer_player
-          $game_map.autoplay
-          $game_map.refresh
-        }
+        transferPlayer(32, 10, 18, 8)
         @scene.pbEndScene
         return
       elsif cmdLooplet >= 0 && command == cmdLooplet

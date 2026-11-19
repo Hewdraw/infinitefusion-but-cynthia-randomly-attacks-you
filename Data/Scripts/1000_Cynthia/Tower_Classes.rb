@@ -46,7 +46,6 @@ TRAINERCLASSDICT = {
 }
 
 def selectTrainerClass()
-    Kernel.pbMessage("Select your Trainer Class.")
     trainerlist = []
     namelist = []
     descriptionlist = []

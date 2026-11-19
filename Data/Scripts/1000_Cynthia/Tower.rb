@@ -215,13 +215,7 @@ def continueTower()
     $Trainer.party = $PokemonGlobal.towervalues[:extrainfo][:party]
     $PokemonGlobal.partner = nil
     pbMapInterpreter.pbSetSelfSwitch(2, "A", true, 32)
-    $game_temp.player_new_map_id = 21
-    $game_temp.player_new_x = 10
-    $game_temp.player_new_y = 19
-    $game_temp.player_new_direction = 2
-    $scene.transfer_player
-    $game_map.autoplay
-    $game_map.refresh
+    transferPlayer(21, 10, 19)
     if $PokemonGlobal.towervalues[:activeevent]
         pbSetGraphic(1, getFloorGraphic($PokemonGlobal.towervalues[:activeevent]), 21)
     else
@@ -249,16 +243,7 @@ end
 
 def leaveTower()
     return true if $PokemonGlobal.towerlocation.nil?
-    pbFadeOutIn(99999) {
-      Kernel.pbCancelVehicles
-      $game_temp.player_new_map_id = $PokemonGlobal.towerlocation[0]
-      $game_temp.player_new_x = $PokemonGlobal.towerlocation[1]
-      $game_temp.player_new_y = $PokemonGlobal.towerlocation[2]
-      $game_temp.player_new_direction = 2
-      $scene.transfer_player
-      $game_map.autoplay
-      $game_map.refresh
-    }
+    transferPlayer(*$PokemonGlobal.towerlocation)
     $PokemonGlobal.towerlocation = nil
     return false
 end
@@ -454,18 +439,12 @@ def towerIncreaseFloor(nextfloor = nil)
         pbSetGraphic(12, "", 21)
         pbSetSelfSwitch(13, "A", false, 21)
         pbSetSelfSwitch(13, "B", false, 21)
-        $game_temp.player_new_map_id = 21
-        $game_temp.player_new_x = 10
-        $game_temp.player_new_y = 19
-        $game_temp.player_new_direction = 2
-        $scene.transfer_player
+        transferPlayer(21, 10, 19)
         if $PokemonGlobal.towervalues[:activeevent] == "Tutor"
             setDialogIconOn(1)
         else
             setDialogIconOff(1)
         end
-        $game_map.autoplay
-        $game_map.refresh
     end
     floordisplay.endScreen()
 end
@@ -750,15 +729,7 @@ def towerEvent()
         unlockClass(:TIMESTOPPER)
         $PokemonGlobal.towervalues[:activeevent] = nil
         resetTower()
-        pbFadeOutIn(99999) {
-          $game_temp.player_new_map_id = 32
-          $game_temp.player_new_x = 10
-          $game_temp.player_new_y = 16
-          $game_temp.player_new_direction = 2
-          $scene.transfer_player
-          $game_map.autoplay
-          $game_map.refresh
-        }
+        transferPlayer(32, 10, 16)
         return
     when nil
         return

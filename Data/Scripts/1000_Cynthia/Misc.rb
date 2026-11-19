@@ -329,3 +329,19 @@ def getSoulSprite(viewport)
     heartsprite.angle -= 90
     return heartsprite
 end
+
+def transferPlayer(map_id, x=nil, y=nil, direction=nil)
+    x = $game_player.x if !x
+    y = $game_player.y if !y
+    pbFadeOutIn(99999) {
+      Kernel.pbCancelVehicles
+        $game_temp.player_new_map_id = map_id
+        $game_temp.player_new_x = x
+        $game_temp.player_new_y = y
+        $game_temp.player_new_direction = direction
+        $scene.transfer_player
+        $game_map.autoplay
+        $game_map.refresh
+    }
+    pbEraseEscapePoint
+end

@@ -79,13 +79,7 @@ class FloorDisplay
 end
 
 def generateMysteryDungeon
-    $game_temp.player_new_map_id = 38
-    $game_temp.player_new_x = 2
-    $game_temp.player_new_y = 2
-    $game_temp.player_new_direction = 2
-    $scene.transfer_player
-    $game_map.autoplay
-    $game_map.refresh
+    transferPlayer(38, 2, 2)
     maparray = [[0]*52]*28
     maparray.each_with_index do |list, i|
         list.each_with_index do |tile, j|
