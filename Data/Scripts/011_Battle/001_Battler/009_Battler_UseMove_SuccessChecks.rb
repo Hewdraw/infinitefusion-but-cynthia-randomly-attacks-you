@@ -16,7 +16,7 @@ class PokeBattle_Battler
         end
         return false
       end
-    when "180", "203", "370"
+    when "180", "203", "370", "444"
       if @lastRegularMoveUsed == move.id && !specialUsage
         if showMessages
           @battle.pbDisplay(_INTL("But it failed!"))
