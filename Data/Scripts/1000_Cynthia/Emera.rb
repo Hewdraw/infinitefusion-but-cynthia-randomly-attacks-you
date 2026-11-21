@@ -12,7 +12,7 @@ EMERADICT = {
     },
     :CATCHINGNET => {
         :name => "Catching Net",
-        :description => "Obtain an extra Bug Pokemon every Premier Ball floor.",
+        :description => "Obtain an extra Bug Pokemon every Premier Ball floor.", #todo change to not be tied to specific floors
         :rarity => :STARTER,
     },
     :EMPTYGUN => {

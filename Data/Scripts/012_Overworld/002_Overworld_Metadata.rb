@@ -102,6 +102,7 @@ class PokemonGlobalMetadata
   attr_accessor :spiritomb
   attr_accessor :zeldasecret
   attr_accessor :regirock
+  attr_accessor :dialogueread
 
   attr_accessor :boat
   attr_accessor :acroBike

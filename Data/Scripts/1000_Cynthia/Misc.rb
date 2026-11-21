@@ -181,6 +181,7 @@ def tripleFusion(item=false)
     TRIPLEFUSIONS.each do |triple, materials|
         next if $PokemonGlobal.triplefusions.include?(triple)
         materialcount = []
+        #todo fix this to be more convenient and not count triples for itself
         if materials.length == 1
             $Trainer.party.each do |mon|
                 next if mon.species == triple
