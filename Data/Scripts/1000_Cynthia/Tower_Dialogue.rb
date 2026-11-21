@@ -152,6 +152,9 @@ def towerChat(event_id)
             dialogue.push("Welcome to the actual first big hurdle.")
             dialogue.push("... I should probably actually check if you have read the dialogue which that is referencing.")
             dialogue.push("Maybe later.")
+        when "Mt. Moon Square"
+            dialogue.push("Miku, Miku, You can call her Miku.")
+            dialogue.push("Blue Hair, Blue Tie, Hiding in Mt. Moon Square.")
         else
             Kernel.pbMessage("todo")
         end
@@ -216,8 +219,16 @@ def getLocationFromMap(map_id)
         return "Pewter City"
     when 379, 490
         return "Route 3"
-    when 102, 103, 105
+    when 102, 103, 105, 496, 104
         return "Mt. Moon"
+    when 767, 801, 802
+        return "Mt. Moon"
+        # return "Mt. Moon Darker"
+    when 494, 515
+        return "Mt. Moon Square"
+    when 827, 828, 830, 831
+        return "Mt. Moon"
+        # return "Mt. Moon Observatory"
     end
     return nil
 end
