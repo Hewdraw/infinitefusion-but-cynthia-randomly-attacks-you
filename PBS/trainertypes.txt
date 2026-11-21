@@ -115,7 +115,7 @@
 112,LEADER_Jasmine,Gym Leader,100,gymleader,,,Female,,
 113,POLICE,Officer,32,,,,Male,,
 114,SKIER_F,Skier,16,,,,Female,32,
-115,CHAMPION_Sinnoh,Champion,50,,,,Female,100,
+115,CHAMPION_Sinnoh,Champion of Sinnoh,50,,,,Female,100,
 116,SPRITER,Sprite Artist,16,,,,Mixed,100,
 117,TYPE_EXPERT_NORMAL,Type Expert,16,,,,Mixed,100,
 118,TYPE_EXPERT_FIGHTING,Type Expert,16,,,,Mixed,100,
@@ -147,7 +147,7 @@
 144,WuhuIslandExecutioner,Wuhu Island Executioner,0,,,,Female,100,
 145,CREATOR_Minecraft2,Creator of Minecraft,70,,,,Female,100,
 146,COOLTRAINER_MIKU,Cool Trainer,60,,,,Female,,
-147,CHAMPION_Sinnoh2,Champion,50,,,,Female,100,
+147,CHAMPION_Sinnoh2,Champion of Sinnoh,50,,,,Female,100,
 148,RENEGADE,Renegade,50,,,,Female,100, #temporary
 149,LEGENDARY_POKEMON,Legendary Pokémon,0,,,,Mixed,100,
 150,MECH_Miku,Oh Shit!,70,,,,Female,100,
