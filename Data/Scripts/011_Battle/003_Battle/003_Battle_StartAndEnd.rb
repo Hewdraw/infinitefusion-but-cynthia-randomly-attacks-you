@@ -595,6 +595,11 @@ class PokeBattle_Battle
             if ["Cynthia", "Hatsune Miku"].include?(trainer.name)
               coin += pbCynthiaGetBadgeCount+1
             end
+            if ["Shirona"].include?(trainer.name)
+              if $PokemonBag.pbStoreItem(:HISUICOIN, pbCynthiaGetBadgeCount+1)
+                pbDisplayPaused(_INTL("You got #{pbCynthiaGetBadgeCount+1} Hisui Coins for winning!"))
+              end
+            end
             if trainer.trainer_type == :MECH_Miku
               coin += 30
             end

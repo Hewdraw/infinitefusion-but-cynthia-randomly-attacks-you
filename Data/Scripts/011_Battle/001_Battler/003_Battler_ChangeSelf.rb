@@ -372,7 +372,9 @@ class PokeBattle_Battler
     return true if move.total_pp<=0   # Infinite PP, can always be used
     return false if move.pp==0        # Ran out of PP, couldn't reduce
     return true if hasActiveEmera?(:GOLDENLEPPABERRY) && @battle.pbRandom(2, self) == 0
-    pbSetPP(move,move.pp-1) if move.pp>0 && @raid.nil?
+    newpp = move.pp-1
+    newpp = [move.pp-2, 0].max if [:BITTERMALICEPLUS].include?(move.id)
+    pbSetPP(move,newpp) if move.pp>0 && @raid.nil?
     return true
   end
 

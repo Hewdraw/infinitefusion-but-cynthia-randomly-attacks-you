@@ -7847,3 +7847,24 @@ class PokeBattle_Move_449 < PokeBattle_Move
     end
   end
 end
+
+class PokeBattle_Move_224 < PokeBattle_TargetStatDownMove
+  def initialize(battle, move)
+    super
+    @statDown = [:ATTACK, 1]
+  end
+
+  def pbBaseDamage(baseDmg, user, target)
+    if target.pbHasAnyStatus? &&
+      ((target.effects[PBEffects::Substitute] == 0 && target.effects[PBEffects::RedstoneCube] == 0) || ignoresSubstitute?(user))
+      baseDmg *= 2
+    end
+    return baseDmg
+  end
+
+  def pbAdditionalEffect(user,target)
+    super
+    return if target.damageState.substitute
+    target.pbFreeze(user) if target.pbCanFreeze?(user,false,self)
+  end
+end
