@@ -2087,7 +2087,7 @@ class Pokemon
         :GOODASGOLD => -> () {return isFusionOf(:WASHROTOM)},
       },
       :HISUICOIN => {
-        :GOODASGOLD => -> () {return isFusionOf(:WASHROTOM)},
+        :GOODASGOLD => -> () {return isFusionOf(:WASHROTOM)}, #todo change to good as platinum
       },
       :AQUAKNIFE => {
         :SHARPNESS => -> () {return true},
