@@ -2086,6 +2086,9 @@ class Pokemon
       :SINNOHCOIN => {
         :GOODASGOLD => -> () {return isFusionOf(:WASHROTOM)},
       },
+      :HISUICOIN => {
+        :GOODASGOLD => -> () {return isFusionOf(:WASHROTOM)},
+      },
       :AQUAKNIFE => {
         :SHARPNESS => -> () {return true},
       },

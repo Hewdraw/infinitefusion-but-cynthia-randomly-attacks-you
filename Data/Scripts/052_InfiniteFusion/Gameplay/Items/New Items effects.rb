@@ -1319,6 +1319,8 @@ ItemHandlers::UseOnPokemon.add(:SINNOHCOIN, proc { |item, pkmn, scene|
   next false
 })
 
+ItemHandlers::UseOnPokemon.copy(:SINNOHCOIN, :HISUICOIN)
+
 ItemHandlers::UseOnPokemon.add(:ICESPHERE, proc { |item, pkmn, scene|
   REGIONALLIST.each do |regional|
     next if !regional.include?(pkmn.species)

@@ -942,7 +942,7 @@
 951,REVERBPLATE,Reverb Plate,Reverb Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Sound-type moves.",5,0,0
 952,MYSTERYPLATE,Mystery Plate,Mystery Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of ???-type moves.",5,0,0
 953,BLANKPLATE,Blank Plate,Blank Plates,1,1000,"An item to be held by a Pokémon. It is a stone tablet that boosts the power of Normal-type moves.",5,0,0
-954,HISUICOIN,Hisui Coin,Hisui Coins,8,2,"Ancinet Washing Machines like these. Not at all ephemeral.",1,0,0
+954,HISUICOIN,Hisui Coin,Hisui Coins,8,2,"Ancient Washing Machines like these. Not at all ephemeral.",1,0,0
 
 
 
