@@ -61,7 +61,7 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
 
   return false if !encounter_type
 
-  if $game_map.map_id == 98 && $game_player.y >= 51 && $game_player.y <= 62
+  if $game_map.map_id == 98 && $game_player.x >= 51 && $game_player.x <= 62
     pbTrainerBattle(:CHAMPION_Hisui, "Shirona")
     return true
   end
