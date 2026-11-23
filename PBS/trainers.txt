@@ -12445,6 +12445,7 @@ Pokemon = UNOWN,11
     Offset = 0
     Moves = HIDDENPOWER
     Ability = LEGENDARYPRESSURE
+    Hpbar = 3
     Item = CHOICESPECS
     Nature = MODEST
     Raid = TRUE

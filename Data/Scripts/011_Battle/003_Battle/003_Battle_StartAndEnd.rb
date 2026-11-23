@@ -717,6 +717,7 @@ class PokeBattle_Battle
             end
             battler.pokemon.ev[s.id] = 0
           end
+          battler.pokemon.calc_stats
           if battler.pokemon.moves.length > 4
             battler.pokemon.moves = battler.pokemon.moves[0..3]
           end
