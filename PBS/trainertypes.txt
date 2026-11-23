@@ -168,3 +168,4 @@
 165,FLOP_ERA,Flop Era,70,,,,Female,100,
 166,Wild_Pokemon,Wild Pokemon,0,,,,Male,0,
 167,CLAIREPROFESSOR,Professor,200,,,,Female,100,
+168,CHAMPION_Hisui,Champion of Hisui,50,,,,Female,100,

@@ -657,7 +657,7 @@
 657,TM120,TM120,TM120s,4,30000,"The user attacks the target's throat. The target cannot use sound-based moves for two turns.",3,0,0,THROATCHOP
 658,TM00,TM00,TM00s,4,20000,"It looks just like a regular TM, but it doesn't do anything.",3,0,0,FAKEMOVE
 659,TM121,TM121,TM121s,4,10000,"The user shoots boiling hot water at its target. It may also leave the target with a burn.",3,0,0,SCALD
-660,LINKINGCORD,Link Stone,Link Stones,1,6000,"A stone exuding a mysterious energy. It’s loved by certain Pokémon.",1,0,7
+660,LINKINGCORD,Link Stone,Link Stones,1,6000,"The people of Hyrule use precious stones called Rupees as currency. Makes certain species of Pokémon evolve.",1,0,7
 661,INVISIBALL,Invisiball,Invisiball,3,200,"A Pokéball that is completely invisble to the human eye. You shouldn't be able to obtain this item",0,4,4
 662,DREAMMIRROR,Dream Mirror,Dream Mirrors,8,0,"A strange mirror that allows you to peak into the Dream World for a brief instant.",2,0,6
 663,BOXLINK,Box Link,Box Link,8,0,"A small, portable device that allows you to access the Pokémon storage system.",2,0,6

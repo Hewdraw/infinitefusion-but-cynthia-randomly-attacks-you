@@ -61,6 +61,11 @@ def pbEncounterCynthia(encounter_type = nil, trainer_override = nil, return_trai
 
   return false if !encounter_type
 
+  if $game_map.map_id == 98 && $game_player.y >= 51 && $game_player.y <= 62
+    pbTrainerBattle(:CHAMPION_Hisui, "Shirona")
+    return true
+  end
+
   numbadges += badge_bonus
   if $PokemonGlobal.towervalues.nil?
     if getDayOfTheWeek().to_s == "MONDAY" && pbCynthiaGetBadgeCount != 0
