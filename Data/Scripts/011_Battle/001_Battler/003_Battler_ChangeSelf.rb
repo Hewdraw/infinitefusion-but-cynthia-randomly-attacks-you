@@ -319,7 +319,6 @@ class PokeBattle_Battler
     @pokemon.battlevariables = {}
     if splitfrom
       @effects = splitfrom.effects
-      pbInitEffects(true)
       @stages = splitfrom.stages
       @status = splitfrom.status
       @raid = splitfrom.raid
@@ -329,6 +328,7 @@ class PokeBattle_Battler
       end
       @fainted = false
     end
+    pbInitEffects(true)
     pbUpdate(true)
     @battle.scene.pbChangePokemon(self,@pokemon)
     @battle.scene.pbRefreshOne(@index)
