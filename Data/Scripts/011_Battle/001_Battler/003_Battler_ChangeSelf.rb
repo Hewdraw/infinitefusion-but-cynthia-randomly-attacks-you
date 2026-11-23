@@ -318,8 +318,8 @@ class PokeBattle_Battler
     @name = pokemon.name
     @pokemon.battlevariables = {}
     if splitfrom
-      pbInitEffects(false)
       @effects = splitfrom.effects
+      pbInitEffects(true)
       @stages = splitfrom.stages
       @status = splitfrom.status
       @raid = splitfrom.raid

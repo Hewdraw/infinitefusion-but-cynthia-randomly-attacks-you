@@ -2120,7 +2120,7 @@ Events.onEndBattle += proc { |_sender,_e|
     pokemon.dynamax = nil
     pokemon.moves.each_with_index do |move, i|
       case move.id
-      when :GREATROULETTE, :GREATERROULETTE, :GREATESTMETRONOME
+      when :GREATROULETTE, :GREATERROULETTE, :GREATESTROULETTE
         newmove = Pokemon::Move.new(:ROULETTE)
       when :ZEKROMKICK
         newmove = Pokemon::Move.new(:FUSIONBOLT)
