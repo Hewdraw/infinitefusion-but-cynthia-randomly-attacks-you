@@ -258,12 +258,8 @@ class PokeBattle_Battle
         target.effects[PBEffects::GastroAcid] = true
       end
       pbDisplay(_INTL("{1} nullified the stat changes and Abilities effecting your side!",b.pbThis))
+      BattleHandlers.triggerAbilityOnSwitchOut(b.ability,b,false)
       BattleHandlers.triggerAbilityOnSwitchIn(b.ability,b,self)
-      if b.hasActiveAbility?(:REGENERATOR)
-        pbShowAbilitySplash(b)
-        b.pbRecoverHP(b.totalhp/3,false,false)
-        pbHideAbilitySplash(b)
-      end
       pbHideAbilitySplash(b)
       b.raid = raidcooldown if b.raid
     end
