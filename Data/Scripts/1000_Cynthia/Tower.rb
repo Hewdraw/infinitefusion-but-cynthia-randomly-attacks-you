@@ -969,6 +969,7 @@ def getTowerItems()
             [:METALCOAT, 1],
             [:DAWNSTONE, 1],
             [:ICESTONE, 1],
+            [:LINKINGCORD, 1],
             [:WHIPPEDDREAM, 1],
             [:EJECTPACK, 5],
             [:BLUNDERPOLICY, 5],

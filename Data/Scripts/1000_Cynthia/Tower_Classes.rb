@@ -67,7 +67,7 @@ def selectTrainerClass()
     getLooplet.pbStoreEmera(TRAINERCLASSDICT[trainerclass][:emera])
 
     if hasEmera?(:TRAININGGEAR)
-        itemlist = [:FIRESTONE, :THUNDERSTONE, :WATERSTONE, :LEAFSTONE, :MOONSTONE, :SUNSTONE, :DUSKSTONE, :DAWNSTONE, :SHINYSTONE, :MISTSTONE, :ICESTONE, :MAGNETSTONE]
+        itemlist = [:FIRESTONE, :THUNDERSTONE, :WATERSTONE, :LEAFSTONE, :MOONSTONE, :SUNSTONE, :DUSKSTONE, :DAWNSTONE, :SHINYSTONE, :MISTSTONE, :ICESTONE, :MAGNETSTONE, :LINKINGCORD]
         gainedlist = []
         while gainedlist.length < 3
             item = itemlist.sample

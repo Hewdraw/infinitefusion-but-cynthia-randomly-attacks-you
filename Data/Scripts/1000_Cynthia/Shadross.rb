@@ -244,6 +244,11 @@ SHADROSS_STOCK = {
     "cost" => 2,
     "amount" => 1,
   },
+  :LINKINGCORD => {
+    "badges" => 1,
+    "cost" => 2,
+    "amount" => 1,
+  },
   :LUXURYBALL => {
     "badges" => 1,
     "cost" => 7,
