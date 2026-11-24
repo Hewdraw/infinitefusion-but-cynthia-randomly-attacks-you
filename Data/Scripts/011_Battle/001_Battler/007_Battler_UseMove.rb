@@ -217,7 +217,7 @@ class PokeBattle_Battler
       move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESISSUPERNOVA))
       @battle.pbHideAbilitySplash(self)
     end
-    if hasActiveAbility?(:GENESISPLUS) && @zmove > 0 && move.id == :PSYCHICPLUS
+    if hasActiveAbility?(:GENESIS) && @zmove > 0 && move.id == :PSYCHICPLUS
       @battle.pbShowAbilitySplash(self, false, true, "Genesis")
       move = PokeBattle_Move.from_pokemon_move(@battle,Pokemon::Move.new(:GENESISSUPERNOVAPLUS))
       @battle.pbHideAbilitySplash(self)
