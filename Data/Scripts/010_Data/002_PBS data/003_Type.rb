@@ -8,6 +8,7 @@ module GameData
     attr_reader :weaknesses
     attr_reader :resistances
     attr_reader :immunities
+    attr_reader :extremeresistances
 
     DATA = {}
     DATA_FILENAME = "types.dat"
@@ -19,7 +20,8 @@ module GameData
       "IsSpecialType" => [4, "b"],
       "Weaknesses"    => [5, "*s"],
       "Resistances"   => [6, "*s"],
-      "Immunities"    => [7, "*s"]
+      "Immunities"    => [7, "*s"],
+      "ExtremeResistances"    => [8, "*s"],
     }
 
     extend ClassMethods
@@ -37,6 +39,8 @@ module GameData
       @resistances  = [@resistances] if !@resistances.is_a?(Array)
       @immunities   = hash[:immunities]   || []
       @immunities   = [@immunities] if !@immunities.is_a?(Array)
+      @extremeresistances   = hash[:extremeresistances]   || []
+      @extremeresistances   = [@extremeresistances] if !@extremeresistances.is_a?(Array)
     end
 
     # @return [String] the translated name of this item
@@ -50,6 +54,7 @@ module GameData
     def effectiveness(other_type)
       return Effectiveness::NORMAL_EFFECTIVE_ONE if !other_type
       return Effectiveness::SUPER_EFFECTIVE_ONE if @weaknesses.include?(other_type)
+      return Effectiveness::EXTREMELY_INEFFECTIVE if @extremeresistances.include?(other_type)
       return Effectiveness::NOT_VERY_EFFECTIVE_ONE if @resistances.include?(other_type)
       return Effectiveness::INEFFECTIVE if @immunities.include?(other_type)
       return Effectiveness::NORMAL_EFFECTIVE_ONE
@@ -61,13 +66,14 @@ end
 
 module Effectiveness
   INEFFECTIVE            = 0
-  NOT_VERY_EFFECTIVE_ONE = 1
-  NORMAL_EFFECTIVE_ONE   = 2
-  SUPER_EFFECTIVE_ONE    = 4
+  EXTREMELY_INEFFECTIVE  = 1
+  NOT_VERY_EFFECTIVE_ONE = 2
+  NORMAL_EFFECTIVE_ONE   = 4
+  SUPER_EFFECTIVE_ONE    = 8
   NORMAL_EFFECTIVE       = NORMAL_EFFECTIVE_ONE ** 4
 
-  NOT_VERY_EFFECTIVE   = 8
-  EXTREMELY_EFFECTIVE = 64
+  NOT_VERY_EFFECTIVE   = 16
+  EXTREMELY_EFFECTIVE = 128
   module_function
 
   def ineffective?(value)
